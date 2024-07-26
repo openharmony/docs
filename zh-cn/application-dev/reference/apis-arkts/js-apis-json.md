@@ -67,8 +67,16 @@ parse(text: string, reviver?: Transformer): Object | null
 **示例：**
 
 ```ts
+function reviverFunc(key: string, value : Object) {
+  if (key === "age") {
+    return key;
+  }
+  return value;
+}
+
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
-let obj = JSON.parse(jsonText);
+let obj = JSON.parse(jsonText, reviverFunc) as Object;
+console.info((obj as object)["age"]) // Output "age".
 ```
 
 
