@@ -521,7 +521,7 @@ export class FriendMoment {
 
 **优化效果**
 
-在正反例中，针对列表滑动场景，单个列表项中Text组件字体大小属性的修改，反例中采用了普通组件属性刷新方式实现，正例中采用了attributeModifier动态属性设置方式实现。
+在正反例中，针对列表滑动场景，反例采用@Prop修饰的变量，来进行父子组件间的数据同步。子组件在初始化时@Prop修饰的变量，都在本地拷贝了一份数据，增加了组件创建的时间；正例采用@ObjectLink来进行父子组件间的数据同步，把当前this指针注册给父组件，减少了组件创建的时间。
 
 优化后，子组件直接同步父组件数据，无需深拷贝，BuildItem耗时缩短为7ms1μs。
 
@@ -569,8 +569,8 @@ export struct OneMoment {
   // 该类型的状态变量已包含自动刷新功能，不需要再重复进行刷新
   @ObjectLink moment: FriendMoment;
 
-    // 此处aboutToReuse为多余刷新
-    aboutToReuse(params: Record<string, Object>): void {
+  // 此处aboutToReuse为多余刷新
+  aboutToReuse(params: Record<string, Object>): void {
     this.moment.id = (params.moment as FriendMoment).id
     this.moment.userName = (params.moment as FriendMoment).userName
     this.moment.avatar = (params.moment as FriendMoment).avatar
