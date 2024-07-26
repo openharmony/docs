@@ -88,7 +88,7 @@ backgroundColor?(color: ResourceColor): ToolBarModifier
 
 ### padding
 
-padding(padding: Length): ToolBarModifier
+padding(padding: LengthMetrics): ToolBarModifier
 
 自定义绘制工具栏左右内边距的接口，若重载该方法则可进行工具栏左右内边距的自定义绘制。
 
@@ -100,11 +100,11 @@ padding(padding: Length): ToolBarModifier
 
 | 参数名  | 类型     | 必填 | 说明                                                                                  |
 | ------- |--------| ---- |-------------------------------------------------------------------------------------|
-| padding | [Length](ts-types.md#length) | 是   | 设置工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 设置工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
 
 ### height
 
-height(height: Length): ToolBarModifier
+height(height: LengthMetrics): ToolBarModifier
 
 自定义绘制工具栏高度的接口，若重载该方法则可进行工具栏高度的自定义绘制，此高度不包含分割线高度。
 
@@ -116,7 +116,7 @@ height(height: Length): ToolBarModifier
 
 | 参数名  | 类型                              | 必填 | 说明                                 |
 | ------- |---------------------------------| ---- |------------------------------------|
-| height | [Length](ts-types.md#length) | 是   | 设置工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
+| height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 设置工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
 
 ### stateEffect
 
