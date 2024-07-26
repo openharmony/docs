@@ -460,7 +460,7 @@ onDidChange(callback: OnDidChangeCallback)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| callback | [OnDidChangeCallback](ts-universal-attributes-text-style.md#ondidchangecallback12) | 是 |  图文变化前后的内容范围。 |
+| callback | [OnDidChangeCallback](#ondidchangecallback12) | 是 |  图文变化前后的内容范围。 |
 
 ### onCut<sup>12+</sup>
 
@@ -1368,7 +1368,7 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 | 参数名   | 类型   | 必填   | 说明                |
 | ----- | ------ | ---- | ------------------- |
-| listener | [StyledStringChangedListener](ts-universal-attributes-text-style.md#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器 |
+| listener | [StyledStringChangedListener](#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器。 |
 
 ## RichEditorSelection
 
@@ -1742,6 +1742,34 @@ type PasteEventCallback = (event?: PasteEvent) => void
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | event  | [PasteEvent](#pasteevent11) | 否   | 定义用户粘贴事件。 |
+
+# OnDidChangeCallback<sup>12+</sup>
+
+type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => void
+
+文本变换后回调。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| rangeBefore | [TextRange](./ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
+| rangeAfter | [TextRange](./ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
+
+## StyledStringChangedListener<sup>12+</sup>
+属性字符串的文本内容变化监听器。
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
+| onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | 否 | 文本内容完成变化回调函数。 |
+
+## StyledStringChangeValue<sup>12+</sup>
+属性字符串的文本变化信息。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| replacementString | [StyledString](./ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 
 ## PreviewText<sup>12+</sup>
 
