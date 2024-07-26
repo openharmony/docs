@@ -112,3 +112,103 @@ try {
   console.error(`Failed to set printer disabled. Code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+## restrictions.setDisallowedPolicyForAccount<sup>13+</sup>
+
+setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, accountId: number): void
+
+设置禁用/启用某用户的某特性。 
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| feature  | string                                                  | 是   | feature名称。<br/>- fingerprintForAccount：设备指纹认证能力。|
+| disallow | boolean                                                 | 是   | true表示禁用，false表示启用。                        |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200010  | A conflict policy has been configured.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  restrictions.setDisallowedPolicyForAccount(wantTemp, 'fingerprintForAccount', true, 100);
+  console.info('Succeeded in setting fingerprint disabled');
+} catch (err) {
+  console.error(`Failed to set fingerprint disabled. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## restrictions.getDisallowedPolicyForAccount<sup>13+</sup>
+
+getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): boolean
+
+获取某用户的某特性状态。 
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名  | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| feature | string                                                  | 是   | feature名称。<br/>- fingerprintForAccount：设备指纹认证能力。|
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示入参对应的用户的特性被禁用，false表示入参对应的用户的特性未被禁用。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  let result: boolean = restrictions.getDisallowedPolicyForAccount(wantTemp, 'fingerprintForAccount', 100);
+  console.info(`Succeeded in querying is the fingerprintForAccount function disabled : ${result}`);
+} catch (err) {
+  console.error(`Failed to set fingerprintForAccount disabled. Code is ${err.code}, message is ${err.message}`);
+}
+```
