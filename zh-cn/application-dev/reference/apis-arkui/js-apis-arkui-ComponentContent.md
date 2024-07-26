@@ -1,6 +1,6 @@
 # ComponentContent
 
-ComponentContent表示组件内容的实体封装，ComponentContent对象支持在非UI组件中创建与传递，便于开发者对弹窗类组件进行解耦封装。
+ComponentContent表示组件内容的实体封装，其对象支持在非UI组件中创建与传递，便于开发者对弹窗类组件进行解耦封装。ComponentContent底层使用了BuilderNode，相关使用规格参考[BuilderNode](js-apis-arkui-builderNode.md)。
 
 > **说明：**
 >
