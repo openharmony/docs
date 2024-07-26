@@ -2918,16 +2918,33 @@ startMove(): void
 **示例：**
 
 ```ts
+import window from '@ohos.window';
 import { BusinessError } from '@kit.BasicServicesKit';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
-try {
-    windowClass.startMove().then(() => {
-        console.log('startMove successful.');
-    }).catch((err: BusinessError) => {
-        console.log('startMove catch error:' + err.code + ',message:' + err.message);
-    });
-} catch (exception) {
-    console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
+export class myWindowMgr extends ServiceExtensionAbility {
+    async startMove() {
+        let windowClass: window.Window | undefined = undefined;
+        // 创建系统窗口
+        let config: window.Configuration = {
+            name: "myWindow",
+            windowType: window.WindowType.TYPE_GLOBAL_SEARCH,
+            ctx: this.context
+        };
+        let win = await window.createWindow(config);
+        await win.setUIContent("pages/search");
+        await win.setWindowTouchable(true);
+        windowClass = win;
+        try {
+            windowClass.startMove().then(() => {
+                console.log('startMove successful.');
+            }).catch((err: BusinessError) => {
+                console.log('startMove catch error:' + err.code + ',message:' + err.message);
+            });
+        } catch (exception) {
+            console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
+        }
+    }
 }
 ```
 
