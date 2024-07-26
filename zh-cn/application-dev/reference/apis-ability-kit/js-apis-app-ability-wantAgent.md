@@ -752,10 +752,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let wantAgentData: WantAgent;
 // triggerInfo
 let triggerInfo: wantAgent.TriggerInfo = {
-  code: 0, //自定义义结果码
-  startOptions: {
-    windowMode: 101
-  }
+  code: 0 //自定义义结果码
 };
 //WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -1229,11 +1226,11 @@ try {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| info           | WantAgent                       | 否 | 是   | 触发的wantAgent。       |
-| want           | [Want](js-apis-app-ability-want.md#属性)                            | 否 | 是   | 存在的被触发的want。     |
-| finalCode      | number                          | 否 | 是   | 触发wantAgent的请求代码。|
-| finalData      | string                          | 否 | 是   | 公共事件收集的最终数据。  |
-| extraInfo      | Record\<string, Object>            | 否 |否   | 额外数据。               |
+| info           | WantAgent                       | 否 | 否   | 触发的wantAgent。       |
+| want           | [Want](js-apis-app-ability-want.md#属性)                            | 否 | 否   | 存在的被触发的want。     |
+| finalCode      | number                          | 否 | 否   | 触发wantAgent的请求代码。|
+| finalData      | string                          | 否 | 否   | 公共事件收集的最终数据。  |
+| extraInfo      | Record\<string, Object>            | 否 |是   | 额外数据。               |
 
