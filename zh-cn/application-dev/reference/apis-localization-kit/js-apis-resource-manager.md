@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import resourceManager from '@ohos.resourceManager';
+import { resourceManager } from '@kit.LocalizationKit'
 ```
 
 ## 使用说明
@@ -19,8 +19,8 @@ FA模型仍需要先导入包，再调用[getResourceManager](#resourcemanagerge
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.abilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -107,8 +107,8 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 **示例：** 
   <!--code_no_check_fa-->
   ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
     mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
@@ -148,8 +148,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 **示例：** 
   <!--code_no_check_fa-->
   ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
   }).catch((error: BusinessError) => {
@@ -182,8 +182,8 @@ getSystemResourceManager(): ResourceManager
 
 **示例：**
   ```js
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let systemResourceManager = resourceManager.getSystemResourceManager();
@@ -385,7 +385,7 @@ getStringSync(resId: number): string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
@@ -432,7 +432,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
@@ -480,8 +480,8 @@ getStringSync(resource: Resource): string
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -535,8 +535,8 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -587,7 +587,7 @@ getStringByNameSync(resName: string): string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByNameSync("test");
@@ -635,7 +635,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
@@ -676,7 +676,7 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 **示例Stage：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
@@ -728,7 +728,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
@@ -775,8 +775,8 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -835,8 +835,8 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -885,7 +885,7 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
@@ -937,7 +937,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByName("test").then((value: string) => {
@@ -987,7 +987,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
@@ -1035,8 +1035,8 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1125,7 +1125,7 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
@@ -1176,7 +1176,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then((value: Array<string>) => {
@@ -1223,8 +1223,8 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1283,8 +1283,8 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1334,7 +1334,7 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
@@ -1386,7 +1386,7 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayByName("test").then((value: Array<string>) => {
@@ -1441,7 +1441,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
@@ -1494,8 +1494,8 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1551,7 +1551,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringByNameSync("test", 1);
@@ -1597,7 +1597,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
@@ -1654,7 +1654,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
@@ -1706,8 +1706,8 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1771,8 +1771,8 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1827,7 +1827,7 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
@@ -1884,7 +1884,7 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
@@ -1934,7 +1934,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // 默认屏幕密度
@@ -1990,8 +1990,8 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2050,7 +2050,7 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByNameSync("test"); // 默认屏幕密度
@@ -2098,7 +2098,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
@@ -2145,7 +2145,7 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
@@ -2196,7 +2196,7 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id).then((value: Uint8Array) => {
@@ -2246,7 +2246,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then((value: Uint8Array) => {
@@ -2292,8 +2292,8 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2347,8 +2347,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2406,8 +2406,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2464,8 +2464,8 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2513,7 +2513,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
@@ -2560,7 +2560,7 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
@@ -2611,7 +2611,7 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test").then((value: Uint8Array) => {
@@ -2661,7 +2661,7 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", 120).then((value: Uint8Array) => {
@@ -2711,7 +2711,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // 默认屏幕密度
@@ -2767,8 +2767,8 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2827,7 +2827,7 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByNameSync("test"); // 默认屏幕密度
@@ -2875,7 +2875,7 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error: BusinessError, value: string) => {
@@ -2922,7 +2922,7 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
@@ -2973,7 +2973,7 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then((value: string) => {
@@ -3023,7 +3023,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then((value: string) => {
@@ -3069,8 +3069,8 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3124,8 +3124,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3183,8 +3183,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3241,8 +3241,8 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3291,7 +3291,7 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", (error: BusinessError, value: string) => {
@@ -3338,7 +3338,7 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120, (error: BusinessError, value: string) => {
@@ -3389,7 +3389,7 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test").then((value: string) => {
@@ -3439,7 +3439,7 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120).then((value: string) => {
@@ -3490,7 +3490,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
@@ -3553,8 +3553,8 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3620,7 +3620,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon');
@@ -3680,7 +3680,7 @@ getBoolean(resId: number): boolean
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
@@ -3727,8 +3727,8 @@ getBoolean(resource: Resource): boolean
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3779,7 +3779,7 @@ getBooleanByName(resName: string): boolean
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getBooleanByName("boolean_test");
@@ -3825,7 +3825,7 @@ getNumber(resId: number): number
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer对应返回的是原数值
@@ -3885,8 +3885,8 @@ getNumber(resource: Resource): number
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3937,7 +3937,7 @@ getNumberByName(resName: string): number
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getNumberByName("integer_test");
@@ -3991,7 +3991,7 @@ getColorSync(resId: number) : number;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorSync($r('app.color.test').id);
@@ -4039,8 +4039,8 @@ getColorSync(resource: Resource): number
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4091,7 +4091,7 @@ getColorByNameSync(resName: string) : number;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByNameSync("test");
@@ -4132,7 +4132,7 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 **示例Stage：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
@@ -4184,7 +4184,7 @@ getColor(resId: number): Promise&lt;number&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColor($r('app.color.test').id).then((value: number) => {
@@ -4231,8 +4231,8 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4291,8 +4291,8 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4342,7 +4342,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
@@ -4394,7 +4394,7 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByName("test").then((value: number) => {
@@ -4442,7 +4442,7 @@ getRawFileContentSync(path: string): Uint8Array
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContentSync("test.txt");
@@ -4480,7 +4480,7 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
@@ -4530,7 +4530,7 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContent("test.txt").then((value: Uint8Array) => {
@@ -4582,7 +4582,7 @@ getRawFileListSync(path: string): Array\<string>
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileListSync("")
@@ -4625,7 +4625,7 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
@@ -4679,7 +4679,7 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileList("").then((value: Array<string>) => {
@@ -4727,7 +4727,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFdSync("test.txt");
@@ -4766,8 +4766,8 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
@@ -4819,8 +4819,8 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -4864,7 +4864,7 @@ closeRawFdSync(path: string): void
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFdSync("test.txt");
@@ -4903,7 +4903,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
@@ -4951,7 +4951,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFd("test.txt");
@@ -5007,7 +5007,7 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
@@ -5041,8 +5041,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -5101,7 +5101,7 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
@@ -5135,8 +5135,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
@@ -5196,7 +5196,7 @@ addResource(path: string) : void
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
@@ -5235,7 +5235,7 @@ removeResource(path: string) : void
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
@@ -5271,8 +5271,8 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getLocales(); // 仅获取应用资源语言列表
@@ -5334,7 +5334,7 @@ getSymbol(resId: number):number
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getSymbol($r('app.symbol.test').id);
@@ -5381,8 +5381,8 @@ getSymbol(resource: Resource): number
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -5433,7 +5433,7 @@ getSymbolByName(resName: string) : number;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getSymbolByName("test");
@@ -5477,7 +5477,7 @@ isRawDir(path: string) : bool
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.isRawDir("test.txt");
@@ -5523,7 +5523,7 @@ getOverrideResourceManager(configuration?: Configuration) : ResourceManager
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { resourceManager } from '@kit.LocalizationKit'
 
   try {
@@ -5557,7 +5557,7 @@ getOverrideConfiguration() : Configuration
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { resourceManager } from '@kit.LocalizationKit'
 
   let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
@@ -5590,7 +5590,7 @@ updateOverrideConfiguration(configuration: Configuration) : void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { resourceManager } from '@kit.LocalizationKit'
 
   try {
@@ -5660,7 +5660,7 @@ getString(resId: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id).then((value: string) => {
@@ -5727,7 +5727,7 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
        mgr.getStringArray($r('app.strarray.test').id).then((value: Array<string>) => {
@@ -5793,7 +5793,7 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id).then((value: Uint8Array) => {
@@ -5860,7 +5860,7 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id).then((value: string) => {
@@ -5901,7 +5901,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1).then((value: string) => {
@@ -6004,7 +6004,7 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.txt").then((value: Uint8Array) => {
@@ -6035,7 +6035,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
@@ -6074,7 +6074,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt").then((value: resourceManager.RawFileDescriptor) => {
