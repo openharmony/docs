@@ -2984,7 +2984,32 @@ enableDrag(enable: boolean): void
 **示例：**
 
 ```ts
+import window from '@ohos.window';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+export class myWindowMgr extends ServiceExtensionAbility {
+    async createWindow(): Promise<void> {
+        try {
+            console.info('window create');
+            let config: window.Configuration = {
+                name: 'myWindow',
+                windowType: window.WindowType.TYPE_GLOBAL_SEARCH,
+                ctx: this.context
+            }
+            let win = await window.createWindow(config);
+            await win.setUIContent("pages/serch);
+            await win.setWindowTouchable(true);
+            win.enableDrag(true).then(() => {
+                console.log('enableDrag successfully');
+            }).catch((err: BussinessError) => {
+                console.error('enableDrag: ' + err.code + ',message:' + err.message);
+            });
+        } catch (err) {
+            console.log('createWindow err: ' + err.code + ',message:' + err.message);
+        }
+    }
+}
 
 try {
     windowClass.setWindowTouchable(true);
