@@ -1070,3 +1070,136 @@ promise.then((data: display.CutoutInfo) => {
   console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
 });
 ```
+
+### getAvailableArea<sup>12+</sup>
+getAvailableArea(): Promise&lt;Rect&gt;
+
+获取当前2in1设备屏幕的可用区域，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[Rect](#rect9)&gt; | Promise对象。返回当前屏幕可用矩形区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  let promise = displayClass.getAvailableArea();
+  promise.then((data) => {
+    console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to get the available area in this display. Code: ' + JSON.stringify(err));
+  })
+} catch (exception) {
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+}
+```
+
+### on('availableAreaChange')<sup>12+</sup>
+on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
+
+开启当前2in1设备屏幕的可用区域监听。当前2in1设备屏幕有可用区域变化时，触发回调函数，返回可用区域。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 是   | 回调函数，返回改变后的可用区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let callback: Callback<display.Rect> = (data: display.Rect) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  displayClass.on("availableAreaChange", callback);
+} catch (exception) {
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+### off('availableAreaChange')<sup>12+</sup>
+
+off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
+
+关闭当前2in1设备屏幕可用区域变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let callback: Callback<display.Rect> = (data: display.Rect) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  displayClass.off("availableAreaChange", callback);
+} catch (exception) {
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
