@@ -634,3 +634,34 @@ UX规格变更
 **适配指导**
 
 收起键盘时选中区、手柄、菜单状态变更，应用无需适配。
+
+## cl.arkui.15 dragInteraction接口增加系统接口校验
+
+**访问级别**
+
+系统接口。
+
+**变更原因**
+
+拖拽的监听等接口没有权限管控，恶意三方应用可以监听用户拖拽行为进行画像，因此将dragInteraction.on('drag')和dragInteraction.off('drag')接口函数添加接口权限校验。
+
+**变更影响**
+
+该变更为不兼容性变更，非系统应用不能调用dragInteraction.on('drag')和dragInteraction.off('drag')接口。
+
+**起始API Level**
+
+12
+
+**变更发生的版本**
+
+从OpenHarmony SDK 5.0.0.33开始。
+
+**变更的接口**
+
+on(type: 'drag', callback: Callback\<DragState>): void；
+off(type: 'drag', callback?: Callback\<DragState>): void；
+
+**适配指导**
+
+默认行为变更，无需适配。
