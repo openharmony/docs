@@ -82,7 +82,7 @@
 
 - **全局时域分层编码TGOP大小参数：** 可选配置，影响时域关键帧之间的间隔，用户需要基于自身业务场景下抽帧需求自定义关键帧密度，可在[2, GopSize)范围内配置，若不配置则使用默认值
 
-- **全局时域分层编码TGOP参考模式参数：** 可选配置，影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`和跨帧参考`JUMP_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，如不配置则使用默认值。
+- **全局时域分层编码TGOP参考模式参数：** 可选配置，影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`、跨帧参考`JUMP_REFERENCE` 和均匀分层`UNIFORMLY_SCALED_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，如不配置则使用默认值。
 
 使用举例1：TGOP=4，相邻参考模式
 
@@ -91,6 +91,10 @@
 使用举例2：TGOP=4，跨帧参考模式
 
 ![TGOP4 jump reference](figures/temporal-scalability-tgop4-jump.png)
+
+使用举例3：TGOP=4，均匀分层模式
+
+![TGOP4 uniformly scaled reference](figures/temporal-scalability-tgop4-uniformly.png)
 
 ### 开发指导
 
