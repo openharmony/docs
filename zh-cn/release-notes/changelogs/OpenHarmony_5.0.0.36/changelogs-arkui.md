@@ -1,3 +1,5 @@
+# ArkUI子系统Changelog
+
 ## cl.arkui.1 移动窗口布局模式瀑布流行为变更
 
 **访问级别**
@@ -119,6 +121,78 @@ struct TabsSample {
         this.currentIndex = index
       })
     }.width('100%')
+  }
+}
+```
+
+## cl.arkui.3 Refresh组件promptText参数设置为undefined时清空文本内容
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Refresh组件通过promptText参数可传入文本字符串显示在刷新区域，该参数设置为undefined时未清空文本内容，不符合开发者期待，变更后开发者可设置该参数为undefined清空文本内容。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前，promptText参数设置为undefined时会保持当前值不变，刷新区域显示对应文本内容。
+
+变更后，promptText参数设置为undefined时会清空当前文本内容，刷新区域不显示文本内容。
+
+| 变更前 | 变更后 |
+|---------|---------|
+|![Refresh_Before](figures/Refresh_Before.png)|![Refresh_After](figures/Refresh_After.png)|
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36开始。
+
+**变更的接口/组件**
+
+Refresh组件
+
+**适配指导**
+
+开发者需要判断变更后promptText参数设置undefined时清空文本内容后的效果是否符合预期，如不符合可通过对[Refresh组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md)promptText参数设置期望值以达到预期。
+
+```
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false
+  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State promptText: string|undefined = "Loading..."
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing ,
+        promptText: this.promptText  // 设置刷新区域显示文本内容，设置为undefined时清空文本内容
+      }) {
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text('' + item)
+                .width('80%').height(100).fontSize(16).margin(10)
+                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+            }
+          }, (item: string) => item)
+        }
+        .width('100%')
+        .height('100%')
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+      }
+      .backgroundColor(0x89CFF0)
+      .refreshOffset(96)
+    }
   }
 }
 ```
