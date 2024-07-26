@@ -215,10 +215,10 @@ onAccept(callback: (value: string, index: number) => void)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                 |
-| ------ | ------- | ---- | -------------------- |
-| value  | boolean | 是   | 当前选中项的文本。   |
-| index  | number  | 是   | 当前选中项的索引值。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| value  | string | 是   | 当前选中项的文本。   |
+| index  | number | 是   | 当前选中项的索引值。 |
 
 ### onCancel<sup>(deprecated) </sup>
 
