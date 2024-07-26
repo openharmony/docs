@@ -2266,6 +2266,8 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -2312,6 +2314,8 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -2350,6 +2354,8 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 将数据写入系统剪贴板，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2404,6 +2410,8 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 将数据写入系统剪贴板, 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
