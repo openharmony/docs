@@ -2963,6 +2963,7 @@ class DerivedNavPathStack extends NavPathStack {
   pushPath(info: NavPathInfo, animated?: boolean): void {
     console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
     super.pushPath(info, animated);
+  }
 
   // overwrite and overload function of NavPathStack
   pop(animated?: boolean | undefined): NavPathInfo | undefined
