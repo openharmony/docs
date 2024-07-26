@@ -54,25 +54,6 @@
 | multiAppModeType<sup>12+</sup> | bundleManager.MultiAppModeType | 是 | 否 |  应用多开模式的类型。  |
 | maxCount<sup>12+</sup> | number  | 是 | 否 |  应用多开的最大个数。  |
 
-<!--Del-->
-## PreinstalledApplicationInfo<sup>12+<sup>
-
-描述预置应用部分信息。
-
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
-
- **系统接口：**  此接口为系统接口。
-
- **参数：**
-
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
-| --------- | -------------- | ---- | ---- | --------------------------- |
-| bundleName<sup>12+</sup> | string         | 是   | 否   | 应用包的名称。                 |
-| moduleName<sup>12+</sup> | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
-| iconId<sup>12+</sup> | number         | 是   | 否   | 应用图标Id。            |
-| labelId<sup>12+</sup> | number         | 是   | 否   | 应用标签Id。            |
-<!--DelEnd-->
-
 ## ModuleMetadata<sup>10+</sup>
 
 描述模块的元数据信息。

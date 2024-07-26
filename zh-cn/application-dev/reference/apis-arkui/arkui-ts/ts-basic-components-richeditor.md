@@ -460,7 +460,7 @@ onDidChange(callback: OnDidChangeCallback)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| callback | [OnDidChangeCallback](ts-universal-attributes-text-style.md#ondidchangecallback12) | 是 |  图文变化前后的内容范围。 |
+| callback | [OnDidChangeCallback](#ondidchangecallback12) | 是 |  图文变化前后的内容范围。 |
 
 ### onCut<sup>12+</sup>
 
@@ -712,6 +712,8 @@ RichEditor初始化参数。
 ## SelectionOptions<sup>12+</sup>
 
 setSelection的选择项配置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1047,7 +1049,7 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 在Richeditor中添加SymbolSpan，如果组件光标闪烁，插入后光标位置更新为新插入Symbol的后面。
 
-暂不支持手势处理。
+暂不支持手势、复制、拖拽处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1252,6 +1254,49 @@ getSelection(): RichEditorSelection
 | ---------------------------------------- | ------- |
 | [RichEditorSelection](#richeditorselection) | 选中内容信息。 |
 
+### fromStyledString<sup>12+</sup>
+
+fromStyledString(value: StyledString): Array\<RichEditorSpan>
+
+将属性字符串转换成span信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                | 必填   | 说明       |
+| ----- | ----------------------------------- | ---- | ---------- |
+| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取的范围。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Array<[RichEditorSpan](#richeditorspan12)>  | 文本和图片Span信息。 |
+
+### toStyledString<sup>12+</sup>
+
+toStyledString(value: RichEditorRange): StyledString
+
+将给定范围的组件内容转换成属性字符串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                | 必填   | 说明       |
+| ----- | ----------------------------------- | ---- | ---------- |
+| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取的范围。 |
+
+**返回值：**
+
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
+| [StyledString](ts-universal-styled-string.md#styledstring) | 转换后的属性字符串 |
 
 ## RichEditorStyledStringController<sup>12+</sup>
 
@@ -1283,7 +1328,7 @@ getSelection(): RichEditorRange
 
 setStyledString(styledString: StyledString): void
 
-设置富文本组件显示的属性字符串
+设置富文本组件显示的属性字符串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1299,7 +1344,7 @@ setStyledString(styledString: StyledString): void
 
 getStyledString(): MutableStyledString;
 
-获取富文本组件显示的属性字符串
+获取富文本组件显示的属性字符串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1325,7 +1370,7 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 | 参数名   | 类型   | 必填   | 说明                |
 | ----- | ------ | ---- | ------------------- |
-| listener | [StyledStringChangedListener](ts-universal-attributes-text-style.md#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器 |
+| listener | [StyledStringChangedListener](#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器。 |
 
 ## RichEditorSelection
 
@@ -1565,6 +1610,21 @@ SymbolSpan样式选项。
 | ------ | ------ | ---- | ------------------------------------- |
 | offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
 
+## RichEditorSpan<sup>12+</sup>
+
+type RichEditorSpan = RichEditorTextStyleResult | RichEditorImageSpanResult
+
+RichEditor span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型   | 说明       |
+| ------ | ---------- |
+| [RichEditorTextStyleResult](#richeditortextstyleresult) | 后端返回的文本样式信息。 |
+| [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
+
 ## RichEditorRange
 
 范围信息。
@@ -1684,6 +1744,34 @@ type PasteEventCallback = (event?: PasteEvent) => void
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | event  | [PasteEvent](#pasteevent11) | 否   | 定义用户粘贴事件。 |
+
+# OnDidChangeCallback<sup>12+</sup>
+
+type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => void
+
+文本变换后回调。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| rangeBefore | [TextRange](./ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
+| rangeAfter | [TextRange](./ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
+
+## StyledStringChangedListener<sup>12+</sup>
+属性字符串的文本内容变化监听器。
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
+| onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | 否 | 文本内容完成变化回调函数。 |
+
+## StyledStringChangeValue<sup>12+</sup>
+属性字符串的文本变化信息。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| replacementString | [StyledString](./ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 
 ## PreviewText<sup>12+</sup>
 
