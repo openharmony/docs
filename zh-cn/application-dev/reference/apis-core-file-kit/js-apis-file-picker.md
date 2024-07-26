@@ -58,6 +58,8 @@ struct Index {
 
 constructor()
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 创建PhotoViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
@@ -338,6 +340,8 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 
 constructor(context: Context)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 创建DocumentViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
@@ -373,6 +377,8 @@ struct Index {
 ### constructor<sup>12+</sup>
 
 constructor()
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -656,6 +662,8 @@ async function example12(context: common.Context) { // 需确保 context 由 UIA
 
 constructor(context: Context)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
@@ -708,6 +716,8 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSelectOptions对象，返回选择音频文件的uri数组。
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -832,6 +842,8 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSaveOptions对象，返回保存音频文件的uri数组。
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1054,9 +1066,9 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 <br>**原子化服务API:** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径 <br>**原子化服务API:** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为要保存的后缀。没有"\|\"则没有描述，该项整体是一个保存的后缀。默认没有后缀类型。<br>**原子化服务API:** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入  |
+| defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径  |
+| fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为要保存的后缀。没有"\|\"则没有描述，该项整体是一个保存的后缀。默认没有后缀类型。 |
 | pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效 |
 
 ## AudioSelectOptions
@@ -1073,6 +1085,8 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 ## AudioSaveOptions
 
 音频的保存选项。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
