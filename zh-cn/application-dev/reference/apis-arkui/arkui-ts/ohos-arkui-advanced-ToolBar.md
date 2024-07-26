@@ -84,7 +84,7 @@ backgroundColor?(color: ResourceColor): ToolBarModifier
 
 | 参数名  | 类型                                                   | 必填 | 说明                                                               |
 | ------- | ------------------------------------------------------ | ---- |------------------------------------------------------------------|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 是   | 绘制工具栏背景色。<br/>默认背景色为$r('sys.color.ohos_id_color_toolbar_bg')。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 是   | 工具栏背景色。<br/>默认背景色为$r('sys.color.ohos_id_color_toolbar_bg')。 |
 
 ### padding
 
@@ -100,7 +100,7 @@ padding(padding: LengthMetrics): ToolBarModifier
 
 | 参数名  | 类型     | 必填 | 说明                                                                                  |
 | ------- |--------| ---- |-------------------------------------------------------------------------------------|
-| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 设置工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
 
 ### height
 
@@ -116,7 +116,7 @@ height(height: LengthMetrics): ToolBarModifier
 
 | 参数名  | 类型                              | 必填 | 说明                                 |
 | ------- |---------------------------------| ---- |------------------------------------|
-| height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 设置工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
+| height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
 
 ### stateEffect
 
@@ -132,7 +132,7 @@ stateEffect(stateEffect: boolean): ToolBarModifier
 
 | 参数名  | 类型                             | 必填 | 说明                                                       |
 | ------- |--------------------------------| ---- |----------------------------------------------------------|
-| stateEffect | boolean | 是   | 设置工具栏是否显示按压态效果。<br/>true为显示按压态效果，false为移除按压态效果，默认为true。 |
+| stateEffect | boolean | 是   | 工具栏是否显示按压态效果。<br/>true为显示按压态效果，false为移除按压态效果，默认为true。 |
 
 ## ItemState
 
