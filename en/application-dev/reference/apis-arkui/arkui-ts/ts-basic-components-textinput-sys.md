@@ -1,6 +1,6 @@
 # TextInput (System API)
 
-The **\<TextInput>** component provides single-line text input.
+The **TextInput** component provides single-line text input.
 
 >  **NOTE**
 >

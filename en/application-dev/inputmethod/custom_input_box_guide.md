@@ -26,7 +26,7 @@ You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inp
      @State inputText: string = ''; // Specify the text to display in the text input box.
      
      build() {
-       Text(this.inputText) // Use the <Text> component to show text in the text input box
+       Text(this.inputText) // Use the Text component to show text in the text input box
          .fontSize(16)
          .width('100%')
          .lineHeight(40)
@@ -49,7 +49,7 @@ You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inp
      private inputController: inputMethod.InputMethodController = inputMethod.getController();
    
      build() {
-       Text(this.inputText) // Use the <Text> component to show text in the text input box
+       Text(this.inputText) // Use the Text component to show text in the text input box
          .fontSize(16)
          .width('100%')
          .lineHeight(40)

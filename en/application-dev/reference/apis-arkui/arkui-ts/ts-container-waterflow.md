@@ -36,7 +36,7 @@ WaterFlow(options?:  WaterFlowOptions)
 | Name    | Type                                       | Mandatory| Description                                    |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | No  | Footer of the **WaterFlow** component. |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [Grid](ts-container-grid.md), or [Scroll](ts-container-scroll.md).|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [List](ts-container-list.md), [Grid](ts-container-grid.md), or [Scroll](ts-container-scroll.md).|
 
 
 ## Attributes
@@ -99,7 +99,7 @@ Basic usage of **WaterFlow**:
 ```ts
 // WaterFlowDataSource.ets
 
-// Object that implements the IDataSource API, which is used by the <WaterFlow> component to load data.
+// Object that implements the IDataSource API, which is used by the WaterFlow component to load data.
 export class WaterFlowDataSource implements IDataSource {
   private dataArray: number[] = []
   private listeners: DataChangeListener[] = []

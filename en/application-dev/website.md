@@ -251,9 +251,9 @@
         - [Application Permission Groups](security/AccessToken/app-permission-group-list.md)
       - Using Security Components
         - [Security Component Overview](security/AccessToken/security-component-overview.md)
-        - [Using \<PasteButton>](security/AccessToken/pastebutton.md)
-        - [Using \<SaveButton>](security/AccessToken/savebutton.md)
-        - [Using \<LocationButton>](security/AccessToken/locationbutton.md)
+        - [Using PasteButton](security/AccessToken/pastebutton.md)
+        - [Using SaveButton](security/AccessToken/savebutton.md)
+        - [Using LocationButton](security/AccessToken/locationbutton.md)
   - Accessibility Kit
     - [Introduction to Accessibility Kit](accessibility/accessibilityKit.md)
     - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
@@ -1043,7 +1043,7 @@
   - Media Library Kit
     - [Introduction to Media Library Kit](media/medialibrary/photoAccessHelper-overview.md)
     - [Selecting Media Assets Using Picker](media/medialibrary/photoAccessHelper-photoviewpicker.md)
-    - [Creating a Media Asset Using \<SaveButton>](media/medialibrary/photoAccessHelper-savebutton.md)
+    - [Creating a Media Asset Using SaveButton](media/medialibrary/photoAccessHelper-savebutton.md)
     - Restricted Open Capabilities
       - [Before You Start](media/medialibrary/photoAccessHelper-preparation.md)
       - [Managing Media Assets](media/medialibrary/photoAccessHelper-resource-guidelines.md)

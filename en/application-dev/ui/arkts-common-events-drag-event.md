@@ -237,7 +237,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
 
 ### Multi-Select Drag-and-Drop Adaptation
 
-Since API version 12, the **\<GridItem>** and **\<ListItem>** components in the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) components support multi-select dragging. Currently, only the onDragStart mode is supported. The following uses **Grid** as an example to describe the basic procedure for multi-select drag-and-drop development and precautions during development.
+Since API version 12, the **\<GridItem>** and **\<ListItem>** components in the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) components support multi-select dragging. Currently, only the onDragStart mode is supported. The following uses **Grid** as an example to describe the basic procedure for multi-select drag-and-drop development and precautions during development.
 
 1. Enable multi-select drag-and-drop.
 

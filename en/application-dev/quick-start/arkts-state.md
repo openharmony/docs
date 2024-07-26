@@ -290,7 +290,7 @@ struct MyComponent {
         .margin(10)
       Button(`Click to change title`)
         .onClick(() => {
-          // The update of the @State decorated variable triggers the update of the <Text> component.
+          // The update of the @State decorated variable triggers the update of the Text component.
           this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
         })
         .width(300)

@@ -1,8 +1,8 @@
 # PatternLock
 
-The **\<PatternLock>** component allows users to use a pattern password for authentication. It enters the input state once a finger is pressed against it, and exits the input state and completes the input once the finger leaves the screen.
+The **PatternLock** component allows users to use a pattern password for authentication. It enters the input state once a finger is pressed against it, and exits the input state and completes the input once the finger leaves the screen.
 
->  **NOTE**
+>  **NOTE** 
 >
 > This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -14,9 +14,9 @@ Not supported
 
 PatternLock(controller?: PatternLockController)
 
-**Parameters**
+**Parameters** 
 
-| Name    | Type                                       | Mandatory| Description                                                        |
+| Name    | Type                                       | Mandatory | Description                                                        |
 | ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | controller | [PatternLockController](#patternlockcontroller) | No  | Controller of a component to reset the component status.      |
 
@@ -24,29 +24,149 @@ PatternLock(controller?: PatternLockController)
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name           | Type                             | Description                                                        |
-| --------------- | ------------------------------------- | ------------------------------------------------------------ |
-| sideLength      | [Length](ts-types.md#length)        | Width and height (same value) of the component. If this attribute is set to **0** or a negative number, the component is not displayed.<br>Default value: **288vp**|
-| circleRadius    | [Length](ts-types.md#length)        | Radius of the grid dot. If this attribute is set to **0** or a negative value, the default value is used.<br>Default value: **6vp**                       |
-| regularColor    | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in the unselected state.<br>Default value: **'#ff182431' **|
-| selectedColor   | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in the selected state.<br>Default value: **'#ff182431' **|
-| activeColor     | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in the activated state, which is when the dot is highlighted but not selected.<br>Default value: **'#ff182431' **|
-| pathColor       | [ResourceColor](ts-types.md#resourcecolor) | Path color.<br>Default value: **'#33182431' **          |
-| pathStrokeWidth | number \| string            | Width of the path stroke. If this attribute is set to **0** or a negative value, the path stroke is not displayed.<br>Default value: **12vp**          |
-| autoReset       | boolean                               | Whether to allow the user to reset the component status (that is, clear the input) by touching the component again after the input is complete. The value **true** means that the user can reset the component status by touching the component again after the input is complete, and **false** means the opposite.<br>Default value: **true**|
+### sideLength
+
+sideLength(value: Length)
+
+Sets the width and height (same value) of the component. If this attribute is set to **0** or a negative number, the component is not displayed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                        | Mandatory | Description              |
+| ------ | ---------------------------- | ---- | ------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Width and height of the component. Default value: **288vp** |
+
+### circleRadius
+
+circleRadius(value: Length)
+
+Sets the radius of the grid dot. If this attribute is set to **0** or a negative value, the default value is used.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                        | Mandatory | Description                              |
+| ------ | ---------------------------- | ---- | ---------------------------------- |
+| value  | [Length](ts-types.md#length) | Yes  | Radius of the grid dot.<br>Default value: **6vp** |
+
+### regularColor
+
+regularColor(value: ResourceColor)
+
+Sets the fill color of the grid dot in the unselected state.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                      | Mandatory | Description                                                      |
+| ------ | ------------------------------------------ | ---- | ---------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Fill color of the grid dot in the unselected state.<br>Default value: **'#ff182431'** |
+
+### selectedColor
+
+selectedColor(value: ResourceColor)
+
+Sets the fill color of the grid dot in the selected state.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                      | Mandatory | Description                                                    |
+| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Fill color of the grid dot in the selected state.<br>Default value: **'#ff182431' ** |
+
+### activeColor
+
+activeColor(value: ResourceColor)
+
+Sets the fill color of the grid dot in the activated state, which is when the dot is highlighted but not selected.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                      | Mandatory | Description                                                    |
+| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Fill color of the grid dot in the activated state.<br>Default value: **'#ff182431' ** |
+
+### pathColor
+
+pathColor(value: ResourceColor)
+
+Sets the path color.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                      | Mandatory | Description                                |
+| ------ | ------------------------------------------ | ---- | ------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Path color.<br>Default value: **'#33182431' ** |
+
+### pathStrokeWidth
+
+pathStrokeWidth(value: number | string)
+
+Sets the width of the path stroke. If this attribute is set to **0** or a negative value, the path stroke is not displayed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                      | Mandatory | Description                         |
+| ------ | -------------------------- | ---- | ----------------------------- |
+| value  | number \| string | Yes  | Wdth of the path stroke.<br>Default value: **12vp** |
+
+### autoReset
+
+autoReset(value: boolean)
+
+Sets whether to allow the user to reset the component status (that is, clear the input) by touching the component again after the input is complete.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type   | Mandatory | Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to allow the user to reset the component status (that is, clear the input) by touching the component again after the input is complete.<br>The value **true** means that the user can reset the component status by touching the component again after the input is complete, and **false** means the opposite.<br>Default value: **true** |
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                                        | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onPatternComplete(callback: (input: Array\<number\>) => void) | Invoked when the pattern password input is complete.<br>**input**: an array of digits that are the indexes of the connected grid dots and are arranged in the same sequence as the dots are connected. The indexes of the grid dots are as follows: 0, 1, 2 for the dots in the first row from left to right; 3, 4, 5 for the dots in the second row; 6, 7, 8 for the dots in the third row.|
-| onDotConnect(callback: [CallBack](../apis/js-apis-base.md#callback)\<number\>)<sup>11+</sup>     | Invoked when a grid dot is connected during pattern password input.<br>**NOTE**<br>The callback parameter is a digit that is the index of the connected grid dot. The indexes of the grid dots are as follows: 0, 1, 2 for the dots in the first row from left to right; 3, 4, 5 for the dots in the second row; 6, 7, 8 for the dots in the third row.|
+### onPatternComplete
+
+onPatternComplete(callback: (input: Array\<number\>) => void)
+
+Invoked when the pattern password input is complete.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type           | Mandatory | Description                                                        |
+| ------ | --------------- | ---- | ------------------------------------------------------------ |
+| input  | Array\<number\> | Yes  | Array of digits that are the indexes of the connected grid dots and are arranged in the same sequence as the dots are connected. The indexes of the grid dots are as follows: 0, 1, 2 for the dots in the first row from left to right; 3, 4, 5 for the dots in the second row; 6, 7, 8 for the dots in the third row. |
+
+### onDotConnect<sup>11+</sup>
+
+onDotConnect(callback: [CallBack](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
+
+Invoked when a grid dot is connected during pattern password input.
+
+The callback parameter is a digit that is the index of the connected grid dot. The indexes of the grid dots are as follows: 0, 1, 2 for the dots in the first row from left to right; 3, 4, 5 for the dots in the second row; 6, 7, 8 for the dots in the third row.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## PatternLockController
 
-Implements the controller bound to the **\<PatternLock>** component for resetting the component status.
+Implements the controller bound to the **PatternLock** component for resetting the component status.
 
 ### Objects to Import
 
@@ -66,16 +186,16 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 Sets the authentication challenge result for the pattern password.
 
-| Name  | Type                                                    | Mandatory| Description      |
+| Name  | Type                                                    | Mandatory | Description      |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| result | [PatternLockChallengeResult](#patternlockchallengeresult11) | Yes  | Authentication challenge result of the pattern password.|
+| result | [PatternLockChallengeResult](#patternlockchallengeresult11)  | Yes  | Authentication challenge result of the pattern password. |
 
 ## PatternLockChallengeResult<sup>11+</sup>
 
 | Name   | Description          |
 | ------- | -------------- |
-| CORRECT | The pattern password is correct.|
-| WRONG   | The pattern password is incorrect.|
+| CORRECT | The pattern password is correct. |
+| WRONG   | The pattern password is incorrect. |
 
 ##  Example
 

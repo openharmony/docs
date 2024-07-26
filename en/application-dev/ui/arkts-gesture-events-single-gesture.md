@@ -182,7 +182,7 @@ struct Index {
 
 >**NOTE**
 >
->Most swipeable components, such as **\<List>**, **Grid**, **Scroll**, and **\<Tab>**, allow for swiping through the pan gesture. If you bind the pan gesture or [swipe gesture](#swipe-gesture) to a child of these components, competition for gesture recognition will result.
+>Most swipeable components, such as **List**, **Grid**, **Scroll**, and **\<Tab>**, allow for swiping through the pan gesture. If you bind the pan gesture or [swipe gesture](#swipe-gesture) to a child of these components, competition for gesture recognition will result.
 >
 >If the pan gesture is bound to a child component, the component, instead of its parent, responds to the pan gestures recognized. If you want the parent component to respond, you need to modify the gesture binding method or transfer messages from the child component to the parent component, or modify the **distance** parameters in **PanGesture** for the components. If the swipe gesture is bound to a child component, to allow the parent component to respond to gestures, you need to modify the parameters of **PanGesture** and **SwipeGesture**, since the swipe gesture and pan gesture are recognized with different conditions.
 

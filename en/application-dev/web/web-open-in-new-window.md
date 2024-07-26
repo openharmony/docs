@@ -1,7 +1,7 @@
 # Opening Pages in a New Window
 
 
-The **\<Web>** component provides the capability of opening pages in a new window. You can call [multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web.md#multiwindowaccess9) to specify whether to allow a web page to be opened in a new window. When a new window is opened in the **\<Web>** component, the application will receive a window opening event through [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9). You need to add the code for processing the window opening request in the event callback.
+The **Web** component provides the capability of opening pages in a new window. You can call [multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web.md#multiwindowaccess9) to specify whether to allow a web page to be opened in a new window. When a new window is opened in the **Web** component, the application will receive a window opening event through [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9). You need to add the code for processing the window opening request in the event callback.
 
 
 > **NOTE**

@@ -164,7 +164,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
 | selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<ListItem>** component. |
-| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<List>** component. |
+| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter takes effect only in the drag event of the **List** component. |
 
 ## DragEvent
 

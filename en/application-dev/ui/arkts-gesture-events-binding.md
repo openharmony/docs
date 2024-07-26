@@ -69,7 +69,7 @@ struct Index {
     }
     .height(200)
     .width(250)
-    // When the tap gesture is bound to the parent <Column> component through priorityGesture, the tap gesture event of the <Text> component is ignored when the text area is tapped, and the tap gesture event of the<Column> component is preferentially responded to.
+    // When the tap gesture is bound to the parent <Column> component through priorityGesture, the tap gesture event of the Text component is ignored when the text area is tapped, and the tap gesture event of the<Column> component is preferentially responded to.
     .priorityGesture(
       TapGesture()
         .onAction(() => {
@@ -109,7 +109,7 @@ struct Index {
     }
     .height(200)
     .width(250)
-    // When parallelGesture is set, the tap gestures on the <Column> component and on the child <Text> component are both recognized.
+    // When parallelGesture is set, the tap gestures on the <Column> component and on the child Text component are both recognized.
     .parallelGesture(
       TapGesture()
         .onAction(() => {

@@ -20,7 +20,7 @@ Binds a sheet to the component, which can be displayed when the component is tou
 
 | Name | Type                                       | Mandatory| Description                                                        |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | boolean                                     | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| isShow  | boolean                                     | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the sheet.                                        |
 | options | [SheetOptions](#sheetoptions)               | No  | Optional attributes of the sheet.                                  |
 
@@ -28,7 +28,7 @@ Binds a sheet to the component, which can be displayed when the component is tou
 >
 > When no two-way binding is set up for the **isShow** parameter, closing the sheet by dragging does not change the parameter value.
 >
-> To synchronize the value of **isShow** with the actual state of the sheet, it is recommended that you use the [$$](../../quick-start/arkts-two-way-sync.md) to set up two-way binding for **isShow**.
+> To synchronize the value of **isShow** with the actual state of the sheet, it is recommended that you use the [$$](../../../quick-start/arkts-two-way-sync.md) to set up two-way binding for **isShow**.
 ## SheetOptions
 
 Inherited from [BindOptions](#bindoptions).

@@ -24,7 +24,7 @@ struct CompA {
   build() {
     Column() {
       Text(this.a.prop2) // when this.a.prop2 changes, it will invoke Text rerendering
-        .fontSize(this.isRenderText()) // If the <Text> renders, the function isRenderText will be called.
+        .fontSize(this.isRenderText()) // If the Text renders, the function isRenderText will be called.
     }
   }
 }
@@ -252,9 +252,9 @@ struct CompA {
   }
   build() {
     Column() {
-      Text(this.a.prop2) // When this.a.prop1 changes, it will invoke <Text> re-rendering.
+      Text(this.a.prop2) // When this.a.prop1 changes, it will invoke Text re-rendering.
         .margin({ bottom: 10 })
-        .fontSize(this.isRenderText()) // If the <Text> renders, the function isRenderText will be called.
+        .fontSize(this.isRenderText()) // If the Text renders, the function isRenderText will be called.
       Text("subProp1 : " + this.a.prop3.subProp1) //the Text can not observe the change of subProp1
         .fontSize(30)
     }
@@ -334,9 +334,9 @@ struct CompA {
   }
   build() {
     Column() {
-      Text(this.a.prop2) // When this.a.prop1 changes, it will invoke <Text> re-rendering.
+      Text(this.a.prop2) // When this.a.prop1 changes, it will invoke Text re-rendering.
         .margin({ bottom: 10 })
-        .fontSize(this.isRenderText()) // If the <Text> renders, the function isRenderText will be called.
+        .fontSize(this.isRenderText()) // If the Text renders, the function isRenderText will be called.
       Text("subProp1 : " + this.b.subProp1) // Use directly b rather than a.prop3.
         .fontSize(30)
         .opacity(this.isRenderTextSubProp1())

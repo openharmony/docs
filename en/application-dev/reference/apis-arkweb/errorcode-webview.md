@@ -12,11 +12,11 @@ Init error. The WebviewController must be associated with a Web compoent.
 
 **Description**
 
-This error code is reported when the **WebviewController** object is not associated with any **\<Web>** component.
+This error code is reported when the **WebviewController** object is not associated with any **Web** component.
 
 **Solution**
 
-Bind the **WebviewController** object to a **\<Web>** component.
+Bind the **WebviewController** object to a **Web** component.
 
 
 ## 17100002 Invalid URL
@@ -316,11 +316,11 @@ This error code is reported when the current **WebviewController** object is inv
 
 **Possible Causes**
 
-The **WebviewController** object is not associated with a valid **\<Web>** component.
+The **WebviewController** object is not associated with a valid **Web** component.
 
 **Solution**
 
-Use a **WebviewController** object that is associated with a valid **\<Web>** component.
+Use a **WebviewController** object that is associated with a valid **Web** component.
 
 ## 17100018 No WebDownloadDelegate Available
 

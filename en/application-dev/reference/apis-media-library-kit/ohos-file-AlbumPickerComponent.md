@@ -1,8 +1,8 @@
-# @ohos.file.AlbumPickerComponent (\<AlbumPickerComponent>)
+# @ohos.file.AlbumPickerComponent (AlbumPickerComponent)
 
-The <**AlbumPickerComponent**> component embedded in an application allows the application to access the albums in the user directory without any permission.
+The **AlbumPickerComponent** component embedded in an application allows the application to access the albums in the user directory without any permission.
 
-This component must be used together with [\<PhotoPickerComponent>](ohos-file-PhotoPickerComponent.md). When a user selects an album by using <**AlbumPickerComponent**>, **\<PhotoPickerComponent>** is instructed to update the photos and videos in the album.
+This component must be used together with [PhotoPickerComponent](ohos-file-PhotoPickerComponent.md). When a user selects an album by using **AlbumPickerComponent**, **PhotoPickerComponent** is instructed to update the photos and videos in the album.
 
 > **NOTE**
 >
@@ -25,7 +25,7 @@ AlbumPickerComponent({
   onAlbumClick?: (albumInfo: AlbumInfo) => boolean
 })
 
-The <**AlbumPickerComponent**> component embedded in an application allows the application to access the albums in the user directory without any permission.
+The **AlbumPickerComponent** component embedded in an application allows the application to access the albums in the user directory without any permission.
 
 **Decorator**: @Component
 
@@ -37,12 +37,12 @@ The <**AlbumPickerComponent**> component embedded in an application allows the a
 
 | Name | Type | Mandatory | Description   |
 |-------|-------|-----|------------|
-| albumPickerOptions    | [AlbumPickerOptions](#albumpickeroptions) | No  |  \<**AlbumPicker**> configuration.                         |
+| albumPickerOptions    | [AlbumPickerOptions](#albumpickeroptions) | No  |  **AlbumPicker** configuration.                         |
 | onAlbumClick  | (albumInfo: [AlbumInfo](#albuminfo)) => boolean   | No  |  Callback used to return the album URI when an album is selected by a user.  |
 
 ## AlbumPickerOptions
 
-Represents the \<**AlbumPicker**> configuration.
+Represents the **AlbumPicker** configuration.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

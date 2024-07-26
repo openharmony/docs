@@ -1,11 +1,11 @@
 # ListItem
 
-The **\<ListItem>** component displays specific items in the list. It must be used together with **\<List>**.
+The **\<ListItem>** component displays specific items in the list. It must be used together with **List**.
 
 > **NOTE**
 >
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The parent of this component can only be [\<List>](ts-container-list.md) or [\<ListItemGroup>](ts-container-listitemgroup.md).
+> - The parent of this component can only be [List](ts-container-list.md) or [ListItemGroup](ts-container-listitemgroup.md).
 
 ## Child Components
 
@@ -47,7 +47,7 @@ sticky(value: Sticky)
 
 Sets the sticky effect of the list item.
 
-This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the \<List> component](ts-container-list.md#attributes) instead.
+This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the List component](ts-container-list.md#attributes) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,7 +77,7 @@ This API is deprecated since API version 9. There is no substitute API.
 
 selectable(value: boolean)
 
-Sets whether the list item is selectable for multiselect. This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.
+Sets whether the list item is selectable for multiselect. This attribute takes effect only when mouse frame selection is enabled for the parent **List** container.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -120,7 +120,7 @@ Sets the swipe action item displayed when the list item is swiped out from the s
 | value  | [SwipeActionOptions](#swipeactionoptions) | Yes  | Swipe action item displayed when the list item is swiped out from the screen edge.|
 
 ## Sticky<sup>(deprecated)</sup>
-This API is deprecated since API version 9. You are advised to use [the stickyStyle enum of the \<List> component](ts-container-list.md#stickystyle9) instead.
+This API is deprecated since API version 9. You are advised to use [the stickyStyle enum of the List component](ts-container-list.md#stickystyle9) instead.
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | None |  0  | The list item is not sticky.|
@@ -174,7 +174,7 @@ For a list in horizontal layout, it refers to the delete option displayed below 
 
 | Name | Type                                 | Mandatory| Description                                                        |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width.<br>It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and<br>**alignListItem** attribute at **ListItemAlign.Center**.<br>If **ListItemStyle.CARD** is set and **ListItemGroupStyle.CARD** is not, only some card styles and functions are available.|
+| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [ListItemGroup](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width.<br>It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and<br>**alignListItem** attribute at **ListItemAlign.Center**.<br>If **ListItemStyle.CARD** is set and **ListItemGroupStyle.CARD** is not, only some card styles and functions are available.|
 
 ## SwipeActionOptions<sup>10+</sup>
 

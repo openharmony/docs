@@ -1,11 +1,11 @@
 # @ohos.multimedia.movingphotoview (\<MovingPhotoView> Component)
 
-The \<**MovingPhotoView**> component is used to play live photo files and control the playback status.
+The **MovingPhotoView** component is used to play live photo files and control the playback status.
 
 > **NOTE**
 >
 > - This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
-> - Currently, the \<**MovingPhotoView**> component cannot be used in Previewer.
+> - Currently, the **MovingPhotoView** component cannot be used in Previewer.
 
 ## Modules to Import
 
@@ -145,7 +145,7 @@ Defines a callback to be invoked when the playback status of a moving photo chan
 
 ## MovingPhotoViewController
 
-A **MovingPhotoViewController** object can be used to control a \<**MovingPhotoView**> component. For details, see [@ohos.multimedia.media](../apis-media-kit/js-apis-media.md).
+A **MovingPhotoViewController** object can be used to control a **MovingPhotoView** component. For details, see [@ohos.multimedia.media](../apis-media-kit/js-apis-media.md).
 
 ### startPlayback
 

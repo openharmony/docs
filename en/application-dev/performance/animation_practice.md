@@ -48,9 +48,9 @@ struct MyComponent {
           this.count++;
           const thisCount: number = this.count;
           this.show = true;
-          // Hide or hide the <Text> component by changing its opacity property.
+          // Hide or hide the Text component by changing its opacity property.
           animateTo({ duration: 1000, onFinish: () => {
-            // In the last animation, hide the <Text> component, and then change the conditional statement to make the component disappear.
+            // In the last animation, hide the Text component, and then change the conditional statement to make the component disappear.
             if (thisCount === this.count && this.mOpacity === 0) {
               this.show = false;
             }

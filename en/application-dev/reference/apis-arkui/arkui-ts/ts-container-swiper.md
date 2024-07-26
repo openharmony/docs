@@ -268,7 +268,7 @@ Sets the animation curve. The interpolating spring curve is used by default. For
 
 | Name | Type                                                        | Mandatory | Description                                       |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
-| value  | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | Yes  | Animation curve.<br>Default value: **interpolatingSpring(-1, 1, 328, 34)** |
+| value  | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup> | Yes  | Animation curve.<br>Default value: **interpolatingSpring(-1, 1, 328, 34)** |
 
 ### indicatorStyle<sup>(deprecated)</sup>
 

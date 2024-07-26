@@ -274,13 +274,13 @@ struct Index {
 
 Since `BuilderNode` corresponds to the backend entity node, normal memory release depends on the garbage collection of the frontend object. If you expect to directly release the backend node object, you can call [dispose](../reference/apis-arkui/js-apis-arkui-builderNode.md#dispose12) to break the reference relationship with the entity node. At this point, the frontend `BuilderNode` object no longer affects the lifecycle of the entity node.
 
-> **Note:**
+> **NOTE**
 >
 > After the `BuilderNode` object calls `dispose`, not only is the reference relationship between the `BuilderNode` object and the backend entity node broken, but the `FrameNode` and `RenderNode` in `BuilderNode` will also synchronize and break the reference relationship with the entity node.
 
 ## Injecting Touch Events
 
-`BuilderNode` provides [postTouchEvent](../reference/apis-arkui/js-apis-arkui-builderNode.md#posttouchevent), which allows you to inject [touch events](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#touch-events) into the components bound to `BuilderNode`, achieving event simulation forwarding.
+`BuilderNode` provides [postTouchEvent](../reference/apis-arkui/js-apis-arkui-builderNode.md#posttouchevent), which allows you to inject [touch events](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#touch-event) into the components bound to `BuilderNode`, achieving event simulation forwarding.
 
 Inject touch events into the node tree corresponding to `BuilderNode` through `postTouchEvent`.
 

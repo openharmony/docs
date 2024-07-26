@@ -161,7 +161,7 @@ Renders a custom component in the application background and outputs its snapsho
 >
 > To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
 >
-> If a component is on a time-consuming task, for example, an [\<Image>](arkui-ts/ts-basic-components-image.md) or [\<Web>](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+> If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -248,7 +248,7 @@ Renders a custom component in the application background and outputs its snapsho
 >
 > To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
 >
-> If a component is on a time-consuming task, for example, an [\<Image>](arkui-ts/ts-basic-components-image.md) or [\<Web>](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+> If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

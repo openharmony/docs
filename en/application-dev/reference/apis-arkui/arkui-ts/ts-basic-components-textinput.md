@@ -1,6 +1,6 @@
 # TextInput
 
-The **\<TextInput>** component provides single-line text input.
+The **TextInput** component provides single-line text input.
 
 >  **NOTE**
 >
@@ -24,7 +24,7 @@ TextInput(value?: TextInputOptions)
 
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-| value | [TextInputOptions](#textinputoptions) | No | Parameters of the **\<TextInput>** component.|
+| value | [TextInputOptions](#textinputoptions) | No | Parameters of the **TextInput** component.|
 
 ## TextInputOptions
 
@@ -664,7 +664,7 @@ Text is clipped at the transition between words. To clip text in the middle of a
 
 >  **NOTE**
 >
->  The **\<TextInput>** component does not support the **TextOverflow.MARQUEE** mode. If this attribute is set to **TextOverflow.MARQUEE**, **TextOverflow.Ellipsis** is used instead for the non-editing state in the inline input style and **TextOverflow.Clip** for the non-inline input style and the editing state in the inline input style.
+>  The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. If this attribute is set to **TextOverflow.MARQUEE**, **TextOverflow.Ellipsis** is used instead for the non-editing state in the inline input style and **TextOverflow.Clip** for the non-inline input style and the editing state in the inline input style.
 
 ### textIndent<sup>12+</sup>
 
@@ -781,7 +781,7 @@ Sets the line break rule. This attribute takes effect when **wordBreak** is not 
 >  
 >  When an underline is set, the default value of **padding** is as follows:<br>{<br> top: '12vp',<br> right: '0vp',<br> bottom: '12vp',<br> left: '0vp'<br> }
 >
->   Since API version 10, **.width('auto')** can be set for the **\<TextInput>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#size).
+>   Since API version 10, **.width('auto')** can be set for the **TextInput** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#size).
 
 ## TextDecorationOptions<sup>12+</sup>
 
@@ -1417,7 +1417,7 @@ struct TextInputExample {
 
 
 ### Example 6
-This example shows how to format a phone number to XXX XXXX XXXX in the **\<TextInput>** component.
+This example shows how to format a phone number to XXX XXXX XXXX in the **TextInput** component.
 
 ```ts
 @Entry
@@ -1517,7 +1517,7 @@ struct Index {
 
 
 ### Example 8
-This example shows how to set the **wordBreak** attribute for the **\<TextInput>** component.
+This example shows how to set the **wordBreak** attribute for the **TextInput** component.
 
 ```ts
 // xxx.ets

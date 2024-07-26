@@ -6,7 +6,7 @@
 >
 >  - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - This component provides linkage with a vertical scrolling **Swiper** and **\<Web>** component since API version 12. The linkage does not work if the **loop** attribute of **Swiper** is set to **true**.
+>  - This component provides linkage with a vertical scrolling **Swiper** and **Web** component since API version 12. The linkage does not work if the **loop** attribute of **Swiper** is set to **true**.
 
 ## Child Components
 

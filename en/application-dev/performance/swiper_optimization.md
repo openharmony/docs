@@ -149,9 +149,9 @@ struct SwiperExample {
 
 To better demonstrate the performance improvements brought by the **Swiper** component's pre-loading mechanism, the following prerequisites are used:
 
-- The **Swiper** component contains 10 **\<List>** components.
+- The **Swiper** component contains 10 **List** components.
 
-- Each of the **\<List>** component contains 100 list items.
+- Each of the **List** component contains 100 list items.
 
 Under these prerequisites, using the **Swiper** component's pre-loading mechanism can save about 40% time for each page turning action and ensure that no frame is lost during page turning.
 

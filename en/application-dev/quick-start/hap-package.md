@@ -50,7 +50,7 @@ To debug a HAP, use either of the following tools:
 
 - DevEco Studio
 
-- [hdc](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md), which can be obtained from the **toolchains** folder in the OpenHarmony SDK
+- <!--Del-->[<!--DelEnd-->hdc<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->, which can be obtained from the **toolchains** folder in the OpenHarmony SDK
 
    Before debugging a HAP, install or update it using either of the methods:
 

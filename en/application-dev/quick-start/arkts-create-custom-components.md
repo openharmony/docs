@@ -25,7 +25,7 @@ struct HelloComponent {
   @State message: string = 'Hello, World!';
 
   build() {
-    // The HelloComponent custom component combines the <Row> and <Text> built-in components.
+    // The HelloComponent custom component combines the built-in Row and Text components.
     Row() {
       Text(this.message)
         .onClick(() => {
@@ -397,7 +397,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
     @State count: number = 1;
     build() {
       Column() {
-        // Avoid: directly changing the value of count in the <Text> component.
+        // Avoid: directly changing the value of count in the Text component.
         Text(`${this.count++}`)
           .width(50)
           .height(50)

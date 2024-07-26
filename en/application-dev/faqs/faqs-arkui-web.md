@@ -9,11 +9,11 @@ Currently, **javaScriptProxy** supports only synchronous invoking. This means th
 
 **Solution**
 
-Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge communication scheme. This method is applicable to the scenario where HTML5 calls native functions. Use the **\<Web>** component **javaScriptProxy** to inject the native API to the window object of HTML5 pages, use the **runJavaScript** API to execute the JS script on HTML5 pages, and obtain the script execution result from the callback. The following figure shows the invoking process.
+Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge communication scheme. This method is applicable to the scenario where HTML5 calls native functions. Use the **Web** component **javaScriptProxy** to inject the native API to the window object of HTML5 pages, use the **runJavaScript** API to execute the JS script on HTML5 pages, and obtain the script execution result from the callback. The following figure shows the invoking process.
 
 ![image5](figures/image5.png)
 
-- Use the **javaScriptProxy** attribute of the **\<Web>** component to register the **JSBridgeHandle** object with the HTML5 window as the native channel for HTML5 to call. When the HTML5 page starts to be loaded, the **initJSBridge()** method is called in the **onPageBegin** callback to initialize the JSBridge.
+- Use the **javaScriptProxy** attribute of the **Web** component to register the **JSBridgeHandle** object with the HTML5 window as the native channel for HTML5 to call. When the HTML5 page starts to be loaded, the **initJSBridge()** method is called in the **onPageBegin** callback to initialize the JSBridge.
   ```
   // javaScriptProxy object
   public get javaScriptProxy() {
@@ -113,11 +113,11 @@ The operation that follows **onUrlLoadIntercept** is subject to its return resul
 
 **Problem**
 
-The **onKeyEvent** event is set for the **\<Web>** component to listen for keyboard events. However, it is not triggered when a key is pressed or lifted.
+The **onKeyEvent** event is set for the **Web** component to listen for keyboard events. However, it is not triggered when a key is pressed or lifted.
 
 **Solution**
 
-Currently, the **\<Web>** component does not support the **onKeyEvent** event. To listen for keyboard events for the **\<Web>** component, you can use the **onInterceptKeyEvent** callback function.
+Currently, the **Web** component does not support the **onKeyEvent** event. To listen for keyboard events for the **Web** component, you can use the **onInterceptKeyEvent** callback function.
 
 **Reference**
 
@@ -280,11 +280,11 @@ Configure the permission for the application to obtain network information: ohos
 
 **Solution**
 
-By default, the value of **UserAgent** needs to be obtained through the WebviewController. Specifically, it is obtained by calling the **getUserAgent** API in a **WebviewController** object after it is bound to the **\<Web>** component. Therefore, to set **UserAgent** through string concatenation before page loading:
+By default, the value of **UserAgent** needs to be obtained through the WebviewController. Specifically, it is obtained by calling the **getUserAgent** API in a **WebviewController** object after it is bound to the **Web** component. Therefore, to set **UserAgent** through string concatenation before page loading:
 
-1. Use @State to define the initial **UserAgent** and bind it to the **\<Web>** component.
+1. Use @State to define the initial **UserAgent** and bind it to the **Web** component.
 
-2. In the **onUrlLoadIntercept** callback of the **\<Web>** component, use **WebviewController.getUserAgent()** to obtain the default **UserAgent** and update the bound **UserAgent**.
+2. In the **onUrlLoadIntercept** callback of the **Web** component, use **WebviewController.getUserAgent()** to obtain the default **UserAgent** and update the bound **UserAgent**.
 
 **Example**
 
@@ -369,7 +369,7 @@ struct Index {
 
 **Solution**
 
-The **\<Web>** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **\<Web>** component and make sure the test device connected to the PC runs 4.1.0 or a later version.
+The **Web** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **Web** component and make sure the test device connected to the PC runs 4.1.0 or a later version.
 
 **Reference**
 

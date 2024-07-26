@@ -885,7 +885,7 @@ See [Basic Event Example](#basic-event-example).
 
 get commonEvent(): UICommonEvent
 
-Obtains the **UICommonEvent **object held in this FrameNode to set basic events. The set basic events will coexist with declaratively defined events and participate in the event handling process without overriding them. When two event callbacks are set at the same time, the declaratively defined event is triggered first.
+Obtains the **UICommonEvent** object held in this FrameNode to set basic events. The set basic events will coexist with declaratively defined events and participate in the event handling process without overriding them. When two event callbacks are set at the same time, the declaratively defined event is triggered first.
 
 In scenarios involving **LazyForEach**, where nodes may be destroyed and reconstructed, you need to reset or re-attach event listeners to the newly created nodes to ensure they respond to events correctly.
 
@@ -1910,7 +1910,7 @@ Represents a FrameNode of the List type.
 
 | Type                           | Description                  |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ListInterface, ListAttribute&gt; | FrameNode of the List type.<br>**NOTE**<br> **ListInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **\<List>** component.<br> **ListAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **\<List>** component. |
+| TypedFrameNode&lt;ListInterface, ListAttribute&gt; | FrameNode of the List type.<br>**NOTE**<br> **ListInterface** is used as the input parameter of the [initialize](#initialize12) API of [TypedFrameNode](#typedframenode12). The input parameter is of the constructor type for the **List** component.<br> **ListAttribute** is used as the return value of the [attribute](#attribute12) API of **TypedFrameNode**. It returns the attribute setting object of the **List** component. |
 
 ### createNode('List')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'List'): List

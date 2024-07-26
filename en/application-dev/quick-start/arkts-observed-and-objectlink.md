@@ -1022,7 +1022,7 @@ struct MyView {
       Text(`c: ${this.b.c.c}`)
       Button("Change ClassB.ClassC.c")
         .onClick(() => {
-          // The <Text> component is not updated when clicked.
+          // The Text component is not updated when clicked.
           this.b.c.c += 1;
         })
     }

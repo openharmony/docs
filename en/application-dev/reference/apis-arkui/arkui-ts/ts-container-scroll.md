@@ -4,7 +4,7 @@ The **Scroll** component scrolls the content when the layout size of a component
 
 >  **NOTE**
 >  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->  - When nesting a **\<List>** within this component, specify the width and height for the **\<List>** under scenarios where consistently high performance is required. If the width and height are not specified, this component will load all content of the **\<List>**.
+>  - When nesting a **List** within this component, specify the width and height for the **List** under scenarios where consistently high performance is required. If the width and height are not specified, this component will load all content of the **List**.
 >  - This component can scroll only when the size on the main axis is less than the content size.
 >  - This component can produce a bounce effect only when there is more than one screen of content.
 
@@ -61,7 +61,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](ts-container-list.md#scrollstate)) => { offsetRemain: number; }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **Scroll** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. This event does not support the out-of-bounds bounce effect.<br>4. This event is not triggered when the scroll bar is dragged.<br>**NOTE**<br>The value of **offsetRemain** can be a negative value.<br>If the **onScrollFrameBegin** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **\<List>** is nested in the **Scroll** component, **edgeEffect** of the **\<List>** must be set to **EdgeEffect.None**.|
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](ts-container-list.md#scrollstate)) => { offsetRemain: number; }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **Scroll** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. This event does not support the out-of-bounds bounce effect.<br>4. This event is not triggered when the scroll bar is dragged.<br>**NOTE**<br>The value of **offsetRemain** can be a negative value.<br>If the **onScrollFrameBegin** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **List** is nested in the **Scroll** component, **edgeEffect** of the **List** must be set to **EdgeEffect.None**.|
 | onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets, in vp, during scrolling when the specified scroll event occurs.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.|
 | onScrollEdge(event: (side: Edge) => void)                    | Triggered when scrolling reaches the edge.<br>**NOTE**<br>1. This event is triggered when scrolling reaches the edge after being started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.|
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
@@ -72,11 +72,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 >  **NOTE**
 >
->  If the **onScrollFrameBegin** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **\<List>** is nested in the **Scroll** component, **edgeEffect** of the **\<List>** must be set to **EdgeEffect.None**.
+>  If the **onScrollFrameBegin** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **List** is nested in the **Scroll** component, **edgeEffect** of the **List** must be set to **EdgeEffect.None**.
 
 ## Scroller
 
-Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. One controller can control only one container component. The supported container components are **\<List>**, **Scroll**, **\<ScrollBar>**, **Grid**, and **WaterFlow**.
+Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. One controller can control only one container component. The supported container components are **List**, **Scroll**, **\<ScrollBar>**, **Grid**, and **WaterFlow**.
 
 
 ### Objects to Import
@@ -99,7 +99,7 @@ Scrolls to the specified position.
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for scrolling without animation; scrolling with animation stops when it reaches the start position.<br>This parameter takes effect only when the scroll axis is the x-axis.|
 | yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for scrolling without animation; scrolling with animation stops when it reaches the start position.<br>This parameter takes effect only when the scroll axis is the y-axis.|
-| animation | [ScrollAnimationOptions](#scrollanimationoptions12)<sup>12+</sup> \| boolean<sup>10+ </sup> | No  | Animation configuration, which includes the following:<br>- **ScrollAnimationOptions**: custom animation settings.<br>- **boolean**: whether to enable the default spring animation.<br>Default value:<br>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br>boolean: false<br>**NOTE**<br>Currently, the **\<List>**, **Scroll**, **Grid**, and **WaterFlow** support the **Boolean** type and **ICurve**.<br>Since API version 12, {duration?: number, curve?: [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup>} is abstracted as the **ScrollAnimationOptions** API, and the **canOverScroll** parameter is added to the API.|
+| animation | [ScrollAnimationOptions](#scrollanimationoptions12)<sup>12+</sup> \| boolean<sup>10+ </sup> | No  | Animation configuration, which includes the following:<br>- **ScrollAnimationOptions**: custom animation settings.<br>- **boolean**: whether to enable the default spring animation.<br>Default value:<br>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br>boolean: false<br>**NOTE**<br>Currently, the **List**, **Scroll**, **Grid**, and **WaterFlow** support the **Boolean** type and **ICurve**.<br>Since API version 12, {duration?: number, curve?: [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup>} is abstracted as the **ScrollAnimationOptions** API, and the **canOverScroll** parameter is added to the API.|
 
 
 ### scrollEdge
@@ -159,7 +159,7 @@ When **smooth** is set to **true**, all passed items are loaded and counted in l
 
 >  **NOTE**
 >
->  This API only works for the **Grid**, **\<List>**, and **WaterFlow** components.
+>  This API only works for the **Grid**, **List**, and **WaterFlow** components.
 
 **Parameters**
 
@@ -167,7 +167,7 @@ When **smooth** is set to **true**, all passed items are loaded and counted in l
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | value | number   | Yes  | Index of the item to be scrolled to in the container.<br>**NOTE**<br>If the value set is a negative value or greater than the maximum index of the items in the container, the value is deemed abnormal, and no scrolling will be performed.                    |
 | smooth | boolean  | No  | Whether to enable the smooth animation for scrolling to the item with the specified index. The value **true** means to enable that the smooth animation, and **false** means the opposite.<br>Default value: **false**|
-| align | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the container.<br>Default value when the container is **\<List>**: **ScrollAlign.START**<br> Default value when the container is **Grid**: **ScrollAlign.AUTO**<br> Default value when the container is **WaterFlow**: **ScrollAlign.START**<br>**NOTE**<br>This parameter is only available for the **\<List>**, **Grid**, and **WaterFlow** components.|
+| align | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the container.<br>Default value when the container is **List**: **ScrollAlign.START**<br> Default value when the container is **Grid**: **ScrollAlign.AUTO**<br> Default value when the container is **WaterFlow**: **ScrollAlign.START**<br>**NOTE**<br>This parameter is only available for the **List**, **Grid**, and **WaterFlow** components.|
 
 ### scrollBy<sup>9+</sup>
 
@@ -179,7 +179,7 @@ Scrolls by the specified amount.
 
 >  **NOTE**
 >
->  This API is available for the **Scroll**, **\<List>**, **Grid**, and **WaterFlow** components.
+>  This API is available for the **Scroll**, **List**, **Grid**, and **WaterFlow** components.
 
 **Parameters**
 
@@ -196,7 +196,7 @@ Checks whether the component has scrolled to the bottom.
 
 >  **NOTE**
 >
->  This API is available for the **Scroll**, **\<List>**, **Grid**, and **WaterFlow** components.
+>  This API is available for the **Scroll**, **List**, **Grid**, and **WaterFlow** components.
 
 **Return value**
 
@@ -212,7 +212,7 @@ Obtains the size and position of a child component.
 
 >  **NOTE**
 >
->  This API is available for the **Scroll**, **\<List>**, **Grid**, and **WaterFlow** components.
+>  This API is available for the **Scroll**, **List**, **Grid**, and **WaterFlow** components.
 
 **Parameters**
 

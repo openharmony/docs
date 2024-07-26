@@ -21,7 +21,7 @@ The meanings of T and S in this topic are as follows:
 ## AppStorage
 
 
-For details about how to use AppStorage on the UI, see [AppStorage: Application-wide UI State Storage](../../quick-start/arkts-appstorage.md).
+For details about how to use AppStorage on the UI, see [AppStorage: Storing Application-wide UI State](../../../quick-start/arkts-appstorage.md).
 
 
 ### link<sup>10+</sup>
@@ -770,7 +770,7 @@ let res: number = AppStorage.Size(); // 1
 ## LocalStorage<sup>9+</sup>
 
 
-For details about how to use LocalStorage on the UI, see [LocalStorage: UI State Storage](../../quick-start/arkts-localstorage.md).
+For details about how to use LocalStorage on the UI, see [LocalStorage: Storing UI State](../../../quick-start/arkts-localstorage.md).
 
 
 ### constructor<sup>9+</sup>
@@ -819,7 +819,7 @@ Obtains the **LocalStorage** instance shared by the current stage.
 | [LocalStorage](#localstorage9) | **LocalStorage** instance.|
 
 **Example**
-For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../quick-start/arkts-localstorage.md#sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../../quick-start/arkts-localstorage.md#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ### has<sup>9+</sup>
@@ -1322,7 +1322,7 @@ link.aboutToBeDeleted();
 ## PersistentStorage
 
 
-For details about how to use PersistentStorage on the UI, see [PersistentStorage: Application State Persistence](../../quick-start/arkts-persiststorage.md).
+For details about how to use PersistentStorage on the UI, see [PersistentStorage: Persisting Application State](../../../quick-start/arkts-persiststorage.md).
 
 ### PersistPropsOptions
 
@@ -1365,7 +1365,7 @@ According to the preceding initialization process, if AppStorage contains the ma
 **Example**
 
 
-For details about how to use persistProp, see [Accessing PersistentStorage Initialized Attribute from AppStorage](../../quick-start/arkts-persiststorage.md#accessing-persistentstorage-initialized-attribute-from-appstorage).
+For details about how to use persistProp, see [Accessing PersistentStorage Initialized Attribute from AppStorage](../../../quick-start/arkts-persiststorage.md#accessing-persistentstorage-initialized-attribute-from-appstorage).
 
 
 ### deleteProp<sup>10+</sup>
@@ -1544,7 +1544,7 @@ let keys: Array<string> = PersistentStorage.Keys();
 ## Environment
 
 
-For details about how to use Environment, see [Environment: Device Environment Query](../../quick-start/arkts-environment.md).
+For details about how to use Environment, see [Environment: Querying Device Environment](../../../quick-start/arkts-environment.md).
 
 ### EnvPropsOptions
 
@@ -1586,7 +1586,7 @@ It is incorrect to use AppStorage to read environment variables without invoking
 **Example**
 
 
-For details about how to use **envProp**, see [Accessing Environment Parameters from UI](../../quick-start/arkts-environment.md#accessing-environment-parameters-from-ui).
+For details about how to use **envProp**, see [Accessing Environment Parameters from UI](../../../quick-start/arkts-environment.md#accessing-environment-parameters-from-ui).
 
 
 ### envProps<sup>10+</sup>

@@ -152,7 +152,7 @@ export struct PageOne {
 }
 ```
 
-Each child page also needs to be configured in the system configuration file `route_map.json` (see [Using the System Route Table](arkts-navigation-navigation.md#using-the-system-route-table)):
+Each child page also needs to be configured in the system configuration file `route_map.json` (see [System Routing Table](arkts-navigation-navigation.md#system-routing-table)):
 
 ```json
 // Configure {"routerMap": "$profile:route_map"} in the project configuration file module.json5
@@ -440,15 +440,14 @@ Both Router and Navigation provide system transition animations and also provide
 The custom page transition of Router is implemented through the general method `pageTransition()`, which can be referred to:
 [Router Custom Transition Animation](arkts-page-transition-animation.md)
 
-Navigation, as a routing container component, essentially belongs to the property animation between components for the page switching animation inside. It can provide the ability to customize the transition animation through the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) event in Navigation. The specific implementation can refer to the following guidance:
-[Navigation Custom Transition Animation](arkts-navigation-navigation.md#custom-transition) (Note: The pages of the Dialog type currently do not have transition animations)
+Navigation, as a routing container component, essentially belongs to the property animation between components for the page switching animation inside. It can provide the ability to customize the transition animation through the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) event in Navigation. For the specific implementation, see [Customizing a Transition](arkts-navigation-navigation.md#customizing-a-transition). (Note: The pages of the Dialog type currently do not have transition animations)
 
 ### Shared Element Transition
 
 When pages transition between each other, shared element transition animations are required. Router can achieve shared element transitions through the general property `sharedTransition`, which can be referred to as follows:
 [Router Shared Element Transition Animation](../reference/apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)
 
-Navigation also provides the ability to transition with shared elements in one shot, which needs to be coordinated with the `geometryTransition` property. When switching between child pages (NavDestination), shared element transitions can be achieved, which can be referred to as follows: [Navigation Shared Element Transition Animation](arkts-navigation-navigation.md#shared-element-transition)
+Navigation also provides the ability to transition with shared elements in one shot, which needs to be coordinated with the `geometryTransition` property. When switching between child pages (NavDestination), shared element transitions can be achieved. For details, see [Defining a Shared Element Transition](arkts-navigation-navigation.md#defining-a-shared-element-transition).
 
 ### Cross-Package Routing
 
@@ -727,5 +726,4 @@ struct MyComponent {
 
 Router does not natively provide the capability for routing interception, developers need to encapsulate the routing interface themselves, and within their encapsulated interface, they should make judgments for routing interception and redirect the routing.
 
-Navigation provides the [setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12) method, which is used to set the callback for intercepting page navigation transitions. For more details, you can refer to the document: [Navigation Routing Interception](arkts-navigation-navigation.md#routing-interception).
-<!--no_check-->
+Navigation provides the [setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12) method, which is used to set the callback for intercepting page navigation transitions. For more details, see [Route Interception](arkts-navigation-navigation.md#route-interception).

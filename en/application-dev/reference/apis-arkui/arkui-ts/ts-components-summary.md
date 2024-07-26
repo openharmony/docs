@@ -49,10 +49,10 @@
     A container that presents a series of list items arranged in a column with the same width. It supports presentations of the same type of data in a multiple and coherent row style, for example, images or text.
 - [ListItem](ts-container-listitem.md)
 
-    A component that displays a specific item in the list and that must be used together with **\<List>**.
+    A component that displays a specific item in the list and that must be used together with **List**.
 - [ListItemGroup](ts-container-listitemgroup.md)
 
-    A component that displays list item groups and that must be used together with **\<List>**.
+    A component that displays list item groups and that must be used together with **List**.
 - [Grid](ts-container-grid.md)
 
     A container that consists of cells formed by rows and columns. You can specify the cells where items are located to form various layouts.
@@ -186,9 +186,11 @@
 - [Video](ts-media-components-video.md)
 
     A component that is used to play a video and control its playback.
+<!--Del-->
 - [PluginComponent](ts-basic-components-plugincomponent-sys.md)
 
     A component that allows the UI provided by an external application to be displayed in the application.
+<!--DelEnd-->
 - [XComponent](ts-basic-components-xcomponent.md)
 
     A component that can accept and display the EGL/OpenGL ES and media data input.
@@ -267,7 +269,7 @@
 
 - [ScrollBar](ts-basic-components-scrollbar.md)
 
-    A component that is used together with scrollable components, such as **\<List>**, **Grid**, and **Scroll**.
+    A component that is used together with scrollable components, such as **List**, **Grid**, and **Scroll**.
 
 - [Badge](ts-container-badge.md)
 
@@ -284,7 +286,7 @@
 - [Refresh](ts-container-refresh.md)
 
     A container that provides the pull-to-refresh feature.
-
+<!--Del-->
 - [AbilityComponent](ts-container-ability-component-sys.md)
 
     A container that is used for independently displaying an ability.
@@ -296,7 +298,7 @@
 - [FormComponent](ts-basic-components-formcomponent-sys.md)
 
     A component that is used to display widgets.
-
+<!--DelEnd-->
 - [FormLink](ts-container-formlink.md)
 
     A component that provides interactions with static widgets.
@@ -316,11 +318,11 @@
 - [MenuItemGroup](ts-basic-components-menuitemgroup.md)
 
     A component that is used to represent a group of menu items.
-
+<!--Del-->
 - [UIExtensionComponent](ts-container-ui-extension-component-sys.md)
 
     A component that is used to embed UIs provided by other applications in the local application UI. 
-
+<!--DelEnd-->
 - [LocationButton](ts-security-components-locationbutton.md)
 
     A component that is used to obtain temporary precise location permission from the user by their touching the component, eliminating the need for a permission request dialog box.
