@@ -30,7 +30,7 @@ Refresh(value: RefreshOptions)
 | refreshing | boolean                                  | 是    | 当前组件是否正在刷新。<br/>默认值：false<br/>该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | offset<sup>(deprecated)</sup>    | string&nbsp;\|&nbsp;number               | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>从API version 11开始废弃，无替代接口<br/>**说明：**<br/>offset取值范围[0vp,64vp]。大于64vp按照64vp处理。不支持百分比，不支持负数 。|
 | friction<sup>(deprecated)</sup>   | number&nbsp;\|&nbsp;string               | 否    | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。<br/>从API version 11开始废弃，无替代接口 |
-| builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 下拉时，自定义刷新样式的组件。<br/>**说明：**<br/>API version 10及之前版本，自定义组件的高度限制在64vp之内。API version 11及以后版本没有此限制。|
+| builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 下拉时，自定义刷新样式的组件。<br/>**说明：**<br/>API version 10及之前版本，自定义组件的高度限制在64vp之内。API version 11及以后版本没有此限制。<br/>自定义组件设置了固定高度时，自定义组件会以固定高度显示在刷新区域下方；自定义组件未设置高度时，自定义组件高度会自适应刷新区域高度，会发生自定义组件高度跟随刷新区域变化至0的现象。建议对自定义组件设置最小高度约束来避免自定义组件高度小于预期的情况发生，具体可参照[示例2](#示例2)。|
 
 ## 属性
 
@@ -59,7 +59,8 @@ Refresh(value: RefreshOptions)
 
 ## 示例 
 ### 示例1
-刷新组件使用默认样式：
+
+刷新区域使用默认样式。
 
 ```ts
 // xxx.ets
@@ -76,7 +77,7 @@ struct RefreshExample {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('100%').height(100).fontSize(16)
+                .width('70%').height(80).fontSize(16).margin(10)
                 .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
@@ -86,7 +87,7 @@ struct RefreshExample {
         })
         .width('100%')
         .height('100%')
-        .divider({strokeWidth:1,color:Color.Yellow,startMargin:10,endMargin:10})
+        .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
@@ -108,7 +109,7 @@ struct RefreshExample {
 
 ### 示例2 
 
-自定义刷新组件：
+通过builder参数自定义刷新区域显示内容。
 
 ```ts
 // xxx.ets
@@ -125,10 +126,12 @@ struct RefreshExample {
       Row()
       {
         LoadingProgress().height(32)
-        Text("正在刷新...").fontSize(16).margin({left:20})
+        Text("Refreshing...").fontSize(16).margin({left:20})
       }
       .alignItems(VerticalAlign.Center)
-    }.width("100%").align(Alignment.Center)
+    }
+    .width("100%").align(Alignment.Center)
+    .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
   }
 
   build() {
@@ -138,7 +141,7 @@ struct RefreshExample {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('100%').height(100).fontSize(16)
+                .width('70%').height(80).fontSize(16).margin(10)
                 .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
@@ -148,7 +151,7 @@ struct RefreshExample {
         })
         .width('100%')
         .height('100%')
-        .divider({strokeWidth:1,color:Color.Yellow,startMargin:10,endMargin:10})
+        .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
