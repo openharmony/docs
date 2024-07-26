@@ -152,7 +152,7 @@ try {
     if (err) {
       console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`Succeeded to create calendar, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in creating calendar, data -> ${JSON.stringify(data)}`);
       calendar = data;
     }
   });
@@ -206,7 +206,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
   displayName : 'MyApplication'
 };
 calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-  console.info(`Succeeded to create calendar data->${JSON.stringify(data)}`);
+  console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((error : BusinessError) => {
   console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
@@ -251,17 +251,17 @@ const calendarAccount: calendarManager.CalendarAccount = {
   type: calendarManager.CalendarType.LOCAL
 };
 calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-  console.info(`Succeeded to create calendar, data -> ${JSON.stringify(data)}`);
+  console.info(`Succeeded in creating calendar, data -> ${JSON.stringify(data)}`);
   calendarMgr?.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
     if (err) {
       console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
       calendarMgr?.deleteCalendar(data, (err1: BusinessError) => {
         if (err1) {
           console.error(`Failed to delete calendar. Code: ${err.code}, message: ${err.message}`);
         } else {
-          console.info("Succeeded to delete calendar");
+          console.info("Succeeded in deleting calendar");
         }
       });
     }
@@ -314,11 +314,11 @@ const calendarAccount: calendarManager.CalendarAccount = {
   type: calendarManager.CalendarType.LOCAL
 };
 calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-  console.info(`Succeeded to create calendar, data -> ${JSON.stringify(data)}`);
+  console.info(`Succeeded in creating calendar, data -> ${JSON.stringify(data)}`);
   calendarMgr?.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendarMgr?.deleteCalendar(data).then(() => {
-      console.info("Succeeded to delete calendar");
+      console.info("Succeeded in deleting calendar");
     }).catch((err: BusinessError) => {
       console.error(`Failed to delete calendar. Code: ${err.code}, message: ${err.message}`);
     });
@@ -369,7 +369,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
   }
 });
@@ -416,12 +416,12 @@ const calendarAccount: calendarManager.CalendarAccount = {
   type: calendarManager.CalendarType.LOCAL
 };
 calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-  console.info(`Succeeded to create calendar, data -> ${JSON.stringify(data)}`);
+  console.info(`Succeeded in creating calendar, data -> ${JSON.stringify(data)}`);
   calendarMgr?.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
     if (err) {
       console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`Succeeded to get calendar data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting calendar data -> ${JSON.stringify(data)}`);
       calendar = data;
     }
   });
@@ -472,7 +472,7 @@ import { calendarMgr } from '../entryability/EntryAbility';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
-  console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+  console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
   calendar = data;
 }).catch((err: BusinessError) => {
   console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
@@ -515,7 +515,7 @@ calendarMgr?.getAllCalendars((err: BusinessError, data: calendarManager.Calendar
   if (err) {
     console.error(`Failed to get all calendars. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get all calendars, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting all calendars, data -> ${JSON.stringify(data)}`);
     data.forEach((calendar) => {
       const account = calendar.getAccount();
       console.info(`account -> ${JSON.stringify(account)}`);
@@ -557,7 +557,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 
 calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
-  console.info(`Succeeded to get all calendars, data -> ${JSON.stringify(data)}`);
+  console.info(`Succeeded in getting all calendars, data -> ${JSON.stringify(data)}`);
   data.forEach((calendar) => {
     const account = calendar.getAccount();
     console.info(`account -> ${JSON.stringify(account)}`);
@@ -654,13 +654,13 @@ const event: calendarManager.Event = {
   endTime: date.getTime() + 60 * 60 * 1000
 };
 calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
-  console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+  console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
   calendar = data;
   calendar.addEvent(event, (err: BusinessError, data: number): void => {
     if (err) {
       console.error(`Failed to addEvent. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
     }
   });
 }).catch((err: BusinessError) => {
@@ -707,10 +707,10 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     calendar.addEvent(event).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to addEvent. Code: ${err.code}, message: ${err.message}`);
     });
@@ -757,13 +757,13 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     calendar.addEvents(events, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to add events. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info("Succeeded to add events");
+        console.info("Succeeded in adding events");
       }
     });
   }
@@ -814,10 +814,10 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     calendar.addEvents(events).then(() => {
-      console.info("Succeeded to add events");
+      console.info("Succeeded in adding events");
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
@@ -858,10 +858,10 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       id = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
@@ -870,7 +870,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
       if (err) {
         console.error(`Failed to delete event. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info(`Succeeded to delete event, err -> ${JSON.stringify(err)}`);
+        console.info(`Succeeded in deleting event, err -> ${JSON.stringify(err)}`);
       }
     });
   }
@@ -918,13 +918,13 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
     console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       id = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     calendar.deleteEvent(id).then(() => {
-      console.info("Succeeded to delete event");
+      console.info("Succeeded in deleting event");
     }).catch((err: BusinessError) => {
       console.error(`Failed to delete event. Code: ${err.code}, message: ${err.message}`);
     });
@@ -971,16 +971,16 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event1).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       id1 = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     await calendar.addEvent(event2).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       id2 = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
@@ -989,7 +989,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
       if (err) {
         console.error(`Failed to delete events. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info("Succeeded to delete events");
+        console.info("Succeeded in deleting events");
       }
     });
   }
@@ -1040,22 +1040,22 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event1).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       id1 = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     await calendar.addEvent(event2).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       id2 = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     calendar.deleteEvents([id1, id2]).then(() => {
-      console.info("Succeeded to delete events");
+      console.info("Succeeded in deleting events");
     }).catch((err: BusinessError) => {
       console.error(`Failed to delete events. Code: ${err.code}, message: ${err.message}`);
     });
@@ -1097,10 +1097,10 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(oriEvent).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       oriEvent.id = data;
       oriEvent.title = 'newUpdate';
     }).catch((err: BusinessError) => {
@@ -1110,7 +1110,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
       if (err) {
         console.error(`Failed to update event. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info("Succeeded to update event");
+        console.info("Succeeded in updating event");
       }
     });
   }
@@ -1156,17 +1156,17 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(oriEvent).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       oriEvent.id = data;
       oriEvent.title = 'newUpdate';
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     calendar.updateEvent(oriEvent).then(() => {
-      console.info(`Succeeded to update event`);
+      console.info(`Succeeded in updating event`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to update event. Code: ${err.code}, message: ${err.message}`);
     });
@@ -1199,13 +1199,13 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar data -> ${JSON.stringify(data)}`);
     calendar = data;
     calendar.getEvents((err: BusinessError, data: calendarManager.Event[]) => {
       if (err) {
         console.error(`Failed to get events. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info(`Succeeded to get events, data -> ${JSON.stringify(data)}`);
+        console.info(`Succeeded in getting events, data -> ${JSON.stringify(data)}`);
       }
     });
   }
@@ -1252,15 +1252,15 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event1).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     await calendar.addEvent(event2).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
@@ -1269,7 +1269,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
       if (err) {
         console.error(`Failed to get events. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info(`Succeeded to get events, data -> ${JSON.stringify(data)}`);
+        console.info(`Succeeded in getting events, data -> ${JSON.stringify(data)}`);
       }
     });
   }
@@ -1315,16 +1315,16 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
     calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
-      console.info(`Succeeded to get events, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting events, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to get events. Code: ${err.code}, message: ${err.message}`);
     });
@@ -1357,10 +1357,10 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     const config = calendar.getConfig();
-    console.info("get config succeeded");
+    console.info("Succeeded in getting config");
   }
 });
 ```
@@ -1395,13 +1395,13 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     calendar.setConfig(config, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to set config. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info(`Succeeded to set config, config -> ${JSON.stringify(config)}`);
+        console.info(`Succeeded in setting config, config -> ${JSON.stringify(config)}`);
       }
     });
   }
@@ -1443,10 +1443,10 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     calendar.setConfig(config).then(() => {
-      console.info(`Succeeded to set config, data->${JSON.stringify(config)}`);
+      console.info(`Succeeded in setting config, data->${JSON.stringify(config)}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to set config. Code: ${err.code}, message: ${err.message}`);
     });
@@ -1482,7 +1482,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
     console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     const account = calendar.getAccount();
-    console.info(`get account succeeded, account -> ${JSON.stringify(account)}`);
+    console.info(`succeeded in getting account, account -> ${JSON.stringify(account)}`);
   }
 });
 ```
@@ -1615,23 +1615,23 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event1).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       id1 = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     await calendar.addEvent(event2).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       id2 = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     const filter = calendarManager.EventFilter.filterById([id1, id2]);
     calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
-      console.info(`Succeeded to filter by id, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting events filter by id, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to filter by id. Code: ${err.code}, message: ${err.message}`);
     });
@@ -1681,21 +1681,21 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event1).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     await calendar.addEvent(event2).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     const filter = calendarManager.EventFilter.filterByTime(1686931200000, 1687017600000);
     calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
-      console.info(`Succeeded to filter by time, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting events filter by time, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to filter by time. Code: ${err.code}, message: ${err.message}`);
     });
@@ -1740,16 +1740,16 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   if (err) {
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
     await calendar.addEvent(event).then((data: number) => {
-      console.info(`Succeeded to add event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
     const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
     calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
-      console.info(`Succeeded to filter by title, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting events filter by title, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to filter by title. Code: ${err.code}, message: ${err.message}`);
     });
