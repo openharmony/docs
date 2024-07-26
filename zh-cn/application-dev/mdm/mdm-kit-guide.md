@@ -52,11 +52,12 @@
 
    ```ts
    import { adminManager, restrictions } from '@kit.MDMKit';
-   ```   
+   ```
 
 2. 调用接口，实现相应的功能。以下为禁用设备Wi-Fi的示例。
 
    ```ts
+   import { Want } from '@kit.AbilityKit';
    let wantTemp: Want = {
      bundleName: 'com.example.xxx',
      abilityName: 'EnterpriseAdminAbility',
