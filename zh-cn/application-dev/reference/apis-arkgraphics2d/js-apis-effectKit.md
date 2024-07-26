@@ -524,6 +524,10 @@ blur(radius: number): Filter
 
 将模糊效果添加到效果链表中，结果返回效果链表的头节点。
 
+>  **说明：**
+>
+>  该接口为静态模糊接口，为静态图像提供模糊化效果，如果要对组件进行实时渲染的模糊，可以使用[动态模糊](../../ui/arkts-blur-effect.md)。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
