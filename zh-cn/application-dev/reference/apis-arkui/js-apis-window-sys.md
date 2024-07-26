@@ -2924,7 +2924,6 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
 export class myWindowMgr extends ServiceExtensionAbility {
     async startMove() {
-        let windowClass: window.Window | undefined = undefined;
         // 创建系统窗口
         let config: window.Configuration = {
             name: "myWindow",
@@ -2934,9 +2933,8 @@ export class myWindowMgr extends ServiceExtensionAbility {
         let win = await window.createWindow(config);
         await win.setUIContent("pages/search");
         await win.setWindowTouchable(true);
-        windowClass = win;
         try {
-            windowClass.startMove().then(() => {
+            win.startMove().then(() => {
                 console.log('startMove successful.');
             }).catch((err: BusinessError) => {
                 console.log('startMove catch error:' + err.code + ',message:' + err.message);
