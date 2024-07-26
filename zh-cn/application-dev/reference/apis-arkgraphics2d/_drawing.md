@@ -6414,11 +6414,11 @@ void OH_Drawing_CanvasDrawVertices (OH_Drawing_Canvas* , OH_Drawing_VertexMode v
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-执行成功时返回OH_DRAWING_SUCCESS；
+执行成功时设置错误码为OH_DRAWING_SUCCESS；
 
-OH_Drawing_Canvas、positions、texs、colors、indices任意一个为NULL或者vertexCount、indexCount任意一个小于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+OH_Drawing_Canvas或positions为NULL、vertexCount值小于3、indexCount值小于3且不为0，存在以上任意一种情况时设置错误码为OH_DRAWING_ERROR_INVALID_PARAMETER；
 
-vertexMmode、mode任意一个不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+vertexMmode、mode任意一个不在枚举范围内时设置错误码为OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6429,13 +6429,13 @@ vertexMmode、mode任意一个不在枚举范围内时返回OH_DRAWING_ERROR_PAR
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象的指针。 | 
-| vertexMmode | 绘制顶点的枚举方式，支持方式参考[OH_Drawing_VertexMode](#oh_drawing_vertexmode)。 | 
-| vertexCount | 顶点数组元素的数量。 | 
-| positions | 定位数据数组。 | 
-| texs | 纹理坐标数据数组。 | 
-| colors | 颜色数据指针。 | 
-| indexCount | 索引数量。 | 
-| indices | 索引数据指针。 | 
+| vertexMmode | 绘制顶点的连接方式，支持方式参考[OH_Drawing_VertexMode](#oh_drawing_vertexmode)。 | 
+| vertexCount | 顶点数组元素的数量，值必须大于等于3。 | 
+| positions | 描述顶点位置的数组指针，不能为空，其长度必须等于vertexCount。 | 
+| texs | 描述顶点对应纹理空间坐标的数组指针，可以为空，若不为空其长度必须等于vertexCount。 | 
+| colors | 描述顶点对应颜色的数组指针，用于在三角形中进行插值，可以为空，若不为空其长度必须等于vertexCount。 | 
+| indexCount | 索引的数量，可以为0，若不为0则值必须大于等于3。 | 
+| indices | 描述顶点对应索引的数组指针，可以为空，若不为空其长度必须等于indexCount。 | 
 | mode | 混合模式枚举，支持方式参考[OH_Drawing_BlendMode](#oh_drawing_blendmode)。 | 
 
 
