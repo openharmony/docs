@@ -101,7 +101,7 @@
 
 lazy-import支持如下指令实现：
 
-| 语法                               | ModuleRequest | ImportName  | LocalName   | 5.0是否支持lazy加载    |
+| 语法                               | ModuleRequest | ImportName  | LocalName   | API12是否支持lazy加载    |
 | :--------------------------------- | :------------ | :---------- | :---------- | :------------------- |
 | import lazy { x } from "mod";        | "mod"         | "x"         | "x"         | 支持                  |
 | import lazy { x as v } from "mod";   | "mod"         | "x"         | "v"         | 支持                  |
