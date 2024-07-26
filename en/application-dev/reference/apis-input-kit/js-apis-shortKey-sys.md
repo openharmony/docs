@@ -44,7 +44,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { shortKey } from '@kit.InputKit';
 try {
-  shortKey.setKeyDownDuration("screenshot", 500, (error) => {
+  shortKey.setKeyDownDuration(businessId, 500, (error) => {
     if (error) {
       console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -91,7 +91,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { shortKey } from '@kit.InputKit';
 try {
-  shortKey.setKeyDownDuration("screenshot", 500).then(() => {
+  shortKey.setKeyDownDuration(businessId, 500).then(() => {
     console.log(`Set key down duration success`);
   });
 } catch (error) {
