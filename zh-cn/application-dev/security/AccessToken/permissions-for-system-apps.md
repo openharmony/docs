@@ -3449,9 +3449,45 @@
 
 **起始版本**：12
 
+### ohos.permission.DUMP_AUDIO
+
+允许应用启动音频框架dump能力，将音频数据落盘到本地。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.RECEIVE_FUSION_MESSAGES
+
+允许系统服务或系统应用接收融合服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 允许应用发布位置管理相关的公共事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DEVICE_COLLABORATION_SERVICE
+
+允许应用使用多屏服务的能力。
 
 **权限级别**：system_basic
 
@@ -3976,3 +4012,4 @@
 **ACL使能**：true
 
 **起始版本**：11
+

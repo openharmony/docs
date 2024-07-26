@@ -35,7 +35,8 @@
       "multiAppModeType": "multiInstance",
       "maxCount": 5
     },
-    "cloudFileSyncEnabled": false
+    "cloudFileSyncEnabled": false,
+    "configuration": "$profile:configuration"
   },
 }
 ```
@@ -78,12 +79,13 @@ app.json5配置文件包含以下标签。
 | [multiAppMode](#multiappmode标签) | 标识当前应用配置的多开模式。仅bundleType为app的应用的entry或feature模块配置有效，存在多个模块时，以entry模块的配置为准。 | 对象 | 该标签可缺省，缺省值为空。 |
 | cloudFileSyncEnabled | 标识当前应用是否启用端云文件同步能力。 <br/>-&nbsp;true：当前应用启用端云文件同步能力。<br/>-&nbsp;false：当前应用不启用端云文件同步能力。 | 布尔值 | 该标签可缺省，缺省值为false。  |
 | hwasanEnabled | 标识应用程序是否开启HWAsan检测。<br/>-&nbsp;true：当前工程开启HWAsan检测。<br/>-&nbsp;false：当前工程不开启HWAsan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| configuration | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，跟随系统默认设定。 |
 
 ## appEnvironments标签
 
 此标签标识应用配置的环境变量。
 
-**表1** appEnvironments标签说明
+**表2** appEnvironments标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -109,7 +111,7 @@ appEnvironments标签示例：
 
 应用多开模式。
 
-**表1** multiAppMode标签说明
+**表3** multiAppMode标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -125,6 +127,40 @@ multiAppMode标签示例：
       "multiAppModeType": "appClone",
       "maxCount": 5
     }
+  }
+}
+```
+
+## configuration标签
+
+该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。
+
+configuration标签示例：
+
+```json
+{
+  "app": {
+    "configuration": "$profile:configuration"  
+  }
+}
+```
+
+在开发视图的resources/base/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的信息对应。配置文件中列举了当前应用字体大小跟随系统变化的属性。
+
+   **表4** configuration标签说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| fontSizeScale | 应用字体大小是否跟随系统，枚举值, followSystem，nonFollowSystem，表示跟随和不跟随。| 字符串 | 该标签可缺省，缺省由系统决定。 |
+| fontSizeMaxScale | 应用字体大小选择跟随系统后，配置的最大比例，枚举值1，1.15，1.3，1.45，1.75，2，3.2。	 <br/> fontSizeScale为nonFollowSystem，则该项不生效。 | 字符串 | 该标签可缺省，缺省由系统决定。 |
+
+resources/base/profile/configuration.json
+
+```json
+{
+  "configuration": {
+    "fontSizeScale": "followSystem",
+    "fontSizeMaxScale": "3.2"
   }
 }
 ```

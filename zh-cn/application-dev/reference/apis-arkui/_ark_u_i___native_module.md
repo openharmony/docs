@@ -322,7 +322,7 @@
 | [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \* [OH_ArkUI_AnimateOption_GetExpectedFrameRateRange](#oh_arkui_animateoption_getexpectedframeraterange) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画的期望帧率。  | 
 | void [OH_ArkUI_AnimateOption_SetDuration](#oh_arkui_animateoption_setduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | 设置动画持续时间。  | 
 | void [OH_ArkUI_AnimateOption_SetTempo](#oh_arkui_animateoption_settempo) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, float value) | 设置动画播放速度。  | 
-| void [OH_ArkUI_AnimateOption_SetCurve](#oh_arkui_animateoption_setcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_AnimationCurve](#arkui_animationcurve) value) | 设置动画曲线。  | 
+| void [OH_ArkUI_AnimateOption_SetCurve](#oh_arkui_animateoption_setcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_AnimationCurve](#arkui_animationcurve) value) | 设置动画曲线。默认值：ARKUI_CURVE_LINEAR。  | 
 | void [OH_ArkUI_AnimateOption_SetDelay](#oh_arkui_animateoption_setdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | 设置动画延迟播放时间。  | 
 | void [OH_ArkUI_AnimateOption_SetIterations](#oh_arkui_animateoption_setiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | 设置动画播放次数。  | 
 | void [OH_ArkUI_AnimateOption_SetPlayMode](#oh_arkui_animateoption_setplaymode) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_AnimationPlayMode](#arkui_animationplaymode) value) | 设置动画播放模式。  | 
@@ -335,7 +335,7 @@
 | int32_t [OH_ArkUI_KeyframeAnimateOption_SetIterations](#oh_arkui_keyframeanimateoption_setiterations) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, int32_t value) | 设置关键帧动画的动画播放次数。默认播放一次，设置为-1时表示无限次播放。设置为0时表示无动画效果。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback](#oh_arkui_keyframeanimateoption_registeronfinishcallback) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, void \*userData, void(\*onFinish)(void \*userData)) | 设置关键帧动画播放完成回调。当keyframe动画所有次数播放完成后调用。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_SetDuration](#oh_arkui_keyframeanimateoption_setduration) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, int32_t value, int32_t index) | 设置关键帧动画某段关键帧动画的持续时间，单位为毫秒。  | 
-| int32_t [OH_ArkUI_KeyframeAnimateOption_SetCurve](#oh_arkui_keyframeanimateoption_setcurve) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value, int32_t index) | 设置关键帧动画某段关键帧使用的动画曲线。  | 
+| int32_t [OH_ArkUI_KeyframeAnimateOption_SetCurve](#oh_arkui_keyframeanimateoption_setcurve) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value, int32_t index) | 设置关键帧动画某段关键帧使用的动画曲线。默认值：EASE_IN_OUT。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback](#oh_arkui_keyframeanimateoption_registeroneventcallback) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, void \*userData, void(\*event)(void \*userData), int32_t index) | 设置关键帧时刻状态的闭包函数，即在该关键帧时刻要达到的状态。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_GetDelay](#oh_arkui_keyframeanimateoption_getdelay) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option) | 获取关键帧整体延时时间。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_GetIterations](#oh_arkui_keyframeanimateoption_getiterations) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option) | 获取关键帧动画播放次数。  | 
@@ -348,7 +348,7 @@
 | int32_t [OH_ArkUI_AnimatorOption_SetIterations](#oh_arkui_animatoroption_setiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t value) | 设置animator动画播放次数。设置为0时不播放，设置为-1时无限次播放。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetFill](#oh_arkui_animatoroption_setfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_AnimationFill](#arkui_animationfill) value) | 设置animator动画执行后是否恢复到初始状态。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetDirection](#oh_arkui_animatoroption_setdirection) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_AnimationDirection](#arkui_animationdirection) value) | 设置animator动画播放方向。  | 
-| int32_t [OH_ArkUI_AnimatorOption_SetCurve](#oh_arkui_animatoroption_setcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value) | 设置animator动画插值曲线。  | 
+| int32_t [OH_ArkUI_AnimatorOption_SetCurve](#oh_arkui_animatoroption_setcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value) | 设置animator动画插值曲线。默认值：ARKUI_CURVE_LINEAR。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetBegin](#oh_arkui_animatoroption_setbegin) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, float value) | 设置animator动画插值起点。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetEnd](#oh_arkui_animatoroption_setend) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, float value) | 设置animator动画插值终点。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange](#oh_arkui_animatoroption_setexpectedframeraterange) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \*value) | 设置animator动画期望的帧率范围。  | 
@@ -1421,7 +1421,7 @@ enum ArkUI_AnimationFill
 | -------- | -------- |
 | ARKUI_ANIMATION_FILL_NONE  | 在动画执行之前和之后都不会应用任何样式到目标上。  | 
 | ARKUI_ANIMATION_FILL_FORWARDS  | 在动画结束后，目标将保留动画结束时的状态（在最后一个关键帧中定义）。  | 
-| ARKUI_ANIMATION_FILL_BACKWARDS  | 动画将在animation-delay期间应用第一个关键帧中定义的值。。  | 
+| ARKUI_ANIMATION_FILL_BACKWARDS  | 动画将在animation-delay期间应用第一个关键帧中定义的值。  | 
 | ARKUI_ANIMATION_FILL_BOTH  | 动画将遵循forwards和backwards的规则，从而在两个方向上扩展动画属性。  | 
 
 
@@ -2900,7 +2900,7 @@ enum ArkUI_NodeAttributeType
 | NODE_REFRESH_CONTENT  | 设置下拉区域的自定义内容，支持属性设置和重置。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.object：参数类型{\@Link ArkUI_NodeHandle}。 | 
 | NODE_REFRESH_PULL_DOWN_RATIO  | 设置下拉跟手系数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32：下拉跟手系数,有效值为0-1之间的值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：下拉跟手系数,有效值为0-1之间的值。 | 
 | NODE_REFRESH_OFFSET  | 设置触发刷新的下拉偏移量，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32：下拉偏移量，单位vp， 默认值：64vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：下拉偏移量，单位vp， 默认值：64vp。 | 
-| NODE_REFRESH_PULL_TO_REFRESH  | 设置当下拉距离超过refreshOffset时是否触发刷新，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：是否触发刷新，true为触发刷新，false为不触发刷新。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否触发刷新，1为触发刷新，0为不触发刷新。。 | 
+| NODE_REFRESH_PULL_TO_REFRESH  | 设置当下拉距离超过refreshOffset时是否触发刷新，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：是否触发刷新，true为触发刷新，false为不触发刷新。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否触发刷新，1为触发刷新，0为不触发刷新。 | 
 | NODE_WATER_FLOW_LAYOUT_DIRECTION  | 定义瀑布流组件布局主轴方向，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32 主轴方向，参数类型{\@Link ArkUI_FlexDirection}。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 主轴方向，参数类型{\@Link ArkUI_FlexDirection}。 | 
 | NODE_WATER_FLOW_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. | 
 | NODE_WATER_FLOW_ROW_TEMPLATE  | 设置当前瀑布流组件布局行的数量，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. | 
@@ -3860,7 +3860,7 @@ enum ArkUI_TextInputStyle
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | ARKUI_TEXTINPUT_STYLE_DEFAULT  | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。  | 
-| ARKUI_TEXTINPUT_STYLE_INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。。  | 
+| ARKUI_TEXTINPUT_STYLE_INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。  | 
 
 
 ### ArkUI_TextInputType
@@ -5891,7 +5891,7 @@ int32_t OH_ArkUI_AnimatorOption_SetCurve (ArkUI_AnimatorOption * option, ArkUI_C
 
 **注解：**
 
-不支持springCurve，springMotion，responsiveSpringMotion，interpolatingSpring customCurve动画曲线
+不支持springCurve，springMotion，responsiveSpringMotion，interpolatingSpring，customCurve动画曲线
 
 **返回：**
 
@@ -6095,7 +6095,7 @@ int32_t OH_ArkUI_AnimatorOption_SetKeyframeCurve (ArkUI_AnimatorOption * option,
 
 **注解：**
 
-不支持springCurve，springMotion，responsiveSpringMotion，interpolatingSpring customCurve动画曲线
+不支持springCurve，springMotion，responsiveSpringMotion，interpolatingSpring，customCurve动画曲线
 
 **返回：**
 

@@ -64,39 +64,7 @@ UIExtensionComponent组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.3 Menu组件箭头离宿主节点默认安全边距变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-带箭头菜单离宿主节点过远，变更后效果更佳。
-
-**变更影响**
-
-| 变更前箭头离宿主节点16vp | 变更后箭头离宿主节点8vp |
-|---------|---------|
-|  ![变更前箭头离宿主节点16vp](figures/menu-with-arrow-16vp.png)       |  ![变更后箭头离宿主节点8vp](figures/menu-with-arrow-8vp.png)       |
-
-**起始API Level**
-
-不涉及API变更
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.32 版本开始。
-
-**变更的接口/组件**
-
-Menu组件。
-
-**适配指导**
-
-带箭头菜单离宿主节点的默认安全距离变小，若需要更大的间距，可设置菜单的offset进行调整。
-
-## cl.arkui.4 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
+## cl.arkui.3 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
 **访问级别**
 
 公开接口
@@ -135,7 +103,7 @@ List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeav
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.5 List的constraintSize设置生效
+## cl.arkui.4 List的constraintSize设置生效
 
 **访问级别**
 
@@ -239,7 +207,7 @@ struct ListExample {
 }
 ```
 
-## cl.arkui.6 CreateModalUIExtension默认行为变更
+## cl.arkui.5 CreateModalUIExtension默认行为变更
 
 **访问级别**
 
@@ -283,7 +251,7 @@ CreateModalUIExtension和hideNonSecureWindows接口。
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.7 AlphabetIndexer组件autoCollapse属性默认值由false改为true
+## cl.arkui.6 AlphabetIndexer组件autoCollapse属性默认值由false改为true
 
 **访问级别**
 
@@ -321,7 +289,7 @@ AlphabetIndexer组件
 
 默认行为变更，默认开启自适应折叠模式，若要关闭自适应折叠模式，可通过设置[autoCollapse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md#autocollapse11)属性进行适配。
 
-## cl.arkui.8 元服务AppBar调整Z序到弹框之上
+## cl.arkui.7 元服务AppBar调整Z序到弹框之上
 **访问级别**
 
 公开接口
@@ -356,7 +324,7 @@ API version 12及以后：针对元服务，大部分弹框层级都在AppBar之
 
 接口行为变更，无需适配.
 
-## cl.arkui.9 RichEditor组件builderSpan支持绑定自定义菜单
+## cl.arkui.8 RichEditor组件builderSpan支持绑定自定义菜单
 
 **访问级别**
 
@@ -415,7 +383,7 @@ struct Example {
 }
 ```
 
-## cl.arkui.10 文本计算接口fontSize参数默认单位实现修正
+## cl.arkui.9 文本计算接口fontSize参数默认单位实现修正
 
 **访问级别**
 
@@ -485,7 +453,7 @@ struct Index {
 
 若在Text组件上，fontSize设置的是fp类型字号则无需适配，测算接口fontSize参数传入number类型数值和Text组件上使用的字号单位是一致的。
 
-## cl.arkui.11 光标默认样式变更
+## cl.arkui.10 光标默认样式变更
 
 **访问级别**
 
@@ -524,7 +492,7 @@ struct Index {
 
 默认效果变更，无需适配。
 
-## cl.arkui.12 高级组件SelectionMenu默认样式变更
+## cl.arkui.11 高级组件SelectionMenu默认样式变更
 
 **访问级别**
 
@@ -564,7 +532,7 @@ struct Index {
 
 默认效果变更，无需适配。
 
-## cl.arkui.13 Svg根节点视窗外图片内容裁剪
+## cl.arkui.12 Svg根节点视窗外图片内容裁剪
 
 **访问级别**
 
@@ -608,7 +576,7 @@ struct Index {
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用显示效果产生影响。
 
-## cl.arkui.14 子窗显示的toast不响应返回事件
+## cl.arkui.13 子窗显示的toast不响应返回事件
 **访问级别**
 
 公开接口
@@ -641,7 +609,7 @@ promptAction.showToast
 
 默认行为变更，无需适配，后续不支持通过返回手势退出toast。
 
-## cl.arkui.15 带按钮的气泡样式变更
+## cl.arkui.14 带按钮的气泡样式变更
 **访问级别**
 
 公开接口
@@ -675,7 +643,7 @@ bindPopup
 
 popup样式变更，无需适配。
 
-## cl.arkui.16 toast样式变更
+## cl.arkui.15 toast样式变更
 **访问级别**
 
 公开接口

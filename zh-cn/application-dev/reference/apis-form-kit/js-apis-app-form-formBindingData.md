@@ -82,12 +82,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 
 try {
-  let fd = fileIo.openSync('/path/to/form.png');
-  let formImagesParam: Record<string, object> = {
-    'image': fd
+  let file = fileIo.openSync('/path/to/form.png');
+  let formImagesParam: Record<string, number> = {
+    'image': file.fd
   };
   let createFormBindingDataParam: Record<string, string | Object> = {
     'name': '21°',
+    'imgSrc': 'image',
     'formImages': formImagesParam
   };
 

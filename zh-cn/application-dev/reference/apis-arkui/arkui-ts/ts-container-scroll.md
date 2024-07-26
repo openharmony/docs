@@ -215,6 +215,8 @@ initialOffset(value: OffsetOptions)
 
 设置初始滚动偏移量。只在首次布局时生效，后续动态修改该属性值不生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -317,6 +319,8 @@ onWillScroll(handler: ScrollOnWillScrollCallback)
 
 3、越界回弹。 
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -341,6 +345,8 @@ onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说�
 
 3、越界回弹。 
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -352,6 +358,8 @@ onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说�
 ## ScrollOnScrollCallback对象说明
 
 Scroll滚动时触发的回调  
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -368,6 +376,8 @@ Scroll滚动时触发的回调
 type ScrollOnWillScrollCallback = (xOffset: number, yOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => void | OffsetResult
 
 Scroll滚动前触发的回调  
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -549,7 +559,7 @@ scrollPage(value:   ScrollPageOptions)
 
 | 参数名 | 参数类型                                           | 必填 | 参数描述       |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12+对象说明) | 是   | 设置翻页模式。 |
+| value  | [ScrollPageOptions](#scrollpageoptions12对象说明) | 是   | 设置翻页模式。 |
 
 ### scrollPage<sup>(deprecated)</sup>
 
@@ -751,6 +761,9 @@ getItemRect(index: number): RectResult
 | animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
 
 ## OffsetOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
 | xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滑动偏移<br/>默认值：0 |

@@ -19,6 +19,8 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 在指定用户空间中新增一条关键资产，使用Promise方式异步返回结果。
 
+如果要设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Security.Asset
@@ -42,7 +44,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000003 | The asset already exists.                                  |
 | 24000005 | The screen lock status does not match.                         |
@@ -93,6 +95,8 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 从指定用户空间中删除符合条件的一条或多条关键资产，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
@@ -114,7 +118,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
@@ -159,6 +163,8 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 在指定用户空间中更新符合条件的一条关键资产，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名             | 类型     | 必填 | 说明                                                         |
@@ -181,7 +187,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000005 | The screen lock status does not match.                         |
@@ -230,6 +236,8 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
 在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)、[asset.postQueryAsUser](#assetpostqueryasuser)。使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
@@ -251,7 +259,7 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 | -------- | ------------------------------------------------------------ |
 | 201      | The caller doesn't have the permission.                      |
 | 202      | Non-system applications use system APIs.                     |
-| 401      | The argument is invalid.                                     |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                            |
 | 24000002 | The asset is not found.                          |
 | 24000005 | The screen lock status does not match.                           |
@@ -299,6 +307,8 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
 在指定用户空间中查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQueryAsUser](#assetprequeryasuser)，在本函数后调用[asset.postQueryAsUser](#assetpostqueryasuser)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
@@ -320,10 +330,10 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
-| 24000004 | Access to the asset is denied.                             |
+| 24000004 | Access denied.                             |
 | 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
 | 24000007 | The asset is corrupted.                                    |
@@ -372,6 +382,8 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 在指定用户空间中查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQueryAsUser](#assetprequeryasuser)函数成对出现。使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
@@ -393,7 +405,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
 | 24000010 | IPC failed.                                |

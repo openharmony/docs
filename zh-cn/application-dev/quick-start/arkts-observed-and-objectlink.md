@@ -38,7 +38,7 @@
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无                                        |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、Array的class实例，API11及以上支持继承Map、Set的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -64,7 +64,7 @@ this.objLink= ...
 
 | \@ObjectLink传递/访问 | 说明                                       |
 | ----------------- | ---------------------------------------- |
-| 从父组件初始化           | 必须指定。<br/>初始化\@ObjectLink装饰的变量必须同时满足以下场景：<br/>-&nbsp;类型必须是\@Observed装饰的class。<br/>-&nbsp;初始化的数值需要是数组项，或者class的属性。<br/>-&nbsp;同步源的class或者数组必须是\@State，\@Link，\@Provide，\@Consume或者\@ObjectLink装饰的数据。<br/>同步源是数组项的示例请参考[对象数组](#对象数组)。初始化的class的示例请参考[嵌套对象](#嵌套对象)。 |
+| 从父组件初始化           | 必须指定。<br/>初始化\@ObjectLink装饰的变量必须同时满足以下场景：<br/>-&nbsp;类型必须是\@Observed装饰的class。<br/>-&nbsp;初始化的数值需要是数组项，或者class的属性。<br/>-&nbsp;同步源的class或者数组必须是[\@State](./arkts-state.md)，[\@Link](./arkts-link.md)，[\@Provide](./arkts-provide-and-consume.md)，[\@Consume](./arkts-provide-and-consume.md)或者\@ObjectLink装饰的数据。<br/>同步源是数组项的示例请参考[对象数组](#对象数组)。初始化的class的示例请参考[嵌套对象](#嵌套对象)。 |
 | 与源对象同步            | 双向。                                      |
 | 可以初始化子组件          | 允许，可用于初始化常规变量、\@State、\@Link、\@Prop、\@Provide |
 
@@ -187,7 +187,7 @@ struct ViewB {
 
 继承Map的class时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[继承Map类](#继承map类)。
 
-继承Set的class时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见继承Set类。
+继承Set的class时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[继承Set类](#继承set类)。
 
 
 ### 框架行为
@@ -1742,3 +1742,118 @@ struct Index {
 
 因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
 
+### ObjectLink更新依赖其所属自定义组件的更新函数
+
+```ts
+@Observed
+class Person {
+  name: string = '';
+  age: number = 0;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+@Observed
+class Persons {
+  person: Person;
+
+  constructor(person: Person) {
+    this.person = person;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State pers01: Persons = new Persons(new Person('1', 1));
+
+  build() {
+    Column() {
+      Child01({ pers: this.pers01 });
+    }
+  }
+}
+
+@Component
+struct Child01 {
+  @ObjectLink @Watch('onChange01') pers: Persons;
+
+  onChange01() {
+    console.log(':::onChange01:' + this.pers.person.name); // 2
+  }
+
+  build() {
+    Column() {
+      Text(this.pers.person.name).height(40)
+      Child02({
+        per: this.pers.person, selectItemBlock: () => {
+          console.log(':::selectItemBlock before', this.pers.person.name); // 1
+          this.pers.person = new Person('2', 2);
+          console.log(':::selectItemBlock after', this.pers.person.name); // 3
+        }
+      })
+    }
+  }
+}
+
+@Component
+struct Child02 {
+  @ObjectLink @Watch('onChange02') per: Person;
+  selectItemBlock?: () => void;
+
+  onChange02() {
+    console.log(':::onChange02:' + this.per.name); // 5
+  }
+
+  build() {
+    Column() {
+      Button(this.per.name)
+        .height(40)
+        .onClick(() => {
+          this.onClickFType();
+        })
+    }
+  }
+
+  private onClickFType() {
+    if (this.selectItemBlock) {
+      this.selectItemBlock();
+    }
+    console.log(':::--------此时Child02中的this.per.name值仍然是：' + this.per.name); // 4
+  }
+}
+```
+
+数据源通知@ObjectLink是依赖@ObjectLink所属自定义组件更新，是异步调用。上述示例中，Parent包含Child01，Child01包含Child02，在进行点击时，Child01传箭头函数给Child02，此时调用Child02的点击事件，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是给子组件Child02标脏，Child02的更新要等待下一次vsync信号，而@ObjectLink的更新依赖其所属自定义组件的更新函数，所以日志4打印的this.per.name的值仍然是1。
+
+当@ObjectLink @Watch('onChange02') per: Person的@Watch函数执行时，当前已执行Child02的更新函数，@ObjectLink已被通知更新，所以日志5打印的值为2。
+
+日志的含义为：
+- 日志1：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值前。
+
+- 日志2：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值，执行其@Watch函数，同步执行。
+
+- 日志3：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值完成。
+
+- 日志4：onClickFType方法内selectItemBlock执行完，此时只做了标脏，未将最新的值更新给Child02 @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
+
+- 日志5：下一次vsync信号触发Child02更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值2。
+
+@Prop父子同步原理同@ObjectLink一致。
+
+当selectItemBlock中更改this.pers.person.name时，修改会立刻生效，此时日志4打印的值是2。
+
+```ts
+Child02({
+  per: this.pers.person, selectItemBlock: () => {
+    console.log(':::selectItemBlock before', this.pers.person.name); // 1
+    this.pers.person.name = 2;
+    console.log(':::selectItemBlock after', this.pers.person.name); // 3
+  }
+})
+```
+
+此时Child01中Text组件不会刷新，因为this.pers.person.name属于两层嵌套。

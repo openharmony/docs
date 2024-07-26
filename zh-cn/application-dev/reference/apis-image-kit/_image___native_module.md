@@ -168,6 +168,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float angle) | 根据输入的角度对图片进行旋转。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | 根据输入的条件对图片进行翻转。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | 根据输入的尺寸对图片进行裁剪 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ToSdr](_image___native_module.md#oh_pixelmapnative_tosdr) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap) | 将HDR的图像内容转换为SDR的图像内容。 |
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](_image___native_module.md#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixlemap的像素数据做预乘和非预乘之间的转换。| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](_image___native_module.md#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](_image___native_module.md#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。| 
@@ -2879,6 +2880,29 @@ Image_ErrorCode OH_PixelmapNative_Flip (OH_PixelmapNative * pixelmap, bool shoul
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_ToSdr()
+
+```
+Image_ErrorCode OH_PixelmapNative_ToSdr (OH_PixelmapNative * pixelmap);
+```
+
+**描述**
+
+将HDR的图像内容转换为SDR的图像内容。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_GetImageInfo()

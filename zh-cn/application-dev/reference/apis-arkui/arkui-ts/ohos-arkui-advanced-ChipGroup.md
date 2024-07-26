@@ -27,6 +27,8 @@ ChipGroup({
 
 **装饰器类型：**@Component
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数**：
@@ -54,6 +56,8 @@ ChipGroup({
 
 ChipGroupItemOptions定义每个chip的非共通属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称         | 类型                           | 必填 | 描述                                |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
 | prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。                   |
@@ -70,6 +74,8 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 ## ChipItemStyle
 
 ChipItemStyle定义了chip的共通属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                    | 类型                                                              | 必填 | 描述                                                  |
 | ----------------------- | ----------------------                                           | ---- | -------------------------------                       |
@@ -89,6 +95,8 @@ ChipItemStyle定义了chip的共通属性。
 
 ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直接的间距。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称       | 类型            | 必填 | 描述                                               |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
 | itemSpace | string \| number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
@@ -99,6 +107,8 @@ ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直�
 
 ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGroup的整体高度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称   | 类型            | 必填 | 描述                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------            |
 | top    | [Length](ts-types.md#length)         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top走默认值。        |
@@ -107,6 +117,8 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 ## IconGroupSuffix
 
 **装饰器类型：**@Component
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -125,6 +137,8 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 
 尾部builder接口定义，针对背板大小及颜色设置限制。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     | 类型                            | 必填 | 描述                                      |
 | -------- | --------------                 | ---- | ------------------------------           |
 | icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon                        |
@@ -134,6 +148,8 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 
 IconOptions定义图标的共通属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型                                   | 必填 | 说明                                                         |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | src  | [ResourceStr](ts-types.md#resourcestr) | 是   | 图标图片或图片地址引用。                                     |
@@ -142,6 +158,8 @@ IconOptions定义图标的共通属性。
 ## LabelOptions
 
 Label定义图标的共通属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型   | 必填  | 说明     |
 | ---- | ------ | ---- | -------- |

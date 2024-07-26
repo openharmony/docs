@@ -13,6 +13,8 @@
 > - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
 >
 > - 为了实现更好的转场效果，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)和[模态转场](../../ui/arkts-modal-transition.md)。
+>
+> - 如果使用传入callback形式的pushUrl，pushNamedRoute接口，则在callback中使用getLength等接口获取的栈信息是中间态的栈信息，可能和最终状态不一致。
 
 ## 导入模块
 
@@ -988,6 +990,8 @@ back(index: number, params?: Object): void;
 
 返回指定的页面。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1076,6 +1080,8 @@ getStateByIndex(index: number): RouterState | undefined
 
 通过索引值获取对应页面的状态信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1106,6 +1112,8 @@ if (options != undefined) {
 getStateByUrl(url: string): Array&lt;RouterState&gt;
 
 通过url获取对应页面的状态信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1144,7 +1152,7 @@ for (let i: number = 0; i < options.length; i++) {
 | index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | name  | string | 是  | 表示当前页面的名称，即对应文件名。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | path  | string | 是   | 表示当前页面的路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| params<sup>12+</sup>  | Object |  是  | 表示当前页面携带的参数。                                         |
+| params<sup>12+</sup>  | Object |  是  | 表示当前页面携带的参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                         |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
 

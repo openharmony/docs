@@ -34,6 +34,8 @@ type Initializer\<T> = () => T
 
 可以将属性更新到本地的修饰器。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## AttributeUpdater<T, C = Initializer\<T>>
@@ -48,6 +50,8 @@ applyNormalAttribute?(instance: T): void
 
 定义正常态更新属性函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -60,6 +64,8 @@ applyNormalAttribute?(instance: T): void
 initializeModifier(instance: T): void
 
 AttributeUpdater首次设置给组件时提供的样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -109,6 +115,8 @@ struct updaterDemo1 {
 get attribute(): T | undefined
 
 获取AttributeUpdater中组件对应的属性类实例，通过该实例实现属性直通更新的功能。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -162,6 +170,8 @@ updateConstructorParams: C
 用来更改组件的构造入参。C代表组件的构造函数类型。
 
 其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

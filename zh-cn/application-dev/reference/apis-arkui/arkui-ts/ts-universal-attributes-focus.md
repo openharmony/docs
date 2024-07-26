@@ -94,6 +94,8 @@ focusBox(style: FocusBoxStyle): T
 
 设置当前组件系统焦点框样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -159,6 +161,8 @@ requestFocus(key: string): void
 >  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
 
 ## FocusBoxStyle<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 参数类型 | 必填 | 描述 |
 | ---- | ---- | ---- | ---- |

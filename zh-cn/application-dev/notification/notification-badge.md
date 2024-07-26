@@ -29,6 +29,7 @@
    ```ts
    import { notificationManager } from '@kit.NotificationKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    const TAG: string = '[PublishOperation]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -41,7 +42,7 @@
    示例为调用setBadgeNumber接口增加角标，在发布完新的通知后，调用该接口。
    
     ```ts
-    let setBadgeNumberCallback = (err: Base.BusinessError): void => {
+    let setBadgeNumberCallback = (err: BusinessError): void => {
       if (err) {
         hilog.error(DOMAIN_NUMBER, TAG, `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
         return;
@@ -58,7 +59,7 @@
    一条通知被查看后，应用需要调用接口设置剩下未读通知个数，桌面刷新角标。
 
     ```ts
-    let setBadgeNumberCallback = (err: Base.BusinessError): void => {
+    let setBadgeNumberCallback = (err: BusinessError): void => {
       if (err) {
         hilog.error(DOMAIN_NUMBER, TAG, `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
         return;

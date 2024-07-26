@@ -181,6 +181,10 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果 Promise 已解决，则为 null），第二个参数将是已解决的值。
 
+> **说明：**
+>
+> 该接口要求参数original必须是异步函数类型。如果传入的参数不是异步函数，不会进行拦截，但是会输出错误信息："callbackWrapper: The type of Parameter must be AsyncFunction"。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -366,11 +370,12 @@ parseUUID(uuid: string): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 10200002 | Invalid uuid string. |
 
 **示例：**
 
@@ -860,6 +865,10 @@ let retStr = result.encoding
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
+
+> **说明：**
+>
+> 当input是一个空数组时，返回值为undefined。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -2477,6 +2486,8 @@ class Temperature{
 type ScopeType = ScopeComparable | number
 
 用于表示范围中的值的类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
