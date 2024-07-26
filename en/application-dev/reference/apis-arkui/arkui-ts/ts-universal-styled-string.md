@@ -1,6 +1,6 @@
 # Styled String
 
-Styled strings are strings with associated style attributes. They can be linked to a **\<Text>** component using the [setStyledString](./ts-basic-components-text.md#setstyledstring12) API in **TextController**.
+Styled strings are strings with associated style attributes. They can be linked to a **Text** component using the [setStyledString](./ts-basic-components-text.md#setstyledstring12) API in **TextController**.
 
 >  **NOTE**
 >
@@ -9,7 +9,7 @@ Styled strings are strings with associated style attributes. They can be linked 
 ## Rules of Use
 
 * If a styled string conflicts with the current style settings in a component, the style set in the styled string takes effect.
-* If a styled string conflicts with the child components in [\<Text>](./ts-basic-components-text.md), the style set in the styled string is applied to the **\<Text>** component, and style settings of the child components, including [\<Span>](./ts-basic-components-span.md), are ignored.
+* If a styled string conflicts with the child components in [Text](./ts-basic-components-text.md), the style set in the styled string is applied to the **Text** component, and style settings of the child components, including [\<Span>](./ts-basic-components-span.md), are ignored.
 * @State is not supported.
 
 ## StyledString
@@ -247,7 +247,7 @@ setStyle(spanStyle: SpanStyle): void
 
 Removes the style for the specified range of this styled string.
 
-After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
 
 This API equally works when the styled string contains an image.
 
@@ -275,7 +275,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 Removes all styles for the specified range of this styled string.
 
-After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
 
 This API equally works when the styled string contains an image.
 
@@ -302,7 +302,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 Removes all styles of this styled string.
 
-After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
 
 clearStyles(): void
 
@@ -666,7 +666,7 @@ abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
 
 | Type             |       Description      |
 | ------- | --------------------------------- |
-| [CustomSpanMetrics](#customspanmetrics) | Size of the custom span.<br>**NOTE**<br>The final height of the custom span is subject to the line height of the **\<Text>** component. If no value is specified for **height**, the custom span takes the **fontSize** value of the **\<Text>** component as its height. If the value specified is greater than the height of other child components on the same line, the custom span takes the line height of the **\<Text>** component as its height.|
+| [CustomSpanMetrics](#customspanmetrics) | Size of the custom span.<br>**NOTE**<br>The final height of the custom span is subject to the line height of the **Text** component. If no value is specified for **height**, the custom span takes the **fontSize** value of the **Text** component as its height. If the value specified is greater than the height of other child components on the same line, the custom span takes the line height of the **Text** component as its height.|
 
 ### onDraw
 
@@ -680,7 +680,7 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | Yes  | Drawing context.<br>**NOTE**<br>The **canvas** method of **DrawContext** obtains the canvas of the **\<Text>** component. As such, the custom span does not extend beyond the area of the **\<Text>** component.|
+| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | Yes  | Drawing context.<br>**NOTE**<br>The **canvas** method of **DrawContext** obtains the canvas of the **Text** component. As such, the custom span does not extend beyond the area of the **Text** component.|
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo) | Yes  | Drawing information of the custom span.|
 
 ## CustomSpanMeasureInfo
@@ -701,8 +701,8 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | x | number |  Yes | Offset of the custom span relative to the mounted component.<br>Unit: px|
-| lineTop | number |  Yes | Top margin of the custom span relative to the **\<Text>** component.<br>Unit: px|
-| lineBottom | number |  Yes | Bottom margin of the custom span relative to the **\<Text>** component.<br>Unit: px|
+| lineTop | number |  Yes | Top margin of the custom span relative to the **Text** component.<br>Unit: px|
+| lineBottom | number |  Yes | Bottom margin of the custom span relative to the **Text** component.<br>Unit: px|
 | baseline | number |  Yes | Baseline offset of the line where the custom span is located.<br>Unit: px|
 
 ## ParagraphStyle
@@ -730,7 +730,7 @@ The style of a paragraph is the one (if any) set for the first element or the pa
 
 >  **NOTE**
 >
->  As the **maxLines** and **overflow** attributes of the styled string take effect only in the **\<Text>** component, you are advised to set them in the component.
+>  As the **maxLines** and **overflow** attributes of the styled string take effect only in the **Text** component, you are advised to set them in the component.
 
 ### constructor
 

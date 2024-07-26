@@ -226,7 +226,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
   }
 
-  // Create a preview output stream. For details about the surfaceId parameter, see the <XComponent>. The preview stream is the surface provided by the <XComponent>.
+  // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
   let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);

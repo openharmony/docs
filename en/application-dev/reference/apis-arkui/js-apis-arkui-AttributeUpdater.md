@@ -54,7 +54,7 @@ Parameters
 
 | Parameter | Type  | Mandatory/Optional | Note:                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| instance | T | M | Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **\<Button>** component and **TextAttribute** for the **\<Text>** component.|
+| instance | T | M | Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
 
 ### initializeModifier
 initializeModifier(instance: T): void
@@ -67,7 +67,7 @@ Parameters
 
 | Parameter | Type  | Mandatory/Optional | Note:                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| instance | T | Supported | Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **\<Button>** component and **TextAttribute** for the **\<Text>** component.|
+| instance | T | Supported | Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
 
 **Example** 
 

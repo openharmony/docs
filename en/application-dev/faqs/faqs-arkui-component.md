@@ -164,15 +164,15 @@ The width and height of a component need to be obtained to calculate the size an
 [Component Area Change Event](../reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md), [Click Event](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md), [Touch Event](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
 
 
-## How do I clear the content of the \<TextInput> and \<TextArea> components by one click? (API version 9)
+## How do I clear the content of the \<TextInput> and TextArea components by one click? (API version 9)
 
 **Symptom**
 
-A click-to-clear feature is required to remove all characters in the **\<TextInput>** and **\<TextArea>** component at once.
+A click-to-clear feature is required to remove all characters in the **\<TextInput>** and **TextArea** component at once.
 
 **Solution**
 
-Convert the **text** attribute of the **\<TextInput>** and **\<TextArea>** component to a state variable. Assign an empty string to the state variable when the click-to-clear event is performed.
+Convert the **text** attribute of the **\<TextInput>** and **TextArea** component to a state variable. Assign an empty string to the state variable when the click-to-clear event is performed.
 
 **Example**
 
@@ -346,7 +346,7 @@ struct TextInputDemo {
 
 **Solution**
 
-1. During initialization of the scrollable component, such as **\<List>**, **\<Grid>**, and **\<Scroll>**, set the **scroller** parameter to bind the component to a scroll controller.
+1. During initialization of the scrollable component, such as **\<List>**, **Grid**, and **Scroll**, set the **scroller** parameter to bind the component to a scroll controller.
 
 2. Call the **currentOffset** API of the controller to obtain the horizontal and vertical scrolling offsets.
 
@@ -359,11 +359,11 @@ struct TextInputDemo {
 
 **Symptom**
 
-Text cannot be aligned vertically in the **\<Text>** component.
+Text cannot be aligned vertically in the **Text** component.
 
 **Solution**
 
-Text is aligned horizontally in the **\<Text>** component. To enable text to align vertically, you can split the file, include it in a **\<Flex>** container, and set the container's main axis direction to vertical.
+Text is aligned horizontally in the **Text** component. To enable text to align vertically, you can split the file, include it in a **Flex** container, and set the container's main axis direction to vertical.
 
 **Example**
 
@@ -422,7 +422,7 @@ If **constraintSize** is set for a component and the width of its child componen
 
 **Solution**
 
-You can use the **\<Scroll>** component at the outer layer. In this way, when **constraintSize** is set and the space occupied by a child component exceeds the specified constraint value, a scrollbar will be displayed.
+You can use the **Scroll** component at the outer layer. In this way, when **constraintSize** is set and the space occupied by a child component exceeds the specified constraint value, a scrollbar will be displayed.
 
 
 ## How do I set the background color to transparent? (API version 9)
@@ -432,17 +432,17 @@ You can use the **\<Scroll>** component at the outer layer. In this way, when **
 Set **backgroundColor** to **'\#00000000'**.
 
 
-## What should I do if the \<Scroll> component cannot scroll to the bottom? (API version 9)
+## What should I do if the Scroll component cannot scroll to the bottom? (API version 9)
 
 Applicable to: stage model
 
 **Symptom**
 
-Unless otherwise specified, the height of the **\<Scroll>** component is equal to the window height. In this case, the component's bottom area will be blocked by components (if any) outside of it.
+Unless otherwise specified, the height of the **Scroll** component is equal to the window height. In this case, the component's bottom area will be blocked by components (if any) outside of it.
 
 **Solution**
 
-Set the height of the **\<Scroll>** component or use the flex layout to limit this height.
+Set the height of the **Scroll** component or use the flex layout to limit this height.
 
 
 ## How do I customize the control bar style of the \<Video> component? (API version 9)
@@ -604,17 +604,17 @@ struct StyleExample {
 
 [Polymorphic Style](../reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
 
-## What should I do if the flex width and height in the \<Scroll> component conflicts with the scrolling? (API version 9)
+## What should I do if the flex width and height in the Scroll component conflicts with the scrolling? (API version 9)
 
 Applicable to: stage model
 
 **Symptom**
 
-When a container component with a fixed size is added to the **\<Scroll>** component, a scrolling error occurs.
+When a container component with a fixed size is added to the **Scroll** component, a scrolling error occurs.
 
 **Solution**
 
-Do not set a size for any container component in the **\<Scroll>** component. In this way, the **\<Scroll>** component can adapt its size to the content.
+Do not set a size for any container component in the **Scroll** component. In this way, the **Scroll** component can adapt its size to the content.
 
 
 ## How does a component process click events in its child components? (API version 9)
@@ -765,7 +765,7 @@ Add the **layoutWeight** attribute for the **\<List>** component so that it take
 
 **Solution**
 
-1. Use **LazyForEach** as a child node of the **\<WaterFlow>** component.
+1. Use **LazyForEach** as a child node of the **WaterFlow** component.
 
 2. Determine whether the bottom is about to be reached in **onAppear** of the **\<FlowItem>** component, and append new data to the **LazyForEach** data source in advance. Alternatively, determine whether the bottom is about to be reached based on the current index in the **onScrollIndex11+** event.
 

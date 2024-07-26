@@ -1,6 +1,6 @@
 # NavDestination
 
-**\<NavDestination>** is the root container of a destination page and represents the content area of the [\<Navigation>](ts-basic-components-navigation.md) component.
+**NavDestination** is the root container of a destination page and represents the content area of the [Navigation](ts-basic-components-navigation.md) component.
 
 > **NOTE**
 >
@@ -8,7 +8,7 @@
 >
 > Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
 >
-> **\<NavDestination>** must be used together with **\<Navigation>** as the root node of its destination page.
+> **NavDestination** must be used together with **Navigation** as the root node of its destination page.
 >
 > If the lifecycle of a page in the middle of the navigation stack changes, the lifecycle of the destination page at the top of the stack before the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) and the lifecycle of the destination page after the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) are both triggered at the end.
 
@@ -181,7 +181,7 @@ Called when the navigation destination is about to be unmounted (or when the tra
 
 onBackPressed(callback: () =&gt; boolean)
 
-This callback takes effect when there is one or more entries in the navigation stack bound to the **\<Navigation>** component. Called when the back button is pressed.
+This callback takes effect when there is one or more entries in the navigation stack bound to the **Navigation** component. Called when the back button is pressed.
 
 The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed.
 
@@ -193,7 +193,7 @@ The value **true** means that the back button logic is overridden, and **false**
 
 onReady(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11)>)
 
-Called when the **\<NavDestination>** component is about to build a child component.
+Called when the **NavDestination** component is about to build a child component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

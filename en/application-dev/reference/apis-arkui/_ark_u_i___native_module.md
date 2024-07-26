@@ -87,7 +87,7 @@ Provides animation callbacks of ArkUI on the native side.
 | typedef struct [ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) [ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) | Defines the alignment rule in the relative container. |
 | typedef struct [ArkUI_GuidelineOption](#arkui_guidelineoption) [ArkUI_GuidelineOption](#arkui_guidelineoption) | Defines the ID, direction, and position of a guideline. |
 | typedef struct [ArkUI_BarrierOption](#arkui_barrieroption) [ArkUI_BarrierOption](#arkui_barrieroption) | Defines the ID, direction, and referenced component of a barrier. |
-| typedef struct [ArkUI_SwiperIndicator](#arkui_swiperindicator) [ArkUI_SwiperIndicator](#arkui_swiperindicator) | Defines the navigation point indicator style of the **\<Swiper>** component. |
+| typedef struct [ArkUI_SwiperIndicator](#arkui_swiperindicator) [ArkUI_SwiperIndicator](#arkui_swiperindicator) | Defines the navigation point indicator style of the **Swiper** component. |
 | typedef struct [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem)[ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) | Defines the item configuration for **ListItemSwipeActionOption**. |
 | typedef struct [ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption)[ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) | Defines the configuration for **ListItemSwipeActionOption**. |
 | typedef struct [ArkUI_ListChildrenMainSize](#arkui_listchildrenmainsize) [ArkUI_ListChildrenMainSize](#arkui_listchildrenmainsize) | Defines the **ChildrenMainSize** information of the **\<List>** component. |
@@ -121,7 +121,7 @@ Provides animation callbacks of ArkUI on the native side.
 | [ArkUI_TextInputType](#arkui_textinputtype) {<br>ARKUI_TEXTINPUT_TYPE_NORMAL = 0, ARKUI_TEXTINPUT_TYPE_NUMBER = 2, ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER = 3, ARKUI_TEXTINPUT_TYPE_EMAIL = 5,<br>ARKUI_TEXTINPUT_TYPE_PASSWORD = 7, ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD = 8, ARKUI_TEXTINPUT_TYPE_SCREEN_LOCK_PASSWORD = 9, ARKUI_TEXTINPUT_TYPE_USER_NAME = 10,<br>ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD = 11, ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL = 12<br>} | Enumerates the text input types. |
 | [ArkUI_TextAreaType](#arkui_textareatype) { ARKUI_TEXTAREA_TYPE_NORMAL = 0, ARKUI_TEXTAREA_TYPE_NUMBER = 2, ARKUI_TEXTAREA_TYPE_PHONE_NUMBER = 3, ARKUI_TEXTAREA_TYPE_EMAIL = 5 } | Enumerates the text box types. |
 | [ArkUI_CancelButtonStyle](#arkui_cancelbuttonstyle) { ARKUI_CANCELBUTTON_STYLE_CONSTANT = 0, ARKUI_CANCELBUTTON_STYLE_INVISIBLE, ARKUI_CANCELBUTTON_STYLE_INPUT } | Enumerates the styles of the Cancel button. |
-| [ArkUI_XComponentType](#arkui_xcomponenttype) { ARKUI_XCOMPONENT_TYPE_SURFACE = 0, ARKUI_XCOMPONENT_TYPE_TEXTURE = 2 } | Enumerates the types of the **\<XComponent>**. |
+| [ArkUI_XComponentType](#arkui_xcomponenttype) { ARKUI_XCOMPONENT_TYPE_SURFACE = 0, ARKUI_XCOMPONENT_TYPE_TEXTURE = 2 } | Enumerates the types of the **XComponent**. |
 | [ArkUI_ProgressType](#arkui_progresstype) {<br>ARKUI_PROGRESS_TYPE_LINEAR = 0, ARKUI_PROGRESS_TYPE_RING, ARKUI_PROGRESS_TYPE_ECLIPSE, ARKUI_PROGRESS_TYPE_SCALE_RING,<br>ARKUI_PROGRESS_TYPE_CAPSULE<br>} | Enumerates the styles of the progress indicator. |
 | [ArkUI_TextDecorationType](#arkui_textdecorationtype) { ARKUI_TEXT_DECORATION_TYPE_NONE = 0, ARKUI_TEXT_DECORATION_TYPE_UNDERLINE, ARKUI_TEXT_DECORATION_TYPE_OVERLINE, ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH } | Enumerates the text decoration types. |
 | [ArkUI_TextDecorationStyle](#arkui_textdecorationstyle) {<br>ARKUI_TEXT_DECORATION_STYLE_SOLID = 0, ARKUI_TEXT_DECORATION_STYLE_DOUBLE, ARKUI_TEXT_DECORATION_STYLE_DOTTED, ARKUI_TEXT_DECORATION_STYLE_DASHED,<br>ARKUI_TEXT_DECORATION_STYLE_WAVY<br>} | Enumerates the text decoration styles. |
@@ -140,7 +140,7 @@ Provides animation callbacks of ArkUI on the native side.
 | [ArkUI_ShadowStyle](#arkui_shadowstyle) {<br>ARKUI_SHADOW_STYLE_OUTER_DEFAULT_XS = 0, ARKUI_SHADOW_STYLE_OUTER_DEFAULT_SM, ARKUI_SHADOW_STYLE_OUTER_DEFAULT_MD, ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG,<br>ARKUI_SHADOW_STYLE_OUTER_FLOATING_SM, ARKUI_SHADOW_STYLE_OUTER_FLOATING_MD<br>} | Enumerated value of the shadow effect. |
 | [ArkUI_AnimationCurve](#arkui_animationcurve) {<br>ARKUI_CURVE_LINEAR = 0, ARKUI_CURVE_EASE, ARKUI_CURVE_EASE_IN, ARKUI_CURVE_EASE_OUT,<br>ARKUI_CURVE_EASE_IN_OUT, ARKUI_CURVE_FAST_OUT_SLOW_IN, ARKUI_CURVE_LINEAR_OUT_SLOW_IN, ARKUI_CURVE_FAST_OUT_LINEAR_IN,<br>ARKUI_CURVE_EXTREME_DECELERATION, ARKUI_CURVE_SHARP, ARKUI_CURVE_RHYTHM, ARKUI_CURVE_SMOOTH,<br>ARKUI_CURVE_FRICTION<br>} | Enumerates the animation curves. |
 | [ArkUI_SwiperArrow](#arkui_swiperarrow) { ARKUI_SWIPER_ARROW_HIDE = 0, ARKUI_SWIPER_ARROW_SHOW, ARKUI_SWIPER_ARROW_SHOW_ON_HOVER } | Enumerates arrow styles of the navigation point indicator. |
-| [ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode) { ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY = 0, ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST } | Enumerates the nested scrolling mode of the **\<Swiper>**component and its parent container. |
+| [ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode) { ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY = 0, ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST } | Enumerates the nested scrolling mode of the **Swiper**component and its parent container. |
 | [ArkUI_AccessibilityMode](#arkui_accessibilitymode) { ARKUI_ACCESSIBILITY_MODE_AUTO = 0, ARKUI_ACCESSIBILITY_MODE_ENABLED, ARKUI_ACCESSIBILITY_MODE_DISABLED, ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS } | Enumerates the accessibility modes. |
 | [ArkUI_TextCopyOptions](#arkui_textcopyoptions) { ARKUI_TEXT_COPY_OPTIONS_NONE = 0, ARKUI_TEXT_COPY_OPTIONS_IN_APP, ARKUI_TEXT_COPY_OPTIONS_LOCAL_DEVICE, ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE } | Defines whether copy and paste is allowed for text content. |
 | [ArkUI_TextHeightAdaptivePolicy](#arkui_textheightadaptivepolicy) { ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST = 0, ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MIN_FONT_SIZE_FIRST, ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_LAYOUT_CONSTRAINT_FIRST } | Defines how the adaptive height is determined for the text. |
@@ -192,8 +192,8 @@ Provides animation callbacks of ArkUI on the native side.
 | [ArkUI_ButtonType](#arkui_buttontype) { ARKUI_BUTTON_TYPE_NORMAL = 0, ARKUI_BUTTON_TYPE_CAPSULE, ARKUI_BUTTON_TYPE_CIRCLE } | Enumerates the button types. |
 | [ArkUI_RenderFit](#arkui_renderfit) {<br>ARKUI_RENDER_FIT_CENTER = 0, ARKUI_RENDER_FIT_TOP, ARKUI_RENDER_FIT_BOTTOM, ARKUI_RENDER_FIT_LEFT,<br>ARKUI_RENDER_FIT_RIGHT, ARKUI_RENDER_FIT_TOP_LEFT, ARKUI_RENDER_FIT_TOP_RIGHT, ARKUI_RENDER_FIT_BOTTOM_LEFT,<br>ARKUI_RENDER_FIT_BOTTOM_RIGHT, ARKUI_RENDER_FIT_RESIZE_FILL, ARKUI_RENDER_FIT_RESIZE_CONTAIN, ARKUI_RENDER_FIT_RESIZE_CONTAIN_TOP_LEFT,<br>ARKUI_RENDER_FIT_RESIZE_CONTAIN_BOTTOM_RIGHT, ARKUI_RENDER_FIT_RESIZE_COVER, ARKUI_RENDER_FIT_RESIZE_COVER_TOP_LEFT, ARKUI_RENDER_FIT_RESIZE_COVER_BOTTOM_RIGHT<br>} |  |
 | [ArkUI_ThemeColorMode](#arkui_themecolormode) { ARKUI_THEME_COLOR_MODE_SYSTEM = 0, ARKUI_THEME_COLOR_MODE_LIGHT, ARKUI_THEME_COLOR_MODE_DARK } |  |
-| [ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype) { ARKUI_SWIPER_INDICATOR_TYPE_DOT, ARKUI_SWIPER_INDICATOR_TYPE_DIGIT } | Enumerates the navigation point indicator types of the **\<Swiper>** component. |
-| [ArkUI_SwiperDisplayModeType](#arkui_swiperdisplaymodetype) { ARKUI_SWIPER_DISPLAY_MODE_STRETCH, ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR } | Enumerates the modes in which elements are displayed along the main axis of the **\<Swiper>** component. |
+| [ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype) { ARKUI_SWIPER_INDICATOR_TYPE_DOT, ARKUI_SWIPER_INDICATOR_TYPE_DIGIT } | Enumerates the navigation point indicator types of the **Swiper** component. |
+| [ArkUI_SwiperDisplayModeType](#arkui_swiperdisplaymodetype) { ARKUI_SWIPER_DISPLAY_MODE_STRETCH, ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR } | Enumerates the modes in which elements are displayed along the main axis of the **Swiper** component. |
 | [ArkUI_ListItemSwipeActionState](#arkui_listitemswipeactionstate) { ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_COLLAPSED = 0, ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_EXPANDED, ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_ACTIONING } | Enumerates the swipe action item states of list items. |
 | [ArkUI_ListItemSwipeEdgeEffect](#arkui_listitemswipeedgeeffect) { ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING = 0, ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE } | Enumerates the swipe action item edge effects of list items. |
 | [ArkUI_AnimationStatus](#arkui_animationstatus) { ARKUI_ANIMATION_STATUS_INITIAL, ARKUI_ANIMATION_STATUS_RUNNING, ARKUI_ANIMATION_STATUS_PAUSED, ARKUI_ANIMATION_STATUS_STOPED } | Enumerates the playback states of the frame-by-frame animation. |
@@ -367,29 +367,29 @@ Provides animation callbacks of ArkUI on the native side.
 | float [OH_ArkUI_AlignmentRuleOption_GetBiasHorizontal](#oh_arkui_alignmentruleoption_getbiashorizontal) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | Obtains the bias value in the horizontal direction. |
 | float [OH_ArkUI_AlignmentRuleOption_GetBiasVertical](#oh_arkui_alignmentruleoption_getbiasvertical) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | Obtains the bias value in the vertical direction. |
 | [ArkUI_SwiperIndicator](#arkui_swiperindicator) \* [OH_ArkUI_SwiperIndicator_Create](#oh_arkui_swiperindicator_create) ([ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype) type) | Creates a navigation indicator for the Swiper component. |
-| void [OH_ArkUI_SwiperIndicator_Dispose](#oh_arkui_swiperindicator_dispose) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Destroys the navigation point indicator of this **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetStartPosition](#oh_arkui_swiperindicator_setstartposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Distance between the navigation point indicator and the left edge of the **\<Swiper>** component. |
-| float [OH_ArkUI_SwiperIndicator_GetStartPosition](#oh_arkui_swiperindicator_getstartposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the distance between a navigation point indicator and the left edge of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetTopPosition](#oh_arkui_swiperindicator_settopposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Distance between the navigation point indicator and the top edge of the **\<Swiper>** component. |
-| float [OH_ArkUI_SwiperIndicator_GetTopPosition](#oh_arkui_swiperindicator_gettopposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the distance between a navigation point indicator and the top edge of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetEndPosition](#oh_arkui_swiperindicator_setendposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Distance between the navigation point indicator and the left edge of the **\<Swiper>** component. |
-| float [OH_ArkUI_SwiperIndicator_GetEndPosition](#oh_arkui_swiperindicator_getendposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the distance between a navigation point indicator and the right edge of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetBottomPosition](#oh_arkui_swiperindicator_setbottomposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Distance between the navigation point indicator and the top edge of the **\<Swiper>** component. |
-| float [OH_ArkUI_SwiperIndicator_GetBottomPosition](#oh_arkui_swiperindicator_getbottomposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the distance between a navigation point indicator and the bottom edge of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetItemWidth](#oh_arkui_swiperindicator_setitemwidth) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Sets the width of a navigation point indicator of the dot style for the **<Swiper>** component. |
-| float [OH_ArkUI_SwiperIndicator_GetItemWidth](#oh_arkui_swiperindicator_getitemwidth) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the width of a navigation point indicator of the dot style of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetItemHeight](#oh_arkui_swiperindicator_setitemheight) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Sets the height of a navigation point indicator of the dot style for the **<Swiper>** component. |
-| float [OH_ArkUI_SwiperIndicator_GetItemHeight](#oh_arkui_swiperindicator_getitemheight) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the height of a navigation point indicator of the dot style of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetSelectedItemWidth](#oh_arkui_swiperindicator_setselecteditemwidth) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Sets the width of the selected navigation point indicator of the dot style for the **<Swiper>** component. |
-| float [OH_ArkUI_SwiperIndicator_GetSelectedItemWidth](#oh_arkui_swiperindicator_getselecteditemwidth) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the width of the selected navigation point indicator of the dot style of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetSelectedItemHeight](#oh_arkui_swiperindicator_setselecteditemheight) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Sets the height of the selected navigation point indicator of the dot style for the **<Swiper>** component. |
-| float [OH_ArkUI_SwiperIndicator_GetSelectedItemHeight](#oh_arkui_swiperindicator_getselecteditemheight) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the height of the selected navigation point indicator of the dot style of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetMask](#oh_arkui_swiperindicator_setmask) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t mask) | Sets whether to enable the mask for a navigation point indicator of the dot style for the **<Swiper>** component. |
-| int32_t [OH_ArkUI_SwiperIndicator_GetMask](#oh_arkui_swiperindicator_getmask) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains whether the mask is enabled for a navigation point indicator of the dot style of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetColor](#oh_arkui_swiperindicator_setcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, uint32_t color) | Sets the color of a navigation point indicator of the dot style for the **<Swiper>** component. |
-| uint32_t [OH_ArkUI_SwiperIndicator_GetColor](#oh_arkui_swiperindicator_getcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the color of a navigation point indicator of the dot style of the **<Swiper>** component. |
-| void [OH_ArkUI_SwiperIndicator_SetSelectedColor](#oh_arkui_swiperindicator_setselectedcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, uint32_t selectedColor) | Sets the color of the selected navigation point indicator of the dot style for the **<Swiper>** component. |
-| uint32_t [OH_ArkUI_SwiperIndicator_GetSelectedColor](#oh_arkui_swiperindicator_getselectedcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the color of the selected navigation point indicator of the dot style of the **<Swiper>** component. |
+| void [OH_ArkUI_SwiperIndicator_Dispose](#oh_arkui_swiperindicator_dispose) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Destroys the navigation point indicator of this **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetStartPosition](#oh_arkui_swiperindicator_setstartposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Distance between the navigation point indicator and the left edge of the **Swiper** component. |
+| float [OH_ArkUI_SwiperIndicator_GetStartPosition](#oh_arkui_swiperindicator_getstartposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the distance between a navigation point indicator and the left edge of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetTopPosition](#oh_arkui_swiperindicator_settopposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Distance between the navigation point indicator and the top edge of the **Swiper** component. |
+| float [OH_ArkUI_SwiperIndicator_GetTopPosition](#oh_arkui_swiperindicator_gettopposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the distance between a navigation point indicator and the top edge of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetEndPosition](#oh_arkui_swiperindicator_setendposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Distance between the navigation point indicator and the left edge of the **Swiper** component. |
+| float [OH_ArkUI_SwiperIndicator_GetEndPosition](#oh_arkui_swiperindicator_getendposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the distance between a navigation point indicator and the right edge of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetBottomPosition](#oh_arkui_swiperindicator_setbottomposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Distance between the navigation point indicator and the top edge of the **Swiper** component. |
+| float [OH_ArkUI_SwiperIndicator_GetBottomPosition](#oh_arkui_swiperindicator_getbottomposition) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the distance between a navigation point indicator and the bottom edge of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetItemWidth](#oh_arkui_swiperindicator_setitemwidth) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Sets the width of a navigation point indicator of the dot style for the **Swiper** component. |
+| float [OH_ArkUI_SwiperIndicator_GetItemWidth](#oh_arkui_swiperindicator_getitemwidth) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the width of a navigation point indicator of the dot style of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetItemHeight](#oh_arkui_swiperindicator_setitemheight) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Sets the height of a navigation point indicator of the dot style for the **Swiper** component. |
+| float [OH_ArkUI_SwiperIndicator_GetItemHeight](#oh_arkui_swiperindicator_getitemheight) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the height of a navigation point indicator of the dot style of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetSelectedItemWidth](#oh_arkui_swiperindicator_setselecteditemwidth) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Sets the width of the selected navigation point indicator of the dot style for the **Swiper** component. |
+| float [OH_ArkUI_SwiperIndicator_GetSelectedItemWidth](#oh_arkui_swiperindicator_getselecteditemwidth) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the width of the selected navigation point indicator of the dot style of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetSelectedItemHeight](#oh_arkui_swiperindicator_setselecteditemheight) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float value) | Sets the height of the selected navigation point indicator of the dot style for the **Swiper** component. |
+| float [OH_ArkUI_SwiperIndicator_GetSelectedItemHeight](#oh_arkui_swiperindicator_getselecteditemheight) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the height of the selected navigation point indicator of the dot style of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetMask](#oh_arkui_swiperindicator_setmask) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t mask) | Sets whether to enable the mask for a navigation point indicator of the dot style for the **Swiper** component. |
+| int32_t [OH_ArkUI_SwiperIndicator_GetMask](#oh_arkui_swiperindicator_getmask) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains whether the mask is enabled for a navigation point indicator of the dot style of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetColor](#oh_arkui_swiperindicator_setcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, uint32_t color) | Sets the color of a navigation point indicator of the dot style for the **Swiper** component. |
+| uint32_t [OH_ArkUI_SwiperIndicator_GetColor](#oh_arkui_swiperindicator_getcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the color of a navigation point indicator of the dot style of the **Swiper** component. |
+| void [OH_ArkUI_SwiperIndicator_SetSelectedColor](#oh_arkui_swiperindicator_setselectedcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, uint32_t selectedColor) | Sets the color of the selected navigation point indicator of the dot style for the **Swiper** component. |
+| uint32_t [OH_ArkUI_SwiperIndicator_GetSelectedColor](#oh_arkui_swiperindicator_getselectedcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | Obtains the color of the selected navigation point indicator of the dot style of the **Swiper** component. |
 | int32_t [OH_ArkUI_WaterFlowSectionOption_GetSize](#oh_arkui_waterflowsectionoption_getsize) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option) | Sets the length of the FlowItem group configuration information array. |
 | void [OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindex) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float(\*callback)(int32_t itemIndex)) | Obtains the main axis size of a specified item based on **flowItemIndex** through a water flow section configuration. |
 | [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \* [OH_ArkUI_ListItemSwipeActionItem_Create](#oh_arkui_listitemswipeactionitem_create) () | Creates an **ListItemSwipeActionItem** instance. |
@@ -752,7 +752,7 @@ typedef struct ArkUI_SwiperIndicator ArkUI_SwiperIndicator
 ```
 **Description**
 
-Defines the navigation point indicator style of the **\<Swiper>** component.
+Defines the navigation point indicator style of the **Swiper** component.
 
 **Since**: 12
 
@@ -2077,9 +2077,9 @@ Defines the ArkUI style attributes that can be set on the native side.
 | NODE_CHECKBOX_UNSELECT_COLOR                | Defines the border color of the check box when it is not selected. This attribute can be set, reset, and obtained as required through APIs.<br>The parameter format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) method is as follows:<br>.value[0].u32: border color, in 0xARGB format, for example, 0xFF1122FF.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].u32: border color, in 0xARGB format, for example, 0xFF1122FF. |
 | NODE_CHECKBOX_MARK                          | Defines the internal icon style of the check box. This attribute can be set, reset, and obtained as required through APIs.<br>The parameter format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) method is as follows:<br>.value[0].u32: border color, in 0xARGB format, for example, 0xFF1122FF.<br>.value[1]? .f32: size of the internal mark, in vp. Optional.<br>.value[2]? .f32: stroke width of the internal mark, in vp. Optional. The default value is 2.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].u32: border color, in 0xARGB format, for example, 0xFF1122FF.<br>.value[1].f32: size of the internal mark, in vp. <br>.value[2].f32: stroke width of the internal mark, in vp. The default value is 2. |
 | NODE_CHECKBOX_SHAPE                         | Defines the shape of the check box. This attribute can be set, reset, and obtained as required through APIs.<br>The parameter format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) method is as follows:<br>.value[0].i32: component shape. The parameter type is [ArkUI_CheckboxShape](#arkui_checkboxshape).<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: component shape. The parameter type is [ArkUI_CheckboxShape](#arkui_checkboxshape). |
-| NODE_XCOMPONENT_ID                          | Defines the ID of the <XComponent> component. This attribute can be set and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.string: component ID.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.string: component ID. |
-| NODE_XCOMPONENT_TYPE                        | Defines the type of the <XComponent> component. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: font style [ArkUI_XComponentType](#arkui_xcomponenttype). The default value is ARKUI_XCOMPONENT_TYPE_SURFACE.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: [ArkUI_XComponentType] (#arkui_xcomponenttype) |
-| NODE_XCOMPONENT_SURFACE_SIZE                | Defines the width and height of the <XComponent> component. This attribute can be set and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].u32: width, in px. <br>.value[1].u32: height, in px. <br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].u32: width, in px. <br>.value[1].u32: height, in px. |
+| NODE_XCOMPONENT_ID                          | Defines the ID of the **XComponent** component. This attribute can be set and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.string: component ID.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.string: component ID. |
+| NODE_XCOMPONENT_TYPE                        | Defines the type of the **XComponent** component. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: font style [ArkUI_XComponentType](#arkui_xcomponenttype). The default value is ARKUI_XCOMPONENT_TYPE_SURFACE.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: [ArkUI_XComponentType] (#arkui_xcomponenttype) |
+| NODE_XCOMPONENT_SURFACE_SIZE                | Defines the width and height of the **XComponent** component. This attribute can be set and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].u32: width, in px. <br>.value[1].u32: height, in px. <br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].u32: width, in px. <br>.value[1].u32: height, in px. |
 | NODE_DATE_PICKER_LUNAR                      | Defines whether to display the lunar calendar in the date picker. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: whether to display the lunar calendar in the date picker. The default value is false.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: whether to display the lunar calendar in the date picker. |
 | NODE_DATE_PICKER_START                      | Defines the start date of the date picker. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.string: date. The default value is "1970-1-1".<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.string: date. |
 | NODE_DATE_PICKER_END                        | Defines the end date of the date picker. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.string: date. The default value is "2100-12-31".<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.string: date. |
@@ -2130,7 +2130,7 @@ Defines the ArkUI style attributes that can be set on the native side.
 | NODE_SCROLL_EDGE_EFFECT                     | Defines the effect used at the edges of the component when the boundary of the scrollable content is reached. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: edge sliding effect. The parameter type is [ArkUI_EdgeEffect](#arkui_edgeeffect). The default value is ARKUI_EDGE_EFFECT_NONE.<br>.value[1]? .i32: whether to enable the scroll effect when the component content size is smaller than the component itself. Optional. The value 1 means to enable the scroll effect, and 0 means the opposite. The default value is 1.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: edge sliding effect. The parameter type is [ArkUI_EdgeEffect](#arkui_edgeeffect).<br>.value[1].i32: whether to enable the scroll effect when the component content size is smaller than the component itself. The value 1 means to enable the scroll effect, and 0 means the opposite. |
 | NODE_SCROLL_ENABLE_SCROLL_INTERACTION       | Sets whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scroll controller API is not affected.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: whether to support scroll gestures. The default value is true.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: whether to support scroll gestures. |
 | NODE_SCROLL_FRICTION                        | Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].f32: friction coefficient. The default value is 0.6 for non-wearable devices and 0.9 for wearable devices.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].f32: friction coefficient. |
-| NODE_SCROLL_SNAP                            | Defines the scroll snapping mode. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: limit scrolling mode of the scroll component. The data type is [ArkUI_ScrollSnapAlign](#arkui_scrollsnapalign), and the default value is ARKUI_SCROLL_SNAP_ALIGN_NONE.<br>.value[1].i32: whether to enable the snap to start feature. When scroll snapping is defined for the <Scroll> component, setting this attribute to false enables the component to scroll between the start edge and the first snap point. The default value is true. It is valid only when there are multiple snap points.<br>.value[2].i32: Whether to enable the snap to end feature. When scroll snapping is defined for the <Scroll> component, setting this attribute to false enables the component to scroll between the end edge and the last snap point. The default value is true. It is valid only when there are multiple snap points.<br>.value[3...].f32: snap points for the <Scroll> component. Each snap point defines the offset from an edge to which the <Scroll> component can scroll. The value can be one or more.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: limit scrolling mode of the scroll component. The data type is [ArkUI_ScrollSnapAlign](#arkui_scrollsnapalign).<br>.value[1].i32: whether to enable the snap to start feature. When scroll snapping is defined for the <Scroll> component, setting this attribute to false enables the component to scroll between the start edge and the first snap point.<br>.value[2].i32: Whether to enable the snap to end feature. When scroll snapping is defined for the <Scroll> component, setting this attribute to false enables the component to scroll between the end edge and the last snap point.<br>.value[3...].f32: snap points for the <Scroll> component. Each snap point defines the offset from an edge to which the <Scroll> component can scroll. |
+| NODE_SCROLL_SNAP                            | Defines the scroll snapping mode. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: limit scrolling mode of the scroll component. The data type is [ArkUI_ScrollSnapAlign](#arkui_scrollsnapalign), and the default value is ARKUI_SCROLL_SNAP_ALIGN_NONE.<br>.value[1].i32: whether to enable the snap to start feature. When scroll snapping is defined for the Scroll component, setting this attribute to false enables the component to scroll between the start edge and the first snap point. The default value is true. It is valid only when there are multiple snap points.<br>.value[2].i32: Whether to enable the snap to end feature. When scroll snapping is defined for the Scroll component, setting this attribute to false enables the component to scroll between the end edge and the last snap point. The default value is true. It is valid only when there are multiple snap points.<br>.value[3...].f32: snap points for the Scroll component. Each snap point defines the offset from an edge to which the Scroll component can scroll. The value can be one or more.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: limit scrolling mode of the scroll component. The data type is [ArkUI_ScrollSnapAlign](#arkui_scrollsnapalign).<br>.value[1].i32: whether to enable the snap to start feature. When scroll snapping is defined for the Scroll component, setting this attribute to false enables the component to scroll between the start edge and the first snap point.<br>.value[2].i32: Whether to enable the snap to end feature. When scroll snapping is defined for the Scroll component, setting this attribute to false enables the component to scroll between the end edge and the last snap point.<br>.value[3...].f32: snap points for the Scroll component. Each snap point defines the offset from an edge to which the Scroll component can scroll. |
 | NODE_SCROLL_NESTED_SCROLL                   | Defines the nested scrolling options. This attribute can be set, reset, and obtained as required through APIs.<br>The parameter format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) method is as follows:<br>.value[0].i32: nested scrolling when the scrollable component scrolls to the end. The parameter type is [ArkUI_ScrollNestedMode](#arkui_scrollnestedmode).<br>.value[1].i32: nested scrolling when the scrollable component scrolls to the start end. The parameter type is [ArkUI_ScrollNestedMode](#arkui_scrollnestedmode).<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: nested scrolling when the scrollable component scrolls to the end. The parameter type is [ArkUI_ScrollNestedMode](#arkui_scrollnestedmode).<br>.value[1].i32: nested scrolling when the scrollable component scrolls to the start end. The parameter type is [ArkUI_ScrollNestedMode](#arkui_scrollnestedmode). |
 | NODE_SCROLL_OFFSET                          | Defines the specified position to scroll to. This attribute can be set, reset, and obtained as required through APIs.<br>The parameter format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) method is as follows:<br>.value[0].f32: horizontal scrolling offset, in vp.<br>.value[1].f32: vertical scrolling offset, in vp.<br>.value[2]?.i32: scrolling duration, in milliseconds. Optional.<br>.value[3]? .i32: (optional) scrolling curve. The parameter type is [ArkUI_AnimationCurve](#arkui_animationcurve). The default value is ARKUI_CURVE_EASE.<br>.value[4]?.i32: whether to enable the default spring animation. Optional. The default value 0 means not to enable the default spring animation.<br>.value[5]?.i32: whether to enable overscroll. Optional.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].f32: horizontal scrolling offset, in vp.<br>.value[1].f32: vertical scrolling offset, in vp. |
 | NODE_SCROLL_EDGE                            | @brief Defines the edge position to scroll to. This attribute can be set and obtained as required through APIs.<br>The parameter format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) method is as follows:<br>.value[0].i32: container edge. The parameter type is [ArkUI_ScrollEdge](#arkui_scrolledge).<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: indicates whether the container is on the edge. The value -1 indicates that the container is not on the edge. If the container is on the edge, the status parameter type is [ArkUI_ScrollEdge](#arkui_scrolledge). |
@@ -2163,7 +2163,7 @@ Defines the ArkUI style attributes that can be set on the native side.
 | NODE_SWIPER_PREV_MARGIN                     | @brief Sets the previous margin of the swiper. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].f32: previous margin, in vp. The default value is 0.<br>.value[1].i32: whether to ignore blank areas. The value 1 means to ignore blank areas, and 0 means the opposite.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].f32: previous margin, in vp. .value[1].i32: whether to ignore blank areas. The value 1 means to ignore blank areas, and 0 means the opposite. |
 | NODE_SWIPER_NEXT_MARGIN                     | @brief Sets the next margin of the swiper. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].f32: next margin, in vp. The default value is 0.<br>.value[1].i32: whether to ignore blank areas. The value 1 means to ignore blank areas, and 0 means the opposite.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].f32: next margin, in vp. .value[1].i32: whether to ignore blank areas. The value 1 means to ignore blank areas, and 0 means the opposite. |
 | NODE_SWIPER_INDICATOR                       | Sets the navigation indicator type of the Swiper component. The attribute setting, attribute resetting, and attribute obtaining interfaces are supported.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: navigation indicator type. The parameter type is [ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype).<br>.object: The parameter type is [ArkUI_SwiperIndicator](#arkui_swiperindicator).<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: navigation indicator type. The parameter type is [ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype).<br>.object: The parameter type is [ArkUI_SwiperIndicator](#arkui_swiperindicator). |
-| NODE_SWIPER_NESTED_SCROLL                   | Sets the nested scrolling mode of the **\<Swiper>** component and its parent container.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: nested scrolling mode of the Swiper component and parent component. The parameter type is [ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode).<br>Default value: ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: nested scrolling mode of the Swiper component and parent component. The parameter type is [ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode). |
+| NODE_SWIPER_NESTED_SCROLL                   | Sets the nested scrolling mode of the **Swiper** component and its parent container.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: nested scrolling mode of the Swiper component and parent component. The parameter type is [ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode).<br>Default value: ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: nested scrolling mode of the Swiper component and parent component. The parameter type is [ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode). |
 | NODE_SWIPER_SWIPE_TO_INDEX                  | @brief Sets the swiper to switch to the specified page.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: index of the target page in the swiper.<br>.value[1]? .i32: indicates whether the specified page takes effect. The value 1 indicates that the dynamic effect is enabled, and the value 0 indicates that the dynamic effect is disabled. The default value is 0. |
 | NODE_LIST_ITEM_GROUP_SET_HEADER             | Defines the header of the list item group. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.object: Use the [ArkUI_NodeHandle](#arkui_nodehandle) object as the ListItemGroup header component.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.object: Use the [ArkUI_NodeHandle](#arkui_nodehandle) object as the ListItemGroup header component. |
 | NODE_LIST_ITEM_GROUP_SET_FOOTER             | Defines the footer of the list item group. This attribute can be set, reset, and obtained as required through APIs.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.object: Use the [ArkUI_NodeHandle](#arkui_nodehandle) object as the tail component of ListItemGroup.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.object: Use the [ArkUI_NodeHandle](#arkui_nodehandle) object as the tail component of ListItemGroup. |
@@ -2300,25 +2300,25 @@ Enumerates the event types supported by the NativeNode component.
 | NODE_SWIPER_EVENT_ON_CHANGE              | Defines the event triggered when the index of the currently displayed element of this **ARKUI_NODE_SWIPER** instance changes.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: indicates the index of the currently displayed element. |
 | NODE_SWIPER_EVENT_ON_ANIMATION_START     | Defines the callback triggered when the ARKUI_NODE_SWIPER switching animation starts.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following 5 parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: indicates the index of the currently displayed element.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32: index of the target element of the switching animation.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32: offset of the current displayed element relative to the start position of the Swiper in the direction of the principal axis.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32: offset of the target element relative to the start position of the Swiper in the direction of the principal axis.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32: indicates the off-hand speed. |
 | NODE_SWIPER_EVENT_ON_ANIMATION_END       | Defines the event triggered when the switching animation of this **ARKUI_NODE_SWIPER** instance ends.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: indicates the index of the currently displayed element.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32: offset of the current displayed element relative to the start position of the Swiper in the direction of the principal axis. |
-| NODE_SWIPER_EVENT_ON_CONTENT_DID_SCROLL  | Define ARKUI_NODE_SWIPER to listen on Swiper page sliding events. How to Use<br>1. When [ArkUI_SwiperDisplayModeType](#arkui_swiperdisplaymodetype) is set to ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR, this API does not take effect.<br>2. This API does not work when **prevMargin** and **nextMargin** are set in such a way that the **\<Swiper>** frontend and backend display the same page during loop playback.<br>* 3. During page scrolling, the **ContentDidScrollCallback** callback is invoked for all pages in the viewport on a frame-by-frame basis.<br>For example, when there are two pages whose subscripts are 0 and 1 in the viewport, two callbacks whose indexes are 0 and 1 are invoked in each frame.<br>4. When the swipeByGroup parameter of the displayCount attribute is set to true and at least one page in the same group is in the window:<br>Callback is triggered for all pages in the same group.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following 4 parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: index of the Swiper component, which is the same as the index value in the onChange event.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32: index of a page in the window.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32: moving ratio of the page relative to the start position of the Swiper major axis (the start position of the page corresponding to selectedIndex).<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32: page length in the principal axis direction. |
+| NODE_SWIPER_EVENT_ON_CONTENT_DID_SCROLL  | Define ARKUI_NODE_SWIPER to listen on Swiper page sliding events. How to Use<br>1. When [ArkUI_SwiperDisplayModeType](#arkui_swiperdisplaymodetype) is set to ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR, this API does not take effect.<br>2. This API does not work when **prevMargin** and **nextMargin** are set in such a way that the **Swiper** frontend and backend display the same page during loop playback.<br>* 3. During page scrolling, the **ContentDidScrollCallback** callback is invoked for all pages in the viewport on a frame-by-frame basis.<br>For example, when there are two pages whose subscripts are 0 and 1 in the viewport, two callbacks whose indexes are 0 and 1 are invoked in each frame.<br>4. When the swipeByGroup parameter of the displayCount attribute is set to true and at least one page in the same group is in the window:<br>Callback is triggered for all pages in the same group.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following 4 parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: index of the Swiper component, which is the same as the index value in the onChange event.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32: index of a page in the window.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32: moving ratio of the page relative to the start position of the Swiper major axis (the start position of the page corresponding to selectedIndex).<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32: page length in the principal axis direction. |
 | NODE_SWIPER_EVENT_ON_GESTURE_SWIPE       | Triggered on a frame-by-frame basis when the tab is switched by a swipe.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: indicates the index of the currently displayed element.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32: offset of the current displayed element relative to the start position of the Swiper in the direction of the principal axis. |
-| NODE_SCROLL_EVENT_ON_SCROLL              | Defines the scrolling event enumeration values of the scrolling container component.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: increment on the X axis since the last event is triggered.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32: increment on the Y axis since the last event is triggered. |
-| NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN  | Defines the event triggered when the container starts scrolling.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. This event does not support the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: indicates the upcoming scrolling amount.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32: current scrolling status.<br>The [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) parameter contains the following return values:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: In the event processing function, the required scrolling amount can be calculated based on the application scenario and stored in data[0].f32. The scrolling is performed based on the actual scrolling amount of the return value. |
-| NODE_SCROLL_EVENT_ON_WILL_SCROLL         | Defines the event triggered when the container is about to scroll.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32:: scrolling offset of each frame. The offset is positive when the content scrolls leftwards and negative when the content scrolls rightwards. The unit is vp.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32: Scrolling offset of each frame. The offset is positive when the content scrolls up and negative when the content scrolls down. The unit is vp.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].i32:: current sliding status. The parameter type is [ArkUI_ScrollState](#arkui_scrollstate). |
-| NODE_SCROLL_EVENT_ON_DID_SCROLL          | Defines the event triggered when the container scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32:: scrolling offset of each frame. The offset is positive when the content scrolls leftwards and negative when the content scrolls rightwards. The unit is vp.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32: Scrolling offset of each frame. The offset is positive when the content scrolls up and negative when the content scrolls down. The unit is vp.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].i32:: current sliding status. The parameter type is [ArkUI_ScrollState](#arkui_scrollstate). |
-| NODE_SCROLL_EVENT_ON_SCROLL_START        | Defines the event triggered when the container starts scrolling.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
-| NODE_SCROLL_EVENT_ON_SCROLL_STOP         | Defines the event triggered when the container stops scrolling.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
-| NODE_SCROLL_EVENT_ON_SCROLL_EDGE         | Defines the scrolling edge event enumeration values of the scrolling container component.<br>**NOTE**<br>1. This event is triggered when scrolling reaches the edge after being started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains one parameter.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32 indicates the top, bottom, left, and right edges that are touched. |
+| NODE_SCROLL_EVENT_ON_SCROLL              | Defines the scrolling event enumeration values of the scrolling container component.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: increment on the X axis since the last event is triggered.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32: increment on the Y axis since the last event is triggered. |
+| NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN  | Defines the event triggered when the container starts scrolling.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. This event does not support the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: indicates the upcoming scrolling amount.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32: current scrolling status.<br>The [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) parameter contains the following return values:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: In the event processing function, the required scrolling amount can be calculated based on the application scenario and stored in data[0].f32. The scrolling is performed based on the actual scrolling amount of the return value. |
+| NODE_SCROLL_EVENT_ON_WILL_SCROLL         | Defines the event triggered when the container is about to scroll.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32:: scrolling offset of each frame. The offset is positive when the content scrolls leftwards and negative when the content scrolls rightwards. The unit is vp.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32: Scrolling offset of each frame. The offset is positive when the content scrolls up and negative when the content scrolls down. The unit is vp.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].i32:: current sliding status. The parameter type is [ArkUI_ScrollState](#arkui_scrollstate). |
+| NODE_SCROLL_EVENT_ON_DID_SCROLL          | Defines the event triggered when the container scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32:: scrolling offset of each frame. The offset is positive when the content scrolls leftwards and negative when the content scrolls rightwards. The unit is vp.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32: Scrolling offset of each frame. The offset is positive when the content scrolls up and negative when the content scrolls down. The unit is vp.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].i32:: current sliding status. The parameter type is [ArkUI_ScrollState](#arkui_scrollstate). |
+| NODE_SCROLL_EVENT_ON_SCROLL_START        | Defines the event triggered when the container starts scrolling.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
+| NODE_SCROLL_EVENT_ON_SCROLL_STOP         | Defines the event triggered when the container stops scrolling.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
+| NODE_SCROLL_EVENT_ON_SCROLL_EDGE         | Defines the scrolling edge event enumeration values of the scrolling container component.<br>**NOTE**<br>1. This event is triggered when scrolling reaches the edge after being started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains one parameter.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32 indicates the top, bottom, left, and right edges that are touched. |
 | NODE_SCROLL_EVENT_ON_REACH_END           | Defines the callback triggered when the scrolling container component is at the end.<br>**NOTE**<br>1. This event is triggered when the component is at the end.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
 | NODE_SCROLL_EVENT_ON_REACH_START         | Defines that the callback is triggered when the scrolling container component reaches the start position.<br>**NOTE**<br>1. This event is triggered when the widget reaches the start position.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
 | NODE_LIST_ON_SCROLL_INDEX                | Defines the event triggered when a child component enters or leaves the list display area.<br>**NOTE**<br>* This event is triggered once when the list is initialized and when the index of the first child component or the next child component in the list display area changes.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>Index value of the first child component in the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: List display area.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32: List displays the index value of the last child component in the area.<br>Index value of the child component in the middle of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].i32: List display area. |
-| NODE_LIST_ON_WILL_SCROLL                 | Defines the event triggered when the list is about to scroll.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: Scrolling offset of each frame. When the list content scrolls up, the offset is positive. When the list content scrolls down, the offset is negative.<br>Current sliding status of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32:. |
-| NODE_LIST_ON_DID_SCROLL                  | Defines the event triggered when the list scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: Scrolling offset of each frame. When the list content scrolls up, the offset is positive. When the list content scrolls down, the offset is negative.<br>Current sliding status of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32:. |
+| NODE_LIST_ON_WILL_SCROLL                 | Defines the event triggered when the list is about to scroll.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: Scrolling offset of each frame. When the list content scrolls up, the offset is positive. When the list content scrolls down, the offset is negative.<br>Current sliding status of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32:. |
+| NODE_LIST_ON_DID_SCROLL                  | Defines the event triggered when the list scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: Scrolling offset of each frame. When the list content scrolls up, the offset is positive. When the list content scrolls down, the offset is negative.<br>Current sliding status of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32:. |
 | NODE_REFRESH_STATE_CHANGE                | This event is triggered when the ARKUI_NODE_REFRESH refresh status changes.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: refresh status. |
 | NODE_REFRESH_ON_REFRESH                  | This event is triggered when ARKUI_NODE_REFRESH enters the refresh state.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
 | NODE_REFRESH_ON_OFFSET_CHANGE            | This event is triggered when the pull-down distance of ARKUI_NODE_REFRESH changes.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: pull-down distance. |
-| NODE_WATER_FLOW_ON_WILL_SCROLL           | Defines the event triggered when the water flow container is about to scroll.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: Offset of scrolling each frame. The offset is positive when the content scrolls up and negative when the content scrolls down.<br>Current sliding status of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32:. |
-| NODE_WATER_FLOW_ON_DID_SCROLL            | Defines the event triggered when the water flow container scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: Offset of scrolling each frame. The offset is positive when the content scrolls up and negative when the content scrolls down.<br>Current sliding status of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32:. |
+| NODE_WATER_FLOW_ON_WILL_SCROLL           | Defines the event triggered when the water flow container is about to scroll.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: Offset of scrolling each frame. The offset is positive when the content scrolls up and negative when the content scrolls down.<br>Current sliding status of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32:. |
+| NODE_WATER_FLOW_ON_DID_SCROLL            | Defines the event triggered when the water flow container scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **Scroll** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32: Offset of scrolling each frame. The offset is positive when the content scrolls up and negative when the content scrolls down.<br>Current sliding status of the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32:. |
 | NODE_WATER_FLOW_ON_SCROLL_INDEX          | Defines the event triggered when the first or last item displayed in the water flow container changes.<br>**NOTE**<br>This event is triggered when either of the preceding indexes changes.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>Index of the start position of the water flow displayed on the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32:.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32: Index of the end position of the waterfall currently displayed. |
 | NODE_IMAGE_ANIMATOR_EVENT_ON_START       | Defines the event triggered when the frame-by-frame animation starts to play.<br>This event is triggered when any of the following conditions is met:<br>1. When the frame animation starts to play.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
 | NODE_IMAGE_ANIMATOR_EVENT_ON_PAUSE       | Defines the event triggered when the frame-by-frame animation playback is paused.<br>This event is triggered when any of the following conditions is met:<br>1. The frame animation is paused.<br>When the event callback occurs, the union type in the event parameter [ArkUI_NodeEvent](#arkui_nodeevent) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) does not contain parameters. |
@@ -2723,14 +2723,14 @@ enum ArkUI_SwiperDisplayModeType
 ```
 **Description**
 
-Enumerates the modes in which elements are displayed along the main axis of the **\<Swiper>** component.
+Enumerates the modes in which elements are displayed along the main axis of the **Swiper** component.
 
 **Since**: 12
 
 | Value                                 | Description                                                  |
 | ------------------------------------- | ------------------------------------------------------------ |
-| ARKUI_SWIPER_DISPLAY_MODE_STRETCH     | The slide width of the **\<Swiper>** component is equal to the width of the component.&nbsp;&nbsp; |
-| ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR | The slide width of the **\<Swiper>** component is equal to the width of the leftmost child component in the viewport.&nbsp;&nbsp; |
+| ARKUI_SWIPER_DISPLAY_MODE_STRETCH     | The slide width of the **Swiper** component is equal to the width of the component.&nbsp;&nbsp; |
+| ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR | The slide width of the **Swiper** component is equal to the width of the leftmost child component in the viewport.&nbsp;&nbsp; |
 
 
 ### ArkUI_SwiperArrow
@@ -2758,7 +2758,7 @@ enum ArkUI_SwiperIndicatorType
 ```
 **Description**
 
-Enumerates the navigation point indicator types of the **\<Swiper>** component.
+Enumerates the navigation point indicator types of the **Swiper** component.
 
 **Since**: 12
 
@@ -2775,14 +2775,14 @@ enum ArkUI_SwiperNestedScrollMode
 ```
 **Description**
 
-Nested scrolling mode of the **\<Swiper>** component and its parent container.
+Nested scrolling mode of the **Swiper** component and its parent container.
 
 **Since**: 12
 
 | Value                                 | Description                                                  |
 | ------------------------------------- | ------------------------------------------------------------ |
-| ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY  | The scrolling is contained within the **\<Swiper>** component, and no scroll chaining occurs, that is, the parent container does not scroll when the component scrolling reaches the boundary.&nbsp;&nbsp; |
-| ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST | The **\<Swiper>** component scrolls first, and when it hits the boundary, the parent container scrolls. When the parent container hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent container, the edge effect of the child component is displayed instead.&nbsp;&nbsp; |
+| ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY  | The scrolling is contained within the **Swiper** component, and no scroll chaining occurs, that is, the parent container does not scroll when the component scrolling reaches the boundary.&nbsp;&nbsp; |
+| ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST | The **Swiper** component scrolls first, and when it hits the boundary, the parent container scrolls. When the parent container hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent container, the edge effect of the child component is displayed instead.&nbsp;&nbsp; |
 
 
 ### ArkUI_TextAlignment
@@ -7343,7 +7343,7 @@ void OH_ArkUI_SwiperIndicator_Dispose (ArkUI_SwiperIndicator * indicator)
 ```
 **Description**
 
-Destroys the navigation point indicator of this **<Swiper>** component.
+Destroys the navigation point indicator of this **Swiper** component.
 
 **Since**: 12
 
@@ -7361,7 +7361,7 @@ float OH_ArkUI_SwiperIndicator_GetBottomPosition (ArkUI_SwiperIndicator * indica
 ```
 **Description**
 
-Obtains the distance between a navigation point indicator and the bottom edge of the **<Swiper>** component.
+Obtains the distance between a navigation point indicator and the bottom edge of the **Swiper** component.
 
 **Since**: 12
 
@@ -7373,7 +7373,7 @@ Obtains the distance between a navigation point indicator and the bottom edge of
 
 **Returns**
 
-* @return Returns the distance between a navigation point indicator and the bottom edge of the **<Swiper>** component.
+* @return Returns the distance between a navigation point indicator and the bottom edge of the **Swiper** component.
 
 
 ### OH_ArkUI_SwiperIndicator_GetColor()
@@ -7383,7 +7383,7 @@ uint32_t OH_ArkUI_SwiperIndicator_GetColor (ArkUI_SwiperIndicator * indicator)
 ```
 **Description**
 
-Obtains the color of a navigation point indicator of the dot style of the **<Swiper>** component.
+Obtains the color of a navigation point indicator of the dot style of the **Swiper** component.
 
 **Since**: 12
 
@@ -7405,7 +7405,7 @@ float OH_ArkUI_SwiperIndicator_GetItemHeight (ArkUI_SwiperIndicator * indicator)
 ```
 **Description**
 
-Obtains the height of a navigation point indicator of the dot style of the **<Swiper>** component.
+Obtains the height of a navigation point indicator of the dot style of the **Swiper** component.
 
 **Since**: 12
 
@@ -7427,7 +7427,7 @@ float OH_ArkUI_SwiperIndicator_GetItemWidth (ArkUI_SwiperIndicator * indicator)
 ```
 **Description**
 
-Obtains the width of a navigation point indicator of the dot style of the **<Swiper>** component.
+Obtains the width of a navigation point indicator of the dot style of the **Swiper** component.
 
 **Since**: 12
 
@@ -7449,7 +7449,7 @@ float OH_ArkUI_SwiperIndicator_GetStartPosition (ArkUI_SwiperIndicator * indicat
 ```
 **Description**
 
-Obtains the distance between a navigation point indicator and the left edge of the **<Swiper>** component.
+Obtains the distance between a navigation point indicator and the left edge of the **Swiper** component.
 
 **Since**: 12
 
@@ -7461,7 +7461,7 @@ Obtains the distance between a navigation point indicator and the left edge of t
 
 **Returns**
 
-* @return Returns the distance between the navigation point indicator and the left edge of the **<Swiper>** component.
+* @return Returns the distance between the navigation point indicator and the left edge of the **Swiper** component.
 
 
 ### OH_ArkUI_SwiperIndicator_GetMask()
@@ -7471,7 +7471,7 @@ int32_t OH_ArkUI_SwiperIndicator_GetMask (ArkUI_SwiperIndicator * indicator)
 ```
 **Description**
 
-Obtains whether the mask is enabled for a navigation point indicator of the dot style of the **<Swiper>** component.
+Obtains whether the mask is enabled for a navigation point indicator of the dot style of the **Swiper** component.
 
 **Since**: 12
 
@@ -7493,7 +7493,7 @@ float OH_ArkUI_SwiperIndicator_GetEndPosition (ArkUI_SwiperIndicator * indicator
 ```
 **Description**
 
-Obtains the distance between a navigation point indicator and the right edge of the **<Swiper>** component.
+Obtains the distance between a navigation point indicator and the right edge of the **Swiper** component.
 
 **Since**: 12
 
@@ -7505,7 +7505,7 @@ Obtains the distance between a navigation point indicator and the right edge of 
 
 **Returns**
 
-* @return Returns the distance between the navigation point indicator and the right edge of the **<Swiper>** component.
+* @return Returns the distance between the navigation point indicator and the right edge of the **Swiper** component.
 
 
 ### OH_ArkUI_SwiperIndicator_GetSelectedColor()
@@ -7515,7 +7515,7 @@ uint32_t OH_ArkUI_SwiperIndicator_GetSelectedColor (ArkUI_SwiperIndicator * indi
 ```
 **Description**
 
-Obtains the color of the selected navigation point indicator of the dot style of the **<Swiper>** component.
+Obtains the color of the selected navigation point indicator of the dot style of the **Swiper** component.
 
 **Since**: 12
 
@@ -7537,7 +7537,7 @@ float OH_ArkUI_SwiperIndicator_GetSelectedItemHeight (ArkUI_SwiperIndicator * in
 ```
 **Description**
 
-Obtains the height of the selected navigation point indicator of the dot style of the **<Swiper>** component.
+Obtains the height of the selected navigation point indicator of the dot style of the **Swiper** component.
 
 **Since**: 12
 
@@ -7559,7 +7559,7 @@ float OH_ArkUI_SwiperIndicator_GetSelectedItemWidth (ArkUI_SwiperIndicator * ind
 ```
 **Description**
 
-Obtains the width of the selected navigation point indicator of the dot style of the **<Swiper>** component.
+Obtains the width of the selected navigation point indicator of the dot style of the **Swiper** component.
 
 **Since**: 12
 
@@ -7581,7 +7581,7 @@ float OH_ArkUI_SwiperIndicator_GetTopPosition (ArkUI_SwiperIndicator * indicator
 ```
 **Description**
 
-Obtains the distance between a navigation point indicator and the top edge of the **<Swiper>** component.
+Obtains the distance between a navigation point indicator and the top edge of the **Swiper** component.
 
 **Since**: 12
 
@@ -7593,7 +7593,7 @@ Obtains the distance between a navigation point indicator and the top edge of th
 
 **Returns**
 
-* @return Returns the distance between a navigation point indicator and the top edge of the **<Swiper>** component.
+* @return Returns the distance between a navigation point indicator and the top edge of the **Swiper** component.
 
 
 ### OH_ArkUI_SwiperIndicator_SetBottomPosition()
@@ -7603,7 +7603,7 @@ void OH_ArkUI_SwiperIndicator_SetBottomPosition (ArkUI_SwiperIndicator * indicat
 ```
 **Description**
 
-Distance between the navigation point indicator and the top edge of the **\<Swiper>** component.
+Distance between the navigation point indicator and the top edge of the **Swiper** component.
 
 **Since**: 12
 
@@ -7612,7 +7612,7 @@ Distance between the navigation point indicator and the top edge of the **\<Swip
 | Name      | Description                                                  |
 | --------- | ------------------------------------------------------------ |
 | indicator | * @return Returns the pointer to the navigation point indicator. |
-| value     | * @return Returns the distance between a navigation point indicator and the bottom edge of the **<Swiper>** component. |
+| value     | * @return Returns the distance between a navigation point indicator and the bottom edge of the **Swiper** component. |
 
 
 ### OH_ArkUI_SwiperIndicator_SetColor()
@@ -7622,7 +7622,7 @@ void OH_ArkUI_SwiperIndicator_SetColor (ArkUI_SwiperIndicator * indicator, uint3
 ```
 **Description**
 
-Sets the color of a navigation point indicator of the dot style for the **<Swiper>** component.
+Sets the color of a navigation point indicator of the dot style for the **Swiper** component.
 
 **Since**: 12
 
@@ -7641,7 +7641,7 @@ void OH_ArkUI_SwiperIndicator_SetItemHeight (ArkUI_SwiperIndicator * indicator, 
 ```
 **Description**
 
-Sets the height of a navigation point indicator of the dot style for the **<Swiper>** component.
+Sets the height of a navigation point indicator of the dot style for the **Swiper** component.
 
 **Since**: 12
 
@@ -7660,7 +7660,7 @@ void OH_ArkUI_SwiperIndicator_SetItemWidth (ArkUI_SwiperIndicator * indicator, f
 ```
 **Description**
 
-Sets the width of a navigation point indicator of the dot style for the **<Swiper>** component.
+Sets the width of a navigation point indicator of the dot style for the **Swiper** component.
 
 **Since**: 12
 
@@ -7679,7 +7679,7 @@ void OH_ArkUI_SwiperIndicator_SetStartPosition (ArkUI_SwiperIndicator * indicato
 ```
 **Description**
 
-Distance between the navigation point indicator and the left edge of the **\<Swiper>** component.
+Distance between the navigation point indicator and the left edge of the **Swiper** component.
 
 **Since**: 12
 
@@ -7688,7 +7688,7 @@ Distance between the navigation point indicator and the left edge of the **\<Swi
 | Name      | Description                                                  |
 | --------- | ------------------------------------------------------------ |
 | indicator | * @return Returns the pointer to the navigation point indicator. |
-| value     | * @return Returns the distance between the navigation point indicator and the left edge of the **<Swiper>** component. |
+| value     | * @return Returns the distance between the navigation point indicator and the left edge of the **Swiper** component. |
 
 
 ### OH_ArkUI_SwiperIndicator_SetMask()
@@ -7698,7 +7698,7 @@ void OH_ArkUI_SwiperIndicator_SetMask (ArkUI_SwiperIndicator * indicator, int32_
 ```
 **Description**
 
-Sets whether to enable the mask for a navigation point indicator of the dot style for the **<Swiper>** component.
+Sets whether to enable the mask for a navigation point indicator of the dot style for the **Swiper** component.
 
 **Since**: 12
 
@@ -7717,7 +7717,7 @@ void OH_ArkUI_SwiperIndicator_SetEndPosition (ArkUI_SwiperIndicator * indicator,
 ```
 **Description**
 
-Distance between the navigation point indicator and the left edge of the **\<Swiper>** component.
+Distance between the navigation point indicator and the left edge of the **Swiper** component.
 
 **Since**: 12
 
@@ -7726,7 +7726,7 @@ Distance between the navigation point indicator and the left edge of the **\<Swi
 | Name      | Description                                                  |
 | --------- | ------------------------------------------------------------ |
 | indicator | * @return Returns the pointer to the navigation point indicator. |
-| value     | * @return Returns the distance between the navigation point indicator and the right edge of the **<Swiper>** component. |
+| value     | * @return Returns the distance between the navigation point indicator and the right edge of the **Swiper** component. |
 
 
 ### OH_ArkUI_SwiperIndicator_SetSelectedColor()
@@ -7736,7 +7736,7 @@ void OH_ArkUI_SwiperIndicator_SetSelectedColor (ArkUI_SwiperIndicator * indicato
 ```
 **Description**
 
-Sets the color of the selected navigation point indicator of the dot style for the **<Swiper>** component.
+Sets the color of the selected navigation point indicator of the dot style for the **Swiper** component.
 
 **Since**: 12
 
@@ -7755,7 +7755,7 @@ void OH_ArkUI_SwiperIndicator_SetSelectedItemHeight (ArkUI_SwiperIndicator * ind
 ```
 **Description**
 
-Sets the height of the selected navigation point indicator of the dot style for the **<Swiper>** component.
+Sets the height of the selected navigation point indicator of the dot style for the **Swiper** component.
 
 **Since**: 12
 
@@ -7774,7 +7774,7 @@ void OH_ArkUI_SwiperIndicator_SetSelectedItemWidth (ArkUI_SwiperIndicator * indi
 ```
 **Description**
 
-Sets the width of the selected navigation point indicator of the dot style for the **<Swiper>** component.
+Sets the width of the selected navigation point indicator of the dot style for the **Swiper** component.
 
 **Since**: 12
 
@@ -7793,7 +7793,7 @@ void OH_ArkUI_SwiperIndicator_SetTopPosition (ArkUI_SwiperIndicator * indicator,
 ```
 **Description**
 
-Distance between the navigation point indicator and the top edge of the **\<Swiper>** component.
+Distance between the navigation point indicator and the top edge of the **Swiper** component.
 
 **Since**: 12
 
@@ -7802,7 +7802,7 @@ Distance between the navigation point indicator and the top edge of the **\<Swip
 | Name      | Description                                                  |
 | --------- | ------------------------------------------------------------ |
 | indicator | * @return Returns the pointer to the navigation point indicator. |
-| value     | * @return Returns the distance between a navigation point indicator and the top edge of the **<Swiper>** component. |
+| value     | * @return Returns the distance between a navigation point indicator and the top edge of the **Swiper** component. |
 
 
 ### OH_ArkUI_WaterFlowSectionOption_Create()

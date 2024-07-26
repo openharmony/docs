@@ -11,7 +11,7 @@ There are multiple methods to implement shared element transition. Choose one th
 
 ## Using GeometryTransition to Implement Shared Element Transition
 
-This example implements shared element transition with [geometryTransition](../reference/arkui-ts/ts-transition-animation-geometrytransition.md), which is used for implicit shared element transitions during component switching.
+This example implements shared element transition with [geometryTransition](../reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md), which is used for implicit shared element transitions during component switching.
 
 To use **geometryTransition**, you need to bind the same ID to the target components. This way, when one component enters and the other component exits, the system applies shared element transition to these two components.
 

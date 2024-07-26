@@ -1,6 +1,6 @@
 # RelativeContainer
 
-The **\<RelativeContainer>** component is a container component used for relative layout of elements in complex scenarios.
+The **RelativeContainer** component is a container component used for relative layout of elements in complex scenarios.
 
 >  **NOTE**
 >
@@ -16,7 +16,7 @@ The **\<RelativeContainer>** component is a container component used for relativ
    * A child component can have anchors for three positions in one direction (left, middle, and right in the horizontal direction and top, center, and bottom in the vertical direction). These anchors can be positions in the container or other child components in the same direction: **horizontalAlign.Start**, **HorizontalAlign.Center**, and **HorizontalAlign.End** in the horizontal direction and **verticalAlign.Top**, **VerticalAlign.Center**, and **VerticalAlign.Bottom** in the vertical direction. If more than two anchors are set in the same direction, **Start** and **Center** in the horizontal direction are preferred, and **Top** and **Center** in the vertical direction are preferred. For example, when the left, middle, and right positions of a component in the horizontal direction use **HorizontalAlign.Start**, **HorizontalAlign.Center**, and **HorizontalAlign.End** of the container as the anchors, respectively, then: if the widths of the component and its container cannot meet these rules at the same time, the rules for Start and Center are followed.
    * If both the child component size and relative layout rules are set:<br>In API versions earlier than 11, the child component size is bound by the relative layout rules.<br> Since API version 11, the child component size set from frontend pages is used.
    * If offset is required after the alignment, it can be set through [bias](ts-universal-attributes-location.md#bias) (available since API version 11) or **offset** (not recommended).
-   * Since API version 11, if **\<RelativeContainer>** has its **width** and **height** attributes set to **auto**, it adapts its width and height to its child components.
+   * Since API version 11, if **RelativeContainer** has its **width** and **height** attributes set to **auto**, it adapts its width and height to its child components.
    * If the container's child component uses the container as an anchor in the horizontal direction, the **auto** value of **width** has no effect. The same rule applies to the vertical direction.
    * For a child component of the container, **margin** has a different meaning from the universal attribute **margin**. It indicates the distance to the anchor in the respective direction. If there is no anchor in the respective direction, **margin** in that direction does not take effect.
    * If the position of the guideline is not declared or the declared value (for example, **undefine** is invalid, the position of **start: 0** is used. Either **start** or **end** can be declared for the position. If both of them are declared, only **start** takes effect.
@@ -51,7 +51,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 guideLine(value: Array&lt;GuideLineStyle&gt;)
 
-Sets the guidelines in the **\<RelativeContainer>** component. The value is an array, each element of which is a guideline.
+Sets the guidelines in the **RelativeContainer** component. The value is an array, each element of which is a guideline.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -59,13 +59,13 @@ Sets the guidelines in the **\<RelativeContainer>** component. The value is an a
 
 | Name| Type                                      | Mandatory| Description                             |
 | ------ | ------------------------------------------ | ---- | --------------------------------- |
-| value  | Array<[GuideLineStyle](#guidelinestyle12)> | Yes  | Guidelines in the **\<RelativeContainer>** component.|
+| value  | Array<[GuideLineStyle](#guidelinestyle12)> | Yes  | Guidelines in the **RelativeContainer** component.|
 
 ### barrier<sup>12+</sup>
 
 barrier(value: Array&lt;BarrierStyle&gt;)
 
-Sets the barriers in the **\<RelativeContainer>** component. The value is an array, each element of which is a barrier.
+Sets the barriers in the **RelativeContainer** component. The value is an array, each element of which is a barrier.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -73,7 +73,7 @@ Sets the barriers in the **\<RelativeContainer>** component. The value is an arr
 
 | Name| Type                                  | Mandatory| Description                           |
 | ------ | -------------------------------------- | ---- | ------------------------------- |
-| value  | Array<[BarrierStyle](#barrierstyle12)> | Yes  | Barriers in the **\<RelativeContainer>** component.|
+| value  | Array<[BarrierStyle](#barrierstyle12)> | Yes  | Barriers in the **RelativeContainer** component.|
 
 
 ## GuideLineStyle<sup>12+</sup>

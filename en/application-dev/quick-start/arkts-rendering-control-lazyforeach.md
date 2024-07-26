@@ -172,7 +172,7 @@ declare enum DataOperationType {
 
 ## Constraints
 
-- LazyForEach must be used in a container component. Only the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md), [\<Grid>](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [\<Swiper>](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [\<WaterFlow>](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at once.
+- LazyForEach must be used in a container component. Only the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at once.
 - **LazyForEach** must create one and only one child component in each iteration.
 - The generated child components must be allowed in the parent container component of **LazyForEach**.
 - **LazyForEach** can be included in an **if/else** statement, and can also contain such a statement.
@@ -1760,7 +1760,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
   **Figure 13** Unwanted image flickering with LazyForEach 
   ![LazyForEach-Image-Flush](./figures/LazyForEach-Image-Flush.gif)
 
-  In the example, when a list item is clicked, only the **message** property of the item is changed. Yet, along with the text change comes the unwanted image flickering. This is because, with the **LazyForEach** update mechanism, the entire list item is rebuilt. As the **\<Image>** component is updated asynchronously, flickering occurs. To address this issue, use @ObjectLink and @Observed so that only the **\<Text>** component that uses the **item.message** property is re-rendered.
+  In the example, when a list item is clicked, only the **message** property of the item is changed. Yet, along with the text change comes the unwanted image flickering. This is because, with the **LazyForEach** update mechanism, the entire list item is rebuilt. As the **\<Image>** component is updated asynchronously, flickering occurs. To address this issue, use @ObjectLink and @Observed so that only the **Text** component that uses the **item.message** property is re-rendered.
 
   The following shows the code snippet after optimization:
 

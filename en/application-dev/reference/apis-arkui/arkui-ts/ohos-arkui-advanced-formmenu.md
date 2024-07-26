@@ -62,7 +62,7 @@ AddFormMenuItem(
 | Name            | Type               | Mandatory | Note:                                                     |
 | --------------- | ---- | ---- | ---------------------------------------------------------------- |
 | formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | No | Widget data |
-| callback        | AsyncCallback<string>                                                                                                | No | Callback of the returned result. |
+| callback        | AsyncCallback\<string>                                                                                                | No | Callback of the returned result. |
 | style           | [FormMenuItemStyle](#formmenuitemstyle)                                                                              | No | Customized menu style information.|
 
 

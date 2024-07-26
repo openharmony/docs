@@ -1,17 +1,17 @@
 # Navigation
 
-Generally, the [\<Navigation>](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component functions as the root container of a page and supports three display modes: single-page, column, and adaptive. It is applicable to page redirection within a module and useful in one-time development for multi-device deployment. Draw on this component's routing capability to create a smooth page transition experience, and explore its various title bar styles to present titles seamlessly linked with the content. In one-time development for multi-device deployment scenarios, the **\<Navigation>** component can automatically adapt to the window size; when the window is large enough, it automatically displays content in columns.
+Generally, the [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component functions as the root container of a page and supports three display modes: single-page, column, and adaptive. It is applicable to page redirection within a module and useful in one-time development for multi-device deployment. Draw on this component's routing capability to create a smooth page transition experience, and explore its various title bar styles to present titles seamlessly linked with the content. In one-time development for multi-device deployment scenarios, the **Navigation** component can automatically adapt to the window size; when the window is large enough, it automatically displays content in columns.
 
-When implementing page navigation, prioritize the [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10) API of the **\<Navigation>** component. Avoid a combination of **\<Navigation>** and the **\<NavRouter>** child for page navigation. The [\<NavDestination>](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) component can be used for page navigation when contained in a **\<Navigation>** component, but cannot be 
+When implementing page navigation, prioritize the [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10) API of the **Navigation** component. Avoid a combination of **Navigation** and the **NavRouter** child for page navigation. The [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) component can be used for page navigation when contained in a **Navigation** component, but cannot be 
 
 
 ## Setting the Page Display Mode
 
-The **\<Navigation>** component uses the **mode** attribute to set the page display mode.
+The **Navigation** component uses the **mode** attribute to set the page display mode.
 
 - Adaptive Mode
 
-  By default, the **\<Navigation>** component is in adaptive mode. In this case, the **mode** attribute is **NavigationMode.Auto**. In adaptive mode, when the device width is greater than 520 vp, the **\<Navigation>** component uses the column mode. Otherwise, the **\<Navigation>** component uses the single-page mode.
+  By default, the **Navigation** component is in adaptive mode. In this case, the **mode** attribute is **NavigationMode.Auto**. In adaptive mode, when the device width is greater than 520 vp, the **Navigation** component uses the column mode. Otherwise, the **Navigation** component uses the single-page mode.
 
 
   ```
@@ -27,7 +27,7 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
 
   ![en-us_image_0000001511740532](figures/en-us_image_0000001511740532.png)
 
-  Set **mode** to **NavigationMode.Stack** so that the **\<Navigation>** component is displayed on a single page.
+  Set **mode** to **NavigationMode.Stack** so that the **Navigation** component is displayed on a single page.
 
 
   ```ts
@@ -45,7 +45,7 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
 
   ![en-us_image_0000001562820845](figures/en-us_image_0000001562820845.png)
 
-  Set **mode** to **NavigationMode.Split** so that the **\<Navigation>** component is displayed in columns.
+  Set **mode** to **NavigationMode.Split** so that the **Navigation** component is displayed in columns.
 
 
   ```ts
@@ -109,7 +109,7 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
 
 ## Setting the Title Bar Mode
 
-The title bar is on the top of the page and is used to display the page name and operation entry. The **\<Navigation>** component uses the **titleMode** attribute to set the title bar mode.
+The title bar is on the top of the page and is used to display the page name and operation entry. The **Navigation** component uses the **titleMode** attribute to set the title bar mode.
 
 - Mini mode
   Applicable when the title of a level-1 page does not need to be highlighted.
@@ -145,7 +145,7 @@ The title bar is on the top of the page and is used to display the page name and
 
 ## Setting the Menu Bar
 
-The menu bar is in the upper right corner of the **\<Navigation>** component. You can set the menu bar through the **menus** attribute, which supports two parameter types: Array&lt;[NavigationMenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt; and CustomBuilder. When the Array\<NavigationMenuItem> type is used, a maximum of three icons can be displayed in portrait mode and a maximum of five icons can be displayed in landscape mode. Extra icons will be placed in the automatically generated More icons.
+The menu bar is in the upper right corner of the **Navigation** component. You can set the menu bar through the **menus** attribute, which supports two parameter types: Array&lt;[NavigationMenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt; and CustomBuilder. When the Array\<NavigationMenuItem> type is used, a maximum of three icons can be displayed in portrait mode and a maximum of five icons can be displayed in landscape mode. Extra icons will be placed in the automatically generated More icons.
 
 **Figure 5** Menu bar with three icons 
 
@@ -191,7 +191,7 @@ Navigation() {
 
 ## Setting the Toolbar
 
-The toolbar is located at the bottom of the **\<Navigation>** component. You can set the toolbar through the **toolbarConfiguration** attribute.
+The toolbar is located at the bottom of the **Navigation** component. You can set the toolbar through the **toolbarConfiguration** attribute.
 
 
   **Figure 7** Toolbar 
@@ -209,11 +209,11 @@ Navigation() {
 
 ## Setting the Subpage Mode
 
-You can set the subpage mode through the **mode** attribute of **\<NavDestination>**, the root container of subpages.
+You can set the subpage mode through the **mode** attribute of **NavDestination**, the root container of subpages.
 
 - Standard mode
 
-  By default, subpages in the **\<NavDestination>** component are in standard mode, which corresponds to the **NavDestinationMode.STANDARD** value of the **mode** attribute. In standard mode, where the lifecycle of **\<NavDestination>** changes with the standard destination in the **NavPathStack**.
+  By default, subpages in the **NavDestination** component are in standard mode, which corresponds to the **NavDestinationMode.STANDARD** value of the **mode** attribute. In standard mode, where the lifecycle of **NavDestination** changes with the standard destination in the **NavPathStack**.
 
 - Dialog mode
 
@@ -221,7 +221,7 @@ You can set the subpage mode through the **mode** attribute of **\<NavDestinatio
 
   ![dialog_navdes_1](figures/dialog_navdes_1.png)
 
-  Set the **mode** attribute to **NavDestinationMode.DIALOG** to set subpages in the **\<NavDestination>** component to dialog mode, where the component is transparent. You can add different effects to the component, for example, add a background.
+  Set the **mode** attribute to **NavDestinationMode.DIALOG** to set subpages in the **NavDestination** component to dialog mode, where the component is transparent. You can add different effects to the component, for example, add a background.
 
   ```ts
   // Index.ets
@@ -336,7 +336,7 @@ You can set the subpage mode through the **mode** attribute of **\<NavDestinatio
 
 ## Using the System Route Table
 
-There are drawbacks with the redirection mode using the **navDestination** attribute of the **\<Navigation>** component. To redirect to a page of another module (HSP/HAR) in this mode, you need to configure the target module as a dependency in the **module.json5** file of the project, and then import the target page with **import** statements. As a result, the dependency and coupling of different modules may result, and the home page may take a long time to load. To avoid such issues, use the system route table. It eliminates the need for configuring the dependency between modules for redirection. In addition, during redirection, the page that is not a redirection target will not be loaded, and the page that has been loaded will not be loaded again.
+There are drawbacks with the redirection mode using the **navDestination** attribute of the **Navigation** component. To redirect to a page of another module (HSP/HAR) in this mode, you need to configure the target module as a dependency in the **module.json5** file of the project, and then import the target page with **import** statements. As a result, the dependency and coupling of different modules may result, and the home page may take a long time to load. To avoid such issues, use the system route table. It eliminates the need for configuring the dependency between modules for redirection. In addition, during redirection, the page that is not a redirection target will not be loaded, and the page that has been loaded will not be loaded again.
 
 1. Add the route table configuration to the **module.json5** file of the redirection target module.
 
@@ -407,7 +407,7 @@ The application can call **pushDestinationByName** to obtain the error informati
 
 2. You can also add the configuration item to the resource file, and then use APIs provided in the [@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) module to read the file and obtain the corresponding fields.
 
-3. Add the page in the route table as a dependency to the **oh_packages.json5** file of the project where the page defined for **\<Navigation>** is located.
+3. Add the page in the route table as a dependency to the **oh_packages.json5** file of the project where the page defined for **Navigation** is located.
 
     ```json
       {

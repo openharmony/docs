@@ -1,7 +1,7 @@
 # Implementing Nested Scrolling
 
 There may be times when you want to implement nested scrolling for the **\<Web>** component. A typical use case is a page that contains multiple scrollable areas including the **\<Web>** component, whose scrolling is intrinsically linked with the scroll positions in other areas.
-If you opt to embed a **\<Web>** component in a scroll container (such as [\<Scroll>](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) and [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md)) for nested scrolling, use the [NestedScrollMode](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrollmode11) enum of the ArkUI framework. You can specify the default nested scrolling mode through [nestedScroll](../reference/apis-arkweb/ts-basic-components-web.md#nestedscroll11) during creation of the **\<Web>** component; this nested scrolling mode allows for dynamic changes.
+If you opt to embed a **\<Web>** component in a scroll container (such as [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) and [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md)) for nested scrolling, use the [NestedScrollMode](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrollmode11) enum of the ArkUI framework. You can specify the default nested scrolling mode through [nestedScroll](../reference/apis-arkweb/ts-basic-components-web.md#nestedscroll11) during creation of the **\<Web>** component; this nested scrolling mode allows for dynamic changes.
 
 **nestedScroll** is a [NestedScrollOptions](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrolloptions11) object that has two attributes: **scrollForward** and **scrollBackward**, both of which are [NestedScrollMode](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrollmode11) enum values.
 
@@ -9,7 +9,7 @@ When a **\<Web>** component is nested in multiple scrollable containers, the off
 
 > **NOTE**
 >
-> - Containers that support nested scrolling: **\<Grid>**, **\<List>**, **\<Scroll>**, **\<Swiper>**, **\<Tabs>**, and **\<WaterFlow>**.
+> - Containers that support nested scrolling: **Grid**, **\<List>**, **Scroll**, **Swiper**, **Tabs**, and **WaterFlow**.
 > - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
 
 ```ts

@@ -225,11 +225,11 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
 ### Decorating Variables of Simple Types
 
-In this example, \@State is used to decorate the **count** variable of the simple type, turning it into a state variable. The change of **count** causes the update of the **\<Button>** component.
+In this example, \@State is used to decorate the **count** variable of the simple type, turning it into a state variable. The change of **count** causes the update of the **Button** component.
 
-- When **count** changes, the framework searches for components bound to it, which include only the **\<Button>** component in this example.
+- When **count** changes, the framework searches for components bound to it, which include only the **Button** component in this example.
 
-- The framework executes the update method of the **\<Button>** component to implement on-demand update.
+- The framework executes the update method of the **Button** component to implement on-demand update.
 
 
 ```ts

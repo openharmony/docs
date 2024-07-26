@@ -486,26 +486,26 @@ The **MultiShadowOptions** type is used to describe the shadow style.
 
 ## SwiperAnimationEvent<sup>10+</sup>
 
-Describes the animation information of the \<Swiper> component.
+Describes the animation information of the Swiper component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name           | Type      | Mandatory           | Description                                      |
 | ------------- | ---------------------- | ---------|------------------------------- |
-| currentOffset | number | Yes| Offset of the currently displayed element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
-| targetOffset | number | Yes| Offset of the target element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
+| currentOffset | number | Yes| Offset of the currently displayed element relative to the start position of the **Swiper** along the main axis. Unit: vp<br>Default value: **0**|
+| targetOffset | number | Yes| Offset of the target element relative to the start position of the **Swiper** along the main axis. Unit: vp<br>Default value: **0**|
 | velocity | number | Yes| Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
 
 ## TabsAnimationEvent<sup>11+</sup>
 
-The **TabsAnimationEvent** type is used to describe the animation information of the **\<Tabs>** component.
+The **TabsAnimationEvent** type is used to describe the animation information of the **Tabs** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name           | Type     |  Mandatory            | Description                                      |
 | ------------- | ---------------------- | ----------------|------------------------ |
-| currentOffset | number | Yes| Offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
-| targetOffset | number | Yes| Offset of the target element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
+| currentOffset | number | Yes| Offset of the currently displayed element relative to the start position of the **Tabs** along the main axis. Unit: vp<br>Default value: **0**|
+| targetOffset | number | Yes| Offset of the target element relative to the start position of the **Tabs** along the main axis. Unit: vp<br>Default value: **0**|
 | velocity | number | Yes| Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
 
 ## SafeAreaType<sup>10+</sup>
@@ -563,12 +563,12 @@ The **TabContentAnimatedTransition** type is used to define the custom tab switc
 
 | Name           | Type        | Mandatory         | Description                                      |
 | ------------- | ---------------------- | ------------------|---------------------- |
-| timeout | number | No| Timeout for the custom tab switching animation. If the set timeout period expires before the **finishTransition** API of [TabContentTransitionProxy](#tabcontenttransitionproxy11) is called, the **\<Tabs>** component considers that the custom animation has ended and performs subsequent operations.<br> Unit: ms<br>Default value: **1000**|
+| timeout | number | No| Timeout for the custom tab switching animation. If the set timeout period expires before the **finishTransition** API of [TabContentTransitionProxy](#tabcontenttransitionproxy11) is called, the **Tabs** component considers that the custom animation has ended and performs subsequent operations.<br> Unit: ms<br>Default value: **1000**|
 | transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | Yes| Content of the custom tab switching animation.|
 
 ## TabContentTransitionProxy<sup>11+</sup>
 
-Proxy object returned during the execution of the custom tab switching animation. You can use this object to obtain the start and target pages for the custom tab switching animation. In addition, you can call the **finishTransition** API of this object to notify the **\<Tabs>** component of the ending of the custom animation.
+Proxy object returned during the execution of the custom tab switching animation. You can use this object to obtain the start and target pages for the custom tab switching animation. In addition, you can call the **finishTransition** API of this object to notify the **Tabs** component of the ending of the custom animation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -576,7 +576,7 @@ Proxy object returned during the execution of the custom tab switching animation
 | ------------- | ---------------------- | ----------------------|------------------ |
 | from | number | Yes| Index of the currently displayed tab before the animation starts.|
 | to | number | Yes| Index of the target tab to switch to.|
-| finishTransition() | void | Yes| Called to notify the **\<Tabs>** component that the custom animation ends.|
+| finishTransition() | void | Yes| Called to notify the **Tabs** component that the custom animation ends.|
 
 ## PixelRoundPolicy<sup>11+</sup>
 
@@ -705,7 +705,7 @@ Enumerates length units.
 
 ## TextContentControllerBase<sup>10+</sup>
 
-The **TextContentControllerBase** type is used to represent the base controller for **\<TextInput>**, **\<TextArea>**, and **\<Search>** components.
+The **TextContentControllerBase** type is used to represent the base controller for **\<TextInput>**, **TextArea**, and **\<Search>** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

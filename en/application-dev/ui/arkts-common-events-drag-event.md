@@ -54,23 +54,24 @@ You can set the opacity, rounded corners, shadow, and blur for the drag preview.
 
 ### General Drag and Drop Adaptation
 
-The following uses the [\<Image>](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) component as an example to describe the basic procedure for drag and drop development and the precautions to be taken during development.
+The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) component as an example to describe the basic procedure for drag and drop development and the precautions to be taken during development.
 
 1. Make the component draggable.
 
 * Set the **draggable** attribute to **true** and set the **onDragStart** callback function. In the callback function, you can use UDMF to set the drag data and return the custom drag preview.
 
     ```ts
-    import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+    import UDC from '@ohos.data.unifiedDataChannel';
+    import UTD from '@ohos.data.uniformTypeDescriptor';
 
     Image($r('app.media.app_icon'))
         .width(100)
         .height(100)
         .draggable(true)
         .onDragStart((event) => {
-            let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+            let data: UDC.Image = new UDC.Image();
             data.imageUri = 'common/pic/img.png';
-            let unifiedData = new unifiedDataChannel.UnifiedData(data);
+            let unifiedData = new UDC.UnifiedData(data);
             event.setData(unifiedData);
 
             let dragItemInfo: DragItemInfo = {
@@ -129,8 +130,9 @@ The following uses the [\<Image>](../reference/apis-arkui/arkui-ts/ts-basic-comp
 3. If you want to strictly trigger the [onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave) event, you can use the [setDragEventStrictReportingEnabled](../reference/apis-arkui/js-apis-arkui-UIContext.md#setdrageventstrictreportingenabled12) method.
 
     ```ts
-    import { UIAbility } from '@kit.AbilityKit';
-    import { window, UIContext } from '@kit.ArkUI';
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import window from '@ohos.window';
+    import { UIContext } from '@ohos.arkui.UIContext';
 
     export default class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -176,12 +178,12 @@ The following uses the [\<Image>](../reference/apis-arkui/arkui-ts/ts-basic-comp
     .onDrop((dragEvent?: DragEvent) => {
         // Obtain the drag data.
         this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-        let records: Array<unifiedDataChannel.UnifiedRecord> = event.getData().getRecords();
+        let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
         let rect: Rectangle = event.getPreviewRect();
         this.imageWidth = Number(rect.width);
         this.imageHeight = Number(rect.height);
-        this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
-        this.imgState = Visibility.None;
+        this.targetImage = (records[0] as UDC.Image).imageUri;
+        this.imgState = Visibility.None；
         // If result is explicitly set to successful, the value is passed in to onDragEnd of the drag source.
         event.setResult(DragResult.DRAG_SUCCESSFUL);
     })
@@ -196,7 +198,7 @@ The following uses the [\<Image>](../reference/apis-arkui/arkui-ts/ts-basic-comp
          if (!data) {
            return false;
          }
-         let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+         let records: Array<UDC.UnifiedRecord> = data.getRecords();
          if (!records || records.length <= 0) {
            return false;
          }
@@ -235,7 +237,7 @@ The following uses the [\<Image>](../reference/apis-arkui/arkui-ts/ts-basic-comp
 
 ### Multi-Select Drag-and-Drop Adaptation
 
-Since API version 12, the **\<GridItem>** and **\<ListItem>** components in the [\<Grid>](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) components support multi-select dragging. Currently, only the onDragStart mode is supported. The following uses **\<Grid>** as an example to describe the basic procedure for multi-select drag-and-drop development and precautions during development.
+Since API version 12, the **\<GridItem>** and **\<ListItem>** components in the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) components support multi-select dragging. Currently, only the onDragStart mode is supported. The following uses **Grid** as an example to describe the basic procedure for multi-select drag-and-drop development and precautions during development.
 
 1. Enable multi-select drag-and-drop.
 
@@ -347,10 +349,12 @@ Since API version 12, the **\<GridItem>** and **\<ListItem>** components in the 
 ### General Drag and Drop Adaptation Cases
 
 ```ts
-import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction, componentSnapshot } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
+import UDC from '@ohos.data.unifiedDataChannel';
+import UTD from '@ohos.data.uniformTypeDescriptor';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image'
+import componentSnapshot from '@ohos.arkui.componentSnapshot'
 
 @Entry
 @Component
@@ -377,7 +381,7 @@ struct Index {
       if (!data) {
         return false;
       }
-      let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+      let records: Array<UDC.UnifiedRecord> = data.getRecords();
       if (!records || records.length <= 0) {
         return false;
       }
@@ -436,9 +440,9 @@ struct Index {
               promptAction.showToast({ duration: 100, message: 'Long press gesture trigger' });
             }))
             .onDragStart((event) => {
-              let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+              let data: UDC.Image = new UDC.Image();
               data.imageUri = 'common/pic/img.png';
-              let unifiedData = new unifiedDataChannel.UnifiedData(data);
+              let unifiedData = new UDC.UnifiedData(data);
               event.setData(unifiedData);
 
               let dragItemInfo: DragItemInfo = {
@@ -479,15 +483,15 @@ struct Index {
               event.setResult(DragResult.DROP_ENABLED)
               event.dragBehavior = DragBehavior.MOVE
             })
-            .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
+            .allowDrop([UTD.UniformDataType.IMAGE])
             .onDrop((dragEvent?: DragEvent) => {
               //Obtain the drag data.
               this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-                let records: Array<unifiedDataChannel.UnifiedRecord> = event.getData().getRecords();
+                let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
                 let rect: Rectangle = event.getPreviewRect();
                 this.imageWidth = Number(rect.width);
                 this.imageHeight = Number(rect.height);
-                this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
+                this.targetImage = (records[0] as UDC.Image).imageUri;
                 this.imgState = Visibility.None;
                 // If result is explicitly set to successful, the value is passed in to onDragEnd of the drag source.
                 event.setResult(DragResult.DRAG_SUCCESSFUL);
@@ -507,8 +511,8 @@ struct Index {
 ### multi-select Drag-and-Drop Adaptation Case
 
 ```ts
-import { componentSnapshot } from '@kit.ArkUI';
-import { image } from '@kit.ImageKit';
+import componentSnapshot from "@ohos.arkui.componentSnapshot";
+import image from '@ohos.multimedia.image'
 
 @Entry
 @Component

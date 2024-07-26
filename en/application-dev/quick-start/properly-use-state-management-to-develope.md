@@ -88,9 +88,9 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-1](figures/properly-use-state-management-to-develope-1.gif)
 
-In this example, a total of 20 records are displayed on the page through **ForEach**. When you click the **\<Text>** component of **age** in one of the records, the **\<Text>** components of **age** in other 19 records are also re-rendered - reflected by the logs generated for the components of **age**. However, because the **age** values of the other 19 records do not change, the re-rendering of these records is actually redundant.
+In this example, a total of 20 records are displayed on the page through **ForEach**. When you click the **Text** component of **age** in one of the records, the **Text** components of **age** in other 19 records are also re-rendered - reflected by the logs generated for the components of **age**. However, because the **age** values of the other 19 records do not change, the re-rendering of these records is actually redundant.
 
-This redundant re-rendering is due to a characteristic of state management. Assume that there is an @State decorated number array **Num[]**. This array contains 20 elements whose values are 0 to 19, respectively. Each of the 20 elements is bound to a **\<Text>** component. When one of the elements is changed, all components bound to the elements are re-rendered, regardless of whether the other elements are changed or not.
+This redundant re-rendering is due to a characteristic of state management. Assume that there is an @State decorated number array **Num[]**. This array contains 20 elements whose values are 0 to 19, respectively. Each of the 20 elements is bound to a **Text** component. When one of the elements is changed, all components bound to the elements are re-rendered, regardless of whether the other elements are changed or not.
 
 This seemly bug, commonly known as "redundant re-render", is widely observed in simple array, and can adversely affect the UI re-rendering performance when the arrays are large. To make your rendering process run smoothly, it is crucial to reduce redundant re-renders and update components only when necessary.
 
@@ -1238,7 +1238,7 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-7](figures/properly-use-state-management-to-develope-7.gif)
 
-In this example, after you click to change **message**, the image flickers, and the onAppear log is generated for the image, indicating that the component is rebuilt. After **message** is changed, the key of the corresponding list item in **LazyForEach** changes. As a result, **LazyForEach** rebuilds the list item when executing **reloadData**. Though the **\<Text>** component only has its content changed, it is rebuilt, not updated. The **\<Image>** component under the list item is also rebuilt along with the list item, even though its content remains unchanged.
+In this example, after you click to change **message**, the image flickers, and the onAppear log is generated for the image, indicating that the component is rebuilt. After **message** is changed, the key of the corresponding list item in **LazyForEach** changes. As a result, **LazyForEach** rebuilds the list item when executing **reloadData**. Though the **Text** component only has its content changed, it is rebuilt, not updated. The **\<Image>** component under the list item is also rebuilt along with the list item, even though its content remains unchanged.
 
 While both **LazyForEach** and state variables can trigger UI re-renders, their performance overheads are different. **LazyForEach** leads to component rebuilds and higher performance overheads, especially when there is a considerable number of components. By contrast, the use of state variables allows you to keep the update scope within the closely related components. In light of this, it is recommended that you use state variables to trigger component updates in **LazyForEach**, which requires custom components.
 
@@ -1381,9 +1381,9 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-8](figures/properly-use-state-management-to-develope-8.gif)
 
-In this example, the UI is re-rendered properly: The image does not flicker, and no log is generated, which indicates that the **\<Text>** and **\<Image>** components are not rebuilt.
+In this example, the UI is re-rendered properly: The image does not flicker, and no log is generated, which indicates that the **Text** and **\<Image>** components are not rebuilt.
 
-This is thanks to introduction of custom components, where state variables are directly changed through @Observed and @ObjectLink, instead of through **LazyForEach**. You can also decorate the **message** and **imgSrc** properties in the **StringData** type with [@Track](arkts-track.md) to further narrow down the update scope to the specified **\<Text>** component.
+This is thanks to introduction of custom components, where state variables are directly changed through @Observed and @ObjectLink, instead of through **LazyForEach**. You can also decorate the **message** and **imgSrc** properties in the **StringData** type with [@Track](arkts-track.md) to further narrow down the update scope to the specified **Text** component.
 
 ### Using Custom Components to Match Object Arrays in ForEach
 

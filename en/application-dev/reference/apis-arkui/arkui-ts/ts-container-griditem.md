@@ -5,7 +5,7 @@ The **\<GridItem>** component provides a single item in a grid.
 >  **NOTE**
 >
 >  * This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->  * This component can be used only as a child of [\<Grid>](ts-container-grid.md).
+>  * This component can be used only as a child of [Grid](ts-container-grid.md).
 
 
 ## Child Components
@@ -122,7 +122,7 @@ This API is deprecated since API version 9.
 
 selectable(value: boolean)
 
-Sets whether the grid item is selectable for multiselect. This attribute takes effect only when multiselect is enabled for the parent **\<Grid>** container.
+Sets whether the grid item is selectable for multiselect. This attribute takes effect only when multiselect is enabled for the parent **Grid** container.
 
 This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.
 

@@ -152,7 +152,7 @@ export struct PageOne {
 }
 ```
 
-Each child page also needs to be configured in the system configuration file `route_map.json` (see [System Routing Table](arkts-navigation-navigation.md#system-routing-table)):
+Each child page also needs to be configured in the system configuration file `route_map.json` (see [Using the System Route Table](arkts-navigation-navigation.md#using-the-system-route-table)):
 
 ```json
 // Configure {"routerMap": "$profile:route_map"} in the project configuration file module.json5

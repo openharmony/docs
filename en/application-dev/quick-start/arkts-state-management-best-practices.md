@@ -243,7 +243,7 @@ struct Page {
 }
 ```
 
-In the preceding example, the state variable **this.translateObj.translateX** is used in multiple child components at the same level. When it changes, all these associated components are re-rendered. Since the changes of these components are the same, you can associate the state variable with their parent component to reduce the number of components re-rendered. Analysis reveals that all these child components are located in the **\<Column>** component under struct **Page**. Therefore, you can associate the **translate** attribute to the **\<Column>** component instead.
+In the preceding example, the state variable **this.translateObj.translateX** is used in multiple child components at the same level. When it changes, all these associated components are re-rendered. Since the changes of these components are the same, you can associate the state variable with their parent component to reduce the number of components re-rendered. Analysis reveals that all these child components are located in the **Column** component under struct **Page**. Therefore, you can associate the **translate** attribute to the **Column** component instead.
 
 [Correct Usage]
 

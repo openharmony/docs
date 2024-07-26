@@ -68,4 +68,4 @@ Only **reason** can be customized. The text on the options displayed cannot be c
 
 [Security Component Overview](../security/AccessToken/security-component-overview.md)
 
-[SaveButton](../reference/arkui-ts/ts-security-components-savebutton.md)
+[SaveButton](../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)

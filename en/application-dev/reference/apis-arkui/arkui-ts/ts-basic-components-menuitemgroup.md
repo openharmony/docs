@@ -1,6 +1,6 @@
 # MenuItemGroup
 
-The **\<MenuItemGroup>** component represents a group of menu items.
+The **MenuItemGroup** component represents a group of menu items.
 
 > **NOTE**
 >

@@ -208,7 +208,7 @@ The video controller is used to control video playback. For details, see [VideoC
 
 - Custom controller
 
-  To use a custom controller, disable the default controller, and then use components such as \<Button> and \<Slider> to customize the control and display. This type of controller is applicable to scenarios where customization requirements are involved.
+  To use a custom controller, disable the default controller, and then use components such as Button and \<Slider> to customize the control and display. This type of controller is applicable to scenarios where customization requirements are involved.
 
   ```ts
   @Entry

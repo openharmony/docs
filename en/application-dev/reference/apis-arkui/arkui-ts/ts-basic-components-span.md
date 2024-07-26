@@ -1,12 +1,12 @@
 # Span
 
-As a child of the [\<Text>](ts-basic-components-text.md) and [\<ContainerSpan>](ts-basic-components-containerspan.md) components, the \<Span> component is used to display inline text.
+As a child of the [Text](ts-basic-components-text.md) and [Component3D](ts-basic-components-containerspan.md) components, the \<Span> component is used to display inline text.
 
 >  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  Since API version 10, this component can inherit the attributes of the **\<Text>** parent component. That is, if no attribute is set for this component, it inherits the attributes (if set) of its parent component. Only the following attributes can be inherited: **fontColor**, **fontSize**, **fontStyle**, **fontWeight**, **decoration**, **letterSpacing**, **textCase**, **fontfamily**, and **textShadow**.
+>  Since API version 10, this component can inherit the attributes of the **Text** parent component. That is, if no attribute is set for this component, it inherits the attributes (if set) of its parent component. Only the following attributes can be inherited: **fontColor**, **fontSize**, **fontStyle**, **fontWeight**, **decoration**, **letterSpacing**, **textCase**, **fontfamily**, and **textShadow**.
 
 
 ## Child Components
@@ -155,7 +155,7 @@ Defines the **BaseSpan** base class, including the common attributes of the span
 
 textBackgroundStyle(style: TextBackgroundStyle)
 
-Background style. This attribute prioritizes the value separately set for the component. If it is not set, the component can inherit the settings from its parent [\<ContainerSpan>](ts-basic-components-containerspan.md).
+Background style. This attribute prioritizes the value separately set for the component. If it is not set, the component can inherit the settings from its parent [Component3D](ts-basic-components-containerspan.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

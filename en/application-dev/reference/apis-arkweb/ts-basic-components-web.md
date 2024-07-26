@@ -1861,7 +1861,7 @@ Sets nested scrolling options.
 > - You can set the nested scrolling mode in both forward and backward directions to implement scrolling linkage with the parent component.
 > - You can set separate nested scrolling modes for the forward and backward directions.
 > - The default mode for **scrollForward** and **scrollBackward** is **NestedScrollMode.SELF_FIRST**.
-> - Containers that support nested scrolling: **\<Grid>**, **\<List>**, **\<Scroll>**, **\<Swiper>**, **\<Tabs>**, **\<WaterFlow>**.
+> - Containers that support nested scrolling: **Grid**, **\<List>**, **Scroll**, **Swiper**, **Tabs**, **WaterFlow**.
 > - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
 > - In nested scrolling scenarios, since the **\<Web>** component's over-scrolling to the edge will trigger the over-scroll bounce effect first, it is recommended that you set **overScrollMode** to **OverScrollMode.NEVER** to avoid undermining the user experience.
 
@@ -2130,7 +2130,7 @@ The API only supports the selection of plain text; if the selected content conta
 
 | Name             | Type                                                        | Description         |
 | ------------------- | ----------------------------------------------------------   | ------------- |
-| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Extended options of the custom context menu on selection.<br>The number of menu items, menu content size, and start icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
+| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Extended options of the custom context menu on selection.<br>The number of menu items, menu content size, and start icon size must be the same as those of the ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
 
 **Example**
 

@@ -109,7 +109,7 @@ To enable a child component to receive the value from the parent component throu
 
 **Example**
 
-The \@Link semantics are derived from the **'$'** operator. In other words, **\$isPlaying** enables two-way binding of the internal state **this.isPlaying**. When the button in the **PlayButton** child component is touched, the value of the @Link decorated variable is changed, and **PlayButton** together with the **\<Image>** and **\<Text>** components of the parent component is refreshed. Similarly, when the button in the parent component is touched, the value of **this.isPlaying** is changed, and **PlayButton** together with the **\<Text>** and **\<Button>** components of the parent component is refreshed.
+The \@Link semantics are derived from the **'$'** operator. In other words, **\$isPlaying** enables two-way binding of the internal state **this.isPlaying**. When the button in the **PlayButton** child component is touched, the value of the @Link decorated variable is changed, and **PlayButton** together with the **\<Image>** and **Text** components of the parent component is refreshed. Similarly, when the button in the parent component is touched, the value of **this.isPlaying** is changed, and **PlayButton** together with the **Text** and **Button** components of the parent component is refreshed.
 
 1. Use the \@State decorator in the parent component and use the **'$'** operator to create a reference for transferring data.
 
@@ -353,11 +353,11 @@ struct Test6Page {
 ```
 
 
-## How do I display sensor data in the \<Text> component on the UI? (API version 9)
+## How do I display sensor data in the Text component on the UI? (API version 9)
 
 **Solution**
 
-The type of data returned by the sensor is double. To display it in the \<Text> component, first convert the data from double to string.
+The type of data returned by the sensor is double. To display it in the Text component, first convert the data from double to string.
 
 
 ## How do I listen for screen rotation events? (API version 9)
@@ -739,7 +739,7 @@ Use @Build and @BuilderParam in ArkTS.
 
 **Cause**
 
-Text in the **\<Text>** component is centered by default. You do not need to set the **lineHeight** attribute. As the text is drawn from the bottom, an appropriate line height can have the text centered. However, if the line height is too large, the text appears aligned toward the bottom. In general cases, use the **lineHeight** attribute together with the **padding** attribute to adjust the line spacing.
+Text in the **Text** component is centered by default. You do not need to set the **lineHeight** attribute. As the text is drawn from the bottom, an appropriate line height can have the text centered. However, if the line height is too large, the text appears aligned toward the bottom. In general cases, use the **lineHeight** attribute together with the **padding** attribute to adjust the line spacing.
 
 **Reference**
 
@@ -845,11 +845,11 @@ To reference custom font resources, the $rawfile mode is recommended. The resour
 
 [@ohos.font (Custom Font Registration)](../reference/apis-arkui/js-apis-font.md)
 
-## How does the \<Text> component load Unicode characters? (API version 10)
+## How does the Text component load Unicode characters? (API version 10)
 
 **Solution**
 
-Pass a string to the **content** parameter of the **\<Text>** component, with Unicode escape sequence in the string. The sample code is as follows:
+Pass a string to the **content** parameter of the **Text** component, with Unicode escape sequence in the string. The sample code is as follows:
 
 ```ts
 @Entry

@@ -1,6 +1,6 @@
 # DatePicker
 
-The **\<DatePicker>** component allows users to select a date from the given range.
+The **DatePicker** component allows users to select a date from the given range.
 
 >  **NOTE**
 >

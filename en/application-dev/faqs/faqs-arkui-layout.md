@@ -8,9 +8,9 @@
 When **position** is set for a container component, it is taken out of normal flow and works independently from the outer container. In this case, the height does not take effect. You can replace the outer container with a stack to solve this issue.
 
 
-## How do I implement horizontal scrolling on a \<Grid> component? (API version 9)
+## How do I implement horizontal scrolling on a Grid component? (API version 9)
 
-Set **rowsTemplate** (the number of rows) for the **\<Grid>** component and do not set **columnsTemplate** (the number of columns). In this way, the **\<Grid>** component scrolls horizontally when its content does not fit within its width.
+Set **rowsTemplate** (the number of rows) for the **Grid** component and do not set **columnsTemplate** (the number of columns). In this way, the **Grid** component scrolls horizontally when its content does not fit within its width.
 
 
 ## What should I do if the \<List> component cannot be dragged to the bottom when it is used with another component and does not have the size specified? (API version 9)
@@ -18,7 +18,7 @@ Set **rowsTemplate** (the number of rows) for the **\<Grid>** component and do n
 Add the **layoutWeight** attribute for the **\<List>** component so that it takes up the remaining height (or width, depending on the scrolling direction) adaptively. By default, the **\<List>** component, as a scrollable container, takes up the entire screen height. When it is used with any component whose height is fixed, you need to explicitly add the **layoutWeight** attribute for the **\<List>** component so that it takes up the remaining height instead of the entire screen height.
 
 
-## Can tab switching be disabled for the \<Tabs> component? (API version 9)
+## Can tab switching be disabled for the Tabs component? (API version 9)
 
 No. This feature is not supported.
 
@@ -54,7 +54,7 @@ You can use the **sticky** attribute of the **\<List>** component together with 
 
 **Solution**
 
-1. To display text with images, you can nest an **\<ImageSpan>** component in a **\<Text>** component or nest **\<Text>** and **\<Image>** components in a container component (such as **\<Row>** and **\<Colunm>**. The former is recommended.
+1. To display text with images, you can nest an **\<ImageSpan>** component in a **Text** component or nest **Text** and **\<Image>** components in a container component (such as **Row** and **\<Colunm>**. The former is recommended.
 
 2. If editing is needed, use the **\<RichEditor>** component.
 

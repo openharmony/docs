@@ -76,7 +76,7 @@ This is where **LazyForEach**, a lazy loading technique, comes in.
 
 - If LazyForEach is used for lazy loading, you are advised not to use stringify in the key generator function that uses LazyForEach for component reuse.
 
-Both **ForEach** and **LazyForEach** must be used in container components, such as **\<List>**, **\<Grid>**, and **\<Swiper>**, for rendering their children components that share the same layout. For more information about lazy loading, see [LazyForEach: Lazy Data Loading](../quick-start/arkts-rendering-control-lazyforeach.md).
+Both **ForEach** and **LazyForEach** must be used in container components, such as **\<List>**, **Grid**, and **Swiper**, for rendering their children components that share the same layout. For more information about lazy loading, see [LazyForEach: Lazy Data Loading](../quick-start/arkts-rendering-control-lazyforeach.md).
 
 As a bonus, the **LazyForEach** API provides the **cachedCount** attribute, which specifies the number of list items to be preloaded outside of the screen. For details, see [Caching](#caching).
 
@@ -356,7 +356,7 @@ Caching works only with **LazyForEach**, since **ForEach** loads all data at onc
 
 ### Example
 
-This example shows how to use the **cachedCount** attribute of a **\<List>** or **\<Grid>** component with **LazyForEach**. The application can adjust the number of off-screen preload items by adding the cachedCount parameter.   
+This example shows how to use the **cachedCount** attribute of a **\<List>** or **Grid** component with **LazyForEach**. The application can adjust the number of off-screen preload items by adding the cachedCount parameter.   
 
 ```ts
 build() {
@@ -627,7 +627,7 @@ As shown in the preceding case, selecting correct layout components not only rem
 
 ![](figures/list-perf-flat-layout.png)
 
-The system also provides more flat layout solutions, such as absolute positioning, customized layout, Grid, and GridRow, which are applicable to more different scenarios. For details, see [Official Document](../ui/Readme-CN.md).
+The system also provides more flat layout solutions, such as absolute positioning, customized layout, Grid, and GridRow, which are applicable to more different scenarios. For details, see [Official Document](../ui/Readme-EN.md).
 
 ## Summary
 

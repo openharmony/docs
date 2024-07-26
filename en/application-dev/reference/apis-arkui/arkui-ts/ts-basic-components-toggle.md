@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name| Type| Mandatory  | Description          |
 | ---- | ---------- | -----| -------------- |
 | type | [ToggleType](#toggletype) | Yes  | Type of the toggle.|
-| isOn | boolean    | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| isOn | boolean    | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 
 
 ## ToggleType

@@ -1,6 +1,6 @@
 # Button
 
-The **\<Button>** component can be used to create different types of buttons.
+The **Button** component can be used to create different types of buttons.
 
 >  **NOTE**
 >

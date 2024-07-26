@@ -35,17 +35,17 @@
 
 Focus navigation follows the set rules regardless of whether it is active or passive focus navigation. By default, these rules are defined by the focus system and subject to the container where focus is located.
 
-- Linear navigation: used in components where child components are arranged linearly, such as the **\<Flex>**, **\<Row>**, **\<Column>**, and **\<List>** components. The focus navigation direction is the same as the direction of the arrow keys.
+- Linear navigation: used in components where child components are arranged linearly, such as the **Flex**, **Row**, **Column**, and **\<List>** components. The focus navigation direction is the same as the direction of the arrow keys.
 
   **Figure 1** Linear navigation 
 
   ![en-us_image_0000001562700537](figures/en-us_image_0000001562700537.png)
 
-  For example, in the **\<Row>** container, you can use the left and right arrow keys (←/→) to move focus between two adjacent focusable components.
+  For example, in the **Row** container, you can use the left and right arrow keys (←/→) to move focus between two adjacent focusable components.
 
-- Cross navigation: used when the up (↑), down (↓), left (←), and right (→) arrow keys are pressed to move focus. The following figure shows a **\<Grid>** container where cross focus navigation is frequently seen.
+- Cross navigation: used when the up (↑), down (↓), left (←), and right (→) arrow keys are pressed to move focus. The following figure shows a **Grid** container where cross focus navigation is frequently seen.
 
-  **Figure 2** Cross focus navigation in the \<Grid> component 
+  **Figure 2** Cross focus navigation in the Grid component 
 
   ![en-us_image_0000001511740580](figures/en-us_image_0000001511740580.png)
 
@@ -188,11 +188,11 @@ focusable(value: boolean)
 
 Components can be classified into the following types based on their focusability:
 
-- Components that are focusable by default: These components are usually interactive components, such as **\<Button>**, **\<Checkbox>**, and **\<TextInput>**.
+- Components that are focusable by default: These components are usually interactive components, such as **Button**, **Checkbox**, and **\<TextInput>**.
 
-- Components that can be focused but are unfocusable by default: Typical examples are **\<Text>** and **\<Image>**. To enable them to be focusable, use the **focusable(true)** attribute.
+- Components that can be focused but are unfocusable by default: Typical examples are **Text** and **Image**. To enable them to be focusable, use the **focusable(true)** attribute.
 
-- Components that cannot be focused: These components usually do not allow for interactions and cannot be focused even if they use the **focusable** attribute. Examples are **\<Blank>** and **\<Circle>**.
+- Components that cannot be focused: These components usually do not allow for interactions and cannot be focused even if they use the **focusable** attribute. Examples are **Blank** and **\<Circle>**.
 
 
 >**NOTE**
@@ -378,15 +378,15 @@ The preceding example includes two parts: default focus and active navigation.
 
 - According to the definition of the default focus, after the application is opened, the first focusable element is focused by default.
 
-- As the **focusable** attribute is not set for the first **\<Text>** component, it cannot be focused.
+- As the **focusable** attribute is not set for the first **Text** component, it cannot be focused.
 
-- The **focusable** attribute of the second **\<Text>** component is explicitly set to **true**. In this case, the default focus is placed on the component.
+- The **focusable** attribute of the second **Text** component is explicitly set to **true**. In this case, the default focus is placed on the component.
 
 
 **Active navigation:**
 
 
-Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. According to the [rule for focusing on a container component](#rules-of-focus-navigation), the sequential Tab navigation follows the Z-shaped pattern; as such, the focus automatically moves to **Button1**.
+Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **Text** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **Text** component. Because the component immediately above is an unfocusable **Text** component, the system searches for the next focusable component, which is the **Row** container in this example. According to the [rule for focusing on a container component](#rules-of-focus-navigation), the sequential Tab navigation follows the Z-shaped pattern; as such, the focus automatically moves to **Button1**.
 
 
 ## Setting Default Focus
@@ -987,7 +987,7 @@ focusOnTouch(value: boolean)
 
 Sets whether a component is focusable on touch (touching or left-clicking). The parameter value type is boolean and the default value is **false**. The default value is **true** for input components: TextInput, TextArea, Search, and Web.
 
-By binding **focusOnTouch(true)** to a component whose default value is **false**, such as **\<Button>**, you enable the component to become focused on touch.
+By binding **focusOnTouch(true)** to a component whose default value is **false**, such as **Button**, you enable the component to become focused on touch.
 
 When **focusOnTouch(true)** is bound to a container and the container area is clicked, the first focusable component of the container is immediately focused.
 
@@ -1130,7 +1130,7 @@ struct RequestFocusExample {
 ![en-us_image_0000001562820905](figures/en-us_image_0000001562820905.gif)
 
 
-Interpretation: There are six **\<Button>** components on the page. **Focusable(false)** is set for Button-A, indicating that Button-A cannot be focused. In **onKeyEvent** of the external container, key events are listened. When A to F keys are pressed, the focus is requested for Buttons A to F. If you press N, the focus is requested the component whose ID does not exist on the current page.
+Interpretation: There are six **Button** components on the page. **Focusable(false)** is set for Button-A, indicating that Button-A cannot be focused. In **onKeyEvent** of the external container, key events are listened. When A to F keys are pressed, the focus is requested for Buttons A to F. If you press N, the focus is requested the component whose ID does not exist on the current page.
 
 
 1. Press the Tab key. Because the first component Button-A cannot be focused, the second component Button-B is focused by default, and Button-B is displayed in the focused state.

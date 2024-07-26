@@ -4,7 +4,7 @@ The **\<GridContainer>** component lays out components vertically. It is used on
 
 >  **NOTE**
 >
->  This component is deprecated since API version 9. You are advised to use **[\<GridCol>](ts-container-gridcol.md)** and **[\<GridRow>](ts-container-gridrow.md)** instead.
+>  This component is deprecated since API version 9. You are advised to use **[GridCol](ts-container-gridcol.md)** and **[\<GridRow>](ts-container-gridrow.md)** instead.
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 

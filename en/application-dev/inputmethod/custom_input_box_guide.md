@@ -16,7 +16,7 @@ You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inp
    }
    ```
 
-2. In the component, use the **\<Text>** component to show text in the text input box, and the **inputText** state variable to specify the text to display in the text input box.
+2. In the component, use the **Text** component to show text in the text input box, and the **inputText** state variable to specify the text to display in the text input box.
 
    ```ets
    import { inputMethod } from '@kit.IMEKit';

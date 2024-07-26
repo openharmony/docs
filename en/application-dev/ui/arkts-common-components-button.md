@@ -1,7 +1,7 @@
 # Button
 
 
-The **\<Button>** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **\<Button>** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
+The **Button** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **Button** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
 
 
 ## Creating a Button
@@ -151,7 +151,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 ## Adding Events
 
-The **\<Button>** component is usually used to trigger actions. You can bind the **onClick** event to the button to have it respond with custom behavior after being clicked.
+The **Button** component is usually used to trigger actions. You can bind the **onClick** event to the button to have it respond with custom behavior after being clicked.
 
 ```ts
 Button('Ok', { type: ButtonType.Normal, stateEffect: true }) 

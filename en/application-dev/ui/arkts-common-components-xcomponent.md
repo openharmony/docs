@@ -7,21 +7,21 @@ As a drawing component, the \<[XComponent](../reference/apis-arkui/arkui-ts/ts-b
 You can specify the **type** parameter to implement different features. Two options are mainly available for this parameter: **surface** and **component**.
 
 
-With the **\<XComponent>** of the **surface** type, you can pass data to the [NativeWindow](../graphics/native-window-guidelines.md) object independently owned by it to render the image.
+With the **XComponent** of the **surface** type, you can pass data to the [NativeWindow](../graphics/native-window-guidelines.md) object independently owned by it to render the image.
 
 
-With the **\<XComponent>** of the **component** type, you can dynamically load the displayed content.
+With the **XComponent** of the **component** type, you can dynamically load the displayed content.
 
 
 ## surface Type
 
-When the **\<XComponent>** is set to the **surface** type, you can write EGL/OpenGL ES and media data and display it on the **\<XComponent>**.
+When the **XComponent** is set to the **surface** type, you can write EGL/OpenGL ES and media data and display it on the **XComponent**.
 
-You can also have the **\<XComponent>** laid out and rendered together with other components.
+You can also have the **XComponent** laid out and rendered together with other components.
 
-The **\<XComponent>** has an independent **NativeWindow** object, which provides a native window for you to create the EGL/OpenGL ES environment on the native (C/C++) side and use the standard OpenGL ES for development.
+The **XComponent** has an independent **NativeWindow** object, which provides a native window for you to create the EGL/OpenGL ES environment on the native (C/C++) side and use the standard OpenGL ES for development.
 
-In addition, media-related applications (such as videos and cameras) can write data to the **NativeWindow** object provided by the **\<XComponent>** to present the corresponding image.
+In addition, media-related applications (such as videos and cameras) can write data to the **NativeWindow** object provided by the **XComponent** to present the corresponding image.
 
 
 ## Using EGL/OpenGL ES for Rendering
@@ -29,7 +29,7 @@ In addition, media-related applications (such as videos and cameras) can write d
 
 ### Key Points of Native Code Development
 
-Applications use native APIs to implement interactions between JS and C/C++ code. This is also the case with the **\<XComponent>**. For details, see [Using N-APIs in Application Projects](../napi/napi-guidelines.md).
+Applications use native APIs to implement interactions between JS and C/C++ code. This is also the case with the **XComponent**. For details, see [Using N-APIs in Application Projects](../napi/napi-guidelines.md).
 
 The type of the file for processing the JS logic on the native side is .so.
 
@@ -38,7 +38,7 @@ The type of the file for processing the JS logic on the native side is .so.
 - The .so file is named in the format of lib{moduleName}.so.
 
 
-In the scenario where the **\<XComponent>** is used for standard OpenGL ES development, the content of the **CMAKELists.txt** file is as follows:
+In the scenario where the **XComponent** is used for standard OpenGL ES development, the content of the **CMAKELists.txt** file is as follows:
 
 
 
@@ -57,7 +57,7 @@ add_library(nativerender SHARED
             xxx.cpp
             )
 
-# Search for related libraries (including OpenGL ES libraries and NDK APIs provided by the <XComponent>).
+# Search for related libraries (including OpenGL ES libraries and NDK APIs provided by the XComponent).
 find_library( EGL-lib
               EGL )
 
@@ -93,7 +93,7 @@ static napi_module nativerenderModule = {
     .nm_flags = 0,
     .nm_filename = nullptr,
     .nm_register_func = Init, // Specify the callback for when the corresponding module is loaded.
-    .nm_modname = "nativerender", // Specify the module name. For <XComponent>-related development, the name must be the same as the value of libraryname in the <XComponent> on ArkTS.
+    .nm_modname = "nativerender", // Specify the module name. For XComponent-related development, the name must be the same as the value of libraryname in the XComponent on ArkTS.
     .nm_priv = ((void*)0),
     .reserved = { 0 },
 };
@@ -108,7 +108,7 @@ extern "C" __attribute__((constructor)) void RegisterModule(void)
 
 ### Parsing the NativeXComponent Instance
 
-**NativeXComponent** provides an instance at the native layer for the **\<XComponent>**, which can be used as a bridge for binding with the **\<XComponent>** at the JS layer. The NDK APIs provided by the **\<XComponent>** depend on this instance. For details about the NDK APIs, see [Native XComponent](../reference/apis-arkui/_o_h___native_x_component.md).
+**NativeXComponent** provides an instance at the native layer for the **XComponent**, which can be used as a bridge for binding with the **XComponent** at the JS layer. The NDK APIs provided by the **XComponent** depend on this instance. For details about the NDK APIs, see [Native XComponent](../reference/apis-arkui/_o_h___native_x_component.md).
 
 
 The **NativeXComponent** instance can be obtained by parsing the callback (that is, the **Init** function in [NAPI module registration](#registering-the-n-api-module)) when the module is loaded.
@@ -159,7 +159,7 @@ Based on the NativeXComponent pointer obtained by [parsing the NativeXComponent 
 
 ### Creating the EGL/OpenGL ES Environment
 
-In the registered **OnSurfaceCreated** callback, you can obtain the handle to the native window (which is essentially the **NativeWindow** object independently owned by the **\<XComponent>**). Therefore, you can create the EGL/OpenGL ES environment for your application to start the development of the rendering logic.
+In the registered **OnSurfaceCreated** callback, you can obtain the handle to the native window (which is essentially the **NativeWindow** object independently owned by the **XComponent**). Therefore, you can create the EGL/OpenGL ES environment for your application to start the development of the rendering logic.
 
 
 ```c++
@@ -178,7 +178,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
 
 ### ArkTS Syntax
 
-You can use the **\<XComponent>** to develop EGL/OpenGL ES rendering by using the following code on the ArkTS side:
+You can use the **XComponent** to develop EGL/OpenGL ES rendering by using the following code on the ArkTS side:
 
 
 ```ts
@@ -187,11 +187,11 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   .onDestroy(() => {})
 ```
 
-- **id**: corresponds to an **\<XComponent>**. You are advised to set **id** to a unique value. Generally, you can use the **OH_NativeXComponent_GetXComponentId** API on the native side to obtain the corresponding ID and bind the corresponding **\<XComponent>**.
+- **id**: corresponds to an **XComponent**. You are advised to set **id** to a unique value. Generally, you can use the **OH_NativeXComponent_GetXComponentId** API on the native side to obtain the corresponding ID and bind the corresponding **XComponent**.
 
   >**NOTE**
   >
-  > Duplicate IDs make it difficult to identify a **\<XComponent>** on the native side.
+  > Duplicate IDs make it difficult to identify a **XComponent** on the native side.
 - **libraryname**: name of the loaded module, which must be the same as the value of **nm_modname** used when the Napi module is registered on the native side.
 
   >**NOTE**
@@ -204,12 +204,12 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   >   import nativerender from "libnativerender.so"
   >   ```
   >
-  >- Use the **\<XComponent>**.
+  >- Use the **XComponent**.
   >
-  >   While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **\<XComponent>**, by having the **NativeXComponent** instance of the **\<XComponent>** exposed to the native layer of the application when the dynamic library is loaded.
+  >   While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **XComponent**, by having the **NativeXComponent** instance of the **XComponent** exposed to the native layer of the application when the dynamic library is loaded.
 
 - **onLoad** event
-  - Trigger time: when the surface of the **\<XComponent>** is ready.
+  - Trigger time: when the surface of the **XComponent** is ready.
   - **context** parameter: where the native API exposed on the module is mounted. Its usage is similar to the usage of the **context2** instance obtained after the module is directly loaded using **import context2 from "libnativerender.so"**.
   - Time sequence: subject to the surface. The figure below shows the timing of the **onLoad** event and the **OnSurfaceCreated** event at the native layer.
 
@@ -217,20 +217,20 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 - **onDestroy** event
 
-  Trigger time: when the **\<XComponent>** is destroyed, in the same manner as that when an ArkUI component is destroyed. The figure below shows the timing of the **onDestroy** event and the **OnSurfaceDestroyed** event at the native layer.
+  Trigger time: when the **XComponent** is destroyed, in the same manner as that when an ArkUI component is destroyed. The figure below shows the timing of the **onDestroy** event and the **OnSurfaceDestroyed** event at the native layer.
 
   ![onDestroy](figures/onDestroy.png)
 
 
 ### Writing Media Data
 
-The **NativeWindow** object held by the **\<XComponent>** complies with the producer-consumer model.
+The **NativeWindow** object held by the **XComponent** complies with the producer-consumer model.
 
-Components that comply with the producer design, such as the Camera and AVPlayer components, can write data to the **NativeWindow** object held by the **\<XComponent>** and display the data through the **\<XComponent>**.
+Components that comply with the producer design, such as the Camera and AVPlayer components, can write data to the **NativeWindow** object held by the **XComponent** and display the data through the **XComponent**.
 
 ![picture-1](figures/picture-1.png)
 
-You can bind the **\<XComponent>** to the **XComponentController** to obtain the surface ID (**surfaceId**, which uniquely identifies a surface) and send it to the corresponding component API.
+You can bind the **XComponent** to the **XComponentController** to obtain the surface ID (**surfaceId**, which uniquely identifies a surface) and send it to the corresponding component API.
 
 
 ```ts
@@ -255,12 +255,12 @@ For details about component APIs, see [AVPlayer](../reference/apis-media-kit/js-
 
 ### component Type
 
-When the **\<XComponent>** is set to the **component** type, you can execute non-UI logic to dynamically load the displayed content.
+When the **XComponent** is set to the **component** type, you can execute non-UI logic to dynamically load the displayed content.
 
 
 >**NOTE**
 >
-> When **type** is set to **component**, the **\<XComponent>** functions as a container, where child components are laid out vertically.
+> When **type** is set to **component**, the **XComponent** functions as a container, where child components are laid out vertically.
 >
 > - Vertical alignment: [FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Start
 >

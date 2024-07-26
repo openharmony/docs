@@ -5,7 +5,7 @@
 
 A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. The list is applicable for presenting similar data types or data type sets, such as images and text. Some common lists seen in applications are the contacts list, playlist, and shopping list.
 
-You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
+You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
 
 
 ## Layout and Constraints
@@ -95,7 +95,7 @@ List() {
 
 The cross axis layout of the **\<List>** component can be set using the **lanes** and **alignListItem** attributes. The **lanes** attribute controls the number of list items along the cross axis, and the **alignListItem** attribute controls the alignment mode of child components along the cross axis.
 
-The lanes attribute of the **\<List>** component is useful in building a list that auto-adapts the numbers of rows or columns on devices of different sizes. Its value type is number or [LengthConstrain](../reference/arkui-ts/ts-types.md#lengthconstrain). If you are building a two-column vertical list shown on the right in Figure 2, set the **lanes** attribute to **2**. The default value of **lanes** is **1**.
+The lanes attribute of the **\<List>** component is useful in building a list that auto-adapts the numbers of rows or columns on devices of different sizes. Its value type is number or [LengthConstrain](../reference/apis-arkui/arkui-ts/ts-types.md#lengthconstrain). If you are building a two-column vertical list shown on the right in Figure 2, set the **lanes** attribute to **2**. The default value of **lanes** is **1**.
 
 
 ```ts
@@ -177,7 +177,7 @@ Each **\<ListItem>** component can contain only one root child component. Theref
 
 ![en-us_image_0000001511421328](figures/en-us_image_0000001511421328.png)
 
-As shown above, as a list item, each contact has a profile picture and a name. To present it, you can encapsulate **\<Image>** and **\<Text>** components into a **\<Row>** container.
+As shown above, as a list item, each contact has a profile picture and a name. To present it, you can encapsulate **Image** and **Text** components into a **Row** container.
 
 
 ```ts
@@ -336,7 +336,7 @@ When the total height (width) of list items exceeds the screen height (width), t
 
 ![en-us_image_0000001511740544](figures/en-us_image_0000001511740544.gif)
 
-When using the **\<List>** component, you can use the **scrollBar** attribute to control the display of the list scrollbar. The value type of **scrollBar** is [BarState](../reference/arkui-ts/ts-appendix-enums.md#barstate). When the value is **BarState.Auto**, the scrollbar is displayed as required: It is displayed when the scrollbar area is touched and becomes thicker when being dragged; it automatically disappears after 2 seconds of inactivity.
+When using the **\<List>** component, you can use the **scrollBar** attribute to control the display of the list scrollbar. The value type of **scrollBar** is [BarState](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#barstate). When the value is **BarState.Auto**, the scrollbar is displayed as required: It is displayed when the scrollbar area is touched and becomes thicker when being dragged; it automatically disappears after 2 seconds of inactivity.
 
 The default value of the **scrollBar attribute** is **BarState.Off** in API version 9 and earlier versions and **BarState.Auto** since API version 10.
 ```ts
@@ -483,7 +483,7 @@ In some cases you may want to control the scrolling position of a list. For exam
 
 ![en-us_image_0000001511900520](figures/en-us_image_0000001511900520.gif)
 
-When the **\<List>** component is initialized, you can use the **scroller** parameter to bind a [Scroller](../reference/arkui-ts/ts-container-scroll.md#scroller) object to control the scrolling of the list. In this example of a news page list, the **scrollToIndex** API of the **Scroller** object is used to scroll the list to the list item with the specified index. This allows the user to return to the top of the list by clicking a specific button.
+When the **\<List>** component is initialized, you can use the **scroller** parameter to bind a [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object to control the scrolling of the list. In this example of a news page list, the **scrollToIndex** API of the **Scroller** object is used to scroll the list to the list item with the specified index. This allows the user to return to the top of the list by clicking a specific button.
 
 To start with, create a **Scroller** object **listScroller**.
 
@@ -523,9 +523,9 @@ Another common example is a scrolling list working with a multi-level index bar,
 
 ![en-us_image_0000001563060769](figures/en-us_image_0000001563060769.gif)
 
-As shown above, when the contacts list scrolls from group A to B, the alphabetical index bar on the right also changes from A to B. This scenario can be implemented by listening for the **onScrollIndex** event of the **\<List>** component. The alphabet index bar is implemented using the [\<AlphabetIndexer>](../reference/arkui-ts/ts-container-alphabet-indexer.md) component.
+As shown above, when the contacts list scrolls from group A to B, the alphabetical index bar on the right also changes from A to B. This scenario can be implemented by listening for the **onScrollIndex** event of the **\<List>** component. The alphabet index bar is implemented using the [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) component.
 
-When the list scrolls, the **selectedIndex** value of the letter to highlight in the alphabet index bar is recalculated based on the **firstIndex** value of the item to which the list has scrolled. In the **\<AlphabetIndexer>** component, the index of the highlighted item is set through the **selected** attribute. When the value of **selectedIndex** changes, the **\<AlphabetIndexer>** component is re-rendered to highlight the corresponding letter.
+When the list scrolls, the **selectedIndex** value of the letter to highlight in the alphabet index bar is recalculated based on the **firstIndex** value of the item to which the list has scrolled. In the **AlphabetIndexer** component, the index of the highlighted item is set through the **selected** attribute. When the value of **selectedIndex** changes, the **AlphabetIndexer** component is re-rendered to highlight the corresponding letter.
 
 
 ```ts
@@ -565,7 +565,7 @@ Swipe menus are common in many applications. For example, a messaging applicatio
 
 ![en-us_image_0000001563060773](figures/en-us_image_0000001563060773.gif)
 
-The swipeAction attribute (../reference/arkui-ts/ts-container-listitem.md# attribute) of a list item can be used to implement the function of sliding a list item leftwards or rightwards. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
+The swipeAction attribute (../reference/apis-arkui/arkui-ts/ts-container-listitem.md# attribute) of a list item can be used to implement the function of sliding a list item leftwards or rightwards. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
 
 In the example of the message list, the **end** parameter is set to a custom delete button. In initialization of the **end** attribute, the index of the sliding list item is passed to the delete button. When the user touches the delete button, the data corresponding to the list item is deleted based on the index.
 
@@ -609,11 +609,11 @@ A badge is an intuitive, unobtrusive visual indicator to draw attention and conv
 
 ![en-us_image_0000001511580952](figures/en-us_image_0000001511580952.png)
 
-To add a badge, use the [\<Badge>](../reference/arkui-ts/ts-container-badge.md) component in **\<ListItem>**. The **\<Badge>** component is a container that can be attached to another component for tagging.
+To add a badge, use the [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) component in **\<ListItem>**. The **Badge** component is a container that can be attached to another component for tagging.
 
-In this example, when implementing the **\<Image>** component for presenting the profile picture of a list item, add it to **\<Badge>** as a child component.
+In this example, when implementing the **Image** component for presenting the profile picture of a list item, add it to **Badge** as a child component.
 
-In the **\<Badge>** component, the **count** and **position** parameters are used to set the number of notifications and the position to display the badge, respectively. You can also use the **style** parameter to spruce up the badge.
+In the **Badge** component, the **count** and **position** parameters are used to set the number of notifications and the position to display the badge, respectively. You can also use the **style** parameter to spruce up the badge.
 
 
 ```ts
@@ -632,7 +632,7 @@ ListItem() {
 
 ## Implementing Pull-Down-to-Refresh and Pull-Up-to-Load
 
-The pull-down-to-refresh and pull-up-to-load features are widely used in mobile applications, such as news applications. In effect, the implementation of these two features follows the same process: (1) As response to a [touch event](../reference/arkui-ts/ts-universal-events-touch.md), a refresh or load view is displayed at the top or bottom of the page; (2) when the refresh or load is complete, the refresh or load view is hidden.
+The pull-down-to-refresh and pull-up-to-load features are widely used in mobile applications, such as news applications. In effect, the implementation of these two features follows the same process: (1) As response to a [touch event](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md), a refresh or load view is displayed at the top or bottom of the page; (2) when the refresh or load is complete, the refresh or load view is hidden.
 
 The following describes the implementation of the pull-and-refresh feature:
 

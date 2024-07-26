@@ -6,7 +6,7 @@ Below you can see the process of adding a **WantAgent** object to a notification
 
 **Figure 1** Publishing a notification with a WantAgent object
 
-![notification-with-wantagent](figures/notification-with-wantagent.png)
+![notification-with-wantagent](figures/notification_wantagent.png)
 
 
 ## Available APIs
@@ -61,7 +61,7 @@ For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-
    };
    ```
 
-   Scenario 2: Create a [WantAgentInfo](../reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md) object for publishing a [common event](../application-models/common-event-overview.md).
+   Scenario 2: Create a [WantAgentInfo](../reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md) object for publishing a [common event](../basic-services/common-event/common-event-overview.md).
 
    ```typescript
    let wantAgentObj:WantAgent; // Save the created WantAgent object for completing the trigger operations at a later time.

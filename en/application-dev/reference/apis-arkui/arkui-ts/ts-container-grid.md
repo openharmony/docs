@@ -1,6 +1,6 @@
 # Grid
 
-The **\<Grid>** component consists of cells formed by rows and columns. You can specify the cells where items are located to form various layouts.
+The **Grid** component consists of cells formed by rows and columns. You can specify the cells where items are located to form various layouts.
 
 >  **NOTE**
 >
@@ -9,11 +9,11 @@ The **\<Grid>** component consists of cells formed by rows and columns. You can 
 
 ## Child Components
 
-The **\<Grid>** component accepts only **\<[GridItem](ts-container-griditem.md)>** as its child components.
+The **Grid** component accepts only **\<[GridItem](ts-container-griditem.md)>** as its child components.
 
 >  **NOTE**
 >
->  Below are the rules for calculating the indexes of the child components of **\<Grid>**:
+>  Below are the rules for calculating the indexes of the child components of **Grid**:
 >
 >  The index increases in ascending order of child components.
 >
@@ -39,7 +39,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 | Name  | Type                                   | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [\<Grid>](ts-container-grid.md), or [\<Scroll>](ts-container-scroll.md).|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [Grid](ts-container-grid.md), or [Scroll](ts-container-scroll.md).|
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | No| Layout options of a scrolling grid.|
 
 ## GridLayoutOptions<sup>10+</sup>
@@ -105,11 +105,11 @@ If this attribute is set to **'0fr'**, the row width is 0, and grid item in the 
 
 >  **NOTE**
 >
->  Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **\<Grid>** component supports the following layout modes:
+>  Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **Grid** component supports the following layout modes:
 >
 >  1. **rowsTemplate** and **columnsTemplate** are both set
 >
->  - The **\<Grid>** component displays only elements in a fixed number of rows and columns and cannot be scrolled.
+>  - The **Grid** component displays only elements in a fixed number of rows and columns and cannot be scrolled.
 >  - In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
 >  - If the width and height of a grid are not set, the grid adapts to the size of its parent component by default.
 >  - The size of the grid rows and columns is the size of the grid content area minus the gap between rows and columns. It is allocated based on the proportion of each row and column.
@@ -117,7 +117,7 @@ If this attribute is set to **'0fr'**, the row width is 0, and grid item in the 
 >
 >  2. Either **rowsTemplate** or **columnsTemplate** is set
 >
->  - The **\<Grid>** component arranges elements in the specified direction and allows for scrolling to display excess elements.
+>  - The **Grid** component arranges elements in the specified direction and allows for scrolling to display excess elements.
 >  - If **columnsTemplate** is set, the component scrolls vertically, the main axis runs vertically, and the cross axis runs horizontally.
 >  - If **rowsTemplate** is set, the component scrolls horizontally, the main axis runs horizontally, and the cross axis runs vertically.
 >  - In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
@@ -126,7 +126,7 @@ If this attribute is set to **'0fr'**, the row width is 0, and grid item in the 
 >
 >  3. Neither **rowsTemplate** nor **columnsTemplate** is set
 >
->  - The **\<Grid>** component arranges elements in the direction specified by **layoutDirection**. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**.
+>  - The **Grid** component arranges elements in the direction specified by **layoutDirection**. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**.
 >  - The number of rows is jointly determined by the grid height, height of the first element, **cellLength**, and **rowsGap**. Elements outside the determined range of rows and columns are not displayed and cannot be viewed through scrolling.
 >  - In this mode, only the following attributes take effect: **layoutDirection**, **maxCount**, **minCount**, **cellLength**, **editMode**, **columnsGap**, and **rowsGap**.
 >  - When **layoutDirection** is set to **Row**, child components are arranged from left to right. When a row is full, a new row will be added. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
@@ -225,7 +225,7 @@ Grid items that exceed the display and cache range are released.
 
 editMode(value: boolean)
 
-Sets whether to enable edit mode. In edit mode, the user can drag the [grid items](ts-container-griditem.md) in the **\<Grid>** component.
+Sets whether to enable edit mode. In edit mode, the user can drag the [grid items](ts-container-griditem.md) in the **Grid** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -390,11 +390,11 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices|
 
-Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **\<Grid>** component supports the following layout modes:
+Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **Grid** component supports the following layout modes:
 
 1. **rowsTemplate** and **columnsTemplate** are both set
 
-- The **\<Grid>** component displays only elements in a fixed number of rows and columns and cannot be scrolled.
+- The **Grid** component displays only elements in a fixed number of rows and columns and cannot be scrolled.
 - In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
 - If the width and height of a grid are not set, the grid adapts to the size of its parent component by default.
 - The size of the grid rows and columns is the size of the grid content area minus the gap between rows and columns. It is allocated based on the proportion of each row and column.
@@ -402,7 +402,7 @@ Depending on the settings of the **rowsTemplate** and **columnsTemplate** attrib
 
 2. Either **rowsTemplate** or **columnsTemplate** is set
 
-- The **\<Grid>** component arranges elements in the specified direction and allows for scrolling to display excess elements.
+- The **Grid** component arranges elements in the specified direction and allows for scrolling to display excess elements.
 - If **columnsTemplate** is set, the component scrolls vertically, the main axis runs vertically, and the cross axis runs horizontally.
 - If **rowsTemplate** is set, the component scrolls horizontally, the main axis runs horizontally, and the cross axis runs vertically.
 - In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
@@ -411,7 +411,7 @@ Depending on the settings of the **rowsTemplate** and **columnsTemplate** attrib
 
 3. Neither **rowsTemplate** nor **columnsTemplate** is set
 
-- The **\<Grid>** component arranges elements in the direction specified by **layoutDirection**. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**.
+- The **Grid** component arranges elements in the direction specified by **layoutDirection**. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**.
 - The number of rows is jointly determined by the grid height, height of the first element, **cellLength**, and **rowsGap**. Elements outside the determined range of rows and columns are not displayed and cannot be viewed through scrolling.
 - In this mode, only the following attributes take effect: **layoutDirection**, **maxCount**, **minCount**, **cellLength**, **editMode**, **columnsGap**, and **rowsGap**.
 - When **layoutDirection** is set to **Row**, child components are arranged from left to right. When a row is full, a new row will be added. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
@@ -442,7 +442,7 @@ Sets the maximum starting fling speed when the fling animation starts. The unit 
 
 > **NOTE**
 >
-> The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **\<Grid>** component.
+> The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **Grid** component.
 
 ## Events
 

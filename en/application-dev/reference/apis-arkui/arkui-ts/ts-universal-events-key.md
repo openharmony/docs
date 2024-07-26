@@ -1,6 +1,6 @@
 # Key Event
 
-A key event is triggered when a focusable component, such as **\<Button>**, interacts with a keyboard, remote control, or any other input device with keys. To use a key event for components that are not focusable by default, such as **\<Text>** and **\<Image>**, first set their **focusable** attribute to **true**.
+A key event is triggered when a focusable component, such as **Button**, interacts with a keyboard, remote control, or any other input device with keys. To use a key event for components that are not focusable by default, such as **Text** and **Image**, first set their **focusable** attribute to **true**.
 For details about the process and specific timing of the key event triggering, see [Key Event Data Flow](../../../ui/arkts-common-events-device-input-event.md#key-event-data-flow).
 
 >  **NOTE**
