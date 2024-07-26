@@ -684,9 +684,13 @@ Popup（气泡组件）UX样式不符合规范
 1、按钮与文本左侧没有对齐
 2、按钮上方与文本下方间距不足8vp
 
+![advanced_popup_before](figures/advanced_popup_before.png) 
+
 变更后：
 1、按钮与文本左侧对齐
 2、按钮上方与文本下方间距8vp
+
+![advanced_popup_after](figures/advanced_popup_after.png) 
 
 **起始API Level**
 
