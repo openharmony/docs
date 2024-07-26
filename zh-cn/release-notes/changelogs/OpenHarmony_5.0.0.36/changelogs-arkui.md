@@ -15,7 +15,7 @@
 变更后：在显示范围上方增删节点，显示范围不变
 
 下表显示在显示范围上方增加一个节点时变更前后的效果对比：
-| 增加节点前|变更前：N4显示到原N5的位置 | 变更后：N5位置不变 |
+| 增加节点前|变更前：图7显示到原图8的位置 | 变更后：图8位置不变 |
 | --- |--- | --- |
 |![waterflow](figures/waterflow.png) |![waterflow-before](figures/waterflow-before.png) |![waterflow-after](figures/waterflow-after.png)  |
 
