@@ -9,19 +9,19 @@
 
 **变更原因**
 
-插入SIM卡时未能获取到正确的mcc目录资源，影响开发者差异化定制资源
+插入SIM卡时未能获取到正确的mcc目录资源，影响开发者差异化定制资源。
 
 **变更影响**
 
 该变更为不兼容性变更。
 
-变更前：应用配置了mcc目录等差异化资源，插sim卡显示的是默认语言目录下资源，未插sim卡显示的是mcc目录下资源
+变更前：应用配置了mcc目录等差异化资源，插sim卡显示的是默认语言目录下资源，未插sim卡显示的是mcc目录下资源。
 
-如：插卡时会显示WI-FI字串，不插卡时会显示WLAN字串
+如：插卡时会显示WI-FI字串，不插卡时会显示WLAN字串。
 
-变更后：插sim卡显示的是mcc目录下资源，未插sim卡显示的是默认语言目录下资源
+变更后：插sim卡显示的是mcc目录下资源，未插sim卡显示的是默认语言目录下资源。
 
-如：插卡时会显示WLAN字串，不插卡时会显示WI-FI字串
+如：插卡时会显示WLAN字串，不插卡时会显示WI-FI字串。
 
 **变更发生版本**
 
@@ -33,7 +33,7 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 **适配指导**
 
-变更前如果有在默认语言目录配置WLAN字串，mcc目录配置WI-FI字串，变更后需要适配将WLAN字串配置在mcc目录，WI-FI字串配置在默认语言目录
+变更前开发者如果有在默认语言目录配置WLAN字串，mcc目录配置WI-FI字串，变更后需要适配将WLAN字串配置在mcc目录，WI-FI字串配置在默认语言目录。
 
 ## cl.golbal.2 raw_file模块接口废弃
 
@@ -43,13 +43,13 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 **废弃原因**
 
-接口中使用了引用参数，影响接口在C语言环境下正常使用
+接口中使用了引用参数，影响接口在C语言环境下正常使用。
 
 **废弃影响**
 
 该变更为不兼容变更
 
-  1.若变更前开发者引用了string库函数，且未手动引入string库头文件，则会出现编译不过的问题
+  1.若变更前开发者引用了string库函数，且未手动引入string库头文件，则会出现编译不过的问题。
 
   2.变更前开发者使用了 OH_ResourceManager_GetRawFileDescriptor 和OH_ResourceManager_ReleaseRawFileDescriptor 接口，变更后则需要适配新的接口。
 
@@ -70,7 +70,7 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 1.若开发者在变更前引用了string库函数，且未手动引入string库头文件依赖raw_file.h头文件，可以通过引入#include 解决。
 
-2.变更后则需要适配新的接口，调用新接口 OH_ResourceManager_GetRawFileDescriptorData 获取rawfile文件描述符来读取rawfile文件内容，调用新接口 OH_ResourceManager_ReleaseRawFileDescriptorData 来释放已获取到的rawfile文件描述符
+2.变更后则需要适配新的接口，调用新接口 OH_ResourceManager_GetRawFileDescriptorData 获取rawfile文件描述符来读取rawfile文件内容，调用新接口 OH_ResourceManager_ReleaseRawFileDescriptorData 来释放已获取到的rawfile文件描述符。
 
 ## cl.golbal.3 ohresmgr模块接口废弃
 
@@ -80,13 +80,13 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 **废弃原因**
 
-接口中使用了可选参数，影响接口在c语言环境下正常使用
+接口中使用了可选参数，影响接口在c语言环境下正常使用。
 
 **废弃影响**
 
 该变更为兼容变更
 
-接口已废弃不推荐使用，推荐适配使用新接口
+接口已废弃不推荐使用，推荐适配使用新接口。
 
 
 **废弃发生的版本**
