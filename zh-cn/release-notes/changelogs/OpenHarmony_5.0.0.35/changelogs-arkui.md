@@ -157,6 +157,8 @@ Menu组件。
 
 变更后：竖屏时菜单默认避让挖孔；横屏时，应用配置开启避让手机挖孔，菜单会避让挖孔。
 
+![menu_avoid_cutout](figures/menu_avoid_cutout.png) 
+
 **起始API Level**
 
 Menu组件的BindMenu接口 API 7
@@ -364,7 +366,7 @@ Menu组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.7 menu、toast修改阴影参数
+## cl.arkui.10 menu、toast修改阴影参数
 **访问级别**
 
 公开接口
@@ -560,6 +562,43 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.13 MenuItem组件禁用状态下字体颜色变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+MenuItem设置enable为false时, 组件将处于禁用状态，此时字体颜色为默认的灰色，开发者设置的字体颜色将不会生效。
+
+**变更影响**
+
+该变更为不兼容变更
+
+变更前：MenuItem设置enable为false时，无论开发者是否设置字体颜色，组件禁用状态下的字体颜色均为默认字体颜色 * 不透明度40%。
+
+变更后：MenuItem设置enable为false时，若开发者未设置字体颜色，则组件禁用状态下的字体颜色为默认字体颜色 * 不透明度40%；若开发者设置了字体颜色，则组件禁用状态下的字体颜色为自定义字体颜色 * 不透明度40%；
+
+![menuItem_disable](figures/menuItem_disable.png) 
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+MenuItem组件。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
 ##dragInteraction.on('drag')、dragInteraction.off('drag') 接口权限变更
 
 **访问级别**
