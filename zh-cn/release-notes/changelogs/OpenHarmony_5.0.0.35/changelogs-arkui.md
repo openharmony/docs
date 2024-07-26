@@ -737,3 +737,75 @@ Scroll、List、Grid、WaterFlow组件scrollBarColor接口
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.18 自定义MenuItem的onChange触发逻辑变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+基于CustomBuilder创建的MenuItem，无法触发onChange事件。变更后事件触发符合预期。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：基于CustomBuilder创建的MenuItem，无法触发onChange事件。
+
+变更后：基于CustomBuilder创建的MenuItem，正常触发onChange事件。
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+MenuItem组件。
+
+**适配指导**
+
+默认行为变更，无需适配。注意，由于此前基于CustomBuilder创建的MenuItem，设置onChange不生效，变更后请按应用场景正确使用onChange。
+
+## cl.arkui.19 手机横屏及其他设备，上下文菜单placement变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+手机横屏及其他设备场景，布局计算未按照用户设置的placement进行，导致显示异常。变更后布局效果符合预期。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：手机横屏及其他设备，布局计算基于默认的Placement.BOTTOM_RIGHT进行，导致上下文菜单大小、位置异常。
+
+变更后：手机横屏及其他设备，布局计算基于用户设置的placement进行，当用户未设置placement时，使用默认的Placement.BOTTOM_RIGHT进行，最终布局效果符合预期。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![变更前布局位置异常](figures/placement_before.PNG)       |  ![变更前布局符合预期](figures/placement_after.PNG) |
+
+**起始API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+.bindContextMenu的placement属性。
+
+**适配指导**
+
+默认行为变更，无需适配。
