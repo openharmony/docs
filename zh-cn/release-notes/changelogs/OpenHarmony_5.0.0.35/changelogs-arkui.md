@@ -503,6 +503,10 @@ struct Index {
 
 变更后：占位文本样式属性或其内部其他属性设为异常值时，按组件默认占位文本样式/对应属性默认样式生效。
 
+**起始API Level**
+
+12
+
 **变更发生版本**
 
 从OpenHarmony SDK 5.0.0.35 版本开始。
@@ -564,11 +568,11 @@ struct Index {
 
 **变更原因**
 
-根据安全要求规范，将该文件的所有系统接口函数添加接口权限校验。
+根据安全要求规范，将dragInteraction.on('drag')和dragInteraction.off('drag')接口函数添加接口权限校验。
 
 **变更影响**
 
-该变更为不兼容性变更，非系统应用调用dragInteraction.on('drag')和dragInteraction.off('drag')接口会抛出202错误码。
+该变更为不兼容性变更，非系统应用不能调用dragInteraction.on('drag')和dragInteraction.off('drag')接口。
 
 **起始API Level**
 
@@ -580,10 +584,8 @@ struct Index {
 
 **变更的接口**
 
-| 接口声明 | 变更前 | 变更后 |
-| ------------------------------------------------------------ | --------- | ------ |
-| on(type: 'drag', callback: Callback\<DragState>): void       | 不抛出202错误码 | 抛出202错误码 |
-| off(type: 'drag', callback?: Callback\<DragState>): void     | 不抛出202错误码 | 抛出202错误码 |
+on(type: 'drag', callback: Callback\<DragState>): void；
+off(type: 'drag', callback?: Callback\<DragState>): void；
 
 **适配指导**
 
