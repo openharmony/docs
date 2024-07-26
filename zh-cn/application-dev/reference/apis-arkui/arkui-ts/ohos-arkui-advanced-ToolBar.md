@@ -72,7 +72,7 @@ ToolBarModifier提供设置工具栏高度(height)、背景色(backgroundColor)�
 
 ### backgroundColor
 
-backgroundColor?(color: ResourceColor): ToolBarModifier
+backgroundColor?(backgroundColor: ResourceColor): ToolBarModifier
 
 自定义绘制工具栏背景色的接口，若重载该方法则可进行工具栏背景色的自定义绘制。
 
