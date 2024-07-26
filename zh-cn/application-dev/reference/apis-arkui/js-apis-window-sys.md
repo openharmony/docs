@@ -2998,7 +2998,7 @@ export class myWindowMgr extends ServiceExtensionAbility {
                 ctx: this.context
             }
             let win = await window.createWindow(config);
-            await win.setUIContent("pages/serch);
+            await win.setUIContent('pages/serch');
             await win.setWindowTouchable(true);
             win.enableDrag(true).then(() => {
                 console.log('enableDrag successfully');
