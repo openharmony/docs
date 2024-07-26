@@ -450,10 +450,11 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称           | 值   | 说明       |
-| -------------- | ---- | ---------- |
-| MEDIA_TYPE_AUD | 0    | 表示音频。 |
-| MEDIA_TYPE_VID | 1    | 表示视频。 |
+| 名称           | 值                    | 说明                 |
+| -------------- | --------------------- | ------------------- |
+| MEDIA_TYPE_AUD | 0                     | 表示音频。 <br> **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。           |
+| MEDIA_TYPE_VID | 1                     | 表示视频。  <br> **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。          |
+| MEDIA_TYPE_SUBTITLE<sup>12+</sup> | 2    | 表示字幕。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 
 ## CodecMimeType<sup>8+</sup>
 
@@ -779,9 +780,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
-    console.info('Succeeded in preparing');
-  } else {
     console.error('Failed to prepare,error message is :' + err.message)
+  } else {
+    console.info('Succeeded in preparing');
   }
 })
 ```
@@ -854,9 +855,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err) {
-    console.info('Succeeded in playing');
-  } else {
     console.error('Failed to play,error message is :' + err.message)
+  } else {
+    console.info('Succeeded in playing');
   }
 })
 ```
