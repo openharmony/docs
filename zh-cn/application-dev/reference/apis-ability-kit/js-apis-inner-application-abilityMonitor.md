@@ -26,13 +26,13 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 | ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
 | abilityName                                                  | string   | 否   | 否   | 当前AbilityMonitor绑定的ability名称。 |
 | moduleName                                                  | string   | 否   | 是   | 当前AbilityMonitor绑定的模块名称。 |
-| onAbilityCreate | (data: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability被启动初始化时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onAbilityForeground | (data: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability状态变成前台时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onAbilityBackground | (data: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability状态变成后台时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onAbilityDestroy | (data: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability被销毁前的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onWindowStageCreate | (data: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被创建时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onWindowStageRestore | (data: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被重载时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onWindowStageDestroy | (data: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被销毁前的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
+| onAbilityCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability被启动初始化时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
+| onAbilityForeground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability状态变成前台时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
+| onAbilityBackground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability状态变成后台时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
+| onAbilityDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability被销毁前的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
+| onWindowStageCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被创建时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
+| onWindowStageRestore | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被重载时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
+| onWindowStageDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被销毁前的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
 
 **示例：**
 

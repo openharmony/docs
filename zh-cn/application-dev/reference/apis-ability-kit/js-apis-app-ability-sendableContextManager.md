@@ -33,9 +33,11 @@ import { sendableContextManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 说明 |
-| ------- | ------- | ------- |
-| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | SendableContext二级模块。 |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | 是 | SendableContext二级模块。 |
 
 **示例：**
 
@@ -52,6 +54,8 @@ convertFromContext(context: common.Context): SendableContext;
 将Context转换为SendableContext对象。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -110,6 +114,8 @@ convertToContext(sendableContext: SendableContext): common.Context
 将SendableContext对象转换为Context。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -214,6 +220,8 @@ convertToApplicationContext(sendableContext: SendableContext): common.Applicatio
 将SendableContext对象转换为ApplicationContext。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -320,6 +328,8 @@ convertToAbilityStageContext(sendableContext: SendableContext): common.AbilitySt
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -338,7 +348,7 @@ convertToAbilityStageContext(sendableContext: SendableContext): common.AbilitySt
 
 主线程传递Context：
 ```ts
-import { AbilityStage, Want, common, sendableContextManager } from '@kit.AbilityKit';
+import { UIAbility, sendableContextManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { worker } from '@kit.ArkTS';
 
@@ -422,6 +432,8 @@ convertToUIAbilityContext(sendableContext: SendableContext): common.UIAbilityCon
 将SendableContext对象转换为UIAbilityContext。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
