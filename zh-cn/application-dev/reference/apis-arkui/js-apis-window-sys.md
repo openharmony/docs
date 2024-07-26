@@ -3002,24 +3002,13 @@ export class myWindowMgr extends ServiceExtensionAbility {
             await win.setWindowTouchable(true);
             win.enableDrag(true).then(() => {
                 console.log('enableDrag successfully');
-            }).catch((err: BussinessError) => {
+            }).catch((err: BusinessError) => {
                 console.error('enableDrag: ' + err.code + ',message:' + err.message);
             });
         } catch (err) {
             console.log('createWindow err: ' + err.code + ',message:' + err.message);
         }
     }
-}
-
-try {
-    windowClass.setWindowTouchable(true);
-    windowClass.enableDrag(true).then(() => {
-        console.log('enableDrag successful.');
-    }).catch((err: BusinessError) => {
-        console.error('enableDrag catch error:' + err.code + ',message:' + err.message);
-    );
-} catch(exception) {
-    console.error(`Failed to enable window dragging. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
