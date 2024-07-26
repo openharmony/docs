@@ -14,8 +14,6 @@ The value returned by each **update** and **doFinal** must be checked. If the re
 
 Example: [Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)
 
-Example: [Encryption and Decryption by Segment with an SM4 Symmetric Key (GCM Mode)](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md)
-
 ## Asymmetric Encryption and Decryption
 
 Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) and [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in and encrypt/decrypt the data of an asymmetric key pair by segment.

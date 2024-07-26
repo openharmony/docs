@@ -30,20 +30,29 @@ The following table describes the related APIs.
 
 ### Writing Data to the Client
 1. Import the **socket** module.
+
 2. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
+
 3. Enable Bluetooth on the device.
+
 4. Creates a server socket. If the operation is successful, **serverId** is returned.
+
 5. Create a communication channel between the server socket and the client socket. If the operation is successful, **clientId** is returned.
+
 6. Write data to the client.
+
 7. (Optional) Subscribe to the data written by the client.
+
 8. Close the server socket.
+
 9. Close the client socket.
+
 Example:
-
-    ```ts
+   
+   ```ts
     import { socket } from '@kit.ConnectivityKit';
-    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-
+ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+   
     // Create a server listening socket. serverId is returned if the socket is created.
     let serverNumber = -1;
     let sppOption: socket.SppOptions = {
@@ -59,8 +68,8 @@ Example:
         serverNumber = serverSocketID;
         console.info('sppListen success, serverNumber = ' + serverNumber);
       }
-    });
-
+ });
+   
     // Establish a connection between the server socket and client socket. If the connection is successful, clientId is returned.
     let clientNumber = -1;
     socket.sppAccept(serverNumber, (code, clientSocketID) => {
@@ -72,8 +81,8 @@ Example:
         console.info('accept the client success');
       }
     })
-    console.info('waiting for client connection');
-
+ console.info('waiting for client connection');
+   
     // Write data to the client.
     let array = new Uint8Array(990);
     array[0] = 'A'.charCodeAt(0);
@@ -81,8 +90,8 @@ Example:
     array[2] = 'C'.charCodeAt(0);
     array[3] = 'D'.charCodeAt(0);
     socket.sppWrite(clientNumber, array.buffer);
-    console.info('sppWrite success');
-
+ console.info('sppWrite success');
+   
     // Subscribe to the read request event.
     socket.on('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
       const data = new Uint8Array(dataBuffer);
@@ -91,8 +100,8 @@ Example:
       } else {
         console.error('sppRead error, data is null');
       }
-    });
-
+ });
+   
     // Unsubscribe from the read request event.
     socket.off('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
       const data = new Uint8Array(dataBuffer);
@@ -101,34 +110,39 @@ Example:
       } else {
         console.error('offSppRead error, data is null');
       }
-    });
-
+ });
+   
     // Close the server socket.
     socket.sppCloseServerSocket(serverNumber);
-    console.info('sppCloseServerSocket success');
-
+ console.info('sppCloseServerSocket success');
+   
     // Close the client socket.
     socket.sppCloseClientSocket(clientNumber);
     console.info('sppCloseClientSocket success');
-    ```
+   ```
 
 For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 ### Connecting to the Peer Device over a Socket
 1. Import the **socket** module.
+
 2. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
+
 3. Enable Bluetooth on the device.
+
 4. Start Bluetooth scanning to obtain the MAC address of the peer device.
+
 5. Connect to the peer device.
+
 Example:
-
-    ```ts
+   
+   ```ts
     import { socket } from '@kit.ConnectivityKit';
-    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-
+ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+   
     // Start Bluetooth scanning to obtain the MAC address of the peer device.
-    let deviceId = 'xx:xx:xx:xx:xx:xx';
-
+ let deviceId = 'xx:xx:xx:xx:xx:xx';
+   
     // Connect to the peer device.
     socket.sppConnect(deviceId, {
       uuid: '00001101-0000-1000-8000-00805f9b34fb',
@@ -141,6 +155,6 @@ Example:
       }
       console.info('sppConnect success, socketId = ' + socketID);
     })
-    ```
+   ```
 
 For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

@@ -14,14 +14,14 @@ No matter whether the foreground mode or background mode is used, the NFC servic
 
 ## Available APIs
 
-For details about the JS APIs and sample code, [NFC Card Emulation](../../reference/apis-connectivity-kit/js-apis-cardEmulation.md).
+For details about the JS APIs and sample code, see [NFC Card Emulation](../../reference/apis-connectivity-kit/js-apis-cardEmulation.md).
 
 The following table describes the APIs for implementing HCE.
 
 | API                            | Description                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | start(elementName: ElementName, aidList: string[]): void                   | Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.                                                              |
-| stop(elementName: ElementName): void  | Stops HCE, including canceling the subscription of APDU data, exiting this application from the foreground, and releasing the dynamically registered AID list.| 
+| stop(elementName: ElementName): void  | Stops HCE, including canceling the subscription of APDU data, exiting this application from the foreground, and releasing the dynamically registered AID list.|
 | on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void                | Registers a callback to receive APDUs from the peer card reader.|
 | transmit(response: number[]): Promise\<void>                  | Transmits APDU data to the peer card reader.|
 
@@ -55,7 +55,7 @@ The following table describes the APIs for implementing HCE.
             "actions": [
               "action.system.home",
 
-              // Add the nfc card emulation action to filter out for this application.
+              // Add the NFC card emulation action to filter for this application.
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
             ]
           }
@@ -64,7 +64,7 @@ The following table describes the APIs for implementing HCE.
     ],
     "requestPermissions": [
       {
-        // Add the permission for nfc card emulation.
+        // Add the permission for NFC card emulation.
         "name": "ohos.permission.NFC_CARD_EMULATION",
         "reason": "$string:app_name",
       }
@@ -87,9 +87,9 @@ const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceComman
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
       return;
     }
-    // check the command, then transmit the response.
+    // Check the command, and then transmit the response.
     hilog.info(0x0000, 'testTag', 'hceCommand = %{public}s', JSON.stringify(hceCommand));
-    let responseData = [0x90, 0x00]; // change the response depend on different received command.
+    let responseData = [0x90, 0x00]; // Change the response based on the received command.
     hceService.transmit(responseData).then(() => {
       hilog.info(0x0000, 'testTag', 'hceService transmit Promise success.');
     }).catch((err: BusinessError) => {
@@ -181,7 +181,7 @@ export default class EntryAbility extends UIAbility {
             "actions": [
               "action.system.home",
 
-              // Add the nfc card emulation action to filter out for this application.
+              // Add the NFC card emulation action to filter for this application.
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
             ]
           }
@@ -189,18 +189,18 @@ export default class EntryAbility extends UIAbility {
         "metadata": [
           {
             "name": "payment-aid",
-            "value": "A0000000031010" // change it tobe correct
+            "value": "A0000000031010" // Change it to match your case.
           },
           {
             "name": "other-aid",
-            "value": "A0000000031011" // change it tobe correct
+            "value": "A0000000031011" // Change it to match your case.
           }
         ]
       }
     ],
     "requestPermissions": [
       {
-        // Add the permission for nfc card emulation.
+        // Add the permission for NFC card emulation.
         "name": "ohos.permission.NFC_CARD_EMULATION",
         "reason": "$string:app_name",
       }
@@ -224,7 +224,7 @@ const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceComman
       return;
     }
 
-    // check the command, then transmit the response.
+    // Check the command, and then transmit the response.
     hilog.info(0x0000, 'testTag', 'hceCommand = %{public}s', JSON.stringify(hceCommand));
     let responseData = [0x90, 0x00]; // change the response depend on different received command.
     hceService.transmit(responseData).then(() => {

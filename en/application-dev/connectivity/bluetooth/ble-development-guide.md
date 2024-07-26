@@ -32,21 +32,26 @@ The following table describes the related APIs.
 
 ### Starting and Stopping BLE Advertising
 1. Import the **ble** module.
+
 2. Enable Bluetooth on the device.
+
 3. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
+
 4. Start BLE advertising. The peer device scans the advertisement.
+
 5. Stop BLE advertising.
+
 Example:
 
-    ```ts
+   ```ts
     import { ble } from '@kit.ConnectivityKit';
-    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-
-    const TAG: string = 'BleAdvertisingManager';
-
+ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+   
+ const TAG: string = 'BleAdvertisingManager';
+   
     export class BleAdvertisingManager {
-      private advHandle: number = 0xFF; // default invalid value
-
+   private advHandle: number = 0xFF; // default invalid value
+   
       // 1. Subscribe to BLE advertising state changes.
       public onAdvertisingStateChange() {
         try {
@@ -57,8 +62,8 @@ Example:
         } catch (err) {
           console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         }
-      }
-
+   }
+   
       // 2. Start BLE advertising the first time.
       public async startAdvertising() {
         // 2.1 Set BLE advertising parameters.
@@ -103,8 +108,8 @@ Example:
           advertisingData: advData,
           advertisingResponse: advResponse,
           duration: 0 // This parameter is optional. If the value is greater than 0, the advertising stops temporarily after a period of time. You can restart it as required.
-        }
-
+     }
+   
         // 2.4 Start BLE advertising the first time. The ID of the BLE advertising is returned.
         try {
           this.onAdvertisingStateChange();
@@ -112,8 +117,8 @@ Example:
         } catch (err) {
           console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         }
-      }
-
+   }
+   
       // 4. Disable the BLE advertising temporarily. The advertising resources still exist.
       public async disableAdvertising() {
         // 4.1 Construct parameters for temporarily disabling the BLE advertising.
@@ -126,8 +131,8 @@ Example:
         } catch (err) {
           console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         }
-      }
-
+   }
+   
       // 5. Enable the BLE advertising again.
       public async enableAdvertising(enableDuration: number) {
         // 5.1 Construct the parameters for temporarily enabling the advertising.
@@ -141,8 +146,8 @@ Example:
         } catch (err) {
           console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         }
-      }
-
+   }
+   
       // 6. Stop BLE advertising and release related resources.
       public async stopAdvertising() {
         try {
@@ -154,29 +159,35 @@ Example:
           console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         }
       }
-    }
-
+ }
+   
     let bleAdvertisingManager = new BleAdvertisingManager();
     export default bleAdvertisingManager as BleAdvertisingManager;
-    ```
+   ```
 
 For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 ### Starting and Stop BLE Scanning
 1. Import the **ble** module.
+
 2. Enable Bluetooth on the device.
+
 3. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
+
 4. Start BLE advertising on the peer device.
+
 5. Start BLE scanning on the local device.
+
 6. Stop BLE scanning.
+
 Example:
 
-    ```ts
+   ```ts
     import { ble } from '@kit.ConnectivityKit';
-    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-
-    const TAG: string = 'BleScanManager';
-
+ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+   
+ const TAG: string = 'BleScanManager';
+   
     export class BleScanManager {
       // 1. Subscribe to the scanning result.
       public onScanResult() {
@@ -185,20 +196,20 @@ Example:
             console.info(TAG, 'BLE scan result = ' + data[0].deviceId);
           }
         });
-      }
-
+   }
+   
       // 2. Start scanning.
       public startScan() {
         // 2.1 Construct a scan filter that matches the expected advertising packet content.
         let manufactureId = 4567;
         let manufactureData: Uint8Array = new Uint8Array([1, 2, 3, 4]);
         let manufactureDataMask: Uint8Array = new Uint8Array([0xFF, 0xFF, 0xFF, 0xFF]);
-        let scanFilter: ble.ScanFilter = {// Define the filter based on site requirements.
+        let scanFilter: ble.ScanFilter = {// Define the filter based on service requirements.
           manufactureId: manufactureId,
           manufactureData: manufactureData.buffer,
           manufactureDataMask: manufactureDataMask.buffer
-        };
-
+     };
+   
         // 2.2 Construct scanning parameters.
         let scanOptions: ble.ScanOptions = {
           interval: 0,
@@ -212,8 +223,8 @@ Example:
         } catch (err) {
           console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         }
-      }
-
+   }
+   
       // 3. Stop scanning.
       public stopScan() {
         try {
@@ -226,10 +237,10 @@ Example:
           console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         }
       }
-    }
-
+ }
+   
     let bleScanManager = new BleScanManager();
     export default bleScanManager as BleScanManager;
-    ```
+   ```
 
 For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

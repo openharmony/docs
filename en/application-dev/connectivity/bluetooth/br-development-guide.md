@@ -26,15 +26,19 @@ The following table describes the related APIs.
 
 ### Enabling and Disabling Bluetooth
 1. Import the **access** module.
+
 2. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
+
 3. Enable Bluetooth.
+
 4. Disable Bluetooth.
+
 Example:
-
-    ```ts
+   
+   ```ts
     import { access } from '@kit.ConnectivityKit';
-    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-
+ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+   
     // Enable Bluetooth.
     access.enableBluetooth();
     access.on('stateChange', (data) => {
@@ -69,8 +73,8 @@ Example:
         access.off('stateChange');
       }
       console.info('bluetooth statues: ' + btStateMessage);
-    })
-
+ })
+   
     // Disable Bluetooth.
     access.disableBluetooth();
     access.on('stateChange', (data) => {
@@ -106,9 +110,11 @@ Example:
       }
       console.info("bluetooth statues: " + btStateMessage);
     })
-    ```
+   ```
 
 For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+
 **Verification**
+
 1. Execute the code for enabling Bluetooth.<br>If "bluetooth statues: STATE_ON" is logged, Bluetooth is enabled. 
 2. Execute the code for disabling Bluetooth.<br>If "bluetooth statues: STATE_OFF" is logged, Bluetooth is disabled.

@@ -203,7 +203,7 @@ The following table describes the related APIs.
         }
         console.info(TAG, 'startConnect ' + peerDevice);
         this.device = peerDevice;
-        // 2.1 Use device to construct gattClient. This instance is used for subsequent interactions.
+        // 2.1 Use device to construct a gattClient instance for subsequent interactions.
         this.gattClient = ble.createGattClientDevice(peerDevice);
         try {
           this.onGattClientStateChange(); // 2.2 Subscribe to the connection status.
