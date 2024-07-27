@@ -10,7 +10,7 @@ The **batteryInfo** module provides APIs for querying the charger type, battery 
 ## Modules to Import
 
 ```js
-import batteryInfo from '@ohos.batteryInfo';
+import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
 ## batteryInfo
@@ -19,10 +19,10 @@ Describes battery information.
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
-| Name     | Type       | Readable| Writable|  Description    |
+| Name     | Type       | Readable | Writable |  Description    |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
-| batterySOC                                | number                                         | Yes  | No  | Battery state of charge (SoC) of the device, in unit of percentage. It applies to atomic services<sup>12+</sup>.                          |
-| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | Yes  | No  | Battery charging status of the current device. It applies to atomic services<sup>12+</sup>.                              |
+| batterySOC                                | number                                         | Yes  | No  | Battery state of charge (SoC) of the device, in unit of percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                          |
+| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | Yes  | No  | Battery charging state of the current device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                              |
 | healthStatus                              | [BatteryHealthState](#batteryhealthstate)      | Yes  | No  | Battery health status of the device.                              |
 | pluggedType                               | [BatteryPluggedType](#batterypluggedtype)      | Yes  | No  | Charger type of the device.                            |
 | voltage                                   | number                                         | Yes  | No  | Battery voltage of the device, in unit of microvolt.                        |
@@ -34,7 +34,7 @@ Describes battery information.
 **Example**
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let batterySOCInfo: number = batteryInfo.batterySOC;
   console.info("The batterySOCInfo is: " + batterySOCInfo);
@@ -73,13 +73,15 @@ Enumerates charger types.
 | Name      | Value | Description             |
 | -------- | ---- | ----------------- |
 | NONE     | 0    | Unknown charger type.     |
-| AC       | 1    | AC charger.|
+| AC       | 1    | AC charger. |
 | USB      | 2    | USB charger.  |
-| WIRELESS | 3    | Wireless charger.|
+| WIRELESS | 3    | Wireless charger. |
 
 ## BatteryChargeState
 
-Enumerates charging states. This API applies to atomic services<sup>12+</sup> is supported.
+Enumerates charging states.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
@@ -88,7 +90,7 @@ Enumerates charging states. This API applies to atomic services<sup>12+</sup> is
 | NONE    | 0    | Unknown state.    |
 | ENABLE  | 1    | The battery is being charged. |
 | DISABLE | 2    | The battery is not being charged. |
-| FULL    | 3    | The battery is fully charged.|
+| FULL    | 3    | The battery is fully charged. |
 
 ## BatteryHealthState
 
@@ -103,7 +105,7 @@ Enumerates battery health states.
 | OVERHEAT    | 2    | The battery is overheated.  |
 | OVERVOLTAGE | 3    | The battery voltage is over high.  |
 | COLD        | 4    | The battery temperature is low.  |
-| DEAD        | 5    | The battery is dead.|
+| DEAD        | 5    | The battery is dead. |
 
 ## BatteryCapacityLevel<sup>9+</sup>
 
@@ -111,15 +113,15 @@ Enumerates battery levels.
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
-| Name          | Value| Description                      |
+| Name          | Value | Description                      |
 | -------------- | ------ | ---------------------------- |
 | LEVEL_FULL     | 1      | Full battery level.  |
 | LEVEL_HIGH     | 2      | High battery level.  |
-| LEVEL_NORMAL   | 3      | Normal battery level.|
+| LEVEL_NORMAL   | 3      | Normal battery level. |
 | LEVEL_LOW      | 4      | Low battery level.  |
-| LEVEL_WARNING  | 5      | Alarm battery level.|
-| LEVEL_CRITICAL | 6      | Ultra-low battery level.|
-| LEVEL_SHUTDOWN | 7      | Power-down battery level.|
+| LEVEL_WARNING  | 5      | Alarm battery level. |
+| LEVEL_CRITICAL | 6      | Ultra-low battery level. |
+| LEVEL_SHUTDOWN | 7      | Power-down battery level. |
 
 ## CommonEventBatteryChangedKey<sup>9+</sup>
 
@@ -127,7 +129,7 @@ Enumerates keys for querying the additional information about the **COMMON_EVENT
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
-| Name                | Value| Description                                            |
+| Name                | Value | Description                                            |
 | -------------------- | ------ | -------------------------------------------------- |
 | EXTRA_SOC            | "soc" | Remaining battery level in percentage.                  |
 | EXTRA_CHARGE_STATE   | "chargeState" | Battery charging status of the device.                |
@@ -136,5 +138,5 @@ Enumerates keys for querying the additional information about the **COMMON_EVENT
 | EXTRA_VOLTAGE        | "voltage" | Battery voltage of the device.                    |
 | EXTRA_TECHNOLOGY     | "technology" | Battery technology of the device.                |
 | EXTRA_TEMPERATURE    | "temperature" | Battery temperature of the device.                    |
-| EXTRA_PRESENT        | "present" | Whether the battery is supported by the device or installed.|
+| EXTRA_PRESENT        | "present" | Whether the battery is supported by the device or installed. |
 | EXTRA_CAPACITY_LEVEL | "capacityLevel" | Battery level of the device.                |

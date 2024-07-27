@@ -25,9 +25,9 @@ Obtains the current charging state and battery level.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| options | [GetStatusOptions](#getstatusoptions) | No| Object that contains the API calling result. This parameter is optional and is left blank by default.|
+| options | [GetStatusOptions](#getstatusoptions) | No | Object that contains the API calling result. This parameter is optional and is left blank by default. |
 
 **Example**
 
@@ -48,9 +48,9 @@ Object that contains the API calling result.
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Lite
 
-| Name  | Type                                               | Mandatory| Description                                                        |
+| Name  | Type                                               | Mandatory | Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
+| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type. |
 | fail     | (data: string, code: number) => void                | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
 | complete | () => void                                          | No  | Called when an API call is complete.                                    |
 
@@ -60,7 +60,7 @@ Defines a response that returns the charging status and remaining power of the d
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Lite
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| charging | boolean | Yes| No| Whether the battery is being charged.|
-| level | number | Yes| No| Current battery level, which ranges from **0.00** to **1.00**.|
+| charging | boolean | Yes | No | Whether the battery is being charged. |
+| level | number | Yes | No | Current battery level, which ranges from **0.00** to **1.00**. |

@@ -9,7 +9,7 @@ The **thermal** module provides thermal level-related callback and query APIs to
 ## Modules to Import
 
 ```js
-import thermal from '@ohos.thermal';
+import {thermal} from '@kit.BasicServicesKit';
 ```
 
 ## thermal.registerThermalLevelCallback<sup>9+</sup>
@@ -22,9 +22,9 @@ Subscribes to thermal level changes.
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                          |
+| Name  | Type                        | Mandatory | Description                          |
 | -------- | ---------------------------- | ---- | ------------------------------ |
-| callback | Callback&lt;ThermalLevel&gt; | Yes  | Callback used to return the result.|
+| callback | Callback&lt;ThermalLevel&gt; | Yes  | Callback used to return thermal level. This parameter is of the function type. |
 
 **Error codes**
 
@@ -33,6 +33,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-t
 | ID  | Error Message   |
 |---------|---------|
 | 4800101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
 
 **Example**
 
@@ -57,9 +58,9 @@ Unsubscribes from thermal level changes.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                                          |
+| Name  | Type                | Mandatory | Description                                          |
 | -------- | -------------------- | ---- | ---------------------------------------------- |
-| callback | Callback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered.|
+| callback | Callback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered. |
 
 **Error codes**
 
@@ -68,6 +69,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-t
 | ID  | Error Message   |
 |---------|---------|
 | 4800101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
 
 **Example**
 
@@ -94,7 +96,7 @@ Obtains the current thermal level.
 
 | Type        | Description        |
 | ------------ | ------------ |
-| ThermalLevel | Thermal level.|
+| ThermalLevel | Thermal level. |
 
 **Error codes**
 
@@ -127,7 +129,7 @@ Subscribes to thermal level changes.
 
 **Parameters**
 
-| Name  | Type                             | Mandatory| Description                                                        |
+| Name  | Type                             | Mandatory | Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;ThermalLevel&gt; | Yes  | Callback used to return the result. The return value contains only one parameter, that is, thermal level.|
 
@@ -151,9 +153,9 @@ Unsubscribes from thermal level changes.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                          |
+| Name  | Type                     | Mandatory | Description                                          |
 | -------- | ------------------------- | ---- | ---------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered. |
 
 **Example**
 
@@ -177,7 +179,7 @@ Obtains the current thermal level.
 
 | Type          | Description    |
 | ------------ | ------ |
-| ThermalLevel | Thermal level.|
+| ThermalLevel | Thermal level. |
 
 **Example**
 
@@ -197,10 +199,10 @@ Represents the thermal level.
 | Name      | Value  | Description                                                        |
 | ---------- | ---- | ------------------------------------------------------------ |
 | COOL       | 0    | The device is cool, and services are not restricted.            |
-| NORMAL     | 1    | The device is in the normal temperature range but it is getting warm. You need to downgrade or reduce the load of imperceptible services.|
-| WARM       | 2    | The device is warm. You need to stop or delay some imperceptible services.|
-| HOT        | 3    | The device is heating up. You need to stop all imperceptible services and downgrade or reduce the load of non-critical services.|
-| OVERHEATED | 4    | The device is overheated. You need to stop all imperceptible services and downgrade or reduce the load of major foreground services.|
-| WARNING    | 5    | The device is overheated and is about to enter the emergency state. You need to stop all imperceptible services and downgrade major foreground services to the maximum extent.|
-| EMERGENCY  | 6    | The device has entered the emergency state. You need to stop all services except those for fundamental use.|
-| ESCAPE     | 7    | The device is about to enter the escape state. You need to stop all services and take necessary emergency measures such as data backup.|
+| NORMAL     | 1    | The device is in the normal temperature range but it is getting warm. You need to downgrade or reduce the load of imperceptible services. |
+| WARM       | 2    | The device is warm. You need to stop or delay some imperceptible services. |
+| HOT        | 3    | The device is heating up. You need to stop all imperceptible services and downgrade or reduce the load of non-critical services. |
+| OVERHEATED | 4    | The device is overheated. You need to stop all imperceptible services and downgrade or reduce the load of major foreground services. |
+| WARNING    | 5    | The device is overheated and is about to enter the emergency state. You need to stop all imperceptible services and downgrade major foreground services to the maximum extent. |
+| EMERGENCY  | 6    | The device has entered the emergency state. You need to stop all services except those for fundamental use. |
+| ESCAPE     | 7    | The device is about to enter the escape state. You need to stop all services and take necessary emergency measures such as data backup. |

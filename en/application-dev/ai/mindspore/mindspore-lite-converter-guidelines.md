@@ -24,9 +24,9 @@ You can obtain the MindSpore Lite model conversion tool in either of the followi
 
 #### Download
 
-| Component                                                   | Hardware Platform| OS    | URL                                                        | SHA-256                                                      |
+| Component                                                   | Hardware Platform | OS    | URL                                                        | SHA-256                                                      |
 | ------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| On-device inference and training benchmark tool, converter tool, and cropper tool| CPU      | Linux-x86_64 | [mindspore-lite-2.1.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.1.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.1.0-linux-x64.tar.gz) | b267e5726720329200389e47a178c4f882bf526833b714ba6e630c8e2920fe89 |
+| On-device inference and training benchmark tool, converter tool, and cropper tool | CPU      | Linux-x86_64 | [mindspore-lite-2.1.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.1.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.1.0-linux-x64.tar.gz) | b267e5726720329200389e47a178c4f882bf526833b714ba6e630c8e2920fe89 |
 
 > **NOTE**
 >
@@ -45,15 +45,14 @@ You can obtain the MindSpore Lite model conversion tool in either of the followi
 2. Obtain the [MindSpore Lite source code](https://gitee.com/openharmony/third_party_mindspore). The source code is managed in "compressed package + patch" mode. Run the following commands to decompress the source code package and install the patch:
 
    ```bash
-   cd mindspore
-   python3 build_helper.py --in_zip_path=./mindspore-v1.8.1.zip --patch_dir=./patches/ --out_src_path=./mindspore-src
+   python3 build_helper.py --in_zip_path=./mindspore-v2.1.0.zip --patch_dir=./patches/ --out_src_path=./mindspore-src
    ```
 
    If the command execution is successful, the complete MindSpore Lite source code is generated in `mindspore-src/source/`.
 
 3. Start building.
 
-   To obtain the conversion tool that supports PyTorch model conversion, run `export MSLITE_ENABLE_CONVERT_PYTORCH_MODEL = on && export LIB_TORCH_PATH="/home/user/libtorch"` before you begin model building. Add the libtorch environment variable `export LD_LIBRARY_PATH="/home/user/libtorch/lib:${LD_LIBRARY_PATH}"` before conversion. You can download the libtorch package of the CPU version and decompress it to `/home/user/libtorch`.
+   To obtain the conversion tool that supports PyTorch model conversion, run `export MSLITE_ENABLE_CONVERT_PYTORCH_MODEL=on && export LIB_TORCH_PATH="/home/user/libtorch"` before you begin model building. Add the libtorch environment variable `export LD_LIBRARY_PATH="/home/user/libtorch/lib:${LD_LIBRARY_PATH}"` before conversion. You can download the libtorch package of the CPU version and decompress it to `/home/user/libtorch`.
 
    ```bash
    cd mindspore-src/source/
@@ -82,16 +81,16 @@ The following describes the parameters in detail.
 |        Name       | Mandatory           | Description                                                    | Value Range                                        |
 | :----------------: | ------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
 |       --help       | No                 | Displays all help information.                                          | -                                                |
-|       --fmk        | Yes                 | Original format of the input model. This parameter can be set to **MSLITE** only when the MS model is converted to micro code.| MINDIR, CAFFE, TFLITE, TF, ONNX, PYTORCH, or MSLITE|
+|       --fmk        | Yes                 | Original format of the input model. This parameter can be set to **MSLITE** only when the MS model is converted to micro code. | MINDIR, CAFFE, TFLITE, TF, ONNX, PYTORCH, or MSLITE |
 |    --modelFile     | Yes                 | Path of the input model.                                            | -                                                |
 |    --outputFile    | Yes                 | Path of the output model. You do not need to add an extension because the extension `.ms` is automatically generated.           | -                                                |
-|    --weightFile    | Yes for CAFFE model conversion| Path of the model weight file.                                    | -                                                |
-|    --configFile    | No                 | 1) Path of the quantization configuration file after training. 2) Path of the extended function configuration file.| -                                                |
-|       --fp16       | No                 | Whether to store the weights of float32 data as float16 data during model serialization.<br>The default value is **off**.| on or off                                         |
-|    --inputShape    | No                 | Set the input dimensions of the model. Make sure that the sequence of the input dimensions is the same as that of the original model. The model structure can be further optimized for some specific models, but the dynamic shape feature will be unavailable for the the converted model. Separate each input name and shape by a colon (:), and separate each pair of input name and shape by a semicolon (;). In addition, enclose them with double quotation marks (""). For example, set this parameter to **"inTensorName_1: 1,32,32,4;inTensorName_2:1,64,64,4;"**.| -                                                |
-| --inputDataFormat  | No                 | Input format of the exported model. This parameter is valid only for 4D input.<br>The default value is **NHWC**.| NHWC or NCHW                                      |
-|  --inputDataType   | No                 | Data type of the input tensor of the quantization model. This parameter is valid only when the quantization parameters (**scale** and **zero point**) are configured for the input tensor. The data type is the same as that of the input tensor of the original model by default.<br>The default value is **DEFAULT**.| FLOAT32, INT8, UINT8, or DEFAULT                   |
-|  --outputDataType  | No                 | Data type of the output tensor of the quantization model. This parameter is valid only when the quantization parameters (**scale** and **zero point**) are configured for the output tensor. The data type is the same as that of the output tensor of the original model by default.<br>The default value is **DEFAULT**.| FLOAT32, INT8, UINT8, or DEFAULT                   |
+|    --weightFile    | Yes for CAFFE model conversion | Path of the model weight file.                                    | -                                                |
+|    --configFile    | No                 | 1) Path of the quantization configuration file after training. 2) Path of the extended function configuration file. | -                                                |
+|       --fp16       | No                 | Whether to store the weights of float32 data as float16 data during model serialization.<br>The default value is **off**. | on or off                                         |
+|    --inputShape    | No                 | Set the input dimensions of the model. Make sure that the sequence of the input dimensions is the same as that of the original model. The model structure can be further optimized for some specific models, but the dynamic shape feature will be unavailable for the the converted model. Separate each input name and shape by a colon (:), and separate each pair of input name and shape by a semicolon (;). In addition, enclose them with double quotation marks (""). For example, set this parameter to **"inTensorName_1: 1,32,32,4;inTensorName_2:1,64,64,4;"**. | -                                                |
+| --inputDataFormat  | No                 | Input format of the exported model. This parameter is valid only for 4D input.<br>The default value is **NHWC**. | NHWC or NCHW                                      |
+|  --inputDataType   | No                 | Data type of the input tensor of the quantization model. This parameter is valid only when the quantization parameters (**scale** and **zero point**) are configured for the input tensor. The data type is the same as that of the input tensor of the original model by default.<br>The default value is **DEFAULT**. | FLOAT32, INT8, UINT8, or DEFAULT                   |
+|  --outputDataType  | No                 | Data type of the output tensor of the quantization model. This parameter is valid only when the quantization parameters (**scale** and **zero point**) are configured for the output tensor. The data type is the same as that of the output tensor of the original model by default.<br>The default value is **DEFAULT**. | FLOAT32, INT8, UINT8, or DEFAULT                   |
 | --outputDataFormat | No                 | Output format of the exported model. This parameter is valid only for 4D input.                | NHWC or NCHW                                      |
 
 > **NOTE**
