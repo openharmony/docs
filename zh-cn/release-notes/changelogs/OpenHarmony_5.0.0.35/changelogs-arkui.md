@@ -408,7 +408,7 @@ Toast组件ShowToast接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.11 RichEditor设置预设样式的接口传入异常值时，文本样式效果变更
+## cl.arkui.11 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
 
 **访问级别**
 
@@ -416,7 +416,7 @@ Toast组件ShowToast接口
 
 **变更原因**
 
-RichEditor设置用户预设样式的接口setTypingStyle，传入异常值undefined/null后，开发者自定义预置样式依然存在，未恢复成不设置时效果。
+RichEditor设置用户预设样式的接口setTypingStyle，传入默认值undefined/null后，开发者自定义预置样式依然存在，未恢复成不设置时效果。
 
 不设置时，当用户输入文本，输入后的文本样式跟随前一个文本的文本样式。
 
@@ -441,7 +441,8 @@ RichEditor设置用户预设样式的接口setTypingStyle，传入异常值undef
 setTypingStyle
 
 **适配指导**
-开发者需要清除TypingStyle时，请参照如下代码。
+
+开发者需要清除TypingStyle使用组件默认样式时，请参照如下代码。
 ```ts
 @Entry
 @Component
@@ -473,7 +474,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.12 RichEditor占位文本接口中文本样式属性传入异常值时，占位文本样式的效果变更
+## cl.arkui.12 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
 
 **访问级别**
 
@@ -481,9 +482,9 @@ struct Index {
 
 **变更原因**
 
-1.RichEditor设置占位文本的接口placeholder，其占位文本样式属性PlaceHolderStyle为异常值{}时，组件未将占位文本样式属性设置为默认效果。
+1.RichEditor设置占位文本的接口placeholder，其占位文本样式属性PlaceHolderStyle为异常值"{}"时，组件未将占位文本样式属性设置为默认效果。
 
-2.当占位文本样式属性中各个属性为异常值undefined/null时，对应默认效果未生效。
+2.当占位文本样式属性中各个属性为默认值undefined/null时，对应默认效果未生效。
 
 占位文本样式属性：
 
@@ -501,9 +502,9 @@ struct Index {
 
 该变更为不兼容变更
 
-变更前：占位文本样式属性或其内部其他属性设为异常值时，调用接口placeholder未生效。
+变更前：占位文本样式属性为异常值或其内部其他属性设为默认值时，调用接口placeholder未生效。
 
-变更后：占位文本样式属性或其内部其他属性设为异常值时，按组件默认占位文本样式/对应属性默认样式生效。
+变更后：占位文本样式属性为异常值或其内部其他属性设为默认值时，按组件默认占位文本样式/对应属性默认样式生效。
 
 **起始API Level**
 
@@ -521,7 +522,7 @@ PlaceHolderStyle
 
 开发者需要排查调用设置占位文本placeholder中PlaceHolderStyle为异常值或其各个属性为异常值时，是否按照默认效果生效。
 
-以style为{}和fontcolor为异常值为例，见如下代码。
+以style为"{}"和fontcolor为默认值为例，见如下代码，请开发者自行排查。
 ```ts
 @Entry
 @Component
