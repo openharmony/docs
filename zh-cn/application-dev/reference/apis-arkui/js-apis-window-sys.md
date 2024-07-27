@@ -3000,11 +3000,18 @@ export class myWindowMgr extends ServiceExtensionAbility {
             let win = await window.createWindow(config);
             await win.setUIContent('pages/serch');
             await win.setWindowTouchable(true);
+            let limits: window.WindowLimits = {
+                maxWidth: 500,
+                maxHeight: 1000,
+                minWidth: 500,
+                minHeight: 500
+            };
             win.enableDrag(true).then(() => {
                 console.log('enableDrag successfully');
             }).catch((err: BusinessError) => {
                 console.error('enableDrag: ' + err.code + ',message:' + err.message);
             });
+            await win.setWindowLimits(limits);
         } catch (err) {
             console.log('createWindow err: ' + err.code + ',message:' + err.message);
         }
