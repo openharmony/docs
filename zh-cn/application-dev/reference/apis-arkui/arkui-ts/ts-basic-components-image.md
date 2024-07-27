@@ -163,6 +163,8 @@ renderMode(value: ImageRenderMode)
 
 设置图片的渲染模式。svg类型图源不支持该属性。
 
+设置 [ColorFilter](#colorfilter9) 时，该属性设置不生效。
+
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -328,6 +330,8 @@ copyOption(value: CopyOptions)
 colorFilter(value: ColorFilter | DrawingColorFilter)
 
 为图像设置颜色滤镜效果。
+
+设置该属性时，[rendermode](#rendermode)属性设置不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
