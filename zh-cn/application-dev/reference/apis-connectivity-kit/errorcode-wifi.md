@@ -68,7 +68,7 @@ WIFI功能被关闭。
 
 **错误信息**
 
-Hotspot module error.
+Operation failed.
 
 **错误描述**
 
@@ -89,7 +89,7 @@ WIFI服务内部执行Hotspot相关操作时出现未知错误。
 
 **错误信息**
 
-AP extension module error.
+Operation failed.
 
 **错误描述**
 
@@ -110,7 +110,7 @@ WIFI服务内部执行Hotspot相关操作时出现未知错误。
 
 **错误信息**
 
-P2P module error.
+Operation failed.
 
 **错误描述**
 
@@ -135,7 +135,7 @@ Operation failed because the service is being closed.
 
 **错误描述**
 
-打开服务操作失败，因为服务正在关闭。
+打开服务操作失败，服务正在关闭。
 
 **可能原因**
 
@@ -153,7 +153,7 @@ Operation failed because the service is being opened.
 
 **错误描述**
 
-关闭服务操作失败，因为服务正在打开。
+关闭服务操作失败，服务正在打开。
 
 **可能原因**
 
