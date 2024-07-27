@@ -2437,7 +2437,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
 | bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
 
-bearerPrivateIdentifier传递WLAN热点信息时需包含以下内容<sup>12+</sup>：
+bearerPrivateIdentifier可以通过传递如下WLAN热点信息表示应用希望激活的WLAN网络<sup>12+</sup>：
 
 | 名称 | 类型 | 可读 | 可写 | 说明 | 必填 |
 | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -2453,12 +2453,11 @@ bearerPrivateIdentifier传递WLAN热点信息时需包含以下内容<sup>12+</s
 ```ts
 import { connection } from '@kit.NetworkKit';
 
-// 切换Wi-Fi网络，需要传入相关网络特征，timeout参数未传入说明未使用超时时间，此时timeout为0
 let netConnectionCellular = connection.createNetConnection({
   netCapabilities: {
-    bearerTypes: [connection.NetBearType.BEARER_WIFI],
-    bearerPrivateIdentifier: "{\"ssid\": \"wlan0\", \"preSharedKey\": \"password\", \"securityType\": 3}"
-  }
+    bearerTypes: [connection.NetBearType.BEARER_WIFI]
+  },
+  bearerPrivateIdentifier: "{\"ssid\": \"wlan0\", \"preSharedKey\": \"password\", \"securityType\": 3}"
 });
 ```
 
