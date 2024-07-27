@@ -899,10 +899,10 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 
 **系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 参数名                     | 类型   | 必填 | 说明                      |
-|-------------------------| ------ | --- |------------------------- |
-| ark.gc.gc-count         | number | 是  |  当前线程的GC次数。|
-| ark.gc.gc-time          | number | 是  |  当前线程触发的GC总耗时，以ms为单位。 |
-| ark.gc.gc-bytes-allocated | number | 是  | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
-| ark.gc.gc-bytes-freed   | number | 是 | 当前线程GC成功回收的内存，以B为单位。|
-| ark.gc.fullgc-longtime-count | number | 是 |  当前线程超长fullGC次数。 |
+| 参数名                     | 类型   | 说明                      |
+|-------------------------| ------ |------------------------- |
+| ark.gc.gc-count         | number |  当前线程的GC次数。|
+| ark.gc.gc-time          | number |  当前线程触发的GC总耗时，以ms为单位。 |
+| ark.gc.gc-bytes-allocated | number | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
+| ark.gc.gc-bytes-freed   | number | 当前线程GC成功回收的内存，以B为单位。|
+| ark.gc.fullgc-longtime-count | number |  当前线程超长fullGC次数。 |
