@@ -1084,7 +1084,7 @@
         - [合理进行状态管理](performance/proper_state_management.md)
         - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
         - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
-        - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+        - [合理使用动画](performance/reasonable-using-animation.md)
         - [合理使用多线程共享内存](performance/thread_memory_shared.md)
         - [Grid高性能开发指导](performance/grid_optimization.md)
         - [合理使用自定义组件冻结功能](performance/custom_component_freeze.md)
@@ -1108,6 +1108,7 @@
         - [Web组件开发性能提升指导](performance/performance-web-import.md)
         - [合理处理高负载组件的渲染](performance/reasonably-dispose-highly-loaded-component-render.md)
         - [全局自定义组件复用实现](performance/node_custom_component_reusable_pool.md)
+        - [ArrayBuffer序列化和转移](performance/thread_data_transfer.md)
       - [减小应用包大小](performance/reduce-package-size.md)
       - 性能工具
         - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
