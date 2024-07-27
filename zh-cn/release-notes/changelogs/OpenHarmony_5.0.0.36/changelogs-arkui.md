@@ -48,7 +48,7 @@ WaterFlow组件。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为兼容性变更。
 
 变更前：Tabs组件的barMode为BarMode.Scrollable，TabContent组件的tabBar为子页签样式时有默认切换动效，即切换页签后，选中页签执行动画平移至tabBar中间位置。但非子页签样式时无默认切换动效，即切换页签后，选中页签立即跳变至tabBar中间位置。
 
@@ -60,7 +60,7 @@ WaterFlow组件。
 
 **起始API Level**
 
-不涉及API变更
+7
 
 **变更发生版本**
 
