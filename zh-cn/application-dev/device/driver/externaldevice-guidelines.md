@@ -11,7 +11,6 @@
 DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等，功能介绍如下：   
 [DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-tools-overview-0000001558763037-V5)
 - [下载与安装](https://developer.harmonyos.com/cn/develop/deveco-studio#download)
-- [环境配置](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3)
 - [创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
 - [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-app-ability-driverextensionability-V5)
 - [测试及调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-device-0000001053822404-V5)
@@ -62,11 +61,13 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 应用可通过查询绑定扩展外设，从而使用扩展外设的定制驱动能力。开发示例如下：
 
-1. 创建新工程
-* 如果是仅开发HAP应用的客户端，则选择Empty Ability模板即可。
-* 如果是开发HAP和驱动一体的HAP应用，则选择Native C++模板即可。
-* 如果是开发没有页面的驱动应用，则选择Native C++模板即可。
-* 如何创建一个工程，详情请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
+1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
+
+**注意：**
+
+* 开发驱动客户端，请选择Empty Ability模板。
+* 开发驱动服务端，请选择Native C++模板。
+* 同时开发驱动客户端和服务端，请选择Native C++模板。 
 
 2. 查询设备列表。
 
