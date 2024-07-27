@@ -27,7 +27,7 @@
 | <!--DelRow-->VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
 | TASK_KEEPING | <!--RP1-->计算任务（仅对特定设备开放）<!--RP1End--> | taskKeeping  | 杀毒软件。 |
 
-- 使用了[网络管理](../network/net-mgmt-overview.md)服务的应用，才能通过申请DATA_TRANSFER长时任务实现后台上传下载，不被挂起。如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。
+- 使用了[网络管理](../network/net-mgmt-overview.md)服务的应用，才能通过申请DATA_TRANSFER长时任务实现后台上传下载，不被挂起。如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。使用下载类型的长时任务，应用需要更新下载进度。如果进度长时间（超过10分钟）不更新，下载类型的长时任务会被取消。推荐使用API 12申请下载类型的长时任务，并更新通知进度。
 - 使用了[媒体会话](../media/avsession/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
 
 
@@ -151,17 +151,18 @@
           // 使用者自定义的一个私有值
           requestCode: 0,
           // 点击通知后，动作执行属性
-          wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+          actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
    
         // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
         wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-           backgroundTaskManager.startBackgroundRunning(this.context,
-             backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-             console.info(`Succeeded in operationing startBackgroundRunning.`);
-           }).catch((err: BusinessError) => {
-             console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-           });
+          backgroundTaskManager.startBackgroundRunning(this.context,
+            backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+            // 此处执行具体的长时任务逻辑，如放音等。
+            console.info(`Succeeded in operationing startBackgroundRunning.`);
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+          });
         });
       }
    
@@ -191,8 +192,6 @@
             .onClick(() => {
               // 通过按钮申请长时任务
               this.startContinuousTask();
-   
-              // 此处执行具体的长时任务逻辑，如放音等。
             })
    
             Button() {
@@ -238,7 +237,7 @@
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       };
 
       // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
@@ -401,7 +400,7 @@
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       };
 
       // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
