@@ -20,7 +20,7 @@
 
 **变更发生的版本**
 
-从OpenHarmony SDK 5.0.0.33开始。
+从OpenHarmony 5.0.0.36开始。
 
 **变更的接口**
 
@@ -36,4 +36,7 @@
 
 **适配指导**
 
-业务申请并配置ohos.permission.REPORT_SECURITY_EVENT/ohos.permission.QUERY_SECURITY_EVENT/ohos.permission.QUERY_SECURITY_MODEL_RESULT等权限，仅用于迁移场景使用。
+业务申请并配置如下权限，仅用于迁移场景使用：
+ohos.permission.REPORT_SECURITY_EVENT
+ohos.permission.QUERY_SECURITY_EVENT
+ohos.permission.QUERY_SECURITY_MODEL_RESULT
