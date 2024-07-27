@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
+import { ToolBar, ToolBarOptions, toolBarModifier, ItemState } from '@kit.ArkUI'
 ```
 
 
@@ -163,13 +163,7 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 ## 示例
 
 ```ts
-import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
-
-enum ItemState {
-  ENABLE = 1,
-  DISABLE = 2,
-  ACTIVATE = 3
-}
+import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -231,4 +225,87 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001658655445](figures/zh-cn_image_0000001658655445.png)
+![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
+
+```ts
+import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State toolbarList: ToolBarOptions = new ToolBarOptions();
+  @State toolBarModifier: ToolBarModifier =
+  new ToolBarModifier().height(52).backgroundColor(Color.Transparent).stateEffect(false);
+  @State dividerModifier: DividerModifier = new DividerModifier().height(0);
+
+  aboutToAppear() {
+    this.toolbarList.push({
+      content: 'Long long long long long long long long text',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+      state: ItemState.ACTIVATE,
+      toolBarSymbolOptions: {
+        normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Green]),
+        activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]),
+      },
+      activatedTextColor: $r('sys.color.font_primary'),
+    })
+    this.toolbarList.push({
+      content: 'Copy',
+      icon: $r('sys.media.ohos_ic_public_copy'),
+      action: () => {
+      },
+      state:ItemState.DISABLE,
+      iconColor: '#ff18cb53',
+      activatedIconColor: '#ffec5d5d',
+      activatedTextColor: '#ffec5d5d',
+    })
+    this.toolbarList.push({
+      content: 'Paste',
+      icon: $r('sys.media.ohos_ic_public_paste'),
+      action: () => {
+      },
+      state:ItemState.ACTIVATE,
+      textColor: '#ff18cb53',
+    })
+    this.toolbarList.push({
+      content: 'All',
+      icon: $r('sys.media.ohos_ic_public_select_all'),
+      action: () => {
+      },
+      state:ItemState.ACTIVATE,
+    })
+    this.toolbarList.push({
+      content: '分享',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+    this.toolbarList.push({
+      content: '分享',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+  }
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          ToolBar({
+            toolBarModifier: this.toolBarModifier,
+            dividerModifier: this.dividerModifier,
+            activateIndex: 0,
+            toolBarList: this.toolbarList,
+          })
+            .height(52)
+        }
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_toolbar_example02](figures/zh-cn_image_toolbar_example02.png)
