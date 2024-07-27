@@ -16,7 +16,7 @@
 
 **起始API Level**
 
-不涉及API变更
+API10
 
 **变更发生版本**
 
@@ -42,13 +42,40 @@ MenuItemGroup高度没有加上MenuItem的margin高度，布局错乱，变更�
 
 **变更影响**
 
+
+示例代码：
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("菜单1").bindMenu(this.TestMarginTop())
+    }
+  }
+
+  @Builder
+  TestMarginTop() {
+    Menu() {
+      MenuItemGroup() {
+        MenuItem({content:"第一个"}).margin({top:20, bottom:20}).borderWidth(2).borderColor(Color.Black)
+        MenuItem({content:"第二个"}).margin({top:20}).borderWidth(2).borderColor(Color.Black)
+        MenuItem({content:"第三个"}).margin({bottom:20}).borderWidth(2).borderColor(Color.Black)
+        MenuItem({content:"第四个"}).borderWidth(2).borderColor(Color.Black)
+      }
+    }
+  }
+}
+```
+
+
 | 变更前布局错乱 | 变更后布局正常 |
 |---------|---------|
 |  ![变更前布局错乱](figures/menuitemgroup-height-without-item-margin.jpg)       |  ![变更后布局正常](figures/menuitemgroup-height-with-item-margin.jpg)       |
 
 **起始API Level**
 
-不涉及API变更
+API7
 
 **变更发生版本**
 
@@ -74,13 +101,41 @@ Menu中MenuItem全部设置margin后，左右边距不对称，变更后左右�
 
 **变更影响**
 
+示例代码：
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text('click for menu')
+        .fontSize(20)
+        .position({ x: 100, y: 270 })
+        .margin({ top: 20 })
+        .bindMenu(this.TestMenuItemMarginLeftAndRight)
+    }
+    .height('100%')
+    .width('100%')
+  }
+
+  @Builder
+  TestMenuItemMarginLeftAndRight() {
+    Menu() {
+      MenuItem({content:"这是menuitem1"}).margin(10).borderWidth(1)
+    }
+    .borderWidth(2)
+    .borderColor(Color.Red)
+  }
+```
+
+
 | 变更前边距不对称 | 变更后左右对称 |
 |---------|---------|
 |  ![变更前边距不对称](figures/menuitem-not-center-with-margin.jpg)       |  ![变更后左右对称](figures/menuitem-is-center-with-margin.jpg)       |
 
 **起始API Level**
 
-不涉及API变更
+API7
 
 **变更发生版本**
 
