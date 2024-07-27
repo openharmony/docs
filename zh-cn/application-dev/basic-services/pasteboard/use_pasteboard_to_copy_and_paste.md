@@ -98,28 +98,22 @@ globalThis.GetPlainTextUnifiedData = (() => {
 ```ts
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 // 获取系统剪贴板对象
-let systemPasteboard = pasteboard.getSystemPasteboard();
 let text = "test";
 // 创建一条纯文本类型的剪贴板内容对象
-let pasteData = pasteboard.CreatePlainTextData(text);
-pasteData.addRecord(text);
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
 // 将数据写入系统剪贴板
-systemPasteboard.setData(pasteData).then(()=>{
-  // 存入成功，处理正常场景
-}).catch((error: BusinessError) => {
-  // 处理异常场景
-});
-
+let systemPasteboard = pasteboard.getSystemPasteboard();
+await systemPasteboard.setData(pasteData);
 //从系统剪贴板中读取数据
 systemPasteboard.getData().then((data) => {
   let outputData = data;
-  // 从剪贴板数据中获取条目列表
-  let records = outputData.getRecords();
-  // 从剪贴板数据中获取条目类型
-  let recordType = records[0].getType();
-  let record = records[0];
-  console.log('GetPlainText success, type:' + records[0].getType() + ', details:' +
-  JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
+  // 从剪贴板数据中获取条目数量
+  let recordCount = outputData.getRecordCount();
+  // 从剪贴板数据中获取对应条目信息
+  for (let i = 0; i < recordCount; i++) {
+    let record = outputData.getRecord(i).toPlainText();
+    console.log('Get data success, record:' + record);
+  }  
 }).catch((error: BusinessError) => {
   // 处理异常场景
 })
