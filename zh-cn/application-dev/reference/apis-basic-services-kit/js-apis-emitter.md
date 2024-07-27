@@ -74,7 +74,7 @@ emitter.on("eventId", () => {
 
 ## emitter.on<sup>12+</sup>
 
-on(eventId: string, callback:  Callback\<GenericEventData<T\>\>): void
+on<T\>(eventId: string, callback:  Callback\<GenericEventData<T\>\>): void
 
 持续订阅指定事件，并在接收到该事件时，执行对应的回调处理函数。
 
@@ -113,7 +113,7 @@ emitter.on("eventId", callback);
 
 ## emitter.once
 
-once(event: InnerEvent, callback: Callback\<EventData)\>): void
+once(event: InnerEvent, callback: Callback\<EventData\>): void
 
 单次订阅指定的事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
 
@@ -169,7 +169,7 @@ emitter.once("eventId", () => {
 
 ## emitter.once<sup>12+</sup>
 
-once(eventId: string, Callback\<GenericEventData<T\>\>): void
+once(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
 单次订阅指定事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
 
@@ -308,7 +308,7 @@ emitter.off("eventId", () => {
 
 ## emitter.off<sup>12+</sup>
 
-off(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
+off<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
 取消针对该事件ID的订阅，传入可选参数callback，如果该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 
@@ -413,7 +413,7 @@ emitter.emit("eventId", eventData);
 
 ## emitter.emit<sup>12+</sup>
 
-emit(eventId: string, data?: GenericEventData<T\>): void
+emit<T\>(eventId: string, data?: GenericEventData<T\>): void
 
 发送指定事件。
 
@@ -487,7 +487,7 @@ emitter.emit("eventId", options, eventData);
 
 ## emitter.emit<sup>12+</sup>
 
-emit(eventId: string, options: Options, data?: GenericEventData<T\>): void
+emit<T\>(eventId: string, options: Options, data?: GenericEventData<T\>): void
 
 发送指定优先级事件。
 
@@ -613,5 +613,5 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称     | 类型                            | 可读 | 可写 | 说明           |
 | -------- | ------------------------------- | ---- | ---- | -------------- |
-| data | 泛型类型T | 是   | 是   | 发送事件时传递的数据。 |
+| data | T | 是   | 是   | 发送事件时传递的数据。T：泛型类型。 |
 
