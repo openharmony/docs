@@ -24,7 +24,7 @@ import { InputMethodSubtype } from '@kit.IMEKit';
 | labelId<sup>10+</sup> | number | 是 | 否 | 非必填。输入法子类型的标签资源号。 |
 | name | string | 是 | 否 | 必填。输入法子类型所属应用的包名。 |
 | id | string | 是 | 否 | 必填。输入法子类型的id。 |
-| mode | string | 是 | 否 | 非必填。输入法子类型的模式，包括upper（大写）和lower（小写）。 |
+| mode | 'upper' \| 'lower' | 是 | 否 | 非必填。输入法子类型的模式，包括upper（大写）和lower（小写）。 |
 | locale | string | 是 | 否 | 必填。输入法子类型的方言版本。 |
 | language | string | 是 | 否 | 必填。 输入法子类型的语言。 |
 | icon | string | 是 | 否 | 非必填。输入法子类型的图标，可以通过iconId查询获取。预留字段，暂不支持使用。 |

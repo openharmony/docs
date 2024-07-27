@@ -4097,8 +4097,8 @@ try {
 
 | 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| type   	| number   | 是   | 是   | 面板的类型。 |
-| flag	    | number   | 是   | 是   | 面板的状态类型。 |
+| type   	| [PanelType](#paneltype10)   | 是   | 是   | 面板的类型。 |
+| flag	    | [PanelFlag](#panelflag10)   | 是   | 是   | 面板的状态类型。 |
 
 ## PanelRect<sup>12+</sup>
 
