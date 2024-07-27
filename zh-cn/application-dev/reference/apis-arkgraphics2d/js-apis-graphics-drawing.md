@@ -2754,7 +2754,7 @@ pen.setColor(255, 255, 0, 0);
 
 setStrokeWidth(width: number) : void
 
-用于设置画笔的线宽，如果线宽小于1，会设置为1。
+用于设置画笔的线宽。0线宽被视作特殊的极细线宽，在绘制时始终会被绘制为1像素，不随画布的缩放而改变；负数线宽在实际绘制时会被视作0线宽。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
