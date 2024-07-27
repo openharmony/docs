@@ -23,7 +23,7 @@
 
 如：插卡时会显示“WLAN”字串，不插卡时会显示“Wi-Fi”字串。
 
-**起始API Level*
+**起始API Level**
 
 API 9
 
@@ -56,10 +56,6 @@ string库文件是C++标准库，影响接口在C语言环境下正常使用。
 
 若开发者引用了string库函数，且未手动引入string库头文件，则会出现编译不过的问题。
 
-**起始API Level*
-
-API 8
-
 **废弃发生的版本**
 
 从OpenHarmony SDK 5.0.0.33开始。
@@ -87,10 +83,6 @@ string头文件
 该变更为兼容变更
 
 变更前开发者使用了 OH_ResourceManager_GetRawFileDescriptor 和OH_ResourceManager_ReleaseRawFileDescriptor 接口，变更后则需要适配新的接口。
-
-**起始API Level*
-
-API 8
 
 **废弃发生的版本**
 
@@ -123,7 +115,6 @@ API 8
 该变更为兼容变更
 
 接口已废弃不推荐使用，推荐适配使用新接口。
-
 
 **废弃发生的版本**
 
