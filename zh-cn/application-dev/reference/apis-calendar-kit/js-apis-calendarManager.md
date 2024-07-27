@@ -619,9 +619,9 @@ calendarMgr?.editEvent(event).then((eventId: number): void => {
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称 | 类型   | 只读 | 必填 | 说明     |
-| ---- | ------ | ---- | ---- | -------- |
-| id   | number | 是   | 是   | 日历账户id。 |
+| 名称 | 类型   | 只读 | 可选 | 说明     |
+| ---- | ------ | ---- |----| -------- |
+| id   | number | 是   | 否  | 日历账户id。 |
 
 ### addEvent
 
@@ -1495,11 +1495,11 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称        | 类型                          | 只读 | 必填 | 说明                                   |
-| ----------- | ----------------------------- | ---- | ---- | -------------------------------------- |
-| name        | string                        | 是   | 是   | 账户名称。                             |
-| type        | [CalendarType](#calendartype) | 否   | 是   | 账户类型。                             |
-| displayName | string                        | 否   | 否   | 账户的显示名称。不填时，默认为空字符串。 |
+| 名称        | 类型                          | 只读 | 可选 | 说明                                   |
+| ----------- | ----------------------------- | ---- |----| -------------------------------------- |
+| name        | string                        | 是   | 否  | 账户名称。                             |
+| type        | [CalendarType](#calendartype) | 否   | 否  | 账户类型。                             |
+| displayName | string                        | 否   | 是  | 账户的显示名称。不填时，默认为空字符串。 |
 
 ## CalendarConfig
 
@@ -1507,10 +1507,10 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称           | 类型     | 只读    | 必填    | 说明                                                         |
-| -------------- |--------|-------|-------| ------------------------------------------------------------ |
-| enableReminder | boolean | 否     | 否     | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
-| color          | number \| string | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
+| 名称           | 类型     | 只读    | 可选 | 说明                                                         |
+| -------------- |--------|-------|----| ------------------------------------------------------------ |
+| enableReminder | boolean | 否     | 是  | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
+| color          | number \| string | 否   | 是  | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
 
 ## Event
 
@@ -1518,22 +1518,23 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称           | 类型                              | 只读 | 必填 | 说明                                                                                                                                                 |
-| -------------- | --------------------------------- | ---- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| id             | number                            | 否   | 否   | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                           |
-| type           | [EventType](#eventtype)           | 否   | 是   | 日程类型。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                           |
-| title          | string                            | 否   | 否   | 日程标题。不填时，默认为空字符串。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
-| location       | [Location](#location)             | 否   | 否   | 日程地点。不填时，默认为null。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
-| startTime      | number                            | 否   | 是   | 日程开始时间，需要13位时间戳。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                  |
-| endTime        | number                            | 否   | 是   | 日程结束时间，需要13位时间戳。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                 |
-| isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                          |
-| attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
-| timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone)获取当前系统时区。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                 |
-| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                              |
-| description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
-| service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
-| identifier<sup>12+</sup>     | string                            | 否   | 否   | 写入方可指定日程唯一标识。不填时，默认为null。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                                                                                                                                                                      |
+| -------------- | --------------------------------- | ---- |----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id             | number                            | 否   | 是  | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                            |
+| type           | [EventType](#eventtype)           | 否   | 否  | 日程类型。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                            |
+| title          | string                            | 否   | 是  | 日程标题。不填时，默认为空字符串。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
+| location       | [Location](#location)             | 否   | 是  | 日程地点。不填时，默认为null。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
+| startTime      | number                            | 否   | 否  | 日程开始时间，需要13位时间戳。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                   |
+| endTime        | number                            | 否   | 否  | 日程结束时间，需要13位时间戳。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                  |
+| isAllDay       | boolean                           | 否   | 是  | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                           |
+| attendee       | [Attendee](#attendee)[]           | 否   | 是  | 日程参与者。不填时，默认为null。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
+| timeZone       | string                            | 否   | 是  | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone)获取当前系统时区。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| reminderTime   | number[]                          | 否   | 是  | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                  |
+| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 是  | 日程重复规则。不填时，默认为不重复。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
+| description    | string                            | 否   | 是  | 日程描述。不填时，默认为空字符串。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                 |
+| service        | [EventService](#eventservice)     | 否   | 是  | 日程服务。不填时，默认没有一键服务。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
+| identifier<sup>12+</sup>     | string                            | 否   | 是  | 写入方可指定日程唯一标识。不填时，默认为null。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                         |
+| isLunar<sup>12+</sup>     | boolean                            | 否   | 是  | 是否为农历日程。当取值为true时，说明为农历日程；当取值为false时，说明不是农历日程，默认为非农历日程。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                           |
 
 ## CalendarType
 
@@ -1559,11 +1560,11 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称      | 类型   | 只读 | 必填 | 说明                     |
-| --------- | ------ | ---- | ---- | ------------------------ |
-| location  | string | 否   | 否   | 地点位置。默认为空字符串。 |
-| longitude | number | 否   | 否   | 地点经度。默认为0。        |
-| latitude  | number | 否   | 否   | 地点纬度。默认为0。        |
+| 名称      | 类型   | 只读 | 可选 | 说明                     |
+| --------- | ------ | ---- |----| ------------------------ |
+| location  | string | 否   | 是  | 地点位置。默认为空字符串。 |
+| longitude | number | 否   | 是  | 地点经度。默认为0。        |
+| latitude  | number | 否   | 是  | 地点纬度。默认为0。        |
 
 ## EventFilter
 
@@ -1776,13 +1777,13 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称                | 类型                                        | 只读 | 必填 | 说明                                                                        |
-| ------------------- | ------------------------------------------- | ---- | ---- |---------------------------------------------------------------------------|
-| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 是   | 日程重复规则类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
-| expire              | number                                      | 否   | 否   | 重复周期截止日。不填时，默认为0。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| count<sup>12+</sup>               | number                                      | 否   | 否   | 重复日程重复次数。 不填时，默认为0。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| interval<sup>12+</sup>            | number                                      | 否   | 否   | 重复日程重复间隔。 不填时，默认为0。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| excludedDates<sup>12+</sup>       | number[]                                    | 否   | 否   | 重复日程排除日期。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| 名称                | 类型                                        | 只读 | 可选 | 说明                                                                        |
+| ------------------- | ------------------------------------------- | ---- |----|---------------------------------------------------------------------------|
+| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 否  | 日程重复规则类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
+| expire              | number                                      | 否   | 是  | 重复周期截止日。不填时，默认为0。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| count<sup>12+</sup>               | number                                      | 否   | 是  | 重复日程重复次数。 不填时，默认为0。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| interval<sup>12+</sup>            | number                                      | 否   | 是  | 重复日程重复间隔。 不填时，默认为0。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| excludedDates<sup>12+</sup>       | number[]                                    | 否   | 是  | 重复日程排除日期。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
 ## RecurrenceFrequency
 
 日程重复规则类型枚举。
@@ -1804,11 +1805,11 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称  | 类型   | 只读 | 必填 | 说明                                                                    |
-| ----- | ------ | ---- | ---- |-----------------------------------------------------------------------|
-| name  | string | 否   | 是   | 参与者的姓名。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| email | string | 否   | 是   | 参与者的邮箱。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | 否   | 否   | 参与者的角色。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| 名称  | 类型   | 只读 | 可选 | 说明                                                                    |
+| ----- | ------ | ---- |----|-----------------------------------------------------------------------|
+| name  | string | 否   | 否  | 参与者的姓名。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| email | string | 否   | 否  | 参与者的邮箱。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | 否   | 是  | 参与者的角色。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## EventService
 
@@ -1818,11 +1819,11 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称        | 类型                        | 只读 | 必填 | 说明                                  |
-| ----------- | --------------------------- | ---- | ---- | ------------------------------------- |
-| type        | [ServiceType](#servicetype) | 否   | 是   | 服务类型。                            |
-| uri         | string                      | 否   | 是   | 服务的uri。可以跳转到三方应用相应界面。 |
-| description | string                      | 否   | 否   | 服务辅助描述。不填时，默认为空字符串。  |
+| 名称        | 类型                        | 只读 | 可选 | 说明                                  |
+| ----------- | --------------------------- | ---- |----| ------------------------------------- |
+| type        | [ServiceType](#servicetype) | 否   | 否  | 服务类型。                            |
+| uri         | string                      | 否   | 否  | 服务的uri。可以跳转到三方应用相应界面。 |
+| description | string                      | 否   | 是  | 服务辅助描述。不填时，默认为空字符串。  |
 
 ## ServiceType
 
