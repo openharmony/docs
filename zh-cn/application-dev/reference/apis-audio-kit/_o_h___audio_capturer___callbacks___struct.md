@@ -5,7 +5,7 @@
 
 声明输入音频流的回调函数指针。
 
-为了避免不可预期的行为，在设置音频回调函数时，请必须确保该结构体的每一个成员变量都被自定义的回调方法或空指针初始化。可参考[使用OHAudio开发音频录制功能](../../media/audio/using-ohaudio-for-recording.md)。
+为了避免不可预期的行为，在设置音频回调函数时，请确保该结构体的每一个成员变量都被自定义的回调方法或空指针初始化。可参考[使用OHAudio开发音频录制功能](../../media/audio/using-ohaudio-for-recording.md)。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
