@@ -515,6 +515,8 @@ struct PageInfoExample {
 
 @Component
 struct MyComponent {
+  @State content: string = '';
+
   build() {
     Column() {
       Text('PageInfoExample')
