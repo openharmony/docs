@@ -16,8 +16,6 @@ import { request } from '@kit.BasicServicesKit';
 
 ## 常量
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
 ### 网络类型
@@ -218,6 +216,14 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   | -------- | -------- |
   | Promise&lt;[UploadTask](#uploadtask)&gt; | 使用Promise方式，异步返回上传任务。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -260,6 +266,14 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -295,8 +309,6 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 > **说明：**
 >
 > 当应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
@@ -339,8 +351,6 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 订阅上传任务HTTP响应事件，异步方法，使用callback形式返回结果。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: SystemCapability.MiscServices.Upload
 
 **参数：**
@@ -380,8 +390,6 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
  on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
 订阅上传任务完成或失败事件，异步方法，使用callback形式返回结果。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
@@ -432,8 +440,6 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 取消订阅上传任务进度事件。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: SystemCapability.MiscServices.Upload
 
 **参数：**
@@ -476,8 +482,6 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 取消订阅上传任务HTTP响应事件。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: SystemCapability.MiscServices.Upload
 
 **参数：**
@@ -518,8 +522,6 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
 取消订阅上传任务完成或失败事件。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
@@ -682,6 +684,14 @@ remove(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用Promise方式，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -713,6 +723,14 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -732,8 +750,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## UploadConfig<sup>6+</sup>
 上传任务的配置信息。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -749,8 +765,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 ## TaskState<sup>9+</sup>
 上传任务信息，[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
@@ -781,8 +795,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## File
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的文件列表。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -796,8 +808,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## RequestData
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的表单数据。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -810,7 +820,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 下载，异步方法，使用promise形式返回结果。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
-
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -868,7 +877,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
 下载，异步方法，使用callback形式返回结果。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
-
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -948,6 +956,14 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
   | -------- | -------- |
   | Promise&lt;[DownloadTask](#downloadtask)&gt; | 使用Promise方式，异步返回返回下载任务。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -984,6 +1000,14 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 回调函数，异步返回下载任务。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+  | -------- | -------- |
+| 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -1013,8 +1037,6 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 > **说明：**
 >
 > 当应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
 
@@ -1068,8 +1090,6 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 取消订阅下载任务进度事件。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: SystemCapability.MiscServices.Download
 
 **参数：**
@@ -1122,8 +1142,6 @@ try {
 on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 订阅下载任务相关的事件，异步方法，使用callback形式返回。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
 
@@ -1179,8 +1197,6 @@ try {
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
 取消订阅下载任务相关的事件。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
 
@@ -1262,8 +1278,6 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 订阅下载任务失败事件，异步方法，使用callback形式返回结果。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: SystemCapability.MiscServices.Download
 
 **参数：**
@@ -1314,8 +1328,6 @@ try {
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 取消订阅下载任务失败事件。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
 
@@ -1903,6 +1915,14 @@ remove(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用promise方式，异步返回移除任务是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -1933,6 +1953,14 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **示例：**
 
@@ -1967,6 +1995,14 @@ query(): Promise&lt;DownloadInfo&gt;
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 使用promise方式，异步返回下载任务信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -1997,6 +2033,14 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 回调函数，异步返回下载任务信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **示例：**
 
@@ -2031,6 +2075,14 @@ queryMimeType(): Promise&lt;string&gt;
   | -------- | -------- |
   | Promise&lt;string&gt; | 使用promise方式，异步返回下载任务的MimeType。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -2061,6 +2113,14 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，异步返回下载任务的MimeType。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **示例：**
 
@@ -2095,6 +2155,14 @@ pause(): Promise&lt;void&gt;
   | -------- | -------- |
   | Promise&lt;void&gt; | 使用promise方式，异步返回暂停下载任务是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -2125,6 +2193,14 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，异步返回暂停下载任务是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **示例：**
 
@@ -2159,6 +2235,14 @@ resume(): Promise&lt;void&gt;
   | -------- | -------- |
   | Promise&lt;void&gt; | 使用promise方式，异步返回重新启动暂停的下载任务是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -2190,6 +2274,14 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，异步返回重新启动暂停的下载任务是否成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **示例：**
 
   ```js
@@ -2205,8 +2297,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ## DownloadConfig
 下载任务的配置信息。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
 
@@ -2225,8 +2315,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ## DownloadInfo<sup>7+</sup>
 下载任务信息，[getTaskInfo<sup>9+</sup>](#gettaskinfo9)接口的回调参数。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
 
