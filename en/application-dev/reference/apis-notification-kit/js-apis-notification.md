@@ -966,7 +966,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 **System capability**: SystemCapability.Notification.Notification
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey) instead.
+> This API is supported since API version 7 and deprecated since API version 9. <!--Del-->You are advised to use [notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey) instead.<!--DelEnd-->
 
 | Name | Type  | Readable| Writable| Description    |
 | ----- | ------ | ---- | --- | -------- |
