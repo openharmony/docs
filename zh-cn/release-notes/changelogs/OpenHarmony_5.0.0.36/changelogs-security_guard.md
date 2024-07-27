@@ -36,7 +36,7 @@
 
 **适配指导**
 
-业务申请并配置如下权限，仅用于迁移场景使用：
-ohos.permission.REPORT_SECURITY_EVENT
-ohos.permission.QUERY_SECURITY_EVENT
+业务申请并配置如下权限，仅用于迁移场景使用：<br>
+ohos.permission.REPORT_SECURITY_EVENT<br>
+ohos.permission.QUERY_SECURITY_EVENT<br>
 ohos.permission.QUERY_SECURITY_MODEL_RESULT
