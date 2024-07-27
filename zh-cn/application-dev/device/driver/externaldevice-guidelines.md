@@ -24,7 +24,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 ## 驱动开发指导
 开发相关外设对应驱动，主要是调用扩展外设管理模块的DriverExtensionAbility；
 
-开发详情请见[DriverExtensionAbility](./driverExtensionAbility)简介。
+开发详情请见[DriverExtensionAbility](./driverextensionability.md)简介。
 
 ## 客户端开发指导
 
