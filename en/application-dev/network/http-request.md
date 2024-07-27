@@ -18,19 +18,19 @@ The following table provides only a simple description of the related APIs. For 
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | Creates an HTTP request.                 |
 | request()                                 | Initiates an HTTP request to a given URL.    |
-| requestInStream()<sup>10+</sup>           | Initiates an HTTP network request to a given URL and returns a streaming response.|
+| requestInStream()<sup>10+</sup>           | Initiates an HTTP network request to a given URL and returns a streaming response. |
 | destroy()                                 | Destroys an HTTP request.                     |
 | on(type: 'headersReceive')                | Registers an observer for HTTP Response Header events.    |
-| off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events.|
+| off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events. |
 | once\('headersReceive'\)<sup>8+</sup>     | Registers a one-time observer for HTTP Response Header events.|
 | on\('dataReceive'\)<sup>10+</sup>         | Registers an observer for events indicating receiving of HTTP streaming responses.     |
 | off\('dataReceive'\)<sup>10+</sup>        | Unregisters the observer for events indicating receiving of HTTP streaming responses. |
 | on\('dataEnd'\)<sup>10+</sup>             | Registers an observer for events indicating completion of receiving HTTP streaming responses. |
-| off\('dataEnd'\)<sup>10+</sup>            | Unregisters the observer for events indicating completion of receiving HTTP streaming responses.|
+| off\('dataEnd'\)<sup>10+</sup>            | Unregisters the observer for events indicating completion of receiving HTTP streaming responses. |
 | on\('dataReceiveProgress'\)<sup>10+</sup>        | Registers an observer for events indicating progress of receiving HTTP streaming responses. |
-| off\('dataReceiveProgress'\)<sup>10+</sup>       | Unregisters the observer for events indicating progress of receiving HTTP streaming responses.|
+| off\('dataReceiveProgress'\)<sup>10+</sup>       | Unregisters the observer for events indicating progress of receiving HTTP streaming responses. |
 | on\('dataSendProgress'\)<sup>11+</sup>        | Registers an observer for events indicating progress of sending HTTP requests. |
-| off\('dataSendProgress'\)<sup>11+</sup>       | Unregisters the observer for events indicating progress of sending HTTP requests.|
+| off\('dataSendProgress'\)<sup>11+</sup>       | Unregisters the observer for events indicating progress of sending HTTP requests. |
 
 ## How to Develop request APIs
 
@@ -174,11 +174,9 @@ let streamInfo: http.HttpRequestOptions = {
   usingProtocol: http.HttpProtocol.HTTP1_1 // Optional. The default protocol type is automatically specified by the system.
 }
 
-httpRequest.requestInStream(
-  // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
-  "EXAMPLE_URL",
-  streamInfo, (err: BusinessError, data: number) => {
-  console.error('error:' + JSON.stringify(err));
+// Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
+  console.info("requestInStream OK!");
   console.info('ResponseCode :' + JSON.stringify(data));
   // Unsubscribe from HTTP Response Header events.
   httpRequest.off('headersReceive');
@@ -190,7 +188,7 @@ httpRequest.requestInStream(
   httpRequest.off('dataEnd');
   // Call the destroy() method to release resources after HttpRequest is complete.
   httpRequest.destroy();
-}
-);
+}).catch((err: Error) => {
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+});
 ```
-

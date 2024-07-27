@@ -11,7 +11,7 @@ Typical MDNS management scenarios include:
 - Discovering local services and listening to the status changes of local services of the specified type through the **DiscoveryService** object.
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [MDNS Management](../reference/apis-network-kit/js-apis-net-mdns.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [MDNS Management](../reference/apis-network-kit/js-apis-net-mdns.md).
 
 The following describes the development procedure specific to each application scenario.
 
@@ -19,22 +19,22 @@ The following describes the development procedure specific to each application s
 
 For the complete list of JS APIs and example code, see, see [MDNS Management](../reference/apis-network-kit/js-apis-net-mdns.md).
 
-| API                 | Description|
+| API                 | Description |
 | ----------------------- | ---- |
-| addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void | Adds an MDNS service. This API uses an asynchronous callback to return the result.|
-| removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void | Removes an MDNS service. This API uses an asynchronous callback to return the result.|
-| createDiscoveryService(context: Context, serviceType: string): DiscoveryService | Creates a **DiscoveryService** object, which is used to discover MDNS services of the specified type.|
+| addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void | Adds an MDNS service. This API uses an asynchronous callback to return the result. |
+| removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void | Removes an MDNS service. This API uses an asynchronous callback to return the result. |
+| createDiscoveryService(context: Context, serviceType: string): DiscoveryService | Creates a **DiscoveryService** object, which is used to discover MDNS services of the specified type. |
 | resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void | Resolves an MDNS service. This API uses an asynchronous callback to return the result.|
-| startSearchingMDNS(): void | Searches for MDNS services on the LAN.|
-| stopSearchingMDNS(): void | Stops searching for MDNS services on the LAN.|
-| on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Enables listening for **discoveryStart** events.|
-| off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | Disables listening for **discoveryStart** events.|
-| on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Enables listening for **discoveryStop** events.|
-| off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | Disables listening for **discoveryStop** events.|
-| on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | Enables listening for **serviceFound** events.|
-| off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void | Disables listening for **serviceFound** events.|
-| on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | Enables listening for **serviceLost** events.|
-| off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void | Disables listening for **serviceLost** events.|
+| startSearchingMDNS(): void | Searches for MDNS services on the LAN. |
+| stopSearchingMDNS(): void | Stops searching for MDNS services on the LAN. |
+| on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Enables listening for **discoveryStart** events. |
+| off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | Disables listening for **discoveryStart** events. |
+| on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Enables listening for **discoveryStop** events. |
+| off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | Disables listening for **discoveryStop** events. |
+| on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | Enables listening for **serviceFound** events. |
+| off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void | Disables listening for **serviceFound** events. |
+| on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | Enables listening for **serviceLost** events. |
+| off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void | Disables listening for **serviceLost** events. |
 
 ## Managing Local Services
 
@@ -69,20 +69,17 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 // Call addLocalService to add a local service.
-mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 // (Optional) Call resolveLocalService to resolve the local service.
-mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 // Call removeLocalService to remove the local service.
-mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
