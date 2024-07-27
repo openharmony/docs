@@ -228,14 +228,14 @@ struct Index {
 ![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
 
 ```ts
-import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState } from '@kit.ArkUI';
+import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions();
   @State toolBarModifier: ToolBarModifier =
-  new ToolBarModifier().height(52).backgroundColor(Color.Transparent).stateEffect(false);
+  new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
   @State dividerModifier: DividerModifier = new DividerModifier().height(0);
 
   aboutToAppear() {
