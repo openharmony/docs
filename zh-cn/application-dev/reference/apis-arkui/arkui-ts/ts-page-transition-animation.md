@@ -327,6 +327,9 @@ struct PageTransitionExample {
         .width(200)
         .height(60)
         .fontSize(36)
+      Text("START")
+        .fontSize(36)
+        .textAlign(TextAlign.Center)  
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
@@ -361,6 +364,9 @@ struct PageTransitionExample {
         .width(200)
         .height(60)
         .fontSize(36)
+      Text("END")
+        .fontSize(36)
+        .textAlign(TextAlign.Center)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
