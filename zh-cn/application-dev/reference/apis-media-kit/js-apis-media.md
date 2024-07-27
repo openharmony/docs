@@ -1465,8 +1465,6 @@ off(type: 'speedDone'): void
 
 取消监听setSpeed生效的事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1535,8 +1533,6 @@ off(type: 'bitrateDone'): void
 
 取消监听setBitrate生效的事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1581,8 +1577,6 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 off(type: 'availableBitrates'): void
 
 取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1706,8 +1700,6 @@ off(type: 'volumeChange'): void
 
 取消监听setVolume生效的事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1752,8 +1744,6 @@ avPlayer.on('endOfStream', () => {
 off(type: 'endOfStream'): void
 
 取消监听资源播放至结尾的事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1851,8 +1841,6 @@ off(type: 'durationUpdate'): void
 
 取消监听资源播放资源的时长。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1897,8 +1885,6 @@ avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number
 off(type: 'bufferingUpdate'): void
 
 取消监听音视频缓存更新事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1945,8 +1931,6 @@ off(type: 'startRenderFrame'): void
 
 取消监听视频播放开始首帧渲染的更新事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1991,8 +1975,6 @@ avPlayer.on('videoSizeChange', (width: number, height: number) => {
 off(type: 'videoSizeChange'): void
 
 取消监听视频播放宽高变化事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2040,8 +2022,6 @@ avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
 off(type: 'audioInterrupt'): void
 
 取消监听音频焦点变化事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
