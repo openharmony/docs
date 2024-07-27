@@ -882,6 +882,7 @@ isNotificationEnabledSync(): boolean
 
 ```ts
 let enabled = notificationManager.isNotificationEnabledSync();
+console.info(`isNotificationEnabledSync success, data is : ${JSON.stringify(enabled)}`);
 ```
 
 ## notificationManager.setBadgeNumber<sup>10+</sup>
