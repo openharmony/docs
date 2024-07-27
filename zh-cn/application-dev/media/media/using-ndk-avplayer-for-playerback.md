@@ -105,7 +105,7 @@ void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
 //                    if (ret != AV_ERR_OK) {
 //                    // 处理异常
 //                    }
-//                    break;
+                   break;
                 case AV_STOPPED:  
                     ret = OH_AVPlayer_Release(player); //调用reset接口初始化avplayer状态
                     if (ret != AV_ERR_OK) {
