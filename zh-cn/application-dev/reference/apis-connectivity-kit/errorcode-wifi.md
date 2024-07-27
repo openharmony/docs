@@ -145,7 +145,7 @@ Operation failed because the service is being closed.
 
 重新执行打开服务操作。
 
-## 2501004 服务打开失败
+## 2501004 服务关闭失败
 
 **错误信息**
 
