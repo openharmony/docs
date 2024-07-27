@@ -48,7 +48,7 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 **废弃原因**
 
-string库文件是C++标准库，影响接口在C语言环境下正常使用。
+string库文件是C++标准库，影响头文件在C语言环境下正常使用。
 
 **废弃影响**
 
