@@ -45,7 +45,7 @@ alt(value:&nbsp;PixelMap)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 加载时显示的占位图，支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。<br/>默认值：null<br/>**说明：** <br/>不支持GIF格式的图片。 |
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 加载时显示的占位图，支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。<br/>默认值：null |
 
 ### verticalAlign
 
@@ -321,3 +321,70 @@ struct SpanExample {
 }
 ```
 ![imagespan](figures/image_span_colorfilter.gif)
+
+### 示例5
+
+该示例实现了ImageSpan设置加载网络图片时占位图的效果。
+
+```ts
+// xxx.ets
+import { http } from '@kit.NetworkKit'
+import { image } from '@kit.ImageKit'
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Entry
+@Component
+struct SpanExample {
+  @State imageAlt: PixelMap | undefined = undefined
+
+  httpRequest() {
+    // 直接加载网络地址，请填写一个具体的网络图片地址
+    http.createHttp().request("https://www.example.com/xxx.png", (error: BusinessError, data: http.HttpResponse) => {
+      if (error) {
+        console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`)
+      } else {
+        console.log(`http request success.`)
+        let imageData: ArrayBuffer = data.result as ArrayBuffer
+        let imageSource: image.ImageSource = image.createImageSource(imageData)
+
+        class tmp {
+          height: number = 100
+          width: number = 100
+        }
+
+        let option: Record<string, number | boolean | tmp> = {
+          'alphaType': 0, // 透明度
+          'editable': false, // 是否可编辑
+          'pixelFormat': 3, // 像素格式
+          'scaleMode': 1, // 缩略值
+          'size': { height: 100, width: 100 }
+        }
+        //创建图片大小
+        imageSource.createPixelMap(option).then((pixelMap: PixelMap) => {
+          this.imageAlt = pixelMap
+        })
+      }
+    })
+  }
+
+  build() {
+    Column() {
+      Button("获取网络图片")
+        .onClick(() => {
+          this.httpRequest()
+        })
+
+      Text() {
+        // 直接加载网络地址，请填写一个具体的网络图片地址
+        ImageSpan('https://www.example.com/xxx.png')
+          .alt(this.imageAlt)
+          .width(300)
+          .height(300)
+      }
+
+    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![imagespan](figures/image_span_alt.gif)
