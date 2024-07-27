@@ -2437,6 +2437,53 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
 | bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
 
+bearerPrivateIdentifier传递WLAN热点信息时需包含以下内容<sup>12+</sup>：
+
+| 名称 | 类型 | 可读 | 可写 | 说明 | 必填 |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 | 是 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 | 否 |
+| bssidType | number | 是 | 否 | 热点的BSSID类型。可选范围见[DeviceAddressType](#deviceaddresstype) | 否 |
+| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。当securityType为WIFI_SEC_TYPE_OPEN时该字段需为空串，其他加密类型不能为空串。当securityType为WIFI_SEC_TYPE_WEP时，该字段长度只允许为5、10、13、26、16和32字节其中之一，并且当字段长度为偶数时，该字段必须为纯十六进制数字构成。当securityType为WIFI_SEC_TYPE_SAE时，该字段最小长度为1字节。当securityType为WIFI_SEC_TYPE_PSK时，该字段最小长度为8字节。 | 是 |
+| isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 | 否 |
+| securityType | number | 是 | 否 | 加密类型。可选范围见[WifiSecurityType](#wifisecuritytype) | 是 |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+// 切换Wi-Fi网络，需要传入相关网络特征，timeout参数未传入说明未使用超时时间，此时timeout为0
+let netConnectionCellular = connection.createNetConnection({
+  netCapabilities: {
+    bearerTypes: [connection.NetBearType.BEARER_WIFI],
+    bearerPrivateIdentifier: "{\"ssid\": \"wlan0\", \"preSharedKey\": \"password\", \"securityType\": 3}"
+  }
+});
+```
+
+### DeviceAddressType
+
+| 值 | 名称 | 说明 |
+| ---- | ---- | ---- |
+| 0 | RANDOM_DEVICE_ADDRESS | 随机设备地址。 |
+| 1 | REAL_DEVICE_ADDRESS | 真实设备地址。 |
+
+### WifiSecurityType
+
+| 值 | 名称 | 说明 |
+| ---- | ---- | ---- |
+| 0 | WIFI_SEC_TYPE_INVALID | 无效加密类型。 |
+| 1 | WIFI_SEC_TYPE_OPEN | 开放加密类型。候选网络配置不支持该加密类型。 |
+| 2 | WIFI_SEC_TYPE_WEP | Wired Equivalent Privacy (WEP)加密类型。候选网络配置不支持该加密类型。 |
+| 3 | WIFI_SEC_TYPE_PSK | Pre-shared key (PSK)加密类型。 |
+| 4 | WIFI_SEC_TYPE_SAE | Simultaneous Authentication of Equals (SAE)加密类型。 |
+| 5 | WIFI_SEC_TYPE_EAP | EAP加密类型。 |
+| 6 | WIFI_SEC_TYPE_EAP_SUITE_B | Suite-B 192位加密类型。 |
+| 7 | WIFI_SEC_TYPE_OWE | 机会性无线加密类型。 |
+| 8 | WIFI_SEC_TYPE_WAPI_CERT | WAPI-Cert加密类型。 |
+| 9 | WIFI_SEC_TYPE_WAPI_PSK | WAPI-PSK加密类型。 |
+
 ## NetCapabilityInfo<sup>10+</sup>
 
 提供承载数据网络能力的实例。
