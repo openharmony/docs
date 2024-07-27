@@ -4579,7 +4579,7 @@ getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise对象，返回Array\<PreinstalledApplicationInfo>。 |
+| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)>> | Promise对象，返回Array\<PreinstalledApplicationInfo>。 |
 
 **错误码：**
 
