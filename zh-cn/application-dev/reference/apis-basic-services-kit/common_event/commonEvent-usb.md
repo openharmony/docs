@@ -43,17 +43,3 @@ USB子系统面向应用发布如下系统公共事件，应用如需订阅系�
 当USB断开时状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
 与这个公共事件相关的接口：具体可见[USBDevice](../js-apis-usbManager.md#usbdevice)。
-
-## COMMON_EVENT_USB_ACCESSORY_ATTACHED
-
-（预留事件，暂未支持）表示已连接USB附件的公共事件的动作。
-
-- 值： usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED
-- 订阅者所需权限： 无
-
-## COMMON_EVENT_USB_ACCESSORY_DETACHED
-
-（预留事件，暂未支持）表示USB附件被卸载的公共事件的动作。
-
-- 值： usual.event.data.DISK_MOUNTED
-- 订阅者所需权限： 无
