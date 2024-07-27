@@ -313,6 +313,18 @@
 
 **起始版本**：12
 
+### ohos.permission.GET_ALL_PROCESSES
+
+允许系统服务或系统应用查看/proc下全部文件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 允许应用管理系统本地账号。
