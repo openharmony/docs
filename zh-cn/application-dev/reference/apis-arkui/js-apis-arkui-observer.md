@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { uiObserver } from '@kit.ArkUI';
+import { uiObserver as observer } from '@kit.ArkUI';
 ```
 
 ## NavDestinationState
@@ -225,7 +225,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 **示例：**
 
 ```ts
-uiObserver.on('navDestinationUpdate', (info) => {
+observer.on('navDestinationUpdate', (info) => {
   console.info('NavDestination state update', JSON.stringify(info));
 });
 ```
@@ -250,7 +250,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): vo
 **示例：**
 
 ```ts
-uiObserver.off('navDestinationUpdate');
+observer.off('navDestinationUpdate');
 ```
 
 ## observer.on('navDestinationUpdate')
@@ -274,7 +274,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 **示例：**
 
 ```ts
-uiObserver.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
     console.info('NavDestination state update', JSON.stringify(info));
 });
 ```
@@ -300,7 +300,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 **示例：**
 
 ```ts
-uiObserver.off('navDestinationUpdate', { navigationId: "testId" });
+observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
 ## observer.on('scrollEvent')<sup>12+</sup>
@@ -388,13 +388,13 @@ off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEv
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver as observer } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  options: uiObserver.ObserverOptions = { id:"testId" };
+  options: observer.ObserverOptions = { id:"testId" };
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
@@ -422,26 +422,26 @@ struct Index {
       Row() {
         Button('UIObserver on')
           .onClick(() => {
-            uiObserver.on('scrollEvent', (info) => {
+            observer.on('scrollEvent', (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserver off')
           .onClick(() => {
-            uiObserver.off('scrollEvent');
+            observer.off('scrollEvent');
           })
       }
 
       Row() {
         Button('UIObserverWithId on')
           .onClick(() => {
-            uiObserver.on('scrollEvent', this.options, (info) => {
+            observer.on('scrollEvent', this.options, (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            uiObserver.off('scrollEvent', this.options);
+            observer.off('scrollEvent', this.options);
           })
       }
     }
@@ -473,7 +473,7 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { UIContext, window, uiObserver } from '@kit.ArkUI';
+import { UIContext, window, uiObserver as observer } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -481,7 +481,7 @@ export default class EntryAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 注册监听，范围是abilityContext内的page
-    uiObserver.on('routerPageUpdate', this.context, (info: uiObserver.RouterPageInfo) => {
+    observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
       console.info('[uiObserver][abilityContext] got info: ' + JSON.stringify(info))
     })
   }
@@ -493,14 +493,14 @@ export default class EntryAbility extends UIAbility {
         // 获取UIContext实例
         this.uiContext = windowInfo.getUIContext();
         // 注册监听，范围是uiContext内的page
-        uiObserver.on('routerPageUpdate', this.uiContext, (info: uiObserver.RouterPageInfo)=>{
+        observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
           console.info('[uiObserver][uiContext] got info: ' + JSON.stringify(info))
         })
       })
     });
   }
 
-// ... other function in EntryAbility
+  // ... other function in EntryAbility
 }
 ```
 
@@ -527,7 +527,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { uiObserver, UIContext } from '@kit.ArkUI';
+import { uiObserver as observer, UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // 实际使用前uiContext需要被赋值。参见示例observer.on('routerPageUpdate')
@@ -535,17 +535,17 @@ export default class EntryAbility extends UIAbility {
 
   onDestroy(): void {
     // 注销当前abilityContext上的所有routerPageUpdate监听
-    uiObserver.off('routerPageUpdate', this.context)
+    observer.off('routerPageUpdate', this.context)
   }
 
   onWindowStageDestroy(): void {
     // 注销在uiContext上的所有routerPageUpdate监听
     if (this.uiContext) {
-      uiObserver.off('routerPageUpdate', this.uiContext);
+      observer.off('routerPageUpdate', this.uiContext);
     }
   }
 
-// ... other function in EntryAbility
+  // ... other function in EntryAbility
 }
 ```
 
@@ -844,19 +844,19 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { uiObserver as observer, window } from '@kit.ArkUI';
 import { hilog } from "@kit.PerformanceAnalysisKit"
 
-function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
+    observer.on('navDestinationSwitch', this.context, callBackFunc);
   }
 
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    uiObserver.off('navDestinationSwitch', this.context, callBackFunc);
+    observer.off('navDestinationSwitch', this.context, callBackFunc);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -904,7 +904,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
@@ -919,11 +919,11 @@ struct Index {
   }
 
   aboutToAppear() {
-    uiObserver.on('navDestinationSwitch', this.getUIContext(), callBackFunc)
+    observer.on('navDestinationSwitch', this.getUIContext(), callBackFunc)
   }
 
   aboutToDisappear() {
-    uiObserver.off('navDestinationSwitch', this.getUIContext(), callBackFunc)
+    observer.off('navDestinationSwitch', this.getUIContext(), callBackFunc)
   }
 
   build() {
@@ -993,19 +993,19 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { uiObserver as observer, window } from '@kit.ArkUI';
 import { hilog } from "@kit.PerformanceAnalysisKit"
 
-function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    uiObserver.on('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+    observer.on('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
   }
 
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    uiObserver.off('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+    observer.off('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -1053,7 +1053,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
@@ -1068,11 +1068,11 @@ struct Index {
   }
 
   aboutToAppear() {
-    uiObserver.on('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
+    observer.on('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
   }
 
   aboutToDisappear() {
-    uiObserver.off('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
+    observer.off('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
   }
 
   build() {
@@ -1135,9 +1135,9 @@ on(type: 'tabContentUpdate', callback: Callback\<TabContentInfo\>): void
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI';
+import { uiObserver as observer } from '@kit.ArkUI';
 
-function callbackFunc(info: uiObserver.TabContentInfo) {
+function callbackFunc(info: observer.TabContentInfo) {
   console.info('tabContentUpdate', JSON.stringify(info));
 }
 
@@ -1146,11 +1146,11 @@ function callbackFunc(info: uiObserver.TabContentInfo) {
 struct TabsExample {
 
   aboutToAppear(): void {
-    uiObserver.on('tabContentUpdate', callbackFunc);
+    observer.on('tabContentUpdate', callbackFunc);
   }
 
   aboutToDisappear(): void {
-    uiObserver.off('tabContentUpdate', callbackFunc);
+    observer.off('tabContentUpdate', callbackFunc);
   }
 
   build() {
@@ -1223,9 +1223,9 @@ on(type: 'tabContentUpdate', options: ObserverOptions, callback: Callback\<TabCo
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI';
+import { uiObserver as observer } from '@kit.ArkUI';
 
-function callbackFunc(info: uiObserver.TabContentInfo) {
+function callbackFunc(info: observer.TabContentInfo) {
   console.info('tabContentUpdate', JSON.stringify(info));
 }
 
@@ -1234,11 +1234,11 @@ function callbackFunc(info: uiObserver.TabContentInfo) {
 struct TabsExample {
 
   aboutToAppear(): void {
-    uiObserver.on('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
+    observer.on('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
   }
 
   aboutToDisappear(): void {
-    uiObserver.off('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
+    observer.off('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
   }
 
   build() {

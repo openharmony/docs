@@ -704,3 +704,36 @@ Popup（气泡组件）
 
 默认样式变更，无需适配。
 
+## cl.arkui.17 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+统一Scroll、List、Grid、WaterFlow组件scrollBarColor接口在设置负数时的效果。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前，Scroll组件scrollBarColor接口设置负数时按默认值处理，List、Grid、WaterFlow组件scrollBarColor接口设置负数时按黑色处理。
+
+变更后，Scroll、List、Grid、WaterFlow组件scrollBarColor接口设置负数时按无符号整数对应的ARGB颜色处理。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+Scroll、List、Grid、WaterFlow组件scrollBarColor接口
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。

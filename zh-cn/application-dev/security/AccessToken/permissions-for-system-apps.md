@@ -3485,6 +3485,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_MULTICORE_HYBRID_ABILITY
+
+允许应用访问智能手表系统服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_DEVICE_COLLABORATION_SERVICE
 
 允许应用使用多屏服务的能力。

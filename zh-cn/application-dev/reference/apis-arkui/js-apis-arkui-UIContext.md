@@ -515,6 +515,8 @@ struct PageInfoExample {
 
 @Component
 struct MyComponent {
+  @State content: string = '';
+
   build() {
     Column() {
       Text('PageInfoExample')
@@ -865,9 +867,10 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
-import { AnimatorOptions } from '@kit.ArkUI';
+import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+// used in UIAbility
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -938,7 +941,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 **示例：**
 
 ```ts
-import {KeyboardAvoidMode, UIContext} from '@kit.ArkUI';
+import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -976,7 +979,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 **示例：**
 
 ```ts
-import {KeyboardAvoidMode, UIContext} from '@kit.ArkUI';
+import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -986,7 +989,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      hilog.info("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+      hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -2232,7 +2235,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
 
-**示例：**
+**示例：** 
 
 ```ts
 import { UIObserver } from '@kit.ArkUI';
@@ -2464,7 +2467,7 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 **示例：**
 
 ```ts
-import {UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = this.getUIContext().getUIObserver();
 observer.on('routerPageUpdate', (info) => {
@@ -2492,7 +2495,7 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 **示例：**
 
 ```ts
-import {UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = this.getUIContext().getUIObserver();
 function callBackFunc(info:observer.RouterPageInfo) {};
@@ -2778,6 +2781,7 @@ on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwit
 // Index.ets
 // 演示 UIObserver.on('navDestinationSwitch', callback)
 // UIObserver.off('navDestinationSwitch', callback)
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -2788,7 +2792,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 

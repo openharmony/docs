@@ -614,7 +614,7 @@ Router可以通过observer实现注册监听，接口定义请参考：[Router�
 import { uiObserver } from '@kit.ArkUI';
 
 function callBackFunc(info: uiObserver.RouterPageInfo) {
-    console.info("RouterPageInfo is : " + JSON.stringify(RouterPageInfo))
+    console.info("RouterPageInfo is : " + JSON.stringify(info))
 }
 
 // used in ability context.
