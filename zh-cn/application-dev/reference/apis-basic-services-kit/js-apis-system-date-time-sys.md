@@ -356,7 +356,7 @@ updateNtpTime(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                                                                    |
 |-------|-------------------------------------------------------------------------------------------------------------|
-| -1    | Network connection error or OS error.                                                                       |
+| 13000001    | Network connection error or OS error.                                                                 |
 | 202   | Permission verification failed. A non-system application calls a system API.                                |
 
 **示例：**
@@ -365,7 +365,11 @@ updateNtpTime(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  await systemDateTime.updateNtpTime();
+  systemDateTime.updateNtpTime().then(() => {
+    console.info(`Succeeded in update ntp time.`);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
   let error = e as BusinessError;
   console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
@@ -394,7 +398,7 @@ getNtpTime(): number
 
 | 错误码ID | 错误信息                                                                                                    |
 |-------|-------------------------------------------------------------------------------------------------------------|
-| -1    | updateNtpTime() is not called successfully.                                                                |
+| 13000002    | updateNtpTime() is not called successfully.                                                           |
 | 202   | Permission verification failed. A non-system application calls a system API.                                |
 
 **示例：**
