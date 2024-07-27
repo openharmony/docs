@@ -34,7 +34,8 @@
     "multiAppMode": {
       "multiAppModeType": "multiInstance",
       "maxCount": 5
-    }
+    },
+    "configuration": "$profile:configuration"
   },
 }
 ```
@@ -75,6 +76,7 @@ app.json5配置文件包含以下标签。
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | maxChildProcess | 标识当前应用自身可创建的子进程的最大个数，取值范围为0到512，0表示不限制，当应用有多个模块时，以entry模块的配置为准。 | 数值 | 该标签可缺省，缺省时使用系统配置的默认值。 |
 | [multiAppMode](#multiappmode标签) | 标识当前应用配置的多开模式。仅bundleType为app的应用的entry或feature模块配置有效，存在多个模块时，以entry模块的配置为准。 | 对象 | 该标签可缺省，缺省值为空。 |
+| configuration | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，跟随系统默认设定。 |
 
 ## appEnvironments标签
 
@@ -122,6 +124,40 @@ multiAppMode标签示例：
       "multiAppModeType": "appClone",
       "maxCount": 5
     }
+  }
+}
+```
+
+## configuration标签
+
+该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。
+
+configuration标签示例：
+
+```json
+{
+  "app": {
+    "configuration": "$profile:configuration"  
+  }
+}
+```
+
+在开发视图的resources/base/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的信息对应。配置文件中列举了当前应用字体大小跟随系统变化的属性。
+
+   **表4** configuration标签说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| fontSizeScale | 应用字体大小是否跟随系统，枚举值, followSystem，nonFollowSystem，表示跟随和不跟随。| 字符串 | 该标签可缺省，缺省由系统决定。 |
+| fontSizeMaxScale | 应用字体大小选择跟随系统后，配置的最大比例，枚举值1，1.15，1.3，1.45，1.75，2，3.2。	 <br/> fontSizeScale为nonFollowSystem，则该项不生效。 | 字符串 | 该标签可缺省，缺省由系统决定。 |
+
+resources/base/profile/configuration.json
+
+```json
+{
+  "configuration": {
+    "fontSizeScale": "followSystem",
+    "fontSizeMaxScale": "3.2"
   }
 }
 ```
