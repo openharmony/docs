@@ -655,7 +655,7 @@ FFRT_C_API ffrt_timer_t ffrt_loop_timer_start (ffrt_loop_t loop, uint64_t timeou
 | timeout | 超时时间. | 
 | data | 事件变化时触发的回调函数的入参。 | 
 | cb | 事件变化时触发的回调函数。 | 
-| repeat | 是否重复执行该定时器（该功能暂未支持）。 | 
+| repeat | 是否重复执行该定时器。 | 
 
 **返回：**
 
@@ -1506,7 +1506,7 @@ FFRT_C_API ffrt_timer_t ffrt_timer_start (ffrt_qos_t qos, uint64_t timeout, void
 | timeout | 超时时间。 | 
 | data | 超时后回调函数的入参。 | 
 | cb | 超时执行的回调函数。 | 
-| repeat | 是否重复执行该定时器（该功能暂未支持）。 | 
+| repeat | 是否重复执行该定时器。 | 
 
 **返回：**
 
