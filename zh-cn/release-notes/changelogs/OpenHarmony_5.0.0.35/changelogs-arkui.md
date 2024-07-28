@@ -424,9 +424,17 @@ RichEditor设置用户预设样式的接口setTypingStyle，传入默认值undef
 
 该变更为不兼容变更
 
-变更前：当setTypingStyle设置为undefined/null时，调用接口setTypingStyle不生效。
+变更前：
 
-变更后：当setTypingStyle设置为undefined/null时，会恢复为不设置时效果。
+当setTypingStyle设置为默认值时，调用接口setTypingStyle不生效。
+
+其效果为在任何文本后面持续输入的文本会一直保持之前开发者设置的预置样式，不会跟随前一个文本样式。
+
+变更后：
+
+当setTypingStyle设置为默认值时，会恢复为不设置时效果。
+
+其效果为在任何文本后面持续输入的文本时，会根据前一个文本样式去更新当前输入文本样式。
 
 **起始API Level**
 
