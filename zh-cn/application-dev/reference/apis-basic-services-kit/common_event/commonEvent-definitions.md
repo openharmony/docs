@@ -912,3 +912,4 @@
 
 * COMMON_EVENT_SMS_RECEIVE_COMPLETED
 表示设备接收到信息的动作。
+
