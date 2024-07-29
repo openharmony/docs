@@ -243,7 +243,7 @@ OpenHarmony SDK各版本：
 
 环境搭建完成后，导入demo，编译报大量语法错误，报错现象如下：
 
-![报错现象](./1.环境搭建/error_grammar.png)
+![报错现象](./figures/error_grammar.png)
 
 这是由于ArkTs语法检查规则发生了变化，由松语法检查变为严格语法检查，目的是让开发者使用更加规范。
 变化点可参考[ArkTs语法变化](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/typescript-to-arkts-migration-guide.md)
