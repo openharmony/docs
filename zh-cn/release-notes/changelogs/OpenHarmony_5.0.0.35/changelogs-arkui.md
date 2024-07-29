@@ -185,15 +185,23 @@ Menu组件的BindContextMenu接口
 
 **变更原因**
 
-totoalCount表示UI显示的数据个数。Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为数据的长度，与totalCount定义不符。
+totoalCount表示UI显示的数据个数。当0 < totalCount < arr.length时，界面中只渲染“totalCount”个数据。
 
 **变更影响**
 
 该变更为不兼容性变更。
 
-变更前：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为数据的长度
+变更前：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为数据的长度。
 
-变更后：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为totalCount值
+将arr.length设置为50，totalCount设置为20。显示效果如图所示：
+
+![repeat-totalCount-changelog-before](./figures/repeat-totalCount-changelog-before.jpeg)
+
+变更后：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为totalCount值。
+
+将arr.length设置为50，totalCount设置为20。显示效果如图所示：
+
+![repeat-totalCount-changelog-before](./figures/repeat-totalCount-changelog-after.jpeg)
 
 **起始API Level**
 
