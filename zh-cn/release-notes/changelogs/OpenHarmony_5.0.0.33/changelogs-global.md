@@ -84,7 +84,7 @@ string头文件
 
 **废弃影响**
 
-该变更为兼容变更
+该变更为兼容性变更
 
 变更前开发者使用了 OH_ResourceManager_GetRawFileDescriptor 和OH_ResourceManager_ReleaseRawFileDescriptor 接口，变更后则需要适配新的接口。
 
@@ -116,7 +116,7 @@ string头文件
 
 **废弃影响**
 
-该变更为兼容变更
+该变更为兼容性变更
 
 接口已废弃不推荐使用，推荐适配使用新接口。
 
