@@ -779,9 +779,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
-    console.error('Failed to prepare,error message is :' + err.message)
-  } else {
     console.info('Succeeded in preparing');
+  } else {
+    console.error('Failed to prepare,error message is :' + err.message)
   }
 })
 ```
@@ -854,9 +854,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err) {
-    console.error('Failed to play,error message is :' + err.message)
-  } else {
     console.info('Succeeded in playing');
+  } else {
+    console.error('Failed to play,error message is :' + err.message)
   }
 })
 ```
@@ -2160,7 +2160,7 @@ let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
 ```
 
-### addSubtitleUrl<sup>12+</sup>
+### addSubtitleFromUrl<sup>12+</sup>
 
 addSubtitleFromUrl(url: string): Promise\<void>
 
@@ -2174,7 +2174,7 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | 是   | 外挂字幕文件地址（fd://资源句柄?offset=资源偏移量&size=资源长度）。 |
+| url    | string | 是   | 外挂字幕文件地址。 |
 
 **返回值：**
 
@@ -2194,16 +2194,10 @@ addSubtitleFromUrl(url: string): Promise\<void>
 ```ts
 import { media } from '@kit.MediaKit'
 
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
-
-let fd:string = fileDescriptor.fd.toString()
-let offset:string = fileDescriptor.offset.toString()
-let length:string = fileDescriptor.length.toString()
-let fdUrl:string = 'fd://' + fd + '?offset=' + offset + '&size=' + length
+let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer()
-avPlayer.addSubtitleUrl(fdUrl)
+avPlayer.addSubtitleFromUrl(fdUrl)
 ```
 
 ### on('subtitleUpdate')<sup>12+</sup>
@@ -2227,7 +2221,7 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 
 ```ts
 avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
-  if (!!info) {
+  if (info) {
     let text = (!info.text) ? '' : info.text
     let startTime = (!info.startTime) ? 0 : info.startTime
     let duration = (!info.duration) ? 0 : info.duration
@@ -3209,6 +3203,8 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeIn
 **示例**：
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerChangeInfo) => {
@@ -3250,6 +3246,8 @@ getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 **示例**：
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturerChangeInfo) => {
@@ -3370,12 +3368,12 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo) => {
+avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) => {
   if (err) {
     console.error('Failed to get AvailableEncoder and error is ' + err.message);
   } else {
     console.info('Succeeded in getting AvailableEncoder');
-    encoderInfo = info;
+    encoderInfo = info[0];
   }
 });
 ```
@@ -3408,9 +3406,9 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder().then((info: media.EncoderInfo) => {
+avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
   console.info('Succeeded in getting AvailableEncoder');
-  encoderInfo = info;
+  encoderInfo = info[0];
 }).catch((err: BusinessError) => {
   console.error('Failed to get AvailableEncoder and catch error is ' + err.message);
 });
@@ -3447,9 +3445,9 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avConfig: AVRecorderConfig;
+let avConfig: media.AVRecorderConfig;
 
-avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) => {
+avRecorder.getAVRecorderConfig((err: BusinessError, config: media.AVRecorderConfig) => {
   if (err) {
     console.error('Failed to get avConfig and error is ' + err.message);
   } else {
@@ -3490,9 +3488,9 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avConfig: AVRecorderConfig;
+let avConfig: media.AVRecorderConfig;
 
-avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
+avRecorder.getAVRecorderConfig().then((config: media.AVRecorderConfig) => {
   console.info('Succeeded in getting AVRecorderConfig');
   avConfig = config;
 }).catch((err: BusinessError) => {
@@ -6385,15 +6383,13 @@ import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-let mgr: resourceManager.ResourceManager | null = null;
-let moduleContext: common.Context;
-moduleContext = this.context.createModuleContext('entry');
-mgr = moduleContext.resourceManager;
-this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
+let context = getContext(this) as common.UIAbilityContext;
+let mgr = context.resourceManager;
+let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
-let fd:string = this.fileDescriptor.fd.toString();
-let offset:string = this.fileDescriptor.offset.toString();
-let length:string = this.fileDescriptor.length.toString();
+let fd:string = fileDescriptor.fd.toString();
+let offset:string = fileDescriptor.offset.toString();
+let length:string = fileDescriptor.length.toString();
 let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
