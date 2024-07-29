@@ -43,11 +43,11 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_create_array_with_length|Creates a JS array of the specified length.|10|
 |FUNC|napi_create_arraybuffer|Creates a JS ArrayBuffer of the specified size.|10|
 |FUNC|napi_create_external|Allocates a JS value with external data.|10|
-|FUNC|napi_create_external_arraybuffer|Allocates a JS **ArrayBuffer** with external data.|10|
-|FUNC|napi_create_object|Creates a default JS **Object**.|10|
-|FUNC|napi_create_symbol|Creates a JS **Symbol**.|10|
-|FUNC|napi_create_typedarray|Creates a JS **TypeArray** from an existing **ArrayBuffer**.|10|
-|FUNC|napi_create_dataview|Creates a JS **DataView** from an existing **ArrayBuffer**.|10|
+|FUNC|napi_create_external_arraybuffer|Allocates a JS ArrayBuffer with external data.|10|
+|FUNC|napi_create_object|Creates a default JS object.|10|
+|FUNC|napi_create_symbol|Creates a JS symbol.|10|
+|FUNC|napi_create_typedarray|Creates a JS TypeArray from an existing ArrayBuffer.|10|
+|FUNC|napi_create_dataview|Creates a JS DataView from an existing ArrayBuffer.|10|
 |FUNC|napi_create_int32|Creates a JS number from C int32_t data.|10|
 |FUNC|napi_create_uint32|Creates a JS number from C uint32_t data.|10|
 |FUNC|napi_create_int64|Creates a JS number from C int64_t data.|10|
@@ -80,9 +80,9 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_typeof|Obtains the JS type of a JS value.|10|
 |FUNC|napi_instanceof|Checks whether an object is an instance of the specified constructor.|10|
 |FUNC|napi_is_array|Checks whether a JS value is an array.|10|
-|FUNC|napi_is_arraybuffer|Checks whether a JS value is a **ArrayBuffer**.|10|
-|FUNC|napi_is_typedarray|Checks whether a JS value is a **TypedArray**.|10|
-|FUNC|napi_is_dataview|Checks whether a JS value is a **DataView**.|10|
+|FUNC|napi_is_arraybuffer|Checks whether a JS value is a ArrayBuffer.|10|
+|FUNC|napi_is_typedarray|Checks whether a JS value is a TypedArray.|10|
+|FUNC|napi_is_dataview|Checks whether a JS value is a DataView.|10|
 |FUNC|napi_is_date|Checks whether a JS value is a JS **Date** object.|10|
 |FUNC|napi_strict_equals|Checks whether two JS values are strictly equal.|10|
 |FUNC|napi_get_property_names|Obtains the names of the enumerable properties of an object in an array of strings.|10|
@@ -108,15 +108,15 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_new_instance|Creates an instance based on the given constructor.|10|
 |FUNC|napi_define_class|Defines a JS class corresponding to the C++ class.|10|
 |FUNC|napi_wrap|Wraps a native instance in a JS object.|10|
-|FUNC|napi_unwrap|Obtains the native instance that was previously wrapped in a JS object.|10|
-|FUNC|napi_remove_wrap|Obtains the native instance that was previously wrapped in a JS object and removes the wrapping.|10|
+|FUNC|napi_unwrap|Unwraps the native instance from a JS object.|10|
+|FUNC|napi_remove_wrap|Removes the native instance from the JS object.|10|
 |FUNC|napi_create_async_work|Creates a work object that executes logic asynchronously.|10|
-|FUNC|napi_delete_async_work|Releases an asynchronous work object.|10|
-|FUNC|napi_queue_async_work|Adds an asynchronous work object to the queue so that it can be scheduled for execution.|10|
-|FUNC|napi_cancel_async_work|Cancels the queued asynchronous work if it has not been started.|10|
-|FUNC|napi_async_init|Creates an asynchronous context. The capabilities related to **async_hook** are not supported currently.|11|
-|FUNC|napi_make_callback|Allows a JS function to be called in the asynchronous context. The capabilities related to **async_hook** are not supported currently.|11|
-|FUNC|napi_async_destroy|Destroys the previously created asynchronous context. The capabilities related to **async_hook** are not supported currently.|11|
+|FUNC|napi_delete_async_work|Releases an async work object.|10|
+|FUNC|napi_queue_async_work|Adds an async work object to the queue so that it can be scheduled for execution.|10|
+|FUNC|napi_cancel_async_work|Cancels the queued async work if it has not been started.|10|
+|FUNC|napi_async_init|Creates an async context. The capabilities related to **async_hook** are not supported currently.|11|
+|FUNC|napi_make_callback|Allows a JS function to be called in the async context. The capabilities related to **async_hook** are not supported currently.|11|
+|FUNC|napi_async_destroy|Destroys the previously created async context. The capabilities related to **async_hook** are not supported currently.|11|
 |FUNC|napi_open_callback_scope|Opens a callback scope. The capabilities related to **async_hook** are not supported currently.|11|
 |FUNC|napi_close_callback_scope|Closes the callback scope. The capabilities related to **async_hook** are not supported currently.|11|
 |FUNC|napi_get_node_version|Obtains the current Node-API version.|10|
@@ -149,14 +149,14 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_object_freeze|Freezes the given object.|10|
 |FUNC|napi_object_seal|Seals the given object.|10|
 |FUNC|napi_get_all_property_names|Obtains an array containing the names of all the available properties of this object.|10|
-|FUNC|napi_detach_arraybuffer|Detaches the underlying data of the given **ArrayBuffer**.|10|
-|FUNC|napi_is_detached_arraybuffer|Checks whether the given **ArrayBuffer** has been detached.|10|
+|FUNC|napi_detach_arraybuffer|Detaches the underlying data of the given ArrayBuffer.|10|
+|FUNC|napi_is_detached_arraybuffer|Checks whether the given ArrayBuffer has been detached.|10|
 |FUNC|napi_set_instance_data|Associates data with the currently running environment.|11|
 |FUNC|napi_get_instance_data|Retrieves the data that was previously associated with the currently running environment.|11|
 |FUNC|napi_add_env_cleanup_hook|Registers a clean-up hook for releasing resources when the environment exits.|11|
 |FUNC|napi_remove_env_cleanup_hook|Unregisters the clean-up hook.|11|
-|FUNC|napi_add_async_cleanup_hook|Registers an asynchronous clean-up hook for releasing resources when the environment exits.|11|
-|FUNC|napi_remove_async_cleanup_hook|Unregisters the asynchronous clean-up hook.|11|
+|FUNC|napi_add_async_cleanup_hook|Registers an async clean-up hook for releasing resources when the environment exits.|11|
+|FUNC|napi_remove_async_cleanup_hook|Unregisters the async clean-up hook.|11|
 |FUNC|node_api_get_module_file_name|Obtains the absolute path of the location, from which the addon is loaded.|11|
 |FUNC|napi_add_finalizer|Adds a **napi_finalize** callback, which will be called when the JS object in **js_Object** is garbage-collected.|11|
 |FUNC|napi_fatal_exception|Throws **UncaughtException** to JS.|12|
@@ -172,7 +172,7 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 
 |Symbol Type|Symbol|Description|Start API Version|
 | --- | --- | --- | --- |
-|FUNC|napi_queue_async_work_with_qos|Adds asynchronously working objects to the queue and schedules them based on the QoS priority.|10|
+|FUNC|napi_queue_async_work_with_qos|Adds an async work object to the queue so that it can be scheduled for execution based on the QoS priority passed in.|10|
 |FUNC|napi_run_script_path|Runs an ABC file.|10|
 |FUNC|napi_load_module|Loads an .abc file as a module. This API returns the namespace of the module.|11|
 |FUNC|napi_create_object_with_properties|Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number.|11|
@@ -189,6 +189,15 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|12|
 |FUNC|napi_is_sendable|Checks whether the given JS value is sendable.|12|
 |FUNC|napi_define_sendable_class|Creates a sendable class.|12|
+|FUNC|napi_create_sendable_object_with_properties | Creates a sendable object with the given **napi_property_descriptor**.|12|
+|FUNC|napi_create_sendable_array | Creates a sendable array.|12|
+|FUNC|napi_create_sendable_array_with_length | Creates a sendable array of the specified length.|12|
+|FUNC|napi_create_sendable_arraybuffer | Creates a sendable ArrayBuffer.|12|
+|FUNC|napi_create_sendable_typedarray | Creates a sendable TypedArray.|12|
+|FUNC|napi_wrap_sendable | Wraps a native instance into an ArkTS object.|12|
+|FUNC|napi_wrap_sendable_with_size | Wraps a native instance into an ArkTS object with the specified size.|12|
+|FUNC|napi_unwrap_sendable | Unwraps the native instance from an ArkTS object.|12|
+|FUNC|napi_remove_wrap_sendable | Removes the native instance from an ArkTS object.|12|
 
 ### napi_qos_t
 
@@ -226,13 +235,13 @@ napi_status napi_queue_async_work_with_qos(napi_env env,
 
 **Description**
 
-Adds an asynchronous work object to the queue so that it can be scheduled for execution based on the QoS priority passed in.
+Adds an async work object to the queue so that it can be scheduled for execution based on the QoS priority passed in.
 
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
 
-- **work**: handle to the asynchronous work object to schedule. This object is created by **napi_create_async_work**.
+- **work**: handle to the async work object to schedule. This object is created by **napi_create_async_work**.
 
 - **qos**: priority of the task to schedule.
 
@@ -632,15 +641,248 @@ Creates a sendable class.
 
 - **constructor**: constructor of the class. This parameter is of the napi_callback type.
 
-- **data**: [Optional] pointer to the additional data of the constructor. This parameter is of the void* type.
+- **data**: (optional) pointer to the additional data of the constructor. This parameter is of the void* type.
 
-- **property_count**: number of  properties of the class. This parameter is of the size_t type.
+- **property_count**: number of properties of the class. This parameter is of the size_t type.
 
-- **properties**: [Optional] pointer to the descriptors of the properties. This parameter of the const napi_property_descriptor* type.
+- **properties**: (optional) pointer to the descriptors of the properties. This parameter of the const napi_property_descriptor* type.
 
-- parent: [Optional] parent class of the class to create. This parameter is of the napi_value type.
+- **parent**: (optional) parent class of the class to create. This parameter is of the napi_value type.
 
 - **result**: pointer to the sendable class created. This parameter is of the napi_value type.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_create_sendable_object_with_properties
+
+```cpp
+napi_status napi_create_sendable_object_with_properties(napi_env env,
+                                                        size_t property_count,
+                                                        const napi_property_descriptor* properties,
+                                                        napi_value* result)
+```
+
+**Description**
+
+Creates a sendable object with the given **napi_property_descriptor**.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **property_count**: number of properties of the class. This parameter is of the size_t type.
+
+- **properties**: pointer to the properties of the sendable object to create.
+
+- **result**: pointer to the sendable class created. This parameter is of the napi_value type.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_create_sendable_array
+
+```cpp
+napi_status napi_create_sendable_array(napi_env env, napi_value* result)
+```
+
+**Description**
+
+Creates a sendable array.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **result**: pointer to the sendable array created. This parameter is of the napi_value type.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_create_sendable_array_with_length
+
+```cpp
+napi_status napi_create_sendable_array_with_length(napi_env env, size_t length, napi_value* result)
+```
+
+**Description**
+
+Creates a sendable array of the specified length.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **length**: length of the sendable array to create.
+
+- **result**: pointer to the sendable array created. This parameter is of the napi_value type.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_create_sendable_arraybuffer
+
+```cpp
+napi_status napi_create_sendable_arraybuffer(napi_env env, size_t byte_length, void** data, napi_value* result)
+```
+
+**Description**
+
+Creates a sendable ArrayBuffer.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **byte_length**: length of the ArrayBuffer to create.
+
+- **data**: pointer to the byte buffer for storing the ArrayBuffer created.
+
+- **result**: pointer to the ArrayBuffer created. This parameter is of the napi_value type.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_create_sendable_typedarray
+
+```cpp
+napi_status napi_create_sendable_typedarray(napi_env env,
+                                            napi_typedarray_type type,
+                                            size_t length,
+                                            napi_value arraybuffer,
+                                            size_t byte_offset,
+                                            napi_value* result);
+```
+
+**Description**
+
+Creates a sendable TypedArray.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **type**: type of the TypedArray to create.
+
+- **length**: length of the TypedArray to create.
+
+- **arraybuffer**: ArrayBuffer instance to create.
+
+- **byte_offset**: offset of the ArrayBuffer.
+
+- **result**: pointer to the TypedArray created. This parameter is of the napi_value type.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_wrap_sendable
+
+```cpp
+napi_status napi_wrap_sendable(napi_env env,
+                               napi_value js_object,
+                               void* native_object,
+                               napi_finalize finalize_cb,
+                               void* finalize_hint);
+```
+
+**Description**
+
+Wraps a native instance into an ArkTS object.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **js_object**: ArkTS object.
+
+- **native_object**: pointer to the native instance to be wrapped in the ArkTS object.
+
+- **napi_finalize**: (optional) callback to be invoked when the ArkTS object is destroyed.
+
+- **finalize_hint**: (optional) pointer to the callback context, which will be passed to the callback.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_wrap_sendable_with_size
+
+```cpp
+napi_status napi_wrap_sendable_with_size(napi_env env,
+                                         napi_value js_object,
+                                         void* native_object,
+                                         napi_finalize finalize_cb,
+                                         void* finalize_hint,
+                                         size_t native_binding_size);
+```
+
+**Description**
+
+Wraps a native instance into an ArkTS object with the specified size.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **js_object**: ArkTS object.
+
+- **native_object**: pointer to the native instance to be wrapped in the ArkTS object.
+
+- **napi_finalize**: (optional) callback to be invoked when the ArkTS object is destroyed.
+
+- **finalize_hint**: (optional) pointer to the callback context, which will be passed to the callback.
+
+- **native_binding_size**: (optional) size of the native instance wrapped.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_unwrap_sendable
+
+```cpp
+napi_status napi_unwrap_sendable(napi_env env, napi_value js_object, void** result)
+```
+
+**Description**
+
+Unwraps the native instance from an ArkTS object.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **js_object**: ArkTS object.
+
+- **result**: double pointer to the native instance unwrapped.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_remove_wrap_sendable
+
+```cpp
+napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void** result)
+```
+
+**Description**
+
+Removes the native instance from an ArkTS object.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **js_object**: ArkTS object.
+
+- **result**: double pointer to the native instance removed.
 
 **Return value**
 

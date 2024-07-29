@@ -1,6 +1,6 @@
 # @ohos.arkui.StateManagement (状态管理)
 
-状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态。
+状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态、工具。
 
 >**说明：**
 >
@@ -354,4 +354,58 @@ PersistenceV2.remove(SampleClass);
 
 // 假设PersistenceV2中不存在key为key_as1的键，无意义的操作
 PersistenceV2.remove('key_as1');
+```
+
+## UIUtils
+
+UIUtils提供一些方法，用于处理状态管理相关的数据转换。
+
+### 导入模块
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+```
+
+### getTarget<sup>12+</sup>
+
+static getTarget\<T extends object\>(source: T): T;
+
+从状态管理框架包裹的代理对象中获取原始对象。详见[getTarget接口：获取状态管理框架代理前的原始对象](../../quick-start/arkts-new-getTarget.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 参数描述     |
+| ------ | ---- | ---- | ------------ |
+| source | T    | 是   | 数据源对象。 |
+
+**返回值：**
+
+| 类型 | 描述                                             |
+| ---- | ------------------------------------------------ |
+| T    | 数据源对象去除状态管理框架所加代理后的原始对象。 |
+
+**示例：**
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+class NonObservedClass {
+  name: string = "Tom";
+}
+let nonObservedClass: NonObservedClass = new NonObservedClass();
+@Entry
+@Component
+struct Index {
+  @State someClass: NonObservedClass = nonObservedClass;
+  build() {
+    Column() {
+      Text(`this.someClass === nonObservedClass: ${this.someClass === nonObservedClass}`) // false
+      Text(`UIUtils.getTarget(this.someClass) === nonObservedClass: ${UIUtils.getTarget(this.someClass) ===
+        nonObservedClass}`) // true
+    }
+  }
+}
 ```

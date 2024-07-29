@@ -4880,6 +4880,10 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。
 
+> **说明：**
+>
+> 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -13094,7 +13098,7 @@ struct WebComponent {
 
 static resumeDownload(webDownloadItem: WebDownloadItem): void
 
-设置用于接收从WebDownloadManager触发的下载进度的委托。
+恢复一个失败的下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

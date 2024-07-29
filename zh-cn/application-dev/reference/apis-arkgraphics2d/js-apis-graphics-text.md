@@ -78,12 +78,12 @@ import { text } from '@kit.ArkGraphics2D';
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称                      | 类型                                                  | 只读 | 必填 | 说明                                         |
+| 名称                      | 类型                                                  | 只读 | 可选 | 说明                                         |
 | ------------------------- | --------------------------------------------------- | ---- | ---- | -------------------------------------------- |
-| textDecoration            | [TextDecorationType](#textdecorationtype)           | 是   | 否   | 装饰线类型，默认为NONE。                       |
-| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 否   | 装饰线颜色，默认为透明。                       |
-| decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | 是   | 否   | 装饰线样式，默认为SOLID。                      |
-| decorationThicknessScale  | number                                              | 是   | 否   | 装饰线粗细相对于默认值的比例，浮点数，默认为1.0。|
+| textDecoration            | [TextDecorationType](#textdecorationtype)           | 是   | 是   | 装饰线类型，默认为NONE。                       |
+| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 是   | 装饰线颜色，默认为透明。                       |
+| decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | 是   | 是   | 装饰线样式，默认为SOLID。                      |
+| decorationThicknessScale  | number                                              | 是   | 是   | 装饰线粗细相对于默认值的比例，浮点数，默认为1.0。|
 
 ## TextDecorationType
 
@@ -233,6 +233,17 @@ import { text } from '@kit.ArkGraphics2D';
 | name      | string                                               | 是  |  否   | 字体特征键值对中关键字所标识的字符串。       |
 | value     | number                                               | 是  |  否   | 字体特征键值对的值。                        |
 
+## FontVariation
+
+可变字体属性。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
+| --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
+| axis      | string                                               | 是  |  否   | 可变字体属性键值对中关键字所标识的字符串。       |
+| value     | number                                               | 是  |  否   | 可变字体属性键值对的值。                        |
+
 ## TextStyle
 
 文本样式。
@@ -258,6 +269,7 @@ import { text } from '@kit.ArkGraphics2D';
 | locale        | string                                               | 是 | 是 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
 | baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
+| fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本字体阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
 
@@ -435,13 +447,13 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称           | 类型                                           | 只读 | 必填 | 说明                         |
+| 名称           | 类型                                           | 只读 | 可选 | 说明                         |
 | -------------- | --------------------------------------------- | ---- | --- | --------------------------- |
-| width          | number                                        | 是   | 是   | 占位符的宽度，浮点数，单位为逻辑像素。|
-| height         | number                                        | 是   | 是   | 占位符的高度，浮点数，单位为逻辑像素。|
-| align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 是   | 相对于周围文本的纵向的对齐方式。|
-| baseline       | [TextBaseline](#textbaseline)                 | 是   | 是   | 基线类型。                   |
-| baselineOffset | number                                        | 是   | 是   | 基线偏移量，浮点数，单位为逻辑像素。  |
+| width          | number                                        | 是   | 否   | 占位符的宽度，浮点数，单位为逻辑像素。|
+| height         | number                                        | 是   | 否   | 占位符的高度，浮点数，单位为逻辑像素。|
+| align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 否   | 相对于周围文本的纵向的对齐方式。|
+| baseline       | [TextBaseline](#textbaseline)                 | 是   | 否   | 基线类型。                   |
+| baselineOffset | number                                        | 是   | 否   | 基线偏移量，浮点数，单位为逻辑像素。  |
 
 ## Range
 
@@ -449,10 +461,10 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称   | 类型   | 只读 | 必填 | 说明            |
+| 名称   | 类型   | 只读 | 可选 | 说明            |
 | ----- | ------ | ---- | --- | --------------- |
-| start | number | 是   | 是   | 区间左侧端点索引，整数。|
-| end   | number | 是   | 是   | 区间右侧端点索引，整数。|
+| start | number | 是   | 否   | 区间左侧端点索引，整数。|
+| end   | number | 是   | 否   | 区间右侧端点索引，整数。|
 
 ## Paragraph
 
@@ -972,7 +984,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 | 名称      | 类型                                                | 只读 | 可选 | 说明        |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
 | textStyle | [TextStyle](#textstyle)                             | 是   | 否   | 字体的样式信息。|
-| fontMetrics | [FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 是   | 否   | 字体度量信息。    |
+| fontMetrics | [drawing.FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 是   | 否   | 字体度量信息。    |
 
 ## LineMetrics
 
@@ -1000,10 +1012,10 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称      | 类型                                                | 只读 | 必填 | 说明        |
+| 名称      | 类型                                                | 只读 | 可选 | 说明        |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
-| rect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 是   | 矩形区域信息。|
-| direction | [TextDirection](#textdirection)                    | 是   | 是   | 文本方向。    |
+| rect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 否   | 矩形区域信息。|
+| direction | [TextDirection](#textdirection)                    | 是   | 否   | 文本方向。    |
 
 ## PositionWithAffinity
 
@@ -1011,10 +1023,10 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称      | 类型                   | 只读 | 必填 | 说明                      |
+| 名称      | 类型                   | 只读 | 可选 | 说明                      |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
-| position  | number                | 是   | 是   | 字形相对于段落的索引，整数。  |
-| affinity  | [Affinity](#affinity) | 是   | 是   | 位置亲和度。               |
+| position  | number                | 是   | 否   | 字形相对于段落的索引，整数。  |
+| affinity  | [Affinity](#affinity) | 是   | 否   | 位置亲和度。               |
 
 ## RectWidthStyle
 

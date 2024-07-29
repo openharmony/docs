@@ -882,6 +882,7 @@ isNotificationEnabledSync(): boolean
 
 ```ts
 let enabled = notificationManager.isNotificationEnabledSync();
+console.info(`isNotificationEnabledSync success, data is : ${JSON.stringify(enabled)}`);
 ```
 
 ## notificationManager.setBadgeNumber<sup>10+</sup>
@@ -1597,6 +1598,8 @@ notificationManager.isDistributedEnabled()
 
 ## ContentType
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                              | 值          | 说明               |
@@ -1623,6 +1626,8 @@ notificationManager.isDistributedEnabled()
 
 
 ## SlotType
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
