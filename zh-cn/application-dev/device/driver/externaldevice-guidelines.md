@@ -7,9 +7,13 @@
 扩展外设支持Tablet和特定设备上使用。
 
 ## 环境搭建
+
 ### 开发工具及配置
+
 DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等，功能介绍如下：   
+
 [DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-tools-overview-0000001558763037-V5)
+
 - [下载与安装](https://developer.harmonyos.com/cn/develop/deveco-studio#download)
 - [创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
 - [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-app-ability-driverextensionability-V5)
@@ -17,10 +21,15 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 - [应用发布及上架](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-publish-app-0000001053223745-V5)
 
 ### HDC配置
+
 hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)
 
+### 单板rk3568配置及烧录
+
+烧录流程参考[单板rk3568环境配置及烧录](https://gitee.com/long-youling/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)  
 
 ## 驱动开发指导
+
 开发相关外设对应驱动，主要是调用扩展外设管理模块的DriverExtensionAbility；
 
 开发详情请见[DriverExtensionAbility](./driverextensionability.md)简介。
@@ -234,9 +243,12 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 安装出现报错 “compileSdkVersion and releaseType of the app do not match the apiVersion and releaseType on the device” 请检查设备系统版本与hap版本是否匹配
 
-OpenHarmony SDK各版本：    
-4.0_release -> [API10](https://cidownload.openharmony.cn/version/Release_Version/OpenHarmony_4.0.10.11/20231012_030937/version-Release_Version-OpenHarmony_4.0.10.11-20231012_030937-ohos-sdk-full_4.0-release.tar.gz)    
-4.1_release -> [API11](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_4.1.7.2/20240319_104114/version-Master_Version-OpenHarmony_4.1.7.2-20240319_104114-ohos-sdk-full_4.1-Release.tar.gz)    
+OpenHarmony SDK各版本：
+
+4.0_release -> [API10](https://cidownload.openharmony.cn/version/Release_Version/OpenHarmony_4.0.10.11/20231012_030937/version-Release_Version-OpenHarmony_4.0.10.11-20231012_030937-ohos-sdk-full_4.0-release.tar.gz)   
+
+4.1_release -> [API11](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_4.1.7.2/20240319_104114/version-Master_Version-OpenHarmony_4.1.7.2-20240319_104114-ohos-sdk-full_4.1-Release.tar.gz)  
+  
 5.0_dev -> [API12](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_5.0.0.18_dev/20240406_020139/version-Master_Version-OpenHarmony_5.0.0.18_dev-20240406_020139-ohos-sdk-full.tar.gz)
 
 ### 开发工具语法检查问题
@@ -246,4 +258,5 @@ OpenHarmony SDK各版本：
 ![报错现象](./figures/error_grammar.png)
 
 这是由于ArkTs语法检查规则发生了变化，由松语法检查变为严格语法检查，目的是让开发者使用更加规范。
+
 变化点可参考[ArkTs语法变化](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/typescript-to-arkts-migration-guide.md)
