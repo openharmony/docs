@@ -217,6 +217,8 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 | 错误码ID   | 错误信息                         |
 | --------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200006 | An exception occurred during serialization. |
+| 10200014 | The function is not marked as concurrent. |
 | 10200028 | The delayTime is less than zero. |
 | 10200051 | The periodic task cannot be executed again. |
 
