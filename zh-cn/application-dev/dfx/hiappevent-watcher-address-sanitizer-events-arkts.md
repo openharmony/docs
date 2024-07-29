@@ -166,7 +166,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            .fontSize(50)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+             hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.test());
            })
          }
          .width('100%')
