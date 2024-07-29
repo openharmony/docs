@@ -20,11 +20,11 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 否 | 是 | 枚举类型，表示启动原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 否 | 是 | 枚举类型，表示最后退出原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| lastExitMessage<sup>12+</sup> | string | 否 | 是 | 表示最后退出详细原因。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 否 | 否 | 枚举类型，表示启动原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## AbilityConstant.LaunchReason
 

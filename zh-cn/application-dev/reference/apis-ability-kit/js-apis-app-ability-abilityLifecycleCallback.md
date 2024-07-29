@@ -393,6 +393,7 @@ MyFirstAbility.ts
 应用的第一个Ability
 ```ts
 import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
 import { GlobalContext } from '../GlobalContext'

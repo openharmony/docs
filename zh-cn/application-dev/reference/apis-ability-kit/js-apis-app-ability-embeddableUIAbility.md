@@ -20,6 +20,6 @@ import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否 | 是 | 上下文。 |
+| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否 | 否 | 上下文。 |
