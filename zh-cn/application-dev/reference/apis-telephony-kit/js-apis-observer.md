@@ -270,7 +270,9 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.READ_CALL_LOG（获取电话号码需要此权限）
+>**说明：**
+>
+>获取电话号码时需要ohos.permission.READ_CALL_LOG权限，该权限为系统权限。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
@@ -308,7 +310,9 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallSt
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.READ_CALL_LOG（获取电话号码需要此权限）
+>**说明：**
+>
+>获取电话号码时需要ohos.permission.READ_CALL_LOG权限，该权限为系统权限。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
