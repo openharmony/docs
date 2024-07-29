@@ -48,6 +48,7 @@
         - [自定义组件的自定义布局](quick-start/arkts-page-custom-components-layout.md)
         - [自定义组件成员属性访问限定符使用限制](quick-start/arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
+      - [\@LocalBuilder装饰器：维持组件父子关系](quick-start/arkts-localBuilder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
       - [wrapBuilder：封装全局@Builder](quick-start/arkts-wrapBuilder.md)
       - [\@Styles装饰器：定义组件重用样式](quick-start/arkts-style.md)
@@ -150,6 +151,7 @@
             - [显式Want跳转切换应用链接跳转适配指导](application-models/uiability-startup-adjust.md)
           - 通用意图跳转<!--common-intent-redirection-->
             - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
+            - [拉起图片编辑类应用编辑图片](application-models/photoEditorExtensionAbility.md)
             - [通过startAbility拉起文件处理类应用](application-models/file-processing-apps-startup.md)
           - [拉起系统应用](application-models/system-app-startup.md)
         - [进程模型](application-models/process-model-stage.md)
@@ -369,7 +371,7 @@
             - [出现/消失转场](ui/arkts-enter-exit-transition.md)
             - [导航转场](ui/arkts-navigation-transition.md)
             - [模态转场](ui/arkts-modal-transition.md)
-            - [共享元素转场](ui/arkts-shared-element-transition.md)
+            - [共享元素转场 (一镜到底)](ui/arkts-shared-element-transition.md)
             - [旋转屏动画增强](ui/arkts-rotation-transition-animation.md)
             - [页面转场动画 (不推荐)](ui/arkts-page-transition-animation.md)
           - [粒子动画](ui/arkts-particle-animation.md)
@@ -523,12 +525,14 @@
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
         - [使用Web组件的广告过滤功能](web/web-adsblock.md)
+        - [高级安全模式](web/web-advanced-security-mode.md)
       - 管理网页加载与浏览记录<!--web-manage-loading-browsing-->
         - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
         - [管理页面跳转及浏览记录导航](web/web-redirection-and-browsing-history-mgmt.md)
         - [拦截Web组件发起的网络请求](web/web-scheme-handler.md)
         - [自定义页面请求响应](web/web-resource-interception-request-mgmt.md)
         - [加速Web页面的访问](web/web-predictor.md)
+        - [Web前进后退缓存](web/web-set-back-forward-cache.md)
       - 管理网页文件上传与下载<!--web-manage-upload-download-->
         - [上传文件](web/web-file-upload.md)
         - [使用Web组件的下载能力](web/web-download.md)
@@ -543,7 +547,9 @@
         - [使用Devtools工具调试前端页面](web/web-debugging-with-devtools.md)
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
+      <!--Del-->
       - 后台任务管理
+      <!--DelEnd-->
         - [后台任务总体概述](task-management/background-task-overview.md)
         - [短时任务](task-management/transient-task.md)
         - [长时任务](task-management/continuous-task.md)
@@ -784,10 +790,10 @@
           - [密钥派生介绍及算法规格](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
           - [使用PBKDF2进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
           - [使用HKDF进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
-      - Data Protection Kit（数据保护服务）<!--data-protection-kit-->
+      - Data Loss Prevention Kit（数据防泄漏服务）<!--data-protection-kit-->
         - 数据防泄漏服务<!--dlp-->
-          - [数据防泄漏服务简介](security/DataProtectionKit/dlp-overview.md)
-          - [数据防泄漏服务开发指导](security/DataProtectionKit/dlp-guidelines.md)
+          - [Data Loss Prevention Kit简介](security/DataProtectionKit/dlp-overview.md)
+          - [Data Loss Prevention Kit开发指导](security/DataProtectionKit/dlp-guidelines.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-kit-->
         - [Device Certificate Kit简介](security/DeviceCertificateKit/device-certificate-kit-intro.md)
         - 证书算法库框架<!--certificate-framework-->
@@ -1437,6 +1443,7 @@
           - [@ohos.app.ability.insightIntent (insightIntent)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
           - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
           - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
+          - [@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
           - [@ohos.app.ability.OpenLinkOptions (OpenLinkOptions)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
           - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
           - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
@@ -1792,6 +1799,7 @@
           - [@ohos.arkui.Theme(主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
           - [@ohos.arkui.UIContext (UIContext)](reference/apis-arkui/js-apis-arkui-UIContext.md)
           - [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension.md)
+          - [@ohos.arkui.StateManagement (状态管理)](reference/apis-arkui/js-apis-StateManagement.md)
           - [@ohos.curves (插值计算)](reference/apis-arkui/js-apis-curve.md)
           - [@ohos.font (注册自定义字体)](reference/apis-arkui/js-apis-font.md)
           - [@ohos.matrix4 (矩阵变换)](reference/apis-arkui/js-apis-matrix4.md)
@@ -1855,7 +1863,6 @@
             - [按键事件](reference/apis-arkui/arkui-ts/ts-universal-events-key.md)
             - [焦点事件](reference/apis-arkui/arkui-ts/ts-universal-focus-event.md)
             - [鼠标事件](reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md)
-            - [无障碍悬浮事件](reference/apis-arkui/arkui-ts/ts-universal-accessibility-hover-event.md)
             - [组件区域变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md)
             - [组件尺寸变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-size-change-event.md)
             - [组件可见区域变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md)
@@ -2080,6 +2087,10 @@
           - [@ohos.arkui.advanced.ToolBar (工具栏)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ToolBar.md)
           - [@ohos.arkui.advanced.TreeView (树视图)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
           - [@ohos.arkui.advanced.FoldSplitContainer (分栏布局)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
+          - [@ohos.atomicservice.AtomicServiceNavigation (导航根视图容器)](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
+          - [@ohos.atomicservice.AtomicServiceTabs (页签容器)](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
+          - [@ohos.atomicservice.AtomicServiceWeb (Web高阶组件)](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
+          - [@ohos.atomicservice.InterstitialDialogAction (弹框)](reference/apis-arkui/arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
         - 安全控件
           - [安全控件通用属性](reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)
           - [LocationButton](reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
@@ -2112,9 +2123,13 @@
           - [自定义组件内置方法](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
         - 类型定义
           - [基础类型定义](reference/apis-arkui/arkui-ts/ts-types.md)
-          - [图像类型定义](reference/apis-arkui/arkui-ts/ts-image-common.md)
           - [文本类型定义](reference/apis-arkui/arkui-ts/ts-text-common.md)
+          - [图像类型定义](reference/apis-arkui/arkui-ts/ts-image-common.md)
         - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
+        - 渲染控制
+          - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
+          - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
+          - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
         - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
         - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
         - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
@@ -2594,7 +2609,7 @@
             - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
-      - Data Protection Kit（数据保护服务）<!--data-protection-api-->
+      - Data Loss Prevention Kit（数据防泄漏服务）<!--data-protection-api-->
         - ArkTS API<!--data-protection-arkts-->
           - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-protection-kit/js-apis-dlppermission.md)
           <!--Del-->
@@ -2820,8 +2835,7 @@
             - [@ohos.deviceInfo (设备信息)](reference/apis-basic-services-kit/js-apis-device-info.md)
             - [@ohos.power (系统电源管理)](reference/apis-basic-services-kit/js-apis-power.md)
             - [@ohos.runningLock (Runninglock锁)](reference/apis-basic-services-kit/js-apis-runninglock.md)
-            - [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)
-            - [@ohos.screenLock (锁屏管理)](reference/apis-basic-services-kit/js-apis-screen-lock.md)       
+            - [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)      
             - [@ohos.usbManager (USB管理)](reference/apis-basic-services-kit/js-apis-usbManager.md)
             <!--Del-->
             - [@ohos.batteryInfo (电量信息)(系统接口)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
@@ -2840,6 +2854,7 @@
             - [@ohos.pasteboard (剪贴板)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (打印)](reference/apis-basic-services-kit/js-apis-print.md)
             - [@ohos.request (上传下载)](reference/apis-basic-services-kit/js-apis-request.md)
+            - [@ohos.screenLock (锁屏管理)](reference/apis-basic-services-kit/js-apis-screen-lock.md) 
             - [@ohos.zlib (Zip模块)](reference/apis-basic-services-kit/js-apis-zlib.md)
             <!--Del-->
             - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
@@ -3113,6 +3128,7 @@
           - [@ohos.hiTraceChain (分布式跟踪)](reference/apis-performance-analysis-kit/js-apis-hitracechain.md)
           - [@ohos.hiTraceMeter (性能打点)](reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)
           - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)
+          - [@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)
           <!--Del-->
           - [@ohos.hiSysEvent (系统事件打点)(系统接口)](reference/apis-performance-analysis-kit/js-apis-hisysevent-sys.md)
           - [@ohos.logLibrary (维测日志获取)(系统接口)](reference/apis-performance-analysis-kit/js-apis-loglibrary-sys.md)
