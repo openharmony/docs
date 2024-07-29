@@ -37,8 +37,6 @@ allowScale(value: boolean)
 
 设置是否允许文本缩放。
 
-暂不支持该接口。
-
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -49,7 +47,7 @@ allowScale(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 是否允许文本缩放。<br/>默认值：false |
+| value  | boolean | 是   | 是否允许文本缩放。<br/>默认值：false<br/>**说明：**<br/>仅当fontSize为fp单位时生效。 |
 
 ### marqueeUpdateStrategy<sup>12+</sup>
 
