@@ -457,7 +457,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## <!--RP2-->Setting a floating window<!--RP2End-->
+## <!--RP2-->Setting a Floating Window<!--RP2End-->
 
 A floating window is created based on an existing task. It is always displayed in the foreground, even if the task used for creating the floating window is switched to the background. Generally, the floating window is above all application windows. You can create a floating window and set its properties.
 
@@ -465,7 +465,7 @@ A floating window is created based on an existing task. It is always displayed i
 ### How to Develop
 
 <!--RP1-->
-**Prerequisites**: To create a floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+**Prerequisites**: To create a floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 <!--RP1End-->
 
 1. Create a floating window.
@@ -555,7 +555,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Listening for Interactive and Non-Interactive Window Events
 
-When running in the foreground, an application may switch between interactive and non-interactive states and process services depending on the state. For example, when the user opens the **Recents** screen, an application becomes non-interactive and pauses the service interacting with the user, such as video playback or camera preview; when the user switched back to the foreground, the application becomes interactive again, and the paused service needs to be resumed. To obtain these state changes, you can subscribe to the **'windowStageEvent'** event.
+When running in the foreground, an application may switch between interactive and non-interactive states and process services depending on the state. For example, when the user opens the **Recents** screen, an application becomes non-interactive and pauses the service interacting with the user, such as video playback or camera preview; when the user switched back to the foreground, the application becomes interactive again, and the paused service needs to be resumed.
 
 ### How to Develop
 
