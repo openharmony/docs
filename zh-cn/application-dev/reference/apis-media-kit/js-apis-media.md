@@ -499,6 +499,20 @@ Codec MIME类型枚举。
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
+## PlayerInfoKey<sup>12+</sup>
+
+媒体信息描述枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称                     | 值              | 说明                                                         |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| SERVER_IP_ADDRESS        | 'server_ip_address'    | 表示服务器IP地址，其对应键值类型为string。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| AVERAGE_DOWNLOAD_RATE    | 'average_download_rate'| 表示平均下载速度，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DOWNLOAD_RATE            | 'download_rate'        | 表示1s的下载速率，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| IS_DOWNLOADING           | 'is_downloading'       | 表示下载状态，1表示在下载状态，0表示非下载状态（下载完成），其对应键值类型为number。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| BUFFER_DURATION          | 'buffer_duration'      | 表示缓存数据的可播放时长，其对应键值类型为number，单位为秒（s）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+
 ## BufferingInfoType<sup>8+</sup>
 
 缓存事件类型枚举。
@@ -1269,6 +1283,42 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
   console.info('Succeeded in getting TrackDescription');
 }).catch((error: BusinessError) => {
   console.error(`Failed to get TrackDescription, error:${error}`);
+});
+```
+
+### getPlayerInfo<sup>12+</sup>
+
+getPlayerInfo(): Promise\<PlayerInfo>
+
+获取音视频轨道信息，可以在prepared/playing/paused状态调用。通过Promise获取返回值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型                                                   | 说明                                              |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| Promise<[PlayerInfo](#PlayerInfo12)> | Promise对象，返回播放器信息PlayerInfo。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.getPlayerInfo().then((let: media.PlayerInfo) => {
+  console.info('Succeeded in getting PlayerInfo');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get PlayerInfo, error:${error}`);
 });
 ```
 
@@ -2534,6 +2584,48 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
         }
       } else {
         console.error(`Failed to get TrackDescription, error:${error}`);
+      }
+    });
+  } else {
+    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+  }
+});
+```
+
+## PlayerInfo<sup>12+</sup>
+
+通过key-value方式获取媒体信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| [key: string] | Object | 是   | 该键值对支持的key取值范围，请参考[PlayerInfoKey](#PlayerInfoKey12);每个key值的Object类型和范围，请参考[PlayerInfoKey](#PlayerInfoKey12)对应Key值的说明 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+
+function printfPlayerInfo(obj: media.PlayerInfo, key: string) {
+  let property: Object = obj[key];
+  console.info('key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
+  console.info('value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]
+}
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
+  if(player != null) {
+    avPlayer = player;
+    console.info(`Succeeded in creating AVPlayer`);
+    avPlayer.getPlayerInfo((error: BusinessError, playerInfo: media.PlayerInfo) => {
+      if (playerInfo != null) {
+        printfPlayerInfo(playerInfo, media.PlayerInfo.SERVER_IP_ADDRESS);  //打印出SERVER_IP_ADDRESS的值
+      } else {
+        console.error(`Failed to get PlayerInfo, error:${error}`);
       }
     });
   } else {
