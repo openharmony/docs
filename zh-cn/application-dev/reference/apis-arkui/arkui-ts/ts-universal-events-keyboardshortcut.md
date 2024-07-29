@@ -64,10 +64,10 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | F11  | 表示键盘上F11功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | F12  | 表示键盘上F12功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | TAB<sup>12+</sup>  | 表示键盘上TAB功能键。 |
-| OPAD_UP<sup>12+</sup>   | 表示键盘上UP方向键。  |
-| OPAD_DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 |
-| OPAD_LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 |
-| OPAD_RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 |
+| DPAD_UP<sup>12+</sup>   | 表示键盘上UP方向键。  |
+| DPAD_DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 |
+| DPAD_LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 |
+| DPAD_RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 |
 
 ## 快捷键使用注意事项
 
