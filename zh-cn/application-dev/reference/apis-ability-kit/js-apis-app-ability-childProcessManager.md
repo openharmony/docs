@@ -215,6 +215,7 @@ export default class DemoProcess extends ChildProcess {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // 使用childProcessManager.startArkChildProcess方法启动子进程:
 // module1/src/main/ets/tool/Tool.ets
