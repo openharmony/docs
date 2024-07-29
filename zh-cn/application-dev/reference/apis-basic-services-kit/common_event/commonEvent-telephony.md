@@ -40,7 +40,7 @@
 
 ## COMMON_EVENT_STK_COMMAND
 
-（预留事件，暂未支持）提示STK命令。
+提示STK命令。
 
 - 值：usual.event.STK_COMMAND
 - 订阅者所需权限：无
@@ -49,7 +49,7 @@
 
 ## COMMON_EVENT_STK_SESSION_END
 
-（预留事件，暂未支持）提示STK会话结束。
+提示STK会话结束。
 
 - 值：usual.event.STK_SESSION_END
 - 订阅者所需权限：无
@@ -58,7 +58,7 @@
 
 ## COMMON_EVENT_STK_CARD_STATE_CHANGED
 
-（预留事件，暂未支持）提示STK卡状态已更新。
+提示STK卡状态已更新。
 
 - 值：usual.event.STK_CARD_STATE_CHANGED
 - 订阅者所需权限：无
@@ -67,7 +67,7 @@
 
 ## COMMON_EVENT_STK_ALPHA_IDENTIFIER
 
-（预留事件，暂未支持）提示STK ALPHA标识符。
+提示STK ALPHA标识符。
 
 - 值：usual.event.STK_ALPHA_IDENTIFIER
 - 订阅者所需权限：无
