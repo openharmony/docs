@@ -1367,6 +1367,7 @@
       - [避免在滑动场景的高频回调接口中处理耗时操作](performance/avoid_high_frequency_callback_execute_lengthy_operation.md)
       - [合理使用系统提供的接口](performance/reasonable_using_system_interfaces.md)
       - [避免在主线程中执行耗时操作](performance/avoid_time_consuming_operations_in_mainthread.md)
+      - [模糊场景性能优化](performance/fuzzy_scene_performance_optimization.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
