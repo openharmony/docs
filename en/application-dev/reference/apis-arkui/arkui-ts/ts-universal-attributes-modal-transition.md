@@ -22,7 +22,7 @@ Binds a modal to the component, which can be displayed when the component is tou
 
 | Name | Type                                       | Mandatory| Description                                                        |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | boolean                                     | Yes  | Whether to display the modal.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| isShow  | boolean                                     | Yes  | Whether to display the modal.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the modal.                                      |
 | options | [ContentCoverOptions](#contentcoveroptions) | No  | Optional attributes of the modal.                                |
 

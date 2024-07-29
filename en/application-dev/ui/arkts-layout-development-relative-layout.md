@@ -3,7 +3,7 @@
 
 ## Overview
 
-During application development, nesting components – same or different – is common in page layout, especially when the target page is complicated. Yet, nesting components too deeply, or nesting too many components, can be especially expensive. Naturally, optimizing the layout hierarchies can effectively lead to better performance and less time overhead. For details about how the relative container is more performance-efficient than the list, see [Improving Layout Performance](../performance/reduce-view-nesting-levels.md).
+During application development, nesting components – same or different – is common in page layout, especially when the target page is complicated. Yet, nesting components too deeply, or nesting too many components, can be especially expensive. Naturally, optimizing the layout hierarchies can effectively lead to better performance and less time overhead.<!--Del--> For details about how the relative container is more performance-efficient than the list, see [Improving Layout Performance](../performance/reduce-view-nesting-levels.md).<!--DelEnd-->
 
 The relative layout, implemented using the **RelativeContainer** container component, is used to lay out child elements in relative positions. It is applicable to element alignment in complex scenarios. A child element can use the container or another child element as the anchor, based on which its relative position is determined. Below shows a relative layout. The dotted lines in the figure indicate the position dependency.
 

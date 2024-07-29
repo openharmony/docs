@@ -187,7 +187,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  For the **Row**, **Column**, and **RelativeContainer** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+>  For the **Row**, **Column**, and **RelativeContainer** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **TextInput** component, the **auto** option of **width** means to adapt to the text width.
 
 ## Example
 ### Example 1

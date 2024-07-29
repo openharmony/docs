@@ -3787,7 +3787,7 @@ struct RichEditor_onEditingChange {
   build() {
     Column() {
       Row() {
-        Button("Click to view the editing status isEditing(): ").onClick(() => {
+        Button("View isEditing() Value ").onClick(() => {
           this.controllerIsEditing = this.controller.isEditing()
         })
           .padding(5)
@@ -3991,7 +3991,7 @@ struct LineBreakStrategyExample {
         })
         Divider()
         Row(){
-          Button("Get linebreak Value").onClick () => {
+          Button("Get linebreak Value").onClick(() => {
             this.spanParagraphs = this.controller.getParagraphs({ start: -1, end: -1 })
             console.log("RichEditor getParagraphs:" + JSON.stringify(this.spanParagraphs))
             this.spanParagraphs.forEach(item => {
@@ -4130,7 +4130,7 @@ struct Index {
 
       Column() {
         Row() {
-          Button ("Insert Image").onClick () => {
+          Button ("Insert Image").onClick(() => {
             if (this.imagePixelMap !== undefined) {
               let imageStyledString = new MutableStyledString(new ImageAttachment({
                 value: this.imagePixelMap,

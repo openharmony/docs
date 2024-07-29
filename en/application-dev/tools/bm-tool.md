@@ -329,7 +329,7 @@ When you run a signed HAP, the error message "failed to install bundle. error: i
 
 An unsigned HAP is installed. To solve this problem, sign the HAP before installing it.
 1. Use automatic signature. After the device is connected, sign the application again.
-2. To use manual signature, follow the instructions provided in [hapsigner Guide](../security/hapsigntool-guidelines.md).
+2. To use manual signature, follow the instructions provided in [hapsigner Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/hapsigntool-guidelines.md).
 
 ### Error Message "code:9568347 error: install parse native so failed" Is Displayed During HAP Installation
 

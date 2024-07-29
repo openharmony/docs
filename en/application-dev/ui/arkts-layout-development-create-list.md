@@ -5,24 +5,24 @@
 
 A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. The list is applicable for presenting similar data types or data type sets, such as images and text. Some common lists seen in applications are the contacts list, playlist, and shopping list.
 
-You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
+You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) or [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **List** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
 
 
 ## Layout and Constraints
 
 A list automatically arranges child components in the direction it scrolls. Adding or removing child components from the list will trigger re-arrangement of the child components.
 
-As shown in the following figure, in a vertical list, **\<ListItemGroup>** or **\<ListItem>** components are automatically arranged vertically.
+As shown in the following figure, in a vertical list, **ListItemGroup** or **ListItem** components are automatically arranged vertically.
 
-**\<ListItemGroup>** is used to display list data by group. Its child component is also **\<ListItem>**. **\<ListItem>** represents a list item, which can contain a single child component.
+**ListItemGroup** is used to display list data by group. Its child component is also **ListItem**. **ListItem** represents a list item, which can contain a single child component.
 
-  **Figure 1** Relationships between \<List>, \<ListItemGroup>, and \<ListItem> 
+  **Figure 1** Relationships between List, ListItemGroup, and ListItem 
 
 ![en-us_image_0000001562940589](figures/en-us_image_0000001562940589.png)
 
 >**NOTE**
 >
->A **\<List>** component can contain only **\<ListItemGroup>** or **\<ListItem>** as its child components. **\<ListItemGroup>** and **\<ListItem>** must be used together with **\<List>**.
+>A **List** component can contain only **ListItemGroup** or **ListItem** as its child components. **ListItemGroup** and **ListItem** must be used together with **List**.
 
 
 ### Layout
@@ -52,25 +52,25 @@ As shown below, the main axis of a vertical list is in the vertical direction, a
 
 ![en-us_image_0000001562940581](figures/en-us_image_0000001562940581.png)
 
-If a size is set for the main axis or cross axis of the **\<List>** component, it is used as the size of the component in the corresponding direction.
+If a size is set for the main axis or cross axis of the **List** component, it is used as the size of the component in the corresponding direction.
 
-If no size is set for the main axis of the **\<List>** component, the size of the **\<List>** component in the main axis direction automatically adapts to the total size of its child components, as long as the total size of the child components in the main axis direction does not exceed the size of the parent component of **\<List>**.
+If no size is set for the main axis of the **List** component, the size of the **List** component in the main axis direction automatically adapts to the total size of its child components, as long as the total size of the child components in the main axis direction does not exceed the size of the parent component of **List**.
 
 In the example shown below, no height is set for vertical list B, and the height of its parent component A is 200 vp. If the total height of all child components C is 150 vp, the height of list B is 150 vp.
 
-  **Figure 5** Main axis height constraint example 1 (A: parent component of \<List>; B: \<List> component; C: all child components of \<List>) 
+  **Figure 5** Main axis height constraint example 1 (A: parent component of **List**; B: **List** component; C: all child components of **List**) 
 
 ![en-us_image_0000001511580956](figures/en-us_image_0000001511580956.png)
 
-If the total size of the child components in the main axis direction is greater than the size of the parent component of **\<List>**, the size of the **\<List>** component in the main axis direction automatically adapts to the size of its parent component.
+If the total size of the child components in the main axis direction is greater than the size of the parent component of **List**, the size of the **List** component in the main axis direction automatically adapts to the size of its parent component.
 
 In the example shown below, still no height is set for vertical list B, and the height of its parent component A is 200 vp. If the total height of all child components C is 300 vp, the height of list B is 200 vp.
 
-  **Figure 6** Main axis height constraint example 2 (A: parent component of \<List>; B: \<List> component; C: all child components of \<List>) 
+  **Figure 6** Main axis height constraint example 2 (A: parent component of **List**; B: **List** component; C: all child components of **List**) 
 
 ![en-us_image_0000001511740548](figures/en-us_image_0000001511740548.png)
 
-If no size is set for the cross axis of the **\<List>** component, the size of the **\<List>** component in the cross axis direction automatically adapts to the size of its parent component.
+If no size is set for the cross axis of the **List** component, the size of the **List** component in the cross axis direction automatically adapts to the size of its parent component.
 
 
 ## Developing the Layout
@@ -78,7 +78,7 @@ If no size is set for the cross axis of the **\<List>** component, the size of t
 
 ### Setting the Main Axis Direction
 
-By default, the main axis of the **\<List>** component runs in the vertical direction. This means that you can create a vertical scrolling list without the need to manually set the list direction.
+By default, the main axis of the **List** component runs in the vertical direction. This means that you can create a vertical scrolling list without the need to manually set the list direction.
 
 To create a horizontal scrolling list, set the **listDirection** attribute to **Axis.Horizontal**. The default value of **listDirection** is **Axis.Vertical**.
 
@@ -93,9 +93,9 @@ List() {
 
 ### Setting the Cross Axis Layout
 
-The cross axis layout of the **\<List>** component can be set using the **lanes** and **alignListItem** attributes. The **lanes** attribute controls the number of list items along the cross axis, and the **alignListItem** attribute controls the alignment mode of child components along the cross axis.
+The cross axis layout of the **List** component can be set using the **lanes** and **alignListItem** attributes. The **lanes** attribute controls the number of list items along the cross axis, and the **alignListItem** attribute controls the alignment mode of child components along the cross axis.
 
-The lanes attribute of the **\<List>** component is useful in building a list that auto-adapts the numbers of rows or columns on devices of different sizes. Its value type is number or [LengthConstrain](../reference/apis-arkui/arkui-ts/ts-types.md#lengthconstrain). If you are building a two-column vertical list shown on the right in Figure 2, set the **lanes** attribute to **2**. The default value of **lanes** is **1**.
+The lanes attribute of the **List** component is useful in building a list that auto-adapts the numbers of rows or columns on devices of different sizes. Its value type is number or [LengthConstrain](../reference/apis-arkui/arkui-ts/ts-types.md#lengthconstrain). If you are building a two-column vertical list shown on the right in Figure 2, set the **lanes** attribute to **2**. The default value of **lanes** is **1**.
 
 
 ```ts
@@ -105,7 +105,7 @@ List() {
 .lanes(2)
 ```
 
-If set to a value of the LengthConstrain type, the **lanes** attribute determines the number of rows or columns based on the LengthConstrain settings and the size of the **\<List>** component.
+If set to a value of the LengthConstrain type, the **lanes** attribute determines the number of rows or columns based on the LengthConstrain settings and the size of the **List** component.
 
 
 ```ts
@@ -141,7 +141,7 @@ List() {
 
 ## Displaying Data in the List
 
-The list displays a collection of items horizontally or vertically and can scroll to reveal content off the screen. In the simplest case, a **\<List>** component is statically made up of **\<ListItem>** components.
+The list displays a collection of items horizontally or vertically and can scroll to reveal content off the screen. In the simplest case, a **List** component is statically made up of **ListItem** components.
 
   **Figure 7** Example of a city list 
 
@@ -171,7 +171,7 @@ struct CityList {
 }
 ```
 
-Each **\<ListItem>** component can contain only one root child component. Therefore, it does not allow for child components in tile mode. If tile mode is required, encapsulate the child components into a container or create a custom component.
+Each **ListItem** component can contain only one root child component. Therefore, it does not allow for child components in tile mode. If tile mode is required, encapsulate the child components into a container or create a custom component.
 
   **Figure 8** Example of a contacts list 
 
@@ -259,7 +259,7 @@ struct SimpleContacts {
 }
 ```
 
-In the **\<List>** component, **ForEach** can be used to render **\<ListItemGroup>** items as well as **\<ListItem>** items. For details, see [Adding Grouping Support](#adding-grouping-support).
+In the **List** component, **ForEach** can be used to render **ListItemGroup** items as well as **ListItem** items. For details, see [Adding Grouping Support](#adding-grouping-support).
 
 
 ## Customizing the List Style
@@ -336,7 +336,7 @@ When the total height (width) of list items exceeds the screen height (width), t
 
 ![en-us_image_0000001511740544](figures/en-us_image_0000001511740544.gif)
 
-When using the **\<List>** component, you can use the **scrollBar** attribute to control the display of the list scrollbar. The value type of **scrollBar** is [BarState](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#barstate). When the value is **BarState.Auto**, the scrollbar is displayed as required: It is displayed when the scrollbar area is touched and becomes thicker when being dragged; it automatically disappears after 2 seconds of inactivity.
+When using the **List** component, you can use the **scrollBar** attribute to control the display of the list scrollbar. The value type of **scrollBar** is [BarState](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#barstate). When the value is **BarState.Auto**, the scrollbar is displayed as required: It is displayed when the scrollbar area is touched and becomes thicker when being dragged; it automatically disappears after 2 seconds of inactivity.
 
 The default value of the **scrollBar attribute** is **BarState.Off** in API version 9 and earlier versions and **BarState.Auto** since API version 10.
 ```ts
@@ -355,9 +355,9 @@ By allowing data to be displayed in groups in the list, you make the list easier
 
 ![en-us_image_0000001511580948](figures/en-us_image_0000001511580948.png)
 
-You can use **\<ListItemGroup>** to group items in the **\<List>** component to build a two-dimensional list.
+You can use **ListItemGroup** to group items in the **List** component to build a two-dimensional list.
 
-A **\<List>** component allows one or more **\<ListItemGroup>** child components. By default, the width of **\<ListItemGroup>** is equal to that of **\<List>**. When initializing **\<ListItemGroup>**, you can use the **header** parameter to set its header.
+A **List** component allows one or more **ListItemGroup** child components. By default, the width of **ListItemGroup** is equal to that of **List**. When initializing **ListItemGroup**, you can use the **header** parameter to set its header.
 
 
 ```ts
@@ -388,7 +388,7 @@ struct ContactsList {
 }
 ```
 
-If the structures of multiple **\<ListItemGroup>** components are similar, you can combine the data of these components into an array and use **ForEach** to render them cyclically. For example, in the contacts list, the **contacts** data of each group (for details, see [Iterating List Content](#iterating-list-content)) and the **title** data of the corresponding group are combined and defined as the **contactsGroups** array. Then, with rendering of **contactsGroups** in **ForEach**, a contact list with multiple groups is implemented. For details, see the example in [Adding a Sticky Header](#adding-a sticky-header).
+If the structures of multiple **ListItemGroup** components are similar, you can combine the data of these components into an array and use **ForEach** to render them cyclically. For example, in the contacts list, the **contacts** data of each group (for details, see [Iterating List Content](#iterating-list-content)) and the **title** data of the corresponding group are combined and defined as the **contactsGroups** array. Then, with rendering of **contactsGroups** in **ForEach**, a contact list with multiple groups is implemented. For details, see the example in [Adding a Sticky Header](#adding-a sticky-header).
 
 ## Adding a Sticky Header
 
@@ -400,9 +400,9 @@ Sticky headers not only signify the representation and usage of data in the resp
 
 ![en-us_image_0000001511740552](figures/en-us_image_0000001511740552.gif)
 
-You can set a sticky header or footer for a **\<ListItemGroup>** component by setting the **sticky** attribute of its parent **\<List>** component.
+You can set a sticky header or footer for a **ListItemGroup** component by setting the **sticky** attribute of its parent **List** component.
 
-Setting the **sticky** attribute to **StickyStyle.Header** implements a sticky header. To implement a sticky footer, use the **footer** parameter to initialize the footer of **\<ListItemGroup>** and set the **sticky** attribute to **StickyStyle.Footer**.
+Setting the **sticky** attribute to **StickyStyle.Header** implements a sticky header. To implement a sticky footer, use the **footer** parameter to initialize the footer of **ListItemGroup** and set the **sticky** attribute to **StickyStyle.Footer**.
 
 
 ```ts
@@ -456,7 +456,7 @@ struct ContactsList {
   }
   build() {
     List() {
-      // Render the <ListItemGroup> components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
+      // Render the ListItemGroup> components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
       ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
         ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
           // Render <ListItem> components cyclically.
@@ -483,7 +483,7 @@ In some cases you may want to control the scrolling position of a list. For exam
 
 ![en-us_image_0000001511900520](figures/en-us_image_0000001511900520.gif)
 
-When the **\<List>** component is initialized, you can use the **scroller** parameter to bind a [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object to control the scrolling of the list. In this example of a news page list, the **scrollToIndex** API of the **Scroller** object is used to scroll the list to the list item with the specified index. This allows the user to return to the top of the list by clicking a specific button.
+When the **List** component is initialized, you can use the **scroller** parameter to bind a [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object to control the scrolling of the list. In this example of a news page list, the **scrollToIndex** API of the **Scroller** object is used to scroll the list to the list item with the specified index. This allows the user to return to the top of the list by clicking a specific button.
 
 To start with, create a **Scroller** object **listScroller**.
 
@@ -492,12 +492,12 @@ To start with, create a **Scroller** object **listScroller**.
 private listScroller: Scroller = new Scroller();
 ```
 
-Then, use **listScroller** to initialize the **scroller** parameter to bind it with the **\<List>** component. Set **scrollToIndex** to **0**, meaning to return to the top of the list.
+Then, use **listScroller** to initialize the **scroller** parameter to bind it with the **List** component. Set **scrollToIndex** to **0**, meaning to return to the top of the list.
 
 
 ```ts
 Stack({ alignContent: Alignment.Bottom }) {
-  // use listScroller to initialize the scroller parameter to bind it with the <List> component.
+  // use listScroller to initialize the scroller parameter to bind it with the List> component.
   List({ space: 20, scroller: this.listScroller }) {
     // ...
   }
@@ -523,7 +523,7 @@ Another common example is a scrolling list working with a multi-level index bar,
 
 ![en-us_image_0000001563060769](figures/en-us_image_0000001563060769.gif)
 
-As shown above, when the contacts list scrolls from group A to B, the alphabetical index bar on the right also changes from A to B. This scenario can be implemented by listening for the **onScrollIndex** event of the **\<List>** component. The alphabet index bar is implemented using the [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) component.
+As shown above, when the contacts list scrolls from group A to B, the alphabetical index bar on the right also changes from A to B. This scenario can be implemented by listening for the **onScrollIndex** event of the **List** component. The alphabet index bar is implemented using the [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) component.
 
 When the list scrolls, the **selectedIndex** value of the letter to highlight in the alphabet index bar is recalculated based on the **firstIndex** value of the item to which the list has scrolled. In the **AlphabetIndexer** component, the index of the highlighted item is set through the **selected** attribute. When the value of **selectedIndex** changes, the **AlphabetIndexer** component is re-rendered to highlight the corresponding letter.
 
@@ -554,7 +554,7 @@ struct ContactsList {
 
 >**NOTE**
 >
->During index calculation, each **\<ListItemGroup>** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the calculation.
+>During index calculation, each **ListItemGroup** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the calculation.
 
 
 ## Responding to Swipe on List Items
@@ -609,7 +609,7 @@ A badge is an intuitive, unobtrusive visual indicator to draw attention and conv
 
 ![en-us_image_0000001511580952](figures/en-us_image_0000001511580952.png)
 
-To add a badge, use the [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) component in **\<ListItem>**. The **Badge** component is a container that can be attached to another component for tagging.
+To add a badge, use the [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) component in **ListItem**. The **Badge** component is a container that can be attached to another component for tagging.
 
 In this example, when implementing the **Image** component for presenting the profile picture of a list item, add it to **Badge** as a child component.
 
@@ -913,7 +913,7 @@ The process of implementing the deletion feature is as follows:
 
 For details about the implementation, see the example in [LazyForEach: Lazy Data Loading](../quick-start/arkts-rendering-control-lazyforeach.md).
 
-When the list is rendered in lazy loading mode, to improve the list scrolling experience and minimize white blocks during list scrolling, you can use the **cachedCount** parameter of the **\<List>** component. This parameter sets the number of list items preloaded outside of the screen and is valid only in **LazyForEach**.
+When the list is rendered in lazy loading mode, to improve the list scrolling experience and minimize white blocks during list scrolling, you can use the **cachedCount** parameter of the **List** component. This parameter sets the number of list items preloaded outside of the screen and is valid only in **LazyForEach**.
 
 
 ```ts

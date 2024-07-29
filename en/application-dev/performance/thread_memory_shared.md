@@ -64,7 +64,7 @@ sharedArrayBufferUsage(isAtomics: boolean) {
     }
   }
   taskpool.execute(taskGroup).then(() => {
-    // Print the result on the <Text> component.
+    // Print the result on the Text component.
     this.result = this.result + "\n" + int32Array;
     // If the mouse pointer is not at the bottom of the screen, scroll to the bottom.
     if (!this.scroller.isAtEnd()) {

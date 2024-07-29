@@ -39,7 +39,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 | Name  | Type                                   | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [Grid](ts-container-grid.md), or [Scroll](ts-container-scroll.md).|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [List](ts-container-list.md), [Grid](ts-container-grid.md), or [Scroll](ts-container-scroll.md).|
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | No| Layout options of a scrolling grid.|
 
 ## GridLayoutOptions<sup>10+</sup>
@@ -207,7 +207,7 @@ Sets the scrollbar width. After the width is set, the scrollbar is displayed wit
 
 cachedCount(value: number)
 
-Sets the number of grid items to be preloaded (cached). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). A value less than 0 evaluates to the default value. For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).
+Sets the number of grid items to be preloaded (cached). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). A value less than 0 evaluates to the default value.<!--Del--> For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
 
 The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns.
 

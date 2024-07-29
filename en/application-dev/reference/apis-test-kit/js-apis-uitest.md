@@ -678,7 +678,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { On, ON } from '@ohos.UiTest';
 
 // Use the static constructor ON to create an On object and specify that the target component is located after the given attribute component.
-let on:On = ON.type('Text').isAfter(ON.text('123'))  // Search for the first <Text> component located after the component whose text is 123.
+let on:On = ON.type('Text').isAfter(ON.text('123'))  // Search for the first Text component located after the component whose text is 123.
 ```
 
 ### within<sup>10+</sup>
@@ -4183,7 +4183,7 @@ This API is deprecated since API version 9. You are advised to use [isAfter<sup>
 import { By, BY } from '@ohos.UiTest';
 
 // Use the static constructor BY to create a by object and specify that the target component is located after the given attribute component.
-let by: By = BY.type('Text').isAfter(BY.text('123')); // Search for the first <Text> component located after the component whose text is 123.
+let by: By = BY.type('Text').isAfter(BY.text('123')); // Search for the first Text component located after the component whose text is 123.
 ```
 
 ## UiComponent<sup>(deprecated)</sup>
@@ -4552,7 +4552,7 @@ async function demo() {
 
 scrollSearch(by: By): Promise\<UiComponent>
 
-Scrolls on this component to search for the target component (applicable to components that support scrolling, such as **\<List>**).
+Scrolls on this component to search for the target component (applicable to components that support scrolling, such as **List**).
 
 This API is deprecated since API version 9. You are advised to use [scrollSearch<sup>9+</sup>](#scrollsearch9) instead.
 

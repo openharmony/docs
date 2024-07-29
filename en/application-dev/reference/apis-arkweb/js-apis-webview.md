@@ -574,7 +574,7 @@ struct WebComponent {
 
 ## WebviewController
 
-Implements a **WebviewController** to control the behavior of the **\<Web>** component. A **WebviewController** can control only one **\<Web>** component, and the APIs (except static APIs) in the **WebviewController** can be invoked only after it has been bound to the target **\<Web>** component.
+Implements a **WebviewController** to control the behavior of the **Web** component. A **WebviewController** can control only one **Web** component, and the APIs (except static APIs) in the **WebviewController** can be invoked only after it has been bound to the target **Web** component.
 
 ### constructor<sup>11+</sup>
 
@@ -584,7 +584,7 @@ Constructor used to create a **WebviewController** object.
 
 > **NOTE**
 >
-> **webTag** represents a tag that you define and pass to the **\<Web>** component as a parameter of string type.
+> **webTag** represents a tag that you define and pass to the **Web** component as a parameter of string type.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -592,7 +592,7 @@ Constructor used to create a **WebviewController** object.
 
 | Name    | Type  | Mandatory | Description                              |
 | ---------- | ------ | ---- | -------------------------------- |
-| webTag   | string | No  | Name of the **\<Web>** component. The default value is **Empty**. |
+| webTag   | string | No  | Name of the **Web** component. The default value is **Empty**. |
 
 **Example**
 
@@ -668,7 +668,7 @@ HTML file to be loaded:
 
 static initializeWebEngine(): void
 
-Loads the dynamic link library (DLL) file of the web engine. This API can be called before the **\<Web>** component is initialized to improve the startup performance.
+Loads the dynamic link library (DLL) file of the web engine. This API can be called before the **Web** component is initialized to improve the startup performance.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -694,7 +694,7 @@ export default class EntryAbility extends UIAbility {
 
 static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
-Sets how the \<Web> component uses HTTPDNS for DNS resolution.
+Sets how the **Web** component uses HTTPDNS for DNS resolution.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -945,7 +945,7 @@ Loads specified data.
 | data       | string | Yes  | Character string obtained after being Base64 or URL encoded.                   |
 | mimeType   | string | Yes  | Media type (MIME).                                          |
 | encoding   | string | Yes  | Encoding type, which can be Base64 or URL.                      |
-| baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **\<Web>** component to **window.origin**. |
+| baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**. |
 | historyUrl | string | No  | URL used for historical records. If this parameter is not empty, historical records are managed based on this URL. This parameter is invalid when **baseUrl** is left empty. |
 
 > **NOTE**
@@ -1216,7 +1216,7 @@ struct WebComponent {
 
 onActive(): void
 
-Invoked to instruct the **\<Web>** component to enter the active foreground state.
+Invoked to instruct the **Web** component to enter the active foreground state.
 <br>The application can interact with the user while in the active foreground state, and it remains in this state until the focus is moved away from it due to some event (for example, an incoming call is received or the device screen is turned off).
 
 **System capability**: SystemCapability.Web.Webview.Core
@@ -1261,7 +1261,7 @@ struct WebComponent {
 
 onInactive(): void
 
-Invoked to instruct the **\<Web>** component to enter the inactive state. You can implement the behavior to perform after the application loses focus.
+Invoked to instruct the **Web** component to enter the inactive state. You can implement the behavior to perform after the application loses focus.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1304,7 +1304,7 @@ struct WebComponent {
 ### refresh
 refresh(): void
 
-Invoked to instruct the **\<Web>** component to refresh the web page.
+Invoked to instruct the **Web** component to refresh the web page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1501,12 +1501,12 @@ struct WebComponent {
 
 registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>): void
 
-**registerJavaScriptProxy** provides powerful interaction capabilities between applications and web pages loaded by **\<Web>** components.
+**registerJavaScriptProxy** provides powerful interaction capabilities between applications and web pages loaded by **Web** components.
 <br>Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. After this API is called, call [refresh](#refresh) for the registration to take effect.
 
 > **NOTE**
 >
-> - It is recommended that **registerJavaScriptProxy** be used only in trusted URL and secure communication HTTPS scenarios. If JavaScript objects are injected into untrusted **\<Web>** components, applications may be maliciously attacked.
+> - It is recommended that **registerJavaScriptProxy** be used only in trusted URL and secure communication HTTPS scenarios. If JavaScript objects are injected into untrusted **Web** components, applications may be maliciously attacked.
 > - After **registerJavaScriptProxy** is called, the application exposes the registered JavaScript object to all page frames.
 > - If a method is both registered in the synchronous and asynchronous method lists, it is called asynchronously by default.
 
@@ -2557,7 +2557,7 @@ For details about the HTML file loaded, see the HMTL file loaded using [searchAl
 
 clearSslCache(): void
 
-Clears the user operation corresponding to the SSL certificate error event recorded by the **\<Web>** component.
+Clears the user operation corresponding to the SSL certificate error event recorded by the **Web** component.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -2601,7 +2601,7 @@ struct WebComponent {
 
 clearClientAuthenticationCache(): void
 
-Clears the user operation corresponding to the client certificate request event recorded by the **\<Web>** component.
+Clears the user operation corresponding to the client certificate request event recorded by the **Web** component.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3050,7 +3050,7 @@ struct WebComponent {
 
 getWebId(): number
 
-Obtains the index value of this **\<Web>** component, which can be used for **\<Web>** component management.
+Obtains the index value of this **Web** component, which can be used for **Web** component management.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3058,7 +3058,7 @@ Obtains the index value of this **\<Web>** component, which can be used for **\<
 
 | Type  | Description                 |
 | ------ | --------------------- |
-| number | Index value of the current **\<Web>** component. |
+| number | Index value of the current **Web** component. |
 
 **Error codes**
 
@@ -4428,7 +4428,7 @@ export default class EntryAbility extends UIAbility {
 
 static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
-Grants the cross-domain request and fetch request permissions for the specified URL schemes (also known as protocols) to the web kernel. A cross-domain fetch request for any of the specified URL schemes can be intercepted by the **onInterceptRequest** API, so that you can further process the request. It is recommended that this API be called before any **\<Web>** component is initialized.
+Grants the cross-domain request and fetch request permissions for the specified URL schemes (also known as protocols) to the web kernel. A cross-domain fetch request for any of the specified URL schemes can be intercepted by the **onInterceptRequest** API, so that you can further process the request. It is recommended that this API be called before any **Web** component is initialized.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4489,7 +4489,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
+Obtains the certificate information of this website. When the **Web** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4650,7 +4650,7 @@ struct Index {
 
 getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
-Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
+Obtains the certificate information of this website. When the **Web** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5058,13 +5058,13 @@ setCustomUserAgent(userAgent: string): void
 
 Sets a custom user agent, which will overwrite the default user agent.
 
-When a URL is set for the **\<Web>** component **src**, you are advised to set UserAgent in the onControllerAttached callback event. For details, see the example. You are not advised to set **UserAgent** in the **onLoadIntercept** callback event. Otherwise, the setting may fail occasionally.
+When a URL is set for the **Web** component **src**, you are advised to set UserAgent in the onControllerAttached callback event. For details, see the example. You are not advised to set **UserAgent** in the **onLoadIntercept** callback event. Otherwise, the setting may fail occasionally.
 
-When **src** of the **\<Web>** component is set to an empty string, you are advised to call the **setCustomUserAgent** method to set **UserAgent** and then use **loadUrl** to load a specific page.
+When **src** of the **Web** component is set to an empty string, you are advised to call the **setCustomUserAgent** method to set **UserAgent** and then use **loadUrl** to load a specific page.
 
 > **NOTE**
 >
->If a URL is set for the **\<Web>** component **src**, and **UserAgent** is not set in the **onControllerAttached** callback event, calling **setCustomUserAgent** again may result in the loaded page being inconsistent with the actual user agent.
+>If a URL is set for the **Web** component **src**, and **UserAgent** is not set in the **onControllerAttached** callback event, calling **setCustomUserAgent** again may result in the loaded page being inconsistent with the actual user agent.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5279,7 +5279,7 @@ struct WebComponent {
 
 static setConnectionTimeout(timeout: number): void
 
-Sets the network connection timeout. You can use the **onErrorReceive** method in the **\<Web>** component to obtain the timeout error code.
+Sets the network connection timeout. You can use the **onErrorReceive** method in the **Web** component to obtain the timeout error code.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7776,7 +7776,7 @@ struct WebComponent {
 
 getSurfaceId(): string
 
-Obtains the ID of the surface corresponding to ArkWeb. This parameter is valid only when the rendering mode of the web component is ASYNC_RENDER. The value of **getSurfaceId** can be obtained only after the **\<Web>** component is initialized.
+Obtains the ID of the surface corresponding to ArkWeb. This parameter is valid only when the rendering mode of the web component is ASYNC_RENDER. The value of **getSurfaceId** can be obtained only after the **Web** component is initialized.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7834,7 +7834,7 @@ struct Example{
 
 ## WebCookieManager
 
-Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
+Implements a **WebCookieManager** instance to manage behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookieManager** instance.
 
 ### getCookie<sup>(deprecated)</sup>
 
@@ -8145,7 +8145,7 @@ Sets a cookie for the specified URL.
 >
 >- You can set **url** in **configCookieSync** to a domain name so that cookies are attached to requests on the page.
 >
->- It is recommended that cookie syncing be completed before the **\<Web>** component is loaded.
+>- It is recommended that cookie syncing be completed before the **Web** component is loaded.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8947,11 +8947,11 @@ struct WebComponent {
 
 ## WebStorage
 
-Implements a **WebStorage** object to manage the Web SQL database and HTML5 Web Storage APIs. All **\<Web>** components in an application share a **WebStorage** object.
+Implements a **WebStorage** object to manage the Web SQL database and HTML5 Web Storage APIs. All **Web** components in an application share a **WebStorage** object.
 
 > **NOTE**
 >
-> You must load the **\<Web>** component before calling the APIs in **WebStorage**.
+> You must load the **Web** component before calling the APIs in **WebStorage**.
 
 ### deleteOrigin
 
@@ -9487,7 +9487,7 @@ Implements a **WebDataBase** object.
 
 > **NOTE**
 >
-> You must load the **\<Web>** component before calling the APIs in **WebDataBase**.
+> You must load the **Web** component before calling the APIs in **WebDataBase**.
 
 ### getHttpAuthCredentials
 
@@ -9677,7 +9677,7 @@ Implements a **GeolocationPermissions** object.
 
 > **NOTE**
 >
-> You must load the **\<Web>** component before calling the APIs in **GeolocationPermissions**.
+> You must load the **Web** component before calling the APIs in **GeolocationPermissions**.
 
 ### Required Permissions
 
@@ -10064,7 +10064,7 @@ struct WebComponent {
 
 ## WebHeader
 
-Describes the request/response header returned by the **\<Web>** component.
+Describes the request/response header returned by the **Web** component.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -10191,8 +10191,8 @@ Enumerates the ArkWeb render subprocess modes.
 
 | Name     | Value | Description                                                  |
 | -------- | ----- | ------------------------------------------------------------ |
-| SINGLE   | 0     | ArkWeb single render subprocess mode. In this mode, multiple **\<Web>** components share one render subprocess. |
-| MULTIPLE | 1     | ArkWeb multi-render subprocess mode. In this mode, each **\<Web>** component has a rendering subprocess. |
+| SINGLE   | 0     | ArkWeb single render subprocess mode. In this mode, multiple **Web** components share one render subprocess. |
+| MULTIPLE | 1     | ArkWeb multi-render subprocess mode. In this mode, each **Web** component has a rendering subprocess. |
 
 
 ## JsMessageExt<sup>10+</sup>
@@ -10729,7 +10729,7 @@ Defines a custom URL scheme.
 
 ## SecureDnsMode<sup>10+</sup>
 
-Describes the mode in which the **\<Web>** component uses HTTPDNS.
+Describes the mode in which the **Web** component uses HTTPDNS.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -13667,7 +13667,7 @@ For the complete sample code, see [constructor](#constructor12).
 
 ## WebResourceHandler<sup>12+</sup>
 
-Provides APIs to provide custom return headers and return bodies for **\<Web>** components.
+Provides APIs to provide custom return headers and return bodies for **Web** components.
 
 ### didReceiveResponse<sup>12+</sup>
 
@@ -13727,7 +13727,7 @@ See [OnRequestStart](#onrequeststart12).
 
 didFinish(): void
 
-Notifies the **\<Web>** component that the request is intercepted and that no more data is available.
+Notifies the **Web** component that the request is intercepted and that no more data is available.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14458,13 +14458,13 @@ Contains information about media on web pages. The application may create, based
 | mediaType     | [MediaType](#mediatype12)                                    | No        | Yes       | Media type.                                                  |
 | mediaSrcList  | [MediaSourceInfo](#mediasourceinfo12)[]                      | No        | Yes       | Source of the media. There may be multiple sources. The application needs to select a supported source to play. |
 | surfaceInfo   | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | No        | Yes       | Surface information used for rendering at the same layer.    |
-| controlsShown | boolean                                                      | No        | Yes       | Check whether the controls attribute exists in <video> or <audio>. |
-| controlList   | string[]                                                     | No        | Yes       | Value of the controlslist attribute in <video> or <audio>.   |
+| controlsShown | boolean                                                      | No        | Yes       | Check whether the controls attribute exists in **\<video>** or **\<audio>**. |
+| controlList   | string[]                                                     | No        | Yes       | Value of the controlslist attribute in **\<video>** or **\<audio>**.   |
 | muted         | boolean                                                      | No        | Yes       | Indicates whether to mute the playback.                      |
 | posterUrl     | string                                                       | No        | Yes       | URL of a poster.                                             |
 | preload       | [Preload](#preload12)                                        | No        | Yes       | Whether preloading is required.                    |
 | headers       | Record\<string, string\>                                     | No        | Yes       | HTTP header that needs to be carried when the player requests media resources. |
-| attributes    | Record\<string, string\>                                     | No        | Yes       | Attribute in the <video> or <audio> tag.                     |
+| attributes    | Record\<string, string\>                                     | No        | Yes       | Attribute in the **\<video>** or **\<audio>** tag.                     |
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>

@@ -52,7 +52,7 @@ struct Index {
       GestureGroup(GestureMode.Sequence,
         // The first gesture recognized in the combined gestures is the long press gesture, which can be responded to for multiple times.
         LongPressGesture({ repeat: true })
-          // When the long press gesture is successfully recognized, the value of count displayed on the <Text> component is increased.
+          // When the long press gesture is successfully recognized, the value of count displayed on the Text component is increased.
           .onAction((event: GestureEvent|undefined) => {
             if(event){
               if (event.repeat) {
@@ -102,7 +102,7 @@ struct Index {
 
 For parallel recognition, the value of **GestureMode** is **Parallel**. In this gesture recognition mode, gestures registered in the combined gestures will be recognized at the same time until they are all recognized successfully. The gestures are recognized in parallel without affecting each other.
 
-For example, if the tap gesture and the double-tap gesture are bound to the \**<Column>** component in parallel recognition mode, they can be recognized at the same time, and the recognition of these two gestures does not interfere with each other. 
+For example, if the tap gesture and the double-tap gesture are bound to the **Column** component in parallel recognition mode, they can be recognized at the same time, and the recognition of these two gestures does not interfere with each other. 
 
 
 

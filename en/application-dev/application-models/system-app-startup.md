@@ -28,7 +28,7 @@ The table below lists the system-level **\<Picker>** components that are current
 | -------- | -------- |-------- |
 | DocumentViewPicker| Used to access and save documents in the public directory.|- [Selecting Documents](../file-management/select-user-file.md#selecting-documents)<br> - [Saving Documents](../file-management/save-user-file.md#saving-documents)|
 | AudioViewPicker| Used to access and store audio files in the public directory of the user.|- [Selecting Audio Clips](../file-management/select-user-file.md#selecting-audio-clips)<br> - [Saving Audio Clips](../file-management/save-user-file.md#saving-audio-clips)|
-| PhotoViewPicker| Used to access and save images or video files in the public directory.| - [Selecting Media Assets Using Picker](../media/medialibrary/photoAccessHelper-photoviewpicker.md)<br> - [Creating a Media Asset Using \<SaveButton>](../media/medialibrary/photoAccessHelper-savebutton.md)|
+| PhotoViewPicker| Used to access and save images or video files in the public directory.| - [Selecting Media Assets Using Picker](../media/medialibrary/photoAccessHelper-photoviewpicker.md)<br> - [Creating a Media Asset Using SaveButton](../media/medialibrary/photoAccessHelper-savebutton.md)|
 | CameraPicker| Used to start the system camera to take photos and record videos.|[cameraPicker](../reference/apis-camera-kit/js-apis-cameraPicker.md) |
 | ContactsPicker| Used to start the Contacts application and read contacts data.|[Selecting Contacts](../contacts/contacts-intro.md#contact-selection)|
 <!--RP1--><!--RP1End-->

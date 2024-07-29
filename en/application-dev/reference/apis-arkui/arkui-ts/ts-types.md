@@ -705,7 +705,7 @@ Enumerates length units.
 
 ## TextContentControllerBase<sup>10+</sup>
 
-The **TextContentControllerBase** type is used to represent the base controller for **\<TextInput>**, **TextArea**, and **\<Search>** components.
+The **TextContentControllerBase** type is used to represent the base controller for **TextInput**, **TextArea**, and **\<Search>** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

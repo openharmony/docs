@@ -74,4 +74,4 @@ struct MediaCachedImageExample {
 }
 ```
 
-![zh-cn_image_0000001592882500](figures/zh-cn_image_0000001592882500.gif)
+![en-us_image_0000001592882500](figures/en-us_image_0000001592882500.gif)

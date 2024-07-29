@@ -108,12 +108,12 @@ struct FlexExample {
       // flexGrow() indicates the percentage of the remaining space allocated to the component.
       Flex() {
         Text('flexGrow(2)')
-          .flexGrow(2) // The width allocated to the <Text> component is 2/3 of the remaining width of the parent container.
+          .flexGrow(2) // The width allocated to the Text component is 2/3 of the remaining width of the parent container.
           .height(100)
           .backgroundColor(0xF5DEB3)
           .textAlign(TextAlign.Center)
         Text('flexGrow(1)')
-          .flexGrow(1) // The width allocated to the <Text> component is 1/3 of the remaining width of the parent container.
+          .flexGrow(1) // The width allocated to the Text component is 1/3 of the remaining width of the parent container.
           .height(100)
           .backgroundColor(0xD2B48C)
           .textAlign(TextAlign.Center)
@@ -121,7 +121,7 @@ struct FlexExample {
 
       Text('flexShrink').fontSize(9).fontColor(0xCCCCCC).width('90%')
       // flexShrink() indicates the percentage of the shrink size allocated to the component.
-      // The value is 0 for the first <Text> component and 1 for the other two <Text> components. This means that, if the components cannot be completely displayed in the parent container, the latter two are shrunk proportionally, while the former is not shrunk.
+      // The value is 0 for the first Text component and 1 for the other two Text components. This means that, if the components cannot be completely displayed in the parent container, the latter two are shrunk proportionally, while the former is not shrunk.
       Flex({ direction: FlexDirection.Row }) {
         Text('flexShrink(0)')
           .flexShrink(0)

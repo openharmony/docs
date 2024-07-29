@@ -116,7 +116,7 @@ struct NavigationDemo {
           .height(40)
           .margin({ bottom: 10 })
 
-        // Define the level-1 navigation view through <List>.
+        // Define the level-1 navigation view through List.
         List({ space: 12, initialIndex: 0 }) {
           ForEach(this.listArray, (item : string) => {
             ListItem() {

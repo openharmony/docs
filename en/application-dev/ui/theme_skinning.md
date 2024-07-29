@@ -188,7 +188,7 @@ This article provides the following scenarios:
 Note: If the parameter of setDefaultTheme is undefined, the default color values corresponding to the token value refer to [System Default Token Color Values](#system-default-token-color-values).
 
 ## Setting Custom Theme Style for App Partial Pages
-Apply custom theme colors to the default styles of internal components by setting [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme). The colors of components within the scope of WithTheme follow the theme's color scheme.
+Apply custom theme colors to the default styles of internal components by setting [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withtheme). The colors of components within the scope of WithTheme follow the theme's color scheme.
 
 In the following example, the color scheme of the components within the scope is set to a custom theme style by WithTheme({ theme: this.myTheme }). Subsequently, the theme style can be changed by modifying this.myTheme.
 
@@ -260,7 +260,7 @@ The [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-life
 
 ## Setting Local Light and Dark Modes for Application Pages
 
-The [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme) utility can be used to set light and dark color modes. The [ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#themecolormode10) has three modes: ThemeColorMode.SYSTEM, which follows the system's color scheme; ThemeColorMode.LIGHT, which indicates a light color scheme; and ThemeColorMode.DARK, which indicates a dark color scheme.</br>
+The [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withtheme) utility can be used to set light and dark color modes. The [ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#themecolormode10) has three modes: ThemeColorMode.SYSTEM, which follows the system's color scheme; ThemeColorMode.LIGHT, which indicates a light color scheme; and ThemeColorMode.DARK, which indicates a dark color scheme.</br>
 Within the scope of WithTheme, the style resource values of components follow the specified mode to read the corresponding light or dark color system and application resource values. The color scheme of components within the WithTheme scope takes effect according to the specified light or dark mode.</br>
 In the following example, components within the scope are set to dark mode using WithTheme({ colorMode: ThemeColorMode.DARK }).
 

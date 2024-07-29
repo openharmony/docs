@@ -74,7 +74,7 @@ No. Currently, only the default font, HarmonyOS Sans, is supported.
 
 ## How do I implement a text input box that shows a soft keyboard when touched and hides the soft keyboard when a button is touched? (API version 9)
 
-Use **focusControl** for the **\<TextInput>** component to control its focus. The **\<TextInput>** component shows a soft keyboard when it gains focus and hides the soft keyboard when it loses focus.
+Use **focusControl** for the **TextInput** component to control its focus. The **TextInput** component shows a soft keyboard when it gains focus and hides the soft keyboard when it loses focus.
 
 **Example**
 
@@ -127,9 +127,9 @@ build() {
 Currently, the menu is displayed when the bound component is clicked or long pressed.
 
 
-## How do I prevent the \<TextInput> component from bringing up the default keyboard? (API version 9)
+## How do I prevent the TextInput component from bringing up the default keyboard? (API version 9)
 
-Set the **focusable** attribute of the **\<TextInput>** component to **false**. In this way, the component is not focusable and therefore will not bring up the keyboard.
+Set the **focusable** attribute of the **TextInput** component to **false**. In this way, the component is not focusable and therefore will not bring up the keyboard.
 
 
 ## How do I implement the slide up and slide down effect for page transition? (API version 9)

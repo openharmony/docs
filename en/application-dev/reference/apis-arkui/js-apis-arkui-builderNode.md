@@ -1,6 +1,6 @@
 # BuilderNode
 
-The **BuilderNode** module provides APIs for creating a BuilderNode – a custom node that can be used to mount native components. A BuilderNode can be used only as a leaf node. Whenever possible, avoid operating child nodes and their attributes under the root node through the root node's render node.
+The **BuilderNode** module provides APIs for a BuilderNode – a custom node that can be used to mount native components. A BuilderNode can be used only as a leaf node. Whenever possible, avoid operating child nodes and their attributes under the root node through the root node's render node.
 
 > **NOTE**
 >
@@ -11,37 +11,53 @@ The **BuilderNode** module provides APIs for creating a BuilderNode – a custom
 ## Modules to Import
 
 ```ts
-import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
+import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 ```
 
 ## NodeRenderType
 
 Enumerates the node rendering types.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name               | Value | Description                        |
 | ------------------- | --- | ---------------------------- |
-| RENDER_TYPE_DISPLAY | 0   | The node is displayed on the screen.|
+| RENDER_TYPE_DISPLAY | 0   | The node is displayed on the screen. |
 | RENDER_TYPE_TEXTURE | 1   | The node is exported as a texture.  |
+
+> **NOTE**
+>
+> Currently, the **RENDER_TYPE_TEXTURE** type takes effect only for the [XComponentNode](./js-apis-arkui-xcomponentNode.md) and the [BuilderNode](#buildernode-1) holding a component tree whose root node is a custom component.
+>
+> In the case of [BuilderNode](#buildernode-1), the following custom components that function as the root node support texture export: Badge, Blank, Button, CanvasGradient, CanvasPattern, CanvasRenderingContext2D, Canvas, CheckboxGroup, Checkbox, Circle, ColumnSplit, Column, ContainerSpan, Counter, DataPanel, Divider, Ellipse, Flex, Gauge, Hyperlink, ImageBitmap, ImageData, Image, Line, LoadingProgress, Marquee, Matrix2D, OffscreenCanvasRenderingContext2D, OffscreenCanvas, Path2D, Path, PatternLock, Polygon, Polyline, Progress, QRCode, Radio, Rating, Rect, RelativeContainer, RowSplit, Row, Shape, Slider, Span, Stack, TextArea, TextClock, TextInput, TextTimer, Text, Toggle, Video (not supporting the native full-screen mode), Web, XComponent.
+>
+> The following components support texture export since API version 12: DatePicker, ForEach, Grid, IfElse, LazyForEach, List, Scroll, Swiper, TimePicker, @Component decorated custom components, NodeContainer, and FrameNode and RenderNode mounted to a NodeContainer.
+>
+> For details, see [Rendering and Drawing Video and Button Components at the Same Layer](../../web/web-same-layer.md).
 
 ## RenderOptions
 
 Provides optional parameters for creating a BuilderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Type                                  | Mandatory| Description                                                        |
+| Name         | Type                                  | Mandatory | Description                                                        |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | No  | Ideal size of the node.                                            |
 | type          | [NodeRenderType](#noderendertype)      | No  | Rendering type of the node.                                            |
-| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage) instance.|
+| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage) instance. |
 
 ## BuilderNode
 
 class BuilderNode<Args extends Object[]>
 
 Implements a BuilderNode, which can create a component tree through the stateless UI method [@Builder](../../quick-start/arkts-builder.md) and hold the root node of the component tree. A BuilderNode cannot be defined as a state variable. The FrameNode held in the BuilderNode is only used to mount the BuilderNode to other FrameNodes as a child node. Undefined behavior may occur if you set attributes or perform operations on subnodes of the FrameNode held by the BuilderNode. Therefore, after you have obtained a [RenderNode](js-apis-arkui-renderNode.md#rendernode) through the [getFrameNode](#getframenode) method of the BuilderNode and the [getRenderNode](js-apis-arkui-frameNode.md#getrendernode) method of the [FrameNode](js-apis-arkui-frameNode.md#framenode), avoid setting the attributes or operating the subnodes through APIs of the [RenderNode](js-apis-arkui-renderNode.md#rendernode).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,27 +67,34 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 
 Constructor for creating a BuilderNode. When the content generated by the BuilderNode is embedded in another RenderNode for display, that is, the RenderNode corresponding to the BuilderNode is mounted to another RenderNode for display, **selfIdealSize** in **RenderOptions** must be explicitly specified. If **selfIdealSize** is not set, the node in the builder follows the default parent component layout constraint [0, 0], which means that the size of the root node of the subtree in BuilderNode is [0, 0].
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type                                   | Mandatory| Description                                                             |
+| Name   | Type                                   | Mandatory | Description                                                             |
 | --------- | --------------------------------------- | ---- | ----------------------------------------------------------------- |
-| uiContext | [UIContext](js-apis-arkui-UIContext.md) | Yes  | UI context. For details about how to obtain it, see [[Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context).|
+| uiContext | [UIContext](js-apis-arkui-UIContext.md) | Yes  | UI context. For details about how to obtain it, see [[Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context). |
 | options   | [RenderOptions](#renderoptions)         | No  | Parameters for creating a BuilderNode.                                      |
+
+> **Description**
+> The input parameter for **uiContext** must be a valid value, that is, the UI context must be correct. If an invalid value is passed in or if no value is specified, creation will fail.
 
 ### build
 
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 Creates a component tree based on the passed object and holds the root node of the component tree. The stateless UI method [@Builder](../../quick-start/arkts-builder.md) has at most one root node.
-Custom components are allowed. Yet, the custom components cannot use decorators, such as [@Reusable](../../quick-start/arkts-create-custom-components.md#basic-usage-of-custom-components), [@Link](../../quick-start/arkts-link.md), [@Prop](../../quick-start/arkts-prop.md), [@Provide](../../quick-start/arkts-provide-and-consume.md), and [@Consume](../../quick-start/arkts-provide-and-consume.md), for state synchronization with the owning page.
+Custom components are allowed. Yet, the custom components cannot use decorators, such as [@Reusable](../../quick-start/arkts-create-custom-components.md#basic-structure-of-a-custom-component), @Link, @Provide, and @Consume, for state synchronization with the owning page.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                                                           | Mandatory| Description                                                                                  |
+| Name | Type                                                           | Mandatory | Description                                                                                  |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | Yes  | Stateless UI method [@Builder](../../quick-start/arkts-builder.md) required for creating a component tree.|
+| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | Yes  | Stateless UI method [@Builder](../../quick-start/arkts-builder.md) required for creating a component tree. |
 | arg     | Object                                                          | No  | Object, which is used as the input parameter of the builder.                                                         |
 
 
@@ -81,21 +104,22 @@ getFrameNode(): FrameNode | null
 
 Obtains the FrameNode in the BuilderNode. The FrameNode is generated only after the BuilderNode executes the build operation.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
 | Type                                                     | Description                                                                 |
 | --------------------------------------------------------- | --------------------------------------------------------------------- |
-| [FrameNode](js-apis-arkui-frameNode.md#framenode) \| null | **FrameNode** object. If no such object is held by the **BuilderNode** instance, null is returned.|
+| [FrameNode](js-apis-arkui-frameNode.md#framenode) \| null | **FrameNode** object. If no such object is held by the **BuilderNode** instance, null is returned. |
 
 **Example 1**
 
-In this example, the BuilderNode is returned as the root node of the **NodeContainer**.
+In this example, the BuilderNode is returned as the root node of the **\<NodeContainer>**.
 
 ```ts
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -157,8 +181,7 @@ struct Index {
 This example mounts the RenderNode of the BuilderNode to another RenderNode.
 
 ```ts
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -231,18 +254,19 @@ update(arg: Object): void
 
 Updates this BuilderNode based on the provided parameter, which is of the same type as the input parameter passed to the [build](#build) API. To call this API on a custom component, the variable used in the component must be defined as the @Prop type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                                    |
+| Name | Type  | Mandatory | Description                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| arg    | Object | Yes  | Parameter used to update the BuilderNode. It is of the same type as the parameter passed to the [build](#build) API.|
+| arg    | Object | Yes  | Parameter used to update the BuilderNode. It is of the same type as the parameter passed to the [build](#build) API. |
 
 **Example**
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -315,7 +339,7 @@ struct Index {
       Column() {
         NodeContainer(this.textNodeController)
           .width('100%')
-          .height(100)
+          .height(200)
           .backgroundColor('#FFF0F0F0')
         Button('Update')
           .onClick(() => {
@@ -338,25 +362,26 @@ postTouchEvent(event: TouchEvent): boolean
 
 Dispatches an event to the FrameNode created by this BuilderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type                                                                     | Mandatory| Description      |
+| Name | Type                                                                     | Mandatory | Description      |
 | ------ | ------------------------------------------------------------------------- | ---- | ---------- |
-| event  | [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent) | Yes  | Touch event.|
+| event  | [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent)  | Yes  | Touch event. |
 
 **Return value**
 
 | Type   | Description              |
 | ------- | ------------------ |
-| boolean | Whether the event is successfully dispatched.|
+| boolean | Whether the event is successfully dispatched. |
 
 **Example**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -421,6 +446,253 @@ struct MyComponent {
             this.nodeController.postTouchEvent(event);
           }
         })
+    }
+  }
+}
+```
+
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+Disposes of this BuilderNode. Once this API is called on a BuilderNode, the reference relationship between the BuilderNode and the backend entity node and the FrameNode is removed, and the RenderNode within the BuilderNode will also synchronously release their reference relationship with the entity node.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
+
+@Component
+struct TestComponent {
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('aboutToDisappear');
+  }
+}
+
+@Builder
+function buildComponent() {
+  TestComponent()
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(new WrappedBuilder(buildComponent));
+
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xff00ff00;
+      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+
+    return this.rootNode;
+  }
+
+  dispose() {
+    if (this.builderNode !== null) {
+      this.builderNode.dispose();
+    }
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('BuilderNode dispose')
+        .onClick(() => {
+          this.myNodeController.removeBuilderNode();
+          this.myNodeController.dispose();
+        })
+        .width('100%')
+    }
+  }
+}
+```
+
+### reuse<sup>12+</sup>
+
+reuse(param?: Object): void
+
+Passes the reuse event to the custom component in this BuiderNode.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type  | Mandatory | Description                                                                    |
+| ------ | ------ | ---- | ------------------------------------------------------------------------ |
+| param  | Object | No  | Parameter used to reuse the BuilderNode. It is of the same type as the parameter passed to the [build](#build) API. |
+
+### recycle<sup>12+</sup>
+
+recycle(): void
+
+Passes the recycle event to the custom component in this BuiderNode.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+import { UIContext } from "@ohos.arkui.UIContext"
+
+class MyDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | null = null
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string) {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(): void {
+    this.listener = null;
+  }
+}
+
+class Params {
+  item: string = '';
+
+  constructor(item: string) {
+    this.item = item;
+  }
+}
+
+@Builder
+function buildNode(param: Params = new Params("hello")) {
+  ReusableChildComponent2({ item: param.item });
+}
+
+class MyNodeController extends NodeController {
+  public builderNode: BuilderNode<[Params]> | null = null;
+  public item: string = "";
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.builderNode == null) {
+      this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 300, height: 200 } });
+      this.builderNode.build(wrapBuilder<[Params]>(buildNode), new Params(this.item));
+    }
+    return this.builderNode.getFrameNode();
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @State item: string = '';
+  private controller: MyNodeController = new MyNodeController();
+
+  aboutToAppear() {
+    this.controller.item = this.item;
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent aboutToRecycle " + this.item);
+    this.controller?.builderNode?.recycle();
+  }
+
+  aboutToReuse(params: object): void {
+    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
+    this.controller?.builderNode?.reuse(params);
+  }
+
+  build() {
+    NodeContainer(this.controller);
+  }
+}
+
+@Component
+struct ReusableChildComponent2 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+  }
+
+  build() {
+    Row() {
+      Text(this.item)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0;i < 100; i++) {
+      this.data.pushData(i.toString());
+    }
+  }
+
+  build() {
+    Column() {
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ReusableChildComponent({ item: item })
+          }
+        }, (item: string) => item)
+      }
+      .width('100%')
+      .height('100%')
     }
   }
 }

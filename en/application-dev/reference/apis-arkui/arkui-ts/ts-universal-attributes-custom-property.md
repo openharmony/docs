@@ -18,7 +18,7 @@ Sets the custom property of the component. This API does not work for [custom co
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-Parameters 
+**Parameters** 
 
 | Parameter | Type                                                | Mandatory | Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |

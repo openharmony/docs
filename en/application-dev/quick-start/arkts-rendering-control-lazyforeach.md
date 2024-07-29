@@ -172,7 +172,7 @@ declare enum DataOperationType {
 
 ## Constraints
 
-- LazyForEach must be used in a container component. Only the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at once.
+- LazyForEach must be used in a container component. Only the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at once.
 - **LazyForEach** must create one and only one child component in each iteration.
 - The generated child components must be allowed in the parent container component of **LazyForEach**.
 - **LazyForEach** can be included in an **if/else** statement, and can also contain such a statement.

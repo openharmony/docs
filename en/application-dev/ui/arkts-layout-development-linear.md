@@ -552,7 +552,7 @@ Adaptive scaling means that the size of a child element is automatically adjuste
 
 Adaptive extension allows users to drag the scrollbar to display the page content outside the screen. It is applicable to the scenario where the content extends beyond the viewport in linear layout. Below are the methods to implement adaptive extension in linear layout:
 
-- [Add a scrollbar to a \<List> component](arkts-layout-development-create-list.md#adding-a-scrollbar): If the list items cannot be fully displayed on one screen, you can place the child elements in different components and employ a scrollbar to display them. Use the **scrollBar** attribute to set the scrollbar status and the **edgeEffect** attribute to set the rebound effect when the scrollbar has reached the edge.
+- [Add a scrollbar to a List component](arkts-layout-development-create-list.md#adding-a-scrollbar): If the list items cannot be fully displayed on one screen, you can place the child elements in different components and employ a scrollbar to display them. Use the **scrollBar** attribute to set the scrollbar status and the **edgeEffect** attribute to set the rebound effect when the scrollbar has reached the edge.
 
 - Use a **Scroll** component: When one screen is not able to accommodate the full content, you can wrap a **Scroll** component at the outer layer of the **Column** or **Row** component to implement a scrollable linear layout.
     Example of using a **Scroll** component in the vertical layout:

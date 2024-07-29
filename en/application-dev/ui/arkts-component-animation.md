@@ -1,7 +1,7 @@
 # Component Animation
 
 
-In addition to universal attribute animation and transition animation APIs, ArkUI provides default animation effects for certain components, for example, the swipe effect for the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) component and the click effect of the [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#button) component. Based on these default animation effects, you can apply custom animations to the child components through the attribute animation and transition animation APIs.
+In addition to universal attribute animation and transition animation APIs, ArkUI provides default animation effects for certain components, for example, the swipe effect for the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component and the click effect of the [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#button) component. Based on these default animation effects, you can apply custom animations to the child components through the attribute animation and transition animation APIs.
 
 
 ## Using Default Component Animation
