@@ -540,7 +540,7 @@ class EntryAbility extends UIAbility {
 
 ## Asset<sup>10+</sup>
 
-记录资产附件（文件、图片、视频等类型文件）的相关信息。资产类型的相关接口暂不支持Datashare。
+记录资产附件（文件、图片、视频等类型文件）的相关信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
