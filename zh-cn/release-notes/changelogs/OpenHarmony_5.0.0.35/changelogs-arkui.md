@@ -432,11 +432,7 @@ Toast组件ShowToast接口
 
 默认行为变更，无需适配。
 
-<<<<<<< HEAD
-## cl.arkui.11 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
-=======
 ## cl.arkui.10 RichEditor设置预设样式的接口传入异常值时，文本样式效果变更
->>>>>>> ead0a5d060 (update changelog)
 
 **访问级别**
 
@@ -502,11 +498,7 @@ struct Index {
 }
 ```
 
-<<<<<<< HEAD
-## cl.arkui.12 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
-=======
 ## cl.arkui.11 RichEditor占位文本接口中文本样式属性传入异常值时，占位文本样式的效果变更
->>>>>>> ead0a5d060 (update changelog)
 
 **访问级别**
 
@@ -634,11 +626,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-<<<<<<< HEAD
-## cl.arkui.14 RichEditor收起键盘后，选中区状态变更
-=======
 ## cl.arkui.13 RichEditor收起键盘后，选中区、手柄菜单状态变更
->>>>>>> ead0a5d060 (update changelog)
 
 **访问级别**
 
@@ -779,7 +767,7 @@ Scroll、List、Grid、WaterFlow组件scrollBarColor接口
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.18 自定义MenuItem的onChange触发逻辑变更
+## cl.arkui.17 自定义MenuItem的onChange触发逻辑变更
 
 **访问级别**
 
@@ -813,7 +801,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。注意，由于此前基于CustomBuilder创建的MenuItem，设置onChange不生效，变更后请按应用场景正确使用onChange。
 
-## cl.arkui.19 手机横屏及其他设备，上下文菜单placement变更
+## cl.arkui.18 手机横屏及其他设备，上下文菜单placement变更
 
 **访问级别**
 
