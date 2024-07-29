@@ -40,76 +40,81 @@
 ### 调用方接入步骤
 
 1. 导入相关模块。
-    ```TypeScript
+
+    ```ts
     // xxx.ets
     import { fileUri } from '@kit.CoreFileKit';
-    import { UIAbility, Want, common, wantConstant } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServiceKit';
+    import { UIAbility, Want, wantConstant } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { BusinessError } from '@kit.BasicServicesKit';
     ```
 
 2. 获取[应用文件路径](application-context-stage.md#获取应用文件路径)。
-    ```TypeScript
+
+    ```ts
     // xxx.ets
     // 假设应用bundleName值为com.example.demo
     export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // 获取文件沙箱路径
-        let filePath = this.context.filesDir + '/test1.txt';
-        // 将沙箱路径转换为uri
-        let uri = fileUri.getUriFromPath(filePath);
-        // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test.txt"
-    }
-    // ...
+        onWindowStageCreate(windowStage: window.WindowStage) {
+            // 获取文件沙箱路径
+            let filePath = this.context.filesDir + '/test1.txt';
+            // 将沙箱路径转换为uri
+            let uri = fileUri.getUriFromPath(filePath);
+            // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test.txt"
+        }
+        // ...
     }
     ```
 
 3. 构造请求数据。
-    ```TypeScript
+
+    ```ts
     // xxx.ets
     export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // 获取文件沙箱路径
-        let filePath = this.context.filesDir + '/test.txt';
-        // 将沙箱路径转换为uri
-        let uri = fileUri.getUriFromPath(filePath);
-        // 构造请求数据
-        let want: Want = {
-        uri: uri,
-        type: 'text/plain', // 表示待打开文件的类型
-        // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
-        flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
-        };
-    }
-    // ...
+        onWindowStageCreate(windowStage: window.WindowStage) {
+            // 获取文件沙箱路径
+            let filePath = this.context.filesDir + '/test.txt';
+            // 将沙箱路径转换为uri
+            let uri = fileUri.getUriFromPath(filePath);
+            // 构造请求数据
+            let want: Want = {
+            uri: uri,
+            type: 'text/plain', // 表示待打开文件的类型
+            // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
+            flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
+            };
+        }
+        // ...
     }
     ```
 
 4. 调用接口启动。
-    ```TypeScript
+    
+    ```ts
     // xxx.ets
     export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // 获取文件沙箱路径
-        let filePath = this.context.filesDir + '/test.txt';
-        // 将沙箱路径转换为uri
-        let uri = fileUri.getUriFromPath(filePath);
-        // 构造请求数据
-        let want: Want = {
-        uri: uri,
-        type: 'text/plain', // 表示待打开文件的类型
-        // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
-        flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
-        };
-        // 调用接口启动
-        this.context.startAbility(want)
-        .then(() => {
-            console.info('Succeed to invoke startAbility.');
-        })
-        .catch((err: BusinessError) => {
-            console.error(`Failed to invoke startAbility, code: ${err.code}, message: ${err.message}`);
-        });
-    }
-    // ...
+        onWindowStageCreate(windowStage: window.WindowStage) {
+            // 获取文件沙箱路径
+            let filePath = this.context.filesDir + '/test.txt';
+            // 将沙箱路径转换为uri
+            let uri = fileUri.getUriFromPath(filePath);
+            // 构造请求数据
+            let want: Want = {
+            uri: uri,
+            type: 'text/plain', // 表示待打开文件的类型
+            // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
+            flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
+            };
+            // 调用接口启动
+            this.context.startAbility(want)
+            .then(() => {
+                console.info('Succeed to invoke startAbility.');
+            })
+            .catch((err: BusinessError) => {
+                console.error(`Failed to invoke startAbility, code: ${err.code}, message: ${err.message}`);
+            });
+        }
+        // ...
     }
     ```
 
@@ -118,7 +123,8 @@
 1. 声明文件打开能力
 
     支持打开文件的应用需要在module.json5配置文件中声明文件打开能力。其中uris字段表示接收URI的类型，其中scheme固定为file。type字段表示支持打开的文件类型（请参见[MIME定义](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)），如下举例中类型为txt文件。
-    ```TypeScript
+
+    ```ts
     {
     "module": {
         // ...
@@ -153,11 +159,11 @@
 
     声明了文件打开的应用在被拉起后，获取传入的Want参数信息，从中获取待打开文件的URI，在打开文件并获取对应的file对象后，可对文件进行读写操作。
 
-    ```TypeScript
+    ```ts
     // xxx.ets
-    import fs from '@ohos.file.fs';
-    import { Want } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServiceKit';
+    import { fileIo } from '@kit.CoreFileKit';
+    import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     export default class EntryAbility extends UIAbility {
         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -169,7 +175,7 @@
             }
             try {
                 // 根据待打开文件的URI进行相应操作。例如同步读写的方式打开URI获取file对象
-                let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+                let file = fileIo.openSync(uri, fileIo.OpenMode.READ_WRITE);
                 console.info('Succeed to open file.');
             } catch (err) {
                 let error: BusinessError = err as BusinessError;

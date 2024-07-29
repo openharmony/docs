@@ -3,7 +3,7 @@
 
 ## Overview
 
-The flex layout, implemented using the [\<Flex>](../reference/apis-arkui/arkui-ts/ts-container-flex.md) container component, provides simple and powerful tools for flexibly distributing space and aligning items. The flex layout is widely used in scenarios such as the navigation bar distribution on the page header, page framework setup, and arrangement of multiple lines of data.
+The flex layout, implemented using the [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) container component, provides simple and powerful tools for flexibly distributing space and aligning items. The flex layout is widely used in scenarios such as the navigation bar distribution on the page header, page framework setup, and arrangement of multiple lines of data.
 
 By default, the flex container has a main axis and a cross axis, and child elements are arranged along the main axis. The size of a child element along the main axis is referred to as its main axis size. Similarly, the size of a child element along the cross axis is referred to as its cross axis size.
 
@@ -16,7 +16,7 @@ By default, the flex container has a main axis and a cross axis, and child eleme
 
 ## Basic Concepts
 
-- Main axis: axis along which child elements are placed in the **\<Flex>** component. Child elements are laid out along the main axis by default. The start point of the main axis is referred to as main-start, and the end point is referred to as main-end.
+- Main axis: axis along which child elements are placed in the **Flex** component. Child elements are laid out along the main axis by default. The start point of the main axis is referred to as main-start, and the end point is referred to as main-end.
 
 - Cross axis: axis that runs perpendicular to the main axis. The start point of the cross axis is referred to as cross-start, and the end point is referred to as cross-end.
 
@@ -268,7 +268,7 @@ Alignment on the cross axis can be set for both the container and child elements
 
 ### Setting Alignment on the Cross Axis for the Container
 
-Use the **alignItems** parameter of the **\<Flex>** component to set alignment of child elements on the cross axis.
+Use the **alignItems** parameter of the **Flex** component to set alignment of child elements on the cross axis.
 
 
 - **ItemAlign.Auto**: The child elements are automatically aligned in the flex container.
@@ -403,7 +403,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // The ch
 ![en-us_image_0000001562940533](figures/en-us_image_0000001562940533.png)
 
 
-In the preceding example, the **alignItems** parameter of the **\<Flex>** container and the **alignSelf** attribute of the child element are both set. In this case, the **alignSelf** settings take effect.
+In the preceding example, the **alignItems** parameter of the **Flex** container and the **alignSelf** attribute of the child element are both set. In this case, the **alignSelf** settings take effect.
 
 
 ### Content Alignment

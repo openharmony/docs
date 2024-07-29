@@ -22,6 +22,7 @@
     - [Sendable Development](arkts-sendable.md)
     - [System Objects That Accessed Sendable](arkts-sendable-system-object-list.md)
     - [Sharable Module Development](arkts-sendable-module.md)
+    - [Behavior Differences Between ArkTS Collections APIs and Native APIs](arkts-collections-vs-native-api-comparison.md)
 - Container
   - [Container Overview](container-overview.md)
   - [Linear Containers](linear-container.md)

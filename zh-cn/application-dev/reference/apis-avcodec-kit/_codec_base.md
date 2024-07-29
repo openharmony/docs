@@ -83,7 +83,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height)    | 描述视频帧高跨距的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width)       | 描述视频帧真实宽度的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height)    | 描述视频帧真实高度的键，值类型为int32_t。该键是可选的。        |
-| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max)       | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。|
@@ -118,11 +118,11 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | 持续时间键，值类型为int64_t。该键是可选的。                  |
 | [OH_MD_KEY_TITLE](#oh_md_key_title)                          | 源格式标题的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_ARTIST](#oh_md_key_artist)                        | 艺术家的源格式键，值类型为string。该键是可选的。             |
-| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | 相册的源格式键，值类型为string。该键是可选的。               |
-| [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | 相册艺术家的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | 专辑的源格式键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | 专辑艺术家的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_DATE](#oh_md_key_date)                            | 源格式日期的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_COMMENT](#oh_md_key_comment)                      | 源格式注释的键，值类型为string。该键是可选的。               |
-| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | 源格式类型的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | 源格式流派的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright)                  | 源格式版权的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_LANGUAGE](#oh_md_key_language)                    | 源格式语言的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_DESCRIPTION](#oh_md_key_description)              | 源格式描述的键，值类型为string。该键是可选的。               |
@@ -251,11 +251,11 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | 编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | 源格式标题的键，值类型为string。 |
 | const char \* [OH_MD_KEY_ARTIST](#oh_md_key_artist) | 艺术家的源格式键，值类型为string。 |
-| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | 相册的源格式键，值类型为string。 |
-| const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | 相册艺术家的键，值类型为string。 |
+| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | 专辑的源格式键，值类型为string。 |
+| const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | 专辑艺术家的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DATE](#oh_md_key_date) | 源格式日期的键，值类型为string。 |
 | const char \* [OH_MD_KEY_COMMENT](#oh_md_key_comment) | 源格式注释的键，值类型为string。 |
-| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | 源格式类型的键，值类型为string。 |
+| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | 源格式流派的键，值类型为string。 |
 | const char \* [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright) | 源格式版权的键，值类型为string。 |
 | const char \* [OH_MD_KEY_LANGUAGE](#oh_md_key_language) | 源格式语言的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | 源格式描述的键，值类型为string。 |
@@ -1454,7 +1454,7 @@ aac格式的键，值类型为int32_t,aac解码器支持。
 const char* OH_MD_KEY_ALBUM
 ```
 **描述**
-相册的源格式键，值类型为string。
+专辑的源格式键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1467,7 +1467,7 @@ const char* OH_MD_KEY_ALBUM
 const char* OH_MD_KEY_ALBUM_ARTIST
 ```
 **描述**
-相册艺术家的键，值类型为string。
+专辑艺术家的键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1741,7 +1741,7 @@ const char* OH_MD_KEY_FRAME_RATE
 const char* OH_MD_KEY_GENRE
 ```
 **描述**
-源格式类型的键，值类型为string。
+源格式流派的键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2073,7 +2073,7 @@ const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 
 如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。 
 
-该键是可选的且只用于视频编码，在configure阶段使用。
+该键是可选的，在configure阶段使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

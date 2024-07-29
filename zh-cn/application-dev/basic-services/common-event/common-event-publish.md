@@ -26,8 +26,9 @@
 1. 导入模块。
    
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    ```
@@ -36,7 +37,7 @@
    
    ```ts
    // 发布公共事件，其中的event字段需要替换为实际的事件名称。
-   commonEventManager.publish('event', (err: Base.BusinessError) => {
+   commonEventManager.publish('event', (err: BusinessError) => {
      if (err) {
        console.info(`PublishCallBack err = ${JSON.stringify(err)}`);
      } else {
@@ -54,8 +55,8 @@
 1. 导入模块。
    
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    ```
@@ -74,7 +75,7 @@
    
    ```ts
    // 发布公共事件，其中的event字段需要替换为实际的事件名称。
-   commonEventManager.publish('event', options, (err: Base.BusinessError) => {
+   commonEventManager.publish('event', options, (err: BusinessError) => {
      if (err) {
        console.error('PublishCallBack err = ' + JSON.stringify(err));
      } else {

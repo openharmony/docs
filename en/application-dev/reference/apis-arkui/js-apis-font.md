@@ -36,8 +36,8 @@ Registers a custom font with the font manager.
 
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
-| familySrc  | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
+| familyName | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
+| familySrc  | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
 
 **Example**
 

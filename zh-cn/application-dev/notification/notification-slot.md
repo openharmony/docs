@@ -7,6 +7,7 @@
 
 | SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
+| UNKNOWN_TYPE         | 0      | 未知类型 | Y | N | N | N | N | N |
 | SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
 | SERVICE_INFORMATION  | 2      | 服务提醒 | Y | Y | Y | Y | Y | Y |
 | CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | N | N |
@@ -31,15 +32,15 @@
 1. 导入notificationManager模块。
 
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import Base from '@ohos.base';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 创建指定类型的通知渠道。
 
     ```ts
     // addslot回调
-    let addSlotCallBack = (err: Base.BusinessError): void => {
+    let addSlotCallBack = (err: BusinessError): void => {
         if (err) {
             console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
@@ -54,7 +55,7 @@
     获取对应渠道是否创建以及该渠道支持的通知提醒方式，比如是否有声音提示，是否有震动，锁屏是否可见等。
     ```ts
     // getSlot回调
-    let getSlotCallback = (err: Base.BusinessError, data: notificationManager.NotificationSlot): void => {
+    let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
         if (err) {
             console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
@@ -75,7 +76,7 @@
 
     ```ts
     // removeSlot回调
-    let removeSlotCallback = (err: Base.BusinessError): void => {
+    let removeSlotCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {

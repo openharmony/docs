@@ -160,6 +160,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+#include <multimedia/player_framework/native_avbuffer.h>
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
@@ -175,8 +176,6 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // 处理状态变更
-        //可选 配置录屏旋转
-        int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
         // 通话中断状态处理
@@ -190,13 +189,13 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-    int32_t ret;
-    // 获取解码后信息
-    OH_AVCodecBufferAttr info;
-    ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-    if (ret != AV_ERR_OK) {
-        // 异常处理
-    }
+    // 获取解码后信息 可以参考编解码接口
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+    OH_NativeBuffer_Config config;
+    OH_NativeBuffer_GetConfig(nativeBuffer, &config);
+    int32_t videoSize= config.height * config.width * 4;
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
     if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
         // 处理视频buffer
     } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {

@@ -1,12 +1,12 @@
 # SymbolSpan
 
-As a child component of the **\<Text>** component, the  **\<SymbolSpan>** component is used to display small icons.
+As a child component of the **Text** component, the  **\<SymbolSpan>** component is used to display small icons.
 
 >  **NOTE**
 >
 > - This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> - This component can inherit attribute settings from its parent component **\<Text>**. This means that, if an attribute is not set in this component, it takes the value of the attribute (if set) from its parent component.
+> - This component can inherit attribute settings from its parent component **Text**. This means that, if an attribute is not set in this component, it takes the value of the attribute (if set) from its parent component.
 
 ## Child Components
 

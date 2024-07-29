@@ -1,14 +1,14 @@
 # Creating a Swiper (Swiper)
 
 
-The [\<Swiper>](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) component is a container that is able to display child components in looping mode. It is typically used in scenarios such as display of recommended content on the home page.
+The [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) component is a container that is able to display child components in looping mode. It is typically used in scenarios such as display of recommended content on the home page.
 
-The **\<Swiper>** component provides a preloading mechanism, which you can use to improve the swipe experience in complex scenarios. This mechanism allows for prebuilding and prerendering components when the main thread is idle. For details, see [Swiper High-Performance Development](../performance/swiper_optimization.md).
+The **Swiper** component provides a preloading mechanism, which you can use to improve the swipe experience in complex scenarios. This mechanism allows for prebuilding and prerendering components when the main thread is idle.<!--Del--> For details, see [Swiper High-Performance Development](../performance/swiper_optimization.md).<!--DelEnd-->
 
 
 ## Layout and Constraints
 
-The **\<Swiper>** component follows its own size settings if they are configured. If the component does not have its own size settings configured, it follows the size of its parent component when the **prevMargin** or **nextMargin** attribute is set, or adapts its size to its child components otherwise.
+The **Swiper** component follows its own size settings if they are configured. If the component does not have its own size settings configured, it follows the size of its parent component when the **prevMargin** or **nextMargin** attribute is set, or adapts its size to its child components otherwise.
 
 
 ## Loop Playback
@@ -120,9 +120,9 @@ Swiper(this.swiperController) {
 
 ## Navigation Dots Indicator
 
-The **\<Swiper>** component provides a navigation dots indicator, which is displayed in the bottom center of the component. You can customize the position and style of the navigation dots indicator through the **indicator**attribute.
+The **Swiper** component provides a navigation dots indicator, which is displayed in the bottom center of the component. You can customize the position and style of the navigation dots indicator through the **indicator**attribute.
 
-With the **indicator** attribute, you can set the position of the navigation dots indicator relative to the edges of the **\<Swiper>** component, in addition to the size, color, and mask of each navigation dot as well as the color of the selected navigation dot.
+With the **indicator** attribute, you can set the position of the navigation dots indicator relative to the edges of the **Swiper** component, in addition to the size, color, and mask of each navigation dot as well as the color of the selected navigation dot.
 
 - Example of using the navigation dots indicator in its default style:
 
@@ -197,7 +197,7 @@ Swiper(this.swiperController) {
 
 ## Page Switching Mode
 
-The **\<Swiper>** component supports three page switching modes: using the swipe gesture, using the navigation dots indicator, and using the controller. The following example shows how to switch pages using the controller.
+The **Swiper** component supports three page switching modes: using the swipe gesture, using the navigation dots indicator, and using the controller. The following example shows how to switch pages using the controller.
 
 ```ts
 @Entry
@@ -250,7 +250,7 @@ struct SwiperDemo {
 
 ## Playback Direction
 
-You can set the playback direction for the \<Swiper> component through its **vertical** attribute.
+You can set the playback direction for the Swiper component through its **vertical** attribute.
 
 When **vertical** is set to **true**, vertical swiping is used. The default value of **vertical** is **false**.
 
@@ -285,7 +285,7 @@ Swiper(this.swiperController) {
 
 ## Child Components Per Page
 
-You can set the number of child components per page for the **\<Swiper>** component through its [displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#attributes) attribute.
+You can set the number of child components per page for the **Swiper** component through its [displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#attributes) attribute.
 
 ```ts
 Swiper(this.swiperController) {

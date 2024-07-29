@@ -22,10 +22,12 @@ For more information, see [Application Permission Management Overview](app-permi
 
 The system also provides temporary authorization methods, such as system Pickers and security components, to allow applications to temporarily access restricted resources without applying for permissions from users. These easy-to-use components implement precise permission control and better protect user privacy.
 
-- [System Pickers](use-picker.md)
+- [System Pickers](../../application-models/system-app-startup.md)
 
   A Picker is implemented by an independent system process. It provides a safe, built-in way for users to grant your application access to only selected resources. By starting a Picker component, the application can access the resources, such as images or documents, selected by the user using the Picker. For example, before accessing a user's image, an application normally needs to request user authorization. However, by using **PhotoViewPicker**, the application can directly access the image selected by the user.
 
 - [Security components](security-component-overview.md)
 
-  Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, you can use the \<**LocationButton**> component for the application that needs to share location information. When this component is tapped by a user, the application is temporarily authorized with the precise location permission and can call the location service to obtain the precise location. <br>The permission, however, is temporarily granted to the application and is automatically revoked when the screen is turned off or the application switches to the background or exits.
+  Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, you can use the **LocationButton** component for the application that needs to share location information. When this component is tapped by a user, the application is temporarily authorized with the precise location permission and can call the location service to obtain the precise location. <br>The permission, however, is temporarily granted to the application and is automatically revoked when the screen is turned off or the application switches to the background or exits.
+  
+  <!--no_check-->

@@ -132,21 +132,21 @@ struct MyComponent {
 
 The preceding code initializes only three list elements during page loading and loads a new list item each time a list element is clicked.
 
-## Setting Width and Height for \<List> Components
+## Setting Width and Height for List Components
 
-When a **\<List>** component is nested within a **\<Scroll>** component, all of its content will be loaded if its width and height is not specified, which may result in performance drop.
+When a **List** component is nested within a **Scroll** component, all of its content will be loaded if its width and height is not specified, which may result in performance drop.
 
 >  **NOTE**
 >
->  When a **\<List>** component is nested within a **\<Scroll>** component:
+>  When a **List** component is nested within a **Scroll** component:
 >
->  - If the width and height of the **\<List>** component are not set, all its child components are laid out.
+>  - If the width and height of the **List** component are not set, all its child components are laid out.
 >  
->  - If the width and height of the **\<List>** component are set, only child components within its display area are laid out.
+>  - If the width and height of the **List** component are set, only child components within its display area are laid out.
 >  
->  - When [ForEach](../quick-start/arkts-rendering-control-foreach.md) is used to load child components in the **\<List>** component, all child components are laid out, regardless of whether the width and height are set.
+>  - When [ForEach](../quick-start/arkts-rendering-control-foreach.md) is used to load child components in the **List** component, all child components are laid out, regardless of whether the width and height are set.
 >  
->  - When [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is used to load child components in the **\<List>** component, all child components are laid out if the component does not have its width and height specified; and only child components within its display area are laid out if the component has its width and height specified.
+>  - When [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is used to load child components in the **List** component, all child components are laid out if the component does not have its width and height specified; and only child components within its display area are laid out if the component has its width and height specified.
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -250,7 +250,7 @@ struct MyComponent {
 }
 ```
 
-In the above scenario, you are advised to set the width and height for the **\<List>** component.
+In the above scenario, you are advised to set the width and height for the **List** component.
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -444,7 +444,7 @@ struct MyComponent {
 
 ## Minimizing White Blocks During Swiping
 
-To minimize white blocks during swiping, expand the UI loading range by increasing the value of **cachedCount** for the **\<List>** and **\<Grid>** components. **cachedCount** indicates the number of list or grid items preloaded outside of the screen. 
+To minimize white blocks during swiping, expand the UI loading range by increasing the value of **cachedCount** for the **List** and **Grid** components. **cachedCount** indicates the number of list or grid items preloaded outside of the screen. 
 If an item needs to request an online image, set **cachedCount** as appropriate so that the image is downloaded in advance before the item comes into view on the screen, thereby reducing the number of white blocks. 
 The following is an example of using **cachedCount**:
 

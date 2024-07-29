@@ -1,6 +1,8 @@
 # Key Generation Overview and Algorithm Specifications
 
 You can use the HUKS APIs to generate a key randomly and store the key in HUKS.
+> **NOTE**<br>
+> Key aliases must not contain sensitive information, such as personal data.
 
 - Random generation: HUKS uses a cryptographically secure pseudorandom number generator (PRNG) to generate keys. The PRNG helps improve the randomness, unpredictability, and non-reproducibility of the keys, making the generated keys difficult to infer.
 

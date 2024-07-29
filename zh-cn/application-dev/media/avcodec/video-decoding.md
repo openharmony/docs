@@ -18,6 +18,7 @@
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | 变分辨率         | 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数时配置， 具体可参考下文中：Buffer模式的步骤-3   |
 | 动态切换Surface  | 通过调用OH_VideoDecoder_SetSurface()配置，具体可参考下文中：Surface模式的步骤-7     |
+| 低时延解码  | 通过调用OH_VideoDecoder_Configure()配置，具体可参考下文中：Surface模式的步骤-6     |
 
 
 ## 限制约束
@@ -103,7 +104,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t width = 320; 
     // 配置视频帧高度（必须）
     int32_t height = 240;
-    // 配置视频颜色格式（必须）
+    // 配置视频像素格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     int widthStride = 0;
     int heightStride = 0;
@@ -139,10 +140,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     - OH_AVCodecOnError 解码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)；
-
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。(注：Surface模式buffer参数为空)。 
-    数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成(注：Surface模式buffer参数为空)。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
@@ -243,11 +242,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     参数取值范围可以通过能力查询接口获取，具体示例请参考[获取支持的编解码能力](obtain-supported-codecs.md)。
     
-    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
+    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
     - DEFAULT_HEIGHT：240像素高度；
-    - DEFAULT_PIXELFORMAT： 颜色格式，因为示例需要保存的YUV文件颜色格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
+    - DEFAULT_PIXELFORMAT： 像素格式，因为示例需要保存的YUV文件像素格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
 
     ```c++
 
@@ -256,6 +255,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    // 可选，配置低时延解码
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // 配置解码器
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {
@@ -265,7 +266,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 7. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
-   具体示例请参考： [OnSurfaceCreatedCB](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/render/plugin_render.cpp/#onSurfaceCreatedCB)
 
    Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
 
@@ -562,8 +562,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     - OH_AVCodecOnError 解码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 

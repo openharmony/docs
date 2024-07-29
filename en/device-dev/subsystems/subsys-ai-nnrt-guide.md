@@ -4,9 +4,9 @@
 
 ### Function Introduction
 
-Neural Network Runtime (NNRt) functions as a bridge to connect the upper-layer AI inference framework and underlying acceleration chips, implementing cross-chip inference computing of AI models.
+Neural Network Runtime (NNRt) functions as a bridge to connect the upper-layer AI inference framework and bottom-layer acceleration chips, implementing cross-chip inference computing of AI models.
 
-NNRt opens HDIs for chip vendors to connect dedicated acceleration chips to NNRt to interconnect with the OpenHarmony ecosystem.  
+NNRt opens HDIs for chip vendors to connect dedicated acceleration chips to NNRt to interconnect with the OpenHarmony ecosystem. The following describes how to connect a chip to NNRt.
 
 ### Basic Concepts
 Before you get started, it would be helpful for you to have a basic understanding of the following concepts:
@@ -41,7 +41,7 @@ The following figure shows the process of connecting a dedicated AI acceleration
 
 **Figure 2** Process of connecting a dedicated AI acceleration chip to NNRt
 
-![Process of connecting a dedicated AI acceleration chip to NNRt](./figures/nnrt_dev_flow.png)
+![NNRt development flowchart](./figures/nnrt_dev_flow.png)
 
 ### Development Procedure
 The following uses the RK3568 chip as an example to describe the development procedure.
@@ -55,7 +55,7 @@ Download the OpenHarmony source code from the open source community, build the `
     ./build.sh --product-name rk3568 –ccache --build-target drivers_interface_nnrt
     ```
 
-    After the compilation is complete, an HDI header file of the C++ language is generated in the `out/rk3568/gen/drivers/interface/nnrt/v2_0` directory. To generate a header file of the C language, run the following command to set the language field in the `drivers/interface/nnrt/v2_0/BUILD.gn` file before starting compilation:
+    After the compilation is complete, an HDI header file of the C++ language is generated in the `out/rk3568/gen/drivers/interface/nnrt/v2_0` directory. To generate a header file of the C language, run the following command to set the `language` field in the `drivers/interface/nnrt/v2_0/BUILD.gn` file before starting compilation:
 
     ```shell
     language = "c"
@@ -81,7 +81,7 @@ Download the OpenHarmony source code from the open source community, build the `
         ├── nnrt_device_stub.cpp
         ├── nnrt_device_stub.h
         ├── nnrt_types.cpp                        # Implementation file for data type definition
-        ├── nnrt_types.h                          # Header file for data type definitions
+        ├── nnrt_types.h                          # Header file for data type definition
         ├── node_attr_types.cpp                   # Implementation file for AI model operator attribute definition
         ├── node_attr_types.h                     # Header file for AI model operator attribute definition
         ├── prepared_model_proxy.cpp
@@ -121,7 +121,7 @@ Download the OpenHarmony source code from the open source community, build the `
 
 3. Implement service APIs by referring to the `nnrt_device_service.cpp` and `prepared_model_service.cpp` files. For details about the API definitions, see [NNRt HDI Definitions](https://gitee.com/openharmony/drivers_interface/tree/master/nnrt).
 
-4. Compile the implementation files for device drivers and services as shared libraries.
+4. Build the implementation files for device drivers and services as shared libraries.
 
     Create the `BUILD.gn` file with the following content in the `drivers/peripheral/nnrt/v2_0/hdi_cpu_service/` directory. For details about how to set related parameters, see [Compilation and Building](https://gitee.com/openharmony/build).
 
@@ -235,7 +235,7 @@ Download the OpenHarmony source code from the open source community, build the `
 
 #### Declaring the HDI Service
 
-  In the `uhdf` directory, declare the user-mode driver and services in the `.hcs` file of the corresponding product. For example, for the RK3568 chip, add the following configuration to the `vendor/hihope/rk3568/hdf_config/uhdf/device_info.hcs` file:
+  In the `uhdf` directory, declare the user-mode driver and services in the .hcs file of the corresponding product. For example, for the RK3568 chip, add the following configuration to the `vendor/hihope/rk3568/hdf_config/uhdf/device_info.hcs` file:
   ```text
   nnrt :: host {
       hostName = "nnrt_host";
@@ -253,7 +253,7 @@ Download the OpenHarmony source code from the open source community, build the `
       }
   }
   ```
-> **NOTE**<br>After modifying the `.hcs` file, you need to delete the `out` folder and compile the file again for the modification to take effect.
+> **NOTE**<br>After modifying the `.hcs` file, you need to delete the `out` directory and build the file again for the modification to take effect.
 
 #### Configuring the User ID and Group ID of the Host Process
   In the scenario of creating an nnrt_host process, you need to configure the user ID and group ID of the corresponding process. The user ID is configured in the `base/startup/init/services/etc/passwd` file, and the group ID is configured in the `base/startup/init/services/etc/group` file.
@@ -315,7 +315,7 @@ The SELinux feature has been enabled for the OpenHarmony. You need to configure 
     ```text
     allow chipset_init { light_host input_user_host wifi_host camera_host power_host audio_host }:process { rlimitinh siginh transition };
     ```
-    Add `nnrt_host` to the `host` list.
+    Add `nnrt_host` to the `host`host list.
     ```text
     allow chipset_init { light_host input_user_host wifi_host camera_host power_host audio_host nnrt_host }:process { rlimitinh siginh transition };
     ```
@@ -328,7 +328,7 @@ The SELinux feature has been enabled for the OpenHarmony. You need to configure 
     # Create the vendor folder.
     mkdir base/security/selinux/sepolicy/ohos_policy/drivers/peripheral/nnrt/vendor
 
-    # Create the `nnrt_host.te` file.
+    # Create the nnrt_host.te file.
     touch base/security/selinux/sepolicy/ohos_policy/drivers/peripheral/nnrt/vendor/nnrt_host.te
     ```
 
@@ -358,7 +358,7 @@ The SELinux feature has been enabled for the OpenHarmony. You need to configure 
     ```
 
 10. Configure access permissions because SELinux uses the trustlist access permission mechanism. Upon service startup, run the `dmesg` command to view the AVC alarm,
-which provides a list of missing permissions. For details about the SELinux configuration, see [security_selinux](https://gitee.com/openharmony/security_selinux/blob/master/README-en.md).
+which provides a list of missing permissions. For details about the SELinux configuration, see [security_selinux] (https://gitee.com/openharmony/security_selinux/blob/master/README-en.md).
     ```shell
     hdc_std shell
     dmesg | grep nnrt
@@ -395,7 +395,7 @@ On completion of service development, you can use XTS to verify its basic functi
     # Go to the hats directory.
     cd test/xts/hats
 
-    # Compile the `hats` test cases.
+    # Build the hats test cases.
     ./build.sh suite=hats system_size=standard product_name=rk3568
 
     # Return to the root directory.
@@ -405,10 +405,10 @@ On completion of service development, you can use XTS to verify its basic functi
 
 2. Push the test case executable file to the `/data/local/tmp/` directory of the RK3568 device.
     ```shell
-    # Push the test case executable file to the device. In this example, the executable file is HatsHdfNnrtFunctionTest.
+    # Push the executable file of test cases to the device. In this example, the executable file is HatsHdfNnrtFunctionTest.
     hdc_std file send out/rk3568/suites/hats/testcases/HartsHdfNnrtFunctionTest /data/local/tmp/
 
-    # Grant required permissions to the test case executable file.
+    # Grant required permissions to the executable file of test cases.
     hdc_std shell "chmod +x /data/local/tmp/HatsHdfNnrtFunctionTest"
     ```
 
@@ -430,7 +430,7 @@ On completion of service development, you can use XTS to verify its basic functi
 ### Development Example
 For the complete demo code, see [NNRt Service Implementation Example](https://gitee.com/openharmony/ai_neural_network_runtime/tree/master/example/drivers).
 
-1. Go to the root directory of OpenHarmony source code and create the `nnrt` folder in the `drivers/peripheral` directory. Then, copy the `example/driver/nnrt/v2_0` folder from the  `foundation/ai/neural_network_runtime` directory of NNRt source code to the created `nnrt` folder.
+1. Go to the root directory of OpenHarmony source code and create the `nnrt` folder in the `drivers/peripheral` directory. Then, copy the `example/driver/nnrt/v2_0` folder from the `foundation/ai/neural_network_runtime` directory of NNRt source code to the `drivers/peripheral/nnrt` directory.
     ```shell
     cp -r example/drivers/nnrt/v2_0 drivers/peripheral/nnrt
     ```
@@ -440,7 +440,7 @@ For the complete demo code, see [NNRt Service Implementation Example](https://gi
 3. Add the dependency files of MindSpore Lite because the demo depends on the CPU operator of MindSpore Lite.
     - Run the following command in the root directory of the OpenHarmony source code to build the MindSpore Lite dynamic library: The MindSpore source code is stored in `third_party/mindspore` in the root directory of the OpenHarmony source code.
       ```shell
-      # Build the MindSpore Lite dynamic libraries.
+      # Build the dynamic library of MindSpore Lite.
       ./build.sh --product-name rk3568 -ccaache --jobs 4 --build-target mindspore_lib
       ```
     - Create the `mindspore` folder in the `drivers/peripheral/nnrt/v2_0` directory to store the dynamic libraries and header files of MindSpore Lite.
@@ -453,7 +453,7 @@ For the complete demo code, see [NNRt Service Implementation Example](https://gi
       ```
     - Create and copy the `schema` file of MindSpore Lite.
       ```shell
-      # Create the mindspore_schema folder.
+      # Create the mindspore_schema directory.
       mkdir drivers/peripheral/nnrt/v2_0/hdi_cpu_service/include/mindspore_schema
 
       # Copy the MindSpore schema file from the third_party directory.
@@ -461,10 +461,10 @@ For the complete demo code, see [NNRt Service Implementation Example](https://gi
       ```
     - Copy the MindSpore Lite dynamic library to the `mindspore` directory.
       ```shell
-      # Create the `mindspore` folder in the `drivers/peripheral/nnrt/v2_0/mindspore` directory.
+      # Create the mindspore folder in the drivers/peripheral/nnrt/v2_0/mindspore directory.
       mkdir drivers/peripheral/nnrt/v2_0/mindspore/mindspore
 
-      # Copy the MindSpore dynamic libraries from the `out` folder to the `drivers/peripheral/nnrt/v2_0/mindspore/mindspore` directory.
+      # Copy the MindSpore dynamic libraries from the out folder to the drivers/peripheral/nnrt/v2_0/mindspore/mindspore directory.
       cp out/rk3568/package/phone/system/lib/libmindspore-lite.so drivers/peripheral/nnrt/v2_0/mindspore/mindspore/
       ```
 4. Follow the [development procedure](#development-procedure) to complete other configurations.

@@ -1,4 +1,4 @@
-# PersistentStorage: Application State Persistence
+# PersistentStorage: Persisting Application State
 
 
 During application development, you may want selected attributes to persist even when the application is closed. In this case, you'll need PersistentStorage.
@@ -35,7 +35,7 @@ It is recommended that the persistent variables of PersistentStorage be less tha
 
 PersistentStorage can be called to persist data only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask), is specified.  
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Accessing PersistentStorage Initialized Attribute from AppStorage
@@ -98,7 +98,7 @@ struct Index {
 ![en-us_image_0000001553348833](figures/en-us_image_0000001553348833.png)
 
 - After a click event is triggered:
-  1. The state variable **\@StorageLink('aProp') aProp** is updated, triggering the **\<Text>** component to be re-rendered.
+  1. The state variable **\@StorageLink('aProp') aProp** is updated, triggering the **Text** component to be re-rendered.
   2. The two-way synchronization between the \@StorageLink decorated variable and AppStorage results in the change of the **\@StorageLink('aProp') aProp** being synchronized back to AppStorage.
   3. The change of the **aProp** attribute in AppStorage triggers any other one-way or two-way bound variables to be updated. (In this example, there are no such other variables.)
   4. Because the attribute corresponding to **aProp** has been persisted, the change of the **aProp** attribute in AppStorage triggers PersistentStorage to write the attribute and its new value to the device.

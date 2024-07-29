@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit'
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 ```
 
 ## MovingPhotoView
@@ -56,7 +56,7 @@ muted(isMuted: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | 是   | 是否静音。<br/>默认值：false |
+| isMuted | boolean | 是   | 是否静音。<br/>默认值：false<br/>false：静音<br/>true：非静音 |
 
 ### objectFit
 
@@ -153,20 +153,24 @@ startPlayback(): void
 
 开始播放。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### stopPlayback
 
 stopPlayback(): void
 
 停止播放，再次播放时从头开始播放。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 示例
 
 ```ts
 // xxx.ets
-import { photoAccessHelper } from '@kit.MediaLibraryKit'
-import { emitter } from '@kit.BasicServicesKit'
-import { dataSharePredicates } from '@kit.ArkData'
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { emitter } from '@kit.BasicServicesKit';
+import { dataSharePredicates } from '@kit.ArkData';
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 
 const PHOTO_SELECT_EVENT_ID: number = 80001
 

@@ -5,7 +5,7 @@ Before using the camera application for preview, photographing, video recording,
 You can implement the following functions in the session:
 
 - Configure the camera input and output streams. This is mandatory for photographing.
-  Configuring an input stream is to add a device input, which means that the user selects a camera for photographing. Configuring an output stream is to select a data output mode. For example, to implement photographing, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **\<XComponent>**, and that of the photo stream is saved to the Gallery application through the **ImageReceiver** API.
+  Configuring an input stream is to add a device input, which means that the user selects a camera for photographing. Configuring an output stream is to select a data output mode. For example, to implement photographing, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **XComponent**, and that of the photo stream is saved to the Gallery application through the **ImageReceiver** API.
 
 - Perform more operations on the camera hardware. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../../reference/apis-camera-kit/js-apis-camera.md).
 
@@ -17,8 +17,8 @@ After the session configuration is complete, the application must commit the con
 1. Import the modules.
      
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Call [createSession](../../reference/apis-camera-kit/js-apis-camera.md#createsession11) in the **CameraManager** class to create a session.
@@ -50,7 +50,6 @@ After the session configuration is complete, the application must commit the con
    ```
 
 4. Configure the session. You can call [addInput](../../reference/apis-camera-kit/js-apis-camera.md#addinput11) and [addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11) in the **PhotoSession** class to add the input and output streams to the session, respectively. The code snippet below uses adding the preview stream **previewOutput** and photo stream **photoOutput** as an example to implement the photographing and preview mode.
-
      After the configuration, call [commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11) and [start](../../reference/apis-camera-kit/js-apis-camera.md#start11) in the **PhotoSession** class in sequence to commit the configuration and start the session.
    ```ts
    async function startSession(photoSession: camera.PhotoSession, cameraInput: camera.CameraInput, previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput): Promise<void> {

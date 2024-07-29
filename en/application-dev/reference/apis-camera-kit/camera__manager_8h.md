@@ -7,6 +7,8 @@ The **camera_manager.h** file declares the camera manager concepts.
 
 **Library**: libohcamera.so
 
+**File to include**: &lt;ohcamera/camera_manager.h&gt; 
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Since**: 11
@@ -21,7 +23,7 @@ The **camera_manager.h** file declares the camera manager concepts.
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[CameraManager_Callbacks](_camera_manager___callbacks.md) | Defines the callbacks used to listen for camera status changes. | 
+| struct&nbsp;&nbsp;[CameraManager_Callbacks](_camera_manager___callbacks.md) | Describes the callbacks used to listen for camera status changes. | 
 
 
 ### Types
@@ -29,7 +31,7 @@ The **camera_manager.h** file declares the camera manager concepts.
 | Name| Description| 
 | -------- | -------- |
 | typedef void(\* [OH_CameraManager_StatusCallback](_o_h___camera.md#oh_cameramanager_statuscallback)) ([Camera_Manager](_o_h___camera.md#camera_manager) \*cameraManager, [Camera_StatusInfo](_camera___status_info.md) \*status) | Defines the pointer to the callback defined in the [CameraManager_Callbacks](_camera_manager___callbacks.md) struct and used to report the camera manager status. | 
-| typedef struct [CameraManager_Callbacks](_camera_manager___callbacks.md) [CameraManager_Callbacks](_o_h___camera.md#cameramanager_callbacks) | Defines the callbacks used to listen for camera status changes. | 
+| typedef struct [CameraManager_Callbacks](_camera_manager___callbacks.md) [CameraManager_Callbacks](_o_h___camera.md#cameramanager_callbacks) | Defines a struct for the callbacks used to listen for camera status changes. | 
 
 
 ### Functions

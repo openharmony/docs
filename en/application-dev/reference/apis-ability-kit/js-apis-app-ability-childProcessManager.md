@@ -4,7 +4,7 @@ The **childProcessManager** module provides the child process management capabil
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
 
@@ -22,8 +22,8 @@ Enumerates the child process start modes.
 
 | Name                      | Value                            | Description                             |
 | --------                     |  -----------------               |  -----------------               |
-| SELF_FORK |  0   | The child process is forked from the application process. Binder IPC cannot be called in such a child process. Otherwise, the child process will crash.|
-| APP_SPAWN_FORK |  1   | The child process is forked from AppSpawn. Such a child process does not inherit the parent process resources. It does not have application context and therefore does not support API calls that depend on application context.|
+| SELF_FORK |  0   | The child process is forked from the application process. Binder IPC cannot be called in such a child process. Otherwise, the child process will crash. |
+| APP_SPAWN_FORK |  1   | The child process is forked from AppSpawn. Such a child process does not inherit the parent process resources. It does not have application context and therefore does not support API calls that depend on application context. |
 
 ## childProcessManager.startChildProcess
 
@@ -35,22 +35,22 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | srcEntry | string | Yes| Path of the source file of the child process. (The source file must be stored in **src/main**. For details, see the sample code below.) Currently, source files can be stored only in modules of the entry type.|
-  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
+  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes | Start mode of the child process. |
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the PID of the child process.|
+  | Promise&lt;number&gt; | Promise used to return the PID of the child process. |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
@@ -70,6 +70,7 @@ export default class DemoProcess extends ChildProcess {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // Call childProcessManager.startChildProcess to start the child process.
 import { childProcessManager } from '@kit.AbilityKit';
@@ -99,7 +100,7 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | srcEntry | string | Yes| Path of the source file of the child process. (The source file must be stored in **src/main**. For details, see the sample code below.) Currently, source files can be stored only in modules of the entry type.|
   | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
@@ -109,7 +110,7 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
@@ -129,6 +130,7 @@ export default class DemoProcess extends ChildProcess {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // Call childProcessManager.startChildProcess to start the child process.
 import { childProcessManager } from '@kit.AbilityKit';

@@ -44,9 +44,9 @@
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import buffer from '@ohos.buffer';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { buffer } from '@kit.ArkTS';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -78,8 +78,8 @@ function createFile(): void {
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions, WriteOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -123,8 +123,8 @@ function readWriteFile(): void {
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -166,8 +166,8 @@ async function readWriteFileWithStream(): Promise<void> {
 以下示例代码演示了如何查看文件列表：
 
 ```ts
-import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;

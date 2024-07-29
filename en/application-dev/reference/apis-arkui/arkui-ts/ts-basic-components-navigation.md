@@ -1,6 +1,6 @@
 # Navigation
 
-The **\<Navigation>** component is the root view container for navigation. It typically functions as the root container of a page and includes a title bar, content area, and toolbar. The content area switches between the home page content (child components of **\<Navigation>**) and non-home page content (child components of [\<NavDestination>](ts-basic-components-navdestination.md)) through routing.
+The **Navigation** component is the root view container for navigation. It typically functions as the root container of a page and includes a title bar, content area, and toolbar. The content area switches between the home page content (child components of **Navigation**) and non-home page content (child components of [NavDestination](ts-basic-components-navdestination.md)) through routing.
 
 > **NOTE**
 >
@@ -13,9 +13,9 @@ The **\<Navigation>** component is the root view container for navigation. It ty
 
 Supported
 
-Since API version 9, it is recommended that this component be used together with the [\<NavRouter>](ts-basic-components-navrouter.md) component.
+Since API version 9, it is recommended that this component be used together with the [NavRouter](ts-basic-components-navrouter.md) component.
 
-Since API version 10, it is recommended that this component be used together with the [\<NavPathStack>](#navpathstack10) component and **navDestination** attribute for page routing.
+Since API version 10, it is recommended that this component be used together with the [NavPathStack](#navpathstack10) component and **navDestination** attribute for page routing.
 
 ## APIs
 
@@ -27,7 +27,7 @@ Navigation()
 
 Navigation(pathInfos: NavPathStack)
 
-Binds a navigation stack to the **\<Navigation>** component.
+Binds a navigation stack to the **Navigation** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -35,7 +35,7 @@ Binds a navigation stack to the **\<Navigation>** component.
 
 | Name      | Type                           | Mandatory  | Description  |
 | --------- | ------------------------------- | ---- | ------ |
-| pathInfos | [NavPathStack](#navpathstack10) | No   | Information about the navigation stack.|
+| pathInfos | [NavPathStack](#navpathstack10) | No   | Information about the navigation stack. |
 
 ## Attributes
 
@@ -51,12 +51,12 @@ Sets the page title.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name | Type                                                        | Mandatory| Description                                                        |
+| Name | Type                                                        | Mandatory | Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](#navigationcommontitle9)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle9)<sup>9+</sup> | Yes  | Page title. When the NavigationCustomTitle type is used to set the height, [titleMode](#titlemode) does not take effect. When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).|
-| options | [NavigationTitleOptions](#navigationtitleoptions11)<sup>11+</sup> | No  | Title bar options.                                                  |
+| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](#navigationcommontitle9)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle9)<sup>9+</sup>  | Yes  | Page title. When the NavigationCustomTitle type is used to set the height, [titleMode](#titlemode) does not take effect. When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...). |
+| options | [NavigationTitleOptions](#navigationtitleoptions11)<sup>11+</sup>  | No  | Title bar options.                                                  |
 
 ### subTitle<sup>(deprecated)</sup>
 
@@ -68,11 +68,11 @@ This API is deprecated since API version 9. You are advised to use [title](#titl
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| value  | string | Yes  | Page subtitle.|
+| value  | string | Yes  | Page subtitle. |
 
 ### menus
 
@@ -84,11 +84,11 @@ Sets the menu items in the upper right corner of the page. If this attribute is 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description            |
+| Name | Type                                                        | Mandatory | Description            |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Menu items in the upper right corner of the page.|
+| value  | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Menu items in the upper right corner of the page. |
 
 ### titleMode
 
@@ -100,11 +100,11 @@ Sets the display mode of the page title bar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                               | Mandatory| Description                                                     |
+| Name | Type                                               | Mandatory | Description                                                     |
 | ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | [NavigationTitleMode](#navigationtitlemode) | Yes  | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free**|
+| value  | [NavigationTitleMode](#navigationtitlemode)  | Yes  | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free** |
 
 ### toolBar<sup>(deprecated)</sup>
 
@@ -116,11 +116,19 @@ This API is deprecated since API version 10. You are advised to use [toolbarConf
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description        |
+| Name | Type                                                        | Mandatory | Description        |
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
-| value  | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar.|
+| value  | object \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar. |
+
+**object** 
+
+| Name    | Type           | Mandatory  | Description             |
+| ------ | ------------- | ---- | --------------- |
+| value  | string        | Yes   | Text of the toolbar item.  |
+| icon   | string        | No   | Icon path of the toolbar item. |
+| action | () =&gt; void | No   | Callback invoked when the menu item is selected.  |
 
 ### toolbarConfiguration<sup>10+</sup>
 
@@ -134,12 +142,12 @@ Sets the content of the toolbar. If this attribute is not set, no toolbar is dis
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name | Type                                                        | Mandatory| Description                                                        |
+| Name | Type                                                        | Mandatory | Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   |  Array&lt;[ToolbarItem](#toolbaritem10)&gt;  \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar. When the value type is Array&lt;[ToolbarItem](#toolbaritem10), the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, this attribute must be used together with Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt; of the **menus** attribute; the toolbar at the bottom is automatically hidden, and all items on the toolbar are moved to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom.|
-| options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup> | No  | Toolbar options.                                                |
+| value   |  Array&lt;[ToolbarItem](#toolbaritem10)&gt;  \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar. When the value type is Array&lt;[ToolbarItem](#toolbaritem10), the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, this attribute must be used together with Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt; of the **menus** attribute; the toolbar at the bottom is automatically hidden, and all items on the toolbar are moved to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom. |
+| options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup>  | No  | Toolbar options.                                                |
 
 ### hideToolBar
 
@@ -151,11 +159,11 @@ Specifies whether to hide the toolbar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                                        |
+| Name | Type   | Mandatory | Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Show the toolbar.|
+| value  | boolean | Yes  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Show the toolbar. |
 
 ### hideTitleBar
 
@@ -167,11 +175,11 @@ Specifies whether to hide the title bar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                                        |
+| Name | Type   | Mandatory | Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Show the title bar.|
+| value  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Show the title bar. |
 
 ### hideBackButton
 
@@ -183,43 +191,43 @@ Specifies whether to hide the back button in the title bar. The back button is a
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                                        |
+| Name | Type   | Mandatory | Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to hide the back button in the title bar.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Show the back button.|
+| value  | boolean | Yes  | Whether to hide the back button in the title bar.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Show the back button. |
 
 ### navBarWidth<sup>9+</sup>
 
 navBarWidth(value: Length)
 
-Sets the width of the navigation bar. This attribute takes effect only when the **\<Navigation>** component is split.
+Sets the width of the navigation bar. This attribute takes effect only when the **Navigation** component is split.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                        | Mandatory| Description                                     |
+| Name | Type                        | Mandatory | Description                                     |
 | ------ | ---------------------------- | ---- | ----------------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Width of the navigation bar.<br>Default value: **240**<br>Unit: vp<br>**undefined**: The behavior is not processed, and the width of the navigation bar is at the default value.|
+| value  | [Length](ts-types.md#length) | Yes  | Width of the navigation bar.<br>Default value: **240**<br>Unit: vp<br>**undefined**: The behavior is not processed, and the width of the navigation bar is at the default value. |
 
 ### navBarPosition<sup>9+</sup>
 
 navBarPosition(value: NavBarPosition)
 
-Sets the position of the navigation bar. This attribute takes effect only when the **\<Navigation>** component is split.
+Sets the position of the navigation bar. This attribute takes effect only when the **Navigation** component is split.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                         |
+| Name | Type                                      | Mandatory | Description                                         |
 | ------ | ------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [NavBarPosition](#navbarposition9) | Yes  | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**|
+| value  | [NavBarPosition](#navbarposition9)  | Yes  | Position of the navigation bar.<br>Default value: **NavBarPosition.Start** |
 
 ### mode<sup>9+</sup>
 
@@ -231,11 +239,11 @@ Sets the display mode of the navigation bar. Available options are **Stack**, **
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                                        |
+| Name | Type                                      | Mandatory | Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [NavigationMode](#navigationmode9) | Yes  | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.|
+| value  | [NavigationMode](#navigationmode9)  | Yes  | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width. |
 
 ### backButtonIcon<sup>9+</sup>
 
@@ -247,11 +255,11 @@ Sets the icon of the back button in the title bar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description                |
+| Name | Type                                                        | Mandatory | Description                |
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Icon of the back button in the title bar.|
+| value  | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Icon of the back button in the title bar. |
 
 ### hideNavBar<sup>9+</sup>
 
@@ -265,11 +273,11 @@ From API version 9 to API version 10, this attribute takes effect only in dual-c
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                              |
+| Name | Type   | Mandatory | Description                              |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | Yes  | Whether to hide the navigation bar.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to hide the navigation bar.<br>Default value: **false** |
 
 ### navDestination<sup>10+</sup>
 
@@ -281,11 +289,11 @@ Builder for a **\<NavDestination>** component. The **builder** function is used,
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name | Type                                  | Mandatory| Description                    |
+| Name | Type                                  | Mandatory | Description                    |
 | ------- | -------------------------------------- | ---- | ------------------------ |
-| builder | (name: string, param: unknown) => void | Yes  | Builder for a **\<NavDestination>** component.|
+| builder | (name: string, param: unknown) => void | Yes  | Builder for a **\<NavDestination>** component. |
 
 ### navBarWidthRange<sup>10+</sup>
 
@@ -299,11 +307,11 @@ For details about the priority rules, see **NOTE** below.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name | Type                                                        | Mandatory| Description                                                        |
+| Name | Type                                                        | Mandatory | Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Yes  | Minimum and maximum widths of the navigation bar.<br>Default value: 240 for the minimum value; 40% of the component width (not greater than 432) for the maximum value; if either of the widths is not set, the default value is used for that width.<br>Unit: vp|
+| value | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Yes  | Minimum and maximum widths of the navigation bar.<br>Default value: 240 for the minimum value; 40% of the component width (not greater than 432) for the maximum value; if either of the widths is not set, the default value is used for that width.<br>Unit: vp |
 
 ### minContentWidth<sup>10+</sup>
 
@@ -317,19 +325,19 @@ For details about the priority rules, see **NOTE** below.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name | Type                                | Mandatory| Description                                                        |
+| Name | Type                                | Mandatory | Description                                                        |
 | ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [Dimension](ts-types.md#dimension10) | Yes  | Minimum width of the navigation bar content area.<br>Default value: **360**<br>Unit: vp<br>**undefined**: The behavior is not processed, and the minimum width of the navigation bar is at the default value.<br>Breakpoint calculation in Auto mode: default 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp)|
+| value | [Dimension](ts-types.md#dimension10) | Yes  | Minimum width of the navigation bar content area.<br>Default value: **360**<br>Unit: vp<br>**undefined**: The behavior is not processed, and the minimum width of the navigation bar is at the default value.<br>Breakpoint calculation in Auto mode: default 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp) |
 
 >  **NOTE**
 >
->  1. If only **navBarWidth** is set, no divider in the **\<Navigation>** component can be dragged.
+>  1. If only **navBarWidth** is set, no divider in the **Navigation** component can be dragged.
 >
 >  2. **navBarWidthRange** specifies the range within which the divider can be dragged. If it is not set, the default value is used. The dragging of the divider is subject to both **navBarWidthRange** and **minContentWidth**.
 >
->  3. If the size of the **\<Navigation>** component decreases, it carries out the following steps in sequence:<br>a. Scale down the content area. If **minContentWidth** is not set, the content area can be scaled down to 0. Otherwise, the content area can be scaled down to as small as the value specified by **minContentWidth**.b. Scale down the navigation bar until its width reaches the value defined by **navBarRange**.c. Clip the displayed content.
+>  3. If the size of the **Navigation** component decreases, it carries out the following steps in sequence:<br>a. Scale down the content area. If **minContentWidth** is not set, the content area can be scaled down to 0. Otherwise, the content area can be scaled down to as small as the value specified by **minContentWidth**.b. Scale down the navigation bar until its width reaches the value defined by **navBarRange**.c. Clip the displayed content.
 
 ## Events
 
@@ -343,11 +351,11 @@ Called when [titleMode](#titlemode) is set to **NavigationTitleMode.Free** and t
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name   | Type                                               | Mandatory| Description      |
+| Name   | Type                                               | Mandatory | Description      |
 | --------- | --------------------------------------------------- | ---- | ---------- |
-| titleMode | [NavigationTitleMode](#navigationtitlemode) | Yes  | Title mode.|
+| titleMode | [NavigationTitleMode](#navigationtitlemode)  | Yes  | Title mode. |
 
 ### onNavBarStateChange<sup>9+</sup>
 
@@ -359,27 +367,27 @@ Called when the navigation bar visibility status changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name   | Type   | Mandatory| Description                                          |
+| Name   | Type   | Mandatory | Description                                          |
 | --------- | ------- | ---- | ---------------------------------------------- |
-| isVisible | boolean | Yes  | Whether the navigation bar is visible. The value **true** means that the navigation bar is visible, and **false** means the opposite.|
+| isVisible | boolean | Yes  | Whether the navigation bar is visible. The value **true** means that the navigation bar is visible, and **false** means the opposite. |
 
 ### onNavigationModeChange<sup>11+</sup>
 
 onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) 
 
-Called when the **\<Navigation>** component is displayed for the first time or its display mode switches between single-column and dual-column.
+Called when the **Navigation** component is displayed for the first time or its display mode switches between single-column and dual-column.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name   | Type   | Mandatory| Description                                          |
+| Name   | Type   | Mandatory | Description                                          |
 | --------- | ------- | ---- | ---------------------------------------------- |
-| mode | [NavigationMode](#navigationmode9) | Yes  | **NavigationMode.Split**: The component is displayed in two columns.<br>**NavigationMode.Stack**: The component is displayed in a single column.|
+| mode | [NavigationMode](#navigationmode9)  | Yes  | **NavigationMode.Split**: The component is displayed in two columns.<br>**NavigationMode.Stack**: The component is displayed in a single column.|
 
 ### customNavContentTransition<sup>11+</sup>
 
@@ -391,19 +399,19 @@ Callback of the custom transition animation.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name   | Type                                                 | Mandatory| Description                   |
+| Name   | Type                                                 | Mandatory | Description                   |
 | --------- | ----------------------------------------------------- | ---- | ----------------------- |
-| from      | [NavContentInfo](#navcontentinfo11)                   | Yes  | Destination page to exit.|
-| to        | [NavContentInfo](#navcontentinfo11)                   | Yes  | Destination page to enter.|
-| operation | [NavigationOperation](#navigationoperation11) | Yes  | Transition type.             |
+| from      | [NavContentInfo](#navcontentinfo11)                   | Yes  | Destination page to exit. |
+| to        | [NavContentInfo](#navcontentinfo11)                   | Yes  | Destination page to enter. |
+| operation | [NavigationOperation](#navigationoperation11)  | Yes  | Transition type.             |
 
-**Return value**
+**Return value** 
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [NavigationAnimatedTransition](#navigationanimatedtransition11) \| undefined | Custom transition animation agreement.<br>**undefined**: The default transition effect is executed.|
+| [NavigationAnimatedTransition](#navigationanimatedtransition11) \| undefined | Custom transition animation agreement.<br>**undefined**: The default transition effect is executed. |
 
 ## NavPathStack<sup>10+</sup>
 
@@ -421,8 +429,8 @@ Pushes the navigation destination page specified by **info** to the navigation s
 
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
-| info | [NavPathInfo](#navpathinfo10) | Yes   | Information about the navigation destination page.|
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| info | [NavPathInfo](#navpathinfo10) | Yes   | Information about the navigation destination page. |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### pushPathByName<sup>10+</sup>
 
@@ -437,12 +445,12 @@ Pushes the navigation destination page specified by **name**, with the data spec
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | Yes   | Detailed parameters of the navigation destination page.|
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| param | unknown | Yes   | Detailed parameters of the navigation destination page. |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### pushPathByName<sup>11+</sup>
 
-pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): void
+pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): void
 
 Pushes the navigation destination page specified by **name**, with the data specified by **param**, to the navigation stack. This API uses the **onPop** callback to receive the result returned when the page is popped out of the stack.
 
@@ -450,12 +458,12 @@ Pushes the navigation destination page specified by **name**, with the data spec
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 |------|------|------|------|
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | Object | Yes   | Detailed parameters of the navigation destination page.|
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | Yes| Callback used to receive the result.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| param | Object | Yes   | Detailed parameters of the navigation destination page. |
+| onPop | Callback\<[PopInfo](#popinfo11)> | Yes | Callback used to receive the result. |
+| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### pushDestination<sup>11+</sup>
 
@@ -469,20 +477,20 @@ Pushes the navigation destination page specified by **info** to the navigation s
 
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
-| info | [NavPathInfo](#navpathinfo10) | Yes   | Information about the navigation destination page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| info | [NavPathInfo](#navpathinfo10) | Yes   | Information about the navigation destination page. |
+| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md) and [Router Error Codes](../errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
@@ -502,20 +510,20 @@ Pushes the navigation destination page specified by **name**, with the data spec
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | Object | Yes   | Detailed parameters of the navigation destination page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| param | Object | Yes   | Detailed parameters of the navigation destination page. |
+| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md) and [Router Error Codes](../errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
@@ -524,7 +532,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 ### pushDestinationByName<sup>11+</sup>
 
-pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
+pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
 Pushes the navigation destination page specified by **name**, with the data specified by **param**, to the navigation stack. This API uses the **onPop** callback to handle the result returned when the page is popped out of the stack. It uses a promise to return the result.
 
@@ -535,21 +543,21 @@ Pushes the navigation destination page specified by **name**, with the data spec
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | Object | Yes   | Detailed parameters of the navigation destination page.|
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | Yes   | Callback used to handle the result returned when the page is popped out of the stack.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| param | Object | Yes   | Detailed parameters of the navigation destination page. |
+| onPop | Callback\<[PopInfo](#popinfo11)> | Yes   | Callback used to handle the result returned when the page is popped out of the stack. |
+| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md) and [Router Error Codes](../errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
@@ -568,8 +576,8 @@ Replaces the top of the navigation stack with the page specified by **info**.
 
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
-| info | [NavPathInfo](#navpathinfo10) | Yes   | Parameters of the page to replace the top of the navigation stack.|
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| info | [NavPathInfo](#navpathinfo10) | Yes   | Parameters of the page to replace the top of the navigation stack. |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### replacePathByName<sup>11+</sup>
 
@@ -584,8 +592,8 @@ Replaces the top of the navigation stack with the page specified by **name**.
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | Object | Yes   | Detailed parameters of the navigation destination page.|
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| param | Object | Yes   | Detailed parameters of the navigation destination page. |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### removeByIndexes<sup>11+</sup>
 
@@ -605,7 +613,7 @@ Removes the navigation destination pages specified by **indexes** from the navig
 
 | Type         | Description                      |
 | ----------- | ------------------------ |
-| number | Number of the navigation destination pages removed.|
+| number | Number of the navigation destination pages removed. |
 
 ### removeByName<sup>11+</sup>
 
@@ -625,7 +633,7 @@ Removes the navigation destination page specified by **name** from the navigatio
 
 | Type         | Description                      |
 | ----------- | ------------------------ |
-| number | Number of the navigation destination pages removed.|
+| number | Number of the navigation destination pages removed. |
 
 ### pop<sup>10+</sup>
 
@@ -639,13 +647,13 @@ Pops the top element out of the navigation stack.
 
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 **Return value**
 
 | Type         | Description                      |
 | ----------- | ------------------------ |
-| [NavPathInfo](#navpathinfo10) | Returns the information about the navigation destination page at the top of the stack.|
+| [NavPathInfo](#navpathinfo10) | Returns the information about the navigation destination page at the top of the stack. |
 | undefined   | Returns **undefined** if the navigation stack is empty.     |
 
 ### pop<sup>11+</sup>
@@ -660,14 +668,14 @@ Pops the top element out of the navigation stack and invokes the **onPop** callb
 
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
-| result | Object | Yes| Custom processing result on the page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| result | Object | Yes | Custom processing result on the page. |
+| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 **Return value**
 
 | Type         | Description                      |
 | ----------- | ------------------------ |
-| [NavPathInfo](#navpathinfo10) | Returns the information about the navigation destination page at the top of the stack.|
+| [NavPathInfo](#navpathinfo10) | Returns the information about the navigation destination page at the top of the stack. |
 | undefined   | Returns **undefined** if the navigation stack is empty.     |
 
 ### popToName<sup>10+</sup>
@@ -682,14 +690,14 @@ Pops pages until the first navigation destination page that matches **name** fro
 
 | Name  | Type    | Mandatory  | Description                 |
 | ---- | ------ | ---- | ------------------- |
-| name | string | Yes   | Name of the navigation destination page.|
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| name | string | Yes   | Name of the navigation destination page. |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Returns the index of the first navigation destination page that matches **name** from the bottom of the navigation stack; returns **-1** if such a page does not exist.|
+| number | Returns the index of the first navigation destination page that matches **name** from the bottom of the navigation stack; returns **-1** if such a page does not exist. |
 
 ### popToName<sup>11+</sup>
 
@@ -703,15 +711,15 @@ Pops pages until the first navigation destination page that matches **name** fro
 
 | Name  | Type    | Mandatory  | Description                 |
 | ---- | ------ | ---- | ------------------- |
-| name | string | Yes   | Name of the navigation destination page.|
-| result | Object | Yes| Custom processing result on the page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| name | string | Yes   | Name of the navigation destination page. |
+| result | Object | Yes | Custom processing result on the page. |
+| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Returns the index of the first navigation destination page that matches **name** from the bottom of the navigation stack; returns **-1** if such a page does not exist.|
+| number | Returns the index of the first navigation destination page that matches **name** from the bottom of the navigation stack; returns **-1** if such a page does not exist. |
 
 ### popToIndex<sup>10+</sup>
 
@@ -725,8 +733,8 @@ Returns the navigation stack to the page specified by **index**.
 
 | Name   | Type    | Mandatory  | Description                    |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | Yes   | Index of the navigation destination page.|
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| index | number | Yes   | Index of the navigation destination page. |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### popToIndex<sup>11+</sup>
 
@@ -740,9 +748,9 @@ Returns the navigation stack to the page specified by **index** and invokes the 
 
 | Name   | Type    | Mandatory  | Description                    |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | Yes   | Index of the navigation destination page.|
-| result | Object | Yes| Custom processing result on the page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| index | number | Yes   | Index of the navigation destination page. |
+| result | Object | Yes | Custom processing result on the page. |
+| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### moveToTop<sup>10+</sup>
 
@@ -756,14 +764,14 @@ Moves the first navigation destination page that matches **name** from the botto
 
 | Name  | Type    | Mandatory  | Description                 |
 | ---- | ------ | ---- | ------------------- |
-| name | string | Yes   | Name of the navigation destination page.|
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| name | string | Yes   | Name of the navigation destination page. |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Returns the index of the first navigation destination page that matches **name** from the bottom of the navigation stack; returns **-1** if such a page does not exist.|
+| number | Returns the index of the first navigation destination page that matches **name** from the bottom of the navigation stack; returns **-1** if such a page does not exist. |
 
 ### moveIndexToTop<sup>10+</sup>
 
@@ -777,8 +785,8 @@ Moves to the top of the navigation stack the navigation destination page specifi
 
 | Name   | Type    | Mandatory  | Description                    |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | Yes   | Index of the navigation destination page.|
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| index | number | Yes   | Index of the navigation destination page. |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### clear<sup>10+</sup>
 
@@ -792,7 +800,7 @@ Clears the navigation stack.
 
 | Name   | Type    | Mandatory  | Description                    |
 | ----- | ------ | ---- | ---------------------- |
-| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true** |
 
 ### getAllPathName<sup>10+</sup>
 
@@ -806,7 +814,7 @@ Obtains the names of all navigation destination pages in the navigation stack.
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Array<string\> | Names of all navigation destination pages in the navigation stack.|
+| Array<string\> | Names of all navigation destination pages in the navigation stack. |
 
 ### getParamByIndex<sup>10+</sup>
 
@@ -820,13 +828,13 @@ Obtains the parameter information of the navigation destination page specified b
 
 | Name   | Type    | Mandatory  | Description                    |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | Yes   | Index of the navigation destination page.|
+| index | number | Yes   | Index of the navigation destination page. |
 
 **Return value**
 
 | Type       | Description                        |
 | --------- | -------------------------- |
-| unknown   | Returns the parameter information of the matching navigation destination page.|
+| unknown   | Returns the parameter information of the matching navigation destination page. |
 | undefined | Returns **undefined** if the passed index is invalid.    |
 
 ### getParamByName<sup>10+</sup>
@@ -841,13 +849,13 @@ Obtains the parameter information of all the navigation destination pages that m
 
 | Name  | Type    | Mandatory  | Description                 |
 | ---- | ------ | ---- | ------------------- |
-| name | string | Yes   | Name of the navigation destination page.|
+| name | string | Yes   | Name of the navigation destination page. |
 
 **Return value**
 
 | Type             | Description                               |
 | --------------- | --------------------------------- |
-| Array<unknown\> | Parameter information of all the matching navigation destination pages.|
+| Array<unknown\> | Parameter information of all the matching navigation destination pages. |
 
 ### getIndexByName<sup>10+</sup>
 
@@ -861,13 +869,13 @@ Obtains the indexes of all the navigation destination pages that match **name**.
 
 | Name  | Type    | Mandatory  | Description                 |
 | ---- | ------ | ---- | ------------------- |
-| name | string | Yes   | Name of the navigation destination page.|
+| name | string | Yes   | Name of the navigation destination page. |
 
 **Return value**
 
 | Type            | Description                               |
 | -------------- | --------------------------------- |
-| Array<number\> | Indexes of all the matching navigation destination pages.|
+| Array<number\> | Indexes of all the matching navigation destination pages. |
 
 ### size<sup>10+</sup>
 
@@ -881,13 +889,13 @@ Obtains the stack size.
 
 | Type    | Description    |
 | ------ | ------ |
-| number | Stack size.|
+| number | Stack size. |
 
 ### disableAnimation<sup>11+</sup>
 
 disableAnimation(value: boolean): void
 
-Disables or enables the transition animation in the **\<Navigation>** component.
+Disables or enables the transition animation in the **Navigation** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -895,13 +903,13 @@ Disables or enables the transition animation in the **\<Navigation>** component.
 
 | Name   | Type    | Mandatory  | Description                    |
 | ----- | ------ | ---- | ---------------------- |
-| value | boolean | No   | Whether to disable the transition animation.<br>Default value: **false**|
+| value | boolean | No   | Whether to disable the transition animation.<br>Default value: **false** |
 
 ### getParent<sup>11+</sup>
 
 getParent(): NavPathStack | null
 
-Obtains the parent navigation path stack.<br>When a **\<Navigation>** component is nested (directly or indirectly) insider another **\<Navigation>** component, the internal one can obtain the navigation path stack of the external one.
+Obtains the parent navigation path stack.<br>When a **Navigation** component is nested (directly or indirectly) insider another **Navigation** component, the internal one can obtain the navigation path stack of the external one.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -909,7 +917,7 @@ Obtains the parent navigation path stack.<br>When a **\<Navigation>** component 
 
 | Type    | Description    |
 | ------ | ------ |
-| [NavPathStack](#navpathstack10) \| null | Navigation path stack of the external **\<Navigation>** component inside which the current **\<Navigation>** component is nested. If no nesting is involved, **null** is returned.|
+| [NavPathStack](#navpathstack10) \| null | Navigation path stack of the external **Navigation** component inside which the current **Navigation** component is nested. If no nesting is involved, **null** is returned. |
 
 ### setInterception<sup>12+</sup>
 
@@ -917,11 +925,13 @@ setInterception(interception: NavigationInterception): void
 
 Sets the interception callback for navigation page redirection.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name   | Type    | Mandatory  | Description                    |
 | ---- | ---- | --- | ---|
-|interception| [NavigationInterception](#navigationinterception12)| Yes| Object to be intercepted during navigation redirection.|
+|interception| [NavigationInterception](#navigationinterception12)| Yes | Object to be intercepted during navigation redirection.|
 
 ## NavPathInfo<sup>10+</sup>
 
@@ -929,7 +939,7 @@ Provides the navigation page information.
 
 ### constructor
 
-constructor(name: string, param: unknown)
+constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -938,8 +948,8 @@ constructor(name: string, param: unknown)
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | Yes   | Detailed parameters of the navigation destination page.|
-| onPop<sup>11+</sup> | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | No| Callback returned when **pop** is called on the navigation destination page.|
+| param | unknown | No   | Detailed parameters of the navigation destination page. |
+| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | No | Callback returned when **pop** is called on the navigation destination page. |
 
 ## PopInfo<sup>11+</sup>
 
@@ -949,10 +959,10 @@ Provides the callback information returned when a page is popped out of the navi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 |------|-----|-----|-----|
-| info | [NavPathInfo](#navpathinfo10) | Yes| Information about the current page when a back action is performed. The value is automatically obtained by the system.|
-| result | Object | Yes| Result returned when a back action is performed. You must customize the object.|
+| info | [NavPathInfo](#navpathinfo10) | Yes | Information about the current page when a back action is performed. The value is automatically obtained by the system. |
+| result | Object | Yes | Result returned when a back action is performed. You must customize the object. |
 
 ## NavContentInfo<sup>11+</sup>
 
@@ -964,9 +974,9 @@ Provides the destination information.
 
 | Name | Type | Mandatory | Description |
 |-------|-------|------|-------|
-| name | string | No| Name of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
-| index | number | Yes| Index of the navigation destination in the navigation stack. If the view is a root view (**NavBar**), the return value is **-1**.|
-| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
+| name | string | No | Name of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
+| index | number | Yes | Index of the navigation destination in the navigation stack. If the view is a root view (**NavBar**), the return value is **-1**.|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode11)  | No | Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 
 ## NavigationAnimatedTransition<sup>11+</sup>
 
@@ -975,11 +985,11 @@ Defines the custom transition animation protocol. You need to implement this pro
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 |------|-----|-----|------|
-| timeout | number | No| Animation timeout time.<br> Unit: ms<br> Default value: **1000**|
-| transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)): void | Yes| Callback for executing the custom transition animation.<br> **transitionProxy**: proxy for the custom transition animation.|
-| onTransitionEnd | (success: boolean):void | No| Callback invoked when the transition is complete.<br> **success**: whether the transition is successful.|
+| timeout | number | No | Animation timeout time.<br> Unit: ms<br> Default value: **1000**|
+| transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | Yes | Callback for executing the custom transition animation.<br> **transitionProxy**: proxy for the custom transition animation.|
+| onTransitionEnd | (success: boolean):void | No | Callback invoked when the transition is complete.<br> **success**: whether the transition is successful. |
 
 ## NavigationTransitionProxy <sup>11+</sup>
 
@@ -989,10 +999,10 @@ Implements a custom transition animation proxy.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description |
+| Name | Type | Mandatory | Description |
 |------|-------|-----|-------|
-| from | [NavContentInfo](#navcontentinfo11) | Yes| Information about the exit page.|
-| to | [NavContentInfo](#navcontentinfo11) | Yes| Information about the enter page.|
+| from | [NavContentInfo](#navcontentinfo11) | Yes | Information about the exit page.|
+| to | [NavContentInfo](#navcontentinfo11) | Yes | Information about the enter page.|
 
 ### finishTransition
 
@@ -1004,28 +1014,59 @@ Finishes this custom transition animation. This API must be manually called to e
 
 Describes the object to be intercepted during navigation redirection.
 
-| Name   | Type    | Mandatory| Description   |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name   | Type    | Mandatory | Description   |
 | ---- | ----- | ----- | ----   |
-| willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11),<br> isAnimated: boolean) =&gt;void | No| Interception before page redirection, allowing for stack operations. The setting takes effect in the current redirection.<br> **from**: information about the top page in the navigation stack before page redirection. The value **navBar** indicates that the top page is the home page.<br> **to**: information about the top page in the navigation stack after page redirection. The value **navBar** indicates that the top page is the home page.<br> **operation**: current page redirection type.<br> **isAnimated**: whether to support transition animation.|
-| didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11),<br> isAnimated: boolean) =&gt;void | No| Callback after page redirection. The setting takes effect in the next redirection.<br> **from**: information about the top page in the navigation stack before page redirection. The value **navBar** indicates that the top page is the home page.<br> **to**: information about the top page in the navigation stack after page redirection. The value **navBar** indicates that the top page is the home page.<br> **operation**: current page redirection type.<br> **isAnimated**: whether to support transition animation.| No| Callback after page redirection.|
-| modeChange | (mode: [NavigationMode](#navigationmode9)) =&gt;void | No| Callback invoked when the display mode of the **\<Navigation>** component switches between single-column and dual-column.|
+| willShow | [InterceptionShowCallback](#interceptionshowcallback12) | No | Interception before page redirection, allowing for stack operations. The setting takes effect in the current redirection.|
+| didShow | [InterceptionShowCallback](#interceptionshowcallback12) | No | Callback after page redirection. The setting takes effect in the next redirection.|
+| modeChange | [InterceptionModeCallback](#interceptionmodecallback12) | No | Callback invoked when the display mode of the **Navigation** component switches between single-column and dual-column.|
+
+### InterceptionShowCallback<sup>12+</sup>
+
+type InterceptionShowCallback = (from: NavDestinationContext|NavBar, to: NavDestinationContext|NavBar, operation: NavigationOperation, isAnimated: boolean) => void
+
+Represents the interception callback before and after the navigation page.
+
+| Name | Type   | Mandatory | Description             |
+| ------ | ------ | ---- | ---------------- |
+| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | Yes |  Information about the top page in the navigation stack before page redirection. The value **navBar** indicates that the top page is the home page. |
+| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | Yes | Information about the top page in the navigation stack after page redirection. The value **navBar** indicates that the top page is the home page. |
+| operation | [NavigationOperation](#navigationoperation11)  | Yes | Current page redirection type. |
+| isAnimated | boolean | Yes | Whether to support transition animation. |
+
+### InterceptionModeCallback<sup>12+</sup>
+
+type InterceptionModeCallback = (mode: NavigationMode) => void
+
+Implements an Interception callback triggered when the display mode of the **Navigation** component switches between single-column and dual-column.
+
+| Name | Type   | Mandatory | Description             |
+| ------ | ------ | ---- | ---------------- |
+| mode | [NavigationMode](#navigationmode9)  | Yes |  Display mode of the navigation bar. |
+
+### NavBar<sup>12+</sup>
+
+| Name      | Description                                      |
+| -------- | ---------------------------------------- |
+| "navBar"   | Navigation home page. |
 
 ## NavigationMenuItem
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | Yes   | Text of the menu item. Its visibility varies by the API version.<br>API version 9: visible.<br> API version 10: invisible.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| icon   | string        | No   | Icon path of the menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| isEnabled<sup>12+</sup>   | boolean        | No   | Enabled status.<br>**true** (default): enabled<br>**false**: disabled|
-| action | () =&gt; void | No   | Callback invoked when the menu item is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| value  | string        | Yes   | Text of the menu item. Its visibility varies by the API version.<br>API version 9: visible.<br> API version 10: invisible.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| icon   | string        | No   | Icon path of the menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| isEnabled<sup>12+</sup>   | boolean        | No   | Enabled status.<br>**true** (default): enabled<br>**false**: disabled<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| action | () =&gt; void | No   | Callback invoked when the menu item is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 
 ## object
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
 | value  | string        | Yes   | Text of the toolbar item.  |
-| icon   | string        | No   | Icon path of the toolbar item.|
-| action | () =&gt; void | No   | Callback invoked when the toolbar item is selected.  |
+| icon   | string        | No   | Icon path of the toolbar item. |
+| action | () =&gt; void | No   | Callback invoked when the menu item is selected.  |
 
 ## ToolbarItem<sup>10+</sup>
 
@@ -1036,7 +1077,7 @@ Describes the object to be intercepted during navigation redirection.
 | value      | ResourceStr                              | Yes   | Text of the toolbar item.                           |
 | icon       | ResourceStr                              | No   | Icon path of the toolbar item.                         |
 | action     | () =&gt; void                            | No   | Callback invoked when the toolbar item is selected.                           |
-| status     | [ToolbarItemStatus](#toolbaritemstatus10) | No   | Status of the toolbar item.<br>Default value: **ToolbarItemStatus.NORMAL**|
+| status     | [ToolbarItemStatus](#toolbaritemstatus10)  | No   | Status of the toolbar item.<br>Default value: **ToolbarItemStatus.NORMAL** |
 | activeIcon | ResourceStr                              | No   | Icon path of the toolbar item in the active state.               |
 
 ## ToolbarItemStatus<sup>10+</sup>
@@ -1045,9 +1086,9 @@ Describes the object to be intercepted during navigation redirection.
 
 | Name      | Description                                      |
 | -------- | ---------------------------------------- |
-| NORMAL   | Normal state. In this state, the toolbar item takes on the default style and can switch to another state-specific style by responding to the hover, press, and focus events.|
-| DISABLED | Disabled state. In this state, the toolbar item is disabled and does not allow for user interactions.|
-| ACTIVE   | Active state. In this state, the toolbar item can update its icon to the one specified by **activeIcon** by responding to a click event.|
+| NORMAL   | Normal state. In this state, the toolbar item takes on the default style and can switch to another state-specific style by responding to the hover, press, and focus events. |
+| DISABLED | Disabled state. In this state, the toolbar item is disabled and does not allow for user interactions. |
+| ACTIVE   | Active state. In this state, the toolbar item can update its icon to the one specified by **activeIcon** by responding to a click event. |
 
 ## NavigationTitleMode
 
@@ -1055,7 +1096,7 @@ Describes the object to be intercepted during navigation redirection.
 
 | Name  | Description                                      |
 | ---- | ---------------------------------------- |
-| Free | When the content is more than one screen in a scrollable component, the main title shrinks as the content scrolls down (the subtitle fades out with its size remaining unchanged) and restores as the content scrolls up to the top.<br>**NOTE**<br>The association between the title size and content scrolling works only when **title** is set to **ResourceStr** or **NavigationCommonTitle**. If **title** is set to any other value type, the main title changes in mere location when pulled down.<br>For the association to work when the content is less than one screen in a scrollable component, set the **options** parameter of the scrollable component's [edgeEffect](ts-container-list.md#attributes) attribute to **true**.|
+| Free | When the content is more than one screen in a scrollable component, the main title shrinks as the content scrolls down (the subtitle fades out with its size remaining unchanged) and restores as the content scrolls up to the top.<br>**NOTE**<br>The association between the title size and content scrolling works only when **title** is set to **ResourceStr** or **NavigationCommonTitle**. If **title** is set to any other value type, the main title changes in mere location when pulled down.<br>For the association to work when the content is less than one screen in a scrollable component, set the **options** parameter of the scrollable component's [edgeEffect](ts-container-list.md#attributes) attribute to **true**. |
 | Mini | The title is fixed at mini mode.                               |
 | Full | The title is fixed at full mode.                               |
 
@@ -1065,8 +1106,8 @@ Describes the object to be intercepted during navigation redirection.
 
 | Name  | Type    | Mandatory  | Description    |
 | ---- | ------ | ---- | ------ |
-| main | string | Yes   | Main title.|
-| sub  | string | Yes   | Subtitle.|
+| main | string | Yes   | Main title. |
+| sub  | string | Yes   | Subtitle. |
 
 ## NavigationCustomTitle<sup>9+</sup>
 
@@ -1074,8 +1115,8 @@ Describes the object to be intercepted during navigation redirection.
 
 | Name     | Type                                      | Mandatory  | Description      |
 | ------- | ---------------------------------------- | ---- | -------- |
-| builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Content of the title bar.|
-| height  | [TitleHeight](#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.|
+| builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Content of the title bar. |
+| height  | [TitleHeight](#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar. |
 
 ## NavBarPosition<sup>9+</sup>
 
@@ -1083,8 +1124,8 @@ Describes the object to be intercepted during navigation redirection.
 
 | Name   | Description              |
 | ----- | ---------------- |
-| Start | When two columns are displayed, the main column is at the start of the main axis.|
-| End   | When two columns are displayed, the main column is at the end of the main axis.|
+| Start | When two columns are displayed, the main column is at the start of the main axis. |
+| End   | When two columns are displayed, the main column is at the end of the main axis. |
 
 ## NavigationMode<sup>9+</sup>
 
@@ -1093,8 +1134,8 @@ Describes the object to be intercepted during navigation redirection.
 | Name | Description                                                        |
 | ----- | ------------------------------------------------------------ |
 | Stack | The navigation bar and content area are displayed independently of each other, which are equivalent to two pages.                    |
-| Split | The navigation bar and content area are displayed in different columns.<br>The values of **navBarWidthRange** are represented by [minNavBarWidth,maxNavBarWidth].<br>1. When the value of **navBarWidth** is beyond the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **navBarWidth** < Value of **minNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Result of [Component width - Value of **minContentWidth** - Divider width (1 vp)] > Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **maxNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Result of [Component width - Value of **minContentWidth** - Divider width (1 vp)] < Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Component width - Value of **minContentWidth** - Divider width (1 vp) is within the value range specified by **navBarWidthRange**: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>2. When the value of **navBarWidth** is within the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width: The value of **navBarWidth** is the set value. <br>3. When the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**, and then the navigation bar is shrunk until its width reaches the value defined by **minNavBarWidth**; if the component size is further decreased, the content area is further shrunk until it disappears, and then navigation bar is shrunk.<br>4. When the navigation bar is set to a fixed size and the component size is continuously decreased, the navigation bar is shrunk.<br>5. If only **navBarWidth** is set, the width of the navigation bar is fixed at the value of **navBarWidth**, and the divider cannot be dragged.|
-| Auto  | In API version 9 and earlier versions: If the window width is greater than or equal to 520 vp, the Split mode is used; otherwise, the Stack mode is used.<br>In API version 10 and later versions: If the window width is greater than or equal to 600 vp, the Split mode is used; otherwise, the Stack mode is used. 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp).|
+| Split | The navigation bar and content area are displayed in different columns.<br>The values of **navBarWidthRange** are represented by [minNavBarWidth,maxNavBarWidth].<br>1. When the value of **navBarWidth** is beyond the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **navBarWidth** < Value of **minNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Result of [Component width - Value of **minContentWidth** - Divider width (1 vp)] > Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **maxNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Result of [Component width - Value of **minContentWidth** - Divider width (1 vp)] < Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Component width - Value of **minContentWidth** - Divider width (1 vp) is within the value range specified by **navBarWidthRange**: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>2. When the value of **navBarWidth** is within the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width: The value of **navBarWidth** is the set value. <br>3. When the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**, and then the navigation bar is shrunk until its width reaches the value defined by **minNavBarWidth**; if the component size is further decreased, the content area is further shrunk until it disappears, and then navigation bar is shrunk.<br>4. When the navigation bar is set to a fixed size and the component size is continuously decreased, the navigation bar is shrunk.<br>5. If only **navBarWidth** is set, the width of the navigation bar is fixed at the value of **navBarWidth**, and the divider cannot be dragged. |
+| Auto  | In API version 9 and earlier versions: If the window width is greater than or equal to 520 vp, the Split mode is used; otherwise, the Stack mode is used.<br>In API version 10 and later versions: If the window width is greater than or equal to 600 vp, the Split mode is used; otherwise, the Stack mode is used. 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp). |
 
 ## TitleHeight<sup>9+</sup>
 
@@ -1103,7 +1144,7 @@ Describes the object to be intercepted during navigation redirection.
 | Name         | Description                        |
 | ----------- | -------------------------- |
 | MainOnly    | Recommended height (56 vp) of the title bar when only the main title is available.     |
-| MainWithSub | Recommended height (82 vp) of the title bar when both the main title and subtitle exist.|
+| MainWithSub | Recommended height (82 vp) of the title bar when both the main title and subtitle exist. |
 
 ## NavigationOperation<sup>11+</sup>
 
@@ -1115,14 +1156,24 @@ Describes the object to be intercepted during navigation redirection.
 |POP | The transition is exit transition.|
 | REPLACE | The transition is page replacement.|
 
+## BarStyle<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name   | Description |
+|---------|------|
+|STANDARD | The title bar and content area are arranged from top to bottom.|
+|STACK | The title bar and the content area are stacked, with the title bar positioned above the content area.|
+
 ## NavigationTitleOptions<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the title bar. If this parameter is not set, the default color is used.|
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | No   | Background blur style of the title bar. If this parameter is not set, the background blur effect is disabled.|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the title bar. If this parameter is not set, the default color is used. |
+| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | No   | Background blur style of the title bar. If this parameter is not set, the background blur effect is disabled. |
+| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12)        | No   | Layout of the title bar.<br>Default value: **BarStyle.STANDARD**<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## NavigationToolbarOptions<sup>11+</sup>
 
@@ -1130,8 +1181,8 @@ Describes the object to be intercepted during navigation redirection.
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the toolbar. If this parameter is not set, the default color is used.|
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | No   | Background blur style of the toolbar. If this parameter is not set, the background blur effect is disabled.|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the toolbar. If this parameter is not set, the default color is used. |
+| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | No   | Background blur style of the toolbar. If this parameter is not set, the background blur effect is disabled. |
 
 ## Example
 
@@ -1487,276 +1538,6 @@ export struct PageTwo {
 ![navigation.gif](figures/navigation.gif)
 
 ### Example 3
-
-This example demonstrates how to set a custom transition animation for each subpage in **\<NavDestination>**.
-
-```ts
-// Index.ets
-import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
-
-@Entry
-@Component
-struct NavigationExample {
-  pageInfos: NavPathStack = new NavPathStack()
-
-  aboutToAppear() {
-    if (this.pageInfos === undefined) {
-      this.pageInfos = new NavPathStack();
-    }
-    this.pageInfos.pushPath({name: 'pageOne'}, false)
-  }
-
-  build() {
-    Navigation(this.pageInfos) {
-    }.title('NavIndex')
-    .hideNavBar(true)
-    .customNavContentTransition((from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => {
-      if (from.mode == NavDestinationMode.DIALOG || to.mode == NavDestinationMode.DIALOG) {
-        return undefined;
-      }
-      console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
-      console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
-      console.log(`operation: ${operation}`)
-      if (from.index === -1 || to.index === -1) {
-        return undefined;
-      }
-      let customAnimation: NavigationAnimatedTransition = {
-        onTransitionEnd: (isSuccess: boolean)=>{
-          console.log(`current transition result is ${isSuccess}`);
-        },
-        timeout: 700,
-        // When the transition starts, the system calls this method and passes in the transition context proxy object.
-        transition: (transitionProxy: NavigationTransitionProxy)=>{
-          console.log("trigger transition callback");
-          // Obtain the corresponding transition animation callback from the CustomTransition class based on the sequence of subpages.
-          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.index);
-          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.index);
-          if (fromParam.start != undefined) {
-            fromParam.start(operation == NavigationOperation.PUSH, true);
-          }
-          if (toParam.start != undefined) {
-            toParam.start(operation == NavigationOperation.PUSH, false);
-          }
-          animateTo({duration: 400, onFinish: ()=>{
-            if (fromParam.onFinish != undefined) {
-              fromParam.onFinish(operation === NavigationOperation.PUSH, true);
-            }
-            if (toParam.onFinish != undefined) {
-              toParam.onFinish(operation === NavigationOperation.PUSH, true);
-            }
-            transitionProxy.finishTransition();
-          }}, ()=>{
-            if (fromParam.finish != undefined) {
-              fromParam.finish(operation === NavigationOperation.PUSH, true);
-            }
-            if (toParam.finish != undefined) {
-              toParam.finish(operation === NavigationOperation.PUSH, false);
-            }
-          })
-        }
-      };
-      return customAnimation;
-    })
-  }
-}
-```
-
-```ts
-// PageOne.ets
-import {CustomTransition} from './CustomNavigationUtils'
-
-@Builder
-export function PageOneBuilder(name: string, param: Object) {
-  PageOne()
-}
-
-@Component
-export struct PageOne {
-  pageInfos: NavPathStack = new NavPathStack()
-  @State x: number = 0
-  @State scaleVal: number = 1
-  pageId: number = 0;
-
-  aboutToAppear() {
-    this.pageId = this.pageInfos.getAllPathName().length - 1;
-    CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean) => {
-      this.x = isExit ? 0 : 300;
-    }, (isPush: boolean, isExit: boolean)=> {
-      this.x = isExit ? -300 : 0;
-    }, (isPush: boolean, isExit: boolean) => {
-      this.x = 0;
-    }, 200);
-  }
-
-  build() {
-    NavDestination() {
-      Column() {
-        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            this.pageInfos.pushPathByName('pageTwo', null) // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack.
-          })
-      }.width('100%').height('100%')
-    }.title('pageOne')
-    .mode(NavDestinationMode.STANDARD)
-    .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
-      return true
-    })
-    .onDisAppear(()=>{
-      CustomTransition.getInstance().unRegisterNavParam(this.pageId)
-    })
-    .onReady((context: NavDestinationContext) => {
-      this.pageInfos = context.pathStack
-    })
-    .translate({x: this.x, y: 0, z: 0})
-    .backgroundColor(Color.White)
-  }
-}
-```
-```ts
-// PageTwo.ets
-import {CustomTransition} from './CustomNavigationUtils'
-
-@Builder
-export function PageTwoBuilder(name: string, param: Object) {
-  PageTwo()
-}
-
-@Component
-export struct PageTwoTemp {
-  pathInfo: NavPathStack = new NavPathStack()
-  @State x: number = 300
-  pageId: number = 0
-
-  aboutToAppear() {
-    this.pageId = this.pageInfos.getAllPathName().length - 1;
-    CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean)=>{
-      console.log("current page is pageOne")
-      this.x = isExit ? 0 : isPush ? 300 : -300;
-    }, (isPush: boolean, isExit: boolean)=>{
-      this.x = isExit ? isPush ? -300 : 300 : 0;
-    }, (isPush: boolean, isExit: boolean) => {
-      this.x = 0;
-    }, 2000)
-  }
-
-  build() {
-    NavDestination() {
-      Column() {
-        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            this.pageInfos.pushPathByName('pageOne', null) // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack.
-          })
-      }.width('100%').height('100%')
-    }.title('pageTwo')
-    .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
-      return true
-    })
-    .onDisAppear(()=>{
-      CustomTransition.getInstance().unRegisterNavParam(this.pageId)
-    })
-    .onReady((context: NavDestinationContext) => {
-      this.pageInfos = context.pathStack;
-    })
-    .opacity(0.5)
-    .translate({x: this.x})
-    .backgroundColor(Color.White)
-  }
-}
-```
-```ts
-// CustomNavigationUtils.ts
-// Custom API to save the transition animation callback and parameters related to a page.
-export interface AnimateCallback {
-  finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
-  start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
-  onFinish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
-  timeout: (number | undefined) | undefined;
-}
-const customTransitionMap: Map<number, AnimateCallback> = new Map()
-export class CustomTransition {
-  private constructor() {
-
-  }
-
-  static delegate = new CustomTransition();
-
-  static getInstance() {
-    return CustomTransition.delegate;
-  }
-
-  // Register the animation callback of a page.
-  // startCallback: used to set the page status when the animation starts.
-  // endCallback: used to set the page status when the animation ends.
-  // onFinish: used to perform operations on the page after the animation ends.
-  // timeout: timeout for ending the transition.
-  registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void,
-                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
-
-    if (customTransitionMap.has(name)) {
-      let param = customTransitionMap.get(name);
-      if (param != undefined) {
-        param.start = startCallback;
-        param.finish = endCallback;
-        param.timeout = timeout;
-        param.onFinish = onFinish;
-        return;
-      }
-    }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
-    customTransitionMap.set(name, params);
-  }
-
-  unRegisterNavParam(name: number): void {
-    customTransitionMap.delete(name);
-  }
-
-  getAnimateParam(name: number): AnimateCallback {
-    let result: AnimateCallback = {
-      start: customTransitionMap.get(name)?.start,
-      finish: customTransitionMap.get(name)?.finish,
-      timeout: customTransitionMap.get(name)?.timeout,
-      onFinish: customTransitionMap.get(name)?.onFinish
-    };
-    return result;
-  }
-}
-```
-```json
-// Configure {"routerMap": "$profile:route_map"} in the project configuration file module.json5.
-// route_map.json
-{
-  "routerMap": [
-    {
-      "name": "pageOne",
-      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
-      "buildFunction": "PageOneBuilder",
-      "data": {
-        "description": "this is pageOne"
-      }
-    },
-    {
-      "name": "pageTwo",
-      "pageSourceFile": "src/main/ets/pages/PageTwo.ets",
-      "buildFunction": "PageTwoBuilder"
-    }
-  ]
-}
-```
-
-![customNavigation.gif](figures/customNavigation.gif)
-
-### Example 4
 ```ts
 // Index.ets
 
@@ -1940,7 +1721,7 @@ class resultClass {
 }
 
 @Builder
-export function PageTwoBuilder(name: string, pram: Object) {
+export function PageTwoBuilder() {
   PageTwo()
 }
 
@@ -2032,83 +1813,156 @@ export struct PageTwo {
 ```
 ![navigationWithOnPop.gif](figures/navigationWithOnPop.gif)
 
-### Example 5
+### Example 4
 
 ```ts
-// Set the background color and blur style of the title bar and toolbar of the <Navigation> component.
-@Entry
-@Component
-struct NavigationExample {
-  @State pathStack: NavPathStack = new NavPathStack();
-  @State switchColor: boolean = false;
-  @State switchBlur: boolean = false;
+// Set the background color and blur effect for the title bar, the toolbar,
+// and the title bar on the navigation destination page.
+let COLOR1: string = "#80004AAF";
+let COLOR2: string = "#802787D9";
+let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
+let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
 
-  @Builder
-  BackgroundBuilder() {
+@Component
+struct BackComponent {
+  build() {
     Row() {
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Red)
+      .backgroundColor("#3D9DB4")
+      .layoutWeight(9)
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Green)
+      .backgroundColor("17A98D")
+      .layoutWeight(9)
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Blue)
+      .backgroundColor("FFC000")
+      .layoutWeight(9)
     }
     .height('100%')
+    .width('100%')
   }
+}
+
+@Component
+struct ColorAndBlur {
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
 
   build() {
-    Navigation(this.pathStack) {
-      Column() {
-        Button('switch color', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            console.log(`testTag switchColor`)
-            this.switchColor = !this.switchColor;
-          })
-        Button('switch blur', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            console.log(`testTag switchBlur`)
-            this.switchBlur = !this.switchBlur;
-          })
-      }
-      .width('100%')
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('100%')
+      }.width('100%')
       .height('100%')
     }
-    // You can use a custom background to make the background blur effect more noticeable.
-    .background(this.BackgroundBuilder)
     .width('100%')
     .height('100%')
     // You can set the background color and background blur style of the title bar.
+    .title("switch titlebar color and blur", {
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK
+    })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
+
+  @Builder
+  PageBuilder(name: string) {
+    ColorAndBlur()
+  }
+
+  build() {
+    Navigation(this.stack) {
+      Stack({alignContent: Alignment.Center}) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("push page")
+              .onClick(() => {
+                this.stack.pushPath({name: "page"})
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('80%')
+      }.width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .navDestination(this.PageBuilder)
+    // You can set the background color and background blur style of the title bar.
     .title("NavTitle", {
-      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
-      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK
     })
     // You can set the background color and background blur style of the toolbar.
     .toolbarConfiguration([
-      {value: 'a'},
-      {value: 'b'},
-      {value: 'c'},
+      {value: "a"},
+      {value: "b"},
+      {value: "c"}
     ], {
-      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
-      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2
     })
   }
 }
 ```
 ![navigationColorBlur.gif](figures/navigationColorBlur.gif)
 
-### Example 6
+### Example 5
 
 ```ts
 // Obtain the parent navigation path stack for a nested <Navigation> component.
@@ -2175,12 +2029,12 @@ struct NavigationExample1 {
 ```
 ![navPathStackGetParent.gif](figures/navPathStackGetParent.gif)
 
-### Example 7
+### Example 6
 
 ```ts
 // This example demonstrates the following:
 // 1. The navigation stack operation can be conducted even when NavPathStack is not declared as a state variable.
-// 2. The <NavDestination> can obtain the corresponding NavPathInfo and NavPathStack through the onReady event.
+// 2. The NavDestination can obtain the corresponding NavPathInfo and NavPathStack through the onReady event.
 class PageParam {
   constructor(num_: number) {
     this.num = num_;
@@ -2282,10 +2136,10 @@ struct NavigationExample2 {
 ```
 ![navigationOnReady1.gif](figures/navigationOnReady1.gif)
 
-### Example 8
+### Example 7
 
 ```ts
-// This example demonstrates the lifecycle timing of <NavDestination>.
+// This example demonstrates the lifecycle timing of NavDestination.
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
   PageOneComponent()
@@ -2325,6 +2179,10 @@ struct PageOneComponent {
     .onDisAppear(() => { this.eventStr += "<onDisAppear>"; })
     .onShown(() => { this.eventStr += "<onShown>"; })
     .onHidden(() => { this.eventStr += "<onHidden>"; })
+    .onWillAppear(() => { this.eventStr += "<onWillAppear>"; })
+    .onWillDisappear(() => { this.eventStr += "<onWillDisappear>"; })
+    .onWillShow(() => { this.eventStr += "<onWillShow>"; })
+    .onWillHide(() => { this.eventStr += "<onWillHide>"; })
     // onReady is called before onAppear.
     .onReady((ctx: NavDestinationContext) => {
       try {

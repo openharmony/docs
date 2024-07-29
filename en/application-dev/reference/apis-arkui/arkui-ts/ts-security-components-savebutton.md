@@ -1,30 +1,40 @@
 # SaveButton
-
-
-The **\<SaveButton>** security component allows you to obtain temporary storage permission from the user by their touching the button, eliminating the need for a permission request dialog box.
-
+ 
+The **SaveButton** security component allows you to obtain temporary storage permission from the user by their touching the button, eliminating the need for a permission request dialog box.
 
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Child Components
 
 Not supported
 
-
 ## APIs
 
 ### SaveButton
+
 SaveButton()
 
 Creates a Save button with an icon, text, and background.
 
+You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ### SaveButton
+
 SaveButton(option:SaveButtonOptions)
 
 Creates a Save button that contains the specified elements.
+
+You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -34,63 +44,85 @@ Creates a Save button that contains the specified elements.
 
 ## SaveButtonOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | icon | [SaveIconStyle](#saveiconstyle) | No| Icon style of the Save button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
 | text | [SaveDescription](#savedescription) | No| Text on the Save button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the Save button.<br>If this parameter is not specified, there is no background.|
-
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Save button.<br>If this parameter is not specified, there is no background.|
 
 ## SaveIconStyle
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | FULL_FILLED | 0 | Filled style icon.|
 | LINES | 1 | Line style icon.|
 
-
 ## SaveDescription
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| DOWNLOAD | 0 | The text on the Save button is **Download**.|
-| DOWNLOAD_FILE | 1 | The text on the Save button is **Download File**.|
-| SAVE | 2 | The text on the Save button is **Save**.|
-| SAVE_IMAGE | 3 | The text on the Save button is **Save Image**.|
-| SAVE_FILE | 4 | The text on the Save button is **Save File**.|
-| DOWNLOAD_AND_SHARE | 5 | The text on the Save button is **Download and Share**.|
-| RECEIVE | 6 | The text on the Save button is **Receive**.|
-| CONTINUE_TO_RECEIVE | 7 | The text on the Save button is **Continue**.|
-
+| DOWNLOAD | 0 | The text on the Save button is **Download**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| DOWNLOAD_FILE | 1 | The text on the Save button is **Download File**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SAVE | 2 | The text on the Save button is **Save**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SAVE_IMAGE | 3 | The text on the Save button is **Save Image**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SAVE_FILE | 4 | The text on the Save button is **Save File**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| DOWNLOAD_AND_SHARE | 5 | The text on the Save button is **Download and Share**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| RECEIVE | 6 | The text on the Save button is **Receive**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| CONTINUE_TO_RECEIVE | 7 | The text on the Save button is **Continue**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SAVE_TO_GALLERY<sup>12+</sup> | 8 | The text on the Save button is **Save to Gallery**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## SaveButtonOnClickResult
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | SUCCESS | 0 | The Save button is touched successfully.|
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Save button is touched.|
 
-
 ## Attributes
 
-This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md#attributes)
-
+This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md)
 
 ## Events
 
 Only the following events are supported.
 
-| Name| Description|
-| -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [SaveButtonOnClickResult](#savebuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result. The authorization is effective for 10 seconds. This means that, a specific media library API can be called, an unlimited number of times, within 10 seconds of the touch. If the API is not called within the 10 seconds, the authorization fails.<br>**event**: For details, see **ClickEvent**.|
+### onClick
 
+onClick(event: (event: ClickEvent, result: SaveButtonOnClickResult) =&gt; void)
+
+Called when a click event occurs.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description                  |
+|------------|------|-------|---------|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent) |Yes|See **ClickEvent**.|
+| result | [SaveButtonOnClickResult](#savebuttononclickresult)| Yes| Authorization result. The authorization is effective for 10 seconds. This means that, a specific media library API can be called, an unlimited number of times, within 10 seconds of the touch. If the API is not called within the 10 seconds, the authorization fails.|
 
 ## Example
 
-```
+```ts
 // xxx.ets
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 @Entry
 @Component
@@ -98,7 +130,7 @@ struct Index {
   build() {
     Row() {
       Column({space:10}) {
-        // Create a default Save button with an icon, text, and background.
+        // Create a default button with an icon, text, and background.
         SaveButton().onClick(async (event:ClickEvent, result:SaveButtonOnClickResult) => {
           if (result == SaveButtonOnClickResult.SUCCESS) {
             try {
@@ -107,11 +139,11 @@ struct Index {
               // After onClick is triggered, the createAsset API can be called within 10 seconds to create an image file. After 10 seconds have elapsed, the permission to call createAsset is revoked.
               let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
               // Use the URI to open the file. The write process is not time bound.
-              let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+              let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
               // Write to the file.
-              await fs.write(file.fd, "context");
+              await fileIo.write(file.fd, "context");
               // Close the file.
-              await fs.close(file.fd);
+              await fileIo.close(file.fd);
             } catch (error) {
               console.error("error is "+ JSON.stringify(error));
             }
@@ -119,9 +151,9 @@ struct Index {
         })
         // Whether an element is contained depends on whether the parameter corresponding to the element is specified.
         SaveButton({icon:SaveIconStyle.FULL_FILLED})
-        // Create a Save button with only an icon and background.
+        // Create a button with only an icon and background.
         SaveButton({icon:SaveIconStyle.FULL_FILLED, buttonType:ButtonType.Capsule})
-        // Create a Save button with an icon, text, and background.
+        // Create a button with an icon, text, and background.
         SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
       }.width('100%')
     }.height('100%')

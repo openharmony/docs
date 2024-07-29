@@ -155,8 +155,8 @@ openLink接口提供了两种拉起目标应用的方式，开发者可根据业
 本文为了方便验证App Linking的配置是否正确，选择方式一，示例如下。
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -191,20 +191,20 @@ struct Index {
 
    检查"host"字段中是否是应用所对应的域名。
 
-1. 开发者网站服务器配置不正确。
+2. 开发者网站服务器配置不正确。
 
    * 检查服务器的 JSON 配置，并确保 `appIdentifier` 的值正确无误。
    * 检查`applinking.json`是否放置在正确的目录(`.well-known`)下，通过浏览器等方式访问该json文件的地址：https://*your.domain.name*/.well-known/applinking.json，确保能正常访问。
 
-1. 系统尚未完成域名校验。
+3. 系统尚未完成域名校验。
 
    在设备上安装应用，需等待至少20秒，确保异步验证流程完成。
 
-1. 应用和域名的对应关系是怎样的？
+4. 应用和域名的对应关系是怎样的？
 
    应用和域名的关系是多对多的关系：一个应用可以关联多个不同的域名，同样的，一个域名也可以关联多个不同的应用。
 
-1. 如果同一域名关联了多个应用，那么该域名的链接将拉起哪个应用呢？
+5. 如果同一域名关联了多个应用，那么该域名的链接将拉起哪个应用呢？
 
    开发者可以通过配置applinking.json以关联多个应用。如果每个应用的module.json5的uris字段配置的都是一样的，那么系统将弹出列表框供用户选择要拉起的目标应用。
    为了更好的体验，开发者也可以通过链接的path去区分拉起的目标应用，如链接`https://www.example.com/path1`拉起目标应用1，链接`https://www.example.com/path2`拉起目标应用2。

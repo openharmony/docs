@@ -3,9 +3,9 @@
 
 ## Overview
 
-During application development, nesting components – same or different – is common in page layout, especially when the target page is complicated. Yet, nesting components too deeply, or nesting too many components, can be especially expensive. Naturally, optimizing the layout hierarchies can effectively lead to better performance and less time overhead. For details about how the relative container is more performance-efficient than the list, see [Improving Layout Performance](../performance/reduce-view-nesting-levels.md).
+During application development, nesting components – same or different – is common in page layout, especially when the target page is complicated. Yet, nesting components too deeply, or nesting too many components, can be especially expensive. Naturally, optimizing the layout hierarchies can effectively lead to better performance and less time overhead.<!--Del--> For details about how the relative container is more performance-efficient than the list, see [Improving Layout Performance](../performance/reduce-view-nesting-levels.md).<!--DelEnd-->
 
-The relative layout, implemented using the **\<RelativeContainer>** container component, is used to lay out child elements in relative positions. It is applicable to element alignment in complex scenarios. A child element can use the container or another child element as the anchor, based on which its relative position is determined. Below shows a relative layout. The dotted lines in the figure indicate the position dependency.
+The relative layout, implemented using the **RelativeContainer** container component, is used to lay out child elements in relative positions. It is applicable to element alignment in complex scenarios. A child element can use the container or another child element as the anchor, based on which its relative position is determined. Below shows a relative layout. The dotted lines in the figure indicate the position dependency.
 
 
   **Figure 1** Relative layout 
@@ -13,7 +13,7 @@ The relative layout, implemented using the **\<RelativeContainer>** container co
 ![relative-layout](figures/relative-layout.png)
 
 
-A child element does not necessarily adopt the dependency shown above to determine its relative position. For example, Item4 may use Item2 or the **\<RelativeContainer>** parent container as a dependency anchor.
+A child element does not necessarily adopt the dependency shown above to determine its relative position. For example, Item4 may use Item2 or the **RelativeContainer** parent container as a dependency anchor.
 
 
 ## Basic Concepts
@@ -29,14 +29,14 @@ A child element does not necessarily adopt the dependency shown above to determi
 ### Setting the Anchor
 
 By setting the anchor, you set a position dependency relationship between a child element and its parent element or sibling elements. In the horizontal direction, you can set the left, middle, and right anchors. In the vertical direction, you can set the top, center, and bottom anchors.
-To specify anchors, you must set IDs for the **\<RelativeContainer>** component and its child elements. The default ID is **__container__**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the
-**\<RelativeContainer>** component. When a mutual or circular dependency occurs, none of the child components in the container are drawn. If anchors are set for more than two positions in a single direction but the anchor positions are reversed, the size of the child component is 0, which means that the child component is not drawn.
+To specify anchors, you must set IDs for the **RelativeContainer** component and its child elements. The default ID is **__container__**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the
+**RelativeContainer** component. When a mutual or circular dependency occurs, none of the child components in the container are drawn. If anchors are set for more than two positions in a single direction but the anchor positions are reversed, the size of the child component is 0, which means that the child component is not drawn.
 
 >**NOTE**
 >
 >When using anchors, pay attention to the relative positions of child elements to avoid misplacement or blocking.
 
-- The ID of the **\<RelativeContainer>** parent component is **__container__**.
+- The ID of the **RelativeContainer** parent component is **__container__**.
 
   ```ts
   let AlignRus:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
@@ -271,7 +271,7 @@ After being aligned relative to the anchor, a child component may be still not a
 
 ## Aligning Components in Multiple Layouts
 
-You can set components in multiple layout components, such as **\<Row>**, **\<Column>**, **\<Flex>**, and **\<Stack>**, to be aligned based on the relative layout rules.
+You can set components in multiple layout components, such as **Row**, **Column**, **Flex**, and **\<Stack>**, to be aligned based on the relative layout rules.
 
   ```ts
 

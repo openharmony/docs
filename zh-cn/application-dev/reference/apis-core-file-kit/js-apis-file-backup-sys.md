@@ -1573,7 +1573,7 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 >
 > - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 服务端通过onFileReady返回文件句柄后，客户端可通过零拷贝操作将其对应的文件内容拷贝到服务端提供的文件句柄中。
-> - 在完成每个包所有文件拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
+> - 这个接口仅在调用方完成所有待恢复数据的写入操作后才能调用，且调用方需要确保待写入恢复数据的一致性与完整性。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1605,11 +1605,11 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  let testFileNum = 123; // 123: 初始化文件个数
+  let testFileNum = 123; // 123: 恢复所需文件个数示例
   let testBundleName = 'com.example.myapplication'; // 测试包名
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // 初始化计数
+  countMap.set(testBundleName, 0); // 实际写入文件个数初始化
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1619,7 +1619,8 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++;
+        countMap[file.bundleName]++; // 实际写入文件个数更新
+        // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
@@ -1634,14 +1635,14 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
           });
         }
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
           return;
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
           return;
@@ -1682,7 +1683,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 >
 > - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 服务端通过onFileReady返回文件句柄后，客户端可通过零拷贝操作将其对应的文件内容拷贝到服务端提供的文件句柄中。
-> - 在完成每个包所有文件拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
+> - 这个接口仅在调用方完成所有待恢复数据的写入操作后才能调用，且调用方需要确保待写入恢复数据的一致性与完整性。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1719,11 +1720,11 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  let testFileNum = 123; // 123: 初始化文件个数
+  let testFileNum = 123; // 123: 恢复所需文件个数示例
   let testBundleName = 'com.example.myapplication'; // 测试包名
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // 初始化计数
+  countMap.set(testBundleName, 0); // 实际写入文件个数初始化
   async function publishFile(file: backup.FileMeta) {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
@@ -1740,7 +1741,8 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++;
+        countMap[file.bundleName]++; // 实际写入文件个数更新
+        // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
           publishFile(file);
         }
@@ -1769,7 +1771,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
       },
       onBackupServiceDied: () => {
         console.info('service died');
-      }
+      },
       onResultReport: (err: BusinessError, result: string) => {
         if (err) {
           console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
@@ -1822,11 +1824,11 @@ release(): Promise&lt;void&gt;
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  let testFileNum = 123; // 123: 初始化文件个数
+  let testFileNum = 123; // 123: 恢复所需文件个数示例
   let testBundleName = 'com.example.myapplication'; // 测试包名
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // 初始化计数
+  countMap.set(testBundleName, 0); // 实际写入文件个数初始化
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1836,6 +1838,8 @@ release(): Promise&lt;void&gt;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
+        countMap[file.bundleName]++; // 实际写入文件个数更新
+        // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
@@ -1850,14 +1854,14 @@ release(): Promise&lt;void&gt;
           });
         }
       },
-      onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
           return;
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
           return;

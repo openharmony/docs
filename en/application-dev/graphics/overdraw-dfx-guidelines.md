@@ -92,7 +92,7 @@ struct Index {
 
 The figure above shows the UI when the overdraw debugging feature is enabled.
 
-From the **\<Text>** component **Hello World**, the **\<Column>** components from inside to outside are displayed in dark red, light red, green, blue-purple, and original color. This indicates that the background of each **\<Column>** component is rendered multiple times as the nesting depth increases.
+From the **Text** component **Hello World**, the **Column** components from inside to outside are displayed in dark red, light red, green, blue-purple, and original color. This indicates that the background of each **Column** component is rendered multiple times as the nesting depth increases.
 
 The system UI (such as the status bar and sidebar) is also displayed in a different color. This is a normal phenomenon.
 

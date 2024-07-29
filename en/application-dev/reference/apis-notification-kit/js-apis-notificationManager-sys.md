@@ -6,12 +6,12 @@ The **NotificationManager** module provides notification management capabilities
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [NotificationManager](./js-apis-notificationManager.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [[NotificationManager](./js-apis-notificationManager.md).
 
 ## Modules to Import
 
 ```ts
-import notificationManager from '@ohos.notificationManager';
+import { notificationManager } from '@kit.NotificationKit';
 ```
 
 ## notificationManager.publish
@@ -28,39 +28,42 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory| Description                                       |
+| Name    | Type                                       | Mandatory | Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
 | userId   | number                                      | Yes  | User ID.                          |
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                          |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                             |
+| ID | Error Message                                             |
 | -------- | ---------------------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
-| 1600009  | Over max number notifications per second.            |
+| 1600003  | Failed to connect to the service.                           |
+| 1600004  | Notification disabled.                         |
+| 1600005  | Notification slot disabled.                    |
+| 1600007  | The notification does not exist.                       |
+| 1600008  | The user does not exist.                               |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // publish callback
-let publishCallback = (err: Base.BusinessError): void => {
+let publishCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -98,41 +101,44 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 **Parameters**
 
-| Name    |  Type                                       | Mandatory| Description                                       |
+| Name    |  Type                                       | Mandatory | Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
 | userId   | number                                      | Yes  | User ID.                          |
 
 **Return value**
 
-| Type    | Description       |
+| Type    | Description       | 
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                             |
+| ID | Error Message                                             |
 | -------- | ---------------------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
-| 1600009  | Over max number notifications per second.            |
+| 1600003  | Failed to connect to the service.                           |
+| 1600004  | Notification disabled.                         |
+| 1600005  | Notification slot disabled.                    |
+| 1600007  | The notification does not exist.                       |
+| 1600008  | The user does not exist.                               |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
@@ -150,7 +156,7 @@ let userId: number = 1;
 
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`publish fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -169,29 +175,32 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                |
+| Name    | Type                 | Mandatory | Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | Yes  | Notification slot to add.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | Yes  | Notification slot to add. |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // addSlot callback
-let addSlotCallBack = (err: Base.BusinessError): void => {
+let addSlotCallBack = (err: BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -219,31 +228,34 @@ Adds a notification slot. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description                |
+| Name | Type            | Mandatory | Description                |
 | ---- | ---------------- | ---- | -------------------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot to add.|
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot to add. |
 
 **Return value**
 
-| Type    | Description       |
+| Type    | Description       | 
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // NotificationSlot object
 let notificationSlot: notificationManager.NotificationSlot = {
@@ -251,7 +263,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 };
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`addSlot fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -270,29 +282,32 @@ Adds an array of notification slots. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description                    |
+| Name    | Type                     | Mandatory | Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add.|
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add. |
 | callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.    |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // addSlots callback
-let addSlotsCallBack = (err: Base.BusinessError): void => {
+let addSlotsCallBack = (err: BusinessError): void => {
     if (err) {
         console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -324,31 +339,34 @@ Adds an array of notification slots. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name | Type                     | Mandatory| Description                    |
+| Name | Type                     | Mandatory | Description                    |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add.|
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add. |
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // NotificationSlot object
 let notificationSlot: notificationManager.NotificationSlot = {
@@ -360,8 +378,8 @@ notificationSlotArray[0] = notificationSlot;
 
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
-}).catch((err: Base.BusinessError) => {
-    console.error(`addSlot fail: ${JSON.stringify(err)}`);
+}).catch((err: BusinessError) => {
+    console.error(`addSlots fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -380,33 +398,36 @@ Sets whether to enable notification for a specified application. This API uses a
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                |
+| Name    | Type                 | Mandatory | Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)   | Yes  | Bundle of the application.       |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setNotificationEnableCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableCallback = (err: BusinessError): void => {
     if (err) {
-        console.error(`setNotificationEnableCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setNotificationEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setNotificationEnableCallback success");
+        console.info("setNotificationEnable success");
     }
 }
 let bundle: notificationManager.BundleOption = {
@@ -429,41 +450,90 @@ Sets whether to enable notification for a specified application. This API uses a
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setNotificationEnable fail: ${JSON.stringify(err)}`);
 });
+```
+
+## notificationManager.getAllNotificationEnabledBundles<sup>12+</sup>
+
+getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>;
+
+Obtains a list of applications that allow notifications. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise<Array<BundleOption\>> | Returns a list of applications that allow notifications. | 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                           |
+| -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.getAllNotificationEnabledBundles().then((data: Array<notificationManager.BundleOption>) => {
+    console.info("Enable bundle data is" + JSON.stringify(data));
+    data.forEach(element => {
+        console.info("Enable uid is " + JSON.stringify(element.uid));
+        console.info("Enable bundle is " + JSON.stringify(element.bundle));
+    });
+}).catch((err: BusinessError) => {
+    console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
+})
 ```
 
 ## notificationManager.isNotificationEnabled
@@ -480,28 +550,31 @@ Checks whether notification is enabled for the specified application. This API u
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                    |
+| Name    | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.           |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -520,7 +593,7 @@ notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback)
 
 isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
-Checks whether notification is enabled for a specified application. This API uses a promise to return the result.
+Checks whether notification is enabled for the specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -530,38 +603,41 @@ Checks whether notification is enabled for a specified application. This API use
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
 
 **Return value**
 
 | Type              | Description                                               |
 | ------------------ | --------------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -580,28 +656,31 @@ Checks whether notification is enabled for a specified user. This API uses an as
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                    |
+| Name    | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| userId   | number                | Yes  | User ID.|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| userId   | number                | Yes  | User ID. |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -628,37 +707,40 @@ Checks whether notification is enabled for a specified user. This API uses a pro
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| userId | number       | Yes  | User ID.|
+| userId | number       | Yes  | User ID. |
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist..                  |
+| 1600003  | Failed to connect to the service.               |
+| 1600008  | The user does not exist..                  |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -677,29 +759,32 @@ Sets whether to enable the notification badge for a specified application. This 
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                |
+| Name    | Type                 | Mandatory | Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.          |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let displayBadgeCallback = (err: Base.BusinessError): void => {
+let displayBadgeCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -726,39 +811,42 @@ Sets whether to enable the notification badge for a specified application. This 
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`displayBadge fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -777,28 +865,31 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                    |
+| Name    | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.              |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isBadgeDisplayedCallback = (err: Base.BusinessError, data: boolean): void => {
+let isBadgeDisplayedCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -825,31 +916,34 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -857,7 +951,7 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isBadgeDisplayed fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -876,32 +970,35 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
-| slotFlags   | number | Yes  | Notification slot flags.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
+| slotFlags   | number | Yes  | Notification slot flags. |
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -911,7 +1008,7 @@ let slotFlags: number = 1;
 
 notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
 	console.info("setSlotFlagsByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -930,29 +1027,32 @@ Sets the notification slot for a specified application. This API uses an asynchr
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                |
+| Name    | Type                 | Mandatory | Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.          |
 | slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | Yes  | Notification slot.            |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setSlotByBundleCallback = (err: Base.BusinessError): void => {
+let setSlotByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -982,32 +1082,35 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
-| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
+| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot. |
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -1019,7 +1122,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSlotByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1038,38 +1141,41 @@ Obtains the notification slot flag of a specified application. This API uses a p
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-|  Promise\<number\>| Promise used to return the notification slot flag.|
+|  Promise\<number\>| Promise used to return the notification slot flag. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.getSlotFlagsByBundle(bundle).then((data : number) => {
 	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1088,30 +1194,33 @@ Obtains the notification slots of a specified application. This API uses an asyn
 
 **Parameters**
 
-| Name    | Type                                    | Mandatory| Description                |
+| Name    | Type                                    | Mandatory | Description                |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | Yes  | Bundle of the application.          |
-| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
+let getSlotsByBundleCallback = (err: BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotsByBundle success, data is ${JSON.stringify(data)}`);
     }
@@ -1136,31 +1245,34 @@ Obtains the notification slots of a specified application. This API uses a promi
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | Promise used to return the result.|
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -1168,7 +1280,7 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1187,30 +1299,33 @@ Obtains the number of notification slots of a specified application. This API us
 
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description                  |
+| Name    | Type                     | Mandatory | Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)              | Yes  | Bundle of the application.            |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void => {
+let getSlotNumByBundleCallback = (err: BusinessError, data: number): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
@@ -1237,31 +1352,34 @@ Obtains the number of notification slots of a specified application. This API us
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description      |
+| Name  | Type        | Mandatory | Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number\> | Promise used to return the result.|
+| Promise\<number\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1269,8 +1387,8 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
-    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getSlotNumByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1289,26 +1407,29 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                |
+| Name    | Type                                                        | Mandatory | Description                |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getAllActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
+let getAllActiveNotificationsCallback = (err: BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
     if (err) {
         console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1321,7 +1442,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
 
 Obtains all active notifications. This API uses a promise to return the result.
 
@@ -1335,26 +1456,29 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise used to return the result.|
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getAllActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getAllActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1374,25 +1498,26 @@ Obtains information about the common live view that matches the specified filter
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                          |
+| Name    | Type                                                        | Mandatory | Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view.|
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view. |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ---------------------------------------- |
-| 1600007  | The notification is not exist.           |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-import notificationSubscribe from '@ohos.notificationSubscribe';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationSubscribe } from '@kit.NotificationKit';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1406,7 +1531,7 @@ let filter: notificationManager.NotificationFilter = {
     notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: notificationManager.NotificationRequest): void => {
+let getActiveNotificationByFilterCallback = (err: BusinessError, data: notificationManager.NotificationRequest): void => {
     if (err) {
         console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1431,30 +1556,31 @@ Obtains information about the common live view that matches the specified filter
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                          |
+| Name    | Type                                                        | Mandatory | Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view.|
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view. |
 
 **Return value**
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | Promise used to return the result.|
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ---------------------------------------- |
-| 1600007  | The notification is not exist.           |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-import notificationSubscribe from '@ohos.notificationSubscribe';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationSubscribe } from '@kit.NotificationKit';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1470,7 +1596,7 @@ let filter: notificationManager.NotificationFilter = {
 }
 notificationManager.getActiveNotificationByFilter(filter).then((data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1489,29 +1615,32 @@ Removes notifications under a notification group of the specified application. T
 
 **Parameters**
 
-| Name     | Type                 | Mandatory| Description                        |
+| Name     | Type                 | Mandatory | Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
 | bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle information of the application.                  |
 | groupName | string                | Yes  | Name of the notification group.              |
-| callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let removeGroupByBundleCallback = (err: Base.BusinessError): void => {
+let removeGroupByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1539,39 +1668,42 @@ Removes notifications under a notification group of the specified application. T
 
 **Parameters**
 
-| Name     | Type        | Mandatory| Description          |
+| Name     | Type        | Mandatory | Description          |
 | --------- | ------------ | ---- | -------------- |
 | bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.    |
-| groupName | string       | Yes  | Name of the notification group.|
+| groupName | string       | Yes  | Name of the notification group. |
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
 let groupName: string = "GroupName";
 
 notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`removeGroupByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1590,28 +1722,31 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                  |
+| Name    | Type                 | Mandatory | Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
 | date     | [DoNotDisturbDate](#donotdisturbdate)      | Yes  | DND time to set.        |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
+let setDoNotDisturbDateCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1642,32 +1777,35 @@ Sets the DND time. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description          |
+| Name | Type            | Mandatory | Description          |
 | ---- | ---------------- | ---- | -------------- |
-| date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
+| date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set. |
 
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
@@ -1676,7 +1814,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
 };
 notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1696,30 +1834,33 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                  |
+| Name    | Type                 | Mandatory | Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
 | date     | [DoNotDisturbDate](#donotdisturbdate)      | Yes  | DND time to set.        |
-| userId   | number                | Yes  | ID of the user for whom you want to set the DND time.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| userId   | number                | Yes  | ID of the user for whom you want to set the DND time. |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
+let setDoNotDisturbDateCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1752,33 +1893,36 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 
 **Parameters**
 
-| Name  | Type            | Mandatory| Description          |
+| Name  | Type            | Mandatory | Description          |
 | ------ | ---------------- | ---- | -------------- |
-| date   | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
-| userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
+| date   | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set. |
+| userId | number           | Yes  | ID of the user for whom you want to set the DND time. |
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
@@ -1790,7 +1934,7 @@ let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1810,27 +1954,30 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name    | Type                             | Mandatory| Description                  |
+| Name    | Type                             | Mandatory | Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
+let getDoNotDisturbDateCallback = (err: BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1857,27 +2004,30 @@ Obtains the DND time. This API uses a promise to return the result.
 
 | Type                                            | Description                                     |
 | ------------------------------------------------ | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result.|
+| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
   console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1897,29 +2047,32 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name    | Type                             | Mandatory| Description                  |
+| Name    | Type                             | Mandatory | Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result.|
-| userId   | number                            | Yes  | User ID.|
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result. |
+| userId   | number                            | Yes  | User ID. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
+let getDoNotDisturbDateCallback = (err: BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1946,38 +2099,41 @@ Obtains the DND time of a specified user. This API uses a promise to return the 
 
 **Parameters**
 
-| Name    | Type                             | Mandatory| Description                  |
+| Name    | Type                             | Mandatory | Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| userId   | number                            | Yes  | User ID.|
+| userId   | number                            | Yes  | User ID. |
 
 **Return value**
 
 | Type                                            | Description                                     |
 | ------------------------------------------------ | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result.|
+| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1997,30 +2153,33 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name    | Type                    | Mandatory| Description                            |
+| Name    | Type                    | Mandatory | Description                            |
 | -------- | ------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                            |
+| ID | Error Message                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean): void => {
+let isSupportDoNotDisturbModeCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportDoNotDisturbMode success");
+        console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
     }
 }
 
@@ -2043,27 +2202,30 @@ Checks whether DND mode is supported. This API uses a promise to return the resu
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
-	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
-    console.error(`supportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
+	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+    console.error(`isSupportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2081,28 +2243,31 @@ Sets whether to enable distributed notification on this device. This API uses an
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                      |
+| Name  | Type                    | Mandatory | Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite. |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDistributedEnableCallback = (err: Base.BusinessError): void => {
+let setDistributedEnableCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2127,31 +2292,40 @@ Sets whether to enable distributed notification on this device. This API uses a 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                      |
+| Name  | Type                    | Mandatory | Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
+| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite. |
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
-}).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+}).catch((err: BusinessError) => {
+    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2169,34 +2343,37 @@ Sets whether to enable distributed notification for a specified application. Thi
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                      |
+| Name  | Type                    | Mandatory | Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
 | enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
+let setDistributedEnableByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("enableDistributedByBundle success");
+        console.info("setDistributedEnableByBundle success");
     }
 };
 let bundle: notificationManager.BundleOption = {
@@ -2222,27 +2399,36 @@ Sets whether to enable distributed notification for a specified application. Thi
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                      |
+| Name  | Type                    | Mandatory | Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.               |
 | enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.                 |
 
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value. | 
+
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -2250,7 +2436,7 @@ let bundle: notificationManager.BundleOption = {
 let enable: boolean = true;
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDistributedEnableByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2269,29 +2455,32 @@ Checks whether distributed notification is enabled for a specified application. 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                      |
+| Name  | Type                    | Mandatory | Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                    |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boolean): void => {
+let isDistributedEnabledByBundleCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2318,7 +2507,7 @@ Checks whether distributed notification is enabled for a specified application. 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                      |
+| Name  | Type                    | Mandatory | Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.               |
 
@@ -2326,31 +2515,34 @@ Checks whether distributed notification is enabled for a specified application. 
 
 | Type              | Description                                             |
 | ------------------ | ------------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2370,26 +2562,29 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                              | Mandatory| Description                      |
+| Name  | Type                              | Mandatory | Description                      |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype)\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationManager.DeviceRemindType): void => {
+let getDeviceRemindTypeCallback = (err: BusinessError, data: notificationManager.DeviceRemindType): void => {
     if (err) {
         console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2415,26 +2610,29 @@ Obtains the notification reminder type. This API uses a promise to return the re
 
 | Type              | Description           |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtype)\> | Promise used to return the result.|
+| Promise\<[DeviceRemindType](#deviceremindtype)\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDeviceRemindType().then((data: notificationManager.DeviceRemindType) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDeviceRemindType fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2454,35 +2652,38 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 
 **Parameters**
 
-| Name              | Type                                       | Mandatory| Description                                    |
+| Name              | Type                                       | Mandatory | Description                                    |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                      |
 | userId               | number                                      | Yes  | User ID.                                |
 | callback             | AsyncCallback\<void\>                        | Yes  | Callback used to return the result.                |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.              |
+| 1600005  | Notification slot disabled.         |
+| 1600008  | The user does not exist.                    |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // publishAsBundle callback
-let callback = (err: Base.BusinessError): void => {
+let callback = (err: BusinessError): void => {
     if (err) {
         console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2523,37 +2724,40 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 **Parameters**
 
 
-| Name              | Type                                       | Mandatory| Description                                         |
+| Name              | Type                                       | Mandatory | Description                                         |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | User ID.                           |
 
 **Return value**
 
-| Type             | Description       |
+| Type             | Description       | 
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.              |
+| 1600005  | Notification slot disabled.         |
+| 1600008  | The user does not exist.                    |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Bundle name of the application whose notification function is taken over by the reminder agent
 let representativeBundle: string = "com.example.demo";
@@ -2573,7 +2777,79 @@ let request: notificationManager.NotificationRequest = {
 };
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
+    console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.publishAsBundle<sup>12+</sup>
+
+publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest): Promise\<void\>
+
+Publishes a notification through the reminder agent. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+
+| Name              | Type                                       | Mandatory | Description                                         |
+|----------------------|--------------------------------------------|------|-----------------------------------------------|
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | Yes  | Bundle information of the application whose notification function is taken over by the reminder agent.                           |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value. | 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                                 |
+| -------- | ----------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.              |
+| 1600005  | Notification slot disabled.         |
+| 1600008  | The user does not exist.                    |
+| 1600009  | The notification sending frequency reaches the upper limit. |
+| 1600012  | No memory space.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Bundle information of the application whose notification function is taken over by the reminder agent.
+let representativeBundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+// NotificationRequest object
+let request: notificationManager.NotificationRequest = {
+    id: 1,
+    content: {
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+};
+notificationManager.publishAsBundle(representativeBundle, request).then(() => {
+	console.info("publishAsBundle success");
+}).catch((err: BusinessError) => {
     console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2592,32 +2868,35 @@ Cancels a notification published through the reminder agent. This API uses an as
 
 **Parameters**
 
-| Name              | Type         | Mandatory| Description                    |
+| Name              | Type         | Mandatory | Description                    |
 | -------------------- | ------------- | ---- | ------------------------ |
 | id                   | number        | Yes  | Notification ID.                |
 | representativeBundle | string        | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.      |
 | userId               | number        | Yes  | User ID.      |
-| callback             | AsyncCallback | Yes  | Callback used to return the result.|
+| callback             | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // cancelAsBundle
-let cancelAsBundleCallback = (err: Base.BusinessError): void => {
+let cancelAsBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2645,34 +2924,37 @@ Cancels a notification published through the reminder agent. This API uses a pro
 
 **Parameters**
 
-| Name              | Type  | Mandatory| Description              |
+| Name              | Type  | Mandatory | Description              |
 | -------------------- | ------ | ---- | ------------------ |
 | id                   | number | Yes  | Notification ID.          |
-| representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
-| userId               | number | Yes  | User ID.|
+| representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent. |
+| userId               | number | Yes  | User ID. |
 
 **Return value**
 
-| Type             | Description       |
+| Type             | Description       | 
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Bundle name of the application whose notification function is taken over by the reminder agent
 let representativeBundle: string = "com.example.demo";
@@ -2680,8 +2962,121 @@ let representativeBundle: string = "com.example.demo";
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+
+## notificationManager.cancelAsBundle<sup>12+</sup>
+
+cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
+
+Cancels a notification published through the reminder agent. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+
+| Name              | Type                                       | Mandatory | Description                                         |
+| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  |Yes  | Bundle information of the application whose notification function is taken over by the reminder agent. |
+| id                   | number                                     | Yes  | Notification ID.          |
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value. | 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                                 |
+| -------- | ----------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect to the service.                |
+| 1600007  | The notification does not exist.            |
+| 1600008  | The user does not exist.                    |
+| 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let representativeBundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
+	console.info("cancelAsBundle success");
+}).catch((err: BusinessError) => {
+    console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.cancel<sup>12+</sup>
+
+cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
+
+Cancels the notification of other applications of the current user. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name              | Type  | Mandatory | Description              |
+| -------------------- | ------ | ---- | ------------------ |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
+|       id             | number | Yes  | Notification ID. |
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value. | 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
+| 1600012  | No memory space.                    |
+| 1600017  | There is no corresponding agent relationship configuration.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundle: notificationManager.BundleOption = {
+  bundle: "bundleName"
+};
+let id: number = 1;
+notificationManager.cancel(bundle, id).then(() => {
+  console.info("cancel success");
+}).catch((err: BusinessError) => {
+  console.error(`cancel fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2699,32 +3094,35 @@ Sets the enabled status of a slot type for the specified application. This API u
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description                  |
+| Name  | Type                         | Mandatory | Description                  |
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.        |
 | enable   | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.            |
-| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // setNotificationEnableSlot
-let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableSlotCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2752,32 +3150,35 @@ Sets the enabled status of a slot type for the specified application. This API u
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description                    |
+| Name  | Type                         | Mandatory | Description                    |
 | -------- | ----------------------------- | ---- | ----------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
 | type     | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.          |
 | enable   | boolean                       | Yes  | Whether to enable the notification slot type.              |
-| isForceControl<sup>11+</sup> | boolean                 | Yes  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite.|
+| isForceControl<sup>11+</sup> | boolean                 | Yes  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite. |
 | callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.   |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableSlotCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2807,29 +3208,32 @@ Sets the enabled status of a slot type for the specified application. This API u
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
+| Name | Type                         | Mandatory | Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.  |
-| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.|
+| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type. |
 | enable | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.    |
 | isForceControl<sup>11+</sup> | boolean               | No  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite.<br> Default value: **false**    |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // setNotificationEnableSlot
 notificationManager.setNotificationEnableSlot(
@@ -2837,7 +3241,7 @@ notificationManager.setNotificationEnableSlot(
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.info("setNotificationEnableSlot success");
-    }).catch((err: Base.BusinessError) => {
+    }).catch((err: BusinessError) => {
         console.error(`setNotificationEnableSlot fail: ${JSON.stringify(err)}`);
     });
 ```
@@ -2856,30 +3260,33 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description                  |
+| Name  | Type                         | Mandatory | Description                  |
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.        |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// isNotificationSlotEnabled
-let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
+// isNotificationSlotEnabledCallback
+let isNotificationSlotEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2890,7 +3297,7 @@ let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
 notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
-    getEnableSlotCallback);
+    isNotificationSlotEnabledCallback);
 ```
 
 ## notificationManager.isNotificationSlotEnabled
@@ -2907,38 +3314,41 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
+| Name | Type                         | Mandatory | Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.  |
-| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.|
+| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type. |
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // isNotificationSlotEnabled
 notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data: boolean) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationSlotEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2956,40 +3366,43 @@ Sets whether to enable the notification sync feature for devices where the appli
 
 **System API**: This is a system API.
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                         | Mandatory| Description          |
+| Name | Type                         | Mandatory | Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
 | enable | boolean | Yes  | Whether to enable the notification sync feature. The value **true** means to enable the feature, and **false** means the opposite.  |
-| callback | AsyncCallback\<void\>    | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\>    | Yes  | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
 let enable: boolean = true;
-let callback = (err: Base.BusinessError): void => {
+let setSyncNotificationEnabledWithoutAppCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
-notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
@@ -3007,7 +3420,7 @@ Sets whether to enable the notification sync feature for devices where the appli
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
+| Name | Type                         | Mandatory | Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
 | enable | boolean | Yes  | Whether to enable the notification sync feature. The value **true** means to enable the feature, and **false** means the opposite.  |
@@ -3016,29 +3429,32 @@ Sets whether to enable the notification sync feature for devices where the appli
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
 let enable: boolean = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3058,33 +3474,36 @@ Obtains whether the notification sync feature is enabled for devices where the a
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
+| Name | Type                         | Mandatory | Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
-let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
+let getSyncNotificationEnabledWithoutAppCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
+        console.info(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
+        console.info("getSyncNotificationEnabledWithoutAppCallback success, data: " + JSON.stringify(data));
     }
 }
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
@@ -3105,7 +3524,7 @@ Obtains whether the notification sync feature is enabled for devices where the a
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
+| Name | Type                         | Mandatory | Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
 
@@ -3113,28 +3532,31 @@ Obtains whether the notification sync feature is enabled for devices where the a
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
-  console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
-}).catch((err: Base.BusinessError) => {
+  console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
     console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3153,23 +3575,25 @@ Subscribes to notification events. The notification service sends the notificati
 
 **Parameters**
 
-| Name| Type                                                                                                                     | Mandatory| Description          |
+| Name | Type                                                                                                                     | Mandatory | Description          |
 | ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
-| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | Yes  | Pointer to the notification verification function.|
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**. |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | Yes  | Pointer to the notification verification function. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
@@ -3184,7 +3608,7 @@ let onCheckNotification = (info : notificationManager.NotificationCheckInfo): no
 try{
     notificationManager.on("checkNotification", onCheckNotification);
 } catch (error){
-    console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
@@ -3202,38 +3626,41 @@ Subscribes to notification events. The notification service sends the notificati
 
 **Parameters**
 
-| Name| Type                                                                                                            | Mandatory| Description          |
+| Name | Type                                                                                                            | Mandatory | Description          |
 | ------ |-----------------------------------------------------------------------------------------------------------------| ---- | -------------- |
-| type | string                                                                                                            | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationcheckrequest11)    | Yes  | Notification verification content.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  Promise\<[NotificationCheckResult](#notificationcheckresult10)\> | Yes  | Pointer to the notification verification function.|
+| type | string                                                                                                            | Yes  | Event type. The value is fixed to **'checkNotification'**. |
+| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationcheckrequest11)    | Yes  | Notification verification content. |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  Promise\<[NotificationCheckResult](#notificationcheckresult10)\> | Yes  | Pointer to the notification verification function. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   notificationManager.on('checkNotification',{
     contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
     slotType: notificationManager.SlotType.LIVE_VIEW ,
-    extraKeys: ["event"],
+    extraInfoKeys: ["event"],
   },
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
   },);
 } catch (error) {
-  console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+  console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
@@ -3251,28 +3678,30 @@ Unsubscribes from notification events.
 
 **Parameters**
 
-| Name| Type                                                                                                                     | Mandatory| Description          |
+| Name | Type                                                                                                                     | Mandatory | Description          |
 | ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
-| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Pointer to the notification verification function.|
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**. |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Pointer to the notification verification function. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.error(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.off error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
@@ -3284,40 +3713,43 @@ Triggers a system live view notification. This API uses a promise to return the 
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER 
 
 **System API**: This is a system API.
 
 **Parameters**
 
-| Name| Type                  | Mandatory| Description          |
+| Name | Type                  | Mandatory | Description          |
 | -------------- | ------------- | ---- | -------------- |
-| bundle         | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | Yes  |Bundle of the application.|
-| notificationId | number        | Yes  | Notification ID.|
-| buttonOptions  | [ButtonOptions](#buttonoptions11) | Yes  | Button information.|
+| bundle         | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | Yes  |Bundle of the application. |
+| notificationId | number        | Yes  | Notification ID. |
+| buttonOptions  | [ButtonOptions](#buttonoptions11) | Yes  | Button information. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | ---- | ----|
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Bundle of the application
 let bundle: notificationManager.BundleOption = {
@@ -3331,7 +3763,7 @@ let buttonOptions: notificationManager.ButtonOptions = {
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
   console.info("triggerSystemLiveView success");
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
   console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
@@ -3349,42 +3781,379 @@ Subscribes to the system live view notification. This API uses a promise to retu
 
 **Parameters**
 
-| Name| Type                  | Mandatory| Description          |
+| Name | Type                  | Mandatory | Description          |
 | -------------- | ------------- | ---- | -------------- |
 | subscriber | [SystemLiveViewSubscriber](#systemliveviewsubscriber11)  | Yes  | Subscriber of the system live view notification.|
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | ---- | ----|
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-    console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+    console.info("onResponseCallback: " + JSON.stringify(option) + "notificationId" + id);
 }
 let subscriber: notificationManager.SystemLiveViewSubscriber  = {
     onResponse: onResponseCallback,
 };
 notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 	console.info("subscribeSystemLiveView success");
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
     console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.setDistributedEnabledByBundle<sup>12+</sup>
+
+setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void\>
+
+Sets whether a specified application supports cross-device collaboration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                    | Mandatory | Description                      |
+| -------- | ------------------------ | ---- | -------------------------- |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
+| deviceType | string | Yes  | Device type.|
+| enable   | boolean                  | Yes  | Whether to enable cross-device collaboration. The value **true** means to enable distributed notification, and **false** means the opposite.|
+
+**Return value**
+
+| Type | Description |
+| ---- | ----|
+| Promise\<void> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                                |
+| -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect to the service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+    uid: 1
+};
+let enable: boolean = true;
+let deviceType: string = "phone";
+notificationManager.setDistributedEnabledByBundle(bundle, deviceType, enable).then(() => {
+    console.info("setDistributedEnabledByBundle success");
+}).catch((err: BusinessError) => {
+    console.error(`setDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.isDistributedEnabledByBundle<sup>12+</sup>
+
+isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<boolean\>
+
+Obtains whether a specified application supports cross-device collaboration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                    | Mandatory | Description                      |
+| -------- | ------------------------ | ---- | -------------------------- |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
+| deviceType | string | Yes  | Device type. |
+
+**Return value**
+
+| Type | Description |
+| ---- | ----|
+| Promise\<boolean\> | Promise used to return the result (true: enabled; false: disabled). |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                                |
+| -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect to the service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+    uid: 1
+};
+let deviceType: string = "phone";
+notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
+    console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+    console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.setSmartReminderEnabled<sup>12+</sup>
+
+setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
+
+Sets a smart reminder for cross-device collaboration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                    | Mandatory | Description                      |
+| -------- | ------------------------ | ---- | -------------------------- |
+| deviceType | string | Yes  | Device type. |
+| enable   | boolean                  | Yes  | Indicates whether the specified application supports a smart reminder for cross-device collaboration (true: enabled; false: disabled).|
+
+**Return value**
+
+| Type | Description |
+| ---- | ----|
+| Promise\<void> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                                |
+| -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect to the service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let deviceType: string = "phone";
+let enable: boolean = true;
+notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
+    console.info("setSmartReminderEnabled success");
+}).catch((err: BusinessError) => {
+    console.error(`setSmartReminderEnabled fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.isSmartReminderEnabled<sup>12+</sup>
+
+isSmartReminderEnabled(deviceType: string): Promise<boolean\>
+
+Obtains a smart reminder for cross-device collaboration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                    | Mandatory | Description                      |
+| -------- | ------------------------ | ---- | -------------------------- |
+| deviceType | string | Yes  | Device type. |
+
+**Return value**
+
+| Type | Description |
+| ---- | ----|
+| Promise\<boolean\> | Promise used to return the result (true: enabled; false: disabled). |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                                |
+| -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect to the service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let deviceType: string = "phone";
+notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
+    console.info("isSmartReminderEnabled success, data:" + data);
+}).catch((err: BusinessError) => {
+    console.error(`isSmartReminderEnabled fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.setBadgeNumberByBundle<sup>12+</sup>
+
+setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void\>
+
+Sets the badge count for other applications. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type  | Mandatory | Description      |
+| ----------- | ------ | ---- | ---------- |
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
+| badgeNumber | number | Yes  | Badge count. |
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<void\> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+| 1600017  | There is no corresponding agent relationship configuration.     |
+| 17700001 | The specified bundle name was not found.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: 'com.example.bundleName',
+};
+let badgeNumber: number = 10;
+
+notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
+    console.info('setBadgeNumberByBundle success');
+}).catch((err: BusinessError) => {
+    console.error(`setBadgeNumberByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.getSlotByBundle<sup>12+</sup>
+
+getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<NotificationSlot>
+
+Obtains a notification slot of a specified application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type        | Mandatory | Description      |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application. |
+| slotType | [SlotType](././js-apis-notificationManager.md#slottype) | Yes  | Notification slot type. |
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)> | Promise used to return the result. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                                |
+| -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect to the service.               |
+| 1600012  | No memory space.                         |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+
+let slotType = notificationManager.SlotType.LIVE_VIEW;
+
+notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationManager.NotificationSlot) => {
+	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+    console.error(`getSlotByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3394,11 +4163,11 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **System API**: This is a system API.
 
-| Name | Type                                 | Mandatory| Description                  |
+| Name | Type                                 | Mandatory | Description                  |
 | ----- | ------------------------------------- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | Yes  | DND time type.|
-| begin | Date                                  | Yes  | DND start time.|
-| end   | Date                                  | Yes  | DND end time.|
+| type  | [DoNotDisturbType](#donotdisturbtype) | Yes  | DND time type. |
+| begin | Date                                  | Yes  | DND start time. |
+| end   | Date                                  | Yes  | DND end time. |
 
 ## DoNotDisturbType
 
@@ -3409,8 +4178,8 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | Name        | Value              | Description                                      |
 | ------------ | ---------------- | ------------------------------------------ |
 | TYPE_NONE    | 0 | Non-DND.                          |
-| TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute).|
-| TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute).|
+| TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute). |
+| TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute). |
 | TYPE_CLEARLY | 3 | DND at the specified time segment (with the hour, day, and month specified).    |
 
 
@@ -3448,15 +4217,15 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **System API**: This is a system API.
 
-| Name                        | Type                        | Mandatory| Description           |
+| Name                        | Type                        | Mandatory | Description           |
 | ---------------------------- | ---------------------------- | --- | --------------- |
 | bundleName                   | string                       | Yes  | Bundle name.   |
 | notificationId               | number                       | Yes  | Notification ID.       |
 | label<sup>11+</sup>          | string                       | No  | Notification label.     |
 | contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  | Yes  | Notification type.     |
-| creatorUserId<sup>11+</sup>  | number                       | Yes  | User ID of the notification.|
+| creatorUserId<sup>11+</sup>  | number                       | Yes  | User ID of the notification. |
 | slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        | Yes  | Notification slot type.     |
-| extraInfos<sup>11+</sup>     | [key: string]: object        | No  | Extra information of the notification.|
+| extraInfos<sup>11+</sup>     | [key: string]: object        | No  | Extra information of the notification. |
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -3466,9 +4235,9 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **System API**: This is a system API.
 
-| Name   | Type                                 | Mandatory| Description                  |
+| Name   | Type                                 | Mandatory | Description                  |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
+| code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display. |
 | message | string                               | Yes  | Result.   |
 
 
@@ -3482,9 +4251,9 @@ Provides the button information of the notification.
 
 **System API**: This is a system API.
 
-| Name   | Type                                 | Mandatory| Description                  |
+| Name   | Type                                 | Mandatory | Description                  |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| buttonName    | string                         | Yes  | Button name.|
+| buttonName    | string                         | Yes  | Button name. |
 
 
 ## SystemLiveViewSubscriber<sup>11+</sup>
@@ -3496,6 +4265,217 @@ Subscriber of the system live view notification.
 **System API**: This is a system API.
 
 
-| Name   | Type                                 | Mandatory| Description                  |
+| Name   | Type                                 | Mandatory | Description                  |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | No  | Callback when the button is touched.|
+| onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | No  | Callback when the button is touched. |
+
+
+## SlotType
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Name                               | Value    | Description                                                        |
+| ----------------------------------- | ------ | ------------------------------------------------------------ |
+| EMERGENCY_INFORMATION<sup>12+</sup> | 10     | Emergency event. **System API**: This is a system API.                              |
+
+
+## NotificationControlFlagStatus<sup>12+</sup>
+Each bit can control the notification mode. When the bitwise OR operation is performed on **notificationControlFlags** and the enumerated values in the following table, the notification mode is disabled.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+| Name                                | Value  | Description    |
+| ------------------------------------ | ---- | -------- |
+| NOTIFICATION_STATUS_CLOSE_SOUND      | 1<<0 | Disables the sound notification function. |
+| NOTIFICATION_STATUS_CLOSE_LOCKSCREEN |  1<<1    |     Disables the screen lock notification function.    |
+| NOTIFICATION_STATUS_CLOSE_BANNER     |    1<<2   |     Disables the banner notification function.    |
+| NOTIFICATION_STATUS_CLOSE_LIGHT_SCREEN     |   1<<3   |     Disables the screen-on notification function.    |
+| NOTIFICATION_STATUS_CLOSE_VIBRATION     |   1<<4   |     Disables the vibration notification function.    |
+| NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON     |  1<<5    |     Disables the icon notification function in the status bar.    |
+
+
+## notificationManager.addDoNotDisturbProfile<sup>12+</sup>
+
+addDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
+
+Adds the Do Not Disturb mode configuration information. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type            | Mandatory | Description          |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | Yes | Configuration information about the Do Not Disturb mode. |
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                           |
+| -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let trustlist: Array<notificationManager.BundleOption> = [
+  {
+    bundle: 'com.example.bundleName',
+    uid: 0
+  },
+  {
+    bundle: 'com.example.bundleName1',
+    uid: 1
+  }
+]
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: 'working mode',
+    trustlist: trustlist
+  }
+]
+
+notificationManager.addDoNotDisturbProfile(templates).then(() => {
+  console.info("addDoNotDisturbProfile success.");
+}).catch((error: BusinessError) => {
+  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.removeDoNotDisturbProfile<sup>12+</sup>
+
+removeDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
+
+Deletes the Do Not Disturb mode configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type            | Mandatory | Description          |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | Yes | Configuration information about the Do Not Disturb mode. |
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                           |
+| -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: 'working mode'
+  }
+]
+notificationManager.removeDoNotDisturbProfile(templates).then(() => {
+  console.info("removeDoNotDisturbProfile success.");
+}).catch((error: BusinessError) => {
+  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## DoNotDisturbProfile<sup>12+</sup>
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+| Name | Type                                 | Mandatory | Description                  |
+| ----- | ------------------------------------- | ---- | ---------------------- |
+| id | Number | Yes | ID of the Do Not Disturb mode. |
+| name | string  | Yes | Name of the Do Not Disturb mode. |
+| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | No | Trustlist in Do Not Disturb mode. |
+
+## notificationManager.setAdditionalConfig<sup>12+</sup>
+
+setAdditionalConfig(key: string, value: string): Promise\<number\>
+
+Sets the additional system configuration information of the notification. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type            | Mandatory | Description          |
+| ------ | ---------------- | ---- | -------------- |
+| key   | string | Yes | Additional configuration key. Currently, only `RING_TRUSTLIST_PKG` is supported, indicating that the application supports [customized ring tone](./js-apis-inner-notification-notificationRequest-sys.md#notificationrequest-1). |
+| value   | string | Yes | Additional configuration value. Example: [bundleName1,bundleName2]. |
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| Promise\<number\> | Promise used to return the result. **0** indicates successful; other values indicate failed. |
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+
+| ID | Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
+  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
+});
+```

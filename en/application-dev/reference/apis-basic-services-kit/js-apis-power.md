@@ -9,7 +9,7 @@ The **power** module provides APIs for rebooting and shutting down the system, a
 ## Modules to Import
 
 ```js
-import power from '@ohos.power';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.isActive<sup>9+</sup>
@@ -51,7 +51,7 @@ Obtains the power mode of this device.
 
 | Type                                | Description      |
 | ------------------------------------ | ---------- |
-| [DevicePowerMode](#devicepowermode9) | Power mode.|
+| [DevicePowerMode](#devicepowermode9) | Power mode. |
 
 **Error codes**
 
@@ -84,7 +84,7 @@ Checks whether the device is in standby mode.
 
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
-| boolean | The value **true** indicates that the device is in standby mode, and the value **false** indicates the opposite.|
+| boolean | The value **true** indicates that the device is in standby mode, and the value **false** indicates the opposite. |
 
 **Error codes**
 
@@ -105,30 +105,6 @@ try {
 }
 ```
 
-## power.rebootDevice<sup>(deprecated)</sup>
-
-rebootDevice(reason: string): void
-
-> **NOTE**<br>This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [power.reboot](js-apis-power-sys.md#powerreboot9). The substitute API is available only for system applications.
-
-Reboots the system.
-
-**Required permissions**: ohos.permission.REBOOT  (for system applications only)
-
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
-
-**Parameters**
-
-| Name   | Type    | Mandatory  | Description   |
-| ------ | ------ | ---- | ----- |
-| reason | string | Yes   | Reason for system reboot.|
-
-**Example**
-
-```js
-power.rebootDevice('reboot_test');
-```
-
 ## power.isScreenOn<sup>(deprecated)</sup>
 
 isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
@@ -141,9 +117,9 @@ Checks the screen status of the current device. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                        |
+| Name  | Type                        | Mandatory | Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the screen status obtained, where the value **true** indicates on and the value **false** indicates off. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the screen status obtained, where the value **true** indicates on and the value **false** indicates off. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -170,7 +146,7 @@ Checks the screen status of the current device. This API uses a promise to retur
 **Return value**
 | Type                  | Description                                              |
 | ---------------------- | -------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the screen is on, and the value **false** indicates the opposite. |
 
 **Example**
 
@@ -192,7 +168,7 @@ Enumerates power modes.
 
 | Name                   | Value  | Description                  |
 | ----------------------- | ---- | ---------------------- |
-| MODE_NORMAL             | 600  | Standard mode. It is the default value.|
+| MODE_NORMAL             | 600  | Standard mode. It is the default value. |
 | MODE_POWER_SAVE         | 601  | Power saving mode.        |
 | MODE_PERFORMANCE        | 602  | Performance mode.        |
 | MODE_EXTREME_POWER_SAVE | 603  | Ultra power saving mode.    |

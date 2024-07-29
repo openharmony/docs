@@ -16,63 +16,138 @@
 
 ## Location
 
-- ohos.permission.LOCATION_IN_BACKGROUND
+- [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all.md#ohospermissionlocation_in_background)
 
-- ohos.permission.LOCATION
+- [ohos.permission.LOCATION](permissions-for-all.md#ohospermissionlocation)
 
-- ohos.permission.APPROXIMATELY_LOCATION
+- [ohos.permission.APPROXIMATELY_LOCATION](permissions-for-all.md#ohospermissionapproximately_location)
 
 ## Camera
 
-- ohos.permission.CAMERA
+- [ohos.permission.CAMERA](permissions-for-all.md#ohospermissioncamera)
 
 ## Microphone
 
-- ohos.permission.MICROPHONE
+- [ohos.permission.MICROPHONE](permissions-for-all.md#ohospermissionmicrophone)
 
-<!--Del-->
 ## Contacts
 
-- ohos.permission.READ_CONTACTS
+<!--RP1-->
+- [ohos.permission.READ_CONTACTS](permissions-for-system-apps.md#ohospermissionread_contacts)
 
-- ohos.permission.WRITE_CONTACTS
-<!--DelEnd-->
+- [ohos.permission.WRITE_CONTACTS](permissions-for-system-apps.md#ohospermissionwrite_contacts)
+<!--RP1End-->
 
 ## Calendar
 
-- ohos.permission.READ_CALENDAR
+- [ohos.permission.READ_CALENDAR](permissions-for-all.md#ohospermissionread_calendar)
 
-- ohos.permission.WRITE_CALENDAR
+- [ohos.permission.WRITE_CALENDAR](permissions-for-all.md#ohospermissionwrite_calendar)
 <!--Del-->
-- ohos.permission.READ_WHOLE_CALENDAR
+- [ohos.permission.READ_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionread_whole_calendar)
 
-- ohos.permission.WRITE_WHOLE_CALENDAR
+- [ohos.permission.WRITE_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionwrite_whole_calendar)
 <!--DelEnd-->
 
 ## Fitness
 
-- ohos.permission.ACTIVITY_MOTION
+- [ohos.permission.ACTIVITY_MOTION](permissions-for-all.md#ohospermissionactivity_motion)
 
 ## Body Sensors
 
-- ohos.permission.READ_HEALTH_DATA
+- [ohos.permission.READ_HEALTH_DATA](permissions-for-all.md#ohospermissionread_health_data)
 
 ## Images and Videos
 
-- ohos.permission.WRITE_IMAGEVIDEO
+<!--RP2-->
+- [ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)
 
-- ohos.permission.READ_IMAGEVIDEO
-
-- ohos.permission.MEDIA_LOCATION
+- [ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo)
+<!--RP2End-->
+- [ohos.permission.MEDIA_LOCATION](permissions-for-all.md#ohospermissionmedia_location)
 
 ## Music and Audio
 
-- ohos.permission.WRITE_AUDIO
+<!--RP3-->
+- [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)
 
-- ohos.permission.READ_AUDIO
+- [ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)
+<!--RP3End-->
 
-## Media and Files
+## Ad Tracking
+
+- [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all.md#ohospermissionapp_tracking_consent)
+
 <!--Del-->
+## Installed Bundle List
+
+- [ohos.permission.GET_INSTALLED_BUNDLE_LIST](permissions-for-system-apps.md#ohospermissionget_installed_bundle_list)
+<!--DelEnd-->
+
+## Multi-device Collaboration
+
+- [ohos.permission.DISTRIBUTED_DATASYNC](permissions-for-all.md#ohospermissiondistributed_datasync)
+
+## Bluetooth
+
+- [ohos.permission.ACCESS_BLUETOOTH](permissions-for-all.md#ohospermissionaccess_bluetooth)
+
+<!--Del-->
+## Phone
+
+- [ohos.permission.ANSWER_CALL](permissions-for-system-apps.md#ohospermissionanswer_call)
+
+- [ohos.permission.MANAGE_VOICEMAIL](permissions-for-system-apps.md#ohospermissionmanage_voicemail)
+
+## Call Logs
+
+- [ohos.permission.READ_CALL_LOG](permissions-for-system-apps.md#ohospermissionread_call_log)
+
+- [ohos.permission.WRITE_CALL_LOG](permissions-for-system-apps.md#ohospermissionwrite_call_log)
+
+## Messaging
+
+- [ohos.permission.READ_CELL_MESSAGES](permissions-for-system-apps.md#ohospermissionread_cell_messages)
+
+- [ohos.permission.READ_MESSAGES](permissions-for-system-apps.md#ohospermissionread_messages)
+
+- [ohos.permission.RECEIVE_MMS](permissions-for-system-apps.md#ohospermissionreceive_mms)
+
+- [ohos.permission.RECEIVE_SMS](permissions-for-system-apps.md#ohospermissionreceive_sms)
+
+- [ohos.permission.RECEIVE_WAP_MESSAGES](permissions-for-system-apps.md#ohospermissionreceive_wap_messages)
+
+- [ohos.permission.SEND_MESSAGES](permissions-for-system-apps.md#ohospermissionsend_messages)
+<!--DelEnd-->
+
+## Pasteboard
+
+<!--RP4-->
+- [ohos.permission.READ_PASTEBOARD](permissions-for-system-apps.md#ohospermissionread_pasteboard)
+<!--RP4End-->
+
+<!--Del-->
+## Directory
+
+- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_download_directory)
+
+- [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_desktop_directory)
+
+- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_documents_directory)
+<!--DelEnd-->
+
+## NearLink
+
+- [ohos.permission.ACCESS_NEARLINK](permissions-for-all.md#ohospermissionaccess_nearlink)
+
+## Files<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This permission group is deprecated since API version 12.
+
+<!--Del-->
+
 - ohos.permission.READ_DOCUMENT
 
 - ohos.permission.WRITE_DOCUMENT
@@ -81,66 +156,18 @@
 
 - ohos.permission.WRITE_MEDIA
 
-## Ad Tracking
+**Alternative solution**:
 
-- ohos.permission.APP_TRACKING_CONSENT
+- To read or write images or videos in the media library:
 
-<!--Del-->
-## Installed Bundle List
+  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [SaveButton](../../media/medialibrary/photoAccessHelper-savebutton.md) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
+  - Apply for the <!--RP5-->[ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo) or [ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)<!--RP5End--> permission to read images and videos in the media library.
 
-- ohos.permission.GET_INSTALLED_BUNDLE_LIST
-<!--DelEnd-->
+- To read audio clips in the media library:
 
-## Multi-device Collaboration
+  Apply for the <!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio) or [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End--> permission to read and write images and videos in the media library.
 
-- ohos.permission.DISTRIBUTED_DATASYNC
+- To read documents in **Files**:
 
-## Bluetooth
+  Use the file Picker to read documents in **Files**. For details, see [Selecting Documents](../../file-management/select-user-file.md#selecting-documents) and [Saving Documents](../../file-management/save-user-file.md#saving-documents).
 
-- ohos.permission.ACCESS_BLUETOOTH
-
-<!--Del-->
-## Phone
-
-- ohos.permission.ANSWER_CALL
-
-- ohos.permission.MANAGE_VOICEMAIL
-
-## Call Logs
-
-- ohos.permission.READ_CALL_LOG
-
-- ohos.permission.WRITE_CALL_LOG
-
-## Messaging
-
-- ohos.permission.READ_CELL_MESSAGES
-
-- ohos.permission.READ_MESSAGES
-
-- ohos.permission.RECEIVE_MMS
-
-- ohos.permission.RECEIVE_SMS
-
-- ohos.permission.RECEIVE_WAP_MESSAGES
-
-- ohos.permission.SEND_MESSAGES
-<!--DelEnd-->
-
-## Pasteboard
-
-- ohos.permission.READ_PASTEBOARD
-
-<!--Del-->
-## Directory
-
-- ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
-
-- ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
-
-- ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
-<!--DelEnd-->
-
-## NearLink
-
-- ohos.permission.ACCESS_NEARLINK

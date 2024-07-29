@@ -21,14 +21,6 @@ For component reuse to take effect, the following conditions must be met:
 6. Component reuse occurs only when a reusable component is removed from the component tree and then added to the component tree again. For example, if **ForEach** is used to create a reusable custom component, component reuse cannot be triggered due to the full expansion attribute of **ForEach**.
 7. Reusable components cannot be nested. That is, if a reusable component exists in the subtree of another reusable component, undefined results may occur.
 
-## Developer's Tips
-
-1. To maximize the component reuse performance, avoid any operations that may change the component tree structure or re-lay out the reusable components.
-2. For best possible performance, combine component reuse with the **LazyForEach** syntax in list scrolling scenarios.
-3. Pay attention to the behavior differences between the creation and update of custom components. Component reuse is, in effect, a special form of component update. The process and lifecycle callbacks used in component creation will not occur during component reuse, and the constructor parameters of the custom component are passed to it through the **aboutToReuse** lifecycle callback. In other words, the **aboutToAppear** lifecycle and initialization parameter input of the custom component will not occur during component reuse.
-4. Avoid time-consuming operations during the **aboutToReuse** lifecycle callback. The best practice is to, in **aboutToReuse**, only update the state variable values required for updating custom components.
-5. You do not need to update the state variables decorated by @Link, @StorageLink, @ObjectLink, and @Consume in **aboutToReuse**. These state variables are automatically updated, and manual update may trigger unnecessary component re-rendering.
-
 ## Lifecycle
 
 When a reusable component is removed from the component tree in C++ code, the **CustomNode** instance of the component on the native side of the ArkUI framework is mounted to the corresponding JSView. When reuse occurs, **CustomNode** is referenced by JSView and the **aboutToRecycle** callback on **ViewPU** is triggered. The **ViewPU** instance is referenced by **RecycleManager**.
@@ -64,14 +56,16 @@ declare const Reusable: ClassDecorator;
 **Example**
 
 ```ts
-private dataArray: string[] = [];
-  private listener: DataChangeListener;
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | undefined;
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.dataArray[index];
   }
 
@@ -80,7 +74,7 @@ private dataArray: string[] = [];
   }
 
   public reloadListener(): void {
-    this.listener.onDataReloaded();
+    this.listener?.onDataReloaded();
   }
 
   public registerDataChangeListener(listener: DataChangeListener): void {
@@ -88,7 +82,7 @@ private dataArray: string[] = [];
   }
 
   public unregisterDataChangeListener(listener: DataChangeListener): void {
-    this.listener = null;
+    this.listener = undefined;
   }
 }
 
@@ -109,7 +103,7 @@ struct MyComponent {
         ListItem() {
           ReusableChildComponent({ item: item })
         }
-      }, item => item)
+      }, (item: string) => item)
     }
     .width('100%')
     .height('100%')
@@ -121,7 +115,7 @@ struct MyComponent {
 struct ReusableChildComponent {
   @State item: string = ''
 
-  aboutToReuse(params) {
+  aboutToReuse(params: ESObject) {
     this.item = params.item;
   }
 
@@ -137,7 +131,7 @@ struct ReusableChildComponent {
 
 ## Samples
 
-The following sample code from a shopping application exemplifies code before and after component reuse and the benefits that can be reaped from component reuse.
+The following is the sample code of shopping snippets. Compare the benefits of creating customized components on the application side before and after component reuse and the code writing methods before and after component reuse.
 
 ### Code Before and After Component Reuse
 
@@ -251,11 +245,165 @@ struct GoodItems {
 
 Analysis results from the profiler tool in DevEco Studio show that, with component reuse, the average component creation time is reduced from 1800 μs to 570 μs.
 
-![before recycle](./figures/before-recycle.png)
+![before reuse](./figures/before-recycle.png)
 
-![using recycle](./figures/using-recycle.png)
+![using reuse](./figures/using-recycle.png)
 
-| Component Reuse | Component Creation Time|
+|                | Component Creation Time |
 | -------------- | ------------ |
-| Component reuse disabled| 1813 μs      |
+| Component reuse disabled | 1813 μs      |
 | Component reuse enabled  | 570 μs       |
+
+## Developer's Tips
+
+1. When reusing a user-defined component, you are advised to avoid any operations that may change the component tree structure of the user-defined component and re-lay out reusable components to maximize the component reuse performance.
+
+2. It is recommended that the component reuse capability be used together with the LazyForEach rendering control syntax in the list sliding scenario to achieve optimal performance.
+
+3. Developers need to distinguish the behavior during the creation and update of customized components. Note that the reuse of customized components is essentially a special component update behavior. The process and lifecycle during component creation will not occur during component reuse, the construction parameters of the custom component are transferred to the custom component through the aboutToReuse lifecycle callback. In other words, the **aboutToAppear** lifecycle and initialization parameter input of the custom component will not occur during component reuse.
+
+4. To avoid time-consuming operations during the aboutToReuse lifecycle callback, the best practice is to update the status variable values required for updating custom components only in aboutToReuse.
+
+5. Do not update status variables such as @Link, @StorageLink, @ObjectLink, and @Consume in aboutToReuse. Otherwise, unnecessary component updates may be triggered.
+
+6. Do not use functions as input parameters for creating reused customized components.
+
+In the component reuse scenario, the data object associated with the component needs to be re-created each time the component is reused. As a result, the function in the input parameter is repeatedly executed to obtain the input parameter result. If time-consuming operations exist in the function, the performance will be severely affected. The following is an example:
+
+[Incorrect Usage]
+
+```ts
+//BasicDateSource is the class that implements the IDataSource API. For details, see the LazyForEach usage guide.
+//This is a reused customized component.
+@Reusable
+@Component
+struct ChildComponent {
+  @State desc: string = '';
+  @State sum: number = 0;
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.desc = params.desc as string;
+    this.sum = params.sum as number;
+  }
+
+  build() {
+    Column() {
+      Text ('subcomponent' + this.desc)
+        .fontSize(30)
+        .fontWeight(30)
+      Text ('result' + this.sum)
+        .fontSize(30)
+        .fontWeight(30)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Reuse {
+  private data: BasicDateSource = new BasicDateSource();
+
+  aboutToAppear(): void {
+    for (let index = 0; index < 20; index++) {
+      this.data.pushData(index.toString())
+    }
+  }
+    
+  //Unknown time-consuming operation logic may exist in functions in real scenarios. In this example, a loop function is used to simulate time-consuming operations.
+  count(): number {
+    let temp: number = 0;
+    for (let index = 0; index < 10000; index++) {
+      temp += index;
+    }
+    return temp;
+  }
+
+  build() {
+    Column() {
+      List() {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            //The sum parameter is obtained by a function. In actual development scenarios, time-consuming operations that may occur in the function cannot be predicted. Each time a component is reused, the function is repeatedly called.
+            ChildComponent({ desc: item, sum: this.count() })
+          }
+          .width('100%')
+          .height(100)
+        }, (item: string) => item)
+      }
+    }
+  }
+}
+```
+
+In the preceding negative example, the reused subcomponent parameter sum is generated by using a time-consuming function. This function needs to be executed each time a component is reused, which causes performance problems and even frame freezing and loss during list sliding.
+
+[Correct Usage]
+
+```ts
+//BasicDateSource is the class that implements the IDataSource API. For details, see the LazyForEach usage guide.
+//This is a reused customized component.
+@Reusable
+@Component
+struct ChildComponent {
+  @State desc: string = '';
+  @State sum: number = 0;
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.desc = params.desc as string;
+    this.sum = params.sum as number;
+  }
+
+  build() {
+    Column() {
+      Text ('subcomponent' + this.desc)
+        .fontSize(30)
+        .fontWeight(30)
+      Text ('result' + this.sum)
+        .fontSize(30)
+        .fontWeight(30)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Reuse {
+  private data: BasicDateSource = new BasicDateSource();
+  @State sum: number = 0;
+
+  aboutToAppear(): void {
+    for (let index = 0; index < 20; index++) {
+      this.data.pushData(index.toString())
+    }
+    //Execute the asynchronous function.
+    this.count();
+  }
+
+  //Simulate the time-consuming operation logic.
+  async count() {
+    let temp: number = 0;
+    for (let index = 0; index < 10000; index++) {
+      temp += index;
+    }
+    //Put the result into the state variable.
+    this.sum = temp;
+  }
+
+  build() {
+    Column() {
+      List() {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            //The parameters of the subcomponent are transferred through the status variable.
+            ChildComponent({ desc: item, sum: this.sum })
+          }
+          .width('100%')
+          .height(100)
+        }, (item: string) => item)
+      }
+    }
+  }
+}
+```
+
+In the preceding positive example operation, the result generated by using the time-consuming function count remains unchanged. You can execute the result during initial page rendering and assign the result to this.sum. This.sum is used to transfer parameters of reused components.

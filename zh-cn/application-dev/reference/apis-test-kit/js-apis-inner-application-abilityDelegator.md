@@ -40,7 +40,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是       | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 | callback | AsyncCallback\<void>                                         | 是       | 回调函数。当添加AbilityMonitor实例成功，err为undefined，否则为错误对象。   |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -94,7 +94,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 | -------------- | ------------------- |
 | Promise\<void> |Promise对象。无返回结果的Promise对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -140,7 +140,7 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -187,7 +187,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 | callback | AsyncCallback\<void>                                         | 是   | 回调函数。当删除已经添加的AbilityMonitor实例成功，err为undefined，否则为错误对象。  |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -242,7 +242,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 | -------------- | ------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -289,7 +289,7 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -335,7 +335,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 | callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 回调函数。当等待与AbilityMonitor实例匹配的Ability到达OnCreate生命周期成功，err为undefined，data为获取到的Ability实例，否则为错误对象。   |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -389,7 +389,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 | timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms）。                                 |
 | callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。                                           |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -451,7 +451,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 | ----------------------------------------------------------- | -------------------------- |
 | Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise对象，返回Ability实例。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -538,7 +538,7 @@ getAbilityState(ability: UIAbility): number
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -575,7 +575,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 回调函数。当获取当前应用顶部Ability成功，err为undefined，data为获取到的Ability实例；否则为错误对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -617,7 +617,7 @@ getCurrentTopAbility(): Promise\<UIAbility>
 | ----------------------------------------------------------- | -------------------------------------- |
 | Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise对象，返回前应用顶部Ability。 |
 
-**错误码**：
+**错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -658,7 +658,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 | want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 启动Ability参数。    |
 | callback | AsyncCallback\<void>                   | 是   | 回调函数。当启动指定Ability成功，err为undefined，否则为错误对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -722,7 +722,7 @@ startAbility(want: Want): Promise\<void>
 | -------------- | ------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -780,7 +780,7 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | ability  | UIAbility               | 是   | 指定Ability对象。                                         |
 | callback | AsyncCallback\<void>    | 是   | 回调函数。当调度指定Ability生命周期状态到Foreground状态成功，err为undefined，否则为错误对象。  |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -831,7 +831,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。         |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -877,7 +877,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | ability  | UIAbility                 | 是   | 指定Ability对象。                                         |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当调度指定Ability生命周期状态到Background状态成功，err为undefined，否则为错误对象。  |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -928,7 +928,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。                            |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -954,7 +954,7 @@ abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
   abilityDelegator.doAbilityBackground(ability).then(() => {
     console.info("doAbilityBackground promise");
   });
-
+});
 ```
 
 ### printSync<sup>9+</sup>
@@ -979,7 +979,7 @@ printSync(msg: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1189,7 +1189,7 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 | code     | number               | 是   | 日志码。             |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当结束测试并打印日志信息到单元测试终端控制台成功，err为undefined，否则为错误对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1236,7 +1236,7 @@ finishTest(msg: string, code: number): Promise\<void>
 | -------------- | ------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1276,7 +1276,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | callback | AsyncCallback\<void>                                         | 是       | 回调函数。当添加一个用于监视指定AbilityStage的生命周期状态更改的AbilityStageMonitor对象成功，err为undefined，否则为错误对象。     |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1324,7 +1324,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 | -------------- | ------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1365,7 +1365,7 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1405,7 +1405,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | callback | AsyncCallback\<void>                                         | 是       | 回调函数。当从应用程序内存中删除指定的AbilityStageMonitor对象成功，err为undefined，否则为错误对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1453,7 +1453,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 | -------------- | ------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1494,14 +1494,14 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 16000100 | removeAbilityStageMonitorSync failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000100 | RemoveAbilityStageMonitorSync failed. |
 
 **示例：**
 
@@ -1534,7 +1534,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 回调函数。当等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象的操作成功，err为undefined，data为获取到的[AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md)对象；否则为错误对象。    |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1584,7 +1584,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 | -------------- | ------------------- |
 | Promise\<AbilityStage> | Promise对象，返回[AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md)对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -1628,7 +1628,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 | timeout | number | 是   | 超时最大等待时间，以毫秒为单位。 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 回调函数。当等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象的操作成功，err为undefined，data为获取到的[AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md)对象；否则为错误对象。   |
 
-**错误码**：
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 

@@ -1,6 +1,6 @@
 # ContainerSpan
 
-As a child of the [\<Text>](ts-basic-components-text.md) component, the **\<ContainerSpan>** component is used to manage the background colors and rounded corners of multiple [\<Span>](ts-basic-components-span.md) and [\<ImageSpan>](ts-basic-components-imagespan.md) components in a unified manner.
+As a child of the [Text](ts-basic-components-text.md) component, the **Component3D** component is used to manage the background colors and rounded corners of multiple [\<Span>](ts-basic-components-span.md) and [ImageSpan](ts-basic-components-imagespan.md) components in a unified manner.
 
 > **NOTE**
 >
@@ -8,7 +8,7 @@ As a child of the [\<Text>](ts-basic-components-text.md) component, the **\<Cont
 
 ## Child Components
 
-This component can contain the [\<Span>](ts-basic-components-span.md) and [\<ImageSpan>](ts-basic-components-imagespan.md) child components.
+This component can contain the [\<Span>](ts-basic-components-span.md) and [ImageSpan](ts-basic-components-imagespan.md) child components.
 
 ## APIs
 

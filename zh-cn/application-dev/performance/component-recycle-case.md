@@ -190,31 +190,35 @@ export function interactiveButton($$: Temp) {
 
 ## 优化状态管理，精准控制组件刷新范围使用
 
-### 使用attributeModifier精准控制组件属性的刷新，避免组件不必要的属性刷新
+### 使用AttributeUpdater精准控制组件属性的刷新，避免组件不必要的属性刷新
 
 复用场景常用在高频的刷新场景，精准控制组件的刷新范围可以有效减少主线程渲染负载，提升滑动性能。正反例如下：
 
 反例：
 
 ```ts
-@Entry
 @Component
-struct lessEmbeddedComponent {
+export struct LessEmbeddedComponent {
   aboutToAppear(): void {
-    getFriendMomentFromRawfile();
+    momentData.getFriendMomentFromRawfile();
   }
 
   build() {
     Column() {
-      TopBar()
+      Text('use nothing')
       List({ space: ListConstants.LIST_SPACE }) {
         LazyForEach(momentData, (moment: FriendMoment) => {
           ListItem() {
-            OneMomentNoModifier({moment: moment, fontSize: moment.size})
+            OneMomentNoModifier({ color: moment.color })
+              .onClick(() => {
+                console.log(`my id is ${moment.id}`)
+              })
           }
         }, (moment: FriendMoment) => moment.id)
       }
-      .cachedCount(Constants.CACHED_COUNT)
+      .width("100%")
+      .height("100%")
+      .cachedCount(5)
     }
   }
 }
@@ -222,25 +226,119 @@ struct lessEmbeddedComponent {
 @Reusable
 @Component
 export struct OneMomentNoModifier {
-  @Prop moment: FriendMoment;
-  @State fontSize: number | Resource = $r('app.integer.list_history_userText_fontSize');
+  @State color: string | number | Resource = "";
 
   aboutToReuse(params: Record<string, Object>): void {
-    this.fontSize = params.fontSize as number;
+    this.color = params.color as number;
   }
-    
+
   build() {
     Column() {
-      ...
-      Text(`${this.moment.userName}`)
-      Text(this.moment.text)
+      Text('这是标题')
+        Text('这是内部文字')
+          .fontColor(this.color)// 此处使用属性直接进行刷新，会造成Text所有属性都刷新
+          .textAlign(TextAlign.Center)
+          .fontStyle(FontStyle.Normal)
+          .fontSize(13)
+          .lineHeight(30)
+          .opacity(0.6)
+          .margin({ top: 10 })
+          .fontWeight(30)
+          .clip(false)
+          .backgroundBlurStyle(BlurStyle.NONE)
+          .foregroundBlurStyle(BlurStyle.NONE)
+          .borderWidth(1)
+          .borderColor(Color.Pink)
+          .borderStyle(BorderStyle.Solid)
+          .alignRules({
+            'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+            'left': { 'anchor': 'image', 'align': HorizontalAlign.End }
+          })
+    }
+  }
+}
+```
+
+上述反例的操作中，通过aboutToReuse对fontColor状态变量更新，进而导致组件的全部属性进行刷新，造成不必要的耗时。因此可以考虑对需要更新的组件的属性，进行精准刷新，避免不必要的重绘和渲染。
+
+![noModifier1](./figures/component_recycle_case/noModifier1.png)
+
+优化前，由`H:ViewPU.viewPropertyHasChanged OneMomentNoModifier color 1`标签可知，OneMomentNoModifier自定义组件下的状态变量color发生变化，与之相关联的子控件数量为1，即有一个子控件发生了标脏，之后Text全部属性会进行了刷新。
+
+此时，`H:CustomNode:BuildRecycle`耗时543μs，`Create[Text]`耗时为4μs。  
+
+![noModifier2](./figures/component_recycle_case/noModifier2.png)
+
+![noModifier3](./figures/component_recycle_case/noModifier3.png)
+
+正例：
+
+```typescript
+import { AttributeUpdater } from '@ohos.arkui.modifier';
+
+export class MyTextUpdater extends AttributeUpdater<TextAttribute> {
+  private color: string | number | Resource = "";
+
+  constructor(color: string | number | Resource) {
+    super();
+    this.color = color
+  }
+
+  initializeModifier(instance: TextAttribute): void {
+    instance.fontColor(this.color) // 差异化更新
+  }
+}
+
+@Component
+export struct UpdaterComponent {
+  aboutToAppear(): void {
+    momentData.getFriendMomentFromRawfile();
+  }
+
+  build() {
+    Column() {
+      Text('use MyTextUpdater')
+      List({ space: ListConstants.LIST_SPACE }) {
+        LazyForEach(momentData, (moment: FriendMoment) => {
+          ListItem() {
+            OneMomentNoModifier({ color: moment.color })
+              .onClick(() => {
+                console.log(`my id is ${moment.id}`)
+              })
+          }
+        }, (moment: FriendMoment) => moment.id)
+      }
+      .cachedCount(5)
+    }
+  }
+}
+
+@Reusable
+@Component
+export struct OneMomentNoModifier {
+  color: string | number | Resource = "";
+  textUpdater: MyTextUpdater | null = null;
+
+  aboutToAppear(): void {
+    this.textUpdater = new MyTextUpdater(this.color);
+  }
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.color = params.color as string;
+    this.textUpdater?.attribute?.fontColor(this.color);
+  }
+
+  build() {
+    Column() {
+      Text('这是标题')
+      Text('这是内部文字')
+        .attributeModifier(this.textUpdater) // 采用attributeUpdater来对需要更新的fontColor属性进行精准刷新，避免不必要的属性刷新。
         .textAlign(TextAlign.Center)
         .fontStyle(FontStyle.Normal)
-        .fontSize(this.fontSize) // 此处使用属性直接进行刷新，会造成Text所有属性都刷新
-        .fontColor($r('app.color.title_font_color'))
-        .lineHeight($r('app.integer.list_history_userText_line_height'))
-        .opacity($r('app.float.opacity_zero_point_six'))
-        .margin({ top: $r('app.integer.list_history_userText_margin_top') })
+        .fontSize(13)
+        .lineHeight(30)
+        .opacity(0.6)
+        .margin({ top: 10 })
         .fontWeight(30)
         .clip(false)
         .backgroundBlurStyle(BlurStyle.NONE)
@@ -252,131 +350,33 @@ export struct OneMomentNoModifier {
           'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
           'left': { 'anchor': 'image', 'align': HorizontalAlign.End }
         })
-      ...
     }
   }
 }
 ```
 
-上述反例的操作中，通过aboutToReuse对fontSize状态变量更新，进而导致组件的全部属性进行刷新，造成不必要的耗时。可以考虑对需要更新的组件的属性，进行精准刷新，避免不必要的重绘和渲染。
+上述正例的操作中，通过AttributeUpdater来对Text组件需要刷新的属性进行精准刷新，避免Text其它不需要更改的属性的刷新。  
 
-优化前，由`viewPropertyHasChanged OneMomentNoModifier fontSize 1`标签可知，OneMomentNoModifier自定义组件下的状态变量fontSize发生变化，与之相关联的子控件数量为1，即有一个子控件发生了标脏，之后Text全部属性会进行了刷新。
+![useUpdater1](./figures/component_recycle_case/useUpdater1.png)
 
-![noModifier1](./figures/component_recycle_case/noModifier1.png)
-
-此时，aboutToReuse的耗时，为336μs，Create[Text]耗时为8μs。
-
-![noModifier2](./figures/component_recycle_case/noModifier2.png)
-
-![noModifier3](./figures/component_recycle_case/noModifier3.png)
-
-正例：
-
-```ts
-export class MyTextModifier implements AttributeModifier<TextAttribute> {
-  private fontSize: number | Resource = $r('app.integer.list_history_userText_fontSize');
-  private static instance: MyTextModifier;
-
-  constructor() {
-  }
-
-  // 采用单例模式，避免为每个组件都创建一个新的修改器，增加创建产生的性能开销
-  public static getInstance(): MyTextModifier {
-    if (MyTextModifier.instance) {
-      return MyTextModifier.instance;
-    } else {
-      return new MyTextModifier();
-    }
-  }
-
-  setFontSize(fontSize: number | Resource) {
-    this.fontSize = fontSize;
-  }
-  
-  applyNormalAttribute(instance: TextAttribute): void {
-    instance.textAlign(TextAlign.Center)
-    instance.fontStyle(FontStyle.Normal)
-    instance.fontSize(this.fontSize) // 差异化更新
-    instance.fontColor($r('app.color.title_font_color'))
-    instance.lineHeight($r('app.integer.list_history_userText_line_height'))
-    instance.opacity($r('app.float.opacity_zero_point_six'))
-    instance.margin({ top: $r('app.integer.list_history_userText_margin_top') })
-    instance.fontWeight(30)
-    instance.clip(false)
-    instance.backgroundBlurStyle(BlurStyle.NONE)
-    instance.foregroundBlurStyle(BlurStyle.NONE)
-    instance.borderWidth(1)
-    instance.borderColor(Color.Pink)
-    instance.borderStyle(BorderStyle.Solid)
-    instance.alignRules({
-      'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
-      'left': { 'anchor': 'image', 'align': HorizontalAlign.End }
-    })
-  }
-}
-
-@Entry
-@Component
-struct lessEmbeddedComponent {
-  aboutToAppear(): void {
-    getFriendMomentFromRawfile();
-  }
-
-  build() {
-    Column() {
-      TopBar()
-      List({ space: ListConstants.LIST_SPACE }) {
-        LazyForEach(momentData, (moment: FriendMoment) => {
-          ListItem() {
-            OneMomentNoModifier({moment: moment, fontSize: moment.size})
-          }
-        }, (moment: FriendMoment) => moment.id)
-      }
-      .cachedCount(Constants.CACHED_COUNT)
-    }
-  }
-}
-
-@Reusable
-@Component
-export struct OneMomentNoModifier {
-  @Prop moment: FriendMoment;
-  @State fontSize: number | Resource = $r('app.integer.list_history_userText_fontSize');
-  textModifier: MyTextModifier = MyTextModifier.getInstance();
-
-  aboutToReuse(params: Record<string, Object>): void {
-    this.fontSize = params.fontSize as number;
-    this.textModifier.setFontSize(this.fontSize);
-  }
-
-  build() {
-    Column() {
-      ...
-      Text(`${this.moment.userName}`)
-      Text(this.moment.text)
-        // 采用attributeModifier来对需要更新的fontSize属性进行精准刷新，避免不必要的属性刷新。
-        .attributeModifier(this.textModifier)
-      ...
-     }
-  }
-}
-```
-
-上述正例的操作中，通过attributeModifier属性来对Text组件需要刷新的fontSize属性进行精准刷新，避免Text其它不需要更改的属性的刷新。
+优化后，在`H:aboutToReuse`标签下没有`H:ViewPU.viewPropertyHasChanged`标签，后续也没有`Create[Text]`标签。此时，`H:CustomNode:BuildRecycle`耗时415μs
 
 **优化效果**
 
-在正反例中，针对列表滑动场景中，单个列表项中Text组件字体大小属性的修改，反例中采用了普通组件属性刷新方式实现，正例中采用了attributeModifier动态属性设置方式实现。
+在正反例中，针对列表滑动场景中，单个列表项中Text组件字体颜色属性的修改，反例中采用了普通组件属性刷新方式实现，正例中采用了AttributeUpdater动态属性设置方式实现。
 
-在优化后，由`viewPropertyHasChanged OneMomentNoModifier fontSize 0`标签可知，OneMomentNoModifier自定义组件下的状态变量fontSize发生变化，与之相关联的子控件数量为0，即Text没有走常规的标脏，不会刷新全部属性。
+优化后的`H:CustomNode:BuildRecycle OneMomentNoModifier`的耗时，如下表所示：
 
-![modifer1](./figures/component_recycle_case/modifer1.png)
+| 次数 | 反例：使用@State(单位μs) | 正例：使用AttributeUpdater(单位μs) |
+| --- | --- | --- |
+| 1 | 357 | 338 |
+| 2 | 903 | 494 |
+| 3 | 543 | 415 |
+| 4 | 543 | 451 |
+| 5 | 692 | 509 |
+| 平均 | 607 | 441 |
 
-优化后的aboutToReuse的耗时，缩短到了257μs，Create[Text]耗时缩短为4μs。
-
-![modifer2](./figures/component_recycle_case/modifer2.png)
-
-![modifer3](./figures/component_recycle_case/modifer3.png)
+> 不同设备和场景都会对数据有影响，该数据仅供参考。
 
 所以，Trace数据证明，精准控制组件的刷新范围可以有效减少主线程渲染负载，提升滑动性能。
 
@@ -522,7 +522,7 @@ export class FriendMoment {
 
 **优化效果**
 
-在正反例中，针对列表滑动场景，单个列表项中Text组件字体大小属性的修改，反例中采用了普通组件属性刷新方式实现，正例中采用了attributeModifier动态属性设置方式实现。
+在正反例中，针对列表滑动场景，反例采用@Prop修饰的变量，来进行父子组件间的数据同步。子组件在初始化时@Prop修饰的变量，都在本地拷贝了一份数据，增加了组件创建的时间；正例采用@ObjectLink来进行父子组件间的数据同步，把当前this指针注册给父组件，减少了组件创建的时间。
 
 优化后，子组件直接同步父组件数据，无需深拷贝，BuildItem耗时缩短为7ms1μs。
 
@@ -570,8 +570,8 @@ export struct OneMoment {
   // 该类型的状态变量已包含自动刷新功能，不需要再重复进行刷新
   @ObjectLink moment: FriendMoment;
 
-    // 此处aboutToReuse为多余刷新
-    aboutToReuse(params: Record<string, Object>): void {
+  // 此处aboutToReuse为多余刷新
+  aboutToReuse(params: Record<string, Object>): void {
     this.moment.id = (params.moment as FriendMoment).id
     this.moment.userName = (params.moment as FriendMoment).userName
     this.moment.avatar = (params.moment as FriendMoment).avatar
@@ -714,10 +714,8 @@ struct withoutReuseId {
       List({ space: ListConstants.LIST_SPACE }) {
         LazyForEach(momentData, (moment: FriendMoment) => {
           ListItem() {
-            OneMoment({
-              moment: moment,
-              fontSize: moment.size
-            })
+            // 此处的复用组件，只有一个reuseId，为组件的名称。但是该复用组件中又存在if else重新创建组件的逻辑
+            TrueOneMoment({ moment: moment, sum: this.sum, fontSize: moment.size })
           }
         }, (moment: FriendMoment) => moment.id)
       }
@@ -726,34 +724,34 @@ struct withoutReuseId {
   }
 }
 
-
 @Reusable
 @Component
-export struct OneMoment {
+export struct TrueOneMoment {
   @Prop moment: FriendMoment;
+  @State sum: number = 0;
+  @State fontSize: number | Resource = $r('app.integer.list_history_userText_fontSize');
+
+  aboutToReuse(params: ESObject): void {
+    this.fontSize = params.fontSize as number;
+    this.sum = params.sum as number;
+  }
 
   build() {
     Column() {
-      ...
-      Text(this.moment.text)
-
-      if (this.moment.image !== '') {
-        Flex({ wrap: FlexWrap.Wrap }) {
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-        }
+      if (this.moment.image) {
+        FalseOneMoment({ moment: this.moment, sum: this.sum, fontSize: this.moment.size })
+      } else {
+        OneMoment({ moment: this.moment, sum: this.sum, fontSize: this.moment.size })
       }
-      ...
     }
+    .width('100%')
   }
 }
 ```
 
-上述反例的操作中，通过if来控制组件树走不同的分支，分别选择是否创建Flex组件。导致更新if分支时仍然可能走删除重创的逻辑。考虑采用根据不同的分支设置不同的reuseId来提高复用的性能。
+上述反例的操作中，在一个reuseId标识的组件TrueOneMoment中，通过if来控制其中的组件走不同的分支，选择是否创建FalseOneMoment或OneMoment组件。导致更新if分支时仍然可能走删除重创的逻辑（此处BuildItem重新创建了OneMoment组件）。考虑采用根据不同的分支设置不同的reuseId来提高复用的性能。
 
-优化前，2号列表项复用时长为3ms。
+优化前，15号列表项复用时长为10ms左右，且存在自定义组件创建的情况。
 
 ![noReuseId](./figures/component_recycle_case/noReuseId.png)
 
@@ -773,9 +771,9 @@ struct withoutReuseId {
       List({ space: ListConstants.LIST_SPACE }) {
         LazyForEach(momentData, (moment: FriendMoment) => {
           ListItem() {
-            OneMoment({moment: moment})
-              // 使用reuseId进行组件复用的控制
-              .reuseId((moment.image !== '') ? 'withImage' : 'noImage')
+            // 使用不同的reuseId标记，保证TrueOneMoment中各个子组件在复用时，不重新创建
+            TrueOneMoment({ moment: moment, sum: this.sum, fontSize: moment.size })
+              .reuseId((moment.image !=='' ?'withImage' : 'noImage'))
           }
         }, (moment: FriendMoment) => moment.id)
       }
@@ -786,35 +784,36 @@ struct withoutReuseId {
 
 @Reusable
 @Component
-export struct OneMoment {
+export struct TrueOneMoment {
   @Prop moment: FriendMoment;
+  @State sum: number = 0;
+  @State fontSize: number | Resource = $r('app.integer.list_history_userText_fontSize');
+
+  aboutToReuse(params: ESObject): void {
+    this.fontSize = params.fontSize as number;
+    this.sum = params.sum as number;
+  }
 
   build() {
     Column() {
-      ...
-      Text(this.moment.text)
-
-      if (this.moment.image !== '') {
-        Flex({ wrap: FlexWrap.Wrap }) {
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-        }
+      if (this.moment.image) {
+        FalseOneMoment({ moment: this.moment, sum: this.sum, fontSize: this.moment.size })
+      } else {
+        OneMoment({ moment: this.moment, sum: this.sum, fontSize: this.moment.size })
       }
-      ...
     }
+    .width('100%')
   }
-}
+}   
 ```
 
-上述正例的操作中，通过reuseId来标识需要复用的组件，省去走if删除重创的逻辑，提高组件复用的效率和性能。
+上述正例的操作中，通过不同的reuseId来标识需要复用的组件，省去走if删除重创的逻辑，提高组件复用的效率和性能。
 
 **优化效果**
 
-针对列表滑动场景中单个列表项中的一个包含4个Image组件的Flex容器组件，通过if进行条件渲染，存在不同逻辑创建不同布局结构嵌套的组件的情况，反例中没有使用复用标识reuseId，正例中采用复用标识reuseId区分不同结构的组件。
+针对列表滑动场景中，复用的组件中又存在多个自定义组件。通过if进行条件渲染，存在不同逻辑创建不同布局结构的组件的情况。反例中多个复用组件使用相同的复用标识reuseId，正例中采用不同的复用标识reuseId区分不同结构的自定义组件。
 
-优化后，2号列表项复用时长缩短为2ms。
+优化后，15号列表项复用时长缩短为3ms左右，不存在自定义组件的创建。
 
 ![ReuseId](./figures/component_recycle_case/ReuseId.png)
 

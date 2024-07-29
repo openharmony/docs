@@ -50,7 +50,7 @@
 | typedef void(\*[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | 定义native层图片的回调方法。 | 
 | typedef struct [OH_ImageSourceNative](#oh_imagesourcenative) [OH_ImageSourceNative](#oh_imagesourcenative) | ImageSource结构体类型，用于执行ImageSource相关操作。 | 
 | typedef struct [OH_ImageSource_Info](#oh_imagesource_info) [OH_ImageSource_Info](#oh_imagesource_info) | 图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create). | 
-| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | 编码选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。 | 
+| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | 解码选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。 | 
 | typedef struct [OH_PixelmapNative](#oh_pixelmapnative) [OH_PixelmapNative](#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。 | 
 | typedef struct [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) | 初始化参数结构体。 | 
 | typedef struct [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) | 图像像素信息结构体。 | 
@@ -145,6 +145,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetHeight](#oh_pixelmapinitializationoptions_setheight) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t height) | 设置图片高。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetPixelFormat](#oh_pixelmapinitializationoptions_getpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*pixelFormat) | 获取像素格式。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetPixelFormat](#oh_pixelmapinitializationoptions_setpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t pixelFormat) | 设置像素格式。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetSrcPixelFormat](#oh_pixelmapinitializationoptions_getsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*srcpixelFormat) | 获取源像素格式。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t srcpixelFormat) | 设置源像素格式。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | 获取透明度类型。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | 设置透明度类型。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | 释放OH_Pixelmap_InitializationOptions指针。 | 
@@ -167,6 +169,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | 根据输入的条件对图片进行翻转。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | 根据输入的尺寸对图片进行裁剪 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](_image___native_module.md#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixlemap的像素数据做预乘和非预乘之间的转换。| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](_image___native_module.md#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](_image___native_module.md#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。| 
 
 
 ### 变量
@@ -379,7 +383,9 @@ typedef struct OH_DecodingOptions OH_DecodingOptions
 
 **描述**
 
-编码选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
+解码选项参数结构体,被用于选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_DecodingOptions结构体介绍](../../media/image/image-structure-c.md#oh_decodingoptions结构体)。
 
 **起始版本：** 12
 
@@ -394,6 +400,8 @@ typedef struct OH_ImageNative OH_ImageNative
 
 为图像接口定义native层图像对象的别名。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageNative结构体介绍](../../media/image/image-structure-c.md#oh_imagenative结构体)。
+
 **起始版本：** 12
 
 
@@ -406,6 +414,8 @@ typedef struct OH_ImagePackerNative OH_ImagePackerNative
 **描述**
 
 ImagePacker结构体类型，用于执行ImagePacker相关操作。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImagePackerNative结构体介绍](../../media/image/image-structure-c.md#oh_imagepackernative结构体)。
 
 **起始版本：** 12
 
@@ -433,6 +443,8 @@ typedef struct OH_ImageReceiverNative OH_ImageReceiverNative
 
 用于定义OH_ImageReceiverNative数据类型名称。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageReceiverNative结构体介绍](../../media/image/image-structure-c.md#oh_imagereceivernative结构体)。
+
 **起始版本：** 12
 
 
@@ -446,6 +458,8 @@ typedef struct OH_ImageReceiverOptions OH_ImageReceiverOptions
 
 用于定义OH_ImageReceiverOptions数据类型名称。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageReceiverOptions结构体介绍](../../media/image/image-structure-c.md#oh_imagereceiveroptions结构体)。
+
 **起始版本：** 12
 
 
@@ -457,7 +471,9 @@ typedef struct OH_ImageSource_Info OH_ImageSource_Info
 
 **描述**
 
-图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).
+图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create)。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageSource_Info结构体介绍](../../media/image/image-structure-c.md#oh_imagesource_info结构体)。
 
 **起始版本：** 12
 
@@ -472,6 +488,8 @@ typedef struct OH_ImageSourceNative OH_ImageSourceNative
 
 ImageSource结构体类型，用于执行ImageSource相关操作。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageSourceNative结构体介绍](../../media/image/image-structure-c.md#oh_imagesourcenative结构体)。
+
 **起始版本：** 12
 
 
@@ -484,6 +502,8 @@ typedef struct OH_PackingOptions OH_PackingOptions
 **描述**
 
 图像编码选项。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_PackingOptions结构体介绍](../../media/image/image-structure-c.md#oh_packingoptions结构体)。
 
 **起始版本：** 12
 
@@ -498,6 +518,8 @@ typedef struct OH_Pixelmap_ImageInfo OH_Pixelmap_ImageInfo
 
 图像像素信息结构体。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_Pixelmap_ImageInfo结构体介绍](../../media/image/image-structure-c.md#oh_pixelmap_imageinfo结构体)。
+
 **起始版本：** 12
 
 
@@ -511,6 +533,8 @@ typedef struct OH_Pixelmap_InitializationOptions OH_Pixelmap_InitializationOptio
 
 初始化参数结构体。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_Pixelmap_InitializationOptions结构体介绍](../../media/image/image-structure-c.md#oh_pixelmap_initializationoptions结构体)。
+
 **起始版本：** 12
 
 
@@ -523,6 +547,8 @@ typedef struct OH_PixelmapNative OH_PixelmapNative
 **描述**
 
 Pixelmap结构体类型，用于执行Pixelmap相关操作。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_PixelmapNative结构体介绍](../../media/image/image-structure-c.md#oh_pixelmapnative结构体)。
 
 **起始版本：** 12
 
@@ -2732,6 +2758,51 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth (OH_Pixelmap_Initializ
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
+### OH_PixelmapInitializationOptions_SetSrcPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t srcpixelFormat)
+```
+
+**描述**
+
+设置源像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| srcpixelFormat | 源像素格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+### OH_PixelmapInitializationOptions_GetSrcPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_InitializationOptions *ops, int32_t *srcpixelFormat)
+```
+
+**描述**
+
+获取源像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| srcpixelFormat | 源像素格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 ### OH_PixelmapNative_CreatePixelmap()
 
@@ -2742,6 +2813,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap (uint8_t * data, size_t dataLen
 **描述**
 
 通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。
+
+接口调用完，入参data的数据可释放。
 
 **起始版本：** 12
 
@@ -3002,6 +3075,52 @@ Image_ErrorCode OH_PixelmapNative_WritePixels (OH_PixelmapNative * pixelmap, uin
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
+### OH_PixelmapNative_ConvertAlphaFormat()
+
+```
+Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap, OH_PixelmapNative* dstpixelmap, const bool isPremul);
+```
+
+**描述**
+
+将pixlemap的像素数据做预乘和非预乘之间的转换。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| srcpixelmap | 被操作的OH_PixelmapNative指针, 源pixelmap对象指针。 | 
+| dstpixelmap | 被操作的OH_PixelmapNative指针, 目标pixelmap对象指针。 | 
+| isPremul | 转换方式，true为非预乘转预乘，false为预乘转非预乘。| 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+### OH_PixelmapNative_CreateEmptyPixelmap()
+
+```
+Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
+```
+
+**描述**
+
+利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 创建像素的属性。 | 
+| pixelmap | 被创建的OH_PixelmapNative对象指针。 |  
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 ## 变量说明
 

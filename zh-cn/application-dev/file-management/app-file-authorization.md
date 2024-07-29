@@ -28,13 +28,13 @@
 2. 应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import environment from '@ohos.file.environment';
-   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { Environment } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function getUserDownloadDirExample() {
      try {
-       let path = environment.getUserDownloadDir();
+       let path = Environment.getUserDownloadDir();
        console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
        await fs.mkdir(path + "/brower");
        let fd = await fs.open(path + "/brower/1.txt", fs.OpenMode.CREATE);
@@ -55,8 +55,8 @@
    以下示例代码演示了获取文件夹URI的过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import picker from '@ohos.file.picker';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { picker } from '@kit.CoreFileKit';
 
    async function selectExample() {
      try {
@@ -76,34 +76,34 @@
    以下示例代码演示了检查持久化权限过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import picker from '@ohos.file.picker';
-   import fileshare from '@ohos.fileshare';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileShare } from '@kit.CoreFileKit';
 
    async function checkPersistentPermissionExample() {
      try {
        let documentSelectOptions = new picker.DocumentSelectOptions();
        let documentPicker = new picker.DocumentViewPicker();
        let uris = await documentPicker.select(documentSelectOptions);
-       let policyInfo: fileshare.PolicyInfo = {
+       let policyInfo: fileShare.PolicyInfo = {
          uri: uris[0],
-         operationMode: fileshare.OperationMode.READ_MODE,
+         operationMode: fileShare.OperationMode.READ_MODE,
        };
-       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-       fileshare.checkPersistentPermission(policies).then(async (data) => {
+       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+       fileShare.checkPersistentPermission(policies).then(async (data) => {
          let results: Array<boolean> = data;
          for (let i = 0; i < results.length; i++) {
            console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
            if (!results[i]) {
-             let info: fileshare.PolicyInfo = {
+             let info: fileShare.PolicyInfo = {
                uri: policies[i].uri,
                operationMode: policies[i].operationMode,
              };
-             let policy: Array<fileshare.PolicyInfo> = [info];
-             await fileshare.persistPermission(policy);
+             let policy: Array<fileShare.PolicyInfo> = [info];
+             await fileShare.persistPermission(policy);
            }
          }
-       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
          console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
        });
      } catch (error) {
@@ -118,21 +118,21 @@
    以下示例代码演示了持久化授权过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import fileshare from '@ohos.fileshare';
-   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileShare } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function persistPermissionExample() {
      try {
        let uri = "file://docs/storage/Users/username/1.txt";
-       let policyInfo: fileshare.PolicyInfo = {
+       let policyInfo: fileShare.PolicyInfo = {
          uri: uri,
-         operationMode: fileshare.OperationMode.READ_MODE,
+         operationMode: fileShare.OperationMode.READ_MODE,
        };
-       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-       fileshare.persistPermission(policies).then(() => {
+       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+       fileShare.persistPermission(policies).then(() => {
          console.info("persistPermission successfully");
-       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
          console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
          if (err.code == 13900001 && err.data) {
            console.log("error data : " + JSON.stringify(err.data));
@@ -152,22 +152,22 @@
    以下示例代码演示了去除持久化授权URI的过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import fileshare from '@ohos.fileshare';
-   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileShare } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function revokePermissionExample() {
      try {
        let uri = "file://docs/storage/Users/username/1.txt";
-       let policyInfo: fileshare.PolicyInfo = {
+       let policyInfo: fileShare.PolicyInfo = {
          uri: uri,
-         operationMode: fileshare.OperationMode.READ_MODE,
+         operationMode: fileShare.OperationMode.READ_MODE,
        };
-       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-       await fileshare.persistPermission(policy);
-       fileshare.revokePermission(policies).then(() => {
+       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+       await fileShare.persistPermission(policy);
+       fileShare.revokePermission(policies).then(() => {
          console.info("revokePermission successfully");
-       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
          console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
          if (err.code == 13900001 && err.data) {
            console.log("error data : " + JSON.stringify(err.data));
@@ -187,28 +187,28 @@
    以下示例代码演示了应用激活持久化授权的过程，其中参数URI为应用重启后需要激活权限的路径：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import fileshare from '@ohos.fileshare';
-   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileShare } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function activatePermissionExample01() {
      try {
        let uri = "file://docs/storage/Users/username/tmp.txt";
-       let policyInfo: fileshare.PolicyInfo = {
+       let policyInfo: fileShare.PolicyInfo = {
          uri: uri,
-         operationMode: fileshare.OperationMode.READ_MODE,
+         operationMode: fileShare.OperationMode.READ_MODE,
        };
-       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-       let results = await fileshare.checkPersistentPermission(policies);
+       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+       let results = await fileShare.checkPersistentPermission(policies);
        for (let i = 0; i < results.length; i++) {
          console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
          if (results[i]) {
-           let info: fileshare.PolicyInfo = {
+           let info: fileShare.PolicyInfo = {
              uri: policies[i].uri,
              operationMode: policies[i].operationMode,
            };
-           let policy: Array<fileshare.PolicyInfo> = [info];
-           await fileshare.activatePermission(policy);
+           let policy: Array<fileShare.PolicyInfo> = [info];
+           await fileShare.activatePermission(policy);
            console.info("activatePermission successfully");
          }
        }
@@ -226,22 +226,22 @@
    以下示例代码演示了取消激活持久化权限的过程：
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import fileshare from '@ohos.fileshare';
-   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileShare } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    async function deactivatePermissionExample01() {
      try {
        let uri = "file://docs/storage/Users/username/tmp.txt";
-       let policyInfo: fileshare.PolicyInfo = {
+       let policyInfo: fileShare.PolicyInfo = {
          uri: uri,
-         operationMode: fileshare.OperationMode.READ_MODE,
+         operationMode: fileShare.OperationMode.READ_MODE,
        };
-       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-       await fileshare.activatePermission(policies);
-       fileshare.deactivatePermission(policies).then(() => {
+       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+       await fileShare.activatePermission(policies);
+       fileShare.deactivatePermission(policies).then(() => {
          console.info("deactivatePermission successfully");
-       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
          console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
          if (err.code == 13900001 && err.data) {
            console.log("error data : " + JSON.stringify(err.data));
@@ -263,8 +263,8 @@
 以下示例代码演示了获取文件父目录过程：
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fileUri from '@ohos.file.fileuri';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileUri } from '@kit.CoreFileKit';
 
 function getFullDirectoryUriExample01() {
   try {
@@ -316,15 +316,15 @@ function getUserDirExample() {
 以下示例代码演示了文件管理器通过接口获取外卡目录、内卡目录：
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import environment from '@ohos.file.environment';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Environment } from '@kit.CoreFileKit';
 
 function getDirectoryExample01() {
   try {
     //获取外卡根目录
-    let externalStoragePath = environment.getExternalStorageDir();
+    let externalStoragePath = Environment.getExternalStorageDir();
     //获取当前用户下应用沙箱路径的内卡目录
-    let userHomePath = environment.getUserHomeDir();
+    let userHomePath = Environment.getUserHomeDir();
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error('getDirectory failed with err: ' + JSON.stringify(err));

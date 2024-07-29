@@ -463,26 +463,6 @@ Allows an application to read Calendar data.
 
 **Valid since**: 8
 
-### ohos.permission.READ_HEALTH_DATA
-
-Allows an application to read the health data of the user.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-### ohos.permission.READ_MEDIA
-
-Allows an application to read media files from the user's external storage.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
 ### ohos.permission.WRITE_CALENDAR
 
 Allows an application to add, remove, and modify Calendar events.
@@ -493,9 +473,9 @@ Allows an application to add, remove, and modify Calendar events.
 
 **Valid since**: 8
 
-### ohos.permission.WRITE_MEDIA
+### ohos.permission.READ_HEALTH_DATA
 
-Allows an application to read media files from and write media files into the user's external storage.
+Allows an application to read the health data of the user.
 
 **Permission level**: normal
 
@@ -512,3 +492,35 @@ Allows an application to use NearLink, such as device pairing and connecting to 
 **Authorization mode**: user_grant
 
 **Valid since**: 12
+
+### ohos.permission.READ_MEDIA
+
+Allows an application to read media files from the user's external storage.
+
+**Permission level**: normal
+
+**Authorization mode**: user_grant
+
+**Valid since**: 7
+
+**Deprecated from**: 12
+
+**Substitute**:
+
+See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
+
+### ohos.permission.WRITE_MEDIA
+
+Allows an application to read media files from and write media files into the user's external storage.
+
+**Permission level**: normal
+
+**Authorization mode**: user_grant
+
+**Valid since**: 7
+
+**Deprecated from**: 12
+
+**Substitute**:
+
+See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).

@@ -353,8 +353,8 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
     element = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {

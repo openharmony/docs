@@ -5,7 +5,9 @@
 
 The **native_drm_common.h** file declares the DRM data types.
 
-**Library**: libnative_drm.z.so
+**Library**: libnative_drm.so
+
+**File to include**: &lt;multimedia/drm_framework/native_drm_common.h&gt;
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 

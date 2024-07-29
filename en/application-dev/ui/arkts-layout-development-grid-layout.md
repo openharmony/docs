@@ -13,7 +13,7 @@ As an auxiliary positioning tool, the responsive grid layout is handy in UI desi
 
 4. Completes the wrapping and adaptation automatically when overflow occurs. When the number of page elements exceeds the capacity of a row or column, they automatically wrap to a new row or column and adapt the typesetting to different devices.
 
-The [\<GridRow>](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) component is a responsive grid container and must have [\<GridCol>](../reference/arkui-ts/ts-container-gridcol.md) as its child component.
+The [\<GridRow>](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) component is a responsive grid container and must have [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) as its child component.
 
 
 ## GridRow
@@ -61,7 +61,7 @@ In the **\<GridRow>** component, you can use **breakpoints** to customize the va
 
 - The grid system implements breakpoints by listening for the changes in the window or container size, and sets the breakpoint references through **reference**. Since the application may be displayed in non-full-screen mode, it is better to design the breakpoints with the application window width as the reference.
 
-In the following example, the default number of grid columns is 12. Breakpoints are used to divide the application window width into six ranges. In different ranges, the **\<GridCol>** child component occupies a different number of columns.
+In the following example, the default number of grid columns is 12. Breakpoints are used to divide the application window width into six ranges. In different ranges, the **GridCol** child component occupies a different number of columns.
 
 
 ```ts
@@ -242,7 +242,7 @@ In the **\<GridRow>** component, **gutter** is used to set the spacing between a
 
 ## GridCol
 
-The **\<GridCol>** component is a child component of the **\<GridRow>** component. You can set the **span**, **offset**, and **order** attributes of this component by passing parameters or using setters.
+The **GridCol** component is a child component of the **\<GridRow>** component. You can set the **span**, **offset**, and **order** attributes of this component by passing parameters or using setters.
 
 - Setting **span**
 
@@ -441,7 +441,7 @@ If **order** is not set for all child components, those that have **order** set 
 
 Responsive grid components can be contained in other responsive grid components.
 
-In the following example, the responsive grid divides the entire space into 12 parts. At the first layer, **\<GridCol>** is nested in **\<GridRow>**, and the space is divided into the large area in the center and the footer area. At the second layer, **\<GridCol>** is nested in **\<GridRow>**, and the space is divided into the left and right areas. The child components take up the space allocated by the parent component at the upper layer. In this example, the pink area is made up of 12 columns of the screen space, and the green and blue areas take up the 12 columns of the parent component proportionally.
+In the following example, the responsive grid divides the entire space into 12 parts. At the first layer, **GridCol** is nested in **\<GridRow>**, and the space is divided into the large area in the center and the footer area. At the second layer, **GridCol** is nested in **\<GridRow>**, and the space is divided into the left and right areas. The child components take up the space allocated by the parent component at the upper layer. In this example, the pink area is made up of 12 columns of the screen space, and the green and blue areas take up the 12 columns of the parent component proportionally.
 
 
 

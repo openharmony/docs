@@ -19,10 +19,10 @@
 1. 导入NotificationManager模块。
 
     ```ts
-    import notificationManager from '@ohos.notificationManager';
-    import Base from '@ohos.base';
-    import hilog from '@ohos.hilog';
-    import common from '@ohos.app.ability.common';
+    import { notificationManager } from '@kit.NotificationKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { common } from '@kit.AbilityKit';
 
     const TAG: string = '[PublishOperation]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -39,7 +39,7 @@
       if(!data){
         notificationManager.requestEnableNotification(context).then(() => {
           hilog.info(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification success`);
-        }).catch((err : Base.BusinessError) => {
+        }).catch((err : BusinessError) => {
           if(1600004 == err.code){
             console.info(`[ANS] requestEnableNotification refused`);
           } else {
@@ -47,8 +47,8 @@
           }
         });
       }
-    }).catch((err : Base.BusinessError) => {
-        console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+    }).catch((err : BusinessError) => {
+        hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail: ${JSON.stringify(err)}`);
     });
     ```
 

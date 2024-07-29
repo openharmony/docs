@@ -10,21 +10,44 @@
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
-import Logger from '../../utils/Logger';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PageInterflowFaAndStage';
+const domain: number = 0xFF00;
 
-let want: Want = {
-  bundleName: 'ohos.samples.etsclock',
-  abilityName: 'MainAbility'
-};
-featureAbility.startAbility({ want }).then((code) => {
-  Logger.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
-}).catch((error: BusinessError) => {
-  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
-});
+@Entry
+@Component
+struct PageInterflowFaAndStage {
+  build() {
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'ohos.samples.etsclock',
+              abilityName: 'MainAbility'
+            };
+            featureAbility.startAbility({ want }).then((code) => {
+              hilog.info(domain, TAG, 'Ability verify code: ' + JSON.stringify(code));
+            }).catch((error: BusinessError) => {
+              hilog.error(domain, TAG, 'Ability failed: ' + JSON.stringify(error));
+            });
+            //...
+          })
+        }
+        //...
+      }
+      //...
+    }
+    //...
+  }
+}
 ```
 
 
@@ -37,21 +60,43 @@ startAbilityForResult和startAbility的区别是当UIAbility销毁的时候会�
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
-import Logger from '../../utils/Logger';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PageInterflowFaAndStage';
+const domain: number = 0xFF00;
 
-let want: Want = {
-  bundleName: 'ohos.samples.etsclock',
-  abilityName: 'MainAbility'
-};
-featureAbility.startAbilityForResult({ want }).then((result) => {
-  Logger.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
-}).catch((error: BusinessError) => {
-  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
-});
+@Entry
+@Component
+struct PageInterflowFaAndStage {
+  build() {
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'ohos.samples.etsclock',
+              abilityName: 'MainAbility'
+            };
+            featureAbility.startAbilityForResult({ want }).then((result) => {
+              hilog.info(domain, TAG, 'Ability verify result: ' + JSON.stringify(result));
+            }).catch((error: BusinessError) => {
+              hilog.error(domain, TAG, 'Ability failed: ' + JSON.stringify(error));
+            });
+          })
+        }
+        //...
+      }
+      //...
+    }
+    //...
+  }
+}
 ```
 
 
@@ -62,20 +107,28 @@ featureAbility.startAbilityForResult({ want }).then((result) => {
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
-import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
 
-let want: Want = {
-  bundleName: 'ohos.samples.etsclock',
-  abilityName: 'MainAbility'
-};
-particleAbility.startAbility({ want }).then(() => {
-  hilog.info(TAG, 'StartUIAbility Start Ability successfully.');
-}).catch((error: BusinessError) => {
-  hilog.error(TAG, 'StartUIAbility Ability failed: ' + JSON.stringify(error));
-});
-hilog.info(TAG, 'StartUIAbility ServiceAbility onStart');
+class ServiceAbilityStartUiAbility {
+  onStart(): void {
+    // 启动UIAbility
+    let want: Want = {
+      bundleName: 'ohos.samples.etsclock',
+      abilityName: 'MainAbility'
+    };
+    particleAbility.startAbility({ want }).then(() => {
+      hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Start Ability successfully.');
+    }).catch((error: BusinessError) => {
+      hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Ability failed: ' + JSON.stringify(error));
+    });
+  }
+}
+;
+
+export default new ServiceAbilityStartUiAbility();
 ```

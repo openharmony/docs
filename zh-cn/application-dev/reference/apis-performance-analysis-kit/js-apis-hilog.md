@@ -9,7 +9,7 @@ hilog日志系统，使应用/服务可以按照指定级别、标识和格式�
 ## 导入模块
 
 ```js
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## hilog.isLoggable

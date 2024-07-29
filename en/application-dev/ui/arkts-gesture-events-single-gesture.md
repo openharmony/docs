@@ -15,7 +15,7 @@ Triggers a tap gesture with one or more taps. This API has two optional paramete
 - **count**: number of consecutive taps required for gesture recognition. The default value is **1**. A value less than 1 evaluates to the default value **1**. If there are multiple taps, the timeout interval between a lift and the next tap is 300 ms.
 
 - **fingers**: number of fingers required for gesture recognition. The value ranges from 1 to 10. The default value is **1**. If the number of fingers used is less than the specified one within 300 ms after the first finger is tapped, the gesture fails to be recognized. Gesture recognition also fails if the number of fingers used for the tap exceeds the value of **fingers**.
-    The following example binds a double-tap gesture (a tap gesture whose **count** value is **2**) to the **\<Text>** component:
+    The following example binds a double-tap gesture (a tap gesture whose **count** value is **2**) to the **Text** component:
 
   ```ts
   // xxx.ets
@@ -67,7 +67,7 @@ Triggers a long press gesture. This API has three optional parameters:
 - **duration**: minimum hold-down time, in ms. The default value is **500**.
 
 
-The following exemplifies how to bind a long press gesture that can be repeatedly triggered to the **\<Text>** component:
+The following exemplifies how to bind a long press gesture that can be repeatedly triggered to the **Text** component:
 
 
 
@@ -127,7 +127,7 @@ Triggers a pan gesture, which requires the minimum movement distance (5 vp by de
 - **distance**: minimum amount of finger movement required for gesture recognition, in vp. The default value is **5**.
 
 
-The following exemplifies how to bind a pan gesture to the **\<Text>** component. You can pan a component by modifying the layout and position information of the component in the **PanGesture** callback.
+The following exemplifies how to bind a pan gesture to the **Text** component. You can pan a component by modifying the layout and position information of the component in the **PanGesture** callback.
 
 
 
@@ -182,7 +182,7 @@ struct Index {
 
 >**NOTE**
 >
->Most swipeable components, such as **\<List>**, **\<Grid>**, **\<Scroll>**, and **\<Tab>**, allow for swiping through the pan gesture. If you bind the pan gesture or [swipe gesture](#swipe-gesture) to a child of these components, competition for gesture recognition will result.
+>Most swipeable components, such as **List**, **Grid**, **Scroll**, and **\<Tab>**, allow for swiping through the pan gesture. If you bind the pan gesture or [swipe gesture](#swipe-gesture) to a child of these components, competition for gesture recognition will result.
 >
 >If the pan gesture is bound to a child component, the component, instead of its parent, responds to the pan gestures recognized. If you want the parent component to respond, you need to modify the gesture binding method or transfer messages from the child component to the parent component, or modify the **distance** parameters in **PanGesture** for the components. If the swipe gesture is bound to a child component, to allow the parent component to respond to gestures, you need to modify the parameters of **PanGesture** and **SwipeGesture**, since the swipe gesture and pan gesture are recognized with different conditions.
 
@@ -203,7 +203,7 @@ Triggers a pinch gesture. This API has two optional parameters:
 - **distance**: minimum distance between fingers required for gesture recognition, in vp. The default value is **5**.
 
 
-The following exemplifies how to bind a three-finger pinch gesture to the **\<Column>** component. You can obtain the scale factor from the callback of **PinchGesture** to scale the component.
+The following exemplifies how to bind a three-finger pinch gesture to the **Column** component. You can obtain the scale factor from the callback of **PinchGesture** to scale the component.
 
 
 
@@ -273,7 +273,7 @@ Triggers a rotation gesture. This API has two optional parameters:
 - **angle**: minimum angle of rotation required for gesture recognition, in deg. The default value is **1**.
 
 
-The following exemplifies how to bind a rotation gesture to the **\<Text>** component. You can obtain the rotation angle from the callback of **RotationGesture** and implement rotation on the component.
+The following exemplifies how to bind a rotation gesture to the **Text** component. You can obtain the rotation angle from the callback of **RotationGesture** and implement rotation on the component.
 
 
 
@@ -343,7 +343,7 @@ Triggers a swipe gesture, which can be recognized when the swipe speed is 100 vp
 - **speed**: minimum speed of the swipe gesture, in vp/s. The default value is **100**.
 
 
-The following exemplifies how to bind a swipe gesture to the **\<Column>** component to rotate the component:
+The following exemplifies how to bind a swipe gesture to the **Column** component to rotate the component:
 
 
 

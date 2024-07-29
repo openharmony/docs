@@ -1,4 +1,4 @@
-# PixelMap Data Processing (C/C++)
+# Using Image to Process PixelMap Data
 
 You will learn how to use native image APIs to process images.
 
@@ -32,7 +32,6 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-
 **Calling the Native APIs**
 
 For details about the APIs, see [Image API Reference](../../reference/apis-image-kit/image.md).
@@ -41,11 +40,14 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 
 **Adding Reference Files**
 
-    #include <multimedia/image_framework/image_mdk_common.h>
-    #include <multimedia/image_framework/image_pixel_map_mdk.h>
-    #include <stdlib.h>
-    
+```c++
+#include <multimedia/image_framework/image_mdk_common.h>
+#include <multimedia/image_framework/image_pixel_map_mdk.h>
+#include <stdlib.h>
+```
+
 1. Create a **PixelMap** object.
+
     ```c++
     napi_value CreatePixelMapTest(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
@@ -70,7 +72,9 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         return pixelMap;
     }
     ```
+
 2. Create a **PixelMap** object that contains only alpha channel information.
+
     ```c++
     napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
@@ -93,7 +97,9 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         return alphaPixelMap;
     }
     ```
+
 3. Process the **PixelMap** object.
+
     ```c++
     napi_value Transform(napi_env env, napi_callback_info info) {
         napi_value thisVar = nullptr;
@@ -192,13 +198,12 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     }
     ```
 
-
 **Calling APIs on the JS Side**
 
 1. Open **src\main\cpp\types\*libentry*\index.d.ts** (where **libentry** varies according to the project name), and import the following files:
 
     ```js
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     export const createPixelMapTest: () => image.PixelMap;
     export const transform: (a: image.PixelMap) => image.PixelMap;
@@ -208,7 +213,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     @Entry
     @Component

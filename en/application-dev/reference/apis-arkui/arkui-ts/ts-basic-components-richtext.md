@@ -54,9 +54,9 @@ Among the [universal attributes](ts-universal-attributes-size.md), only the **wi
 
 ## Precautions
 
-The underlying layer of the **\<RichText>** component uses the **\<Web>** component to provide basic capabilities, including but not limited to HTML page parsing and rendering. However, the **\<Web>** component is resources consuming. In scenarios where the **\<RichText>** component is repeatedly used, for example, when it is repeatedly used in a list, frame freezing or slow response may occur.
+The underlying layer of the **\<RichText>** component uses the **Web** component to provide basic capabilities, including but not limited to HTML page parsing and rendering. However, the **Web** component is resources consuming. In scenarios where the **\<RichText>** component is repeatedly used, for example, when it is repeatedly used in a list, frame freezing or slow response may occur.
 
-The **\<RichText>** component complies with the constraints of the **\<Web>** component. A typical scenario is as follows:
+The **\<RichText>** component complies with the constraints of the **Web** component. A typical scenario is as follows:
 
 The default viewport size of a mobile device is 980 px. This default value ensures that most web pages can be browsed properly on the mobile device. If the width of the **\<RichText>** component is less than this value, the HTML content specified by **content** may generate a scrollable page that is wrapped by the **\<RichText>** component. If you want to replace the default value, add the following tags to **content**:
 

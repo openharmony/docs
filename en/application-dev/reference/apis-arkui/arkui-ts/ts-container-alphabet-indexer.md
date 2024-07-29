@@ -1,6 +1,6 @@
 # AlphabetIndexer
 
-The **\<AlphabetIndexer>** component can create a logically indexed array of items in a container for instant location.
+The **AlphabetIndexer** component can create a logically indexed array of items in a container for instant location.
 
 >  **NOTE**
 >
@@ -16,6 +16,8 @@ Not supported
 
 AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -25,6 +27,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 ## Attributes
 
+When the [width](ts-universal-attributes-size.md#width) attribute is set to **"auto"**, the width is adaptive. This means that the width will adjust according to the maximum width of the index items.
+
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 ### color
@@ -32,6 +36,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 color(value: ResourceColor)
 
 Sets the font color.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,6 +53,8 @@ selectedColor(value: ResourceColor)
 
 Sets the font color of the selected item.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -60,6 +68,8 @@ Sets the font color of the selected item.
 popupColor(value: ResourceColor)
 
 Sets the font color of the pop-up text.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,6 +85,8 @@ selectedBackgroundColor(value: ResourceColor)
 
 Sets the background color of the selected item.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -88,6 +100,8 @@ Sets the background color of the selected item.
 popupBackground(value: ResourceColor)
 
 Sets the background color of the pop-up text.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -103,6 +117,8 @@ usingPopup(value: boolean)
 
 Sets whether to use pop-up text.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -116,6 +132,8 @@ Sets whether to use pop-up text.
 selectedFont(value: Font)
 
 Sets the font style of the selected item.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -131,6 +149,8 @@ popupFont(value: Font)
 
 Sets the font style of the pop-up text.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -144,6 +164,8 @@ Sets the font style of the pop-up text.
 font(value: Font)
 
 Sets the default font style of the alphabetic index bar.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -159,6 +181,8 @@ itemSize(value: string | number)
 
 Sets the size for the item in the alphabetic index bar.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -173,13 +197,15 @@ alignStyle(value: IndexerAlign, offset?: Length)
 
 Sets the alignment style of the alphabetic index bar.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name              | Type                                 | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                | [IndexerAlign](#indexeralign) | Yes  | Alignment style of the alphabetic index bar. The pop-up window can be displayed on the right or left of the alphabetic index bar.<br>Default value: **IndexerAlign.Right**|
+| value                | [IndexerAlign](#indexeralign) | Yes  | Alignment style of the alphabetic index bar. The pop-up window can be displayed on the right or left of the alphabetic index bar.<br>Default value: **IndexerAlign.END**|
 | offset<sup>10+</sup> | [Length](ts-types.md#length)          | No  | Spacing between the pop-up window and the alphabetic index bar. A value greater than or equal to **0** is valid. If this parameter is set to a value less than **0** or is not set, the spacing is the same as **popupPosition**. If this parameter and **popupPosition** are set at the same time, **offset** takes effect in the horizontal direction and **popupPosition.y** takes effect in the vertical direction.|
 
 ### selected<sup>8+</sup>
@@ -189,6 +215,8 @@ selected(index: number)
 Sets the index of the selected item.
 
 Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -204,6 +232,8 @@ popupPosition(value: Position)
 
 Sets the position of the pop-up window relative to the center of the indexer bar's top border.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -217,6 +247,8 @@ Sets the position of the pop-up window relative to the center of the indexer bar
 popupSelectedColor(value: ResourceColor)
 
 Sets the color of the selected text in the non-alphabetic part in the pop-up window.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -232,6 +264,8 @@ popupUnselectedColor(value: ResourceColor)
 
 Sets the color of the unselected text in the non-alphabetic part in the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -246,6 +280,8 @@ popupItemFont(value: Font)
 
 Sets the font style of the non-alphabetic part in the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -259,6 +295,8 @@ Sets the font style of the non-alphabetic part in the pop-up window.
 popupItemBackgroundColor(value: ResourceColor)
 
 Sets the background color of the non-alphabetic part in the pop-up window.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -278,6 +316,8 @@ If the initial character is **#**, it is excluded. Number of remaining character
 
 If the initial character is not **#**: Number of all characters $\leq$ 9: The index bar is expanded. 9 < Number of all characters $\leq$ 13: The index bar is expanded or partially collapsed, depending on its height. Number of all characters > 13: The index bar is fully or partially collapsed, depending on its height.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -291,6 +331,8 @@ If the initial character is not **#**: Number of all characters $\leq$ 9: The in
 popupItemBorderRadius(value: number)
 
 Sets the radius of the index border corners in the pop-up window.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -306,6 +348,8 @@ itemBorderRadius(value: number)
 
 Sets the radius of the index background border corners in the alphabetic index bar.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -319,6 +363,8 @@ Sets the radius of the index background border corners in the alphabetic index b
 popupBackgroundBlurStyle(value: BlurStyle)
 
 Sets the background blur style of the pop-up window.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -334,15 +380,19 @@ popupTitleBackground(value: ResourceColor)
 
 Sets the background color of the first index in the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type                                      | Mandatory| Description                                                    |
-| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the first index in the pop-up window.<br>Default value: **#0c182431**|
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the first index in the pop-up window.<br>Default value:<br>If the pop-up window has only one index: **#00FFFFFF**.<br>If the pop-up window has multiple indexes: **#0c182431**.|
 
 ## IndexerAlign
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Description|
 | -------- | -------- |
@@ -375,6 +425,8 @@ onSelect(callback: (index: number) =&gt; void)
 
 Invoked when an item in the alphabetic indexer bar is selected. The return value is the index of the selected item.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -389,19 +441,29 @@ onRequestPopupData(callback: (index: number) =&gt; Array&lt;string&gt;)
 
 Invoked when a request for displaying content in the index pop-up window is sent after an item in the alphabetic indexer bar is selected.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | Yes  | String array corresponding to the selected index. The string array is displayed vertically in the pop-up window. It can display up to five strings at once and allows scrolling.|
+| index  | number | Yes  | Index of the selected item.|
+
+**Return value**
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| Array&lt;string&gt; | String array corresponding to the selected index. The string array is displayed vertically in the pop-up window. It can display up to five strings at once and allows scrolling.|
 
 ### onPopupSelect<sup>8+</sup>
 
 onPopupSelect(callback: (index: number) =&gt; void)
 
 Invoked when an item in the index pop-up window is selected.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -600,7 +662,7 @@ struct AlphabetIndexerSample {
               .selectedFont({size: 16, weight: FontWeight.Bolder})// Font style of the selected item.
               .popupFont({ size: 30, weight: FontWeight.Bolder})// Font style of the pop-up text.
               .itemSize(28)// Size of an item in the alphabetic index bar.
-              .alignStyle(IndexerAlign.Right)// The pop-up window is displayed on the right of the alphabetic index bar.
+              .alignStyle(IndexerAlign.Right)// The pop-up window is displayed on the left of the alphabetic index bar.
               .popupTitleBackground("#D2B48C") // Background color of the first index in the pop-up window.
               .popupSelectedColor(0x00FF00)
               .popupUnselectedColor(0x0000FF)

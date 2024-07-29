@@ -1,29 +1,40 @@
 # LocationButton
 
-
-The **\<LocationButton>** security component allows you to obtain temporary precise location permission from the user by their touching the button, eliminating the need for a permission request dialog box.
-
+The **LocationButton** security component allows you to obtain temporary precise location permission from the user by their touching the button, eliminating the need for a permission request dialog box.
 
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Child Components
 
 Not supported
 
-
 ## APIs
+
 ### LocationButton
+
 LocationButton()
 
 Creates a Location button with an icon, text, and background.
 
+You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ### LocationButton
+
 LocationButton(option:LocationButtonOptions)
 
 Creates a Location button that contains the specified elements.
+
+You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -33,22 +44,32 @@ Creates a Location button that contains the specified elements.
 
 ## LocationButtonOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | icon | [LocationIconStyle](#locationiconstyle) | No| Icon style of the Location button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
 | text | [LocationDescription](#locationdescription) | No| Text on the Location button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the Location button.<br>If this parameter is not specified, there is no background.|
-
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Location button.<br>If this parameter is not specified, there is no background.|
 
 ## LocationIconStyle
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | FULL_FILLED |  0 | Filled style icon.|
 | LINES | 1 | Line style icon.|
 
-
 ## LocationDescription
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
@@ -64,32 +85,45 @@ Creates a Location button that contains the specified elements.
 | PUNCH_IN | 9 | The text on the Location button is **Punch in**.|
 | CURRENT_POSITION | 10 | The text on the Location button is **Current position**.|
 
-
 ## LocationButtonOnClickResult
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | SUCCESS | 0 | The Location button is touched successfully.|
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Location button is touched.|
 
-
 ## Attributes
 
-This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md#attributes)
-
+This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md)
 
 ## Events
 
 Only the following events are supported.
 
-| Name| Description|
-| -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [LocationButtonOnClickResult](#locationbuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result.<br>**event**: For details, see **ClickEvent**.|
+### onClick
 
+onClick(event: (event: ClickEvent, result: LocationButtonOnClickResult) =&gt; void)
+
+Called when a click event occurs.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description                  |
+|------------|------|-------|---------|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent) |Yes|See **ClickEvent**.|
+| result | [LocationButtonOnClickResult](#locationbuttononclickresult)| Yes| Authorization result.|
 
 ## Example
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -103,9 +137,9 @@ struct Index {
         })
         // Whether an element is contained depends on whether the parameter corresponding to the element is specified.
         LocationButton({icon:LocationIconStyle.LINES})
-        // Create a Location button with only an icon and background.
+        // Create a button with only an icon and background.
         LocationButton({icon:LocationIconStyle.LINES, buttonType:ButtonType.Capsule})
-        // Create a Location button with an icon, text, and background.
+        // Create a button with an icon, text, and background.
         LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
       }.width('100%')
     }.height('100%')

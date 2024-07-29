@@ -1,4 +1,4 @@
-# Environment: Device Environment Query
+# Environment: Querying Device Environment
 
 
 You may want your application to behave differently based on the device environment where the application is running, for example, switching to dark mode or a specific language. In this case, you need Environment for device environment query.

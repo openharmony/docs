@@ -8,7 +8,7 @@ The **abilityAccessCtrl** module provides APIs for application permission manage
 ## Modules to Import
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import { abilityAccessCtrl } from '@kit.AbilityKit'
 ```
 
 ## abilityAccessCtrl.createAtManager
@@ -52,7 +52,7 @@ Checks whether a permission is granted to an application. This API uses a promis
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
+| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
@@ -68,7 +68,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **Example**
 
@@ -97,7 +97,7 @@ Verifies whether a permission is granted to an application. This API returns the
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
+| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
@@ -113,7 +113,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **Example**
 
@@ -147,7 +147,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
+| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
@@ -205,7 +205,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
+| 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 **Example**
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
@@ -267,7 +267,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
+| 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 **Example**
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
@@ -305,7 +305,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
+| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | string | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
@@ -343,7 +343,7 @@ Checks whether a permission is granted to an application. This API returns the r
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
+| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
@@ -359,7 +359,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **Example**
 

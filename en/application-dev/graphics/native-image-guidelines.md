@@ -54,7 +54,7 @@ libnative_buffer.so
 
 1. Initialize the EGL environment.
 
-   Refer to the code snippet below. For details about how to use the **\<XComponent>**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
+   Refer to the code snippet below. For details about how to use the **XComponent**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
    ```c++
    #include <iostream>
    #include <string>
@@ -72,7 +72,7 @@ libnative_buffer.so
    EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
    static inline EGLConfig config_;
    static inline EGLSurface eglsurface_;
-   // OHNativeWindow obtained from the <XComponent>.
+   // OHNativeWindow obtained from the XComponent.
    OHNativeWindow *eglNativeWindow_;
    
    // Check the EGL extension.

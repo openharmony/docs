@@ -13,7 +13,7 @@ If Internet access is required, you need to apply for the **ohos.permission.INTE
 
 ## Child Components
 
-This component can contain the [\<Image>](ts-basic-components-image.md) child component.
+This component can contain the [Image](ts-basic-components-image.md) child component.
 
 ## APIs
 

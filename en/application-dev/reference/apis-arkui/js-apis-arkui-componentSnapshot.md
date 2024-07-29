@@ -6,7 +6,7 @@ The **componentSnapshot** module provides APIs for obtaining component snapshots
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->In scenarios where [\<XComponent>](arkui-ts/ts-basic-components-xcomponent.md) is used to, for example, display video or camera streams, obtain images through [surface](../apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11), instead of through an API in this module.
+>In scenarios where [XComponent](arkui-ts/ts-basic-components-xcomponent.md) is used to, for example, display video or camera streams, obtain images through [surface](../apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11), instead of through an API in this module.
 >
 > You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
@@ -161,7 +161,7 @@ Renders a custom component in the application background and outputs its snapsho
 >
 > To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
 >
-> If a component is on a time-consuming task, for example, an [\<Image>](arkui-ts/ts-basic-components-image.md) or [\<Web>](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+> If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -248,7 +248,7 @@ Renders a custom component in the application background and outputs its snapsho
 >
 > To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
 >
-> If a component is on a time-consuming task, for example, an [\<Image>](arkui-ts/ts-basic-components-image.md) or [\<Web>](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+> If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

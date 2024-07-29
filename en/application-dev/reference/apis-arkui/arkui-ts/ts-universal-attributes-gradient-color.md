@@ -30,11 +30,11 @@ sweepGradient(value: {center: [Length, Length]; start?: number | string; end?: n
 
 Sweep gradient.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -48,11 +48,11 @@ radialGradient(value: { center: [Length, Length]; radius: number | string; color
 
 Radial gradient.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 

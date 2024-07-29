@@ -10,7 +10,7 @@ This **wifiext** module provides WLAN extension interfaces for non-universal pro
 ## Modules to Import
 
 ```js
-import wifiManagerExt from '@ohos.wifiManagerExt';
+import { wifiManagerExt } from '@kit.ConnectivityKit';
 ```
 
 ## wifiext.enableHotspot<sup>9+</sup>
@@ -29,12 +29,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **Example**
 
 ```ts
-        import wifiManagerExt  from '@ohos.wifiManagerExt';
+        import { wifiManagerExt } from '@kit.ConnectivityKit';
 
         try {
             wifiManagerExt.enableHotspot();
@@ -59,12 +61,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **Example**
 
 ```ts
-        import wifiManagerExt  from '@ohos.wifiManagerExt';
+        import { wifiManagerExt } from '@kit.ConnectivityKit';
 
         try {
             wifiManagerExt.disableHotspot();
@@ -95,6 +99,8 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 ## PowerMode<sup>9+</sup>
@@ -132,12 +138,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **Example**
 
 ```ts
-        import wifiManagerExt  from '@ohos.wifiManagerExt';
+        import { wifiManagerExt } from '@kit.ConnectivityKit';
 
         wifiManagerExt.getSupportedPowerMode((err, data) => {
             if (err) {
@@ -176,12 +184,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **Example**
 
 ```ts
-        import wifiManagerExt  from '@ohos.wifiManagerExt';
+        import { wifiManagerExt } from '@kit.ConnectivityKit';
 
         try {
             let model = wifiManagerExt.getPowerMode();
@@ -213,12 +223,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **Example**
 
 ```ts
-        import wifiManagerExt  from '@ohos.wifiManagerExt';
+        import { wifiManagerExt } from '@kit.ConnectivityKit';
 
         wifiManagerExt.getPowerMode((err, data) => {
             if (err) {
@@ -257,12 +269,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **Example**
 
 ```ts
-        import wifiManagerExt  from '@ohos.wifiManagerExt';
+        import { wifiManagerExt } from '@kit.ConnectivityKit';
 
         try {
             let model = 0;

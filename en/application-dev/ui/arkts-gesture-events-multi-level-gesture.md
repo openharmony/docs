@@ -16,7 +16,7 @@ The touch event (**onTouch**) is the foundation of all gestures. It comes in fou
 
 3. The callback of the **onTouch** event follows consistency. If a component receives the Down event whose finger ID is 0 but does not receive the Down event whose finger ID is 1, it will receive other touch events whose finger ID is 0, but not touch events whose finger ID is 1.
 
-For common container components (such as **\<Column>**), **onTouch** events can be received by parent and child components at the same time, and how they are received by sibling components is subject to the layout.
+For common container components (such as **Column**), **onTouch** events can be received by parent and child components at the same time, and how they are received by sibling components is subject to the layout.
 
 ```ts
 ComponentA() {

@@ -15,7 +15,7 @@ import {
   DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType
-} from from '@kit.MediaLibraryKit';
+} from '@ohos.file.PhotoPickerComponent';
 ```
 
 ## 属性
@@ -49,7 +49,7 @@ pickerController: PickerController
 |---------------|----------------|-----|------------|--------------------------|
 | pickerOptions  | [PickerOptions](#pickeroptions)       | 否   | - | picker参数信息。  |
 | onSelect       | (uri: string) => void                 | 否   | - | 用户在Picker组件中勾选图片时产生的回调事件，将图片uri报给应用。             |
-| onDeselect     | (uri: string) => void                 | 否   | - | 用户在Picker组件中取消勾选图片是产生的回调事件，同时也会将图片uri报给应用。  |
+| onDeselect     | (uri: string) => void                 | 否   | - | 用户在Picker组件中取消勾选图片时产生的回调事件，同时也会将图片uri报给应用。  |
 | onItemClicked  | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean  | 否   | - | 用户在picker组件中点击item产生的回调事件。<br>点击图片（缩略图item）时，返回值为true则勾选此图片，否则不勾选；点击相机item，返回值为true则拉起系统相机，否则应用自行处理。 |
 | onEnterPhotoBrowser | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean   | 否   | - | 点击进入大图时产生的回调事件，将大图相关信息报给应用。   |
 | onExitPhotoBrowser | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean   | 否   | - | 退出大图时产生的回调事件，将大图相关信息报给应用。           |
@@ -288,12 +288,13 @@ Picker的颜色模式。
 
 ```ts
 // xxx.ets
+import { photoAccessHelper } from '@ohos.file.photoAccessHelper';
 import {
-  photoAccessHelper, PhotoPickerComponent, PickerController, PickerOptions,
+  PhotoPickerComponent, PickerController, PickerOptions,
   DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType
-} from '@kit.MediaLibraryKit';
+} from '@ohos.file.PhotoPickerComponent';
 
 @Entry
 @Component

@@ -16,20 +16,21 @@ Not supported
 
 ## APIs
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController, incognitoMode? : boolean})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean})
 
 > **NOTE**
 >
 > Transition animation is not supported.
-> **\<Web>** components on a page must be bound to different **WebviewController** instances.
+> **Web** components on a page must be bound to different **WebviewController** instances.
 
 **Parameters**
 
 | Name       | Type                                    | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
-| incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file (in HTML or TXT format) in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.<br>**src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl). |
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead. |
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Render mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamic adjusted): The **Web** component is self-rendered.<br>**RenderMode.SYNC_RENDER**: The unified rendering capability of the **Web** component is supported. |
+| incognitoMode<sup>11+</sup> | boolean | No | Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false** |
 
 **Example**
 
@@ -37,12 +38,13 @@ Example of loading online web pages:
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -52,18 +54,38 @@ Example of loading online web pages:
   ```
 
 Example of loading online web pages in incognito mode:
- 
+
    ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
+      }
+    }
+  }
+  ```
+
+Unified rendering mode of web components.
+
+   ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
       }
     }
   }
@@ -73,12 +95,13 @@ Example of loading local web pages:
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         // Load a local resource file through $rawfile.
@@ -90,12 +113,13 @@ Example of loading local web pages:
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         // Load a local resource file through the resource protocol.
@@ -110,7 +134,7 @@ Example of loading local resource files in the sandbox:
 1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
 
    ```ts
-   // GlobalContext.ts
+   // GlobalContext.ets
    export class GlobalContext {
      private constructor() {}
      private static instance: GlobalContext;
@@ -135,15 +159,16 @@ Example of loading local resource files in the sandbox:
 
    ```ts
    // xxx.ets
-   import web_webview from '@ohos.web.webview'
-   import { GlobalContext } from '../GlobalContext'
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
 
-   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html';
 
    @Entry
    @Component
    struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
+
      build() {
        Column() {
          // Load the files in the sandbox.
@@ -158,19 +183,17 @@ Example of loading local resource files in the sandbox:
    The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
    ```ts
-   // xxx.ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import Want from '@ohos.app.ability.Want';
-   import web_webview from '@ohos.web.webview';
-   import { GlobalContext } from '../GlobalContext'
+   // xxx.ets
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
 
    export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-           // Data synchronization between the UIAbility component and UI can be implemented by binding filesDir to the GlobalContext object.
-           GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-           console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-       }
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       // Data synchronization between the UIAbility component and UI can be implemented by binding filesDir to the GlobalContext object.
+       GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+       console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"));
+     }
    }
    ```
 
@@ -202,18 +225,19 @@ Sets whether to enable the DOM Storage API. By default, this feature is disabled
 
 | Name             | Type   | Mandatory  | Default Value  | Description                                |
 | ---------------- | ------- | ---- | ----- | ------------------------------------ |
-| domStorageAccess | boolean | Yes   | false | Whether to enable the DOM Storage API.|
+| domStorageAccess | boolean | Yes   | false | Whether to enable the DOM Storage API. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -233,18 +257,19 @@ Sets whether to enable access to the file system in the application. This settin
 
 | Name       | Type   | Mandatory  | Default Value | Description                  |
 | ---------- | ------- | ---- | ---- | ---------------------- |
-| fileAccess | boolean | Yes   | true | Whether to enable access to the file system in the application. By default, this feature is enabled.|
+| fileAccess | boolean | Yes   | true | Whether to enable access to the file system in the application. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -264,17 +289,18 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 
 | Name        | Type   | Mandatory  | Default Value | Description           |
 | ----------- | ------- | ---- | ---- | --------------- |
-| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading.|
+| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading. |
 
 **Example**
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -287,9 +313,9 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebviewController | WebController})
+    controller: WebviewController | WebController, asyncMethodList?: Array\<string\>})
 
-Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated. Only one object can be registered through this API. To register multiple objects, use [registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy).
+Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated. This API can be used in synchronous or asynchronous mode, or in both modes. If the API can be used in both synchronous and asynchronous modes, it is called asynchronously by default. Only one object can be registered through this API. To register multiple objects, use [registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy).
 
 **Parameters**
 
@@ -297,35 +323,40 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.                  |
 | name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.               |
-| methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| methodList | Array\<string\>                          | Yes   | -    | Synchronous methods of the JavaScript object to be registered at the application side.                |
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead. |
+| asyncMethodList<sup>12+</sup>  | Array\<string\>      | No   | []   | Asynchronous methods of the JavaScript object to be registered at the application side. Asynchronous methods cannot obtain return values.  |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   class TestObj {
     constructor() {
     }
 
     test(data1: string, data2: string, data3: string): string {
-      console.log("data1:" + data1)
-      console.log("data2:" + data2)
-      console.log("data3:" + data3)
-      return "AceString"
+      console.log("data1:" + data1);
+      console.log("data2:" + data2);
+      console.log("data3:" + data3);
+      return "AceString";
+    }
+
+    asyncTest(data: string): void {
+      console.log("async data:" + data);
     }
 
     toString(): void {
-      console.log('toString' + "interface instead.")
+      console.log('toString' + "interface instead.");
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     testObj = new TestObj();
     build() {
       Column() {
@@ -335,6 +366,7 @@ Registers a JavaScript object with the window. APIs of this object can then be i
             object: this.testObj,
             name: "objName",
             methodList: ["test", "toString"],
+            asyncMethodList: ["asyncTest"],
             controller: this.controller,
         })
       }
@@ -352,18 +384,18 @@ Sets whether JavaScript scripts can be executed. By default, JavaScript scripts 
 
 | Name             | Type   | Mandatory  | Default Value | Description               |
 | ---------------- | ------- | ---- | ---- | ------------------- |
-| javaScriptAccess | boolean | Yes   | true | Whether JavaScript scripts can be executed.|
+| javaScriptAccess | boolean | Yes   | true | Whether JavaScript scripts can be executed. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -377,24 +409,25 @@ Sets whether JavaScript scripts can be executed. By default, JavaScript scripts 
 
 overScrollMode(mode: OverScrollMode)
 
-Sets the overscroll mode, which is disabled by default. When the overscroll mode is enabled and the boundary of the scrolling area is reached, the **\<Web>** component plays a bounce effect animation.
+Sets the overscroll mode, which is disabled by default. When the overscroll mode is enabled and the boundary of the scrolling area is reached, the **Web** component plays a bounce effect animation.
 
 **Parameters**
 
 | Name | Type                                   | Mandatory  | Default Value                 | Description              |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11) | Yes   | OverScrollMode.NEVER | Whether to enable the overscroll mode.|
+| mode | [OverScrollMode](#overscrollmode11)  | Yes   | OverScrollMode.NEVER | Whether to enable the overscroll mode. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: OverScrollMode = OverScrollMode.ALWAYS
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: OverScrollMode = OverScrollMode.ALWAYS;
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -414,19 +447,19 @@ Sets whether to enable loading of HTTP and HTTPS hybrid content can be loaded. B
 
 | Name      | Type                       | Mandatory  | Default Value           | Description     |
 | --------- | --------------------------- | ---- | -------------- | --------- |
-| mixedMode | [MixedMode](#mixedmode)| Yes   | MixedMode.None | Mixed content to load.|
+| mixedMode | [MixedMode](#mixedmode) | Yes   | MixedMode.None | Mixed content to load. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: MixedMode = MixedMode.All
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: MixedMode = MixedMode.All;
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -446,18 +479,19 @@ Sets whether to enable access to online images through HTTP and HTTPS. By defaul
 
 | Name              | Type   | Mandatory  | Default Value | Description            |
 | ----------------- | ------- | ---- | ---- | ---------------- |
-| onlineImageAccess | boolean | Yes   | true | Whether to enable access to online images through HTTP and HTTPS.|
+| onlineImageAccess | boolean | Yes   | true | Whether to enable access to online images through HTTP and HTTPS. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -477,18 +511,19 @@ Sets whether to enable zoom gestures. By default, this feature is enabled.
 
 | Name       | Type   | Mandatory  | Default Value | Description         |
 | ---------- | ------- | ---- | ---- | ------------- |
-| zoomAccess | boolean | Yes   | true | Whether to enable zoom gestures.|
+| zoomAccess | boolean | Yes   | true | Whether to enable zoom gestures. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -508,18 +543,19 @@ Sets whether to load web pages by using the overview mode. By default, this feat
 
 | Name               | Type   | Mandatory  | Default Value | Description           |
 | ------------------ | ------- | ---- | ---- | --------------- |
-| overviewModeAccess | boolean | Yes   | true | Whether to load web pages by using the overview mode.|
+| overviewModeAccess | boolean | Yes   | true | Whether to load web pages by using the overview mode. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -539,18 +575,19 @@ Sets whether to enable database access. By default, this feature is disabled.
 
 | Name           | Type   | Mandatory  | Default Value  | Description             |
 | -------------- | ------- | ---- | ----- | ----------------- |
-| databaseAccess | boolean | Yes   | false | Whether to enable database access.|
+| databaseAccess | boolean | Yes   | false | Whether to enable database access. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -570,18 +607,19 @@ Sets whether to enable geolocation access. By default, this feature is enabled.
 
 | Name              | Type   | Mandatory  | Default Value | Description           |
 | ----------------- | ------- | ---- | ---- | --------------- |
-| geolocationAccess | boolean | Yes   | true | Whether to enable geolocation access.|
+| geolocationAccess | boolean | Yes   | true | Whether to enable geolocation access. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -601,19 +639,20 @@ Sets whether video playback must be started by user gestures. This API is not ap
 
 | Name   | Type   | Mandatory  | Default Value | Description               |
 | ------ | ------- | ---- | ---- | ------------------- |
-| access | boolean | Yes   | true | Whether video playback must be started by user gestures.|
+| access | boolean | Yes   | true | Whether video playback must be started by user gestures. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State access: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State access: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -634,18 +673,19 @@ Enabling the multi-window permission requires implementation of the **onWindowNe
 
 | Name        | Type   | Mandatory  | Default Value  | Description        |
 | ----------- | ------- | ---- | ----- | ------------ |
-| multiWindow | boolean | Yes   | false | Whether to enable the multi-window permission.|
+| multiWindow | boolean | Yes   | false | Whether to enable the multi-window permission. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -660,27 +700,44 @@ Enabling the multi-window permission requires implementation of the **onWindowNe
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 Sets whether to display the horizontal scrollbar, including the default system scrollbar and custom scrollbar. By default, the horizontal scrollbar is displayed.
+> **NOTE**
+>
+> - If an @State decorated variable is used to control the horizontal scrollbar visibility, **controller.refresh()** must be called for the settings to take effect.
+> - If the horizontal scrollbar visibility changes frequently through an @State decorated variable, it is recommended that the variable correspond to the **Web** component one by one.
 
 **Parameters**
 
 | Name                | Type   | Mandatory  | Default Value | Description        |
 | ------------------- | ------- | ---- | ---- | ------------ |
-| horizontalScrollBar | boolean | Yes   | true | Whether to display the horizontal scrollbar.|
+| horizontalScrollBar | boolean | Yes   | true | Whether to display the horizontal scrollbar. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State isShow: boolean = false;
+
     build() {
       Column() {
+        // If an @State decorated variable is used to control the horizontal scrollbar visibility, controller.refresh() must be called for the settings to take effect.
+        Button('refresh')
+          .onClick(() => {
+            this.isShow = true;
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .horizontalScrollBarAccess(true)
+          .horizontalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -715,26 +772,44 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 Sets whether to display the vertical scrollbar, including the default system scrollbar and custom scrollbar. By default, the vertical scrollbar is displayed.
 
+> **NOTE**
+>
+> - If an @State decorated variable is used to control the vertical scrollbar visibility, **controller.refresh()** must be called for the settings to take effect.
+> - If the vertical scrollbar visibility changes frequently through an @State decorated variable, it is recommended that the variable correspond to the **Web** component one by one.
+
 **Parameters**
 
 | Name              | Type   | Mandatory  | Default Value | Description        |
 | ----------------- | ------- | ---- | ---- | ------------ |
-| verticalScrollBar | boolean | Yes   | true | Whether to display the vertical scrollbar.|
+| verticalScrollBar | boolean | Yes   | true | Whether to display the vertical scrollbar. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State isShow: boolean = false;
+
     build() {
       Column() {
+        // If an @State decorated variable is used to control the vertical scrollbar visibility, controller.refresh() must be called for the settings to take effect.
+        Button('refresh')
+        .onClick(() => {
+          this.isShow = true;
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .verticalScrollBarAccess(true)
+        .verticalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -783,19 +858,20 @@ Sets the cache mode.
 
 | Name      | Type                       | Mandatory  | Default Value              | Description     |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| cacheMode | [CacheMode](#cachemode9) | Yes   | CacheMode.Default | Cache mode to set.|
+| cacheMode | [CacheMode](#cachemode9)  | Yes   | CacheMode.Default | Cache mode to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: CacheMode = CacheMode.None
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: CacheMode = CacheMode.None;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -815,17 +891,18 @@ Sets the pasteboard copy options.
 
 | Name      | Type                       | Mandatory  | Default Value              | Description     |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | Yes   | CopyOptions.Cross_Device | Pasteboard copy options.|
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | Yes   | CopyOptions.Cross_Device | Pasteboard copy options. |
 
 **Example**
 
   ```ts
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
@@ -847,7 +924,7 @@ This API is deprecated since API version 9. You are advised to use [textZoomRati
 
 | Name         | Type  | Mandatory  | Default Value | Description                            |
 | ------------ | ------ | ---- | ---- | -------------------------------- |
-| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
+| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞). |
 
 **Example**
 
@@ -877,19 +954,20 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
 | Name          | Type  | Mandatory  | Default Value | Description                            |
 | ------------- | ------ | ---- | ---- | -------------------------------- |
-| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
+| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞). |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State atio: number = 150
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State atio: number = 150;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -909,19 +987,20 @@ Sets the scale factor of the entire page. The default value is 100%.
 
 | Name    | Type  | Mandatory  | Default Value | Description                         |
 | ------- | ------ | ---- | ---- | ----------------------------- |
-| percent | number | Yes   | 100  | Scale factor of the entire page.|
+| percent | number | Yes   | 100  | Scale factor of the entire page. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State percent: number = 100
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State percent: number = 100;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -945,19 +1024,20 @@ Sets the user agent.
 
 | Name      | Type  | Mandatory  | Default Value | Description     |
 | --------- | ------ | ---- | ---- | --------- |
-| userAgent | string | Yes   | -    | User agent to set.|
+| userAgent | string | Yes   | -    | User agent to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36'
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -977,18 +1057,20 @@ Sets whether to block online downloads.
 
 | Name  | Type   | Mandatory  | Default Value  | Description               |
 | ----- | ------- | ---- | ----- | ------------------- |
-| block | boolean | Yes   | false | Whether to block online downloads.|
+| block | boolean | Yes   | false | Whether to block online downloads. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State block: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State block: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1008,18 +1090,20 @@ Sets the default fixed font size for the web page.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 13   | Default fixed font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
+| size | number | Yes   | 13   | Default fixed font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 16
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 16;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1039,18 +1123,20 @@ Sets the default font size for the web page.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 16   | Default font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
+| size | number | Yes   | 16   | Default font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1070,18 +1156,20 @@ Sets the minimum font size for the web page.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 8    | Minimum font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
+| size | number | Yes   | 8    | Minimum font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1101,18 +1189,20 @@ Sets the minimum logical font size for the web page.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 8    | Minimum logical font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
+| size | number | Yes   | 8    | Minimum logical font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1132,18 +1222,20 @@ Sets the fixed font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value      | Description               |
 | ------ | ------ | ---- | --------- | ------------------- |
-| family | string | Yes   | monospace | Fixed font family to set.|
+| family | string | Yes   | monospace | Fixed font family to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "monospace"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "monospace";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1163,18 +1255,20 @@ Sets the sans serif font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value       | Description                    |
 | ------ | ------ | ---- | ---------- | ------------------------ |
-| family | string | Yes   | sans-serif | Sans serif font family to set.|
+| family | string | Yes   | sans-serif | Sans serif font family to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "sans-serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "sans-serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1194,18 +1288,20 @@ Sets the serif font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value  | Description               |
 | ------ | ------ | ---- | ----- | ------------------- |
-| family | string | Yes   | serif | Serif font family to set.|
+| family | string | Yes   | serif | Serif font family to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1225,18 +1321,20 @@ Sets the standard font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value       | Description                  |
 | ------ | ------ | ---- | ---------- | ---------------------- |
-| family | string | Yes   | sans serif | Standard font family to set.|
+| family | string | Yes   | sans serif | Standard font family to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "sans-serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "sans-serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1256,18 +1354,19 @@ Sets the fantasy font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value    | Description                 |
 | ------ | ------ | ---- | ------- | --------------------- |
-| family | string | Yes   | fantasy | Fantasy font family to set.|
+| family | string | Yes   | fantasy | Fantasy font family to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "fantasy"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "fantasy";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1287,18 +1386,20 @@ Sets the cursive font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value    | Description                 |
 | ------ | ------ | ---- | ------- | --------------------- |
-| family | string | Yes   | cursive | Cursive font family to set.|
+| family | string | Yes   | cursive | Cursive font family to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "cursive"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "cursive";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1312,24 +1413,26 @@ Sets the cursive font family for the web page.
 
 darkMode(mode: WebDarkMode)
 
-Sets the web dark mode. By default, web dark mode is disabled. When it is enabled, the **\<Web>** component enables the dark theme defined for web pages if the theme has been defined in **prefers-color-scheme** of a media query, and remains unchanged otherwise. To enable the forcible dark mode, use this API with [forceDarkAccess](#forcedarkaccess9).
+Sets the web dark mode. By default, web dark mode is disabled. When it is enabled, the **Web** component enables the dark theme defined for web pages if the theme has been defined in **prefers-color-scheme** of a media query, and remains unchanged otherwise. To enable the forcible dark mode, use this API with [forceDarkAccess](#forcedarkaccess9).
 
 **Parameters**
 
 | Name | Type                            | Mandatory  | Default Value            | Description                  |
 | ---- | -------------------------------- | ---- | --------------- | ---------------------- |
-| mode | [WebDarkMode](#webdarkmode9) | Yes   | WebDarkMode.Off | Web dark mode to set.|
+| mode | [WebDarkMode](#webdarkmode9)  | Yes   | WebDarkMode.Off | Web dark mode to set. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebDarkMode = WebDarkMode.On
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebDarkMode = WebDarkMode.On;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1349,19 +1452,21 @@ Sets whether to enable forcible dark mode for the web page. By default, this fea
 
 | Name   | Type   | Mandatory  | Default Value  | Description           |
 | ------ | ------- | ---- | ----- | --------------- |
-| access | boolean | Yes   | false | Whether to enable forcible dark mode for the web page.|
+| access | boolean | Yes   | false | Whether to enable forcible dark mode for the web page. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebDarkMode = WebDarkMode.On
-    @State access: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebDarkMode = WebDarkMode.On;
+    @State access: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1402,17 +1507,19 @@ Sets whether to enable smooth pinch mode for the web page.
 
 | Name      | Type   | Mandatory  | Default Value  | Description         |
 | --------- | ------- | ---- | ----- | ------------- |
-| isEnabled | boolean | Yes   | false | Whether to enable smooth pinch mode for the web page.|
+| isEnabled | boolean | Yes   | false | Whether to enable smooth pinch mode for the web page. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+    
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1428,7 +1535,7 @@ allowWindowOpenMethod(flag: boolean)
 
 Sets whether to allow a new window to automatically open through JavaScript.
 
-When **flag** is set to **true**, a new window can automatically open through JavaScript. When **flag** is set to **false**, a new window can still automatically open through JavaScript for user behavior, but cannot for non-user behavior. The user behavior here refers to that a user requests to open a new window (**window.open**) within 5 seconds.
+When **flag** is set to **true**, a new window can automatically open through JavaScript. When **flag** is set to **false**, a new window can still automatically open through JavaScript for user behavior, but cannot for non-user behavior. The user behavior here refers to that a user requests to open a new window (**window.open**) within 5 seconds of operating the **Web** component.
 
 This API takes effect only when [javaScriptAccess](#javascriptaccess) is enabled.
 
@@ -1445,38 +1552,41 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
 
 | Name | Type   | Mandatory  | Default Value                                     | Description                     |
 | ---- | ------- | ---- | ---------------------------------------- | ------------------------- |
-| flag | boolean | Yes   | Subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is set, the default value of **flag** is **true**. Otherwise, the default value of **flag** is **false**.| Whether to allow a new window to automatically open through JavaScript.|
+| flag | boolean | Yes   | Subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is set, the default value of **flag** is **true**. Otherwise, the default value of **flag** is **false**. | Whether to allow a new window to automatically open through JavaScript. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
-  controller?: CustomDialogController
-  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
+
+    build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
           .javaScriptAccess(true)
           .multiWindowAccess(false)
-          .onWindowExit(()=> {
-            console.info("NewWebViewComp onWindowExit")
+          .onWindowExit(() => {
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
-        }
+      }
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1486,17 +1596,17 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
             if (this.dialogController) {
-              this.dialogController.close()
+              this.dialogController.close();
             }
-            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({webviewController1: popController})
+              builder: NewWebViewComp({ webviewController1: popController })
             })
-            this.dialogController.open()
+            this.dialogController.open();
             // Return the WebviewController object corresponding to the new window to the <Web> kernel.
             // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
             // If the event.handler.setWebController API is not called, the render process will be blocked.
-            event.handler.setWebController(popController)
+            event.handler.setWebController(popController);
           })
       }
     }
@@ -1507,31 +1617,33 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
 
 mediaOptions(options: WebMediaOptions)
 
-Sets the web-based media playback policy, including the validity period for automatically resuming a paused web audio, and whether the audio of multiple **\<Web>** instances in an application is exclusive.
+Sets the web-based media playback policy, including the validity period for automatically resuming a paused web audio, and whether the audio of multiple **Web** instances in an application is exclusive.
 
 > **NOTE**
 >
-> - Audios in the same **\<Web>** instance are considered as the same audio.
+> - Audios in the same **Web** instance are considered as the same audio.
 > - The media playback policy controls videos with an audio track.
 > - After the parameter settings are updated, the playback must be started again for the settings to take effect.
-> - It is recommended that you set the same **audioExclusive** value for all **\<Web>** components.
+> - It is recommended that you set the same **audioExclusive** value for all **Web** components.
 
 **Parameters**
 
 | Name    | Type                                 | Mandatory  | Default Value                                     | Description                                    |
 | ------- | ------------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
-| options | [WebMediaOptions](#webmediaoptions10) | Yes   | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed.|
+| options | [WebMediaOptions](#webmediaoptions10) | Yes   | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true}
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true};
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1545,7 +1657,7 @@ Sets the web-based media playback policy, including the validity period for auto
 
 javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
-Injects a JavaScript script into the **\<Web>** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+Injects a JavaScript script into the **Web** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
 
 > **NOTE**
 >
@@ -1555,37 +1667,38 @@ Injects a JavaScript script into the **\<Web>** component. When the specified pa
 
 | Name    | Type                               | Mandatory  | Default Value | Description              |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected.|
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected. |
 
 **Example in the .ets file**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct Index {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    private localStorage: string =
-        "if (typeof(Storage) !== 'undefined') {" +
-        "   localStorage.setItem('color', 'Red');" +
-        "}";
-    @State scripts: Array<ScriptItem> = [
-        { script: this.localStorage, scriptRules: ["*"] }
-    ];
-    build() {
-        Column({ space: 20 }) {
-            Web({ src: $rawfile('index.html'), controller: this.controller })
-                .javaScriptAccess(true)
-                .domStorageAccess(true)
-                .backgroundColor(Color.Grey)
-                .javaScriptOnDocumentStart(this.scripts)
-                .width('100%')
-                .height('100%')
-        }
-    }
-}
+  @Entry
+  @Component
+  struct Index {
+      controller: webview.WebviewController = new webview.WebviewController();
+      private localStorage: string =
+          "if (typeof(Storage) !== 'undefined') {" +
+          "   localStorage.setItem('color', 'Red');" +
+          "}";
+      @State scripts: Array<ScriptItem> = [
+          { script: this.localStorage, scriptRules: ["*"] }
+      ];
+
+      build() {
+          Column({ space: 20 }) {
+              Web({ src: $rawfile('index.html'), controller: this.controller })
+                  .javaScriptAccess(true)
+                  .domStorageAccess(true)
+                  .backgroundColor(Color.Grey)
+                  .javaScriptOnDocumentStart(this.scripts)
+                  .width('100%')
+                  .height('100%')
+          }
+      }
+  }
   ```
 **Example in the HTML file**
 
@@ -1616,7 +1729,7 @@ struct Index {
 
 javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
-Injects a JavaScript script into the **\<Web>** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+Injects a JavaScript script into the **Web** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
 
 > **NOTE**
 >
@@ -1626,18 +1739,18 @@ Injects a JavaScript script into the **\<Web>** component. When the specified pa
 
 | Name    | Type                               | Mandatory  | Default Value | Description              |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected.|
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected. |
 
 **Example**
 
   ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct Index {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
   private jsStr: string =
     "window.document.getElementById(\"result\").innerHTML = 'this is msg from javaScriptOnDocumentEnd'";
   @State scripts: Array<ScriptItem> = [
@@ -1679,28 +1792,59 @@ Sets the web layout mode.
 
 > **NOTE**
 >
-> Currently, only two web layout modes are supported: **WebLayoutMode.NONE** and **WebLayoutMode.FIT_CONTENT** (default).
+> Currently, only two web layout modes are supported: **WebLayoutMode.NONE** and **WebLayoutMode.FIT_CONTENT**.
+>
+> The following restrictions apply with the usage of **WebLayoutMode.FIT_CONTENT**:
+> - If the web content is wider or longer than 8000 px, specify the **RenderMode.SYNC_RENDER** mode when creating the **Web** component; otherwise, the screen may be blank.
+> - After the **Web** component is created, dynamic switching of the **layoutMode** is not supported.
+> - The width and height of the **Web** component cannot exceed 500,000 pixels each.
+> - Frequent changes to the page width and height will trigger a re-layout of the **Web** component, which can affect the user experience.
 
 **Parameters**
 
 | Name | Type                                 | Mandatory  | Default Value               | Description                 |
 | ---- | ------------------------------------- | ---- | ------------------ | --------------------- |
-| mode | [WebLayoutMode](#weblayoutmode11) | Yes   | WebLayoutMode.NONE | Web layout mode.|
+| mode | [WebLayoutMode](#weblayoutmode11)  | Yes   | WebLayoutMode.NONE | Web layout mode. |
 
 **Example**
 
+  1. After specifying the **layoutMode** as **WebLayoutMode.FIT_CONTENT**, you must explicitly specify **renderMode** as **RenderMode.SYNC_RENDER**.
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
           .layoutMode(this.mode)
+      }
+    }
+  }
+  ```
+
+  2. After specifying the **layoutMode** as **WebLayoutMode.FIT_CONTENT**, you are advised to specify **overScrollMode** as **OverScrollMode.NEVER**.
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    @State overScrollMode: OverScrollMode = OverScrollMode.NEVER;
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+          .layoutMode(this.layoutMode)
+          .overScrollMode(this.overScrollMode)
       }
     }
   }
@@ -1714,25 +1858,29 @@ Sets nested scrolling options.
 
 > **NOTE**
 >
-> - You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.
+> - You can set the nested scrolling mode in both forward and backward directions to implement scrolling linkage with the parent component.
 > - You can set separate nested scrolling modes for the forward and backward directions.
 > - The default mode for **scrollForward** and **scrollBackward** is **NestedScrollMode.SELF_FIRST**.
+> - Containers that support nested scrolling: **Grid**, **List**, **Scroll**, **Swiper**, **Tabs**, **WaterFlow**.
+> - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
+> - In nested scrolling scenarios, since the **Web** component's over-scrolling to the edge will trigger the over-scroll bounce effect first, it is recommended that you set **overScrollMode** to **OverScrollMode.NEVER** to avoid undermining the user experience.
 
 **Parameters**
 
 | Name  | Type                                    | Mandatory  | Description            |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](#nestedscrolloptions11) | Yes   | Nested scrolling options.|
+| value | [NestedScrollOptions](#nestedscrolloptions11)  | Yes   | Nested scrolling options. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1754,17 +1902,18 @@ Specifies whether to enable the same-layer rendering feature. By default, this f
 
 | Name  | Type                     | Mandatory  | Default Value               | Description            |
 | ----- | ---------------------------------------- | ---- | ------------------| ---------------- |
-| mode |  boolean | Yes   | false | Whether to enable the same-layer rendering feature.|
+| mode |  boolean | Yes   | false | Whether to enable the same-layer rendering feature. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1773,9 +1922,257 @@ Specifies whether to enable the same-layer rendering feature. By default, this f
     }
   }
   ```
+### registerNativeEmbedRule<sup>12+</sup>
+registerNativeEmbedRule(tag: string, type: string)
 
+Registers the HTML tag name and type for same-layer rendering. The tag name only supports **object** and **embed**. The tag type can be any non-empty string, case-insensitive. If the standard type is the same as the standard type of **object** or **embed**, the ArkWeb engine will recognize it as a non-same-layer tag This API is also controlled by the **enableNativeEmbedMode** API and does not take effect if same-layer rendering is not enabled. When this API is not used, the ArkWeb engine recognizes the **embed** tags with the "native/" prefix as same-layer tags.
 
+**Parameters**
 
+| Name | Type  | Mandatory  | Default Value | Description            |
+|------|--------| ---- |------|------------------|
+| tag  | string | Yes   | ""   | Tag name.            |
+| type | string | Yes   | ""   | Tag type. It is used by the ArkWeb engine for prefix matching. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .registerNativeEmbedRule("object", "application/view")
+      }
+    }
+  }
+  ```
+### defaultTextEncodingFormat<sup>12+</sup>
+
+defaultTextEncodingFormat(textEncodingFormat: string)
+
+Sets the default character encoding for web pages.
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Default Value | Description                                    |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textEncodingFormat | string | Yes   | "UTF-8"   | Default character encoding. |
+
+  **Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          // Set the height and padding.
+          .height(500)
+          .padding(20)
+          .defaultTextEncodingFormat("UTF-8")
+          .javaScriptAccess(true)
+      }
+    }
+  }
+  ```
+
+```html
+
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>My test html5 page</title>
+</head>
+<body>
+    Hello world!
+</body>
+</html>
+```
+### metaViewport<sup>12+</sup>
+
+metaViewport(enable: boolean)
+
+Sets whether the **viewport** property of the **meta** tag is enabled.
+
+> **NOTE**
+>
+> - If this parameter is set to **false**, the **viewport** property of the **meta** tag is not enabled. This means that the property will not be parsed and a default layout will be used.
+> - If this parameter is set to **true**, the **viewport** property of the **meta** tag is enabled. This means that the property will be parsed and used for the layout.
+> - If set to an invalid value, this parameter does not take effect.
+> - If the device is 2-in-1, the viewport property is not supported. This means that, regardless of whether this parameter is set to **true** or **false**, the **viewport** property will not be parsed and a default layout will be used.
+
+**Parameters**
+
+| Name | Type | Mandatory | Default Value | Description                        |
+| ------ | -------- | ---- | ------ | -------------------------------- |
+| enable | boolean  | Yes  | true   | Whether the **viewport** property of the **meta** tag is enabled. |
+
+**Example**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .metaViewport(true)
+    }
+  }
+}
+  ```
+
+```html
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<p>Hello world! </p>
+</body>
+</html>
+```
+### textAutosizing<sup>12+</sup>
+
+textAutosizing(textAutosizing: boolean)
+
+Sets whether automatic text resizing is enabled.
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Default Value | Description                                    |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textAutosizing | boolean | Yes   | true   | Whether automatic text resizing is enabled. |
+
+  **Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textAutosizing(false)
+      }
+    }
+  }
+  ```
+### enableNativeMediaPlayer<sup>12+</sup>
+
+enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
+
+Enable the [application takeover of web media playback feature](../../web/app-takeovers-web-media.md).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Default Value | Description |
+| ---- | ------ | ---- | ---- | ---------------------|
+| config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | Yes   |  {enable: false, shouldOverlay: false} | **enable**: whether to enable the feature.<br> **shouldOverlay**: whether the image of the video player taken over by the application will overlay the web page content, if this feature is enabled.|
+
+  **Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
+      }
+    }
+  }
+  ```
+
+### selectionMenuOptions<sup>12+</sup>
+
+selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+
+Sets the extended options of the custom context menu on selection, including the text content, icon, and callback.
+
+The API only supports the selection of plain text; if the selected content contains images or other non-text elements, the **action** information may display garbled content.
+
+**Parameters**
+
+| Name             | Type                                                        | Description         |
+| ------------------- | ----------------------------------------------------------   | ------------- |
+| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Extended options of the custom context menu on selection.<br>The number of menu items, menu content size, and start icon size must be the same as those of the ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
+      {content: 'Apple', startIcon: $r('app.media.icon'), action: (selectedText) => {
+        console.info('select info ' + selectedText.toString());
+      }},
+      {content: 'Banana', startIcon: $r('app.media.icon'), action: (selectedText) => {
+        console.info('select info ' + selectedText.toString());
+      }}
+    ];
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .selectionMenuOptions(this.menuOptionArray)
+      }
+    }
+  }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Test Web Page</title>
+  </head>
+  <body>
+    <h1>selectionMenuOptions Demo</h1>
+    <span>selection menu options</span>
+  </body>
+  </html>
+  ```
 ## Events
 
 The following universal events are supported: [onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear), [onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear), [onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur), [onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus), [onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend), [onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter), [onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart), [onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove), [onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave), [onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop), [onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover), [onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse), [onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent), [onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), [onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)
@@ -1790,7 +2187,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| url     | string                | URL of the web page where the dialog box is displayed.|
+| url     | string                | URL of the web page where the dialog box is displayed. |
 | message | string                | Message displayed in the dialog box.      |
 | result  | [JsResult](#jsresult) | User operation. |
 
@@ -1798,46 +2195,47 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onAlert',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -1874,7 +2272,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| url     | string                | URL of the web page where the dialog box is displayed.|
+| url     | string                | URL of the web page where the dialog box is displayed. |
 | message | string                | Message displayed in the dialog box.      |
 | result  | [JsResult](#jsresult) | User operation. |
 
@@ -1882,47 +2280,47 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onBeforeUnload',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -1959,7 +2357,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| url     | string                | URL of the web page where the dialog box is displayed.|
+| url     | string                | URL of the web page where the dialog box is displayed. |
 | message | string                | Message displayed in the dialog box.      |
 | result  | [JsResult](#jsresult) | User operation. |
 
@@ -1967,47 +2365,47 @@ Called when **confirm()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onConfirm',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2047,13 +2445,13 @@ Called when **confirm()** is invoked by the web page.
 
 onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
 
-Triggered when **prompt()** is invoked by the web page.
+Called when **prompt()** is invoked by the web page.
 
 **Parameters**
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| url     | string                | URL of the web page where the dialog box is displayed.|
+| url     | string                | URL of the web page where the dialog box is displayed. |
 | message | string                | Message displayed in the dialog box.      |
 | result  | [JsResult](#jsresult) | User operation. |
 
@@ -2061,48 +2459,48 @@ Triggered when **prompt()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onPrompt((event) => {
             if (event) {
-              console.log("url:" + event.url)
-              console.log("message:" + event.message)
-              console.log("value:" + event.value)
+              console.log("url:" + event.url);
+              console.log("message:" + event.message);
+              console.log("value:" + event.value);
               AlertDialog.show({
                 title: 'onPrompt',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handlePromptConfirm(event.value)
+                    event.result.handlePromptConfirm(event.value);
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2144,40 +2542,59 @@ Called to notify the host application of a JavaScript console message.
 
 | Name    | Type                             | Description     |
 | ------- | --------------------------------- | --------- |
-| message | [ConsoleMessage](#consolemessage) | Console message.|
+| message | [ConsoleMessage](#consolemessage) | Console message. |
 
 **Return value**
 
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
-| boolean | Returns **true** if the message will not be printed to the console; returns **false** otherwise.|
+| boolean | Returns **true** if the message will not be printed to the console; returns **false** otherwise. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Button('onconsole message')
+          .onClick(() => {
+            this.controller.runJavaScript('myFunction()');
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onConsole((event) => {
             if (event) {
-              console.log('getMessage:' + event.message.getMessage())
-              console.log('getSourceId:' + event.message.getSourceId())
-              console.log('getLineNumber:' + event.message.getLineNumber())
-              console.log('getMessageLevel:' + event.message.getMessageLevel())
+              console.log('getMessage:' + event.message.getMessage());
+              console.log('getSourceId:' + event.message.getSourceId());
+              console.log('getLineNumber:' + event.message.getLineNumber());
+              console.log('getMessageLevel:' + event.message.getMessageLevel());
             }
-            return false
+            return false;
           })
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <script>
+      function myFunction() {
+          console.log("onconsole printf");
+      }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onDownloadStart
@@ -2192,7 +2609,7 @@ Instructs the main application to start downloading a file.
 | ------------------ | ------ | ----------------------------------- |
 | url                | string | URL for the download task.                          |
 | userAgent          | string | User agent used for download.                         |
-| contentDisposition | string | Content-Disposition response header returned by the server, which may be empty.|
+| contentDisposition | string | Content-Disposition response header returned by the server, which may be empty. |
 | mimetype           | string | MIME type of the content returned by the server.               |
 | contentLength      | number | Length of the content returned by the server.                        |
 
@@ -2200,12 +2617,12 @@ Instructs the main application to start downloading a file.
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -2235,35 +2652,35 @@ Called when an error occurs during web page loading. For better results, simplif
 | Name    | Type                                    | Description           |
 | ------- | ---------------------------------------- | --------------- |
 | request | [WebResourceRequest](#webresourcerequest) | Encapsulation of a web page request.     |
-| error   | [WebResourceError](#webresourceerror)    | Encapsulation of a web page resource loading error.|
+| error   | [WebResourceError](#webresourceerror)    | Encapsulation of a web page resource loading error. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
             if (event) {
-              console.log('getErrorInfo:' + event.error.getErrorInfo())
-              console.log('getErrorCode:' + event.error.getErrorCode())
-              console.log('url:' + event.request.getRequestUrl())
-              console.log('isMainFrame:' + event.request.isMainFrame())
-              console.log('isRedirect:' + event.request.isRedirect())
-              console.log('isRequestGesture:' + event.request.isRequestGesture())
-              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
-              let result = event.request.getRequestHeader()
-              console.log('The request header result size is ' + result.length)
+              console.log('getErrorInfo:' + event.error.getErrorInfo());
+              console.log('getErrorCode:' + event.error.getErrorCode());
+              console.log('url:' + event.request.getRequestUrl());
+              console.log('isMainFrame:' + event.request.isMainFrame());
+              console.log('isRedirect:' + event.request.isRedirect());
+              console.log('isRequestGesture:' + event.request.isRequestGesture());
+              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
+              let result = event.request.getRequestHeader();
+              console.log('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
+                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
               }
             }
           })
@@ -2282,43 +2699,43 @@ Called when an HTTP error (the response code is greater than or equal to 400) oc
 
 | Name     | Type                                    | Description      |
 | -------- | ---------------------------------------- | ---------- |
-| request  | [WebResourceRequest](#webresourcerequest) | Encapsulation of a web page request.|
-| response | [WebResourceResponse](#webresourceresponse) | Encapsulation of a resource response.|
+| request  | [WebResourceRequest](#webresourcerequest) | Encapsulation of a web page request. |
+| response | [WebResourceResponse](#webresourceresponse) | Encapsulation of a resource response. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl())
-              console.log('isMainFrame:' + event.request.isMainFrame())
-              console.log('isRedirect:' + event.request.isRedirect())
-              console.log('isRequestGesture:' + event.request.isRequestGesture())
-              console.log('getResponseData:' + event.response.getResponseData())
-              console.log('getResponseEncoding:' + event.response.getResponseEncoding())
-              console.log('getResponseMimeType:' + event.response.getResponseMimeType())
-              console.log('getResponseCode:' + event.response.getResponseCode())
-              console.log('getReasonMessage:' + event.response.getReasonMessage())
-              let result = event.request.getRequestHeader()
-              console.log('The request header result size is ' + result.length)
+              console.log('url:' + event.request.getRequestUrl());
+              console.log('isMainFrame:' + event.request.isMainFrame());
+              console.log('isRedirect:' + event.request.isRedirect());
+              console.log('isRequestGesture:' + event.request.isRequestGesture());
+              console.log('getResponseData:' + event.response.getResponseData());
+              console.log('getResponseEncoding:' + event.response.getResponseEncoding());
+              console.log('getResponseMimeType:' + event.response.getResponseMimeType());
+              console.log('getResponseCode:' + event.response.getResponseCode());
+              console.log('getReasonMessage:' + event.response.getReasonMessage());
+              let result = event.request.getRequestHeader();
+              console.log('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
-              let resph = event.response.getResponseHeader()
-              console.log('The response header result size is ' + resph.length)
+              let resph = event.response.getResponseHeader();
+              console.log('The response header result size is ' + resph.length);
               for (let i of resph) {
-                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
             }
           })
@@ -2337,25 +2754,25 @@ Called when the web page starts to be loaded. This API is called only for the ma
 
 | Name | Type  | Description     |
 | ---- | ------ | --------- |
-| url  | string | URL of the page.|
+| url  | string | URL of the page. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
             if (event) {
-              console.log('url:' + event.url)
+              console.log('url:' + event.url);
             }
           })
       }
@@ -2373,25 +2790,25 @@ Called when the web page loading is complete. This API takes effect only for the
 
 | Name | Type  | Description     |
 | ---- | ------ | --------- |
-| url  | string | URL of the page.|
+| url  | string | URL of the page. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
             if (event) {
-              console.log('url:' + event.url)
+              console.log('url:' + event.url);
             }
           })
       }
@@ -2409,25 +2826,25 @@ Called when the web page loading progress changes.
 
 | Name        | Type  | Description                 |
 | ----------- | ------ | --------------------- |
-| newProgress | number | New loading progress. The value is an integer ranging from 0 to 100.|
+| newProgress | number | New loading progress. The value is an integer ranging from 0 to 100. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onProgressChange((event) => {
             if (event) {
-              console.log('newProgress:' + event.newProgress)
+              console.log('newProgress:' + event.newProgress);
             }
           })
       }
@@ -2445,25 +2862,25 @@ Called when the document title of the web page is changed.
 
 | Name  | Type  | Description         |
 | ----- | ------ | ------------- |
-| title | string | Document title.|
+| title | string | Document title. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onTitleReceive((event) => {
             if (event) {
-              console.log('title:' + event.title)
+              console.log('title:' + event.title);
             }
           })
       }
@@ -2475,32 +2892,32 @@ Called when the document title of the web page is changed.
 
 onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void)
 
-Called when loading of the web page is complete. This API is used by an application to update the historical link it accessed.
+Called when loading of the web page is complete and the access history of a web page is refreshed.
 
 **Parameters**
 
 | Name        | Type   | Description                                    |
 | ----------- | ------- | ---------------------------------------- |
 | url         | string  | URL to be accessed.                                 |
-| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh<sup>9+</sup>](js-apis-webview.md#refresh) API, and **false** means the opposite.|
+| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh<sup>9+</sup>](js-apis-webview.md#refresh) API, and **false** means the opposite. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
             if (event) {
-              console.log('url:' + event.url + ' isReload:' + event.isRefreshed)
+              console.log('url:' + event.url + ' isReload:' + event.isRefreshed);
             }
           })
       }
@@ -2538,25 +2955,25 @@ Called when the rendering process exits abnormally.
 
 | Name             | Type                                    | Description            |
 | ---------------- | ---------------------------------------- | ---------------- |
-| renderExitReason | [RenderExitReason](#renderexitreason9) | Cause for the abnormal exit of the rendering process.|
+| renderExitReason | [RenderExitReason](#renderexitreason9)  | Cause for the abnormal exit of the rendering process. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
             if (event) {
-              console.log('reason:' + event.renderExitReason)
+              console.log('reason:' + event.renderExitReason);
             }
           })
       }
@@ -2564,105 +2981,216 @@ Called when the rendering process exits abnormally.
   }
   ```
 
-### onShowFileSelector<sup>9+</sup>
+### onRenderProcessNotResponding<sup>12+</sup>
 
-onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
+onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
-Called to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.
+Called when the web render process does not respond.
 
 **Parameters**
 
-| Name         | Type                                    | Description             |
-| ------------ | ---------------------------------------- | ----------------- |
-| result       | [FileSelectorResult](#fileselectorresult9) | File selection result to be sent to the **\<Web>** component.|
-| fileSelector | [FileSelectorParam](#fileselectorparam9) | Information about the file selector.      |
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | The value **true** means that the pop-up window provided by the system is displayed. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| Name  | Type                                                        | Description                                  |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | Called when the web render process does not respond. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import picker from '@ohos.file.picker';
-  import { BusinessError } from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-          .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked')
-            const documentSelectOptions = new picker.DocumentSelectOptions();
-            let uri: string | null = null;
-            const documentViewPicker = new picker.DocumentViewPicker();
-            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
-              uri = documentSelectResult[0];
-              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
-              if (event) {
-                event.result.handleFileList([uri]);
-              }
-            }).catch((err: BusinessError) => {
-              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-            })
-            return true
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onRenderProcessNotResponding((data) => {
+            console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
+              ", [process]=" + data.pid + ", [reason]=" + data.reason);
           })
       }
     }
   }
   ```
 
-  HTML file to be loaded:
-  ```html
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-  </head>
-  <body>
-    <form id="upload-form" enctype="multipart/form-data">
-      <input type="file" id="upload" name="upload"/>
-      </form>
-  </body>
-  </html>
-  ```
+### onRenderProcessResponding<sup>12+</sup>
 
-### onResourceLoad<sup>9+</sup>
+onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
-onResourceLoad(callback: (event: {url: string}) => void)
-
-Called to notify the **\<Web>** component of the URL of the loaded resource file.
+Called when the web render process transitions back to a normal operating state from an unresponsive state. This callback indicates that the web page was not actually frozen or stuck.
 
 **Parameters**
 
-| Name | Type  | Description          |
-| ---- | ------ | -------------- |
-| url  | string | URL of the loaded resource file.|
+| Name  | Type                                                        | Description                                  |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | Called when the web render process transitions back to a normal operating state from an unresponsive state. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onRenderProcessResponding(() => {
+            console.log("onRenderProcessResponding again");
+          })
+      }
+    }
+  }
+  ```
+
+
+### onShowFileSelector<sup>9+</sup>
+
+onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
+
+Called when a file selector is displayed to process an HTML form with an input of type "file". If this API is not called or returns **false**, the **Web** component will provide a default file selection window. If it returns **true**, the application can customize the response behavior for file selection.
+
+**Parameters**
+
+| Name         | Type                                    | Description             |
+| ------------ | ---------------------------------------- | ----------------- |
+| result       | [FileSelectorResult](#fileselectorresult9) | File selection result to be sent to the **Web** component. |
+| fileSelector | [FileSelectorParam](#fileselectorparam9) | Information about the file selector.      |
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | The value **true** means that the pop-up window provided by the system is displayed. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
+
+**Example**
+
+1. Start the file selector.
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { picker } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             console.log('MyFileUploader onShowFileSelector invoked')
+             const documentSelectOptions = new picker.DocumentSelectOptions();
+             let uri: string | null = null;
+             const documentViewPicker = new picker.DocumentViewPicker();
+             documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+               uri = documentSelectResult[0];
+               console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+               if (event) {
+                 event.result.handleFileList([uri]);
+               }
+             }).catch((err: BusinessError) => {
+               console.error(`Invoke documentViewPicker.select failed, code is ${err.code},  message is ${err.message}`);
+             })
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
+2. Start the photo selector.
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { picker } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+   @Entry
+   @Component
+   export struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+
+     async selectFile(result: FileSelectorResult): Promise<void> {
+       let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+       let photoPicker = new photoAccessHelper.PhotoViewPicker();
+       // Set the media file type to IMAGE.
+       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+       // Set the maximum number of media files that can be selected.
+       photoSelectOptions.maxSelectNumber = 5;
+       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       // Obtain the list of selected files.
+       result.handleFileList(chooseFile.photoUris);
+     }
+
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             if (event) {
+               this.selectFile(event.result);
+             }
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
+   HTML file to be loaded:
+   ```html
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+   </head>
+   <body>
+     <form id="upload-form" enctype="multipart/form-data">
+       <input type="file" id="upload" name="upload"/>
+       </form>
+   </body>
+   </html>
+   ```
+
+### onResourceLoad<sup>9+</sup>
+
+onResourceLoad(callback: (event: {url: string}) => void)
+
+Called to notify the **Web** component of the URL of the loaded resource file.
+
+**Parameters**
+
+| Name | Type  | Description          |
+| ---- | ------ | -------------- |
+| url  | string | URL of the loaded resource file. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onResourceLoad((event) => {
-            console.log('onResourceLoad: ' + event.url)
+            console.log('onResourceLoad: ' + event.url);
           })
       }
     }
@@ -2679,25 +3207,25 @@ Called when the display ratio of this page changes.
 
 | Name     | Type  | Description        |
 | -------- | ------ | ------------ |
-| oldScale | number | Display ratio of the page before the change.|
-| newScale | number | Display ratio of the page after the change.|
+| oldScale | number | Display ratio of the page before the change. |
+| newScale | number | Display ratio of the page after the change. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onScaleChange((event) => {
-            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale)
+            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
           })
       }
     }
@@ -2708,38 +3236,38 @@ Called when the display ratio of this page changes.
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
-Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
+Called when the **Web** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 This API is deprecated since API version 10. You are advised to use [onLoadIntercept<sup>10+</sup>](#onloadintercept10) instead.
 
 **Parameters**
 
 | Name | Type                                    | Description     |
 | ---- | ---------------------------------------- | --------- |
-| data | string \| [WebResourceRequest](#webresourcerequest) | URL information.|
+| data | string \| [WebResourceRequest](#webresourcerequest) | URL information. |
 
 **Return value**
 
 | Type     | Description                      |
 | ------- | ------------------------ |
-| boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
+| boolean | Returns **true** if the access is blocked; returns **false** otherwise. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
             if (event) {
-              console.log('onUrlLoadIntercept ' + event.data.toString())
+              console.log('onUrlLoadIntercept ' + event.data.toString());
             }
             return true
           })
@@ -2752,65 +3280,74 @@ This API is deprecated since API version 10. You are advised to use [onLoadInter
 
 onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
 
-Called when the **\<Web>** component is about to access a URL. This API is used to block the URL and return the response data.
+Called when the **Web** component is about to access a URL. This API is used to block the URL and return the response data.
 
 **Parameters**
 
 | Name    | Type                                    | Description       |
 | ------- | ---------------------------------------- | ----------- |
-| request | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
+| request | [WebResourceRequest](#webresourcerequest) | Information about the URL request. |
 
 **Return value**
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| [WebResourceResponse](#webresourceresponse) | If response data is returned, the data is loaded based on the response data. If no response data is returned, null is returned, indicating that the data is loaded in the original mode.|
+| [WebResourceResponse](#webresourceresponse) | If response data is returned, the data is loaded based on the response data. If no response data is returned, null is returned, indicating that the data is loaded in the original mode. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseweb: WebResourceResponse = new WebResourceResponse()
-    heads:Header[] = new Array()
-    @State webdata: string = "<!DOCTYPE html>\n" +
-    "<html>\n"+
-    "<head>\n"+
-    "<title>intercept test</title>\n"+
-    "</head>\n"+
-    "<body>\n"+
-    "<h1>intercept test</h1>\n"+
-    "</body>\n"+
-    "</html>"
+    controller: webview.WebviewController = new webview.WebviewController();
+    responseWeb: WebResourceResponse = new WebResourceResponse();
+    heads: Header[] = new Array();
+    @State webData: string = "<!DOCTYPE html>\n" +
+      "<html>\n" +
+      "<head>\n" +
+      "<title>intercept test</title>\n" +
+      "</head>\n" +
+      "<body>\n" +
+      "<h1>intercept test</h1>\n" +
+      "</body>\n" +
+      "</html>";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl())
+              console.log('url:' + event.request.getRequestUrl());
             }
-            let head1:Header = {
-              headerKey:"Connection",
-              headerValue:"keep-alive"
+            let head1: Header = {
+              headerKey: "Connection",
+              headerValue: "keep-alive"
             }
-            let head2:Header = {
-              headerKey:"Cache-Control",
-              headerValue:"no-cache"
+            let head2: Header = {
+              headerKey: "Cache-Control",
+              headerValue: "no-cache"
             }
-            let length = this.heads.push(head1)
-            length = this.heads.push(head2)
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
-            return this.responseweb
+            let length = this.heads.push(head1);
+            length = this.heads.push(head2);
+            const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
+              this.responseWeb.setResponseHeader(this.heads);
+              this.responseWeb.setResponseData(this.webData);
+              this.responseWeb.setResponseEncoding('utf-8');
+              this.responseWeb.setResponseMimeType('text/html');
+              this.responseWeb.setResponseCode(200);
+              this.responseWeb.setReasonMessage('OK');
+              resolve("success");
+            })
+            promise.then(() => {
+              console.log("prepare response ready");
+              this.responseWeb.setResponseIsReady(true);
+            })
+            this.responseWeb.setResponseIsReady(false);
+            return this.responseWeb;
           })
       }
     }
@@ -2828,25 +3365,26 @@ Called when an HTTP authentication request is received.
 | Name    | Type                                | Description            |
 | ------- | ------------------------------------ | ---------------- |
 | handler | [HttpAuthHandler](#httpauthhandler9) | User operation.  |
-| host    | string                               | Host to which HTTP authentication credentials apply.|
+| host    | string                               | Host to which HTTP authentication credentials apply. |
 | realm   | string                               | Realm to which HTTP authentication credentials apply. |
 
 **Return value**
 
 | Type     | Description                   |
 | ------- | --------------------- |
-| boolean | Returns **true** if the authentication is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the authentication is successful; returns **false** otherwise. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    httpAuth: boolean = false
+    controller: webview.WebviewController = new webview.WebviewController();
+    httpAuth: boolean = false;
 
     build() {
       Column() {
@@ -2859,30 +3397,30 @@ Called when an HTTP authentication request is received.
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.handler.cancel()
+                    event.handler.cancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    this.httpAuth = event.handler.isHttpAuthInfoSaved()
+                    this.httpAuth = event.handler.isHttpAuthInfoSaved();
                     if (this.httpAuth == false) {
-                      web_webview.WebDataBase.saveHttpAuthCredentials(
+                      webview.WebDataBase.saveHttpAuthCredentials(
                         event.host,
                         event.realm,
                         "2222",
                         "2222"
                       )
-                      event.handler.cancel()
+                      event.handler.cancel();
                     }
                   }
                 },
                 cancel: () => {
-                  event.handler.cancel()
+                  event.handler.cancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2892,24 +3430,26 @@ Called when an HTTP authentication request is received.
 
 onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
 
-Called when an SSL error occurs during resource loading.
+Called to notify users when an SSL error occurs during the loading of resources, with support only for the main resource.
+For support with sub-resources, use [OnSslErrorEvent](#onsslerrorevent12).
 
 **Parameters**
 
 | Name    | Type                                | Description          |
 | ------- | ------------------------------------ | -------------- |
-| handler | [SslErrorHandler](#sslerrorhandler9) | User operation.|
+| handler | [SslErrorHandler](#sslerrorhandler9) | User operation. |
 | error   | [SslError](#sslerror9)          | Error code.          |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -2921,17 +3461,76 @@ Called when an SSL error occurs during resource loading.
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.handleConfirm()
+                  event.handler.handleConfirm();
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.handleCancel()
+                  event.handler.handleCancel();
                 }
               },
               cancel: () => {
-                event.handler.handleCancel()
+                event.handler.handleCancel();
+              }
+            })
+          })
+      }
+    }
+  }
+  ```
+
+### onSslErrorEvent<sup>12+</sup>
+
+onSslErrorEvent(callback: OnSslErrorEventCallback)
+
+Called to notify users when an SSL error occurs during the loading of resources (main resources and sub-resources). To handle SSL errors for the main resource, use the **isMainFrame** field to distinguish.
+
+**Parameters**
+
+| Name    | Type                                | Description          |
+| ------- | ------------------------------------ | -------------- |
+| callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | Called when an SSL error occurs during resource loading. |
+|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onSslErrorEvent((event: SslErrorEvent) => {
+            console.log("onSslErrorEvent url: " + event.url);
+            console.log("onSslErrorEvent error: " + event.error);
+            console.log("onSslErrorEvent originalUrl: " + event.originalUrl);
+            console.log("onSslErrorEvent referrer: " + event.referrer);
+            console.log("onSslErrorEvent isFatalError: " + event.isFatalError);
+            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame);
+            AlertDialog.show({
+              title: 'onSslErrorEvent',
+              message: 'text',
+              primaryButton: {
+                value: 'confirm',
+                action: () => {
+                  event.handler.handleConfirm();
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.handleCancel();
+                }
+              },
+              cancel: () => {
+                event.handler.handleCancel();
               }
             })
           })
@@ -2954,7 +3553,7 @@ Called when an SSL client certificate request is received.
 | host     | string                                   | Host name of the server that requests a certificate.   |
 | port     | number                                   | Port number of the server that requests a certificate.   |
 | keyTypes | Array<string\>                           | Acceptable asymmetric private key types.   |
-| issuers  | Array<string\>                           | Issuer of the certificate that matches the private key.|
+| issuers  | Array<string\>                           | Issuer of the certificate that matches the private key. |
 
   **Example**
 
@@ -2962,11 +3561,12 @@ Called when an SSL client certificate request is received.
 
   ```ts
   // xxx.ets API9
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -2978,17 +3578,17 @@ Called when an SSL client certificate request is received.
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem")
+                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.cancel()
+                  event.handler.cancel();
                 }
               },
               cancel: () => {
-                event.handler.ignore()
+                event.handler.ignore();
               }
             })
           })
@@ -3002,7 +3602,7 @@ Called when an SSL client certificate request is received.
   1. Construct the singleton object **GlobalContext**.
 
      ```ts
-     // GlobalContext.ts
+     // GlobalContext.ets
      export class GlobalContext {
        private constructor() {}
        private static instance: GlobalContext;
@@ -3030,119 +3630,117 @@ Called when an SSL client certificate request is received.
 
      ```ts
      // xxx.ets API10
-     import common from '@ohos.app.ability.common';
-     import Want from '@ohos.app.ability.Want';
-     import web_webview from '@ohos.web.webview'
-     import { BusinessError } from '@ohos.base';
-     import bundleManager from '@ohos.bundle.bundleManager'
-     import { GlobalContext } from '../GlobalContext'
+     import { webview } from '@kit.ArkWeb';
+     import { common, Want, bundleManager } from '@kit.AbilityKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { GlobalContext } from '../GlobalContext';
 
-      let uri = "";
+     let uri = "";
 
-      export default class CertManagerService {
-        private static sInstance: CertManagerService;
-        private authUri = "";
-        private appUid = "";
+     export default class CertManagerService {
+       private static sInstance: CertManagerService;
+       private authUri = "";
+       private appUid = "";
 
-        public static getInstance(): CertManagerService {
-          if (CertManagerService.sInstance == null) {
-            CertManagerService.sInstance = new CertManagerService();
-          }
-          return CertManagerService.sInstance;
-        }
+       public static getInstance(): CertManagerService {
+         if (CertManagerService.sInstance == null) {
+           CertManagerService.sInstance = new CertManagerService();
+         }
+         return CertManagerService.sInstance;
+       }
 
-        async grantAppPm(callback: (message: string) => void) {
-          let message = '';
-          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-          // Note: Replace com.example.myapplication with the actual application name.
-          try {
-            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-              this.appUid = data.appInfo.uid.toString();
-            }).catch((err: BusinessError) => {
-              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-            });
-          } catch (err) {
-            let message = (err as BusinessError).message;
-            console.error('getBundleInfoForSelf failed: %{public}s', message);
-          }
+       async grantAppPm(callback: (message: string) => void) {
+         let message = '';
+         let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+         // Note: Replace com.example.myapplication with the actual application name.
+         try {
+           bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+             console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+            this.appUid = data.appInfo.uid.toString();
+           }).catch((err: BusinessError) => {
+             console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+           });
+         } catch (err) {
+           let message = (err as BusinessError).message;
+           console.error('getBundleInfoForSelf failed: %{public}s', message);
+         }
 
-          // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
-          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-          await abilityContext.startAbilityForResult(
-            {
-              bundleName: "com.ohos.certmanager",
-              abilityName: "MainAbility",
-              uri: "requestAuthorize",
-              parameters: {
-                appUid: this.appUid, // Pass the UID of the requesting application.
-              }
-            } as Want)
-            .then((data: common.AbilityResult) => {
-              if (!data.resultCode && data.want) {
-                if (data.want.parameters) {
-                  this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
-                }
-              }
-            })
-          message += "after grantAppPm authUri: " + this.authUri;
-          uri = this.authUri;
-          callback(message)
-        }
-      }
+         // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
+         let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+         await abilityContext.startAbilityForResult(
+           {
+             bundleName: "com.ohos.certmanager",
+             abilityName: "MainAbility",
+             uri: "requestAuthorize",
+             parameters: {
+               appUid: this.appUid, // Pass the UID of the requesting application.
+             }
+           } as Want)
+           .then((data: common.AbilityResult) => {
+             if (!data.resultCode && data.want) {
+               if (data.want.parameters) {
+                 this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
+               }
+             }
+           })
+         message += "after grantAppPm authUri: " + this.authUri;
+         uri = this.authUri;
+         callback(message)
+       }
+     }
 
-      @Entry
-      @Component
-      struct WebComponent {
-        controller: web_webview.WebviewController = new web_webview.WebviewController();
-        @State message: string ='Hello World' // message is used for debugging and observation.
-        certManager = CertManagerService.getInstance();
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: webview.WebviewController = new webview.WebviewController();
+       @State message: string ='Hello World' // message is used for debugging and observation.
+       certManager = CertManagerService.getInstance();
 
-        build() {
-          Row() {
-            Column() {
-              Row() {
-                // Step 1: Perform authorization to obtain the URI.
-                Button('GrantApp')
-                  .onClick(() => {
-                    this.certManager.grantAppPm((data) => {
-                      this.message = data;
-                    });
-                  })
-                // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
-                Button("ClientCertAuth")
-                  .onClick(() => {
-                    this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
-                  })
-              }
+       build() {
+         Row() {
+           Column() {
+             Row() {
+               // Step 1: Perform authorization to obtain the URI.
+               Button('GrantApp')
+                 .onClick(() => {
+                   this.certManager.grantAppPm((data) => {
+                     this.message = data;
+                   });
+                 })
+               // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
+               Button("ClientCertAuth")
+                 .onClick(() => {
+                   this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
+                 })
+             }
 
-              Web({ src: 'https://www.example1.com', controller: this.controller })
-                .fileAccess(true)
-                .javaScriptAccess(true)
-                .domStorageAccess(true)
-                .onlineImageAccess(true)
+             Web({ src: 'https://www.example1.com', controller: this.controller })
+               .fileAccess(true)
+               .javaScriptAccess(true)
+               .domStorageAccess(true)
+               .onlineImageAccess(true)
 
-              .onClientAuthenticationRequest((event) => {
-                AlertDialog.show({
-                  title: 'ClientAuth',
-                  message: 'Text',
-                  confirm: {
-                    value: 'Confirm',
-                    action: () => {
-                      event.handler.confirm(uri);
-                    }
-                  },
-                  cancel: () => {
-                    event.handler.cancel();
-                  }
-                })
-              })
-            }
-          }
-          .width('100%')
-          .height('100%')
-        }
-      }
+               .onClientAuthenticationRequest((event) => {
+                 AlertDialog.show({
+                   title: 'ClientAuth',
+                   message: 'Text',
+                   confirm: {
+                     value: 'Confirm',
+                     action: () => {
+                       event.handler.confirm(uri);
+                     }
+                   },
+                   cancel: () => {
+                     event.handler.cancel();
+                   }
+                 })
+               })
+           }
+         }
+         .width('100%')
+         .height('100%')
+       }
+     }
      ```
 
 ### onPermissionRequest<sup>9+</sup>
@@ -3155,18 +3753,19 @@ Called when a permission request is received.
 
 | Name    | Type                                    | Description          |
 | ------- | ---------------------------------------- | -------------- |
-| request | [PermissionRequest](#permissionrequest9) | User operation.|
+| request | [PermissionRequest](#permissionrequest9) | User operation. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3178,17 +3777,17 @@ Called when a permission request is received.
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    event.request.deny()
+                    event.request.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    event.request.grant(event.request.getAccessibleResource())
+                    event.request.grant(event.request.getAccessibleResource());
                   }
                 },
                 cancel: () => {
-                  event.request.deny()
+                  event.request.deny();
                 }
               })
             }
@@ -3219,7 +3818,7 @@ Called when a permission request is received.
         audio: true
       };
       // Obtain the video camera area.
-      let video = document.getElementByld("video");
+      let video = document.getElementById("video");
       // Returned Promise object
       let promise = navigator.mediaDevices.getUserMedia(constraints);
       // then() is asynchronous. Invoke the MediaStream object as a parameter.
@@ -3244,96 +3843,98 @@ Called when a context menu is displayed after the user clicks the right mouse bu
 | Name   | Type                                    | Description       |
 | ------ | ---------------------------------------- | ----------- |
 | param  | [WebContextMenuParam](#webcontextmenuparam9) | Parameters related to the context menu.    |
-| result | [WebContextMenuResult](#webcontextmenuresult9) | Result of the context menu.|
+| result | [WebContextMenuResult](#webcontextmenuresult9) | Result of the context menu. |
 
 **Return value**
 
 | Type     | Description                      |
 | ------- | ------------------------ |
-| boolean | The value **true** means a valid custom menu, and **false** means an invalid custom menu.|
+| boolean | The value **true** means a valid custom menu, and **false** means an invalid custom menu. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import pasteboard from '@ohos.pasteboard'
+  import { webview } from '@kit.ArkWeb';
+  import { pasteboard } from '@kit.BasicServicesKit';
+
   const TAG = 'ContextMenu';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     private result: WebContextMenuResult | undefined = undefined;
     @State linkUrl: string = '';
     @State offsetX: number = 0;
     @State offsetY: number = 0;
     @State showMenu: boolean = false;
+
     @Builder
     // Build and trigger a custom menu.
-    MenuBuilder(){
+    MenuBuilder() {
       // A component that is used to present a vertical list of items to the user.
-      Menu(){
+      Menu() {
         // A component that is used to represent an item in a menu.
         MenuItem({
           content: 'Copy Image',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.copyImage();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.copyImage();
+            this.showMenu = false;
+          })
         MenuItem({
           content: 'Cut',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.cut();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.cut();
+            this.showMenu = false;
+          })
         MenuItem({
           content: 'Copy',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.copy();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.copy();
+            this.showMenu = false;
+          })
         MenuItem({
           content: 'Paste',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.paste();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.paste();
+            this.showMenu = false;
+          })
         MenuItem({
           content: 'Copy Link',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
-          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
-            if(error){
-              return;
-            }
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+            pasteboard.getSystemPasteboard().setData(pasteData, (error) => {
+              if (error) {
+                return;
+              }
+            })
+            this.showMenu = false;
           })
-          this.showMenu = false;
-        })
         MenuItem({
           content: 'Select All',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.selectAll();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.selectAll();
+            this.showMenu = false;
+          })
       }
       .width(150)
       .height(300)
@@ -3346,30 +3947,30 @@ Called when a context menu is displayed after the user clicks the right mouse bu
           .onContextMenuShow((event) => {
             if (event) {
               this.result = event.result
-              console.info("x coord = " + event.param.x())
-              console.info("link url = " + event.param.getLinkUrl())
-              this.linkUrl = event.param.getLinkUrl()
+              console.info("x coord = " + event.param.x());
+              console.info("link url = " + event.param.getLinkUrl());
+              this.linkUrl = event.param.getLinkUrl();
             }
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
             this.offsetX = 250;
             this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
-            return true
-        })
-        .bindPopup(this.showMenu,
-        {
-          builder: this.MenuBuilder(),
-          enableArrow: false,
-          placement: Placement.LeftTop,
-          offset: { x: this.offsetX, y: this.offsetY},
-          mask: false,
-          onStateChange: (e) => {
-            if(!e.isVisible){
-              this.showMenu = false;
-              this.result!.closeContextMenu();
-            }
-          }
-        })
+            return true;
+          })
+          .bindPopup(this.showMenu,
+            {
+              builder: this.MenuBuilder(),
+              enableArrow: false,
+              placement: Placement.LeftTop,
+              offset: { x: this.offsetX, y: this.offsetY },
+              mask: false,
+              onStateChange: (e) => {
+                if (!e.isVisible) {
+                  this.showMenu = false;
+                  this.result!.closeContextMenu();
+                }
+              }
+            })
       }
     }
   }
@@ -3406,18 +4007,19 @@ Called when a context menu is hidden after the user clicks the right mouse butto
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuHide(() => {
-            console.log("onContextMenuHide callback")
-        })
+            console.log("onContextMenuHide callback");
+          })
       }
     }
   }
@@ -3433,26 +4035,27 @@ Called when the scrollbar of the page scrolls.
 
 | Name    | Type  | Description                  |
 | ------- | ------ | ---------------------- |
-| xOffset | number | Position of the scrollbar on the x-axis relative to the leftmost of the web page.|
-| yOffset | number | Position of the scrollbar on the y-axis relative to the top of the web page.|
+| xOffset | number | Position of the scrollbar on the x-axis relative to the leftmost of the web page. |
+| yOffset | number | Position of the scrollbar on the y-axis relative to the top of the web page. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onScroll((event) => {
-            console.info("x = " + event.xOffset)
-            console.info("y = " + event.yOffset)
-        })
+          .onScroll((event) => {
+            console.info("x = " + event.xOffset);
+            console.info("y = " + event.yOffset);
+          })
       }
     }
   }
@@ -3469,39 +4072,40 @@ Called when a request to obtain the geolocation information is received.
 | Name        | Type                           | Description          |
 | ----------- | ------------------------------- | -------------- |
 | origin      | string                          | Index of the origin.    |
-| geolocation | [JsGeolocation](#jsgeolocation) | User operation.|
+| geolocation | [JsGeolocation](#jsgeolocation) | User operation. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:$rawfile('index.html'), controller:this.controller })
-        .geolocationAccess(true)
-        .onGeolocationShow((event) => {
-          if (event) {
-            AlertDialog.show({
-              title: 'title',
-              message: 'text',
-              confirm: {
-                value: 'onConfirm',
-                action: () => {
-                  event.geolocation.invoke(event.origin, true, true)
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .geolocationAccess(true)
+          .onGeolocationShow((event) => {
+            if (event) {
+              AlertDialog.show({
+                title: 'title',
+                message: 'text',
+                confirm: {
+                  value: 'onConfirm',
+                  action: () => {
+                    event.geolocation.invoke(event.origin, true, true);
+                  }
+                },
+                cancel: () => {
+                  event.geolocation.invoke(event.origin, false, true);
                 }
-              },
-              cancel: () => {
-                event.geolocation.invoke(event.origin, false, true)
-              }
-            })
-          }
-        })
+              })
+            }
+          })
       }
     }
   }
@@ -3540,25 +4144,26 @@ Called to notify the user that the request for obtaining the geolocation informa
 
 | Name     | Type      | Description                |
 | -------- | ---------- | -------------------- |
-| callback | () => void | Callback invoked when the request for obtaining geolocation information has been canceled. |
+| callback | () => void | Callback invoked when the request for obtaining geolocation information has been canceled.  |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .geolocationAccess(true)
-        .onGeolocationHide(() => {
-          console.log("onGeolocationHide...")
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .geolocationAccess(true)
+          .onGeolocationHide(() => {
+            console.log("onGeolocationHide...");
+          })
       }
     }
   }
@@ -3566,7 +4171,7 @@ Called to notify the user that the request for obtaining the geolocation informa
 
 ### onFullScreenEnter<sup>9+</sup>
 
-onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
+onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 Called when the component enters full screen mode.
 
@@ -3574,26 +4179,29 @@ Called when the component enters full screen mode.
 
 | Name    | Type                                    | Description          |
 | ------- | ---------------------------------------- | -------------- |
-| handler | [FullScreenExitHandler](#fullscreenexithandler9) | Function handle for exiting full screen mode.|
+| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Called when the component enters full screen mode. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    handler: FullScreenExitHandler | null = null;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onFullScreenEnter((event) => {
-          console.log("onFullScreenEnter...")
-          this.handler = event.handler
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFullScreenEnter((event) => {
+            console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+              ", videoHeight: " + event.videoHeight);
+            // The application can call this.handler.exitFullScreen() to exit the full screen mode.
+            this.handler = event.handler;
+          })
       }
     }
   }
@@ -3609,31 +4217,32 @@ Called when the component exits full screen mode.
 
 | Name     | Type      | Description         |
 | -------- | ---------- | ------------- |
-| callback | () => void | Callback invoked when the component exits full screen mode.|
+| callback | () => void | Callback invoked when the component exits full screen mode. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    handler: FullScreenExitHandler | null = null;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onFullScreenExit(() => {
-          console.log("onFullScreenExit...")
-          if (this.handler) {
-            this.handler.exitFullScreen()
-          }
-        })
-        .onFullScreenEnter((event) => {
-          this.handler = event.handler
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFullScreenExit(() => {
+            console.log("onFullScreenExit...")
+            if (this.handler) {
+              this.handler.exitFullScreen();
+            }
+          })
+          .onFullScreenEnter((event) => {
+            this.handler = event.handler;
+          })
       }
     }
   }
@@ -3654,39 +4263,41 @@ If opening a new window is not needed, set the parameter to **null** when callin
 | isAlert       | boolean                                  | Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.   |
 | isUserTrigger | boolean                                  | Whether the creation is triggered by the user. The value **true** means that the creation is triggered by the user, and **false** means the opposite.     |
 | targetUrl     | string                                   | Target URL.                       |
-| handler       | [ControllerHandler](#controllerhandler9) | **WebviewController** instance for setting the new window.|
+| handler       | [ControllerHandler](#controllerhandler9) | **WebviewController** instance for setting the new window. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
-  controller?: CustomDialogController
-  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
+
+    build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
           .javaScriptAccess(true)
           .multiWindowAccess(false)
-          .onWindowExit(()=> {
-            console.info("NewWebViewComp onWindowExit")
+          .onWindowExit(() => {
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
-        }
+      }
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3696,17 +4307,17 @@ If opening a new window is not needed, set the parameter to **null** when callin
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
             if (this.dialogController) {
-              this.dialogController.close()
+              this.dialogController.close();
             }
-            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({webviewController1: popController})
+              builder: NewWebViewComp({ webviewController1: popController })
             })
-            this.dialogController.open()
+            this.dialogController.open();
             // Return the WebviewController object corresponding to the new window to the <Web> kernel.
             // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
             // If the event.handler.setWebController API is not called, the render process will be blocked.
-            event.handler.setWebController(popController)
+            event.handler.setWebController(popController);
           })
       }
     }
@@ -3723,24 +4334,24 @@ Called when this window is closed.
 
 | Name     | Type      | Description        |
 | -------- | ---------- | ------------ |
-| callback | () => void | Callback invoked when the window is closed.|
+| callback | () => void | Callback invoked when the window is closed. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-        .onWindowExit(() => {
-          console.log("onWindowExit...")
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onWindowExit(() => {
+            console.log("onWindowExit...");
+          })
       }
     }
   }
@@ -3758,28 +4369,28 @@ Called to notify the caller of the search result on the web page.
 | ------------------ | ------- | ---------------------------------------- |
 | activeMatchOrdinal | number  | Sequence number of the current match, which starts from 0.                      |
 | numberOfMatches    | number  | Total number of matches.                           |
-| isDoneCounting     | boolean | Whether the search operation on the current page is complete. This API may be called multiple times until **isDoneCounting** is **true**.|
+| isDoneCounting     | boolean | Whether the search operation on the current page is complete. This API may be called multiple times until **isDoneCounting** is **true**. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-     	  .onSearchResultReceive(ret => {
-     	    if (ret) {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-     	    }
-     	  })
+          .onSearchResultReceive(ret => {
+            if (ret) {
+              console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+                "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
+            }
+          })
       }
     }
   }
@@ -3795,35 +4406,36 @@ Called when the web form data is resubmitted.
 
 | Name    | Type                                    | Description       |
 | ------- | ---------------------------------------- | ----------- |
-| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | Handler for resubmitting web form data.|
+| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | Handler for resubmitting web form data. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         // After you click Submit on the web page, you can click Refresh to trigger the function again.
         Button('refresh')
-        .onClick(() => {
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-        Web({ src:$rawfile('index.html'), controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.resend();
-        })
+          .onClick(() => {
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.resend();
+          })
       }
     }
   }
@@ -3856,23 +4468,25 @@ Called when the old page is not displayed and the new page is about to be visibl
 
 | Name | Type  | Description                      |
 | ---- | ------ | -------------------------- |
-| url  | string | URL of the new page that is able to be visible when the old page is not displayed.|
+| url  | string | URL of the new page that is able to be visible when the old page is not displayed. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onPageVisible((event) => {
-          console.log('onPageVisible url:' + event.url)
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onPageVisible((event) => {
+            console.log('onPageVisible url:' + event.url);
+          })
       }
     }
   }
@@ -3888,33 +4502,35 @@ Called when the key event is intercepted and before it is consumed by the webvie
 
 | Name  | Type                                    | Description          |
 | ----- | ---------------------------------------- | -------------- |
-| event | [KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) | Key event that is triggered.|
+| event | [KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent)  | Key event that is triggered. |
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Whether to continue to transfer the key event to the webview kernel.|
+| boolean | Whether to continue to transfer the key event to the webview kernel. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onInterceptKeyEvent((event) => {
-          if (event.keyCode == 2017 || event.keyCode == 2018) {
-            console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
-            return true;
-          }
-          return false;
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onInterceptKeyEvent((event) => {
+            if (event.keyCode == 2017 || event.keyCode == 2018) {
+              console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`);
+              return true;
+            }
+            return false;
+          })
       }
     }
   }
@@ -3930,24 +4546,26 @@ Called when an apple-touch-icon URL is received.
 
 | Name        | Type   | Description                       |
 | ----------- | ------- | --------------------------- |
-| url         | string  | Received apple-touch-icon URL.|
+| url         | string  | Received apple-touch-icon URL. |
 | precomposed | boolean | Whether the apple-touch-icon is precomposed.  |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.baidu.com', controller: this.controller })
-         .onTouchIconUrlReceived((event) => {
-          console.log('onTouchIconUrlReceived:' + JSON.stringify(event))
-        })
+        Web({ src: 'www.baidu.com', controller: this.controller })
+          .onTouchIconUrlReceived((event) => {
+            console.log('onTouchIconUrlReceived:' + JSON.stringify(event));
+          })
       }
     }
   }
@@ -3963,26 +4581,28 @@ Called when this web page receives a new favicon.
 
 | Name    | Type                                    | Description                     |
 | ------- | ---------------------------------------- | ------------------------- |
-| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object of the received favicon.|
+| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object of the received favicon. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import image from "@ohos.multimedia.image"
+  import { webview } from '@kit.ArkWeb';
+  import { image } from '@kit.ImageKit';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     @State icon: image.PixelMap | undefined = undefined;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onFaviconReceived((event) => {
-          console.log('onFaviconReceived');
-          this.icon = event.favicon;
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFaviconReceived((event) => {
+            console.log('onFaviconReceived');
+            this.icon = event.favicon;
+          })
       }
     }
   }
@@ -3998,24 +4618,26 @@ Called when the audio playback status changes on the web page.
 
 | Name    | Type   | Description                              |
 | ------- | ------- | ---------------------------------- |
-| playing | boolean | Audio playback status on the current page. The value **true** means that audio is being played, and **false** means the opposite.|
+| playing | boolean | Audio playback status on the current page. The value **true** means that audio is being played, and **false** means the opposite. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State playing: boolean = false
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State playing: boolean = false;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onAudioStateChanged(event => {
-            this.playing = event.playing
-            console.debug('onAudioStateChanged playing: ' + this.playing)
+            this.playing = event.playing;
+            console.debug('onAudioStateChanged playing: ' + this.playing);
           })
       }
     }
@@ -4033,27 +4655,102 @@ Called when the web page content is first rendered.
 | Name                   | Type  | Description                             |
 | ---------------------- | ------ | --------------------------------- |
 | navigationStartTick    | number | Navigation start time, in microseconds.         |
-| firstContentfulPaintMs | number | Time between navigation and when the content is first rendered, in milliseconds.|
+| firstContentfulPaintMs | number | Time between navigation and when the content is first rendered, in milliseconds. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
             if (event) {
               console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
               event.navigationStartTick + ", [firstContentfulPaintMs]:" +
-              event.firstContentfulPaintMs)
+              event.firstContentfulPaintMs);
             }
+          })
+      }
+    }
+  }
+  ```
+
+### onFirstMeaningfulPaint<sup>12+</sup>
+
+onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12))
+
+Called when the main content of the web page is drawn.
+
+**Parameters**
+
+| Name  | Type                                                        | Description                                  |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | Callback for measuring the main content rendering of the web page. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFirstMeaningfulPaint((details) => {
+            console.log("onFirstMeaningfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+              ", [firstMeaningfulPaintTime]=" + details.firstMeaningfulPaintTime);
+          })
+      }
+    }
+  }
+  ```
+
+### onLargestContentfulPaint<sup>12+</sup>
+
+onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12))
+
+Called when the maximum content on the web page is drawn.
+
+**Parameters**
+
+| Name  | Type                                                        | Description                                |
+| -------- | ------------------------------------------------------------ | ------------------------------------ |
+| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | Callback for measuring the maximum main content rendering of the web page. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onLargestContentfulPaint((details) => {
+            console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+              ", [largestImagePaintTime]=" + details.largestImagePaintTime +
+              ", [largestTextPaintTime]=" + details.largestTextPaintTime +
+              ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
+              ", [largestImageLoadEndTime]=" + details.largestImageLoadEndTime +
+              ", [imageBPP]=" + details.imageBPP);
           })
       }
     }
@@ -4064,40 +4761,40 @@ Called when the web page content is first rendered.
 
 onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
 
-Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
+Called when the **Web** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 
 **Parameters**
 
 | Name    | Type                                    | Description       |
 | ------- | ---------------------------------------- | ----------- |
-| data | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
+| data | [WebResourceRequest](#webresourcerequest) | Information about the URL request. |
 
 **Return value**
 
 | Type     | Description                      |
 | ------- | ------------------------ |
-| boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
+| boolean | Returns **true** if the access is blocked; returns **false** otherwise. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadIntercept((event) => {
-            console.log('url:' + event.data.getRequestUrl())
-            console.log('isMainFrame:' + event.data.isMainFrame())
-            console.log('isRedirect:' + event.data.isRedirect())
-            console.log('isRequestGesture:' + event.data.isRequestGesture())
-            return true
+            console.log('url:' + event.data.getRequestUrl());
+            console.log('isMainFrame:' + event.data.isMainFrame());
+            console.log('isRedirect:' + event.data.isRedirect());
+            console.log('isRequestGesture:' + event.data.isRequestGesture());
+            return true;
           })
       }
     }
@@ -4108,24 +4805,24 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
 onRequestSelected(callback: () => void)
 
-Called when the **\<Web>** component obtains the focus.
+Called when the **Web** component obtains the focus.
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRequestSelected(() => {
-            console.log('onRequestSelected')
+            console.log('onRequestSelected');
           })
       }
     }
@@ -4141,18 +4838,19 @@ Called when a screen capture request is received.
 
 | Name    | Type                                    | Description          |
 | ------- | ---------------------------------------- | -------------- |
-| handler | [ScreenCaptureHandler](#screencapturehandler10) | User operation.|
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | User operation. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4164,17 +4862,17 @@ Called when a screen capture request is received.
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    event.handler.deny()
+                    event.handler.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN })
+                    event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN });
                   }
                 },
                 cancel: () => {
-                  event.handler.deny()
+                  event.handler.deny();
                 }
               })
             }
@@ -4188,32 +4886,33 @@ Called when a screen capture request is received.
 
 onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
-Called to indicate the offset by which the web page overscrolls.
+Called when the web page is over-scrolled, used to notify the offset of the over-scroll.
 
 **Parameters**
 
 | Name    | Type  | Description               |
 | ------- | ------ | ------------------- |
-| xOffset | number | Horizontal overscroll offset based on the leftmost edge of the web page.|
-| yOffset | number | Vertical overscroll offset based on the top edge of the web page.|
+| xOffset | number | Horizontal overscroll offset based on the leftmost edge of the web page. |
+| yOffset | number | Vertical overscroll offset based on the top edge of the web page. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onOverScroll((event) => {
-            console.info("x = " + event.xOffset)
-            console.info("y = " + event.yOffset)
-        })
+          .onOverScroll((event) => {
+            console.info("x = " + event.xOffset);
+            console.info("y = " + event.yOffset);
+          })
       }
     }
   }
@@ -4223,7 +4922,7 @@ Called to indicate the offset by which the web page overscrolls.
 
 onControllerAttached(callback: () => void)
 
-Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController.
+Called when the controller is successfully bound to the **Web** component. The controller must be WebviewController.
 As the web page is not yet loaded when this callback is called, APIs for operating the web page, for example, [zoomIn](js-apis-webview.md#zoomin) and [zoomOut](js-apis-webview.md#zoomout), cannot be used in the callback. Other APIs, such as [loadUrl](js-apis-webview.md#loadurl) and [getWebId](js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
 
 **Example**
@@ -4231,12 +4930,12 @@ As the web page is not yet loaded when this callback is called, APIs for operati
 The following example uses **loadUrl** in the callback to load the web page.
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -4248,16 +4947,17 @@ The following example uses **loadUrl** in the callback to load the web page.
     }
   }
   ```
+
 The following example uses **getWebId** in the callback
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import { BusinessError } from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -4297,33 +4997,34 @@ Called when a web page redirection request is submitted.
 
 | Name         | Type                                                                        | Description                   |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | Callback invoked when a web page redirection request is submitted.|
+| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | Callback invoked when a web page redirection request is submitted. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onNavigationEntryCommitted((details) => {
+          .onNavigationEntryCommitted((details) => {
             console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
               ", [isSameDocument]=" + details.isSameDocument +
               ", [didReplaceEntry]=" + details.didReplaceEntry +
               ", [navigationType]=" + details.navigationType +
               ", [url]=" + details.url);
-        })
+          })
       }
     }
   }
   ```
-  
+
 ### onSafeBrowsingCheckResult<sup>11+</sup>
 
 onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
@@ -4340,7 +5041,7 @@ Called when the safe browsing check result is received.
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   export enum ThreatType {
     UNKNOWN = -1,
@@ -4357,13 +5058,14 @@ Called when the safe browsing check result is received.
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onSafeBrowsingCheckResult((callback) => {
-            let jsonData = JSON.stringify(callback)
-            let json:OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData)
+          .onSafeBrowsingCheckResult((callback) => {
+            let jsonData = JSON.stringify(callback);
+            let json: OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData);
             console.log("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
         })
       }
@@ -4381,36 +5083,51 @@ Called when the lifecycle of the Embed tag changes.
 
 | Name         | Type                                                                        | Description                   |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Callback invoked when the lifecycle of the Embed tag changes.|
+| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Callback invoked when the lifecycle of the Embed tag changes. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    @State embedStatus: string = ''
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State embedStatus: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-        .onNativeEmbedLifecycleChange((event) => {
+        // Click the button to navigate to a new page, close the index page, and destroy the Embed tag.
+        Button('Destroy')
+        .onClick(() => {
+          try {
+            this.controller.loadUrl("www.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .onNativeEmbedLifecycleChange((event) => {
+            // Create is triggered when the Embed tag exists on the loaded page.
             if (event.status == NativeEmbedStatus.CREATE) {
-              this.embedStatus = 'Create'
+              this.embedStatus = 'Create';
             }
+            // Update is triggered when the Embed tag on the page is moved or scaled.
             if (event.status == NativeEmbedStatus.UPDATE) {
-              this.embedStatus = 'Update'
+              this.embedStatus = 'Update';
             }
+            // Destroy is triggered when you exit the page.
             if (event.status == NativeEmbedStatus.DESTROY) {
-              this.embedStatus = 'Destroy'
+              this.embedStatus = 'Destroy';
             }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
             console.log("embedId = " + event.embedId);
-            if(event.info){
+            if (event.info) {
               console.log("id = " + event.info.id);
               console.log("type = " + event.info.type);
               console.log("src = " + event.info.src);
@@ -4418,64 +5135,340 @@ Called when the lifecycle of the Embed tag changes.
               console.log("height = " + event.info.height);
               console.log("url = " + event.info.url);
             }
-        })
+          })
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+  ```
+  <!-- index.html -->
+  <!Document>
+  <html>
+  <head>
+      <title>Same-layer rendering test HTML</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
 
 onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
-Called when a finger touches the Embed tag.
+Called when a finger touches the same-layer rendering tag.
 
 **Parameters**
 
 | Name         | Type                                                                        | Description                   |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedTouchInfo](#nativeembeddatainfo11) | Callback invoked when a finger touches the Embed tag.|
+| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | Called when a finger touches the same-layer rendering tag. |
 
 **Example**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  import { NodeController, BuilderNode, NodeRenderType, FrameNode, UIContext } from "@kit.ArkUI";
+
+  declare class Params {
+    text: string;
+    width: number;
+    height: number;
+  }
+
+  declare class nodeControllerParams {
+    surfaceId: string;
+    renderType: NodeRenderType;
+    width: number;
+    height: number;
+  }
+
+  class MyNodeController extends NodeController {
+    private rootNode: BuilderNode<[Params]> | undefined | null;
+    private surfaceId_: string = "";
+    private renderType_: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_: number = 0;
+    private height_: number = 0;
+
+    setRenderOption(params: nodeControllerParams) {
+      this.surfaceId_ = params.surfaceId;
+      this.renderType_ = params.renderType;
+      this.width_ = params.width;
+      this.height_ = params.height;
+    }
+
+    makeNode(uiContext: UIContext): FrameNode | null {
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
+      this.rootNode.build(wrapBuilder(ButtonBuilder), { text: "myButton", width: this.width_, height: this.height_ });
+      return this.rootNode.getFrameNode();
+    }
+
+    postEvent(event: TouchEvent | undefined): boolean {
+      return this.rootNode?.postTouchEvent(event) as boolean;
+    }
+  }
+
+  @Component
+  struct ButtonComponent {
+    @Prop params: Params;
+    @State bkColor: Color = Color.Red;
+
+    build() {
+      Column() {
+        Button(this.params.text)
+          .height(50)
+          .width(200)
+          .border({ width: 2, color: Color.Red })
+          .backgroundColor(this.bkColor)
+
+      }
+      .width(this.params.width)
+      .height(this.params.height)
+    }
+  }
+
+  @Builder
+  function ButtonBuilder(params: Params) {
+    ButtonComponent({ params: params })
+      .backgroundColor(Color.Green)
+  }
 
   @Entry
   @Component
   struct WebComponent {
-    @State eventType: string = ''
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State eventType: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+    private nodeController: MyNodeController = new MyNodeController();
+
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-        .onNativeEmbedGestureEvent((event) => {
-          if (event && event.touchEvent){
-            if (event.touchEvent.type == TouchType.Down) {
-              this.eventType = 'Down'
+        Stack() {
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .onNativeEmbedLifecycleChange((embed) => {
+            if (embed.status == NativeEmbedStatus.CREATE) {
+              this.nodeController.setRenderOption({surfaceId : embed.surfaceId as string, renderType : NodeRenderType.RENDER_TYPE_TEXTURE, width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
+              this.nodeController.rebuild()
             }
-            if (event.touchEvent.type == TouchType.Up) {
-              this.eventType = 'Up'
+          })
+          .onNativeEmbedGestureEvent((event) => {
+            if (event && event.touchEvent){
+              if (event.touchEvent.type == TouchType.Down) {
+                this.eventType = 'Down'
+              }
+              if (event.touchEvent.type == TouchType.Up) {
+                this.eventType = 'Up'
+              }
+              if (event.touchEvent.type == TouchType.Move) {
+                this.eventType = 'Move'
+              }
+              if (event.touchEvent.type == TouchType.Cancel) {
+                this.eventType = 'Cancel'
+              }
+              let ret = this.nodeController.postEvent(event.touchEvent)
+              if (event.result) {
+                event.result.setGestureEventResult(ret);
+              }
+              console.log("embedId = " + event.embedId);
+              console.log("touchType = " + this.eventType);
+              console.log("x = " + event.touchEvent.touches[0].x);
+              console.log("y = " + event.touchEvent.touches[0].y);
+              console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+              console.log("width = " + event.touchEvent.target.area.width);
+              console.log("height = " + event.touchEvent.target.area.height);
             }
-            if (event.touchEvent.type == TouchType.Move) {
-              this.eventType = 'Move'
-            }
-            if (event.touchEvent.type == TouchType.Cancel) {
-              this.eventType = 'Cancel'
-            }
-            console.log("embedId = " + event.embedId);
-            console.log("touchType = " + this.eventType);
-            console.log("x = " + event.touchEvent.touches[0].x);
-            console.log("y = " + event.touchEvent.touches[0].y);
-            console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
-            console.log("width = " + event.touchEvent.target.area.width);
-            console.log("height = " + event.touchEvent.target.area.height);
-          }
-        })
+          })
+        }
       }
     }
   }
+  ```
+HTML file to be loaded:
+  ```
+  <!-- index.html -->
+  <!Document>
+<html>
+<head>
+    <title>Same-layer rendering test HTML</title>
+    <meta name="viewport">
+</head>
+<body>
+<div>
+    <div id="bodyId">
+        <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+    </div>
+</div>
+</body>
+</html>
+  ```
+
+### onIntelligentTrackingPreventionResult<sup>12+</sup>
+
+onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionCallback)
+
+Called when the intelligent tracking prevention feature is enabled and the tracker cookie is blocked.
+
+**Parameters**
+
+| Name      | Type                                                                                        | Description                        |
+| ----------- | ------------------------------------------------------------------------------------------- | ---------------------------- |
+| callback    | [OnIntelligentTrackingPreventionCallback](#onintelligenttrackingpreventioncallback12) | Called when the intelligent tracking prevention feature is enabled and the tracker cookie is blocked. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // The onIntelligentTrackingPreventionResult callback is triggered only when the intelligent tracking prevention feature is enabled.
+        Button('enableIntelligentTrackingPrevention')
+          .onClick(() => {
+            try {
+              this.controller.enableIntelligentTrackingPrevention(true);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onIntelligentTrackingPreventionResult((details) => {
+            console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
+              ", [trackerHost]=" + details.trackerHost);
+          })
+      }
+    }
+  }
+  ```
+
+### onOverrideUrlLoading<sup>12+</sup>
+
+onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
+
+Called to enable the host application to obtain control when the URL is about to be loaded to this **Web** component. If the callback returns **true**, the **Web** component stops loading the URL. If the callback returns **false**, the **Web** component continues to load the URL.
+
+POST requests do not trigger this callback.
+
+Subframe navigations that are not using HTTP(s) protocols will also trigger this callback. However, navigations actively triggered by calling **loadUrl(String)** will not trigger this callback.
+
+Do not use the same URL to call the **loadUrl(String)** API and then return **true**. Doing so would unnecessarily cancel the current loading and start a new load with the same URL. The correct way to continue loading the given URL is to simply return **false**, rather than calling **loadUrl(String)**.
+
+**Parameters**
+
+| Name         | Type                                                                        | Description                   |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnOverrideUrlLoadingCallback](#onoverrideurlloadingcallback12) | **onOverrideUrlLoading** callback. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
+            if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
+              return true;
+            }
+            return false;
+          })
+      }
+    }
+  }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Test Web Page</title>
+  </head>
+  <body>
+    <h1>onOverrideUrlLoading Demo</h1>
+    <a href="about:blank">Click here</a> to visit about:blank.
+  </body>
+  </html>
+  ```
+
+### onViewportFitChanged<sup>12+</sup>
+
+onViewportFitChanged(callback: OnViewportFitChangedCallback)
+
+Called when the **viewport-fit** configuration in the web page's **meta** tag changes. The application can adapt its layout to the viewport within this callback.
+
+**Parameters**
+
+| Name  | Type                                                        | Description                                  |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnViewportFitChangedCallback](#onviewportfitchangedcallback12) | Called when the **viewport-fit** configuration in the web page's **meta** tag changes. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .onViewportFitChanged((data) => {
+            let jsonData = JSON.stringify(data);
+            let viewportFit: ViewportFit = JSON.parse(jsonData).viewportFit;
+            if (viewportFit === ViewportFit.COVER) {
+              // The index.html web page supports immersive layout. You can call expandSafeArea to adjust the web component layout viewport to cover the safe area (status bar or navigation bar).
+            } else if (viewportFit === ViewportFit.CONTAINS) {
+              // The index.html web page does not support immersive layout. You can call expandSafeArea to adjust the web component layout viewport to the safe area.
+            } else {
+              // Default value. No processing is required.
+            }
+          })
+      }
+    }
+  }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width,viewport-fit=cover">
+    </head>
+    <body>
+      <div style="position: absolute; bottom: 0; margin-bottom: env(safe-area-inset-bottom)"></div>
+    </body>
+  </html>
   ```
 ## ConsoleMessage
 
@@ -4491,7 +5484,7 @@ Obtains the number of rows in this console message.
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | Number of rows in the console message.|
+| number | Number of rows in the console message. |
 
 ### getMessage
 
@@ -4503,7 +5496,7 @@ Obtains the log information of this console message.
 
 | Type    | Description                    |
 | ------ | ---------------------- |
-| string | Log information of the console message.|
+| string | Log information of the console message. |
 
 ### getMessageLevel
 
@@ -4515,7 +5508,7 @@ Obtains the level of this console message.
 
 | Type                               | Description                    |
 | --------------------------------- | ---------------------- |
-| [MessageLevel](#messagelevel)| Level of the console message.|
+| [MessageLevel](#messagelevel) | Level of the console message. |
 
 ### getSourceId
 
@@ -4527,35 +5520,35 @@ Obtains the path and name of the web page source file.
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | Path and name of the web page source file.|
+| string | Path and name of the web page source file. |
 
 ## JsResult
 
-Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
+Implements the **JsResult** object, which indicates the result returned to the **Web** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
 
 ### handleCancel
 
 handleCancel(): void
 
-Notifies the **\<Web>** component of the user's cancel operation in the dialog box.
+Notifies the **Web** component of the user's cancel operation in the dialog box.
 
 ### handleConfirm
 
 handleConfirm(): void
 
-Notifies the **\<Web>** component of the user's confirm operation in the dialog box.
+Notifies the **Web** component of the user's confirm operation in the dialog box.
 
 ### handlePromptConfirm<sup>9+</sup>
 
 handlePromptConfirm(result: string): void
 
-Notifies the **\<Web>** component of the user's confirm operation in the dialog box as well as the dialog box content.
+Notifies the **Web** component of the user's confirm operation in the dialog box as well as the dialog box content.
 
 **Parameters**
 
 | Name   | Type  | Mandatory  | Default Value | Description       |
 | ------ | ------ | ---- | ---- | ----------- |
-| result | string | Yes   | -    | User input in the dialog box.|
+| result | string | Yes   | -    | User input in the dialog box. |
 
 ## FullScreenExitHandler<sup>9+</sup>
 
@@ -4573,7 +5566,7 @@ Exits full screen mode.
 
 ## ControllerHandler<sup>9+</sup>
 
-Implements a **WebviewController** object for new **\<Web>** components. For the sample code, see [onWindowNew](#onwindownew9).
+Implements a **WebviewController** object for new **Web** components. For the sample code, see [onWindowNew](#onwindownew9).
 
 ### setWebController<sup>9+</sup>
 
@@ -4585,7 +5578,7 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 | Name       | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component. If opening a new window is not needed, set it to **null**.|
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **Web** component. If opening a new window is not needed, set it to **null**. |
 
 ## WebResourceError
 
@@ -4601,7 +5594,7 @@ Obtains the error code for resource loading.
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Error code for resource loading.|
+| number | Error code for resource loading. For details about error codes, see [WebNetErrorList](js-apis-netErrorList.md). |
 
 ### getErrorInfo
 
@@ -4613,7 +5606,7 @@ Obtains error information about resource loading.
 
 | Type    | Description          |
 | ------ | ------------ |
-| string | Error information about resource loading.|
+| string | Error information about resource loading. |
 
 ## WebResourceRequest
 
@@ -4629,7 +5622,7 @@ Obtains the information about the resource request header.
 
 | Type                        | Description        |
 | -------------------------- | ---------- |
-| Array\<[Header](#header)\> | Information about the resource request header.|
+| Array\<[Header](#header)\> | Information about the resource request header. |
 
 ### getRequestUrl
 
@@ -4641,7 +5634,7 @@ Obtains the URL of the resource request.
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | URL of the resource request.|
+| string | URL of the resource request. |
 
 ### isMainFrame
 
@@ -4653,7 +5646,7 @@ Checks whether the resource request is in the main frame.
 
 | Type     | Description              |
 | ------- | ---------------- |
-| boolean | Whether the resource request is in the main frame.|
+| boolean | Whether the resource request is in the main frame. |
 
 ### isRedirect
 
@@ -4665,7 +5658,7 @@ Checks whether the resource request is redirected by the server.
 
 | Type     | Description              |
 | ------- | ---------------- |
-| boolean | Whether the resource request is redirected by the server.|
+| boolean | Whether the resource request is redirected by the server. |
 
 ### isRequestGesture
 
@@ -4677,7 +5670,7 @@ Checks whether the resource request is associated with a gesture (for example, a
 
 | Type     | Description                  |
 | ------- | -------------------- |
-| boolean | Whether the resource request is associated with a gesture (for example, a tap).|
+| boolean | Whether the resource request is associated with a gesture (for example, a tap). |
 
 ### getRequestMethod<sup>9+</sup>
 
@@ -4689,16 +5682,16 @@ Obtains the request method.
 
 | Type    | Description     |
 | ------ | ------- |
-| string | Request method.|
+| string | Request method. |
 
 ## Header
 
-Describes the request/response header returned by the **\<Web>** component.
+Describes the request/response header returned by the **Web** component.
 
 | Name         | Type    | Description           |
 | ----------- | ------ | ------------- |
 | headerKey   | string | Key of the request/response header.  |
-| headerValue | string | Value of the request/response header.|
+| headerValue | string | Value of the request/response header. |
 
 ## WebResourceResponse
 
@@ -4714,7 +5707,7 @@ Obtains the status code description of the resource response.
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | Status code description of the resource response.|
+| string | Status code description of the resource response. |
 
 ### getResponseCode
 
@@ -4726,7 +5719,7 @@ Obtains the status code of the resource response.
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Status code of the resource response.|
+| number | Status code of the resource response. |
 
 ### getResponseData
 
@@ -4738,7 +5731,7 @@ Obtains the data in the resource response.
 
 | Type    | Description       |
 | ------ | --------- |
-| string | Data in the resource response.|
+| string | Data in the resource response. |
 
 ### getResponseEncoding
 
@@ -4750,7 +5743,7 @@ Obtains the encoding string of the resource response.
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | Encoding string of the resource response.|
+| string | Encoding string of the resource response. |
 
 ### getResponseHeader
 
@@ -4762,7 +5755,7 @@ Obtains the resource response header.
 
 | Type                        | Description      |
 | -------------------------- | -------- |
-| Array\<[Header](#header)\> | Resource response header.|
+| Array\<[Header](#header)\> | Resource response header. |
 
 ### getResponseMimeType
 
@@ -4774,7 +5767,7 @@ Obtains the MIME type of the resource response.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| string | MIME type of the resource response.|
+| string | MIME type of the resource response. |
 
 ### setResponseData<sup>9+</sup>
 
@@ -4786,7 +5779,7 @@ Sets the data in the resource response.
 
 | Name | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **\<Web>** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource.|
+| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **Web** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource. |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -4798,7 +5791,7 @@ Sets the encoding string of the resource response.
 
 | Name     | Type  | Mandatory  | Default Value | Description        |
 | -------- | ------ | ---- | ---- | ------------ |
-| encoding | string | Yes   | -    | Encoding string to set.|
+| encoding | string | Yes   | -    | Encoding string to set. |
 
 ### setResponseMimeType<sup>9+</sup>
 
@@ -4810,7 +5803,7 @@ Sets the MIME type of the resource response.
 
 | Name     | Type  | Mandatory  | Default Value | Description                |
 | -------- | ------ | ---- | ---- | -------------------- |
-| mimeType | string | Yes   | -    | MIME type to set.|
+| mimeType | string | Yes   | -    | MIME type to set. |
 
 ### setReasonMessage<sup>9+</sup>
 
@@ -4822,7 +5815,7 @@ Sets the status code description of the resource response.
 
 | Name   | Type  | Mandatory  | Default Value | Description           |
 | ------ | ------ | ---- | ---- | --------------- |
-| reason | string | Yes   | -    | Status code description to set.|
+| reason | string | Yes   | -    | Status code description to set. |
 
 ### setResponseHeader<sup>9+</sup>
 
@@ -4834,7 +5827,7 @@ Sets the resource response header.
 
 | Name   | Type                      | Mandatory  | Default Value | Description      |
 | ------ | -------------------------- | ---- | ---- | ---------- |
-| header | Array\<[Header](#header)\> | Yes   | -    | Resource response header to set.|
+| header | Array\<[Header](#header)\> | Yes   | -    | Resource response header to set. |
 
 ### setResponseCode<sup>9+</sup>
 
@@ -4846,7 +5839,7 @@ Sets the status code of the resource response.
 
 | Name | Type  | Mandatory  | Default Value | Description         |
 | ---- | ------ | ---- | ---- | ------------- |
-| code | number | Yes   | -    | Status code to set.|
+| code | number | Yes   | -    | Status code to set. |
 
 ### setResponseIsReady<sup>9+</sup>
 
@@ -4858,23 +5851,23 @@ Sets whether the resource response data is ready.
 
 | Name    | Type   | Mandatory  | Default Value | Description         |
 | ------- | ------- | ---- | ---- | ------------- |
-| IsReady | boolean | Yes   | true | Whether the resource response data is ready.|
+| IsReady | boolean | Yes   | true | Whether the resource response data is ready. |
 
 ## FileSelectorResult<sup>9+</sup>
 
-Notifies the **\<Web>** component of the file selection result. For the sample code, see [onShowFileSelector](#onshowfileselector9).
+Notifies the **Web** component of the file selection result. For the sample code, see [onShowFileSelector](#onshowfileselector9).
 
 ### handleFileList<sup>9+</sup>
 
 handleFileList(fileList: Array\<string\>): void
 
-Instructs the **\<Web>** component to select a file.
+Instructs the **Web** component to select a file.
 
 **Parameters**
 
 | Name     | Type           | Mandatory  | Default Value | Description        |
 | -------- | --------------- | ---- | ---- | ------------ |
-| fileList | Array\<string\> | Yes   | -    | List of files to operate.|
+| fileList | Array\<string\> | Yes   | -    | List of files to operate. |
 
 ## FileSelectorParam<sup>9+</sup>
 
@@ -4890,7 +5883,7 @@ Obtains the title of this file selector.
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | Title of the file selector.|
+| string | Title of the file selector. |
 
 ### getMode<sup>9+</sup>
 
@@ -4902,7 +5895,7 @@ Obtains the mode of the file selector.
 
 | Type                                      | Description         |
 | ---------------------------------------- | ----------- |
-| [FileSelectorMode](#fileselectormode9) | Mode of the file selector.|
+| [FileSelectorMode](#fileselectormode9)  | Mode of the file selector. |
 
 ### getAcceptType<sup>9+</sup>
 
@@ -4914,7 +5907,7 @@ Obtains the file filtering type.
 
 | Type             | Description       |
 | --------------- | --------- |
-| Array\<string\> | File filtering type.|
+| Array\<string\> | File filtering type. |
 
 ### isCapture<sup>9+</sup>
 
@@ -4926,7 +5919,7 @@ Checks whether multimedia capabilities are invoked.
 
 | Type     | Description          |
 | ------- | ------------ |
-| boolean | Whether multimedia capabilities are invoked.|
+| boolean | Whether multimedia capabilities are invoked. |
 
 ## HttpAuthHandler<sup>9+</sup>
 
@@ -4948,14 +5941,14 @@ Performs HTTP authentication with the user name and password provided by the use
 
 | Name     | Type  | Mandatory  | Default Value | Description      |
 | -------- | ------ | ---- | ---- | ---------- |
-| userName | string | Yes   | -    | HTTP authentication user name.|
+| userName | string | Yes   | -    | HTTP authentication user name. |
 | password      | string | Yes   | -    | HTTP authentication password. |
 
 **Return value**
 
 | Type     | Description                   |
 | ------- | --------------------- |
-| boolean | Returns **true** if the authentication is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the authentication is successful; returns **false** otherwise. |
 
 ### isHttpAuthInfoSaved<sup>9+</sup>
 
@@ -4967,7 +5960,7 @@ Uses the account name and password cached on the server for authentication.
 
 | Type     | Description                       |
 | ------- | ------------------------- |
-| boolean | Returns **true** if the authentication is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the authentication is successful; returns **false** otherwise. |
 
 ## SslErrorHandler<sup>9+</sup>
 
@@ -4987,7 +5980,7 @@ Continues using the SSL certificate.
 
 ## ClientAuthenticationHandler<sup>9+</sup>
 
-Implements a **ClientAuthenticationHandler** object returned by the **\<Web>** component. For the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
+Implements a **ClientAuthenticationHandler** object returned by the **Web** component. For the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
 
 ### confirm<sup>9+</sup>
 
@@ -5000,7 +5993,7 @@ Uses the specified private key and client certificate chain.
 | Name          | Type  | Mandatory  | Description              |
 | ------------- | ------ | ---- | ------------------ |
 | priKeyFile    | string | Yes   | File that stores the private key, which is a directory including the file name. |
-| certChainFile | string | Yes   | File that stores the certificate chain, which is a directory including the file name.|
+| certChainFile | string | Yes   | File that stores the certificate chain, which is a directory including the file name. |
 
 ### confirm<sup>10+</sup>
 
@@ -5008,13 +6001,13 @@ confirm(authUri : string): void
 
 **Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
 
-Instructs the **\<Web>** component to use the specified credentials (obtained from the certificate management module).
+Instructs the **Web** component to use the specified credentials (obtained from the certificate management module).
 
 **Parameters**
 
 | Name    | Type  | Mandatory  | Description   |
 | ------- | ------ | ---- | ------- |
-| authUri | string | Yes   | Key value of the credentials.|
+| authUri | string | Yes   | Key value of the credentials. |
 
 ### cancel<sup>9+</sup>
 
@@ -5048,7 +6041,7 @@ Obtains the origin of this web page.
 
 | Type    | Description          |
 | ------ | ------------ |
-| string | Origin of the web page that requests the permission.|
+| string | Origin of the web page that requests the permission. |
 
 ### getAccessibleResource<sup>9+</sup>
 
@@ -5060,7 +6053,7 @@ Obtains the list of accessible resources requested for the web page. For details
 
 | Type             | Description           |
 | --------------- | ------------- |
-| Array\<string\> | List of accessible resources requested by the web page.|
+| Array\<string\> | List of accessible resources requested by the web page. |
 
 ### grant<sup>9+</sup>
 
@@ -5072,7 +6065,7 @@ Grants the permission for resources requested by the web page.
 
 | Name      | Type           | Mandatory  | Default Value | Description           |
 | --------- | --------------- | ---- | ---- | --------------- |
-| resources | Array\<string\> | Yes   | -    | List of resources that can be requested by the web page with the permission to grant.|
+| resources | Array\<string\> | Yes   | -    | List of resources that can be requested by the web page with the permission to grant. |
 
 ## ScreenCaptureHandler<sup>10+</sup>
 
@@ -5094,13 +6087,13 @@ Obtains the origin of this web page.
 
 | Type    | Description          |
 | ------ | ------------ |
-| string | Origin of the web page that requests the permission.|
+| string | Origin of the web page that requests the permission. |
 
 ### grant<sup>10+</sup>
 
 grant(config: ScreenCaptureConfig): void
 
-**Required permissions**: ohos.permission.MICROPHONE, ohos.permission.CAPTURE_SCREEN
+**Required permissions:** ohos.permission.MICROPHONE
 
 Grants the screen capture permission.
 
@@ -5108,29 +6101,47 @@ Grants the screen capture permission.
 
 | Name   | Type                                    | Mandatory  | Default Value | Description   |
 | ------ | ---------------------------------------- | ---- | ---- | ------- |
-| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration.|
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration. |
+
+## EventResult<sup>12+</sup>
+
+Provides APIs to notify the **Web** component of the event consumption result. For details about the supported events, see [TouchType](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype). If the application does not consume the event, set the result to **false** so that the event is consumed by the **Web** component. If the application consumes the event, set the result to **true**, and the **Web** component does not consume the event. For the sample code, see [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
+
+### setGestureEventResult<sup>12+</sup>
+
+setGestureEventResult(result: boolean): void
+
+**Parameters**
+
+| Name    | Type  | Mandatory  | Description   |
+| ------- | ------ | ---- | ------- |
+| result | boolean | Yes   | Whether to consume the gesture event. |
+
+**Example**
+
+See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
 ## ContextMenuSourceType<sup>9+</sup>
 
-| Name      | Value| Description        |
+| Name      | Value | Description        |
 | --------- | -- |------------ |
-| None      | 0 | Other event sources.|
+| None      | 0 | Other event sources. |
 | Mouse     | 1 | Mouse event.  |
 | LongPress | 2 | Long press event.  |
 
 ## ContextMenuMediaType<sup>9+</sup>
 
-| Name   | Value| Description           |
+| Name   | Value | Description           |
 | ----- | -- | ------------- |
-| None  | 0 | Non-special media or other media types.|
+| None  | 0 | Non-special media or other media types. |
 | Image | 1 | Image.          |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
-| Name       | Value| Description                         |
+| Name       | Value | Description                         |
 | --------- | -- | --------------------------- |
 | None      | 0 | Non-input field.                      |
-| PlainText | 1 | Plain text field, such as the text, search, or email field.|
+| PlainText | 1 | Plain text field, such as the text, search, or email field. |
 | Password  | 2 | Password field.                      |
 | Number    | 3 | Numeric field.                      |
 | Telephone | 4 | Phone number field.                    |
@@ -5138,13 +6149,13 @@ Grants the screen capture permission.
 
 ## ContextMenuEditStateFlags<sup>9+</sup>
 
-| Name           | Value| Description    |
+| Name           | Value | Description    |
 | -------------- | -- | -------- |
-| NONE           | 0 | Editing is not allowed.|
-| CAN_CUT        | 1 | The cut operation is allowed.|
-| CAN_COPY       | 2 | The copy operation is allowed.|
-| CAN_PASTE      | 4 | The paste operation is allowed.|
-| CAN_SELECT_ALL | 8 | The select all operation is allowed.|
+| NONE           | 0 | Editing is not allowed. |
+| CAN_CUT        | 1 | The cut operation is allowed. |
+| CAN_COPY       | 2 | The copy operation is allowed. |
+| CAN_PASTE      | 4 | The paste operation is allowed. |
+| CAN_SELECT_ALL | 8 | The select all operation is allowed. |
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -5160,7 +6171,7 @@ Obtains the X coordinate of the context menu.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned.|
+| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned. |
 
 ### y<sup>9+</sup>
 
@@ -5172,7 +6183,7 @@ Obtains the Y coordinate of the context menu.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned.|
+| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned. |
 
 ### getLinkUrl<sup>9+</sup>
 
@@ -5184,7 +6195,7 @@ Obtains the URL of the destination link.
 
 | Type    | Description                       |
 | ------ | ------------------------- |
-| string | If it is a link that is being long pressed, the URL that has passed the security check is returned.|
+| string | If it is a link that is being long pressed, the URL that has passed the security check is returned. |
 
 ### getUnfilteredLinkUrl<sup>9+</sup>
 
@@ -5196,7 +6207,7 @@ Obtains the URL of the destination link.
 
 | Type    | Description                   |
 | ------ | --------------------- |
-| string | If it is a link that is being long pressed, the original URL is returned.|
+| string | If it is a link that is being long pressed, the original URL is returned. |
 
 ### getSourceUrl<sup>9+</sup>
 
@@ -5208,7 +6219,7 @@ Obtain the source URL.
 
 | Type    | Description                      |
 | ------ | ------------------------ |
-| string | If the selected element has the **src** attribute, the URL in the **src** is returned.|
+| string | If the selected element has the **src** attribute, the URL in the **src** is returned. |
 
 ### existsImageContents<sup>9+</sup>
 
@@ -5220,7 +6231,7 @@ Checks whether image content exists.
 
 | Type     | Description                       |
 | ------- | ------------------------- |
-| boolean | The value **true** means that there is image content in the element being long pressed, and **false** means the opposite.|
+| boolean | The value **true** means that there is image content in the element being long pressed, and **false** means the opposite. |
 
 ### getMediaType<sup>9+</sup>
 
@@ -5232,7 +6243,7 @@ Obtains the media type of this web page element.
 
 | Type                                      | Description       |
 | ---------------------------------------- | --------- |
-| [ContextMenuMediaType](#contextmenumediatype9) | Media type of the web page element.|
+| [ContextMenuMediaType](#contextmenumediatype9)  | Media type of the web page element. |
 
 ### getSelectionText<sup>9+</sup>
 
@@ -5244,7 +6255,7 @@ Obtains the selected text.
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| string | Selected text for the context menu. If no text is selected, null is returned.|
+| string | Selected text for the context menu. If no text is selected, null is returned. |
 
 ### getSourceType<sup>9+</sup>
 
@@ -5256,7 +6267,7 @@ Obtains the event source of the context menu.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| [ContextMenuSourceType](#contextmenusourcetype9) | Event source of the context menu.|
+| [ContextMenuSourceType](#contextmenusourcetype9)  | Event source of the context menu. |
 
 ### getInputFieldType<sup>9+</sup>
 
@@ -5268,7 +6279,7 @@ Obtains the input field type of this web page element.
 
 | Type                                      | Description    |
 | ---------------------------------------- | ------ |
-| [ContextMenuInputFieldType](#contextmenuinputfieldtype9) | Input field type.|
+| [ContextMenuInputFieldType](#contextmenuinputfieldtype9)  | Input field type. |
 
 ### isEditable<sup>9+</sup>
 
@@ -5280,7 +6291,7 @@ Checks whether this web page element is editable.
 
 | Type     | Description                        |
 | ------- | -------------------------- |
-| boolean | Returns **true** if the web page element is editable; returns **false** otherwise.|
+| boolean | Returns **true** if the web page element is editable; returns **false** otherwise. |
 
 ### getEditStateFlags<sup>9+</sup>
 
@@ -5292,7 +6303,7 @@ Obtains the edit state flag of this web page element.
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Edit state flag of the web page element. For details, see [ContextMenuEditStateFlags](#contextmenueditstateflags9).|
+| number | Edit state flag of the web page element. For details, see [ContextMenuEditStateFlags](#contextmenueditstateflags9). |
 
 ## WebContextMenuResult<sup>9+</sup>
 
@@ -5338,6 +6349,10 @@ Performs the select all operation related to this context menu.
 
 Implements the **PermissionRequest** object. For the sample code, see [onGeolocationShow Event](#ongeolocationshow).
 
+### constructor
+
+constructor()
+
 ### invoke
 
 invoke(origin: string, allow: boolean, retain: boolean): void
@@ -5350,64 +6365,64 @@ Sets the geolocation permission status of a web page.
 | ------ | ------- | ---- | ---- | ---------------------------------------- |
 | origin | string  | Yes   | -    | Index of the origin.                              |
 | allow  | boolean | Yes   | -    | Geolocation permission status.                            |
-| retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions).|
+| retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions). |
 
 ## MessageLevel
 
-| Name   | Value| Description   |
+| Name   | Value | Description   |
 | ----- | -- | ---- |
-| Debug | 0 | Debug level.|
-| Error | 1 | Error level.|
-| Info  | 2 | Information level.|
-| Log   | 3 | Log level.|
-| Warn  | 4 | Warning level.|
+| Debug | 1 | Debug level. |
+| Error | 4 | Error level. |
+| Info  | 2 | Information level. |
+| Log   | 5 | Log level. |
+| Warn  | 3 | Warning level. |
 
 ## RenderExitReason<sup>9+</sup>
 
 Enumerates the reasons why the rendering process exits.
 
-| Name                        | Value| Description               |
+| Name                        | Value | Description               |
 | -------------------------- | -- | ----------------- |
 | ProcessAbnormalTermination | 0 | The rendering process exits abnormally.        |
-| ProcessWasKilled           | 1 | The rendering process receives a SIGKILL message or is manually terminated.|
+| ProcessWasKilled           | 1 | The rendering process receives a SIGKILL message or is manually terminated. |
 | ProcessCrashed             | 2 | The rendering process crashes due to segmentation or other errors.   |
 | ProcessOom                 | 3 | The program memory is running low.          |
 | ProcessExitUnknown         | 4 | Other reason.            |
 
 ## MixedMode
 
-| Name       | Value| Description                                |
+| Name       | Value | Description                                |
 | ---------- | -- | ---------------------------------- |
-| All        | 0 | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
+| All        | undefined | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded. |
 | Compatible | 1 | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
 | None       | 2 | HTTP and HTTPS hybrid content cannot be loaded.              |
 
 ## CacheMode<sup>9+</sup>
 
-| Name     | Value| Description                                  |
+| Name     | Value | Description                                  |
 | ------- | -- | ------------------------------------ |
-| Default | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
+| Default | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet. |
 | None    | 1 | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
 | Online  | 2 | The cache is not used to load the resources. All resources are obtained from the Internet.              |
 | Only    | 3 | The cache alone is used to load the resources.                       |
 
 ## FileSelectorMode<sup>9+</sup>
 
-| Name                  | Value| Description        |
+| Name                  | Value | Description        |
 | -------------------- | -- | ---------- |
 | FileOpenMode         | 0 | Open and upload a file. |
 | FileOpenMultipleMode | 1 | Open and upload multiple files. |
-| FileOpenFolderMode   | 2 | Open and upload a folder.|
+| FileOpenFolderMode   | 2 | Open and upload a folder. |
 | FileSaveMode         | 3 | Save a file.   |
 
  ## HitTestType
 
-| Name           | Value| Description                      |
+| Name           | Value | Description                      |
 | ------------- | -- | ------------------------ |
 | EditText      | 0 | Editable area.                 |
 | Email         | 1 | Email address.                 |
 | HttpAnchor    | 2 | Hyperlink whose **src** is **http**.          |
-| HttpAnchorImg | 3 | Image with a hyperlink, where **src** is **http**.|
+| HttpAnchorImg | 3 | Image with a hyperlink, where **src** is **http**. |
 | Img           | 4 | HTML::img tag.            |
 | Map           | 5 | Geographical address.                   |
 | Phone         | 6 | Phone number.                   |
@@ -5415,10 +6430,10 @@ Enumerates the reasons why the rendering process exits.
 
  ## OverScrollMode<sup>11+</sup>
 
-| Name    | Value| Description         |
+| Name    | Value | Description         |
 | ------ | -- | ----------- |
-| NEVER  | 0 | The overscroll mode is disabled.|
-| ALWAYS | 1 | The overscroll mode is enabled.|
+| NEVER  | 0 | The overscroll mode is disabled. |
+| ALWAYS | 1 | The overscroll mode is enabled. |
 
 ## OnContextMenuHideCallback<sup>11+</sup>
 
@@ -5428,34 +6443,34 @@ Implements the callback context menu customizes the hidden callback.
 
 Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
-| Name          | Value| Description         |
+| Name          | Value | Description         |
 | ------------ | -- | ----------- |
 | Invalid      | 0 | Minor error.      |
 | HostMismatch | 1 | The host name does not match.    |
 | DateInvalid  | 2 | The certificate has an invalid date.    |
-| Untrusted    | 3 | The certificate issuer is not trusted.|
+| Untrusted    | 3 | The certificate issuer is not trusted. |
 
 ## ProtectedResourceType<sup>9+</sup>
 
-| Name                         | Value| Description           | Remarks                        |
+| Name                         | Value | Description           | Remarks                        |
 | --------------------------- | --------------- | ------------- | -------------------------- |
-| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
+| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource. | Currently, only permission events can be reported. MIDI devices are not yet supported. |
 | VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.|                            |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone. |                            |
 
 ## WebDarkMode<sup>9+</sup>
 
-| Name  | Value| Description          |
+| Name  | Value | Description          |
 | ---- | -- | ------------ |
 | Off  | 0 | The web dark mode is disabled.  |
 | On   | 1 | The web dark mode is enabled.  |
-| Auto | 2 | The web dark mode setting follows the system settings.|
+| Auto | 2 | The web dark mode setting follows the system settings. |
 
 ## WebCaptureMode<sup>10+</sup>
 
-| Name         | Value| Description     |
+| Name         | Value | Description     |
 | ----------- | -- | ------- |
-| HOME_SCREEN | 0 | Capture of the home screen.|
+| HOME_SCREEN | 0 | Capture of the home screen. |
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -5463,8 +6478,8 @@ Describes the web-based media playback policy.
 
 | Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
-| resumeInterval | number  | Yes   | Yes   | No   | Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
-| audioExclusive | boolean | Yes   | Yes   | No   | Whether the audio of multiple **\<Web>** instances in an application is exclusive.                      |
+| resumeInterval | number  | Yes   | Yes   | No   | Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second. |
+| audioExclusive | boolean | Yes   | Yes   | No   | Whether the audio of multiple **Web** instances in an application is exclusive.                      |
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
@@ -5472,30 +6487,30 @@ Provides the web screen capture configuration.
 
 | Name         | Type                                     | Readable  | Writable  | Mandatory  | Description        |
 | ----------- | --------------------------------------- | ---- | ---- | ---- | ---------- |
-| captureMode | [WebCaptureMode](#webcapturemode10) | Yes   | Yes   | Yes   | Web screen capture mode.|
+| captureMode | [WebCaptureMode](#webcapturemode10)  | Yes   | Yes   | Yes   | Web screen capture mode. |
 
 ## WebLayoutMode<sup>11+</sup>
 
-| Name         | Value| Description                |
+| Name         | Value | Description                |
 | ----------- | -- | ------------------ |
 | NONE        | 0 | The web layout follows the system.        |
-| FIT_CONTENT | 1 | The web layout adapts to the page size.|
+| FIT_CONTENT | 1 | The web layout adapts to the page size. |
 
 ## NestedScrollOptions<sup>11+</sup>
 
 | Name            | Type              | Description                  |
 | -------------- | ---------------- | -------------------- |
-| scrollForward  | NestedScrollMode | Nested scrolling options when the component scrolls forward.|
-| scrollBackward | NestedScrollMode | Nested scrolling options when the component scrolls backward.|
+| scrollForward  | [NestedScrollMode](#nestedscrollmode11) | Nested scrolling options when the component scrolls forward. |
+| scrollBackward | [NestedScrollMode](#nestedscrollmode11) | Nested scrolling options when the component scrolls backward. |
 
 ## NestedScrollMode<sup>11+</sup>
 
-| Name          | Value| Description                                      |
+| Name          | Value | Description                                      |
 | ------------ | -- | ---------------------------------------- |
 | SELF_ONLY    | 0 | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary.                          |
-| SELF_FIRST   | 1 | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.|
-| PARENT_FIRST | 2 | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
-| PARALLEL     | 3 | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+| SELF_FIRST   | 1 | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead. |
+| PARENT_FIRST | 2 | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead. |
+| PARALLEL     | 3 | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead. |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -5511,18 +6526,20 @@ Resends the web form data.
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.resend();
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.resend();
+          })
       }
     }
   }
@@ -5538,18 +6555,20 @@ Cancels the resending of web form data.
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.cancel();
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.cancel();
+          })
       }
     }
   }
@@ -5557,7 +6576,7 @@ Cancels the resending of web form data.
 
   ## WebController
 
-Implements a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
+Implements a **WebController** to control the behavior of the **Web** component. A **WebController** can control only one **Web** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **Web** component.
 
 This API is deprecated since API version 9. You are advised to use [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) instead.
 
@@ -5571,7 +6590,7 @@ let webController: WebController = new WebController()
 
 getCookieManager(): WebCookie
 
-Obtains the cookie management object of the **\<Web>** component.
+Obtains the cookie management object of the **Web** component.
 
 This API is deprecated since API version 9. You are advised to use [getCookie](js-apis-webview.md#getcookiedeprecated) instead.
 
@@ -5579,7 +6598,7 @@ This API is deprecated since API version 9. You are advised to use [getCookie](j
 
 | Type       | Description                                      |
 | --------- | ---------------------------------------- |
-| WebCookie | Cookie management object. For details, see [WebCookie](#webcookiedeprecated).|
+| WebCookie | Cookie management object. For details, see [WebCookie](#webcookiedeprecated). |
 
 **Example**
 
@@ -5643,7 +6662,7 @@ This API is deprecated since API version 9. You are advised to use [accessBackwa
 
 | Type     | Description                   |
 | ------- | --------------------- |
-| boolean | Returns **true** if going to the previous page can be performed on the current page; returns **false** otherwise.|
+| boolean | Returns **true** if going to the previous page can be performed on the current page; returns **false** otherwise. |
 
 **Example**
 
@@ -5679,7 +6698,7 @@ This API is deprecated since API version 9. You are advised to use [accessForwar
 
 | Type     | Description                   |
 | ------- | --------------------- |
-| boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise.|
+| boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise. |
 
 **Example**
 
@@ -5715,13 +6734,13 @@ This API is deprecated since API version 9. You are advised to use [accessStep<s
 
 | Name | Type  | Mandatory  | Default Value | Description                 |
 | ---- | ------ | ---- | ---- | --------------------- |
-| step | number | Yes   | -    | Number of the steps to take. A positive number means to go forward, and a negative number means to go backward.|
+| step | number | Yes   | -    | Number of the steps to take. A positive number means to go forward, and a negative number means to go backward. |
 
 **Return value**
 
 | Type     | Description       |
 | ------- | --------- |
-| boolean | Whether going forward or backward from the current page is successful.|
+| boolean | Whether going forward or backward from the current page is successful. |
 
 **Example**
 
@@ -5816,7 +6835,7 @@ This API is deprecated since API version 9. You are advised to use [deleteJavaSc
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| name | string | Yes   | -    | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side.|
+| name | string | Yes   | -    | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side. |
 
 **Example**
 
@@ -5852,7 +6871,7 @@ This API is deprecated since API version 9. You are advised to use [getHitTest<s
 
 | Type                             | Description         |
 | ------------------------------- | ----------- |
-| [HitTestType](#hittesttype)| Element type of the area being clicked.|
+| [HitTestType](#hittesttype) | Element type of the area being clicked. |
 
 **Example**
 
@@ -5882,9 +6901,9 @@ loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: 
 
 Loads data. If **baseUrl** is empty, the specified character string will be loaded using the data protocol.
 
-If **baseUrl** is set to a data URL, the encoded string will be loaded by the **\<Web>** component using the data protocol.
+If **baseUrl** is set to a data URL, the encoded string will be loaded by the **Web** component using the data protocol.
 
-If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be processed by the **\<Web>** component as a non-encoded string in a manner similar to **loadUrl**.
+If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be processed by the **Web** component as a non-encoded string in a manner similar to **loadUrl**.
 
 This API is deprecated since API version 9. You are advised to use [loadData<sup>9+</sup>](js-apis-webview.md#loaddata) instead.
 
@@ -5895,8 +6914,8 @@ This API is deprecated since API version 9. You are advised to use [loadData<sup
 | data       | string | Yes   | -    | Character string obtained after being Base64 or URL encoded.             |
 | mimeType   | string | Yes   | -    | Media type (MIME).                             |
 | encoding   | string | Yes   | -    | Encoding type, which can be Base64 or URL.               |
-| baseUrl    | string | No   | -    | URL (HTTP/HTTPS/data compliant), which is assigned by the **\<Web>** component to **window.origin**.|
-| historyUrl | string | No   | -    | Historical record URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. This parameter is invalid when **baseUrl** is left empty.|
+| baseUrl    | string | No   | -    | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**. |
+| historyUrl | string | No   | -    | Historical record URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. This parameter is invalid when **baseUrl** is left empty. |
 
 **Example**
 
@@ -5940,7 +6959,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
 | Name    | Type                      | Mandatory  | Default Value | Description          |
 | ------- | -------------------------- | ---- | ---- | -------------- |
 | url     | string \| Resource                     | Yes   | -    | URL to load.    |
-| headers | Array\<[Header](#header)\> | No   | []   | Additional HTTP request header of the URL.|
+| headers | Array\<[Header](#header)\> | No   | []   | Additional HTTP request header of the URL. |
 
 **Example**
 
@@ -5967,7 +6986,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
 
 onActive(): void
 
-Called when the **\<Web>** component enters the active state.
+Called when the **Web** component enters the active state.
 
 This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](js-apis-webview.md#onactive) instead.
 
@@ -5996,7 +7015,7 @@ This API is deprecated since API version 9. You are advised to use [onActive<sup
 
 onInactive(): void
 
-Called when the **\<Web>** component enters the inactive state.
+Called when the **Web** component enters the inactive state.
 
 This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](js-apis-webview.md#oninactive) instead.
 
@@ -6032,7 +7051,7 @@ This API is deprecated since API version 9. You are advised to use [zoom<sup>9+<
 
 | Name   | Type  | Mandatory  | Description                          |
 | ------ | ------ | ---- | ------------------------------ |
-| factor | number | Yes   | Zoom factor to set. A positive value indicates zoom-in, and a negative value indicates zoom-out.|
+| factor | number | Yes   | Zoom factor to set. A positive value indicates zoom-in, and a negative value indicates zoom-out. |
 
 **Example**
 
@@ -6060,7 +7079,7 @@ This API is deprecated since API version 9. You are advised to use [zoom<sup>9+<
 
 refresh()
 
-Called when the **\<Web>** component refreshes the web page.
+Called when the **Web** component refreshes the web page.
 
 This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](js-apis-webview.md#refresh) instead.
 
@@ -6097,8 +7116,8 @@ This API is deprecated since API version 9. You are advised to use [registerJava
 
 | Name       | Type           | Mandatory  | Default Value | Description                                    |
 | ---------- | --------------- | ---- | ---- | ---------------------------------------- |
-| object     | object          | Yes   | -    | Application-side JavaScript object to be registered. Methods can be declared, but attributes cannot. The parameters and return value can only be of the string, number, or Boolean type.|
-| name       | string          | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
+| object     | object          | Yes   | -    | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5. The parameters and return value can only be of the string, number, or Boolean type. |
+| name       | string          | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side. |
 | methodList | Array\<string\> | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
 
 **Example**
@@ -6173,7 +7192,7 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
 | Name     | Type                    | Mandatory  | Default Value | Description                                    |
 | -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
 | script   | string                   | Yes   | -    | JavaScript script.                           |
-| callback | (result: string) => void | No   | -    | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned.|
+| callback | (result: string) => void | No   | -    | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned. |
 
 **Example**
 
@@ -6282,7 +7301,7 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
 
 ## WebCookie<sup>(deprecated)</sup>
 
-Manages behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
+Manages behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
 ### setCookie<sup>(deprecated)</sup>
 
@@ -6290,7 +7309,7 @@ setCookie()
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
 
-This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](js-apis-webview.md#setcookiedeprecated) instead.
+This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](js-apis-webview.md#setcookie) instead.
 
 ### saveCookie<sup>(deprecated)</sup>
 
@@ -6302,24 +7321,24 @@ This API is deprecated since API version 9. You are advised to use [saveCookieAs
 
 ## ScriptItem<sup>11+</sup>
 
-Describes the **ScriptItem** object injected to the **\<Web>** component through the [javaScriptOnDocumentStart](#javascriptondocumentstart11) attribute.
+Describes the **ScriptItem** object injected to the **Web** component through the [javaScriptOnDocumentStart](#javascriptondocumentstart11) attribute.
 
 | Name         | Type            | Mandatory  | Description                   |
 | ----------- | -------------- | ---- | --------------------- |
-| script      | string         | Yes   | JavaScript script to be injected and executed.|
+| script      | string         | Yes   | JavaScript script to be injected and executed. |
 | scriptRules | Array\<string> | Yes   | Matching rules for allowed sources.<br>1. To allow URLs from all sources, use the wildcard (*).<br>2. If exact match is required, specify the exact URL, for example, **https:\//www\.example.com**.<br>3. For fuzzy match, you can use a wildcard (*) in the website URL, for example, **https://*.example.com**. The following are not allowed: "x. * .y.com", " * foobar.com".<br>4. If the source is an IP address, follow rule 2.      |
 
 ## WebNavigationType<sup>11+</sup>
 
 Defines the navigation type.
 
-| Name                          | Value| Description          |
+| Name                          | Value | Description          |
 | ----------------------------- | -- | ------------ |
 | UNKNOWN                       | 0 | Unknown type.  |
 | MAIN_FRAME_NEW_ENTRY          | 1 | Navigation to a new history entry from the main document.  |
-| MAIN_FRAME_EXISTING_ENTRY     | 2 | Navigation to an existing history entry from the main document.|
-| NAVIGATION_TYPE_NEW_SUBFRAME  | 4 | User-triggered navigation from a subdocument.|
-| NAVIGATION_TYPE_AUTO_SUBFRAME | 5 | Non-user-triggered navigation from a subdocument.|
+| MAIN_FRAME_EXISTING_ENTRY     | 2 | Navigation to an existing history entry from the main document. |
+| NAVIGATION_TYPE_NEW_SUBFRAME  | 4 | User-triggered navigation from a subdocument. |
+| NAVIGATION_TYPE_AUTO_SUBFRAME | 5 | Non-user-triggered navigation from a subdocument. |
 
 ## LoadCommittedDetails<sup>11+</sup>
 
@@ -6327,7 +7346,7 @@ Provides detailed information about the web page that has been submitted for red
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| isMainFrame     | boolean                              | Yes   | Whether the document is the main document.|
+| isMainFrame     | boolean                              | Yes   | Whether the document is the main document. |
 | isSameDocument  | boolean                              | Yes   | Whether to navigate without changing the document. Example of navigation in the same document: 1. navigation shown in the example; 2. navigation triggered by **pushState** or **replaceState**; 3. navigation to an history entry on the same page. |
 | didReplaceEntry | boolean                              | Yes   | Whether the submitted new entry replaces the existing entry. In certain scenarios for navigation to a subdocument, although the existing entry is not replaced, some attributes are changed. |
 | navigationType  | [WebNavigationType](#webnavigationtype11)  | Yes   | Navigation type.      |
@@ -6337,12 +7356,12 @@ Provides detailed information about the web page that has been submitted for red
 
 Enumerates the website threat types.
 
-| Name            | Value| Description                  |
+| Name            | Value | Description                  |
 | ---------------- | -- | ----------------------|
 | THREAT_ILLEGAL  | 0 | Illegal website.             |
 | THREAT_FRAUD    | 1 | Fraudulent website.             |
 | THREAT_RISK     | 2 | Website that poses security risks.     |
-| THREAT_WARNING  | 3 | Website suspected to contain unsafe content.|
+| THREAT_WARNING  | 3 | Website suspected to contain unsafe content. |
 
 ## OnNavigationEntryCommittedCallback<sup>11+</sup>
 
@@ -6352,7 +7371,7 @@ Called when a navigation item is submitted.
 
 | Name               | Type                                          | Description               |
 | -------------------- | ------------------------------------------------ | ------------------- |
-| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | Detailed information about the web page that has been submitted for redirection.|
+| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | Detailed information about the web page that has been submitted for redirection. |
 
 ## OnSafeBrowsingCheckResultCallback<sup>11+</sup>
 
@@ -6364,43 +7383,260 @@ Called by a website safe browsing check.
 | ---------- | ---------------------------- | ------------------- |
 | threatType | [ThreatType](#threattype11)  | Website threat type. |
 
+## FullScreenEnterEvent<sup>12+</sup>
+
+Provides details about the callback event for the **Web** component to enter full screen mode.
+
+| Name            | Type                                 | Mandatory  | Description                   |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| handler     | [FullScreenExitHandler](#fullscreenexithandler9) | Yes   | Function handle for exiting full screen mode. |
+| videoWidth  | number | No   | Video width, in px. If the element that enters full screen mode is a **\<video>** element, it represents its width; if the sub-element that enters full screen mode contains a **\<video>** element, it represents the width of the first sub-video element; in other cases, it is **0**. |
+| videoHeight  | number | No   | Video height, in px. If the element that enters full screen mode is a **\<video>** element, it represents its height; if the sub-element that enters full screen mode contains a **\<video>** element, it represents the height of the first sub-video element; in other cases, it is **0**. |
+
+## OnFullScreenEnterCallback<sup>12+</sup>
+
+type OnFullScreenEnterCallback = (event: FullScreenEnterEvent) => void
+
+Represents the callback called when the **Web** component enters full screen mode.
+
+| Name     | Type                     | Description             |
+| ---------- | ---------------------------- | ------------------- |
+| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Details about the callback event for the **Web** component to enter full screen mode. |
+
+## SslErrorEvent<sup>12+</sup>
+
+Provides details about the callback triggered when an SSL error occurs during resource loading.
+
+| Name    | Type                                | Description          |
+| ------- | ------------------------------------ | -------------- |
+| handler | [SslErrorHandler](#sslerrorhandler9) | User operation. |
+| error   | [SslError](#sslerror9)          | Error code.          |
+| url   | string           | URL.          |
+| originalUrl   | string          | Original URL of the request.          |
+| referrer   | string          | Referrer URL.          |
+| isFatalError   | boolean           | Whether the error is a fatal error.          |
+| isMainFrame   | boolean          | Whether the resource is a main resource.          |
+
+
+## OnSslErrorEventCallback<sup>12+</sup>
+
+type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
+
+Callback triggered when an SSL error occurs during resource loading.
+
+| Name     | Type                     | Description             |
+| ---------- | ---------------------------- | ------------------- |
+| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | Details about the callback triggered when an SSL error occurs during resource loading. |
+
 ## NativeEmbedStatus<sup>11+</sup>
 
 Defines the lifecycle of the **\<embed>** tag.
 
-| Name                          | Value| Description          |
+| Name                          | Value | Description          |
 | ----------------------------- | -- | ------------ |
 | CREATE                        | 0 | The tag is created.  |
 | UPDATE                        | 1 | The tag is updated.  |
-| DESTROY                       | 2 | The tag is destroyed.|
+| DESTROY                       | 2 | The tag is destroyed. |
 
 ## NativeEmbedInfo<sup>11+</sup>
 
-Provides detailed information about the **\<embed>** tag.
+Provides detailed information about the **\<Embed>** tag.
 
-| Name            | Type                                 | Mandatory  | Description                   |
-| -----------     | ------------------------------------ | ---- | --------------------- |
-| id     | string             | Yes   | ID of the tag.|
-| type  | string                              | Yes   | Type of the tag. |
-| src | string                              | Yes   | **src** information of the tag. |
-| width  | number  | Yes   | Width of the tag.      |
-| height | number                              | Yes   | Height of the tag. |
-| url | string                              | Yes   | URL of the tag. |
+| Name               | Type                                 | Mandatory  | Description                       |
+|-------------------| ------------------------------------ | ---- |---------------------------|
+| id                | string             | No   | ID of the **\<Embed>** tag.            |
+| type              | string                              | No   | Type of the **\<Embed>** tag. The value is in lowercase.  |
+| src               | string                              | No   | **src** information of the **\<Embed>** tag.           |
+| width             | number  | No   | Width of the **\<Embed>** tag, in px.         |
+| height            | number                              | No   | Height of the **\<Embed>** tag, in px.         |
+| url               | string                              | No   | URL of the tag.           |
+| tag<sup>12+</sup> | string              | No   | Tag name, which consists of uppercase letters.             |
+| params<sup>12+</sup>            | map<string, string> | No   | List of key-value pairs from the **param** tags in the **object** tag. This map is essentially of the Object type, so use APIs provided by Object to operate this object. |
+| position<sup>12+</sup>          | Position            | No   | Position of the same-layer tag relative to the **Web** component in the screen coordinate system, which is different from the standard **Position**. The unit is px. |
+
 ## NativeEmbedDataInfo<sup>11+</sup>
 
 Provides detailed information about the lifecycle changes of the **\<embed>** tag.
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| status     | [NativeEmbedStatus](#nativeembedstatus11)             | Yes   | Lifecycle status of the tag.|
-| surfaceId  | string                              | Yes   | Surface ID of the native image. |
-| embedId | string                              | Yes   | Unique ID of the tag. |
-| info  | [NativeEmbedInfo](#nativeembedinfo11)  | Yes   | Detailed information about the tag.      |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | No   | Lifecycle status of the tag. |
+| surfaceId  | string                              | No   | Surface ID of the native image. |
+| embedId | string                              | No   | Unique ID of the tag. |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | No   | Detailed information about the tag.      |
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
 Provides touch information of the **\<embed>** tag.
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| embedId     | string   | Yes   | Unique ID of the tag.|
-| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent)  | Yes   | Touch action information. |
+| embedId     | string   | No   | Unique ID of the tag. |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent)  | No   | Touch action information. |
+| result<sup>12+</sup>     | [EventResult](#eventresult12)   | No   | Gesture event consumption result. |
+
+## FirstMeaningfulPaint<sup>12+</sup>
+
+Provides details about the main content rendering of the web page.
+
+| Name                    | Type  | Mandatory | Description                                  |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| navigationStartTime      | number | No | Navigation bar loading time, in microseconds.      |
+| firstMeaningfulPaintTime | number | No  | Time for drawing the main content of the page, in milliseconds. |
+
+## OnFirstMeaningfulPaintCallback<sup>12+</sup>
+
+type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPaint](#firstmeaningfulpaint12)) => void
+
+Represents the callback called when the main content on the web page is drawn.
+
+| Name              | Type                                       | Description                        |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | Main content measurement information for the web page rendering. |
+
+## LargestContentfulPaint<sup>12+</sup>
+
+Provides details about the maximum main content rendering of the web page.
+
+| Name                     | Type  | Mandatory | Description                                    |
+| ------------------------- | ------ | ---- | ---------------------------------------- |
+| navigationStartTime       | number | No  | Navigation bar loading time, in microseconds.        |
+| largestImagePaintTime     | number | No  | Maximum image loading time, in milliseconds.  |
+| largestTextPaintTime      | number | No  | Maximum text loading time, in milliseconds.    |
+| largestImageLoadStartTime | number | No  | Maximum image loading start time, in milliseconds. |
+| largestImageLoadEndTime   | number | No  | Maximum image loading end time, in milliseconds. |
+| imageBPP                  | number | No  | Maximum number of image pixels.                          |
+
+## OnLargestContentfulPaintCallback<sup>12+</sup>
+
+type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContentfulPaint](#largestcontentfulpaint12
+)) => void
+
+Represents the callback called when the maximum main content on the web page is drawn.
+
+| Name                | Type                                           | Description                            |
+| ---------------------- | --------------------------------------------------- | ------------------------------------ |
+| largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | Maximum main content measurement information for the web page rendering. |
+
+## IntelligentTrackingPreventionDetails<sup>12+</sup>
+
+Provides detailed information about intelligent tracking prevention.
+
+| Name          | Type                               | Mandatory  | Description        |
+| ------------- | ------------------------------------| ----- | ------------ |
+| host          | string                              | Yes    | Domain name.   |
+| trackerHost   | string                              | Yes    | Domain name of the tracker. |
+
+## OnIntelligentTrackingPreventionCallback<sup>12+</sup>
+
+type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPreventionDetails) => void
+
+Represents the callback called when the tracker cookie is blocked.
+
+| Name  | Type                                                                         | Description                   |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | Details about intelligent tracking prevention. |
+
+## OnOverrideUrlLoadingCallback<sup>12+</sup>
+
+type OnOverrideUrlLoadingCallback = (webResourceRequest: WebResourceRequest) => boolean
+
+Represents the **onOverrideUrlLoading** callback.
+
+**Parameters**
+
+| Name               | Type                                          | Description               |
+| -------------------- | ------------------------------------------------ | ------------------- |
+| webResourceRequest | [WebResourceRequest](#webresourcerequest)  | Information about the URL request. |
+
+**Return value**
+
+| Type     | Description                      |
+| ------- | ------------------------ |
+| boolean | Returns **true** if the access is blocked; returns **false** otherwise. |
+
+## RenderMode<sup>12+</sup>
+
+Enumerates the rendering modes of the **Web** component.
+
+| Name                          | Value | Description          |
+| ----------------------------- | -- | ------------ |
+| ASYNC_RENDER                        | 0 | Self-rendering mode.  |
+| SYNC_RENDER                        | 1 | Unified rendering mode of web components.  |
+
+## NativeMediaPlayerConfig<sup>12+</sup>
+
+type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
+
+Represents the configuration for [enabling the application takeover of web media playback feature](#enablenativemediaplayer12).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name | Type | Read Only | Mandatory | Description |
+|------|------|------|------|------|
+|  enable  | boolean | No | Yes | Whether to enable the feature.<br> **true**: enabled<br> **false** (default): disabled |
+|  shouldOverlay | boolean | No | Yes | Whether the image of the web page video player taken over by the application covers the web page content after this feature is enabled.<br> **true**: Change the height of the video layer to cover the web page content.<br> **false** (default): Retain the original video layer so that the web page content is not covered. |
+
+## RenderProcessNotRespondingReason<sup>12+</sup>
+
+Provides the reason why the web render process does not respond.
+
+| Name                          | Value | Description          |
+| ----------------------------- | -- | ------------ |
+| INPUT_TIMEOUT                  | 0 | The response to the input event sent to the web page process times out.  |
+| NAVIGATION_COMMIT_TIMEOUT      | 1 | The navigation response times out when a new web page is loaded.  |
+
+## RenderProcessNotRespondingData<sup>12+</sup>
+
+Provides detailed information about the web render process that does not respond.
+
+| Name                    | Type  | Mandatory | Description                                  |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| jsStack      | string | Yes | Javascript call stack information of the web page.      |
+| pid | number | Yes  | Process ID of the web page. |
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | Yes  | Reason why the web render process does not respond. |
+
+## OnRenderProcessNotRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
+
+Called when the web render process does not respond.
+
+| Name              | Type                                       | Description                        |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | Detailed information about the web page process that does not respond. |
+
+## OnRenderProcessRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessRespondingCallback = () => void
+
+Represents the callback triggered when the web render process changes from the no-response state to the normal running state.
+
+## ViewportFit<sup>12+</sup>
+
+Enumerates the viewport types configured by **viewport-fit** in the web page **meta**.
+
+| Name                          | Value | Description          |
+| ----------------------------- | -- | ------------ |
+| AUTO                  | 0 | Default value. Visible on the entire web page.  |
+| CONTAINS      | 1 | The initial layout viewport and visual viewport are within the maximum rectangle that adapts to the device display.  |
+| COVER      | 2| The initial layout viewport and visual viewport are within the external rectangle of the physical screen of the device.  |
+
+## OnViewportFitChangedCallback<sup>12+</sup>
+
+type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
+
+Represents the callback triggered when the **viewport-fit** configuration item in the web page **meta** is changed.
+
+| Name              | Type                                       | Description                        |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| viewportFit | [ViewportFit](#viewportfit12) | Viewport type configured by **viewport-fit** in the web page **meta**. |
+
+## ExpandedMenuItemOptions<sup>12+</sup>
+
+Provides the expanded menu item options.
+
+| Name          | Type                                            | Mandatory   | Description            |
+| ---------- | -----------------------------------------------------| ------ | ---------------- |
+| content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | Yes    | Content to display.    |
+| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | No    | Icon.    |
+| action    | (selectedText: {plainText: string}) => void                                                      | Yes    | Selected text.|

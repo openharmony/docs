@@ -21,7 +21,7 @@ For sequential recognition, the value of **GestureMode** is **Sequence**. In thi
 
 In the following example, the combined gestures for continuous recognition are the long press gesture and pan gesture.
 
-The **translate** attribute is bound to a **\<Column>** component. You can set the attribute to translate the component. Then, bind **LongPressGesture** and **PanGesture** to the component in the **Sequence** gesture mode. When a long press gesture is recognized, the displayed number is updated. When the user drags the component after the long press gesture, the component is dragged based on the callback function of the pan gesture.
+The **translate** attribute is bound to a **Column** component. You can set the attribute to translate the component. Then, bind **LongPressGesture** and **PanGesture** to the component in the **Sequence** gesture mode. When a long press gesture is recognized, the displayed number is updated. When the user drags the component after the long press gesture, the component is dragged based on the callback function of the pan gesture.
 
 
 
@@ -52,7 +52,7 @@ struct Index {
       GestureGroup(GestureMode.Sequence,
         // The first gesture recognized in the combined gestures is the long press gesture, which can be responded to for multiple times.
         LongPressGesture({ repeat: true })
-          // When the long press gesture is successfully recognized, the value of count displayed on the <Text> component is increased.
+          // When the long press gesture is successfully recognized, the value of count displayed on the Text component is increased.
           .onAction((event: GestureEvent|undefined) => {
             if(event){
               if (event.repeat) {
@@ -102,7 +102,7 @@ struct Index {
 
 For parallel recognition, the value of **GestureMode** is **Parallel**. In this gesture recognition mode, gestures registered in the combined gestures will be recognized at the same time until they are all recognized successfully. The gestures are recognized in parallel without affecting each other.
 
-For example, if the tap gesture and the double-tap gesture are bound to the \**<Column>** component in parallel recognition mode, they can be recognized at the same time, and the recognition of these two gestures does not interfere with each other. 
+For example, if the tap gesture and the double-tap gesture are bound to the **Column** component in parallel recognition mode, they can be recognized at the same time, and the recognition of these two gestures does not interfere with each other. 
 
 
 
@@ -157,7 +157,7 @@ struct Index {
 
 For exclusive recognition, the value of **GestureMode** is **Exclusive**. In this gesture recognition mode, all registered gestures are recognized at once. Once any of the gestures is recognized successfully, the gesture recognition ends, and all other gestures fail to be recognized.
 
-For example, if the tap gesture and the double-tap gesture are bound to the **\<Column>** component in exclusive recognition mode, only a tap gesture event can be triggered. This is because a tap gesture requires a single tap to be triggered, and a double-tap gesture event requires two taps; each tap event is consumed by the tap gesture and cannot be accumulated into a double-tap gesture.
+For example, if the tap gesture and the double-tap gesture are bound to the **Column** component in exclusive recognition mode, only a tap gesture event can be triggered. This is because a tap gesture requires a single tap to be triggered, and a double-tap gesture event requires two taps; each tap event is consumed by the tap gesture and cannot be accumulated into a double-tap gesture.
 
 
 

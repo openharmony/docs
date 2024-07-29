@@ -13,7 +13,7 @@ The Digital Rights Management (DRM) framework provides APIs for you to develop d
 ## Modules to Import
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 ```
 
 ## DrmErrorCode
@@ -86,6 +86,8 @@ Enumerates the device certificate statuses.
 
 Enumerates the types of requests for media keys.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name                      | Value  | Description           |
@@ -100,6 +102,8 @@ Enumerates the types of requests for media keys.
 ## ContentProtectionLevel
 
 Enumerates the content protection levels.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -126,6 +130,8 @@ Describes a provision request, which is used to request a device certificate fro
 
 Describes the operation data carried in a provision request.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name     | Type                          | Mandatory| Description        |
@@ -136,6 +142,8 @@ Describes the operation data carried in a provision request.
 ## MediaKeyRequest
 
 Describes a media key request, which is used to request a media key from a license server.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -148,6 +156,8 @@ Describes a media key request, which is used to request a media key from a licen
 ## EventInfo
 
 Describes the event information.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -171,6 +181,8 @@ Describes the statistics information.
 
 Describes the media key status.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name     | Type                          | Mandatory| Description        |
@@ -182,6 +194,8 @@ Describes the media key status.
 
 Describes the information about media keys.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name     | Type                          | Mandatory| Description        |
@@ -192,6 +206,8 @@ Describes the information about media keys.
 ## MediaKeySystemInfo
 
 Describes the DRM information of a media source.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -245,10 +261,10 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+  let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySystem ERROR: ${error}`);  
@@ -273,7 +289,7 @@ Checks whether the device supports the media key system with a given plug-in typ
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
+| boolean          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
 
 **Error codes**
 
@@ -288,16 +304,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm");
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm");
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`isMediaKeySystemSupported ERROR: ${error}`);  
+  console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
-
 ```
 
 ## drm.isMediaKeySystemSupported
@@ -319,7 +335,7 @@ Checks whether the device supports the media key system with a given plug-in typ
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
+| boolean          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
 
 **Error codes**
 
@@ -334,11 +350,12 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
@@ -365,7 +382,7 @@ Checks whether the device supports the media key system with a given plug-in typ
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
+| boolean          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
 
 **Error codes**
 
@@ -380,21 +397,21 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
-
 ```
 
 ## drm.getMediaKeySystemUuid<sup>12+</sup>
 
-getMediaKeySystemUuid(): string
+getMediaKeySystemUuid(name: string): string;
 
 Obtains the names and UUIDs of the DRM plug-ins supported by the device.
 
@@ -418,17 +435,18 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed                |
+| 401                |  The parameter check failed.Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.                |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  let uuid: string = drm.getMediaKeySystemUuid();
+  let uuid: String = drm.getMediaKeySystemUuid("com.clearplay.drm");
+  console.log("getMediaKeySystemUuid: ", uuid);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getMediaKeySystemUuid ERROR: ${error}`);  
@@ -442,13 +460,6 @@ getMediaKeySystems(): MediaKeySystemDescription[]
 Obtains the names and UUIDs of the DRM plug-ins supported by the device.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
-
-**Parameters**
-
-| Name    | Type                                            | Mandatory| Description                          |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | Name of the DRM plug-in.                  |
-| uuid  | string     | Yes  | Unique ID of the DRM plug-in.                  |
 
 **Return value**
 
@@ -468,8 +479,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
 } catch (err) {
@@ -509,17 +520,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  mediaKeysystem.setConfigurationString("configName", "configValue");
+  mediaKeySystem.setConfigurationString("configName", "configValue");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`setConfigurationString ERROR: ${error}`);
 }
-
 ```
 
 ### getConfigurationString
@@ -555,17 +565,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let configValue: string = mediaKeysystem.getConfigurationString("configName");
+  let configValue: string = mediaKeySystem.getConfigurationString("configName");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationString ERROR: ${error}`);  
 }
-
 ```
 
 ### setConfigurationByteArray
@@ -596,18 +605,17 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 try {
-  mediaKeysystem.setConfigurationByteArray("configName", configValue);
+  mediaKeySystem.setConfigurationByteArray("configName", configValue);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`setConfigurationByteArray ERROR: ${error}`);  
 }
-
 ```
 
 ### getConfigurationByteArray
@@ -643,17 +651,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let configValue: Uint8Array = mediaKeysystem.getConfigurationByteArray("configName");
+  let configValue: Uint8Array = mediaKeySystem.getConfigurationByteArray("configName");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);  
 }
-
 ```
 
 ### getStatistics
@@ -682,17 +689,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeysystem.getStatistics();
+  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeySystem.getStatistics();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
 }
-
 ```
 
 ### getMaxContentProtectionLevel
@@ -721,17 +727,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let maxLevel: drm.ContentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
+  let maxLevel: drm.ContentProtectionLevel = mediaKeySystem.getMaxContentProtectionLevel();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
 }
-
 ```
 
 ### generateKeySystemRequest
@@ -746,7 +751,7 @@ Generates a media key system request to obtain a provision request.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [ProvisionRequest](#provisionrequest)          | Provision request.                  |
+| Promise<[ProvisionRequest](#provisionrequest)\>          | Promise used to return the media key system request.                  |
 
 **Error codes**
 
@@ -760,11 +765,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-mediaKeysystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
   console.log("generateKeySystemRequest");
 }).catch((err: BusinessError) => {
   console.error(`generateKeySystemRequest: ERROR: ${err}`);
@@ -785,6 +790,12 @@ Processes a response to the media key system request.
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | response  | Uint8Array     | Yes  | Response to the media key system request.                  |
 
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise that returns no value.                  |
+
 **Error codes**
 
 For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
@@ -798,12 +809,12 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let keySystemResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-mediaKeysystem.processKeySystemResponse(keySystemResponse).then(() => {
+mediaKeySystem.processKeySystemResponse(keySystemResponse).then(() => {
   console.log("processKeySystemResponse");
 }).catch((err: BusinessError) => {
   console.error(`processKeySystemResponse: ERROR: ${err}`);
@@ -836,17 +847,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let certificateStatus: drm.CertificateStatus = mediaKeysystem.getCertificateStatus();
+  let certificateStatus: drm.CertificateStatus = mediaKeySystem.getCertificateStatus();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getCertificateStatus ERROR: ${error}`);
 }
-
 ```
 
 ### on('keySystemRequired')
@@ -862,7 +872,7 @@ Subscribes to events indicating that the application needs to request a device c
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keySystemRequired'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the application sends a media key system request.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the result. If this event callback is returned, a device certificate must be requested.                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, a device certificate must be requested.                |
 
 **Error codes**
 
@@ -876,13 +886,12 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
-    console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-  });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
+  console.log('keySystemRequired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keySystemRequired')
@@ -898,7 +907,7 @@ Unsubscribes from events indicating that the application needs to request a devi
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keySystemRequired'**. The event can be listened for when a **MediaKeySystem** instance is created.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used for unsubscription.               |
+| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -912,9 +921,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-function unregisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('keySystemRequired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.off('keySystemRequired');
 ```
 
 ### createMediaKeySession
@@ -951,17 +959,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySession ERROR: ${error}`);
 }
-
 ```
 
 ### createMediaKeySession
@@ -991,17 +998,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+  let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySession ERROR: ${error}`);
 }
-
 ```
 
 ### getOfflineMediaKeyIds
@@ -1031,17 +1037,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let offlineMediaKeyIds: Uint8Array[] = mediaKeysystem.getOfflineMediaKeyIds();
+  let offlineMediaKeyIds: Uint8Array[] = mediaKeySystem.getOfflineMediaKeyIds();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getOfflineMediaKeyIds ERROR: ${error}`);
 }
-
 ```
 
 ### getOfflineMediaKeyStatus
@@ -1077,18 +1082,17 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  let configValue: drm.OfflineMediaKeyStatus = mediaKeysystem.getOfflineMediaKeyStatus(mediaKeyIdString);
+  let configValue: drm.OfflineMediaKeyStatus = mediaKeySystem.getOfflineMediaKeyStatus(mediaKeyIdString);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getOfflineMediaKeyStatus ERROR: ${error}`);
 }
-
 ```
 
 ### clearOfflineMediaKeys
@@ -1118,18 +1122,17 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  mediaKeysystem.clearOfflineMediaKeys(mediaKeyIdString);
+  mediaKeySystem.clearOfflineMediaKeys(mediaKeyIdString);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`clearOfflineMediaKeys ERROR: ${error}`);
 }
-
 ```
 
 ### destroy
@@ -1152,17 +1155,16 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  mediaKeysystem.destroy();
+  mediaKeySystem.destroy();
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`mediaKeysystem destroy ERROR: ${error}`);
+  console.error(`mediaKeySystem destroy ERROR: ${error}`);
 }
-
 ```
 
 ## MediaKeySession
@@ -1174,6 +1176,8 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 Generates a media key request.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1183,13 +1187,13 @@ Generates a media key request.
 | mimeType  | string     | Yes  | MIME type.                  |
 | initData  | Uint8Array     | Yes  | PSSH data (not encoded using Base64).                  |
 | mediaKeyType| number     | Yes  | Media key type.                  | The value **0** means an online media key, and **1** means an offline media key.|
-| OptionsData  | [OptionsData[]](#optionsdata)     | Yes  | Reserved operation data.                  |
+| options  | [OptionsData[]](#optionsdata)     | Yes  | Reserved operation data.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeyRequest](#mediakeyrequest)          | Media key request.                  |
+| Promise<[MediaKeyRequest](#mediakeyrequest)\>          | Promise used to return the media key request generated.                  |
 
 **Error codes**
 
@@ -1204,11 +1208,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let optionsData: drm.OptionsData[]  = [
     {name : "optionsDataNameA", value : "optionsDataValueA"},
     {name : "optionsDataNameB", value : "optionsDataValueB"}
@@ -1227,6 +1231,8 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 Processes a response to the media key request.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1239,7 +1245,7 @@ Processes a response to the media key request.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [Uint8Array]          | ID of offline media keys.                  |
+| Promise<Uint8Array\>          | Promise used to return the media key IDs.                  |
 
 **Error codes**
 
@@ -1254,11 +1260,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1272,6 +1278,8 @@ mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint
  checkMediaKeyStatus(): MediaKeyStatus[]
 
 Checks the status of online media keys.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1293,18 +1301,17 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let keyStatus: drm.MediaKeyStatus[] =  mediaKeySession.checkMediaKeyStatus();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`checkMediaKeyStatus ERROR: ${error}`);
 }
-
 ```
 
 ### clearMediaKeys
@@ -1312,6 +1319,8 @@ try {
 clearMediaKeys(): void
 
 Clears online media keys.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1327,18 +1336,17 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   mediaKeySession.clearMediaKeys();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`clearMediaKeys ERROR: ${error}`);
 }
- 
 ```
 
 ### generateOfflineReleaseRequest
@@ -1346,6 +1354,8 @@ try {
 generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 Generates a request to release offline media keys.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1359,7 +1369,7 @@ Generates a request to release offline media keys.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [Uint8Array]          | Request for releasing the offline media keys.                  |
+| Promise<Uint8Array\>          | Promise used to return the request generated.                  |
 
 **Error codes**
 
@@ -1374,11 +1384,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let Request = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(Request).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1399,6 +1409,8 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 Processes a response to a request for releasing offline media keys.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1407,6 +1419,12 @@ Processes a response to a request for releasing offline media keys.
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | mediaKeyId  | Uint8Array     | Yes  | ID of the offline media keys.                  |
 | response  | Uint8Array     | Yes  | Response to the request for releasing the offline media keys.                  |
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise that returns no value.                  |
 
 **Error codes**
 
@@ -1421,11 +1439,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1447,6 +1465,8 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 
 Restores offline media keys.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1455,6 +1475,11 @@ Restores offline media keys.
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | mediaKeyId  | Uint8Array     | Yes  | ID of the offline media keys.                  |
 
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise that returns no value.                  |
 
 **Error codes**
 
@@ -1469,11 +1494,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let response = new Uint8Array ([0x00,0x00]);
 let mediaKeyId = new Uint8Array ([0x00,0x00]);
 mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
@@ -1493,6 +1518,8 @@ mediaKeySession.restoreOfflineMediaKeys(mediaKeyId).then(() => {
 getContentProtectionLevel(): ContentProtectionLevel
 
 Obtains the content protection level of this media key session.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1514,18 +1541,17 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeySession.getContentProtectionLevel();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getContentProtectionLevel ERROR: ${error}`);
 }
-
 ```
 
 ### requireSecureDecoderModule
@@ -1533,6 +1559,8 @@ try {
 requireSecureDecoderModule(mimeType: string): boolean
 
 Obtains the status of the secure decoder.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1546,7 +1574,7 @@ Obtains the status of the secure decoder.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | Status of the secure decoder. The value **true** means that the secure decoder is ready, and **false** means the opposite.                  |
+| boolean          | Status of the secure decoder. The value **true** means that the secure decoder is ready, and **false** means the opposite.                  |
 
 **Error codes**
 
@@ -1561,18 +1589,17 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let status: boolean = mediaKeySession.requireSecureDecoderModule("mimeType");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`requireSecureDecoderModule ERROR: ${error}`);
 }
-
 ```
 
 ### on('keyRequired')
@@ -1581,6 +1608,8 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 Subscribes to events indicating that the application needs to request a media key. This API uses a callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1588,7 +1617,7 @@ Subscribes to events indicating that the application needs to request a media ke
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the application sends a media key request.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the result. If this event callback is returned, a media key request is being sent.                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, a media key request is being sent.                |
 
 **Error codes**
 
@@ -1602,13 +1631,13 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerKeyRequired(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keyRequired', (eventInfo: drm.EventInfo) => {
-        console.log('keyRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
+  console.log('keyRequired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keyRequired')
@@ -1617,6 +1646,8 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 Unsubscribes from events indicating that the application needs to request a media key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1624,7 +1655,7 @@ Unsubscribes from events indicating that the application needs to request a medi
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**. The event can be listened for when a **MediaKeySystem** instance is created.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used for unsubscription.               |
+| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1638,11 +1669,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterKeyRequired(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('keyRequired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keyRequired');
 ```
 
 ### on('keyExpired')
@@ -1651,6 +1682,8 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
 Subscribes to events indicating that the media key expires. This API uses a callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1658,7 +1691,7 @@ Subscribes to events indicating that the media key expires. This API uses a call
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the media key expires.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the result. If this event callback is returned, the session is lost.                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, the media key has expired.                |
 
 **Error codes**
 
@@ -1672,13 +1705,13 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerKeyExpired(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keyExpired', (eventInfo: drm.EventInfo) => {
-        console.log('keyExpired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
+  console.log('keyExpired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keyExpired')
@@ -1687,6 +1720,8 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
 Unsubscribes from events indicating that the media key expires.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1694,7 +1729,7 @@ Unsubscribes from events indicating that the media key expires.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**. The event can be listened for when a **MediaKeySystem** instance is created.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used for unsubscription.               |
+| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1708,11 +1743,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterKeyExpired(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('keyExpired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keyExpired');
 ```
 
 ### on('vendorDefined')
@@ -1721,6 +1756,8 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
 Subscribes to vendor-defined events. This API uses a callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1728,7 +1765,7 @@ Subscribes to vendor-defined events. This API uses a callback to return the resu
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when a vendor-defined event occurs.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the result. If this event callback is returned, the session is lost.                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -1742,13 +1779,13 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerVendorDefinedt(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
-        console.log('vendorDefined' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
+  console.log('vendorDefined ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('vendorDefined')
@@ -1757,6 +1794,8 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
 Unsubscribes from vendor-defined events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1764,7 +1803,7 @@ Unsubscribes from vendor-defined events.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**. The event can be listened for when a **MediaKeySystem** instance is created.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used for unsubscription.               |
+| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1778,11 +1817,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterVendorDefined(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('vendorDefined');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('vendorDefined');
 ```
 
 ### on('expirationUpdate')
@@ -1791,6 +1830,8 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 Subscribes to events indicating that the media key updates on expiry. This API uses a callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1798,7 +1839,7 @@ Subscribes to events indicating that the media key updates on expiry. This API u
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the media key updates on expiry.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the result. If this event callback is returned, the session is lost.                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, the validity period of the media key has been updated.                |
 
 **Error codes**
 
@@ -1812,13 +1853,13 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
-        console.log('expirationUpdate' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
+  console.log('expirationUpdate ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('expirationUpdate')
@@ -1827,6 +1868,8 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 Unsubscribes from events indicating that the media key updates on expiry. 
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1834,7 +1877,7 @@ Unsubscribes from events indicating that the media key updates on expiry.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**. The event can be listened for when a **MediaKeySystem** instance is created.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used for unsubscription.               |
+| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1848,11 +1891,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.off('expirationUpdate');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('expirationUpdate');
 ```
 
 ### on('keysChange')
@@ -1861,6 +1904,8 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 
 Subscribes to events indicating that the media key changes. This API uses a callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1868,7 +1913,7 @@ Subscribes to events indicating that the media key changes. This API uses a call
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the media key changes.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the result. If this event callback is returned, the session is lost.                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, the media key has changed.                |
 
 **Error codes**
 
@@ -1882,15 +1927,15 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
-        for (let i = 0; i < keyInfo.length; i++) {
-            console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
-        }
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
+  for (let i = 0; i < keyInfo.length; i++) {
+    console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
+  }
+});
 ```
 
 ### off('keysChange')
@@ -1899,6 +1944,8 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 
 Unsubscribes from events indicating that the media key changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1906,7 +1953,7 @@ Unsubscribes from events indicating that the media key changes.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**. The event can be listened for when a **MediaKeySystem** instance is created.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used for unsubscription.               |
+| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1920,11 +1967,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterkeyChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.off('keysChange');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keysChange');
 ```
 
 ### destroy
@@ -1932,6 +1979,8 @@ function unregisterkeyChange(mediaKeysession: drm.MediaKeySession): void {
 destroy(): void
 
 Destroys the resources applied for running the **MediaKeySession** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1947,10 +1996,11 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   mediaKeySession.destroy();
 } catch (err) {

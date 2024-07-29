@@ -29,11 +29,11 @@ Currently, the following security components are available:
 
   You can use this component for applications that need to read data from the pasteboard.
 
-- [\<SaveButton>](savebutton.md)
+- [SaveButton](savebutton.md)
   
-  The **\<SaveButton>** component comes with the privilege for writing data to the media library. When it is tapped, the application obtains one-time permission to access the **mediaLibrary** APIs within 10 seconds.
+  The **SaveButton** component comes with the privilege for writing data to the media library. When it is tapped, the application obtains one-time permission to access the **mediaLibrary** APIs within 10 seconds.
 
-  You can use the **\<SaveButton>** component when your application needs to save image or videos to the media library. This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
+  You can use the **SaveButton** component when your application needs to save image or videos to the media library. This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 
 - [\<LocationButton>](locationbutton.md)
   
@@ -80,6 +80,9 @@ The following figure illustrates the working mechanism.
 Due to the automatic authorization feature, many restrictions are imposed on security components to prevent user privacy from being obtained by malicious applications. The security components must be clearly visible on the application UI and can be clearly identified by users to prevent authorization failures.
 
 If the authorization fails due to invalid component style, check the device error logs with the keyword "SecurityComponentCheckFail".
+
+> **NOTE**
+> Pay attention to logs of all levels related to the keyword.
 
 Possible causes include but are not limited to the following:
 

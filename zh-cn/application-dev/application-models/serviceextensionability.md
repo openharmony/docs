@@ -89,24 +89,25 @@ idl_service_ext_impl.ts实现如下：
 
 ```ts
 import IdlServiceExtStub from './idl_service_ext_stub';
-import Logger from '../utils/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { insertDataToMapCallback } from './i_idl_service_ext';
 import { processDataCallback } from './i_idl_service_ext';
 
 const ERR_OK = 0;
 const TAG: string = "[IdlServiceExtImpl]";
+const DOMAIN_NUMBER: number = 0xFF00;
 
 // 开发者需要在这个类型里对接口进行实现
 export default class ServiceExtImpl extends IdlServiceExtStub {
   processData(data: number, callback: processDataCallback): void {
     // 开发者自行实现业务逻辑
-    Logger.info(TAG, `processData: ${data}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `processData: ${data}`);
     callback(ERR_OK, data + 1); // 鉴权通过，执行正常业务逻辑
   }
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
     // 开发者自行实现业务逻辑
-    Logger.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, key: ${key}  val: ${val}`);
     callback(ERR_OK);
   }
 }
@@ -134,61 +135,62 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
 3. 在ServiceExtAbility.ets文件中，增加导入ServiceExtensionAbility的依赖包，自定义类继承ServiceExtensionAbility并实现生命周期回调，在onConnect生命周期回调里，需要将之前定义的ServiceExtImpl对象返回。
 
-   ```ts
-   import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
-   import { rpc } from '@kit.IPCKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
-   
-   const TAG: string = '[ServiceExtAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   export default class ServiceExtAbility extends ServiceExtensionAbility {
-     serviceExtImpl: ServiceExtImpl = new ServiceExtImpl('ExtImpl');
-   
-     onCreate(want: Want): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
-     }
-   
-     onRequest(want: Want, startId: number): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
-     }
-   
-     onConnect(want: Want): rpc.RemoteObject {
-       hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
-       // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
-       return this.serviceExtImpl as rpc.RemoteObject;
-     }
-   
-     onDisconnect(want: Want): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
-     }
-   
-     onDestroy(): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onDestroy`);
-     }
-   }
-   ```
+    ```ts
+    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
+
+    const TAG: string = '[ServiceExtAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    export default class ServiceExtAbility extends ServiceExtensionAbility {
+      serviceExtImpl: ServiceExtImpl = new ServiceExtImpl('ExtImpl');
+
+      onCreate(want: Want): void {
+        let serviceExtensionContext = this.context;
+        hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
+      };
+
+      onRequest(want: Want, startId: number): void {
+        hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
+      };
+
+      onConnect(want: Want): rpc.RemoteObject {
+        hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
+        // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
+        return this.serviceExtImpl as rpc.RemoteObject;
+      };
+
+      onDisconnect(want: Want): void {
+        hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
+      };
+
+      onDestroy(): void {
+        hilog.info(DOMAIN_NUMBER, TAG, 'onDestroy');
+      };
+    };
+    ```
 
 4. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册ServiceExtensionAbility，type标签需要设置为“service”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
-   ```json
-   {
-     "module": {
-       ...
-       "extensionAbilities": [
-         {
-           "name": "ServiceExtAbility",
-           "icon": "$media:icon",
-           "description": "service",
-           "type": "service",
-           "exported": true,
-           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        ...
+        "extensionAbilities": [
+          {
+            "name": "ServiceExtAbility",
+            "icon": "$media:icon",
+            "description": "service",
+            "type": "service",
+            "exported": true,
+            "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
+          }
+        ]
+      }
+    }
+    ```
 
 ## 启动一个后台服务（仅对系统应用开放）
 
@@ -199,144 +201,144 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
 1. 在系统应用中启动一个新的ServiceExtensionAbility。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
-  ```ts
-  import { common, Want } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-  const TAG: string = '[Page_ServiceExtensionAbility]';
-  const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-  @Entry
-  @Component
-  struct Page_ServiceExtensionAbility {
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-              let want: Want = {
-                deviceId: '',
-                bundleName: 'com.samples.stagemodelabilitydevelop',
-                abilityName: 'ServiceExtAbility'
-              };
-              context.startServiceExtensionAbility(want).then(() => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
-                // 成功启动后台服务
-                promptAction.showToast({
-                  message: $r('app.string.SuccessfullyStartBackendService')
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let want: Want = {
+                  deviceId: '',
+                  bundleName: 'com.samples.stagemodelabilitydevelop',
+                  abilityName: 'ServiceExtAbility'
+                };
+                context.startServiceExtensionAbility(want).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
+                  // 成功启动后台服务
+                  promptAction.showToast({
+                    message: $r('app.string.SuccessfullyStartBackendService')
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
                 });
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-              });
-            })
+              })
+            }
+            //...
           }
           //...
         }
         //...
       }
-      //...
     }
-  }
-  ```
+    ```
 
 2. 在系统应用中停止一个已启动的ServiceExtensionAbility。
 
-  ```ts
-  import { common, Want } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-  const TAG: string = '[Page_ServiceExtensionAbility]';
-  const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-  @Entry
-  @Component
-  struct Page_ServiceExtensionAbility {
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-              let want: Want = {
-                deviceId: '',
-                bundleName: 'com.samples.stagemodelabilitydevelop',
-                abilityName: 'ServiceExtAbility'
-              };
-              context.stopServiceExtensionAbility(want).then(() => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
-                promptAction.showToast({
-                  message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let want: Want = {
+                  deviceId: '',
+                  bundleName: 'com.samples.stagemodelabilitydevelop',
+                  abilityName: 'ServiceExtAbility'
+                };
+                context.stopServiceExtensionAbility(want).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
+                  promptAction.showToast({
+                    message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
                 });
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-              });
-            })
+              })
+            }
+            //...
           }
           //...
         }
         //...
       }
-      //...
     }
-  }
-  ```
+    ```
 
 3. 已启动的ServiceExtensionAbility停止自身。
 
-  ```ts
-  import { common } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    import { common } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-  const TAG: string = '[Page_ServiceExtensionAbility]';
-  const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-  @Entry
-  @Component
-  struct Page_ServiceExtensionAbility {
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-              context.terminateSelf().then(() => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
-                // 成功停止当前后台服务
-                promptAction.showToast({
-                  message: $r('app.string.SuccessfullyStopStartedBackendService')
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                context.terminateSelf().then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
+                  // 成功停止当前后台服务
+                  promptAction.showToast({
+                    message: $r('app.string.SuccessfullyStopStartedBackendService')
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
                 });
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
-              });
-            })
+              })
+            }
+            //...
           }
           //...
         }
         //...
       }
-      //...
     }
-  }
-  ```
+    ```
 
 > **说明：**
 > 后台服务可以在后台长期运行，为了避免资源浪费，需要对后台服务的生命周期进行管理。即一个后台服务完成了请求方的任务，需要及时销毁。销毁已启动的后台服务有两种方式：
@@ -394,6 +396,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
       hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
     }
   };
+
   @Entry
   @Component
   struct Page_ServiceExtensionAbility {
@@ -683,4 +686,4 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
 
 - [Ability与ServiceExtensionAbility通信（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/IDL/AbilityConnectServiceExtension)
 
-- [Stage模型（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/ApplicationModels/StageModel)
+- [Stage模型（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/StageModel)

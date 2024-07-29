@@ -10,30 +10,28 @@ The Context module, inherited frome [BaseContext](js-apis-inner-application-base
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Properties
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                 | Type    | Read-only  | Mandatory  | Description                                                              |
 |---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
-| resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | No   | Yes   | Object for resource management.                                                         |
-| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | No   | Yes   | Application information.                                                      |
-| cacheDir            | string | No   | Yes   | Cache directory.                                                           |
-| tempDir             | string | No   | Yes   | Temporary directory.                                                           |
-| resourceDir<sup>11+<sup>         | string | No   | Yes   | Resource directory.                                                           |
-| filesDir            | string | No   | Yes   | File directory.                                                           |
-| databaseDir         | string | No   | Yes   | Database directory.                                                          |
-| preferencesDir      | string | No   | Yes   | Preferences directory.                                                  |
-| bundleCodeDir       | string | No   | Yes   | Bundle code directory. Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../apis-localization-kit/js-apis-resource-manager.md) instead.|
-| distributedFilesDir | string | No   | Yes   | Distributed file directory.                                                        |
-| cloudFileDir<sup>12+</sup>        | string | No   | Yes   | Cloud file directory.                                                       |
-| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | No   | Yes   | Event hub that implements event subscription, unsubscription, and triggering.                                          |
-| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | Yes   | Encryption level of the directory.                                                         |
+| resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | No   | Yes   | Object for resource management.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | No   | Yes   | Application information.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| cacheDir            | string | No   | Yes   | Cache directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| tempDir             | string | No   | Yes   | Temporary directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| resourceDir<sup>11+<sup>         | string | No   | Yes   | Resource directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| filesDir            | string | No   | Yes   | File directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| databaseDir         | string | No   | Yes   | Database directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| preferencesDir      | string | No   | Yes   | Preferences directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| bundleCodeDir       | string | No   | Yes   | Bundle code directory. Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../apis-localization-kit/js-apis-resource-manager.md) instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| distributedFilesDir | string | No   | Yes   | Distributed file directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| cloudFileDir<sup>12+</sup>        | string | No   | Yes   | Cloud file directory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
+| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | No   | Yes   | Event hub that implements event subscription, unsubscription, and triggering.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | Yes   | Encryption level of the directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 
 ## Context.createModuleContext
 
@@ -49,27 +47,27 @@ Creates the context based on the module name.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| moduleName | string | Yes   | Module name.|
+| moduleName | string | Yes   | Module name. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Context | Context created.|
+| Context | Context created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -78,7 +76,7 @@ export default class EntryAbility extends UIAbility {
     try {
       moduleContext = this.context.createModuleContext('entry');
     } catch (error) {
-      console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -100,23 +98,23 @@ Obtains the context of this application.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context obtained.|
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -125,7 +123,7 @@ export default class EntryAbility extends UIAbility {
     try {
       applicationContext = this.context.getApplicationContext();
     } catch (error) {
-      console.error(`getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`getApplicationContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -135,7 +133,7 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string): Promise\<string>
 
-Obtains the shared directory based on a group ID. This API uses a promise to return the result.
+Obtains the shared directory based on a group ID of the atomic service. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -145,11 +143,11 @@ Obtains the shared directory based on a group ID. This API uses a promise to ret
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service project is created. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
 | Promise\<string> | Promise used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
 
@@ -157,16 +155,16 @@ Obtains the shared directory based on a group ID. This API uses a promise to ret
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -178,7 +176,7 @@ export default class EntryAbility extends UIAbility {
         console.log("getGroupDir result:" + data);
       })
     } catch (error) {
-      console.error(`getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`getGroupDirContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -188,7 +186,7 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
-Obtains the shared directory based on a group ID. This API uses an asynchronous callback to return the result.
+Obtains the shared directory based on a group ID of the atomic service. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -198,30 +196,30 @@ Obtains the shared directory based on a group ID. This API uses an asynchronous 
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service project is created. |
 | callback | AsyncCallback\<string> | Yes   | Callback used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
     console.log('MyAbility onCreate');
     let getGroupDirContext: common.Context = this.context;
 
-    getGroupDirContext.getGroupDir("1", (err, data) => {
+    getGroupDirContext.getGroupDir("1", (err: BusinessError, data) => {
       if (err) {
         console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
       } else {

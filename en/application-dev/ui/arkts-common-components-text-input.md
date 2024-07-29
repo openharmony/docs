@@ -1,12 +1,12 @@
 # Text Input (TextInput/TextArea)
 
 
-The **\<TextInput>** and **\<TextArea>** components are input components typically used to accept input from the user, such as comments, chat messages, and table content. They can be used in combination with other components to meet more diversified purposes, for example, login and registration. For details, see [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) and [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md).
+The **TextInput** and **TextArea** components are input components typically used to accept input from the user, such as comments, chat messages, and table content. They can be used in combination with other components to meet more diversified purposes, for example, login and registration. For details, see [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) and [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md).
 
 
 ## Creating a Text Box
 
-The **\<TextInput>** component provides single-line text input, while the **\<TextArea>** component provides multi-line text input. To create these components, use the following APIs:
+The **TextInput** component provides single-line text input, while the **TextArea** component provides multi-line text input. To create these components, use the following APIs:
 
 ```ts
 TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
@@ -33,7 +33,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
   ![en-us_image_0000001562940481](figures/en-us_image_0000001562940481.png)
 
-  The **\<TextArea>** component automatically wraps text so that each line does not have more than the width of the component.
+  The **TextArea** component automatically wraps text so that each line does not have more than the width of the component.
 
 
   ```ts
@@ -45,7 +45,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 ## Setting the Input Box Type
 
-The **\<TextInput>** component comes in nine types. You can specify its type by setting the **type** parameter to any of the following: **Normal**, **Password**, **Email**, **Number**, **PhoneNumber**, **USER_NAME**, **NEW_PASSWORD**, **NUMBER_PASSWORD**, **SCREEN_LOCK_PASSWORD**, and **NUMBER_DECIMAL**.  
+The **TextInput** component comes in nine types. You can specify its type by setting the **type** parameter to any of the following: **Normal**, **Password**, **Email**, **Number**, **PhoneNumber**, **USER_NAME**, **NEW_PASSWORD**, **NUMBER_PASSWORD**, **SCREEN_LOCK_PASSWORD**, and **NUMBER_DECIMAL**.  
 
 
 - Normal type (default type)

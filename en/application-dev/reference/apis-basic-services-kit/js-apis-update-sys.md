@@ -17,7 +17,7 @@ There are two types of updates: SD card update and over the air (OTA) update.
 ## Modules to Import
 
 ```js
-import update from '@ohos.update';
+import { update } from '@kit.BasicServicesKit';
 ```
 
 ## update.getOnlineUpdater
@@ -32,13 +32,13 @@ Obtains an **OnlineUpdater** object.
 
 | Name        | Type                         | Mandatory  | Description    |
 | ----------- | --------------------------- | ---- | ------ |
-| upgradeInfo | [UpgradeInfo](#upgradeinfo) | Yes   | **OnlineUpdater** object information.|
+| upgradeInfo | [UpgradeInfo](#upgradeinfo) | Yes   | **OnlineUpdater** object information. |
 
 **Return value**
 
 | Type                 | Description  |
 | ------------------- | ---- |
-| [Updater](#updater) | **OnlineUpdater** object.|
+| [Updater](#updater) | **OnlineUpdater** object. |
 
 **Example**
 
@@ -70,7 +70,7 @@ Obtains a **Restorer** object for restoring factory settings.
 
 | Type                   | Description    |
 | --------------------- | ------ |
-| [Restorer](#restorer) | **Restorer** object for restoring factory settings.|
+| [Restorer](#restorer) | **Restorer** object for restoring factory settings. |
 
 
 **Example**
@@ -95,7 +95,7 @@ Obtains a **LocalUpdater** object.
 
 | Type                           | Description    |
 | ----------------------------- | ------ |
-| [LocalUpdater](#localupdater) | **LocalUpdater** object.|
+| [LocalUpdater](#localupdater) | **LocalUpdater** object. |
 
 
 **Example**
@@ -124,7 +124,7 @@ Checks whether a new version is available. This API uses an asynchronous callbac
 
 | Name     | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<[CheckResult](#checkresult)> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<[CheckResult](#checkresult)> | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -132,12 +132,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
       console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
@@ -158,7 +159,7 @@ Checks whether a new version is available. This API uses a promise to return the
 
 | Type                                   | Description                 |
 | ------------------------------------- | ------------------- |
-| Promise\<[CheckResult](#checkresult)> | Promise used to return the result.|
+| Promise\<[CheckResult](#checkresult)> | Promise used to return the result. |
 
 **Error codes**
 
@@ -166,12 +167,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.checkNewVersion()
       .then((result: update.CheckResult) => {
@@ -198,7 +200,7 @@ Obtains information about the new version. This API uses an asynchronous callbac
 
 | Name     | Type                                      | Mandatory  | Description             |
 | -------- | ---------------------------------------- | ---- | --------------- |
-| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -206,12 +208,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
       console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
@@ -233,7 +236,7 @@ Obtains information about the new version. This API uses a promise to return the
 
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the result.|
+| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the result. |
 
 **Error codes**
 
@@ -241,12 +244,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
     console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
@@ -272,7 +276,7 @@ Obtains the description file of the new version. This API uses an asynchronous c
 | ------------------ | ---------------------------------------- | ---- | -------------- |
 | versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.        |
 | descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.       |
-| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | Yes   | Callback used to return the result.|
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -280,12 +284,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -319,14 +325,14 @@ Obtains the description file of the new version. This API uses a promise to retu
 
 | Name               | Type                                      | Mandatory  | Description    |
 | ------------------ | ---------------------------------------- | ---- | ------ |
-| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.|
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information. |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file. |
 
 **Return value**
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result.|
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result. |
 
 **Error codes**
 
@@ -334,12 +340,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -373,7 +381,7 @@ Obtains information about the current version. This API uses an asynchronous cal
 
 | Name     | Type                                      | Mandatory  | Description              |
 | -------- | ---------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<[CurrentVersionInfo](#currentversioninfo)> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<[CurrentVersionInfo](#currentversioninfo)> | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -381,12 +389,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
@@ -409,7 +418,7 @@ Obtains information about the current version. This API uses a promise to return
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise used to return the result.|
+| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise used to return the result. |
 
 **Error codes**
 
@@ -417,12 +426,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
@@ -448,7 +458,7 @@ Obtains the description file of the current version. This API uses an asynchrono
 | Name               | Type                                      | Mandatory  | Description             |
 | ------------------ | ---------------------------------------- | ---- | --------------- |
 | descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.         |
-| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | Yes   | Callback used to return the result.|
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -456,6 +466,8 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -487,13 +499,13 @@ Obtains the description file of the current version. This API uses a promise to 
 
 | Name               | Type                                      | Mandatory  | Description    |
 | ------------------ | ---------------------------------------- | ---- | ------ |
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.|
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file. |
 
 **Return value**
 
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
-| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result.|
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result. |
 
 **Error codes**
 
@@ -501,13 +513,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
+import { BusinessError } from '@kit.BasicServicesKit';
 // Options of the description file
 const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
@@ -534,7 +547,7 @@ Obtains information about the update task. This API uses an asynchronous callbac
 
 | Name     | Type                                   | Mandatory  | Description              |
 | -------- | ------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<[TaskInfo](#taskinfo)> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<[TaskInfo](#taskinfo)> | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -542,12 +555,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
@@ -568,7 +582,7 @@ Obtains information about the update task. This API uses a promise to return the
 
 | Type                             | Description                 |
 | ------------------------------- | ------------------- |
-| Promise\<[TaskInfo](#taskinfo)> | Promise used to return the result.|
+| Promise\<[TaskInfo](#taskinfo)> | Promise used to return the result. |
 
 **Error codes**
 
@@ -576,12 +590,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
@@ -606,7 +621,7 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 | ----------------- | --------------------------------------- | ---- | ---------------------------------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                            |
 | downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.                              |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object. |
 
 **Error codes**
 
@@ -614,12 +629,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -650,14 +667,14 @@ Downloads the new version. This API uses a promise to return the result.
 
 | Name              | Type                                     | Mandatory  | Description    |
 | ----------------- | --------------------------------------- | ---- | ------ |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information. |
 | downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.  |
 
 **Return value**
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -665,12 +682,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -705,7 +724,7 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.                              |
-| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object. |
 
 **Error codes**
 
@@ -713,12 +732,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo : update.VersionDigestInfo= {
@@ -748,14 +769,14 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 | Name                  | Type                                      | Mandatory  | Description    |
 | --------------------- | ---------------------------------------- | ---- | ------ |
-| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
-| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.|
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information. |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download. |
 
 **Return value**
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -763,12 +784,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -802,7 +825,7 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 | -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.                              |
-| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object. |
 
 **Error codes**
 
@@ -810,12 +833,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -845,14 +870,14 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 | Name                 | Type                                      | Mandatory  | Description    |
 | -------------------- | ---------------------------------------- | ---- | ------ |
-| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
-| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.|
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information. |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download. |
 
 **Return value**
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -860,12 +885,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -899,7 +926,7 @@ Updates the version. This API uses an asynchronous callback to return the result
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object. |
 
 **Error codes**
 
@@ -907,12 +934,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -942,14 +971,14 @@ Updates the version. This API uses a promise to return the result.
 
 | Name              | Type                                     | Mandatory  | Description    |
 | ----------------- | --------------------------------------- | ---- | ------ |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information. |
 | upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.  |
 
 **Return value**
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -957,12 +986,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -996,7 +1027,7 @@ Clears errors. This API uses an asynchronous callback to return the result.
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Clear options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object. |
 
 **Error codes**
 
@@ -1004,12 +1035,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -1039,14 +1072,14 @@ Clears errors. This API uses a promise to return the result.
 
 | Name              | Type                                     | Mandatory  | Description    |
 | ----------------- | --------------------------------------- | ---- | ------ |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information. |
 | clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Update options.  |
 
 **Return value**
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -1054,12 +1087,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -1091,7 +1126,7 @@ Obtains the update policy. This API uses an asynchronous callback to return the 
 
 | Name     | Type                                      | Mandatory  | Description             |
 | -------- | ---------------------------------------- | ---- | --------------- |
-| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -1099,12 +1134,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
@@ -1126,7 +1162,7 @@ Obtains the update policy. This API uses a promise to return the result.
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise\<[UpgradePolicy](#upgradepolicy)> | Promise used to return the result.|
+| Promise\<[UpgradePolicy](#upgradepolicy)> | Promise used to return the result. |
 
 **Error codes**
 
@@ -1134,12 +1170,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
@@ -1164,7 +1201,7 @@ Sets the update policy. This API uses an asynchronous callback to return the res
 | Name     | Type                             | Mandatory  | Description           |
 | -------- | ------------------------------- | ---- | ------------- |
 | policy   | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy.         |
-| callback | AsyncCallback\<void>            | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<void>            | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -1172,12 +1209,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
@@ -1203,7 +1241,7 @@ Sets the update policy. This API uses a promise to return the result.
 
 | Name   | Type                             | Mandatory  | Description  |
 | ------ | ------------------------------- | ---- | ---- |
-| policy | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy.|
+| policy | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy. |
 
 **Return value**
 
@@ -1217,12 +1255,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
@@ -1250,7 +1289,7 @@ Terminates the update. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object. |
 
 **Error codes**
 
@@ -1258,12 +1297,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
@@ -1284,7 +1324,7 @@ Terminates the update. This API uses a promise to return the result.
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -1292,12 +1332,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
@@ -1318,8 +1359,8 @@ Enables listening for update events. This API uses an asynchronous callback to r
 
 | Name              | Type                                      | Mandatory  | Description  |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information. |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback. |
 
 
 **Example**
@@ -1346,8 +1387,8 @@ Disables listening for update events. This API uses an asynchronous callback to 
 
 | Name              | Type                                      | Mandatory  | Description  |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information. |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback. |
 
 
 **Example**
@@ -1379,7 +1420,7 @@ Restores the scale to its factory settings. This API uses an asynchronous callba
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation fails, **err** is an error object and a callback is returned. If the the operation is successful, **err** is undefined and no callback is returned.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation fails, **err** is an error object and a callback is returned. If the the operation is successful, **err** is undefined and no callback is returned. |
 
 **Error codes**
 
@@ -1387,6 +1428,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1411,7 +1453,7 @@ Restores the scale to its factory settings. This API uses a promise to return th
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, a callback is returned. If the the operation is successful, no callback is returned.|
+| Promise\<void> | Promise that returns no value. If the operation fails, a callback is returned. If the the operation is successful, no callback is returned. |
 
 **Error codes**
 
@@ -1419,12 +1461,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
@@ -1451,7 +1494,7 @@ Verifies the update package. This API uses an asynchronous callback to return th
 | ----------- | --------------------------- | ---- | ---------------- |
 | upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.            |
 | certsFile   | string                      | Yes   | Path of the certificate file.          |
-| callback    | AsyncCallback\<void>        | Yes   | Callback used to return the result.|
+| callback    | AsyncCallback\<void>        | Yes   | Callback used to return the result. |
 
 **Error codes**
 
@@ -1459,6 +1502,8 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1489,13 +1534,13 @@ Verifies the update package. This API uses a promise to return the result.
 | Name        | Type                         | Mandatory  | Description    |
 | ----------- | --------------------------- | ---- | ------ |
 | upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.  |
-| certsFile   | string                      | Yes   | Path of the certificate file.|
+| certsFile   | string                      | Yes   | Path of the certificate file. |
 
 **Return value**
 
 | Type            | Description                    |
 | -------------- | ---------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result. |
 
 **Error codes**
 
@@ -1503,12 +1548,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
@@ -1535,7 +1582,7 @@ Installs the update package. This API uses an asynchronous callback to return th
 | Name        | Type                                | Mandatory  | Description                                     |
 | ----------- | ---------------------------------- | ---- | --------------------------------------- |
 | upgradeFile | Array<[UpgradeFile](#upgradefile)> | Yes   | Update file.                                   |
-| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object. |
 
 **Error codes**
 
@@ -1543,6 +1590,8 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1572,7 +1621,7 @@ Installs the update package. This API uses a promise to return the result.
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -1580,12 +1629,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA package
@@ -1609,8 +1660,8 @@ Enables listening for update events. This API uses an asynchronous callback to r
 
 | Name              | Type                                      | Mandatory  | Description  |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information. |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback. |
 
 
 **Example**
@@ -1639,8 +1690,8 @@ Disables listening for update events. This API uses an asynchronous callback to 
 
 | Name              | Type                                      | Mandatory  | Description  |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information. |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback. |
 
 
 **Example**
@@ -1667,7 +1718,7 @@ Represents update information.
 | Name          | Type                         | Mandatory  | Description    |
 | ------------ | ----------------------------- | ---- | ------ |
 | upgradeApp   | string                        | Yes   | Application package name. |
-| businessType | [BusinessType](#businesstype) | Yes   | Update service type.|
+| businessType | [BusinessType](#businesstype) | Yes   | Update service type. |
 
 ## BusinessType
 
@@ -1699,8 +1750,8 @@ Represents information about the new version.
 
 | Name               | Type                                    | Mandatory  | Description  |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
-| versionComponents | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components.|
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information. |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components. |
 
 ## VersionDigestInfo
 
@@ -1710,7 +1761,7 @@ Represents version digest information.
 
 | Name           | Type  | Mandatory  | Description  |
 | ------------- | ------ | ---- | ---- |
-| versionDigest | string | Yes   | Version digest information.|
+| versionDigest | string | Yes   | Version digest information. |
 
 ## VersionComponent
 
@@ -1727,7 +1778,7 @@ Represents a version component.
 | innerVersion    | string                              | Yes   | Internal version number.     |
 | size            | number                              | Yes   | Size of the update package, in bytes.   |
 | effectiveMode   | [EffectiveMode](#effectivemode)     | Yes   | Effective mode.    |
-| descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the version description file.|
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the version description file. |
 
 ## DescriptionOptions
 
@@ -1737,8 +1788,8 @@ Represents options of the description file.
 
 | Name      | Type                                   | Mandatory  | Description    |
 | -------- | --------------------------------------- | ---- | ------ |
-| format   | [DescriptionFormat](#descriptionformat) | Yes   | Format of the description file.|
-| language | string                                  | Yes   | Language of the description file.|
+| format   | [DescriptionFormat](#descriptionformat) | Yes   | Format of the description file. |
+| language | string                                  | Yes   | Language of the description file. |
 
 ## ComponentDescription
 
@@ -1749,7 +1800,7 @@ Represents a component description file.
 | Name             | Type                               | Mandatory  | Description    |
 | --------------- | ----------------------------------- | ---- | ------ |
 | componentId     | string                              | Yes   | Component ID.  |
-| descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the description file.|
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the description file. |
 
 ## DescriptionInfo
 
@@ -1759,8 +1810,8 @@ Represents information about the version description file.
 
 | Name             | Type                               | Mandatory  | Description    |
 | --------------- | ----------------------------------- | ---- | ------ |
-| descriptionType | [DescriptionType](#descriptiontype) | Yes   | Type of the description file.|
-| content         | string                              | Yes   | Content of the description file.|
+| descriptionType | [DescriptionType](#descriptiontype) | Yes   | Type of the description file. |
+| content         | string                              | Yes   | Content of the description file. |
 
 ## CurrentVersionInfo
 
@@ -1770,7 +1821,7 @@ Represents information about the current version.
 
 | Name               | Type                                    | Mandatory  | Description   |
 | ----------------- | ---------------------------------------- | ---- | ----- |
-| osVersion         | string                                   | Yes   | System version number.|
+| osVersion         | string                                   | Yes   | System version number. |
 | deviceName        | string                                   | Yes   | Device name.  |
 | versionComponents | Array\<[VersionComponent](#versioncomponent)> | No   | Version components. |
 
@@ -1782,8 +1833,8 @@ Represents download options.
 
 | Name          | Type               | Mandatory  | Description  |
 | ------------ | ------------------- | ---- | ---- |
-| allowNetwork | [NetType](#nettype) | Yes   | Network type.|
-| order        | [Order](#order)     | Yes   | Update command.|
+| allowNetwork | [NetType](#nettype) | Yes   | Network type. |
+| order        | [Order](#order)     | Yes   | Update command. |
 
 ## ResumeDownloadOptions
 
@@ -1793,7 +1844,7 @@ Represents options for resuming download.
 
 | Name          | Type               | Mandatory  | Description  |
 | ------------ | ------------------- | ---- | ---- |
-| allowNetwork | [NetType](#nettype) | Yes   | Network type.|
+| allowNetwork | [NetType](#nettype) | Yes   | Network type. |
 
 ## PauseDownloadOptions
 
@@ -1801,9 +1852,9 @@ Represents options for pausing download.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name               | Type| Mandatory  | Description      |
+| Name               | Type | Mandatory  | Description      |
 | ----------------- | ---- | ---- | -------- |
-| isAllowAutoResume | boolean | Yes   | Whether to allow automatic resuming of download.<br>The value **true** indicates that automatic resuming is allowed, and the value **false** indicates the opposite.|
+| isAllowAutoResume | boolean | Yes   | Whether to allow automatic resuming of download.<br>The value **true** indicates that automatic resuming is allowed, and the value **false** indicates the opposite. |
 
 ## UpgradeOptions
 
@@ -1813,7 +1864,7 @@ Represents update options.
 
 | Name   | Type           | Mandatory  | Description  |
 | ----- | --------------- | ---- | ---- |
-| order | [Order](#order) | Yes   | Update command.|
+| order | [Order](#order) | Yes   | Update command. |
 
 ## ClearOptions
 
@@ -1823,7 +1874,7 @@ Represents options for clearing errors.
 
 | Name    | Type                           | Mandatory  | Description  |
 | ------ | ------------------------------- | ---- | ---- |
-| status | [UpgradeStatus](#upgradestatus) | Yes   | Error status.|
+| status | [UpgradeStatus](#upgradestatus) | Yes   | Error status. |
 
 ## UpgradePolicy
 
@@ -1833,9 +1884,9 @@ Represents an update policy.
 
 | Name                 | Type                                   | Mandatory  | Description     |
 | ------------------- | --------------------------------------- | ---- | ------- |
-| downloadStrategy    | boolean                        | Yes   | Automatic download policy.<br>The value **true** indicates that automatic download is supported, and the value **false** indicates the opposite.|
-| autoUpgradeStrategy | boolean                        | Yes   | Automatic update policy.<br>The value **true** indicates that automatic update is supported, and the value **false** indicates the opposite.|
-| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | Yes   | Automatic update period.|
+| downloadStrategy    | boolean                        | Yes   | Automatic download policy.<br>The value **true** indicates that automatic download is supported, and the value **false** indicates the opposite. |
+| autoUpgradeStrategy | boolean                        | Yes   | Automatic update policy.<br>The value **true** indicates that automatic update is supported, and the value **false** indicates the opposite. |
+| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | Yes   | Automatic update period. |
 
 ## UpgradePeriod
 
@@ -1845,8 +1896,8 @@ Represents an automatic update period.
 
 | Name   | Type  | Mandatory  | Description  |
 | ----- | ------ | ---- | ---- |
-| start | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| start | number | Yes   | Start time. |
+| end   | number | Yes   | End time. |
 
 ## TaskInfo
 
@@ -1856,7 +1907,7 @@ Task information.
 
 | Name       | Type                 | Mandatory  | Description    |
 | --------- | --------------------- | ---- | ------ |
-| existTask |  boolean                  | Yes   | Whether a task exists.<br>The value **true** indicates that the task exists, and the value **false** indicates the opposite.|
+| existTask |  boolean                  | Yes   | Whether a task exists.<br>The value **true** indicates that the task exists, and the value **false** indicates the opposite. |
 | taskBody  | [TaskBody](#taskbody) | Yes   | Task data.  |
 
 ## EventInfo
@@ -1867,8 +1918,8 @@ Represents event information.
 
 | Name      | Type                 | Mandatory  | Description  |
 | -------- | --------------------- | ---- | ---- |
-| eventId  | [EventId](#eventid)   | Yes   | Event ID.|
-| taskBody | [TaskBody](#taskbody) | Yes   | Task data.|
+| eventId  | [EventId](#eventid)   | Yes   | Event ID. |
+| taskBody | [TaskBody](#taskbody) | Yes   | Task data. |
 
 ## TaskBody
 
@@ -1878,13 +1929,13 @@ Represents task data.
 
 | Name               | Type                                    | Mandatory  | Description  |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
-| status            | [UpgradeStatus](#upgradestatus)          | Yes   | Update status.|
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information. |
+| status            | [UpgradeStatus](#upgradestatus)          | Yes   | Update status. |
 | subStatus         | number                                   | No   | Sub-status. |
 | progress          | number                                   | Yes   | Progress.  |
-| installMode       | number                                   | Yes   | Installation mode.|
-| errorMessages     | Array\<[ErrorMessage](#errormessage)>    | No   | Error message.|
-| versionComponents | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components.|
+| installMode       | number                                   | Yes   | Installation mode. |
+| errorMessages     | Array\<[ErrorMessage](#errormessage)>    | No   | Error message. |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components. |
 
 ## ErrorMessage
 
@@ -1895,7 +1946,7 @@ Represents an error message.
 | Name          | Type  | Mandatory  | Description  |
 | ------------ | ------ | ---- | ---- |
 | errorCode    | number | Yes   | Error code. |
-| errorMessage | string | Yes   | Error message.|
+| errorMessage | string | Yes   | Error message. |
 
 ## EventClassifyInfo
 
@@ -1905,8 +1956,8 @@ Represents event type information.
 
 | Name           | Type                           | Mandatory  | Description  |
 | ------------- | ------------------------------- | ---- | ---- |
-| eventClassify | [EventClassify](#eventclassify) | Yes   | Event type.|
-| extraInfo     | string                          | Yes   | Additional information.|
+| eventClassify | [EventClassify](#eventclassify) | Yes   | Event type. |
+| extraInfo     | string                          | Yes   | Additional information. |
 
 ## UpgradeFile
 
@@ -1916,8 +1967,8 @@ Represents an update file.
 
 | Name      | Type                           | Mandatory  | Description  |
 | -------- | ------------------------------- | ---- | ---- |
-| fileType | [ComponentType](#componenttype) | Yes   | File type.|
-| filePath | string                          | Yes   | File path.|
+| fileType | [ComponentType](#componenttype) | Yes   | File type. |
+| filePath | string                          | Yes   | File path. |
 
 ## UpgradeTaskCallback
 
@@ -1929,7 +1980,7 @@ Represents an event callback.
 
 | Name       | Type                   | Mandatory  | Description  |
 | --------- | ----------------------- | ---- | ---- |
-| eventInfo | [EventInfo](#eventinfo) | Yes   | Event information.|
+| eventInfo | [EventInfo](#eventinfo) | Yes   | Event information. |
 
 ## BusinessVendor
 
@@ -1982,7 +2033,7 @@ Represents an effective mode.
 | ------------- | ---- | ---- |
 | COLD          | 1    | Cold update. |
 | LIVE          | 2    | Live update. |
-| LIVE_AND_COLD | 3    | Hybrid live and cold update.|
+| LIVE_AND_COLD | 3    | Hybrid live and cold update. |
 
 ## DescriptionType
 
@@ -2003,8 +2054,8 @@ Represents a description file format.
 
 | Name       | Value | Description  |
 | ---------- | ---- | ---- |
-| STANDARD   | 0    | Standard format.|
-| SIMPLIFIED | 1    | Simple format.|
+| STANDARD   | 0    | Standard format. |
+| SIMPLIFIED | 1    | Simple format. |
 
 ## NetType
 
@@ -2018,7 +2069,7 @@ Represents a network type.
 | METERED_WIFI      | 2    | Wi-Fi hotspot.   |
 | NOT_METERED_WIFI  | 4    | Non Wi-Fi hotspot.  |
 | WIFI              | 6    | Wi-Fi.     |
-| CELLULAR_AND_WIFI | 7    | Data network and Wi-Fi.|
+| CELLULAR_AND_WIFI | 7    | Data network and Wi-Fi. |
 
 ## Order
 
@@ -2030,9 +2081,9 @@ Represents an update command.
 | -------------------- | ---- | ----- |
 | DOWNLOAD             | 1    | Download.   |
 | INSTALL              | 2    | Install.   |
-| DOWNLOAD_AND_INSTALL | 3    | Download and install.|
+| DOWNLOAD_AND_INSTALL | 3    | Download and install. |
 | APPLY                | 4    | Apply.   |
-| INSTALL_AND_APPLY    | 6    | Install and apply.|
+| INSTALL_AND_APPLY    | 6    | Install and apply. |
 
 ## UpgradeStatus
 
@@ -2044,14 +2095,14 @@ Enumerates update states.
 | ---------------- | ---- | ---- |
 | WAITING_DOWNLOAD | 20   | Waiting for download. |
 | DOWNLOADING      | 21   | Downloading. |
-| DOWNLOAD_PAUSED  | 22   | Download paused.|
-| DOWNLOAD_FAIL    | 23   | Download failed.|
+| DOWNLOAD_PAUSED  | 22   | Download paused. |
+| DOWNLOAD_FAIL    | 23   | Download failed. |
 | WAITING_INSTALL  | 30   | Waiting for installation. |
 | UPDATING         | 31   | Updating. |
 | WAITING_APPLY    | 40   | Waiting for applying the update. |
 | APPLYING         | 41   | Applying the update. |
-| UPGRADE_SUCCESS  | 50   | Update succeeded.|
-| UPGRADE_FAIL     | 51   | Update failed.|
+| UPGRADE_SUCCESS  | 50   | Update succeeded. |
+| UPGRADE_FAIL     | 51   | Update failed. |
 
 ## EventClassify
 
@@ -2061,7 +2112,7 @@ Represents an event type.
 
 | Name  | Value       | Description  |
 | ---- | ---------- | ---- |
-| TASK | 0x01000000 | Task event.|
+| TASK | 0x01000000 | Task event. |
 
 ## EventId
 
@@ -2076,7 +2127,7 @@ Enumerates event IDs.
 | EVENT_TASK_CANCEL      | 0x01000002 | Task cancelled.  |
 | EVENT_DOWNLOAD_WAIT    | 0x01000003 | Waiting for download.   |
 | EVENT_DOWNLOAD_START   | 0x01000004 | Download started.  |
-| EVENT_DOWNLOAD_UPDATE  | 0x01000005 | Download progress update.|
+| EVENT_DOWNLOAD_UPDATE  | 0x01000005 | Download progress update. |
 | EVENT_DOWNLOAD_PAUSE   | 0x01000006 | Download paused.  |
 | EVENT_DOWNLOAD_RESUME  | 0x01000007 | Download resumed.  |
 | EVENT_DOWNLOAD_SUCCESS | 0x01000008 | Download succeeded.  |

@@ -11,7 +11,7 @@
 ## Modules to Import
 
 ```ts
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import { AtomicServiceOptions } from '@kit.AbilityKit';
 ```
 
 ## Properties
@@ -20,27 +20,25 @@ import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read Only| Mandatory| Description|
+| Name | Type | Read Only | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | No|  No| Mode in which the system processes the startup.<br>For example, **wantConstant.Flags.FLAG_INSTALL_ON_DEMAND** indicates that the installation-free capability is used.|
-| parameters | Record\<string, Object> | No|  No| Additional parameters. For details, see the **parameters** field in [Want](js-apis-app-ability-want.md).|
+| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | No |  No | Mode in which the system processes the startup.<br>For example, **wantConstant.Flags.FLAG_INSTALL_ON_DEMAND** indicates that the installation-free capability is used. |
+| parameters | Record\<string, Object> | No |  No | Additional parameters. For details, see the **parameters** field in [Want](js-apis-app-ability-want.md). |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { UIAbility, AtomicServiceOptions, common, wantConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
       flags: wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
-      parameters: { "demo.result": 123456 }
+      parameters: {
+        "demo.result": 123456
+      }
     };
 
     try {

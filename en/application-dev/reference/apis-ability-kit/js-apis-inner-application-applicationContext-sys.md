@@ -32,21 +32,21 @@ A **UIExtensionAbility** instance can be preloaded for multiple times. Each time
 
 **System API**: This is a system API.
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information of the UIExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information of the UIExtensionAbility. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -61,7 +61,6 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate() {
     let want: Want = {
       bundleName: 'com.ohos.uiextensionprovider',
@@ -73,8 +72,8 @@ export default class EntryAbility extends UIAbility {
       }
     };
     try {
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.preloadUIExtensionAbility(want)
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.preloadUIExtensionAbility(want)
         .then(() => {
           // Carry out normal service processing.
           console.info('preloadUIExtensionAbility succeed');
@@ -87,7 +86,7 @@ export default class EntryAbility extends UIAbility {
       // Process input parameter errors.
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.error('preloadUIExtensionAbility failed');
+      console.error(`preloadUIExtensionAbility failed. code: ${code}, msg: ${message}`);
     }
   }
 }
@@ -112,15 +111,15 @@ Sets whether the application itself supports process cache, which enables quick 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-| Name       | Type    | Mandatory| Description                      |
+| Name       | Type    | Mandatory | Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| isSupported | boolean | Yes| Whether process cache is supported. The value **true** means that process cache is supported, and **false** means the opposite.|
+| isSupported | boolean | Yes | Whether process cache is supported. The value **true** means that process cache is supported, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not system App. |
@@ -132,9 +131,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import type Want from '@ohos.app.ability.Want';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -142,7 +140,10 @@ export default class MyAbility extends UIAbility {
     try {
       applicationContext.setSupportedProcessCache(false);
     } catch (error) {
-      console.error(`setSupportedProcessCache fail, error: ${JSON.stringify(error)}`);
+      // Process input parameter errors.
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`setSupportedProcessCache fail, code: ${code}, msg: ${message}`);
     }
   }
 }

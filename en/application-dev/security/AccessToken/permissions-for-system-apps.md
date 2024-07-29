@@ -125,7 +125,7 @@ Allows an application to obtain the phone numbers of the device.
 
 Allows a system application to set themes, including wallpapers, icons, skins, Always On Display (AOD), and fonts.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -963,7 +963,7 @@ Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
-Allows an application to obtain detailed risk data.
+Allows an application to obtain detailed security event data.
 
 **Permission level**: system_core
 
@@ -975,7 +975,7 @@ Allows an application to obtain detailed risk data.
 
 ### ohos.permission.securityguard.REPORT_SECURITY_INFO
 
-Allows an application to report risk data for security guard.
+Allows an application to report risk data to Security Guard.
 
 **Permission level**: system_basic
 
@@ -2083,7 +2083,7 @@ Allows a system application to call PrivateSpace APIs related to password protec
 
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
-Allows a system application or service to start the Password Vault ability.
+Allows a system application or system service to start the Password Vault ability.
 
 **Permission level**: system_basic
 
@@ -2095,7 +2095,7 @@ Allows a system application or service to start the Password Vault ability.
 
 ### ohos.permission.ACCESS_TEXTAUTOFILL_ABILITY
 
-Allows a system application or service to start the text autofill ability.
+Allows a system application or system service to start the text autofill ability.
 
 **Permission level**: system_basic
 
@@ -2107,7 +2107,7 @@ Allows a system application or service to start the text autofill ability.
 
 ### ohos.permission.ACCESS_LOWPOWER_MANAGER
 
-Allows a system application or service to send messages to LowpowerManager.
+Allows a system application or system service to send messages to LowpowerManager.
 
 **Permission level**: system_basic
 
@@ -2491,7 +2491,7 @@ Allows an SA to call **Find Device**.
 
 ### ohos.permission.WRITE_PRIVACY_PUSH_DATA
 
-Allows an application to write privacy push data to another application.
+Allows an application to write private Push data to another application.
 
 **Permission level**: system_core
 
@@ -2825,18 +2825,6 @@ Allows a system application to use infrared interfaces.
 
 **Valid since**: 12
 
-### ohos.permission.SET_PROCESS_CACHE_STATE
-
-Allows an application to set whether to support app cache and quick startup after cached.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
 ### ohos.permission.ACCESS_SYSTEM_APP_CERT
 
 Allows the caller to manage and use system service certificate credentials.
@@ -2969,11 +2957,11 @@ Allows an application to uninstall a cloned application.
 
 **Valid since**: 12
 
-### ohos.permission.ACCESS_DEVICE_COLLABORATION_PRIVATE_ABILITY
+### ohos.permission.ACCESS_SCREEN_LOCK_MEDIA_DATA
 
-Allows a system service or system application to access the device collaboration private ability.
+Allows an application to access images and videos when the screen is locked.
 
-**Permission level**: system_basic
+**Permission level**: system_core
 
 ### ohos.permission.RECEIVER_STARTUP_COMPLETED
 
@@ -3221,6 +3209,12 @@ Allows access to the files in a user directory.
 
 **Valid since**: 9
 
+**Deprecated from**: 12
+
+**Substitute**:
+
+See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
+
 ### ohos.permission.READ_IMAGEVIDEO
 
 Allows access to the images or video files in a user's directory.
@@ -3256,6 +3250,12 @@ Allows modification to the files in a user's directory.
 **Enable via ACL**: true
 
 **Valid since**: 9
+
+**Deprecated from**: 12
+
+**Substitute**:
+
+See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
 
 ### ohos.permission.WRITE_IMAGEVIDEO
 

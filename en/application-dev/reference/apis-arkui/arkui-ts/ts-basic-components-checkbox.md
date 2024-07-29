@@ -1,10 +1,10 @@
 # Checkbox
 
-The **\<Checkbox>** component is used to enable or disable an option.
+The **Checkbox** component is used to enable or disable an option.
 
 >  **NOTE**
 >
->  Since API version 11, the default style of the **\<Checkbox>** component is changed from rounded square to circle.
+>  Since API version 11, the default style of the **Checkbox** component is changed from rounded square to circle.
 >
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -42,7 +42,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name         | Type| Description|
 | ------------- | ------- | -------- |
-| select        | boolean | Whether the check box is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| select        | boolean | Whether the check box is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the check box when it is not selected.|
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10) | Internal icon style of the check box.|

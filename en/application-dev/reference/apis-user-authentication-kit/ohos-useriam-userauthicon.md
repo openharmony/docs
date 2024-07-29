@@ -28,7 +28,7 @@ None.
 
 ## Attributes
 
-Universal attributes are not supported.
+The universal attributes are not supported.
 
 ## UserAuthIcon
 
@@ -47,7 +47,7 @@ UserAuthIcon({
 
 **Parameters**
 
-| Name          | Type                                                        | Mandatory| Description                                                        |
+| Name          | Type                                                        | Mandatory | Description                                                        |
 | -------------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | authParam      | [AuthParam](js-apis-useriam-userauth.md#authparam10)        | Yes  | User authentication parameters.                                            |
 | widgetParam    | [WidgetParam](js-apis-useriam-userauth.md#widgetparam10)    | Yes  | Parameters on the user authentication page.                                     |
@@ -99,8 +99,13 @@ struct Index {
   }
 }
 ```
+
 An error may be thrown when **onAuthResult** is called. For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
+
 **Facial authentication icon**
+
 ![Face Icon](figures/user_auth_icon_face.png)
+
 **Fingerprint authentication icon**
+
 ![Fingerprint icon](figures/user_auth_icon_fingerprint.png)

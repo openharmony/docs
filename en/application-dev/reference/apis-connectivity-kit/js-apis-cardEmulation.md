@@ -54,7 +54,7 @@ Before developing an application related to HCE, you must declare NFC-related at
 ## Modules to Import
 
 ```
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
 ## FeatureType<sup>(deprecated)</sup>
@@ -126,10 +126,19 @@ Checks whether the device supports HCE.
 | ------- | -------------------------------- |
 | boolean | Returns **true** if HCE is supported; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 
 let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
@@ -161,17 +170,26 @@ Checks whether an application is the default application of the specified servic
 | elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes   | Information about the page, on which the application declares the NFC card emulation capability. It cannot be empty and must contain at least **bundleName** and **abilityName**.|
 | type        | [CardType](#cardtype9)                   | Yes   | Card emulation service type. Currently, only the default payment application can be queried.  |
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+
 **Return value**
 
 | **Type** | **Description**                              |
 | ------- | ------------------------------------ |
 | boolean | Returns **true** if the application is the default payment application; returns **false** otherwise.|
 
+
 **Example**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import bundleManager from '@ohos.bundle.bundleManager';
-import Want from '@ohos.app.ability.Want';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { bundleManager, Want } from '@kit.AbilityKit';
 
 // Initialize elementName here. bundleName and abilityName are required.
 let want: Want = {
@@ -244,6 +262,9 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message |
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 ### stopHCE<sup>(deprecated)</sup>
@@ -293,6 +314,9 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message |
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 ### on<sup>8+</sup>
@@ -316,13 +340,11 @@ Registers a callback to receive APDUs from the peer card reader. The application
 
 **Example**
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import hilog from '@ohos.hilog';
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
 import { ElementName } from './bundleManager/ElementName'
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
@@ -331,8 +353,8 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
     element = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
@@ -399,12 +421,15 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message |
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 **Example**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
@@ -443,12 +468,15 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message |
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 **Example**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 

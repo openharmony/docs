@@ -12,47 +12,56 @@ onClick(event: (event: ClickEvent) => void): T
 
 Called when a click event occurs.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                             | Mandatory| Description                |
+| Name | Type                             | Mandatory | Description                |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [ClickEvent](#clickevent) | Yes  | [ClickEvent](#clickevent) object.|
+| event  | [ClickEvent](#clickevent)  | Yes  | [ClickEvent](#clickevent) object. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Current component.|
+| T | Current component. |
 
 ## ClickEvent
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name           | Type                                | Description                                                    |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| x                   | number                               | X coordinate of the click point relative to the left edge of the clicked component.<br>Unit: vp |
-| y                   | number                               | Y coordinate of the click point relative to the upper edge of the clicked component.<br>Unit: vp |
-| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns|
-| target<sup>8+</sup> | [EventTarget](#eventtarget8) | Display area of the object that triggers the event.|
-| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
-| windowX<sup>10+</sup> | number                             | X coordinate of the click point relative to the upper left corner of the application window.<br>Unit: vp |
-| windowY<sup>10+</sup> | number                             | Y coordinate of the click point relative to the upper left corner of the application window.<br>Unit: vp |
-| displayX<sup>10+</sup> | number                            | X coordinate of the click point relative to the upper left corner of the application screen.<br>Unit: vp |
-| displayY<sup>10+</sup> | number                            | Y coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp|
+| x                   | number                               | X coordinate of the click relative to the left edge of the clicked component.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.    |
+| y                   | number                               | Y coordinate of the click relative to the upper left corner of the clicked component's original area.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.         |
+| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| target<sup>8+</sup> | [EventTarget](#eventtarget8)  | Display area of the object that triggers the event.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype) | Event input device.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| windowX<sup>10+</sup> | number                             | X coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| windowY<sup>10+</sup> | number                             | Y coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| displayX<sup>10+</sup> | number                            | X coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| displayY<sup>10+</sup> | number                            | Y coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | screenX<sup>(deprecated)</sup> | number                    | X coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead. |
-| screenY<sup>(deprecated)</sup> | number                    | Y coordinate of the click point relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead. |
+| screenY<sup>(deprecated)</sup> | number                    | Y coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead. |
+| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## EventTarget<sup>8+</sup>
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type                     | Description        |
 | ---- | ------------------------- | ---------- |
-| area | [Area](ts-types.md#area8) | Area information of the target element.|
+| area | [Area](ts-types.md#area8) | Area information of the target element. |
 
 ## Example
 

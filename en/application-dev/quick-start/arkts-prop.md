@@ -1,4 +1,4 @@
-# \@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components
+# \@Prop Decorator: Creating a One-Way Synchronization from the Parent Component to Child Components
 
 
 One-way synchronization is supported between an \@Prop decorated variable a variable of its parent component. This means that, an \@Prop decorated variable is mutable, and its changes will not be synchronized to the parent component.
@@ -6,8 +6,9 @@ One-way synchronization is supported between an \@Prop decorated variable a vari
 
 > **NOTE**
 >
-> Since API version 9, this decorator is supported in ArkTS widgets.
-
+> This decorator can be used in ArkTS widgets since API version 9.
+>
+> This decorator can be used in atomic services since API version 11.
 
 ## Overview
 
@@ -33,7 +34,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 | Decorator parameters      | None.                                       |
 | Synchronization type       | One-way: from the data source provided by the parent component to the \@Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
 | Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Prop a: string \| undefined = undefined is recommended; **@Prop a: string = undefined** is not recommended.|
-| The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.| The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from a variable decorated by \@State or other decorators. Example: [Simple Type Sync from @State of the Parent Component to @Prop of the Child Component](#simple-type-sync-from-state-of-the-parent-component-to-prop-of-the-child-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type Sync from @State Class Object Property in Parent Component](#class-object-type-sync-from-state-class-object-property-in-parent-component).|
+| The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.| The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from a variable decorated by \@State or other decorators. Example: [Simple Type Sync from @State of the Parent Component to @Prop of the Child Component](#simple-type-sync-from-state-of-the-parent-component-to-prop-of-the-child-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type Sync from @State Array Item in Parent Component](#simple-type-sync-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type Sync from @State Class Object Property in Parent Component](#class-object-type-sync-from-state-class-object-property-in-parent-component).|
 | Number of nested layers       | In component reuse scenarios, it is recommended that @Prop be nested with no more than five layers of data. If @Prop is nested with too many layers of data, garbage collection and increased memory usage caused by deep copy will arise, resulting in performance issues. To avoid such issues, use [\@ObjectLink](arkts-observed-and-objectlink.md) instead.|
 | Initial value for the decorated variable  | Local initialization is allowed. If this decorator is used together with [\@Require](arkts-require.md) in API version 11, the parent component must construct input parameters.|
 
@@ -100,7 +101,7 @@ this.title.a.value = 'ArkUi'
 
 In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class property can be observed. For details, see [@Prop Nesting Scenario](#prop-nesting-scenario).
 
-- When the decorated variable is of the array type, the value change, addition, deletion, and update of array items can be observed.
+- When the decorated variable is of the array type, the value change of the array as well as the addition, deletion, and update of array items can be observed.
 
 ```
 // Assume that the object decorated by @State is an array.
@@ -264,7 +265,7 @@ In the preceding example:
 
 2. When the "+1" or "-1" button is touched, the @State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the change in the **count** variable value.
 
-3. Because of the change in the **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's condition (**this.counter> 0**) is evaluated, and the **\<Text>** child component inside the **if** statement would be updated.
+3. Because of the change in the **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's condition (**this.counter> 0**) is evaluated, and the **Text** child component inside the **if** statement would be updated.
 
 4. When **Try again** in the **CountDownComponent** child component is touched, the value of the **count** variable is modified, but the change remains within the child component and does not affect the **countDownStartValue** in the parent component.
 
@@ -473,7 +474,7 @@ struct Library {
         .borderRadius(20)
         .colorBlend('#e6000000')
       Divider()
-      Text('Books on loaan to a reader')
+      Text('Books on loan to a reader')
         .width(312)
         .height(40)
         .backgroundColor('#0d000000')
@@ -922,22 +923,22 @@ The \@Prop decorated state variable must be initialized. If not initialized loca
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Commodity {
+  public price: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(price: number) {
+    this.price = price;
   }
 }
 
 @Component
 struct PropChild {
-  @Prop testNum: ClassA; // The state variable is not initialized locally.
+  @Prop fruit: Commodity; // The state variable is not initialized locally.
 
   build() {
-    Text(`PropChild testNum ${this.testNum.c}`)
+    Text(`PropChild fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
@@ -945,54 +946,54 @@ struct PropChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State fruit: Commodity[] = [new Commodity(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent fruit ${this.fruit[0].price}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.fruit[0].price += 1;
         })
-        
+
       // The @Prop state variable is not initialized locally, nor initialized from the parent component.
-      PropChild1()
+      PropChild()
     }
   }
 }
 ```
 
-[Example]
+[Correct Usage]
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Commodity {
+  public price: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(price: number) {
+    this.price = price;
   }
 }
 
 @Component
 struct PropChild1 {
-  @Prop testNum: ClassA; // The state variable is not initialized locally.
+  @Prop fruit: Commodity; // The state variable is not initialized locally.
 
   build() {
-    Text(`PropChild1 testNum ${this.testNum.c}`)
+    Text(`PropChild1 fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
 
 @Component
 struct PropChild2 {
-  @Prop testNum: ClassA = new ClassA(1); // The state variable is initialized locally.
+  @Prop fruit: Commodity = new Commodity(1); // The state variable is initialized locally.
 
   build() {
-    Text(`PropChild2 testNum ${this.testNum.c}`)
+    Text(`PropChild2 fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
@@ -1000,20 +1001,20 @@ struct PropChild2 {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State fruit: Commodity[] = [new Commodity(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent fruit ${this.fruit[0].price}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.fruit[0].price += 1;
         })
 
       // @PropChild1 is not initialized locally and must be initialized from the parent component.
-      PropChild1({ testNum: this.testNum[0] })
+      PropChild1({ fruit: this.fruit[0] })
       // @PropChild2 is initialized locally. In this case, initialization from the parent component is optional.
       PropChild2()
-      PropChild2({ testNum: this.testNum[0] })
+      PropChild2({ fruit: this.fruit[0] })
     }
   }
 }

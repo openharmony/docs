@@ -40,7 +40,7 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 | Name| Description|
 | -------- | -------- |
 | Normal | The gestures of child components are enabled and recognized based on the default gesture recognition sequence.|
-| IgnoreInternal | The gestures of child components are disabled, including the built-in gestures, such as the built-in swipe gesture for a **\<List>** component. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are disabled.|
+| IgnoreInternal | The gestures of child components are disabled, including the built-in gestures, such as the built-in swipe gesture for a **List** component. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are disabled.|
 
 ## Gesture Response Event
 
@@ -130,7 +130,7 @@ struct GestureSettingsExample {
       .padding(20)
       .margin(20)
       .border({ width: 3 })
-      // When priorityGesture is set, the tap gesture on the <Column> component is prioritized over the tap gesture on the child <Text> component.
+      // When priorityGesture is set, the tap gesture on the <Column> component is prioritized over the tap gesture on the child Text component.
       .priorityGesture(
         TapGesture()
           .onAction((event: GestureEvent) => {
@@ -150,7 +150,7 @@ struct GestureSettingsExample {
       .padding(20)
       .margin(20)
       .border({ width: 3 })
-      // When parallelGesture is set, the tap gestures on the <Column> component and on the child <Text> component are both recognized.
+      // When parallelGesture is set, the tap gestures on the <Column> component and on the child Text component are both recognized.
       .parallelGesture(
         TapGesture()
           .onAction((event: GestureEvent) => {

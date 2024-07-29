@@ -6,7 +6,9 @@
 
 ## Color
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Color                    | Value          | Illustration                                    |
 | ------------------------ | ------------- | ---------------------------------------- |
@@ -25,7 +27,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ImageFit
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name       | Description                             |
 | --------- | ------------------------------- |
@@ -38,7 +42,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BorderStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -47,7 +53,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Solid  | Solid border.                     |
 
 ## OutlineStyle<sup>11+</sup>
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -57,7 +65,9 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 ## LineJoinStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name   | Description        |
 | ----- | ---------- |
@@ -67,6 +77,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TouchType
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name    | Description             |
 | ------ | --------------- |
 | Down   | A finger is pressed.       |
@@ -75,6 +87,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Cancel | A touch event is canceled.     |
 
 ## MouseButton
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name     | Description      |
 | ------- | -------- |
@@ -87,16 +101,20 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## MouseAction
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name     | Description     |
 | ------- | ------- |
 | Press   | The mouse button is pressed.|
 | Release | The mouse button is released.|
 | Move    | The mouse cursor moves.  |
-| Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.  |
+| Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.<br>  |
 
 ## Curve
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name                 | Description                                      |
 | ------------------- | ---------------------------------------- |
@@ -116,7 +134,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## AnimationStatus
 
-Since API version 10, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name     | Description       |
 | ------- | --------- |
@@ -127,7 +147,9 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 ## FillMode
 
-Since API version 10, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
@@ -138,7 +160,9 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 ## PlayMode
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name              | Description                                      |
 | ---------------- | ---------------------------------------- |
@@ -149,12 +173,16 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## KeyType
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name  | Description   |
 | ---- | ----- |
 | Down | The key is pressed.|
 | Up   | The key is released.|
 
 ## KeySource
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name      | Description        |
 | -------- | ---------- |
@@ -163,17 +191,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Edge
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name                              | Description                                      |
 | -------------------------------- | ---------------------------------------- |
-| Top                              | Top edge in the vertical direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Top                              | Top edge in the vertical direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 | Center<sup>(deprecated) </sup>   | Center position in the vertical direction.<br> This API is deprecated since API version 9.        |
-| Bottom                           | Bottom edge in the vertical direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Bottom                           | Bottom edge in the vertical direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 | Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br> This API is deprecated since API version 9.   |
-| Start                            | Start position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Start                            | Start position in the horizontal direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 | Middle<sup>(deprecated) </sup>   | Center position in the horizontal direction.<br> This API is deprecated since API version 9.     |
-| End                              | End position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| End                              | End position in the horizontal direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 
 ## Week
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name  | Description  |
 | ---- | ---- |
@@ -187,7 +219,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Direction
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name  | Description         |
 | ---- | ----------- |
@@ -197,7 +231,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BarState
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name  | Description                |
 | ---- | ------------------ |
@@ -207,7 +243,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## EdgeEffect
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description                                      |
 | ------ | ---------------------------------------- |
@@ -217,7 +255,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Alignment
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Description      |
 | ----------- | -------- |
@@ -233,7 +273,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TransitionType
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description                            |
 | ------ | ------------------------------ |
@@ -243,6 +285,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## RelateType
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name  | Description            |
 | ---- | -------------- |
 | FILL | The current child component is scaled to fill the parent component.|
@@ -250,7 +294,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Visibility
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name     | Description              |
 | ------- | ---------------- |
@@ -260,7 +306,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## LineCapStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -270,7 +318,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Axis
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name        | Description    |
 | ---------- | ------ |
@@ -279,7 +329,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## HorizontalAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description          |
 | ------ | ------------ |
@@ -289,7 +341,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FlexAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name          | Description                                      |
 | ------------ | ---------------------------------------- |
@@ -302,7 +356,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ItemAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name      | Description                                      |
 | -------- | ---------------------------------------- |
@@ -315,7 +371,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FlexDirection
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name           | Description              |
 | ------------- | ---------------- |
@@ -326,17 +384,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FlexWrap
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Description                         |
 | ----------- | --------------------------- |
-| NoWrap      | The child components in the flex container are arranged in a single line, and they cannot overflow. |
+| NoWrap      | The child components in the flex container are arranged in a single line. If any of them have minimum size constraints applied, the flex container does not forcibly shrink them when overflow occurs. |
 | Wrap        | The child components in the flex container are arranged in multiple lines, and they may overflow.  |
 | WrapReverse | The child components in the flex container are reversely arranged in multiple lines, and they may overflow.|
 
 ## VerticalAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description          |
 | ------ | ------------ |
@@ -346,7 +408,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ImageRepeat
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name      | Description           |
 | -------- | ------------- |
@@ -357,17 +421,20 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ImageSize
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
-| Cover   | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.|
-| Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.      |
-| Auto    | The original image aspect ratio is retained.                         |
+| Cover   | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
+| Auto    | The original image aspect ratio is retained.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
+| FILL<sup>12+</sup> | The image is scaled to fill the display area, and its aspect ratio is not retained.|
 
 ## GradientDirection
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Description   |
 | ----------- | ----- |
@@ -383,12 +450,16 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## SharedTransitionEffectType
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name      | Description                                      |
 | -------- | ---------------------------------------- |
 | Static   | The element position remains unchanged on the target page, and transition opacity can be configured. Currently, this effect is only valid in redirecting to the target page.|
 | Exchange | The element is relocated and scaled properly on the target page.                 |
 
 ## ShadowType<sup>10+<sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name      | Description                                  |
 | -------- | ---------------------------------------- |
@@ -397,7 +468,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FontStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description      |
 | ------ | -------- |
@@ -406,7 +479,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FontWeight
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name     | Description     |
 | ------- | ------- |
@@ -419,7 +494,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TextAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name                   | Description     |
 | --------------------- | ------- |
@@ -430,18 +507,22 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TextOverflow
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| None                  | Extra-long text is not clipped.         |
-| Clip                  | Extra-long text is clipped.       |
+| None                  | Overflowing content is clipped at the limit of the maximum line width.         |
+| Clip                  | Overflowing content is clipped at the limit of the maximum line width.       |
 | Ellipsis              | An ellipsis (...) is used to represent text overflow.|
 | MARQUEE<sup>10+</sup> | Text continuously scrolls when text overflow occurs.    |
 
 ## TextDecorationType
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Description       |
 | ----------- | --------- |
@@ -452,7 +533,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TextCase
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name       | Description        |
 | --------- | ---------- |
@@ -462,12 +545,16 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ResponseType<sup>8+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name        | Description           |
 | ---------- | ------------- |
 | LongPress  | The menu is displayed when the component is long-pressed.  |
 | RightClick | The menu is displayed when the component is right-clicked.|
 
 ## RichEditorResponseType<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name        | Description           |
 | ---------- | ------------- |
@@ -477,6 +564,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## HoverEffect<sup>8+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name       | Description            |
 | --------- | -------------- |
 | Auto      | Default hover effect.|
@@ -485,6 +574,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None      | No effect.        |
 
 ## Placement<sup>8+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name           | Description                                    |
 | ------------- | -------------------------------------- |
@@ -503,16 +594,18 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## CopyOptions<sup>9+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 | Name         | Description      |
 | ----------- | -------- |
-| None        | Copy is not allowed.  |
-| InApp       | Intra-application copy is allowed.|
-| LocalDevice | Intra-device copy is allowed.|
-| CROSS_DEVICE<sup>11+</sup> | Cross-device copy is allowed.|
+| None        | Copy is not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| InApp       | Intra-application copy is allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| LocalDevice | Intra-device copy is allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| CROSS_DEVICE<sup>(deprecated)</sup> | Cross-device copy is allowed.<br>**NOTE**<br>This API is supported since API version 11 and deprecated since API version 12.|
 
 ## HitTestMode<sup>9+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Description                                      |
 | ----------- | ---------------------------------------- |
@@ -527,21 +620,23 @@ This API is supported in ArkTS widgets.
 
 | Name                  | Description       |
 | -------------------- | --------- |
-| Thin                 | Thin material.  |
-| Regular              | Regular material.|
-| Thick                | Thick material.   |
-| BACKGROUND_THIN       | Material that creates the minimum depth of field effect.  |
-| BACKGROUND_REGULAR    | Material that creates a medium shallow depth of field effect.  |
-| BACKGROUND_THICK      | Material that creates a high shallow depth of field effect.  |
-| BACKGROUND_ULTRA_THICK | Material that creates the maximum depth of field effect. |
-| NONE<sup>10+</sup> | No blur. |
-| COMPONENT_ULTRA_THIN<sup>11+</sup> | Component ultra-thin material.|
-| COMPONENT_THIN<sup>11+</sup> | Component thin material.|
-| COMPONENT_REGULAR<sup>11+</sup> | Component regular material.|
-| COMPONENT_THICK<sup>11+</sup> | Component thick material.|
-| COMPONENT_ULTRA_THICK<sup>11+</sup> | Component ultra-thick material.|
+| Thin                 | Thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| Regular              | Regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Thick                | Thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
+| BACKGROUND_THIN       | Material that creates the minimum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_REGULAR    | Material that creates a medium shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_THICK      | Material that creates a high shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_ULTRA_THICK | Material that creates the maximum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| NONE<sup>10+</sup> | No blur.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | Component ultra-thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COMPONENT_THIN<sup>11+</sup> | Component thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COMPONENT_REGULAR<sup>11+</sup> | Component regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COMPONENT_THICK<sup>11+</sup> | Component thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | Component ultra-thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ThemeColorMode<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description        |
 | ------ | ---------- |
@@ -551,12 +646,16 @@ This API is supported in ArkTS widgets.
 
 ## AdaptiveColor<sup>10+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name     | Description                       |
 | ------- | ------------------------- |
 | DEFAULT | Adaptive color mode is not used. The default color is used as the mask color.   |
 | AVERAGE | Adaptive color mode is used. The average color value of the color picking area is used as the mask color.|
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name                     | Description                      |
 | ----------------------- | ------------------------ |
@@ -568,11 +667,15 @@ This API is supported in ArkTS widgets.
 
 This API is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name       | Description                    |
 | ----------- | ------------------------ |
 | PLACEHOLDER | The content is replaced by a placeholder.|
 
-## TransitionEdge<sup>10+<sup>
+## TransitionEdge<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description    |
 | ------ | ------ |
@@ -581,7 +684,9 @@ This API is supported in ArkTS widgets.
 | START  | Left edge of the window.|
 | END    | Right edge of the window.|
 
-## ClickEffectLevel<sup>10+<sup>
+## ClickEffectLevel<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name  | Description              | Animation Settings                         | Default Zoom Ratio                    |
 | ------ | --------------------------------- | --------------------------------- | --------------------------------- |
@@ -590,6 +695,8 @@ This API is supported in ArkTS widgets.
 | HEAVY  | Large area (heavy)| Spring effect, with stiffness of 240, damping of 28, and initial velocity of 0.| 95% |
 
 ## FoldStatus<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                     | Description        |
 | ----------------------  | ---------- |
@@ -600,12 +707,16 @@ This API is supported in ArkTS widgets.
 
 ## TextContentStyle<sup>10+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
-| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>The **showError** attribute is not supported for this style.|
+| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.|
 
 ## MenuPreviewMode<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Description                                  |
 | ----- | -------------------------------------- |
@@ -622,6 +733,8 @@ Nullable\<T> {
 
 The object of this type can be of a custom type or **undefined**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description                      |
@@ -629,19 +742,35 @@ The object of this type can be of a custom type or **undefined**.
 | data | T    | Yes  | The object of this type can be of a custom type or **undefined**.|
 
 ## WordBreak<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name | Description                                  |
 | ----- | -------------------------------------- |
 | NORMAL  | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).|
 | BREAK_ALL | Word breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
 | BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that if it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.|
 
+## LineBreakStrategy<sup>12+</sup>
+| Name        | Description                                                        |
+| ------------ | ------------------------------------------------------------ |
+| GREEDY       | Places as many words on a line as possible and moves to the next line only if no more words can fit into the same line.|
+| HIGH_QUALITY | Fills in lines as much as possible on the basis of **BALANCED**, which may results in a large blank area on the last line.|
+| BALANCED     | Balances the line length when possible without word splitting.  |
+
 ## GestureJudgeResult<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name | Description                                  |
 | ----- | -------------------------------------- |
 | CONTINUE  | The system gesture recognition process continues.|
 | REJECT  | Recognition of the custom gesture is determined as failed.|
 
 ## GestureType<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name | Description                                  |
 | ----- | -------------------------------------- |
 | TAP_GESTURE   | Tap gesture.|
@@ -654,21 +783,35 @@ The object of this type can be of a custom type or **undefined**.
 | CLICK   | Click.|
 ## FinishCallbackType<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name      | Description                                                        |
 | --------- | ------------------------------------------------------------ |
 | REMOVED   | The callback is invoked when the entire animation is removed once it has finished.                        |
 | LOGICALLY | The callback is invoked when the animation logically enters the falling state, though it may still be in its long tail state.|
 
-## BlurOptions<sup>11+<sup>
+## BlurOptions<sup>11+</sup>
 Describes the grayscale blur parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name       |   Type  |   Mandatory| Description                       |
 | ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   Yes  |  Grayscale blur.<br>Value range: [0,127]|
+| grayscale   |  [number, number]   |   Yes  |  Grayscale blur, with two parameters in the value range of [0, 127]. The color gradation of the black and white in the image is adjusted to create different shades of gray. The first parameter indicates the brightness of the black color, and the second parameter indicates the darkness of the white color. A larger value indicates a more obvious adjustment effect (the black and white colors become grayer). For example, if the value specified is (20,20), the RGB value [0, 0, 0] (black) is converted to [20, 20, 20], RGB value [255, 255, 255] (white) is converted to [235, 235, 235] (255-20), and the color pixels remain unchanged.|
 
-## BackgroundEffectOptions<sup>11+<sup>
+## ForegroundEffectOptions<sup>12+</sup>
+Describes the foreground effect.
+| Name       |   Type        |   Mandatory|  Description                       |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0**<br> This parameter takes effect only within the component scope. When it is used with other APIs, the effect beyond the component scope does not apply.    |
+
+## BackgroundEffectOptions<sup>11+</sup>
 Describes the background effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name       |   Type        |   Mandatory|  Description                       |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0**    |
@@ -679,7 +822,9 @@ Describes the background effect.
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
 ## EllipsisMode<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Description                                  |
 | ----- | -------------------------------------- |
@@ -689,6 +834,8 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 ## ArrowPointPosition<sup>11+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name           | Description                                    |
 | ------------- | -------------------------------------- |
 | START | On the leftmost side of the parent component in the horizontal layout; on the top of the parent component in the vertical layout.|
@@ -696,6 +843,8 @@ Since API version 11, this API is supported in ArkTS widgets.
 | END | On the rightmost side of the parent component in the horizontal layout; at the bottom of the parent component in the vertical layout.|
 
 ## TextDataDetectorType<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Description                                  |
 | ----- | -------------------------------------- |
@@ -708,6 +857,8 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 Provides the [span](ts-basic-components-span.md) type information.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name| Description|
 | -------- | -------- |
 | TEXT | Text span.|
@@ -715,6 +866,8 @@ Provides the [span](ts-basic-components-span.md) type information.
 | MIXED | Mixed span, which contains both text and imagery.|
 
 ## TextResponseType<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name        | Description           |
 | ---------- | ------------- |
@@ -726,29 +879,35 @@ Provides the [span](ts-basic-components-span.md) type information.
 
 Provides the span range information.
 
-| Name| Description                              |
-| ------ | -------------------------------------- |
-| onAppear | Callback invoked when the custom context menu on selection is displayed.|
-| onDisappear | Callback invoked when the custom context menu on selection is closed.|
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name| Type | Read Only| Mandatory | Description                              |
+| ------ | ------ | ------ | ------ | -------------------------------------- |
+| onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | No| No| Callback invoked when the custom context menu on selection is displayed.|
+| onDisappear | () => void | No| No| Callback invoked when the custom context menu on selection is closed.|
 
 ## SymbolEffectStrategy<sup>11+</sup>
 
 Enumerates the symbol effects. The setting takes effect immediately once saved.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name    | Description                           |
 | ------ | ----------------------------- |
 | NONE | No effect (default value).|
 | SCALE | Overall scale effect.                |
-|  HIERARCHICAL  | Hierarchical effect. |
+| HIERARCHICAL  | Hierarchical effect. |
 
 ## SymbolRenderingStrategy<sup>11+</sup>
 
 Enumerates the symbol rendering modes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name    | Description                           |
 | ------ | ----------------------------- |
 | SINGLE  | Symbols are rendered with one specified color. This is the default value.<br> The default color is black.<br> If you set multiple colors, only the first color is used.|
-| MULTIPLE_COLOR  |  Symbols are rendered with layer-specific colors.<br> A maximum of three colors can be set. If you set only one color, it is used at the first layer and the default colors at other layers are retained.<br> The sequence in which the colors are set must match the sequence of symbol layers. If the number of colors is greater than that of the layers, the extra colors do not take effect.<br> Only color values are accepted. Opacity setting does not take effect.|
+| MULTIPLE_COLOR  |  Symbols are rendered with layer-specific colors.<br> A maximum of three colors can be set. If you set only one color, it is used at the first layer and the default colors at other layers are retained.<br> The sequence in which the colors are set must match the sequence of symbol layers. If the number of colors is greater than that of the layers, the extra colors do not take effect.<br> Only color values are accepted. Opacity settings do not take effect.|
 |  MULTIPLE_OPACITY   | Symbols are rendered as multiple layers with one specified color and layer-specific opacity.<br> The default color is black. If you set multiple colors, only the first color is used.<br> The opacity is 100% for the first layer, 50% for the second layer, and 20% for the third layer. |
 
 ## BlendApplyType<sup>11+</sup>
@@ -760,7 +919,18 @@ Defines how the specified blend mode is applied.
 | FAST           |   The content of the view is blended in sequence on the target image.                       |
 | OFFSCREEN      |   The content of the component and its child components are drawn on the offscreen canvas, and then blended with the existing content on the canvas.   |
 
-## ChainStyle<sup>11+</sup>
+## DismissReason<sup>12+</sup>
+
+| Name         | Value  | Description                                                        |
+| ------------- | ---- | ------------------------------------------------------------ |
+| PRESS_BACK    | 0    | Touching the Back button, swiping left or right on the screen, or pressing the Esc key.                          |
+| TOUCH_OUTSIDE | 1    | Touching the mask.                                              |
+| CLOSE_BUTTON  | 2    | Touching the Close button.                                              |
+| SLIDE_DOWN    | 3    | Sliding down.<br>**NOTE**<br>This API is effective only in [sheet transition]ts-universal-attributes-sheet-transition.md).|
+
+## ChainStyle<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 Defines the chain style.
 
@@ -770,20 +940,24 @@ Defines the chain style.
 | SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [Example 8 in RelativeContainer](ts-container-relativecontainer.md#example-8).                |
 | PACKED  | There is no gap between child components in the chain. For details, see [Example 9 in RelativeContainer](ts-container-relativecontainer.md#example-9).                     |
 
-## BarrierDirection<sup>11+</sup>
+## BarrierDirection<sup>12+</sup>
 
 Defines the barrier direction.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name    | Description                           |
 | ------ | ----------------------------- |
-| LEFT | The barrier is on the left side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle11).   |
-| RIGHT | The barrier is on the right side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle11).  |
-| TOP  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle11).   |
-| BOTTOM  | The barrier is at the bottom of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle11).|
+| LEFT | The barrier is on the left side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).   |
+| RIGHT | The barrier is on the right side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).  |
+| TOP  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).   |
+| BOTTOM  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).|
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
 Defines the pixel-level rounding policy for component boundaries.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -795,5 +969,63 @@ Defines the pixel-level rounding policy for component boundaries.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
-| FONT | Text style.<br>**NOTE** This option refers to the [TextStyle](./ts-universal-styled-string.md#textstyle) string.|
+| FONT | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).|
+| DECORATION | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).|
+| BASELINE_OFFSET | Text baseline offset style key, applicable to [BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle).|
+| LETTER_SPACING | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).|
+| LINE_HEIGHT | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).|
+| TEXT_SHADOW | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).|
+| GESTURE | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).|
+| PARAGRAPH_STYLE | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).|
+| IMAGE | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).|
+| CUSTOM_SPAN | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).|
+
+## TextDecorationStyle<sup>12+</sup>
+
+| Name         | Description       |
+| ----------- | --------- |
+| SOLID   | Single solid line (default value). |
+| DOUBLE | Double solid line.|
+| DOTTED    | Dotted line. |
+| DASHED        | Dashed line.|
+| WAVY        | Wavy line.|
+
+## FlexSpaceOptions<sup>12+</sup>
+
+| Name         | Type       |  Read Only    | Mandatory     | Description     |
+| ----------- | --------- | ----------- | --------- |----------- |
+| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | No| No| Space on the main axis of the flex container. |
+| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | No| No| Space on the cross axis of the flex container. |
+
+## MenuPolicy<sup>12+</sup>
+
+Defines the menu display policy.
+
+| Name   | Value  | Description                              |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | Whether the menu is displayed depends on the underlying default logic.|
+| HIDE    | 1    | The menu is always hidden.                  |
+| SHOW    | 2    | The menu is always displayed.                    |
+
+## EmbeddedType<sup>12+</sup>
+Enumerates the types of the providers that can be started by the **\<EmbeddedComponent>**.
+
+| Name                 | Value| Description                                               |
+| --------------------- | - | ---------------------------------------------------- |
+| EMBEDDED_UI_EXTENSION | 0 | EmbeddedUIExtensionAbility.|
+
+## MarqueeUpdateStrategy<sup>12+</sup>
+| Name      | Value     | Description                    |
+| ---------- | ------------------------ | ------------------------ |
+| DEFAULT | 0 | After the marquee attributes are updated, the marquee scrolls from the start position.    |
+| PRESERVE_POSITION  | 1 | After the marquee attributes are updated, the marquee scrolls from the current position.|
+
+## AppRotation<sup>12+</sup>
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| ROTATION_0 | 0 degrees.|
+| ROTATION_90 |90 degrees.|
+| ROTATION_180 | 180 degrees.|
+| ROTATION_270 | 270 degrees.|
 <!--no_check-->

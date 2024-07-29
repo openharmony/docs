@@ -576,9 +576,6 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -648,9 +645,6 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **listening** events or **close** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -715,9 +709,6 @@ udp.on('error', (err: BusinessError) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -812,7 +803,7 @@ Defines information about the socket connection.
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address | string | Yes  | Bound IP address.                                          |
-| family  | string | Yes  | Network protocol type.<br>- IPv4<br>- IPv6<br>The default value is **IPv4**.|
+| family  | 'IPv4' \| 'IPv6' | Yes  | Network protocol type.<br>- IPv4<br>- IPv6<br>The default value is **IPv4**.|
 | port    | number | Yes  | Port number. The value ranges from **0** to **65535**.                                       |
 | size    | number | Yes  | Length of the server response message, in bytes.                                  |
 
@@ -952,7 +943,7 @@ multicast.addMembership(addr).then(() => {
 
 dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
 
-Drops a member from a multicast group. This API uses an asynchronous callback to return the result.
+Drop a **MulticastSocket** object from the multicast group. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
@@ -1001,7 +992,7 @@ multicast.dropMembership(addr, (err: Object) => {
 
 dropMembership(multicastAddress: NetAddress): Promise\<void\>;
 
-Drops a member from a multicast group. This API uses a promise to return the result.
+Drop a **MulticastSocket** object from the multicast group. This API uses a promise to return the result.
 
 > **NOTE**
 > The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
@@ -1098,7 +1089,7 @@ multicast.setMulticastTTL(ttl, (err: Object) => {
 
 setMulticastTTL(ttl: number): Promise\<void\>;
 
-Sets the TTL for multicast packets. This API uses a promise to return the result.
+Sets the time to live (TTL) for multicast packets. This API uses a promise to return the result.
 
 > **NOTE**
 > TTL is used to limit the maximum number of router hops for packet transmission on a network.
@@ -1395,7 +1386,7 @@ multicast.getLoopbackMode().then((value: Boolean) => {
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
-Sends data in multicast communication. This API uses an asynchronous callback to return the result.
+Send data over the connection. This API uses an asynchronous callback to return the result.
 
 Before sending data, call [addMembership](#addmembership11) to add a member to the multicast group.
 
@@ -1444,7 +1435,7 @@ multicast.send(sendOptions, (err: Object) => {
 
 send(options: UDPSendOptions): Promise\<void\>
 
-Sends data in multicast communication. This API uses a promise to return the result.
+Send data over the connection. This API uses a promise to return the result.
 
 Before sending data, call [addMembership](#addmembership11) to add a member to the multicast group.
 
@@ -2445,9 +2436,6 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -2517,9 +2505,6 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from connection or close events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -2585,9 +2570,6 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -2646,7 +2628,7 @@ Defines other properties of the TCP socket connection.
 | keepAlive         | boolean | No  | Whether to keep the connection alive. The default value is **false**.                                 |
 | OOBInline         | boolean | No  | Whether to enable OOBInline. The default value is **false**.                                |
 | TCPNoDelay        | boolean | No  | Whether to enable no-delay on the TCP socket connection. The default value is **false**.                      |
-| socketLinger      | Object  | Yes  | Socket linger.<br>- **on**: whether to enable socket linger. The value true means to enable socket linger and false means the opposite.<br>- **linger**: linger time, in ms. The value ranges from **0** to **65535**.<br>Specify this parameter only when **on** is set to **true**.|
+| socketLinger      | \{on:boolean, linger:number\}  | No  | Socket linger.<br>- **on**: whether to enable socket linger. The value true means to enable socket linger and false means the opposite.<br>- **linger**: linger time, in ms. The value ranges from **0** to **65535**.<br>Specify this parameter only when **on** is set to **true**.|
 | receiveBufferSize | number  | No  | Size of the receive buffer, in bytes. The default value is **0**.                              |
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.                              |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.                                 |
@@ -3075,9 +3057,6 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 Unsubscribes from **connect** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -3149,9 +3128,6 @@ tcpServer.on('error', (err: BusinessError) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3517,9 +3493,6 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -3602,9 +3575,6 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -3677,9 +3647,6 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4177,9 +4144,6 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4289,9 +4253,6 @@ on(type: 'close', callback: Callback\<void\>): void;
 
 Subscribes to **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4323,10 +4284,7 @@ client.on('close', callback);
 
 off(type: 'close', callback?: Callback\<void\>): void;
 
-Unsubscribes from **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+Subscribes to **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4396,9 +4354,6 @@ off(type: 'error', callback?: ErrorCallback): void;
 
 Unsubscribes from **error** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4459,7 +4414,7 @@ Defines local socket connection parameters.
 
 | Name    | Type      | Mandatory| Description                           |
 | ------- | ---------- | --- | ------------------------------ |
-| address | string     | Yes  | Address of the local socket file.           |
+| address | [LocalAddress](#localaddress11)    | Yes  | Address of the local socket file.           |
 | timeout | number     | No  | Timeout duration of the local socket connection, in ms. |
 
 ## LocalSendOptions<sup>11+</sup>
@@ -4746,9 +4701,6 @@ off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
 
 Unsubscribes from **connect** events of a **LocalSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4821,9 +4773,6 @@ server.on('error', (err: Object) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **LocalSocketServer** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5010,9 +4959,6 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -5091,9 +5037,6 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -5165,9 +5108,6 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5560,7 +5500,7 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.  |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result. The TLSSocket connection subscribes to the function triggered by a type of message receiving event and returns the TLSSocket connection information.|
 
 **Error codes**
 
@@ -5593,9 +5533,6 @@ tls.on('message', (value: socket.SocketMessageInfo) => {
 off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5676,9 +5613,6 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **connect** or **close** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -5754,9 +5688,6 @@ tls.on('error', (err: BusinessError) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8402,7 +8333,7 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 }
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
-  secureOptions: tlsSecureOptions},
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8492,9 +8423,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8627,9 +8555,6 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -8753,9 +8678,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 

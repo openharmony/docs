@@ -31,17 +31,18 @@
         - [Main Thread Jank Event Overview](hiappevent-watcher-mainthreadjank-events.md)
         - [Subscribing to Main Thread Jank Events (ArkTS)](hiappevent-watcher-mainthreadjank-events-arkts.md)
         - [Subscribing to Main Thread Jank Events (C/C++)](hiappevent-watcher-mainthreadjank-events-ndk.md)
+  <!--Del-->
   - [Event Reporting](hiappevent-event-reporting.md)
+  <!--DelEnd-->
 - HiTraceMeter
   - [Using HiTraceMeter (ArkTS/JS)](hitracemeter-guidelines-arkts.md)
   - [Using HiTraceMeter (C/C++)](hitracemeter-guidelines-ndk.md)
   - [Viewing HiTraceMeter Logs](hitracemeter-view.md)
-  
-- [Using HiTraceChain](hitracechain-guidelines-ndk.md)
-
+- HiTraceChain
+  - [Using HiTraceChain (ArkTS/JS)](hitracechain-guidelines-arkts.md)
+  - [Using HiTraceChain (C/C++)](hitracechain-guidelines-ndk.md)
 - HiChecker
-  
-  - [Using HiChecker (ArkTS/JS)](hichecker-guidelines-arkts.md)
+    - [Using HiChecker (ArkTS/JS)](hichecker-guidelines-arkts.md)
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
@@ -51,19 +52,12 @@
   - [Analyzing AppFreeze](appfreeze-guidelines.md)
 - Command Line Tools
   - [hdc](hdc.md)
-  
   - [hilog](hilog.md)
-  
   - [hidumper](hidumper.md)
-  
   - [hitrace](hitrace.md)
-  
   - [hiperf](hiperf.md)
-  
   - [hisysevent](hisysevent.md)
-  
-  - [toybox](toybox.md)
-  
+    <!--Del-->
   - [uinput](uinput.md)
-  
-    <!--no_check-->
+    <!--DelEnd-->
+     <!--no_check-->

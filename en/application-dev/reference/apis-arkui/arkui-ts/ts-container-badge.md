@@ -1,6 +1,6 @@
 # Badge
 
-The **\<Badge>** component is a container that can be attached to another component for tagging.
+The **Badge** component is a container that can be attached to another component for tagging.
 
 >  **NOTE**
 >
@@ -24,7 +24,11 @@ Badge(value: BadgeParamWithNumber)
 
 Creates a badge.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -38,7 +42,11 @@ Badge(value: BadgeParamWithString)
 
 Creates a badge based on the given string.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -46,27 +54,58 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------ | ----------------------------------------------------- | ---- | -------------------- |
 | value  | [BadgeParamWithString](#badgeparamwithstring) | Yes  | Parameter of the string-type badge.|
 
+## BadgeParam
+
+Provides basic parameters for creating a **Badge** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| position | [BadgePosition](#badgeposition)\|[Position<sup>10+</sup>](ts-types.md#position) | No| Position to display the badge relative to the parent component.<br>Default value: **BadgePosition.RightTop**<br>**NOTE**<br> This parameter cannot be set in percentage. If it is set to an invalid value, the default value **(0,0)** will be used.|
+| style | [BadgeStyle](#badgestyle) | Yes| Style of the badge, including the font color, font size, badge color, and badge size.|
+
 
 ## BadgeParamWithNumber
+
+Inherits from [BadgeParam](#badgeparam) and has all attributes of **BadgeParam**.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | count | number | Yes| Number of notifications.<br>**NOTE**<br>If the value is less than or equal to 0, no badge is displayed.<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
-| position | [BadgePosition](#badgeposition)\|[Position<sup>10+</sup>](ts-types.md#position8) | No| Position to display the badge relative to the parent component.<br>Default value: **BadgePosition.RightTop**<br>**NOTE**<br> This parameter cannot be set in percentage. If it is set to an invalid value, the default value **(0,0)** will be used.|
 | maxCount | number | No| Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.<br>Default value: **99**<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
-| style | [BadgeStyle](#badgestyle) | Yes| Style of the badge, including the font color, font size, badge color, and badge size.|
 
 ## BadgeParamWithString
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| value | string | Yes| - | Prompt content.|
-| position | [BadgePosition](#badgeposition)\|[Position<sup>10+</sup>](ts-types.md#position8) | No| BadgePosition.RightTop | Position to display the badge relative to the parent component.|
-| style | [BadgeStyle](#badgestyle) | Yes| - | Style of the badge, including the font color, font size, badge color, and badge size.|
+Inherits from [BadgeParam](#badgeparam) and has all attributes of **BadgeParam**.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | string | Yes| Prompt content.|
 
 ## BadgePosition
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- |-------- |
@@ -76,7 +115,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BadgeStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                     | Type                                                        | Mandatory| Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -85,7 +128,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | badgeSize                 | number \| string                                   | No  | Badge size.<br>Default value: **16**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
 | badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Badge color.<br>Default value: **Color.Red**                         |
 | fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Font weight of the text.<br>Default value: **FontWeight.Normal**<br>**NOTE**<br>This parameter cannot be set in percentage.|
-| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Border color of the background.                                              |
+| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Border color of the background.<br>Default value: **Color.Red**                         |
 | borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | No  | Border width of the background.<br>Default value: **1**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage.|
 
 ## Attributes

@@ -34,7 +34,7 @@ VideoDecoder模块提供用于视频解码的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Destroy](#oh_videodecoder_destroy) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清理解码器内部资源，销毁解码器实例。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetCallback](#oh_videodecoder_setcallback) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置异步回调函数，让应用可以响应视频解码器生成的事件。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RegisterCallback](#oh_videodecoder_registercallback) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) callback, void \*userData) | 注册异步回调函数，让应用可以响应视频解码器生成的事件。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetSurface](#oh_videodecoder_setsurface) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OHNativeWindow](_codec_base.md#ohnativewindow) \*window) | 指定输出surface以提供视频解码输出，必须在调用Prepare之前调用此接口。  |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetSurface](#oh_videodecoder_setsurface) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OHNativeWindow](_codec_base.md#ohnativewindow) \*window) | 指定输出surface以提供视频解码输出。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Configure](#oh_videodecoder_configure) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVFormat](_core.md#oh_avformat) \*format) | 配置视频解码器，通常需要配置解码视频轨迹的描述信息，这些信息可以从OH_AVSource中提取。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Prepare](#oh_videodecoder_prepare) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 要准备解码器的内部资源。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Start](#oh_videodecoder_start) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 启动解码器，准备成功后必须调用此接口。  | 
@@ -458,7 +458,10 @@ OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *forma
 OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * window )
 ```
 **描述**
-指定输出surface以提供视频解码输出，必须在调用Prepare之前调用此接口。
+指定输出surface以提供视频解码输出。
+
+在初始化阶段，必须在调用Prepare之前调用此接口。在Executing状态可以直接调用该接口。
+
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 

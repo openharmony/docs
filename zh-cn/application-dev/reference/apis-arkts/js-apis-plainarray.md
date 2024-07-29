@@ -635,7 +635,17 @@ plainArray.forEach((value: string, index?: number) => {
   console.log("value:" + value, "index:" + index);
 });
 ```
+```ts
+// 不建议在forEach中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let plainArray: PlainArray<string> = new PlainArray();
+for(let i = 0;i < 10;i++) {
+  plainArray.add(i,"123");
+}
 
+for(let i = 0;i < 10;i++) {
+  plainArray.remove(i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -676,5 +686,16 @@ while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
   temp = iter.next();
+}
+```
+```ts
+// 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let plainArray: PlainArray<string> = new PlainArray();
+for(let i = 0;i < 10;i++) {
+  plainArray.add(i,"123");
+}
+
+for(let i = 0;i < 10;i++) {
+  plainArray.remove(i);
 }
 ```

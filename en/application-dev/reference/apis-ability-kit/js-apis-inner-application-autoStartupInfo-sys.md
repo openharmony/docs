@@ -17,24 +17,22 @@ The **AutoStartupInfo** module defines information about the application compone
 
 | Name                     | Type  | Mandatory | Description      |
 | ------------------------- | ------ | ---- | --------- |
-| bundleName   | string | Yes | Bundle name.|
-| moduleName | string | No  | Module name.|
-| abilityName | string | Yes | Ability name.|
-| abilityTypeName | string | No| Ability type.|
-| appCloneIndex | number   | No  | Index of an application clone. |
+| bundleName   | string | Yes | Bundle name. |
+| moduleName | string | No  | Module name. |
+| abilityName | string | Yes | Ability name. |
+| abilityTypeName | string | No | Ability type. |
 
 **Example**
 
 ```ts
-import autoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
 
 autoStartupManager.setApplicationAutoStartup({
   bundleName: 'com.example.autostartupapp',
   moduleName: 'entry',
   abilityName: 'EntryAbility',
   abilityTypeName: 'ServiceExtension'
-} as common.AutoStartupInfo , (err, data) => {
+} as common.AutoStartupInfo, (err, data) => {
   console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
 });
 ```

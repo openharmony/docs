@@ -12,7 +12,7 @@ The **Router** module provides APIs to access pages through URLs. You can use th
 >
 > - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 >
-> - To achieve a better transition effect, you are advised to use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
+> - To achieve a better transition effect, you are advised to use the [Navigation](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
 
 ## Modules to Import
 
@@ -42,7 +42,7 @@ Navigates to a specified page in the application.
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -100,7 +100,7 @@ Navigates to a specified page in the application.
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -163,7 +163,7 @@ Navigates to a specified page in the application.
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -222,7 +222,7 @@ Navigates to a specified page in the application.
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -267,7 +267,7 @@ router.pushUrl({
 
 replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
-Replaces the current page with another one in the application and destroys the current page. This API cannot be used to configure page transition effects. To configure page transition effects, use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component.
+Replaces the current page with another one in the application and destroys the current page. This API cannot be used to configure page transition effects. To configure page transition effects, use the [Navigation](../../ui/arkts-navigation-navigation.md) component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
@@ -285,7 +285,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -332,7 +332,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -386,7 +386,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -434,7 +434,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -487,7 +487,7 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -547,7 +547,7 @@ Navigates to a page using the named route. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -610,7 +610,7 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -669,7 +669,7 @@ Navigates to a page using the named route. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -732,7 +732,7 @@ Replaces the current page with another one using the named route and destroys th
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -779,7 +779,7 @@ Replaces the current page with another one using the named route and destroys th
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -833,7 +833,7 @@ Replaces the current page with another one using the named route and destroys th
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -881,7 +881,7 @@ Replaces the current page with another one using the named route and destroys th
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -1018,7 +1018,7 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |

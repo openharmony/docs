@@ -23,9 +23,9 @@
 1. 导入模块。
    
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import Base from '@ohos.base';
-   import image from '@ohos.multimedia.image';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { image } from '@kit.ImageKit';
    ```
 
 2. 发布通知。
@@ -35,15 +35,11 @@
       ```ts
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
       let color = new ArrayBuffer(4);
-      image.createPixelMap(color, {
+      imagePixelMap = await image.createPixelMap(color, {
         size: {
           height: 1,
           width: 1
         }
-      }).then((data: image.PixelMap) => {
-        imagePixelMap = data;
-      }).catch((err: Base.BusinessError) => {
-        console.log(`createPixelMap failed, error: ${err}`);
       })
       if(imagePixelMap !== undefined) {
         let notificationRequest: notificationManager.NotificationRequest = {
@@ -83,7 +79,7 @@
           }
         };
         // publish回调
-        let publishCallback = (err: Base.BusinessError): void => {
+        let publishCallback = (err: BusinessError): void => {
           if (err) {
             console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
           } else {

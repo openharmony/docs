@@ -773,24 +773,6 @@ The **wantAgent** object has been canceled.
 
 Pass a valid **wantAgent** object in the API.
 
-## 16000200 Process Cache Support Status Is Set Multiple Times
-
-**Error Message**
-
-The supported process cache state cannot be set more than once.
-
-**Description**
-
-During the lifecycle of a single process instance, this error code is reported if the process cache support status is set again after a successful setting.
-
-**Possible Causes**
-
-The process cache support status is set for more than once for a single process instance.
-
-**Solution**
-
-Check whether the process cache support status is set more than once for a single process instance.
-
 ## 16100001 Ability of the Specified URI Does Not Exist
 
 **Error Message**

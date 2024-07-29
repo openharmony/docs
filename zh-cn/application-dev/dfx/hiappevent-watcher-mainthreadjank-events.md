@@ -3,7 +3,6 @@
 HiAppEvent提供接口用于订阅主线程超时事件。
 
 - [订阅主线程超时事件（ArkTS）](hiappevent-watcher-mainthreadjank-events-arkts.md)
-- [订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)
 
 主线程超时事件信息中params属性的详细描述如下：
 

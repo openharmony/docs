@@ -10,7 +10,7 @@ OpenGL ES 3.2
 
 [OpenGL ES 3.2 Symbols Exported](openglesv3-symbol.md)
 ## References
-To use the OpenGL ES API in your application development, familiarize yourself with the NDK development process and the **\<XComponent>** usage, which are described in the following topics:
+To use the OpenGL ES API in your application development, familiarize yourself with the NDK development process and the **XComponent** usage, which are described in the following topics:
 - [Getting Started with the NDK](../../napi/ndk-development-overview.md)
 
 - [Node-API](./napi.md)

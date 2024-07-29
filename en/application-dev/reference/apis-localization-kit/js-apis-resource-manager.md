@@ -15,7 +15,7 @@ import resourceManager from '@ohos.resourceManager';
 ## How to Use
 
 Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle.
-For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
+For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object. 
 For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
@@ -40,13 +40,13 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
 
 **Model restriction**: This API can be used only in the FA model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                                      | Mandatory  | Description                           |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   |Callback used to return the result, which is a **ResourceManager** object.|
+| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   |Callback used to return the result, which is a **ResourceManager** object. |
 
-**Example**
+**Example** 
   <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager((error, mgr) => {
@@ -74,14 +74,14 @@ Obtains the **ResourceManager** object of the specified application. This API us
 
 **Model restriction**: This API can be used only in the FA model.
 
-**Parameters**
+**Parameters** 
 
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
 | bundleName | string                                   | Yes   | Bundle name of an application.                |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result, which is a **ResourceManager** object.|
+| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result, which is a **ResourceManager** object. |
 
-**Example**
+**Example** 
   <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
@@ -102,9 +102,9 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 
 | Type                                      | Description               |
 | ---------------------------------------- | ----------------- |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object. |
 
-**Example**
+**Example** 
   <!--code_no_check_fa-->
   ```js
   import resourceManager from '@ohos.resourceManager';
@@ -133,19 +133,19 @@ Obtains the **ResourceManager** object of the specified application. This API us
 
 **Model restriction**: This API can be used only in the FA model.
 
-**Parameters**
+**Parameters** 
 
 | Name       | Type    | Mandatory  | Description           |
 | ---------- | ------ | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name of an application.|
+| bundleName | string | Yes   | Bundle name of an application. |
 
 **Return value**
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object. |
 
-**Example**
+**Example** 
   <!--code_no_check_fa-->
   ```js
   import resourceManager from '@ohos.resourceManager';
@@ -170,13 +170,13 @@ Obtains a **ResourceManager** object.
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| [Resourcemanager](#resourcemanager) | **ResourceManager** object.|
+| [Resourcemanager](#resourcemanager) | **ResourceManager** object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 9001009  | Failed to access the system resource.                       |
 
@@ -246,7 +246,7 @@ Enumerates the screen density types.
 | SCREEN_LDPI    | 240  | Screen density with large-scale dots per inch (LDPI).  |
 | SCREEN_XLDPI   | 320  | Screen density with extra-large-scale dots per inch (XLDPI). |
 | SCREEN_XXLDPI  | 480  | Screen density with extra-extra-large-scale dots per inch (XXLDPI). |
-| SCREEN_XXXLDPI | 640  | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI).|
+| SCREEN_XXXLDPI | 640  | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI). |
 
 
 ## ColorMode<sup>12+</sup>
@@ -259,29 +259,27 @@ Defines the color mode of the current device.
 
 | Name | Value  | Description      |
 | ----- | ---- | ---------- |
-| DARK  | 0    | Dark mode.|
-| LIGHT | 1    | Light mode.|
+| DARK  | 0    | Dark mode. |
+| LIGHT | 1    | Light mode. |
 
 
 ## Configuration
 
 Defines the device configuration.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
-| Name                       | Type                           | Readable| Writable| Description              |
+| Name                       | Type                           | Readable | Writable | Description              |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
-| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation.        |
-| locale                      | string                          | Yes  | Yes  | Country or region.|
-| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | Yes  | Yes  | Device type.        |
-| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density.        |
-| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | Yes  | Yes  | Color mode.        |
-| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code.      |
-| mnc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile network code (MNC).      |
+| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
+| locale                      | string                          | Yes  | Yes  | Country or region.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | Yes  | Yes  | Device type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | Yes  | Yes  | Color mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| mnc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 
 
 
@@ -297,7 +295,7 @@ Defines the device capability.
 
 | Name           | Type                           | Readable  | Writable  | Description      |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | Yes   | No   | Screen density of the device.|
+| screenDensity | [ScreenDensity](#screendensity) | Yes   | No   | Screen density of the device. |
 | deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Device type.  |
 
 
@@ -313,9 +311,9 @@ Defines the descriptor of the HAP where the raw file is located.
 
 | Name    | Type   | Readable  | Writable | Description          |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | Yes   | No| File descriptor.|
-| offset | number  | Yes   | No| Start offset of the raw file.     |
-| length | number  | Yes   | No| File length.      |
+| fd     | number  | Yes   | No | File descriptor. |
+| offset | number  | Yes   | No | Start offset of the raw file.     |
+| length | number  | Yes   | No | File length.      |
 
 ## Resource<sup>9+</sup>
 
@@ -329,11 +327,11 @@ Defines the resource information of an application.
 
 | Name        | Type    | Readable  | Writable |Description         |
 | ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | Yes   | No| Bundle name of the application.|
-| moduleName | string | Yes   | No| Module name of the application.|
-| id         | number | Yes   | No| Resource ID.     |
-| params     | any[] | Yes   | No| Other resource parameters, which are optional.     |
-| type       | number | Yes   | No| Resource type, which is optional.     |
+| bundleName | string | Yes   | No | Bundle name of the application. |
+| moduleName | string | Yes   | No | Module name of the application. |
+| id         | number | Yes   | No | Resource ID.     |
+| params     | any[] | Yes   | No | Other resource parameters, which are optional.     |
+| type       | number | Yes   | No | Resource type, which is optional.     |
 
 ## ResourceManager
 
@@ -348,6 +346,8 @@ Defines the capability of accessing application resources.
 > - Use the resource object for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources. Therefore, it takes a longer time than using the resource ID or resource name.
 >
 > - For details about intra-HAP and cross-HAP/HSP resource access modes, see [Resource Access](../../quick-start/resource-categories-and-access.md#resource-access).
+>
+> - For details about the content of the test files used in the sample code, see [Appendix](#appendix).
 
 ### getStringSync<sup>9+</sup>
 
@@ -359,30 +359,30 @@ Obtains a string based on the specified resource ID. This API returns the result
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | String corresponding to the specified resource ID.|
+| string | String corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -405,11 +405,11 @@ Obtains a string based on the specified resource ID and formats the string based
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 | args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
@@ -421,7 +421,7 @@ Obtains a string based on the specified resource ID and formats the string based
 **Error codes**
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                               |
@@ -429,7 +429,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                    |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -454,30 +454,30 @@ Obtains a string based on the specified resource object. This API returns the re
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type    | Description              |
 | ------ | ---------------- |
-| string | String corresponding to the specified resource object.|
+| string | String corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -508,11 +508,11 @@ Obtains a string based on the specified resource object and formats the string b
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 | args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
@@ -524,7 +524,7 @@ Obtains a string based on the specified resource object and formats the string b
 **Error codes**
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
@@ -532,7 +532,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -561,30 +561,30 @@ Obtains a string based on the specified resource name. This API returns the resu
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | String corresponding to the specified resource name.|
+| string | String corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -607,11 +607,11 @@ Obtains a string based on the specified resource name and formats the string bas
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 | args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
@@ -624,7 +624,7 @@ Obtains a string based on the specified resource name and formats the string bas
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
@@ -632,7 +632,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 | 9001008  | Failed to format the resource obtained based on the resource Name. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -655,25 +655,25 @@ Obtains a string based on the specified resource ID. This API uses an asynchrono
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.         |
 
-**Example (stage)**
+**Example (stage)** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -702,30 +702,30 @@ Obtains a string based on the specified resource ID. This API uses a promise to 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -754,25 +754,25 @@ Obtains a string based on the specified resource object. This API uses an asynch
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -813,26 +813,26 @@ Obtains a string based on the specified resource object. This API uses a promise
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type                   | Description              |
 | --------------------- | ---------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -870,12 +870,12 @@ Obtains a string based on the specified resource name. This API uses an asynchro
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID. |
 
 **Error codes**
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
@@ -915,19 +915,19 @@ Obtains a string based on the specified resource name. This API uses a promise t
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource name.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
@@ -961,30 +961,30 @@ Obtains a string array based on the specified resource ID. This API returns the 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | String array corresponding to the specified resource ID.|
+| Array&lt;string&gt; | String array corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1009,30 +1009,30 @@ Obtains a string array based on the specified resource object. This API returns 
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | String array corresponding to the specified resource object.|
+| Array&lt;string&gt; | String array corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -1061,30 +1061,30 @@ Obtains a string array based on the specified resource name. This API returns th
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | String array corresponding to the specified resource name.|
+| Array&lt;string&gt; | String array corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                       |
 | 9001004  | No matching resource is found based on the resource name.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   try {
     this.context.resourceManager.getStringArrayByNameSync("test");
@@ -1105,24 +1105,24 @@ Obtains a string array based on the specified resource ID. This API uses an asyn
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID. |
 
 **Error codes**
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1151,29 +1151,29 @@ Obtains a string array based on the specified resource ID. This API uses a promi
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID. |
 
 **Error codes**
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1202,7 +1202,7 @@ Obtains a string array based on the specified resource object. This API uses an 
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
@@ -1213,14 +1213,14 @@ Obtains a string array based on the specified resource object. This API uses an 
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -1257,30 +1257,30 @@ Obtains a string array based on the specified resource object. This API uses a p
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type                                | Description                |
 | ---------------------------------- | ------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource object.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -1318,20 +1318,20 @@ Obtains a string array based on the specified resource name. This API uses an as
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resName  | string                                   | Yes   | Resource name.             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1360,30 +1360,30 @@ Obtains a string array based on the specified resource name. This API uses a pro
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type                                | Description          |
 | ---------------------------------- | ------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource name.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1414,31 +1414,31 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 | num   | number | Yes   | Number.  |
 
 **Return value**
 
 | Type                   | Description         |
 | -------- | ----------- |
-| string   | Singular-plural string corresponding to the specified resource ID.|
+| string   | Singular-plural string corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1467,31 +1467,31 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 | num      | number                 | Yes   | Number.  |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Singular-plural string corresponding to the specified resource object.|
+| string | Singular-plural string corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -1524,31 +1524,31 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 | num      | number                 | Yes   | Number.  |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Singular-plural string corresponding to the specified resource name.|
+| string | Singular-plural string corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                       |
 | 9001004  | No matching resource is found based on the resource name.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1575,26 +1575,26 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
 | num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1627,31 +1627,31 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 | num   | number | Yes   | Number. |
 
 **Return value**
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1684,26 +1684,26 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description                                  |
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                                |
 | num      | number                      | Yes   | Number.                                 |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource object.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -1744,31 +1744,31 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 | num      | number                 | Yes   | Number. |
 
 **Return value**
 
 | Type                   | Description                            |
 | --------------------- | ------------------------------ |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.                |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -1805,26 +1805,26 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description                           |
 | -------- | --------------------------- | ---- | ----------------------------- |
 | resName  | string                      | Yes   | Resource name.                         |
 | num      | number                      | Yes   | Number.                          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource name.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1857,31 +1857,31 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 | num     | number | Yes   | Number. |
 
 **Return value**
 
 | Type                   | Description                    |
 | --------------------- | ---------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource name.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1912,20 +1912,20 @@ Obtains the content of a media file with the default or specified screen density
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| resId | number | Yes   | Resource ID. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
 
 **Return value**
 
 | Type                   | Description         |
 | -------- | ----------- |
-| Uint8Array   | Content of the media file corresponding to the specified resource ID.|
+| Uint8Array   | Content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
@@ -1968,20 +1968,20 @@ Obtains the content of a media file with the default or specified screen density
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Uint8Array | Content of the media file corresponding to the specified resource object.|
+| Uint8Array | Content of the media file corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
@@ -2028,20 +2028,20 @@ Obtains the content of a media file with the default or specified screen density
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resName | string | Yes   | Resource name.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| resName | string | Yes   | Resource name. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Uint8Array | Content of the media file corresponding to the specified resource name.|
+| Uint8Array | Content of the media file corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                       |
@@ -2078,24 +2078,24 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2124,25 +2124,25 @@ Obtains the content of a media file with the specified screen density based on t
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2171,29 +2171,29 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2220,30 +2220,30 @@ Obtains the content of a media file with the specified screen density based on t
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
 
 **Return value**
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2272,24 +2272,24 @@ Obtains the content of a media file based on the specified resource object. This
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -2326,25 +2326,25 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -2381,29 +2381,29 @@ Obtains the content of a media file based on the specified resource object. This
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type                       | Description                 |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource object.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -2438,30 +2438,30 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
 
 **Return value**
 
 | Type                       | Description                 |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource object.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -2494,23 +2494,23 @@ Obtains the content of a media file based on the specified resource name. This A
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2539,25 +2539,25 @@ Obtains the content of a media file with the specified screen density based on t
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2586,29 +2586,29 @@ Obtains the content of a media file based on the specified resource name. This A
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type                       | Description           |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource name.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2635,30 +2635,30 @@ Obtains the content of a media file with the specified screen density based on t
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
 
 **Return value**
 
 | Type                       | Description           |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource name.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2685,30 +2685,30 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| resId | number | Yes   | Resource ID. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
 
 **Return value**
 
 | Type                   | Description         |
 | -------- | ----------- |
-| string   | Base64 code of the image corresponding to the specified resource ID.|
+| string   | Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2741,30 +2741,30 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Base64 code of the image corresponding to the specified resource object.|
+| string | Base64 code of the image corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -2801,30 +2801,30 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resName | string | Yes   | Resource name.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| resName | string | Yes   | Resource name. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Base64 code of the image corresponding to the specified resource name.|
+| string | Base64 code of the image corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                       |
 | 9001004  | No matching resource is found based on the resource name.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2860,19 +2860,19 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2901,25 +2901,25 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2948,29 +2948,29 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2997,30 +2997,30 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
 
 **Return value**
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3054,19 +3054,19 @@ Obtains the Base64 code of an image based on the specified resource object. This
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -3109,19 +3109,19 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -3158,29 +3158,29 @@ Obtains the Base64 code of an image based on the specified resource object. This
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -3215,30 +3215,30 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
 
 **Return value**
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -3271,24 +3271,24 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3317,25 +3317,25 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3364,29 +3364,29 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource name.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3413,11 +3413,11 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
 
 **Return value**
@@ -3430,13 +3430,13 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3467,9 +3467,9 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
-| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
+| resId | number | Yes   | Resource ID. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
+| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application. |
 
 **Return value**
 
@@ -3481,7 +3481,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
@@ -3530,21 +3530,21 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
-| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
+| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application. |
 
 **Return value**
 
 | Type     | Description               |
 | ------- | ----------------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
@@ -3597,21 +3597,21 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
-| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
-| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
+| resName | string | Yes   | Resource name. |
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density. |
+| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application. |
 
 **Return value**
 
 | Type    | Description       |
 | ------ | --------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                     |
@@ -3654,30 +3654,30 @@ Obtains a Boolean result based on the specified resource ID. This API returns th
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type     | Description          |
 | ------- | ------------ |
-| boolean | Boolean result corresponding to the specified resource ID.|
+| boolean | Boolean result corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3701,30 +3701,30 @@ Obtains a Boolean result based on the specified resource object. This API return
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type     | Description               |
 | ------- | ----------------- |
-| boolean | Boolean result corresponding to the specified resource object.|
+| boolean | Boolean result corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -3753,30 +3753,30 @@ Obtains a Boolean result based on the specified resource name. This API returns 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type     | Description         |
 | ------- | ----------- |
-| boolean | Boolean result corresponding to the specified resource name.|
+| boolean | Boolean result corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3799,30 +3799,30 @@ Obtains an integer or float value based on the specified resource ID. This API r
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type    | Description        |
 | ------ | ---------- | 
-| number | Integer or float value corresponding to the specified resource ID. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
+| number | Integer or float value corresponding to the specified resource ID. An integer indicates the original value, and a float number indicates the actual pixel value. For details, see the sample code. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3855,30 +3855,30 @@ Obtains an integer or float value based on the specified resource object. This A
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -3907,30 +3907,30 @@ Obtains an integer or float value based on the specified resource name. This API
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -3965,19 +3965,19 @@ Obtains a color value based on the specified resource ID. This API returns the r
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Color value (decimal) corresponding to the specified resource ID.|
+| number | Color value (decimal) corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
@@ -4013,19 +4013,19 @@ Obtains a color value based on the specified resource object. This API returns t
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type    | Description              |
 | ------ | ---------------- |
-| number | Color value (decimal) corresponding to the specified resource object.|
+| number | Color value (decimal) corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
@@ -4065,19 +4065,19 @@ Obtains a color value based on the specified resource name. This API returns the
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type    | Description        |
 | ------ | ---------- |
-| number | Color value (decimal) corresponding to the specified resource name.|
+| number | Color value (decimal) corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
@@ -4112,13 +4112,13 @@ Obtains a color value based on the specified resource ID. This API uses an async
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
@@ -4158,19 +4158,19 @@ Obtains a color value based on the specified resource ID. This API uses a promis
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
+| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
@@ -4211,13 +4211,13 @@ Obtains a color value based on the specified resource object. This API uses an a
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
@@ -4265,19 +4265,19 @@ Obtains a color value based on the specified resource object. This API uses a pr
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type                   | Description              |
 | --------------------- | ---------------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource object.|
+| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
@@ -4322,13 +4322,13 @@ Obtains a color value based on the specified resource name. This API uses an asy
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource name.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
@@ -4368,19 +4368,19 @@ Obtains a color value based on the specified resource name. This API uses a prom
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource name.|
+| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
@@ -4424,13 +4424,13 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Uint8Array | Content of the raw file.|
+| Uint8Array | Content of the raw file. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
@@ -4458,22 +4458,22 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -4502,28 +4502,28 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the raw file. |
 
 **Return value**
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the raw file.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the raw file. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -4564,13 +4564,13 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Array\<string> | List of folders and files in the **rawfile** directory.|
+| Array\<string> | List of folders and files in the **rawfile** directory. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.       |
@@ -4602,23 +4602,23 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | **rawfile** directory.            |
-| callback | AsyncCallback&lt;Array\<string\>&gt; | Yes| Callback used to return the result, which is the list of folders and files in the **rawfile** directory.|
+| callback | AsyncCallback&lt;Array\<string\>&gt; | Yes | Callback used to return the result, which is the list of folders and files in the **rawfile** directory. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.       |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -4651,28 +4651,28 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | **rawfile** directory.|
+| path | string | Yes   | **rawfile** directory. |
 
 **Return value**
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Array\<string\>&gt; | Promise used to return the result, which is the list of folders and files in the **rawfile** directory.|
+| Promise&lt;Array\<string\>&gt; | Promise used to return the result, which is the list of folders and files in the **rawfile** directory. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -4709,13 +4709,13 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the HAP where the raw file is located.|
+| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the HAP where the raw file is located. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
@@ -4743,23 +4743,23 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
   import resourceManager from '@ohos.resourceManager';
@@ -4791,28 +4791,28 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the raw file. |
 
 **Return value**
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Descriptor of the HAP where the raw file is located.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Descriptor of the HAP where the raw file is located. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
   import resourceManager from '@ohos.resourceManager';
@@ -4852,7 +4852,7 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
@@ -4880,23 +4880,23 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | Yes   | Path of the raw file.|
+| path     | string                    | Yes   | Path of the raw file. |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -4923,28 +4923,28 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the raw file. |
 
 **Return value**
 
 | Type                 | Description  |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -4971,9 +4971,9 @@ Obtains the device configuration. This API returns the result synchronously.
 
 | Type                                      | Description              |
 | ---------------------------------------- | ---------------- |
-| [Configuration](#configuration) | Device configuration.|
+| [Configuration](#configuration) | Device configuration. |
 
-**Example**
+**Example** 
   ```ts
   try {
     let value = this.context.resourceManager.getConfigurationSync();
@@ -4994,13 +4994,13 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                                      | Mandatory  | Description                       |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the result, which is the device configuration.|
+| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the result, which is the device configuration. |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
 
@@ -5032,9 +5032,9 @@ Obtains the device configuration. This API uses a promise to return the result.
 
 | Type                                      | Description              |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result, which is the device configuration.|
+| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result, which is the device configuration. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
   import resourceManager from '@ohos.resourceManager';
@@ -5065,9 +5065,9 @@ Obtains the device capability. This API returns the result synchronously.
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| [DeviceCapability](#devicecapability) | Device capability.|
+| [DeviceCapability](#devicecapability) | Device capability. |
 
-**Example**
+**Example** 
   ```ts
   try {
     let value = this.context.resourceManager.getDeviceCapabilitySync();
@@ -5088,13 +5088,13 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                                      | Mandatory  | Description                          |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the result, which is the device capability.|
+| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the result, which is the device capability. |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
 
@@ -5126,9 +5126,9 @@ Obtains the device capability. This API uses a promise to return the result.
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the result, which is the device capability.|
+| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the result, which is the device capability. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
   import resourceManager from '@ohos.resourceManager';
@@ -5155,7 +5155,7 @@ Releases a **ResourceManager** object. This API is not supported currently.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Example**
+**Example** 
   ```ts
   try {
     this.context.resourceManager.release();
@@ -5178,13 +5178,13 @@ Loads resources from the specified path.
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| path | string | Yes   | Resource path.|
+| path | string | Yes   | Resource path. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001010  | Invalid overlay path.            |
@@ -5217,13 +5217,13 @@ Removes the resources loaded from the specified path to restore the original res
 
 | Name     | Type           | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| path | string | Yes   | Resource path.|
+| path | string | Yes   | Resource path. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001010  | Invalid overlay path.            |
@@ -5308,19 +5308,19 @@ Obtains a symbol value based on the specified resource ID. This API returns the 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Symbol value (decimal) corresponding to the specified resource ID.|
+| number | Symbol value (decimal) corresponding to the specified resource ID. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
@@ -5355,19 +5355,19 @@ Obtains a symbol value based on the specified resource object. This API returns 
 
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
+| resource | [Resource](#resource9) | Yes   | Resource object. |
 
 **Return value**
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Symbol value (decimal) corresponding to the specified resource object.|
+| number | Symbol value (decimal) corresponding to the specified resource object. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
@@ -5407,19 +5407,19 @@ Obtains a symbol value based on the specified resource name. This API returns th
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
+| resName | string | Yes   | Resource name. |
 
 **Return value**
 
 | Type    | Description        |
 | ------ | ---------- |
-| number | Symbol value (decimal) corresponding to the specified resource name.|
+| number | Symbol value (decimal) corresponding to the specified resource name. |
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
@@ -5453,7 +5453,7 @@ Checks whether a path is a subdirectory in the **rawfile** directory. This API r
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| path | string | Yes   | Path of a rawfile.|
+| path | string | Yes   | Path of a rawfile. |
 
 **Return value**
 
@@ -5465,7 +5465,7 @@ Checks whether a path is a subdirectory in the **rawfile** directory. This API r
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
@@ -5497,21 +5497,21 @@ The style (including the language, color mode, resolution, and orientation) of t
 
 **Parameters**
 
-| Name       | Type                           | Mandatory| Description                                                        |
+| Name       | Type                           | Mandatory | Description                                                        |
 | ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| configuration | [Configuration](#configuration) | No  | Configuration of differentiated resources.<br>After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.<br>If this parameter is not specified, the system obtains resources that best match the current system.|
+| configuration | [Configuration](#configuration) | No  | Configuration of differentiated resources.<br>After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.<br>If this parameter is not specified, the system obtains resources that best match the current system. |
 
 **Return value**
 
 | Type           | Description                              |
 | --------------- | ---------------------------------- |
-| ResourceManager | **ResourceManager** object for loading differentiated resources.|
+| ResourceManager | **ResourceManager** object for loading differentiated resources. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                    |
+| ID | Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
 
@@ -5547,7 +5547,7 @@ Obtains the configuration of differentiated resources. This API returns the resu
 
 | Type                           | Description            |
 | ------------------------------- | ---------------- |
-| [Configuration](#configuration) | Configuration of differentiated resources.|
+| [Configuration](#configuration) | Configuration of differentiated resources. |
 
 **Example**
 
@@ -5570,15 +5570,15 @@ Updated configuration of differentiated resources. This API allows a common **Re
 
 **Parameters**
 
-| Name       | Type                           | Mandatory| Description                                                        |
+| Name       | Type                           | Mandatory | Description                                                        |
 | ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| configuration | [Configuration](#configuration) | Yes  | Configuration of differentiated resources. After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.|
+| configuration | [Configuration](#configuration) | Yes  | Configuration of differentiated resources. After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                    |
+| ID | Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
 
@@ -5610,12 +5610,12 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID. |
 
 **Example**
   ```ts
@@ -5641,19 +5641,19 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -5677,14 +5677,14 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getStringArray($r('app.strarray.test').id, (error: Error, value: Array<string>) => {
@@ -5708,19 +5708,19 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -5744,14 +5744,14 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id, (error: Error, value: Uint8Array) => {
@@ -5774,19 +5774,19 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -5810,14 +5810,14 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id, ((error: Error, value: string) => {
@@ -5841,19 +5841,19 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 
 **Return value**
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -5881,20 +5881,20 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| resId | number | Yes   | Resource ID. |
 | num   | number | Yes   | Number.  |
 
 **Return value**
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -5922,15 +5922,15 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
 | num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID. |
 
-**Example**
+**Example** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
@@ -5954,14 +5954,14 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file. |
 
-**Example**
+**Example** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.txt", (error: Error, value: Uint8Array) => {
@@ -5985,19 +5985,19 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the raw file. |
 
 **Return value**
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the raw file.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the raw file. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -6021,14 +6021,14 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file. |
 
-**Example**
+**Example** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
 
@@ -6055,19 +6055,19 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the raw file. |
 
 **Return value**
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result, which is the descriptor of the raw file. |
 
-**Example**
+**Example** 
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -6092,16 +6092,16 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 
 
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | Yes   | Path of the raw file.|
+| path     | string                    | Yes   | Path of the raw file. |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
 
-**Example**
+**Example** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.txt", (error: Error) => {
@@ -6122,21 +6122,124 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+**Parameters** 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the raw file. |
 
 **Return value**
 
 | Type                 | Description  |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
-**Example**
+**Example** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.txt");
   });
   ```
+
+### Appendix
+
+- Content of the **app.string.test** file:
+
+    ```json
+    {
+    "string": [
+        {
+        "name": "test",
+        "value": "10"
+        }
+    ]
+    }
+    ```
+
+    ```json
+    {
+    "string": [
+     {
+        "name": "test",
+        "value": "%s %d %f"
+        }
+    ]
+    }
+    ```
+
+- Content of the **app.strarray.test** file:
+
+    ```json
+    {
+    "strarray": [
+        {
+        "name": "test",
+        "value": [
+    ```  
+
+- Content of the **app.plural.test** file:
+    ```json
+    {
+      "plural": [
+        {
+        "name": "test",
+        "value": [
+            {
+            "quantity": "one",
+            "value": "%d apple"
+            },
+            {
+            "quantity": "other",
+            "value": "%d apples"
+            }
+        ]
+        }
+    ]
+    }
+    ``` 
+
+- Content of the **app.boolean.boolean_test** file:
+    ```json
+    {
+    "boolean": [
+        {
+        "name": "boolean_test",
+        "value": true
+        }
+    
+    }
+    ``` 
+
+- Content of the **integer_test** and **float_test** files:
+    ```json
+    {
+      "integer": [
+        {
+          "name": "integer_test",
+          "value": 100
+        }
+      ]
+    }
+    ``` 
+
+    ```json
+    {
+      "float": [
+        {
+          "name": "float_test",
+          "value": "30.6"
+        }
+      ]
+    }
+    ``` 
+- Content of the **app.color.test** file:
+    ```json
+    {
+      "color": [
+        {
+          "name": "test",
+          "value": "#FFFFFF"
+       }
+      ]
+    }
+    ``` 

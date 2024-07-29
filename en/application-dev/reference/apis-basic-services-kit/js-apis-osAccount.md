@@ -38,11 +38,11 @@ Enumerates the system account types.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name  | Value| Description        |
+| Name  | Value | Description        |
 | ------ | ------ | ----------- |
-| ADMIN  | 0      | Administrator account|
-| NORMAL | 1      | Normal account  |
-| GUEST  | 2      | Guest account  |
+| ADMIN  | 0      | Administrator account.|
+| NORMAL | 1      | Normal account.  |
+| GUEST  | 2      | Guest account.  |
 
 ## AccountManager
 
@@ -58,16 +58,16 @@ Checks whether multiple system accounts are supported. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                    |
+| Name  | Type                        | Mandatory | Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means multiple system accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -103,10 +103,9 @@ Checks whether multiple system accounts are supported. This API uses a promise t
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -140,19 +139,20 @@ Checks whether a system account is activated. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                    |
+| Name  | Type                        | Mandatory | Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | localId  | number                       | Yes  | ID of the target system account.                                            |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**: Check whether system account 100 is activated.
 
@@ -189,7 +189,7 @@ Checks whether a system account is activated. This API uses a promise to return 
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                              |
+| Name | Type  | Mandatory | Description                              |
 | ------- | ------ | ---- | --------------------------------- |
 | localId | number | Yes  | ID of the target system account.|
 
@@ -201,12 +201,13 @@ Checks whether a system account is activated. This API uses a promise to return 
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**: Check whether system account 100 is activated.
 
@@ -235,7 +236,7 @@ Checks whether a constraint is enabled for this system account. This API uses a 
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                               |
+| Name    | Type  | Mandatory | Description                               |
 | ---------- | ------ | ---- | ---------------------------------- |
 | constraint | string | Yes  | [Constraint](#constraints) to check.|
 
@@ -247,10 +248,10 @@ Checks whether a constraint is enabled for this system account. This API uses a 
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
@@ -285,7 +286,7 @@ Checks whether the specified constraint is enabled for a system account. This AP
 
 **Parameters**
 
-| Name    | Type                        | Mandatory| Description                                                              |
+| Name    | Type                        | Mandatory | Description                                                              |
 | ---------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
 | localId    | number                       | Yes  | ID of the target system account.                                |
 | constraint | string                       | Yes  | [Constraint](#constraints) to check.                               |
@@ -293,12 +294,13 @@ Checks whether the specified constraint is enabled for a system account. This AP
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId or constraint.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
@@ -336,9 +338,9 @@ Checks whether the specified constraint is enabled for a system account. This AP
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                               |
+| Name    | Type  | Mandatory | Description                               |
 | ---------- | ------ | ---- | ---------------------------------- |
-| localId    | number | Yes  | ID of the target system account. |
+| localId    | number | Yes  | ID of the target system account.|
 | constraint | string | Yes  | [Constraint](#constraints) to check.|
 
 **Return value**
@@ -349,12 +351,13 @@ Checks whether the specified constraint is enabled for a system account. This AP
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId or constraint.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
@@ -384,16 +387,16 @@ Checks whether this system account is a test account. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                                  |
+| Name  | Type                        | Mandatory | Description                                                                  |
 | -------- | ---------------------------- | ---- | --------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the account is a test account; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -429,10 +432,9 @@ Checks whether this system account is a test account. This API uses a promise to
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -454,7 +456,7 @@ Checks whether this system account is a test account. This API uses a promise to
 
 isOsAccountUnlocked(): Promise&lt;boolean&gt;
 
-Checks whether this system account has been verified. This API uses a promise to return the result.
+Checks whether this system account is unlocked. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -462,14 +464,13 @@ Checks whether this system account has been verified. This API uses a promise to
 
 | Type                  | Description                                                                     |
 | ---------------------- | ------------------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account is unlocked; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -501,16 +502,15 @@ Checks whether this system account has been verified. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                           |
+| Name  | Type                        | Mandatory | Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -550,10 +550,9 @@ Checks whether this system account has been verified. This API uses a promise to
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -587,19 +586,20 @@ Checks whether a system account has been verified. This API uses an asynchronous
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                           |
+| Name  | Type                        | Mandatory | Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
 | localId  | number                       | Yes  | ID of the target system account.                             |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**
 
@@ -636,7 +636,7 @@ Checks whether a system account has been verified. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                             |
+| Name | Type  | Mandatory | Description                                                             |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
 | localId | number | Yes  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
 
@@ -648,12 +648,13 @@ Checks whether a system account has been verified. This API uses a promise to re
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**
 
@@ -684,14 +685,15 @@ Checks whether this system account has been verified. This API uses a promise to
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current account has been verified. If **false** is returned, the current account has not been verified.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -721,16 +723,17 @@ Obtains the number of system accounts created. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                        |
+| Name  | Type                       | Mandatory | Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the number of created system accounts. If the operation fails, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -768,10 +771,10 @@ Obtains the number of system accounts created. This API uses a promise to return
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -799,16 +802,16 @@ Obtains the ID of the system account to which the current process belongs. This 
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                          |
+| Name  | Type                       | Mandatory | Description                                                                          |
 | -------- | --------------------------- | ---- | ---------------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -844,10 +847,9 @@ Obtains the ID of the system account to which the current process belongs. This 
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -875,17 +877,17 @@ Obtains the system account ID based on the process UID. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                   |
+| Name  | Type                       | Mandatory | Description                                                                   |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------- |
 | uid      | number                      | Yes  | Process UID.                                                             |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
-| ID| Error Message        |
+| ID | Error Message        |
 | -------- | --------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 | 12300002 | Invalid uid.    |
 
 **Example**: Obtain the ID of the system account whose process UID is **12345678**.
@@ -916,7 +918,7 @@ Obtains the system account ID based on the process UID. This API uses a promise 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description     |
+| Name | Type  | Mandatory | Description     |
 | ------ | ------ | ---- | --------- |
 | uid    | number | Yes  | Process UID.|
 
@@ -928,11 +930,11 @@ Obtains the system account ID based on the process UID. This API uses a promise 
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | System service exception.|
+| 12300002 | Invalid uid.|
 
 **Example**: Obtain the ID of the system account whose process UID is **12345678**.
 
@@ -961,7 +963,7 @@ Obtains the system account ID based on the process UID. The API returns the resu
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description     |
+| Name | Type  | Mandatory | Description     |
 | ------ | ------ | ---- | --------- |
 | uid    | number | Yes  | Process UID.|
 
@@ -973,10 +975,10 @@ Obtains the system account ID based on the process UID. The API returns the resu
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300002 | Invalid uid. |
+| 12300002 | Invalid uid.|
 
 **Example**: Obtain the ID of the system account whose process UID is **12345678**.
 
@@ -1003,18 +1005,19 @@ Obtains the system account ID based on the domain account information. This API 
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory| Description                                                                        |
+| Name    | Type                                   | Mandatory | Description                                                                        |
 | ---------- | --------------------------------------- | ---- | -------------------------------------------------------------------------- |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.                                                               |
 | callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the ID of the system account associated with the domain account. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
-| 12300002 | Invalid domainInfo. |
+| 12300001 | System service exception.|
+| 12300002 | Invalid domainInfo.|
 
 **Example**
 
@@ -1047,7 +1050,7 @@ Obtains the system account ID based on the domain account information. This API 
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory| Description        |
+| Name    | Type                                   | Mandatory | Description        |
 | ---------- | --------------------------------------- | ---- | ------------ |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.|
 
@@ -1059,11 +1062,12 @@ Obtains the system account ID based on the domain account information. This API 
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
-| 12300002 | Invalid domainInfo. |
+| 12300001 | System service exception.|
+| 12300002 | Invalid domainInfo.|
 
 **Example**
 
@@ -1098,19 +1102,20 @@ Obtains all constraints enabled for a system account. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                                                                          |
+| Name  | Type                                    | Mandatory | Description                                                                                          |
 | -------- | ---------------------------------------- | ---- | -------------------------------------------------------------------------------------------- |
 | localId  | number                                   | Yes  | ID of the target system account.                                                                                 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is all [constraints](#constraints) obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**: Obtain all constraints of system account 100.
 
@@ -1147,7 +1152,7 @@ Obtains all constraints enabled for a system account. This API uses a promise to
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------- | ------ | ---- | ------------ |
 | localId | number | Yes  | ID of the target system account.|
 
@@ -1159,12 +1164,13 @@ Obtains all constraints enabled for a system account. This API uses a promise to
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**: Obtain all constraints of system account 100.
 
@@ -1193,16 +1199,16 @@ Obtains information about all activated system accounts. This API uses an asynch
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                                  |
+| Name  | Type                                    | Mandatory | Description                                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of activated system accounts. Otherwise, **data** is an error object.|
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -1238,10 +1244,9 @@ Obtains information about all activated system accounts. This API uses a promise
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message      |
 | -------- | ------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -1275,16 +1280,17 @@ Obtains information about the system account to which the current process belong
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                          |
+| Name  | Type                                                | Mandatory | Description                                          |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -1323,10 +1329,10 @@ Obtains information about the system account to which the current process belong
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -1354,16 +1360,16 @@ Obtains the type of the account to which the current process belongs. This API u
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                                |
+| Name  | Type                                                | Mandatory | Description                                                |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account type obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -1396,10 +1402,9 @@ Obtains the type of the account to which the current process belongs. This API u
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -1429,16 +1434,17 @@ Queries the ID of the distributed virtual device. This API uses an asynchronous 
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                  |
+| Name  | Type                       | Mandatory | Description                                                                  |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the distributed virtual device ID obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -1473,10 +1479,10 @@ Queries the ID of the distributed virtual device. This API uses a promise to ret
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 12300001 | System service exception.|
 
 **Example**
 
@@ -1504,19 +1510,19 @@ Obtains the system account ID based on the SN. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name      | Type                       | Mandatory| Description                                                                          |
+| Name      | Type                       | Mandatory | Description                                                                          |
 | ------------ | --------------------------- | ---- | ---------------------------------------------------------------------------- |
 | serialNumber | number                      | Yes  | Account SN.                                                                   |
 | callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
-| 12300002 | Invalid serialNumber. |
-| 12300003 | The account indicated by serialNumber dose not exist. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
+| 12300002 | Invalid serialNumber.|
+| 12300003 | The account indicated by serialNumber dose not exist.|
 
 **Example**: Obtain the ID of the system account whose SN is 12345.
 
@@ -1544,7 +1550,7 @@ Obtains the system account ID based on the SN. This API uses a promise to return
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description      |
+| Name      | Type  | Mandatory | Description      |
 | ------------ | ------ | ---- | ---------- |
 | serialNumber | number | Yes  | Account SN.|
 
@@ -1556,12 +1562,12 @@ Obtains the system account ID based on the SN. This API uses a promise to return
 
 **Error codes**
 
-| ID| Error Message              |
+| ID | Error Message              |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
-| 12300002 | Invalid serialNumber. |
-| 12300003 | The account indicated by serialNumber dose not exist. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
+| 12300002 | Invalid serialNumber.|
+| 12300003 | The account indicated by serialNumber dose not exist.|
 
 **Example**: Obtain the ID of the system account whose SN is 12345.
 
@@ -1590,19 +1596,19 @@ Obtains the SN of a system account based on the account ID. This API uses an asy
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                        |
+| Name  | Type                       | Mandatory | Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
 | localId  | number                      | Yes  | ID of the target system account.                                                                |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the SN obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**: Obtain the SN of the system account 100.
 
@@ -1630,7 +1636,7 @@ Obtains the SN of a system account based on the account ID. This API uses a prom
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description         |
+| Name | Type  | Mandatory | Description         |
 | ------- | ------ | ---- | ----------- |
 | localId | number | Yes  | ID of the target system account.|
 
@@ -1642,12 +1648,12 @@ Obtains the SN of a system account based on the account ID. This API uses a prom
 
 **Error codes**
 
-| ID| Error Message            |
+| ID | Error Message            |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | System service exception.|
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300003 | Account not found.|
 
 **Example**: Obtain the SN of the system account 100.
 
@@ -1680,7 +1686,7 @@ Checks whether multiple system accounts are supported. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                    |
+| Name  | Type                        | Mandatory | Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means multiple system accounts are supported; the value **false** means the opposite.|
 
@@ -1744,7 +1750,7 @@ Checks whether a system account is activated. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                    |
+| Name  | Type                        | Mandatory | Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | localId  | number                       | Yes  | ID of the target system account.                                           |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
@@ -1780,7 +1786,7 @@ Checks whether a system account is activated. This API uses a promise to return 
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                              |
+| Name | Type  | Mandatory | Description                              |
 | ------- | ------ | ---- | --------------------------------- |
 | localId | number | Yes  | ID of the target system account.|
 
@@ -1819,7 +1825,7 @@ Checks whether the specified constraint is enabled for a system account. This AP
 
 **Parameters**
 
-| Name    | Type                        | Mandatory| Description                                                               |
+| Name    | Type                        | Mandatory | Description                                                               |
 | ---------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
 | localId    | number                       | Yes  | ID of the target system account.                                |
 | constraint | string                       | Yes  | [Constraint](#constraints) to check.                               |
@@ -1857,9 +1863,9 @@ Checks whether the specified constraint is enabled for a system account. This AP
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                                |
+| Name    | Type  | Mandatory | Description                                |
 | ---------- | ------ | ---- | ---------------------------------- |
-| localId    | number | Yes  | ID of the target system account. |
+| localId    | number | Yes  | ID of the target system account.|
 | constraint | string | Yes  | [Constraint](#constraints) to check.|
 
 **Return value**
@@ -1896,7 +1902,7 @@ Checks whether this system account is a test account. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                                  |
+| Name  | Type                        | Mandatory | Description                                                                  |
 | -------- | ---------------------------- | ---- | --------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the account is a test account; the value **false** means the opposite.|
 
@@ -1960,7 +1966,7 @@ Checks whether this system account has been verified. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                           |
+| Name  | Type                        | Mandatory | Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
@@ -1994,7 +2000,7 @@ Checks whether a system account has been verified. This API uses an asynchronous
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                           |
+| Name  | Type                        | Mandatory | Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
 | localId  | number                       | Yes  | ID of the target system account.                            |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
@@ -2030,7 +2036,7 @@ Checks whether a system account has been verified. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                             |
+| Name | Type  | Mandatory | Description                                                             |
 | ------- | ------ | ---- | ---------------------------------------------------------------- |
 | localId | number | No  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
 
@@ -2068,7 +2074,7 @@ Obtains the number of system accounts created. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                        |
+| Name  | Type                       | Mandatory | Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the number of created system accounts. If the operation fails, **err** is an error object.|
 
@@ -2132,7 +2138,7 @@ Obtains the ID of the system account to which the current process belongs. This 
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                          |
+| Name  | Type                       | Mandatory | Description                                                                          |
 | -------- | --------------------------- | ---- | ---------------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
@@ -2194,7 +2200,7 @@ Obtains the system account ID based on the process UID. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                   |
+| Name  | Type                       | Mandatory | Description                                                                   |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------- |
 | uid      | number                      | Yes  | Process UID.                                                             |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **data** is an error object.|
@@ -2228,7 +2234,7 @@ Obtains the system account ID based on the process UID. This API uses a promise 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description     |
+| Name | Type  | Mandatory | Description     |
 | ------ | ------ | ---- | --------- |
 | uid    | number | Yes  | Process UID.|
 
@@ -2267,7 +2273,7 @@ Obtains the system account ID based on the domain account information. This API 
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory| Description                                                                        |
+| Name    | Type                                   | Mandatory | Description                                                                        |
 | ---------- | --------------------------------------- | ---- | --------------------------------------------------------------------------- |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.                                                               |
 | callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
@@ -2303,7 +2309,7 @@ Obtains the system account ID based on the domain account information. This API 
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory| Description        |
+| Name    | Type                                   | Mandatory | Description        |
 | ---------- | --------------------------------------- | ---- | ------------ |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.|
 
@@ -2342,7 +2348,7 @@ Obtains all constraints enabled for a system account. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                                                                            |
+| Name  | Type                                    | Mandatory | Description                                                                                            |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------------------------------------------------------------- |
 | localId  | number                                   | Yes  | ID of the target system account.                                                                                   |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all [constraints](#constraints) enabled for the system account. Otherwise, **err** is an error object.|
@@ -2375,7 +2381,7 @@ Obtains all constraints enabled for a system account. This API uses a promise to
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------- | ------ | ---- | ------------ |
 | localId | number | Yes  | ID of the target system account.|
 
@@ -2412,7 +2418,7 @@ Queries information about all activated system accounts. This API uses an asynch
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                                  |
+| Name  | Type                                    | Mandatory | Description                                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of activated system accounts. Otherwise, **data** is an error object.|
 
@@ -2476,7 +2482,7 @@ Queries information about the system account to which the current process belong
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                          |
+| Name  | Type                                                | Mandatory | Description                                          |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object.|
 
@@ -2537,7 +2543,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                                |
+| Name  | Type                                                | Mandatory | Description                                                |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account type obtained. Otherwise, **err** is an error object.|
 
@@ -2598,7 +2604,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                   |
+| Name  | Type                       | Mandatory | Description                                                                   |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the distributed virtual device ID obtained. Otherwise, **data** is an error object.|
 
@@ -2659,7 +2665,7 @@ Obtains the system account ID based on the SN. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name      | Type                       | Mandatory| Description                                                                              |
+| Name      | Type                       | Mandatory | Description                                                                              |
 | ------------ | --------------------------- | ---- | -------------------------------------------------------------------------------- |
 | serialNumber | number                      | Yes  | Account SN.                                                                       |
 | callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
@@ -2690,7 +2696,7 @@ Obtains the system account ID based on the SN. This API uses a promise to return
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description      |
+| Name      | Type  | Mandatory | Description      |
 | ------------ | ------ | ---- | ---------- |
 | serialNumber | number | Yes  | Account SN.|
 
@@ -2727,7 +2733,7 @@ Obtains the SN of a system account based on the account ID. This API uses an asy
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                                        |
+| Name  | Type                       | Mandatory | Description                                                                        |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------------- |
 | localId  | number                      | Yes  | ID of the target system account.                                                                |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the SN obtained. Otherwise, **err** is an error object.|
@@ -2758,7 +2764,7 @@ Obtains the SN of a system account based on the account ID. This API uses a prom
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description         |
+| Name | Type  | Mandatory | Description         |
 | ------- | ------ | ---- | ----------- |
 | localId | number | Yes  | ID of the target system account.|
 
@@ -2797,9 +2803,9 @@ Obtains the name of the system account of the caller. This API uses a promise to
 
 **Error codes**
 
-| ID| Error Message                    |
+| ID | Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 12300001 | System service exception.|
 
 **Example**
   ```ts
@@ -2818,35 +2824,35 @@ Obtains the name of the system account of the caller. This API uses a promise to
 
 ## OsAccountInfo
 
-Defines the system account information.
+Represents information about a system account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                        | Type                                                        | Mandatory| Description                             |
+| Name                        | Type                                                        | Mandatory | Description                             |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
-| localId                        | number                                                       | Yes  | ID of the target system account.                     |
-| localName                      | string                                                       | Yes  | System account name.                   |
-| type                           | [OsAccountType](#osaccounttype)                              | Yes  | System account type.                     |
-| constraints                    | Array&lt;string&gt;                                          | No  | System account [Constraints](#constraints). By default, no value is passed.|
-| isVerified<sup>(deprecated)</sup> | boolean                                                   | Yes  | Whether to verify the system account.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                    |
-| isUnlocked<sup>11+</sup>      | boolean                                                       | Yes  | Whether the account is unlocked (whether the **el2** directory is decrypted).                     |
-| photo<sup>8+</sup>             | string                                                       | No  | System account avatar. By default, no value is passed.                     |
+| localId                        | number                                                       | Yes  | ID of the system account.                     |
+| localName                      | string                                                       | Yes  | Name of the system account.                   |
+| type                           | [OsAccountType](#osaccounttype)                              | Yes  | Type of the system account.                     |
+| constraints                    | Array&lt;string&gt;                                          | Yes  | [Constraints](#constraints) of the system account. By default, no value is passed in.|
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | Yes  | Whether the account has been verified.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                    |
+| isUnlocked<sup>11+</sup>      | boolean                                                       | Yes  | Whether the account is unlocked (whether the **el2/** directory is decrypted).                     |
+| photo<sup>8+</sup>             | string                                                       | Yes  | Avatar of the system account. By default, no value is passed in.                     |
 | createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the system account was created.                 |
-| lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the system account. By default, no value is passed.         |
+| lastLoginTime<sup>8+</sup>     | number                                                       | Yes  | Last login time of the system account. By default, no value is passed in.         |
 | serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the system account.                     |
 | isActived<sup>(deprecated)</sup>         | boolean                                            | Yes  | Whether the system account is activated.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                 |
 | isActivated<sup>11+</sup>         | boolean                                                   | Yes  | Whether the system account is activated.                 |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the system account information is complete.             |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | No  | Distributed account information. By default, no value is passed.                   |
-| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | No  | Domain account information. By default, no value is passed.                       |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | Yes  | Distributed account information. By default, no value is passed in.                   |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | Yes  | Domain account information. By default, no value is passed in.                       |
 
 ## DomainAccountInfo<sup>8+</sup>
 
-Defines the domain account information.
+Represents information about a domain account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
@@ -2899,7 +2905,7 @@ Defines the domain account information.
 | constraint.parent.profile.app.linking | Disallow the app in the parent profile from handling web links from the managed profiles.|
 | constraint.audio.record | Disallow audio recording.|
 | constraint.camera.use | Disallow the use of cameras.|
-| constraint.os.account.background.run | Disallow background OS accounts.|
+| constraint.os.account.background.run | Disallow background system accounts.|
 | constraint.data.roam | Disallow the use of cellular data when roaming.|
 | constraint.os.account.set.icon | Disallow setting of user icons.|
 | constraint.wallpaper.set | Disallow setting of wallpapers.|
@@ -2909,7 +2915,7 @@ Defines the domain account information.
 | constraint.autofill | Disallow the use of the autofill service.|
 | constraint.content.capture | Disallow capturing of the screen content.|
 | constraint.content.suggestions | Disallow receiving of content suggestions.|
-| constraint.os.account.activate | Disallow activating of OS accounts in the foreground.|
+| constraint.os.account.activate | Disallow activating of system accounts in the foreground.|
 | constraint.location.set | Disallow setting of the location service.|
 | constraint.airplane.mode.set | Disallow setting of the airplane mode.|
 | constraint.brightness.set | Disallow setting of the brightness.|

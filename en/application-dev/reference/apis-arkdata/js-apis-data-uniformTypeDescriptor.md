@@ -37,8 +37,8 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP script.<br>This type belongs to **SHELL_SCRIPT**.       |
 | PYTHON_SCRIPT<sup>11+</sup>        | 'general.python-script'          | Python script.<br>This type belongs to **SHELL_SCRIPT**.    |
 | RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby script.<br>This type belongs to **SHELL_SCRIPT**.      |
-| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript source code.<br>This type belongs to **SCRIPT**.|
-| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript source code.<br>This type belongs to **SCRIPT**.|
+| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript source code.<br>This type belongs to **SCRIPT**. |
+| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript source code.<br>This type belongs to **SCRIPT**. |
 | C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | Header file in C.<br>This type belongs to **SOURCE_CODE**.         |
 | C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | Source code in C.<br>This type belongs to **SOURCE_CODE**.         |
 | C_PLUS_PLUS_HEADER<sup>11+</sup>             | 'general.c-plus-plus-header'               | Header file in C++.<br>This type belongs to **SOURCE_CODE**.       |
@@ -60,7 +60,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | BMP<sup>11+</sup>                       | 'com.microsoft.bmp'                 | BMP.<br>This type belongs to **IMAGE**.        |
 | ICO<sup>11+</sup>             | 'com.microsoft.ico'               | Windows icon.<br>This type belongs to **IMAGE**.        |
 | PHOTOSHOP_IMAGE<sup>11+</sup>         | 'com.adobe.photoshop-image'           | Adobe Photoshop image.<br>This type belongs to **IMAGE**.  |
-| AI_IMAGE<sup>11+</sup>        | 'com.adobe.illustrator.ai-image'          | Adobe Illustrator image (.ai).<br>This type belongs to **IMAGE**.|
+| AI_IMAGE<sup>11+</sup>        | 'com.adobe.illustrator.ai-image'          | Adobe Illustrator image (.ai).<br>This type belongs to **IMAGE**. |
 | FAX<sup>12+</sup>                         | 'general.fax'                    | Base type of the fax.<br>This type belongs to **IMAGE**.      |
 | JFX_FAX<sup>12+</sup>                         | 'com.j2.jfx-fax'                    | J2 jConnect fax file format.<br>This type belongs to **FAX**.      |
 | EFX_FAX<sup>12+</sup>                         | 'com.js.efx-fax'                    | EFX file format.<br>This type belongs to **FAX**.      |
@@ -69,16 +69,16 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | SGI_IMAGE<sup>12+</sup>                         | 'com.sgi.sgi-image'                    | Silicon Graphics image (SGI) format.<br>This type belongs to **IMAGE**.      |
 | OPENEXR_IMAGE<sup>12+</sup>                         | 'com.ilm.openexr-image'                    | OpenXR image format.<br>This type belongs to **IMAGE**.      |
 | FLASHPIX_IMAGE<sup>12+</sup>                         | 'com.kodak.flashpix.image'                    | FlashPix image format.<br>This type belongs to **IMAGE**.      |
-| WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word. <br>This type belongs to **COMPOSITE_OBJECT**.               |
-| EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel. <br>This type belongs to **COMPOSITE_OBJECT**.              |
-| PPT<sup>11+</sup>                        | 'com.microsoft.powerpoint.ppt'                  | Microsoft PowerPoint.<br>This type belongs to **COMPOSITE_OBJECT**.       |
+| WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word.<br>This type belongs to **COMPOSITE_OBJECT**.               |
+| EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel.<br>This type belongs to **COMPOSITE_OBJECT**.              |
+| PPT<sup>11+</sup>                        | 'com.microsoft.powerpoint.ppt'                  | Microsoft PowerPoint presentation format.<br>This type belongs to **COMPOSITE_OBJECT**.       |
 | PDF<sup>11+</sup>                        | 'com.adobe.pdf'                  | PDF.<br>This type belongs to **COMPOSITE_OBJECT**.                          |
 | POSTSCRIPT<sup>11+</sup>                       | 'com.adobe.postscript'                 | PostScript.<br>This type belongs to **COMPOSITE_OBJECT**.                   |
 | ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript.<br>This type belongs to **POSTSCRIPT**.        |
 | VIDEO       | 'general.video'           | Base video type.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | AVI<sup>11+</sup>        | 'general.avi'          | AVI.<br>This type belongs to **VIDEO**.              |
-| MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPGE-1 or MPGE-2.<br>This type belongs to **VIDEO**.    |
-| MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4.<br>This type belongs to **VIDEO**.           |
+| MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPEG-1 or MPEG-2.<br>This type belongs to **VIDEO**.    |
+| MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPEG-4.<br>This type belongs to **VIDEO**.           |
 | VIDEO_3GPP<sup>11+</sup>                        | 'general.3gpp'                  | 3GP (3GPP file format).<br>This type belongs to **VIDEO**.             |
 | VIDEO_3GPP2<sup>11+</sup>                        | 'general.3gpp2'                  | 3G2 (3GPP2 file format).<br>This type belongs to **VIDEO**.            |
 | WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | Windows WM format.<br>This type belongs to **VIDEO**.       |
@@ -106,7 +106,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | DIRECTORY<sup>11+</sup>             | 'general.directory'               | Base directory type.<br>This type belongs to **ENTITY**.                         |
 | FOLDER        | 'general.folder'           | Base folder type.<br>This type belongs to **DIRECTORY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                        |
 | SYMLINK<sup>11+</sup>        | 'general.symlink'          | Base symbolic type.<br>This type belongs to **ENTITY**.                       |
-| ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | Base archive file type. <br>This type belongs to **OBJECT**.                  |
+| ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | Base archive file type.<br>This type belongs to **OBJECT**.                  |
 | BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2.<br>This type belongs to **ARCHIVE**.          |
 | DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | Base type of any file that can be mounted as a volume.<br>This type belongs to **ARCHIVE**. |
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR.<br>This type belongs to ARCHIVE.          |
@@ -118,10 +118,10 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | OPENXML<sup>12+</sup>                         | 'org.openxmlformats.openxml'                    |   OpenXML base type.<br>This type belongs to **ARCHIVE**.      |
 | WORDPROCESSINGML_DOCUMENT<sup>12+</sup>                         | 'org.openxmlformats.wordprocessingml.document'                    | WordProcessingML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
 | SPREADSHEETML_SHEET<sup>12+</sup>                         | 'org.openxmlformats.spreadsheetml.sheet'                    | SpreadsheetML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
-| PRESENTATIONML_PRESENTATION<sup>12+</sup>                         | 'org.openxmlformats.presentationml.presentation'                    | PresentationML format. <br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
+| PRESENTATIONML_PRESENTATION<sup>12+</sup>                         | 'org.openxmlformats.presentationml.presentation'                    | PresentationML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
 | OPENDOCUMENT<sup>12+</sup>                         | 'org.oasis.opendocument'                    | OpenDocument format for Office applications.<br>This type belongs to **ARCHIVE**.      |
 | OPENDOCUMENT_TEXT<sup>12+</sup>                         | 'org.oasis.opendocument.text'                    | OpenDocument format for word processing (text) documents.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
-| OPENDOCUMENT_SPREADSHEET<sup>12+</sup>                         | 'org.oasis.opendocument.spreadsheet'                    | OpenDocument format for spreadsheets. <br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
+| OPENDOCUMENT_SPREADSHEET<sup>12+</sup>                         | 'org.oasis.opendocument.spreadsheet'                    | OpenDocument format for spreadsheets.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
 | OPENDOCUMENT_PRESENTATION<sup>12+</sup>                         | 'org.oasis.opendocument.presentation'                    | OpenDocument format for presentations.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
 | OPENDOCUMENT_GRAPHICS<sup>12+</sup>                         | 'org.oasis.opendocument.graphics'                    | OpenDocument format for graphics.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
 | OPENDOCUMENT_FORMULA<sup>12+</sup>                         | 'org.oasis.opendocument.formula'                    | OpenDocument format for formula.<br>This type belongs to **OPENDOCUMENT**.      |
@@ -138,7 +138,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | VCARD<sup>11+</sup>             | 'general.vcard'               | Base electronic business card type.<br>This type belongs to **OBJECT**.                    |
 | NAVIGATION<sup>11+</sup>         | 'general.navigation'           | Base navigation data type.<br>This type belongs to **OBJECT**.                      |
 | LOCATION<sup>11+</sup>        | 'general.location'          | Location data.<br>This type belongs to **NAVIGATION**.           |
-| FONT<sup>12+</sup>                         | 'general.font'                    | Basic type of fonts. <br>This type belongs to **OBJECT**.      |
+| FONT<sup>12+</sup>                         | 'general.font'                    | Basic type of fonts.<br>This type belongs to **OBJECT**.      |
 | TRUETYPE_FONT<sup>12+</sup>                         | 'general.truetype-font'                    | TrueType font format.<br>This type belongs to **FONT**.      |
 | TRUETYPE_COLLECTION_FONT<sup>12+</sup>                         | 'general.truetype-collection-font'                    | TrueType Collection font format.<br>This type belongs to **FONT**.      |
 | OPENTYPE_FONT<sup>12+</sup>                         | 'general.opentype-font'                    | OpenType font format.<br>This type belongs to **FONT**.      |
@@ -165,9 +165,9 @@ Provides attributes and APIs for describing a uniform data type and its relation
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name   | Type                   | Readable| Writable| Description                                                      |
+| Name   | Type                   | Readable | Writable | Description                                                      |
 | ------- | ----------------------- | ---- | ---- |----------------------------------------------------------|
-| typeId<sup>11+</sup>     | string | Yes  | No  | ID of the uniform data type, which is a value of [UniformDataType](#uniformdatatype).|
+| typeId<sup>11+</sup>     | string | Yes  | No  | ID of the uniform data type, which is a value of [UniformDataType](#uniformdatatype). |
 | belongingToTypes<sup>11+</sup>  | Array\<string>          | Yes  | No  | Data types to which the uniform data type belongs.                                  |
 | description<sup>11+</sup>     | string                  | Yes  | No  | Brief description of the uniform data type.                                           |
 | referenceURL<sup>11+</sup>     | string                  | Yes  | No  | URL of the link to the reference (detailed information) of the uniform data type.                           |
@@ -185,7 +185,7 @@ Checks whether this data type belongs to the specified uniform data type.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
@@ -193,13 +193,13 @@ Checks whether this data type belongs to the specified uniform data type.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if this data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related.|
+| boolean | Returns **true** if this data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                               |
+| **ID** | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -231,7 +231,7 @@ Checks whether this data type is a lower-level type of the specified uniform dat
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
@@ -245,7 +245,7 @@ Checks whether this data type is a lower-level type of the specified uniform dat
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                               |
+| **ID** | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -277,7 +277,7 @@ Checks whether this data type is a higher-level type of the specified uniform da
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
@@ -291,7 +291,7 @@ Checks whether this data type is a higher-level type of the specified uniform da
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                               |
+| **ID** | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -323,7 +323,7 @@ Checks whether this data type is the same as the specified uniform data type. Th
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | typeDescriptor    | [TypeDescriptor](#typedescriptor11)  | Yes   |Uniform data type to compare.  |
 
@@ -331,13 +331,13 @@ Checks whether this data type is the same as the specified uniform data type. Th
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the type IDs are the same; returns **false** otherwise.|
+| boolean | Returns **true** if the type IDs are the same; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                               |
+| **ID** | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -369,7 +369,7 @@ Obtains the **TypeDescriptor** object based on the uniform data type ID.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | typeId    | string  | Yes   |ID of the uniform data type.  |
 
@@ -383,7 +383,7 @@ Obtains the **TypeDescriptor** object based on the uniform data type ID.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                               |
+| **ID** | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -423,7 +423,7 @@ Obtains the uniform data type ID based on the given file name extension and data
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | filenameExtension    | string  | Yes   |File name extension.  |
 | belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the file name extension.  |
@@ -438,7 +438,7 @@ Obtains the uniform data type ID based on the given file name extension and data
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                               |
+| **ID** | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -480,7 +480,7 @@ Obtains the uniform data type ID based on the given MIME type and data type.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
+| Name | Type | Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | mimeType    | string  | Yes   |MIME type.  |
 | belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the MIME type.  |
@@ -495,7 +495,7 @@ Obtains the uniform data type ID based on the given MIME type and data type.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID**| **Error Message**                               |
+| **ID** | **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 

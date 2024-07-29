@@ -945,6 +945,7 @@
       - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
       - [编辑图片EXIF信息](media/image/image-tool.md)
     - 图片开发指导(C/C++)
+      - [介绍Image_NativeModule结构体信息](media/image/image-structure-c.md)
       - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
       - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
       - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
@@ -1052,8 +1053,8 @@
       - [使用MediaAssetManager请求图片资源(C/C++)](media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md)
   - MindSpore Lite Kit（昇思推理框架服务）
     - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
-    - [使用MindSpore Lite开发AI应用](ai/mindspore/mindspore-guidelines-based-js.md)
-    - [使用MindSpore Lite开发AI应用 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
+    - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
+    - [使用MindSpore Lite实现图像分类 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
     - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
     - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
     - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
@@ -1121,11 +1122,9 @@
           - 踩内存事件
             - [踩内存事件介绍](dfx/hiappevent-watcher-address-sanitizer-events.md)
             - [订阅踩内存事件（ArkTS）](dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
-            - [订阅踩内存事件（C/C++）](dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
           - 主线程超时事件
             - [主线程超时事件介绍](dfx/hiappevent-watcher-mainthreadjank-events.md)
             - [订阅主线程超时事件（ArkTS）](dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
-            - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
       <!--Del-->
       - [事件上报](dfx/hiappevent-event-reporting.md)
       <!--DelEnd-->
@@ -1339,6 +1338,68 @@
       - [OpenHarmony ABI](napi/ohos-abi.md)
       - [CPU特性](napi/cpu-features.md)
       - [使用Neon指令扩展](napi/neon-guide.md)
+  <!--Del-->
+  - 性能
+    - [性能优化概览](performance/performance-overview.md)
+    - [应用开发性能优化入门引导](performance/application-performance-optimization-guidance.md)
+    - [应用性能优化常见问题解决指导](performance/performance-optimization-practical-guidance.md)
+    - ArkTS高性能编程
+      - [高效并发编程](performance/efficient-concurrent-programming.md)
+      - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+      - [多线程能力场景化](performance/multi_thread_capability.md)
+      - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
+      - [避免开发过程中的冗余操作](performance/avoiding-redundant-operations.md)      
+      - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](performance/native_drawing_substitute_canvas.md)
+      - [使用AOT进行性能优化](performance/performance-optimization-using-aot.md)
+    - 减少卡顿丢帧
+      - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
+      - [组件复用使用指导](performance/component-recycle.md)
+      - [组件复用总览](performance/component-reuse-overview.md)
+      - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
+      - [Swiper高性能开发指导](performance/swiper_optimization.md)
+      - [合理进行状态管理](performance/proper_state_management.md)
+      - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
+      - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
+      - [合理使用动画](performance/reasonable-using-animation.md)
+      - [合理使用多线程共享内存](performance/thread_memory_shared.md)
+      - [Grid高性能开发指导](performance/grid_optimization.md)
+      - [合理使用自定义组件冻结功能](performance/custom_component_freeze.md)
+      - [避免在滑动场景的高频回调接口中处理耗时操作](performance/avoid_high_frequency_callback_execute_lengthy_operation.md)
+      - [合理使用系统提供的接口](performance/reasonable_using_system_interfaces.md)
+      - [避免在主线程中执行耗时操作](performance/avoid_time_consuming_operations_in_mainthread.md)
+      - [模糊场景性能优化](performance/fuzzy_scene_performance_optimization.md)
+    - 提升应用启动和响应速度
+      - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
+      - [提升应用响应速度](performance/improve-application-response.md)
+      - [Flex布局性能提升使用指导](performance/flex-development-performance-boost.md)
+      - [优化布局性能](performance/reduce-view-nesting-levels.md)
+      - [合理选择条件渲染和显隐控制](performance/proper-choice-between-if-and-visibility.md)
+      - [合理使用IPC通信](performance/reasonable-using-ipc.md)
+      - [文件上传下载性能提升指导](performance/improve-file-upload-and-download-performance.md)
+      - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
+      - [列表场景性能提升实践](performance/list-perf-improvment.md)
+      - [动效能力实践](performance/animation_practice.md)
+      - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
+      - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
+      - [合理运行后台任务](performance/reasonable-running-backgroundTask.md)
+      - [Web组件开发性能提升指导](performance/performance-web-import.md)
+      - [使用同层渲染在Web上渲染原生组件](performance/webview-render-app-components.md)
+      - [合理处理高负载组件的渲染](performance/reasonably-dispose-highly-loaded-component-render.md)
+      - [全局自定义组件复用实现](performance/node_custom_component_reusable_pool.md)
+      - [减小应用包大小](performance/reduce-package-size.md)
+      - [使用ArkUI的FrameNode扩展实现动态布局类框架](performance/imperative_dynamic_layouts.md)
+      - [ArrayBuffer序列化和转移](performance/thread_data_transfer.md)
+    - 性能工具
+      - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
+      - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
+      - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
+      - [常用trace使用指导](performance/common-trace-using-instructions.md)
+      - [状态变量组件定位工具实践](performance/state_variable_dfx_pratice.md)
+      - [时延类性能问题分析实践](performance/delay_related_performance.md)
+      - [Web性能问题分析案例](performance/web-analyse.md)
+      - [应用性能问题分析指导](performance/application-performance-guide.md)
+      - [页面布局检查器ArkUI Inspector](performance/arkUI-inspector.md)
+  <!--DelEnd-->
 - 工具
   - 调测调优
     - [aa工具](tools/aa-tool.md)
@@ -2687,9 +2748,8 @@
         - [@ohos.commonEvent (公共事件模块)(系统接口)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
         - [@ohos.systemParameter (系统属性)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)
-        - [@ohos.systemTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
         <!--DelEnd-->
-        - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-time.md)
+        - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
     - C API<!--basic-services-c-->
       - 模块<!--basic-services-module-->
         - [OsAccount](reference/apis-basic-services-kit/_os_account.md)

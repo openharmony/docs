@@ -56,19 +56,12 @@ A shared module complies with the following restrictions:
     // Declare the current module as a shared module. Only sendable data can be exported.
     "use shared"
 
-    export { SingletonA }
-    
     // Shared module. SingletonA is globally unique.
     @Sendable
     class SingletonA {
-      private static instance: SingletonA = new SingletonA;
       private count_: number = 0;
       lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
-    
-      public static getInstance(): SingletonA {
-        return SingletonA.instance;
-      }
-    
+
       public async getCount(): Promise<number> {
         return this.lock_.lockAsync(() => {
           return this.count_;
@@ -81,24 +74,43 @@ A shared module complies with the following restrictions:
         })
       }
     }
+
+    export let singletonA = new SingletonA();
     ```
 
 2. Operate the object exported from the shared module in multiple threads.
 
     ```ts
-    import taskpool from '@ohos.taskpool';
-    import { SingletonA } from './sharedModule'
+    import { ArkTSUtils, taskpool } from '@kit.ArkTS';
+    import { singletonA } from './sharedModule'
     
-    let sig: SingletonA = SingletonA.getInstance();
-    
-    @Concurrent
-    async function test2(sig: SingletonA) {
-      console.info("sendable: taskpool count is:" + await sig.getCount());
-      let n = Date.now();
-      // Wait for 1000 us to simulate the actual service.
-      while (Date.now() - n < 1000) {
-    
+    @Sendable
+    export class A {
+      private count_: number = 0;
+      lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
+
+      public async getCount(): Promise<number> {
+        return this.lock_.lockAsync(() => {
+          return this.count_;
+        })
       }
+    
+      public async increaseCount() {
+        await this.lock_.lockAsync(() => {
+          this.count_++;
+        })
+      }
+    }
+
+    @Concurrent
+    async function increaseCount() {
+      await singletonA.increaseCount();
+      console.info("SharedModule: count is:" + await singletonA.getCount());
+    }
+
+    @Concurrent
+    async function printCount() {
+      console.info("SharedModule: count is:" + await singletonA.getCount());
     }
     
     @Entry
@@ -109,16 +121,21 @@ A shared module complies with the following restrictions:
       build() {
         Row() {
           Column() {
-            Button("MainThread")
+            Button("MainThread print count")
               .onClick(async () => {
-                // The main thread calls singletons sig.incrementCount() and fetchCount().
-                sig.increaseCount();
-                console.info("sendable: main thread count is:" + await sig.getCount());
+                await printCount()
               })
-            Button("TaskpoolTest")
+            Button("Taskpool print count")
               .onClick(async () => {
-                let task = new taskpool.Task(test2, sig);
-                await taskpool.execute(task);
+                await taskpool.execute(printCount);
+              })
+            Button("MainThread increase count")
+              .onClick(async () => {
+                await increaseCount()
+              })
+            Button("Taskpool increase count")
+              .onClick(async () => {
+                await taskpool.execute(increaseCount);
               })
           }
           .width('100%')

@@ -5,7 +5,7 @@
 The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-connection.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-connection.md).
 
 ## Basic Concepts
 
@@ -71,7 +71,7 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
 This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
-1. Import the connection namespace from **@ohos.net.connection.d.ts**.
+1. Import the **connection** namespace from **@kit.NetworkKit**.
 
 2. Call **createNetConnection()** to create a **NetConnection** object. You can specify the network type, capability, and timeout interval. If you do not specify parameters, the default values will be used. 
 
@@ -85,8 +85,8 @@ This permission is of the **normal** level. Before applying for the permission, 
 
 ```ts
 // Import the connection namespace.
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netSpecifier: connection.NetSpecifier = {
   netCapabilities: {
@@ -105,7 +105,7 @@ let conn = connection.createNetConnection(netSpecifier, timeout);
 
 // Register an observer for network status changes.
 conn.register((err: BusinessError, data: void) => {
-  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(err));
 });
 
 // Listen to network status change events. If the network is available, an on_netAvailable event is returned.
@@ -130,14 +130,14 @@ conn.unregister((err: BusinessError, data: void) => {
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
 This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
-2. Import the connection namespace from **@ohos.net.connection.d.ts**.
+2. Import the **connection** namespace from **@kit.NetworkKit**.
 
 3. Call **getAllNets** to obtain the list of all connected networks.
 
 ```ts
 // Import the connection namespace.
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Construct a singleton object.
 export class GlobalContext {
@@ -163,13 +163,12 @@ export class GlobalContext {
 }
 
 // Obtain the list of all connected networks.
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getAllNets().then((data: connection.NetHandle[]) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
   }
-})
+});
 ```
 
 ## Querying Network Capability Information and Connection Information of Specified Data Network
@@ -179,7 +178,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
 This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
-2. Import the connection namespace from **@ohos.net.connection.d.ts**.
+2. Import the **connection** namespace from **@kit.NetworkKit**.
 
 3. Call **getDefaultNet** to obtain the default data network via **NetHandle** or call **getAllNets** to obtain the list of all connected networks via **Array\<NetHandle>**.
 
@@ -188,8 +187,8 @@ This permission is of the **normal** level. Before applying for the permission, 
 5. Call **getConnectionProperties** to obtain the connection information of the data network specified by **NetHandle**.
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Construct a singleton object.
 export class GlobalContext {
@@ -216,15 +215,13 @@ export class GlobalContext {
 }
 
 // Call getDefaultNet to obtain the default data network specified by **NetHandle**.
-connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getDefaultNet().then((data:connection.NetHandle) => {
   if (data) {
+    console.info("getDefaultNet get data: " + JSON.stringify(data));
     GlobalContext.getContext().netHandle = data;
-
     // Obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type and specific network capabilities.
-    connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
-      console.log(JSON.stringify(err));
+    connection.getNetCapabilities(GlobalContext.getContext().netHandle).then((data: connection.NetCapabilities) => {
+      console.info("getNetCapabilities get data: " + JSON.stringify(data));
 
       // Obtain the network type via bearerTypes.
       let bearerTypes: Set<number> = new Set(data.bearerTypes);
@@ -268,15 +265,13 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
 })
 
 // Obtain the connection information of the data network specified by NetHandle. Connection information includes link and route information.
-connection.getConnectionProperties(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getConnectionProperties(GlobalContext.getContext().netHandle).then((data: connection.ConnectionProperties) => {
+  console.info("getConnectionProperties get data: " + JSON.stringify(data));
 })
 
 // Call getAllNets to obtain the list of all connected networks via Array<NetHandle>.
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getAllNets().then((data: connection.NetHandle[]) => {
+  console.info("getAllNets get data: " + JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
 
@@ -284,15 +279,13 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
     let dataNumber = Array.from(itemNumber.values());
     for (let item of dataNumber) {
       // Obtain the network capability information of the network specified by each netHandle on the network list cyclically.
-      connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(data));
+      connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
+        console.info("getNetCapabilities get data: " + JSON.stringify(data));
       })
 
       // Obtain the connection information of the network specified by each netHandle on the network list cyclically.
-      connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(data));
+      connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
+        console.info("getConnectionProperties get data: " + JSON.stringify(data));
       })
     }
   }
@@ -306,18 +299,17 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 1. Declare the required permission: **ohos.permission.INTERNET**.
 This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
-2. Import the connection namespace from **@ohos.net.connection.d.ts**.
+2. Import the **connection** namespace from **@kit.NetworkKit**.
 
 3. Call **getAddressesByName** to use the default network to resolve the host name to obtain the list of all IP addresses.
 
 ```ts
 // Import the connection namespace.
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Use the default network to resolve the host name to obtain the list of all IP addresses.
-connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
-})
+connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
+});
 ```

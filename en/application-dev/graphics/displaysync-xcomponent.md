@@ -1,6 +1,6 @@
 # Requesting Frame Rates for Custom Content
 
-When you use native APIs to develop an application based on the [\<XComponent>](../ui/arkts-common-components-xcomponent.md), you can request an independent frame rate for custom content in scenarios such as gaming and custom UI framework interconnection.
+When you use native APIs to develop an application based on the [XComponent](../ui/arkts-common-components-xcomponent.md), you can request an independent frame rate for custom content in scenarios such as gaming and custom UI framework interconnection.
 
 ## Available APIs
 

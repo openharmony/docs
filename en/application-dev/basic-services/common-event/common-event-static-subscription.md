@@ -2,9 +2,11 @@
 
 ## When to Use
 
-A static subscriber is started once it receives a target event published by the system or application. At the same time, the [`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) callback is triggered, in which you can implement the service logic. For example, if an application needs to execute some initialization tasks during device power-on, the application can subscribe to the power-on event in static mode. After receiving the power-on event, the application is started to execute the initialization tasks.
+A static subscriber is started once it receives a target event published by the system or application. At the same time, the [onReceiveEvent()](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) callback is triggered,
 
-Subscribing to a common event in static mode is achieved by configuring a declaration file and implementing a class that inherits from [StaticSubscriberExtensionAbility](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md).
+in which you can implement the service logic. For example, if an application needs to execute some initialization tasks during device power-on, the application can subscribe to the power-on event in static mode. After receiving the power-on event, the application is started to execute the initialization tasks.
+
+Subscribing to a common event in static mode is achieved by configuring a declaration file and implementing a class that inherits from [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md).
 
 > **NOTE**
 >
@@ -16,19 +18,18 @@ Subscribing to a common event in static mode is achieved by configuring a declar
 
    To declare a static subscriber, create an ExtensionAbility, which is derived from the **StaticSubscriberExtensionAbility** class, in the project.
 
-   You can implement service logic in the [**onReceiveEvent()**](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) callback.
+   You can implement service logic in the [`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) callback.
 
    ```ts
-   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-   import type commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
-   
+   import { commonEventManager, StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
    const TAG: string = 'StaticSubscriber';
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
      onReceiveEvent(event: commonEventManager.CommonEventData): void {
-       Logger.info(TAG, 'onReceiveEvent, event: ' + event.event);
-       ...
+       console.info(TAG, 'onReceiveEvent, event: ' + event.event);
+       //...
      }
    }
    ```
@@ -64,7 +65,7 @@ Subscribing to a common event in static mode is achieved by configuring a declar
 
    Some fields in the file are described as follows:
 
-   - **srcEntry **: entry file path of the ExtensionAbility, that is, the file path of the static subscriber declared in Step 2.
+   - **srcEntry**: entry file path of the ExtensionAbility, that is, the file path of the static subscriber declared in Step 2.
 
    - **type**: ExtensionAbility type. For a static subscriber, set this field to **staticSubscriber**.
 
@@ -95,10 +96,10 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    - **permission**: permission required for the publisher. If a publisher without the required permission attempts to publish an event, the event is regarded as invalid and will not be published.
    - **events**: list of target events to subscribe to.
 
-4. Modify the [preset configuration file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json) of the device, that is, the **/system/etc/app/install_list_capability.json** file on the device. When the device is started, this file is read. During application installation, the common event type specified by **allowCommonEvent** in the file is authorized. The **install_list_capability.json** file contains the following fields:
+4. Modify the [preset configuration file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json) of the device, that is, the **/system/variant/phone/base/etc/app/install_list_capability.json** file on the device. When the device is started, this file is read. During application installation, the common event type specified by **allowCommonEvent** in the file is authorized. The **install_list_capability.json** file contains the following fields:
 
    - **bundleName**: bundle name of the application.
-   - **app_signature**: fingerprint information of the application. For details, see [Configuration in install_list_capability.json](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson).
+   - **app_signature**: fingerprint information of the application. For details about how to configure fingerprint information, see [Application Privilege Configuration Guide](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson).
    - **allowCommonEvent**: type of common event that can be started by static broadcast.
 
    ```json
@@ -116,4 +117,8 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    >
    > The **install_list_capability.json** file is available only for preinstalled applications.
 
- <!--no_check--> 
+## Samples
+
+For details about how to develop StaticSubscriberExtensionAbility, see the following sample:
+
+- [Static Subscription (ArkTS) (Full SDK) (API10)] (https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/StaticSubscriber)

@@ -1,4 +1,4 @@
-# \@Extend Decorator: Extension of Built-in Components
+# \@Extend Decorator: Extending Built-in Components
 
 
 Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which allows you to add a new attribute feature to a built-in component.
@@ -7,9 +7,10 @@ Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which al
 > **NOTE**
 >
 > Since API version 9, this decorator is supported in ArkTS widgets.
+>
+> This decorator can be used in atomic services since API version 11.
 
-
-## Rules of Use
+## How to Use
 
 
 ### Syntax
@@ -31,7 +32,7 @@ Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which al
 - Unlike \@Styles, \@Extend can encapsulate private attributes, private events, and custom global methods of specified components.
 
   ```ts
-  // @Extend(Text) supports the private attribute fontColor of the <Text> component.
+  // @Extend(Text) supports the private attribute fontColor of the Text component.
   @Extend(Text) function fancy () {
     .fontColor(Color.Red)
   }
@@ -119,7 +120,7 @@ Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which al
 
 ## Use Scenarios
 
-The following example declares three **\<Text>** components. The **fontStyle**, **fontWeight**, and **backgroundColor** styles are set for each **\<Text>** component.
+The following example declares three **Text** components. The **fontStyle**, **fontWeight**, and **backgroundColor** styles are set for each **Text** component.
 
 
 ```ts

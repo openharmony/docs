@@ -6,7 +6,7 @@ This topic walks you through on how to query key aliases.
 
 ## How to Develop
 
-1. Initialize the key property set. 
+1. Initialize the key property set.
 
    Set the tag for querying the key aliases. The tag can only be **HUKS_TAG_AUTH_STORAGE_LEVEL**.
 
@@ -16,7 +16,7 @@ This topic walks you through on how to query key aliases.
 /*
  * The following example uses promise-based APIs to query key aliases.
  */
-import { huks } from "@kit.UniversalKeystoreKit"
+import { huks } from '@kit.UniversalKeystoreKit'
 
 async function testListAliases() {
   /* 1. Initialize the key property set. */

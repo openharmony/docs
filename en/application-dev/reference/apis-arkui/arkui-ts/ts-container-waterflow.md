@@ -1,7 +1,7 @@
 # WaterFlow
 
 
-The **\<WaterFlow>** component is a container that consists of cells formed by rows and columns and arranges items of different sizes from top to bottom according to the preset rules.
+The **WaterFlow** component is a container that consists of cells formed by rows and columns and arranges items of different sizes from top to bottom according to the preset rules.
 
 
 > **NOTE**
@@ -27,7 +27,7 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options |  [WaterFlowOptions](#waterflowoptions)| Yes| Parameters of the **\<WaterFlow>** component.|
+| options |  [WaterFlowOptions](#waterflowoptions)| Yes| Parameters of the **WaterFlow** component.|
 
 
 ## WaterFlowOptions
@@ -35,8 +35,8 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | Name    | Type                                       | Mandatory| Description                                    |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
-| footer |  [CustomBuilder](ts-types.md#custombuilder8) | No  | Footer of the **\<WaterFlow>** component. |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [\<Grid>](ts-container-grid.md), or [\<Scroll>](ts-container-scroll.md).|
+| footer |  [CustomBuilder](ts-types.md#custombuilder8) | No  | Footer of the **WaterFlow** component. |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [List](ts-container-list.md), [Grid](ts-container-grid.md), or [Scroll](ts-container-scroll.md).|
 
 
 ## Attributes
@@ -56,10 +56,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
 | cachedCount<sup>11+</sup> | number | Number of items to be cached. This attribute is effective only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md).<br> Default value: **1**<br>**NOTE**<br>Items<br>that exceed the display and cache range are released.<br>A value less than 0 evaluates to the default value.|
-| scrollBar<sup>11+</sup>            | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**<br>**NOTE**<br>Until the layout of the **\<WaterFlow>** component is complete, the position and length of the scrollbar are subject to the total height and current offset of the items that have been laid out.|
+| scrollBar<sup>11+</sup>            | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**<br>**NOTE**<br>Until the layout of the **WaterFlow** component is complete, the position and length of the scrollbar are subject to the total height and current offset of the items that have been laid out.|
 | scrollBarWidth<sup>11+</sup> | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>If the width of the scrollbar exceeds its height, it will change to the default value.|
 | scrollBarColor<sup>11+</sup> | string \| number \| [Color](ts-appendix-enums.md#color)   | Color of the scrollbar.|
-| edgeEffect<sup>11+</sup>     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11)        | Effect used at the edges of the component when the boundary of the scrollable content is reached.<br>\- **value**: effect used at the edges of the **\<WaterFlow>** component when the boundary of the scrollable content is reached. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>\- **options**: whether to enable the scroll effect when the component content size is smaller than the component itself.<br>Default value: **false**|
+| edgeEffect<sup>11+</sup>     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11)        | Effect used at the edges of the component when the boundary of the scrollable content is reached.<br>\- **value**: effect used at the edges of the **WaterFlow** component when the boundary of the scrollable content is reached. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>\- **options**: whether to enable the scroll effect when the component content size is smaller than the component itself.<br>Default value: **false**|
 
 The priority of **layoutDirection** is higher than that of **rowsTemplate** and **columnsTemplate**. Depending on the **layoutDirection** settings, there are three layout modes:
 
@@ -95,11 +95,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 ## Example
 
 ### Example 1
-Basic usage of **\<WaterFlow>**:
+Basic usage of **WaterFlow**:
 ```ts
 // WaterFlowDataSource.ets
 
-// Object that implements the IDataSource API, which is used by the <WaterFlow> component to load data.
+// Object that implements the IDataSource API, which is used by the WaterFlow component to load data.
 export class WaterFlowDataSource implements IDataSource {
   private dataArray: number[] = []
   private listeners: DataChangeListener[] = []

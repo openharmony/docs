@@ -14,7 +14,7 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 class EntryAbility extends AccessibilityExtensionAbility {
   onConnect(): void {
@@ -49,8 +49,8 @@ enableScreenCurtain(isEnable: boolean): void;
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 

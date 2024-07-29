@@ -1,17 +1,17 @@
 # ListItemGroup
 
-The **\<ListItemGroup>** component is used to display list item groups. It must be used with the **[\<List>](ts-container-list.md)** component and, if not otherwise specified, takes up the entire width of the **\<List>**.
+The **ListItemGroup** component is used to display list item groups. It must be used with the **[List](ts-container-list.md)** component and, if not otherwise specified, takes up the entire width of the **List**.
 
 > **NOTE**
 >
 > - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
-> - This component can be used only as a child of [\<List>](ts-container-list.md).
+> - This component can be used only as a child of [List](ts-container-list.md).
 
 ## Usage Guidelines
 
-If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Vertical**, the **height** attribute of the **\<ListItemGroup>** component is fixed at the sum of the component's header height, footer height, and total height of the list items. If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Horizontal**, the **width** attribute of the **\<ListItemGroup>** component is fixed at the sum of the component's header width, footer width, and total width of the list items.
+If the **listDirection** attribute of the parent **List** component is set to **Axis.Vertical**, the **height** attribute of the **ListItemGroup** component is fixed at the sum of the component's header height, footer height, and total height of the list items. If the **listDirection** attribute of the parent **List** component is set to **Axis.Horizontal**, the **width** attribute of the **ListItemGroup** component is fixed at the sum of the component's header width, footer width, and total width of the list items.
 
-The list items in the **\<ListItemGroup>** component cannot be edited or dragged. That is, their **editable** attribute does not take effect.
+The list items in the **ListItemGroup** component cannot be edited or dragged. That is, their **editable** attribute does not take effect.
 
 ## Child Components
 
@@ -35,7 +35,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 | header              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Header of the list item group.<br>**NOTE**<br>One child component, or no child component at all, can be placed inside.              |
 | footer              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Footer of the list item group.<br>**NOTE**<br>One child component, or no child component at all, can be placed inside.              |
 | space               | number \| string                          | No  | Spacing between list items. This parameter is valid only between list items, but not between the header and list item or between the footer and list item.|
-| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **\<List>** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group.<br>If **ListItemGroupStyle.CARD** is set and **ListItemStyle.CARD** is not, only some card styles and functions are available.|
+| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **List** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group.<br>If **ListItemGroupStyle.CARD** is set and **ListItemStyle.CARD** is not, only some card styles and functions are available.|
 
 ## Attributes
 
@@ -71,11 +71,11 @@ Sets the style of the divider for the list items. By default, there is no divide
 
 > **NOTE**
 >
-> The **\<ListItemGroup>** component does not support the universal attribute [aspectRatio](ts-universal-attributes-layout-constraints.md).
+> The **ListItemGroup** component does not support the universal attribute [aspectRatio](ts-universal-attributes-layout-constraints.md).
 >
-> If the main axis of **\<ListItemGroup>** runs in the vertical direction, the [height](ts-universal-attributes-size.md) setting does not take effect.
+> If the main axis of **ListItemGroup** runs in the vertical direction, the [height](ts-universal-attributes-size.md) setting does not take effect.
 >
-> If the main axis of **\<ListItemGroup>** runs in the horizontal direction, the [width](ts-universal-attributes-size.md) setting does not take effect.
+> If the main axis of **ListItemGroup** runs in the horizontal direction, the [width](ts-universal-attributes-size.md) setting does not take effect.
 
 
 ## Example

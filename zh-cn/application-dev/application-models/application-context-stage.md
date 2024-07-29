@@ -27,7 +27,7 @@
      
      > **说明：**
      >
-     > 页面中获取UIAbility实例的上下文信息请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
+     > 页面中获取UIAbility实例的上下文信息请参见[获取UIAbility的上下文信息](./uiability-usage.md#获取uiability的上下文信息)。
   - 获取特定场景[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。以ServiceExtensionContext为例，表示后台服务的上下文环境，继承自ExtensionContext，提供后台服务相关的接口能力。
     
     ```ts
@@ -112,27 +112,38 @@
     private context = getContext(this) as common.UIAbilityContext;
 
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let applicationContext = this.context.getApplicationContext();
-          let cacheDir = applicationContext.cacheDir;
-          let tempDir = applicationContext.tempDir;
-          let filesDir = applicationContext.filesDir;
-          let databaseDir = applicationContext.databaseDir;
-          let bundleCodeDir = applicationContext.bundleCodeDir;
-          let distributedFilesDir = applicationContext.distributedFilesDir;
-          let preferencesDir = applicationContext.preferencesDir;
-          let cloudFileDir = applicationContext.cloudFileDir;
-          // 获取应用文件路径
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-            message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let applicationContext = this.context.getApplicationContext();
+              let cacheDir = applicationContext.cacheDir;
+              let tempDir = applicationContext.tempDir;
+              let filesDir = applicationContext.filesDir;
+              let databaseDir = applicationContext.databaseDir;
+              let bundleCodeDir = applicationContext.bundleCodeDir;
+              let distributedFilesDir = applicationContext.distributedFilesDir;
+              let preferencesDir = applicationContext.preferencesDir;
+              let cloudFileDir = applicationContext.cloudFileDir;
+              // 获取应用文件路径
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -166,26 +177,37 @@
     private context = getContext(this) as common.UIAbilityContext;
 
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let cacheDir = this.context.cacheDir;
-          let tempDir = this.context.tempDir;
-          let filesDir = this.context.filesDir;
-          let databaseDir = this.context.databaseDir;
-          let bundleCodeDir = this.context.bundleCodeDir;
-          let distributedFilesDir = this.context.distributedFilesDir;
-          let preferencesDir = this.context.preferencesDir;
-          let cloudFileDir = this.context.cloudFileDir;
-          // 获取应用文件路径
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-              message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let cacheDir = this.context.cacheDir;
+              let tempDir = this.context.tempDir;
+              let filesDir = this.context.filesDir;
+              let databaseDir = this.context.databaseDir;
+              let bundleCodeDir = this.context.bundleCodeDir;
+              let distributedFilesDir = this.context.distributedFilesDir;
+              let preferencesDir = this.context.preferencesDir;
+              let cloudFileDir = this.context.cloudFileDir;
+              // 获取应用文件路径
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -299,7 +321,7 @@ struct Page_Context {
 import { AbilityConstant, AbilityLifecycleCallback, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-import  { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[LifecycleAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -361,9 +383,10 @@ export default class LifecycleAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
-    };
+    }
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
+
   //...
   onDestroy(): void {
     // 获取应用上下文
@@ -375,7 +398,7 @@ export default class LifecycleAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
-    };
+    }
   }
 }
 ```

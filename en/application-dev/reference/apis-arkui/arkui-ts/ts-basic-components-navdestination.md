@@ -1,6 +1,6 @@
 # NavDestination
 
-**\<NavDestination>** is the root container of a destination page and represents the content area of the [\<Navigation>](ts-basic-components-navigation.md) component.
+**NavDestination** is the root container of a destination page and represents the content area of the [Navigation](ts-basic-components-navigation.md) component.
 
 > **NOTE**
 >
@@ -8,13 +8,16 @@
 >
 > Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
 >
-> **\<NavDestination>** must be used together with **\<Navigation>** as the root node of its destination page.
+> **NavDestination** must be used together with **Navigation** as the root node of its destination page.
+>
+> If the lifecycle of a page in the middle of the navigation stack changes, the lifecycle of the destination page at the top of the stack before the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) and the lifecycle of the destination page after the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) are both triggered at the end.
 
 ## Child Components
 
-Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
-
-Number of child components: multiple.
+> **NOTE**
+>
+> - Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+> - Number of child components: multiple.
 
 
 ## APIs
@@ -25,11 +28,13 @@ NavDestination()
 
 ## Attributes
 
-In addition to the [backgroundColor](ts-universal-attributes-background.md#backgroundcolor) attribute, the following attributes are supported.
+The [universal attributes](ts-universal-attributes-size.md) are supported.
+
+You are not advised to set layout-related attributes such as the position and size. Otherwise, the page may be displayed abnormally.
 
 ### title
 
-title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle)
+title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle, options?: NavigationTitleOptions)
 
 Sets the page title. When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect. When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).
 
@@ -37,11 +42,12 @@ Sets the page title. When the NavigationCustomTitle type is used to set the heig
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description      |
+| Name | Type                                                        | Mandatory | Description      |
 | ------ | ------------------------------------------------------------ | ---- | ---------- |
-| value  | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle9) \| [NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle9) | Yes  | Page title.|
+| value  | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle9) \| [NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle9)  | Yes  | Page title. |
+| options<sup>12+</sup> | [NavigationTitleOptions](ts-basic-components-navigation.md#navigationtitleoptions11) | No  | Title bar options. |
 
 ### hideTitleBar
 
@@ -53,27 +59,27 @@ Specifies whether to hide the title bar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                                        |
+| Name | Type   | Mandatory | Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
+| value  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar. |
 
 ### mode <sup>11+</sup>
 
 mode(value: NavDestinationMode)
 
-Sets the mode of the navigation destination page.
+Sets the mode of the navigation destination page. Dynamic modification is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                | Mandatory| Description                                                        |
+| Name | Type                                                | Mandatory | Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [NavDestinationMode](#navdestinationmode11) | Yes  | Mode of the navigation destination page.<br>Default value: **NavDestinationMode.STANDARD**|
+| value  | [NavDestinationMode](#navdestinationmode11)  | Yes  | Mode of the navigation destination page.<br>Default value: **NavDestinationMode.STANDARD** |
 
 ### backButtonIcon<sup>11+</sup>
 
@@ -85,25 +91,26 @@ Sets the icon of the back button on the title bar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description              |
+| Name | Type                                                        | Mandatory | Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Icon of the back button on the title bar.|
+| value  | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [SymbolGlyphModifier<sup>12+</sup>](ts-universal-attributes-attribute-modifier.md)  | Yes  | Icon of the back button on the title bar. |
 
 ### menus<sup>12+</sup>
 
 menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
+
 Sets the menu items in the upper right corner of the page. If this attribute is not set, no menu item is displayed. When the value type is Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;, the menu shows a maximum of three icons in portrait mode and a maximum of five icons in landscape mode, with excess icons (if any) placed under the automatically generated **More** icon.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description              |
+| Name | Type                                                        | Mandatory | Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | No  | Menu items in the upper right corner of the page.|
+| value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Menu items in the upper right corner of the page. |
 
 ## NavDestinationMode<sup>11+</sup>
 
@@ -140,7 +147,7 @@ Called when the navigation destination page is hidden.
 
 ### onWillAppear<sup>12+</sup>
 
-onWillAppear(callback: () =&gt; void)
+onWillAppear(callback: Callback\<void>)
 
 Called when the navigation destination is about to be mounted. You can change the navigation stack in this callback function, and the change takes effect in the current frame.
 
@@ -148,7 +155,7 @@ Called when the navigation destination is about to be mounted. You can change th
 
 ### onWillShow<sup>12+</sup>
 
-onWillShow(callback: () =&gt; void)
+onWillShow(callback: Callback\<void>)
 
 Called when the navigation destination is about to be displayed.
 
@@ -156,7 +163,7 @@ Called when the navigation destination is about to be displayed.
 
 ### onWillHide<sup>12+</sup>
 
-onWillHide(callback: () =&gt; void)
+onWillHide(callback: Callback\<void>)
 
 Called when the navigation destination is about to be hidden.
 
@@ -164,7 +171,7 @@ Called when the navigation destination is about to be hidden.
 
 ### onWillDisappear<sup>12+</sup>
 
-onWillDisappear(callback: () =&gt; void)
+onWillDisappear(callback: Callback\<void>)
 
 Called when the navigation destination is about to be unmounted (or when the transition animation, if any, is about to start).
 
@@ -172,7 +179,9 @@ Called when the navigation destination is about to be unmounted (or when the tra
 
 ### onBackPressed<sup>10+</sup>
 
-This callback takes effect when there is one or more entries in the navigation stack bound to the **\<Navigation>** component. Called when the back button is pressed.
+onBackPressed(callback: () =&gt; boolean)
+
+This callback takes effect when there is one or more entries in the navigation stack bound to the **Navigation** component. Called when the back button is pressed.
 
 The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed.
 
@@ -184,7 +193,7 @@ The value **true** means that the back button logic is overridden, and **false**
 
 onReady(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11)>)
 
-Called when the **\<NavDestination>** component is about to build a child component.
+Called when the **NavDestination** component is about to build a child component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -192,25 +201,28 @@ Called when the **\<NavDestination>** component is about to build a child compon
 
 ## NavDestinationContext<sup>11+</sup>
 
-| Name  | Type    | Description    |
-| ---- | ------ | ------ |
-| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Path information of the navigation destination page.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | Page stack where the current navigation destination page is located.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Name  | Type    | Mandatory  |  Description    |
+| ---- | ------ | ----- | ------ |
+| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Yes | Path information of the navigation destination page.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | Yes | Page stack where the current navigation destination page is located.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| navDestinationId<sup>12+</sup> | string | No | Unique ID of the current current navigation destination page, which is automatically generated by the system and is irrelevant to the universal attribute **id** of the component. |
 
 ### getConfigInRouteMap<sup>12+</sup>
 
 getConfigInRouteMap(): RouteMapConfig |undefined
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | --- | --- |
-| [RouteMapConfig](#routemapconfig12) | Route map configuration of the current page.|
-| undefined | **undefined**, returned when the page is not configured through the route table.|
+| [RouteMapConfig](#routemapconfig12)  | Route map configuration of the current page. |
+| undefined | **undefined**, returned when the page is not configured through the route table. |
 
 ## RouteMapConfig<sup>12+</sup>
 
-| Name  | Type  | Description|
+| Name  | Type  | Description |
 | ----  | ---   | ----- |
 | name  | string | Page name.|
 | pageSourceFile| string | Path of the page in the current package.|

@@ -19,7 +19,7 @@ ArkTS provides conditional rendering. It supports the use of the **if**, **else*
 
 - The build function inside each conditional branch must follow the special rules for build functions. Each of such build functions must create one or more components. An empty build function that creates no components will result in a syntax error.
 
-- Some container components impose restrictions on the type or number of child components. When conditional statements are used in such components, these restrictions also apply to the components to be created by using the conditional statements. For example, when a conditional statement is used in the **\<Grid>** container component, whose child components can only be **\<GridItem>**, only the **\<GridItem>** component can be used in the conditional statement.
+- Some container components impose restrictions on the type or number of child components. When conditional statements are used in such components, these restrictions also apply to the components to be created by using the conditional statements. For example, when a conditional statement is used in the **Grid** container component, whose child components can only be **\<GridItem>**, only the **\<GridItem>** component can be used in the conditional statement.
 
 
 ## Update Mechanism
@@ -78,7 +78,7 @@ Each branch of the **if** statement includes a build function. Each of such buil
 
 2. Execute the build function of the branch and add the generated child component to its parent component.
 
-In the preceding example, if **count** increases from 0 to 1, then **if** updates, the condition **count > 0** is re-evaluated, and the evaluation result changes from **false** to **true**. Therefore, the positive branch build function will be executed, which creates a **\<Text>** component and adds it to the **\<Column>** parent component. If **count** changes back to 0 later, then the **\<Text>** component will be removed from the **\<Column>** component. Since there is no **else** branch, no new build function will be executed.
+In the preceding example, if **count** increases from 0 to 1, then **if** updates, the condition **count > 0** is re-evaluated, and the evaluation result changes from **false** to **true**. Therefore, the positive branch build function will be executed, which creates a **Text** component and adds it to the **Column** parent component. If **count** changes back to 0 later, then the **Text** component will be removed from the **Column** component. Since there is no **else** branch, no new build function will be executed.
 
 
 ### if ... else ... and Child Component States

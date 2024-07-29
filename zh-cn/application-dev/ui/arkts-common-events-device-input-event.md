@@ -305,7 +305,7 @@ struct HoverExample {
 ![hoverEffect](figures/hoverEffect.gif)
 
 
-Button默认的悬浮态效果就是缩放效果，因此Auto和Scale的效果一样，Highlight会使背板颜色变暗，None会禁用悬浮态效果。
+Button默认的悬浮态效果就是Highlight效果，因此Auto和Highlight的效果一样，Highlight会使背板颜色变暗，Scale会让组件缩放，None会禁用悬浮态效果。
 
 
 ## 按键事件

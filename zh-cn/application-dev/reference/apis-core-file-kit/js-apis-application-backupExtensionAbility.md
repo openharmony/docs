@@ -116,7 +116,7 @@ onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符�
 
 getBackupInfo(): string;
 
-在调用方查询应用数据时执行，由开发者提供扩查询应用数据的操作。
+在调用方查询应用数据时执行，由开发者提供扩展查询应用数据的操作。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -125,7 +125,7 @@ getBackupInfo(): string;
   ```ts
 
   class BackupExt extends BackupExtension {
-    async getBackupInfo(): Promise<string> {
+    getBackupInfo(): string {
       console.log(`getBackupInfo ok`);
       let info = "app diy info";
       return info;

@@ -998,7 +998,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
 try {
-    let ndefTypeString : tag.NfcForumType = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
+    let ndefTypeString : string = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
     console.log("ndef ndefTypeString: " + ndefTypeString);
 } catch (businessError) {
     console.error("ndef getNdefTagTypeString catch businessError Code: ${(businessError as Businsess).code}, " +

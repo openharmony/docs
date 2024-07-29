@@ -19,10 +19,10 @@
 1. 导入选择器模块和基础文件API模块。
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
+   import  { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 创建文件类型、文件选择选项实例。
@@ -82,10 +82,10 @@
 1. 导入选择器模块和基础文件API模块。
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import  { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. 创建音频类型文件选择选项实例。

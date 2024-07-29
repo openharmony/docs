@@ -114,7 +114,7 @@ As shown above, in the ArkTS Callstack lane, the time-consuming **computed** tas
 
 ### Example 2
 
-**Problem**: An application contains pages A and B. The main view of page B is a **\<Tabs>** component, which contains multiple tabs such as the default home page and Wi-Fi list page. When the user switches from Page A to Page B, the page loading takes a long time.
+**Problem**: An application contains pages A and B. The main view of page B is a **Tabs** component, which contains multiple tabs such as the default home page and Wi-Fi list page. When the user switches from Page A to Page B, the page loading takes a long time.
 
 **Analysis**: As revealed by Time Profiler, in the **ArkTS Callstack** lane, the **getScanInfoList** API is frequently called during the redirection process, causing congestion.
 
@@ -124,7 +124,7 @@ As shown above, in the ArkTS Callstack lane, the time-consuming **computed** tas
 
 **Solution implementation**:
 
-Remove the **ipcTask** API for obtaining the hotspot list from the **aboutToAppear** lifecycle callback of page B. On the Wi-Fi tab of the **\<Tabs>** component on page B, customize the **WiFiItem** component to display the Wi-Fi list. Place the **ipcTask** API in the **aboutToAppear** lifecycle callback of the **WiFiItem** component.
+Remove the **ipcTask** API for obtaining the hotspot list from the **aboutToAppear** lifecycle callback of page B. On the Wi-Fi tab of the **Tabs** component on page B, customize the **WiFiItem** component to display the Wi-Fi list. Place the **ipcTask** API in the **aboutToAppear** lifecycle callback of the **WiFiItem** component.
 
 ```javascript
 aboutToAppear() {
@@ -152,11 +152,11 @@ Proper IPC usage is critical to optimizing application performance. Through scen
 
 # **References**
 
-· [1] [ohos.rpc (RPC)](../reference/apis/js-apis-rpc.md)
+· [1] [ohos.rpc (RPC)](../reference/apis-ipc-kit/js-apis-rpc.md)
 
-· [2] [IPC & RPC Overview](../connectivity/ipc-rpc-overview.md)
+· [2] [IPC & RPC Overview](../ipc/ipc-rpc-overview.md)
 
-· [3] [CPU Profiler](application-performance-analysis.md)
+· [3] [CPU Profiler](./application-performance-analysis.md)
 
-· [4] [@ohos.wifiManager (WLAN)](../reference/apis/js-apis-wifiManager.md)
+· [4] [@ohos.wifiManager (WLAN)](../reference/apis-connectivity-kit/js-apis-wifiManager.md)
 

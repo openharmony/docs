@@ -216,7 +216,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | 是 | 需要容纳的数量。 |
+| minimumCapacity | number | 是 | 需要容纳的元素数量。 |
 
 **错误码：**
 

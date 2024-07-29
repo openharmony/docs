@@ -310,9 +310,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
 3. 打开UIExtensionAbility.ts，导入UIExtensionAbility的依赖包，自定义类继承UIExtensionAbility并实现onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调。
 
     ```ts
-    import Want from '@ohos.app.ability.Want';
-    import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-    import UIExtensionContentSession from '@ohos.app.ability.    UIExtensionContentSession';
+    import { Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
     const TAG: string = '[testTag] UIExtAbility '
 
@@ -349,7 +347,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
 4. UIExtensionAbility的onSessionCreate中加载了入口页面文件pages/extension.ets, 并在entry\src\main\resources\base\profile\main_pages.json文件中添加"pages/Extension"声明，extension.ets内容如下：
 
     ```ts
-    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    import { UIExtensionContentSession } from '@kit.AbilityKit';
 
     let storage = LocalStorage.GetShared();
     const TAG: string = `[testTag] ExtensionPage`;
@@ -359,6 +357,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
     struct Extension {
       @State message: string = `UIExtension provider`;
       private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+
       onPageShow() {
         console.info(TAG, 'show');
       }
@@ -375,17 +374,17 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
               .width('80%')
               .type(ButtonType.Capsule)
               .margin({
-                top:20
+                top: 20
               })
               .onClick(() => {
-                this.session?.sendData({ "data": 543321});
+                this.session?.sendData({ "data": 543321 });
               })
 
             Button("terminate self")
               .width('80%')
               .type(ButtonType.Capsule)
               .margin({
-                top:20
+                top: 20
               })
               .onClick(() => {
                 this.session?.terminateSelf();
@@ -396,19 +395,19 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
               .width('80%')
               .type(ButtonType.Capsule)
               .margin({
-                top:20
+                top: 20
               })
               .onClick(() => {
                 this.session?.terminateSelfWithResult({
                   resultCode: 0,
                   want: {
-                    bundleName:"com.example.uiextensiondemo",
+                    bundleName: "com.example.uiextensiondemo",
                     parameters: { "result": 123456 }
                   }
                 })
               })
-            }
           }
+        }
         .height('100%')
       }
     }

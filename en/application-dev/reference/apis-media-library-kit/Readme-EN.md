@@ -1,4 +1,4 @@
-# Media Library Kit
+# Media Library Kit API Reference
 
 - ArkTS APIs
   - [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md)
@@ -11,8 +11,9 @@
     - [@ohos.multimedia.medialibrary (Media Library Management) (System API)](js-apis-medialibrary-sys.md)
     <!--DelEnd-->
 - ArkTS Components
-  - [@ohos.multimedia.movingphotoview (\<MovingPhotoView> Component)](ohos-multimedia-movingphotoview.md)
-  - [@ohos.file.PhotoPickerComponent (\<PhotoPicker> Component)](ohos-file-PhotoPickerComponent.md)
+  - [@ohos.file.AlbumPickerComponent (AlbumPickerComponent)](ohos-file-AlbumPickerComponent.md)
+  - [@ohos.file.PhotoPickerComponent (PhotoPickerComponent)](ohos-file-PhotoPickerComponent.md)
+  - [@ohos.multimedia.movingphotoview (MovingPhotoView)](ohos-multimedia-movingphotoview.md)
 - C APIs
   - Modules
     - [MediaAssetManager](_media_asset_manager.md)
@@ -22,3 +23,4 @@
   - Structs
     - [MediaLibrary_RequestId](_media_library___request_id.md)
     - [MediaLibrary_RequestOptions](_media_library___request_options.md)  
+<!--no_check-->
