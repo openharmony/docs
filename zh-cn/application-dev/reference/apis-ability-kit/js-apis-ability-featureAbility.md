@@ -833,7 +833,9 @@ featureAbility.getWindow().then((data: window.Window) => {
 **示例：**
 
 <!--code_no_check_fa-->
-```
+```ts
+import { featureAbility } from '@kit.AbilityKit';
+
 featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 ```
 
@@ -857,7 +859,9 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 **示例：**
 
 <!--code_no_check_fa-->
-```
+```ts
+import { featureAbility } from '@kit.AbilityKit';
+
 featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
 

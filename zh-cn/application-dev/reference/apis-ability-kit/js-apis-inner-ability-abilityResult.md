@@ -26,8 +26,8 @@ import ability from '@ohos.ability.ability';
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
-| 名称        |  类型                 | 只读 | 必填 | 说明                                                         |
+| 名称        |  类型                 | 只读 | 可选 | 说明                                                         |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| resultCode  | number               | 否   | 是   | 表示Ability被拉起并退出后返回的结果码。                                |
-| want  | [Want](js-apis-app-ability-want.md)               | 否   | 否   | 表示Ability被拉起并退出后返回的数据。 |
+| resultCode  | number               | 否   | 否   | 表示Ability被拉起并退出后返回的结果码。                                |
+| want  | [Want](js-apis-app-ability-want.md) | 否   | 是   | 表示Ability被拉起并退出后返回的数据。 |
 
