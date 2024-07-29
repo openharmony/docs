@@ -1,6 +1,6 @@
 #  Qrcode
 
-用于显示二维码内容、状态的组件。
+用于显示二维码，新增了二维码状态变化，包含过期状态、刷新状态、正常状态；新增二维码过期状态提示文字及图标，可设置提示文字及图标的颜色。
 
 > **说明：**
 >
@@ -15,6 +15,9 @@ import { Qrcode, QrcodeOptions, QrcodeState } from '@kit.ArkUI'
 ## 子组件
 
 无
+
+## 属性
+不支持[通用属性](ts-universal-attributes-size.md)，通用事件支持[点击事件](ts-universal-events-click.md)
 
 ## Qrcode
 
@@ -31,8 +34,8 @@ Qrcode({options:QrcodeOptions,state:QrcodeState,value:string})
 | 名称    | 类型                            | 必填 | 装饰器类型      | 说明                   |
 | ------- | ------------------------------- | ---- | --------------- | ---------------------- |
 | options | [QrcodeOptions](#qrcodeoptions) | 是   | @ObservedV2     | 定义Qrcode组件的参数。 |
-| state   | [QrcodeState](#qrcodestate)     | 是   | @Require @Param | Qrcode的状态参数       |
-| value   | string                          | 是   | @Require @Param | 二维码内容参数         |
+| state   | [QrcodeState](#qrcodestate)     | 是   | @Require @Param | Qrcode的状态参数。       |
+| value   | string                          | 是   | @Require @Param | 二维码内容参数。         |
 
 
 
@@ -80,8 +83,9 @@ QrcodeState是Qrcode可设置的状态类型。
 Qrcode使用示例。
 
 ```ts
+// xxx.ets
 import { Qrcode, QrcodeOptions, QrcodeState } from '@kit.ArkUI'
-import { LengthMetrics,ColorMetrics } from '@ohos.arkui.node';
+import { LengthMetrics,ColorMetrics } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

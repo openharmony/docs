@@ -301,6 +301,8 @@
       - [@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
       - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
       - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
+      - [@ohos.arkui.advanced.ArcButton(弧形按钮)](arkui-ts/ohos-arkui-advanced-ArcButton.md)
+      - [@ohos.arkui.advanced.Qrcode(二维码组件)](arkui-ts/ohos-arkui-advanced-Qrcode.md)
     - 安全控件
       - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
       - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)

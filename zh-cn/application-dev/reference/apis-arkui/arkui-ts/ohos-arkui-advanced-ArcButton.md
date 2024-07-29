@@ -23,6 +23,9 @@ import {
 
 无
 
+## 属性
+不支持[通用属性](ts-universal-attributes-size.md)，通用事件支持[点击事件](ts-universal-events-click.md)
+
 ## ArcButton
 
 ArcButton({options:ArcButtonOptions})
@@ -37,7 +40,7 @@ ArcButton({options:ArcButtonOptions})
 
 | 名称    | 类型             | 必填 | 装饰器类型  | 说明                      |
 | ------- | ---------------- | ---- | ----------- | ------------------------- |
-| options | ArcButtonOptions | 是   | @ObservedV2 | 定义ArcButton组件的参数。 |
+| options | [ArcButtonOptions](#arcbuttonoptions) | 是   | @ObservedV2 | 定义ArcButton组件的参数。 |
 
 
 
@@ -134,8 +137,8 @@ ArkButtonClickEffectStyle是ArcButton提供的弧形按钮点击效果状态。
 ArcButton使用示例。
 
 ```ts
-
-import { ColorMetrics, LengthMetrics, LengthUnit } from '@ohos.arkui.node';
+// xxx.ets
+import { ColorMetrics, LengthMetrics, LengthUnit } from '@kit.ArkUI';
 import {
   ArcButton,
   ArcButtonOptions,
@@ -152,29 +155,21 @@ struct Index {
   @Local options1: ArcButtonOptions = new ArcButtonOptions({})
 
   aboutToAppear() {
-    let mar: LocalizedMargin = {
-      // start: new LengthMetrics(19, LengthUnit.VP),
-      end: new LengthMetrics(19, LengthUnit.VP),
-      top: new LengthMetrics(10, LengthUnit.VP),
-      bottom: new LengthMetrics(10, LengthUnit.VP)
-    }
     this.options = new ArcButtonOptions({
-      resourceText: 'testButtonTop',
+      resourceText: 'ButtonTop',
       type: ArcButtonTypeMode.TOP_EDGE,
       touchEffect: ArkButtonClickEffectStyle.LIGHT,
       styleMode: ArcButtonStyleMode.NORMAL_LIGHT,
       backgroundColor: ColorMetrics.resourceColor(Color.Orange),
       shadowColor: ColorMetrics.resourceColor('#FF4151'),
-      shadowEnabled: true,
       textSize: new LengthMetrics(19, LengthUnit.FP),
       textColor: ColorMetrics.resourceColor(Color.Green),
       pressedTextColor: ColorMetrics.resourceColor(Color.Pink),
       textStyle: FontStyle.Italic,
       textFamily: 'HarmonyOS Sans',
-      textMargin: mar
     })
     this.options1 = new ArcButtonOptions({
-      resourceText: 'testButtonBottom',
+      resourceText: 'ButtonBottom',
       touchEffect: ArkButtonClickEffectStyle.HEAVY,
       styleMode: ArcButtonStyleMode.NORMAL_DEEP,
       status: ArcButtonStatus.NORMAL
@@ -189,13 +184,9 @@ struct Index {
           .fill(Color.White)
 
         Column() {
-
           ArcButton({ options: this.options })
-
           Blank()
-
           ArcButton({ options: this.options1 })
-
         }.width('100%')
         .height('100%')
       }.width(233)
@@ -203,10 +194,10 @@ struct Index {
     }.width('100%')
     .height('100%')
     .alignContent(Alignment.Center)
-    .backgroundColor(Color.Green)
+    .backgroundColor(Color.Gray)
   }
 }
 
 ```
 
-![](/figures/advanced_arcButton.png)
+![](figures/advanced_arcButton.png)
