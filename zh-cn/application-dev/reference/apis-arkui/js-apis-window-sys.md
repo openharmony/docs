@@ -3718,7 +3718,7 @@ try {
 
 ## ExtensionWindowAttribute<sup>12+</sup>
 
-扩展窗口的属性
+扩展窗口的属性。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3737,9 +3737,9 @@ try {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| windowType   | [WindowType](#windowtype7) | 是   | 窗口类型。无默认类型，不配置会导致窗口创建失败。 |
+| 参数名 | 类型                      | 只读  |可选 | 说明       |
+| ------ | ------------------------- | ---- | ---- |---------- |
+| windowType   | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。无默认类型，不配置会导致窗口创建失败。 |
 
 ## ExtensionWindowConfig<sup>12+</sup>
 
@@ -3749,13 +3749,13 @@ try {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| windowName   | string | 是   | 窗口名。 |
-| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | 是   | 窗口的属性。 |
-| windowRect   | [Rect](js-apis-window.md#rect7) | 是   | 窗口矩形。 |
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 当windowAttribute配置为SUB_WINDOW时必填   | 创建子窗口参数。 |
-| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | 当windowAttribute配置为SYSTEM_WINDOW时必填   | 创建系统窗口参数。 |
+| 参数名 | 类型                      | 只读  |可选 | 说明       |
+| ------ | ------------------------- | ---- | ---- |---------- |
+| windowName   | string | 否 | 否  | 窗口名。 |
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | 否 | 否   | 窗口的属性。 |
+| windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形。 |
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是（当windowAttribute配置为SUB_WINDOW时必选）   | 创建子窗口参数。 |
+| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | 否 |是（当windowAttribute配置为SYSTEM_WINDOW时必选）   | 创建系统窗口参数。 |
 
 **示例：**
 ```ts
