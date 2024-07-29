@@ -560,6 +560,14 @@ Casting capability
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
+## SystemCapability.Multimedia.AVSession.ExtendedDisplayDisplay
+
+Extended media projection capability
+
+| Default | Tablet | Lite Wearable |
+|---------|--------|--------------|
+| Yes     | Yes    | No           |
+
 ## SystemCapability.Multimedia.Audio.Core
 
 Basic audio capability
@@ -771,6 +779,14 @@ Resource management
 ## SystemCapability.Customization.ConfigPolicy
 
 Customization framework
+
+| Default | Tablet | Lite Wearable |
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Customization.CustomConfig
+
+Custom configurations
 
 | Default | Tablet | Lite Wearable |
 |---------|--------|--------------|
