@@ -1315,7 +1315,7 @@ getPlayerInfo(): Promise\<PlayerInfo>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-avPlayer.getPlayerInfo().then((let: media.PlayerInfo) => {
+avPlayer.getPlayerInfo().then((playerInfo: media.PlayerInfo) => {
   console.info('Succeeded in getting PlayerInfo');
 }).catch((error: BusinessError) => {
   console.error(`Failed to get PlayerInfo, error:${error}`);
