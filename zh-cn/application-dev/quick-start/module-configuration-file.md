@@ -857,7 +857,6 @@ definePermissions标签示例：
 {
   "module" : {
     "definePermissions": [
-    {
       {
         "name": "ohos.abilitydemo.permission.PROVIDER",
         "grantMode": "system_grant",
@@ -865,7 +864,6 @@ definePermissions标签示例：
         "provisionEnable": true,
         "distributedSceneEnable": false,
         "label": "$string:EntryAbility_label"
-        }
       }
     ]
   }
