@@ -14,7 +14,7 @@ LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参�
 
 ## 概述
 
-LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“数据库”。
+LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内的“数据库”。
 
 - 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过GetShared接口，实现跨页面、UIAbility实例内共享。
 
