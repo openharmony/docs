@@ -717,13 +717,13 @@ Popup（气泡组件）
 
 **变更原因**
 
-统一Scroll、List、Grid、WaterFlow组件scrollBarColor接口在设置负数时的效果。
+统一Scroll、List、Grid、WaterFlow组件scrollBarColor接口在设置负数时的行为。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
-变更前，Scroll组件scrollBarColor接口设置负数时按默认值处理，List、Grid、WaterFlow组件scrollBarColor接口设置负数时按黑色处理。
+变更前，Scroll组件scrollBarColor接口设置负数时按默认值0x66182431处理，List、Grid、WaterFlow组件scrollBarColor接口设置负数时按黑色0xFF000000处理。
 
 变更后，Scroll、List、Grid、WaterFlow组件scrollBarColor接口设置负数时按无符号整数对应的ARGB颜色处理。
 
@@ -741,7 +741,7 @@ Scroll、List、Grid、WaterFlow组件scrollBarColor接口
 
 **适配指导**
 
-默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+默认行为变更，无需适配。
 
 ## cl.arkui.18 自定义MenuItem的onChange触发逻辑变更
 
