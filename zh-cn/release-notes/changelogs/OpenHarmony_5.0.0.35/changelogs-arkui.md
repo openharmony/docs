@@ -150,39 +150,7 @@ Menu组件。
 
 菜单布局效果变更，应用无需适配。
 
-## cl.arkui.4 点击Menu菜单区域外的空白区域，关闭菜单交互行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-点击Menu菜单区域外的空白区域，当前为点击按下时菜单就关闭，变更为点击按下-抬手才关闭菜单。
-
-**变更影响**
-
-变更前：点击菜单以外的空白区域，按下时关闭菜单
-
-变更后：点击菜单以外的空白区域，抬手时关闭菜单
-
-**起始API Level**
-
-不涉及API变更
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.35 版本开始。
-
-**变更的接口/组件**
-
-Menu组件。
-
-**适配指导**
-
-菜单关闭交互行为变更，应用无需适配。
-
-## cl.arkui.5 菜单避让手机挖孔变更
+## cl.arkui.4 菜单避让手机挖孔变更
 
 **访问级别**
 
@@ -235,7 +203,7 @@ Menu组件的BindContextMenu接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.6 Repeat设置totalCount属性行为变更
+## cl.arkui.5 Repeat设置totalCount属性行为变更
 
 **访问级别**
 
@@ -312,7 +280,7 @@ struct TestPage {
 }
 ```
 
-## cl.arkui.7 TimePickerDialog标题高度变更
+## cl.arkui.6 TimePickerDialog标题高度变更
 
 **访问级别**
 
@@ -350,7 +318,7 @@ TimePickerDialog组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.8 AlertDialog、promptAction.showDialog中Button间距变更
+## cl.arkui.7 AlertDialog、promptAction.showDialog中Button间距变更
 
 **访问级别**
 
@@ -388,7 +356,7 @@ AlertDialog、promptAction.showDialog。
 
 默认行为变更，无需适配。
 
-## cl.arkui.9 SubMenu避让底部导航条距离变更
+## cl.arkui.8 SubMenu避让底部导航条距离变更
 
 **访问级别**
 
@@ -422,7 +390,7 @@ Menu组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.10 menu、toast修改阴影参数
+## cl.arkui.9 menu、toast修改阴影参数
 **访问级别**
 
 公开接口
@@ -464,7 +432,11 @@ Toast组件ShowToast接口
 
 默认行为变更，无需适配。
 
+<<<<<<< HEAD
 ## cl.arkui.11 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
+=======
+## cl.arkui.10 RichEditor设置预设样式的接口传入异常值时，文本样式效果变更
+>>>>>>> ead0a5d060 (update changelog)
 
 **访问级别**
 
@@ -530,7 +502,11 @@ struct Index {
 }
 ```
 
+<<<<<<< HEAD
 ## cl.arkui.12 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
+=======
+## cl.arkui.11 RichEditor占位文本接口中文本样式属性传入异常值时，占位文本样式的效果变更
+>>>>>>> ead0a5d060 (update changelog)
 
 **访问级别**
 
@@ -620,7 +596,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.13 MenuItem组件禁用状态下字体颜色变更
+## cl.arkui.12 MenuItem组件禁用状态下字体颜色变更
 
 **访问级别**
 
@@ -658,7 +634,11 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
+<<<<<<< HEAD
 ## cl.arkui.14 RichEditor收起键盘后，选中区状态变更
+=======
+## cl.arkui.13 RichEditor收起键盘后，选中区、手柄菜单状态变更
+>>>>>>> ead0a5d060 (update changelog)
 
 **访问级别**
 
@@ -692,7 +672,7 @@ UX规格变更
 
 收起键盘时选中区状态变更，应用无需适配。
 
-## cl.arkui.15 dragInteraction接口增加系统接口校验
+## cl.arkui.14 dragInteraction接口增加系统接口校验
 
 **访问级别**
 
@@ -723,7 +703,7 @@ off(type: 'drag', callback?: Callback\<DragState>): void；
 
 默认行为变更，无需适配。
 
-## cl.arkui.16 Popup（气泡组件）UX样式变更
+## cl.arkui.15 Popup（气泡组件）UX样式变更
 
 **访问级别**
 
@@ -765,7 +745,7 @@ Popup（气泡组件）
 
 默认样式变更，无需适配。
 
-## cl.arkui.17 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
+## cl.arkui.16 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
 
 **访问级别**
 
