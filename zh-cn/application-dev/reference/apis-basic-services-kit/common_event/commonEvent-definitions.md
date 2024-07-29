@@ -885,7 +885,7 @@
   - 订阅者所需权限：无
 
 
-* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](../common_event/commonEvent-window.md)
+* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](commonEvent-window.md)
 提示分屏。
 
 
@@ -911,5 +911,5 @@
   - 值：usual.event.USER_INFO_UPDATED
   - 订阅者所需权限：无
 
-* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](../common_event/commonEvent-mms.md)
+* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](commonEvent-mms.md)
 表示设备接收到信息的动作。
