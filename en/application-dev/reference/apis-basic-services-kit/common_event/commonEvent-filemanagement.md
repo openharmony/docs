@@ -13,14 +13,14 @@ Indicates that an external storage device was unmounted.
 - Value: usual.event.data.VOLUME_UNMOUNTED
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
-When an external storage device is successfully unmounted by calling [unmount](../../apis-core-file-kit/Readme-EN.md) or by removing the device, the event notification service is triggered to publish this event.
+When an external storage device is successfully unmounted by calling **unmount** or by removing the device, the event notification service is triggered to publish this event.
 
 ## COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>
 Indicates that an external storage device was mounted.
 - Value: usual.event.data.VOLUME_MOUNTED
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
-When an external storage device is mounted by calling [mount](../../apis-core-file-kit/Readme-EN.md) or by inserting the device, the event notification service is triggered to publish this event.
+When an external storage device is mounted by calling **mount** or by inserting the device, the event notification service is triggered to publish this event.
 
 ## COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>
 Indicates that an external storage device was removed without being unmounted.
@@ -34,4 +34,4 @@ Indicates that an external storage device is about to be ejected.
 - Value: usual.event.data.VOLUME_EJECT
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
-When the user calls [unmount](../../apis-core-file-kit/Readme-EN.md) on a mounted external storage device or removes the device, the event notification service is triggered to publish this event.
+When the user calls **unmount** on a mounted external storage device or removes the device, the event notification service is triggered to publish this event.
