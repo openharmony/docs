@@ -884,10 +884,10 @@
   - 值：usual.event.AIRPLANE_MODE
   - 订阅者所需权限：无
 
-
+<!--Del-->
 * [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](commonEvent-window.md)
 提示分屏。
-
+<!--DelEnd-->
 
 * COMMON_EVENT_SLOT_CHANGE<sup>9+</sup>
 提示通知通道有更新。
@@ -911,5 +911,7 @@
   - 值：usual.event.USER_INFO_UPDATED
   - 订阅者所需权限：无
 
+<!--Del-->
 * [COMMON_EVENT_SMS_RECEIVE_COMPLETED](commonEvent-mms.md)
 表示设备接收到信息的动作。
+<!--DelEnd-->
