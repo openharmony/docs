@@ -560,7 +560,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
      （1）当app签名时使用未签名的profile文件对hap包进行签名之前，在profile.json文件中添加"type"键，值对应debug或者release
 
-     （2）输入的zip包大小不能超过4G
+     （2）通过资源文件拆分、分包等方式降低hap包大小，最大不超过4G
 
      （3）检查keyAlias密钥是否使用正确；检查appCertFile是否使用正确，确保密钥和证书匹配
 
