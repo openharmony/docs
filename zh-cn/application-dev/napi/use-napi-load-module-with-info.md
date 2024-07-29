@@ -18,11 +18,11 @@ napi_status napi_load_module_with_info(napi_env env,
 | module_info   | bundleName/moduleName的路径拼接       |
 | result         | 加载的模块          |
 
-注：
-
-1. bundleName表示AppScope/app.json5中配置的工程名
-2. moduleName指的是待加载模块所在的HAP下module.json5中配置的名字
-3. [napi_load_module](use-napi-load-module.md)只局限于在主线程中进行模块加载
+> **注意**
+> 
+> 1. bundleName表示AppScope/app.json5中配置的工程名
+> 2. moduleName指的是待加载模块所在的HAP下module.json5中配置的名字
+> 3. [napi_load_module](use-napi-load-module.md)只局限于在主线程中进行模块加载
 
 ## napi_load_module_with_info支持的场景
 
@@ -35,10 +35,11 @@ napi_status napi_load_module_with_info(napi_env env,
 | API        |    HAP加载@ohos.*或 @system.*          | -                            |
 | 模块Native库   | HAP加载libNativeLibrary.so | -                            |
 
-注：
-
-1. 加载一个模块名，实际的行为是加载该模块的入口文件，一般为index.ets/ts。
-2. 如果在HAR中加载另外一个HAR，需要确保module_info的配置正确，尤其注意moduleName应为HAP的moduleName
+> **注意**
+>
+> 1. 加载一个模块名，实际的行为是加载该模块的入口文件，一般为index.ets/ts。
+> 2. 如果在HAR中加载另外一个HAR，需要确保module_info的配置正确，尤其注意moduleName应为HAP的moduleName。
+> 3. 如果在HAP/HSP中直接或间接使用了三方包，该三方包中使用napi_load_module_with_info接口加载其他模块A，则需要在HAP/HSP中也添加A的依赖。
 
 ## 使用示例
 
