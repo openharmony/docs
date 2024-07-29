@@ -446,24 +446,6 @@ flingSpeedLimit(speedLimit: number)
 | ---------- | ------ | ---- | ------------------------------- |
 | speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
-### fadingEdge<sup>12+</sup>
-
-fadingEdge(value: Optional&lt;boolean&gt;)
-
-设置当前List是否开启渐隐效果。
-
-开启渐隐后，在ListItem超出List长度后，绘制与滚动轴方向相同的渐隐效果。当ListItem未超出List长度时，不绘制渐隐效果。
-
-value为false时，不启用List渐隐；value为true时，启用List渐隐。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                            |
-| ------ | ------ | ---- | ---------------------------------------------- |
-| value  | Optional&lt;boolean&gt; | 是   | fadingEdge生效时，会覆盖List的.overlay()属性，若需要overlay能力，建议在非List组件上添加.overlay()。<br/>fadingEdge生效时，建议不在List组件上设置background相关属性，会影响渐隐的显示效果。<br/>默认渐隐高度：32vp。<br/>默认值：大屏设备默认值为true，其他设备默认值为false。 |
-
 ### childrenMainSize<sup>12+</sup>
 
 childrenMainSize(value: ChildrenMainSize)
