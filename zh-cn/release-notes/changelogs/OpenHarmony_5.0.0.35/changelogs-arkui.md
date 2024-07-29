@@ -432,7 +432,7 @@ Toast组件ShowToast接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.10 RichEditor设置预设样式的接口传入异常值时，文本样式效果变更
+## cl.arkui.10 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
 
 **访问级别**
 
@@ -498,7 +498,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.11 RichEditor占位文本接口中文本样式属性传入异常值时，占位文本样式的效果变更
+## cl.arkui.11 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
 
 **访问级别**
 
@@ -626,7 +626,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.13 RichEditor收起键盘后，选中区、手柄菜单状态变更
+## cl.arkui.13 RichEditor收起键盘后，选中区状态变更
 
 **访问级别**
 
