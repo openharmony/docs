@@ -352,7 +352,7 @@ Menu避让能贴近底部导航条，而SubMenu避让位置无法贴近底部导
 
 **起始API Level**
 
-不涉及API变更
+7
 
 **变更发生版本**
 
@@ -814,3 +814,37 @@ MenuItem组件。
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.20 Toggle/Switch按压反馈样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更
+
+**变更影响**
+
+该变更为兼容性变更。
+
+变更前：Toggle/Switch有按压反馈，点击时会有按压效果。
+
+变更后：去除Toggle/Switch按压反馈，点击时无按压效果。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![Toggle/Switch](figures/toggle_switch_press_before.png)| ![Toggle/Switch](figures/toggle_switch_press_after.png)|
+
+**起始API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**适配指导**
+
+按压显示效果变化，无需适配。
