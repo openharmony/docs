@@ -24,6 +24,8 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 
 hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)
 
+**注意：** 必须配置全局环境变量
+
 ### 单板rk3568配置及烧录
 
 烧录流程参考[单板rk3568环境配置及烧录](https://gitee.com/long-youling/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)  
