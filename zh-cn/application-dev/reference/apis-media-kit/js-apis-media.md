@@ -508,7 +508,7 @@ Codec MIME类型枚举。
 | 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
 | SERVER_IP_ADDRESS        | 'server_ip_address'    | 表示服务器IP地址，其对应键值类型为string。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| AVERAGE_DOWNLOAD_RATE    | 'average_download_rate'| 表示平均下载速度，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| AVERAGE_DOWNLOAD_RATE    | 'average_download_rate'| 表示平均下载速率，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | DOWNLOAD_RATE            | 'download_rate'        | 表示1s的下载速率，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | IS_DOWNLOADING           | 'is_downloading'       | 表示下载状态，1表示在下载状态，0表示非下载状态（下载完成），其对应键值类型为number。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | BUFFER_DURATION          | 'buffer_duration'      | 表示缓存数据的可播放时长，其对应键值类型为number，单位为秒（s）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
