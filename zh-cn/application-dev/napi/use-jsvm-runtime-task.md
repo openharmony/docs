@@ -6,7 +6,7 @@
 
 ## 使用示例
 
-1. 接口声明和编译配置
+1.接口声明和编译配置
 
 **接口声明**
 
@@ -38,7 +38,7 @@
   target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
   ```
 
-2. 新建多个JS运行时环境并运行JS代码
+2.新建多个JS运行时环境并运行JS代码
 
   ```cpp
   // create_jsvm_runtime.cpp
@@ -440,7 +440,7 @@
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
 
-  3. ArkTS侧示例代码
+3.ArkTS侧示例代码
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
