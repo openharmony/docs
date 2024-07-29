@@ -125,8 +125,6 @@ conn.unregister((err: BusinessError, data: void) => {
 
 ## 获取所有注册的网络
 
-### 开发步骤
-
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
@@ -172,8 +170,6 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 ```
 
 ## 根据数据网络查询网络的能力信息及连接信息
-
-### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
@@ -293,8 +289,6 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 ```
 
 ## 使用对应网络解析域名，获取所有IP
-
-### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.INTERNET
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。

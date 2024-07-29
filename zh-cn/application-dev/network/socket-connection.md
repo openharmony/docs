@@ -183,8 +183,6 @@ setTimeout(() => {
 
 ## 应用通过 TCP Socket Server 进行数据传输
 
-### 开发步骤
-
 服务端 TCP Socket 流程：
 
 1. import 需要的 socket 模块。
@@ -268,8 +266,6 @@ setTimeout(() => {
 
 ## 应用通过 Multicast Socket 进行数据传输
 
-### 开发步骤
-
 1. import 需要的 socket 模块。
 
 2. 创建 multicastSocket 多播对象。
@@ -337,8 +333,6 @@ multicast.dropMembership(addr).then(() => {
 ```
 
 ## 应用通过 LocalSocket 进行数据传输
-
-### 开发步骤：
 
 1. import 需要的 socket 模块。
 
@@ -408,8 +402,6 @@ client.close().then(() => {
 ```
 
 ## 应用通过 Local Socket Server 进行数据传输
-
-### 开发步骤
 
 服务端 LocalSocket Server 流程：
 
@@ -495,8 +487,6 @@ server.off('error');
 ```
 
 ## 应用通过 TLS Socket 进行加密数据传输
-
-### 开发步骤
 
 客户端 TLS Socket 流程：
 
@@ -655,8 +645,6 @@ tlsTwoWay.close((err: BusinessError) => {
 ```
 
 ## 应用通过 TLS Socket Server 进行加密数据传输
-
-### 开发步骤
 
 服务端 TLS Socket Server 流程：
 
