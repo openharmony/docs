@@ -10,7 +10,7 @@ Audio-haptic enables users to get rhythmic auditory and haptic feedback while ha
 ## Modules to Import
 
 ```ts
-import audioHaptic from '@ohos.multimedia.audioHaptic';
+import { audioHaptic } from '@kit.AudioKit';
 ```
 
 ## audioHaptic.getAudioHapticManager
@@ -25,7 +25,7 @@ Obtains an **AudioHapticManager** instance.
 
 | Type                         | Description        |
 | ----------------------------- | ------------ |
-| [AudioHapticManager](#audiohapticmanager) | **AudioHapticManager** instance.|
+| [AudioHapticManager](#audiohapticmanager) | **AudioHapticManager** instance. |
 
 **Example**
 ```ts
@@ -41,7 +41,7 @@ Enumerates the audio latency modes.
 | Name                           |  Value    | Description                                        |
 | ------------------------------- | ------ | -------------------------------------------- |
 | AUDIO_LATENCY_MODE_NORMAL       | 0      | Normal latency mode.                               |
-| AUDIO_LATENCY_MODE_FAST         | 1      | Low latency mode. This mode is applicable to short audio files. A long audio file may be truncated in this mode. It functions the same as [SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool).|
+| AUDIO_LATENCY_MODE_FAST         | 1      | Low latency mode. This mode is applicable to short audio files. A long audio file may be truncated in this mode. It functions the same as [SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool). |
 
 ## AudioHapticPlayerOptions
 
@@ -51,8 +51,8 @@ Describes the options for the audio-haptic player.
 
 | Name     | Type           |Mandatory  | Description                             |
 | --------- | -------------- | ---- | --------------------------------- |
-| muteAudio   | boolean      | No  | Whether to mute the audio. The value **true** means to mute the audio, and **false** means the opposite. If this parameter is not specified, the default value **false** is used.|
-| muteHaptics | boolean      | No  | Whether to mute haptics feedback. The value **true** means to mute haptics feedback, and **false** means the opposite. If this parameter is not specified, the default value **false** is used.|
+| muteAudio   | boolean      | No  | Whether to mute the audio. The value **true** means to mute the audio, and **false** means the opposite. If this parameter is not specified, the default value **false** is used. |
+| muteHaptics | boolean      | No  | Whether to mute haptics feedback. The value **true** means to mute haptics feedback, and **false** means the opposite. If this parameter is not specified, the default value **false** is used. |
 
 ## AudioHapticManager
 
@@ -68,7 +68,7 @@ Registers an audio-haptic source. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                    |
+| Name  | Type                                     | Mandatory | Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | audioUri  | string                                  | Yes  | URI of the audio source. In normal latency mode, the supported audio resource formats and path formats are defined in [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9). In low latency mode, the supported audio resource formats are defined in [SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool), and the path format must meet the requirements of [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen). In both modes, you are advised to pass in the absolute path of the file.          |
 | hapticUri | string                                  | Yes  | URI of the haptic source. The supported haptic resource formats are defined in [vibrator](../apis-sensor-service-kit/js-apis-vibrator.md#hapticfiledescriptor10). The path format must meet the requirements of [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen). You are advised to pass in the absolute path of the file.        |
@@ -77,20 +77,20 @@ Registers an audio-haptic source. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the source ID.|
+| Promise&lt;number&gt; | Promise used to return the source ID. |
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | ------- |-----------------------------------|
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioUri = 'data/audioTest.wav'; // Change it to the URI of the target audio source.
 let hapticUri = 'data/hapticTest.json'; // Change it to the URI of the target haptic source.
@@ -114,7 +114,7 @@ Unregisters an audio-haptic source. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                    |
+| Name  | Type                                     | Mandatory | Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | Yes  | Source ID.   |
 
@@ -122,14 +122,14 @@ Unregisters an audio-haptic source. This API uses a promise to return the result
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | ------- |-----------------------------------|
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticManagerInstance.unregisterSource(id).then(() => {
   console.info(`Promise returned to indicate that unregister source successfully`);
@@ -148,7 +148,7 @@ Sets the latency mode for an audio-haptic source.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                    |
+| Name  | Type                                     | Mandatory | Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id          | number                                | Yes  | Source ID.   |
 | latencyMode | [AudioLatencyMode](#audiolatencymode) | Yes  | Audio latency mode.            |
@@ -157,7 +157,7 @@ Sets the latency mode for an audio-haptic source.
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | ------- |-----------------------------------|
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed.            |
@@ -180,7 +180,7 @@ Sets the stream usage for an audio-haptic source.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                    |
+| Name  | Type                                     | Mandatory | Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | Yes  | Source ID.   |
 | usage    | [audio.StreamUsage](js-apis-audio.md#streamusage) | Yes  | Stream usage.   |
@@ -189,7 +189,7 @@ Sets the stream usage for an audio-haptic source.
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | ------- |-----------------------------------|
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed.            |
@@ -197,7 +197,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let usage: audio.StreamUsage = audio.StreamUsage.STREAM_USAGE_NOTIFICATION;
 
@@ -218,22 +218,22 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                    |
+| Name  | Type                                     | Mandatory | Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | Yes  | Source ID.   |
-| options  | [AudioHapticPlayerOptions](#audiohapticplayeroptions) | No  | Options of the audio-haptic player.|
+| options  | [AudioHapticPlayerOptions](#audiohapticplayeroptions) | No  | Options of the audio-haptic player. |
 
 **Return value**
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;[AudioHapticPlayer](#audiohapticplayer)&gt; | Promise used to return the audio-haptic player.|
+| Promise&lt;[AudioHapticPlayer](#audiohapticplayer)&gt; | Promise used to return the audio-haptic player. |
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | ------- |-----------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -244,7 +244,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
 let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
@@ -282,7 +282,7 @@ Checks whether an audio-haptic type is muted.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                    |
+| Name  | Type                                     | Mandatory | Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | type     | [AudioHapticType](#audiohaptictype)      | Yes  | Audio-haptic type.               |
 
@@ -296,7 +296,7 @@ Checks whether an audio-haptic type is muted.
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | ------- |-----------------------------------|
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
@@ -320,7 +320,7 @@ Starts playing the audio and haptic source. This API uses a promise to return th
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
@@ -336,7 +336,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.start().then(() => {
   console.info(`Promise returned to indicate that start playing successfully.`);
@@ -357,7 +357,7 @@ Stops playing the audio-haptic source. This API uses a promise to return the res
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
@@ -371,7 +371,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.stop().then(() => {
   console.info(`Promise returned to indicate that stop playing successfully.`);
@@ -405,7 +405,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.release().then(() => {
   console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
@@ -424,9 +424,9 @@ Subscribes to end of stream (EOS) events. This API uses a callback to obtain the
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                                                                      |
+| Name  | Type                    | Mandatory | Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The value is fixed at **'endOfStream'**.|
+| type     | string                  | Yes  | Event type. The value is fixed at **'endOfStream'**. |
 | callback | Callback&lt;void&gt;    | Yes  | Callback triggered when the event is received.                          |
 
 **Example**
@@ -447,9 +447,9 @@ Unsubscribes from EOS events.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                             |
+| Name | Type  | Mandatory | Description                                             |
 | ----- | ----- | ---- | ------------------------------------------------ |
-| type   | string | Yes  | Event type. The value is fixed at **'endOfStream'**.|
+| type   | string | Yes  | Event type. The value is fixed at **'endOfStream'**. |
 | callback | Callback&lt;void&gt;    | No  | Callback used for unsubscription.         |
 
 **Example**
@@ -468,7 +468,7 @@ Subscribes to audio interruption events. This API uses a callback to obtain the 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                                                                      |
+| Name  | Type                    | Mandatory | Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | Yes  | Event type. The value is fixed at **'audioInterrupt'**.                    |
 | callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback triggered when the event is received.   |
@@ -476,7 +476,7 @@ Subscribes to audio interruption events. This API uses a callback to obtain the 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
 let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
@@ -533,9 +533,9 @@ Unsubscribes from audio interruption events.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                             |
+| Name | Type  | Mandatory | Description                                             |
 | ----- | ----- | ---- | ------------------------------------------------- |
-| type   | string | Yes  | Event type. The value is fixed at **'audioInterrupt'**.|
+| type   | string | Yes  | Event type. The value is fixed at **'audioInterrupt'**. |
 | callback | Callback&lt;void&gt;    | No  | Callback used for unsubscription.           |
 
 **Example**

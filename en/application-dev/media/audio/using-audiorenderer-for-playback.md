@@ -31,7 +31,7 @@ During application development, you are advised to use [on('stateChange')](../..
 1. Set audio rendering parameters and create an **AudioRenderer** instance. For details about the parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8).
      
     ```ts
-    import audio from '@ohos.multimedia.audio';
+    import { audio } from '@kit.AudioKit';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
@@ -64,8 +64,8 @@ During application development, you are advised to use [on('stateChange')](../..
 2. Call **on('writeData')** to subscribe to the audio data write callback.
      
     ```ts
-    import { BusinessError } from '@ohos.base';
-    import fs from '@ohos.file.fs';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { fileIo } from '@kit.CoreFileKit';
 
     let bufferSize: number = 0;
     class Options {
@@ -76,7 +76,7 @@ During application development, you are advised to use [on('stateChange')](../..
     let path = getContext().cacheDir;
     // Ensure that the resource exists in the path.
     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
    
     let writeDataCallback = (buffer: ArrayBuffer) => {
       
@@ -84,7 +84,7 @@ During application development, you are advised to use [on('stateChange')](../..
         offset: bufferSize,
         length: buffer.byteLength
       }
-      fs.readSync(file.fd, buffer, options);
+      fileIo.readSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
     }
 
@@ -94,7 +94,7 @@ During application development, you are advised to use [on('stateChange')](../..
 3. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
      
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.start((err: BusinessError) => {
       if (err) {
@@ -108,7 +108,7 @@ During application development, you are advised to use [on('stateChange')](../..
 4. Call **stop()** to stop rendering.
      
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.stop((err: BusinessError) => {
       if (err) {
@@ -122,7 +122,7 @@ During application development, you are advised to use [on('stateChange')](../..
 5. Call **release()** to release the instance.
      
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.release((err: BusinessError) => {
       if (err) {
@@ -138,9 +138,9 @@ During application development, you are advised to use [on('stateChange')](../..
 Refer to the sample code below to render an audio file using AudioRenderer.
   
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -169,14 +169,14 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 let path = getContext().cacheDir;
 // Ensure that the resource exists in the path.
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
   }
-  fs.readSync(file.fd, buffer, options);
+  fileIo.readSync(file.fd, buffer, options);
    bufferSize += buffer.byteLength;
 }
 
@@ -246,7 +246,7 @@ async function stop() {
       if (err) {
         console.error('Renderer stop failed.');
       } else {
-        fs.close(file);
+        fileIo.close(file);
         console.info('Renderer stop success.');
       }
     });
