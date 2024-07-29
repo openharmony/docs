@@ -126,6 +126,7 @@ struct Index {
     .borderWidth(2)
     .borderColor(Color.Red)
   }
+}
 ```
 
 
