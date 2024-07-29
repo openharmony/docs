@@ -125,7 +125,7 @@ Figure 5 Trace lanes for page loading
 
 The following example traverses a list in **LazyForEach** mode and uses [Smartperf-Host](../../device-dev/device-test/smartperf-host.md) to trace the code execution process.
 
-In the [sample code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/trace), a **\<List>** container component is used to create 120 custom **\<IconView>** components in lazy loading mode. In each **\<IconView>** component, a **Flex** container that holds the **\<Image>** and **Text** components is used to present a list item with text and an image.
+In the [sample code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/trace), a **List** container component is used to create 120 custom **\<IconView>** components in lazy loading mode. In each **\<IconView>** component, a **Flex** container that holds the **\<Image>** and **Text** components is used to present a list item with text and an image.
 
 ```ts
 // src/main/ets/pages/LazyForEachPage.ets

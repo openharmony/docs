@@ -39,7 +39,7 @@ struct ParticleExample {
 
 The particle emitter (Particle Emitter) is a component in particle animation used to generate and control particles, mainly used to define the initial properties of particles (such as type, position, color), control the rate of particle generation, and manage the life cycle of particles.
 
-Supports dynamic updates to the emitter position. Adjust the position of the particle emitter, emission rate, and emission window size through the [emitter](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#emitter12) method.
+Supports dynamic updates to the emitter position. Adjust the position of the particle emitter, emission rate, and emission window size through the [emitter](../reference/apis-arkui/arkui-ts/ts-particle-animation.md) method.
 
 ```ts
 // ...
@@ -104,9 +104,9 @@ color: {
 
 ## Disturbance Field
 
-The disturbance field (Disturbance Field) is a mechanism used to affect the movement of particles. The disturbance field changes the trajectory and behavior of particles by applying specific forces in the spatial area where the particles are located, thereby achieving more complex and natural animation effects.
+The disturbance field is a mechanism used to affect the movement of particles. The disturbance field changes the trajectory and behavior of particles by applying specific forces in the spatial area where the particles are located, thereby achieving more complex and natural animation effects.
 
-The disturbance field can be configured through the [disturbanceFields](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#disturbancefields12) method.
+The disturbance field can be configured through the [disturbanceFields](../reference/apis-arkui/arkui-ts/ts-particle-animation.md) method.
 
 ```ts
 // ...

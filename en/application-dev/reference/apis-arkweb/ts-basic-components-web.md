@@ -21,7 +21,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 > **NOTE**
 >
 > Transition animation is not supported.
-> **\<Web>** components on a page must be bound to different **WebviewController** instances.
+> **Web** components on a page must be bound to different **WebviewController** instances.
 
 **Parameters**
 
@@ -29,7 +29,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file (in HTML or TXT format) in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.<br>**src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl). |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead. |
-| renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Render mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamic adjusted): The **\<Web>** component is self-rendered.<br>**RenderMode.SYNC_RENDER**: The unified rendering capability of the **\<Web>** component is supported. |
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Render mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamic adjusted): The **Web** component is self-rendered.<br>**RenderMode.SYNC_RENDER**: The unified rendering capability of the **Web** component is supported. |
 | incognitoMode<sup>11+</sup> | boolean | No | Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false** |
 
 **Example**
@@ -409,7 +409,7 @@ Sets whether JavaScript scripts can be executed. By default, JavaScript scripts 
 
 overScrollMode(mode: OverScrollMode)
 
-Sets the overscroll mode, which is disabled by default. When the overscroll mode is enabled and the boundary of the scrolling area is reached, the **\<Web>** component plays a bounce effect animation.
+Sets the overscroll mode, which is disabled by default. When the overscroll mode is enabled and the boundary of the scrolling area is reached, the **Web** component plays a bounce effect animation.
 
 **Parameters**
 
@@ -703,7 +703,7 @@ Sets whether to display the horizontal scrollbar, including the default system s
 > **NOTE**
 >
 > - If an @State decorated variable is used to control the horizontal scrollbar visibility, **controller.refresh()** must be called for the settings to take effect.
-> - If the horizontal scrollbar visibility changes frequently through an @State decorated variable, it is recommended that the variable correspond to the **\<Web>** component one by one.
+> - If the horizontal scrollbar visibility changes frequently through an @State decorated variable, it is recommended that the variable correspond to the **Web** component one by one.
 
 **Parameters**
 
@@ -775,7 +775,7 @@ Sets whether to display the vertical scrollbar, including the default system scr
 > **NOTE**
 >
 > - If an @State decorated variable is used to control the vertical scrollbar visibility, **controller.refresh()** must be called for the settings to take effect.
-> - If the vertical scrollbar visibility changes frequently through an @State decorated variable, it is recommended that the variable correspond to the **\<Web>** component one by one.
+> - If the vertical scrollbar visibility changes frequently through an @State decorated variable, it is recommended that the variable correspond to the **Web** component one by one.
 
 **Parameters**
 
@@ -1413,7 +1413,7 @@ Sets the cursive font family for the web page.
 
 darkMode(mode: WebDarkMode)
 
-Sets the web dark mode. By default, web dark mode is disabled. When it is enabled, the **\<Web>** component enables the dark theme defined for web pages if the theme has been defined in **prefers-color-scheme** of a media query, and remains unchanged otherwise. To enable the forcible dark mode, use this API with [forceDarkAccess](#forcedarkaccess9).
+Sets the web dark mode. By default, web dark mode is disabled. When it is enabled, the **Web** component enables the dark theme defined for web pages if the theme has been defined in **prefers-color-scheme** of a media query, and remains unchanged otherwise. To enable the forcible dark mode, use this API with [forceDarkAccess](#forcedarkaccess9).
 
 **Parameters**
 
@@ -1535,7 +1535,7 @@ allowWindowOpenMethod(flag: boolean)
 
 Sets whether to allow a new window to automatically open through JavaScript.
 
-When **flag** is set to **true**, a new window can automatically open through JavaScript. When **flag** is set to **false**, a new window can still automatically open through JavaScript for user behavior, but cannot for non-user behavior. The user behavior here refers to that a user requests to open a new window (**window.open**) within 5 seconds of operating the **\<Web>** component.
+When **flag** is set to **true**, a new window can automatically open through JavaScript. When **flag** is set to **false**, a new window can still automatically open through JavaScript for user behavior, but cannot for non-user behavior. The user behavior here refers to that a user requests to open a new window (**window.open**) within 5 seconds of operating the **Web** component.
 
 This API takes effect only when [javaScriptAccess](#javascriptaccess) is enabled.
 
@@ -1617,14 +1617,14 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
 
 mediaOptions(options: WebMediaOptions)
 
-Sets the web-based media playback policy, including the validity period for automatically resuming a paused web audio, and whether the audio of multiple **\<Web>** instances in an application is exclusive.
+Sets the web-based media playback policy, including the validity period for automatically resuming a paused web audio, and whether the audio of multiple **Web** instances in an application is exclusive.
 
 > **NOTE**
 >
-> - Audios in the same **\<Web>** instance are considered as the same audio.
+> - Audios in the same **Web** instance are considered as the same audio.
 > - The media playback policy controls videos with an audio track.
 > - After the parameter settings are updated, the playback must be started again for the settings to take effect.
-> - It is recommended that you set the same **audioExclusive** value for all **\<Web>** components.
+> - It is recommended that you set the same **audioExclusive** value for all **Web** components.
 
 **Parameters**
 
@@ -1657,7 +1657,7 @@ Sets the web-based media playback policy, including the validity period for auto
 
 javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
-Injects a JavaScript script into the **\<Web>** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+Injects a JavaScript script into the **Web** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
 
 > **NOTE**
 >
@@ -1729,7 +1729,7 @@ Injects a JavaScript script into the **\<Web>** component. When the specified pa
 
 javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
-Injects a JavaScript script into the **\<Web>** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+Injects a JavaScript script into the **Web** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
 
 > **NOTE**
 >
@@ -1795,10 +1795,10 @@ Sets the web layout mode.
 > Currently, only two web layout modes are supported: **WebLayoutMode.NONE** and **WebLayoutMode.FIT_CONTENT**.
 >
 > The following restrictions apply with the usage of **WebLayoutMode.FIT_CONTENT**:
-> - If the web content is wider or longer than 8000 px, specify the **RenderMode.SYNC_RENDER** mode when creating the **\<Web>** component; otherwise, the screen may be blank.
-> - After the **\<Web>** component is created, dynamic switching of the **layoutMode** is not supported.
-> - The width and height of the **\<Web>** component cannot exceed 500,000 pixels each.
-> - Frequent changes to the page width and height will trigger a re-layout of the **\<Web>** component, which can affect the user experience.
+> - If the web content is wider or longer than 8000 px, specify the **RenderMode.SYNC_RENDER** mode when creating the **Web** component; otherwise, the screen may be blank.
+> - After the **Web** component is created, dynamic switching of the **layoutMode** is not supported.
+> - The width and height of the **Web** component cannot exceed 500,000 pixels each.
+> - Frequent changes to the page width and height will trigger a re-layout of the **Web** component, which can affect the user experience.
 
 **Parameters**
 
@@ -1861,9 +1861,9 @@ Sets nested scrolling options.
 > - You can set the nested scrolling mode in both forward and backward directions to implement scrolling linkage with the parent component.
 > - You can set separate nested scrolling modes for the forward and backward directions.
 > - The default mode for **scrollForward** and **scrollBackward** is **NestedScrollMode.SELF_FIRST**.
-> - Containers that support nested scrolling: **Grid**, **\<List>**, **Scroll**, **Swiper**, **Tabs**, **WaterFlow**.
+> - Containers that support nested scrolling: **Grid**, **List**, **Scroll**, **Swiper**, **Tabs**, **WaterFlow**.
 > - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
-> - In nested scrolling scenarios, since the **\<Web>** component's over-scrolling to the edge will trigger the over-scroll bounce effect first, it is recommended that you set **overScrollMode** to **OverScrollMode.NEVER** to avoid undermining the user experience.
+> - In nested scrolling scenarios, since the **Web** component's over-scrolling to the edge will trigger the over-scroll bounce effect first, it is recommended that you set **overScrollMode** to **OverScrollMode.NEVER** to avoid undermining the user experience.
 
 **Parameters**
 
@@ -2195,7 +2195,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
 
 **Example**
 
@@ -2280,7 +2280,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
 
 **Example**
 
@@ -2365,7 +2365,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
 
 **Example**
 
@@ -2459,7 +2459,7 @@ Called when **prompt()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
 
 **Example**
 
@@ -3055,13 +3055,13 @@ Called when the web render process transitions back to a normal operating state 
 
 onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
 
-Called when a file selector is displayed to process an HTML form with an input of type "file". If this API is not called or returns **false**, the **\<Web>** component will provide a default file selection window. If it returns **true**, the application can customize the response behavior for file selection.
+Called when a file selector is displayed to process an HTML form with an input of type "file". If this API is not called or returns **false**, the **Web** component will provide a default file selection window. If it returns **true**, the application can customize the response behavior for file selection.
 
 **Parameters**
 
 | Name         | Type                                    | Description             |
 | ------------ | ---------------------------------------- | ----------------- |
-| result       | [FileSelectorResult](#fileselectorresult9) | File selection result to be sent to the **\<Web>** component. |
+| result       | [FileSelectorResult](#fileselectorresult9) | File selection result to be sent to the **Web** component. |
 | fileSelector | [FileSelectorParam](#fileselectorparam9) | Information about the file selector.      |
 
 **Return value**
@@ -3167,7 +3167,7 @@ Called when a file selector is displayed to process an HTML form with an input o
 
 onResourceLoad(callback: (event: {url: string}) => void)
 
-Called to notify the **\<Web>** component of the URL of the loaded resource file.
+Called to notify the **Web** component of the URL of the loaded resource file.
 
 **Parameters**
 
@@ -3236,7 +3236,7 @@ Called when the display ratio of this page changes.
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
-Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
+Called when the **Web** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 This API is deprecated since API version 10. You are advised to use [onLoadIntercept<sup>10+</sup>](#onloadintercept10) instead.
 
 **Parameters**
@@ -3280,7 +3280,7 @@ This API is deprecated since API version 10. You are advised to use [onLoadInter
 
 onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
 
-Called when the **\<Web>** component is about to access a URL. This API is used to block the URL and return the response data.
+Called when the **Web** component is about to access a URL. This API is used to block the URL and return the response data.
 
 **Parameters**
 
@@ -4761,7 +4761,7 @@ Called when the maximum content on the web page is drawn.
 
 onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
 
-Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
+Called when the **Web** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 
 **Parameters**
 
@@ -4805,7 +4805,7 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
 onRequestSelected(callback: () => void)
 
-Called when the **\<Web>** component obtains the focus.
+Called when the **Web** component obtains the focus.
 
 **Example**
 
@@ -4922,7 +4922,7 @@ Called when the web page is over-scrolled, used to notify the offset of the over
 
 onControllerAttached(callback: () => void)
 
-Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController.
+Called when the controller is successfully bound to the **Web** component. The controller must be WebviewController.
 As the web page is not yet loaded when this callback is called, APIs for operating the web page, for example, [zoomIn](js-apis-webview.md#zoomin) and [zoomOut](js-apis-webview.md#zoomout), cannot be used in the callback. Other APIs, such as [loadUrl](js-apis-webview.md#loadurl) and [getWebId](js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
 
 **Example**
@@ -5361,7 +5361,7 @@ Called when the intelligent tracking prevention feature is enabled and the track
 
 onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
-Called to enable the host application to obtain control when the URL is about to be loaded to this **\<Web>** component. If the callback returns **true**, the **\<Web>** component stops loading the URL. If the callback returns **false**, the **\<Web>** component continues to load the URL.
+Called to enable the host application to obtain control when the URL is about to be loaded to this **Web** component. If the callback returns **true**, the **Web** component stops loading the URL. If the callback returns **false**, the **Web** component continues to load the URL.
 
 POST requests do not trigger this callback.
 
@@ -5524,25 +5524,25 @@ Obtains the path and name of the web page source file.
 
 ## JsResult
 
-Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
+Implements the **JsResult** object, which indicates the result returned to the **Web** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
 
 ### handleCancel
 
 handleCancel(): void
 
-Notifies the **\<Web>** component of the user's cancel operation in the dialog box.
+Notifies the **Web** component of the user's cancel operation in the dialog box.
 
 ### handleConfirm
 
 handleConfirm(): void
 
-Notifies the **\<Web>** component of the user's confirm operation in the dialog box.
+Notifies the **Web** component of the user's confirm operation in the dialog box.
 
 ### handlePromptConfirm<sup>9+</sup>
 
 handlePromptConfirm(result: string): void
 
-Notifies the **\<Web>** component of the user's confirm operation in the dialog box as well as the dialog box content.
+Notifies the **Web** component of the user's confirm operation in the dialog box as well as the dialog box content.
 
 **Parameters**
 
@@ -5566,7 +5566,7 @@ Exits full screen mode.
 
 ## ControllerHandler<sup>9+</sup>
 
-Implements a **WebviewController** object for new **\<Web>** components. For the sample code, see [onWindowNew](#onwindownew9).
+Implements a **WebviewController** object for new **Web** components. For the sample code, see [onWindowNew](#onwindownew9).
 
 ### setWebController<sup>9+</sup>
 
@@ -5578,7 +5578,7 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 | Name       | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component. If opening a new window is not needed, set it to **null**. |
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **Web** component. If opening a new window is not needed, set it to **null**. |
 
 ## WebResourceError
 
@@ -5686,7 +5686,7 @@ Obtains the request method.
 
 ## Header
 
-Describes the request/response header returned by the **\<Web>** component.
+Describes the request/response header returned by the **Web** component.
 
 | Name         | Type    | Description           |
 | ----------- | ------ | ------------- |
@@ -5779,7 +5779,7 @@ Sets the data in the resource response.
 
 | Name | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **\<Web>** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource. |
+| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **Web** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource. |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -5855,13 +5855,13 @@ Sets whether the resource response data is ready.
 
 ## FileSelectorResult<sup>9+</sup>
 
-Notifies the **\<Web>** component of the file selection result. For the sample code, see [onShowFileSelector](#onshowfileselector9).
+Notifies the **Web** component of the file selection result. For the sample code, see [onShowFileSelector](#onshowfileselector9).
 
 ### handleFileList<sup>9+</sup>
 
 handleFileList(fileList: Array\<string\>): void
 
-Instructs the **\<Web>** component to select a file.
+Instructs the **Web** component to select a file.
 
 **Parameters**
 
@@ -5980,7 +5980,7 @@ Continues using the SSL certificate.
 
 ## ClientAuthenticationHandler<sup>9+</sup>
 
-Implements a **ClientAuthenticationHandler** object returned by the **\<Web>** component. For the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
+Implements a **ClientAuthenticationHandler** object returned by the **Web** component. For the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
 
 ### confirm<sup>9+</sup>
 
@@ -6001,7 +6001,7 @@ confirm(authUri : string): void
 
 **Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
 
-Instructs the **\<Web>** component to use the specified credentials (obtained from the certificate management module).
+Instructs the **Web** component to use the specified credentials (obtained from the certificate management module).
 
 **Parameters**
 
@@ -6105,7 +6105,7 @@ Grants the screen capture permission.
 
 ## EventResult<sup>12+</sup>
 
-Provides APIs to notify the **\<Web>** component of the event consumption result. For details about the supported events, see [TouchType](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype). If the application does not consume the event, set the result to **false** so that the event is consumed by the **\<Web>** component. If the application consumes the event, set the result to **true**, and the **\<Web>** component does not consume the event. For the sample code, see [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
+Provides APIs to notify the **Web** component of the event consumption result. For details about the supported events, see [TouchType](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype). If the application does not consume the event, set the result to **false** so that the event is consumed by the **Web** component. If the application consumes the event, set the result to **true**, and the **Web** component does not consume the event. For the sample code, see [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
 ### setGestureEventResult<sup>12+</sup>
 
@@ -6479,7 +6479,7 @@ Describes the web-based media playback policy.
 | Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
 | resumeInterval | number  | Yes   | Yes   | No   | Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second. |
-| audioExclusive | boolean | Yes   | Yes   | No   | Whether the audio of multiple **\<Web>** instances in an application is exclusive.                      |
+| audioExclusive | boolean | Yes   | Yes   | No   | Whether the audio of multiple **Web** instances in an application is exclusive.                      |
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
@@ -6576,7 +6576,7 @@ Cancels the resending of web form data.
 
   ## WebController
 
-Implements a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
+Implements a **WebController** to control the behavior of the **Web** component. A **WebController** can control only one **Web** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **Web** component.
 
 This API is deprecated since API version 9. You are advised to use [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) instead.
 
@@ -6590,7 +6590,7 @@ let webController: WebController = new WebController()
 
 getCookieManager(): WebCookie
 
-Obtains the cookie management object of the **\<Web>** component.
+Obtains the cookie management object of the **Web** component.
 
 This API is deprecated since API version 9. You are advised to use [getCookie](js-apis-webview.md#getcookiedeprecated) instead.
 
@@ -6901,9 +6901,9 @@ loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: 
 
 Loads data. If **baseUrl** is empty, the specified character string will be loaded using the data protocol.
 
-If **baseUrl** is set to a data URL, the encoded string will be loaded by the **\<Web>** component using the data protocol.
+If **baseUrl** is set to a data URL, the encoded string will be loaded by the **Web** component using the data protocol.
 
-If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be processed by the **\<Web>** component as a non-encoded string in a manner similar to **loadUrl**.
+If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be processed by the **Web** component as a non-encoded string in a manner similar to **loadUrl**.
 
 This API is deprecated since API version 9. You are advised to use [loadData<sup>9+</sup>](js-apis-webview.md#loaddata) instead.
 
@@ -6914,7 +6914,7 @@ This API is deprecated since API version 9. You are advised to use [loadData<sup
 | data       | string | Yes   | -    | Character string obtained after being Base64 or URL encoded.             |
 | mimeType   | string | Yes   | -    | Media type (MIME).                             |
 | encoding   | string | Yes   | -    | Encoding type, which can be Base64 or URL.               |
-| baseUrl    | string | No   | -    | URL (HTTP/HTTPS/data compliant), which is assigned by the **\<Web>** component to **window.origin**. |
+| baseUrl    | string | No   | -    | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**. |
 | historyUrl | string | No   | -    | Historical record URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. This parameter is invalid when **baseUrl** is left empty. |
 
 **Example**
@@ -6986,7 +6986,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
 
 onActive(): void
 
-Called when the **\<Web>** component enters the active state.
+Called when the **Web** component enters the active state.
 
 This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](js-apis-webview.md#onactive) instead.
 
@@ -7015,7 +7015,7 @@ This API is deprecated since API version 9. You are advised to use [onActive<sup
 
 onInactive(): void
 
-Called when the **\<Web>** component enters the inactive state.
+Called when the **Web** component enters the inactive state.
 
 This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](js-apis-webview.md#oninactive) instead.
 
@@ -7079,7 +7079,7 @@ This API is deprecated since API version 9. You are advised to use [zoom<sup>9+<
 
 refresh()
 
-Called when the **\<Web>** component refreshes the web page.
+Called when the **Web** component refreshes the web page.
 
 This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](js-apis-webview.md#refresh) instead.
 
@@ -7301,7 +7301,7 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
 
 ## WebCookie<sup>(deprecated)</sup>
 
-Manages behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
+Manages behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
 ### setCookie<sup>(deprecated)</sup>
 
@@ -7321,7 +7321,7 @@ This API is deprecated since API version 9. You are advised to use [saveCookieAs
 
 ## ScriptItem<sup>11+</sup>
 
-Describes the **ScriptItem** object injected to the **\<Web>** component through the [javaScriptOnDocumentStart](#javascriptondocumentstart11) attribute.
+Describes the **ScriptItem** object injected to the **Web** component through the [javaScriptOnDocumentStart](#javascriptondocumentstart11) attribute.
 
 | Name         | Type            | Mandatory  | Description                   |
 | ----------- | -------------- | ---- | --------------------- |
@@ -7385,7 +7385,7 @@ Called by a website safe browsing check.
 
 ## FullScreenEnterEvent<sup>12+</sup>
 
-Provides details about the callback event for the **\<Web>** component to enter full screen mode.
+Provides details about the callback event for the **Web** component to enter full screen mode.
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
@@ -7397,11 +7397,11 @@ Provides details about the callback event for the **\<Web>** component to enter 
 
 type OnFullScreenEnterCallback = (event: FullScreenEnterEvent) => void
 
-Represents the callback called when the **\<Web>** component enters full screen mode.
+Represents the callback called when the **Web** component enters full screen mode.
 
 | Name     | Type                     | Description             |
 | ---------- | ---------------------------- | ------------------- |
-| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Details about the callback event for the **\<Web>** component to enter full screen mode. |
+| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Details about the callback event for the **Web** component to enter full screen mode. |
 
 ## SslErrorEvent<sup>12+</sup>
 
@@ -7452,7 +7452,7 @@ Provides detailed information about the **\<Embed>** tag.
 | url               | string                              | No   | URL of the tag.           |
 | tag<sup>12+</sup> | string              | No   | Tag name, which consists of uppercase letters.             |
 | params<sup>12+</sup>            | map<string, string> | No   | List of key-value pairs from the **param** tags in the **object** tag. This map is essentially of the Object type, so use APIs provided by Object to operate this object. |
-| position<sup>12+</sup>          | Position            | No   | Position of the same-layer tag relative to the **\<Web>** component in the screen coordinate system, which is different from the standard **Position**. The unit is px. |
+| position<sup>12+</sup>          | Position            | No   | Position of the same-layer tag relative to the **Web** component in the screen coordinate system, which is different from the standard **Position**. The unit is px. |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
@@ -7556,7 +7556,7 @@ Represents the **onOverrideUrlLoading** callback.
 
 ## RenderMode<sup>12+</sup>
 
-Enumerates the rendering modes of the **\<Web>** component.
+Enumerates the rendering modes of the **Web** component.
 
 | Name                          | Value | Description          |
 | ----------------------------- | -- | ------------ |

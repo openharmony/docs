@@ -1,6 +1,6 @@
 # Navigator
 
-The **\<Navigator>** component provides redirection.
+The **Navigator** component provides redirection.
 
 > **NOTE**
 >
@@ -41,7 +41,7 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 active(value: boolean)
 
-Sets whether the **\<Navigator>** component is activated. If the component is activated, the corresponding navigation takes effect.
+Sets whether the **Navigator** component is activated. If the component is activated, the corresponding navigation takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -51,7 +51,7 @@ Sets whether the **\<Navigator>** component is activated. If the component is ac
 
 | Name| Type   | Mandatory| Description                      |
 | ------ | ------- | ---- | -------------------------- |
-| value  | boolean | Yes  | Whether the **\<Navigator>** component is activated.|
+| value  | boolean | Yes  | Whether the **Navigator** component is activated.|
 
 ### params
 

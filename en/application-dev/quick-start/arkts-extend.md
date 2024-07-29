@@ -32,7 +32,7 @@ Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which al
 - Unlike \@Styles, \@Extend can encapsulate private attributes, private events, and custom global methods of specified components.
 
   ```ts
-  // @Extend(Text) supports the private attribute fontColor of the <Text> component.
+  // @Extend(Text) supports the private attribute fontColor of the Text component.
   @Extend(Text) function fancy () {
     .fontColor(Color.Red)
   }

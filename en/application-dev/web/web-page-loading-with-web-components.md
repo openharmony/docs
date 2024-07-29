@@ -9,10 +9,10 @@ If acquisition of network resources is involved in page loading, you need to dec
 
 ## Loading Network Pages
 
-You can specify the default network page to be loaded when creating a **\<Web>** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **\<Web>** component. The value of the first parameter **src** of the **\<Web>** component cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl).
+You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **Web** component. The value of the first parameter **src** of the **Web** component cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl).
 
 
-In the following example, after the **www.\example.com** page is loaded by the **\<Web>** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
+In the following example, after the **www.\example.com** page is loaded by the **Web** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
 
 
 
@@ -48,7 +48,7 @@ struct WebComponent {
 
 ## Loading Local Pages
 
-Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **\<Web>** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) to change the displayed page of the **\<Web>** component.
+Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **Web** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) to change the displayed page of the **Web** component.
 
 
 The following example shows how to load a local page file.
@@ -120,7 +120,7 @@ The following example shows how to load a local page file.
 
 ## Loading HTML Rich Text Data
 
-The **\<Web>** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. This API is applicable if you want to display some page sections instead of the entire page.
+The **Web** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. This API is applicable if you want to display some page sections instead of the entire page.
 
 
 
@@ -158,7 +158,7 @@ struct WebComponent {
 ```
 
 ## Dynamically Creating Web Components
-**\<Web>** components can be created with commands. Components created in this mode are not immediately mounted to the component tree, that is, they are not presented to users (their state is **Hidden** or **InActive**). You can dynamically mount the components as required in subsequent use. It is recommended that the number of **\<Web>** instances started in the background be less than or equal to 200. 
+**Web** components can be created with commands. Components created in this mode are not immediately mounted to the component tree, that is, they are not presented to users (their state is **Hidden** or **InActive**). You can dynamically mount the components as required in subsequent use. It is recommended that the number of **Web** instances started in the background be less than or equal to 200. 
 
 ```ts
 // Carrier ability

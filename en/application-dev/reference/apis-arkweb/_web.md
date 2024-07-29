@@ -898,7 +898,7 @@ Clears the **SchemeHandler** registered for the specified web.
 
 | Name| Description| 
 | -------- | -------- |
-| webTag | Tag that uniquely identifies a **\<Web>** component. Ensure that it is unique. | 
+| webTag | Tag that uniquely identifies a **Web** component. Ensure that it is unique. | 
 
 **Returns**
 
@@ -1100,7 +1100,7 @@ You can use **WebviewController.initializeWebEngine** to initialize BrowserConte
 | Name| Description| 
 | -------- | -------- |
 | scheme | The scheme to be intercepted. | 
-| webTag | Tag that uniquely identifies a **\<Web>** component. Ensure that it is unique. | 
+| webTag | Tag that uniquely identifies a **Web** component. Ensure that it is unique. | 
 | schemeHandler | The **ArkWeb_SchemeHandler** for this scheme. Only requests triggered from the specified web are notified through this **SchemeHandler**. | 
 
 **Returns**

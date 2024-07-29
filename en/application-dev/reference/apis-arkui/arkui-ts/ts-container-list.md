@@ -1,6 +1,6 @@
 # List
 
-The **\<List>** component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentations of the same type of data in a multiple and coherent row style, for example, images or text.
+The **List** component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentations of the same type of data in a multiple and coherent row style, for example, images or text.
 
 > **NOTE**
 >
@@ -11,11 +11,11 @@ The **\<List>** component provides a list container that presents a series of li
 
 ## Child Components
 
-This component supports the [\<ListItem>](ts-container-listitem.md) and [\<ListItemGroup>](ts-container-listitemgroup.md) child components.
+This component supports the [\<ListItem>](ts-container-listitem.md) and [ListItemGroup](ts-container-listitemgroup.md) child components.
 
 > **NOTE**
 >
-> Below are the rules for calculating the indexes of the child components of **\<List>**:
+> Below are the rules for calculating the indexes of the child components of **List**:
 >
 > The index increases in ascending order of child components.
 >
@@ -25,11 +25,11 @@ This component supports the [\<ListItem>](ts-container-listitem.md) and [\<ListI
 >
 > If the values of [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) change, the indexes of subnodes are updated.
 >
-> Each **\<ListItemGroup>** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the index calculation.
+> Each **ListItemGroup** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the index calculation.
 >
-> Child components of **\<List>** whose **visibility** attribute is set to **Hidden** or **None** are included in the index calculation.
+> Child components of **List** whose **visibility** attribute is set to **Hidden** or **None** are included in the index calculation.
 >
-> Child components of **\<List>** whose **visibility** attribute is set to **None** are not displayed, but the spacing above and below them still takes effect.
+> Child components of **List** whose **visibility** attribute is set to **None** are not displayed, but the spacing above and below them still takes effect.
 
 
 ## APIs
@@ -115,7 +115,7 @@ Sets the scrollbar state.
 
 cachedCount(value: number)
 
-Sets the number of list items or list item groups to be preloaded (cached). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). A list item group is calculated as a whole, and all list items of the group are preloaded at the same time. For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).
+Sets the number of list items or list item groups to be preloaded (cached). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). A list item group is calculated as a whole, and all list items of the group are preloaded at the same time.<!--Del--> For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
 
 In single-column mode, the number of the list items to be cached before and after the currently displayed one equals the value of **cachedCount**.
 
@@ -216,8 +216,8 @@ Sets the number of columns or rows in the list. If the value is set to the **gut
 
 The rules are as follows:
 
-- If the value is set to a number, the column width is calculated by dividing the cross-axis width of the **\<List>** component by the specified number.
-- If the value is set to {minLength, maxLength}, the number of columns is adjusted adaptively based on the width of the **\<List>** component, ensuring that the width respects the {minLength, maxLength} constraints during adaptation. The **minLength** constraint is prioritized.
+- If the value is set to a number, the column width is calculated by dividing the cross-axis width of the **List** component by the specified number.
+- If the value is set to {minLength, maxLength}, the number of columns is adjusted adaptively based on the width of the **List** component, ensuring that the width respects the {minLength, maxLength} constraints during adaptation. The **minLength** constraint is prioritized.
 - If the value is set to {minLength, maxLength}, and the cross-axis width constraint of the parent component is infinite, the parent component is arranged by column, and the column width is calculated based on the largest list item in the display area.
 - Each list item group occupies one row in multi-column mode. Its child list items are arranged based on the **lanes** attribute of the list.
 - If the value is set to {minLength, maxLength}, the number of columns is calculated based on the cross-axis width of the list item group. If the cross-axis width of the list item group is different from that of the list, the number of columns in the list item group may be different from that in the list.
@@ -401,9 +401,9 @@ This API is supported in ArkTS widgets.
 
 | Name    |  Value | Description                       |
 | ------ | ------ | ------------------------- |
-| Start  | 0 | The list items are packed toward the start edge of the **\<List>** component along the cross axis.|
-| Center | 1 | The list items are centered in the **\<List>** component along the cross axis.|
-| End    | 2 | The list items are packed toward the end edge of the **\<List>** component along the cross axis.|
+| Start  | 0 | The list items are packed toward the start edge of the **List** component along the cross axis.|
+| Center | 1 | The list items are centered in the **List** component along the cross axis.|
+| End    | 2 | The list items are packed toward the end edge of the **List** component along the cross axis.|
 
 ## StickyStyle<sup>9+</sup>
 
@@ -411,9 +411,9 @@ This API is supported in ArkTS widgets.
 
 | Name    |  Value | Description                                |
 | ------ | ------ | ---------------------------------- |
-| None   | 0 | In the **\<ListItemGroup>** component, the header is not pinned to the top, and the footer is not pinned to the bottom.|
-| Header | 1 | In the **\<ListItemGroup>** component, the header is pinned to the top, and the footer is not pinned to the bottom. |
-| Footer | 2 | In the **\<ListItemGroup>** component, the footer is pinned to the bottom, and the header is not pinned to the top. |
+| None   | 0 | In the **ListItemGroup** component, the header is not pinned to the top, and the footer is not pinned to the bottom.|
+| Header | 1 | In the **ListItemGroup** component, the header is pinned to the top, and the footer is not pinned to the bottom. |
+| Footer | 2 | In the **ListItemGroup** component, the footer is pinned to the bottom, and the header is not pinned to the top. |
 
 ## ScrollSnapAlign<sup>10+</sup>
 
@@ -467,7 +467,7 @@ This API is deprecated since API version 9. There is no substitute API.
 
 onScrollIndex(event: (start: number, end: number, center: number) => void)
 
-Triggered when a child component enters or leaves the list display area. During index calculation, each **\<ListItemGroup>** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the calculation.
+Triggered when a child component enters or leaves the list display area. During index calculation, each **ListItemGroup** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the calculation.
 
 When the list edge scrolling effect is the spring effect, the **onScrollIndex** event is not triggered when the user scrolls the list to the edge or releases the list to rebound.
 
@@ -773,7 +773,7 @@ The table below lists the changes in the **ScrollState** enums.
 
 ## ListScroller<sup>11+</sup>
 
-Implements the scroll controller of the **\<List>** component. A **\<List>** component is bound to a **ListScroller** on a one-to-one basis.
+Implements the scroll controller of the **List** component. A **List** component is bound to a **ListScroller** on a one-to-one basis.
 
 
 >  **NOTE**
@@ -844,7 +844,7 @@ Collapses the [list items](ts-container-listitem.md) in the [EXPANDED](ts-contai
 
 > **NOTE**
 >
-> - A **ListScroller** must be bound to the **\<List>** component.
+> - A **ListScroller** must be bound to the **List** component.
 
 ## OnScrollVisibleContentChangeCallback<sup>12+</sup>
 Called when a child component enters or leaves the list display area.

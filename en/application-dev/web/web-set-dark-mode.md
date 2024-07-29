@@ -1,7 +1,7 @@
 # Setting the Dark Mode
 
 
-The **\<Web>** component allows you to set the dark mode for frontend pages.
+The **Web** component allows you to set the dark mode for frontend pages.
 
 
 - Call [darkMode()](../reference/apis-arkweb/ts-basic-components-web.md#darkmode9) to configure an expected dark mode.

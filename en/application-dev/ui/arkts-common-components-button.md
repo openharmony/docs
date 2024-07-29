@@ -34,7 +34,7 @@ You can create a button that contains or does not contain child components.
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  The child component contained can either be a [basic component](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md).
+  The child component contained can either be a [basic component](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/apis-arkui/arkui-ts/ts-container-badge.md).
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -165,7 +165,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
 - Using the button for startup
 
-  You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **\<List>** container to redirect the user to another page.
+  You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **List** container to redirect the user to another page.
 
   ```ts
   // xxx.ets

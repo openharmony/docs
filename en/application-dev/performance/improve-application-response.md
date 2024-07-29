@@ -61,7 +61,7 @@ struct ImageExample2 {
 
 ### Using TaskPool for Asynchronous Processing
 
-Compared with the worker thread, [TaskPool](../reference/apis/js-apis-taskpool.md) provides the task priority setting and automatic thread pool management mechanism. The following is an example:
+Compared with the worker thread, [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) provides the task priority setting and automatic thread pool management mechanism. The following is an example:
 
 ```typescript
 import taskpool from '@ohos.taskpool';
@@ -155,7 +155,7 @@ struct StackExample5 {
         Text().width('100%').height('70%').backgroundColor(0xd2cab3)
           .align(Alignment.Center).textAlign(TextAlign.Center);
 
-        // 100 identical <Text> components are omitted here.
+        // 100 identical Text components are omitted here.
 
         if (this.isVisible) {
           Text('New Page').height("100%").height("70%").backgroundColor(0xd2cab3)
@@ -184,7 +184,7 @@ struct StackExample6 {
         Text().width('100%').height('70%').backgroundColor(0xd2cab3)
           .align(Alignment.Center).textAlign(TextAlign.Center);
 
-        // 100 identical <Text> components are omitted here.
+        // 100 identical Text components are omitted here.
 
         Stack() {
           if (this.isVisible) {

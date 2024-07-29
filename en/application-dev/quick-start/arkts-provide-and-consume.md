@@ -424,7 +424,7 @@ struct GrandSon {
 
   build() {
     Column() {
-      Text(`reviewVotes(${this.reviewVotes})`) // The <Text> component displays 10.
+      Text(`reviewVotes(${this.reviewVotes})`) // The Text component displays 10.
       Button(`reviewVotes(${this.reviewVotes}), give +1`)
         .onClick(() => this.reviewVotes += 1)
     }

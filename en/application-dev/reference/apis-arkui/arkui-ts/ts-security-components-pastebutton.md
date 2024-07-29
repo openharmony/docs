@@ -1,6 +1,6 @@
 # PasteButton
 
-The **\<PasteButton>** security component allows you to obtain temporary pasteboard permission from the user by their touching the component.
+The **PasteButton** security component allows you to obtain temporary pasteboard permission from the user by their touching the component.
 
 > **NOTE**
 >
@@ -56,7 +56,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ## Attributes
 
-This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md#attributes)
+This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md)
 
 ## PasteIconStyle
 

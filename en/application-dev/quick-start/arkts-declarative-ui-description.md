@@ -155,7 +155,7 @@ Use chainable event methods to configure events supported by built-in components
 
 ## Configuring Child Components
 
-For a component with child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **Column**, **Row**, **\<Stack>**, **Grid**, and **\<List>** components are all container components.
+For a component with child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **Column**, **Row**, **\<Stack>**, **Grid**, and **List** components are all container components.
 
 
 - Simple example of configuring child components for the **Column** component:
