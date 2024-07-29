@@ -1090,6 +1090,13 @@ setTypingStyle(value: RichEditorTextStyle): void
 
 设置用户预设的样式。
 
+当开发者设置默认值（undefined/null）或未调用该接口时：</br>
+- 使用键盘往无文本内容的RichEditor输入内容时，输入的文本样式是按照默认样式显示，默认样式请参照[RichEditorTextStyle](#richeditortextstyle)内容。</br>
+- 使用键盘往有文本内容的RichEditor输入内容时，输入的文本是跟随前一个文本样式，不按照默认样式显示。
+
+当开发者设置非默认值时：</br>
+- 使用键盘往RichEditor输入内容均按照开发者设置的样式显示，如果预设样式中有未设置的属性则按照[RichEditorTextStyle](#richeditortextstyle)默认值显示。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

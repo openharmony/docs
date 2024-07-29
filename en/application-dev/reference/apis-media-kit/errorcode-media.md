@@ -101,7 +101,7 @@ Destroy this instance and re-create it. If the re-creation fails, stop related o
 
 **Error Message**
 
-Unsupport format.
+Unsupported format.
 
 **Description**
 
@@ -119,7 +119,7 @@ Use a supported format.
 
 **Error Message**
 
-Audio interrupted
+Audio interrupted.
 
 **Description**
 

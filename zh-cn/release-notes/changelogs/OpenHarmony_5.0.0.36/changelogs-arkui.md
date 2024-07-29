@@ -12,6 +12,8 @@
 
 **变更影响**
 
+该变更为不兼容变更。
+
 变更前：在显示范围上方增加节点，显示范围节点会下移；在显示范围上方删除节点，显示范围节点会上移
 
 变更后：在显示范围上方增删节点，显示范围不变
@@ -24,7 +26,7 @@
 
 **起始API Level**
 
-不涉及API变更
+API 12
 
 **变更发生版本**
 
@@ -32,11 +34,11 @@
 
 **变更的接口/组件**
 
-WaterFlow组件。
+WaterFlow组件布局模式WaterFlowLayoutMode.SLIDING_WINDOW。
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
 ## cl.arkui.2 Tabs组件的页签可滚动且为非子页签样式时增加页签默认切换动效
 
@@ -133,7 +135,7 @@ struct TabsSample {
 
 **变更原因**
 
-Refresh组件通过promptText参数可传入文本字符串显示在刷新区域，该参数设置为undefined时未清空文本内容，不符合开发者期待，变更后开发者可设置该参数为undefined清空文本内容。
+Refresh组件通过promptText参数可传入文本字符串显示在刷新区域，该参数设置为undefined时未清空文本内容，不符合ArkUI通用规范，变更后开发者可设置该参数为undefined清空文本内容。
 
 **变更影响**
 
@@ -157,13 +159,13 @@ Refresh组件通过promptText参数可传入文本字符串显示在刷新区域
 
 **变更的接口/组件**
 
-Refresh组件
+Refresh组件promptText参数
 
 **适配指导**
 
 开发者需要判断变更后promptText参数设置undefined时清空文本内容后的效果是否符合预期，如不符合可通过对[Refresh组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md)promptText参数设置期望值以达到预期。
 
-```
+```ts
 @Entry
 @Component
 struct RefreshExample {

@@ -16,7 +16,7 @@
 
 **起始API Level**
 
-不涉及API变更
+API10
 
 **变更发生版本**
 
@@ -42,13 +42,40 @@ MenuItemGroup高度没有加上MenuItem的margin高度，布局错乱，变更�
 
 **变更影响**
 
+
+示例代码：
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("菜单1").bindMenu(this.TestMarginTop())
+    }
+  }
+
+  @Builder
+  TestMarginTop() {
+    Menu() {
+      MenuItemGroup() {
+        MenuItem({content:"第一个"}).margin({top:20, bottom:20}).borderWidth(2).borderColor(Color.Black)
+        MenuItem({content:"第二个"}).margin({top:20}).borderWidth(2).borderColor(Color.Black)
+        MenuItem({content:"第三个"}).margin({bottom:20}).borderWidth(2).borderColor(Color.Black)
+        MenuItem({content:"第四个"}).borderWidth(2).borderColor(Color.Black)
+      }
+    }
+  }
+}
+```
+
+
 | 变更前布局错乱 | 变更后布局正常 |
 |---------|---------|
 |  ![变更前布局错乱](figures/menuitemgroup-height-without-item-margin.jpg)       |  ![变更后布局正常](figures/menuitemgroup-height-with-item-margin.jpg)       |
 
 **起始API Level**
 
-不涉及API变更
+API7
 
 **变更发生版本**
 
@@ -74,13 +101,42 @@ Menu中MenuItem全部设置margin后，左右边距不对称，变更后左右�
 
 **变更影响**
 
+示例代码：
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text('click for menu')
+        .fontSize(20)
+        .position({ x: 100, y: 270 })
+        .margin({ top: 20 })
+        .bindMenu(this.TestMenuItemMarginLeftAndRight)
+    }
+    .height('100%')
+    .width('100%')
+  }
+
+  @Builder
+  TestMenuItemMarginLeftAndRight() {
+    Menu() {
+      MenuItem({content:"这是menuitem1"}).margin(10).borderWidth(1)
+    }
+    .borderWidth(2)
+    .borderColor(Color.Red)
+  }
+}
+```
+
+
 | 变更前边距不对称 | 变更后左右对称 |
 |---------|---------|
 |  ![变更前边距不对称](figures/menuitem-not-center-with-margin.jpg)       |  ![变更后左右对称](figures/menuitem-is-center-with-margin.jpg)       |
 
 **起始API Level**
 
-不涉及API变更
+API7
 
 **变更发生版本**
 
@@ -94,39 +150,7 @@ Menu组件。
 
 菜单布局效果变更，应用无需适配。
 
-## cl.arkui.4 点击Menu菜单区域外的空白区域，关闭菜单交互行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-点击Menu菜单区域外的空白区域，当前为点击按下时菜单就关闭，变更为点击按下-抬手才关闭菜单。
-
-**变更影响**
-
-变更前：点击菜单以外的空白区域，按下时关闭菜单
-
-变更后：点击菜单以外的空白区域，抬手时关闭菜单
-
-**起始API Level**
-
-不涉及API变更
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.35 版本开始。
-
-**变更的接口/组件**
-
-Menu组件。
-
-**适配指导**
-
-菜单关闭交互行为变更，应用无需适配。
-
-## cl.arkui.5 菜单避让手机挖孔变更
+## cl.arkui.4 菜单避让手机挖孔变更
 
 **访问级别**
 
@@ -179,7 +203,7 @@ Menu组件的BindContextMenu接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.6 Repeat设置totalCount属性行为变更
+## cl.arkui.5 Repeat设置totalCount属性行为变更
 
 **访问级别**
 
@@ -187,15 +211,23 @@ Menu组件的BindContextMenu接口
 
 **变更原因**
 
-totoalCount表示UI显示的数据个数。Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为数据的长度，与totalCount定义不符。
+totoalCount表示UI显示的数据个数。当0 < totalCount < arr.length时，界面中只渲染“totalCount”个数据。
 
 **变更影响**
 
 该变更为不兼容性变更。
 
-变更前：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为数据的长度
+变更前：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为数据的长度。
 
-变更后：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为totalCount值
+将arr.length设置为10，totalCount设置为5。显示效果如图所示：
+
+![repeat-totalCount-changelog-before](./figures/repeat-totalCount-changelog-before.jpeg)
+
+变更后：Repeat设置totalCount属性时，如果totalCount小于数据长度，显示的数据个数为totalCount值。
+
+将arr.length设置为10，totalCount设置为5。显示效果如图所示：
+
+![repeat-totalCount-changelog-before](./figures/repeat-totalCount-changelog-after.jpeg)
 
 **起始API Level**
 
@@ -256,7 +288,7 @@ struct TestPage {
 }
 ```
 
-## cl.arkui.7 TimePickerDialog标题高度变更
+## cl.arkui.6 TimePickerDialog标题高度变更
 
 **访问级别**
 
@@ -294,7 +326,7 @@ TimePickerDialog组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.8 AlertDialog、promptAction.showDialog中Button间距变更
+## cl.arkui.7 AlertDialog、promptAction.showDialog中Button间距变更
 
 **访问级别**
 
@@ -332,7 +364,7 @@ AlertDialog、promptAction.showDialog。
 
 默认行为变更，无需适配。
 
-## cl.arkui.9 SubMenu避让底部导航条距离变更
+## cl.arkui.8 SubMenu避让底部导航条距离变更
 
 **访问级别**
 
@@ -352,7 +384,7 @@ Menu避让能贴近底部导航条，而SubMenu避让位置无法贴近底部导
 
 **起始API Level**
 
-不涉及API变更
+7
 
 **变更发生版本**
 
@@ -366,7 +398,7 @@ Menu组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.10 menu、toast修改阴影参数
+## cl.arkui.9 menu、toast修改阴影参数
 **访问级别**
 
 公开接口
@@ -408,7 +440,7 @@ Toast组件ShowToast接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.11 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
+## cl.arkui.10 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
 
 **访问级别**
 
@@ -424,9 +456,17 @@ RichEditor设置用户预设样式的接口setTypingStyle，传入默认值undef
 
 该变更为不兼容变更
 
-变更前：当setTypingStyle设置为undefined/null时，调用接口setTypingStyle不生效。
+变更前：
 
-变更后：当setTypingStyle设置为undefined/null时，会恢复为不设置时效果。
+当setTypingStyle设置为默认值时，调用接口setTypingStyle不生效。
+
+其效果为在任何文本后面持续输入的文本会一直保持之前开发者设置的预置样式，不会跟随前一个文本样式。
+
+变更后：
+
+当setTypingStyle设置为默认值时，会恢复为不设置时效果。
+
+其效果为在任何文本后面持续输入的文本时，会根据前一个文本样式去更新当前输入文本样式。
 
 **起始API Level**
 
@@ -474,7 +514,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.12 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
+## cl.arkui.11 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
 
 **访问级别**
 
@@ -564,7 +604,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.13 MenuItem组件禁用状态下字体颜色变更
+## cl.arkui.12 MenuItem组件禁用状态下字体颜色变更
 
 **访问级别**
 
@@ -602,7 +642,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.14 RichEditor收起键盘后，选中区状态变更
+## cl.arkui.13 RichEditor收起键盘后，选中区状态变更
 
 **访问级别**
 
@@ -636,7 +676,7 @@ UX规格变更
 
 收起键盘时选中区状态变更，应用无需适配。
 
-## cl.arkui.15 dragInteraction接口增加系统接口校验
+## cl.arkui.14 dragInteraction接口增加系统接口校验
 
 **访问级别**
 
@@ -667,7 +707,7 @@ off(type: 'drag', callback?: Callback\<DragState>): void；
 
 默认行为变更，无需适配。
 
-## cl.arkui.16 Popup（气泡组件）UX样式变更
+## cl.arkui.15 Popup（气泡组件）UX样式变更
 
 **访问级别**
 
@@ -709,7 +749,7 @@ Popup（气泡组件）
 
 默认样式变更，无需适配。
 
-## cl.arkui.17 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
+## cl.arkui.16 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
 
 **访问级别**
 
@@ -717,13 +757,13 @@ Popup（气泡组件）
 
 **变更原因**
 
-统一Scroll、List、Grid、WaterFlow组件scrollBarColor接口在设置负数时的效果。
+统一Scroll、List、Grid、WaterFlow组件scrollBarColor接口在设置负数时的行为。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
-变更前，Scroll组件scrollBarColor接口设置负数时按默认值处理，List、Grid、WaterFlow组件scrollBarColor接口设置负数时按黑色处理。
+变更前，Scroll组件scrollBarColor接口设置负数时按默认值0x66182431处理，List、Grid、WaterFlow组件scrollBarColor接口设置负数时按黑色0xFF000000处理。
 
 变更后，Scroll、List、Grid、WaterFlow组件scrollBarColor接口设置负数时按无符号整数对应的ARGB颜色处理。
 
@@ -741,9 +781,9 @@ Scroll、List、Grid、WaterFlow组件scrollBarColor接口
 
 **适配指导**
 
-默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+默认行为变更，无需适配。
 
-## cl.arkui.18 自定义MenuItem的onChange触发逻辑变更
+## cl.arkui.17 自定义MenuItem的onChange触发逻辑变更
 
 **访问级别**
 
@@ -777,7 +817,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。注意，由于此前基于CustomBuilder创建的MenuItem，设置onChange不生效，变更后请按应用场景正确使用onChange。
 
-## cl.arkui.19 手机横屏及其他设备，上下文菜单placement变更
+## cl.arkui.18 手机横屏及其他设备，上下文菜单placement变更
 
 **访问级别**
 
@@ -814,3 +854,37 @@ MenuItem组件。
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.20 Toggle/Switch按压反馈样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更
+
+**变更影响**
+
+该变更为兼容性变更。
+
+变更前：Toggle/Switch有按压反馈，点击时会有按压效果。
+
+变更后：去除Toggle/Switch按压反馈，点击时无按压效果。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![Toggle/Switch](figures/toggle_switch_press_before.png)| ![Toggle/Switch](figures/toggle_switch_press_after.png)|
+
+**起始API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**适配指导**
+
+按压显示效果变化，无需适配。

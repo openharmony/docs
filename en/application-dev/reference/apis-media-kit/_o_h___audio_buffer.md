@@ -7,13 +7,9 @@ The **OH_AudioBuffer** struct defines the configuration such as the size, type, 
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -21,12 +17,12 @@ The **OH_AudioBuffer** struct defines the configuration such as the size, type, 
 
 ### Member Variables
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| [buf](#buf) | Defines the pointer to an audio buffer.| 
-| [size](#size) | Defines the size of the audio buffer.| 
-| [timestamp](#timestamp) | Defines the timestamp of the audio buffer.| 
-| [type](#type) | Defines the type of the audio capture source.| 
+| uint8_t \* [buf](#buf) | Defines the pointer to an audio buffer. | 
+| int32_t [size](#size) | Defines the size of the audio buffer. | 
+| int64_t [timestamp](#timestamp) | Defines the timestamp of the audio buffer. | 
+| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype)[type](#type) | Defines the type of the audio capture source. | 
 
 
 ## Member Variable Description
