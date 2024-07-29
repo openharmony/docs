@@ -7528,11 +7528,13 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   resumePlayer() {
-    // 重新创建本地播放器。
+    // 重新创建应用内播放器。
+    // 恢复应用内播放器的状态信息。
   }
 
   suspendPlayer(type: SuspendType) {
-    // 销毁本地播放器。
+    // 记录应用内播放器的状态信息。
+    // 销毁应用内播放器。
   }
 }
 
@@ -14859,7 +14861,7 @@ exitFullscreen(): void
 
 resumePlayer?(): void
 
-通知应用重建应用内播放器。
+通知应用重建应用内播放器，并恢复应用内播放器的状态信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14871,7 +14873,7 @@ resumePlayer?(): void
 
 suspendPlayer?(type: SuspendType): void
 
-通知应用销毁应用内播放器。
+通知应用销毁应用内播放器，并保存应用内播放器的状态信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
