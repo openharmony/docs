@@ -4025,3 +4025,14 @@
 
 **起始版本**：11
 
+### ohos.permission.GET_APP_DOMAIN_BUNDLE_INFO
+
+允许应用访问应用和域名的映射关系。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
