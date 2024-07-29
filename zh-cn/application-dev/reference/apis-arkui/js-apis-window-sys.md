@@ -3756,31 +3756,3 @@ try {
 | windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形。 |
 | subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是（当windowAttribute配置为SUB_WINDOW时必选）   | 创建子窗口参数。 |
 | systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | 否 |是（当windowAttribute配置为SYSTEM_WINDOW时必选）   | 创建系统窗口参数。 |
-
-**示例：**
-```ts
-import UIServiceExtensionAbility from '@ohos.app.ability.UIServiceExtensionAbility';
-import window from '@ohos.window';
-
-export default class MyServiceExtAbility extends UIServiceExtensionAbility {
-  onWindowWillCreate(extensionWindowConfig: window.ExtensionWindowConfig) {
-    let rect: window.Rect = {left:100, top:100, width:2000, height:2000};
-    //创建子窗
-    extensionWindowConfig.windowName = 'sub_window';
-    extensionWindowConfig.windowAttribute = window.ExtensionWindowAttribute.SUB_WINDOW;
-    extensionWindowConfig.windowRect = rect;
-    extensionWindowConfig.subWindowOptions = {
-      title: 'sub_window_title',
-      decorEnabled: true,
-      isModal: false
-    }
-    //创建系统窗
-    extensionWindowConfig.windowName = 'system_window';
-    extensionWindowConfig.windowAttribute = window.ExtensionWindowAttribute.SYSTEM_WINDOW;
-    extensionWindowConfig.windowRect = rect;
-    extensionWindowConfig.systemWindowOptions = {
-      windowType: window.WindowType.TYPE_GLOBAL_SEARCH
-    }
-  }
-}
-```
