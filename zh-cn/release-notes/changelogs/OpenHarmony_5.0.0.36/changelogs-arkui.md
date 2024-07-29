@@ -133,7 +133,7 @@ struct TabsSample {
 
 **变更原因**
 
-Refresh组件通过promptText参数可传入文本字符串显示在刷新区域，该参数设置为undefined时未清空文本内容，不符合开发者期待，变更后开发者可设置该参数为undefined清空文本内容。
+Refresh组件通过promptText参数可传入文本字符串显示在刷新区域，该参数设置为undefined时未清空文本内容，不符合ArkUI通用规范，变更后开发者可设置该参数为undefined清空文本内容。
 
 **变更影响**
 
@@ -157,13 +157,13 @@ Refresh组件通过promptText参数可传入文本字符串显示在刷新区域
 
 **变更的接口/组件**
 
-Refresh组件
+Refresh组件promptText参数
 
 **适配指导**
 
 开发者需要判断变更后promptText参数设置undefined时清空文本内容后的效果是否符合预期，如不符合可通过对[Refresh组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md)promptText参数设置期望值以达到预期。
 
-```
+```ts
 @Entry
 @Component
 struct RefreshExample {
