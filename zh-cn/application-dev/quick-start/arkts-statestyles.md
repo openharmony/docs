@@ -42,10 +42,10 @@ struct StateStylesSample {
             .backgroundColor('#ffffeef0')
           },
           pressed: {
-            .backgroundColor('ff707070')
+            .backgroundColor('#ff707070')
           },
           normal: {
-            .backgroundColor('ff2787d9')
+            .backgroundColor('#ff2787d9')
           }
         })
         .margin(20)
@@ -55,10 +55,10 @@ struct StateStylesSample {
             .backgroundColor('#ffffeef0')
           },
           pressed: {
-            .backgroundColor('ff707070')
+            .backgroundColor('#ff707070')
           },
           normal: {
-            .backgroundColor('ff2787d9')
+            .backgroundColor('#ff2787d9')
           }
         })
     }.margin('30%')
