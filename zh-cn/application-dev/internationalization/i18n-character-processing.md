@@ -167,7 +167,7 @@ let firstPos = iterator.first(); // firstPos: 0
 let nextPos = iterator.next(2); // nextPos: 9
 
 // 判断某个位置是否是分割点
-let isBoundary = iterator.isBoundary(9); isBoundary: true
+let isBoundary = iterator.isBoundary(9); // isBoundary: true
 
 // 获取BreakIterator对象处理的文本
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
