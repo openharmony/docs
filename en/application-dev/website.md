@@ -1053,7 +1053,6 @@
         - [Swiper High-Performance Development](performance/swiper_optimization.md)
         - [Proper State Management](performance/proper_state_management.md)
         - [Precisely Controlling Render Scope](performance/precisely-control-render-scope.md)
-        - [Reducing Frame Loss](performance/reduce-animation-frame-loss.md)
         - [Reasonably Using Multithreaded Shared Memory](performance/thread_memory_shared.md)
       - Improving Application Startup and Response Times
         - [Speeding Up Application Cold Start](performance/improve-application-cold-start-speed.md)
@@ -2700,6 +2699,8 @@
       - [VPN Error Codes](reference/apis-network-kit/errorcode-net-vpn.md)
   - Neural Network Runtime Kit API Reference
     - C APIs
+      - Modules
+        - [NeuralNetworkRuntime](reference/apis-neural-network-runtime-kit/_neural_network_runtime.md)
       - Header Files
         - [neural_network_core.h](reference/apis-neural-network-runtime-kit/neural__network__core_8h.md)
         - [neural_network_runtime.h](reference/apis-neural-network-runtime-kit/neural__network__runtime_8h.md)
