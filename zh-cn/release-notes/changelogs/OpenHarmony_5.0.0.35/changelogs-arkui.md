@@ -691,49 +691,7 @@ off(type: 'drag', callback?: Callback\<DragState>): void；
 
 默认行为变更，无需适配。
 
-## cl.arkui.15 Popup（气泡组件）UX样式变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-Popup（气泡组件）UX样式不符合规范
-
-**变更影响**
-
-该变更为不兼容性变更。
-
-变更前：
-1、按钮与文本左侧没有对齐
-2、按钮上方与文本下方间距不足8vp
-
-![advanced_popup_before](figures/advanced_popup_before.png) 
-
-变更后：
-1、按钮与文本左侧对齐
-2、按钮上方与文本下方间距8vp
-
-![advanced_popup_after](figures/advanced_popup_after.png) 
-
-**起始API Level**
-
-API 11
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.35开始。
-
-**变更的接口/组件**
-
-Popup（气泡组件）
-
-**适配指导**
-
-默认样式变更，无需适配。
-
-## cl.arkui.16 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
+## cl.arkui.15 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
 
 **访问级别**
 
@@ -767,7 +725,7 @@ Scroll、List、Grid、WaterFlow组件scrollBarColor接口
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.17 自定义MenuItem的onChange触发逻辑变更
+## cl.arkui.16 自定义MenuItem的onChange触发逻辑变更
 
 **访问级别**
 
@@ -801,7 +759,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。注意，由于此前基于CustomBuilder创建的MenuItem，设置onChange不生效，变更后请按应用场景正确使用onChange。
 
-## cl.arkui.18 手机横屏及其他设备，上下文菜单placement变更
+## cl.arkui.17 手机横屏及其他设备，上下文菜单placement变更
 
 **访问级别**
 
@@ -839,7 +797,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.20 Toggle/Switch按压反馈样式变更
+## cl.arkui.18 Toggle/Switch按压反馈样式变更
 
 **访问级别**
 

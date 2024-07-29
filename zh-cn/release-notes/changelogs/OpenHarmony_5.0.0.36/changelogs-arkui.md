@@ -196,3 +196,45 @@ struct RefreshExample {
   }
 }
 ```
+
+## cl.arkui.4 Popup（气泡组件）UX样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Popup（气泡组件）UX样式不符合规范
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+1、按钮与文本左侧没有对齐
+2、按钮上方与文本下方间距不足8vp
+
+![advanced_popup_before](figures/advanced_popup_before.png) 
+
+变更后：
+1、按钮与文本左侧对齐
+2、按钮上方与文本下方间距8vp
+
+![advanced_popup_after](figures/advanced_popup_after.png) 
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36开始。
+
+**变更的接口/组件**
+
+Popup（气泡组件）
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
