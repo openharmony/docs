@@ -3733,7 +3733,7 @@ try {
 
 ## SystemWindowOptions<sup>12+</sup>
 
-系统窗口的创建参数。
+创建系统窗口时需要配置的参数。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3747,7 +3747,7 @@ try {
 
 ## ExtensionWindowConfig<sup>12+</sup>
 
-创建扩展窗口时的配置。
+创建扩展窗口时需要配置的参数。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3758,7 +3758,7 @@ try {
 | 参数名 | 类型                      | 只读  |可选 | 说明       |
 | ------ | ------------------------- | ---- | ---- |---------- |
 | windowName   | string | 否 | 否  | 窗口名。 |
-| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | 否 | 否   | 窗口的属性。 |
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
 | windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形。 |
 | subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
 | systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |
