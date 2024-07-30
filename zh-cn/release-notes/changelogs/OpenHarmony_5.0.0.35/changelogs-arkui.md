@@ -405,16 +405,16 @@ Menu组件。
 
 **变更原因**
 
-当前阴影不明显，区分度不高。
+当前menu、toast组件阴影不明显，背景颜色和组件颜色接近时，区分度不高。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 | 变更前阴影 | 变更后阴影|
 |---------|---------|
-|  ![Menu_before](figures/Menu_before.jpeg)       |  ![Menu_before](figures/Menu_after.jpeg)       |
-|  ![Toast_before](figures/Toast_before.jpeg)       |  ![Toast_before](figures/Toast_after.jpeg)       |
+|  ![menu_Before](figures/menu_Before.png)       |  ![menu_After](figures/menu_After.png)       |
+|  ![toast_Before](figures/toast_Before.png)       |  ![toast_After](figures/toast_After.png)       |
 
 **起始API Level**
 
@@ -438,7 +438,7 @@ Toast组件ShowToast接口
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认效果变更，无需适配。
 
 ## cl.arkui.10 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
 
