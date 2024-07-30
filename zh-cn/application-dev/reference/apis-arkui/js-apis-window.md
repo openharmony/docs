@@ -324,20 +324,6 @@ import { window } from '@kit.ArkUI';
 | EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了沉浸式布局会退出沉浸式布局。             |
 | ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局。   |
 
-## WindowInfo<sup>12+</sup>
-
-窗口详细信息，当前窗口rect、bundleName、abilityName、windowId、windowStatusType。
-
-**系统能力：**  SystemCapability.Window.SessionManager
-
-| 名称   | 类型   | 可读 | 可写 | 说明                                       |
-| ------ | ------ | ---- | ---- | ------------------------------------------ |
-| rect  | [Rect](#rect7)   | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。 |
-| bundleName  | string   | 是   | 是   | 应用Bundle的名称。          |
-| abilityName | string   | 是   | 是   | Ability的名称。               |
-| windowId | number | 是   | 是   | 窗口ID。   |
-| windowStatusType | [WindowStatusType](#windowstatustype11) | 是   | 是   | 窗口模式枚举。   |
-
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -1134,50 +1120,6 @@ type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
 | 'status'   | 状态栏。   |
 | 'navigation'   | 导航栏。   |
 | 'navigationIndicator'   | 底部导航条。 |
-
-## getVisibleWindowInfo<sup>12</sup>
-
-获取当前屏幕的可见窗口(未退后台的窗口)信息。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**返回值：**
-
-| 类型 | 说明 |
-| ------------------- | ----------------------- |
-| Promise&lt;[WindowInfo](#windowinfo12)&gt; | 当前窗口信息对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 202     | Permission verification failed, non-system application uses system API. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { window } from '@kit.ArkUI';
-
-let promise = window.getVisibleWindowInfo();
-promise.then((data) => {
-  data.forEach(windowInfo=>{
-    console.info(`left:${windowInfo.rect.left}`);
-    console.info(`top:${windowInfo.rect.top}`);
-    console.info(`width:${windowInfo.rect.width}`);
-    console.info(`height:${windowInfo.rect.height}`);
-    console.info(`windowId:${windowInfo.windowId}`);
-    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
-    console.info(`abilityName:${windowInfo.abilityName}`);
-    console.info(`bundleName:${windowInfo.bundleName}`);
-  })
-}).catch((err: BusinessError) => {
-  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
-});
-```
 
 ## Window
 
