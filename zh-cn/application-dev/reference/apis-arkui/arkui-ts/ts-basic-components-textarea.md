@@ -648,7 +648,7 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 ### onCopy<sup>8+</sup>
 
-onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。
 
@@ -664,7 +664,7 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onCut<sup>8+</sup>
 
-onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
 
@@ -680,7 +680,7 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onPaste
 
-onPaste(callback:(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
+onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
 
