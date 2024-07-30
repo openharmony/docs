@@ -858,9 +858,6 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
 
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -918,9 +915,6 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
 
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -977,9 +971,6 @@ httpRequest.off("dataEnd");
 on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
-
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
