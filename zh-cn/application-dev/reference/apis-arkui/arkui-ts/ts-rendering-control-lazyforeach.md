@@ -8,11 +8,11 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名        | 类型                                                      | 必填 | 说明                                                         |
 | ------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -28,11 +28,11 @@ onMove(handler: Optional<(from: index, to: index) => void>): T
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型      | 必填 | 说明       |
 | ------ | --------- | ---- | ---------- |
@@ -43,7 +43,7 @@ onMove(handler: Optional<(from: index, to: index) => void>): T
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,7 +55,7 @@ totalCount(): number
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,11 +67,11 @@ getData(index:&nbsp;number): Object
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -85,11 +85,11 @@ registerDataChangeListener(listener: DataChangeListener): void
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名   | 类型                                        | 必填 | 说明           |
 | -------- | ------------------------------------------- | ---- | -------------- |
@@ -103,11 +103,11 @@ unregisterDataChangeListener(listener: DataChangeListener): void
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名   | 类型                                        | 必填 | 说明           |
 | -------- | ------------------------------------------- | ---- | -------------- |
@@ -119,7 +119,7 @@ unregisterDataChangeListener(listener: DataChangeListener): void
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -131,7 +131,7 @@ onDataReloaded(): void
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -143,7 +143,7 @@ onDataAdded(index: number): void
 
 > 从API 8开始，建议使用[onDataAdd](#ondataadd8)。
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -159,7 +159,7 @@ onDataMoved(from: number, to: number): void
 >
 > **说明：**数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。数据移动起始位置与数据移动目标位置交换完成后调用。
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
@@ -174,7 +174,7 @@ onDataDeleted(index: number): void
 
 > 从API 8开始，建议使用[onDataDelete](#ondatadelete8)。
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -188,7 +188,7 @@ onDataChanged(index: number): void
 
 > 从API 8开始，建议使用[onDataChange](#ondatachange8)。
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
@@ -206,11 +206,11 @@ onDataAdd(index: number): void
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 ### onDataMove<sup>8+</sup>
 
@@ -220,7 +220,7 @@ onDataMove(from: number, to: number): void
 
 > **说明：**数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
@@ -237,11 +237,11 @@ onDataDelete(index: number): void
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -255,11 +255,11 @@ onDataChange(index: number): void
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -273,11 +273,11 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名         | 类型                | 必填 | 说明               |
 | -------------- | ------------------- | ---- | ------------------ |
@@ -295,11 +295,11 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
@@ -314,11 +314,11 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
@@ -332,11 +332,11 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
@@ -350,11 +350,11 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
@@ -375,11 +375,11 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型                       | 必填 | 说明                         |
 | ------ | -------------------------- | ---- | ---------------------------- |
@@ -407,11 +407,11 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型                     | 必填 | 说明             |
 | ------ | ------------------------ | ---- | ---------------- |
@@ -423,7 +423,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
