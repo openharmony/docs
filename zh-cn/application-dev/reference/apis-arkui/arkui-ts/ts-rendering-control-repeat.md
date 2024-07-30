@@ -14,7 +14,7 @@ Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**参数说明：**
 
 | 参数名 | 类型       | 必填 | 说明      |
 | ------ | ---------- | -------- | -------- |
