@@ -583,15 +583,15 @@ struct Index {
 
 **变更原因**
 
-toast显示期间默认不响应返回事件，当前场景不符合规范。
-
-变更前：toast会响应返回手势，toast消失。
-
-变更后：toast不会响应返回手势，toast不消失，返回手势事件传递到页面其他组件。
+安卓中的toast默认不会响应返回手势事件，当前子窗下的toast会响应返回事件，不符合规范。
 
 **变更影响**
 
 该变更为不兼容变更。
+
+变更前：toast会响应返回手势，toast消失。
+
+变更后：toast不会响应返回手势，toast不消失，返回手势事件传递到页面其他组件。
 
 **起始API Level**
 
@@ -607,7 +607,7 @@ promptAction.showToast
 
 **适配指导**
 
-默认行为变更，无需适配，后续不支持通过返回手势退出toast。
+默认行为变更，无需适配，但应注意后续不支持通过返回手势退出toast。
 
 ## cl.arkui.14 带按钮的气泡样式变更
 **访问级别**
@@ -618,14 +618,16 @@ promptAction.showToast
 
 popup的按钮文本过长时，布局显示异常。
 
+**变更影响**
+
+该变更为不兼容变更。
+
+
 | 变更前 | 变更后 |
 |---------|---------|
 | 按钮文本的最大行数没有限制，按钮内容会相互交叉 | 最多可显示两行文本，文本逐渐缩小到9vp，仍然超长"..."省略 |
 | ![Popup_Before](figures/Popup_Before.jpeg) | ![Popup_After](figures/Popup_After.jpeg) |
 
-**变更影响**
-
-该变更为不兼容变更。
 
 **起始API Level**
 
@@ -641,7 +643,7 @@ bindPopup
 
 **适配指导**
 
-popup样式变更，无需适配。
+默认效果变更，无需适配。
 
 ## cl.arkui.15 toast样式变更
 **访问级别**
@@ -650,16 +652,16 @@ popup样式变更，无需适配。
 
 **变更原因**
 
-toast文本有两行时，文本居中显示，不符合UX规范。
+toast文本有两行时，有概率出现文本居中显示，不符合规范，规范为toast多行显示时，需左对齐显示。
+
+**变更影响**
+
+该变更为不兼容变更。
 
 | 变更前 | 变更后 |
 |---------|---------|
 | 文本居中显示 | 文本左对齐显示 |
 | ![Toast_Before](figures/Toast_Before.PNG) | ![Toast_After](figures/Toast_After.PNG) |
-
-**变更影响**
-
-该变更为不兼容变更。
 
 **起始API Level**
 
@@ -675,7 +677,7 @@ promptAction.showToast
 
 **适配指导**
 
-toast样式变更，无需适配。
+默认效果变更，无需适配。
 
 ## cl.arkui.16 高级组件ComposeListItem右边按钮在没有配置action的时候，没有点击效果，显示全局的按压效果
 
