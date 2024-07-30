@@ -583,11 +583,13 @@ Wi-Fi P2P群组信息已更改。
 * [COMMON_EVENT_USB_DEVICE_DETACHED](../common_event/commonEvent-usb.md#common_event_usb_device_detached)
 当用户设备作为USB主机时，USB设备被卸载的公共事件的动作。
 
+<!--Del-->
 * [COMMON_EVENT_USB_ACCESSORY_ATTACHED](../common_event/commonEvent-usb.md#common_event_usb_accessory_attached)
 （预留事件，暂未支持）表示已连接USB附件的公共事件的动作。
 
 * [COMMON_EVENT_USB_ACCESSORY_DETACHED](../common_event/commonEvent-usb.md#common_event_usb_accessory_detached)
 （预留事件，暂未支持）表示USB附件被卸载的公共事件的动作。
+<!--DelEnd-->
 
 * COMMON_EVENT_DISK_REMOVED
 （预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
