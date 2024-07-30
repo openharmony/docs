@@ -58,6 +58,8 @@ Image组件默认按照居中裁剪，例如组件宽高设置相同，原图长
 
 Image加载成功且组件不设置宽高时，其显示大小自适应父组件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
