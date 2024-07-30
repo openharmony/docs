@@ -3231,7 +3231,7 @@ tcpServer.listen(listenAddr).then(() => {
   tcpServer.getLocalAddress().then((localAddress: socket.NetAddress) => {
     console.info("SUCCESS! Address:" + JSON.stringify(localAddress));
   }).catch((err: BusinessError) => {
-    console.("FerrorAILED! Error:" + JSON.stringify(err));
+    console.log("FerrorAILED! Error:" + JSON.stringify(err));
   })
 }).catch((err: BusinessError) => {
   console.error('listen fail');
@@ -5325,7 +5325,7 @@ server.listen(localAddr).then(() => {
   }
   client.connect(connectOpt).then(() => {
     server.getLocalAddress().then((localPath: string) => {
-      console.info("success, localPath is"JSON.stringify(localPath));
+      console.info("success, localPath is" + JSON.stringify(localPath));
     }).catch((err: BusinessError) => {
       console.error("FAIL " + JSON.stringify(err));
     })
