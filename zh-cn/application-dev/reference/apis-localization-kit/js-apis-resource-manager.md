@@ -302,7 +302,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ## RawFileDescriptor<sup>8+</sup>
 
-表示rawfile文件所在hap的的descriptor信息。
+表示rawfile文件所在hap的descriptor信息。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
