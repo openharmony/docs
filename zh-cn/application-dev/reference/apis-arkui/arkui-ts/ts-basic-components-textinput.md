@@ -1230,7 +1230,7 @@ setTextSelection选中文字时的配置。
 ## 示例
 
 ### 示例1
-
+TextInput基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1306,7 +1306,7 @@ struct TextInputExample {
 ![TextInput](figures/TextInput.png)
 
 ### 示例2
-
+passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
 ```ts
 @Entry
 @Component
@@ -1380,7 +1380,7 @@ struct TextInputExample {
 ![TextInputError](figures/TextInputError.png)
 
 ### 示例3
-
+TextInput绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1423,7 +1423,7 @@ struct TextInputExample {
 
 
 ### 示例4
-
+cancelButton属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1456,7 +1456,7 @@ struct ClearNodeExample {
 ![cancelButton](figures/TextInputCancelButton.png)
 
 ### 示例5
-
+TextInput计数器使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1489,7 +1489,7 @@ struct TextInputExample {
 
 
 ### 示例6
-本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX。
 
 ```ts
 @Entry
@@ -1715,7 +1715,7 @@ struct textInput {
 
 ### 示例11
 
-自定义键盘弹出发生避让示例
+自定义键盘弹出发生避让示例。
 
 ```ts
 @Entry

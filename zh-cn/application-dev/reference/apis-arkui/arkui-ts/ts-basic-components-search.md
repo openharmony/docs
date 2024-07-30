@@ -780,7 +780,7 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 ##  示例
 
 ### 示例1
-
+Search基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -827,7 +827,7 @@ struct SearchExample {
 ![search](figures/search.gif)
 
 ### 示例2
-
+searchButton、searchIcon、cancelButton属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -873,7 +873,7 @@ struct SearchExample {
 
 
 ### 示例3
-
+Search绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -915,6 +915,7 @@ struct SearchExample {
 ![customKeyboard](figures/searchCustomKeyboard.png)
 
 ### 示例4
+enterKeyType属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -995,7 +996,7 @@ struct SearchExample {
 ![SearchDecoration](figures/search_decoration.png)
 
 ### 示例6
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
 
 ```ts
 @Entry
@@ -1022,7 +1023,7 @@ struct search {
 
 ### 示例7
 
-自定义键盘弹出发生避让示例
+自定义键盘弹出发生避让示例。
 
 ```ts
 @Entry
