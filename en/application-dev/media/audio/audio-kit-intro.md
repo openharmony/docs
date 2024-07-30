@@ -36,7 +36,7 @@ Before developing an audio feature, especially before implementing audio data pr
 
 - Audio quantization process: sampling > quantization > encoding
 
-- Concepts related to audio quantization: analog signal, digital signal, sampling rate, audio channel, sample format, bit width, bit rate, common encoding formats (such as AAC, MP3, PCM, and WMA), and common encapsulation formats (such as WAV, MPA, FLAC, AAC, and OGG)
+- Concepts related to audio quantization: analog signal, digital signal, sampling rate, audio channel, sample format, bit width, bit rate, common encoding formats (such as AAC, MP3, PCM, and WMA), and common container formats (such as WAV, MPA, FLAC, AAC, and OGG)
 
 ## Introduction to Audio Streams
 
