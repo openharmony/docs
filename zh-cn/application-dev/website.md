@@ -365,7 +365,7 @@
             - [出现/消失转场](ui/arkts-enter-exit-transition.md)
             - [导航转场](ui/arkts-navigation-transition.md)
             - [模态转场](ui/arkts-modal-transition.md)
-            - [共享元素转场](ui/arkts-shared-element-transition.md)
+            - [共享元素转场 (一镜到底)](ui/arkts-shared-element-transition.md)
             - [旋转屏动画增强](ui/arkts-rotation-transition-animation.md)
             - [页面转场动画 (不推荐)](ui/arkts-page-transition-animation.md)
           - [粒子动画](ui/arkts-particle-animation.md)
@@ -1306,8 +1306,8 @@
       - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
       - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
       - 模型部署<!--deployment-->
-        - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
-        - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
+        - [使用MindSpore Lite进行CPU推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
+        - [使用MindSpore Lite进行CPU端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [使用MindSpore Lite实现图像分类 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
@@ -1783,6 +1783,7 @@
           - [@ohos.arkui.Theme(主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
           - [@ohos.arkui.UIContext (UIContext)](reference/apis-arkui/js-apis-arkui-UIContext.md)
           - [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension.md)
+          - [@ohos.arkui.StateManagement (状态管理)](reference/apis-arkui/js-apis-StateManagement.md)
           - [@ohos.curves (插值计算)](reference/apis-arkui/js-apis-curve.md)
           - [@ohos.font (注册自定义字体)](reference/apis-arkui/js-apis-font.md)
           - [@ohos.matrix4 (矩阵变换)](reference/apis-arkui/js-apis-matrix4.md)
@@ -2105,6 +2106,10 @@
           - [图像类型定义](reference/apis-arkui/arkui-ts/ts-image-common.md)
           - [文本类型定义](reference/apis-arkui/arkui-ts/ts-text-common.md)
         - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
+        - 渲染控制
+          - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
+          - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
+          - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
         - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
         - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
         - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
