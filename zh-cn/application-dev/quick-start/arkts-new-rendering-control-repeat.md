@@ -83,6 +83,12 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 
+## cachedCount规则
+
+首先需要明确List/Grid `.cachedCount`属性方法和Repeat `cachedCount`的区别。这两者都是为了平衡性能和内存，但是其含义是不同的。
+- List/Grid `.cachedCount`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
+- template  `cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
+
 ## 使用场景
 
 ### non-virtualScroll
