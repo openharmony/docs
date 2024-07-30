@@ -316,6 +316,8 @@ import { window } from '@kit.ArkUI';
 
 窗口最大化时的布局枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称       | 值   | 说明                          |

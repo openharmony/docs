@@ -41,6 +41,8 @@ type Transformer = (this: Object, key: string, value: Object) => Object | undefi
 
 定义处理BigInt的模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 值| 说明            |
@@ -52,6 +54,8 @@ type Transformer = (this: Object, key: string, value: Object) => Object | undefi
 ## ParseOptions
 
 解析的选项，可定义处理BigInt的模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
