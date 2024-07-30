@@ -91,7 +91,7 @@ Example:
 let n1 = 3.14;
 let n2 = 3.141592;
 let n3 = .5;
-let n4 = 1e10;
+let n4 = 1e2;
 
 function factorial(n: number): number {
   if (n <= 1) {
