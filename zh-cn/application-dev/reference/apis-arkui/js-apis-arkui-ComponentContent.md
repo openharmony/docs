@@ -281,3 +281,95 @@ struct Index {
   }
 }
 ```
+
+
+### updateConfiguration
+
+updateConfiguration(): void
+
+传递[系统环境变化](../apis-ability-kit/js-apis-app-ability-configuration.md)事件，触发节点的全量更新。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+> **说明：**
+>
+> updateConfiguration接口功能为通知对象更新，更新所使用的系统环境由当前的系统环境变化。
+
+**示例：**
+```ts
+import { NodeController, FrameNode, ComponentContent, typeNode } from '@kit.ArkUI';
+import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+
+@Builder
+function buildText() {
+  Column() {
+    Text('hello')
+      .width(50)
+      .height(50)
+      .fontColor($r(`app.color.text_color`))
+  }.backgroundColor($r(`app.color.start_window_background`))
+}
+
+const componentContentMap: Array<ComponentContent<[Object]>> = new Array();
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    return this.rootNode;
+  }
+
+  createNode(context: UIContext) {
+    this.rootNode = new FrameNode(context);
+    let component = new ComponentContent<Object>(context, wrapBuilder(buildText));
+    componentContentMap.push(component);
+    this.rootNode.addComponentContent(component);
+  }
+
+  deleteNode() {
+    let node = componentContentMap.pop();
+    this.rootNode?.dispose();
+    node?.dispose();
+  }
+}
+
+function updateColorMode() {
+  componentContentMap.forEach((value, index) => {
+    value.updateConfiguration();
+  })
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+        console.log('onMemoryLevel');
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        updateColorMode();
+      }
+    }
+    // 注册监听回调
+    this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    this.myNodeController.createNode(this.getUIContext());
+  }
+
+  aboutToDisappear(): void {
+    //移除map中的引用，并将自定义节点释放
+    this.myNodeController.deleteNode();
+  }
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
+```
