@@ -1,6 +1,6 @@
-# @ohos.enterprise.wifiManager（WiFi管理）
+# @ohos.enterprise.wifiManager（Wi-Fi管理）
 
-本模块提供企业设备WiFi管理能力，包括查询WiFi开启状态等。
+本模块提供企业设备Wi-Fi管理能力，包括查询Wi-Fi开启状态等。
 
 > **说明：**
 >
@@ -9,6 +9,8 @@
 > 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+>
+> 全局通用限制类策略由restrictions统一提供，若要全局禁用Wi-Fi，请参考[@ohos.enterprise.restrictions（限制类策略）](js-apis-enterprise-restrictions.md)。
 
 ## 导入模块
 
@@ -20,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActiveSync(admin: Want): boolean
 
-指定设备管理应用查询wifi开启状态。
+指定设备管理应用查询Wi-Fi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -36,9 +38,9 @@ isWifiActiveSync(admin: Want): boolean
 
 **返回值：**
 
-| 类型    | 说明                                                    |
-| ------- | ------------------------------------------------------- |
-| boolean | 返回wifi开启状态，true表示wifi开启，false表示wifi关闭。 |
+| 类型    | 说明                                                       |
+| ------- | ---------------------------------------------------------- |
+| boolean | 返回Wi-Fi开启状态，true表示Wi-Fi开启，false表示Wi-Fi关闭。 |
 
 **错误码**：
 
@@ -72,7 +74,7 @@ try {
 
 setWifiProfileSync(admin: Want, profile: WifiProfile): void
 
-指定设备管理应用为设备配置wifi，使连接到指定网络。
+指定设备管理应用为设备配置Wi-Fi，使连接到指定网络。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 

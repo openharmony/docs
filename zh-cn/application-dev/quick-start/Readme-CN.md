@@ -99,6 +99,7 @@
         - [!!语法：双向绑定](arkts-new-binding.md)
         - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
         - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
+        - [getTarget接口：获取状态管理框架代理前的原始对象](arkts-new-getTarget.md)
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

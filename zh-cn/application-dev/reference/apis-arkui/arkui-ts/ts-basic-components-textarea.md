@@ -706,7 +706,7 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 ### onCopy<sup>8+</sup>
 
-onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。
 
@@ -722,7 +722,7 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onCut<sup>8+</sup>
 
-onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
 
@@ -738,7 +738,7 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onPaste
 
-onPaste(callback:(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
+onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
 
@@ -1011,7 +1011,7 @@ setTextSelection选中文字时的配置。
 ## 示例
 
 ### 示例1
-
+TextArea基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1060,7 +1060,7 @@ struct TextAreaExample {
 ![textArea](figures/textArea.gif)
 
 ### 示例2
-
+maxLength、showCounter属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1099,7 +1099,7 @@ struct TextAreaExample {
 
 
 ### 示例3
-
+TextArea绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1142,7 +1142,7 @@ struct TextAreaExample {
 ![customKeyboard](figures/textAreaCustomKeyboard.png)
 
 ### 示例4
-
+TextArea计数器使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1174,6 +1174,7 @@ struct TextAreaExample {
 
 
 ### 示例5
+enterKeyType属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry

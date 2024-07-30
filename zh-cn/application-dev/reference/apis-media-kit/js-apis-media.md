@@ -452,14 +452,13 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 
 媒体类型枚举。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称           | 值   | 说明       |
-| -------------- | ---- | ---------- |
-| MEDIA_TYPE_AUD | 0    | 表示音频。 |
-| MEDIA_TYPE_VID | 1    | 表示视频。 |
+| 名称           | 值                    | 说明                 |
+| -------------- | --------------------- | ------------------- |
+| MEDIA_TYPE_AUD | 0                     | 表示音频。 <br> **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。           |
+| MEDIA_TYPE_VID | 1                     | 表示视频。  <br> **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。          |
+| MEDIA_TYPE_SUBTITLE<sup>12+</sup> | 2    | 表示字幕。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 
 ## CodecMimeType<sup>8+</sup>
 
@@ -785,9 +784,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
-    console.info('Succeeded in preparing');
-  } else {
     console.error('Failed to prepare,error message is :' + err.message)
+  } else {
+    console.info('Succeeded in preparing');
   }
 })
 ```
@@ -860,9 +859,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err) {
-    console.info('Succeeded in playing');
-  } else {
     console.error('Failed to play,error message is :' + err.message)
+  } else {
+    console.info('Succeeded in playing');
   }
 })
 ```
@@ -1311,6 +1310,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
+let audioTrackIndex: Object = 0;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
   if(player != null) {
     avPlayer = player;
@@ -1320,7 +1320,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
         for (let i = 0; i < arrList.length; i++) {
           if (i != 0) {
             // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           }
         }
       } else {
@@ -1374,6 +1374,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
+let audioTrackIndex: Object = 0;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
   if(player != null) {
     avPlayer = player;
@@ -1383,7 +1384,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
         for (let i = 0; i < arrList.length; i++) {
           if (i != 0) {
             // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           }
         }
       } else {
@@ -1598,8 +1599,6 @@ off(type: 'speedDone'): void
 
 取消监听setSpeed生效的事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1668,8 +1667,6 @@ off(type: 'bitrateDone'): void
 
 取消监听setBitrate生效的事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1714,8 +1711,6 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 off(type: 'availableBitrates'): void
 
 取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1839,8 +1834,6 @@ off(type: 'volumeChange'): void
 
 取消监听setVolume生效的事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1885,8 +1878,6 @@ avPlayer.on('endOfStream', () => {
 off(type: 'endOfStream'): void
 
 取消监听资源播放至结尾的事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1984,8 +1975,6 @@ off(type: 'durationUpdate'): void
 
 取消监听资源播放资源的时长。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2030,8 +2019,6 @@ avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number
 off(type: 'bufferingUpdate'): void
 
 取消监听音视频缓存更新事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2078,8 +2065,6 @@ off(type: 'startRenderFrame'): void
 
 取消监听视频播放开始首帧渲染的更新事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2124,8 +2109,6 @@ avPlayer.on('videoSizeChange', (width: number, height: number) => {
 off(type: 'videoSizeChange'): void
 
 取消监听视频播放宽高变化事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2173,8 +2156,6 @@ avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
 off(type: 'audioInterrupt'): void
 
 取消监听音频焦点变化事件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2294,7 +2275,7 @@ let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
 ```
 
-### addSubtitleUrl<sup>12+</sup>
+### addSubtitleFromUrl<sup>12+</sup>
 
 addSubtitleFromUrl(url: string): Promise\<void>
 
@@ -2308,7 +2289,7 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | 是   | 外挂字幕文件地址（fd://资源句柄?offset=资源偏移量&size=资源长度）。 |
+| url    | string | 是   | 外挂字幕文件地址。 |
 
 **返回值：**
 
@@ -2328,16 +2309,10 @@ addSubtitleFromUrl(url: string): Promise\<void>
 ```ts
 import { media } from '@kit.MediaKit'
 
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
-
-let fd:string = fileDescriptor.fd.toString()
-let offset:string = fileDescriptor.offset.toString()
-let length:string = fileDescriptor.length.toString()
-let fdUrl:string = 'fd://' + fd + '?offset=' + offset + '&size=' + length
+let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer()
-avPlayer.addSubtitleUrl(fdUrl)
+avPlayer.addSubtitleFromUrl(fdUrl)
 ```
 
 ### on('subtitleUpdate')<sup>12+</sup>
@@ -2361,7 +2336,7 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 
 ```ts
 avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
-  if (!!info) {
+  if (info) {
     let text = (!info.text) ? '' : info.text
     let startTime = (!info.startTime) ? 0 : info.startTime
     let duration = (!info.duration) ? 0 : info.duration
@@ -2447,6 +2422,8 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 ## SubtitleInfo<sup>12+</sup>
 
 外挂字幕信息，使用场景：订阅外挂字幕事件，回调返回外挂字幕详细信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -3343,6 +3320,8 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeIn
 **示例**：
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerChangeInfo) => {
@@ -3384,6 +3363,8 @@ getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 **示例**：
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturerChangeInfo) => {
@@ -3504,12 +3485,12 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo) => {
+avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) => {
   if (err) {
     console.error('Failed to get AvailableEncoder and error is ' + err.message);
   } else {
     console.info('Succeeded in getting AvailableEncoder');
-    encoderInfo = info;
+    encoderInfo = info[0];
   }
 });
 ```
@@ -3542,9 +3523,9 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder().then((info: media.EncoderInfo) => {
+avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
   console.info('Succeeded in getting AvailableEncoder');
-  encoderInfo = info;
+  encoderInfo = info[0];
 }).catch((err: BusinessError) => {
   console.error('Failed to get AvailableEncoder and catch error is ' + err.message);
 });
@@ -3581,9 +3562,9 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avConfig: AVRecorderConfig;
+let avConfig: media.AVRecorderConfig;
 
-avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) => {
+avRecorder.getAVRecorderConfig((err: BusinessError, config: media.AVRecorderConfig) => {
   if (err) {
     console.error('Failed to get avConfig and error is ' + err.message);
   } else {
@@ -3624,9 +3605,9 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avConfig: AVRecorderConfig;
+let avConfig: media.AVRecorderConfig;
 
-avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
+avRecorder.getAVRecorderConfig().then((config: media.AVRecorderConfig) => {
   console.info('Succeeded in getting AVRecorderConfig');
   avConfig = config;
 }).catch((err: BusinessError) => {
@@ -6948,15 +6929,13 @@ import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-let mgr: resourceManager.ResourceManager | null = null;
-let moduleContext: common.Context;
-moduleContext = this.context.createModuleContext('entry');
-mgr = moduleContext.resourceManager;
-this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
+let context = getContext(this) as common.UIAbilityContext;
+let mgr = context.resourceManager;
+let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
-let fd:string = this.fileDescriptor.fd.toString();
-let offset:string = this.fileDescriptor.offset.toString();
-let length:string = this.fileDescriptor.length.toString();
+let fd:string = fileDescriptor.fd.toString();
+let offset:string = fileDescriptor.offset.toString();
+let length:string = fileDescriptor.length.toString();
 let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};

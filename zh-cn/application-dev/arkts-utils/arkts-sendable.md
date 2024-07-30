@@ -63,7 +63,9 @@ Sendable class需同时满足以下两个规则：
 
 > **说明：**
 >
-> 从API version 12 Beta3开始，支持在ArkTS卡片中使用Sendable function。
+> 从API version 12开始，支持在ArkTS卡片中使用Sendable function。
+>
+> 开发者如需在API12上使用Sendable function，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则其Sendable特性将不生效。参考[Deveco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-0000001778834297-V5#section511142752919)
 
 Sendable function需同时满足以下两个规则：
 1. 当且仅当被标注了[@Sendable装饰器](#sendable装饰器声明并校验sendable-function)。
@@ -109,7 +111,7 @@ Sendable interface需同时满足以下两个规则：
 | 使用场景限制               | 仅支持在Stage模型的工程中使用。仅支持在.ets文件中使用。                    |
 | 装饰的类继承关系限制        | Sendable class只能继承Sendable class，普通Class不可以继承Sendable class。  |
 | 装饰的对象内的属性类型限制  | 1. 支持string、number、boolean、bigint、null、undefined、Sendable class、collections.Array、collections.Map、collections.Set。<br/>2. 禁止使用闭包变量。<br/>3. 不支持#定义私有属性，需用private。<br/>4. 不支持计算属性。           |
-| 装饰的对象内的属性的其他限制 | 成员属性必须显式初始化。成员属性不能跟感叹号。|
+| 装饰的对象内的属性的其他限制 | 成员属性必须显式声明类型、必须显式初始化。成员属性不能跟感叹号。|
 | 装饰的对象内的方法参数限制  | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量。           |
 | Sendable Class的限制      | 不支持增加属性、不支持删除属性、允许修改属性，修改前后属性的类型必须一致、不支持修改方法。   |
 | 适用场景                  | 1. 在TaskPool或Worker中使用类方法。<br/>2. 传输对象数据量较大的使用场景。         |

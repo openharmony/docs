@@ -545,18 +545,24 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
      （1）执行命令后，报错提示：ERROR - PROVISION_INVALID, code: 0. Details: Require build type must be debug or release
 
      （2）执行命令后，报错提示：ERROR - ZIP_ERROR, code: -111. Details: zip init failed
+     
+     （3）执行命令后，报错提示：ERROR - SIGN_ERROR, code: -105. Details: No certificates configured for sign
 
    - **可能原因**
 
      （1）profile文件并没有被签名(没有生成p7b文件),在进行hap签名之前profile文件里的不存在"type"键值信息
 
-     （2）输入的zip包超过了4G，压缩文件数据类型发生变化，导致解压错误
+     （2）输入的zip包超过了4G，压缩文件格式发生变化，导致解压错误
+
+     （3）签名使用的密钥和实体证书不匹配。
 
    - **解决办法**
 
      （1）当app签名时使用未签名的profile文件对hap包进行签名之前，在profile.json文件中添加"type"键，值对应debug或者release
 
-     （2）输入的zip包大小不能超过4G,更换zip包
+     （2）通过资源文件拆分、分包等方式降低hap包大小，最大不超过4G
+
+     （3）检查keyAlias密钥是否使用正确；检查appCertFile是否使用正确，确保密钥和证书匹配
 
 5. 安装hap包失败。
 

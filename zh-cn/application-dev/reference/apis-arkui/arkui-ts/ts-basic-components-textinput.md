@@ -1022,7 +1022,7 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 ### onCopy<sup>8+</sup>
 
-onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。
 
@@ -1038,7 +1038,7 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onCut<sup>8+</sup>
 
-onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
 
@@ -1054,7 +1054,7 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onPaste
 
-onPaste(callback:(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
+onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
 
@@ -1307,7 +1307,7 @@ setTextSelection选中文字时的配置。
 ## 示例
 
 ### 示例1
-
+TextInput基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1383,7 +1383,7 @@ struct TextInputExample {
 ![TextInput](figures/TextInput.png)
 
 ### 示例2
-
+passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
 ```ts
 @Entry
 @Component
@@ -1457,7 +1457,7 @@ struct TextInputExample {
 ![TextInputError](figures/TextInputError.png)
 
 ### 示例3
-
+TextInput绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1500,7 +1500,7 @@ struct TextInputExample {
 
 
 ### 示例4
-
+cancelButton属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1533,7 +1533,7 @@ struct ClearNodeExample {
 ![cancelButton](figures/TextInputCancelButton.png)
 
 ### 示例5
-
+TextInput计数器使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1566,7 +1566,7 @@ struct TextInputExample {
 
 
 ### 示例6
-本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX。
 
 ```ts
 @Entry
@@ -1574,22 +1574,28 @@ struct TextInputExample {
 struct phone_example {
   @State submitValue: string = ''
   @State text: string = ''
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
+  @State teleNumberNoSpace: string = ""
+  @State nextCaret: number = -1 // 用于记录下次光标设置的位置
+  @State actualCh: number = -1 // 用于记录光标在第i个数字后插入或者第i个数字前删除
+  @State lastCaretPosition: number = 0
+  @State lastCaretPositionEnd: number = 0
+  controller: TextInputController = new TextInputController()
 
   isEmpty(str?: string): boolean {
-    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
+    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str)
   }
 
   checkNeedNumberSpace(numText: string) {
-    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g');
-    let isRule: RegExp = new RegExp('^\\+.*');
+    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g')
+    let isRule: RegExp = new RegExp('^\\+.*')
 
     if (isSpace.test(numText)) {
       // 如果电话号码里有特殊字符，就不加空格
       if (isRule.test(numText)) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     }
     return true;
@@ -1597,35 +1603,104 @@ struct phone_example {
 
   removeSpace(str: string): string {
     if (this.isEmpty(str)) {
-      return '';
+      return ''
     }
-    return str.replace(new RegExp("[\\s]", "g"), '');
+    return str.replace(new RegExp("[\\s]", "g"), '')
+  }
+
+  setCaret() {
+    if (this.nextCaret != -1) {
+      console.log("to keep caret position right, change caret to", this.nextCaret)
+      this.controller.caretPosition(this.nextCaret)
+      this.nextCaret = -1
+    }
+  }
+
+  calcCaretPosition(nextText: string) {
+    let befNumberNoSpace: string = this.removeSpace(this.text)
+    this.actualCh = 0
+    if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { // 插入场景
+      for (let i = 0; i < this.lastCaretPosition; i++) {
+        if (this.text[i] != ' ') {
+          this.actualCh += 1
+        }
+      }
+      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length
+      console.log("actualCh: " + this.actualCh)
+      for (let i = 0; i < nextText.length; i++) {
+        if (nextText[i] != ' ') {
+          this.actualCh -= 1
+          if (this.actualCh <= 0) {
+            this.nextCaret = i + 1
+            break;
+          }
+        }
+      }
+    } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
+      if (this.lastCaretPosition === this.text.length) {
+        console.log("Caret at last, no need to change")
+      } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
+        // 按键盘上回退键一个一个删的情况
+        for (let i = this.lastCaretPosition; i < this.text.length; i++) {
+          if (this.text[i] != ' ') {
+            this.actualCh += 1
+          }
+        }
+        for (let i = nextText.length - 1; i >= 0; i--) {
+          if (nextText[i] != ' ') {
+            this.actualCh -= 1
+            if (this.actualCh <= 0) {
+              this.nextCaret = i
+              break;
+            }
+          }
+        }
+      } else {
+        // 剪切/手柄选择 一次删多个字符
+        this.nextCaret = this.lastCaretPosition // 保持光标位置
+      }
+    }
   }
 
   build() {
     Column() {
       Row() {
-        TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
+        TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
           .onChange((number: string) => {
-            let teleNumberNoSpace: string = this.removeSpace(number);
-            if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
-              this.text = teleNumberNoSpace;
+            this.teleNumberNoSpace = this.removeSpace(number);
+            let nextText: string = ""
+            if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              nextText = this.teleNumberNoSpace
             } else if (this.checkNeedNumberSpace(number)) {
-              if (teleNumberNoSpace.length <= 3) {
-                this.text = teleNumberNoSpace;
+              if (this.teleNumberNoSpace.length <= 3) {
+                nextText = this.teleNumberNoSpace
               } else {
-                let split1: string = teleNumberNoSpace.substring(0, 3);
-                let split2: string = teleNumberNoSpace.substring(3);
-                this.text = split1 + ' ' + split2;
-                if (teleNumberNoSpace.length > 7) {
-                  split2 = teleNumberNoSpace.substring(3, 7);
-                  let split3: string = teleNumberNoSpace.substring(7);
-                  this.text = split1 + ' ' + split2 + ' ' + split3;
+                let split1: string = this.teleNumberNoSpace.substring(0, 3)
+                let split2: string = this.teleNumberNoSpace.substring(3)
+                nextText = split1 + ' ' + split2
+                if (this.teleNumberNoSpace.length > 7) {
+                  split2 = this.teleNumberNoSpace.substring(3, 7)
+                  let split3: string = this.teleNumberNoSpace.substring(7)
+                  nextText = split1 + ' ' + split2 + ' ' + split3
                 }
               }
             } else {
-              this.text = number;
+              nextText = number
             }
+            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number)
+            if (this.text === nextText && nextText === number) {
+              // 此时说明数字已经格式化完成了 在这个时候改变光标位置不会被重置掉
+              this.setCaret()
+            } else {
+              this.calcCaretPosition(nextText)
+            }
+            this.text = nextText
+          })
+          .onTextSelectionChange((selectionStart, selectionEnd) => {
+            // 记录光标位置
+            console.log("selection change: ", selectionStart, selectionEnd)
+            this.lastCaretPosition = selectionStart
+            this.lastCaretPositionEnd = selectionEnd
           })
       }
     }
@@ -1792,7 +1867,7 @@ struct textInput {
 
 ### 示例11
 
-自定义键盘弹出发生避让示例
+自定义键盘弹出发生避让示例。
 
 ```ts
 @Entry

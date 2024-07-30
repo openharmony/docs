@@ -8,15 +8,15 @@
 
 **变更原因**
 
-手指触摸Navigation分割线后可立即响应分割线的滑动。
+基于UX人因规格，区隔拖拽和滑动体验，针对分割线的拖拽行为进行时延显示调整。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
-API version 11及以前：手指需长按500ms，Navigation的分割线才可响应滑动。
+变更前：手指需长按500ms，Navigation的分割线才可响应滑动。
 
-API version 12及以后：手指触摸Navigation的分割线可立即响应滑动。
+变更后：手指触摸Navigation的分割线可立即响应滑动。
 
 **起始API Level**
 
@@ -379,7 +379,7 @@ struct SearchExample {
 }
 ```
 
-## cl.arkui.7 命令式渲染节点RenderNode属性clipToFrame默认值变更
+## cl.arkui.7 命令式渲染节点RenderNode属性clipToFrame行为变更
 
 **访问级别**
 
@@ -387,15 +387,17 @@ struct SearchExample {
 
 **变更原因**
 
-命令式渲染节点RenderNode默认会将子节点的布局区域剪裁至节点大小，clipToFrame默认值对应修改为true。
+原先命令式渲染节点RenderNode的clipToFrame设为false不生效，现设置为false，超出节点大小范围的子节点内容不会被剪裁。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
-变更前：开发者在未显式设置RenderNode的clipToFrame属性的情况下，通过get clipToFrame获取到的值为false。
+变更前：RenderNode的clipToFrame设为false不生效，超出节点大小范围的子节点内容会被剪裁。开发者在未显式设置clipToFrame属性的情况下，clipToFrame默认值为false。
 
-变更后：开发者在未显式设置RenderNode的clipToFrame属性的情况下，通过get clipToFrame获取到的值为true，超出该节点大小的子节点内容会被剪裁。
+变更后：RenderNode的clipToFrame设为false时，超出节点大小范围的子节点内容不会被剪裁。为保证变更前后clipToFrame的默认行为一致，开发者在未显式设置clipToFrame属性的情况下，clipToFrame默认值变更为true。
+
+![clipToFrame](./figures/clipToFrame.png)
 
 **起始 API Level**
 
@@ -411,4 +413,45 @@ struct SearchExample {
 
 **适配指导**
 
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。如不符合则自定义修改效果控制变量以达到预期，可显式设置RenderNode的clipToFrame。
+若开发者在设置clipToFrame为false的情况下，仍想保持之前的“超出节点大小范围的内容会被剪裁”的行为，可通过设置clipToFrame为true来实现。
+
+```ts
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 50, y: 50, width: 200, height: 200 };
+renderNode.backgroundColor = 0xffd5d5d5;
+renderNode.clipToFrame = true;  // 设置clipToFrame为true，对超出节点大小的内容进行剪裁。
+
+const childNode = new RenderNode();
+childNode.frame = { x: 10, y: 10, width: 250, height: 100 };
+childNode.backgroundColor = 0xff004aaf;
+renderNode.appendChild(childNode);
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```

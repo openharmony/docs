@@ -16,6 +16,8 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 表示复用设备解锁结果最大有效时长。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称        | 值   | 说明       |
@@ -25,6 +27,8 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 ## EnrolledState<sup>12+</sup>
 
 表示用户注册凭据的状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -36,6 +40,8 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 ## ReuseMode<sup>12+</sup>
 
 表示复用设备解锁结果的模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -52,6 +58,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 > 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果
 > 时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -67,6 +74,8 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 查询凭据注册的状态，用于感知用户注册凭据变化。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -111,6 +120,8 @@ try {
 
 用户认证相关参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称           | 类型                               | 必填 | 说明                                                         |
@@ -124,6 +135,8 @@ try {
 
 用户认证界面配置相关参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                 | 类型                                | 必填 | 说明                                                         |
@@ -134,6 +147,8 @@ try {
 ## UserAuthResult<sup>10+</sup>
 
 用户认证结果。当认证结果为成功时，返回认证类型和认证通过的令牌信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -153,6 +168,8 @@ try {
 onResult(result: UserAuthResult): void
 
 回调函数，返回认证结果。如果认证成功，可以通过UserAuthResult获取到认证通过的令牌信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -234,6 +251,8 @@ on(type: 'result', callback: IAuthCallback): void
 
 订阅用户身份认证结果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
@@ -290,6 +309,8 @@ off(type: 'result', callback?: IAuthCallback): void
 > 
 > 需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
@@ -345,6 +366,8 @@ start(): void
 > 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -403,6 +426,8 @@ cancel(): void
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **错误码：**
@@ -445,6 +470,8 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 > **说明：**
 > 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -916,6 +943,8 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
@@ -962,6 +991,8 @@ try {
 ## UserAuthResultCode<sup>9+</sup>
 
 表示返回码的枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1042,6 +1073,8 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 > 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAvailableStatus](#userauthgetavailablestatus9)替代。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1351,6 +1384,8 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 表示身份认证的凭据类型枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称        | 值   | 说明       |
@@ -1362,6 +1397,8 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 ## AuthTrustLevel<sup>8+</sup>
 
 表示认证结果的信任等级枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 

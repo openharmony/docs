@@ -83,6 +83,12 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 
+## cachedCount规则
+
+首先需要明确List/Grid `.cachedCount`属性方法和Repeat `cachedCount`的区别。这两者都是为了平衡性能和内存，但是其含义是不同的。
+- List/Grid `.cachedCount`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
+- template  `cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
+
 ## 使用场景
 
 ### non-virtualScroll
@@ -639,13 +645,13 @@ export struct RepeatTemplateSingle {
 
 ![Repeat-case1-Succ](./figures/Repeat-Case1-Succ.gif)
 
-### totalCount值大于页面数据源长度
+### totalCount值大于数据源长度
 
-当数据源总长度很大时，会使用数据源懒加载的方式提高加载速度，这导致了页面上加载的数据长度很可能是小于总长度的。为了使Repeat显示正确的滚动条样式，需要将数据总长度赋值给totalCount，当totalCount大于当前页面加载的数据长度时，会出现循环滚动的异常现象。异常现象示例：
+当数据源总长度很大时，会使用懒加载的方式先加载一部分数据，为了使Repeat显示正确的滚动条样式，需要将数据总长度赋值给totalCount，即数据源全部加载完成前，totalCount大于array.length。
 
-![Repeat-Case2-Error](./figures/Repeat-Case2-Error.gif)
+在Repeat组件初始化时，应用必须提供足够的数据项用于渲染。在父组件容器滚动过程中，应用需要在渲染之前进行后续数据项的请求逻辑，保证应用在列表滑动的过程中不会出现空白，直到数据源全部加载完成。
 
-为了避免这个问题，开发者需要在数据滚动的事件中加入懒加载数据的请求逻辑，保证在列表滑动的过程中不会出现空白，直到数据源全部加载完成。示例代码如下：
+上述规范可以通过实现父组件List/Grid的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
 
 ```ts
 @ObservedV2

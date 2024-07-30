@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { inputMethodL } from '@kit.IMEKit';
+import { inputMethod } from '@kit.IMEKit';
 ```
 
 ## 子组件

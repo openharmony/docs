@@ -38,13 +38,13 @@ ArkTS widgets and JS widgets have different implementation principles and featur
 
 | Category        | JS Widget   | ArkTS Widget |
 | ------------ | --------- | ---------- |
-| Development paradigm    | Web-like paradigm| Declarative paradigm|
+| Development paradigm    | Web-like paradigm | Declarative paradigm |
 | Component capability    | Supported     | Supported      |
 | Layout capability    | Supported     | Supported      |
 | Event capability    | Supported     | Supported      |
 | Custom animation  | Not supported   | Supported      |
 | Custom drawing  | Not supported   | Supported      |
-| Logic code execution| Not supported   | Supported      |
+| Logic code execution | Not supported   | Supported      |
 
 ## Related Kits
 - Ability Kit: Form Kit relies on the Extension abilities of Ability Kit for its internal implementation and interacts with Ability Kit during lifecycle scheduling.

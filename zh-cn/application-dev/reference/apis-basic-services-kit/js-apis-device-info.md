@@ -24,7 +24,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | string | 是 | 否 | 设备类型，只允许查询，结果不能用于业务代码开发。详细请参考[deviceTypes标签](../../quick-start/module-configuration-file.md#devicetypes标签)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| deviceType | string | 是 | 否 | 设备类型。详细请参考[deviceTypes标签](../../quick-start/module-configuration-file.md#devicetypes标签)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | manufacture | string | 是 | 否 | 设备厂家名称。 |
 | brand | string | 是 | 否 | 设备品牌名称。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | marketName | string | 是 | 否 | 外部产品系列。 |

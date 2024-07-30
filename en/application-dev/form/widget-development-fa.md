@@ -133,9 +133,9 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
     let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
       // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
       let formInfo: Record<string, string | number | boolean> = {
-        formName: 'formName',
-        tempFlag: 'tempFlag',
-        updateCount: 0
+        'formName': 'formName',
+        'tempFlag': 'tempFlag',
+        'updateCount': 0
       };
       try {
         const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -179,7 +179,7 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
       onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0);
       onShareForm?: (formId: string) => Record<string, Object> = (formId) => {
         let obj: Record<string, number> = {
-          test: 1
+          'test': 1
         };
         return obj;
       };
@@ -197,11 +197,11 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
           hilog.info(domain, TAG, 'FormAbility onCreate' + formId);
           storeFormInfo(formId, formName, tempFlag, this.context);
         }
-    
+  
         // Called when the widget is created. The widget provider should return the widget data binding class.
         let obj: Record<string, string> = {
-          title: 'titleOnCreate',
-          detail: 'detailOnCreate'
+          'title': 'titleOnCreate',
+          'detail': 'detailOnCreate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         return formData;
@@ -214,8 +214,8 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
         // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
         hilog.info(domain, TAG, 'FormAbility onUpdate');
         let obj: Record<string, string> = {
-          title: 'titleOnUpdate',
-          detail: 'detailOnUpdate'
+          'title': 'titleOnUpdate',
+          'detail': 'detailOnUpdate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
@@ -230,8 +230,8 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
       onEvent(formId: string, message: string) {
         // If the widget supports event triggering, override this method and implement the trigger.
         let obj: Record<string, string> = {
-          title: 'titleOnEvent',
-          detail: 'detailOnEvent'
+          'title': 'titleOnEvent',
+          'detail': 'detailOnEvent'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
@@ -252,7 +252,7 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
         return formInfo.FormState.READY;
       }
     };
-    
+  
     export default obj;
     ```
 
@@ -364,9 +364,9 @@ const DATA_STORAGE_PATH: string = 'form_store';
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
   // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
   let formInfo: Record<string, string | number | boolean> = {
-    formName: 'formName',
-    tempFlag: 'tempFlag',
-    updateCount: 0
+    'formName': 'formName',
+    'tempFlag': 'tempFlag',
+    'updateCount': 0
   };
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -406,8 +406,8 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
 
     // Called when the widget is created. The widget provider should return the widget data binding class.
     let obj: Record<string, string> = {
-      title: 'titleOnCreate',
-      detail: 'detailOnCreate'
+      'title': 'titleOnCreate',
+      'detail': 'detailOnCreate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
@@ -464,8 +464,8 @@ onUpdate(formId: string) {
   // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
   hilog.info(domain, TAG, 'FormAbility onUpdate');
   let obj: Record<string, string> = {
-    title: 'titleOnUpdate',
-    detail: 'detailOnUpdate'
+    'title': 'titleOnUpdate',
+    'detail': 'detailOnUpdate'
   };
   let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
   // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.

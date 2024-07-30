@@ -14,6 +14,8 @@
 
 - 当前系统支持的权限组如下所示，各子权限的含义请查阅[应用权限列表](permissions-for-all.md)。
 
+<!--RP1-->
+
 ## 位置信息
 
 - [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all.md#ohospermissionlocation_in_background)
@@ -32,22 +34,19 @@
 
 ## 通讯录
 
-<!--RP1-->
 - [ohos.permission.READ_CONTACTS](permissions-for-system-apps.md#ohospermissionread_contacts)
 
 - [ohos.permission.WRITE_CONTACTS](permissions-for-system-apps.md#ohospermissionwrite_contacts)
-<!--RP1End-->
 
 ## 日历
 
 - [ohos.permission.READ_CALENDAR](permissions-for-all.md#ohospermissionread_calendar)
 
 - [ohos.permission.WRITE_CALENDAR](permissions-for-all.md#ohospermissionwrite_calendar)
-<!--Del-->
+
 - [ohos.permission.READ_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionread_whole_calendar)
 
 - [ohos.permission.WRITE_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionwrite_whole_calendar)
-<!--DelEnd-->
 
 ## 健身运动
 
@@ -59,30 +58,25 @@
 
 ## 图片和视频
 
-<!--RP2-->
 - [ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)
 
 - [ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo)
-<!--RP2End-->
+
 - [ohos.permission.MEDIA_LOCATION](permissions-for-all.md#ohospermissionmedia_location)
 
 ## 音乐和音频
 
-<!--RP3-->
 - [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)
 
 - [ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)
-<!--RP3End-->
 
 ## 广告跟踪
 
 - [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all.md#ohospermissionapp_tracking_consent)
 
-<!--Del-->
 ## 读取已安装应用列表
 
 - [ohos.permission.GET_INSTALLED_BUNDLE_LIST](permissions-for-system-apps.md#ohospermissionget_installed_bundle_list)
-<!--DelEnd-->
 
 ## 多设备协同
 
@@ -92,7 +86,6 @@
 
 - [ohos.permission.ACCESS_BLUETOOTH](permissions-for-all.md#ohospermissionaccess_bluetooth)
 
-<!--Del-->
 ## 电话
 
 - [ohos.permission.ANSWER_CALL](permissions-for-system-apps.md#ohospermissionanswer_call)
@@ -118,15 +111,11 @@
 - [ohos.permission.RECEIVE_WAP_MESSAGES](permissions-for-system-apps.md#ohospermissionreceive_wap_messages)
 
 - [ohos.permission.SEND_MESSAGES](permissions-for-system-apps.md#ohospermissionsend_messages)
-<!--DelEnd-->
 
 ## 剪切板
 
-<!--RP4-->
 - [ohos.permission.READ_PASTEBOARD](permissions-for-system-apps.md#ohospermissionread_pasteboard)
-<!--RP4End-->
 
-<!--Del-->
 ## 文件夹
 
 - [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all.md#ohospermissionread_write_download_directory)
@@ -134,11 +123,12 @@
 - [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_desktop_directory)
 
 - [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all.md#ohospermissionread_write_documents_directory)
-<!--DelEnd-->
 
 ## 星闪
 
 - [ohos.permission.ACCESS_NEARLINK](permissions-for-all.md#ohospermissionaccess_nearlink)
+
+<!--RP1End-->
 
 ## 文件<sup>(deprecated)</sup>
 

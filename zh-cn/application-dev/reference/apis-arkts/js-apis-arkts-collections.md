@@ -276,6 +276,7 @@ let array : Array<string> = ['str1', 'str2', 'str3']; // 原生Array<T>，T是Se
 let sendableArray = collections.Array.from<string>(array); // 返回Sendable Array<T>
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例
 let array : Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', 'str6'], ['str7', 'str8', 'str9']]; // 原生Array<T>，T是非Sendable数据类型。
@@ -1041,7 +1042,7 @@ fill(value: T, start?: number, end?: number): Array\<T>
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | T      | 是   | 要填充的值。                                           |
 | start  | number | 否   | 开始填充的索引。默认值为0。                            |
-| end    | number | 否   | 结束填充的索引。如果省略，则填充到Array的最后一个元素。 |
+| end    | number | 否   | 结束填充的索引（不包括该元素）。如果省略，则填充到Array的最后一个元素。 |
 
 **返回值：**
 
@@ -1326,6 +1327,7 @@ const myMap = new collections.Map<number, string>([
 ]);
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 @Sendable
@@ -1594,6 +1596,7 @@ new collections.Map<string, number>([
 });
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 new collections.Map<string, number>([
@@ -1716,6 +1719,7 @@ const myMap = new collections.Map<string, string>();
 myMap.set("foo", "bar")
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 let obj = new Object();
@@ -1779,6 +1783,7 @@ const mySet = new collections.Set<number>();
 const mySet = new collections.Set<number>([1, 2, 3, 4, 5]);
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 @Sendable
@@ -2027,6 +2032,7 @@ new collections.Set<string>(['foo', 'bar', 'baz']).forEach((value1, value2, set)
 });
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 new collections.Set<string>(['foo', 'bar', 'baz']).forEach((value1, value2, set) => {
@@ -2101,6 +2107,7 @@ const mySet: collections.Set<string> = new collections.Set<string>();
 mySet.add("foo");
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 let obj = new Object();

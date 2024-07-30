@@ -3635,6 +3635,18 @@ Allows a system service to enable distributed hardware resources.
 
 **Valid since**: 11
 
+### ohos.permission.ACCESS_MULTICORE_HYBRID_ABILITY
+
+Allows an application to access the watch system service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
@@ -3952,3 +3964,15 @@ Allows an application to access the **Desktop** directory in the user directory.
 **Enable via ACL**: true
 
 **Valid since**: 11
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+Allows an application to install beta applications.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12

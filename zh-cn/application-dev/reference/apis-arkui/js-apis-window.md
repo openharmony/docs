@@ -316,6 +316,8 @@ import { window } from '@kit.ArkUI';
 
 窗口最大化时的布局枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称       | 值   | 说明                          |
@@ -1791,7 +1793,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -1858,7 +1860,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -1928,7 +1930,7 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+设置主窗口导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -1999,7 +2001,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -2072,7 +2074,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用Promise异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -3224,6 +3226,8 @@ on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
 开启截屏事件的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -3258,6 +3262,8 @@ try {
 off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 
 关闭截屏事件的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3298,6 +3304,8 @@ on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
 开启模态窗口所遮盖窗口的点击或触摸事件的监听，除模态窗口以外其他窗口调用此接口不生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -3332,6 +3340,8 @@ try {
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
 关闭模态窗口目标窗口的点击事件的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3927,6 +3937,8 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 
 开启子窗口关闭事件的监听。此监听仅在点击系统提供的右上角关闭按钮关闭子窗时触发，其余关闭方式不触发回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -3966,6 +3978,8 @@ try {
 off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
 
 关闭子窗口关闭事件的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5872,6 +5886,79 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setDialogBackGestureEnabled<sup>12+</sup>
+
+setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
+
+设置模态窗口是否响应手势返回事件，非模态窗口调用返回错误码。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| enabled    | boolean | 是   | 是否响应手势返回事件。<br>true表示响应，false表示不响应。</br> |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        let promise = windowClass.setDialogBackGestureEnabled(enabled);
+        promise.then(() => {
+          console.info('Succeeded in setting dialog window to ignore back gesture.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set dialog window to ignore back gesture. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -6551,7 +6638,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，该接口在2in1设备上调用不生效。
+设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -6607,7 +6694,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -6666,7 +6753,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -6726,7 +6813,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用Promise异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -7793,8 +7880,8 @@ WindowStage生命周期。
 | ACTIVE     | 2      | 获焦状态。 |
 | INACTIVE   | 3      | 失焦状态。 |
 | HIDDEN     | 4      | 切到后台。 |
-| RESUMED<sup>11+</sup> | 5      | 前台可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
-| PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
+| RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如从多任务列表中，点击应用后返回到前台的状态。 |
+| PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
 
 ## SubWindowOptions<sup>11+</sup>
 
@@ -7804,11 +7891,11 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称      | 类型  | 只读 | 必填 | 说明         |
+| 名称      | 类型  | 只读 | 可选 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title    | string | 否 | 是 | 子窗口标题。       |
-| decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
-| isModal<sup>12+</sup>    | boolean | 否 | 否 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
+| title    | string | 否 | 否 | 子窗口标题。       |
+| decorEnabled | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
+| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
 
 ## WindowStage<sup>9+</sup>
 

@@ -49,7 +49,11 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 aboutToAppear?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载显示时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载显示后触发此回调。
+
+> **说明：**
+>
+> 回调时机参考[onAppear](arkui-ts/ts-universal-events-show-hide.md#onappear)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -60,6 +64,10 @@ aboutToAppear?(): void
 aboutToDisappear?(): void
 
 当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)卸载消失时触发此回调。
+
+> **说明：**
+>
+> 回调时机参考[onDisAppear](arkui-ts/ts-universal-events-show-hide.md#ondisappear)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
