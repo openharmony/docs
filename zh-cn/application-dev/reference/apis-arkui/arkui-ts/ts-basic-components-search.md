@@ -622,7 +622,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| callback  | [EditableTextOnChangeCallback](ts-universal-attributes-text-style.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
+| callback  | [EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
 
 ### onCopy
 

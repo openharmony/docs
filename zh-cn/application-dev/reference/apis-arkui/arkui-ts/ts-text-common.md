@@ -221,3 +221,16 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
 | boolean | 菜单项的执行逻辑。<br/>返回为true，拦截系统默认逻辑，仅执行自定义逻辑。<br/>返回为false，先执行自定义逻辑，再执行系统逻辑。 |
+
+## EditableTextOnChangeCallback<sup>12+</sup>
+
+type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
+
+输入内容发生变化时，触发该回调。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| value | string | 是 | 文本框内正式上屏的文本内容。 |
+| previewText | [PreviewText](ts-basic-components-richeditor.md#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
