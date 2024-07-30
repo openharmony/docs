@@ -1154,9 +1154,8 @@ type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 202     | Permission verification failed, non-system application uses system API. |
-| 1300002 | This window state is abnormal. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
 
 **示例：**
 
