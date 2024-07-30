@@ -971,7 +971,7 @@ try {
 }
 ```
 
-## getVisibleWindowInfo<sup>12</sup>
+## window.getVisibleWindowInfo<sup>12</sup>
 
 window.getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
