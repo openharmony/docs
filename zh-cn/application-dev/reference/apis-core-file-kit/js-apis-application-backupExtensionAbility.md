@@ -33,9 +33,9 @@ import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-| 名称                  | 类型                                                              | 只读 | 可写 | 说明                                                |
-| --------------------- | ----------------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context<sup>11+</sup> | [BackupExtensionContext](js-apis-file-backupextensioncontext.md) | 是   | 否   | BackupExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
+| 名称                  | 类型                                                              | 必填 | 说明                                                |
+| --------------------- | ----------------------------------------------------------------- | ---- | --------------------------------------------------- |
+| context<sup>11+</sup> | [BackupExtensionContext](js-apis-file-backupextensioncontext.md) | 是  | BackupExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
 
 ### onBackup
 
@@ -54,9 +54,9 @@ Extension生命周期回调，在执行备份数据时回调，由开发者提�
     }
   }
   ```
-### onBackupEx
+### onBackupEx<sup>12+</sup>
 
-onBackupEx(backupInfo: string): string | Promise<string>;
+onBackupEx(backupInfo: string): string | Promise&lt;string&gt;
 
 备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用
 onBackupEx与onBackup互斥，如果重写onBackupEx，则优先调用onBackupEx。
@@ -68,30 +68,61 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 | 参数名           | 类型                            | 必填 | 说明                          |
 |---------------| ------------------------------- | ---- |-----------------------------|
-| backupInfo    |string | 否   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。 |
+| backupInfo    |string | 是   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。 |
+
+**说明：**
+>
+> 同步步处理业务场景中，推荐使用示例如下。
 
 **示例：**
 
   ```ts
   import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
+  interface ErrorInfo {
+    type: string,
+    errorCode: number,
+    errorInfo: string
+  }
+
   class BackupExt extends BackupExtensionAbility {
-    async onBackupEx(backupInfo: string): string {
+    onBackupEx(backupInfo: string): string {
       console.log(`onBackupEx ok`);
-      let info = "app diy info";
-      return info;
+      let errorInfo: ErrorInfo = {
+        type: "ErrorInfo",
+        errorCode: 0,
+        errorInfo: "app diy error info"       
+      }
+      return JSON.stringify(errorInfo);
     }
   }
   ```
 
-```ts
+**说明：**
+>
+> 异步步处理业务场景中，推荐使用示例如下。
+
+**示例：**
+
+  ```ts
   import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
+  interface ErrorInfo {
+    type: string,
+    errorCode: number,
+    errorInfo: string
+  }
+
   class BackupExt extends BackupExtensionAbility {
+    //异步实现
     async onBackupEx(backupInfo: string): Promise<string> {
       console.log(`onBackupEx ok`);
-      let info = "app diy info";
-      return Promise.resolve(info);
+      let errorInfo: ErrorInfo = {
+        type: "ErrorInfo",
+        errorCode: 0,
+        errorInfo: "app diy error info"       
+      }
+      return JSON.stringify(errorInfo);
     }
   }
   ```
@@ -115,13 +146,13 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
   ```ts
   import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
-  class BackupExt extends BackupExtension {
+  class BackupExt extends BackupExtensionAbility {
     async onRestore(bundleVersion : BundleVersion) {
       console.log(`onRestore ok ${JSON.stringify(bundleVersion)}`);
     }
   }
   ```
-  ### onRestoreEx
+  ### onRestoreEx<sup>12+</sup>
 
 onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
@@ -137,7 +168,7 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 | 参数名        | 类型                            | 必填 | 说明                           |
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
-| restoreInfo |string | 否   | 预留字段，应用恢复过程中需要的扩展参数 |
+| restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数 |
 
 **说明：**
 >
@@ -194,7 +225,7 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
     }
   }
   ```
-  ### getBackupInfo
+  ### getBackupInfo<sup>12+</sup>
 
 getBackupInfo(): string;
 
