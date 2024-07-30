@@ -14,7 +14,7 @@ Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型       | 必填 | 说明      |
 | ------ | ---------- | -------- | -------- |
@@ -45,7 +45,7 @@ each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void): RepeatAttribute\<T\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明 |
 | ------ | ---------- | -------- | -------- |
@@ -63,7 +63,7 @@ key(keyGenerator: (item: T, index: number) => string): RepeatAttribute\<T\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
@@ -82,7 +82,7 @@ virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute\<T\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
@@ -100,7 +100,7 @@ template(type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: Te
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
@@ -120,7 +120,7 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
@@ -134,7 +134,7 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                         |
 | ------ | ------ | ---- | -------------------------------------------- |
@@ -149,7 +149,7 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
@@ -167,7 +167,7 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名     | 类型          | 必填      | 说明                                    |
 | ---------- | ------------- | --------------------------------------- | --------------------------------------- |
@@ -181,7 +181,7 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
@@ -197,7 +197,7 @@ type TemplateTypedFunc\<T\> = (item : T, index : number) => string
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                         |
 | ------ | ------ | ---- | -------------------------------------------- |
