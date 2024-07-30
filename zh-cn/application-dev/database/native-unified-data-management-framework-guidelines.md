@@ -20,6 +20,8 @@
 ## 约束限制
 
 - UDMF支持批量数据记录的分组管理，每个分组整体大小不超过200MB，其中PlainText、Hyperlink、HTML内单个属性值数据上限20M。
+- 向统一数据记录中添加用户自定义数据时，所添加的数据大小不超过4KB。
+- 向UDMF数据库中写入数据时，定义的唯一标识符的内存大小不小于512字节。
 
 
 
@@ -27,92 +29,92 @@
 
 详细的接口说明请参考[暂未完成](../reference/apis-arkdata/_r_d_b.md)。
 
-| 接口名称 | 描述                        |
-| -------- |---------------------------|
-| OH_Utd* OH_Utd_Create(const char* typeId) | 创建一个指向统一数据类型描述符OH_Utd的指针。 |
-| void OH_Utd_Destroy(OH_Utd* pThis) | 销毁指向统一数据类型描述符OH_Utd的指针。 |
-| const char* OH_Utd_GetTypeId(OH_Utd* pThis) | 获取OH_Utd中的标准化数据类型id。 |
-| const char* OH_Utd_GetDescription(OH_Utd* pThis) | 获取OH_Utd中的描述参数。 |
-| const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis) | 获取OH_Utd中的参考链接URL。 |
-| const char* OH_Utd_GetIconFile(OH_Utd* pThis) | 获取OH_Utd中的默认图标文件路径。 |
-| const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count) | 获取OH_Utd中的默认图标文件路径。 |
-| const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count) | 获取OH_Utd所关联的文件名后缀列表。 |
-| const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count) | 获取OH_Utd所关联的web消息数据类型列表。 |
-| const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count) | 通过文件后缀名获取标准化数据类型id。 |
-| const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count) | 通过web消息数据类型获取标准化数据类型id。 |
-| bool OH_Utd_BelongsTo(const char* srcTypeId, const char* destTypeId) | 判断标准化数据类型是否归属于指定的标准化数据类型。 |
-| bool OH_Utd_IsLower(const char* srcTypeId, const char* destTypeId) | 判断标准化数据类型是否是指定的标准化数据类型的低层级类型。 |
-| bool OH_Utd_IsHigher(const char* srcTypeId, const char* destTypeId) | 判断标准化数据类型是否是指定的标准化数据类型的高层级类型。 |
-| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2) | 判断两种标准化数据类型是否相等。 |
-| void OH_Utd_DestroyStringList(const char** list, unsigned int count) | 销毁字符串列表数据。 |
-| OH_UdsPlainText* OH_UdsPlainText_Create() | 创建一个指向标准化数据结构纯文本类型OH_UdsPlainText的指针。 |
-| void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis) | 销毁指向标准化数据结构纯文本类型OH_UdsPlainText的指针。 |
-| const char* OH_UdsPlainText_GetType(OH_UdsPlainText* pThis)  | 获取OH_UdsPlainText中的标准化数据类型id。 |
-| const char* OH_UdsPlainText_GetContent(OH_UdsPlainText* pThis) | 获取OH_UdsPlainText中的纯文本内容。 |
-| const char* OH_UdsPlainText_GetAbstract(OH_UdsPlainText* pThis) | 获取OH_UdsPlainText中的纯文本摘要。 |
-| int OH_UdsPlainText_SetContent(OH_UdsPlainText* pThis, const char* content) | 设置OH_UdsPlainText中的纯文本内容。 |
-| int OH_UdsPlainText_SetAbstract(OH_UdsPlainText* pThis, const char* abstract) | 设置OH_UdsPlainText中的纯文本摘要。 |
-| OH_UdsHyperlink* OH_UdsHyperlink_Create() | 创建一个指向标准化数据结构超链接类型OH_UdsHyperlink的指针。 |
-| void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis) | 销毁指向标准化数据结构超链接类型OH_UdsHyperlink的指针。 |
-| const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的标准化数据类型id。 |
-| const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的链接URL。 |
-| const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的链接内容描述。 |
-| int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url) | 设置OH_UdsHyperlink中的链接URL。 |
-| int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | 设置OH_UdsHyperlink中的链接内容描述。 |
-| OH_UdsHtml* OH_UdsHtml_Create() | 创建一个指向标准化数据结构超文本标记语言数据类型OH_UdsHtml的指针。 |
-| void OH_UdsHtml_Destroy(OH_UdsHtml* pThis) | 销毁指向标准化数据结构超文本标记语言数据类型OH_UdsHtml的指针。 |
-| const char* OH_UdsHtml_GetType(OH_UdsHtml* pThis) | 获取OH_UdsHtml中的标准化数据类型id。 |
-| const char* OH_UdsHtml_GetContent(OH_UdsHtml* pThis) | 获取OH_UdsHtml中的html格式内容。 |
-| const char* OH_UdsHtml_GetPlainContent(OH_UdsHtml* pThis) | 获取OH_UdsHtml中的纯文本内容。 |
-| int OH_UdsHtml_SetContent(OH_UdsHtml* pThis, const char* content) | 设置OH_UdsHtml中的html格式内容。 |
-| int OH_UdsHtml_SetPlainContent(OH_UdsHtml* pThis, const char* plainContent) | 设置OH_UdsHtml中的纯文本内容。 |
-| OH_UdsAppItem* OH_UdsAppItem_Create() | 创建一个指向标准化数据结构桌面图标类型OH_UdsAppItem的指针。 |
-| void OH_UdsAppItem_Destroy(OH_UdsAppItem* pThis) | 销毁指向标准化数据结构桌面图标类型OH_UdsAppItem的指针。 |
-| const char* OH_UdsAppItem_GetType(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中的标准化数据类型id。 |
-| const char* OH_UdsAppItem_GetId(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的应用id。 |
-| const char* OH_UdsAppItem_GetName(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的应用名。 |
-| const char* OH_UdsAppItem_GetIconId(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的图片id。 |
-| const char* OH_UdsAppItem_GetLabelId(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的标签id。 |
-| const char* OH_UdsAppItem_GetBundleName(OH_UdsAppItem* pThis)  | 获取OH_UdsAppItem中图标对应的bundle名。 |
-| const char* OH_UdsAppItem_GetAbilityName(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的activity名。 |
-| int OH_UdsAppItem_SetId(OH_UdsAppItem* pThis, const char* appId) | 设置OH_UdsAppItem中图标对应的应用id。 |
-| int OH_UdsAppItem_SetName(OH_UdsAppItem* pThis, const char* appName) | 设置OH_UdsAppItem中图标对应的应用名。 |
-| int OH_UdsAppItem_SetIconId(OH_UdsAppItem* pThis, const char* appIconId) | 设置OH_UdsAppItem中图标对应的图片id。 |
-| int OH_UdsAppItem_SetLabelId(OH_UdsAppItem* pThis, const char* appLabelId) | 设置OH_UdsAppItem中图标对应的标签id。 |
-| int OH_UdsAppItem_SetBundleName(OH_UdsAppItem* pThis, const char* bundleName) | 设置OH_UdsAppItem中图标对应的bundle名。 |
-| int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName) | 设置OH_UdsAppItem中图标对应的activity名。 |
-| OH_UdmfData* OH_UdmfData_Create() | 创建一个指向统一数据对象OH_UdmfData的指针。 |
-| void OH_UdmfData_Destroy(OH_UdmfData* pThis) | 销毁指向统一数据对象OH_UdmfData的指针。 |
-| int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | 向OH_UdmfData中增加一条OH_UdmfRecord数据记录。 |
-| bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type) | 判断统一数据对象OH_UdmfData是否存在指定类型。 |
-| char** OH_UdmfData_GetTypes(OH_UdmfData* pThis, unsigned int* count)  | 获取OH_UdmfData中全部的数据类型。 |
-| OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | 获取OH_UdmfData中全部的数据记录。 |
-| OH_UdmfRecord* OH_UdmfRecord_Create() | 创建一个指向统一数据记录OH_UdmfRecord的指针。 |
-| void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis) | 销毁指向统一数据记录OH_UdmfRecord的指针。 |
-| int OH_UdmfRecord_AddGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char* entry, unsigned int count) | 向OH_UdmfRecord添加自定义类型数据。 |
-| int OH_UdmfRecord_AddPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText) | 向OH_UdmfRecord添加纯文本类型数据。 |
-| int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 向OH_UdmfRecord添加超链接类型数据。 |
-| int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html) | 向OH_UdmfRecord添加超文本标记语言类型数据。 |
-| int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem) | 向OH_UdmfRecord添加桌面图标类型数据。 |
-| char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count) | 获取OH_UdmfRecord中全部的数据类型。 |
-| int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char** entry, unsigned int* count) | 获取OH_UdmfRecord中自定义类型数据。 |
-| int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText) | 获取OH_UdmfRecord中纯文本类型数据。 |
-| int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 获取OH_UdmfRecord中超链接类型数据。 |
-| int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html) | 获取OH_UdmfRecord中超文本标记语言类型数据。 |
-| int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem) | 获取OH_UdmfRecord中桌面图标类型数据。 |
+| 接口名称 | 描述                                            |
+| -------- |-----------------------------------------------|
+| OH_Utd* OH_Utd_Create(const char* typeId) | 创建一个指向统一数据类型描述符OH_Utd的指针。                     |
+| void OH_Utd_Destroy(OH_Utd* pThis) | 销毁指向统一数据类型描述符OH_Utd的指针。                       |
+| const char* OH_Utd_GetTypeId(OH_Utd* pThis) | 获取OH_Utd中的标准化数据类型id。                          |
+| const char* OH_Utd_GetDescription(OH_Utd* pThis) | 获取OH_Utd中的描述参数。                               |
+| const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis) | 获取OH_Utd中的参考链接URL。                            |
+| const char* OH_Utd_GetIconFile(OH_Utd* pThis) | 获取OH_Utd中的默认图标文件路径。                           |
+| const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count) | 获取OH_Utd中的归属关系。                               |
+| const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count) | 获取OH_Utd所关联的文件名后缀列表。                          |
+| const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count) | 获取OH_Utd所关联的多用途互联网邮件扩展类型列表。                   |
+| const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count) | 通过文件后缀名获取标准化数据类型ID。                           |
+| const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count) | 通过多用途互联网邮件扩展类型获取标准化数据类型ID。                    |
+| bool OH_Utd_BelongsTo(const char* srcTypeId, const char* destTypeId) | 判断标准化数据类型是否归属于指定的标准化数据类型。                     |
+| bool OH_Utd_IsLower(const char* srcTypeId, const char* destTypeId) | 判断标准化数据类型是否是指定的标准化数据类型的低层级类型。                 |
+| bool OH_Utd_IsHigher(const char* srcTypeId, const char* destTypeId) | 判断标准化数据类型是否是指定的标准化数据类型的高层级类型。                 |
+| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2) | 判断两种标准化数据类型是否相等。                              |
+| void OH_Utd_DestroyStringList(const char** list, unsigned int count) | 销毁字符串列表数据。                                    |
+| OH_UdsPlainText* OH_UdsPlainText_Create() | 创建一个指向标准化数据结构纯文本类型OH_UdsPlainText的指针。         |
+| void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis) | 销毁指向标准化数据结构纯文本类型OH_UdsPlainText的指针。           |
+| const char* OH_UdsPlainText_GetType(OH_UdsPlainText* pThis)  | 获取OH_UdsPlainText中的标准化数据类型ID。                 |
+| const char* OH_UdsPlainText_GetContent(OH_UdsPlainText* pThis) | 获取OH_UdsPlainText中的纯文本内容。                     |
+| const char* OH_UdsPlainText_GetAbstract(OH_UdsPlainText* pThis) | 获取OH_UdsPlainText中的纯文本摘要。                     |
+| int OH_UdsPlainText_SetContent(OH_UdsPlainText* pThis, const char* content) | 设置OH_UdsPlainText中的纯文本内容。                     |
+| int OH_UdsPlainText_SetAbstract(OH_UdsPlainText* pThis, const char* abstract) | 设置OH_UdsPlainText中的纯文本摘要。                     |
+| OH_UdsHyperlink* OH_UdsHyperlink_Create() | 创建一个指向标准化数据结构超链接类型OH_UdsHyperlink的指针。         |
+| void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis) | 销毁指向标准化数据结构超链接类型OH_UdsHyperlink的指针。           |
+| const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的标准化数据类型ID。                 |
+| const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的链接URL。                     |
+| const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的链接内容描述。                    |
+| int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url) | 设置OH_UdsHyperlink中的链接URL。                     |
+| int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | 设置OH_UdsHyperlink中的链接内容描述。                    |
+| OH_UdsHtml* OH_UdsHtml_Create() | 创建一个指向标准化数据结构超文本标记语言数据类型OH_UdsHtml的指针。        |
+| void OH_UdsHtml_Destroy(OH_UdsHtml* pThis) | 销毁指向标准化数据结构超文本标记语言数据类型OH_UdsHtml的指针。          |
+| const char* OH_UdsHtml_GetType(OH_UdsHtml* pThis) | 获取OH_UdsHtml中的标准化数据类型ID。                      |
+| const char* OH_UdsHtml_GetContent(OH_UdsHtml* pThis) | 获取OH_UdsHtml中的html格式内容。                       |
+| const char* OH_UdsHtml_GetPlainContent(OH_UdsHtml* pThis) | 获取OH_UdsHtml中的纯文本内容。                          |
+| int OH_UdsHtml_SetContent(OH_UdsHtml* pThis, const char* content) | 设置OH_UdsHtml中的html格式内容。                       |
+| int OH_UdsHtml_SetPlainContent(OH_UdsHtml* pThis, const char* plainContent) | 设置OH_UdsHtml中的纯文本内容。                          |
+| OH_UdsAppItem* OH_UdsAppItem_Create() | 创建一个指向标准化数据结构桌面图标类型OH_UdsAppItem的指针。          |
+| void OH_UdsAppItem_Destroy(OH_UdsAppItem* pThis) | 销毁指向标准化数据结构桌面图标类型OH_UdsAppItem的指针。            |
+| const char* OH_UdsAppItem_GetType(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中的标准化数据类型ID。                   |
+| const char* OH_UdsAppItem_GetId(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的应用ID。                    |
+| const char* OH_UdsAppItem_GetName(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的应用名。                     |
+| const char* OH_UdsAppItem_GetIconId(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的图片ID。                    |
+| const char* OH_UdsAppItem_GetLabelId(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的标签ID。                    |
+| const char* OH_UdsAppItem_GetBundleName(OH_UdsAppItem* pThis)  | 获取OH_UdsAppItem中图标对应的bundle名。                 |
+| const char* OH_UdsAppItem_GetAbilityName(OH_UdsAppItem* pThis) | 获取OH_UdsAppItem中图标对应的activity名。               |
+| int OH_UdsAppItem_SetId(OH_UdsAppItem* pThis, const char* appId) | 设置OH_UdsAppItem中图标对应的应用ID。                    |
+| int OH_UdsAppItem_SetName(OH_UdsAppItem* pThis, const char* appName) | 设置OH_UdsAppItem中图标对应的应用名。                     |
+| int OH_UdsAppItem_SetIconId(OH_UdsAppItem* pThis, const char* appIconId) | 设置OH_UdsAppItem中图标对应的图片ID。                     |
+| int OH_UdsAppItem_SetLabelId(OH_UdsAppItem* pThis, const char* appLabelId) | 设置OH_UdsAppItem中图标对应的标签ID。                    |
+| int OH_UdsAppItem_SetBundleName(OH_UdsAppItem* pThis, const char* bundleName) | 设置OH_UdsAppItem中图标对应的bundle名。                 |
+| int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName) | 设置OH_UdsAppItem中图标对应的activity名。               |
+| OH_UdmfData* OH_UdmfData_Create() | 创建一个指向统一数据对象OH_UdmfData的指针。                   |
+| void OH_UdmfData_Destroy(OH_UdmfData* pThis) | 销毁指向统一数据对象OH_UdmfData的指针。                     |
+| int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | 向OH_UdmfData中增加一条OH_UdmfRecord数据记录。           |
+| bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type) | 判断统一数据对象OH_UdmfData是否存在指定类型。                  |
+| char** OH_UdmfData_GetTypes(OH_UdmfData* pThis, unsigned int* count)  | 获取OH_UdmfData中全部的数据类型。                        |
+| OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | 获取OH_UdmfData中全部的数据记录。                        |
+| OH_UdmfRecord* OH_UdmfRecord_Create() | 创建一个指向统一数据记录OH_UdmfRecord的指针。                 |
+| void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis) | 销毁指向统一数据记录OH_UdmfRecord的指针。                   |
+| int OH_UdmfRecord_AddGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char* entry, unsigned int count) | 向OH_UdmfRecord添加自定义类型数据。                      |
+| int OH_UdmfRecord_AddPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText) | 向OH_UdmfRecord添加纯文本类型数据。                      |
+| int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 向OH_UdmfRecord添加超链接类型数据。                      |
+| int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html) | 向OH_UdmfRecord添加超文本标记语言类型数据。                  |
+| int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem) | 向OH_UdmfRecord添加桌面图标类型数据。                     |
+| char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count) | 获取OH_UdmfRecord中全部的数据类型。                      |
+| int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char** entry, unsigned int* count) | 获取OH_UdmfRecord中自定义类型数据。                      |
+| int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText) | 获取OH_UdmfRecord中纯文本类型数据。                      |
+| int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 获取OH_UdmfRecord中超链接类型数据。                      |
+| int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html) | 获取OH_UdmfRecord中超文本标记语言类型数据。                  |
+| int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem) | 获取OH_UdmfRecord中桌面图标类型数据。                     |
 | OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData) | 通过OH_UdmfData创建一个指向统一数据记录属性OH_UdmfProperty的指针。 |
-| void OH_UdmfProperty_Detroy(OH_UdmfProperty* pThis) | 销毁指向统一数据记录属性OH_UdmfProperty的指针。 |
-| const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中用户自定义标签。 |
-| int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中时间戳。 |
-| Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中支持的设备内使用范围。 |
-| int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int defaultValue) | 通过指定的key获取OH_UdmfProperty中整型类型的字典对象。 |
-| const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key) | 通过指定的key获取OH_UdmfProperty中字符串类型的字典对象。 |
-| int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag) | 设置OH_UdmfProperty中用户自定义标签。 |
-| int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option) | 设置OH_UdmfProperty中支持的设备内使用范围。 |
-| int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param) | 设置OH_UdmfProperty中整型类型的字典对象。 |
-| int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis, const char* key, const char* param) | 设置OH_UdmfProperty中字符串类型的字典对象。 |
-| int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | 从UDMF数据库中获取数据 |
-| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen) | 向UDMF数据库中写入数据 |
+| void OH_UdmfProperty_Detroy(OH_UdmfProperty* pThis) | 销毁指向统一数据记录属性OH_UdmfProperty的指针。               |
+| const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中用户自定义标签。                    |
+| int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中时间戳。                        |
+| Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis) | 获取OH_UdmfProperty中支持的设备内使用范围。                 |
+| int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int defaultValue) | 通过指定的key获取OH_UdmfProperty中整型类型的字典对象。          |
+| const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key) | 通过指定的key获取OH_UdmfProperty中字符串类型的字典对象。         |
+| int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag) | 设置OH_UdmfProperty中用户自定义标签。                    |
+| int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option) | 设置OH_UdmfProperty中支持的设备内使用范围。                 |
+| int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param) | 设置OH_UdmfProperty中整型类型的字典对象。                  |
+| int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis, const char* key, const char* param) | 设置OH_UdmfProperty中字符串类型的字典对象。                 |
+| int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | 从UDMF数据库中获取数据                                 |
+| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen) | 向UDMF数据库中写入数据                                 |
 
 
 
@@ -129,6 +131,7 @@ libudmf.so
 **头文件**
 
 ```c
+#include <cstring>
 #include <database/udmf/utd.h>
 #include <database/udmf/uds.h>
 #include <database/udmf/udmf.h>
@@ -137,7 +140,7 @@ libudmf.so
 ```
 **UTD代码使用示例**
 
-1. 获取OH_Utd实例，并获取OH_Utd中的详细信息。其中针对OH_Utd_GetBelongingToTypes、OH_Utd_GetFilenameExtensions、OH_Utd_GetMimeTypes，使用第二个入参为所获取属性的数量。示例代码如下所示：
+1. 获取OH_Utd实例，并获取纯文本数据类型对应的OH_Utd中的详细信息，包含获取typeId、description、URL、iconFile、belongingToTypes、filenameExtensions和mimeTypes。其中针对以下三个接口OH_Utd_GetBelongingToTypes、OH_Utd_GetFilenameExtensions、OH_Utd_GetMimeTypes，使用第二个参数作为所获取属性的数量。使用完成后，需调用OH_Utd_Destroy函数对指针指向的实例对象进行销毁。示例代码如下所示：
 
    ```c
     // 创建OH_Utd对象
@@ -163,7 +166,7 @@ libudmf.so
     OH_Utd_Destroy(utd);
    ```
 
-2. 通过文件后缀名和mimeTypes获取一到多个OH_Utd的typeId。函数出参均为typeId的二维数组，函数中使用第二个参数来表示所获取到的typeId数量。示例代码如下所示：
+2. 分别通过文件后缀名(".txt")和mimeTypes("text/plain")获取一到多个OH_Utd所对应的typeId。函数出参均为typeId的二维指针，并使用第二个count参数来表示所获取到的typeId数量。使用完成后，调用OH_Utd_DestroyStringList函数对上述操作中产生的指针指向的实例对象进行销毁。示例代码如下所示：
 
    ```c
     // 通过文件后缀名获取typeId
@@ -177,7 +180,7 @@ libudmf.so
     OH_Utd_DestroyStringList(typeIds2, typeIds2Count);
    ```
 
-3. 比较两个UTD之间的关系。示例代码如下所示：
+3. 比较纯文本数据类型与文本基类数据类型两个UTD之间的归属、层级关系。比较通过文件后缀名(".txt")获取到的OH_Utd和通过使用纯文本类型数据的typeId创建出来的OH_Utd是否相等。使用完成后，调用OH_Utd_Destroy、OH_Utd_DestroyStringList函数对上述操作中产生的指针指向的实例对象进行销毁。示例代码如下所示：
 
    ```c
     // 判断UDMF_META_PLAIN_TEXT是否归属于UDMF_META_TEXT
@@ -200,7 +203,7 @@ libudmf.so
 
 **UDS代码使用示例**
 
-1. 获取OH_UdsPlainText实例，并获取OH_UdsPlainText中的内容信息。示例代码如下所示：
+1. 获取OH_UdsPlainText实例，并设置、获取OH_UdsPlainText中的内容信息。设置纯文本类型数据的content与abstract，并通过相关Get函数获取到上述属性。使用完成后，调用OH_UdsPlainText_Destroy函数对指针指向的实例对象进行销毁。示例代码如下所示：
 
    ```c
     // 创建OH_UdsPlainText对象
@@ -219,7 +222,7 @@ libudmf.so
     OH_UdsPlainText_Destroy(plainText);
    ```
 
-2. 获取OH_UdsHyperlink实例，并获取OH_UdsHyperlink中的内容信息。示例代码如下所示：
+2. 获取OH_UdsHyperlink实例，并获取OH_UdsHyperlink中的内容信息。设置超链接类型数据的URL与description，并通过相关Get函数获取到上述属性。使用完成后，调用OH_UdsHyperlink_Destroy函数对指针指向的实例对象进行销毁。示例代码如下所示：
 
    ```c
     // 创建OH_UdsHyperlink对象
@@ -238,7 +241,7 @@ libudmf.so
     OH_UdsHyperlink_Destroy(hyperlink);
    ```
 
-3. 获取OH_UdsHtml实例，并获取OH_UdsHtml中的内容信息。示例代码如下所示：
+3. 获取OH_UdsHtml实例，并获取OH_UdsHtml中的内容信息。设置超文本标记语言类型数据的content与plainContent，并通过相关Get函数获取到上述属性。使用完成后，调用OH_UdsHtml_Destroy函数对指针指向的实例对象进行销毁。示例代码如下所示：
 
    ```c
     // 创建OH_UdsHtml对象
@@ -257,7 +260,7 @@ libudmf.so
     OH_UdsHtml_Destroy(html);
    ```
 
-4. 获取OH_UdsAppItem实例，并获取OH_UdsAppItem中的内容信息。示例代码如下所示：
+4. 获取OH_UdsAppItem实例，并获取OH_UdsAppItem中的内容信息。设置桌面图标类型类型数据的appId、appName、iconId、labelId、bundleName、abilityName，并通过相关Get函数获取到上述属性。使用完成后，调用OH_UdsAppItem_Destroy函数对指针指向的实例对象进行销毁。示例代码如下所示：
 
    ```c
     // 创建OH_UdsAppItem对象
@@ -294,7 +297,7 @@ libudmf.so
 
 **UDMF代码使用示例**
 
-1. 创建OH_UdmfData、OH_UdmfRecord实例，并向OH_UdmfRecord放入不同种类数据，最后放入OH_UdmfData中。示例代码如下所示：
+1. 创建OH_UdmfData、OH_UdmfRecord实例。向OH_UdmfRecord中分别放入自定义数据demo和纯文本类型数据、超链接类型数据、超文本标记语言类型数据和桌面图标类型数据，最后将OH_UdmfRecord放入OH_UdmfData中。使用完成后，调用UDS相关销毁函数对处理中创建的UDS指针指向的实例对象进行销毁，并同时调用OH_UdmfRecord_Destroy和OH_UdmfData_Destroy函数销毁OH_UdmfData、OH_UdmfRecord实例。示例代码如下所示：
 
    ```c
     // 创建OH_UdmfRecord对象
@@ -308,10 +311,10 @@ libudmf.so
     // 向OH_UdmfRecord中添加超链接类型数据
     OH_UdsHyperlink* hyperlink = OH_UdsHyperlink_Create();
     returnStatus = OH_UdmfRecord_AddHyperlink(record, hyperlink);
-    // 向OH_UdmfRecord中添加HTML类型数据
+    // 向OH_UdmfRecord中添加超文本标记语言类型数据
     OH_UdsHtml* html = OH_UdsHtml_Create();
     returnStatus = OH_UdmfRecord_AddHtml(record, html);
-    // 向OH_UdmfRecord中添加appItem类型数据
+    // 向OH_UdmfRecord中添加桌面图标类型数据
     OH_UdsAppItem* appItem = OH_UdsAppItem_Create();
     returnStatus = OH_UdmfRecord_AddAppItem(record, appItem);
     // 创建OH_UdmfData对象
@@ -327,10 +330,10 @@ libudmf.so
     OH_UdmfData_Destroy(data);
    ```
 
-2. 获取OH_UdmfData、OH_UdmfRecord中各种详细信息。示例代码如下所示：
+2. 获取OH_UdmfData、OH_UdmfRecord中各种详细信息。对于OH_UdmfData，可以利用OH_UdmfData_HasType判断是否存在对应的类型，并通过OH_UdmfData_GetTypes和OH_UdmfData_GetRecords获取OH_UdmfData中的全部类型ID和记录。针对获取到的OH_UdmfRecord记录结果集，可循环获取每一个记录的类型ID，判断并使用对应类型的Get相关函数获取到对应的UDS及其信息。使用完成后，调用UDS和OH_UdmfData的相关销毁函数对上述操作中创建的UDS指针指向的实例对象进行销毁。示例代码如下所示：
 
    ```c
-    // 创建OH_UdmfData对象，处省略设置record等，参考上一部示例代码
+    // 创建OH_UdmfData对象，此处省略设置record等，参考上一步骤示例代码
     OH_UdmfData* data = OH_UdmfData_Create();
     // 判断OH_UdmfData是否有对应的类型
     bool result = OH_UdmfData_HasType(data, UDMF_META_PLAIN_TEXT);
@@ -352,6 +355,7 @@ libudmf.so
                 unsigned char* entryValue;
                 unsigned int entryCount;
                 returnStatus = OH_UdmfRecord_GetGeneralEntry(records[i], "demo.typeId", &entryValue, &entryCount);
+                continue;
             }
             // 从OH_UdmfRecord中获取纯文本类型数据
             if (strcmp(typeIdsFromRecord[j], UDMF_META_PLAIN_TEXT)) {
@@ -359,6 +363,7 @@ libudmf.so
                 returnStatus = OH_UdmfRecord_GetPlainText(records[i], plainTextValue);
                 // 使用结束后销毁指针
                 OH_UdsPlainText_Destroy(plainTextValue);
+                continue;
             }
             // 从OH_UdmfRecord中获取超链接类型数据
             if (strcmp(typeIdsFromRecord[j], UDMF_META_HYPERLINK)) {
@@ -366,6 +371,7 @@ libudmf.so
                 returnStatus = OH_UdmfRecord_GetHyperlink(records[i], hyperlinkValue);
                 // 使用结束后销毁指针
                 OH_UdsHyperlink_Destroy(hyperlinkValue);
+                continue;
             }
             // 从OH_UdmfRecord中获取HTML类型数据
             if (strcmp(typeIdsFromRecord[j], UDMF_META_HTML)) {
@@ -373,6 +379,7 @@ libudmf.so
                 returnStatus = OH_UdmfRecord_GetHtml(records[i], htmlValue);
                 // 使用结束后销毁指针
                 OH_UdsHtml_Destroy(htmlValue);
+                continue;
             }
             // 从OH_UdmfRecord中获取appItem类型数据
             if (strcmp(typeIdsFromRecord[j], UDMF_META_OPENHARMONY_APP_ITEM)) {
@@ -387,7 +394,7 @@ libudmf.so
     OH_UdmfData_Destroy(data);
    ```
 
-3. 获取UDMF proerties相关接口实现。示例代码如下所示：
+3. 获取UDMF proerties相关接口实现。使用OH_UdmfProperty_Create从OH_UdmfData中得到OH_UdmfProperty，获取其中的用户自定义标签、时间戳、设备内使用范围类型、整型键值对、字符串键值对等属性，并设置对应的参数。使用完成后，调用OH_UdmfProperty_Destroy和OH_UdmfData_Destroy销毁对应的OH_UdmfProperty和OH_UdmfData指针。示例代码如下所示：
 
    ```c
     // 创建OH_UdmfData对象
@@ -418,19 +425,18 @@ libudmf.so
     OH_UdmfData_Destroy(data);
    ```
 
-4. UDFM读、写数据。示例代码如下所示：
+4. UDFM读、写数据。样例为拖拽通道下的读写数据，写数据时需要定义一个长度大于UDMF_KEY_BUFFER_LEN的字符串key作为唯一标识符，调用OH_Udmf_SetUnifiedData函数向数据库中写入数据，最后会将返回值写入变量key中。而在取数据时，使用key作为查询参数调用OH_Udmf_GetUnifiedData函数，所查询到的结果会存放到入参中的data中。使用完成后，调用OH_UdmfData_Destroy销毁过程中产生的OH_UdmfData指针。示例代码如下所示：
 
    ```c
     // 创建OH_UdmfData对象
     OH_UdmfData* data = OH_UdmfData_Create();
     // 构建数据，将数据写入数据库中
-    char* key = new char[UDMF_KEY_BUFFER_LEN];
+    char key[UDMF_KEY_BUFFER_LEN] = {0};
     int returnStatus = OH_Udmf_SetUnifiedData(Udmf_Intention::UDMF_INTENTION_DRAG, data, key, sizeof(key));
     // 从数据库中读取数据
     OH_UdmfData* readData = OH_UdmfData_Create();
     returnStatus = OH_Udmf_GetUnifiedData(key, Udmf_Intention::UDMF_INTENTION_DRAG, data);
     // 销毁指针
-    delete[] key;
     OH_UdmfData_Destroy(data);
     OH_UdmfData_Destroy(readData);
    ```
