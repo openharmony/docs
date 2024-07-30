@@ -1731,7 +1731,7 @@ ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt
 
 `repeat`
 
-* 是否重复执行该定时器（该功能暂未支持）。
+* 是否重复执行该定时器。
 
 ##### 返回值
 
@@ -2163,7 +2163,7 @@ ffrt_timer_t ffrt_loop_timer_start(ffrt_loop_t loop, uint64_t timeout, void* dat
 
 `repeat`
 
-* 是否重复执行该定时器（该功能暂未支持）。
+* 是否重复执行该定时器。
 
 ##### 返回值
 
