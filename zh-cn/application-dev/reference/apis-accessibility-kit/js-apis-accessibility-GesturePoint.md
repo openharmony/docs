@@ -27,11 +27,15 @@ import { GesturePoint } from '@kit.AccessibilityKit';
 | positionX | number | 是    | 是    | 触摸点X坐标。 |
 | positionY | number | 是    | 是    | 触摸点Y坐标。 |
 
-### constructor
+### constructor<sup>(deprecated)</sup>
 
 constructor(positionX: number, positionY: number);
 
 构造函数。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
