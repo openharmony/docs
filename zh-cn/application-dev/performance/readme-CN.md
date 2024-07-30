@@ -10,6 +10,7 @@
     - [避免开发过程中的冗余操作](avoiding-redundant-operations.md) 
     - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md) 
     - [使用AOT进行性能优化](performance-optimization-using-aot.md)
+    - [线程间通信场景](thread_communication.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
