@@ -779,9 +779,10 @@
           - [密钥派生介绍及算法规格](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
           - [使用PBKDF2进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
           - [使用HKDF进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
-      - Data Loss Prevention Kit（数据防泄漏服务）<!--data-protection-kit-->
-          - [Data Loss Prevention Kit简介](security/DataProtectionKit/dlp-overview.md)
-          - [Data Loss Prevention Kit开发指导](security/DataProtectionKit/dlp-guidelines.md)
+      - Data Protection Kit（数据保护服务）<!--data-protection-kit-->
+        - 数据防泄漏服务<!--dlp-->
+          - [数据防泄漏服务简介简介](security/DataProtectionKit/dlp-overview.md)
+          - [数据防泄漏服务简介开发指导](security/DataProtectionKit/dlp-guidelines.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-kit-->
         - [Device Certificate Kit简介](security/DeviceCertificateKit/device-certificate-kit-intro.md)
         - 证书算法库框架<!--certificate-framework-->
@@ -2583,7 +2584,7 @@
             - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
-      - Data Loss Prevention Kit（数据防泄漏服务）<!--data-protection-api-->
+      - Data Protection Kit（数据保护服务）<!--data-protection-api-->
         - ArkTS API<!--data-protection-arkts-->
           - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-protection-kit/js-apis-dlppermission.md)
           <!--Del-->
