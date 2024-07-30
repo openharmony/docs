@@ -197,7 +197,7 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
           hilog.info(domain, TAG, 'FormAbility onCreate' + formId);
           storeFormInfo(formId, formName, tempFlag, this.context);
         }
-    
+  
         // Called when the widget is created. The widget provider should return the widget data binding class.
         let obj: Record<string, string> = {
           title: 'titleOnCreate',
@@ -252,7 +252,7 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
         return formInfo.FormState.READY;
       }
     };
-    
+  
     export default obj;
     ```
 

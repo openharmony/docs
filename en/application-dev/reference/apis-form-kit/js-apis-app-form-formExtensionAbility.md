@@ -17,7 +17,7 @@ import { FormExtensionAbility } from '@kit.FormKit';
 
 **System capability**: SystemCapability.Ability.Form
 
-| Name   | Type                                                        | Readable| Writable| Description                                                        |
+| Name   | Type                                                        | Readable | Writable | Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
@@ -33,15 +33,15 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 
 **Parameters**
 
-| Name| Type                                  | Mandatory| Description                                                        |
+| Name | Type                                  | Mandatory | Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion. |
 
 **Return value**
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
+| [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget. |
 
 **Example**
 
@@ -75,9 +75,9 @@ Called to notify the widget provider that a temporary widget is being converted 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
+| Name | Type  | Mandatory | Description                    |
 | ------ | ------ | ---- | ------------------------ |
-| formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
+| formId | string | Yes  | ID of the widget that requests to be converted to a normal one. |
 
 **Example**
 
@@ -103,10 +103,10 @@ Called to notify the widget provider that a widget is being updated, with update
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget that requests to be updated.|
-| wantParams<sup>12+</sup> | Record<string, Object> | No  | Parameters used for the update.|
+| formId | string | Yes  | ID of the widget that requests to be updated. |
+| wantParams<sup>12+</sup> | Record<string, Object> | No  | Parameters used for the update. |
 
 **Example**
 
@@ -143,9 +143,9 @@ This API is valid only for system applications when **formVisibleNotify** is set
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------- | ------ | ---- | ---------------------- |
-| newStatus  | Record\<string, number> | Yes  | ID and visibility status of the widget to be changed.|
+| newStatus  | Record\<string, number> | Yes  | ID and visibility status of the widget to be changed. |
 
 **Example**
 
@@ -154,7 +154,7 @@ import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // According to the ArkTS specification, **Object.keys** and **for..in...** cannot be used in .ets files to obtain the key value of an object. Use the user-defined function **getObjKeys** instead.
-// Extract this function to a .ts file and export it. Import this function to the required e.ts file before using it.
+// Extract this function to a .ts file and export it. Import this function to the required .ets file before using it.
 function getObjKeys(obj: Object): string[] {
   let keys = Object.keys(obj);
   return keys;
@@ -195,9 +195,9 @@ Called to instruct the widget provider to process the widget event.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                  |
+| Name | Type  | Mandatory | Description                  |
 | ------- | ------ | ---- | ---------------------- |
-| formId  | string | Yes  | ID of the widget that requests the event.|
+| formId  | string | Yes  | ID of the widget that requests the event. |
 | message | string | Yes  | Event message.            |
 
 **Example**
@@ -224,9 +224,9 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget to be destroyed.|
+| formId | string | Yes  | ID of the widget to be destroyed. |
 
 **Example**
 
@@ -253,9 +253,9 @@ This lifecycle callback is triggered only when the configuration is updated whil
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](../apis-ability-kit/js-apis-application-configuration.md) | Yes| New configuration.|
+| newConfig | [Configuration](../apis-ability-kit/js-apis-app-ability-configuration.md) | Yes | New configuration. |
 
 **Example**
 
@@ -284,9 +284,9 @@ Called to notify the widget provider that the widget host is requesting the widg
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension. |
 
 **Example**
 
