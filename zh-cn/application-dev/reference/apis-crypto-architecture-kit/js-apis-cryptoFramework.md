@@ -867,6 +867,8 @@ getEncodedPem(format: string): string
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 let publicPkcs1Str1024: string  =
   "-----BEGIN RSA PUBLIC KEY-----\n"
   + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
@@ -1026,6 +1028,8 @@ getEncodedPem(format: string): string
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 let priKeyPkcs1Str1024: string  =
   "-----BEGIN RSA PRIVATE KEY-----\n"
   + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
@@ -1110,6 +1114,8 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 ```
 
@@ -1451,6 +1457,8 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 ```
 
@@ -1536,6 +1544,7 @@ generateKeyPair(): Promise\<KeyPair>
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
@@ -1575,7 +1584,7 @@ generateKeyPairSync(): KeyPair
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 try {
@@ -1671,6 +1680,7 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
@@ -1721,7 +1731,7 @@ convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
@@ -1782,7 +1792,9 @@ convertPemKey(pubKey: string | null, priKey: string | null): Promise\<KeyPair>
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let priKeyPkcs1Str1024: string  =
   "-----BEGIN RSA PRIVATE KEY-----\n"
   + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
@@ -1851,6 +1863,7 @@ convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let priKeyPkcs1Str1024: string  =
@@ -1926,6 +1939,8 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 // 配置DSA1024公钥和私钥中包含的公共参数
 function genDsa1024CommonSpecBigE() {
   let dsaCommonSpec: cryptoFramework.DSACommonParamsSpec = {
@@ -2218,8 +2233,6 @@ generatePriKeySync(): PriKey
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 try {
@@ -2350,8 +2363,6 @@ generatePubKeySync(): PubKey
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 try {
@@ -2456,6 +2467,8 @@ static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 // 随机生成的非压缩点数据
 let pkData = new Uint8Array([4, 143, 39, 57, 249, 145, 50, 63, 222, 35, 70, 178, 121, 202, 154, 21, 146, 129, 75, 76, 63, 8, 195, 157, 111, 40, 217, 215, 148, 120, 224, 205, 82, 83, 92, 185, 21, 211, 184, 5, 19, 114, 33, 86, 85, 228, 123, 242, 206, 200, 98, 178, 184, 130, 35, 232, 45, 5, 202, 189, 11, 46, 163, 156, 152]);
 let returnPoint = cryptoFramework.ECCKeyUtil.convertPoint('NID_brainpoolP256r1', pkData);
@@ -2498,6 +2511,8 @@ static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Ar
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 async function doTest() {
   let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
   let keyPair = await generator.generateKeyPair();
@@ -2710,6 +2725,7 @@ createCipher(transformation: string): Cipher
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let cipherAlgName = '3DES192|ECB|PKCS7';
@@ -3315,6 +3331,8 @@ Sign实例生成。
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 let signer1 = cryptoFramework.createSign('RSA1024|PKCS1|SHA256');
 
 let signer2 = cryptoFramework.createSign('RSA1024|PSS|SHA256|MGF1_SHA256');
@@ -3862,6 +3880,8 @@ Verify实例生成。
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 let verifyer1 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
 
 let verifyer2 = cryptoFramework.createVerify('RSA1024|PSS|SHA256|MGF1_SHA256');
@@ -4526,8 +4546,9 @@ KeyAgreement实例生成。
 **示例：**
 
 ```ts
-let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
+let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 ```
 
 ## KeyAgreement
@@ -4675,9 +4696,8 @@ keyAgreementPromise.then(secret => {
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
+let asyGenerator = cryptoFramework.CreateAsyKeyGenerator("ECC256");
+let globalKeyPair = asyGenerator.generateKeyPairSync();
 let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 let secret = keyAgreement.generateSecretSync(globalKeyPair.priKey, globalKeyPair.pubKey);
 console.info("[Sync]keyAgreement output is " + secret.data);
@@ -4718,6 +4738,7 @@ createMd(algName: string): Md
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -5024,6 +5045,7 @@ createMac(algName: string): Mac
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -5408,14 +5430,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mac = cryptoFramework.createMac('SHA256');
 console.info('Mac algName is: ' + mac.algName);
-let keyBlob: cryptoFramework.DataBlob;  // The generation process is omitted here.
+let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
+let keyBlob: cryptoFramework.DataBlob = { data: keyData };
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
 let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
 promiseConvertKey.then(symKey => {
   let promiseMacInit = mac.init(symKey);
   return promiseMacInit;
 }).then(() => {
-  let blob: cryptoFramework.DataBlob;  // The generation process is omitted here.
+  let blob: cryptoFramework.DataBlob = { data : new Uint8Array([83])};
   let promiseMacUpdate = mac.update(blob);
   return promiseMacUpdate;
 }).then(() => {
@@ -5458,6 +5481,7 @@ createRandom(): Random
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -5511,7 +5535,7 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let rand = cryptoFramework.createRandom();
 rand.generateRandom(12, (err, randData) => {
@@ -5557,6 +5581,7 @@ generateRandom(len: number): Promise\<DataBlob>
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rand = cryptoFramework.createRandom();
@@ -5602,6 +5627,7 @@ generateRandomSync(len: number): DataBlob
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rand = cryptoFramework.createRandom();
@@ -5642,6 +5668,7 @@ setSeed(seed: DataBlob): void
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rand = cryptoFramework.createRandom();
@@ -5694,6 +5721,8 @@ createKdf(algName: string): Kdf
 **示例：**
 - PBKDF2算法
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
 let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 ```
 
@@ -5742,6 +5771,7 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 - PBKDF2算法
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
   let spec: cryptoFramework.PBKDF2Spec = {
     algName: 'PBKDF2',
     password: '123456',
@@ -5762,6 +5792,7 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 - HKDF算法
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
   let spec: cryptoFramework.HKDFSpec = {
     algName: 'HKDF',
     key: '123456',
@@ -5829,7 +5860,7 @@ generateSecret(params: KdfSpec): Promise\<DataBlob>
   kdfPromise.then(secret => {
     console.info('key derivation output is ' + secret.data);
   }).catch((error: BusinessError) => {
-    console.error("key derivation error.");
+    console.error("key derivation error, " + error.message);
   });
   ```
 
@@ -5850,7 +5881,7 @@ generateSecret(params: KdfSpec): Promise\<DataBlob>
   kdfPromise.then(secret => {
     console.info('key derivation output is ' + secret.data);
   }).catch((error: BusinessError) => {
-    console.error("key derivation error.");
+    console.error("key derivation error, " + error.message);
   });
   ```
 
@@ -5891,7 +5922,6 @@ generateSecretSync(params: KdfSpec): DataBlob
 - PBKDF2算法
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
 
   let spec: cryptoFramework.PBKDF2Spec = {
     algName: 'PBKDF2',
@@ -5908,7 +5938,6 @@ generateSecretSync(params: KdfSpec): DataBlob
 - HKDF算法
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
 
   let spec: cryptoFramework.HKDFSpec = {
     algName: 'HKDF',
