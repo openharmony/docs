@@ -679,7 +679,7 @@ promptAction.showToast
 
 默认效果变更，无需适配。
 
-## cl.arkui.16 高级组件ComposeListItem右边按钮在没有配置action的时候，没有点击效果，显示全局的按压效果
+## cl.arkui.16 高级组件ComposeListItem右边按钮OperateItem类型为arrow或者arrow+text时，在没有配置action的时候，不需要单独响应点击效果，应显示全局的按压效果
 
 **访问级别**
 
@@ -687,7 +687,7 @@ promptAction.showToast
 
 **变更原因**
 
-高级组件ComposeListItem整个组件分为左右两部分，左边是内容区，右边是按钮操作区。现在问题是右边操作区按钮在没有提供action的时候，会显示点击效果，不应该显示的。需要修改为在没有提供action的时候，右侧操作区不应该响应点击效果，而是整个组件响应按压效果。
+高级组件ComposeListItem整个组件分为左右两部分，左边是内容区，右边是按钮操作区。现在问题是右边操作区按钮的OperateItem类型为arrow或者arrow+text时，在没有提供action的时候，会单独响应点击效果，预期不应该显示的；需要修改为在没有提供action的时候，右侧操作区不应该响应单独点击效果，而是整个组件响应按压效果。
 
 **变更影响**
 
@@ -695,7 +695,7 @@ promptAction.showToast
 
 | 变更前 | 变更后 |
 |---------|---------|
-| 右侧操作区没有提供action，右侧操作区单独响应了点击效果 | 右侧操作区没有提供action，整个组件响应了点击效果 |
+| 右侧操作区OperateItem类型为arrow或者arrow+text时，没有提供action，右侧操作区单独响应了阴影效果。 | 右侧操作区OperateItem类型为arrow或者arrow+text时，没有提供action，整个组件响应了阴影效果。 |
 | ![ComposeListItem_before](figures/ComposeListItem_Before.png) | ![ComposeListItem_after](figures/ComposeListItem_After.png) |
 
 **起始API Level**
