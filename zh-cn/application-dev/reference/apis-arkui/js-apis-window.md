@@ -1176,7 +1176,7 @@ promise.then((data) => {
     console.info(`bundleName:${windowInfo.bundleName}`);
   })
 }).catch((err: BusinessError) => {
-  console.error('Failed to getWindowInfo. Cause: '  JSON.stringify(err));
+  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
 });
 ```
 
