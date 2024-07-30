@@ -4208,3 +4208,46 @@ while (!temp.done) {
   temp = iter.next();
 } // 依次输出 0,1,0,1,0
 ```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;number&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+
+for (let item of bitVector) {
+  console.info("value: " + item);
+}
+```
