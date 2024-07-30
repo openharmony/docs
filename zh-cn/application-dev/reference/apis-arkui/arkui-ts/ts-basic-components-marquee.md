@@ -34,7 +34,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 除支持文本通用属性：fontColor、fontSize、fontWeight、fontFamily外，还支持以下属性：
 | 名称       | 参数类型 | 描述                                                         |
 | ---------- | -------- | ------------------------------------------------------------ |
-| allowScale | boolean  | 是否允许文本缩放。<br/>暂不支持该接口。<br/>默认值：false<br/> |
+| allowScale | boolean  | 是否允许文本缩放。<br/>默认值：false<br/>**说明：**<br/>仅当fontSize为fp单位时生效。 |
 
 ## 事件
 
