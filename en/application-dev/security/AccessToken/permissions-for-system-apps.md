@@ -3964,3 +3964,15 @@ Allows an application to access the **Desktop** directory in the user directory.
 **Enable via ACL**: true
 
 **Valid since**: 11
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+Allows an application to install beta applications.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
