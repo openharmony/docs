@@ -803,3 +803,49 @@ UX规范变更
 **适配指导**
 
 按压显示效果变化，无需适配。
+
+## cl.arkui.18 Contextmenu组件hoverScale接口过渡动效默认行为变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格变更。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+1. 需长按800ms后，组件截图做600ms缩放动效，然后切换自定义预览图, 切换时使用弹簧动效。
+2. hoverScale与scale接口组合使用时，整个动效流程生效的缩放动效的参数为 hoverScale From -> scaleFrom -> scaleTo。
+3. hoverScale动效过程中不支持打断动效。
+4. hoverScale动效过程中，组件截图与预览图切换时，组件截图和预览图做相反的透明度动效。
+
+变更后：
+1. 需长按250ms后，组件截图做200ms缩放动效，然后切换自定义预览图, 切换时弹簧动效速度较之前版本变快。
+2. hoverScale与scale接口组合使用时，整个动效流程生效的缩放动效的参数为 hoverScaleFrom -> hoverScaleTo -> scaleTo。
+3. hoverScale动效过程中，在组件截图缩放动效的200ms可以点击空白处取消动效，并以弹簧动效返回原始状态。
+4. hoverScale动效过程中，组件截图切换预览图时，组件截图不做透明度变化动效，仅预览图做透明度动效。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/hoverScale_Before.gif)  |  ![](figures/hoverScale_After.gif)  |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+contextmenu的hoverScale接口
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
