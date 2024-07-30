@@ -4422,7 +4422,7 @@ let address : socket.LocalAddress = {
 }
 client.bind(address).then(() => {
   console.error('bind success');
-  client.getLocalAddress().then((localPath) => {
+  client.getLocalAddress().then((localPath: string) => {
     console.info("SUCCESS " + JSON.stringify(localPath));
   }).catch((err: BusinessError) => {
     console.error("FAIL " + JSON.stringify(err));
@@ -5027,7 +5027,7 @@ let listenAddr: socket.LocalAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.info("listen success");
-  server.getLocalAddress().then((localPath) => {
+  server.getLocalAddress().then((localPath: string) => {
     console.info("SUCCESS " + JSON.stringify(localPath));
   }).catch((err: BusinessError) => {
     console.error("FAIL " + JSON.stringify(err));
@@ -5324,7 +5324,7 @@ server.listen(localAddr).then(() => {
     timeout: 6000
   }
   client.connect(connectOpt).then(() => {
-    server.getLocalAddress().then((localPath) => {
+    server.getLocalAddress().then((localPath: string) => {
       console.info("success, localPath is"JSON.stringify(localPath));
     }).catch((err: BusinessError) => {
       console.error("FAIL " + JSON.stringify(err));
