@@ -975,7 +975,7 @@ try {
 
 window.getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
-获取当前屏幕的可见窗口（未退后台的窗口）信息。
+获取当前屏幕的可见窗口（未退至后台的窗口）信息。
 
 **系统接口：** 此接口为系统接口。
 
