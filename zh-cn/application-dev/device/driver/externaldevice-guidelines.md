@@ -13,12 +13,29 @@
 DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等，功能介绍如下：   
 
 [DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-tools-overview-0000001558763037-V5)
-
 - [下载与安装](https://developer.harmonyos.com/cn/develop/deveco-studio#download)
 - [创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
 - [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-app-ability-driverextensionability-V5)
 - [测试及调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-device-0000001053822404-V5)
 - [应用发布及上架](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-publish-app-0000001053223745-V5)
+
+### SDK版本配置
+
+目前各SDK支持的版本如下：
+
+| 外设SDK名称 | 支持最小API | 对应OpenHarmony/HarmonyOS版本 |
+| ------------ | ------------ | ------------ |
+| 应用开发接口（ArkTS接口）| API10 | 4.0及以上 |
+| USB DDK接口 | API10 | 4.0及以上 |
+| HID DDK接口 | API11 | 4.1及以上 |
+
+OpenHarmony SDK各版本：    
+
+4.0_release -> [API10](https://cidownload.openharmony.cn/version/Release_Version/OpenHarmony_4.0.10.11/20231012_030937/version-Release_Version-OpenHarmony_4.0.10.11-20231012_030937-ohos-sdk-full_4.0-release.tar.gz)    
+
+4.1_release -> [API11](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_4.1.7.2/20240319_104114/version-Master_Version-OpenHarmony_4.1.7.2-20240319_104114-ohos-sdk-full_4.1-Release.tar.gz)    
+
+5.0_dev -> [API12](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_5.0.0.18_dev/20240406_020139/version-Master_Version-OpenHarmony_5.0.0.18_dev-20240406_020139-ohos-sdk-full.tar.gz)
 
 ### HDC配置
 
@@ -233,25 +250,9 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 ### SDK版本问题
 
-目前各SDK支持的版本如下：
-
-| 外设SDK名称 | 支持最小API | 对应OpenHarmony/HarmonyOS版本 |
-| ------------ | ------------ | ------------ |
-| 应用开发接口（ArkTS接口）| API10 | 4.0及以上 |
-| USB DDK接口 | API10 | 4.0及以上 |
-| HID DDK接口 | API11 | 4.1及以上 |
-
 编译或运行时报错：“usb/usb_ddk_api.h not found”, "hid/hid_ddk_api.h not found" 等，请检查编译的OpenHarmony/HarmonyOS版本。如果是运行时，请检查设备的系统版本
 
 安装出现报错 “compileSdkVersion and releaseType of the app do not match the apiVersion and releaseType on the device” 请检查设备系统版本与hap版本是否匹配
-
-OpenHarmony SDK各版本：
-
-4.0_release -> [API10](https://cidownload.openharmony.cn/version/Release_Version/OpenHarmony_4.0.10.11/20231012_030937/version-Release_Version-OpenHarmony_4.0.10.11-20231012_030937-ohos-sdk-full_4.0-release.tar.gz)   
-
-4.1_release -> [API11](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_4.1.7.2/20240319_104114/version-Master_Version-OpenHarmony_4.1.7.2-20240319_104114-ohos-sdk-full_4.1-Release.tar.gz)  
-  
-5.0_dev -> [API12](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_5.0.0.18_dev/20240406_020139/version-Master_Version-OpenHarmony_5.0.0.18_dev-20240406_020139-ohos-sdk-full.tar.gz)
 
 ### 开发工具语法检查问题
 
