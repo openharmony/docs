@@ -3718,7 +3718,9 @@ try {
 
 ## ExtensionWindowAttribute<sup>12+</sup>
 
-扩展窗口的属性。
+扩展窗口属性枚举。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3733,6 +3735,8 @@ try {
 
 系统窗口创建参数。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -3744,6 +3748,8 @@ try {
 ## ExtensionWindowConfig<sup>12+</sup>
 
 扩展窗口创建配置。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
