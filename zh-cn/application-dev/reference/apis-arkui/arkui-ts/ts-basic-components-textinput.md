@@ -253,7 +253,7 @@ getCaretOffset(): CaretOffset
 ## 示例
 
 ### 示例1
-
+TextInput基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -315,7 +315,7 @@ struct TextInputExample {
 ![TextInput](figures/TextInput.png)
 
 ### 示例2
-
+passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
 ```ts
 @Entry
 @Component
@@ -389,7 +389,7 @@ struct TextInputExample {
 ![TextInputError](figures/TextInputError.png)
 
 ### 示例3
-
+TextInput绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -432,7 +432,7 @@ struct TextInputExample {
 
 
 ### 示例4
-
+cancelButton属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -465,7 +465,7 @@ struct ClearNodeExample {
 ![cancelButton](figures/TextInputCancelButton.png)
 
 ### 示例5
-
+TextInput计数器使用示例。
 ```ts
 // xxx.ets
 @Entry

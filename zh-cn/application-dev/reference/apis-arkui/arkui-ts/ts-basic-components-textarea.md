@@ -186,7 +186,7 @@ getCaretOffset(): CaretOffset
 ## 示例
 
 ### 示例1
-
+TextArea基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -235,7 +235,7 @@ struct TextAreaExample {
 ![textArea](figures/textArea.gif)
 
 ### 示例2
-
+maxLength、showCounter属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -274,7 +274,7 @@ struct TextAreaExample {
 
 
 ### 示例3
-
+TextArea绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -317,7 +317,7 @@ struct TextAreaExample {
 ![customKeyboard](figures/textAreaCustomKeyboard.png)
 
 ### 示例4
-
+TextArea计数器使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -349,6 +349,7 @@ struct TextAreaExample {
 
 
 ### 示例5
+enterKeyType属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry

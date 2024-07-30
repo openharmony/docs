@@ -188,7 +188,7 @@ getCaretOffset(): CaretOffset
 ##  示例
 
 ### 示例1
-
+Search基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -235,7 +235,7 @@ struct SearchExample {
 ![search](figures/search.gif)
 
 ### 示例2
-
+searchButton、searchIcon、cancelButton属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -281,7 +281,7 @@ struct SearchExample {
 
 
 ### 示例3
-
+Search绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -318,6 +318,6 @@ struct SearchExample {
     }
   }
 }
-````
+```
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
