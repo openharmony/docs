@@ -97,8 +97,8 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | [USBDevice](#usbdevice) | 是 | USB设备信息。 |
+| -------- | -------- | -------- | ---------------- |
+| device | [USBDevice](#usbdevice) | 是 | USB设备信息，用getDevices获取的busNum和devAddress确定设备，其他信息只做透传。 |
 
 **返回值：**
 
@@ -143,7 +143,7 @@ hasRight(deviceName: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceName | string | 是 | 设备名称。 |
+| deviceName | string | 是 | 设备名称，来自getDevices获取的设备列表。 |
 
 **错误码：**
 
@@ -162,8 +162,14 @@ hasRight(deviceName: string): boolean
 **示例：**
 
 ```ts
-let devicesName: string = "1-1";
-let right: boolean = usbManager.hasRight(devicesName);
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let right: boolean = usbManager.hasRight(device.name);
 console.log(`${right}`);
 ```
 
@@ -179,7 +185,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceName | string | 是 | 设备名称。 |
+| deviceName | string | 是 | 设备名称，来自getDevices获取的设备列表。|
 
 **错误码：**
 
@@ -198,8 +204,13 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-let devicesName: string = "1-1";
-usbManager.requestRight(devicesName).then(ret => {
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name).then(ret => {
   console.log(`requestRight = ${ret}`);
 });
 ```
@@ -216,7 +227,7 @@ removeRight(deviceName: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceName | string | 是 | 设备名称。 |
+| deviceName | string | 是 | 设备名称，来自getDevices获取的设备列表。|
 
 **错误码：**
 
@@ -235,7 +246,12 @@ removeRight(deviceName: string): boolean
 **示例：**
 
 ```ts
-let devicesName: string = "1-1";
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
 if (usbManager.removeRight(devicesName)) {
   console.log(`Succeed in removing right`);
 }
@@ -255,9 +271,9 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引。 |
-| force | boolean | 否 | 可选参数，是否强制获取。默认值为false&nbsp;，表示不强制获取。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引，需要调用getDevices获取设备信息并通过id确定唯一接口。|
+| force | boolean | 否 | 可选参数，是否强制获取。默认值为false&nbsp;，表示不强制获取，用户按需选择。|
 
 **错误码：**
 
@@ -303,8 +319,8 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引，需要调用getDevices获取设备信息并通过id确定唯一接口。|
 
 **返回值：**
 
@@ -343,8 +359,8 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-| config | [USBConfiguration](#usbconfiguration) | 是 | 用于确定需要设置的配置。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+| config | [USBConfiguration](#usbconfiguration) | 是 | 用于确定需要设置的配置，需要调用getDevices获取设备信息并通过id用于确定唯一设置。|
 
 **错误码：**
 
@@ -388,10 +404,10 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 **参数：**
 
-| 参数名   | 类型                              | 必填  | 说明            |
-| ----- | ------------------------------- | --- | ------------- |
-| pipe  | [USBDevicePipe](#usbdevicepipe) | 是   | 用于确定总线号和设备地址。 |
-| iface | [USBInterface](#usbinterface)   | 是   | 用于确定需要设置的接口。  |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+| iface | [USBInterface](#usbinterface)   | 是 | 用于确定需要设置的接口，需要调用getDevices获取设备信息并通过id确定唯一接口。|
 
 **错误码：**
 
@@ -438,7 +454,7 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
 
 **错误码：**
 
@@ -481,7 +497,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
 
 **错误码：**
 
@@ -524,9 +540,9 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
-| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
+| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数，按需设置参数。|
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
 
 **错误码：**
 
@@ -589,10 +605,10 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
+| endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口，需要调用getDevices获取设备信息列表以及endpoint。 |
 | buffer | Uint8Array | 是 | 用于写入或读取数据的缓冲区。 |
-| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。|
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
 
 **错误码：**
 
@@ -646,7 +662,7 @@ closePipe(pipe: USBDevicePipe): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定USB设备消息控制通道。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定USB设备消息控制通道，需要调用connectDevice获取。|
 
 **错误码：**
 
