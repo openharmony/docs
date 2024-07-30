@@ -179,7 +179,7 @@ import { window } from '@kit.ArkUI';
 | bundleName  | string   | 是   | 否   | 应用Bundle的名称。          |
 | abilityName | string   | 是   | 否   | Ability的名称。               |
 | windowId | number | 是   | 否   | 窗口ID。   |
-| windowStatusType | [WindowStatusType](#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
+| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -989,7 +989,7 @@ window.getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
