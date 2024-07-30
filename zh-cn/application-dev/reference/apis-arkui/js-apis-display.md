@@ -728,6 +728,8 @@ isCaptured(): boolean
 
 检查设备是否正在截屏、投屏、录屏。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
