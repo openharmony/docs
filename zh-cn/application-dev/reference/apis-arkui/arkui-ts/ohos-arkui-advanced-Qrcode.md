@@ -17,7 +17,10 @@ import { Qrcode, QrcodeOptions, QrcodeState } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)，通用事件支持[点击事件](ts-universal-events-click.md)
+不支持[通用属性](ts-universal-attributes-size.md)
+
+## 事件
+通用事件支持[点击事件](ts-universal-events-click.md)
 
 ## Qrcode
 
