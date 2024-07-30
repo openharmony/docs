@@ -4027,7 +4027,7 @@
 
 ### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
 
-允许应用安装开发者内测构建应用
+允许应用安装开发者内测构建应用。
 
 **权限级别**：system_core
 
