@@ -17,7 +17,7 @@ Parameters
 
 | Name       | Type                               | Mandatory | Description                                                    |
 | ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
-| arr           | Array\<T\>                                   | Yes      | Data source, which is an array of the **Array\<T>** type. You can determine the data types. |
+| arr           | Array\<T\>                                 | Yes      | Data source, which is an array of the **Array\<T>** type. You can determine the data types. |
 ### Repeat Attributes
 
 ```ts
@@ -61,7 +61,7 @@ The **ArkUI** framework has a set of specific judgment rules for generating keys
 
 ## Component Creation Rules
 
-After the key generation rule is determined, **Repeat** creates a component for each data item of the data source based on the rule. There are two cases for creating a component: [Repeat initial rendering](#initial-rendering) and [Repeat non-initial rendering](#non-initial-rendering).
+After the key generation rule is determined, **Repeat** creates a component for each data item of the data source based on the rule. There are two cases for creating a component: [Initial Rendering](#initial-rendering) and [Non-initial Rendering](#non-initial-rendering).
 
 ### Initial Rendering
 
