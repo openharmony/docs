@@ -486,7 +486,7 @@ struct Index {
 
 1.RichEditor设置占位文本的接口placeholder，其占位文本样式属性PlaceHolderStyle为异常值"{}"时，组件未将占位文本样式属性设置为默认效果。
 
-2.当占位文本样式属性中各个属性为默认值undefined/null时，对应默认效果未生效。
+2.当占位文本样式属性中各个属性为默认值undefined时，对应默认效果未生效。
 
 占位文本样式属性：
 
@@ -550,11 +550,6 @@ struct Index {
         .fontSize(10)
         .onClick(() => {
           this.style = { fontColor: undefined };
-        })
-      Button('change style.fontColor to null')
-        .fontSize(10)
-        .onClick(() => {
-          this.style = { fontColor: null };
         })
       Button('change style.fontColor to normal value')
         .fontSize(10)
