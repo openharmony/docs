@@ -326,45 +326,7 @@ TimePickerDialog组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.7 AlertDialog、promptAction.showDialog中Button间距变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-修正视觉效果以获得更好的用户体验。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-变更前：Button间距为8vp。
-
-变更后：Button间距为16vp。
-
-| 变更前 | 变更后 |
-|---------|---------|
-| ![](figures/AlertDialog_Before.png) | ![](figures/AlertDialog_After.png) |
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.35开始。
-
-**变更的接口/组件**
-
-AlertDialog、promptAction.showDialog。
-
-**适配指导**
-
-默认行为变更，无需适配。
-
-## cl.arkui.8 SubMenu避让底部导航条距离变更
+## cl.arkui.7 SubMenu避让底部导航条距离变更
 
 **访问级别**
 
@@ -398,7 +360,7 @@ Menu组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.9 menu、toast修改阴影参数
+## cl.arkui.8 menu、toast修改阴影参数
 **访问级别**
 
 公开接口
@@ -440,7 +402,7 @@ Toast组件ShowToast接口
 
 默认效果变更，无需适配。
 
-## cl.arkui.10 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
+## cl.arkui.9 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
 
 **访问级别**
 
@@ -514,7 +476,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.11 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
+## cl.arkui.10 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
 
 **访问级别**
 
@@ -604,7 +566,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.12 MenuItem组件禁用状态下字体颜色变更
+## cl.arkui.11 MenuItem组件禁用状态下字体颜色变更
 
 **访问级别**
 
@@ -642,7 +604,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.13 RichEditor收起键盘后，选中区状态变更
+## cl.arkui.12 RichEditor收起键盘后，选中区状态变更
 
 **访问级别**
 
@@ -676,7 +638,7 @@ UX规格变更
 
 收起键盘时选中区状态变更，应用无需适配。
 
-## cl.arkui.14 dragInteraction接口增加系统接口校验
+## cl.arkui.13 dragInteraction接口增加系统接口校验
 
 **访问级别**
 
@@ -707,7 +669,7 @@ off(type: 'drag', callback?: Callback\<DragState>): void；
 
 默认行为变更，无需适配。
 
-## cl.arkui.15 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
+## cl.arkui.14 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
 
 **访问级别**
 
@@ -741,7 +703,7 @@ Scroll、List、Grid、WaterFlow组件scrollBarColor接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.16 自定义MenuItem的onChange触发逻辑变更
+## cl.arkui.15 自定义MenuItem的onChange触发逻辑变更
 
 **访问级别**
 
@@ -775,7 +737,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。注意，由于此前基于CustomBuilder创建的MenuItem，设置onChange不生效，变更后请按应用场景正确使用onChange。
 
-## cl.arkui.17 手机横屏及其他设备，上下文菜单placement变更
+## cl.arkui.16 手机横屏及其他设备，上下文菜单placement变更
 
 **访问级别**
 
@@ -813,7 +775,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.18 Toggle/Switch按压反馈样式变更
+## cl.arkui.17 Toggle/Switch按压反馈样式变更
 
 **访问级别**
 
