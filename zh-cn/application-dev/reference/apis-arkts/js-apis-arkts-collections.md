@@ -200,6 +200,37 @@ ArkTS Array的构造函数，通过开发者提供的元素进行初始化。
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4);
 ```
+### constructor
+
+constructor(...items: T[])
+
+ArkTS Array的构造函数，通过开发者提供的元素进行初始化。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                            |
+| ------ | ---- | ---- | ------------------------------- |
+| items  | T[]  | 否   | 初始化ArkTS Array的元素。       |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                            |
+| -------- | --------------------------------------------------- |
+| 401      | Parameter error.                                    |
+| 10200012 | The Array's constructor cannot be directly invoked. |
+
+**示例：**
+
+```ts
+let arrayPara  = [1,2,3];
+let array = new collections.Array<number>(...arrayPara);
+```
 
 ### create
 
