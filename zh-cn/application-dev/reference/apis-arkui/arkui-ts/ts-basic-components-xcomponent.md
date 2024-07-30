@@ -108,6 +108,10 @@ enableAnalyzer(enable: boolean)
 | -------- | -------- | -------- | -------- |
 | enable | boolean | 是 | 是否启用图像分析功能 |
 
+  > **说明：**
+  >
+  > 仅type为SURFACE和TEXTURE时该功能有效。
+
 ## 事件
 
 从API version 12开始，type为SURFACE或TEXTURE时，支持[通用事件](ts-universal-events-click.md)。
