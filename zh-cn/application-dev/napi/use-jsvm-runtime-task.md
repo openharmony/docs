@@ -44,20 +44,61 @@
   // create_jsvm_runtime.cpp
   #include "napi/native_api.h"
   #include "ark_runtime/jsvm.h"
-  #include "common.h"
-
   #include <bits/alltypes.h>
   #include <deque>
   #include <map>
   #include <unistd.h>
   #include <hilog/log.h>
-
   #include <cstring>
   #include <string>
   #include <vector>
   #include <sstream>
 
   #define LOG_TAG "TEST_TAG"
+  // 用于获取并抛出最后一个错误信息。通过OH_JSVM_GetLastErrorInfo获取错误信息，
+  // 如果没有挂起的异常且错误信息存在，则通过 OH_JSVM_ThrowError 抛出错误。
+  #define GET_AND_THROW_LAST_ERROR(env)                                                                   \
+      do {                                                                                                \
+          const JSVM_ExtendedErrorInfo* errorInfo = nullptr;                                              \
+          OH_JSVM_GetLastErrorInfo((env), &errorInfo);                                                    \
+          bool isPending = false;                                                                         \
+          OH_JSVM_IsExceptionPending((env), &isPending);                                                  \
+              JSVM_Value error;                                                                           \
+          if (isPending && JSVM_OK == OH_JSVM_GetAndClearLastException((env), &error)) {                  \
+                                                                                                          \
+        JSVM_Value stack;                                                                                 \
+        OH_JSVM_GetNamedProperty((env), error, "stack", &stack);                                          \
+                                                                                                          \
+        JSVM_Value message;                                                                               \
+        OH_JSVM_GetNamedProperty((env), error, "message", &message);                                      \
+                                                                                                          \
+        char stackstr[256];                                                                               \
+        OH_JSVM_GetValueStringUtf8(env, stack, stackstr, 256, nullptr);                                   \
+        OH_LOG_INFO(LOG_APP, "JSVM error stack: %{public}s", stackstr);                                   \
+        char messagestr[256];                                                                             \
+        OH_JSVM_GetValueStringUtf8(env, message, messagestr, 256, nullptr);                               \
+        OH_LOG_INFO(LOG_APP, "JSVM error message: %{public}s", messagestr);                               \
+      }                                                                                                   \
+          if (!isPending && errorInfo != nullptr) {                                                       \
+              const char* errorMessage =                                                                  \
+                  errorInfo->errorMessage != nullptr ? errorInfo->errorMessage : "empty error message";   \
+              OH_JSVM_ThrowError((env), nullptr, errorMessage);                                           \
+          }                                                                                               \
+      } while (0)
+
+  // 用于调用theCall并检查其返回值是否为JSVM_OK。
+  // 如果不是，则调用GET_AND_THROW_LAST_ERROR处理错误并返回retVal。
+  #define JSVM_CALL_BASE(env, theCall, retVal)                                                            \
+      do {                                                                                                \
+          if ((theCall) != JSVM_OK) {                                                                     \
+              GET_AND_THROW_LAST_ERROR((env));                                                            \
+              return retVal;                                                                              \
+          }                                                                                               \
+      } while (0)
+
+  // JSVM_CALL_BASE的简化版本，返回nullptr 
+  #define JSVM_CALL(env, theCall) JSVM_CALL_BASE(env, theCall, nullptr)
+
   using namespace std;
   // 定义map管理每个独立vm环境
   static map<int, JSVM_VM*> g_vmMap;
