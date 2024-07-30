@@ -597,8 +597,6 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-默认行为变更，无需适配。
-
 ## cl.arkui.12 RichEditor收起键盘后，选中区状态变更
 
 **访问级别**
@@ -613,13 +611,17 @@ UX规格变更
 
 该变更为不兼容性变更。
 
-变更前：RichEditor收起键盘时，复位选中区。
+变更前：RichEditor非用户手动点击收起键盘按钮收起键盘时，触发组件失焦，关闭菜单，复位选中区。
 
-变更后：RichEditor收起键盘时，不复位选中区。
+![变更前](figures/richeditor_selection_change_before.gif)
+
+变更后：RichEditor非用户手动点击收起键盘按钮收起键盘时，仅小窗模式下触发组件失焦，其他场景不触发组件失焦，不关闭菜单，不复位选中区。
+
+![变更后](figures/richeditor_selection_change_after.gif)
 
 **起始API Level**
 
-不涉及API变更
+10
 
 **变更发生版本**
 
@@ -627,11 +629,11 @@ UX规格变更
 
 **变更的接口/组件**
 
-富文本组件。
+RichEditor组件。
 
 **适配指导**
 
-收起键盘时选中区状态变更，应用无需适配。
+非用户手动点击收起键盘按钮收起键盘时收起键盘时焦点状态变更，应用无需适配。
 
 ## cl.arkui.13 dragInteraction接口增加系统接口校验
 
