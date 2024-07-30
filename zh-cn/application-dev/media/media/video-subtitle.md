@@ -16,19 +16,16 @@
 
    avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
 
-   // 或者使用addSubtitleUrl接口
-   let fd:string = fileDescriptor.fd.toString()
-   let offset:string = fileDescriptor.offset.toString()
-   let length:string = fileDescriptor.length.toString()
-   let fdUrl:string = 'fd://' + fd + '?offset=' + offset + '&size=' + length
-   avPlayer.addSubtitleUrl(fdUrl)
+   // 或者使用addSubtitleFromUrl接口
+   let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt" 
+   avPlayer.addSubtitleFromUrl(fdUrl)
    ```
 
 2. 使用视频播放的AVPlayer实例注册字幕回调函数。
 
    ```ts
    avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
-     if (!!info) {
+     if (info) {
        let text = (!info.text) ? '' : info.text
        let startTime = (!info.startTime) ? 0 : info.startTime
        let duration = (!info.duration) ? 0 : info.duration
@@ -63,7 +60,7 @@ export class AVPlayerSubtitleDemo {
     })
     // 注册字幕回调函数
     avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
-      if (!!info) {
+      if (info) {
         let text = (!info.text) ? '' : info.text
         let startTime = (!info.startTime) ? 0 : info.startTime
         let duration = (!info.duration) ? 0 : info.duration
@@ -82,15 +79,9 @@ export class AVPlayerSubtitleDemo {
     // 创建回调函数
     this.setAVPlayerCallback(avPlayer)
 
-    let context = getContext(this) as common.UIAbilityContext
-    let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
+    let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt"
 
-    let fd:string = fileDescriptor.fd.toString()
-    let offset:string = fileDescriptor.offset.toString()
-    let length:string = fileDescriptor.length.toString()
-    let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length
-
-    avPlayer.addSubtitleUrl(fdUrl)
+    avPlayer.addSubtitleFromUrl(fdUrl)
   }
 
   // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过FromFd属性设置

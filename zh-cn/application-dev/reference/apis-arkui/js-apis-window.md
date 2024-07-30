@@ -1542,7 +1542,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1572,30 +1572,11 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      try {
-        let avoidArea = windowClass.getWindowAvoidArea(type);
-      } catch (exception) {
-        console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+try {
+  let avoidArea = windowClass.getWindowAvoidArea(type);
+} catch (exception) {
+  console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1738,7 +1719,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-设置主窗口是否开启沉浸式布局，该调用不会改变窗口模式。
+设置当前窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1764,26 +1745,11 @@ setImmersiveModeEnabledState(enabled: boolean): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let enabled = false;
-      windowClass.setImmersiveModeEnabledState(enabled);
-    });
-  }
+try {
+  let enabled = false;
+  windowClass.setImmersiveModeEnabledState(enabled);
+} catch (exception) {
+  console.error(`Failed to set the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1791,7 +1757,7 @@ export default class EntryAbility extends UIAbility {
 
 getImmersiveModeEnabledState(): boolean
 
-查询主窗口是否已经开启沉浸式布局。
+查询当前窗口是否已经开启沉浸式布局。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1815,25 +1781,10 @@ getImmersiveModeEnabledState(): boolean
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let isEnabled = windowClass.getImmersiveModeEnabledState();
-    });
-  }
+try {
+  let isEnabled = windowClass.getImmersiveModeEnabledState();
+} catch (exception) {
+  console.error(`Failed to get the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1841,7 +1792,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1906,7 +1859,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1974,7 +1929,9 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置主窗口全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
+设置主窗口导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2043,7 +2000,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2114,7 +2073,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用Promise异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3017,7 +2978,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-开启主窗口系统规避区变化的监听。
+开启当前窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3041,32 +3002,13 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('avoidAreaChange', (data) => {
-          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+try {
+  windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+    JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3074,7 +3016,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
-关闭主窗口系统规避区变化的监听。
+关闭当前窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3098,40 +3040,21 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
+interface Param {
+  type: window.AvoidAreaType,
+  area: window.AvoidArea
+}
+const callback = (data: Param) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-	  interface Param {
-		type: window.AvoidAreaType,
-		area: window.AvoidArea
-	  }
-	  const callback = (data: Param) => {
-		// ...
-	  }
-	  try {
-		windowClass.on('avoidAreaChange', callback);
+}
+try {
+  windowClass.on('avoidAreaChange', callback);
 
-		windowClass.off('avoidAreaChange', callback);
-		// 如果通过on开启多个callback进行监听，同时关闭所有监听：
-		windowClass.off('avoidAreaChange');
-	  } catch (exception) {
-		console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-	  }
-    });
-  }
+  windowClass.off('avoidAreaChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('avoidAreaChange');
+} catch (exception) {
+  console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -5951,6 +5874,79 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setDialogBackGestureEnabled<sup>12+</sup>
+
+setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
+
+设置模态窗口是否响应手势返回事件，非模态窗口调用返回错误码。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| enabled    | boolean | 是   | 是否响应手势返回事件。<br>true表示响应，false表示不响应。</br> |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        let promise = windowClass.setDialogBackGestureEnabled(enabled);
+        promise.then(() => {
+          console.info('Succeeded in setting dialog window to ignore back gesture.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set dialog window to ignore back gesture. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -6319,7 +6315,7 @@ promise.then((data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -6337,41 +6333,24 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      windowClass.getAvoidArea(type, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-      });
-    });
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+windowClass.getAvoidArea(type, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+    return;
   }
-}
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+});
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -6394,32 +6373,15 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      let promise = windowClass.getAvoidArea(type);
-      promise.then((data) => {
-        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    });
-  }
-}
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
+promise.then((data) => {
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -6664,7 +6626,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6718,7 +6682,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口导航栏、状态栏的可见模式，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6775,7 +6741,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6833,7 +6801,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
+设置主窗口导航栏、状态栏的属性，使用Promise异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
 
 > **说明：**
 >
@@ -7029,7 +6999,7 @@ promise.then((data) => {
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
-开启主窗口系统规避区变化的监听。
+开启当前窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -7048,35 +7018,16 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      windowClass.on('systemAvoidAreaChange', (data) => {
-        console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
-      });
-    });
-  }
-}
+windowClass.on('systemAvoidAreaChange', (data) => {
+  console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+});
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
-关闭主窗口系统规避区变化的监听。
+关闭当前窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -7094,32 +7045,13 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
+const callback = (avoidArea: window.AvoidArea) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (avoidArea: window.AvoidArea) => {
-        // ...
-      }
-      windowClass.on('systemAvoidAreaChange', callback);
-      windowClass.off('systemAvoidAreaChange', callback);
-      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-      windowClass.off('systemAvoidAreaChange');
-    });
-  }
 }
+windowClass.on('systemAvoidAreaChange', callback);
+windowClass.off('systemAvoidAreaChange', callback);
+// 如果通过on开启多个callback进行监听，同时关闭所有监听：
+windowClass.off('systemAvoidAreaChange');
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -7936,8 +7868,8 @@ WindowStage生命周期。
 | ACTIVE     | 2      | 获焦状态。 |
 | INACTIVE   | 3      | 失焦状态。 |
 | HIDDEN     | 4      | 切到后台。 |
-| RESUMED<sup>11+</sup> | 5      | 前台可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
-| PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
+| RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如从多任务列表中，点击应用后返回到前台的状态。 |
+| PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
 
 ## SubWindowOptions<sup>11+</sup>
 
@@ -7947,11 +7879,11 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称      | 类型  | 只读 | 必填 | 说明         |
+| 名称      | 类型  | 只读 | 可选 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title    | string | 否 | 是 | 子窗口标题。       |
-| decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
-| isModal<sup>12+</sup>    | boolean | 否 | 否 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
+| title    | string | 否 | 否 | 子窗口标题。       |
+| decorEnabled | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
+| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
 
 ## WindowStage<sup>9+</sup>
 

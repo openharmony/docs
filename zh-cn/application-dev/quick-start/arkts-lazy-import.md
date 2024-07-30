@@ -4,9 +4,10 @@
 
 > **说明：**
 > 
-> 延迟加载特性在api12 beta3版本开始支持。
+> 延迟加载特性在API12版本开始支持。
 >
-> 在api12发布版本中，开发者需要在IDE中配置`compatibleSdkReleaseType: "beta3"`选项来使用该特性。
+> 开发者如需在API12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[Deveco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-0000001778834297-V5#section511142752919)
+
 
 ## 功能特性
 
@@ -14,7 +15,7 @@
 
 ## 使用方式
 
-开发者可以利用诸如[Trace](../performance/common-trace-using-instructions.md)工具或日志记录等手段，来识别冷启动期间未被实际调用的文件。通过对这些数据的分析，开发者能够精准地定位出启动阶段不必预先加载的文件列表。针对这些文件的调用点，可以直接增加lazy标识。但需要注意的是，后续执行的加载是同步加载，有可能会阻塞任务执行（如点击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
+开发者可以利用诸如<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，来识别冷启动期间未被实际调用的文件。通过对这些数据的分析，开发者能够精准地定位出启动阶段不必预先加载的文件列表。针对这些文件的调用点，可以直接增加lazy标识。但需要注意的是，后续执行的加载是同步加载，有可能会阻塞任务执行（如点击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
 
 > **说明：**
 >

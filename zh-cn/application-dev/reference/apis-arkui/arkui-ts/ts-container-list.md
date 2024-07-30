@@ -112,7 +112,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。 |
+| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>默认值：0x08000000<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp |
 
 ### scrollBar
 
@@ -189,7 +189,7 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring |
-| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false |
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false } |
 
 ### chainAnimation
 
@@ -398,7 +398,7 @@ scrollBarColor(color: Color | number | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度） |
 
 ### contentStartOffset<sup>11+</sup>
 
@@ -445,26 +445,6 @@ flingSpeedLimit(speedLimit: number)
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
 | speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
-
-### fadingEdge<sup>12+</sup>
-
-fadingEdge(value: Optional&lt;boolean&gt;)
-
-设置当前List是否开启渐隐效果。
-
-开启渐隐后，在ListItem超出List长度后，绘制与滚动轴方向相同的渐隐效果。当ListItem未超出List长度时，不绘制渐隐效果。
-
-value为false时，不启用List渐隐；value为true时，启用List渐隐。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                            |
-| ------ | ------ | ---- | ---------------------------------------------- |
-| value  | Optional&lt;boolean&gt; | 是   | fadingEdge生效时，会覆盖List的.overlay()属性，若需要overlay能力，建议在非List组件上添加.overlay()。<br/>fadingEdge生效时，建议不在List组件上设置background相关属性，会影响渐隐的显示效果。<br/>默认渐隐高度：32vp。<br/>默认值：大屏设备默认值为true，其他设备默认值为false。 |
 
 ### childrenMainSize<sup>12+</sup>
 

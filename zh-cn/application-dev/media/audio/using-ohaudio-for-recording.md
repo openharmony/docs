@@ -131,7 +131,34 @@ OH_AudioStreamBuilder_Destroy(builder);
     为了避免不可预期的行为，在设置音频回调函数时，请确保[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
 
     ```c++
-    // （可选）使用空指针初始化OnError回调
+    // 自定义写入数据函数
+    int32_t MyOnReadData(
+        OH_AudioCapturer* capturer,
+        void* userData,
+        void* buffer,
+        int32_t length)
+    {
+        // 从buffer中取出length长度的录音数据
+        return 0;
+    }
+    // 自定义音频中断事件函数
+    int32_t MyOnInterruptEvent(
+        OH_AudioCapturer* capturer,
+        void* userData,
+        OH_AudioInterrupt_ForceType type,
+        OH_AudioInterrupt_Hint hint)
+    {
+        // 根据type和hint表示的音频中断信息，更新录制器状态和界面
+        return 0;
+    }
+    OH_AudioCapturer_Callbacks callbacks;
+
+    // 配置回调函数，如果需要监听，则赋值
+    callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
+    callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
+
+    // （必选）如果不需要监听，使用空指针初始化
+    callbacks.OH_AudioCapturer_OnStreamEvent = nullptr;
     callbacks.OH_AudioCapturer_OnError = nullptr;
     ```
 

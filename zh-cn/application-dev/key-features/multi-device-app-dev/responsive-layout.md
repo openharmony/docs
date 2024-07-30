@@ -563,7 +563,7 @@ struct GridRowSample4 {
 **示例5：**
 
 
-通过span参数配置GridCol在不同断点下占据不同的列数。特别的，将md断点下和6的span配置为0，这样在md断点下3和6不会渲染和显示。
+通过span参数配置GridCol在不同断点下占据不同的列数。特别的，将md断点下3和6的span配置为0，这样在md断点下3和6不会渲染和显示。
 
 
   | sm | md | lg | 
