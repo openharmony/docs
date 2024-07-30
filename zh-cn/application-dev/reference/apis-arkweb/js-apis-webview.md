@@ -15025,10 +15025,10 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
+| 名称 | 类型 |必填 | 说明 |
 |------|------|------|------|
-| size | number | 是 | 设置每个web组件允许缓存的最大页面个数。默认为1，最大可设置为50。Web会根据内存压力对缓存进行回收。 |
-| timeToLive | number | 是 | 设置每个web组件允许页面在前进后退缓存中停留的时间，默认为600秒。|
+| size | number | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。设置为0或负数时，前进后退缓存功能不生效。Web会根据内存压力对缓存进行回收。 |
+| timeToLive | number | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。设置为0或负数时，前进后退缓存功能不生效。|
 
 ### enableBackForwardCache<sup>12+</sup>
 
@@ -15058,6 +15058,8 @@ export default class EntryAbility extends UIAbility {
         let features = new webview.BackForwardCacheSupportedFeatures();
         features.nativeEmbed = true;
         features.mediaTakeOver = true;
+        // 如果一个页面同时使用了同层渲染和视频托管的能力，需要 nativeEmbed 和
+        // mediaTakeOver 同时设置为 true，该页面才可以进入前进后退缓存中。
         webview.WebviewController.enableBackForwardCache(features);
         webview.WebviewController.initializeWebEngine();
         AppStorage.setOrCreate("abilityWant", want);
