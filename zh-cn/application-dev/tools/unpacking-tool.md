@@ -1,7 +1,7 @@
 # 拆包工具
 
 
-拆包工具是OpenHarmony提供的一种调测工具，支持通过命令行方式将hap、har、hsp、app等文件解压成文件夹，并且提供Java接口对hap、app、hsp等文件进行解析。
+拆包工具是OpenHarmony提供的一种调测工具，支持通过命令行方式将HAP、HAR、HSP、App等文件解压成文件夹，并且提供Java接口对HAP、HSP、App等文件进行解析。
 
 
 拆包所用的app_unpacking_tool.jar，可以在本地下载的OpenHarmony的SDK库中找到。
@@ -9,9 +9,9 @@
 
 ## 拆包指令说明
 
-### hap包模式拆包指令
+### HAP包模式拆包指令
 
-开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将hap包解压出来。
+开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将HAP包解压出来。
 
 #### 示例
 
@@ -24,8 +24,8 @@ java -jar app_unpacking_tool.jar --mode <option> --hap-path <options> --out-path
 | 指令       | 是否必选项 | 选项          | 描述                                                         |
 | ---------- | ---------- | ------------- | ------------------------------------------------------------ |
 | --mode     | 是         | hap           | 拆包类型。                                                   |
-| --hap-path | 是         | NA            | hap包路径。                                                  |
-| --rpcid    | 否         | true或者false | 是否单独将rpcid文件从hap包中提取到指定目录，如果为true，将仅提取rpcid文件，不对hap包进行拆包。 |
+| --hap-path | 是         | NA            | HAP包路径。                                                  |
+| --rpcid    | 否         | true或者false | 是否单独将rpcid文件从HAP包中提取到指定目录，如果为true，将仅提取rpcid文件，不对HAP包进行拆包。 |
 | --out-path | 是         | NA            | 拆包目标文件路径。                                           |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
 
@@ -48,9 +48,9 @@ java -jar app_unpacking_tool.jar --mode <options> --har-path <option> --out-path
 | --out-path | 是         | NA          | 拆包目标文件路径。                                          |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
-### app包模式拆包指令
+### App包模式拆包指令
 
-开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将app包解压出来。
+开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将App包解压出来。
 
 #### 示例
 
@@ -63,11 +63,11 @@ java -jar app_unpacking_tool.jar --mode <options> --app-path <option> --out-path
 | 指令       | 是否必选项 | 选项          | 描述                                                        |
 | ---------- | ---------- |-------------| ----------------------------------------------------------- |
 | --mode     | 是         | app         | 拆包类型。                                                  |
-| --app-path | 是         | NA          | app包路径。                                                 |
+| --app-path | 是         | NA          | App包路径。                                                 |
 | --out-path | 是         | NA          | 拆包目标文件路径。                                          |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
-### 从hap包中获取rpcid文件
+### 从HAP包中获取rpcid文件
 
 开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，获取应用的rpcid。
 
@@ -82,14 +82,14 @@ java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <option> --o
 | 指令       | 是否必选项 | 选项          | 描述                                                         |
 | ---------- | ---------- | ------------- | ------------------------------------------------------------ |
 | --mode     | 是         | hap           | 拆包类型                                                     |
-| --rpcid    | 否         | true或者false | 是否单独将rpcid文件从hap包中提取到指定目录，如果为true，将仅提取rpcid文件，不对hap包进行拆包。 |
-| --hap-path | 是         | NA            | hap包路径                                                    |
+| --rpcid    | 否         | true或者false | 是否单独将rpcid文件从HAP包中提取到指定目录，如果为true，将仅提取rpcid文件，不对HAP包进行拆包。 |
+| --hap-path | 是         | NA            | HAP包路径                                                    |
 | --out-path | 是         | NA            | 拆包rpcid目标文件路径                                        |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
 
-### hsp包模式拆包指令
+### HSP包模式拆包指令
 
-开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将hsp包解压出来。
+开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将HSP包解压出来。
 
 #### 示例
 
@@ -102,13 +102,13 @@ java -jar app_unpacking_tool.jar --mode <option> --hsp-path <options> --out-path
 | 指令         | 是否必选项 | 选项          | 描述                                 |
 |------------| ---------- | ------------- |------------------------------------|
 | --mode     | 是         | hsp           | 拆包类型。                              |
-| --hsp-path | 是         | NA            | hsp包路径。                            |
+| --hsp-path | 是         | NA            | HSP包路径。                            |
 | --out-path | 是         | NA            | 拆包目标文件路径。                          |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
-### appqf模式拆包指令
+### APPQF模式拆包指令
 
-开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将appqf包解压出来。
+开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将APPQF包解压出来。
 
 #### 示例
 
@@ -121,13 +121,13 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | 指令           | 是否必选项 | 选项          | 描述                                 |
 |--------------| ---------- |-------------|------------------------------------|
 | --mode       | 是         | appqf       | 拆包类型。                              |
-| --appqf-path | 是         | NA          | appqf包路径。                          |
+| --appqf-path | 是         | NA          | APPQF包路径。                          |
 | --out-path   | 是         | NA          | 拆包目标文件路径。                          |
 | --force      | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
 ## 包解析接口
 
-包解析接口仅用于应用市场对打好的hap、app、hsp等包进行解析，获取其中配置文件等信息。
+包解析接口仅用于应用市场对打好的HAP、HSP、App等包进行解析，获取其中配置文件等信息。
 
 ### 接口目录
 
@@ -135,8 +135,8 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | ------------------ | ------------------------------------------------------------ | -------- |-------------------------------------------------------------------|
 | UncompressEntrance | UncompressResult parseApp(String appPath,String parseMode,String deviceType,String hapName) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app包路径，解析参数 返回值：UncompressResult |
 | UncompressEntrance | UncompressResult parseApp(InputStream input,String parseMode,String deviceType,String hapName,String outPath) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app文件流，解析参数 返回值：UncompressResult |
-| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包路径，解析参数 返回值：UncompressResult    |
-| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包文件流，解析参数 返回值：UncompressResult   |
+| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：HAP包路径，解析参数 返回值：UncompressResult    |
+| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：HAP包文件流，解析参数 返回值：UncompressResult   |
 
 ## 拆包工具信息字段
 
@@ -151,36 +151,36 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | profileInfosStr | List\<String>      | 应用的配置信息 | NA   |
 | icon            | String             | 返回入口组件的icon路径，如果没有入口组件，则返回第一个组件的icon信息 | NA   |
 | label           | String             | 返回入口组件的label，如果没有入口组件，则返回第一个组件的label信息 | NA   |
-| packageSize     | long               | 表示app包的大小，单位字节 | NA   |
+| packageSize     | long               | 表示App包的大小，单位字节 | NA   |
 
 ### PackInfo结构体信息
 
 | 字段                | 类型          | 描述                                    | 备注 |
 | ------------------- | ------------- | --------------------------------------- | ---- |
 | name                | String        | 包名                                    | NA   |
-| moduleName          | String        | Hap名称                                 | NA   |
+| moduleName          | String        | HAP名称                                 | NA   |
 | moduleType          | String        | module的类型                            | NA   |
-| deviceType          | List\<String> | 表示当前hap包所支持的设备类型           | NA   |
-| deliveryWithInstall | boolean       | 标识当前hap是否在用户主动安装的时候安装 | NA   |
+| deviceType          | List\<String> | 表示当前HAP包所支持的设备类型           | NA   |
+| deliveryWithInstall | boolean       | 标识当前HAP是否在用户主动安装的时候安装 | NA   |
 
 ### ProfileInfo结构体信息
 
 | 字段         | 类型                           | 描述                                       | 备注                                                         |
 | ------------ | ------------------------------ | ------------------------------------------ | ------------------------------------------------------------ |
-| hapName      | String                         | 标识当前解析的hap包名称                    | NA                                                           |
-| appInfo      | AppInfo结构体（见下述AppInfo） | 标识APP信息的结构体（见下述AppInfo信息）   | NA                                                           |
+| hapName      | String                         | 标识当前解析的HAP包名称                    | NA                                                           |
+| appInfo      | AppInfo结构体（见下述AppInfo） | 标识App信息的结构体（见下述AppInfo信息）   | NA                                                           |
 | deviceConfig | Map\<String,DeviceConfig>      | 标识设备信息                               | 存储类型为Map\<String,String>，存储设备类型名称及对应设备类型的信息，在stage模型中，这个字段存储在app结构体中 |
-| hapInfo      | HapInfo结构体（见下述HapInfo） | 标识hap包中module信息（见下述HapInfo信息） | NA                                                           |
+| hapInfo      | HapInfo结构体（见下述HapInfo） | 标识HAP包中module信息（见下述HapInfo信息） | NA                                                           |
 
 ### AppInfo结构体信息
 
 | 字段                             | 类型      | 描述                                                                            | 备注          |
 |--------------------------------|---------|-------------------------------------------------------------------------------|-------------|
-| bundleName                     | String  | 标识app的包名称                                                                     | NA          |
-| vendor                         | String  | 标识app的供应商信息                                                                   | NA          |
-| relatedBundleName              | String  | 标识app相关bundle的包名                                                              | NA          |
-| versionName                    | String  | 标识app中的versionName信息                                                          | NA          |
-| versionCode                    | String  | 标识app中的versionCode信息                                                          | NA          |
+| bundleName                     | String  | 标识App的包名称                                                                     | NA          |
+| vendor                         | String  | 标识App的供应商信息                                                                   | NA          |
+| relatedBundleName              | String  | 标识App相关bundle的包名                                                              | NA          |
+| versionName                    | String  | 标识App中的versionName信息                                                          | NA          |
+| versionCode                    | String  | 标识App中的versionCode信息                                                          | NA          |
 | targetApiVersion               | int     | 标识应用运行需要的API目标版本                                                              | NA          |
 | compatibleApiVersion           | int     | 标识应用兼容的API版本                                                                  | NA          |
 | appName                        | String  | 标识显示在桌面上的ability的label                                                        | NA          |
@@ -208,33 +208,33 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | appModel             | AppModel枚举值                                | 标识应用的框架模型<br/>- FA：FA模型<br/>- STAGE：Stage模型 | NA |
 | packageStr           | String                                        | 标识应用的包信息                    | FA模型特有             |
 | name                 | String                                        | 标识当前module的名字                | NA                 |
-| description          | String                                        | 标识hap包的描述信息                 | FA模型特有                       |
-| supportedModes       | List\<String>                                 | 标识hap包的支持的模式               | NA                           |
-| abilities            | List\<AbilityInfo>                            | 标识hap包ability信息                | NA                             |
-| defPermissions       | List\<DefPermission>                          | 标识hap包DefPermission信息          | NA                             |
-| definePermissions    | List\<DefinePermission>                       | 标识hap包DefinePermission信息       | NA                             |
-| defPermissionsGroups | List\<DefPermissionsGroups>                   | 标识hap包DefPermissionsGroups 信息  | NA                             |
-| distro               | Distro结构体                                  | 标识hap包的distro信息               | NA                             |
-| reqCapabilities      | List\<String>                                 | 标识hap包reqCapabilities信息        | NA                           |
-| deviceType           | List\<String>                                 | 标识hap可以运行在哪类设备上         | 对应stage模型中的deviceTypes       |
-| metaData             | MetaData结构体（见下述metaData）              | 标识hap的自定义元信息                | NA           |
-| dependencies         | List\<DependencyItem>                         | 标识hap包DependencyItem信息         | NA                             |
+| description          | String                                        | 标识HAP包的描述信息                 | FA模型特有                       |
+| supportedModes       | List\<String>                                 | 标识HAP包的支持的模式               | NA                           |
+| abilities            | List\<AbilityInfo>                            | 标识HAP包ability信息                | NA                             |
+| defPermissions       | List\<DefPermission>                          | 标识HAP包DefPermission信息          | NA                             |
+| definePermissions    | List\<DefinePermission>                       | 标识HAP包DefinePermission信息       | NA                             |
+| defPermissionsGroups | List\<DefPermissionsGroups>                   | 标识HAP包DefPermissionsGroups 信息  | NA                             |
+| distro               | Distro结构体                                  | 标识HAP包的distro信息               | NA                             |
+| reqCapabilities      | List\<String>                                 | 标识HAP包reqCapabilities信息        | NA                           |
+| deviceType           | List\<String>                                 | 标识HAP可以运行在哪类设备上         | 对应stage模型中的deviceTypes       |
+| metaData             | MetaData结构体（见下述metaData）              | 标识HAP的自定义元信息                | NA           |
+| dependencies         | List\<DependencyItem>                         | 标识HAP包DependencyItem信息         | NA                             |
 | isJs                 | boolean                                       | 标识该应用是否是js应用              | FA模型特有            |
 | reqPermissions       | list\<ReqPermission>                          | 标识应用申请的权限的集合             | 对应stage模型的requestPermissions |
 | commonEvents         | CommonEvent结构体（见下述CommonEvent）       | 标识静态事件                         | NA     |
 | shortcuts            | list\<Shortcut>                               | 标识应用的shortcuts信息              | NA                  |
 | distroFilter         | DistroFilter结构体                            | 标识应用市场按设备形态分发的信息     | NA               |
 | srcEntrance          | String                                        | 标识应用对应的入口代码路径           | stage模型新增          |
-| process              | String                                        | 标识hap的进程名                      | stage模型新增       |
-| mainElement          | String                  | 标识hap的入口ability名称或者extension名称 | stage模型新增，FA模型将mainAbility的值赋值给mainElement |
+| process              | String                                        | 标识HAP的进程名                      | stage模型新增       |
+| mainElement          | String                  | 标识HAP的入口ability名称或者extension名称 | stage模型新增，FA模型将mainAbility的值赋值给mainElement |
 | uiSyntax             | String                                        | 定义该JS Component的语法类型         | stage模型新增       |
 | pages                | List\<String>                                 | 列举JS Component中每个页面信息       | stage模型新增       |
 | extensionAbilityInfos| List\<ExtensionAbilityInfo>                   | 描述extensionAbility的配置信息       | stage模型新增        |
-| moduleAtomicService  | ModuleAtomicService结构体（见下述ModuleAtomicService） | 描述hap的原子化服务信息          | NA              |
+| moduleAtomicService  | ModuleAtomicService结构体（见下述ModuleAtomicService） | 描述HAP的原子化服务信息          | NA              |
 | formInfos            | List\<AbilityFormInfo>                        | 描述卡片的信息                       | NA              |
-| descriptions         | HashMap\<String, String>                      | 标识hap的说明信息                    | NA             |
-| compressedSize       | long                                          | 标识Hap包压缩后的大小，单位字节         | NA              |
-| originalSize         | long                                          | 标识Hap包的原始大小，单位字节         | NA             |
+| descriptions         | HashMap\<String, String>                      | 标识HAP的说明信息                    | NA             |
+| compressedSize       | long                                          | 标识HAP包压缩后的大小，单位字节         | NA              |
+| originalSize         | long                                          | 标识HAP包的原始大小，单位字节         | NA             |
 
 ### AbilityInfo结构体信息
 
@@ -282,10 +282,10 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | 字段                | 类型    | 描述                                    | 备注                                                         |
 | ------------------- |---------| --------------------------------------- | ------------------------------------------------------------ |
 | moduleName          | String  | 标识当前module的名字                    | 对应Stage模型中module结构体中的moduleName字段                 |
-| moduleType          | String  | 标识当前hap的类型                       | 对应Stage模型中module结构体中的moduleType字段                 |
-| deliveryWithInstall | boolean | 标识当前hap是否在用户主动安装的时候安装 | 对应Stage模型中module结构体中的deliveryWithInstall字段         |
-| installationFree    | int     | 标识当前hap是否支持免安装特性           | 对应Stage模型中module结构体中的installationFree字段，json文件中如果配置了该字段为true，返回1，配置为false，返回0，未配置返回2 |
-| virtualMachine      | String  | 标识当前hap运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心 | 对应Stage模型中module结构体中的virtualMachine字段 |
+| moduleType          | String  | 标识当前HAP的类型                       | 对应Stage模型中module结构体中的moduleType字段                 |
+| deliveryWithInstall | boolean | 标识当前HAP是否在用户主动安装的时候安装 | 对应Stage模型中module结构体中的deliveryWithInstall字段         |
+| installationFree    | int     | 标识当前HAP是否支持免安装特性           | 对应Stage模型中module结构体中的installationFree字段，json文件中如果配置了该字段为true，返回1，配置为false，返回0，未配置返回2 |
+| virtualMachine      | String  | 标识当前HAP运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心 | 对应Stage模型中module结构体中的virtualMachine字段 |
 
 ### MetaData结构体信息
 
@@ -444,11 +444,11 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | description         | String                   | 标识forms的描述                                              | stage模型新增 |
 | src                 | String                   | 标签JS卡片对应的UI代码                                       | NA        |
 | windowInfo          | ModuleWindowInfo结构体   | 标签能力窗体的窗口。                                       | NA        |
-| isDefault           | boolean                  | 标识该卡片是否为默认卡片，每个hap有且只能有一个默认卡片      | NA        |
+| isDefault           | boolean                  | 标识该卡片是否为默认卡片，每个HAP有且只能有一个默认卡片      | NA        |
 | colorMode           | String                   | 标识卡片的色调，取值为auto、dark、light其中之一              | NA        |
 | formConfigAbility   | String                   | 标识卡片调整的Ability名称                                    | NA        |
 | formVisibleNotify   | String                   | 标识卡片是否被允许使用卡片可见性通知                         | NA        |
-| providerAbility     | String                   | 卡片的提供方所在的Ability或者extension名称，1.FA模型：如果卡片配置在service类型的ability中，providerAbility配置为mainAbility 2.FA模型：如果卡片配置在Page类型的Ability中，providerAbility配置为当前Ability 3.FA模型：如果没有配置mainAbility，providerAbility配置为当前hap包中的优先使用system.home，否则第一个page的Ability 4.stage模型中（follow上述规则），providerAbility配置为mainElement | NA |
+| providerAbility     | String                   | 卡片的提供方所在的Ability或者extension名称，1.FA模型：如果卡片配置在service类型的ability中，providerAbility配置为mainAbility 2.FA模型：如果卡片配置在Page类型的Ability中，providerAbility配置为当前Ability 3.FA模型：如果没有配置mainAbility，providerAbility配置为当前HAP包中的优先使用system.home，否则第一个page的Ability 4.stage模型中（follow上述规则），providerAbility配置为mainElement | NA |
 | descriptions        | HashMap\<String, String> | 标识多语言下ability的描述                                     | NA     |
 
 
