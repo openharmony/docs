@@ -1300,6 +1300,44 @@ let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let removeArray = array.splice(2, 2, 6, 7, 8); // array内容变为[1, 2, 6, 7, 8, 5]，返回[3, 4]
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let array= new collections.Array<number>(1, 2, 3, 4);
+
+for (let item of array) {
+  console.info(`value : ${item}`);
+}
+```
+
 ## collections.Map
 
 一种非线性数据结构。
@@ -1762,6 +1800,49 @@ const myMap: collections.Map<string, Object> = new collections.Map<string, Objec
 myMap.set("foo", obj);
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let map = new collections.Map<number, string>([
+    [0, "one"],
+    [1, "two"],
+    [2, "three"],
+    [3, "four"]
+]);
+
+let keys = Array.from(map.keys());
+for (let key of keys) {
+  console.info("key:" + key);
+  console.info("value:" + map.get(key));
+}
+```
 
 ## collections.Set
 
@@ -2150,6 +2231,45 @@ const mySet: collections.Set<Object> = new collections.Set<Object>();
 mySet.add(obj);
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let set = new collections.Set<number>([1, 2, 3, 4, 5]);
+
+let val: Array<number> = Array.from(set.values())
+for (let item of val) {
+  console.info("value: " + item);
+}
+```
+
 ## collections.ArrayBuffer
 ArkTS TypedArray的底层数据结构。
 
@@ -2365,10 +2485,10 @@ ArkTS TypedArray排序函数类型。
 
 ## collections.TypedArray
 
-一种线性数据结构，底层基于[ArkTS ArrayBuffer](#collectionsarraybuffer)实现。目前支持包括Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array以及Uint8ClampedArray。
+一种线性数据结构，底层基于[ArkTS ArrayBuffer](#collectionsarraybuffer)实现。目前支持包括Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array、Uint8ClampedArray以及Float32Array。
 
 文档中存在泛型的使用，涉及以下泛型标记符：
-- TypedArray: 指上述7种具体的ArkTS TypedArray。
+- TypedArray: 指上述8种具体的ArkTS TypedArray。
 
 ### 属性
 
@@ -2411,6 +2531,7 @@ let uint16Array: collections.Uint16Array = new collections.Uint16Array();
 let int32Array: collections.Int32Array = new collections.Int32Array();
 let uint32Array: collections.Uint32Array = new collections.Uint32Array();
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray();
+let float32Array: collections.Float32Array = new collections.Float32Array();
 ```
 
 ### constructor
@@ -2448,6 +2569,7 @@ let uint16Array: collections.Uint16Array = new collections.Uint16Array(12);
 let int32Array: collections.Int32Array = new collections.Int32Array(12);
 let uint32Array: collections.Uint32Array = new collections.Uint32Array(12);
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray(12);
+let float32Array: collections.Float32Array = new collections.Float32Array(12);
 ```
 
 ### constructor
@@ -3542,6 +3664,44 @@ for (const value of iterator) {
 }
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;number&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let int32Array: collections.Int32Array = collections.Int32Array.from([1, 2, 3, 4, 5, 6]);
+
+for (let item of int32Array) {
+  console.info(`value : ${item}`);
+}
+```
+
 ## collections.BitVector
 
 BitVector是一种线性数据结构，底层基于数组实现。BitVector中存储元素为bit值，能存储和处理bit级别的操作。
@@ -4143,4 +4303,47 @@ while (!temp.done) {
   console.info(JSON.stringify(temp.value));
   temp = iter.next();
 } // 依次输出 0,1,0,1,0
+```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;number&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+
+for (let item of bitVector) {
+  console.info("value: " + item);
+}
 ```
