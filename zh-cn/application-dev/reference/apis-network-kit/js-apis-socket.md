@@ -2405,13 +2405,19 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
+    socketLinger: { on: true, linger: 10 } as SocketLinger,
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -2474,13 +2480,19 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
+    socketLinger: { on: true, linger: 10 } as SocketLinger,
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -3075,11 +3087,16 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
   console.log("listen success");
 })
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -3140,6 +3157,12 @@ let listenAddr: socket.NetAddress = {
   port: 8080,
   family: 1
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
     console.log("listen fail");
@@ -3152,7 +3175,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -5812,11 +5835,16 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -5878,11 +5906,16 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -7388,11 +7421,16 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed: " + JSON.stringify(err));
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -7470,11 +7508,16 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed: " + JSON.stringify(err));
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
