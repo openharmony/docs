@@ -2033,10 +2033,10 @@ predicates.notLike("NAME", "os");
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称         | 类型            | 只读       | 必填 | 说明                             |
+| 名称         | 类型            | 只读       | 可选 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
-| version<sup>10+</sup>  | number | 否 | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
-| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | 是 | 是 | 用于获取数据库是否进行过重建或修复。 |
+| version<sup>10+</sup>  | number | 否 | 否   | 设置和获取数据库版本，值为大于0的正整数。       |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | 是 | 否 | 用于获取数据库是否进行过重建或修复。 |
 
 **错误码：**
 
@@ -3456,7 +3456,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   })
 }
@@ -3509,7 +3509,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   })
 }
@@ -3565,7 +3565,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3624,7 +3624,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3699,7 +3699,7 @@ if(store != undefined && deviceId != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
@@ -3779,7 +3779,7 @@ if(store != undefined && deviceId != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
@@ -3831,7 +3831,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   })
 }
@@ -3882,7 +3882,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   })
 }
@@ -3936,7 +3936,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3995,7 +3995,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4575,7 +4575,7 @@ if(store != undefined) {
 beginTransaction():void
 
 在开始执行SQL语句之前，开始事务。
-此接口不支持在多进程或多线程中使用。
+此接口不允许嵌套事务，且不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4699,7 +4699,7 @@ if(store != null) {
 commit():void
 
 提交已执行的SQL语句。
-此接口不支持在多进程或多线程中使用。
+此接口不允许嵌套事务，且不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4824,7 +4824,7 @@ if(store != null) {
 rollBack():void
 
 回滚已经执行的SQL语句。
-此接口不支持在多进程或多线程中使用。
+此接口不允许嵌套事务，且不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7105,7 +7105,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -7159,6 +7159,7 @@ if(store != undefined) {
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -8099,7 +8100,7 @@ if(resultSet != undefined) {
 
 close(): void
 
-关闭结果集。
+关闭结果集，若不关闭可能会引起fd泄露和内存泄露。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
