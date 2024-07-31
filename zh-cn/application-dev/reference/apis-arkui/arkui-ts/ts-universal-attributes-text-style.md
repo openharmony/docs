@@ -179,19 +179,6 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 | range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
 | replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 
-## EditableTextOnChangeCallback<sup>12+</sup>
-
-type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
-
-输入内容发生变化时，触发该回调。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -- | -- | -- | -- |
-| value | string | 是 | 文本框内正式上屏的文本内容。 |
-| previewText | [PreviewText](ts-basic-components-richeditor.md#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
-
 ## 示例
 
 ```ts
