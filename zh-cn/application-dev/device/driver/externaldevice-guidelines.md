@@ -32,9 +32,11 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 **注意：** “配置环境变量hdc_server_port”和“全局环境变量”为必须操作。
 
-### 单板rk3568配置及烧录
+### 开发设备
 
-烧录流程参考[单板rk3568环境配置及烧录](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)  
+下述开发调试及验证，以RK3568作为开发设备进行说明。
+
+RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)  
 
 ## 驱动开发指导
 
