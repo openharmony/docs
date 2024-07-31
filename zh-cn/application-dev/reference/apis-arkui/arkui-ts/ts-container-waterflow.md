@@ -764,6 +764,7 @@ struct WaterFlowDemo {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
+              // 存在对应的jpg文件才会显示图片
               Image('res/waterFlowTest(' + item % 5 + ').jpg')
                 .objectFit(ImageFit.Fill)
                 .width('100%')
