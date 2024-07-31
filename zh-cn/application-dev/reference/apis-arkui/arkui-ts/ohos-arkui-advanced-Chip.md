@@ -149,7 +149,7 @@ LabelOptions定义文本的属性。
 | activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
 | fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>默认值：{<br/>start:  LengthMetrics.vp(6), end: LengthMetrics.vp(6)<br/>}<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LabelMarginOptions
 
@@ -159,10 +159,10 @@ LabelMarginOptions定义文本与左右侧图标之间间距。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                                 | 必填 | 说明                                                     |
-| ----- | ------------------------------------ | ---- | -------------------------------------------------------- |
-| left  | [Dimension](ts-types.md#dimension10) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
-| right | [Dimension](ts-types.md#dimension10) | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
+| 名称  | 类型                                 | 必填 | 说明                                   |
+| ----- | ------------------------------------ | ---- | -------------------------------------- |
+| left  | [Dimension](ts-types.md#dimension10) | 否   | 文本与左侧图标之间间距，不支持百分比。 |
+| right | [Dimension](ts-types.md#dimension10) | 否   | 文本与右侧图标之间间距，不支持百分比。 |
 
 ## LocalizedLabelMarginOptions<sup>12+</sup>
 
@@ -172,10 +172,10 @@ LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                                                         | 必填 | 说明                                                     |
-| ----- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
-| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
+| 名称  | 类型                                                         | 必填 | 说明                                   |
+| ----- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与左侧图标之间间距，不支持百分比。 |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与右侧图标之间间距，不支持百分比。 |
 
 ## 示例
 
