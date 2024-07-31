@@ -90,7 +90,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 * 开发驱动服务端，请选择Native C++模板。
 * 同时开发驱动客户端和服务端，请选择Native C++模板。 
 
-2. 创建tool文件夹，新建一个RpcTool.ets文件
+2. 创建tool文件夹，新建一个RpcTool.ets文件，以下示例代码都在RpcTool.ets文件中添加；
 
 ![rpctool.ets文件](./figures/rpcTool.png)
 
@@ -209,6 +209,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 系统应用可通过查询外设详细信息和驱动详细信息，从而管理外设和驱动。开发示例如下：
 
 1. 查询扩展外设详细信息列表。
+
    ```ts
    import { deviceManager } from '@kit.DriverDevelopmentKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -226,6 +227,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
    ```
 
 2. 查询扩展外设驱动详细信息列表。
+
    ```ts
    import { deviceManager } from '@kit.DriverDevelopmentKit';
    import { BusinessError } from '@kit.BasicServicesKit';
