@@ -88,7 +88,7 @@ XComponent(value: {id: string, type: XComponentType, imageAIOptions: ImageAIOpti
   > 
   > **说明：**
   >
-  > 不支持foregroundColor、obscured和pixelStretchEffect属性，并且type为SURFACE类型时也不支持动态属性设置、自定义绘制、背景设置、图像效果(shadow除外)、maskShape和foregroundEffect属性。
+  > 不支持foregroundColor、obscured和pixelStretchEffect属性，并且type为SURFACE类型时也不支持动态属性设置、自定义绘制、背景设置(backgroundColor除外)、图像效果(shadow除外)、maskShape和foregroundEffect属性。
 ### enableAnalyzer<sup>12+</sup>
 
 enableAnalyzer(enable: boolean)
