@@ -5081,7 +5081,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### minimize<sup>(deprecated)</sup>
+### minimize<sup>11+</sup>
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
@@ -5092,10 +5092,6 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 当调用对象为子窗口时，实现隐藏功能，不可在Dock栏中还原。
 
 使用callback异步回调。
-
-> **说明：**
->
-> 从 API version 11 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
