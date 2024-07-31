@@ -36,15 +36,23 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 下述开发调试及验证，以RK3568作为开发设备进行说明。
 
-RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)  
+RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)
 
-## 驱动开发指导
+## 操作流程
+
+扩展外设管理驱动开发，分为驱动客户端开发和驱动服务端开发。
+
+* 驱动客户端：绑定驱动，获取远程对象，与驱动服务端进行通信。
+
+* 驱动服务端：获取驱动客户端传递信息，并进行信息处理，返回给客户端。
+
+## 驱动服务端开发指导
 
 开发相关外设对应驱动，主要是调用扩展外设管理模块的DriverExtensionAbility；
 
 开发详情请见[DriverExtensionAbility](./driverextensionability.md)简介。
 
-## 客户端开发指导
+## 驱动客户端开发指导
 
 客户端：开发相关前端页面和客户端功能，不涉及驱动开发。
 
