@@ -8,7 +8,7 @@
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 变更前：参数类型错误抛出890001
 
@@ -28,15 +28,19 @@ API 12
 **变更的接口/组件**
 
 ohos.i18n 发生变化的接口如下表格所示。
-| 变更的接口 | 访问级别 | 起始 API Level | 变更发生版本 | 适配指导 |
+| 变更的接口 | 访问级别 | 起始 API Level | 变更发生版本 |
 |--------|--------|--------|--------|--------|
-| getSystemCountries | 公开接口 | 9 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| isSuggested | 公开接口 | 9 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| getHolidayInfoItemArray | 公开接口 | 11 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| isHoliday | 公开接口 | 11 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| getDisplayCountry | 公开接口 | 9 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| getDisplayLanguage | 公开接口 | 11 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| getLanguageInfoArray | 系统接口 | 11 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| getRegionInfoArray | 系统接口 | 10 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| setUsingLocalDigit | 系统接口 | 10 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
-| removePreferredLanguage | 系统接口 | 9 | 12 | 入参类型不匹配错误码由890001变更为401，异常处理使用新错误码 |
+| getSystemCountries | 公开接口 | 9 | 12 |
+| isSuggested | 公开接口 | 9 | 12 |
+| getHolidayInfoItemArray | 公开接口 | 11 | 12 |
+| isHoliday | 公开接口 | 11 | 12 |
+| getDisplayCountry | 公开接口 | 9 | 12 |
+| getDisplayLanguage | 公开接口 | 11 | 12 |
+| getLanguageInfoArray | 系统接口 | 11 | 12 |
+| getRegionInfoArray | 系统接口 | 10 | 12 |
+| setUsingLocalDigit | 系统接口 | 10 | 12 |
+| removePreferredLanguage | 系统接口 | 9 | 12 |
+
+**适配指导**
+
+入参类型不匹配错误码由890001变更为401，异常处理使用新错误码
