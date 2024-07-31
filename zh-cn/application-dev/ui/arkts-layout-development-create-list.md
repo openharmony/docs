@@ -913,6 +913,111 @@ List() {
 >
 >2. 列表使用数据懒加载时，除了显示区域的列表项和前后缓存的列表项，其他列表项会被销毁。
 
+
+## 折叠与展开
+
+列表项的折叠与展开用途广泛，常用于信息清单的展示、填写等应用场景。
+
+  **图19** 列表项的折叠与展开 
+
+![zh-cn_image_0000001949866104](figures/zh-cn_image_0000001949866104.gif)
+
+列表项折叠与展开效果实现主要流程如下：
+
+1. 定义列表项数据结构。
+
+    ```ts
+    interface ItemInfo {
+      index: number,
+      name: string,
+      label: ResourceStr,
+      type?: string,
+    }
+
+    interface ItemGroupInfo extends ItemInfo {
+      children: ItemInfo[]
+    }
+    ```
+
+2. 构造列表结构。
+
+    ```ts
+    build() {
+      Column() {
+        // ...
+
+        List({ space: 10 }) {
+          ForEach(this.routes, (itemGroup: ItemGroupInfo) => {
+            ListItemGroup({
+              header: this.ListItemGroupHeader(itemGroup),
+              style: ListItemGroupStyle.CARD,
+            }) {
+              if (this.expandedItems[itemGroup.index] && itemGroup.children) {
+                ForEach(itemGroup.children, (item: ItemInfo) => {
+                  ListItem({ style: ListItemStyle.CARD }) {
+                    Row() {
+                      Text(item.name)
+                      Blank()
+                      if (item.type === 'Image') {
+                        Image(item.label)
+                          .height(20)
+                          .width(20)
+                      } else {
+                        Text(item.label)
+                      }
+                      Image($r('sys.media.ohos_ic_public_arrow_right'))
+                        .fillColor($r('sys.color.ohos_id_color_fourth'))
+                        .height(30)
+                        .width(30)
+                    }
+                    .width("100%")
+                  }
+                  .width("100%")
+                  .animation({ curve: curves.interpolatingSpring(0, 1, 528, 39) })
+                })
+              }
+            }.clip(true)
+          })
+        }
+        .width("100%")
+      }
+      .width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.Start)
+      .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+    }
+    ```
+
+3. 通过改变ListItem的状态，来控制每个列表项是否展开，并通过animation和animateTo来实现展开与折叠过程中的动效效果。
+
+    ```ts
+    @Builder
+    ListItemGroupHeader(itemGroup: ItemGroupInfo) {
+      Row() {
+        Text(itemGroup.label)
+        Blank()
+        Image($r('sys.media.ohos_ic_public_arrow_down'))
+          .fillColor($r('sys.color.ohos_id_color_fourth'))
+          .height(30)
+          .width(30)
+          .rotate({ angle: !!itemGroup.children.length ? (this.expandedItems[itemGroup.index] ? 180 : 0) : 180 })
+          .animation({ curve: curves.interpolatingSpring(0, 1, 228, 22) })
+      }
+      .width("100%")
+      .padding(10)
+      .animation({ curve: curves.interpolatingSpring(0, 1, 528, 39) })
+      .onTouch((event) => {
+        if (event.type === TouchType.Up) {
+          if (itemGroup.children.length) {
+            animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
+              this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
+            })
+          }
+        }
+      })
+    }
+    ```
+
 ## 相关实例
 
 如需详细了解ArkUI中列表的创建与使用，请参考以下示例：
