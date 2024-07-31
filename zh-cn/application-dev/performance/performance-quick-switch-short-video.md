@@ -12,6 +12,12 @@
 
 **如果开发者使用自研播放器引擎而非AVPlayer，也可以参考该解决方案思路达成最佳实践**。
 
+## 效果展示
+
+在线短视频滑动切换
+
+<img src="../performance/figures/performance-quick-switch-short-video-image0.gif" width="300"/>
+
 ## 场景说明
 
 ### 适用范围
