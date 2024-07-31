@@ -154,6 +154,7 @@
         - [手势拦截增强](arkui-ts/ts-gesture-blocking-enhancement.md)
     - 基础组件
       - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
+      - [ArcAlphabetIndexer](arkui-ts/ts-container-arc-alphabet-indexer.md)
       - [Blank](arkui-ts/ts-basic-components-blank.md)
       - [Button](arkui-ts/ts-basic-components-button.md)
       - [CalendarPicker](arkui-ts/ts-basic-components-calendarpicker.md)
