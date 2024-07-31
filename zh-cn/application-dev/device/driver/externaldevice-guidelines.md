@@ -97,9 +97,9 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 * 开发驱动服务端，请选择Native C++模板。
 * 同时开发驱动客户端和服务端，请选择Native C++模板。 
 
-2.创建tool文件夹，新建一个RpcTool.ets文件
+2. 创建tool文件夹，新建一个RpcTool.ets文件
 
-
+![rpctool.ets文件](./figures/rpcTool.png)
 
 2. 查询设备列表。
 
@@ -262,7 +262,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 环境搭建完成后，导入demo，如果编译报语法错误，报错现象如下：
 
-![报错现象](./figures/error_grammar.png)
+![报错现象](./figures/errorGrammar.png)
 
 这是由于ArkTs语法检查规则发生了变化，由松语法检查变为严格语法检查，目的是让开发者使用更加规范。
 
