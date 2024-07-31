@@ -1,6 +1,8 @@
 # Background Tasks Kit
 
-- Background Task Management
+<!--Del-->
+- Background Task Management<!--DelEnd-->
+
   - [Background Task Overview](background-task-overview.md)
   - [Transient Task](transient-task.md)
   - [Continuous Task](continuous-task.md)

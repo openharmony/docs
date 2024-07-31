@@ -11,16 +11,16 @@ The **WorkSchedulerExtensionAbility** module provides callbacks for deferred tas
 ## Modules to Import
 
 ```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 ```
 
 ## Attributes
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | Yes| No| Context of the **WorkSchedulerExtension**. This context is inherited from **ExtensionContext**.|
+| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | Yes | No | Context of the **WorkSchedulerExtension**. This context is inherited from **ExtensionContext**. |
 
 ## WorkSchedulerExtensionAbility.onWorkStart
 
@@ -34,12 +34,12 @@ Called when the system starts scheduling the deferred task.
 
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that starts.|
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that starts. |
 
 **Example**
 
   ```ts
-  import workScheduler from '@ohos.resourceschedule.workScheduler';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStart(workInfo: workScheduler.WorkInfo) {
@@ -60,13 +60,13 @@ Called when the system stops scheduling the deferred task.
 
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that stops.|
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that stops. |
 
 
 **Example**
 
   ```ts
-  import workScheduler from '@ohos.resourceschedule.workScheduler';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStop(workInfo: workScheduler.WorkInfo) {
