@@ -1,7 +1,7 @@
 # aa工具
 
 
-Ability assistant（Ability助手，简称为aa），是实现应用及测试用例启动功能的工具，为开发者提供基本的应用调试和测试能力，例如启动应用组件、强制停止进程、打印应用组件相关信息等。
+Ability assistant（Ability助手，简称为aa），是用于启动应用和启动测试用例的工具，为开发者提供基本的应用调试和测试能力，例如启动应用组件、强制停止进程、打印应用组件相关信息等。
 
 > **说明：**
 >
@@ -68,7 +68,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 以隐式启动Ability为例。
   > **说明：**
   > 
-  > 本例中仅介绍了部分字段的使用。关于Ability匹配的详细规则参考[显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)**。
+  > 本例中仅介绍了部分字段的使用。关于Ability匹配的详细规则参考[显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)。
 
 
 1. 修改module.json5配置，为目标Ability配置uris。
