@@ -214,6 +214,22 @@ get size(): Size
 | ------------- | ---------------- |
 | [Size](#size) | 画布的宽度和高度。 |
 
+### sizeInPixel
+
+get sizeInPixel(): Size
+
+获取以px为单位的画布的宽度和高度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [Size](#size) | 画布的宽度和高度，以px为单位。 |
+
 ### canvas
 
 get canvas(): drawing.Canvas
@@ -241,6 +257,7 @@ class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
     const size = context.size;
     const canvas = context.canvas;
+    const sizeInPixel = context.sizeInPixel;
   }
 }
 
