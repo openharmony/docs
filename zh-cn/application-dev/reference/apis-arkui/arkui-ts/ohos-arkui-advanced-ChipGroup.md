@@ -247,7 +247,7 @@ struct Index {
   @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6]
   @State selected_state: boolean = true;
 
-  @Builder
+  @LocalBuilder
   ChipGroupSuffix(): void {
     IconGroupSuffix({
       items: [{
@@ -316,7 +316,7 @@ struct Index {
         onChange: (activatedChipsIndex: Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
-        suffix: this.ChipGroupSuffix.bind(this)
+        suffix: this.ChipGroupSuffix
       })
     }
   }
@@ -341,7 +341,7 @@ struct Index {
   @State suffixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
   @State suffixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Red]);
 
-  @Builder
+  @LocalBuilder
   ChipGroupSuffix(): void {
     IconGroupSuffix({
       items: [
@@ -409,7 +409,7 @@ struct Index {
         onChange: (activatedChipsIndex: Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
-        suffix: this.ChipGroupSuffix.bind(this)
+        suffix: this.ChipGroupSuffix
       })
     }
   }
