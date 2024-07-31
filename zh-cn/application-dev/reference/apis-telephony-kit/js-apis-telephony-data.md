@@ -316,15 +316,16 @@ isCellularDataEnabledSync(): boolean
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 import { data } from '@kit.TelephonyKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let isEnabled: boolean = data.isCellularDataEnabledSync();
     console.log(`isCellularDataEnabledSync success : ${isEnabled}`);
-} catch (err: BusinessError) {
-    console.error(`isCellularDataEnabledSync fail : err->${JSON.stringify(err)}`);  
+} catch (error) {
+    console.error(`isCellularDataEnabledSync fail : err->${JSON.stringify(error)}`);  
 }
 ```
 
@@ -458,16 +459,16 @@ isCellularDataRoamingEnabledSync(slotId: number): boolean
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 import { data } from '@kit.TelephonyKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-let slotId: number = 0;
 try {
-    let isEnabled: boolean = data.isCellularDataRoamingEnabledSync(slotId);
-    console.log(`isCellularDataRoamingEnabledSync success : ${isEnabled}`);
-} catch (err: BusinessError) {
-    console.error(`isCellularDataRoamingEnabledSync fail : err->${JSON.stringify(err)}`);  
+    let isEnabled: boolean = data.isCellularDataEnabledSync();
+    console.log(`isCellularDataEnabledSync success : ${isEnabled}`);
+} catch (error) {
+    console.error(`isCellularDataEnabledSync fail : err->${JSON.stringify(error)}`);  
 }
 ```
 
