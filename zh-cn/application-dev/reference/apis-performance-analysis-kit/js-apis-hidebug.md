@@ -895,9 +895,17 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 
 ## GcStats<sup>12+</sup>
 
-用于存储GC统计信息的键值对类型`Record<string,number>`。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+type GcStats = Record&lt;string, number&gt;
+
+用于存储GC统计信息的键值对。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 类型      | 说明                          |
+| -----------| ---------------------------- |
+| Record&lt;string, number&gt;     | 表示值类型为Record键值对。     |
+
+其中GcStats中可包含的键值信息如下：
 
 | 参数名                     | 类型   | 说明                      |
 |-------------------------| ------ |------------------------- |
