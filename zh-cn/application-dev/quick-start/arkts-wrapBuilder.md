@@ -119,7 +119,37 @@ struct Index {
 }
 ```
 
+## 使用场景3
 
+通过按引用传递的方式传入参数，会触发UI的刷新。
+
+```ts
+class Tmp {
+  paramA2: string = 'hello';
+}
+
+@Builder function overBuilder(param: Tmp) {
+  Column(){
+    Text(`wrapBuilder value:${param.paramA2}`)
+  }
+}
+
+const wBuilder: WrappedBuilder<[Tmp]> = wrapBuilder(overBuilder);
+
+@Entry
+@Component
+struct Parent{
+  @State label: Tmp = new Tmp();
+  build(){
+    Column(){
+      wBuilder.builder({paramA2: this.label.paramA2})
+      Button('Click me').onClick(() => {
+        this.label.paramA2 = 'ArkUI';
+      })
+    }
+  }
+}
+```
 
 ## 错误场景
 
