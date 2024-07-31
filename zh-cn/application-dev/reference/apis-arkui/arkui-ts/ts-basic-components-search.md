@@ -1308,5 +1308,4 @@ struct Index {
 }
 ```
 
-![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
 
