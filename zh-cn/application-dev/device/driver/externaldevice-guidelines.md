@@ -55,7 +55,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 ## 客户端开发指导
 
-客户端开发是指用户仅仅只开发相关前端页面，不涉及驱动开发。
+客户端：开发相关前端页面和客户端功能，不涉及驱动开发。
 
 ### 接口说明
 
@@ -96,6 +96,10 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 * 开发驱动客户端，请选择Empty Ability模板。
 * 开发驱动服务端，请选择Native C++模板。
 * 同时开发驱动客户端和服务端，请选择Native C++模板。 
+
+2.创建tool文件夹，新建一个RpcTool.ets文件
+
+
 
 2. 查询设备列表。
 
@@ -256,7 +260,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 ### 开发工具语法检查问题
 
-环境搭建完成后，导入demo，编译报大量语法错误，报错现象如下：
+环境搭建完成后，导入demo，如果编译报语法错误，报错现象如下：
 
 ![报错现象](./figures/error_grammar.png)
 
