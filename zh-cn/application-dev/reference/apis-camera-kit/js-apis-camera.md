@@ -7586,9 +7586,8 @@ SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#
 
 > **说明：**
 >
-> 通过[createSession](#createsession11)接口传入[SceneMode](#scenemode11)为SECURE_PHOTO模式创建一个安全模式的会话。该模式对外提供安全模式能力，开放给人脸、银行等有安全诉求的应用，
-> 结合安全TA（安全TA可用于图片处理，它具备验证服务器下发数据的验签能力、图片签名、解析及组装tlv逻辑的能力，还具备密钥读取、创建及操作能力。）使用，支持同时出普通预览流和安全流的业务场景。
-> SECURE_PHOTO模式功能类似与Android/IOS生物识别功能。
+> 通过[createSession](#createsession11)接口传入[SceneMode](#scenemode11)为SECURE_PHOTO模式创建一个安全模式的会话。该模式开放给人脸识别、银行等有安全诉求的应用，需要结合安全TA使用，支持同时出普通预览流和安全流的业务场景。
+> 安全TA：可用于图片处理，它具备验证服务器下发数据的验签能力、图片签名、解析及组装tlv逻辑的能力，还具备密钥读取、创建及操作能力。
 
 ### addSecureOutput<sup>12+</sup>
 
