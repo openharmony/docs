@@ -25,7 +25,7 @@
 
 #### 约束
 * 本文中所有采用代码形式描述的内容均遵循[ArkTS语言规范](introduction-to-arkts.md)
-* 本文仅适用于版本号为11.0.2.0的方舟字节码（版本号为方舟编译器内部保留字段，开发者无需关注）
+* 本文仅适用于版本号为12.0.6.0的方舟字节码（版本号为方舟编译器内部保留字段，开发者无需关注）
 
 ### 字节码构成
 #### 操作码与前缀
@@ -187,6 +187,46 @@ function foo(): void {
 指令*newlexenv 0x1*：创建一个槽位数为1的词法环境，将其存放到acc中，并进入该词法环境；<br>
 指令*stlexvar 0x0, 0x0*：将acc中的值存放到0个层次外的词法环境的0号槽位上；<br>
 指令*ldlexvar 0x0, 0x0*：将0个层次外的词法环境的0号槽位上的值存放到acc中。
+
+#### 共享词法环境
+共享词法环境是一类特殊的词法环境。与一般词法环境的区别在于，共享词法环境中的每个词法变量都是[sendable对象](../arkts-utils/arkts-sendable.md)。方舟编译器通过共享词法环境实现词法变量在多线程的共享。
+
+示例代码：
+```ets
+@Sendable
+class A { }
+
+@Sendable
+class B {
+    u: A = new A()
+}
+```
+字节码中的相关指令：
+```assembly
+.function any .#~B=#B(any a0, any a1, any a2) {
+label_1: 
+label_0: 
+	callruntime.ldsendablevar 0x0, 0x0
+	sta v0
+	throw.undefinedifholewithname A
+	...
+label_2: 
+}
+
+.function any .func_main_0(any a0, any a1, any a2) {
+label_1: 
+label_0: 
+	callruntime.newsendableenv 0x1
+	...
+	callruntime.definesendableclass 0x0, .#~A=#A, _3, 0x0, v0
+	callruntime.stsendablevar 0x0, 0x0
+	...
+label_2: 
+}
+```
+指令*callruntime.newsendableenv 0x1*：创建一个槽位数为1的共享词法环境，并进入该词法环境；<br>
+指令*callruntime.stsendablevar 0x0, 0x0*：将acc中的值存放到0个层次外的共享词法环境的0号槽位上；<br>
+指令*callruntime.ldsendablevar 0x0, 0x0*：将0个层次外的共享词法环境的0号槽位上的值存放到acc中。
 
 #### 补丁变量
 方舟编译器支持补丁模式的编译，当源文件发生修改时，经过补丁模式编译，生成一个补丁字节码，配合原字节码，完成功能的更新。方舟编译器在补丁模式下编译时，产生的补丁变量会被存放在一个特殊的补丁词法环境中。方舟字节码中使用补丁词法环境上的槽位编号来引用补丁变量。例如，指令*ldpatchvar 0x1*加载的是槽位号为1的补丁变量。<br>
@@ -518,6 +558,7 @@ function foo(a: number, b: number): void {}
 |  0xd9	|  IMM8_IMM16_IMM16_V8	|  stprivateproperty RR, +AAAA, +BBBB, vCC	|  A：词法环境层级<br>B：槽位号<br>C：对象	|  加载A个层次外的词法环境的B号槽位上的值，作为属性键值，将acc中的值存放到C中所存放对象的该键值上。   |
 |  0xda	|  IMM8_IMM16_IMM16	|  testin RR, +AAAA, +BBBB	|  默认入参：acc：对象<br>A：词法环境层级<br>B：槽位号	|  加载A个层次外的词法环境的B号槽位上的值，计算是否`in acc`，将结果存放到acc中。   |
 |  0xdb	|  IMM8_ID16_V8	|  definefieldbyname RR, @AAAA, vBB	|  默认入参：acc：值<br>A：string id<br>B：对象	|  为对象B定义一个键值为A的属性，并将acc中的值存放到其中。   |
+|  0xdc	|  IMM8_ID16_V8	|  definepropertybyname RR, @AAAA, vBB	|  默认入参：acc：值<br>A：string id<br>B：对象	|  为对象B定义一个键值为A的属性，并将acc中的值存放到其中。   |
 |  0xfb	|  PREF_NONE	|  callruntime.notifyconcurrentresult	|  默认入参：acc：并发函数的返回值	|  将并发函数的返回值通知运行时。<br>此指令仅出现在并发函数中。   |
 |  0xfc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0xfd	|  PREF_IMM16_V8_V8	|  wide.createobjectwithexcludedkeys +AAAA, vBB, vCC	|  A：范围寄存器数量<br>B：对象<br>C, ..., C + A：属性键值	|  基于对象B，创建一个排除了键值C, ..., C + A的对象，并将其存放到acc中。<br>这个指令用例支持使用析构和扩展语法创建对象。   |
@@ -554,27 +595,43 @@ function foo(a: number, b: number): void {}
 |  0x08fc	|  (deprecated)	 |  |  | （弃用的操作码） | 
 |  0x08fd	|  PREF_IMM32	|  wide.ldobjbyindex +AAAAAAAA	|  默认入参：acc：对象<br>A：属性键值	|  加载acc中所存对象的键值为A的属性，并将其存放到acc中。   |
 |  0x08fe	|  PREF_IMM16	|  throw.ifsupernotcorrectcall +AAAA	|  默认入参：acc：对象<br>A：错误种类	|  如果`super`没有被正确调用，抛出错误。   |
+|  0x09fb	|  PREF_IMM8	|  callruntime.ldsendableexternalmodulevar +AA	|  A：槽位号	|  将槽位号为A的外部模块变量存放到acc中。此指令仅出现在sendable class和[sendable function](../arkts-utils/arkts-sendable.md#sendable-function)中。   |
 |  0x09fc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x09fd	|  PREF_V8_IMM32	|  wide.stobjbyindex vAA, +BBBBBBBB	|  默认入参：acc：值<br>A：对象<br>B：属性键值	|  将acc中的值存放到对象A的键值为B的属性上。   |
 |  0x09fe	|  PREF_ID16	|  throw.undefinedifholewithname @AAAA	|  默认入参：acc：对象<br>A：string id	|  如果acc中的值是**hole**，则抛出异常：A的值是**undefined**。   |
+|  0x0afb	|  PREF_IMM16	|  callruntime.wideldsendableexternalmodulevar +AAAA	|  A：槽位号	|  将槽位号为A的外部模块变量存放到acc中。此指令仅出现在sendable class和sendable function中。   |
 |  0x0afc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x0afd	|  PREF_V8_IMM32	|  wide.stownbyindex vAA, +BBBBBBBB	|  默认入参：acc：值<br>A：对象<br>B：属性键值	|  将acc中的值存放到对象A的键值为B的属性上。   |
+|  0x0bfb	|  PREF_IMM8	|  callruntime.newsendableenv +AA	|  A：共享词法环境中的槽位数目	|  创建一个槽位数为A的共享词法环境，并进入该词法环境。   |
 |  0x0bfc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x0bfd	|  PREF_IMM16	|  wide.copyrestargs +AAAA	|  A：形参列表中剩余参数起始的位次	|  复制剩余参数，并将复制出的参数数组副本存放到acc中。   |
+|  0x0cfb	|  PREF_IMM16	|  callruntime.widenewsendableenv +AAAA	|  A：共享词法环境中的槽位数目	| 创建一个槽位数为A的共享词法环境，并进入该词法环境 。   |
 |  0x0cfc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x0cfd	|  PREF_IMM16_IMM16	|  wide.ldlexvar +AAAA, +BBBB	|  A：词法环境层级<br>B：槽位号	|  将A个层次外的词法环境的B号槽位上的值存放到acc中。   |
+|  0x0dfb	|  PREF_IMM4_IMM4	|  callruntime.stsendablevar +A +B	| 	默认入参：acc：值<br>A：共享词法环境层级<br>B：槽位号 |  将acc中的值存放到A个层次外的共享词法环境的B号槽位上。   |
 |  0x0dfc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x0dfd	|  PREF_IMM16_IMM16	|  wide.stlexvar +AAAA, +BBBB	|  默认入参：acc：值<br>A：词法环境层级<br>B：槽位号	|  将acc中的值存放到A个层次外的词法环境的B号槽位上。   |
+|  0x0efb	|  PREF_IMM8_IMM8	|  callruntime.stsendablevar +AA +BB	| 默认入参：acc：值<br>A：共享词法环境层级<br>B：槽位号   | 将acc中的值存放到A个层次外的共享词法环境的B号槽位上 。   |
 |  0x0efc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x0efd	|  PREF_IMM16	|  wide.getmodulenamespace +AAAA	|  A：模块索引	|  对第A个模块，执行[GetModuleNamespace](https://262.ecma-international.org/12.0/#sec-getmodulenamespace)，并将结果存放到acc中。   |
+|  0x0ffb	|  PREF_IMM16_IMM16	|  callruntime.widestsendablevar +AAAA +BBBB	|  默认入参：acc：值<br>A：共享词法环境层级<br>B：槽位号 |  将acc中的值存放到A个层次外的共享词法环境的B号槽位上。   |
 |  0x0ffc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x0ffd	|  PREF_IMM16	|  wide.stmodulevar +AAAA	|  默认入参：acc：值<br>A：槽位号	|  将acc中的值存放到槽位号为A的模块变量中。   |
+|  0x10fb	|  PREF_IMM4_IMM4	|  callruntime.ldsendablevar +A +B	|  A：共享词法环境层级<br>B：槽位号  | 将A个层次外的共享词法环境的B号槽位上的值存放到acc中。   |
 |  0x10fc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x10fd	|  PREF_IMM16	|  wide.ldlocalmodulevar +AAAA	|  A：槽位号	|  将槽位号为A的局部模块变量存放到acc中。 |
-0x11fc	|  (deprecated)	 |  |  | （弃用的操作码） |
+|  0x11fb	|  PREF_IMM8_IMM8	|  callruntime.ldsendablevar +AA + BB	|  A：共享词法环境层级<br>B：槽位号  | 将A个层次外的共享词法环境的B号槽位上的值存放到acc中。   |
+|  0x11fc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x11fd	|  PREF_IMM16	|  wide.ldexternalmodulevar +AAAA	|  A：槽位号	|  将槽位号为A的外部模块变量存放到acc中。|
+|  0x12fb	|  PREF_IMM16_IMM16	|  callruntime.wideldsendablevar +AAAA +BBBB	|  A：共享词法环境层级<br>B：槽位号	|  将A个层次外的共享词法环境的B号槽位上的值存放到acc中。   |
 |  0x12fc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x12fd	|  PREF_IMM16	|  wide.ldpatchvar +AAAA	|  A：补丁变量槽位号	|  将槽位号为A的补丁变量加载到acc中。<br>此指令仅出现在补丁模式编译场景下。|
+|  0x13fb	|  PREF_IMM8	|  callruntime.istrue +RR	|  	默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算acc == true，并将计算结果存放到acc中。   |
 |  0x13fc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x13fd	|  PREF_IMM16	|  wide.stpatchvar +AAAA	|  默认入参：acc：值<br>A：补丁变量槽位号	|  将acc中的值存放进槽位号为A的补丁变量中。<br>此指令仅出现在补丁模式编译场景下。 |
+|  0x14fb	|  PREF_IMM8	|  callruntime.isfalse +RR	|  	默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算acc == false，并将计算结果存放到acc中。   |
+|  0x15fb	|  PREF_IMM8	|  callruntime.ldlazymodulevar +AA	|  A：槽位号	|   将槽位号为A的外部模块变量存放到acc中。此指令仅适用于通过[lazy import](arkts-lazy-import.md)导入的模块变量。   |
+|  0x16fb	|  PREF_IMM16	|  callruntime.wideldlazymodulevar +AAAA	|  A：槽位号	|   将槽位号为A的外部模块变量存放到acc中。此指令仅适用于通过lazy import导入的模块变量。   |
+|  0x17fb	|  PREF_IMM8	|  callruntime.ldlazysendablemodulevar +AA	|  A：槽位号	|   将槽位号为A的外部模块变量存放到acc中。此指令仅适用于通过lazy import导入的模块变量且仅出现在sendable class和sendable function中。   |
+|  0x18fb	|  PREF_IMM16	|  callruntime.wideldlazysendablemodulevar +AAAA	|  A：槽位号	|  将槽位号为A的外部模块变量存放到acc中。此指令仅适用于通过lazy import导入的模块变量且仅出现在sendable class和sendable function中。   |
 |  0x14fc<br>0x15fc<br>...<br>0x2efc | (deprecated)	 |  |  | （弃用的操作码） |
