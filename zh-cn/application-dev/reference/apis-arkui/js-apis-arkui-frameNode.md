@@ -2992,12 +2992,11 @@ function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode
 }
 
 class MyFrameNode extends FrameNode {
-  public width: number = 100;
-  public offsetY: number = 0;
+  public width: number = 10;
   private space: number = 1;
 
   onMeasure(constraint: LayoutConstraint): void {
-    let sizeRes: Size = { width: vp2px(100), height: vp2px(100) };
+    let sizeRes: Size = { width: 100, height: 100 };
     for (let i = 0;i < this.getChildrenCount();i++) {
       let child = this.getChild(i);
       if (child) {
@@ -3017,8 +3016,8 @@ class MyFrameNode extends FrameNode {
       let child = this.getChild(i);
       if (child) {
         child.layout({
-          x: vp2px(100),
-          y: vp2px(this.offsetY)
+          x: 20,
+          y: y
         });
         y += child.getMeasuredSize().height + this.space;
       }
@@ -3029,20 +3028,15 @@ class MyFrameNode extends FrameNode {
   onDraw(context: DrawContext) {
     const canvas = context.canvas;
     const pen = new drawing.Pen();
-    pen.setStrokeWidth(15);
+    pen.setStrokeWidth(5);
     pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
     canvas.attachPen(pen);
-    canvas.drawRect({ 
-      left: 50, 
-      right: this.width + 50, 
-      top: 50, bottom: 
-      this.width + 50 
-    });
+    canvas.drawRect({ left: 0, right: this.width, top: 0, bottom: this.width });
     canvas.detachPen();
   }
 
   addWidth() {
-    this.width = (this.width + 10) % 50 + 100;
+    this.width += 10;
   }
 }
 
@@ -3052,9 +3046,6 @@ class MyNodeController extends NodeController {
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new MyFrameNode(context);
     this.rootNode?.commonAttribute?.size({ width: 100, height: 100 }).backgroundColor(Color.Green);
-    let frameNode: FrameNode = new FrameNode(context);
-    this.rootNode.appendChild(frameNode);
-    frameNode.commonAttribute.width(10).height(10).backgroundColor(Color.Pink)
     return this.rootNode;
   }
 }
@@ -3069,18 +3060,15 @@ struct Index {
       Column() {
         NodeContainer(this.nodeController)
           .width('100%')
-          .height(200)
+          .height(100)
           .backgroundColor('#FFF0F0F0')
         Button('Invalidate')
-          .margin(10)
           .onClick(() => {
             this.nodeController?.rootNode?.addWidth();
             this.nodeController?.rootNode?.invalidate();
           })
         Button('UpdateLayout')
           .onClick(() => {
-            let node = this.nodeController.rootNode;
-            node!.offsetY = (node!.offsetY +10) % 110;
             this.nodeController?.rootNode?.setNeedsLayout();
           })
       }
