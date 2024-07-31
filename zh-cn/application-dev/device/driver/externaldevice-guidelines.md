@@ -10,11 +10,10 @@
 
 ### 开发工具及配置
 
-DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等，功能介绍如下：   
+DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。
 
-[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-tools-overview-0000001558763037-V5)
-- [下载与安装](https://developer.harmonyos.com/cn/develop/deveco-studio#download)
-- [创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
+请下载安装该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-tools-overview-0000001558763037-V5)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)进行基本的操作验证，保证DevEco Studio可正常运行。
+
 
 ### SDK版本配置
 
@@ -26,17 +25,16 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 | USB DDK接口 | API10 | 4.0及以上 |
 | HID DDK接口 | API11 | 4.1及以上 |
 
+
 ### HDC配置
 
 hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)
 
-**注意：** HDC配置中，“配置环境变量hdc_server_port”和“配置全局环境变量”为必配项目。
+**注意：** “配置环境变量hdc_server_port”和“全局环境变量”为必须操作。
 
-### 开发设备
+### 单板rk3568配置及烧录
 
-下面开发调试及验证，以RK3568作为开发设备进行说明。
-
-关于RK3568的编译、烧录等操作，可参考[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)
+烧录流程参考[单板rk3568环境配置及烧录](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)  
 
 ## 驱动开发指导
 
@@ -92,7 +90,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 ![rpctool.ets文件](./figures/rpcTool.png)
 
-3. 查询设备列表。
+2. 查询设备列表。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
@@ -119,7 +117,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
     }
     ```
 
-4. 绑定相应的设备。
+3. 绑定相应的设备。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
@@ -154,7 +152,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
     }
     ```
 
-5. 绑定成功后使用设备驱动能力。
+4. 绑定成功后使用设备驱动能力。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -180,7 +178,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
     }
     ```
 
-6. 设备使用完成，解绑设备。
+5. 设备使用完成，解绑设备。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
