@@ -102,7 +102,7 @@ setOnFocus(callback:  Callback\<void> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onDisappear事件的回调。 |
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onFocus事件的回调。 |
 
 ### setOnBlur
 
@@ -118,7 +118,7 @@ setOnBlur(callback: Callback\<void> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onDisappear事件的回调。 |
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onBlur事件的回调。 |
 
 ### setOnHover
 
