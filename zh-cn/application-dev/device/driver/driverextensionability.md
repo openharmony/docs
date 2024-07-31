@@ -93,7 +93,7 @@
        "extensionAbilities": [
          {
            "name": "DriverExtAbility",
-           "icon": "$media:icon",
+           "icon": "$media:startIcon",
            "description": "driver",
            "type": "driver",
            "exported": true,
