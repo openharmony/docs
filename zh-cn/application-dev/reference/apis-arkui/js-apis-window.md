@@ -5892,7 +5892,7 @@ setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
 
 设置模态窗口是否响应手势返回事件，非模态窗口调用返回错误码。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager
+**系统能力**：SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5900,7 +5900,7 @@ setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| enabled    | boolean | 是   | 是否响应手势返回事件。<br>true表示响应，false表示不响应。</br> |
+| enabled    | boolean | 是   | 是否响应手势返回事件。<br>true表示响应手势返回事件，触发onBackPress回调；false表示不响应手势返回事件，不触发onBackPress回调。</br> |
 
 **返回值：**
 
@@ -5944,17 +5944,42 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         windowClass = data;
-        let enabled = false;
+        windowClass.setUIContent("pages/Index");
+        let enabled = true;
         let promise = windowClass.setDialogBackGestureEnabled(enabled);
         promise.then(() => {
-          console.info('Succeeded in setting dialog window to ignore back gesture.');
+          console.info('Succeeded in setting dialog window to respond back gesture.');
         }).catch((err: BusinessError) => {
-          console.error(`Failed to set dialog window to ignore back gesture. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to set dialog window to respond back gesture. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
     } catch (exception) {
       console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
+  }
+}
+```
+
+```ts
+// ets/pages/Index.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+    }
+    .height('100%')
+    .width('100%')
+  }
+
+  onBackPress(): boolean | void {
+    console.info('Succeeded in setting dialog window to respond back gesture.');
+    return true;
   }
 }
 ```
