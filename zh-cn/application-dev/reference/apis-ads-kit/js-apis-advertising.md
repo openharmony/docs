@@ -17,7 +17,7 @@ import { advertising } from '@kit.AdsKit';
 
 提供加载广告的功能
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -27,7 +27,7 @@ constructor(context: common.Context);
 
 构造函数。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -57,7 +57,7 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 请求单广告位广告。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -106,6 +106,7 @@ function requestAd(context: common.Context): void {
     tagForChildProtection: -1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求: -1默认值,不确定 0不希望 1希望
     tagForUnderAgeOfPromise: -1
+  }
   // 广告请求回调监听
   const adLoaderListener: advertising.AdLoadListener = {
     // 广告请求失败回调
@@ -135,7 +136,7 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 请求多广告位广告。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -221,7 +222,7 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 
 展示全屏广告。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -290,7 +291,7 @@ export struct ShowAd {
 
 广告配置参数。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -307,7 +308,7 @@ export struct ShowAd {
 
 广告请求参数。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -327,7 +328,7 @@ export struct ShowAd {
 
 单广告位广告请求回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -337,7 +338,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 广告请求失败回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -353,7 +354,7 @@ onAdLoadSuccess(ads: Array&lt;advertising.Advertisement&gt;): void
 
 广告请求成功后回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -381,7 +382,7 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 多广告位广告请求回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -391,7 +392,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 多广告位广告请求失败回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -407,7 +408,7 @@ onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt
 
 多广告位广告请求成功后回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -435,12 +436,12 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 请求的广告内容。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | adType | number | 是 | 广告类型。 | 
 | uniqueId | string | 是 | 广告唯一标识。 | 
@@ -456,7 +457,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告展示参数。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -476,7 +477,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告状态变化回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -486,7 +487,7 @@ onStatusChanged(status: string, ad: advertising.[Advertisement](#advertisement),
 
 广告状态回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
