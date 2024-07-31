@@ -2966,6 +2966,7 @@ class DerivedNavPathStack extends NavPathStack {
   pushPath(info: NavPathInfo, animated?: boolean): void
   pushPath(info: NavPathInfo, options?: NavigationOptions): void
   pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
+    console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
     if (typeof secArg === 'boolean') {
       super.pushPath(info, secArg);
     } else {
