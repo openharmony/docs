@@ -13,15 +13,15 @@
 | 名称                            | 类型                                                    |  只读 | 可选 | 说明                                                                    |
 |-------------------------------| -------------------------------------------------------- | ----- | --- |-----------------------------------------------------------------------|
 | content                       | [NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent)   |   否  | 否  | 通知内容。                                                                 |
-| id                            | number                                                   |   否  | 是  | 通知ID。                                                                 |
-| slotType<sup>(deprecated)</sup> | [notification.SlotType](js-apis-notificationManager.md#slottype)    |   否  | 是  | 通道类型。<br>从API version 11开始不再维护，建议使用notificationSlotType代替。                        |
+| id                            | number                                                   |   否  | 是  | 通知ID，默认为0。                                                                 |
+| slotType<sup>(deprecated)</sup> | [notification.SlotType](./js-apis-notification.md#slottype)    |   否  | 是  | 通道类型。<br>从API version 11开始不再维护，建议使用notificationSlotType代替。                        |
 | notificationSlotType<sup>11+</sup> | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) |   否  | 否  | 通道类型。                        |
 | isOngoing                     | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
 | isUnremovable                 | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
 | deliveryTime                  | number                                                   |   否  | 是  | 通知发送时间。                                                               |
 | tapDismissed                  | boolean                                                  |   否  | 是  | 通知是否自动清除。                                                             |
 | autoDeletedTime               | number                                                   |   否  | 是  | 自动清除的时间。                                                              |
-| wantAgent                     | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)            |   否  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。                                       |
+| wantAgent                     | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)            |   否  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。                                       |
 | extraInfo                     | {[key: string]: any}                                     |   否  | 是  | 扩展参数。                                                                 |
 | color                         | number                                                   |   否  | 是  | 通知背景颜色。预留能力，暂未支持。                                                     |
 | colorEnabled                  | boolean                                                  |   否  | 是  | 通知背景颜色是否使能。预留能力，暂未支持。                                                 |
@@ -44,7 +44,7 @@
 | template<sup>8+<sup>          | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) |   否  | 是  | 通知模板。                                                                 |
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                |   否  | 是  | 分布式通知的选项。                                                             |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 是  | 获取NotificationFlags。                                                  |
-| removalWantAgent<sup>9+<sup>  | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)            |   否  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
+| removalWantAgent<sup>9+<sup>  | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)            |   否  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
 | badgeNumber<sup>9+<sup>       | number                                                   |   否  | 是  | 应用程序图标上显示的通知数。                                                        |
 | appMessageId<sup>12+<sup>       | string                                                   |   否  | 是  | 应用发送通知携带的唯一标识字段, 用于通知去重。如果同一应用通过本地和云端等不同途径发布携带相同appMessageId的通知，设备只展示一条消息，之后收到的重复通知会被静默去重，不展示、不提醒。去重标识仅在通知发布的24小时内有效，超过24小时或者设备重启失效。
 | sound<sup>12+<sup>            | string                                                   |   否  | 是  | 应用通知自定义铃声，<!--RP1-->该字段需要由具有[ohos.permission.NOTIFICATION_AGENT_CONTROLLER](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_agent_controller)权限的系统应用调用接口[notificationManager.setAdditionalConfig](./js-apis-notificationManager-sys.md#notificationmanagersetadditionalconfig12)进行配置，方可生效<!--RP1End-->。                                                        |
@@ -55,8 +55,8 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称                   | 类型            | 必填 | 说明                               |
-| ---------------------- | -------------- | ---- | ---------------------------------- |
-| isDistributed<sup>8+<sup>          | boolean        | 否   | 是否为分布式通知。                   |
-| supportDisplayDevices<sup>8+<sup>  | Array\<string> | 否   | 可以同步通知到的设备列表。            |
-| supportOperateDevices<sup>8+<sup>  | Array\<string> | 否   | 可以打开通知的设备列表。              |
+| 名称                               | 类型            | 只读 | 可选 | 说明                               |
+| ---------------------------------- | -------------- | ---- | ---- | --------------------------------- |
+| isDistributed<sup>8+<sup>          | boolean        | 否   | 是   | 是否为分布式通知。                  |
+| supportDisplayDevices<sup>8+<sup>  | Array\<string> | 否   | 是   | 可以同步通知到的设备列表。           |
+| supportOperateDevices<sup>8+<sup>  | Array\<string> | 否   | 是   | 可以打开通知的设备列表。             |
