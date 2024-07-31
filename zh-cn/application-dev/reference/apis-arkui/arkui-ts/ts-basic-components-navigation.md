@@ -2977,9 +2977,15 @@ class DerivedNavPathStack extends NavPathStack {
   }
 
   // overwrite function of NavPathStack
-  pushPath(info: NavPathInfo, animated?: boolean): void {
+  pushPath(info: NavPathInfo, animated?: boolean): void
+  pushPath(info: NavPathInfo, options?: NavigationOptions): void
+  pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
     console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
-    super.pushPath(info, animated);
+    if (typeof secArg === 'boolean') {
+      super.pushPath(info, secArg);
+    } else {
+      super.pushPath(info, secArg);
+    }
   }
 
   // overwrite and overload function of NavPathStack
