@@ -851,3 +851,37 @@ contextmenu的hoverScale接口
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
+## cl.arkui.19 删除systemapi的atomicService标签
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+systemapi不支持在元服务中使用。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：支持在元服务应用中使用，使用该接口IDE正确编译。
+
+变更后：不支持在元服务应用中使用，使用该接口会导致IDE编译报错。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+clearResourceCache、TransitionHierarchyStrategy、TransitionHierarchyStrategy枚举的NONE类型、
+TransitionHierarchyStrategy枚举的ADAPTIVE类型、GeometryTransitionOptions接口的hierarchyStrategy属性
+
+**适配指导**
+
+默认行为变更，无需适配。
