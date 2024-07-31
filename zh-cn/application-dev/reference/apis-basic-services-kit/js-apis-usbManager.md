@@ -252,7 +252,7 @@ if (devicesList.length == 0) {
 }
 
 let device: usbManager.USBDevice = devicesList[0];
-if (usbManager.removeRight(devicesName)) {
+if (usbManager.removeRight(device.name)) {
   console.log(`Succeed in removing right`);
 }
 ```
