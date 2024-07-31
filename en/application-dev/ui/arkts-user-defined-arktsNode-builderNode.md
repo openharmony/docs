@@ -280,7 +280,7 @@ Since `BuilderNode` corresponds to the backend entity node, normal memory releas
 
 ## Injecting Touch Events
 
-`BuilderNode` provides [postTouchEvent](../reference/apis-arkui/js-apis-arkui-builderNode.md#posttouchevent), which allows you to inject [touch events](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#touch-event) into the components bound to `BuilderNode`, achieving event simulation forwarding.
+`BuilderNode` provides [postTouchEvent](../reference/apis-arkui/js-apis-arkui-builderNode.md#posttouchevent), which allows you to inject [touch events](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md) into the components bound to `BuilderNode`, achieving event simulation forwarding.
 
 Inject touch events into the node tree corresponding to `BuilderNode` through `postTouchEvent`.
 

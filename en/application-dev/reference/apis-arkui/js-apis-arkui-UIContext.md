@@ -368,7 +368,7 @@ Obtains the context of this ability.
 
 | Type | Description                            |
 | ------ | ------------------------------- |
-| [Context](../../application-models/application-context-stage.md#context-stage-model)&nbsp;\|&nbsp;undefined | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext. If the ability context does not exist, **undefined** is returned. |
+| [Context](../../application-models/application-context-stage.md)&nbsp;\|&nbsp;undefined | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext. If the ability context does not exist, **undefined** is returned. |
 
 **Example**
 
