@@ -64,45 +64,6 @@ UIExtensionComponent组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.3 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-onItemDrag接口无法与其他应用产生交互，但生成的拖拽窗口能拖拽出当前应用。
-
-现在限制其能拖出当前应用的行为，与使用范围保持一致。
-
-**变更影响**
-
-该变更为兼容性变更。
-
-API version 12之前，onItemDrag拖起的拖拽窗口可以拖出当前应用窗口外。
-![](figures/OnItemDragBefore.gif)
-
-API version 12及以后，onItemDrag拖起的拖拽窗口不可以拖出当前应用窗口外。
-![](figures/OnItemDragNow.gif)
-
-**起始API Level**
-
-8
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.32开始。
-
-**变更的接口/组件**
-
-Grid组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
-
-List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
-
-**适配指导**
-
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
-
 ## cl.arkui.4 List的constraintSize设置生效
 
 **访问级别**
