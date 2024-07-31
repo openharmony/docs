@@ -845,7 +845,9 @@ typedef Drm_ErrCode(* MediaKeySystem_Callback) (DRM_EventType eventType, uint8_t
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数无效。
 
 
 ### OH_MediaKeySession_Callback
@@ -937,7 +939,9 @@ typedef Drm_ErrCode(* OH_MediaKeySystem_Callback) (MediaKeySystem *mediaKeySyste
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数无效。
 
 
 ## 枚举类型说明
@@ -1132,7 +1136,11 @@ Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus (MediaKeySession * mediaKeySe
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数mediaKeyStatus为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_ClearMediaKeys()
@@ -1155,7 +1163,10 @@ Drm_ErrCode OH_MediaKeySession_ClearMediaKeys (MediaKeySession * mediaKeySessoin
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_Destroy()
@@ -1178,7 +1189,10 @@ Drm_ErrCode OH_MediaKeySession_Destroy (MediaKeySession * mediaKeySessoin)
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_GenerateMediaKeyRequest()
@@ -1203,7 +1217,11 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest (MediaKeySession * mediaK
 
 **返回：**
 
-Drm_ErrCode 错误码。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数info为空指针，或输入参数mediaKeyRequest为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_GenerateOfflineReleaseRequest()
@@ -1228,7 +1246,11 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest (MediaKeySession * 
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其它指针类型输入参数为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_GetContentProtectionLevel()
@@ -1252,7 +1274,10 @@ Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel (MediaKeySession * medi
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数contentProtectionLevel为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_ProcessMediaKeyResponse()
@@ -1279,7 +1304,11 @@ Drm_ErrCode OH_MediaKeySession_ProcessMediaKeyResponse (MediaKeySession * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其它指针类型输入参数为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_ProcessOfflineReleaseResponse()
@@ -1306,7 +1335,10 @@ Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse (MediaKeySession * 
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其它指针类型输入参数为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_RequireSecureDecoderModule()
@@ -1331,7 +1363,10 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule (MediaKeySession * med
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其它指针类型输入参数为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_RestoreOfflineMediaKeys()
@@ -1356,7 +1391,10 @@ Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys (MediaKeySession * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其它指针类型输入参数为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_SetCallback()
@@ -1380,7 +1418,9 @@ Drm_ErrCode OH_MediaKeySession_SetCallback (MediaKeySession * mediaKeySessoin, O
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数callback为空指针。
 
 
 ### OH_MediaKeySession_SetMediaKeySessionCallback()
@@ -1404,7 +1444,9 @@ Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback (MediaKeySession * med
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数callback为空指针。
 
 
 ### OH_MediaKeySystem_ClearOfflineMediaKeys()
@@ -1429,7 +1471,10 @@ Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys (MediaKeySystem * mediaKeySy
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数offlineMediaKeyId为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_Create()
@@ -1453,7 +1498,12 @@ Drm_ErrCode OH_MediaKeySystem_Create (const char * name, MediaKeySystem ** media
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK， 当达到媒体密钥系统的最大数量时，返回DRM_ERR_MAX_SYSTEM_NUM_REACHED。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数name为空指针或长度为0、输入参数mediaKeySystem为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息；
+- DRM_ERR_SERVICE_DIED：服务死亡；
+- DRM_ERR_MAX_SYSTEM_NUM_REACHED：已创建的MediaKeySystem数量达到最大限制(64个)。
 
 
 ### OH_MediaKeySystem_CreateMediaKeySession()
@@ -1478,7 +1528,13 @@ Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession (MediaKeySystem * mediaKeySy
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK， 当达到媒体密钥会话的最大数量时，返回DRM_ERR_MAX_SESSION_NUM_REACHED。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数level超出合理范围，或mediaKeySession为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息；
+- DRM_ERR_SERVICE_DIED：服务死亡；
+- DRM_ERR_MAX_SESSION_NUM_REACHED：当前MediaKeySystem已创建的MediaKeySession数量达到最大限制(64个)。
 
 
 ### OH_MediaKeySystem_Destroy()
@@ -1501,7 +1557,10 @@ Drm_ErrCode OH_MediaKeySystem_Destroy (MediaKeySystem * mediaKeySystem)
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GenerateKeySystemRequest()
@@ -1528,7 +1587,11 @@ Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest (MediaKeySystem * mediaKe
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或其它指针类型输入参数为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GetCertificateStatus()
@@ -1552,7 +1615,10 @@ Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus (MediaKeySystem * mediaKeySys
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数certStatus为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GetConfigurationByteArray()
@@ -1578,7 +1644,11 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray (MediaKeySystem * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，输入参数value为空指针，或valueLen为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GetConfigurationString()
@@ -1604,7 +1674,11 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationString (MediaKeySystem * mediaKeyS
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GetMaxContentProtectionLevel()
@@ -1628,7 +1702,10 @@ Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel (MediaKeySystem * med
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数contentProtectionLevel为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GetMediaKeySystems()
@@ -1652,7 +1729,10 @@ Drm_ErrCode OH_MediaKeySystem_GetMediaKeySystems (DRM_MediaKeySystemDescription 
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数infos为空指针或输入参数count为空指针、输入参数infos长度不足；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GetOfflineMediaKeyIds()
@@ -1676,7 +1756,11 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds (MediaKeySystem * mediaKeySy
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数offlineMediaKeyIds为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GetOfflineMediaKeyStatus()
@@ -1702,7 +1786,10 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus (MediaKeySystem * mediaKe
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或其它指针类型输入参数为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_GetStatistics()
@@ -1726,7 +1813,11 @@ Drm_ErrCode OH_MediaKeySystem_GetStatistics (MediaKeySystem * mediaKeySystem, DR
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数statistics为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_IsSupported()
@@ -1823,7 +1914,10 @@ Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse (MediaKeySystem * mediaKe
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数response为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 
 ### OH_MediaKeySystem_SetCallback()
@@ -1847,7 +1941,9 @@ Drm_ErrCode OH_MediaKeySystem_SetCallback (MediaKeySystem * mediaKeySystem, OH_M
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数无效。
 
 
 ### OH_MediaKeySystem_SetConfigurationByteArray()
@@ -1873,8 +1969,11 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray (MediaKeySystem * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
-
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针；
+- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
 
 ### OH_MediaKeySystem_SetConfigurationString()
 
@@ -1898,7 +1997,9 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationString (MediaKeySystem * mediaKeyS
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
 
 
 ### OH_MediaKeySystem_SetMediaKeySystemCallback()
@@ -1922,7 +2023,9 @@ Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback (MediaKeySystem * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
+函数结果代码[Drm_ErrCode](#drm_errcode-1)：
+- DRM_ERR_OK：执行成功；
+- DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
 
 
 ## 变量说明
