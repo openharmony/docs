@@ -15,9 +15,6 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 [DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-tools-overview-0000001558763037-V5)
 - [下载与安装](https://developer.harmonyos.com/cn/develop/deveco-studio#download)
 - [创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
-- [API参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-app-ability-driverextensionability-V5)
-- [测试及调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-device-0000001053822404-V5)
-- [应用发布及上架](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-publish-app-0000001053223745-V5)
 
 ### SDK版本配置
 
@@ -29,23 +26,17 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 | USB DDK接口 | API10 | 4.0及以上 |
 | HID DDK接口 | API11 | 4.1及以上 |
 
-OpenHarmony SDK各版本：    
-
-4.0_release -> [API10](https://cidownload.openharmony.cn/version/Release_Version/OpenHarmony_4.0.10.11/20231012_030937/version-Release_Version-OpenHarmony_4.0.10.11-20231012_030937-ohos-sdk-full_4.0-release.tar.gz)    
-
-4.1_release -> [API11](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_4.1.7.2/20240319_104114/version-Master_Version-OpenHarmony_4.1.7.2-20240319_104114-ohos-sdk-full_4.1-Release.tar.gz)    
-
-5.0_dev -> [API12](https://cidownload.openharmony.cn/version/Master_Version/OpenHarmony_5.0.0.18_dev/20240406_020139/version-Master_Version-OpenHarmony_5.0.0.18_dev-20240406_020139-ohos-sdk-full.tar.gz)
-
 ### HDC配置
 
 hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)
 
-**注意：** 必须配置全局环境变量
+**注意：** HDC配置中，“配置环境变量hdc_server_port”和“配置全局环境变量”为必配项目。
 
-### 单板rk3568配置及烧录
+### 开发设备
 
-烧录流程参考[单板rk3568环境配置及烧录](https://gitee.com/long-youling/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)  
+下面开发调试及验证，以RK3568作为开发设备进行说明。
+
+关于RK3568的编译、烧录等操作，可参考[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)
 
 ## 驱动开发指导
 
@@ -101,7 +92,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 ![rpctool.ets文件](./figures/rpcTool.png)
 
-2. 查询设备列表。
+3. 查询设备列表。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
@@ -128,7 +119,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
     }
     ```
 
-3. 绑定相应的设备。
+4. 绑定相应的设备。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
@@ -163,7 +154,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
     }
     ```
 
-4. 绑定成功后使用设备驱动能力。
+5. 绑定成功后使用设备驱动能力。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -189,7 +180,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
     }
     ```
 
-5. 设备使用完成，解绑设备。
+6. 设备使用完成，解绑设备。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
