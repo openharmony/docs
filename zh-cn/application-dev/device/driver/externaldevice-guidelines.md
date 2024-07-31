@@ -46,12 +46,6 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 
 * 驱动服务端：获取驱动客户端传递信息，并进行信息处理，返回给客户端。
 
-## 驱动服务端开发指导
-
-开发相关外设对应驱动，主要是调用扩展外设管理模块的DriverExtensionAbility；
-
-开发详情请见[DriverExtensionAbility](./driverextensionability.md)简介。
-
 ## 驱动客户端开发指导
 
 客户端：开发相关前端页面和客户端功能，不涉及驱动开发。
@@ -249,6 +243,12 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
    ```
 <!--DelEnd-->
 
+## 驱动服务端开发指导
+
+开发相关外设对应驱动，主要是调用扩展外设管理模块的DriverExtensionAbility；
+
+开发详情请见[DriverExtensionAbility](./driverextensionability.md)简介。
+
 ## 常见问题
 
 ### SDK版本问题
@@ -256,13 +256,3 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 编译或运行时报错：“usb/usb_ddk_api.h not found”, "hid/hid_ddk_api.h not found" 等，请检查编译的OpenHarmony/HarmonyOS版本。如果是运行时，请检查设备的系统版本
 
 安装出现报错 “compileSdkVersion and releaseType of the app do not match the apiVersion and releaseType on the device” 请检查设备系统版本与hap版本是否匹配
-
-### 开发工具语法检查问题
-
-环境搭建完成后，导入demo，如果编译报语法错误，报错现象如下：
-
-![报错现象](./figures/errorGrammar.png)
-
-这是由于ArkTs语法检查规则发生了变化，由松语法检查变为严格语法检查，目的是让开发者使用更加规范。
-
-变化点可参考[ArkTs语法变化](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/typescript-to-arkts-migration-guide.md)
