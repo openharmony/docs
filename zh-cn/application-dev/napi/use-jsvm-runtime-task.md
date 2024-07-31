@@ -66,19 +66,19 @@
               JSVM_Value error;                                                                           \
           if (isPending && JSVM_OK == OH_JSVM_GetAndClearLastException((env), &error)) {                  \
                                                                                                           \
-        JSVM_Value stack;                                                                                 \
-        OH_JSVM_GetNamedProperty((env), error, "stack", &stack);                                          \
+              JSVM_Value stack;                                                                           \
+              OH_JSVM_GetNamedProperty((env), error, "stack", &stack);                                    \
                                                                                                           \
-        JSVM_Value message;                                                                               \
-        OH_JSVM_GetNamedProperty((env), error, "message", &message);                                      \
+              JSVM_Value message;                                                                         \
+              OH_JSVM_GetNamedProperty((env), error, "message", &message);                                \
                                                                                                           \
-        char stackstr[256];                                                                               \
-        OH_JSVM_GetValueStringUtf8(env, stack, stackstr, 256, nullptr);                                   \
-        OH_LOG_INFO(LOG_APP, "JSVM error stack: %{public}s", stackstr);                                   \
-        char messagestr[256];                                                                             \
-        OH_JSVM_GetValueStringUtf8(env, message, messagestr, 256, nullptr);                               \
-        OH_LOG_INFO(LOG_APP, "JSVM error message: %{public}s", messagestr);                               \
-      }                                                                                                   \
+              char stackstr[256];                                                                         \
+              OH_JSVM_GetValueStringUtf8(env, stack, stackstr, 256, nullptr);                             \
+              OH_LOG_INFO(LOG_APP, "JSVM error stack: %{public}s", stackstr);                             \
+              char messagestr[256];                                                                       \
+              OH_JSVM_GetValueStringUtf8(env, message, messagestr, 256, nullptr);                         \
+              OH_LOG_INFO(LOG_APP, "JSVM error message: %{public}s", messagestr);                         \
+          }                                                                                               \
           if (!isPending && errorInfo != nullptr) {                                                       \
               const char* errorMessage =                                                                  \
                   errorInfo->errorMessage != nullptr ? errorInfo->errorMessage : "empty error message";   \
