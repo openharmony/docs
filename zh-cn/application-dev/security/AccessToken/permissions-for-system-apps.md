@@ -1083,15 +1083,17 @@
 
 ### ohos.permission.INPUT_MONITORING
 
-允许应用监听输入事件,仅系统签名应用可申请此权限。
+允许应用监听输入事件。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：7
+
+**变更信息**：API version 7-11为system_core；从API version 12开始为system_basic。
 
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -2575,15 +2577,17 @@
 
 ### ohos.permission.INTERCEPT_INPUT_EVENT
 
-允许系统应用拦截输入事件。
+允许应用拦截输入事件。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：11
+
+**变更信息**：API version 11为system_core；从API version 12开始为system_basic。
 
 ### ohos.permission.RECORD_VOICE_CALL
 

@@ -1023,15 +1023,17 @@ Allows an application to obtain network strategy information or modify network s
 
 ### ohos.permission.INPUT_MONITORING
 
-Allows an application to listen for input events. Only the system signed applications can apply for this permission.
+Allows an application to listen for input events.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
 **Enable via ACL**: true
 
 **Valid since**: 7
+
+**Changelog**: The permission level is system_core in API versions 7 to 11, and system_basic since API versions 12.
 
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -2527,15 +2529,17 @@ Allows an application to access the built-in hidden albums and files in the albu
 
 ### ohos.permission.INTERCEPT_INPUT_EVENT
 
-Allows a system application to intercept input events.
+Allows an application to intercept input events.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
 **Enable via ACL**: true
 
 **Valid since**: 11
+
+**Changelog**: The permission level is system_core in API versions 11, and system_basic since API versions 12.
 
 ### ohos.permission.RECORD_VOICE_CALL
 
