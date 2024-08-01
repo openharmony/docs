@@ -2888,7 +2888,7 @@ export default class EntryAbility extends UIAbility {
 
 ### startMoving<sup>13+</sup>
 
-startMoving(): void
+startMoving(): Promise<void>
 
 开始移动窗口。
 
@@ -2948,7 +2948,7 @@ export class myWindowMgr extends ServiceExtensionAbility {
 
 ### enableDrag<sup>13+</sup>
 
-enableDrag(enable: boolean): void
+enableDrag(enable: boolean): Promise<void>
 
 允许拖拽窗口。
 
