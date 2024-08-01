@@ -402,9 +402,9 @@
             - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
           - 自定义扩展<!--arkts-user-defined-modifier-->
-            - [自定义扩展概述](arkts-user-defined-modifier.md)
-            - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)
-            - [AttributeUpdater](arkts-user-defined-extension-attributeUpdater.md)
+            - [自定义扩展概述](ui/arkts-user-defined-modifier.md)
+            - [AttributeModifier](ui/arkts-user-defined-extension-attributeModifier.md)
+            - [AttributeUpdater](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
         - 主题设置<!--arkts-theme-->
           - [设置主题换肤](ui/theme_skinning.md)
