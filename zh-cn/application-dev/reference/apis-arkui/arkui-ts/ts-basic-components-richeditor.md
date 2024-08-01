@@ -738,7 +738,7 @@ setSelection的选择项配置。
 
 | 名称                    | 类型                                       | 必填   | 说明                  |
 | --------------------- | ---------------------------------------- | ---- | ------------------- |
-| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是    | 替换前文本Span的具体信息。 |
+| rangeBefore | [TextRange](ts-text-common.md#textrange12) | 是    | 替换前文本Span的具体信息。 |
 | replacedSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后文本Span的具体信息。 |
 | replacedImageSpans | Array<[RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 替换后ImageSpan的具体信息。 |
 | replacedSymbolSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后SymbolSpan的具体信息。 |
@@ -1762,8 +1762,8 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
-| rangeAfter | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
+| rangeBefore | [TextRange](ts-text-common.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
+| rangeAfter | [TextRange](ts-text-common.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
 
 ## StyledStringChangedListener<sup>12+</sup>
 属性字符串的文本内容变化监听器。
@@ -1777,7 +1777,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| range | [TextRange](ts-text-common.md#textrange12) | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
 | replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 
 

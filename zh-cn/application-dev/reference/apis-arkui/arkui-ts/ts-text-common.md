@@ -214,13 +214,24 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | menuItem | [TextMenuItem](#textmenuitem对象说明) | 是   | 菜单项。 |
-| range | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是   | 选中的文本信息。 |
+| range | [TextRange](#textrange12) | 是   | 选中的文本信息。 |
 
 **返回值：**
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
 | boolean | 菜单项的执行逻辑。<br/>返回为true，拦截系统默认逻辑，仅执行自定义逻辑。<br/>返回为false，先执行自定义逻辑，再执行系统逻辑。 |
+
+## TextRange<sup>12+</sup>
+
+文本范围。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| start | number | 否 | 起始索引。 |
+| end | number | 否 | 结束索引。 |
 
 ## EditableTextOnChangeCallback<sup>12+</sup>
 
