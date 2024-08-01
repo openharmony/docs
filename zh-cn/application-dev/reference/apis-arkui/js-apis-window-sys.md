@@ -2886,9 +2886,9 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### startMove<sup>13+</sup>
+### startMoving<sup>13+</sup>
 
-startMove(): void
+startMoving(): void
 
 开始移动窗口。
 
@@ -2923,7 +2923,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
 export class myWindowMgr extends ServiceExtensionAbility {
-    async startMove() {
+    async startMoving() {
         // 创建系统窗口
         let config: window.Configuration = {
             name: "myWindow",
@@ -2934,10 +2934,10 @@ export class myWindowMgr extends ServiceExtensionAbility {
         await win.setUIContent("pages/search");
         await win.setWindowTouchable(true);
         try {
-            win.startMove().then(() => {
-                console.log('startMove successful.');
+            win.startMoving().then(() => {
+                console.log('startMoving successful.');
             }).catch((err: BusinessError) => {
-                console.log('startMove catch error:' + err.code + ',message:' + err.message);
+                console.log('startMoving catch error:' + err.code + ',message:' + err.message);
             });
         } catch (exception) {
             console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
