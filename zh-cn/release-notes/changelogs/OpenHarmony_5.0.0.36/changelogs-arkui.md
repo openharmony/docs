@@ -240,3 +240,99 @@ Popup（气泡组件）
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.5 setWindowSystemBarEnable 接口废弃变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该接口有 Promise 和 Callback 两种调用方式，使用 Callback 方式的接口错误码不满足 ArkTs API 异常处理规范，标废弃，使用同名的 Promise 接口代替。
+
+**变更影响**
+
+该接口变更为兼容性变更。
+
+从 API version 12 开始，setWindowSystemBarEnable 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
+
+**起始 API Level**
+
+起始版本 API 9。
+
+**变更发生版本**
+
+从 OpenHarmony SDK 5.0.0.36 版本开始。
+
+**变更的接口/组件**
+
+Window#setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void。
+
+**适配指导**
+
+不涉及
+
+## cl.arkui.6 setWindowLayoutFullScreen 接口废弃变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该接口有 Promise 和 Callback 两种调用方式，使用 Callback 方式的接口错误码不满足 ArkTs API 异常处理规范，标废弃，使用同名的 Promise 接口代替。
+
+**变更影响**
+
+该接口变更为兼容性变更。
+
+从 API version 12 setWindowLayoutFullScreen 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
+
+**起始 API Level**
+
+起始版本 API 9。
+
+**变更发生版本**
+
+从 OpenHarmony SDK 5.0.0.36 版本开始。
+
+**变更的接口/组件**
+
+Window#setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void。
+
+**适配指导**
+
+不涉及
+
+## cl.arkui.7 setWindowSystemBarProperties 接口废弃变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该接口有 Promise 和 Callback 两种调用方式，使用 Callback 方式的接口错误码不满足 ArkTs API 异常处理规范，标废弃，使用同名的 Promise 接口代替。
+
+**变更影响**
+
+该接口变更为兼容性变更。
+
+从 API version 12 开始，setWindowSystemBarProperties 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
+
+**起始 API Level**
+
+起始版本 API 9。
+
+**变更发生版本**
+
+从 OpenHarmony SDK 5.0.0.36 版本开始。
+
+**变更的接口/组件**
+
+Window#setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void。
+
+**适配指导**
+
+不涉及
