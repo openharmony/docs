@@ -18,7 +18,6 @@
     <!--Del-->
     - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
     <!--DelEnd-->
-  - [文件授权访问(ArkTS)](app-file-authorization.md)
 - 用户文件
   - [用户文件概述](user-file-overview.md)
   - [用户文件uri介绍](user-file-uri-intro.md)
