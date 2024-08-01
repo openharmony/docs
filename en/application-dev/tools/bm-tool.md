@@ -501,7 +501,7 @@ When you start debugging or run an application, the error message "error: signat
 The signature does not contain the UDID of the debugging device. To solve this problem, perform the following steps:
 
 * Use automatic signature. After the device is connected, sign the application again.
-* If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see [OpenHarmony Application Manual Signature](../security/hapsigntool-guidelines.md).
+* If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see [OpenHarmony Application Manual Signature](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/hapsigntool-guidelines.md).
   ```
   // Command for obtaining the UDID
   hdc shell bm get -u
