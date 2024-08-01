@@ -1591,7 +1591,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 > **说明：**
 >
-> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式调用。
+> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式的 [setWindowLayoutFullScreen](#setwindowlayoutfullscreen9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1803,7 +1803,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 > **说明：**
 >
-> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式调用。
+> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式的 [setWindowSystemBarEnable](#setWindowSystemBarEnable9)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2015,7 +2015,7 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 
 > **说明：**
 >
-> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式调用。
+> 从 API version 9 开始支持，从 API version 12 开始废弃，推荐使用 Promise 方式的[setWindowSystemBarProperties](#setWindowSystemBarProperties9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
