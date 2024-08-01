@@ -63,3 +63,149 @@ axContext.getWindowRootElement().then((data: AccessibilityElement) => {
   console.error(`failed to enableScreenCurtain, Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+### findElement('elementId')<sup>12+</sup>
+
+findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement>;
+
+根据elementId查询当前活动窗口下的节点元素，使用Promise异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名       | 类型                                | 必填   | 说明                                       |
+| --------- | --------------------------------- | ---- | ---------------------------------------- |
+| type      | string                            | 是    | 固定为'elementId', 表示根据elementId查询当前活动窗口下的节点元素。 |
+| condition | number | 是    | 表示要查询的节点元素的elementId。                           |
+
+**返回值：**
+
+| 类型                                  | 说明                               |
+| ----------------------------------- | -------------------------------- |
+| Promise&lt;[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)&gt; | Promise对象，返回满足指定查询条件的节点元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//elementId为10
+let condition = 10;
+
+// rootElement是AccessibilityElement的实例
+rootElement.findElement('elementId', condition).then((data: AccessibilityElement) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### findElement('textType')<sup>12+</sup>
+
+findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityElement>>;
+
+根据节点配置的accessibilityTextHint无障碍文本类型查询所有节点元素，使用Promise异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                            |
+| --------- | ------ | ---- | ----------------------------- |
+| type      | string | 是    | 固定为'textType', 表示根据文本类型查找节点元素。 |
+| condition | string | 是    | 表示查找的条件。                      |
+
+**返回值：**
+
+| 类型                                       | 说明                            |
+| ---------------------------------------- | ----------------------------- |
+| Promise&lt;Array&lt;[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// condition的内容需要与目标组件accessibilityTextHint属性的type字段值保持一致
+let condition = 'location'; 
+
+// rootElement是AccessibilityElement的实例
+rootElement.findElement('textType', condition).then((data: AccessibilityElement[]) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### getCursorPosition<sup>12+</sup>
+
+getCursorPosition(): Promise\<number>;
+
+获取文本组件中光标位置，使用Promise异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;number&gt; | Promise对象，返回当前光标所处位置。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// rootElement是AccessibilityElement的实例
+rootElement.getCursorPosition().then((data: number) => {
+  console.info(`Succeeded in getCursorPosition, ${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to getCursorPosition, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### getCursorPosition<sup>12+</sup>
+
+getCursorPosition(callback: AsyncCallback\<number>): void;
+
+获取文本组件中光标位置，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名         | 类型                                     | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，表示文本组件中光标位置。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// rootElement是AccessibilityElement的实例
+rootElement.getCursorPosition((err: BusinessError, data: number) => {
+  if (err && err.code) {
+    console.error(`failed to getCursorPosition, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getCursorPosition, ${data}`);
+});
+```
