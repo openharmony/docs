@@ -18,7 +18,7 @@ A relational database (RDB) store is used to store data in complex relational mo
 **RelationalStore** provides APIs for applications to perform data operations. With SQLite as the underlying persistent storage engine, **RelationalStore** provides SQLite database features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
 
 **Figure 1** Working mechanism
- 
+
 ![relationStore_local](figures/relationStore_local.jpg)
 
 
@@ -40,15 +40,15 @@ A relational database (RDB) store is used to store data in complex relational mo
 
 The following table lists the APIs used for RDB data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis/js-apis-data-relationalStore.md).
 
-| API| Description| 
+| API | Description | 
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains a **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.| 
-| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.| 
-| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.| 
-| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **RdbPredicates** instance.| 
-| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **RdbPredicates** instance.| 
-| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.| 
-| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.| 
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains a **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations. | 
+| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value. | 
+| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table. | 
+| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **RdbPredicates** instance. | 
+| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **RdbPredicates** instance. | 
+| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions. | 
+| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store. | 
 
 
 ## How to Develop
@@ -70,7 +70,6 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
          name: 'RdbTest.db', // Database file name.
          securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
          encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
-         dataGroupId: 'dataGroupID', // (Optional) Application group ID, which needs to be obtained from AppGallery. This parameter can be used only in the stage model. If this parameter is specified, the instance is created in the sandbox directory corresponding to the specified ID. If this parameter is not specified, the instance is created in the sandbox directory of the application.
        };
 
        // Check the RDB store version. If the version is incorrect, upgrade or downgrade the RDB store.
@@ -169,7 +168,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    > **NOTE**
    >
    > - The RDB store created by an application varies with the context. Multiple RDB stores are created for the same database name with different application contexts. For example, each UIAbility has its own context.
-   > 
+   >
    > - When an application calls **getRdbStore()** to obtain an RDB store instance for the first time, the corresponding database file is generated in the application sandbox. When the RDB store is used, temporary files ended with **-wal** and **-shm** may be generated in the same directory as the database file. If you want to move the database files to other places, you must also move these temporary files. After the application is uninstalled, the database files and temporary files generated on the device are also removed.
 
 2. Use **insert()** to insert data to the RDB store. <br>Example:
@@ -337,7 +336,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    ```ts
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let context = getContext(this);
+   let context = featureAbility.getContext();
 
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
