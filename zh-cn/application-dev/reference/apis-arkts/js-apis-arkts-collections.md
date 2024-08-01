@@ -47,40 +47,6 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 | ------ | ------ | ---- | ---- | ----------------- |
 | length | number | 是   | 否   | ConcatArray的元素个数。 |
 
-### [index: number]
-
-readonly &#91;index: number&#93;: T
-
-返回ConcatArray指定索引位置的元素。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-| 参数名    | 类型   | 必填 | 说明                                                            |
-| ----- | ------ | ---- | ------------------------------------------------------------------ |
-| index | number | 是   | 所需代码单元的从零开始的索引。当index<0 或者index>=length，则会抛出错误。 |
-
-**返回值：**
-
-| 类型   | 说明                     |
-| ----- | ------------------------ |
-| T | ConcatArray给定的元素数据类型。|
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                             |
-| ------- | ------------------------------------ |
-| 401 |  Parameter error. Illegal index.         |
-| 10200001 | The value of index is out of range. |
-
-**示例：**
-
-```ts
-let concatArray : collections.ConcatArray<number> = new collections.Array<number>(1, 2, 4);
-console.info("Element at index 1: ", concatArray[1]);
-```
-
 ### join
 
 join(separator?: string): string
