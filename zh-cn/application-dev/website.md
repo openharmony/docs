@@ -1352,6 +1352,7 @@
       - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](performance/native_drawing_substitute_canvas.md)
       - [使用AOT进行性能优化](performance/performance-optimization-using-aot.md)
       - [线程间通信场景](performance/thread_communication.md)
+      - [ArrayBuffer序列化和转移](performance/thread_data_transfer.md)
     - 减少卡顿丢帧
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
       - [组件复用使用指导](performance/component-recycle.md)
@@ -1389,7 +1390,6 @@
       - [全局自定义组件复用实现](performance/node_custom_component_reusable_pool.md)
       - [减小应用包大小](performance/reduce-package-size.md)
       - [使用ArkUI的FrameNode扩展实现动态布局类框架](performance/imperative_dynamic_layouts.md)
-      - [ArrayBuffer序列化和转移](performance/thread_data_transfer.md)
       - [在线短视频流畅切换](performance/performance-quick-switch-short-video.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
