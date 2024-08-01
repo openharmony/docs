@@ -1090,3 +1090,22 @@ Nullable\<T> {
 | ------- | ---- | ---------------------------------- |
 | BACKWARD | 0    | 向后删除。 |
 | FORWARD    | 1    | 向前删除。 |
+
+## BlurStyleActivePolicy<sup>13+</sup>
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| ALWAYS_ACTIVE | 一直有模糊效果。|
+| FOLLOWS_WINDOW_ACTIVE_STATE | 模糊效果跟随窗口焦点状态变化，非焦点不模糊，焦点模糊。|
+| ALWAYS_INACTIVE | 一直无模糊效果。|
+
+## BlurType<sup>13+</sup>
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| WITHIN_WINDOW | 透控件下层模糊。|
+| BEHIND_WINDOW | 透窗口下层模糊。|
