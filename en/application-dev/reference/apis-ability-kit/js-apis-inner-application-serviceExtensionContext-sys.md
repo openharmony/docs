@@ -670,6 +670,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 > **NOTE**
 > 
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -747,6 +748,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 > **NOTE**
 > 
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1435,6 +1437,10 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 Connects this ability to a ServiceExtensionAbility.
 
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -1509,6 +1515,11 @@ class EntryAbility extends ServiceExtensionAbility {
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
 Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect this ability to another ability.
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 

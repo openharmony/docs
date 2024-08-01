@@ -1306,10 +1306,8 @@ Enumerates the application states. This enum can be used together with [AbilityS
 
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |   State indicating that the application is being created.        |
-| STATE_FOREGROUND          | 2   |      State indicating that the application is running in the foreground.           |
-| STATE_ACTIVE  | 3   |         State indicating that the application is active.    |
-| STATE_BACKGROUND        | 4   |       State indicating that the application is running in the background.          |
-| STATE_DESTROY        | 5   |           State indicating that the application is destroyed.      |
-
-
+| STATE_CREATE    | 1   |   The application is being created.        |
+| STATE_FOREGROUND          | 2   |      The application is running in the foreground.           |
+| STATE_ACTIVE  | 3   |         The application is active.    |
+| STATE_BACKGROUND        | 4   |       The application is running in the background.          |
+| STATE_DESTROY        | 5   |           The application is being destroyed.      |

@@ -18,7 +18,7 @@ Enumerates the default application types.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-| Name  | Value| Description                                  |
+| Name  | Value | Description                                  |
 | -------- | -------------------------------------- | -------------------------------------- |
 | BROWSER  | 'Web Browser' | Default browser.                           |
 | IMAGE    | 'Image Gallery' | Default image viewer.                        |
@@ -47,7 +47,7 @@ Checks whether this application is the default application of a system-defined a
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<boolean> | Promise used to return the result. If the application is the default application, `true` is returned; otherwise, `false` is returned.|
+| Promise\<boolean> | Promise used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned. |
 
 
 **Example**
@@ -60,8 +60,8 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
   .then((data) => {
     console.info('Operation successful. IsDefaultApplication ? ' + JSON.stringify(data));
   }).catch((error: BusinessError) => {
-  console.error('Operation failed. Cause: ' + JSON.stringify(error));
-});
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  });
 ```
 
 ## defaultAppMgr.isDefaultApplication
@@ -77,7 +77,7 @@ Checks whether this application is the default application of a system-defined a
 | Name        | Type                             | Mandatory  | Description                                     |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype).                           |
-| callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, `true` is returned; otherwise, `false` is returned.|
+| callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned. |
 
 **Example**
 
@@ -98,13 +98,13 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: 
 
 isDefaultApplicationSync(type: string): boolean
 
-Checks whether this application is the default application of a system-defined application type. This API is a synchronous API.
+Checks whether this application is the default application of a system-defined application type. This API returns the result synchronously.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                    |
+| Name | Type  | Mandatory | Description                                    |
 | -------| ------ | ---- | --------------------------------------- |
 |  type  | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype).  |
 
@@ -112,13 +112,14 @@ Checks whether this application is the default application of a system-defined a
 
 | Type   | Description                |
 | ------- | -------------------- |
-| boolean | Returns **true** if the application is the default application; returns **false** otherwise.|
+| boolean | Returns **true** if the application is the default application; returns **false** otherwise. |
 
 
 **Example**
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+
 try {
   let data = defaultAppMgr.isDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
   console.info('Operation successful. IsDefaultApplicationSync ? ' + JSON.stringify(data));
