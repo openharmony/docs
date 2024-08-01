@@ -15,6 +15,7 @@
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
    import fileUri from '@ohos.file.fileuri';
+   import { BusinessError } from '@ohos.base';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
    let pathDir: string = context.filesDir;
@@ -28,7 +29,7 @@
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
    } catch (error) {
-    console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to createFile. Code: ${error.code}, message: ${error.message}`);
    }
 
    // 获取待拷贝文件uri
@@ -42,11 +43,12 @@
     fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
       console.info("src: " + srcUri + "dest: " + destUri);
-    }).catch((error)=>{
+    }).catch((error: BusinessError)=>{
+      let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
    } catch (error) {
-    console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to getData. Code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -56,7 +58,8 @@
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
    import fileUri from '@ohos.file.fileuri';
-
+   import { BusinessError } from '@ohos.base';
+   
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
    let pathDir: string = context.filesDir;
    let distributedPathDir: string = context.distributedFilesDir;
@@ -82,10 +85,11 @@
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
       console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
-    }).catch((error)=>{
+    }).catch((error: BusinessError) => {
+      let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
    } catch (error) {
-    console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
    }
    ```
