@@ -66,6 +66,7 @@
       - [模糊](arkts-blur-effect.md)
       - [阴影](arkts-shadow-effect.md)
       - [色彩](arkts-color-effect.md)
+    - [帧动画](arkts-animator.md)
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件
