@@ -253,13 +253,13 @@ Popup（气泡组件）
 
 **变更影响**
 
-该接口变更为兼容性变更。
+该变更为兼容性变更。
 
 从 API version 12 开始，setWindowSystemBarEnable 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
 
 **起始 API Level**
 
-起始版本 API 9。
+API 9
 
 **变更发生版本**
 
@@ -285,13 +285,13 @@ Window#setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback:
 
 **变更影响**
 
-该接口变更为兼容性变更。
+该变更为兼容性变更。
 
 从 API version 12 setWindowLayoutFullScreen 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
 
 **起始 API Level**
 
-起始版本 API 9。
+API 9
 
 **变更发生版本**
 
@@ -317,13 +317,13 @@ Window#setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCal
 
 **变更影响**
 
-该接口变更为兼容性变更。
+该变更为兼容性变更。
 
 从 API version 12 开始，setWindowSystemBarProperties 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
 
 **起始 API Level**
 
-起始版本 API 9。
+API 9
 
 **变更发生版本**
 
