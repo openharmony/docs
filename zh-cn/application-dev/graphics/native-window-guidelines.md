@@ -32,6 +32,8 @@ libnative_window.so
 
 **头文件**
 ```c++
+#include <sys/poll.h>
+#include <sys/mman.h>
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <native_window/external_window.h>
 ```
@@ -132,8 +134,19 @@ libnative_window.so
     }
     ```
 
-5. **将生产的内容写入OHNativeWindowBuffer**。
+5. **将生产的内容写入OHNativeWindowBuffer，在这之前需要等待fenceFd可用（注意fenceFd不等于-1才需要调用poll）**。
     ```c++
+    int retCode = -1;
+    uint32_t timeout = 3000;
+    if (fenceFd != -1) {
+        struct pollfd pollfds = {0};
+        pollfds.fd = fenceFd;
+        pollfds.events = POLLIN;
+        do {
+            retCode = poll(&pollfds, 1, timeout);
+        } while (retCode == -1 && (errno == EINTR || errno == EAGAIN));
+    }
+
     static uint32_t value = 0x00;
     value++;
     uint32_t *pixel = static_cast<uint32_t *>(mappedAddr); // 使用mmap获取到的地址来访问内存
