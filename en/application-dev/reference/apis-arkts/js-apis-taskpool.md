@@ -31,22 +31,22 @@ Places a function to be executed in the internal queue of the task pool. The fun
 
 **Parameters**
 
-| Name| Type     | Mandatory| Description                                                                  |
+| Name | Type     | Mandatory | Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
-| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**. |
 
 **Return value**
 
 | Type             | Description                                |
 | ----------------- | ------------------------------------ |
-| Promise\<Object>  | Promise used to return an object that carries the function execution result.|
+| Promise\<Object>  | Promise used to return an object that carries the function execution result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                     |
+| ID | Error Message                                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure.               |
@@ -79,22 +79,22 @@ Places a task in the internal queue of the task pool. The task is not executed i
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                      |
+| Name  | Type                 | Mandatory | Description                                      |
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | task     | [Task](#task)         | Yes  | Task to be executed.                 |
-| priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+| priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**. |
 
 **Return value**
 
 | Type             | Description             |
 | ----------------  | ---------------- |
-| Promise\<Object> | Promise used to return an object that carries the function execution result.|
+| Promise\<Object> | Promise used to return an object that carries the function execution result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure.              |
@@ -136,22 +136,22 @@ Places a task group in the internal queue of the task pool. The tasks in the tas
 
 **Parameters**
 
-| Name    | Type                       | Mandatory| Description                                                          |
+| Name    | Type                       | Mandatory | Description                                                          |
 | --------- | --------------------------- | ---- | -------------------------------------------------------------- |
 | group     | [TaskGroup](#taskgroup10)     | Yes  | Task group to be executed.                                     |
-| priority  | [Priority](#priority)       | No  | Priority of the task group. The default value is **taskpool.Priority.MEDIUM**.|
+| priority  | [Priority](#priority)       | No  | Priority of the task group. The default value is **taskpool.Priority.MEDIUM**. |
 
 **Return value**
 
 | Type                | Description                              |
 | ----------------    | ---------------------------------- |
-| Promise\<Object[]>  | Promise used to return an object array that carries the function execution result.|
+| Promise\<Object[]>  | Promise used to return an object array that carries the function execution result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                    |
+| ID | Error Message                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200006 | An exception occurred during serialization. |
@@ -197,17 +197,17 @@ Executes a task after a given delay. In this mode, you can set the task priority
 
 **Parameters**
 
-| Name      | Type         | Mandatory| Description                |
+| Name      | Type         | Mandatory | Description                |
 | ----------- | ------------- | ---- | -------------------- |
 | delayTime   | number        | Yes  | Delay, in ms. |
-| task        | [Task](#task) | Yes  | Task to be executed with a delay.|
-| priority    | [Priority](#priority)       | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+| task        | [Task](#task) | Yes  | Task to be executed with a delay. |
+| priority    | [Priority](#priority)       | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**. |
 
 **Return value**
 
 | Type                | Description                              |
 | ----------------    | ---------------------------------- |
-| Promise\<Object>  | Promise used to return an object array that carries the function execution result.|
+| Promise\<Object>  | Promise used to return an object that carries the function execution result. |
 
 **Error codes**
 
@@ -252,15 +252,15 @@ Cancels a task in the task pool. If the task is in the internal queue of the tas
 
 **Parameters**
 
-| Name| Type         | Mandatory| Description                |
+| Name | Type         | Mandatory | Description                |
 | ------ | ------------- | ---- | -------------------- |
-| task   | [Task](#task) | Yes  | Task to cancel.|
+| task   | [Task](#task) | Yes  | Task to cancel. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                     |
+| ID | Error Message                                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200015 | The task does not exist when it is canceled. |
@@ -331,15 +331,15 @@ Cancels a task group in the task pool. If a task group is canceled before all th
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                |
+| Name  | Type                   | Mandatory | Description                |
 | ------- | ----------------------- | ---- | -------------------- |
-| group   | [TaskGroup](#taskgroup10) | Yes  | Task group to cancel.|
+| group   | [TaskGroup](#taskgroup10) | Yes  | Task group to cancel. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                                |
+| ID | Error Message                                                |
 | -------- | ------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200018 | The task group does not exist when it is canceled.      |
@@ -392,15 +392,15 @@ Terminates a continuous task in the task pool. It is called after the continuous
 
 **Parameters**
 
-| Name| Type         | Mandatory| Description                |
+| Name | Type         | Mandatory | Description                |
 | ------ | ------------- | ---- | -------------------- |
-| longTask   | [LongTask](#longtask12) | Yes  | Continuous task to terminate.|
+| longTask   | [LongTask](#longtask12) | Yes  | Continuous task to terminate. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -440,21 +440,21 @@ Checks whether a function is a concurrent function.
 
 **Parameters**
 
-| Name| Type         | Mandatory| Description                |
+| Name | Type         | Mandatory | Description                |
 | ------ | ------------- | ---- | -------------------- |
-| func   | Function | Yes  | Function to check.|
+| func   | Function | Yes  | Function to check. |
 
 **Return value**
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | **true**: The function is a concurrent function, that is, a function decorated with [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md).<br>**false**: The function is not a concurrent function.|
+| boolean | **true**: The function is a concurrent function, that is, a function decorated with [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md).<br>**false**: The function is not a concurrent function. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -498,11 +498,11 @@ Enumerates the priorities available for created tasks. The task priority applies
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -------- | -------- | -------- |
-| HIGH   | 0    | The task has a high priority.|
-| MEDIUM | 1 | The task has a medium priority.|
-| LOW | 2 | The task has a low priority.|
+| HIGH   | 0    | The task has a high priority. |
+| MEDIUM | 1 | The task has a medium priority. |
+| LOW | 2 | The task has a low priority. |
 
 **Example**
 
@@ -547,10 +547,10 @@ Implements a task. Before calling any APIs in **Task**, you must use [constructo
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name                | Type      | Readable| Writable| Description                                                        |
+| Name                | Type      | Readable | Writable | Description                                                        |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
-| arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types). |
+| arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
 | name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created.                                   |
 | totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task.                                   |
 | ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task.                                   |
@@ -568,16 +568,16 @@ A constructor used to create a **Task** instance.
 
 **Parameters**
 
-| Name| Type     | Mandatory| Description                                                                 |
+| Name | Type     | Mandatory | Description                                                                 |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
 | func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
-| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | --------------------------------------- |
 | 401      | The input parameters are invalid. |
 | 10200014 | The function is not mark as concurrent. |
@@ -606,17 +606,17 @@ A constructor used to create a **Task** instance, with the task name specified.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                                        |
+| Name | Type    | Mandatory | Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | Yes  | Task name.                                                  |
 | func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
-| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | --------------------------------------- |
 | 401      | The input parameters are invalid. |
 | 10200014 | The function is not mark as concurrent. |
@@ -719,15 +719,15 @@ Sets the task transfer list. Before using this API, you must create a **Task** i
 
 **Parameters**
 
-| Name  | Type          | Mandatory| Description                                         |
+| Name  | Type          | Mandatory | Description                                         |
 | -------- | ------------- | ---- | --------------------------------------------- |
-| transfer | ArrayBuffer[] | No  | **ArrayBuffer** instance holding the objects to transfer. The default value is an empty array.|
+| transfer | ArrayBuffer[] | No  | **ArrayBuffer** instance holding the objects to transfer. The default value is an empty array. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | -------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
@@ -784,15 +784,15 @@ Sets the task clone list. Before using this API, you must create a **Task** inst
 
 **Parameters**
 
-| Name   | Type                     | Mandatory| Description                                         |
+| Name   | Type                     | Mandatory | Description                                         |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | Yes| - The type of the passed-in array must be [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data) or ArrayBuffer.<br>- All [Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class) instances or ArrayBuffer objects passed in to **cloneList** are transferred in copy mode between threads. This means that any modification to the destination objects does not affect the original objects.|
+| cloneList | Object[] \| ArrayBuffer[]  | Yes | - The type of the passed-in array must be [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data) or ArrayBuffer.<br>- All [Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class) instances or ArrayBuffer objects passed in to **cloneList** are transferred in copy mode between threads. This means that any modification to the destination objects does not affect the original objects. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | -------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
@@ -946,15 +946,15 @@ Sends data to the host thread and triggers the registered callback. Before using
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                             |
+| Name  | Type         | Mandatory | Description                                             |
 | -------- | ------------- | ---- | ------------------------------------------------- |
-| args     | Object[]      | Yes  | Data to be used as the input parameter of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| args     | Object[]      | Yes  | Data to be used as the input parameter of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | --------------------------------------- |
 | 401       | The input parameters are invalid. |
 | 10200006  | An exception occurred during serialization. |
@@ -1006,15 +1006,15 @@ Registers a callback for a task to receive and process data from the worker thre
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| Name  | Type    | Mandatory | Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| callback | Function | No  | Callback function for processing the data received. The data sent to the host thread is transferred to the callback as an input parameter. If no value is passed in, all the registered callbacks are canceled.|
+| callback | Function | No  | Callback function for processing the data received. The data sent to the host thread is transferred to the callback as an input parameter. If no value is passed in, all the registered callbacks are canceled. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
@@ -1057,15 +1057,15 @@ Adds dependent tasks for this task. Before using this API, you must create a **T
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| tasks  | [Task](#task)[] | Yes  | Array of tasks on which the current task depends.|
+| tasks  | [Task](#task)[] | Yes  | Array of tasks on which the current task depends. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                       |
+| ID | Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200026 | There is a circular dependency. |
@@ -1115,15 +1115,15 @@ Removes dependent tasks for this task. Before using this API, you must create a 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| tasks  | [Task](#task)[] | Yes  | Array of tasks on which the current task depends.|
+| tasks  | [Task](#task)[] | Yes  | Array of tasks on which the current task depends. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200027 | The dependency does not exist. |
@@ -1178,15 +1178,15 @@ Registers a callback function and calls it when a task is enqueued. The registra
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| callback  | [CallbackFunction](#callbackfunction12) | Yes  | Callback function to register.|
+| callback  | [CallbackFunction](#callbackfunction12) | Yes  | Callback function to register. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 401       | The input parameters are invalid. |
 | 10200034  | The executed task does not support the registration of listeners. |
@@ -1227,15 +1227,15 @@ Registers a callback function and calls it when the execution of a task starts. 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| callback  | [CallbackFunction](#callbackfunction12)  | Yes  | Callback function to register.|
+| callback  | [CallbackFunction](#callbackfunction12)  | Yes  | Callback function to register. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 401       | The input parameters are invalid. |
 | 10200034  | The executed task does not support the registration of listeners. |
@@ -1254,7 +1254,7 @@ function delay(args: number): number {
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(test, 1);
+let task: taskpool.Task = new taskpool.Task(delay, 1);
 task.onStartExecution(()=>{
   console.info("taskpool: onStartExecution")
 });
@@ -1275,15 +1275,15 @@ Registers a callback function and calls it when a task fails to be enqueued. The
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| callback  | [CallbackFunctionWithError](#callbackfunctionwitherror12)  | Yes  | Callback function to register.|
+| callback  | [CallbackFunctionWithError](#callbackfunctionwitherror12)  | Yes  | Callback function to register. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 401       | The input parameters are invalid. |
 | 10200034  | The executed task does not support the registration of listeners. |
@@ -1329,15 +1329,15 @@ Registers a callback function and calls it when a task is executed successfully.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| callback  | [CallbackFunction](#callbackfunction12)  | Yes  | Callback function to register.|
+| callback  | [CallbackFunction](#callbackfunction12)  | Yes  | Callback function to register. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 401       | The input parameters are invalid. |
 | 10200034  | The executed task does not support the registration of listeners. |
@@ -1387,9 +1387,9 @@ Describes a callback function with an error message.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| e  | Error | Yes  | Error message.|
+| e  | Error | Yes  | Error message. |
 
 
 ## LongTask<sup>12+</sup>
@@ -1444,15 +1444,15 @@ A constructor used to create a **TaskGroup** instance, with the task group name 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| name   | string | Yes  | Task group name.|
+| name   | string | Yes  | Task group name. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -1476,16 +1476,16 @@ Adds the function to be executed to this task group. Before using this API, you 
 
 **Parameters**
 
-| Name| Type     | Mandatory| Description                                                                  |
+| Name | Type     | Mandatory | Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
-| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | --------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200014 | The function is not mark as concurrent. |
@@ -1515,7 +1515,7 @@ Adds a created task to this task group. Before using this API, you must create a
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                      |
+| Name  | Type                 | Mandatory | Description                                      |
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | task     | [Task](#task)         | Yes  | Task to be added to the task group.                 |
 
@@ -1523,7 +1523,7 @@ Adds a created task to this task group. Before using this API, you must create a
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | --------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200014 | The function is not mark as concurrent. |
@@ -1548,9 +1548,9 @@ taskGroup.addTask(task);
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Type  | Readable| Writable| Description                        |
+| Name | Type  | Readable | Writable | Description                        |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| name<sup>11+</sup> | string | Yes  | Yes  | Name of the task group specified when the task group is created.|
+| name<sup>11+</sup> | string | Yes  | Yes  | Name of the task group specified when the task group is created. |
 
 ## SequenceRunner <sup>11+</sup>
 
@@ -1568,15 +1568,15 @@ A constructor used to create a **SequenceRunner** instance.
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                                      |
+| Name  | Type                 | Mandatory | Description                                                      |
 | -------- | --------------------- | ---- | ---------------------------------------------------------- |
-| priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+| priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
@@ -1603,21 +1603,21 @@ Adds a task to the queue for execution. Before using this API, you must create a
 
 **Parameters**
 
-| Name| Type         | Mandatory| Description                            |
+| Name | Type         | Mandatory | Description                            |
 | ------ | ------------- | ---- | -------------------------------- |
-| task   | [Task](#task) | Yes  | Task to be added to the queue.|
+| task   | [Task](#task) | Yes  | Task to be added to the queue. |
 
 **Return value**
 
 | Type            | Description                             |
 | ---------------- | --------------------------------- |
-| Promise\<Object> | Promise used to return the task execution result.|
+| Promise\<Object> | Promise used to return the task execution result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                   |
+| ID | Error Message                                   |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200003 | Worker initialization failure.              |
@@ -1674,9 +1674,9 @@ Enumerates the task states. After a task is created and **execute()** is called,
 
 | Name     | Value       | Description         |
 | --------- | -------- | ------------- |
-| WAITING   | 1        | The task is waiting.|
-| RUNNING   | 2        | The task is running.|
-| CANCELED  | 3        | The task is canceled.|
+| WAITING   | 1        | The task is waiting. |
+| RUNNING   | 2        | The task is running. |
+| CANCELED  | 3        | The task is canceled. |
 
 
 ## TaskInfo<sup>10+</sup>
@@ -1689,12 +1689,12 @@ Describes the internal information about a task.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name    | Type               | Readable| Writable| Description                                                          |
+| Name    | Type               | Readable | Writable | Description                                                          |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | Yes  | No  | Task name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                   |
-| taskId   | number             | Yes  | No  | Task ID.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                    |
-| state    | [State](#state10)  | Yes  | No  | Task state.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                   |
-| duration | number             | Yes  | No  | Duration that the task has been executed, in ms. If the return value is **0**, the task is not running. If the return value is empty, no task is running.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| name<sup>12+</sup> | string             | Yes  | No  | Task name.<br> **Atomic service API**: This API can be used in atomic services since API version 12.                                                   |
+| taskId   | number             | Yes  | No  | Task ID.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                                                    |
+| state    | [State](#state10)  | Yes  | No  | Task state.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                                                   |
+| duration | number             | Yes  | No  | Duration that the task has been executed, in ms. If the return value is **0**, the task is not running. If the return value is empty, no task is running.<br> **Atomic service API**: This API can be used in atomic services since API version 11. |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -1708,7 +1708,7 @@ Describes the internal information about a worker thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name    | Type                   | Readable| Writable| Description                                                     |
+| Name    | Type                   | Readable | Writable | Description                                                     |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
 | tid      | number                 | Yes  | No  | ID of the worker thread. If the return value is empty, no task is running.             |
 | taskIds  | number[]               | Yes  | No  | IDs of tasks running on the calling thread. If the return value is empty, no task is running.  |
@@ -1726,7 +1726,7 @@ Describes the internal information about a task pool.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name         | Type                             | Readable| Writable| Description                 |
+| Name         | Type                             | Readable | Writable | Description                 |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
 | threadInfos   | [ThreadInfo[]](#threadinfo10)    | Yes  | No  | Internal information about the worker threads.  |
 | taskInfos     | [TaskInfo[]](#taskinfo10)        | Yes  | No  | Internal information about the tasks.      |
@@ -1839,7 +1839,7 @@ export async function func2(): Promise<void> {
   });
 }
 ```
-
+<!--code_no_check-->
 ```ts
 // index.ets
 import { func1, func2 } from "./c";

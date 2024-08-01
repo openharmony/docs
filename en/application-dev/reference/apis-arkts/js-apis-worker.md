@@ -23,10 +23,10 @@ import { worker } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name                             | Type                                                        | Readable| Writable| Description                                                        |
+| Name                             | Type                                                        | Readable | Writable | Description                                                        |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | Yes  | Yes  | Object of the worker thread used to communicate with the host thread. **Atomic service API**: This API can be used in atomic services since API version 11.                        |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead. |
 
 
 ## WorkerOptions
@@ -35,11 +35,11 @@ Provides options that can be set for the **Worker** instance to create.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name | Type | Read-only | Optional | Description |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | Yes  | No| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| name | string   | Yes  | No| Name of the worker thread. The default value is **undefined**. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| shared | boolean | Yes  | No| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
+| type | "classic" \| "module" | Yes  | Yes | Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**. **Atomic service API**: This API can be used in atomic services since API version 11. |
+| name | string   | Yes  | Yes | Name of the worker thread. The default value is **undefined**. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| shared | boolean | Yes  | Yes | Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported. |
 
 ## ThreadWorker<sup>9+</sup>
 
@@ -57,16 +57,16 @@ A constructor used to create a **ThreadWorker** instance.
 
 **Parameters**
 
-| Name   | Type                           | Mandatory| Description                                                        |
+| Name   | Type                           | Mandatory | Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | Yes  | URL of the worker thread file.<br>For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).|
+| scriptURL | string                          | Yes  | URL of the worker thread file.<br>For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls). |
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **Worker** instance.                                          |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure. |
@@ -101,16 +101,16 @@ Sends a message from the host thread to the worker thread by transferring object
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| Name  | Type         | Mandatory | Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null.|
+| message  | Object        | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
@@ -137,16 +137,16 @@ Sends a message from the host thread to the worker thread by transferring object
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the worker thread and becomes unavailable in the host thread. The objects are available only in the worker thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the worker thread by copying data.|
+| message | Object                                    | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the worker thread and becomes unavailable in the host thread. The objects are available only in the worker thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the worker thread by copying data. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
@@ -176,16 +176,16 @@ Sends a message from the host thread to the worker thread. In the message, a sen
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message   | Object	     | Yes  | Data to be sent to the worker thread. The data object must be sequenceable or sendable. For details about the supported sequenceable types, see [Sequenceable Data Types](#sequenceable-data-types). For details about the supported sendable types, see [Sendable Data Types](../../arkts-utils/arkts-sendable.md#sendable-data).|
-| transfer  | ArrayBuffer[] | No  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null. The default value is an empty array.|
+| message   | Object	     | Yes  | Data to be sent to the worker thread. The data object must be sequenceable or sendable. For details about the supported sequenceable types, see [Sequenceable Data Types](#sequenceable-data-types). For details about the supported sendable types, see [Sendable Data Types](../../arkts-utils/arkts-sendable.md#sendable-data). |
+| transfer  | ArrayBuffer[] | No  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null. The default value is an empty array. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
@@ -193,6 +193,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 // index.ets
 // Create a SendableObject instance and pass it to the worker thread through the host thread.
@@ -215,6 +216,7 @@ export class SendableObject {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // The worker file path is entry/src/main/ets/workers/Worker.ets.
 // Worker.ets
@@ -241,16 +243,16 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                  |
+| Name  | Type                                        | Mandatory | Description                  |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | Yes  | Type of the event to listen for.      |
-| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs.|
+| listener | [WorkerEventListener](#workereventlistener9) | Yes | Callback to invoke when an event of the specified type occurs. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
@@ -276,16 +278,16 @@ Adds an event listener for the worker thread and removes the event listener afte
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                  |
+| Name  | Type                                        | Mandatory | Description                  |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | Yes  | Type of the event to listen for.      |
-| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs.|
+| listener | [WorkerEventListener](#workereventlistener9) | Yes | Callback to invoke when an event of the specified type occurs. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
@@ -311,16 +313,16 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                        |
+| Name  | Type                                        | Mandatory | Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.        |
-| listener | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
+| listener | [WorkerEventListener](#workereventlistener9) | No | Callback to invoke when the listener is removed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
@@ -344,16 +346,16 @@ Registers an object with the **ThreadWorker** instance of the host thread. In th
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| Name  | Type         | Mandatory | Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| instanceName  | string        | Yes  | Key used for registration, based on which the registered object is identified during method calling.|
-| globalCallObject | Object | Yes  | Object to register. The **ThreadWorker** instance holds a strong reference to the object.|
+| instanceName  | string        | Yes  | Key used for registration, based on which the registered object is identified during method calling. |
+| globalCallObject | Object | Yes  | Object to register. The **ThreadWorker** instance holds a strong reference to the object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
@@ -386,15 +388,15 @@ Unregisters an object with the **ThreadWorker** instance of the host thread. Thi
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| Name  | Type         | Mandatory | Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| instanceName  | string        | No  | Key used for registration. If this parameter is left blank, all registered objects registered in the **ThreadWorker** instance are unregistered.|
+| instanceName  | string        | No  | Key used for registration. If this parameter is left blank, all registered objects registered in the **ThreadWorker** instance are unregistered. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
@@ -434,7 +436,7 @@ Terminates the worker thread to stop it from receiving messages.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                     |
+| ID | Error Message                     |
 | -------- | ------------------------------- |
 | 10200004 | Worker instance is not running. |
 
@@ -460,7 +462,7 @@ Called when the worker thread exits. The event handler is executed in the host t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
@@ -497,7 +499,7 @@ Called when an exception occurs during worker execution. The event handler is ex
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
@@ -529,7 +531,7 @@ Called when the host thread receives a message sent by the worker thread through
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
@@ -563,7 +565,7 @@ Called when the worker thread receives a message that cannot be serialized. The 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
@@ -590,16 +592,16 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description            |
+| Name  | Type                                        | Mandatory | Description            |
 | -------- | -------------------------------------------- | ---- | ---------------- |
-| type     | string                                       | Yes  | Type of the event to listen for.|
+| type     | string                                       | Yes  | Type of the event to listen for. |
 | listener | [WorkerEventListener](#workereventlistener9) | Yes  | Callback to invoke when an event of the specified type occurs.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
@@ -625,16 +627,16 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                        |
+| Name  | Type                                        | Mandatory | Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
-| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
+| callback | [WorkerEventListener](#workereventlistener9) | No | Callback to invoke when the listener is removed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                     |
+| ID | Error Message                     |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
@@ -660,21 +662,21 @@ Dispatches the event defined for the worker thread.
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description            |
+| Name | Type           | Mandatory | Description            |
 | ------ | --------------- | ---- | ---------------- |
-| event  | [Event](#event) | Yes  | Event to dispatch.|
+| event  | [Event](#event) | Yes  | Event to dispatch. |
 
 **Return value**
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched; returns **false** otherwise.|
+| boolean | Returns **true** if the event is dispatched; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                     |
+| ID | Error Message                     |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
@@ -744,7 +746,7 @@ Removes all event listeners for the worker thread.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                     |
+| ID | Error Message                     |
 | -------- | ------------------------------- |
 | 10200004 | Worker instance is not running. |
 
@@ -772,16 +774,16 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description            |
+| Name  | Type                                        | Mandatory | Description            |
 | -------- | -------------------------------------------- | ---- | ---------------- |
-| type     | string                                       | Yes  | Type of the event to listen for.|
+| type     | string                                       | Yes  | Type of the event to listen for. |
 | listener | [WorkerEventListener](#workereventlistener9) | Yes  | Callback to invoke when an event of the specified type occurs.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
@@ -807,16 +809,16 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                        |
+| Name  | Type                                        | Mandatory | Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
-| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
+| callback | [WorkerEventListener](#workereventlistener9) | No | Callback to invoke when the listener is removed. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                     |
+| ID | Error Message                     |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
@@ -842,21 +844,21 @@ Dispatches the event defined for the worker thread.
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description            |
+| Name | Type           | Mandatory | Description            |
 | ------ | --------------- | ---- | ---------------- |
-| event  | [Event](#event) | Yes  | Event to dispatch.|
+| event  | [Event](#event) | Yes  | Event to dispatch. |
 
 **Return value**
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                     |
+| ID | Error Message                     |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
@@ -926,7 +928,7 @@ Removes all event listeners for the worker thread.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                     |
+| ID | Error Message                     |
 | -------- | ------------------------------- |
 | 10200004 | Worker instance is not running. |
 
@@ -957,16 +959,16 @@ Sends a message from the worker thread to the host thread by transferring object
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| Name  | Type         | Mandatory | Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| messageObject  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
+| messageObject  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
@@ -1008,16 +1010,16 @@ Sends a message from the worker thread to the host thread by transferring object
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
@@ -1059,16 +1061,16 @@ Sends a message from the worker thread to the host thread. In the message, a sen
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message   | Object	     | Yes  | Data to be sent to the host thread. The data object must be sequenceable or sendable. For details about the supported sequenceable types, see [Sequenceable Data Types](#sequenceable-data-types). For details about the supported sendable types, see [Sendable Data Types](../../arkts-utils/arkts-sendable.md#sendable-data).|
-| transfer  | ArrayBuffer[] | No  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null. The default value is an empty array.|
+| message   | Object	     | Yes  | Data to be sent to the host thread. The data object must be sequenceable or sendable. For details about the supported sequenceable types, see [Sequenceable Data Types](#sequenceable-data-types). For details about the supported sendable types, see [Sendable Data Types](../../arkts-utils/arkts-sendable.md#sendable-data). |
+| transfer  | ArrayBuffer[] | No  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null. The default value is an empty array. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
@@ -1076,6 +1078,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 // The worker file path is entry/src/main/ets/workers/Worker.ets.
 // Worker.ets
@@ -1101,6 +1104,7 @@ export class SendableObject {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 // Receive the data passed from the worker thread to the host thread and access its properties.
@@ -1127,12 +1131,12 @@ Calls a method of an object registered with the host thread. This API is called 
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| instanceName | string                                    | Yes  | Key used for registration. It is used to search for the object in the host thread.|
-| methodName | string | Yes| Name of the method to call. Note that the method cannot be modified by async or generator, or return results asynchronously by using the asynchronous mechanism at the bottom layer. Otherwise, an exception is thrown.|
-| timeout | number | Yes| Maximum duration that the current synchronous invoking waits, in ms. The value is an integer ranging from 1 to 5000. The value **0** means that the 5000 ms duration is used.|
-| args | Object[] | No| Array of parameters in the method.|
+| instanceName | string                                    | Yes  | Key used for registration. It is used to search for the object in the host thread. |
+| methodName | string | Yes | Name of the method to call. Note that the method cannot be modified by async or generator, or return results asynchronously by using the asynchronous mechanism at the bottom layer. Otherwise, an exception is thrown. |
+| timeout | number | Yes | Maximum duration that the current synchronous invoking waits, in ms. The value is an integer ranging from 1 to 5000. The value **0** means that the 5000 ms duration is used. |
+| args | Object[] | No | Array of parameters in the method. |
 
 **Return value**
 
@@ -1144,7 +1148,7 @@ Calls a method of an object registered with the host thread. This API is called 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID | Error Message                               |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
@@ -1193,7 +1197,7 @@ Terminates the worker thread to stop it from receiving messages.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                     |
+| ID | Error Message                     |
 | -------- | ------------------------------- |
 | 10200004 | Worker instance is not running. |
 
@@ -1231,7 +1235,7 @@ Called when the worker thread receives a message sent by the host thread through
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
@@ -1272,7 +1276,7 @@ Called when the worker thread receives a message that cannot be deserialized. Th
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
@@ -1308,21 +1312,21 @@ Implements event listening.
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description          |
+| Name | Type           | Mandatory | Description          |
 | ------ | --------------- | ---- | -------------- |
-| event  | [Event](#event) | Yes  | Event class for the callback to invoke.|
+| event  | [Event](#event) | Yes  | Event class for the callback to invoke. |
 
 **Return value**
 
 | Type                                 | Description                           |
 | ------------------------------------- | ------------------------------- |
-| void&nbsp;\|&nbsp;Promise&lt;void&gt; | Returns no value or returns a **Promise**.|
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | Returns no value or returns a **Promise**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                  |
+| ID | Error Message                                  |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
@@ -1342,15 +1346,15 @@ workerInstance.addEventListener("alert", (e)=>{
 
 Implements the running environment of the worker thread. The **GlobalScope** class inherits from [WorkerEventTarget](#workereventtarget9).
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type                                                        | Readable| Writable| Description                                 |
+| Name | Type                                                        | Readable | Writable | Description                                 |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
-| name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance.|
+| name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance. |
 | self | [GlobalScope](#globalscope9)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **GlobalScope** itself.                    |
 
 
@@ -1359,6 +1363,8 @@ Implements the running environment of the worker thread. The **GlobalScope** cla
 onerror?: (ev: ErrorEvent) =&gt; void
 
 Called when an exception occurs during worker execution. The event handler is executed in the worker thread. In the callback function, the **ev** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1389,9 +1395,9 @@ Holds the data transferred between worker threads.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description              |
+| Name | Type | Readable | Writable | Description              |
 | ---- | ---- | ---- | ---- | ------------------ |
-| data | any  | Yes  | No  | Data transferred between threads.|
+| data | any  | Yes  | No  | Data transferred between threads. |
 
 ## RestrictedWorker<sup>11+</sup>
 
@@ -1408,16 +1414,16 @@ A constructor used to create a **RestrictedWorker** instance. Before using the f
 
 **Parameters**
 
-| Name   | Type                           | Mandatory| Description                                                        |
+| Name   | Type                           | Mandatory | Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | Yes  | URL of the worker thread file. For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).|
+| scriptURL | string                          | Yes  | URL of the worker thread file. For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls). |
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **RestrictedWorker** instance.                                          |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure. |
@@ -1476,9 +1482,9 @@ A constructor used to create a **Worker** instance.
 
 **Parameters**
 
-| Name   | Type                           | Mandatory| Description                                                        |
+| Name   | Type                           | Mandatory | Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | Yes  | URL of the worker thread file. For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).|
+| scriptURL | string                          | Yes  | URL of the worker thread file. For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls). |
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **Worker** instance.                                          |
 
 **Example**
@@ -1511,10 +1517,10 @@ Sends a message from the host thread to the worker thread by transferring object
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| Name  | Type         | Mandatory | Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null.|
+| message  | Object        | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null. |
 
 **Example**
 
@@ -1538,10 +1544,10 @@ Sends a message from the host thread to the worker thread by transferring object
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the worker thread and becomes unavailable in the host thread. The objects are available only in the worker thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the worker thread by copying data.|
+| message | Object                                    | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the worker thread and becomes unavailable in the host thread. The objects are available only in the worker thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the worker thread by copying data. |
 
 **Example**
 
@@ -1568,9 +1574,9 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description            |
+| Name  | Type                                     | Mandatory | Description            |
 | -------- | ----------------------------------------- | ---- | ---------------- |
-| type     | string                                    | Yes  | Type of the event to listen for.|
+| type     | string                                    | Yes  | Type of the event to listen for. |
 | listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.      |
 
 **Example**
@@ -1596,9 +1602,9 @@ Adds an event listener for the worker thread and removes the event listener afte
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description            |
+| Name  | Type                                     | Mandatory | Description            |
 | -------- | ----------------------------------------- | ---- | ---------------- |
-| type     | string                                    | Yes  | Type of the event to listen for.|
+| type     | string                                    | Yes  | Type of the event to listen for. |
 | listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.      |
 
 **Example**
@@ -1624,10 +1630,10 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                |
+| Name  | Type                                     | Mandatory | Description                |
 | -------- | ----------------------------------------- | ---- | -------------------- |
-| type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
-| listener | [EventListener](#eventlistenerdeprecated) | No  | Callback to invoke when the listener is removed.|
+| type     | string                                    | Yes  | Type of the event for which the event listener is to be removed. |
+| listener | [EventListener](#eventlistenerdeprecated) | No  | Callback to invoke when the listener is removed. |
 
 **Example**
 
@@ -1771,9 +1777,9 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description            |
+| Name  | Type                                     | Mandatory | Description            |
 | -------- | ----------------------------------------- | ---- | ---------------- |
-| type     | string                                    | Yes  | Type of the event to listen for.|
+| type     | string                                    | Yes  | Type of the event to listen for. |
 | listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.    |
 
 **Example**
@@ -1799,10 +1805,10 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                    |
+| Name  | Type                                     | Mandatory | Description                    |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
-| callback | [EventListener](#eventlistenerdeprecated) | No  | Callback to invoke when the listener is removed.|
+| type     | string                                    | Yes  | Type of the event for which the event listener is to be removed. |
+| callback | [EventListener](#eventlistenerdeprecated) | No  | Callback to invoke when the listener is removed. |
 
 **Example**
 
@@ -1828,15 +1834,15 @@ Dispatches the event defined for the worker thread.
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description            |
+| Name | Type           | Mandatory | Description            |
 | ------ | --------------- | ---- | ---------------- |
-| event  | [Event](#event) | Yes  | Event to dispatch.|
+| event  | [Event](#event) | Yes  | Event to dispatch. |
 
 **Return value**
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise. |
 
 **Example**
 
@@ -1929,9 +1935,9 @@ Sends a message from the worker thread to the host thread by transferring object
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
 | transfer| Transferable[]                            | Yes  | Currently, this parameter is not supported.                                        |
 
 ### postMessage<sup>9+</sup>
@@ -1948,10 +1954,10 @@ Sends a message from the worker thread to the host thread by transferring object
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| Name  | Type         | Mandatory | Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| messageObject  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
+| messageObject  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null. |
 
 **Example**
 
@@ -1991,32 +1997,31 @@ Sends a message from the worker thread to the host thread by transferring object
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                        |
+| Name | Type                                     | Mandatory | Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data. |
 
 **Example**
 
+<!--no_check-->
 ```ts
 // Main thread
 import { worker } from '@kit.ArkTS';
 
-const workerInstance = new worker.Worker("workers/worker.ets");
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (e): void => {
-    // let data = e.data;
+workerInstance.onmessage = (): void => {
     console.log("receive data from worker.ets");
 }
 ```
 ```ts
 // worker.ets
-import { worker } from '@kit.ArkTS';
+import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e): void => {
-    // let data = e.data;
-    parentPort.postMessage("receive data from main thread");
+parentPort.onmessage = (e: MessageEvents) => {
+  parentPort.postMessage("receive data from main thread");
 }
 ```
 
@@ -2119,21 +2124,23 @@ Defines the object for which the ownership is to be transferred during data tran
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name    | Type    | Readable| Writable| Description                             |
+| Name    | Type    | Readable | Writable | Description                             |
 | -------- | -------- | ---- | ---- | --------------------------------- |
-| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot be **null**.|
+| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot be **null**. |
 
 
 ## Event
 
 Defines the event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
-| Name     | Type  | Readable| Writable| Description                                        |
+| Name     | Type  | Readable | Writable | Description                                        |
 | --------- | ------ | ---- | ---- | -------------------------------------------- |
 | type      | string | Yes  | No  | Type of the event.                            |
-| timeStamp | number | Yes  | No  | Timestamp (accurate to millisecond) when the event is created. This parameter is not supported yet.|
+| timeStamp | number | Yes  | No  | Timestamp (accurate to millisecond) when the event is created. This parameter is not supported yet. |
 
 
 ## EventListener<sup>(deprecated)</sup>
@@ -2149,15 +2156,15 @@ Implements event listening.
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description          |
+| Name | Type           | Mandatory | Description          |
 | ------ | --------------- | ---- | -------------- |
-| evt    | [Event](#event) | Yes  | Event class for the callback to invoke.|
+| evt    | [Event](#event) | Yes  | Event class for the callback to invoke. |
 
 **Return value**
 
 | Type                                 | Description                           |
 | ------------------------------------- | ------------------------------- |
-| void&nbsp;\|&nbsp;Promise&lt;void&gt; | Returns no value or returns a **Promise**.|
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | Returns no value or returns a **Promise**. |
 
 **Example**
 
@@ -2177,10 +2184,10 @@ Provides detailed information about the exception that occurs during worker exec
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name    | Type  | Readable| Writable| Description                |
+| Name    | Type  | Readable | Writable | Description                |
 | -------- | ------ | ---- | ---- | -------------------- |
-| message  | string | Yes  | No  | Information about the exception.|
-| filename | string | Yes  | No  | File where the exception is located.|
+| message  | string | Yes  | No  | Information about the exception. |
+| filename | string | Yes  | No  | File where the exception is located. |
 | lineno   | number | Yes  | No  | Serial number of the line where the exception is located.    |
 | colno    | number | Yes  | No  | Serial number of the column where the exception is located.    |
 | error    | Object | Yes  | No  | Type of the exception.          |
@@ -2192,9 +2199,9 @@ Holds the data transferred between worker threads.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description              |
+| Name | Type | Readable | Writable | Description              |
 | ---- | ---- | ---- | ---- | ------------------ |
-| data | T    | Yes  | No  | Data transferred between threads.|
+| data | T    | Yes  | No  | Data transferred between threads. |
 
 
 ## WorkerGlobalScope<sup>(deprecated)</sup>
@@ -2208,9 +2215,9 @@ Implements the running environment of the worker thread. The **WorkerGlobalScope
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type                                                        | Readable| Writable| Description                                 |
+| Name | Type                                                        | Readable | Writable | Description                                 |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
-| name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance.|
+| name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance. |
 | self | [WorkerGlobalScope](#workerglobalscopedeprecated)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **WorkerGlobalScope**.              |
 
 
@@ -2305,7 +2312,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 
 ## Sample Code
 > **NOTE**<br>
-> Two projects of API version 9 are used as an example.<br>Only the FA model is supported in API version 8 and earlier versions. If you want to use API version 8 or earlier, change the API for constructing the **Worker** instance and the API for creating an object in the worker thread for communicating with the main thread.
+> Two projects of API version 9 are used as an example.<br> Only the FA model is supported in API version 8 and earlier versions. If you want to use API version 8 or earlier, change the API for constructing the **Worker** instance and the API for creating an object in the worker thread for communicating with the main thread.
 ### FA Model
 
 ```ts

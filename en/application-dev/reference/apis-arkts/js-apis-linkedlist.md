@@ -28,9 +28,9 @@ import { LinkedList } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a linked list (called container later).|
+| length | number | Yes | No | Number of elements in a linked list (called container later). |
 
 
 ### constructor
@@ -45,7 +45,7 @@ A constructor used to create a **LinkedList** instance.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200012 | The LinkedList's constructor cannot be directly invoked. |
 
@@ -67,21 +67,21 @@ Adds an element at the end of this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The add method cannot be bound. |
 
@@ -112,15 +112,15 @@ Adds an element at the top of this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The addFirst method cannot be bound. |
 
@@ -151,16 +151,16 @@ Inserts an element at the specified position in this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Index of the position where the element is to be inserted.|
-| element | T | Yes| Target element.|
+| index | number | Yes | Index of the position where the element is to be inserted. |
+| element | T | Yes | Target element. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
@@ -185,21 +185,21 @@ Checks whether this container has the specified element.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified element is contained; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The has method cannot be bound. |
 
@@ -221,21 +221,21 @@ Obtains an element at the specified position in this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes | Position index of the target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Element obtained. If the element does not exist, **undefined** is returned.|
+| T | Element obtained. If the element does not exist, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
@@ -264,21 +264,21 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Returns the position index if obtained; returns **-1** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getLastIndexOf method cannot be bound. |
 
@@ -306,21 +306,21 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Returns the position index if obtained; returns **-1** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getIndexOf method cannot be bound. |
 
@@ -348,21 +348,21 @@ Searches for an element based on its index and then removes it.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes | Position index of the target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Element removed. If the element does not exist, **undefined** is returned.|
+| T | Element removed. If the element does not exist, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
@@ -390,15 +390,15 @@ Removes the first element from this container.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200010 | Container is empty. |
 | 10200011 | The removeFirst method cannot be bound. |
@@ -425,15 +425,15 @@ Removes the last element from this container.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200010 | Container is empty. |
 | 10200011 | The removeLast method cannot be bound. |
@@ -460,21 +460,21 @@ Removes the first occurrence of the specified element from this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -499,21 +499,21 @@ Removes the first occurrence of the specified element from this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist.|
+| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200010 | Container is empty. |
 | 10200011 | The removeFirstFound method cannot be bound. |
@@ -540,21 +540,21 @@ Removes the last occurrence of the specified element from this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist.|
+| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200010 | Container is empty. |
 | 10200011 | The removeLastFound method cannot be bound. |
@@ -581,15 +581,15 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| LinkedList&lt;T&gt; | New **LinkedList** instance obtained.|
+| LinkedList&lt;T&gt; | New **LinkedList** instance obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The clone method cannot be bound. |
 
@@ -615,24 +615,24 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
+| callbackFn | function | Yes | Callback invoked to traverse the elements in the container. |
+| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
 
 callbackFn
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
-| LinkedList | LinkedList&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
+| value | T | Yes | Value of the element that is currently traversed. |
+| index | number | No | Position index of the element that is currently traversed. The default value is **0**. |
+| LinkedList | LinkedList&lt;T&gt; | No | Instance that calls the **forEach** API. The default value is this instance. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
@@ -662,7 +662,7 @@ Clears this container and sets its length to **0**.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -687,22 +687,22 @@ Replaces an element at the specified position in this container with a given ele
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
-| element | T | Yes| Element to be used for replacement.|
+| index | number | Yes | Position index of the target element. |
+| element | T | Yes | Element to be used for replacement. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | New element. If the operation fails, **undefined** is returned.|
+| T | New element. If the operation fails, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
@@ -729,15 +729,15 @@ Converts this container into an array.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Array&lt;T&gt; | Array obtained.|
+| Array&lt;T&gt; | Array obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The convertToArray method cannot be bound. |
 
@@ -761,15 +761,15 @@ Obtains the first element in this container.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Returns the element if obtained; returns **undefined** otherwise.|
+| T | Returns the element if obtained; returns **undefined** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getFirst method cannot be bound. |
 
@@ -794,15 +794,15 @@ Obtains the last element in this container.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Returns the element if obtained; returns **undefined** otherwise.|
+| T | Returns the element if obtained; returns **undefined** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getLast method cannot be bound. |
 
@@ -831,15 +831,15 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained.|
+| IterableIterator&lt;T&gt; | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 

@@ -93,6 +93,9 @@ However, they do not contain any obfuscation rules by default. You can write obf
 
 There are two types of obfuscation rules: [obfuscate options](#obfuscate-options) and [keep options](#keep-options). The former provides a switch for multiple obfuscation capabilities, such as obfuscation of top-level scope names, property names, and file names. The latter provides the trustlist configuration of various obfuscation capabilities.
 
+**NOTE**
+
+Any modification to the obfuscation configuration takes effect only after a full build of the application.
 
 ### Obfuscate Options
 
@@ -180,7 +183,7 @@ The system loads certain files during application running. For these files, manu
 
 In the following scenarios, you need to manually configure a trustlist: 
 
-* The module contains an ability component. In this case, add all paths configured for **srcEntry** under the **abilities** field in **scr/main/module.json5** to the trustlist. 
+* The module contains an ability component. In this case, add all paths configured for **srcEntry** under the **abilities** field in **src/main/module.json5** to the trustlist. 
 * The module contains the multithreading service: Worker. In this case, add all paths under the **buildOption'-'sourceOption'-'workers'** field in **build-profiles.json5** to the trustlist.
 
 #### -enable-export-obfuscation
@@ -235,7 +238,7 @@ A new **namecache.json** file is generated each time the module if fully built. 
 
 #### `-apply-namecache` filepath
 
-Reuses the specified name cache file. The names will be obfuscated according to the cache mappings. If there is no corresponding name, a random short name is used.
+Reuses the specified name cache file. The names will be obfuscated according to the cache mappings. If there is no corresponding name, a new random segment name is used.
 
 This option should be used in incremental build scenarios.
 
@@ -314,6 +317,21 @@ import testNapi from 'library.so'
 testNapi.foo()
 ```
 
+Manually keep the fields used in JSON files.
+
+```
+const jsonData = ('./1.json')
+let jsonStr = JSON.parse(jsonData)
+let jsonObj = jsonStr.jsonProperty // jsonProperty should be kept.
+```
+
+Manually keep database-related fields.
+
+```
+const dataToInsert = {  
+  value1: 'example1',   // value1 should be kept.
+};
+```
 #### `-keep-global-name` [,identifiers,...]
 
 Keep the top-level scope names from being obfuscated. Name wildcards are supported. Example:
@@ -410,14 +428,15 @@ The path must be a relative path. **./** and **../** are relative to the directo
 This option does not affect the capability provided by the **-enable-filename-obfuscation** option.
 
 #### Wildcards Supported by Keep Options
+
 ##### Name Wildcards
 
 The table below lists the name wildcards supported.
 
-| Wildcard| Description                  | Example                                      |
+| Wildcard | Description                  | Example                                      |
 | ------ | ---------------------- | ------------------------------------------ |
 | ?      | Matches any single character.      | "AB?" matches "ABC", but not "AB".        |
-| \*     | Matches any number of characters.| "\*AB\*" matches "AB", "aABb", "cAB", and "ABc".|
+| \*     | Matches any number of characters. | "\*AB\*" matches "AB", "aABb", "cAB", and "ABc". |
 
 **Use Example**
 
@@ -446,12 +465,12 @@ Keep all property names.
 
 The table below lists the path wildcards supported.
 
-| Wildcard| Description                                                                    | Example                                             |
+| Wildcard | Description                                                                    | Example                                             |
 | ------ | ------------------------------------------------------------------------ | ------------------------------------------------- |
 | ?     | Matches any single character except the path separator (/).                                     | "../a?" matches "../ab", but not "../a/".        |
-| \*      | Matches any number of characters except the path separator (/).                               | "../a*/c" matches "../ab/c", but not "../ab/d/s/c".|
+| \*      | Matches any number of characters except the path separator (/).                               | "../a*/c" matches "../ab/c", but not "../ab/d/s/c". |
 | \*\*   | Matches any number of characters.                                                  | "../a**/c" matches "../ab/c" and "../ab/d/s/c". |
-| !      | Negation. It can only be placed at the beginning of a path to exclude a certain case configured in the trustlist.| "!../a/b/c.ets" indicates all paths other than "../a/b/c.ets".          |
+| !      | Negation. It can only be placed at the beginning of a path to exclude a certain case configured in the trustlist. | "!../a/b/c.ets" indicates all paths other than "../a/b/c.ets".          |
 
 **Use Example**
 
@@ -477,19 +496,19 @@ Keep all files except the **c.ets** file in the **../a/b/** directory. The excla
 !../a/b/c.ets
 ```
 
-Indicates that all files in ../a/(excluding subfolders) will not be obfuscated:
+Keep all the files in the **../a/** directory (excluding subdirectories).
 ```
 -keep
 ../a/*
 ```
 
-Indicates that all files in all folders (including subfolders) within ../a/ will not be obfuscated:
+Keep all the files in the **../a/** directory and its subdirectories.
 ```
 -keep
 ../a/**
 ```
 
-Indicates that all files in the module will not be obfuscated:
+Keep all the files in the module.
 ```
 -keep
 ./**
@@ -497,9 +516,9 @@ Indicates that all files in the module will not be obfuscated:
 
 **NOTE**
 
-- In these options, the wildcards `*`, `?`, and `!` cannot be used for other meanings.
+- In these options, the wildcards *, ?, and ! cannot be used for other meanings.
   Example:
-
+  
   ```
   class A {
     '*'= 1
@@ -509,10 +528,9 @@ Indicates that all files in the module will not be obfuscated:
   *
   ```
 
-  In this example, `*` indicates any number of characters, and all property names are kept (not obfuscated). It does not mean that only the `*` property is kept.
+In this example, * indicates any number of characters, and all property names are kept (not obfuscated). It does not mean that only the * property is kept.
 
-- In the **-keep** option, only the path format `/` is allowed. The path format `\` or `\\` is not supported.
-
+- In the **-keep** option, only the path format / is allowed. The path format \ or \\ is not.
 
 ### Comments
 
@@ -614,3 +632,197 @@ The function names of an application project after obfuscation are changed. As a
 * To enable the release build mode, select **Product** in the upper right corner of DevEco Studio and set **Build Mode** to **release**.
 
   ![product-release](figures/product-release.png)
+## Appendix
+
+### Mappings Between Obfuscate Options and Minimum SDK Versions
+
+| Obfuscate Option | Description | Minimum SDK Version |
+| ------- | --------- | ------ |
+| -disable-obfuscation         | Disables obfuscation. | 4.0.9.2 |
+| -enable-property-obfuscation | Enables property obfuscation. | 4.0.9.2 |
+| -enable-string-property-obfuscation | Enables obfuscation for string literal property names. | 4.0.9.2 |
+| -enable-toplevel-obfuscation | Enables top-level scope name obfuscation. | 4.0.9.2 |
+| -enable-filename-obfuscation | Enables file or folder name obfuscation for the HAR.<br> Enables file or folder name obfuscation for the HAP/HSP. | 4.1.5.3 <br> 5.0.0.19 |
+| -enable-export-obfuscation   | Enables obfuscation for imported or exported names. | 4.1.5.3 |
+| -compact                     | Removes unnecessary spaces and all line feeds. | 4.0.9.2 |
+| -remove-log                  | Removes the expressions involving direct calls to the **console.** statement in specific scenarios. | 4.0.9.2 |
+| -print-namecache             | Saves the name cache to the specified file path. | 4.0.9.2 |
+| -apply-namecache             | Reuses the specified name cache file. | 4.0.9.2 |
+| -remove-comments             | Removes all comments in the file. | 4.1.5.3 |
+| -keep-property-name          | Keeps property names from being obfuscated. | 4.0.9.2 |
+| -keep-global-name            | Keeps top-level scope names from being obfuscated. | 4.0.9.2 |
+| -keep-file-name              | Keeps file or folder names in the HAR from being obfuscated.<br> Keeps file or folder names in the HAP/HSP from being obfuscated. | 4.1.5.3 <br> 5.0.0.19 |
+| -keep-dts                    | Keeps the names in the .d.ts file in the specified path from being obfuscated. | 4.0.9.2 |
+| -keep-comments               | Keeps JSDoc comments above elements in the declaration file from being obfuscated. | 4.1.5.3 |
+| -keep                        | Keeps all names in the specified path from being obfuscated. | 5.0.0.18 |
+| Wildcard                      | The keep options of the name classes and path classes support wildcards. | 5.0.0.24 |
+
+### Viewing the Obfuscation Effect
+
+You can find the obfuscated files, name mapping file, and system API trustlist file in the **build** directory of the build product.
+
+- Obfuscated file directory: build/[...]/release/moduleName
+- Directory of the name mapping file and system API trustlist file: build/[...]/release/obfuscation
+  - The name mapping file, named **nameCache.json**, records the mappings between source code names and names after obfuscation.
+  - The system API trustlist file, named **systemApiCache.json**, records the APIs and property names that will be kept.
+
+  ![build-product](figures/build-product.png)
+
+### Troubleshooting
+
+1. Configure the **-disable-obfuscation** option in **obfuscation-rules.txt** to disable obfuscation, and check whether the exception is caused by obfuscation.
+2. If the function is abnormal when obfuscation is enabled, view the build product after obfuscation, analyze the code logic, and locate the cause of the exception.
+3. If the exception is caused due to the missing of the trustlist, use [keep options](#keep-options) to configure the trustlist.
+
+### **FAQs**
+
+#### Errors That May Occur When -enable-property-obfuscation Is Configured
+
+**Case 1**: The error message "Cannot read property 'xxx' of undefined" is reported.
+
+```
+// Before obfuscation
+const jsonData = ('./1.json')
+let jsonStr = JSON.parse(jsonData)
+let jsonObj = jsonStr.jsonProperty
+
+// After obfuscation
+const jsonData = ('./1.json')
+let jsonStr = JSON.parse(jsonData)
+let jsonObj = jsonStr.i
+```
+
+After property obfuscation is enabled, **jsonProperty** is obfuscated as a random character **i**. However, the original name is used in the JSON file, causing the error.
+
+**Solution**: Use the **-keep-property-name** option to add the fields used in JSON files to the trustlist.
+
+**Case 2**: An error message is reported when database-related fields are used and property obfuscation is enabled.
+
+The error message is "table Account has no column named a23 in'INSET INTO Account(a23)'."
+
+Database fields are used in the code. During obfuscation, the field names in the SQL statements are obfuscated, but the original field names are used in the database, causing the error.
+
+**Solution**: Use the **-keep-property-name** option to add the database fields to the trustlist.
+
+#### Errors That May Occur When -enable-export-obfuscation and -enable-toplevel-obfuscation Are Configured
+
+When the two options are configured, method name confusion in the following scenarios is involved when the main module calls the methods of other modules:
+
+| Main Module | Dependent Module | Confusion of Imported and Exported Names |
+| ------- | ------- | ----------------------------|
+| HAP/HSP | HSP     | The HSP and main module are built independently, and different names are generated after obfuscation. Therefore, a trustlist must be configured for both the HSP and main module. |
+| HAP/HSP | Local HAR | The local HAR is built together with the main module. After obfuscation, the names are the same. |
+| HAP/HSP | Third-party library | The names and properties exported from a third-party library are collected to the trustlist. They are not confused during import and export. |
+
+For the HSP, you must add the methods used by other modules to the trustlist. You must add the same trustlist for the main module. Therefore, you are advised to add the obfuscation file configured with the trustlist (for example, **hsp-white-list.txt**) to the obfuscation configuration item of the module that depends on the obfuscation file, that is, the **files** field shown in the following figure.
+
+
+![obfuscation-config](figures/obfuscation-config.png)
+
+**Case 1**: When a class is dynamically imported, the class definition is confused, but the class name is not, causing an error.
+
+```
+// Before obfuscation
+export class Test1 {}
+
+let mytest = (await import('./file')).Test1
+
+// After obfuscation
+export class w1 {}
+
+let mytest = (await import('./file')).Test1
+```
+
+The exported class **Test1** is a top-level domain name. When **Test1** is dynamically used, it is a property. Because the **-enable-property-obfuscation** option is not configured, the class name is confused, but the property name is not.
+
+**Solution**: Use the **-keep-global-name** option to add **Test1** to the trustlist.
+
+**Case 2**: For a method in a namespace, the method definition is confused, but the statement that uses the method is not, causing an error.
+
+```
+// Before obfuscation
+export namespace ns1 {
+  export class person1 {}
+}
+
+import {ns1} from './file1'
+let person1 = new ns1.person1()
+
+// After obfuscation
+export namespace a3 {
+  export class b2 {}
+}
+
+import {a3} from './file1'
+let person1 = new a3.person1()
+```
+
+**person1** in the namespace is a top-level class name. When it is called by using **ns1.person1**, **person1** is a property and is not obfuscated because property obfuscation is not enabled.
+
+**Solution:**
+
+1. Configure the **-enable-property-obfuscation** option.
+2. Use the **-keep-global-name** option to add the methods exported from the namespace to the trustlist.
+
+**Case 3**: When declare global is used, a syntax error is reported after obfuscation.
+
+```
+// Before obfuscation
+declare global {
+  var age : string
+}
+
+// After obfuscation
+declare a2 {
+  var b2 : string
+}
+```
+
+The error message "SyntaxError: Unexpected token" is reported.
+
+**Solution**: Use **-keep-global-name** to **add __global** to the trustlist.
+
+#### The **-enable-string-property-obfuscation** option is not configured, but the string literal property name is obfuscated. As a result, the value of the string literal property name is undefined.
+
+```
+person["age"] = 22; // Before obfuscation
+
+person["b"] = 22; // After obfuscation
+```
+
+**Solution:**
+
+1. Check whether **-enable-string-property-obfuscation** is configured for the dependent HAR. If it is configured, the main project will be affected, and you should disable it.
+2. If it must be configured, add the property name to the trustlist.
+3. If it is not configured and the SDK version is earlier than 4.1.5.3, update the SDK.
+
+#### Errors That May Occur When -enable-filename-obfuscation Is Configured
+
+**Case 1**: The error message "Error Failed to get a resolved OhmUrl for 'D:code/MyApplication/f12/library1/pages/d.ets' imported by 'undefined'" is reported.
+
+As shown below, the outer layer of the **library1** module contains a directory named **directory**. When file name obfuscation is enabled, **directory** is obfuscated as **f12**, causing the error indicating that the path is not found.
+
+![directory-offuscation](figures/directory-obfuscation.png)
+
+**Solution:**
+
+1. If the project directory structure and error message are similar, update the SDK to 5.0.0.26 or later.
+2. Use the **-keep-file-name** option to add the directory name **directory** of the module to the trustlist.
+
+**Case 2**: The error message "Cannot find module 'ets/appability/AppAbility' which is application Entry Point" is reported.
+
+The system loads the ability file when the application is running. Therefore, you must manually configure the trustlist to prevent the specified file from being obfuscated.
+
+**Solution**: Use the **-keep-file-name** option to add the path corresponding to the **srcEntry** field in the **src/main/module.json5** file to the trustlist.
+
+```
+-keep-file-name
+appability
+AppAbility
+```
+
+#### Errors That May Occur When -keep-global-name and a Trustlist Are Configured
+
+The error message "Cannot read properties of undefined (reading 'has')" is reported.
+
+**Solution**: Upgrade the SDK to 4.1.6.3 or later.

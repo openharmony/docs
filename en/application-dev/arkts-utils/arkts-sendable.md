@@ -97,7 +97,7 @@ The interface **ISendable {}** is introduced to the ArkTS common library [@arkts
 | Use scenario restrictions              | The decorator can be used only in projects of the stage model. It can be used only in .ets files.                   |
 | Inheritance relationship restrictions for decorated classes       | A sendable class can inherit only from another sendable class. A common class cannot inherit from a sendable class. |
 | Property type restrictions for decorated objects | 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections.Array, collections.Map, and collections.Set.<br>2. Closure variables are not allowed.<br>3. Private properties must be defined using **private**, rather than the number sign (#).<br>4. Computed properties are not supported.          |
-| Other property restrictions for decorated objects | Member properties must be initialized explicitly. Member properties cannot be followed by exclamation marks (!).|
+| Other property restrictions for decorated objects | Member properties must be explicitly declared and initialized. They cannot be followed by exclamation marks (!).|
 | Method parameters restrictions for decorated objects | Local variables, input parameters, and variables imported through **import** are supported. Closure variables are not allowed.          |
 | Sendable class restrictions     | Properties cannot be added or deleted, but can be modified. The property types before and after the modification must be the same. Methods cannot be modified.  |
 | Use scenario                 | 1. The class methods can be used in TaskPool or Worker.<br>2. The sendable type is used when a large amount of data needs to be transmitted.        |

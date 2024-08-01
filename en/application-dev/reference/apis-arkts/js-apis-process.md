@@ -20,9 +20,9 @@ import { process } from '@kit.ArkTS';
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name            | Type  | Readable| Writable| Description            |
+| Name            | Type  | Readable | Writable | Description            |
 | ---------------- | ------ | ---- | ---- | ---------------- |
-| uid              | number | Yes  | No  | User identifier (UID) of the process.|
+| uid              | number | Yes  | No  | User identifier (UID) of the process. |
 | pid              | number | Yes  | No  | Process ID (PID) of the process. |
 | tid<sup>8+</sup> | number | Yes  | No  | Thread ID (TID) of the thread. |
 
@@ -39,9 +39,9 @@ Describes the event to store.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description           |
+| Name | Type  | Mandatory | Description           |
 | ------ | ------ | ---- | --------------- |
-| evt   | Object | Yes| Event.|
+| evt   | Object | Yes | Event.|
 
 ## process.isIsolatedProcess<sup>8+</sup>
 
@@ -57,7 +57,7 @@ Checks whether this process is isolated.
 
 | Type   | Description                                                   |
 | ------- | ------------------------------------------------------- |
-| boolean | **true**: The process is isolated.<br>**false**: The process is not isolated.|
+| boolean | **true**: The process is isolated.<br>**false**: The process is not isolated. |
 
 **Example**
 
@@ -80,7 +80,7 @@ Checks whether this process is running in a 64-bit environment.
 
 | Type   | Description                                                       |
 | ------- | ----------------------------------------------------------- |
-| boolean | **true**: The process is running in a 64-bit environment.<br>**false**: The process is not running in a 64-bit environment.|
+| boolean | **true**: The process is running in a 64-bit environment.<br>**false**: The process is not running in a 64-bit environment. |
 
 **Example**
 
@@ -103,7 +103,7 @@ Obtains the duration, in milliseconds, from the time the system starts to the ti
 
 | Type  | Description                          |
 | ------ | ------------------------------ |
-| number | Duration obtained, in millisecond.|
+| number | Duration obtained, in millisecond. |
 
 **Example**
 
@@ -125,7 +125,7 @@ Obtains the CPU time (in milliseconds) from the time the process starts to the c
 
 | Type  | Description                         |
 | ------ | ----------------------------- |
-| number | CPU time obtained, in millisecond.|
+| number | CPU time obtained, in millisecond. |
 
 **Example**
 
@@ -165,7 +165,7 @@ Obtains the running time of this process.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Running time of the process, in seconds.|
+| number | Running time of the process, in seconds. |
 
 **Example**
 
@@ -188,16 +188,16 @@ Sends a signal to the specified process to terminate it.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| signal | number | Yes  | Signal to send.|
+| signal | number | Yes  | Signal to send. |
 | pid    | number | Yes  | PID of the process, to which the signal will be sent.  |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean |  **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent.|
+| boolean |  **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent. |
 
 **Example**
 
@@ -223,9 +223,9 @@ Exercise caution when using this API. After this API is called, the application 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
+| Name | Type  | Mandatory | Description          |
 | ------ | ------ | ---- | -------------- |
-| code   | number | Yes  | Exit code of the process.|
+| code   | number | Yes  | Exit code of the process. |
 
 **Example**
 
@@ -248,15 +248,15 @@ Obtains the UID of a user from the user database of the system based on the spec
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description    |
+| Name | Type  | Mandatory | Description    |
 | ------ | ------ | ---- | -------- |
-| v      | string | Yes  | User name.|
+| v      | string | Yes  | User name. |
 
 **Return value**
 
 | Type  | Description         |
 | ------ | ------------- |
-| number | UID of the user.|
+| number | UID of the user. |
 
 **Example**
 
@@ -279,15 +279,15 @@ Obtains the thread priority based on the specified TID.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description           |
+| Name | Type  | Mandatory | Description           |
 | ------ | ------ | ---- | --------------- |
-| v      | number | Yes  | TID.|
+| v      | number | Yes  | TID. |
 
 **Return value**
 
 | Type  | Description                                            |
 | ------ | ------------------------------------------------ |
-| number | Priority of the thread. The priority depends on the operating system.|
+| number | Priority of the thread. The priority depends on the operating system. |
 
 **Example**
 
@@ -311,15 +311,15 @@ Checks whether a UID belongs to this application.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description           |
+| Name | Type  | Mandatory | Description           |
 | ------ | ------ | ---- | --------------- |
-| v      | number | Yes  | UID.|
+| v      | number | Yes  | UID. |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application.|
+| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application. |
 
 **Example**
 
@@ -342,15 +342,15 @@ Obtains the system configuration.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------ | ------ | ---- | -------------------- |
-| name   | number | Yes  | System configuration parameter name.|
+| name   | number | Yes  | System configuration parameter name. |
 
 **Return value**
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | System configuration obtained.|
+| number | System configuration obtained. |
 
 **Example**
 
@@ -374,15 +374,15 @@ Obtains the value of an environment variable.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| name   | string | Yes  | Environment variable name.|
+| name   | string | Yes  | Environment variable name. |
 
 **Return value**
 
 | Type  | Description                       |
 | ------ | --------------------------- |
-| string | Value of the environment variable.|
+| string | Value of the environment variable. |
 
 **Example**
 
@@ -409,21 +409,21 @@ Checks whether a UID belongs to this application.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description           |
+| Name | Type  | Mandatory | Description           |
 | ------ | ------ | ---- | --------------- |
-| v      | number | Yes  | UID.|
+| v      | number | Yes  | UID. |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application.|
+| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -447,21 +447,21 @@ Obtains the UID of a user from the user database of the system based on the spec
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description    |
+| Name | Type  | Mandatory | Description    |
 | ------ | ------ | ---- | -------- |
-| v      | string | Yes  | User name.|
+| v      | string | Yes  | User name. |
 
 **Return value**
 
 | Type  | Description         |
 | ------ | ------------- |
-| number | UID of the user.|
+| number | UID of the user. If the user does not exist, **-1** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -485,21 +485,21 @@ Obtains the thread priority based on the specified TID.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description           |
+| Name | Type  | Mandatory | Description           |
 | ------ | ------ | ---- | --------------- |
-| v      | number | Yes  | TID.|
+| v      | number | Yes  | TID. |
 
 **Return value**
 
 | Type  | Description                                            |
 | ------ | ------------------------------------------------ |
-| number | Priority of the thread. The priority depends on the operating system.|
+| number | Priority of the thread. The priority depends on the operating system. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -524,21 +524,21 @@ Obtains the system configuration.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
+| Name | Type  | Mandatory | Description                |
 | ------ | ------ | ---- | -------------------- |
-| name   | number | Yes  | System configuration parameter name.|
+| name   | number | Yes  | System configuration parameter name. |
 
 **Return value**
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | System configuration obtained.|
+| number | System configuration obtained. If the system configuration does not exist, **-1** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -557,27 +557,31 @@ getEnvironmentVar(name: string): string
 
 Obtains the value of an environment variable.
 
+> **NOTE**
+>
+>  If the environment variable does not exist, **undefined** is returned.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| name   | string | Yes  | Environment variable name.|
+| name   | string | Yes  | Environment variable name. |
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| string | Value of the environment variable.|
+| string | Value of the environment variable. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -603,15 +607,15 @@ Exercise caution when using this API. After this API is called, the application 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
+| Name | Type  | Mandatory | Description          |
 | ------ | ------ | ---- | -------------- |
-| code   | number | Yes  | Exit code of the process.|
+| code   | number | Yes  | Exit code of the process. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -635,22 +639,22 @@ Sends a signal to the specified process to terminate it.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
+| Name | Type  | Mandatory | Description        |
 | ------ | ------ | ---- | ------------ |
-| signal | number | Yes  | Signal to send.|
+| signal | number | Yes  | Signal to send. |
 | pid    | number | Yes  | PID of the process, to which the signal will be sent.  |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean |  **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent.|
+| boolean |  **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 

@@ -26,9 +26,9 @@ import { HashSet } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a hash set (called container later).|
+| length | number | Yes | No | Number of elements in a hash set (called container later). |
 
 **Example**
 
@@ -54,7 +54,7 @@ A constructor used to create a **HashSet** instance.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200012 | The HashSet's constructor cannot be directly invoked. |
 
@@ -75,15 +75,15 @@ Checks whether this container is empty (contains no element).
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Returns **true** if the container is empty; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -105,21 +105,21 @@ Checks whether this container contains the specified element.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Target element.|
+| value | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified element is contained; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The has method cannot be bound. |
@@ -143,21 +143,21 @@ Adds an element to this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Target element.|
+| value | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The add method cannot be bound. |
@@ -180,21 +180,21 @@ Removes an element from this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Target element.|
+| value | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The remove method cannot be bound. |
@@ -221,7 +221,7 @@ Clears this container and sets its length to **0**.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -245,15 +245,15 @@ Obtains an iterator that contains all the values in this container.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained.|
+| IterableIterator&lt;T&gt; | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The values method cannot be bound. |
 
@@ -282,23 +282,23 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
+| callbackFn | function | Yes | Callback invoked to traverse the elements in the container. |
+| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
 
 callbackFn
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
-| key | T | No| Key of the element that is currently traversed (same as **value**). The default value is the key of the first key-value pair.|
-| set | HashSet&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
+| value | T | No | Value of the element that is currently traversed. The default value is the value of the first key-value pair. |
+| key | T | No | Key of the element that is currently traversed (same as **value**). The default value is the key of the first key-value pair. |
+| set | HashSet&lt;T&gt; | No | Instance that calls the **forEach** API. The default value is this instance. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
@@ -313,7 +313,16 @@ hashSet.forEach((value?: string, key?: string): void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// You are not advised to use the set or remove APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10; i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10; i++) {
+  hashSet.remove("sparrow" + i);
+}
+```
 
 ### entries
 entries(): IterableIterator<[T, T]>
@@ -324,15 +333,15 @@ Obtains an iterator that contains all the elements in this container.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator<[T, T]> | Iterator obtained.|
+| IterableIterator<[T, T]> | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The entries method cannot be bound. |
 
@@ -350,7 +359,16 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
-
+```ts
+// You are not advised to use the set or remove APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10; i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10; i++) {
+  hashSet.remove("sparrow" + i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -366,15 +384,15 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained.|
+| IterableIterator&lt;T&gt; | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 
@@ -397,5 +415,15 @@ let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
   console.log("value: " + temp.value);
   temp = iter.next();
+}
+```
+```ts
+// You are not advised to use the set or remove APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10;i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10;i++) {
+  hashSet.remove("sparrow" + i);
 }
 ```

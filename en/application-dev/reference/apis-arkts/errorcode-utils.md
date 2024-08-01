@@ -118,7 +118,7 @@ Ensure that the data to transfer is a valid serialized object supported by Worke
 
 **Error Message**
 
-The worker file path is invalid.
+The worker file patch is invalid path.
 
 **Description**
 
@@ -673,7 +673,7 @@ The code inherits from the **Transform** class, but does not implement the [doTr
 
 Implement the **doTransform** API in the inherited class.
 
-## 10200060 Precision Limit Is Exceeded
+## 10200050 Concurrent Task That Has Been Executed Cannot Be Executed Periodically
 
 **Error Message**
 

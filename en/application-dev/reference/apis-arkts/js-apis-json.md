@@ -23,15 +23,15 @@ Defines the type of the conversion result function.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description           |
+| Name | Type  | Mandatory | Description           |
 | ------ | ------ | ---- | --------------- |
-| this   | Object | Yes| Object to which the key-value pair to parse belongs.|
-| key  | string | Yes| Key to parse.|
-| value  | Object | Yes| Value of the key.|
+| this   | Object | Yes | Object to which the key-value pair to parse belongs.|
+| key  | string | Yes | Key to parse.|
+| value  | Object | Yes | Value of the key.|
 
 **Returns**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
 | Object \| undefined \| null | Object obtained after parsing, undefined, or null.|
 
@@ -45,14 +45,14 @@ Parses a JSON string into an ArkTS object or null.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description           |
+| Name | Type  | Mandatory | Description           |
 | ------ | ------ | ---- | --------------- |
-| text   | string | Yes| Valid JSON string.|
-| reviver  | [Transformer](#transformer) | No| Conversion function. This parameter can be used to modify the value generated after parsing. The default value is undefined.|
+| text   | string | Yes | Valid JSON string.|
+| reviver  | [Transformer](#transformer) | No | Conversion function. This parameter can be used to modify the value generated after parsing. The default value is undefined.|
 
 **Returns**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
 | Object \| null | ArkTS object or null (if null is passed in).|
 
@@ -60,7 +60,7 @@ Parses a JSON string into an ArkTS object or null.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -82,15 +82,15 @@ Converts an ArkTS object or array into a JSON string.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| ArkTS object or array.|
-| replacer | number[] \| string[] \| null | No| If an array is passed in, only the keys in the array are serialized to the final JSON string. If null is passed in, all keys of the object are serialized. The default value is undefined.|
-| space | string \| number | No| Indentation, white space, or line break characters inserted into the output JSON string for readability purposes. If a number is passed in, it indicates the number of space characters to be used as indentation. If a string is passed in, the string is inserted before the output JSON string. If null is passed in, no white space is used. The default value is an empty string.|
+| value | Object | Yes | ArkTS object or array.|
+| replacer | number[] \| string[] \| null | No | If an array is passed in, only the keys in the array are serialized to the final JSON string. If null is passed in, all keys of the object are serialized. The default value is undefined.|
+| space | string \| number | No | Indentation, white space, or line break characters inserted into the output JSON string for readability purposes. If a number is passed in, it indicates the number of space characters to be used as indentation. If a string is passed in, the string is inserted before the output JSON string. If null is passed in, no white space is used. The default value is an empty string.|
 
 **Returns**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
 | string | JSON string after conversion.|
 
@@ -98,7 +98,7 @@ Converts an ArkTS object or array into a JSON string.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -125,15 +125,15 @@ Converts an ArkTS object or array into a JSON string.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| ArkTS object or array.|
-| replacer | [Transformer](#transformer) | No| During serialization, each key of the serialized value is converted and processed by this function. The default value is undefined.|
-| space | string \| number | No| Indentation, white space, or line break characters inserted into the output JSON string for readability purposes. If a number is passed in, it indicates the number of space characters to be used as indentation. If a string is passed in, the string is inserted before the output JSON string. If null is passed in, no white space is used. The default value is an empty string.|
+| value | Object | Yes | ArkTS object or array.|
+| replacer | [Transformer](#transformer) | No | During serialization, each key of the serialized value is converted and processed by this function. The default value is undefined.|
+| space | string \| number | No | Indentation, white space, or line break characters inserted into the output JSON string for readability purposes. If a number is passed in, it indicates the number of space characters to be used as indentation. If a string is passed in, the string is inserted before the output JSON string. If null is passed in, no white space is used. The default value is an empty string.|
 
 **Returns**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
 | string | JSON string after conversion.|
 
@@ -141,7 +141,7 @@ Converts an ArkTS object or array into a JSON string.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -169,20 +169,20 @@ let str2 = JSON.stringify(obj, replacer);
 
 has(obj: object, property: string): boolean
 
-Checks whether an ArkTS object contains a key. This API can be used for related operations after [JSON.parse](#jsonparse) is called to parse a JSON string.
+Checks whether an ArkTS object contains a key. This API can be used for related operations after [JSON.parse](#jsonparse) is called to parse a JSON string. This API supports only valid JSON strings whose outermost layer is in dictionary format (in braces instead of square brackets).
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| obj | object | Yes| ArkTS object.|
-| property | string | Yes| Key to check.|
+| obj | object | Yes | ArkTS object.|
+| property | string | Yes | Key to check.|
 
 **Returns**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
 | boolean | **true**: The ArkTS object contains the key.<br>**false**: The ArkTS object does not contain the key.|
 
@@ -190,14 +190,13 @@ Checks whether an ArkTS object contains a key. This API can be used for related 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 let rst = JSON.has(obj, "name");
@@ -208,29 +207,28 @@ let rst = JSON.has(obj, "name");
 
 remove(obj: object, property: string): void
 
-Removes a key from an ArkTS object. This API can be used for related operations after [JSON.parse](#jsonparse) is called to parse a JSON string.
+Removes a key from an ArkTS object. This API can be used for related operations after [JSON.parse](#jsonparse) is called to parse a JSON string. This API supports only valid JSON strings whose outermost layer is in dictionary format (in braces instead of square brackets).
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| obj | object | Yes| ArkTS object.|
-| property | string | Yes| Key to remove.|
+| obj | object | Yes | ArkTS object.|
+| property | string | Yes | Key to remove.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 let rst = JSON.remove(obj, "name");
