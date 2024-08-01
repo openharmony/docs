@@ -47,6 +47,8 @@ The table below lists the types of continuous tasks, which are used in various s
 >
 > The application shall proactively cancel a continuous task when it is finished. Otherwise, the system will forcibly cancel the task. For example, when a user taps the UI to pause music playback, the application must cancel the continuous task in a timely manner. When the user taps the UI again to continue music playback, the application needs to request a continuous task.
 >
+> If an application that plays an audio in the background is [interrupted](../media/audio/audio-playback-concurrency.md), the system automatically detects and stops the continuous task. The application must request a continuous task again to restart the playback.
+>
 > When an application that plays audio stops a continuous task in the background, it must suspend or stop the audio stream. Otherwise, the application will be forcibly terminated by the system.
 
 ## Available APIs
