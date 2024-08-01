@@ -21,25 +21,13 @@
 2. 获取系统语言、系统地区、系统区域。
    ```ts
    // 获取系统语言
-   try {
-     let systemLanguage = i18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
-   } catch(error) {
-     console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
-   }
-   
+   let systemLanguage = i18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
+ 
    // 获取系统地区
-   try {
-     let systemRegion = i18n.System.getSystemRegion();  // systemRegion为当前系统地区
-   } catch(error) {
-     console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
-   }
+   let systemRegion = i18n.System.getSystemRegion();  // systemRegion为当前系统地区
    
    // 获取系统区域
-   try {
-     let systemLocale = i18n.System.getSystemLocale();  // systemLocale为当前系统区域
-   } catch(error) {
-     console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
-   }
+   let systemLocale = i18n.System.getSystemLocale();  // systemLocale为当前系统区域
    ```
 
 <!--Del-->
