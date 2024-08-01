@@ -157,7 +157,7 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
     ```ts
     // MyWorker.ts code
     import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
-    import Handle from './handle'  // Return a handle.
+    import Handle from './handle';  // Return a handle.
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
     
@@ -170,9 +170,11 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
       case 0:
        handler.syncSet(e.data.data);
        workerPort.postMessage('success set');
+       break;
       case 1:
        handler.syncGet();
        workerPort.postMessage('success get');
+       break;
      }
     }
     ```

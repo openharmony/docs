@@ -230,7 +230,9 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-Uses a secure random number generator to generate a random universally unique identifier (UUID) of the string type in RFC 4122 version 4.
+Uses a secure random number generator to generate a random universally unique identifier (UUID) of the string type in RFC 4122 version 4. 
+
+When this API is called for the first time, the API behavior is the same regardless of whether **true** or **false** is passed in. In this case, two UUIDs are generated: one used for caching and the other for output. However, when this API is called again with **true** passed in, the last UUID is cached and a new UUID is generated; when this API is called again with **false** passed in, two UUIDs are generated: one for caching and the other for output.
 
 **System capability**: SystemCapability.Utils.Lang
 

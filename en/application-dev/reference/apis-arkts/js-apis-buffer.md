@@ -388,7 +388,7 @@ let buf1 = buffer.from('this is a test');
 let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
 
 console.log (buf1.toString()); // Print: this is a test
-console.log (buf2.toString()); // print: this is a test
+console.log (buf2.toString()); // print: this is a tést
 ```
 
 
