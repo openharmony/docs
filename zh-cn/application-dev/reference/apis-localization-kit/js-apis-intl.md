@@ -8,7 +8,7 @@
 >
 >  - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
 >
->  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。例如API version 12对应CLDR的版本是42。
+>  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。API version 12对应CLDR 42。
 >
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 >

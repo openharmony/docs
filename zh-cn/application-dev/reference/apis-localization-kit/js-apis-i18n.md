@@ -5,7 +5,7 @@
 >  **说明：**
 >  - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。例如API version 12对应CLDR的版本是42。
+>  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。API version 12对应CLDR 42。
 >
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 
