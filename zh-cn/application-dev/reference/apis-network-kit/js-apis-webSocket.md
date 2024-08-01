@@ -183,10 +183,14 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 401     | Parameter error.                         |
+| 201     | Permission denied.                       |
+| 2302998 | It is not allowed to access this domain. |
+
+> **错误码说明：**
+> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
@@ -244,10 +248,14 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 401     | Parameter error.                         |
+| 201     | Permission denied.                       |
+| 2302998 | It is not allowed to access this domain. |
+
+> **错误码说明：**
+> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
