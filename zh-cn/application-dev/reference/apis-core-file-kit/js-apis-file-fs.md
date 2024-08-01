@@ -961,6 +961,169 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
   })
   ```
 
+## fs.setxattr<sup>12+</sup>
+
+setxattr(path: string, key: string, value: string): Promise&lt;void&gt;
+
+设置文件的扩展属性。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| key   | string | 是   | 扩展属性的key。                                   |
+| value   | string | 是   | 扩展属性的value。                                   |
+
+**返回值：**
+
+  | 类型     | 说明                                       |
+  | ------ | ---------------------------------------- |
+  | Promise&lt;void&gt;| Promise对象。无返回值。                             |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  let filePath = pathDir + "/test.txt";
+  let attrKey = "user.comment";
+  let attrValue = "Test file.";
+  
+  fs.setxattr(filePath, attrKey, attrValue).then(() => {
+    console.info("Set extended attribute successfully.");
+  }).catch((err: BusinessError) => {
+    console.error("Failed to set extended attribute with error message: " + err.message + ", error code: " + err.code);
+  });
+
+  ```
+## fs.setxattrSync<sup>12+</sup>
+
+setxattrSync(path: string, key: string, value: string): void;
+
+设置文件的扩展属性。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| key   | string | 是   | 扩展属性的key。                                   |
+| value   | string | 是   | 扩展属性的value。                                   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  let filePath = pathDir + "/test.txt";
+  let attrKey = "user.comment";
+  let attrValue = "Test file.";
+
+  try {
+    fs.setxattrSync(filePath, attrKey, attrValue);
+    console.info("Set extended attribute successfully.");
+  } catch (err) {
+    console.error("Failed to set extended attribute with error message: " + err.message + ", error code: " + err.code);
+  }
+  
+  ```
+
+## fs.getxattr<sup>12+</sup>
+
+getxattr(path: string, key: string): Promise&lt;string&gt;
+
+获取文件的扩展属性。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| key   | string | 是   | 扩展属性的key。                                   |
+
+**返回值：**
+
+  | 类型     | 说明                                       |
+  | ------ | ---------------------------------------- |
+  | Promise&lt;string&gt;| Promise对象。返回扩展属性的value。    |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  let filePath = pathDir + "/test.txt";
+  let attrKey = "user.comment";
+  
+  fs.getxattr(filePath, attrKey).then((attrValue: string) => {
+    console.info("Get extended attribute succeed, the value is: " + attrValue);
+  }).catch((err: BusinessError) => {
+    console.error("Failed to get extended attribute with error message: " + err.message + ", error code: " + err.code);
+  });
+
+  ```
+
+## fs.getxattrSync<sup>12+</sup>
+
+getxattrSync(path: string, key: string): string;
+
+使用同步接口获取文件的扩展属性。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| key   | string | 是   | 扩展属性的key。                                   |
+
+**返回值：**
+
+  | 类型     | 说明                                       |
+  | ------ | ---------------------------------------- |
+  | key| string对象。返回扩展属性的value。      |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  let filePath = pathDir + "/test.txt";
+  let attrKey = "user.comment";
+  
+  try {
+    let attrValue = fs.getxattrSync(filePath, attrKey);
+    console.info("Get extended attribute succeed, the value is: " + attrValue);
+  } catch (err) {
+    console.error("Failed to get extended attribute with error message: " + err.message + ", error code: " + err.code);
+    }
+
+  ```
+
 ## fs.mkdir
 
 mkdir(path: string): Promise&lt;void&gt;
