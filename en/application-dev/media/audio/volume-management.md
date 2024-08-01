@@ -7,7 +7,7 @@ You can use different APIs to manage the system volume and audio stream volume. 
 The API for managing the system volume is **AudioVolumeManager**. Before using this API, you must call **getVolumeManager()** to obtain an **AudioVolumeManager** instance. Currently, this API can be used to obtain volume information and listen for volume changes. It cannot be used to adjust the system volume.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioManager = audio.getAudioManager();
 let audioVolumeManager = audioManager.getVolumeManager();
@@ -18,7 +18,7 @@ let audioVolumeManager = audioManager.getVolumeManager();
 You can set an event to listen for system volume changes.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
@@ -51,7 +51,7 @@ avPlayer.setVolume(volume);
 The code snippet below uses the API in the [AudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8) class:
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setVolume(0.5).then(() => {  // The volume range is [0.0-1.0].
   console.info('Invoke setVolume succeeded.');

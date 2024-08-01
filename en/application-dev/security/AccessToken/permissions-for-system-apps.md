@@ -3389,6 +3389,18 @@ Allows a system application to set the mouse cursor status (such as position and
 
 **Valid since**: 12
 
+### ohos.permission.RECEIVE_FUSION_MESSAGES
+
+Allows a system ability or system application to receive fusion service messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.FILTER_INPUT_EVENT
 
 Allows a system application to filter input events.
@@ -3622,6 +3634,18 @@ Allows a system service to enable distributed hardware resources.
 **Enable via ACL**: false
 
 **Valid since**: 11
+
+### ohos.permission.ACCESS_MULTICORE_HYBRID_ABILITY
+
+Allows an application to access the watch system service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
 
 ## user_grant Permissions (Available via ACL)
 
@@ -3940,3 +3964,15 @@ Allows an application to access the **Desktop** directory in the user directory.
 **Enable via ACL**: true
 
 **Valid since**: 11
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+Allows an application to install beta applications.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12

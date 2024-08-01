@@ -122,7 +122,7 @@ The table below lists the supported playback formats and mainstream resolutions.
 
 ## AVRecorder
 
-The AVRecorder captures audio signals, receives video signals, encodes the audio and video signals, and saves them to files. With the AVRecorder, you can easily implement audio and video recording, including starting, pausing, resuming, and stopping recording, and releasing resources. You can also specify parameters such as the encoding format, encapsulation format, and file path for recording.
+The AVRecorder captures audio signals, receives video signals, encodes the audio and video signals, and saves them to files. With the AVRecorder, you can easily implement audio and video recording, including starting, pausing, resuming, and stopping recording, and releasing resources. You can also specify parameters such as the encoding format, container format, and file path for recording.
 
 **Figure 3** Interaction with external modules for video recording 
 

@@ -35,6 +35,8 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 设置搜索框末尾搜索按钮。
 
+点击搜索按钮，同时触发onSubmit与onClick回调。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -538,12 +540,16 @@ enablePreviewText(enable: boolean)
 
 ## InsertValue<sup>12+</sup>对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | insertOffset  | number | 是   | 插入的值的位置信息。 |
 | insertValue  | string | 是   | 插入的值。 |
 
 ## DeleteValue<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -575,6 +581,8 @@ enablePreviewText(enable: boolean)
 ## SelectionOptions<sup>12+</sup>
 
 setTextSelection的选中文字时的配置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称       | 类型                                            | 必填 | 说明             |
 | ---------- | ----------------------------------------------- | ---- | ---------------- |
@@ -614,7 +622,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| callback  | [EditableTextOnChangeCallback](ts-universal-attributes-text-style.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
+| callback  | [EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
 
 ### onCopy
 
@@ -845,7 +853,7 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 ##  示例
 
 ### 示例1
-
+Search基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -892,7 +900,7 @@ struct SearchExample {
 ![search](figures/search.gif)
 
 ### 示例2
-
+searchButton、searchIcon、cancelButton属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -938,7 +946,7 @@ struct SearchExample {
 
 
 ### 示例3
-
+Search绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -980,6 +988,7 @@ struct SearchExample {
 ![customKeyboard](figures/searchCustomKeyboard.png)
 
 ### 示例4
+enterKeyType属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1060,7 +1069,7 @@ struct SearchExample {
 ![SearchDecoration](figures/search_decoration.png)
 
 ### 示例6
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
 
 ```ts
 @Entry
@@ -1087,7 +1096,7 @@ struct search {
 
 ### 示例7
 
-自定义键盘弹出发生避让示例
+自定义键盘弹出发生避让示例。
 
 ```ts
 @Entry

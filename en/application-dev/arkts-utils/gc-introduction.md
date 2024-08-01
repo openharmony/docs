@@ -32,17 +32,17 @@ For some of the parameters, three values or value ranges are provided, correspon
 
 Two Semi Spaces are generated in the heap for the copying algorithm to use.
 
-| Parameter| Value or Value Range| Description|
+| Parameter | Value or Value Range | Description |
 | --- | --- | :--- |
-| semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space. The value varies according to the total heap size.|
-| semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering the concurrent marking phase of Semi Space for the first time.|
-| semiSpaceStepOvershootSize| 2 MB | Maximum overshoot size of Semi Space.|
+| semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB | Size of Semi Space. The value varies according to the total heap size. |
+| semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering the concurrent marking phase of Semi Space for the first time. |
+| semiSpaceStepOvershootSize| 2 MB  | Maximum overshoot size of Semi Space. |
 
 #### Parameters of Other Spaces
 
-| Parameter| Value or Value Range| Description|
+| Parameter | Value or Value Range | Description |
 | --- | --- | :--- |
-| defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space.|
+| defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space. |
 | defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | Default size of Non-Movable Space.|
 | defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | Default size of Snapshot Space.|
 | defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | Default size of Machine Code Space.|
@@ -51,53 +51,53 @@ Two Semi Spaces are generated in the heap for the copying algorithm to use.
 
 During initialization, the parameter is set to the size of the unallocated heap space left.
 
-| Parameter| Value or Value Range| Description|
+| Parameter | Value or Value Range | Description |
 | --- | --- | :--- |
-| oldSpaceOvershootSize | 4 MB/8 MB/8 MB | Maximum overshoot size of Old Space.|
+| oldSpaceOvershootSize | 4 MB/8 MB/8 MB  | Maximum overshoot size of Old Space. |
 
 #### Heap Size Parameters
 
-| Parameter| Value or Value Range| Description|
+| Parameter | Value or Value Range | Description |
 | --- | --- | :--- |
-| HeapSize | 448–1024 MB | Total heap size. The actual size allocated varies according to the heap type. The lower limit is reduced in the case of an insufficient memory pool.|
-| SemispaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space.|
-| NonmovableSpaceSize | 2 MB/6 MB/64 MB | Size of Non-Movable Space.|
-| SnapshotSpaceSize | 512 KB| Size of Snapshot Space.|
-| MachineCodeSpaceSize | 2 MB| Size of Machine Code Space.|
+| HeapSize | 448–1024 MB  | Total heap size. The actual size allocated varies according to the heap type. The lower limit is reduced in the case of an insufficient memory pool. |
+| SemispaceSize | 2–4 MB/2–8 MB/2–16 MB | Size of Semi Space. |
+| NonmovableSpaceSize | 2 MB/6 MB/64 MB  | Size of Non-Movable Space. |
+| SnapshotSpaceSize | 512 KB | Size of Snapshot Space. |
+| MachineCodeSpaceSize | 2 MB | Size of Machine Code Space. |
 
 #### Maximum Number of Worker Thread Heaps
 
-| Parameter| Value or Value Range| Description|
+| Parameter | Value or Value Range | Description |
 | --- | --- | --- |
-| heapSize  | 768 MB | Size of the heap space of the work type.|
+| heapSize  | 768 MB | Size of the heap space of the work type. |
 
 #### Size of the Interpreter Stack
 
-| Parameter| Value or Value Range| Description|
+| Parameter | Value or Value Range | Description |
 | --- | --- | --- |
-| maxStackSize | 128 KB| Maximum frame size of the interpreter stack.|
+| maxStackSize | 128 KB | Maximum frame size of the interpreter stack. |
 
 #### Concurrency Parameters
 
-| Parameter| Value| Description|
+| Parameter | Value | Description |
 | --- | ---: | --- |
-| gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**.|
-| MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool.|
-| MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool.|
+| gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**. |
+| MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool. |
+| MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool. |
 
 Note: The thread pool is used to execute concurrent tasks in the GC process. During thread pool initialization, all the three parameters need to be considered. If **gcThreadNum** is a negative value, the number of threads in the initialized thread pool is the number of CPU cores divided by 2.
 
 #### Other Parameters
 
-| Parameter| Value| Description|
+| Parameter | Value | Description |
 | --- | --- | --- |
-| minAllocLimitGrowingStep | 2 M/4 M/8 M| Minimum increase step of **oldSpace**, **heapObject**, and **globalNative** when the heap space size is recalculated.|
-| minGrowingStep | 4 M/8 M/16 M | Minimum increase step of **oldSpace**.|
-| longPauseTime | 40 ms| Threshold for checking for a long GC pause. In the case of long GC pauses, complete GC log is printed, facilitating fault locating and analysis. You can set this parameter using **gc-long-paused-time**.|
+| minAllocLimitGrowingStep | 2 M/4 M/8 M | Minimum increase step of **oldSpace**, **heapObject**, and **globalNative** when the heap space size is recalculated. |
+| minGrowingStep | 4 M/8 M/16 M  | Minimum increase step of **oldSpace**. |
+| longPauseTime | 40 ms | Threshold for checking for a long GC pause. In the case of long GC pauses, complete GC log is printed, facilitating fault locating and analysis. You can set this parameter using **gc-long-paused-time**. |
 
 ### Other
 
-The maximum native memory of the ArrayBuffer in a single VM is 4 GB.
+### The maximum native memory of the ArrayBuffer in a single VM is 4 GB.
 
 ## GC Process
 
@@ -185,6 +185,19 @@ Smart GC or idle GC is based on these three GC modes.
   **"Max evacuation size is 6_MB. The CSet region number: " << selectedRegionNumber;**,
   and **"Select CSet success: number is " << collectRegionSet_.size();**
 
+## SharedHeap
+
+### Shared Heap Structure
+
+![image](./figures/gc-shared-heap.png)
+
+- Shared Old Space: stores common shared objects. The young generation and old generation are not distinguished in the shared heap.
+- Shared Huge Object Space: stores huge shared objects. A separate region is used to store a huge object.
+- Shared Read Only Space: stores read-only shared data at runtime.
+- Shared Non-Movable Space: stores unmovable shared objects.
+
+Note: The shared heap is mainly used to share objects between threads. It improves efficiency and reduces memory usage. The shared heap does not belong to a specific thread. It stores objects with shared value and has a higher survival rate. It does not evolve Semi Space.
+
 ## Technical Features
 
 ### Smart GC
@@ -241,6 +254,66 @@ During linear space expansion, the system attempts to trigger idle GC and set an
 
 Idle young GC can coexist with concurrent marking to prevent the GC threshold from being reached before the idle time is received. Concurrent marking can be triggered before idle young GC starts.
 
+## Log Description
+
+### Typical Logs
+
+```
+// Actual size occupied by the object before GC (actual size occupied by the region) - > Actual size occupied by the object after GC (actual size occupied by the region), total duration (+concurrrentMark duration), and GC triggering cause
+C03F00/ArkCompiler: [gc]  [ CompressGC ] 26.1164 (35) -> 7.10049 (10.5) MB, 160.626(+0)ms, Switch to background
+// GC statuses and application name
+C03F00/ArkCompiler: [gc] IsInBackground: 1; SensitiveStatus: 0; OnStartupEvent: 0; BundleName: com.huawei.hmos.filemanager;
+// Time consumption statistics of each GC phase
+C03F00/ArkCompiler: [gc] /***************** GC Duration statistic: ****************/
+C03F00/ArkCompiler: [gc] TotalGC:                 160.626 ms
+C03F00/ArkCompiler: Initialize:              0.179   ms
+C03F00/ArkCompiler: Mark:                    159.204 ms
+C03F00/ArkCompiler: MarkRoots:               6.925   ms
+C03F00/ArkCompiler: ProcessMarkStack:        158.99  ms
+C03F00/ArkCompiler: Sweep:                   0.957   ms
+C03F00/ArkCompiler: Finish:                  0.277   ms
+// Memory size occupied by each part after GC
+C03F00/ArkCompiler: [gc] /****************** GC Memory statistic: *****************/
+C03F00/ArkCompiler: [gc] AllSpaces        used:  7270.9KB     committed:   10752KB
+C03F00/ArkCompiler: ActiveSemiSpace  used:       0KB     committed:     256KB
+C03F00/ArkCompiler: OldSpace         used:  4966.9KB     committed:    5888KB
+C03F00/ArkCompiler: HugeObjectSpace  used:    2304KB     committed:    2304KB
+C03F00/ArkCompiler: NonMovableSpace  used:       0KB     committed:    2304KB
+C03F00/ArkCompiler: MachineCodeSpace used:       0KB     committed:       0KB
+C03F00/ArkCompiler: HugeMachineCodeSpace used:       0KB     committed:       0KB
+C03F00/ArkCompiler: SnapshotSpace    used:       0KB     committed:       0KB
+C03F00/ArkCompiler: AppSpawnSpace    used: 4736.34KB     committed:    4864KB
+C03F00/ArkCompiler: [gc] Anno memory usage size:  45      MB
+C03F00/ArkCompiler: Native memory usage size:2.99652 MB
+C03F00/ArkCompiler: NativeBindingSize:       0.577148KB
+C03F00/ArkCompiler: ArrayBufferNativeSize:   0.0117188KB
+C03F00/ArkCompiler: RegExpByteCodeNativeSize:0.280273KB
+C03F00/ArkCompiler: ChunkNativeSize:         19096   KB
+C03F00/ArkCompiler: [gc] Heap alive rate:         0.202871
+// Overall statistics of this type of GC on the VM
+C03F00/ArkCompiler: [gc] /***************** GC summary statistic: *****************/
+C03F00/ArkCompiler: [gc] CompressGC occurs count  6
+C03F00/ArkCompiler: CompressGC max pause:    2672.33 ms
+C03F00/ArkCompiler: CompressGC min pause:    160.626 ms
+C03F00/ArkCompiler: CompressGC average pause:1076.06 ms
+C03F00/ArkCompiler: Heap average alive rate: 0.635325
+```
+
+- GC type, which can be [HPP YoungGC], [HPP OldGC], [CompressGC] and [SharedGC].
+- **TotalGC**: total duration. The following lists the time required for each phase, including Initialize, Mark, MarkRoots, ProcessMarkStack, Sweep, and Finish. The actual phase varies according to the GC process.
+- **IsInBackground**: specifies whether it is a background scenario. The options are **1** (background scenario) and **0** (non-background scenario).
+- **SensitiveStatus**: specifies whether it is a sensitive scenario. The options are **1** (sensitive scenario) and **0** (non-sensitive scenario).
+- **OnStartupEvent**: specifies whether it is a cold start scenario. The options are **1** (cold start scenario) and **0** (non-cold start scenario).
+- **used**: actual memory space occupied by the allocated object.
+- **committed**: size of the memory allocated to the heap. Memory space is allocated by region, and a region is not fully occupied by objects. Therefore, if **committed** is greater than or equal to **used**, the values of **HugeObjectSpace** is the same under **used** and **committed** because one object occupies the region.
+- **Anno memory usage size**: memory size applied by all heaps of the current process, including the heap and shared heap.
+- **Native memory usage size**: native memory size requested by the current process.
+- **NativeBindingSize**: size of the native memory bound to the objects in the heap of the current process.
+- **ArrayBufferNativeSize**: native memory size of the array cache requested by the current process.
+- **RegExpByteCodeNativeSize**: native memory size of the regular expression bytecode requested by the current process.
+- **ChunkNativeSize**: chunk native memory size requested by the current process.
+- **Heap alive rate**: survival rate of objects in the heap.
+
 ## GC Developer Debugging Interfaces
 
 > **NOTE**
@@ -255,20 +328,12 @@ Idle young GC can coexist with concurrent marking to prevent the GC threshold fr
 - Use scenario: The developer asks the system to perform GC.
 - Log keywords: There is no direct log. Only external trigger (**GCReason::EXTERNAL_TRIGGER**) can be found.
 
-### ArkTools.forceFullGC()
-
-- Call method: **ArkTools.forceFullGC()**
-- Type: JS interface
-- Description: Triggers GC directly. Specifically, full GC is triggered for the local heap of the calling thread, and shared GC is triggered for the shared heap of the calling thread.
-- Use scenario: large home screen, developer debugging
-- Log keywords: There is no direct log. Only external trigger (**GCReason::EXTERNAL_TRIGGER**) can be found.
 
 Example:
 
 ```
 // Declare the interface first.
 declare class ArkTools {
-     static forceFullGC(): void;
      static hintGC(): void;
 }
 
@@ -282,13 +347,9 @@ struct Index {
       Text(this.message)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
-  
-      Button("Trigger Full GC").onClick((event: ClickEvent) => {
-          ArkTools.forceFullGC(); // Directly called in a method.
+      Button("Trigger Hint GC").onClick((event: ClickEvent) => {
+          ArkTools.hintGC(); // Directly called in a method.
       })
-     Button("Trigger Hint GC").onClick((event: ClickEvent) => {
-         ArkTools.hintGC(); // Directly called in a method.
-     })
     }
     .width('100%')
   }

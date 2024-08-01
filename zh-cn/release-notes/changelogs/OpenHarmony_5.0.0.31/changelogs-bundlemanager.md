@@ -20,15 +20,15 @@
 
 | 展示位置    | 取值       | 说明        |
 | ----- | ---------- | --------- |
-|  桌面展示图标和名称   |  入口图标和名称  |  当应用不存在入口Ability时会返回应用图标和名称  |
+|  桌面展示图标和名称   |  入口图标和名称  |  当应用不存在入口UIAbility时会返回应用图标和名称  |
 |  设置中应用列表展示图标和名称   |  应用图标和名称  |  必选字段，创建新工程时会有默认的图标和名称  |
 
 
 变更后
 | 展示位置    | 取值       | 说明        |
 | ----- | ---------- | --------- |
-|  桌面展示图标和名称   |  入口图标和名称  |  当应用不存在入口Ability时会返回应用图标和名称  |
-|  设置中应用列表展示图标和名称   |  入口图标和名称  |  当应用存在入口Ability且配置了图标和名称后，优先返回入口图标和名称；如果不存在入口UIAbility或者没有配置入口图标和名称时，返回应用图标和名称。当存在多个入口Ability时，优先返回entry类型HAP的mainElement对应的UIAbility中配置的图标和名称。  |
+|  桌面展示图标和名称   |  入口图标和名称  |  当应用不存在入口UIAbility时会返回应用图标和名称  |
+|  设置中应用列表展示图标和名称   |  入口图标和名称  |  当应用存在入口UIAbility且配置了图标和名称后，优先返回入口图标和名称；如果不存在入口UIAbility或者没有配置入口图标和名称时，返回应用图标和名称。当存在多个入口UIAbility时，优先返回entry类型HAP的mainElement对应的UIAbility中配置的图标和名称。  |
 
 **起始API Level**
 
@@ -46,7 +46,7 @@
 
 建议开发者将应用图标和应用名称、入口图标和入口名称保持一致。
 
-## cl.bundlemanager.2 同一个应用仅支持一个入口Ability
+## cl.bundlemanager.2 同一个应用仅支持一个入口UIAbility
 
 **访问级别**
 
@@ -54,19 +54,24 @@
 
 **变更原因**
 
-识别到应用图标和名称一致性问题，不支持一个应用配置多个入口图标。当一个应用配置了多个入口Ability时，仅entry类型HAP中的mainElement会生效。
+应用存在多入口图标时，安装后会在桌面上展示出多个不同的图标和名称，会出现恶意应用仿冒其他应用图标和名称的行为，带来安全和隐私泄露风险。应用修改为仅支持一个入口UIAbility后，安装后在桌面上只会展示一个应用图标和名称。当一个应用配置了多个入口UIAbility时，仅entry类型HAP中的mainElement会生效。
+
+入口UIAbility配置字段：
+module.json5中的abilities里面的skills，entities包含"entity.system.home"，actions包含"action.system.home"。
+
+![入口UIAbility配置字段](image.png)
 
 **变更影响**
 
-该变更为不兼容性变更。一个应用仅支持一个入口Ability。
+该变更为不兼容性变更。一个应用仅支持一个入口UIAbility。
 
 变更前：
 
-一个应用支持配置多个入口Ability，安装后会在桌面上展示多个图标和名称。
+一个应用支持配置多个入口UIAbility，安装后会在桌面上展示多个图标和名称。
 
 变更后：
 
-一个应用值支持配置一个入口Ability，安装后会在桌面上展示一个图标和名称。当应用配置多个入口Ability时，也只会返回entry类型Hap的mainElement一个入口Ability。
+一个应用值支持配置一个入口UIAbility，安装后会在桌面上展示一个图标和名称。当应用配置多个入口UIAbility时，也只会返回entry类型Hap的mainElement一个入口UIAbility。
 
 **起始API Level**
 
@@ -78,8 +83,8 @@
 
 **变更的接口/组件**
 
-包管理提供的查询接口getLauncherAbilityInfo只会返回一个入口Ability信息。
+包管理提供的查询接口getLauncherAbilityInfo只会返回一个入口UIAbility信息。
 
 **适配指导**
 
-建议开发者只配置一个入口Ability。
+建议开发者只配置一个入口UIAbility。

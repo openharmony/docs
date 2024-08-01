@@ -132,6 +132,62 @@ import { display } from '@kit.ArkUI';
 | boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
 
+## DisplayPhysicalResolution<sup>12+</sup>
+折叠设备的显示模式以及对应的物理屏幕分辨率信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称                        | 类型      | 只读 | 可选 | 说明               |
+| --------------------------- | ------------- | ---- | ---- | ------------------ |
+| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
+| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数应为大于0的整数。|
+| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数应为大于0的整数。|
+
+## display.getAllDisplayPhysicalResolution<sup>12+</sup>
+
+getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution&gt;&gt;
+
+获取当前折叠设备的显示模式以及对应的物理屏幕分辨率信息对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[DisplayPhysicalResolution](#displayphysicalresolution12)&gt;&gt; | Promise对象。返回当前所有的DisplayPhysicalResolution对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let promise = display.getAllDisplayPhysicalResolution();
+promise.then((resolutionObjects) => {
+  console.info('Obtaining physical resolution length: ' + resolutionObjects.length);
+  for (let i = 0; i < resolutionObjects.length; i++) {
+     console.info(`resolutionObjects[${i}].foldDisplayMode: ${resolutionObjects[i].foldDisplayMode}`);
+     console.info(`resolutionObjects[${i}].physicalWidth: ${resolutionObjects[i].physicalWidth}`); 
+     console.info(`resolutionObjects[${i}].physicalHeight: ${resolutionObjects[i].physicalHeight}`); 
+  }
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain physical resolution. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ## display.getDefaultDisplaySync<sup>9+</sup>
 
 getDefaultDisplaySync(): Display
@@ -201,7 +257,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -244,7 +300,7 @@ promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -672,6 +728,8 @@ isCaptured(): boolean
 
 检查设备是否正在截屏、投屏、录屏。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -802,7 +860,7 @@ let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
@@ -839,7 +897,7 @@ promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -869,7 +927,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -903,7 +961,7 @@ let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -916,7 +974,7 @@ promise.then((data: Array<display.Display>) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明                                                                                                            |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                            |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
 | id | number | 是 | 否 | 显示设备的id号，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | name | string | 是 | 否 | 显示设备的名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
@@ -934,6 +992,8 @@ promise.then((data: Array<display.Display>) => {
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                |
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                               |
+| availableWidth | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| availableHeight | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
@@ -969,7 +1029,7 @@ displayClass = display.getDefaultDisplaySync();
 displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
@@ -1009,6 +1069,139 @@ let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
 promise.then((data: display.CutoutInfo) => {
   console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
+```
+
+### getAvailableArea<sup>12+</sup>
+getAvailableArea(): Promise&lt;Rect&gt;
+
+获取当前2in1设备屏幕的可用区域，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[Rect](#rect9)&gt; | Promise对象。返回当前屏幕可用矩形区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  let promise = displayClass.getAvailableArea();
+  promise.then((data) => {
+    console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (exception) {
+  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('availableAreaChange')<sup>12+</sup>
+on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
+
+开启当前2in1设备屏幕的可用区域监听。当前2in1设备屏幕有可用区域变化时，触发回调函数，返回可用区域。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 是   | 回调函数，返回改变后的可用区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let callback: Callback<display.Rect> = (data: display.Rect) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  displayClass.on("availableAreaChange", callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('availableAreaChange')<sup>12+</sup>
+
+off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
+
+关闭当前2in1设备屏幕可用区域变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let callback: Callback<display.Rect> = (data: display.Rect) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  displayClass.off("availableAreaChange", callback);
+} catch (exception) {
+  console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
+}
 ```

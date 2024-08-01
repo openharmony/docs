@@ -65,7 +65,7 @@ export default class EntryAbility extends UIAbility {
 
 预加载会提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码。预加载是WebviewController的实例方法，需要一个已经关联好Web组件的WebviewController实例。
 
-在下面的示例中，在onPageEnd的时候触发写一个要访问的页面的预加载。
+在下面的示例中，在onPageEnd的时候触发下一个要访问的页面的预加载。
   
 ```ts
 // xxx.ets

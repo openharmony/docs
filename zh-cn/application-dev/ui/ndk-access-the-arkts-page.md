@@ -7,7 +7,7 @@
 
 - 占位组件和其他ArkTS内置组件使用方法相同。
   ```ts
-  import { NodeContent } from '@ohos.arkui.node';
+  import { NodeContent } from '@kit.ArkUI';
   
   @Entry
   @Component
@@ -120,7 +120,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 1. 在ArkTS页面上声明用于Native页面挂载的占位组件，并在页面创建时通知Native侧创建文本列表。
    ```ts
    import nativeNode from 'libentry.so';
-   import { NodeContent } from '@ohos.arkui.node';
+   import { NodeContent } from '@kit.ArkUI';
    
    @Entry
    @Component

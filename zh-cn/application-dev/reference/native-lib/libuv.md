@@ -10,6 +10,20 @@
 
 支持标准库接口。
 
+## 引入libuv能力
+
+如果开发者需要使用libuv相关功能，首先请添加头文件：
+
+```c
+#include <uv.h>
+```
+
+其次在CMakeLists.txt中添加以下动态链接库：
+
+```
+libuv.so
+```
+
 ## 接口列表
 
 详见[libuv支持的API文档](http://docs.libuv.org/en/v1.x/api.html)。
@@ -379,18 +393,20 @@ Node-API与之对应的接口为[napi_threadsafe_function](../../napi/use-napi-t
 相关函数：
 
 ```cpp
-// 创建一个线程安全的函数
-// env：指向当前环境的指针
+// 用于创建一个线程安全的函数，该函数可以在多个线程中调用，而不需要担心数据竞争或其他线程安全问题
+// env：指向NAPI环境的指针，用于创建和操作Javascript值
 // func：指向JavaScript函数的指针
-// resource_name：资源名称
-// max_queue_size：最大队列大小
-// initial_thread_count：初始线程数
-// callback：回调函数
-// data：用户数据
+// resource_name：指向资源名称的指针，这个名称将用于日志和调试
+// max_queue_size：一个整数，表示队列的最大大小，当队列满时，新的调用将被丢弃
+// initial_thread_count：一个整数，表示初始线程数，这些线程将在创建函数时启动
+// context：指向上下文的指针，这个上下文将被传递给call_js_func函数
+// call_js_func：指向回调函数的指针，这个函数将在Javascript函数被调用时被调用
+// finalize：指向finalize函数的指针，这个函数将在线程安全函数被销毁时被调用
+// result：指向napi_threadsafe_function结构的指针，这个结构将被填充为新创建的线程安全函数
 napi_status napi_create_threadsafe_function(napi_env env,
                                            napi_value func,
                                            const char* resource_name,
-                                            size_t max_queue_size,
+                                           size_t max_queue_size,
                                            size_t initial_thread_count,
                                            void* context,
                                            napi_threadsafe_function_call_js call_js_func,
@@ -741,7 +757,7 @@ after_work_cb：loop所在线程的要执行的回调函数。
 * @param req 随机数请求
 * @param buf 存储随机数的缓冲区
 * @param buflen 缓冲区的长度
-* @param flags 随机数生成后的回调函数
+* @param flags 一个无符号整数，表示生成随机数的选项
 * @param cb  随机数生成完成后的回调函数
 *
 * @return 成功返回0，失败返回错误码

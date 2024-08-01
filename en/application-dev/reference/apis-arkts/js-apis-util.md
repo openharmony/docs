@@ -18,32 +18,34 @@ format(format: string,  ...args: Object[]): string
 
 Formats a string by replacing the placeholders in it.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name | Type    | Mandatory| Description          |
+| Name | Type    | Mandatory | Description          |
 | ------- | -------- | ---- | -------------- |
-| format  | string   | Yes  | Format string. This string contains zero or more placeholders, which specify the position and format of the arguments to be inserted.|
+| format  | string   | Yes  | Format string. This string contains zero or more placeholders, which specify the position and format of the arguments to be inserted. |
 | ...args | Object[] | No  | Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default.|
 
 **Return value**
 
 | Type  | Description             |
 | ------ | -----------------|
-| string | Formatted string.|
+| string | Formatted string. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Format Specifiers**
 
-| Specifier| Description                         |
+| Specifier | Description                         |
 | ------ | -------------------------------- |
 | %s     | Converts a parameter into a string for all values except **Object**, **BigInt**, and **-0**.|
 | %d     | Converts a parameter into a decimal integer for all values except **Symbol** and **BigInt**.|
@@ -127,25 +129,27 @@ errnoToString(errno: number): string
 
 Obtains detailed information about a system error code.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| errno  | number | Yes  | Error code generated.|
+| errno  | number | Yes  | Error code generated. |
 
 **Return value**
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| string | Detailed information about the error code.|
+| string | Detailed information about the error code. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -159,7 +163,7 @@ console.info("result = " + result);
 
 **Some error code and message examples**
 
-| Error Code| Message                             |
+| Error Code | Message                             |
 | ------ | -------------------------------- |
 | -1     | operation not permitted          |
 | -2     | no such file or directory        |
@@ -177,25 +181,31 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 Calls back an asynchronous function. In the callback, the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved), and the second parameter indicates the resolved value.
 
+> **NOTE**
+>
+> This API requires that **original** be of an asynchronous function. If a non-asynchronous function is passed in, the function is not intercepted, but the error message "callbackWrapper: The type of Parameter must be AsyncFunction" is displayed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes| Asynchronous function.|
+| original | Function | Yes | Asynchronous function. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Function | Callback function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value.|
+| Function | Callback function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -218,25 +228,27 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 Processes an asynchronous function and returns a promise.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes| Function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
+| original | Function | Yes | Function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Function | Promise function.|
+| Function | Promise function. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -261,27 +273,29 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-Uses a secure random number generator to generate a random universally unique identifier (UUID) of the string type in RFC 4122 version 4.
+Uses a secure random number generator to generate a random universally unique identifier (UUID) of the string type in RFC 4122 version 4. When this API is called for the first time, the API behavior is the same regardless of whether **true** or **false** is passed in. In this case, two UUIDs are generated: one used for caching and the other for output. However, when this API is called again with **true** passed in, the last UUID is cached and a new UUID is generated; when this API is called again with **false** passed in, two UUIDs are generated: one for caching and the other for output.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+| entropyCache | boolean | No | Whether a cached UUID can be used. The default value is **true**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| string | A string representing the UUID generated.|
+| string | A string representing the UUID generated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -299,25 +313,27 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 Uses a secure random number generator to generate a random UUID of the Uint8Array type in RFC 4122 version 4.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+| entropyCache | boolean | No | Whether a cached UUID can be used. The default value is **true**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Uint8Array | A Uint8Array value representing the UUID generated.|
+| Uint8Array | A Uint8Array value representing the UUID generated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -336,27 +352,30 @@ parseUUID(uuid: string): Uint8Array
 
 Converts a UUID of the string type generated by **generateRandomUUID** to a UUID of the Uint8Array type generated by **generateRandomBinaryUUID**, as described in RFC 4122 version 4.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| uuid | string | Yes| A string representing the UUID.|
+| uuid | string | Yes | A string representing the UUID. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Uint8Array | A Uint8Array value representing the UUID parsed. If the parsing fails, **SyntaxError** is thrown.|
+| Uint8Array | A Uint8Array value representing the UUID parsed. If the parsing fails, **SyntaxError** is thrown. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 10200002 | Invalid uuid string. |
 
 **Example**
 
@@ -381,16 +400,16 @@ Formats a string by replacing the placeholders in it.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| format | string | Yes| Format string.|
-| ...args | Object[] | No| Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default.|
+| format | string | Yes | Format string. |
+| ...args | Object[] | No | Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| string | String containing the formatted values.|
+| string | String containing the formatted values. |
 
 **Example**
 
@@ -414,15 +433,15 @@ Obtains detailed information about a system error code.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| errno | number | Yes| Error code generated.|
+| errno | number | Yes | Error code generated. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| string | Detailed information about the error code.|
+| string | Detailed information about the error code. |
 
 **Example**
 
@@ -446,15 +465,15 @@ Processes an asynchronous function and returns a promise.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes| Asynchronous function.|
+| original | Function | Yes | Asynchronous function. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
+| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise. |
 
 
 ## util.getHash<sup>12+</sup>
@@ -469,21 +488,21 @@ Obtains the hash value of an object. If no hash value has been obtained, a rando
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| object | object | Yes| Object whose hash value is to be obtained.|
+| object | object | Yes | Object whose hash value is to be obtained. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Hash value.|
+| number | Hash value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -511,9 +530,9 @@ Decoding-related options, which include **fatal** and **ignoreBOM**.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name     | Type| Mandatory| Description              |
+| Name     | Type | Mandatory | Description              |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**.|
+| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**. |
 | ignoreBOM | boolean  | No  | Whether to ignore the BOM. The default value is **false**. |
 
 
@@ -525,9 +544,9 @@ Defines whether decoding follows data blocks.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| stream | boolean | No| Whether to allow data blocks in subsequent **decodeWithStream()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
+| stream | boolean | No | Whether to allow data blocks in subsequent **decodeWithStream()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**. |
 
 
 ## Aspect<sup>11+</sup>
@@ -540,22 +559,24 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 
 Inserts a function before a method of a class object. The inserted function is executed in prior to the original method of the class object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name   | Type   | Mandatory| Description                                  |
+| Name   | Type   | Mandatory | Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method.                   |
 | isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
-| before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.|
+| before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -630,11 +651,13 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 
 Inserts a function after a method of a class object. The final return value is the return value of the function inserted.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name   | Type   | Mandatory| Description                                  |
+| Name   | Type   | Mandatory | Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method.                  |
@@ -645,7 +668,7 @@ Inserts a function after a method of a class object. The final return value is t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -711,11 +734,13 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 
 Replaces a method of a class object with another function. After the replacement, only the new function logic is executed. The final return value is the return value of the new function.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name   | Type   | Mandatory| Description                                  |
+| Name   | Type   | Mandatory | Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method.                 |
@@ -726,7 +751,7 @@ Replaces a method of a class object with another function. After the replacement
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -773,19 +798,23 @@ Provides APIs to decode byte arrays into strings. It supports multiple formats, 
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
-| fatal | boolean | Yes| No| Whether to display fatal errors.|
-| ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
+| encoding | string | Yes | No | Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le, UTF-8, GBK, GB2312, gb2312, GB18030 and iso-8859-1. |
+| fatal | boolean | Yes | No | Whether to display fatal errors. |
+| ignoreBOM | boolean | Yes | No | Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM. |
 
 ### constructor<sup>9+</sup>
 
 constructor()
 
 A constructor used to create a **TextDecoder** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -807,7 +836,7 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                            |
+| Name  | Type  | Mandatory | Description                                            |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | No  | Encoding format. The default format is **'utf-8'**.                     |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | No  | Decoding-related options, which include **fatal** and **ignoreBOM**.|
@@ -816,7 +845,7 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -837,28 +866,32 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 Decodes the input content into a string.
 
+> **NOTE**
+>
+> If **input** is an empty array, **undefined** is returned.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | Yes| Uint8Array object to decode.|
-| options | [DecodeWithStreamOptions](#decodewithstreamoptions11) | No| Decoding-related options.|
+| input | Uint8Array | Yes | Uint8Array object to decode. |
+| options | [DecodeWithStreamOptions](#decodewithstreamoptions11) | No | Decoding-related options. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| string | String obtained.|
+| string | String obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -899,17 +932,17 @@ A constructor used to create a **TextDecoder** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
-| options | object | No| Decoding-related options, which include **fatal** and **ignoreBOM**.|
+| encoding | string | No | Encoding format. The default format is **'utf-8'**. |
+| options | object | No | Decoding-related options, which include **fatal** and **ignoreBOM**. |
 
   **Table 1** options
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | No| Whether to display fatal errors. The default value is **false**.|
-| ignoreBOM | boolean | No| Whether to ignore the BOM. The default value is **false**.|
+| fatal | boolean | No | Whether to display fatal errors. The default value is **false**. |
+| ignoreBOM | boolean | No | Whether to ignore the BOM. The default value is **false**. |
 
 **Example**
 
@@ -931,22 +964,22 @@ Decodes the input content into a string.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | Yes| Uint8Array object to decode.|
-| options | object | No| Decoding-related options.|
+| input | Uint8Array | Yes | Uint8Array object to decode. |
+| options | object | No | Decoding-related options. |
 
 **Table 2** options
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| stream | boolean | No| Whether to allow data blocks in subsequent **decode()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
+| stream | boolean | No | Whether to allow data blocks in subsequent **decode()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| string | String obtained.|
+| string | String obtained. |
 
 **Example**
 
@@ -972,10 +1005,10 @@ Defines encoded text.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name     | Type| Readable |Writable | Description              |
+| Name     | Type | Readable |Writable | Description              |
 | --------- | -------- | -------- |-------- |------------------ |
-| read     | number  | Yes| No|Number of characters that have been read.|
-| written | number   | Yes|No|Number of bytes that have been written. |
+| read     | number  | Yes | No |Number of characters that have been read. |
+| written | number   | Yes |No |Number of bytes that have been written. |
 
 
 ## TextEncoder
@@ -986,11 +1019,13 @@ Note that when **TextEncoder** is used for encoding, the number of bytes occupie
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No|  Encoding format.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-1, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, x-mac-cyrillic, utf-16be, and utf-16le.<br>The default value is **'utf-8'**.|
+| encoding | string | Yes | No |  Encoding format.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-1, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, x-mac-cyrillic, utf-16be, and utf-16le.<br>The default value is **'utf-8'**. |
 
 
 ### constructor
@@ -1021,15 +1056,15 @@ A constructor used to create a **TextEncoder** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ----- | ---- | ---- | ---- |
-| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
+| encoding | string | No | Encoding format. The default format is **'utf-8'**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -1051,15 +1086,15 @@ Creates a **TextEncoder** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ----- | ---- | ---- | ---- |
-| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
+| encoding | string | No | Encoding format. The default format is **'utf-8'**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -1081,21 +1116,21 @@ Encodes the input content into a Uint8Array object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
+| Name | Type  | Mandatory | Description              |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | No  | String to encode. The default value is an empty string.|
+| input  | string | No  | String to encode. The default value is an empty string. |
 
 **Return value**
 
 | Type      | Description              |
 | ---------- | ------------------ |
-| Uint8Array | Uint8Array object obtained.|
+| Uint8Array | Uint8Array object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -1120,22 +1155,22 @@ Encodes the input content into a Uint8Array object.
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description                                                   |
+| Name | Type      | Mandatory | Description                                                   |
 | ------ | ---------- | ---- | ------------------------------------------------------- |
 | input  | string     | Yes  | String to encode.                                     |
-| dest   | Uint8Array | Yes  | Uint8Array object used to store the UTF-8 encoded text.|
+| dest   | Uint8Array | Yes  | Uint8Array object used to store the UTF-8 encoded text. |
 
 **Return value**
 
 | Type      | Description              |
 | ---------- | ------------------ |
-| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | Object obtained. **read** indicates the number of encoded characters, and **write** indicates the number of bytes in the encoded characters.|
+| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | Object obtained. **read** indicates the number of encoded characters, and **write** indicates the number of bytes in the encoded characters. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1163,16 +1198,16 @@ Stores the UTF-8 encoded text.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| input | string | Yes| String to encode.|
-| dest | Uint8Array | Yes| Uint8Array object used to store the UTF-8 encoded text.|
+| input | string | Yes | String to encode. |
+| dest | Uint8Array | Yes | Uint8Array object used to store the UTF-8 encoded text. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained.|
+| Uint8Array | Uint8Array object obtained. |
 
 **Example**
 
@@ -1198,15 +1233,15 @@ Encodes the input content in to a Uint8Array object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| input | string | No| String to encode. The default value is an empty string.|
+| input | string | No | String to encode. The default value is an empty string. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained.|
+| Uint8Array | Uint8Array object obtained. |
 
 **Example**
 
@@ -1227,6 +1262,8 @@ constructor()
 
 A constructor used to create a **RationalNumber** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
@@ -1241,20 +1278,22 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 Create a **RationalNumber** instance with a given numerator and denominator.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description            |
+| Name     | Type  | Mandatory | Description            |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | Yes  | Numerator, which is an integer.|
-| denominator | number | Yes  | Denominator, which is an integer.|
+| numerator   | number | Yes  | Numerator, which is an integer. |
+| denominator | number | Yes  | Denominator, which is an integer. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1270,25 +1309,27 @@ static createRationalFromString(rationalString: string): RationalNumber​
 
 Creates a **RationalNumber** object based on the given string.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| rationalString | string | Yes| String used to create the **RationalNumber** object.|
+| rationalString | string | Yes | String used to create the **RationalNumber** object. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Object | **RationalNumber** object obtained.|
+| Object | **RationalNumber** object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | The type of rationalString must be string. |
 
@@ -1304,25 +1345,27 @@ compare(another: RationalNumber): number​
 
 Compares this **RationalNumber** object with another **RationalNumber** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name | Type          | Mandatory| Description              |
+| Name | Type          | Mandatory | Description              |
 | ------- | -------------- | ---- | ------------------ |
-| another | [RationalNumber](#rationalnumber8) | Yes  | Object used to compare with this **RationalNumber** object.|
+| another | [RationalNumber](#rationalnumber8) | Yes  | Object used to compare with this **RationalNumber** object. |
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
+| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1342,13 +1385,15 @@ valueOf(): number
 
 Obtains the value of this **RationalNumber** object as an integer or a floating-point number.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | An integer or a floating-point number.|
+| number | An integer or a floating-point number. |
 
 **Example**
 
@@ -1372,19 +1417,21 @@ equals(obj: Object): boolean
 
 Checks whether this **RationalNumber** object equals the given object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| obj | Object | Yes| Object used to compare with this **RationalNumber** object.|
+| obj | Object | Yes | Object used to compare with this **RationalNumber** object. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the two objects are equal; returns **false** otherwise.|
+| boolean | Returns **true** if the two objects are equal; returns **false** otherwise. |
 
 **Example**
 
@@ -1410,26 +1457,28 @@ getCommonFactor(number1: number,number2: number): number
 
 Obtains the greatest common divisor of two specified integers.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description      |
+| Name | Type  | Mandatory | Description      |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | Yes  | The first integer used to get the greatest common divisor.|
-| number2 | number | Yes  | The second integer used to get the greatest common divisor.|
+| number1 | number | Yes  | The first integer used to get the greatest common divisor. |
+| number2 | number | Yes  | The second integer used to get the greatest common divisor. |
 
 **Return value**
 
 | Type  | Description                          |
 | ------ | ------------------------------ |
-| number | Greatest common divisor obtained.|
+| number | Greatest common divisor obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1447,13 +1496,15 @@ getNumerator(): number
 
 Obtains the numerator of this **RationalNumber** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Numerator of this **RationalNumber** object.|
+| number | Numerator of this **RationalNumber** object. |
 
 **Example**
 
@@ -1477,13 +1528,15 @@ getDenominator(): number
 
 Obtains the denominator of this **RationalNumber** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Denominator of this **RationalNumber** object.|
+| number | Denominator of this **RationalNumber** object. |
 
 **Example**
 
@@ -1507,13 +1560,15 @@ isZero():boolean
 
 Checks whether this **RationalNumber** object is **0**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the value of this **RationalNumber** object is **0**; returns **false** otherwise.|
+| boolean | Returns **true** if the value of this **RationalNumber** object is **0**; returns **false** otherwise. |
 
 **Example**
 
@@ -1537,13 +1592,15 @@ isNaN(): boolean
 
 Checks whether this **RationalNumber** object is a Not a Number (NaN).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if this **RationalNumber** object is a NaN (the denominator and numerator are both **0**); returns **false** otherwise.|
+| boolean | Returns **true** if this **RationalNumber** object is a NaN (the denominator and numerator are both **0**); returns **false** otherwise. |
 
 **Example**
 
@@ -1567,13 +1624,15 @@ isFinite():boolean
 
 Checks whether this **RationalNumber** object represents a finite value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if this **RationalNumber** object represents a finite value (the denominator is not **0**); returns **false** otherwise.|
+| boolean | Returns **true** if this **RationalNumber** object represents a finite value (the denominator is not **0**); returns **false** otherwise. |
 
 **Example**
 
@@ -1597,11 +1656,13 @@ toString(): string
 
 Obtains the string representation of this **RationalNumber** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
 | string | Returns a string in Numerator/Denominator format in normal cases, for example, 3/5; returns **0/1** if the numerator of this object is **0**; returns **Infinity** if the denominator is **0**; returns **NaN** if the numerator and denominator are both **0**.|
 
@@ -1635,10 +1696,10 @@ A constructor used to create a **RationalNumber** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| numerator | number | Yes| Numerator, which is an integer.|
-| denominator | number | Yes| Denominator, which is an integer.|
+| numerator | number | Yes | Numerator, which is an integer. |
+| denominator | number | Yes | Denominator, which is an integer. |
 
 **Example**
 
@@ -1660,15 +1721,15 @@ Compares this **RationalNumber** object with a given object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| another | RationalNumber | Yes| Object used to compare with this **RationalNumber** object.|
+| another | RationalNumber | Yes | Object used to compare with this **RationalNumber** object. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
+| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object. |
 
 **Example**
 
@@ -1692,16 +1753,16 @@ Obtains the greatest common divisor of two specified integers.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| number1 | number | Yes| The first integer used to get the greatest common divisor.|
-| number2 | number | Yes| The second integer used to get the greatest common divisor.|
+| number1 | number | Yes | The first integer used to get the greatest common divisor. |
+| number2 | number | Yes | The second integer used to get the greatest common divisor. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Greatest common divisor obtained.|
+| number | Greatest common divisor obtained. |
 
 **Example**
 
@@ -1716,11 +1777,13 @@ Provides APIs to discard the least recently used data to make rooms for new elem
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
-| Name  | Type  | Readable| Writable| Description                  |
+| Name  | Type  | Readable | Writable | Description                  |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| length | number | Yes  | No  | Total number of values in this cache.|
+| length | number | Yes  | No  | Total number of values in this cache. |
 
 **Example**
 
@@ -1737,13 +1800,15 @@ constructor(capacity?: number)
 
 A constructor used to create a **LRUCache** instance. The default capacity of the cache is 64.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                        |
+| Name  | Type  | Mandatory | Description                        |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | No  | Capacity of the cache to create. The default value is **64**.|
+| capacity | number | No  | Capacity of the cache to create. The default value is **64**. |
 
 **Example**
 
@@ -1758,19 +1823,21 @@ updateCapacity(newCapacity: number): void
 
 Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                        |
+| Name     | Type  | Mandatory | Description                        |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | Yes  | New capacity of the cache.|
+| newCapacity | number | Yes  | New capacity of the cache. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
@@ -1787,13 +1854,15 @@ toString(): string
 
 Obtains the string representation of this cache.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| string | String representation of this cache.|
+| string | String representation of this cache. |
 
 **Example**
 
@@ -1813,13 +1882,15 @@ getCapacity(): number
 
 Obtains the capacity of this cache.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Capacity of the cache.|
+| number | Capacity of the cache. |
 
 **Example**
 
@@ -1833,6 +1904,8 @@ let result = pro.getCapacity();
 clear(): void
 
 Clears key-value pairs from this cache. The **afterRemoval()** method will be called to perform subsequent operations.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1851,13 +1924,15 @@ getCreateCount(): number
 
 Obtains the number of times that an object is created.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type  | Description               |
 | ------ | -------------------|
-| number | Number of times that objects are created.|
+| number | Number of times that objects are created. |
 
 **Example**
 
@@ -1885,13 +1960,15 @@ getMissCount(): number
 
 Obtains the number of times that the queried values are mismatched.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | Number of times that the queried values are mismatched.|
+| number | Number of times that the queried values are mismatched. |
 
 **Example**
 
@@ -1908,13 +1985,15 @@ getRemovalCount(): number
 
 Obtains the number of times that key-value pairs in the cache are recycled.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Number of times that key-value pairs in the cache are recycled.|
+| number | Number of times that key-value pairs in the cache are recycled. |
 
 **Example**
 
@@ -1932,13 +2011,15 @@ getMatchCount(): number
 
 Obtains the number of times that the queried values are matched.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Number of times that the queried values are matched.|
+| number | Number of times that the queried values are matched. |
 
 **Example**
 
@@ -1955,13 +2036,15 @@ getPutCount(): number
 
 Obtains the number of additions to this cache.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type  | Description                        |
 | ------ | ---------------------------- |
-| number | Number of additions to the cache.|
+| number | Number of additions to the cache. |
 
 **Example**
 
@@ -1977,13 +2060,15 @@ isEmpty(): boolean
 
 Checks whether this cache is empty.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type   | Description                                    |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the cache does not contain any value.|
+| boolean | Returns **true** if the cache does not contain any value. |
 
 **Example**
 
@@ -1999,25 +2084,27 @@ get(key: K): V | undefined
 
 Obtains the value of the specified key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description        |
+| Name | Type | Mandatory | Description        |
 | ------ | ---- | ---- | ------------ |
-| key    | K    | Yes  | Key based on which the value is queried.|
+| key    | K    | Yes  | Key based on which the value is queried. |
 
 **Return value**
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise.|
+| V \| undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2035,26 +2122,28 @@ put(key: K,value: V): V
 
 Adds a key-value pair to this cache.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                      |
+| Name | Type | Mandatory | Description                      |
 | ------ | ---- | ---- | -------------------------- |
 | key    | K    | Yes  | Key of the key-value pair to add.            |
-| value  | V    | Yes  | Value of the key-value pair to add.|
+| value  | V    | Yes  | Value of the key-value pair to add. |
 
 **Return value**
 
-| Type| Description                                                        |
+| Type | Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| V    | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
+| V    | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2071,13 +2160,15 @@ values(): V[]
 
 Obtains all values in this cache, listed from the most to the least recently accessed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
-| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed.|
+| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed. |
 
 **Example**
 
@@ -2095,13 +2186,15 @@ keys(): K[]
 
 Obtains all keys in this cache, listed from the most to the least recently accessed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
-| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed.|
+| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed. |
 
 **Example**
 
@@ -2117,25 +2210,27 @@ remove(key: K): V | undefined
 
 Removes the specified key and its value from this cache.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description          |
+| Name | Type | Mandatory | Description          |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | Yes  | Key to remove.|
+| key    | K    | Yes  | Key to remove. |
 
 **Return value**
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns **undefined** if the key does not exist; throws an error if **null** is passed in for **key**.|
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns **undefined** if the key does not exist; throws an error if **null** is passed in for **key**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2153,22 +2248,24 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 Performs subsequent operations after a value is removed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name  | Type   | Mandatory| Description                                                        |
+| Name  | Type   | Mandatory | Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | isEvict  | boolean | Yes  | Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.   |
 | key      | K       | Yes  | Key removed.                                              |
 | value    | V       | Yes  | Value removed.                                              |
-| newValue | V       | Yes  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
+| newValue | V       | Yes  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2200,25 +2297,27 @@ contains(key: K): boolean
 
 Checks whether this cache contains the specified key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| key    | K | Yes  | Key to check.|
+| key    | K | Yes  | Key to check. |
 
 **Return value**
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise.|
+| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2240,25 +2339,27 @@ createDefault(key: K): V
 
 Creates a value if the value of the specified key is not available.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description          |
+| Name | Type | Mandatory | Description          |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | Yes  | Key of which the value is missing.|
+| key    | K    | Yes  | Key of which the value is missing. |
 
 **Return value**
 
-| Type| Description              |
+| Type | Description              |
 | ---- | ------------------ |
-| V    | Value of the key.|
+| V    | Value of the key. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2275,13 +2376,15 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 Obtains a new iterator object that contains all key-value pairs in this object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type       | Description                |
 | ----------- | -------------------- |
-| [K,&nbsp;V] | Iterable array.|
+| [K,&nbsp;V] | Iterable array. |
 
 **Example**
 
@@ -2306,13 +2409,15 @@ Obtains a two-dimensional array in key-value pairs.
 >
 > This API cannot be used in .ets files.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type       | Description                          |
 | ----------- | ------------------------------ |
-| [K,&nbsp;V] | Two-dimensional array in key-value pairs.|
+| [K,&nbsp;V] | Two-dimensional array in key-value pairs. |
 
 **Example**
 
@@ -2339,17 +2444,19 @@ compareTo(other: ScopeComparable): boolean
 
 Compares two values and returns a Boolean value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description          |
+| Name | Type | Mandatory | Description          |
 | ------ | ---- | ---- | -------------- |
-| other  | [ScopeComparable](#scopecomparable8) | Yes | The other value to be compared with the current value.|
+| other  | [ScopeComparable](#scopecomparable8) | Yes | The other value to be compared with the current value. |
 
 **Return value**
 
-| Type| Description              |
+| Type | Description              |
 | ---- | ------------------ |
 | boolean | If the current value is greater than or equal to the input value, **true** is returned. Otherwise, **false** is returned.|
 
@@ -2381,11 +2488,13 @@ type ScopeType = ScopeComparable | number
 
 Defines the type of values in a **Scope** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | The value type is a number.|
+| number | The value type is a number. |
 | [ScopeComparable](#scopecomparable8) | The value type is ScopeComparable.|
 
 ## ScopeHelper<sup>9+</sup>
@@ -2398,20 +2507,22 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 A constructor used to create a **ScopeHelper** object with the specified upper and lower limits.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                  |
+| Name  | Type                    | Mandatory | Description                  |
 | -------- | ------------------------ | ---- | ---------------------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit of the **Scope** object.|
-| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit of the **Scope** object.|
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit of the **Scope** object. |
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit of the **Scope** object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2444,13 +2555,15 @@ toString(): string
 
 Obtains a string representation that contains this **Scope**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type  | Description                                  |
 | ------ | -------------------------------------- |
-| string | String representation containing the **Scope**.|
+| string | String representation containing the **Scope**. |
 
 **Example**
 
@@ -2483,25 +2596,27 @@ intersect(range: ScopeHelper): ScopeHelper
 
 Obtains the intersection of this **Scope** and the given **Scope**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                        | Mandatory| Description              |
+| Name | Type                        | Mandatory | Description              |
 | ------ | ---------------------------- | ---- | ------------------ |
-| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified.|
+| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified. |
 
 **Return value**
 
 | Type                          | Description                          |
 | ------------------------------ | ------------------------------ |
-| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
+| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given **Scope**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2539,26 +2654,28 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
 Obtains the intersection of this **Scope** and the given lower and upper limits.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description            |
+| Name  | Type                    | Mandatory | Description            |
 | -------- | ------------------------ | ---- | ---------------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit.|
-| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit.|
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit. |
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit. |
 
 **Return value**
 
 | Type                        | Description                                    |
 | ---------------------------- | ---------------------------------------- |
-| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given lower and upper limits.|
+| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given lower and upper limits. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2595,13 +2712,15 @@ getUpper(): ScopeType
 
 Obtains the upper limit of this **Scope**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type                    | Description                  |
 | ------------------------ | ---------------------- |
-| [ScopeType](#scopetype8) | Upper limit of this **Scope**.|
+| [ScopeType](#scopetype8) | Upper limit of this **Scope**. |
 
 **Example**
 
@@ -2634,13 +2753,15 @@ getLower(): ScopeType
 
 Obtains the lower limit of this **Scope**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type                    | Description                  |
 | ------------------------ | ---------------------- |
-| [ScopeType](#scopetype8) | Lower limit of this **Scope**.|
+| [ScopeType](#scopetype8) | Lower limit of this **Scope**. |
 
 **Example**
 
@@ -2673,26 +2794,28 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
 Obtains the union set of this **Scope** and the given lower and upper limits.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description            |
+| Name  | Type                    | Mandatory | Description            |
 | -------- | ------------------------ | ---- | ---------------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit.|
-| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit.|
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit. |
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit. |
 
 **Return value**
 
 | Type                        | Description                                |
 | ---------------------------- | ------------------------------------ |
-| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given lower and upper limits.|
+| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given lower and upper limits. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2729,25 +2852,27 @@ expand(range: ScopeHelper): ScopeHelper
 
 Obtains the union set of this **Scope** and the given **Scope**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                        | Mandatory| Description              |
+| Name | Type                        | Mandatory | Description              |
 | ------ | ---------------------------- | ---- | ------------------ |
-| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified.|
+| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified. |
 
 **Return value**
 
 | Type                        | Description                              |
 | ---------------------------- | ---------------------------------- |
-| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given **Scope**.|
+| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given **Scope**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2785,25 +2910,27 @@ expand(value: ScopeType): ScopeHelper
 
 Obtains the union set of this **Scope** and the given value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                    | Mandatory| Description            |
+| Name | Type                    | Mandatory | Description            |
 | ------ | ------------------------ | ---- | ---------------- |
-| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified. |
 
 **Return value**
 
 | Type                        | Description                            |
 | ---------------------------- | -------------------------------- |
-| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given value.|
+| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2839,25 +2966,27 @@ contains(value: ScopeType): boolean
 
 Checks whether a value is within this **Scope**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                    | Mandatory| Description            |
+| Name | Type                    | Mandatory | Description            |
 | ------ | ------------------------ | ---- | ---------------- |
-| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified. |
 
 **Return value**
 
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
-| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
+| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2893,25 +3022,27 @@ contains(range: ScopeHelper): boolean
 
 Checks whether a range is within this **Scope**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                        | Mandatory| Description              |
+| Name | Type                        | Mandatory | Description              |
 | ------ | ---------------------------- | ---- | ------------------ |
-| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified.|
+| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified. |
 
 **Return value**
 
 | Type   | Description                                                 |
 | ------- | ----------------------------------------------------- |
-| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
+| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2949,25 +3080,27 @@ clamp(value: ScopeType): ScopeType
 
 Limits a value to this **Scope**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                    | Mandatory| Description          |
+| Name | Type                    | Mandatory | Description          |
 | ------ | ------------------------ | ---- | -------------- |
-| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified. |
 
 **Return value**
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
+| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3029,22 +3162,22 @@ Encodes the input content into a Uint8Array object.
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description               |
+| Name | Type      | Mandatory | Description               |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode. |
+| options<sup>12+</sup> | [Type](#type10) | No | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. |
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| Uint8Array | Uint8Array object obtained.|
+| Uint8Array | Uint8Array object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3069,22 +3202,22 @@ Encodes the input content into a string. This API returns the result synchronous
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description               |
+| Name | Type      | Mandatory | Description               |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode. |
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'. |
 
 **Return value**
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | String obtained.|
+| string | String obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3109,22 +3242,22 @@ Decodes a string into a Uint8Array object. This API returns the result synchrono
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description                         |
+| Name | Type                          | Mandatory | Description                         |
 | ------ | ------------------------------ | ---- | ----------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
-| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters.|
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode. |
+| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters. |
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| Uint8Array | Uint8Array object obtained.|
+| Uint8Array | Uint8Array object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3149,22 +3282,22 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description                   |
+| Name | Type      | Mandatory | Description                   |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC**: Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode. |
+| options<sup>12+</sup> | [Type](#type10) | No | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC**: Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. |
 
 **Return value**
 
 | Type                     | Description                             |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3185,26 +3318,28 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 Encodes the input content into a string. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description                   |
+| Name | Type      | Mandatory | Description                   |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode. |
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'. |
 
 **Return value**
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| Promise&lt;string&gt; | Promise used to return the string obtained.|
+| Promise&lt;string&gt; | Promise used to return the string obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3225,26 +3360,28 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 Decodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description                             |
+| Name | Type                          | Mandatory | Description                             |
 | ------ | ------------------------------ | ---- | --------------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
-| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters.|
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode. |
+| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters. |
 
 **Return value**
 
 | Type                     | Description                             |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3274,15 +3411,15 @@ Constructor used to create a **StringDecoder** instance.
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description                             |
+| Name | Type                          | Mandatory | Description                             |
 | ------ | ------------------------------ | ---- | --------------------------------- |
-| encoding  | string | No  | Encoding type of the input data. The default value is **utf-8**.|
+| encoding  | string | No  | Encoding type of the input data. The default value is **utf-8**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3304,21 +3441,21 @@ Decodes a string. Any incomplete multi-byte characters at the end of Uint8Array 
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description               |
+| Name | Type      | Mandatory | Description               |
 | ------ | ---------- | ---- | ------------------- |
-| chunk  | string \| Uint8Array | Yes  | String to decode. Decoding is performed based on the input encoding type. If the input is of the Uint8Array type, decoding is performed normally. If the input is of the string type, decoding is performed in the original path.|
+| chunk  | string \| Uint8Array | Yes  | String to decode. Decoding is performed based on the input encoding type. If the input is of the Uint8Array type, decoding is performed normally. If the input is of the string type, decoding is performed in the original path. |
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| string | String decoded.|
+| string | String decoded. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3343,21 +3480,21 @@ Ends the decoding process and returns any remaining input stored in the internal
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description               |
+| Name | Type      | Mandatory | Description               |
 | ------ | ---------- | ---- | ------------------- |
-| chunk  | string \| Uint8Array | No  | String to decode. The default value is **undefined**.|
+| chunk  | string \| Uint8Array | No  | String to decode. The default value is **undefined**. |
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| string | String decoded.|
+| string | String decoded. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3384,7 +3521,7 @@ Enumerates the Base64 encoding formats.
 | BASIC | 0 | Basic format. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | MIME  | 1 | MIME format. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | BASIC_URL_SAFE<sup>12+</sup> | 2 | BASIC_URL_SAFE format.<br>This value is supported since API version 12. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| MIME_URL_SAFE<sup>12+</sup> | 3 | MIME_URL_SAFE format.<br>This value is supported since API version 12. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | MIME_URL_SAFE format.<br>This value is supported since API version 12. **Atomic service API**: This API can be used in atomic services since API version 12. |
 
 
 ## types<sup>8+</sup>
@@ -3396,6 +3533,8 @@ Provides APIs to check different types of built-in objects, such as ArrayBuffer,
 constructor()
 
 A constructor used to create a **Types** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3412,19 +3551,21 @@ isAnyArrayBuffer(value: Object): boolean
 
 Checks whether the input value is of the ArrayBuffer type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise. |
 
 **Example**
 
@@ -3442,19 +3583,21 @@ Checks whether the input value is of the ArrayBufferView type.
 
 **ArrayBufferView** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint32Array, Float32Array, **Float64Array**, and DataView.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the ArrayBufferView type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBufferView type; returns **false** otherwise. |
 
 **Example**
 
@@ -3470,19 +3613,21 @@ isArgumentsObject(value: Object): boolean
 
 Checks whether the input value is of the arguments type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the arguments type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the arguments type; returns **false** otherwise. |
 
 **Example**
 
@@ -3501,19 +3646,21 @@ isArrayBuffer(value: Object): boolean
 
 Checks whether the input value is of the ArrayBuffer type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise. |
 
 **Example**
 
@@ -3529,19 +3676,21 @@ isAsyncFunction(value: Object): boolean
 
 Checks whether the input value is an asynchronous function.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is an asynchronous function; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is an asynchronous function; returns **false** otherwise. |
 
 **Example**
 
@@ -3557,19 +3706,21 @@ isBooleanObject(value: Object): boolean
 
 Checks whether the input value is of the Boolean type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Boolean type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Boolean type; returns **false** otherwise. |
 
 **Example**
 
@@ -3585,19 +3736,21 @@ isBoxedPrimitive(value: Object): boolean
 
 Checks whether the input value is of the Boolean, Number, String, or Symbol type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Boolean, Number, String, or Symbol type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Boolean, Number, String, or Symbol type; returns **false** otherwise. |
 
 **Example**
 
@@ -3613,19 +3766,21 @@ isDataView(value: Object): boolean
 
 Checks whether the input value is of the DataView type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the DataView type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the DataView type; returns **false** otherwise. |
 
 **Example**
 
@@ -3642,19 +3797,21 @@ isDate(value: Object): boolean
 
 Checks whether the input value is of the Date type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Date type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Date type; returns **false** otherwise. |
 
 **Example**
 
@@ -3670,19 +3827,21 @@ isExternal(value: Object): boolean
 
 Checks whether the input value is of the native external type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the native external type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the native external type; returns **false** otherwise. |
 
 **Example**
 
@@ -3698,19 +3857,21 @@ isFloat32Array(value: Object): boolean
 
 Checks whether the input value is of the Float32Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Float32Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Float32Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -3726,19 +3887,21 @@ isFloat64Array(value: Object): boolean
 
 Checks whether the input value is of the Float64Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Float64Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Float64Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -3758,19 +3921,21 @@ Checks whether the input value is a generator function.
 >
 > This API cannot be used in .ets files.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a generator function; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is a generator function; returns **false** otherwise. |
 
 **Example**
 
@@ -3790,19 +3955,21 @@ Checks whether the input value is a generator object.
 >
 > This API cannot be used in .ets files.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a generator object; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is a generator object; returns **false** otherwise. |
 
 **Example**
 
@@ -3821,19 +3988,21 @@ isInt8Array(value: Object): boolean
 
 Checks whether the input value is of the Int8Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Int8Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int8Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -3849,19 +4018,21 @@ isInt16Array(value: Object): boolean
 
 Checks whether the input value is of the Int16Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Int16Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int16Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -3877,19 +4048,21 @@ isInt32Array(value: Object): boolean
 
 Checks whether the input value is of the Int32Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Int32Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int32Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -3905,19 +4078,21 @@ isMap(value: Object): boolean
 
 Checks whether the input value is of the Map type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Map type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Map type; returns **false** otherwise. |
 
 **Example**
 
@@ -3933,20 +4108,22 @@ isMapIterator(value: Object): boolean
 
 Checks whether the input value is of the MapIterator type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the MapIterator type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the MapIterator type; returns **false** otherwise. |
 
 **Example**
 
@@ -3963,19 +4140,21 @@ isNativeError(value: Object): boolean
 
 Checks whether the input value is of the Error type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Error type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Error type; returns **false** otherwise. |
 
 **Example**
 
@@ -3991,19 +4170,21 @@ isNumberObject(value: Object): boolean
 
 Checks whether the input value is a number object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a number object; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is a number object; returns **false** otherwise. |
 
 **Example**
 
@@ -4019,19 +4200,21 @@ isPromise(value: Object): boolean
 
 Checks whether the input value is a promise.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a promise; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is a promise; returns **false** otherwise. |
 
 **Example**
 
@@ -4047,19 +4230,21 @@ isProxy(value: Object): boolean
 
 Checks whether the input value is a proxy.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a proxy; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is a proxy; returns **false** otherwise. |
 
 **Example**
 
@@ -4079,19 +4264,21 @@ isRegExp(value: Object): boolean
 
 Checks whether the input value is of the RegExp type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the RegExp type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the RegExp type; returns **false** otherwise. |
 
 **Example**
 
@@ -4107,19 +4294,21 @@ isSet(value: Object): boolean
 
 Checks whether the input value is of the Set type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Set type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Set type; returns **false** otherwise. |
 
 **Example**
 
@@ -4136,19 +4325,21 @@ isSetIterator(value: Object): boolean
 
 Checks whether the input value is of the SetIterator type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the SetIterator type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the SetIterator type; returns **false** otherwise. |
 
 **Example**
 
@@ -4165,19 +4356,21 @@ isStringObject(value: Object): boolean
 
 Checks whether the input value is a string object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a string object; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is a string object; returns **false** otherwise. |
 
 **Example**
 
@@ -4197,19 +4390,21 @@ Checks whether the input value is a symbol object.
 >
 > This API cannot be used in .ets files.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a symbol object; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is a symbol object; returns **false** otherwise. |
 
 **Example**
 
@@ -4229,19 +4424,21 @@ Checks whether the input value is of the TypedArray type.
 
 **TypedArray** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Float32Array, Float64Array, and DataView.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the TypedArray type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the TypedArray type; returns **false** otherwise. |
 
 **Example**
 
@@ -4257,19 +4454,21 @@ isUint8Array(value: Object): boolean
 
 Checks whether the input value is of the Uint8Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Uint8Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint8Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -4285,19 +4484,21 @@ isUint8ClampedArray(value: Object): boolean
 
 Checks whether the input value is of the Uint8ClampedArray type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Uint8ClampedArray type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint8ClampedArray type; returns **false** otherwise. |
 
 **Example**
 
@@ -4313,19 +4514,21 @@ isUint16Array(value: Object): boolean
 
 Checks whether the input value is of the Uint16Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Uint16Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint16Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -4341,19 +4544,21 @@ isUint32Array(value: Object): boolean
 
 Checks whether the input value is of the Uint32Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Uint32Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint32Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -4369,19 +4574,21 @@ isWeakMap(value: Object): boolean
 
 Checks whether the input value is of the WeakMap type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the WeakMap type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the WeakMap type; returns **false** otherwise. |
 
 **Example**
 
@@ -4398,19 +4605,21 @@ isWeakSet(value: Object): boolean
 
 Checks whether the input value is of the WeakSet type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the WeakSet type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the WeakSet type; returns **false** otherwise. |
 
 **Example**
 
@@ -4426,19 +4635,21 @@ isBigInt64Array(value: Object): boolean
 
 Checks whether the input value is of the BigInt64Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the BigInt64Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the BigInt64Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -4454,19 +4665,21 @@ isBigUint64Array(value: Object): boolean
 
 Checks whether the input value is of the BigUint64Array type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the BigUint64Array type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the BigUint64Array type; returns **false** otherwise. |
 
 **Example**
 
@@ -4486,19 +4699,21 @@ Checks whether the input value is a module namespace object.
 >
 > This API cannot be used in .ets files.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a module namespace object; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is a module namespace object; returns **false** otherwise. |
 
 **Example**
 
@@ -4516,19 +4731,21 @@ isSharedArrayBuffer(value: Object): boolean
 
 Checks whether the input value is of the SharedArrayBuffer type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes| Object to check.|
+| value | Object | Yes | Object to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the SharedArrayBuffer type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the SharedArrayBuffer type; returns **false** otherwise. |
 
 **Example**
 
@@ -4547,9 +4764,9 @@ Checks whether the input value is of the SharedArrayBuffer type.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Total number of values in this cache.|
+| length | number | Yes | No | Total number of values in this cache. |
 
 **Example**
 
@@ -4574,9 +4791,9 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| capacity | number | No| Capacity of the cache to create. The default value is **64**.|
+| capacity | number | No | Capacity of the cache to create. The default value is **64**. |
 
 **Example**
 
@@ -4598,9 +4815,9 @@ Changes the cache capacity. If the new capacity is less than or equal to **0**, 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| newCapacity | number | Yes| New capacity of the cache.|
+| newCapacity | number | Yes | New capacity of the cache. |
 
 **Example**
 
@@ -4623,9 +4840,9 @@ Obtains the string representation of this cache.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| string | String representation of this cache.|
+| string | String representation of this cache. |
 
 **Example**
 
@@ -4651,9 +4868,9 @@ Obtains the capacity of this cache.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Capacity of the cache.|
+| number | Capacity of the cache. |
 
 **Example**
 
@@ -4697,9 +4914,9 @@ Obtains the number of return values for **createDefault()**.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Number of return values for **createDefault()**.|
+| number | Number of return values for **createDefault()**. |
 
 **Example**
 
@@ -4723,9 +4940,9 @@ Obtains the number of times that the queried values are mismatched.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Number of times that the queried values are mismatched.|
+| number | Number of times that the queried values are mismatched. |
 
 **Example**
 
@@ -4750,9 +4967,9 @@ Obtains the number of removals from this cache.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Number of removals from the cache.|
+| number | Number of removals from the cache. |
 
 **Example**
 
@@ -4778,9 +4995,9 @@ Obtains the number of times that the queried values are matched.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Number of times that the queried values are matched.|
+| number | Number of times that the queried values are matched. |
 
 **Example**
 
@@ -4805,9 +5022,9 @@ Obtains the number of additions to this cache.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Number of additions to the cache.|
+| number | Number of additions to the cache. |
 
 **Example**
 
@@ -4831,9 +5048,9 @@ Checks whether this cache is empty.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the cache does not contain any value.|
+| boolean | Returns **true** if the cache does not contain any value. |
 
 **Example**
 
@@ -4857,15 +5074,15 @@ Obtains the value of the specified key.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key based on which the value is queried.|
+| key | K | Yes | Key based on which the value is queried. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise.|
+| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise. |
 
 **Example**
 
@@ -4889,16 +5106,16 @@ Adds a key-value pair to this cache.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of the key-value pair to add.|
-| value | V | Yes| Value of the key-value pair to add.|
+| key | K | Yes | Key of the key-value pair to add. |
+| value | V | Yes | Value of the key-value pair to add. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| V | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
+| V | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**. |
 
 **Example**
 
@@ -4921,9 +5138,9 @@ Obtains all values in this cache, listed from the most to the least recently acc
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed.|
+| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed. |
 
 **Example**
 
@@ -4949,9 +5166,9 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed.|
+| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed. |
 
 **Example**
 
@@ -4975,15 +5192,15 @@ Removes the specified key and its value from this cache.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key to remove.|
+| key | K | Yes | Key to remove. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns an empty **Optional** object otherwise; throws an error if **null** is passed in for **key**.|
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns an empty **Optional** object otherwise; throws an error if **null** is passed in for **key**. |
 
 **Example**
 
@@ -5007,12 +5224,12 @@ Performs subsequent operations after a value is removed.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| isEvict | boolean | Yes| Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.|
-| key | K | Yes| Key removed.|
-| value | V | Yes| Value removed.|
-| newValue | V | Yes| New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
+| isEvict | boolean | Yes | Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity. |
+| key | K | Yes | Key removed. |
+| value | V | Yes | Value removed. |
+| newValue | V | Yes | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank. |
 
 **Example**
 
@@ -5051,15 +5268,15 @@ Checks whether this cache contains the specified key.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key to check.|
+| key | K | Yes | Key to check. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise.|
+| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise. |
 
 **Example**
 
@@ -5083,15 +5300,15 @@ Creates a value if the value of the specified key is not available.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of which the value is missing.|
+| key | K | Yes | Key of which the value is missing. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| V | Value of the key.|
+| V | Value of the key. |
 
 **Example**
 
@@ -5114,9 +5331,9 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [K,&nbsp;V] | Iterable array.|
+| [K,&nbsp;V] | Iterable array. |
 
 **Example**
 
@@ -5140,9 +5357,9 @@ Obtains a two-dimensional array in key-value pairs.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [K,&nbsp;V] | Two-dimensional array in key-value pairs.|
+| [K,&nbsp;V] | Two-dimensional array in key-value pairs. |
 
 **Example**
 
@@ -5173,10 +5390,10 @@ A constructor used to create a **Scope** object with the specified upper and low
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit of the **Scope** object.|
-| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit of the **Scope** object.|
+| lowerObj | [ScopeType](#scopetype8) | Yes | Lower limit of the **Scope** object. |
+| upperObj | [ScopeType](#scopetype8) | Yes | Upper limit of the **Scope** object. |
 
 **Example**
   ```ts
@@ -5214,9 +5431,9 @@ Obtains a string representation that contains this **Scope**.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| string | String representation containing the **Scope**.|
+| string | String representation containing the **Scope**. |
 
 **Example**
 
@@ -5257,15 +5474,15 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes | **Scope** specified. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given **Scope**.|
+| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given **Scope**. |
 
 **Example**
 
@@ -5309,16 +5526,16 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
-| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
+| lowerObj | [ScopeType](#scopetype8) | Yes | Lower limit. |
+| upperObj | [ScopeType](#scopetype8) | Yes | Upper limit. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given lower and upper limits.|
+| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given lower and upper limits. |
 
 **Example**
 
@@ -5361,9 +5578,9 @@ Obtains the upper limit of this **Scope**.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [ScopeType](#scopetype8) | Upper limit of this **Scope**.|
+| [ScopeType](#scopetype8) | Upper limit of this **Scope**. |
 
 **Example**
 
@@ -5404,9 +5621,9 @@ Obtains the lower limit of this **Scope**.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [ScopeType](#scopetype8) | Lower limit of this **Scope**.|
+| [ScopeType](#scopetype8) | Lower limit of this **Scope**. |
 
 **Example**
 
@@ -5447,16 +5664,16 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
-| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
+| lowerObj | [ScopeType](#scopetype8) | Yes | Lower limit. |
+| upperObj | [ScopeType](#scopetype8) | Yes | Upper limit. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Union set of this **Scope** and the given lower and upper limits.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given lower and upper limits. |
 
 **Example**
 
@@ -5499,15 +5716,15 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes | **Scope** specified. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Union set of this **Scope** and the given **Scope**.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given **Scope**. |
 
 **Example**
 
@@ -5551,15 +5768,15 @@ Obtains the union set of this **Scope** and the given value.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | [ScopeType](#scopetype8) | Yes| Value specified.|
+| value | [ScopeType](#scopetype8) | Yes | Value specified. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Union set of this **Scope** and the given value.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given value. |
 
 **Example**
 
@@ -5601,15 +5818,15 @@ Checks whether a value is within this **Scope**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | [ScopeType](#scopetype8) | Yes| Value specified.|
+| value | [ScopeType](#scopetype8) | Yes | Value specified. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
+| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise. |
 
 **Example**
 
@@ -5651,15 +5868,15 @@ Checks whether a range is within this **Scope**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes | **Scope** specified. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
+| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise. |
 
 **Example**
 
@@ -5704,15 +5921,15 @@ Limits a value to this **Scope**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | [ScopeType](#scopetype8) | Yes| Value specified.|
+| value | [ScopeType](#scopetype8) | Yes | Value specified. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
+| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**. |
 
 **Example**
 
@@ -5779,15 +5996,15 @@ Encodes the input content into a Uint8Array object. This API returns the result 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array object to encode.|
+| src | Uint8Array | Yes | Uint8Array object to encode. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained.|
+| Uint8Array | Uint8Array object obtained. |
 
 **Example**
 
@@ -5811,15 +6028,15 @@ Encodes the input content into a string. This API returns the result synchronous
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array object to encode.|
+| src | Uint8Array | Yes | Uint8Array object to encode. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| string | String obtained.|
+| string | String obtained. |
 
 **Example**
 
@@ -5843,15 +6060,15 @@ Decodes the input content into a Uint8Array object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array object or string to decode.|
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes | Uint8Array object or string to decode. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained.|
+| Uint8Array | Uint8Array object obtained. |
 
 **Example**
 
@@ -5875,15 +6092,15 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array object to encode.|
+| src | Uint8Array | Yes | Uint8Array object to encode. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained. |
 
 **Example**
 
@@ -5909,15 +6126,15 @@ Encodes the input content into a string. This API uses a promise to return the r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array object to encode.|
+| src | Uint8Array | Yes | Uint8Array object to encode. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the string obtained.|
+| Promise&lt;string&gt; | Promise used to return the string obtained. |
 
 **Example**
 
@@ -5944,15 +6161,15 @@ Decodes the input content into a Uint8Array object. This API uses a promise to r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array object or string to decode.|
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes | Uint8Array object or string to decode. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained. |
 
 **Example**
 

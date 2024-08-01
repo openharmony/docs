@@ -322,29 +322,42 @@ bm dump-shared -n com.ohos.lib
 bm dump-dependencies -n com.ohos.app -m entry
 ```
 
-## 常见问题
+## bm工具错误码
 
-### 安装HAP时提示“code:9568320 error: no signature file”
-**问题现象**
+### 9568320 签名文件不存在
+**错误信息**
 
-对HAP包签名后，在设备中运行HAP时提示“failed to install bundle. error: install no signature info”或“failed to install bundle. error: no signature file”。
-
+Failed to install bundle, no signature file.
 ![示例图](figures/zh-cn_image_0000001389116960.png)
 
-**解决措施**
+**错误描述**
 
-该问题是由于安装未签名的HAP导致，需要开发者对开发的HAP进行签名之后再安装。
+用户安装未签名的HAP包。
+
+**可能原因**
+
+HAP包未经签名认证。
+
+**处理步骤**
+
 1. 使用<!--RP3-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP3End-->。在连接设备后，重新为应用进行签名。
-1. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)
+2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)
+<br></br>
 
-### 安装HAP时提示“code:9568347 error: install parse native so failed”错误
-**问题现象**
+### 9568347 解析本地so文件失败
+**错误信息**
 
-在启动调试或运行C++应用/服务时，安装HAP出现错误，提示“error: install parse native so failed”错误信息。
+Error: install parse native so failed.
 
-**解决措施**
+**错误描述**
 
-该问题可能是由于设备支持的Abi类型与C++工程中配置的Abi类型不匹配，请通过如下步骤进行解决。
+在启动调试或运行C++应用/服务时，安装HAP包出现错误，提示“error: install parse native so failed”错误信息。
+
+**可能原因**
+
+设备支持的Abi类型与C++工程中配置的Abi类型不匹配。
+
+**处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
 2. 打开命令行工具，并进入SDK安装目录下的toolchains\{版本号}目录下。
@@ -366,17 +379,24 @@ bm dump-dependencies -n com.ohos.app -m entry
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
       * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
     * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
+<br></br>
 
-### 安装HAP时提示“code:9568344 error: install parse profile prop check error”错误
-**问题现象**
+
+### 9568344 解析配置文件失败
+**错误信息**
+
+Error: install parse profile prop check error.
+![示例图](figures/zh-cn_image_0000001585361412.png)
+
+**错误描述**
 
 在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: install parse profile prop check error”错误信息。
 
-![示例图](figures/zh-cn_image_0000001585361412.png)
+**可能原因**
 
-**解决措施**
+应用使用了应用特权，但应用的签名文件发生变化后未将新的签名指纹重新配置到设备的特权管控白名单文件install_list_capability.json中。
 
-该问题可能是由于应用使用了应用特权，但应用的签名文件发生变化后未将新的签名指纹重新配置到设备的特权管控白名单文件install_list_capability.json中，请通过如下步骤进行解决。
+**处理步骤**
 
 1. 获取新的签名指纹。
 
@@ -431,33 +451,44 @@ bm dump-dependencies -n com.ohos.app -m entry
     ```
 5. 设备重启后，重新安装新的应用即可。
 
-### 安装HAP时提示“code:9568305 error: dependent module does not exist”错误
-**问题现象**
+
+### 9568305 依赖的模块不存在
+**错误信息**
+
+Error: dependent module does not exist.
+![示例图](figures/zh-cn_image_0000001560338986.png)
+
+**错误描述**
 
 在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: dependent module does not exist”错误信息。
 
-![示例图](figures/zh-cn_image_0000001560338986.png)
+**可能原因**
 
-**解决措施**
+运行/调试的应用依赖的动态共享包（SharedLibrary）模块未安装导致安装报错。
 
-该问题是由于运行/调试的应用依赖的动态共享包（SharedLibrary）模块未安装导致安装报错，您可以通过如下方式进行解决：
+**处理步骤**
 
-* 先安装依赖的动态共享包（SharedLibrary）模块，再在应用运行配置页勾选Keep Application Data，点击OK保存配置，再运行/调试。
+1. 先安装依赖的动态共享包（SharedLibrary）模块，再在应用运行配置页勾选Keep Application Data，点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_0000001560201786.png)
-
-* 在运行配置页，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages，选择依赖的模块，点击OK保存配置，再进行运行/调试。
+2. 在运行配置页，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages，选择依赖的模块，点击OK保存配置，再进行运行/调试。
 ![示例图](figures/zh-cn_image_0000001610761941.png)
 
-### 安装HAP时提示“code:9568259 error: install parse profile missing prop”
-**问题现象**
+
+### 9568259 安装解析配置文件缺少字段
+**错误信息**
+
+Error: install parse profile missing prop.<br>
+![示例图](figures/zh-cn_image_0000001559130596.png)
+
+**错误描述**
 
 在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: install parse profile missing prop”错误信息。
 
-![示例图](figures/zh-cn_image_0000001559130596.png)
+**可能原因**
 
-**解决措施**
+配置文件app.json5和module.json5中必填字段缺失。
 
-出现该问题的原因是配置文件app.json5和module.json5中必填字段缺失。
+**处理步骤**
 
 * 方法1：请参考[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)<!--RP2End-->查看并补充必填字段。
 * 方法2：通过hilog日志判断缺失字段。
@@ -471,58 +502,84 @@ bm dump-dependencies -n com.ohos.app -m entry
 
     打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
 
-### 安装HAP时提示“code:9568258 error: install releaseType target not same”
-**问题现象**
+
+### 9568258 安装应用的releaseType与已安装应用的releaseType不相同
+**错误信息**
+
+Error: install releaseType target not same.<br>
+![示例图](figures/zh-cn_image_0000001609976041.png)
+
+**错误描述**
 
 在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: install releaseType target not same”错误信息。
 
-![示例图](figures/zh-cn_image_0000001609976041.png)
+**可能原因**
 
-**解决措施**
+设备上已安装的旧HAP和现在要安装的新HAP所使用的SDK中的releaseType值不一样。
 
-出现该问题的原因是设备上已安装的旧HAP和现在要安装的新HAP所使用的SDK中的releaseType值不一样。请先卸载设备上已安装的HAP，再安装新的HAP。
+**处理步骤**
 
-### 安装HAP时提示“code:9568322 error: signature verification failed due to not trusted app source”
-**问题现象**
+1. 请先卸载设备上已安装的HAP，再安装新的HAP。
+
+
+### 9568322 由于应用来源不可信，签名验证失败
+**错误信息**
+
+Error: signature verification failed due to not trusted app source.
+![示例图](figures/zh-cn_image_0000001585042216.png)
+
+**错误描述**
 
 在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: signature verification failed due to not trusted app source”错误信息。
 
-![示例图](figures/zh-cn_image_0000001585042216.png)
+**可能原因**
 
-**解决措施**
+签名中未包含该调试设备的UDID。
 
-该问题是由于签名中未包含该调试设备的UDID，请通过如下步骤进行解决。
+**处理步骤**
 
-* 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
-* 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
+1. 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
+2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
 ```
 //UDID获取命令
 hdc shell bm get -u
 ```
 
-### 安装HAP时提示“code:9568289 error: install failed due to grant request permissions failed”
-**问题现象**
+
+### 9568289 权限请求失败导致安装失败
+**错误信息**
+
+Error: install failed due to grant request permissions failed.
+![示例图](figures/zh-cn_image_0000001585201996.png)
+
+**错误描述**
 
 在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: install failed due to grant request permissions failed”错误信息。
 
-![示例图](figures/zh-cn_image_0000001585201996.png)
+**可能原因**
 
-**解决措施**
+默认应用等级为normal，只能使用normal等级的权限，如果使用了system_basic或system_core等级的权限，将导致报错。
 
-该问题是由于默认应用等级为normal，只能使用normal等级的权限，如果使用了system_basic或system_core等级的权限，将导致报错。
+**处理步骤**
 
-在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
 
-### 安装HAP时提示“code:9568297 error: install failed due to older sdk version in the device”
-**问题现象**
+
+### 9568297 由于设备sdk版本较低导致安装失败
+**错误信息**
+
+Error: install failed due to older sdk version in the device.
+![示例图](figures/zh-cn_image_0000001635521909.png)
+
+**错误描述**
 
 在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: install failed due to older sdk version in the device”错误信息。
 
-![示例图](figures/zh-cn_image_0000001635521909.png)
+**可能原因**
 
-**解决措施**
+该问题是由于编译打包所使用的SDK版本与设备镜像版本不匹配。
 
-该问题是由于编译打包所使用的SDK版本与设备镜像版本不匹配。不匹配的场景包括：
+**处理步骤**
 
 * 场景一：设备上的镜像版本低于编译打包的SDK版本，请更新设备镜像版本。查询设备镜像版本命令：
   ```
@@ -532,26 +589,40 @@ hdc shell bm get -u
 
 * 场景二：对于需要运行在OpenHarmony设备上的应用，请确认runtimeOS已改为OpenHarmony。
 
-### 安装HAP时提示“code:9568332 error: install sign info inconsistent”
-**问题现象**
+
+### 9568332 签名不一致导致安装失败
+**错误信息**
+
+Error: install sign info inconsistent.
+![示例图](figures/zh-cn_image_0000001635761329.png)
+
+**错误描述**
 
 在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: install sign info inconsistent”错误信息。
 
-![示例图](figures/zh-cn_image_0000001635761329.png)
+**可能原因**
 
-**解决措施**
+设备上已安装的应用与新安装的应用中签名不一致。如果在Edit Configurations中勾选了“Keep Application Data”（不卸载应用，覆盖安装），并且重新进行了签名，将导致该报错。
 
-该问题是由于设备上已安装的应用与新安装的应用中签名不一致。如果在**Edit Configurations**中勾选了“Keep Application Data”（不卸载应用，覆盖安装），并且重新进行了签名，将导致该报错。
+**处理步骤**
 
-请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
+1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
 
-### 安装HAP时提示“code:9568266 error: install permission denied”错误
-**问题现象**
+
+### 9568266 安装权限拒绝
+**错误信息**
+
+Error: install permission denied.
+![示例图](figures/zh-cn_image_9568266.png)
+
+**错误描述**
 
 使用hdc install安装HAP时出现错误，提示“code:9568266 error: install permission denied”错误信息。
 
-![示例图](figures/zh-cn_image_9568266.png)
+**可能原因**
 
-**解决措施**
+hdc install不能安装release签名的企业应用。
 
-hdc install不能安装release签名的企业应用。请使用debug签名的应用进行安装调试。
+**处理步骤**
+
+1. 请使用hdc install指令安装调试debug签名的企业应用。

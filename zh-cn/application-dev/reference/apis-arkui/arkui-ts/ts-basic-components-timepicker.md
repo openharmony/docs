@@ -134,6 +134,8 @@ dateTimeOptions(value: DateTimeOptions)
 
 设置时分秒是否显示前置0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -145,6 +147,8 @@ dateTimeOptions(value: DateTimeOptions)
 ### enableHapticFeedback<sup>12+</sup>
 
 enableHapticFeedback(enable: boolean)
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|

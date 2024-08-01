@@ -25,14 +25,14 @@ The table below uses promise as an example to describe the APIs used for develop
 
 **Table 1** Main APIs for agent-powered reminders
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a reminder.|
-| cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a reminder.|
-| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application.|
-| cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application.|
-| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Adds a notification slot.|
-| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a notification slot.|
+| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a reminder. |
+| cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a reminder. |
+| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application. |
+| cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application. |
+| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Adds a notification slot. |
+| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a notification slot. |
 
 
 ## How to Develop
@@ -44,9 +44,9 @@ The table below uses promise as an example to describe the APIs used for develop
 3. Import the modules.
    
    ```ts
-   import reminderAgentManager from '@ohos.reminderAgentManager';
-   import notificationManager from '@ohos.notificationManager';
-   import { BusinessError } from '@ohos.base';
+   import { reminderAgentManager } from '@kit.BackgroundTasksKit';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. Define a reminder. You can define the following types of reminders based on project requirements.
@@ -164,24 +164,24 @@ The table below uses promise as an example to describe the APIs used for develop
 
 5. Publish the reminder. After the reminder is published, your application can use the agent-powered reminder feature.
    
-     ```ts
-     reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
-       console.info('Succeeded in publishing reminder. ');
-       let reminderId: number = res; // ID of the published reminder.
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
-     })
-     ```
-   
-6. Delete the reminder as required.
+   ```ts
+    reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
+      console.info('Succeeded in publishing reminder. ');
+      let reminderId: number = res; // ID of the published reminder.
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
+    })
+   ```
 
-     ```ts
-     let reminderId: number = 1;
-     // The reminder ID is obtained from the callback after the reminder is published.
-     reminderAgentManager.cancelReminder(reminderId).then(() => {
-       console.log('Succeeded in canceling reminder.');
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
-     });
-     ```
+6. Delete the reminder as required.
+   
+   ```ts
+    let reminderId: number = 1;
+    // The reminder ID is obtained from the callback after the reminder is published.
+    reminderAgentManager.cancelReminder(reminderId).then(() => {
+      console.log('Succeeded in canceling reminder.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
+    });
+   ```
 

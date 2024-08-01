@@ -555,24 +555,31 @@ setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 | --------------------------------- | -------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵变换后的对象。 |
 
+> **说明：**
+> 需要配合scale({centerX:0,centerY:0,x:1})保证变换的中心点是组件左上角。
+
 **示例：**
 
 ```ts
-import { matrix4 } from '@kit.ArkUI';
+import { matrix4 } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:200, y:0}, {x:0, y:200}, {x:200, y:200} ],
-    dst:[{x:10, y:0}, {x:250, y:0}, {x:0, y:200}, {x:200, y:200} ], pointCount:4})
+  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:500, y:500} ],
+    dst:[{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:750, y:1000} ], pointCount:4})
 
   build() {
     Stack() {
-      Image($r("app.media.transition_image1"))
+      Column().backgroundColor(Color.Blue)
+        .width('500px')
+        .height('500px')
+      Image($r('app.media.transition_image1'))
+        .scale({centerX:0,centerY:0,x:1})
         .transform(this.matrix1)
-        .width(200)
-        .height(200)
-    }.width("100%").height("100%")
+        .width('500px')
+        .height('500px')
+    }.width("100%").height("100%").opacity(0.5)
   }
 }
 ```

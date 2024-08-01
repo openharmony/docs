@@ -49,6 +49,40 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 | ------ | ------ | ---- | ---- | ----------------- |
 | length | number | 是   | 否   | ConcatArray的元素个数。 |
 
+### [index: number]
+
+readonly &#91;index: number&#93;: T
+
+返回ConcatArray指定索引位置的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 参数名    | 类型   | 必填 | 说明                                                            |
+| ----- | ------ | ---- | ------------------------------------------------------------------ |
+| index | number | 是   | 所需代码单元的从零开始的索引。当index<0 或者index>=length，则会抛出错误。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ----- | ------------------------ |
+| T | ConcatArray给定的元素数据类型。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                             |
+| ------- | ------------------------------------ |
+| 401 |  Parameter error. Illegal index.         |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let concatArray : collections.ConcatArray<number> = new collections.Array<number>(1, 2, 4);
+console.info("Element at index 1: ", concatArray[1]);
+```
+
 ### join
 
 join(separator?: string): string
@@ -200,6 +234,37 @@ ArkTS Array的构造函数，通过开发者提供的元素进行初始化。
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4);
 ```
+### constructor
+
+constructor(...items: T[])
+
+ArkTS Array的构造函数，通过开发者提供的元素进行初始化。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                            |
+| ------ | ---- | ---- | ------------------------------- |
+| items  | T[]  | 否   | 初始化ArkTS Array的元素。       |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                            |
+| -------- | --------------------------------------------------- |
+| 401      | Parameter error.                                    |
+| 10200012 | The Array's constructor cannot be directly invoked. |
+
+**示例：**
+
+```ts
+let arrayPara  = [1,2,3];
+let array = new collections.Array<number>(...arrayPara);
+```
 
 ### create
 
@@ -276,6 +341,7 @@ let array : Array<string> = ['str1', 'str2', 'str3']; // 原生Array<T>，T是Se
 let sendableArray = collections.Array.from<string>(array); // 返回Sendable Array<T>
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例
 let array : Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', 'str6'], ['str7', 'str8', 'str9']]; // 原生Array<T>，T是非Sendable数据类型。
@@ -1041,7 +1107,7 @@ fill(value: T, start?: number, end?: number): Array\<T>
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | T      | 是   | 要填充的值。                                           |
 | start  | number | 否   | 开始填充的索引。默认值为0。                            |
-| end    | number | 否   | 结束填充的索引。如果省略，则填充到Array的最后一个元素。 |
+| end    | number | 否   | 结束填充的索引（不包括该元素）。如果省略，则填充到Array的最后一个元素。 |
 
 **返回值：**
 
@@ -1265,6 +1331,80 @@ let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let removeArray = array.splice(2, 2, 6, 7, 8); // array内容变为[1, 2, 6, 7, 8, 5]，返回[3, 4]
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let array= new collections.Array<number>(1, 2, 3, 4);
+
+for (let item of array) {
+  console.info(`value : ${item}`);
+}
+```
+
+### [index: number]
+
+&#91;index: number&#93;: T
+
+返回Array指定索引位置的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 参数名    | 类型   | 必填 | 说明                                                            |
+| ----- | ------ | ---- | ------------------------------------------------------------------ |
+| index | number | 是   | 所需代码单元的从零开始的索引。当index<0 或者index>=length，则会抛出错误。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ----- | ------------------------ |
+|   T   | Array给定的元素数据类型。  |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                             |
+| ------- | ------------------------------------ |
+| 401 |        Parameter error.                  |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let array = new collections.Array<number>(1, 2, 4);
+console.info("Element at index 1: ", array[1]);
+```
+
 ## collections.Map
 
 一种非线性数据结构。
@@ -1326,6 +1466,7 @@ const myMap = new collections.Map<number, string>([
 ]);
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 @Sendable
@@ -1594,6 +1735,7 @@ new collections.Map<string, number>([
 });
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 new collections.Map<string, number>([
@@ -1716,6 +1858,7 @@ const myMap = new collections.Map<string, string>();
 myMap.set("foo", "bar")
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 let obj = new Object();
@@ -1724,6 +1867,49 @@ const myMap: collections.Map<string, Object> = new collections.Map<string, Objec
 myMap.set("foo", obj);
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let map = new collections.Map<number, string>([
+    [0, "one"],
+    [1, "two"],
+    [2, "three"],
+    [3, "four"]
+]);
+
+let keys = Array.from(map.keys());
+for (let key of keys) {
+  console.info("key:" + key);
+  console.info("value:" + map.get(key));
+}
+```
 
 ## collections.Set
 
@@ -1779,6 +1965,7 @@ const mySet = new collections.Set<number>();
 const mySet = new collections.Set<number>([1, 2, 3, 4, 5]);
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 @Sendable
@@ -2027,6 +2214,7 @@ new collections.Set<string>(['foo', 'bar', 'baz']).forEach((value1, value2, set)
 });
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 new collections.Set<string>(['foo', 'bar', 'baz']).forEach((value1, value2, set) => {
@@ -2101,12 +2289,52 @@ const mySet: collections.Set<string> = new collections.Set<string>();
 mySet.add("foo");
 ```
 
+<!--code_no_check-->
 ```ts
 // 反例：
 let obj = new Object();
 const mySet: collections.Set<Object> = new collections.Set<Object>();
 // Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
 mySet.add(obj);
+```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let set = new collections.Set<number>([1, 2, 3, 4, 5]);
+
+let val: Array<number> = Array.from(set.values())
+for (let item of val) {
+  console.info("value: " + item);
+}
 ```
 
 ## collections.ArrayBuffer
@@ -2324,10 +2552,10 @@ ArkTS TypedArray排序函数类型。
 
 ## collections.TypedArray
 
-一种线性数据结构，底层基于[ArkTS ArrayBuffer](#collectionsarraybuffer)实现。目前支持包括Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array以及Uint8ClampedArray。
+一种线性数据结构，底层基于[ArkTS ArrayBuffer](#collectionsarraybuffer)实现。目前支持包括Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array、Uint8ClampedArray以及Float32Array。
 
 文档中存在泛型的使用，涉及以下泛型标记符：
-- TypedArray: 指上述7种具体的ArkTS TypedArray。
+- TypedArray: 指上述8种具体的ArkTS TypedArray。
 
 ### 属性
 
@@ -2370,6 +2598,7 @@ let uint16Array: collections.Uint16Array = new collections.Uint16Array();
 let int32Array: collections.Int32Array = new collections.Int32Array();
 let uint32Array: collections.Uint32Array = new collections.Uint32Array();
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray();
+let float32Array: collections.Float32Array = new collections.Float32Array();
 ```
 
 ### constructor
@@ -2407,6 +2636,7 @@ let uint16Array: collections.Uint16Array = new collections.Uint16Array(12);
 let int32Array: collections.Int32Array = new collections.Int32Array(12);
 let uint32Array: collections.Uint32Array = new collections.Uint32Array(12);
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray(12);
+let float32Array: collections.Float32Array = new collections.Float32Array(12);
 ```
 
 ### constructor
@@ -3501,6 +3731,85 @@ for (const value of iterator) {
 }
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;number&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let int32Array: collections.Int32Array = collections.Int32Array.from([1, 2, 3, 4, 5, 6]);
+
+for (let item of int32Array) {
+  console.info(`value : ${item}`);
+}
+```
+
+### [index: number]
+
+&#91;index: number&#93;: number
+
+返回TypedArray指定索引位置的元素，适用于Int8Array，Int16Array，Int32Array，Uint8Array，Uint16Array，Uint32Array，Float32Array和Float64Array 8种数据类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 参数名    | 类型   | 必填 | 说明                     |
+| ----- | ------ | ---- | -------------------------- |
+| index | number | 是   | 所需代码单元的从零开始的索引。|
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ----- | ---------------------|
+| number | 返回number数据类型。 |
+
+**示例：**
+
+```ts
+let int8Array = collections.Int8Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int8Array[1]);
+let int16Array = collections.Int16Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int16Array[1]);
+let int32Array = collections.Int32Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int32Array[1]);
+let uint8Array = collections.Uint8Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint8Array[1]);
+let uint16Array = collections.Uint16Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint16Array[1]);
+let uint32Array = collections.Uint32Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint32Array[1]);
+let float32Array = collections.Float32Array.from([1, 2, 4]);
+console.info("Element at index 1: ", float32Array[1]);
+let uint8Clamped = collections.Uint8ClampedArray.from([1, 2, 4]);
+console.info("Element at index 1: ", uint8Clamped[1]);
+```
+
 ## collections.BitVector
 
 BitVector是一种线性数据结构，底层基于数组实现。BitVector中存储元素为bit值，能存储和处理bit级别的操作。
@@ -4102,4 +4411,79 @@ while (!temp.done) {
   console.info(JSON.stringify(temp.value));
   temp = iter.next();
 } // 依次输出 0,1,0,1,0
+```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;number&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+
+for (let item of bitVector) {
+  console.info("value: " + item);
+}
+```
+
+### [index: number]
+
+&#91;index: number&#93;: number
+
+返回BitVector指定索引位置的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 参数名    | 类型   | 必填 | 说明                     |
+| ----- | ------ | ---- | -------------------------- |
+| index | number | 是   | 所需代码单元的从零开始的索引。|
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ----- | ---------------------|
+| number | 返回number数据类型。 |
+
+**示例：**
+
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+console.info("BitVector Element Index at 1: " + bitVector[1]);
 ```

@@ -91,7 +91,7 @@ Example:
 let n1 = 3.14;
 let n2 = 3.141592;
 let n3 = .5;
-let n4 = 1e10;
+let n4 = 1e2;
 
 function factorial(n: number): number {
   if (n <= 1) {
@@ -212,17 +212,14 @@ class Cat { sleep () {}; meow () {} }
 class Dog { sleep () {}; bark () {} }
 class Frog { sleep () {}; leap () {} }
 
-type Animal = Cat | Dog | Frog | number
+type Animal = Cat | Dog | Frog
 
-let animal: Animal = new Cat()
-if (animal instanceof Frog) {
-  let frog: Frog = animal as Frog // animal is of type Frog here
-  animal.leap()
-  frog.leap()
-  // As a result frog leaps twice
+function foo(animal: Animal) {
+  if (animal instanceof Frog) {
+    animal.leap();  // animal is of type Frog here
+  }
+  animal.sleep(); // Any animal can sleep
 }
-
-animal.sleep () // Any animal can sleep
 ```
 
 #### Type `Aliases`
@@ -232,7 +229,7 @@ Type `aliases` provides names for anonymous types (array, function, object liter
 ```typescript
 type Matrix = number[][];
 type Handler = (s: string, no: number) => string;
-type Predicate <T> = (x: T) => Boolean;
+type Predicate <T> = (x: T) => boolean;
 type NullableObject = Object | null;
 ```
 

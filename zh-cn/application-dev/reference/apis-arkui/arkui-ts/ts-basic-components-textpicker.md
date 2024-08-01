@@ -57,6 +57,8 @@ TextPicker(options?: TextPickerOptions)
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10类型说明)[] | 否   | 联动数据。 |
 ## DividerOptions<sup>12+</sup>类型说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名      | 参数类型      | 必填 | 参数描述                                                       |
 | ----------- | ------------- | ---- | -------------------------------------------------------------- |
 | strokeWidth | [Dimension](ts-types.md#dimension10)     | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。 |
@@ -172,6 +174,8 @@ divider(value: DividerOptions | null)
 
 startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -184,6 +188,8 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 gradientHeight(value: Dimension)
 
 设置渐隐效果高度，不设置该属性则显示默认渐隐效果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -209,10 +215,10 @@ onAccept(callback: (value: string, index: number) => void)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                 |
-| ------ | ------- | ---- | -------------------- |
-| value  | boolean | 是   | 当前选中项的文本。   |
-| index  | number  | 是   | 当前选中项的索引值。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| value  | string | 是   | 当前选中项的文本。   |
+| index  | number | 是   | 当前选中项的索引值。 |
 
 ### onCancel<sup>(deprecated) </sup>
 
@@ -365,7 +371,12 @@ struct TextPickerExample {
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
         .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
-        .divider({ strokeWidth: 10, color: Color.Red, startMargin: 10, endMargin: 20 } as DividerOptions)
+        .divider({
+          strokeWidth: 10,
+          color: Color.Red,
+          startMargin: 10,
+          endMargin: 20
+        } as DividerOptions)
     }.width('100%').height('100%')
   }
 }

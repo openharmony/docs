@@ -17,7 +17,7 @@ import { dragController } from "@kit.ArkUI";
 
 ## dragController.executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:AsyncCallback\<DragEventParam>)
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:AsyncCallback\<DragEventParam>): void
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回结果。
 
@@ -612,10 +612,10 @@ struct DragControllerPage {
 
 拖拽结束返回结果的回调。
 
-| 名称        | 类型   | 必填 | 说明                           |
-| ----------- | ------ | ---- | ------------------------------ |
-| event       | number | 是   | 拖拽事件信息，仅包括拖拽结果。 |
-| extraParams | string | 是   | 拖拽事件额外信息。             |
+| 名称        | 类型                                                         | 必填 | 说明                           |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
+| extraParams | string                                                       | 是   | 拖拽事件额外信息。             |
 
 ## dragController.getDragPreview<sup>11+</sup>
 

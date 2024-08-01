@@ -14,3 +14,5 @@
   - [使用AVScreenCapture录屏取原始码流(C/C++)](using-avscreencapture-for-buffer.md)
   - [使用AVScreenCapture录屏保存到文件(C/C++)](using-avscreencapture-for-file.md)
   - [获取视频缩略图](avimagegenerator.md)
+- 视频转码
+  - [使用AVTranscoder开发视频转码功能](using-avtranscoder-for-transcodering.md)

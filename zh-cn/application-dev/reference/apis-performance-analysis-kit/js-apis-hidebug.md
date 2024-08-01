@@ -895,14 +895,22 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 
 ## GcStats<sup>12+</sup>
 
-用于存储GC统计信息的键值对类型`Record<string,number>`。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+type GcStats = Record&lt;string, number&gt;
+
+用于存储GC统计信息的键值对。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 参数名                     | 类型   | 必填 | 说明                      |
-|-------------------------| ------ | --- |------------------------- |
-| ark.gc.gc-count         | number | 是  |  当前线程的GC次数。|
-| ark.gc.gc-time          | number | 是  |  当前线程触发的GC总耗时，以ms为单位。 |
-| ark.gc.gc-bytes-allocated | number | 是  | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
-| ark.gc.gc-bytes-freed   | number | 是 | 当前线程GC成功回收的内存，以B为单位。|
-| ark.gc.fullgc-longtime-count | number | 是 |  当前线程超长fullGC次数。 |
+| 类型      | 说明                          |
+| -----------| ---------------------------- |
+| Record&lt;string, number&gt;     | 表示值类型为Record键值对。     |
+
+其中GcStats中可包含的键值信息如下：
+
+| 参数名                     | 类型   | 说明                      |
+|-------------------------| ------ |------------------------- |
+| ark.gc.gc-count         | number |  当前线程的GC次数。|
+| ark.gc.gc-time          | number |  当前线程触发的GC总耗时，以ms为单位。 |
+| ark.gc.gc-bytes-allocated | number | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
+| ark.gc.gc-bytes-freed   | number | 当前线程GC成功回收的内存，以B为单位。|
+| ark.gc.fullgc-longtime-count | number |  当前线程超长fullGC次数。 |

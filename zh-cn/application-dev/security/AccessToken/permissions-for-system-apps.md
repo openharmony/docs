@@ -313,6 +313,18 @@
 
 **起始版本**：12
 
+### ohos.permission.GET_ALL_PROCESSES
+
+允许系统服务或系统应用查看/proc下全部文件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 允许应用管理系统本地账号。
@@ -2729,6 +2741,34 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_UWB
+
+允许系统应用管理UWB功能。
+
+例如开关UWB、查询芯片类型、查询UWB支持能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.USE_UWB_RANGING
+
+允许系统应用使用UWB测距功能。
+
+例如打开测距会话、启动测距、停止测距、关闭测距会话等。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_FINDNETWORK
 
 允许应用管理“查找”网络开关，并可以对物品进行配对、解配对。
@@ -3449,6 +3489,30 @@
 
 **起始版本**：12
 
+### ohos.permission.DUMP_AUDIO
+
+允许应用启动音频框架dump能力，将音频数据落盘到本地。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.RECEIVE_FUSION_MESSAGES
+
+允许系统服务或系统应用接收融合服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 允许应用发布位置管理相关的公共事件。
@@ -3461,9 +3525,33 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_MULTICORE_HYBRID_ABILITY
+
+允许应用访问智能手表系统服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_DEVICE_COLLABORATION_SERVICE
 
 允许应用使用多屏服务的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_APP_DOMAIN_BUNDLE_INFO
+
+允许应用访问应用和域名的映射关系。
 
 **权限级别**：system_basic
 
@@ -3988,3 +4076,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+允许应用安装开发者内测构建应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12

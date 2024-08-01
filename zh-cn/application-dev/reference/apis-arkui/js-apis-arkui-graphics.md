@@ -214,6 +214,22 @@ get size(): Size
 | ------------- | ---------------- |
 | [Size](#size) | 画布的宽度和高度。 |
 
+### sizeInPixel
+
+get sizeInPixel(): Size
+
+获取以px为单位的画布的宽度和高度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [Size](#size) | 画布的宽度和高度，以px为单位。 |
+
 ### canvas
 
 get canvas(): drawing.Canvas
@@ -241,6 +257,7 @@ class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
     const size = context.size;
     const canvas = context.canvas;
+    const sizeInPixel = context.sizeInPixel;
   }
 }
 
@@ -291,15 +308,6 @@ struct Index {
 | right  | T    | 是   | 是   | 右侧边框的属性。 |
 | bottom | T    | 是   | 是   | 底部边框的属性。 |
 
-## Vector2T\<T><sup>12+</sup>
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 可读 | 可写 | 说明              |
-| ---- | ---- | ---- | ---- | ----------------- |
-| x    | T    | 是   | 是   | 向量x轴方向的值。 |
-| y    | T    | 是   | 是   | 向量y轴方向的值。 |
-
 ## LengthUnit<sup>12+</sup>
 
 长度属性单位枚举。
@@ -346,11 +354,11 @@ struct Index {
 
 用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
 
+### 属性
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**属性：**
 
 | 名称   | 类型 | 可读 | 可写 | 说明             |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
@@ -1331,6 +1339,8 @@ ShapeClip的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ### setRectShape<sup>12+</sup>
 
 setRectShape(rect: Rect): void
@@ -1338,6 +1348,8 @@ setRectShape(rect: Rect): void
 用于裁剪矩形。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1410,6 +1422,8 @@ setRoundRectShape(roundRect: RoundRect): void
 用于裁剪圆角矩形。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1487,8 +1501,9 @@ setCircleShape(circle: Circle): void
 
 用于裁剪圆形。
 
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1556,6 +1571,8 @@ setOvalShape(oval: Rect): void
 用于裁剪椭圆形。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1627,6 +1644,8 @@ setCommandPath(path: CommandPath): void
 用于裁剪路径绘制指令。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

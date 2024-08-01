@@ -69,6 +69,8 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 ## EditableTitleBarItem<sup>12+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [EditableTitleBarMenuItem](#editabletitlebarmenuitem) | 左侧头像的单个菜单类型。 |
@@ -137,7 +139,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.PNG)
+![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
 
 ### 示例2
 
@@ -249,4 +251,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.PNG)
+![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.png)
