@@ -641,6 +641,15 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeAllChildren) (ArkUI_NodeHandle parent)
 
 0 - 成功。 401 - 函数参数异常。
 
+### unregisterNodeCustomEventReceiver
+
+```
+void(* ArkUI_NativeNodeAPI_1::unregisterNodeCustomEventReceiver) ()
+```
+**描述：**
+
+反注册自定义节点事件回调统一入口函数。
+
 
 ### unregisterNodeEventReceiver
 
