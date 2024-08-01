@@ -2138,5 +2138,4 @@ struct TextInputExample {
 }
 ```
 
-![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
 

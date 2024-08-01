@@ -1407,5 +1407,3 @@ struct TextExample11 {
   }
 }
 ```
-
-![textEditMenuOptions](figures/textEditMenuOptions.gif)

@@ -1672,5 +1672,4 @@ struct TextAreaExample {
 }
 ```
 
-![textAreaEditMenuOptions](figures/textAreaEditMenuOptions.gif)
 
