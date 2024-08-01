@@ -739,6 +739,6 @@ Describes the information about a continuous-task notification.
 
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| slotType       | number | Yes   | [Channel type](../apis-notification-kit/js-apis-notificationManager.md#slottype) of the continuous-task notification.|
-| contentType | number | Yes   | [Content type](../apis-notification-kit/js-apis-notificationManager.md#contenttype) of the continuous-task notification.|
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | Yes   | Slot type of the continuous-task notification.|
+| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | Yes   | Content type of the continuous-task notification.|
 | notificationId | number | Yes   | ID of the continuous-task notification.|

@@ -6,7 +6,7 @@
 An application is suspended after it runs in the background for a short period of time. If the application needs to execute a short-time task in the background, for example, saving the status, it can request a transient task to extend the running time in the background.
 
 
-### Constraints
+## Constraints
 
 - **When to request**: An application can request a transient task when it is running in the foreground or through the **onBackground** callback.
 
@@ -32,11 +32,11 @@ The table below lists the main APIs used for transient task development. For det
 
 **Table 1** Main APIs for transient tasks
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo | Requests a transient task.|
-| getRemainingDelayTime(requestId: number): Promise&lt;number&gt; | Obtains the remaining time of a transient task.|
-| cancelSuspendDelay(requestId: number): void | Cancels a transient task.|
+| requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo | Requests a transient task. |
+| getRemainingDelayTime(requestId: number): Promise&lt;number&gt; | Obtains the remaining time of a transient task. |
+| cancelSuspendDelay(requestId: number): void | Cancels a transient task. |
 
 
 ## How to Develop

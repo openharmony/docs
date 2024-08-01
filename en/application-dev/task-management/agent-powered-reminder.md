@@ -25,14 +25,14 @@ The table below uses promise as an example to describe the APIs used for develop
 
 **Table 1** Main APIs for agent-powered reminders
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a reminder.|
-| cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a reminder.|
-| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application.|
-| cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application.|
-| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Adds a notification slot.|
-| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a notification slot.|
+| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a reminder. |
+| cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a reminder. |
+| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application. |
+| cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application. |
+| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Adds a notification slot. |
+| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a notification slot. |
 
 
 ## How to Develop
