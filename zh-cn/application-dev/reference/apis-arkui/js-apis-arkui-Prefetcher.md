@@ -1,4 +1,4 @@
-# Prefetcher
+# @ohos.arkui.Prefetcher (Prefetching)
 配合LazyForEach，为List、Grid、Waterfall和Swiper等容器组件滑动浏览时提供内容预加载能力，提升用户浏览体验。
 
 >  **说明：**
@@ -26,14 +26,14 @@ setDataSource(dataSource: IDataSourcePrefetching): void;
 
 **参数说明：**
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| dataSource  | IDataSourcePrefetching | 是   | 支持预取能力的数据源 |
+| 参数名        | 类型                                                | 必填 | 说明         |
+|------------|---------------------------------------------------|----|------------|
+| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 是  | 支持预取能力的数据源 |
 
 ### visibleAreaChanged
 visibleAreaChanged(minVisible: number, maxVisible: number): void
 
-当可见区域边界发生改变时调用此方法。支持与List、`Grid`、`Waterfall`和`Swiper`组件配合使用
+当可见区域边界发生改变时调用此方法。支持与`List`、`Grid`、`Waterfall`和`Swiper`组件配合使用
 
 **元服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -41,10 +41,10 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void
 
 **参数说明：**
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| minVisible  | number | 是   | 列表可见区域的上界 |
-| maxVisible  | number | 是   | 列表可见区域的下界 |
+| 参数名        | 类型     | 必填 | 说明        |
+|------------|--------|----|-----------|
+| minVisible | number | 是  | 列表可见区域的上界 |
+| maxVisible | number | 是  | 列表可见区域的下界 |
 
 ## BasicPrefetcher
 BasicPrefetcher是IPrefetcher的基础实现。它提供了一种智能数据预取算法，以根据屏幕上可见区域的实时变化和预取持续时间的变化来决定应预取哪些数据项。它还可以根据用户的滚动操作来确定哪些预取请求应该被取消。
@@ -64,9 +64,9 @@ constructor(dataSource?: IDataSourcePrefetching)
 
 **参数说明：**
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| dataSource  | IDataSourcePrefetching | 否  | 支持预取能力的数据源 |
+| 参数名        | 类型                                                | 必填 | 说明         |
+|------------|---------------------------------------------------|----|------------|
+| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 否  | 支持预取能力的数据源 |
 
 ### setDataSource
 setDataSource(dataSource: IDataSourcePrefetching): void;
@@ -79,14 +79,14 @@ setDataSource(dataSource: IDataSourcePrefetching): void;
 
 **参数说明：**
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| dataSource  | IDataSourcePrefetching | 是   | 支持预取能力的数据源 |
+| 参数名        | 类型                                                | 必填 | 说明         |
+|------------|---------------------------------------------------|----|------------|
+| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 是  | 支持预取能力的数据源 |
 
 ### visibleAreaChanged
 visibleAreaChanged(minVisible: number, maxVisible: number): void
 
-当可见区域边界发生改变时调用此方法。支持与List、`Grid`、`Waterfall`和`Swiper`组件配合使用
+当可见区域边界发生改变时调用此方法。支持与`List`、`Grid`、`Waterfall`和`Swiper`组件配合使用
 
 **元服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -94,10 +94,10 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void
 
 **参数说明：**
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| minVisible  | number | 是   | 列表可见区域的上界 |
-| maxVisible  | number | 是   | 列表可见区域的下界 |
+| 参数名        | 类型     | 必填 | 说明        |
+|------------|--------|----|-----------|
+| minVisible | number | 是  | 列表可见区域的上界 |
+| maxVisible | number | 是  | 列表可见区域的下界 |
 
 ## IDataSourcePrefetching
 
@@ -114,9 +114,39 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void
 
 **参数说明：**
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 预取数据项索引值 |
+| 参数名   | 类型     | 必填 | 说明       |
+|-------|--------|----|----------|
+| index | number | 是  | 预取数据项索引值 |
+
+```ts
+import { http } from '@kit.NetworkKit';
+import { IDataSourcePrefetching } from '@kit.ArkUI';
+
+export class DataSourcePrefetchingOHOS implements IDataSourcePrefetching {
+  ...
+  async prefetch(index: number): Promise<void> {
+    const item = this.getData(index);
+    if (!item || item.imagePixelMap) {
+      return;
+    }
+
+    try {
+      const request = http.createHttp();
+      const response = await request.request(item.url, {expectDataType: http.HttpDataType.ARRAY_BUFFER});
+
+      if (response.responseCode !== 200 || !response.result) {
+        throw new Error('Bad response');
+      }
+
+      const imageSource: image.ImageSource = image.createImageSource(response.result as ArrayBuffer);
+      item.imagePixelMap = await imageSource.createPixelMap();
+    } catch (e) {
+      ...
+    }
+  }
+  ...
+}
+```
 
 ### cancel
 **元服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -125,6 +155,8 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void
 
 **参数说明：**
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 取消预取数据项索引值  |
+| 参数名   | 类型     | 必填 | 说明         |
+|-------|--------|----|------------|
+| index | number | 是  | 取消预取数据项索引值 |
+
+列表内容移出屏幕时（比如列表快速滑动场景下），预取算法判断屏幕以外的Item可以被取消预取时，该方法即会被调用。例如，如果HTTP框架支持请求取消，则可以在此处取消在prefetch中发起的网络请求。
