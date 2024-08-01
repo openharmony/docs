@@ -4088,3 +4088,27 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
+
+屏幕旋转时，允许发布usual_event_dms.rotation_change自定义公共事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
+
+有线投屏线缆拔插时，允许发布usual_event_dms.cast_plugged_change自定义公共事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
