@@ -6,8 +6,8 @@ The instances of the following types are mentioned in this topic:
 
 | Type   | Description                                          |
 | ------- | ---------------------------------------------- |
-| Reader  | SE supported by the device. If eSE and SIM are supported, two instances will be returned.|
-| Session | Session created on an SE **Reader** instance.|
+| Reader  | SE supported by the device. If eSE and SIM are supported, two instances will be returned. |
+| Session | Session created on an SE **Reader** instance. |
 | Channel | Channel set up by a **Session** instance. The channel can be a basic channel or a logical channel.  |
 
 > **NOTE**
@@ -28,22 +28,25 @@ Enumerates the SE service stats.
 
 | Name        | Value  | Description              |
 | ------------ | ---- | ------------------ |
-| DISCONNECTED | 0    | The SE service is disconnected.|
-| CONNECTED    | 1    | The SE service is connected.|
+| DISCONNECTED | 0    | The SE service is disconnected. |
+| CONNECTED    | 1    | The SE service is connected. |
 
 ## secureElement.newSEService
 
-newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelementservicestate)>): SEService
+newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService
 
-Creates an **SEService** instance for connecting to all available SEs in the system. The connection is time-consuming. Therefore, this API supports only the asynchronous mode.
+Creates an **SEService** instance for connecting to all available SEs in the system. The connection is time-consuming. Therefore, this API supports only the asynchronous mode. This API uses an asynchronous callback to return the result.
 
 The returned **SEService** instance is available only when **true** is returned by the specified callback or [isConnected](#seserviceisconnected).
+
+> **NOTE**
+> This API is supported since API version 10 and deprecated since API version 12. Use [createService](#secureelementcreateservice12) instead.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**                                            | **Mandatory**| **Description**            |
+| **Name** | **Type**                                            | **Mandatory** | **Description**            |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
 | type       | string                                               | Yes     | Type of the SE service to create. It has a fixed value of **'serviceState'**.     |
 | callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback used to return the SE service state.|
@@ -52,13 +55,13 @@ The returned **SEService** instance is available only when **true** is returned 
 
 | **Type** | **Description**  |
 | -------- | --------- |
-| SEService | **SEService** instance created.|
+| SEService | **SEService** instance created. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
@@ -91,7 +94,7 @@ function secureElementDemo() {
 
 createService(): Promise\<SEService>;
 
-Creates an **SEService** instance for connecting to all available SEs in the system. The connection is time-consuming. Therefore, this API supports only the asynchronous mode.
+Creates an **SEService** instance for connecting to all available SEs in the system. The connection is time-consuming. Therefore, only asynchronous APIs are provided. This API uses a promise to return the result.
 
 The **SEService** object is available only when [isConnected](#seserviceisconnected) returns **true**.
 
@@ -101,7 +104,7 @@ The **SEService** object is available only when [isConnected](#seserviceisconnec
 
 | **Type** | **Description**  |
 | :-------- | :--------- |
-| Promise\<SEService> | Primose used to return the **SEService** instance created.|
+| Promise\<[SEService](#seservice)> | Primose used to return the **SEService** instance created. |
 
 **Example**
 
@@ -126,7 +129,11 @@ function secureElementDemo() {
 }
 ```
 
-## SEService.getReaders
+## SEService
+
+**SEService** indicates the connection service used to connect to all available SEs in the system. You can use [createService](#secureelementcreateservice12) to create an **SEService** instance.
+
+### SEService.getReaders
 
 getReaders(): Reader[]
 
@@ -136,20 +143,21 @@ Obtains available SE readers, which include all the SEs on the device.
 
 **Return value**
 
-| **Type**| **Description**              |
+| **Type** | **Description**              |
 | :------- | :--------------------- |
-| Reader[] | Available readers obtained.|
+| [Reader](#reader)[] | Available readers obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { omapi } from '@kit.ConnectivityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -172,7 +180,7 @@ function secureElementDemo() {
 }
 ```
 
-## SEService.isConnected
+### SEService.isConnected
 
 isConnected(): boolean
 
@@ -182,19 +190,20 @@ Checks whether this SE service is connected.
 
 **Return value**
 
-| **Type**| **Description**                                      |
+| **Type** | **Description**                                      |
 | :------- | :--------------------------------------------- |
-| boolean  | Returns **true** if the SE service is connected; returns **false** otherwise.|
+| boolean  | Returns **true** if the SE service is connected; returns **false** otherwise. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
+
 
 ```JS
 import { omapi } from '@kit.ConnectivityKit';
@@ -219,7 +228,7 @@ function secureElementDemo() {
 }
 ```
 
-## SEService.shutdown
+### SEService.shutdown
 
 shutdown(): void
 
@@ -231,12 +240,13 @@ Releases all SE resources allocated to this SE service. After that, [isConnected
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -253,7 +263,7 @@ try {
 }
 ```
 
-## SEService.getVersion
+### SEService.getVersion
 
 getVersion(): string
 
@@ -263,20 +273,21 @@ Obtains the version of the Open Mobile API (OMAPI) specification used.
 
 **Return value**
 
-| **Type**| **Description**                                          |
+| **Type** | **Description**                                          |
 | -------- | -------------------------------------------------- |
-| string   | OMAPI version obtained. For example, **3.3** indicates Open Mobile API Specification v3.3.|
+| string   | OMAPI version obtained. For example, **3.3** indicates Open Mobile API Specification v3.3. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```JS
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -293,8 +304,11 @@ try {
     hilog.error(0x0000, 'testTag', 'getVersion error %{public}s', JSON.stringify(error));
 }
 ```
+## Reader
 
-## Reader.getName
+A **Reader** instance indicates the SEs supported by a device. If eSE and SIM are supported, two instances will be returned. You can use [SEService.getReaders](#seservicegetreaders) to obtain a **Reader** instance.
+
+### Reader.getName
 
 getName(): string
 
@@ -304,20 +318,21 @@ Obtains the name of this reader. The name is **SIM[*Slot*]** for a SIM reader an
 
 **Return value**
 
-| **Type**| **Description**  |
+| **Type** | **Description**  |
 | -------- | ---------- |
-| string   | Reader name obtained.|
+| string   | [Reader](#reader) name obtained. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -335,7 +350,7 @@ try {
 }
 ```
 
-## Reader.isSecureElementPresent
+### Reader.isSecureElementPresent
 
 isSecureElementPresent(): boolean
 
@@ -345,20 +360,21 @@ Checks whether the SE corresponding to this reader is available.
 
 **Return value**
 
-| **Type**| **Description**                                    |
+| **Type** | **Description**                                    |
 | -------- | -------------------------------------------- |
-| boolean  | Returns **true** if the SE is available; returns **false** otherwise.|
+| boolean  | Returns **true** if the SE is available; returns **false** otherwise. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -376,7 +392,7 @@ try {
 }
 ```
 
-## Reader.openSession
+### Reader.openSession
 
  openSession(): Session
 
@@ -386,21 +402,22 @@ Opens a session to connect to an SE in this reader. Multiple sessions can be ope
 
 **Return value**
 
-| **Type**| **Description**                      |
+| **Type** | **Description**                      |
 | -------- | ------------------------------ |
-| Session  | Session instance opened.|
+| [Session](#session)  | Session instance opened.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, service state exception. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -423,7 +440,7 @@ function secureElementDemo() {
 }
 ```
 
-## Reader.closeSessions
+### Reader.closeSessions
 
  closeSessions(): void
 
@@ -435,12 +452,13 @@ Closes all sessions opened on this reader. All channels opened by these sessions
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -469,7 +487,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.getReader
+## Session
+
+A **Session** instance indicates a session created on an SE **Reader** instance. You can use [Reader.openSession](#readeropensession) to obtain a **Session** instance.
+
+### Session.getReader
 
 getReader(): Reader
 
@@ -479,20 +501,21 @@ Obtains the reader that provides this session.
 
 **Return value**
 
-| **Type**| **Description**                   |
+| **Type** | **Description**                   |
 | -------- | --------------------------- |
-| Reader   | Reader instance obtained.|
+| [Reader](#reader)   | Reader instance obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -521,7 +544,7 @@ function secureElementDemo() {
 }
 ```
 
-## Session.getATR
+### Session.getATR
 
 getATR(): number[]
 
@@ -531,20 +554,21 @@ Obtains the Answer to Reset (ATR) of this SE. If the ATR of this SE is not avail
 
 **Return value**
 
-| **Type**| **Description**                                    |
+| **Type** | **Description**                                    |
 | -------- | -------------------------------------------- |
-| number[] | Returns the ATR obtained if the SE has an available ATR; returns an empty array otherwise.|
+| number[] | Returns the ATR obtained if the SE has an available ATR; returns an empty array otherwise. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -561,7 +585,7 @@ try {
 }
 ```
 
-## Session.close
+### Session.close
 
 close(): void
 
@@ -573,12 +597,13 @@ Closes the session with the SE. All channels opened by this session will be clos
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -594,7 +619,7 @@ try {
 }
 ```
 
-## Session. isClosed
+### Session. isClosed
 
 isClosed(): boolean
 
@@ -604,20 +629,21 @@ Checks whether this session is closed.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | -------- | ------------------------------------ |
-| boolean  | Returns **true** if the session is closed; returns **false** otherwise.|
+| boolean  | Returns **true** if the session is closed; returns **false** otherwise. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```Js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -634,7 +660,7 @@ try {
 }
 ```
 
-## Session.closeChannels
+### Session.closeChannels
 
 closeChannels(): void
 
@@ -646,12 +672,13 @@ Closes all channels opened on this session.
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -667,31 +694,31 @@ try {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[]): Promise\<Channel>
 
-Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses a promise to return the result. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned.
+Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**                                                    |
+| **Name** | **Type** | **Mandatory** | **Description**                                                    |
 | ---------- | -------- | ------ | ------------------------------------------------------------ |
 | aid        | number[] | Yes     |AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 
 **Return value**
 
-| **Type**| **Description**             |
+| **Type** | **Description**             |
 | -------- | --------------------- |
-| Channel  | Promise used to return the basic channel instance obtained.|
+| Promise\<[Channel](#channel)>  | Promise used to return the basic channel instance obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
@@ -700,6 +727,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -727,26 +755,26 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
  openBasicChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
-Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses an asynchronous callback to return the result. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned.
+Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
+| **Name** | **Type**              | **Mandatory** | **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the basic channel instance obtained.                           |
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
+| callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the basic channel instance obtained.                           |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
@@ -755,6 +783,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -784,32 +813,32 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
-Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses a promise to return the result. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned.
+Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**                                                    |
+| **Name** | **Type** | **Mandatory** | **Description**                                                    |
 | ---------- | -------- | ------ | ------------------------------------------------------------ |
-| aid        | number[] | Yes      | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| aid        | number[] | Yes      | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
 | p2         | number   | Yes      |P2 parameter of the **SELECT APDU** command executed on this channel.                    |
 
 **Return value**
 
-| **Type**| **Description**             |
+| **Type** | **Description**             |
 | -------- | --------------------- |
-| Channel  | Promise used to return the basic channel instance obtained.|
+| Promise\<[Channel](#channel)>  | Promise used to return the basic channel instance obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
@@ -818,6 +847,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -846,27 +876,27 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): void
 
-Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses an asynchronous callback to return the result. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned.
+Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
+| **Name** | **Type**              | **Mandatory** | **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
 | p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.                    |
-| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the basic channel instance obtained.                           |
+| callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the basic channel instance obtained.                           |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
@@ -875,6 +905,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -905,31 +936,31 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[]): Promise\<Channel>
 
-Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses a promise to return the result. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned.
+Opens a logical channel, as defined in ISO/IEC 7816-4. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**                               |
+| **Name** | **Type** | **Mandatory** | **Description**                               |
 | ---------- | -------- | ------ | --------------------------------------- |
-| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
 
 **Return value**
 
-| **Type**| **Description**                                                    |
+| **Type** | **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| Channel  | Promise used to return the logical channel instance obtained.|
+| Promise\<[Channel](#channel)>  | Promise used to return the logical channel instance obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
@@ -938,6 +969,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -965,26 +997,26 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
  openLogicalChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
-Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses an asynchronous callback to return the result. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned.
+Opens a logical channel, as defined in ISO/IEC 7816-4. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
+| **Name** | **Type**              | **Mandatory** | **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the logical channel instance obtained.|
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
+| callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the logical channel instance obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
@@ -993,6 +1025,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1022,32 +1055,32 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
-Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses a promise to return the result. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned.
+Opens a logical channel, as defined in ISO/IEC 7816-4. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**                                 |
+| **Name** | **Type** | **Mandatory** | **Description**                                 |
 | ---------- | -------- | ------ | ----------------------------------------- |
-| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
 | p2         | number   | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel. |
 
 **Return value**
 
-| **Type**| **Description**      |
+| **Type** | **Description**      |
 | -------- | -------------- |
-| Promise\<Channel> | Promise used to return the logical channel instance obtained.|
+| Promise\<[Channel](#channel)> | Promise used to return the logical channel instance obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
@@ -1056,6 +1089,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1084,27 +1118,27 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>):void
 
-Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses an asynchronous callback to return the result. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned.
+Opens a logical channel, as defined in ISO/IEC 7816-4. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
+| **Name** | **Type**              | **Mandatory** | **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
-| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the logical channel instance obtained.|
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
+| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel. |
+| callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the logical channel instance obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.       |
@@ -1113,6 +1147,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1142,8 +1177,11 @@ function secureElementDemo() {
     }
 }
 ```
+## Channel
 
-## Channel. getSession
+A **Channel** instance indicates a channel set up by a **Session** instance. The channel can be a basic channel or a logical channel. You can use [Session.openBasicChannel](#sessionopenbasicchannel) or [Session.openLogicalChannel](#sessionopenlogicalchannel) to obtain a channel instance.
+
+### Channel.getSession
 
  getSession(): Session
 
@@ -1153,20 +1191,21 @@ Obtains the session used to open this channel.
 
 **Return value**
 
-| **Type**| **Description**                     |
+| **Type** | **Description**                     |
 | -------- | ----------------------------- |
-| Session  | Session instance obtained.|
+| [Session](#session)  | Session instance obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1183,7 +1222,7 @@ try {
 }
 ```
 
-## Channel. close
+### Channel.close
 
 close(): void
 
@@ -1195,12 +1234,13 @@ Closes this channel.
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1216,7 +1256,7 @@ try {
 }
 ```
 
-## Channel. isBasicChannel
+### Channel.isBasicChannel
 
 isBasicChannel(): boolean
 
@@ -1226,20 +1266,21 @@ Checks whether this channel is a basic channel.
 
 **Return value**
 
-| **Type**| **Description**                                                    |
+| **Type** | **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| boolean  | Returns **true** if the channel is a basic channel; returns **false** otherwise.|
+| boolean  | Returns **true** if the channel is a basic channel; returns **false** otherwise. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1256,7 +1297,7 @@ try {
 }
 ```
 
-## Channel. isClosed
+### Channel.isClosed
 
 isClosed(): boolean
 
@@ -1266,20 +1307,21 @@ Checks whether this channel is closed.
 
 **Return value**
 
-| **Type**| **Description**                                     |
+| **Type** | **Description**                                     |
 | -------- | --------------------------------------------- |
-| boolean  | Returns **true** if the channel is closed; returns **false** otherwise.|
+| boolean  | Returns **true** if the channel is closed; returns **false** otherwise. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1296,7 +1338,7 @@ try {
 }
 ```
 
-## Channel. getSelectResponse
+### Channel.getSelectResponse
 
 getSelectResponse(): number[]
 
@@ -1306,20 +1348,21 @@ Obtains the response data including the status word of **SELECT Applet**.
 
 **Return value**
 
-| **Type**| **Description**                                                    |
+| **Type** | **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| number[] | Response data including the status word obtained.|
+| number[] | Response data including the status word obtained. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1336,31 +1379,31 @@ try {
 }
 ```
 
-## Channel. transmit
+### Channel.transmit
 
 transmit(command: number[]): Promise\<number[]>
 
-Transmits APDU data (as per ISO/IEC 7816) to the SE.
+Transmits APDU data (as per ISO/IEC 7816) to the SE. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**                             |
+| **Name** | **Type** | **Mandatory** | **Description**                             |
 | ---------- | -------- | ------ | ------------------------------------- |
-| command    | number[] | Yes     | APDU data to send.|
+| command    | number[] | Yes     | APDU data to send. |
 
 **Return value**
 
-| **Type**| **Description**      |
+| **Type** | **Description**      |
 | -------- | -------------- |
-| number[] | Promise used to return the response received, in a number array.|
+| Promise\<number[]> | Promise used to return the response received, in a number array. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
 | 3300103  | SecurityError, the command is filtered by the security policy. |
@@ -1368,6 +1411,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
@@ -1388,26 +1432,26 @@ try {
 }
 ```
 
-## Channel. transmit
+### Channel.transmit
 
 transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
-Transmits APDU data (as per ISO/IEC 7816) to the SE.
+Transmits APDU data (as per ISO/IEC 7816) to the SE. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name**| **Type**               | **Mandatory**| **Description**                             |
+| **Name** | **Type**               | **Mandatory** | **Description**                             |
 | ---------- | ----------------------- | ------ | ------------------------------------- |
-| command    | number[]                | Yes     | APDU data to send.|
+| command    | number[]                | Yes     | APDU data to send. |
 | callback   | AsyncCallback\<number[]> | Yes     | Callback used to return the response received, in a number array. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID| Error Message                        |
+| ID | Error Message                        |
 | -------- | -------------------------------- |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
 | 3300103  | SecurityError, the command is filtered by the security policy. |
@@ -1415,6 +1459,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
+<!--code_no_check-->
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { omapi } from '@kit.ConnectivityKit';
