@@ -342,7 +342,7 @@
     - [文本类型定义](arkui-ts/ts-text-common.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
   - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
-  - 渲染控制
+  - 渲染控制<!--rendering-control-->
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
