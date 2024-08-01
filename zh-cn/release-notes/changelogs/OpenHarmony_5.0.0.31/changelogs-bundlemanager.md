@@ -8,13 +8,13 @@
 
 **变更原因**
 
-入口图标和名称(module.json5中abilities配置的icon和label)是应用安装后在桌面上展示的图标和名称，应用图标和名称（app.json5中配置的icon和label）是应用安装后在设置的应用列表或者消息通知栏等标识应用处展示的图标和名称。
+[入口图标和名称](../../../application-dev/application-models/application-component-configuration-stage.md#入口图标和标签配置)(module.json5中abilities配置的icon和label)是应用安装后在桌面上展示的图标和名称，[应用图标和名称](../../../application-dev/application-models/application-component-configuration-stage.md#应用图标和标签配置)（app.json5中配置的icon和label）是应用安装后在设置的应用列表或者消息通知栏等标识应用处展示的图标和名称。
 
 应用同时配置了应用图标、应用名称和入口图标和入口名称，会导致在桌面和设置中显示的图标和名称存在不同。同一个应用在设备不同地方展示的图标和名称应该保持一致，避免出现恶意应用配置不同的图标。
 
 **变更影响**
 
-该变更为兼容性变更。存在入口图标和入口标签则优先展示，如果不存在入口图标和入口标签，则展示应用图标和应用标签。
+该变更为兼容性变更。当应用存在入口UIAbility且配置了入口图标和入口标签则优先展示，如果不存在入口图标和入口标签，则展示应用图标和应用标签。
 
 变更前
 
@@ -28,7 +28,7 @@
 | 展示位置    | 取值       | 说明        |
 | ----- | ---------- | --------- |
 |  桌面展示图标和名称   |  入口图标和名称  |  当应用不存在入口UIAbility时会返回应用图标和名称  |
-|  设置中应用列表展示图标和名称   |  入口图标和名称  |  当应用存在入口UIAbility且配置了图标和名称后，优先返回入口图标和名称；如果没有配置入口图标和名称时，返回应用图标和名称。当存在多个入口UIAbility时，优先返回entry类型HAP的mainElement。  |
+|  设置中应用列表展示图标和名称   |  入口图标和名称  |  当应用存在入口UIAbility且配置了图标和名称后，优先返回入口图标和名称；如果不存在入口UIAbility或者没有配置入口图标和名称时，返回应用图标和名称。当存在多个入口UIAbility时，优先返回entry类型HAP的mainElement对应的UIAbility中配置的图标和名称。  |
 
 **起始API Level**
 
