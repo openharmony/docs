@@ -163,9 +163,9 @@ backgroundImageResizable(value: ResizableOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurStyleActivePolicy13) | 否    | 模糊激活策略。<br/> FOLLOWS_WINDOW_ACTIVE_STATE <br/> |
+| policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> FOLLOWS_WINDOW_ACTIVE_STATE <br/> |
 | inactiveColor | ResourceColor | 否    | 模糊未激活时的背景颜色，如果模糊颜色丢失了，就会使用inactiveColor作为背景颜色。<br/> |
-| type | [BlurType](ts-appendix-enums.md#blurType13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW<br/> |
+| type | [BlurType](ts-appendix-enums.md#blurtype13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW<br/> |
 
 
 ## backgroundBrightness<sup>12+</sup> 
