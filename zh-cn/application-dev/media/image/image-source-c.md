@@ -105,8 +105,6 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           //设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelmap。
           OH_DecodingOptions_SetDesiredDynamicRange(ops, IMAGE_DYNAMIC_RANGE_AUTO);
           OH_PixelmapNative *resPixMap = nullptr;
-
-          //ops参数支持传入nullptr, 当不需要设置解码参数时，不用创建
           errCode = OH_ImageSourceNative_CreatePixelmap(source, ops, &resPixMap);
           OH_DecodingOptions_Release(ops);
           if (errCode != IMAGE_SUCCESS) {
