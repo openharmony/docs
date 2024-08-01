@@ -27,7 +27,6 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | 名称                        | 值 | 说明                 |
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
-| WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
 | WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |
 
 **示例：**

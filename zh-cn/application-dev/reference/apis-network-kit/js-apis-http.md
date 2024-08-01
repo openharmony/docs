@@ -58,7 +58,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
         publicKeyHash: 'Pin2', // 由应用传入的证书PIN码，自API 12开始支持该属性
         hashAlgorithm: 'SHA-256' // 加密算法，当前仅支持SHA-256，自API 12开始支持该属性
       }
-    ]
+    ],
     multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
       {
         name: "Part1", // 数据名，自API 11开始支持该属性
@@ -858,9 +858,6 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
 
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -918,9 +915,6 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
 
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -977,9 +971,6 @@ httpRequest.off("dataEnd");
 on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
-
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

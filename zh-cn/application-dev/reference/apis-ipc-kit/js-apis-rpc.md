@@ -6269,16 +6269,15 @@ marshalling(dataOut: MessageSequence): boolean
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ### unmarshalling
@@ -6321,16 +6320,15 @@ unmarshalling(dataIn: MessageSequence): boolean
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ## Sequenceable<sup>(deprecated)</sup>
@@ -6990,9 +6988,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   if (proxy != undefined) {
     let ret: boolean = proxy.sendRequest(1, data, reply, option);
     if (ret) {
-    hilog.info(0x0000, 'testTag', 'sendRequest got result');
-    let msg = reply.readString();
-    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      let msg = reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
     }
@@ -7448,8 +7446,8 @@ getLocalInterface(interface: string): IRemoteBroker
 
   if (proxy != undefined) {
     try {
-    let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
-    hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
+      let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
+      hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);

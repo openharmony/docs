@@ -80,9 +80,9 @@
 | bool [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | 判断是用循环播放。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetLooping](#oh_avplayer_setlooping) (OH_AVPlayer \*player, bool loop) | 设置循环播放。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlayerCallback](#oh_avplayer_setplayercallback) (OH_AVPlayer \*player, [AVPlayerCallback](_a_v_player_callback.md) callback) | 设置播放器回调方法。 | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | 选择音频或字幕轨道。 | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | 取消选择当前音频或字幕轨道。 | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | 获取当前有效的轨道索引。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | 选择音频轨道。该接口在当前版本暂不支持，将在后续版本开放能力。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | 取消选择当前音频轨道。该接口在当前版本暂不支持，将在后续版本开放能力。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | 获取当前有效的轨道索引。该接口在当前版本暂不支持，将在后续版本开放能力。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetMediaKeySystemInfoCallback](#oh_avplayer_setmediakeysysteminfocallback) (OH_AVPlayer \*player, Player_MediaKeySystemInfoCallback callback) | 设置播放器媒体密钥系统信息回调的方法。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | 获取媒体密钥系统信息以创建媒体密钥会话。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, [MediaKeySession](../apis-drm-kit/_drm.md#mediakeysession) \*mediaKeySession, bool secureVideoPath) | 设置解密信息。 | 
@@ -283,7 +283,7 @@ OnInfo类型
 | AV_INFO_TYPE_DURATION_UPDATE | 返回播放时长，extra表示视频时长。 |
 | AV_INFO_TYPE_IS_LIVE_STREAM | 播放为直播流时返回消息，extra表示是否为直播流，0表示非直播流，1表示直播流。 |
 | AV_INFO_TYPE_TRACKCHANGE | 轨道改变时返回消息，此场景extra未定义。 |
-| AV_INFO_TYPE_TRACK_INFO_UPDATE | 字幕轨更新时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_TRACK_INFO_UPDATE |轨道更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_SUBTITLE_UPDATE | 字幕信息更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE | 音频输出设备改变时返回消息，extra表示设备改变原因，具体请参见[OH_AudioStream_DeviceChangeReason](../apis-audio-kit/_o_h_audio.md#oh_audiostream_devicechangereason)。 |
 
@@ -367,7 +367,7 @@ OH_AVPlayer* OH_AVPlayer_Create (void)
 OH_AVErrCode OH_AVPlayer_DeselectTrack (OH_AVPlayer *player, int32_t index)
 ```
 **描述**
-取消选择当前音频或字幕轨道。
+取消选择当前音频轨道。该接口在当前版本暂不支持，将在后续版本开放能力。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -423,7 +423,7 @@ AV_ERR_INVALID_VAL：输入player为空指针、player GetCurrentTime执行失�
 OH_AVErrCode OH_AVPlayer_GetCurrentTrack (OH_AVPlayer *player, int32_t trackType, int32_t *index)
 ```
 **描述**
-获取当前有效的轨道索引。
+获取当前有效的轨道索引。该接口在当前版本暂不支持，将在后续版本开放能力。
 
 请将其设置为准备/正在播放/暂停/完成状态。
 
@@ -436,8 +436,8 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTrack (OH_AVPlayer *player, int32_t trackType
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针 | 
-| trackType | 媒体类型 | 
-| index | 索引 | 
+| trackType | 媒体类型。0：音频，1：视频 | 
+| index | 索引 |  
 
 **返回：**
 
@@ -899,9 +899,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player SelectBitRate执行失败
 OH_AVErrCode OH_AVPlayer_SelectTrack (OH_AVPlayer *player, int32_t index)
 ```
 **描述**
-选择音频或字幕轨道。
+选择音频轨道。该接口在当前版本暂不支持，将在后续版本开放能力。
 
-默认播放第一个带数据的音频流，不播放字幕轨迹。 设置生效后，原曲目将失效。请设置字幕 处于准备/播放/暂停/完成状态，并将音轨设置为准备状态。
+默认播放第一个带数据的音频流。设置生效后，原曲目将失效。将音轨设置为准备状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

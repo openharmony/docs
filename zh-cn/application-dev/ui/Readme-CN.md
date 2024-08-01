@@ -66,6 +66,7 @@
       - [模糊](arkts-blur-effect.md)
       - [阴影](arkts-shadow-effect.md)
       - [色彩](arkts-color-effect.md)
+    - [帧动画](arkts-animator.md)
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件
@@ -102,7 +103,9 @@
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
+  <!--Del-->
   - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
+  <!--DelEnd-->
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明

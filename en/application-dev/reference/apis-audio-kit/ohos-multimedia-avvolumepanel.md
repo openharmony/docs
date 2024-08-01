@@ -13,7 +13,7 @@ An application cannot directly adjust the system volume. However, it can invoke 
 ## Modules to Import
 
 ```js
-import {AVVolumePanel} from '@ohos.multimedia.avVolumePanel';
+import { AVVolumePanel } from '@kit.AudioKit';
 ```
 ## Attributes
 
@@ -35,16 +35,16 @@ In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-at
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|volumeLevel | number | No| @Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used.|
-|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No|  @Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                                                                                                                                                                           |
+| Name | Type | Mandatory | Decorator | Description                                                                                                                                                                                                   |
+| -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|volumeLevel | number | No | @Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used. For details about how to obtain the maximum and minimum volume values, see [AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9). |
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No |  @Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                     |
 
 ## AVVolumePanelParameter
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description
 | -------- | -------- | -------- | -------- |
-|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No| Position of the volume panel.|
+|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No | Position of the volume panel. |
 
 ## Events
 
@@ -55,13 +55,13 @@ The [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md) are 
 Refer to the sample code below to develop a volume panel:
 
 ```ts
-import {AVVolumePanel} from '@ohos.multimedia.avVolumePanel'
+import { AVVolumePanel } from '@kit.AudioKit';
 
 @Entry
 @Component
 struct Index {
 
-  @Prop volume: number = 0;
+  @State volume: number = 0;
 
   build() {
     Row() {

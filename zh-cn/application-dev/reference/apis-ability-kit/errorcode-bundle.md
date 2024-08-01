@@ -861,6 +861,20 @@ The app does not support the creation of an appClone instance.
 **处理步骤**<br/>
 1. 检查更新应用是否支持分身。
 
+## 17700070 指定的快捷方式id不合法
+
+**错误信息**<br/>
+The specified shortcut id is illegal.
+
+**错误描述**<br/>
+快捷方式id是不合法的。
+
+**可能原因**<br/>
+调用添加快捷方式接口时，已经存在相同包名，分身索引，用户id和快捷方式id的快捷方式信息，或者快捷方式id为空字符串。
+
+**处理步骤**<br/>
+1. 检查包名或者快捷方式id是否正确。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify the abc file.

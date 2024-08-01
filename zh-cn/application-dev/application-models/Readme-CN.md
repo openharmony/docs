@@ -46,6 +46,7 @@
       - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+      - [拉起图片编辑类应用编辑图片](photoEditorExtensionAbility.md)
       - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
     - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)

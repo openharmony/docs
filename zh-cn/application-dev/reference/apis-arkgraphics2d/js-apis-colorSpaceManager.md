@@ -16,6 +16,8 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 色域类型枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
 | 名称                         | 值     | 说明                    |
@@ -96,7 +98,7 @@ create(colorSpaceName: ColorSpace): ColorSpaceManager
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -137,7 +139,7 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -187,7 +189,7 @@ getColorSpaceName(): ColorSpace
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -219,7 +221,7 @@ getWhitePoint(): Array\<number\>
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -251,7 +253,7 @@ getGamma(): number
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 

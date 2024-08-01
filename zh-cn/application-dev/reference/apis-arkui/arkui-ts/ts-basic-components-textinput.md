@@ -42,6 +42,13 @@ TextInput(value?: TextInputOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)和[文本通用属性](ts-universal-attributes-text-style.md)的fontColor、fontSize、fontStyle、fontWeight、fontFamily外，还支持以下属性：
 
+>  **说明：**    
+>  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
+>  
+>  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
+>
+>   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
+
 ### type
 
 type(value: InputType)
@@ -350,6 +357,8 @@ underlineColor(value: ResourceColor|UnderlineColor|undefined)
 
 开启下划线时，支持配置下划线颜色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
@@ -558,6 +567,8 @@ lineHeight(value: number | string | Resource)
 
 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -571,6 +582,8 @@ lineHeight(value: number | string | Resource)
 decoration(value: TextDecorationOptions)
 
 设置文本装饰线类型样式及其颜色。密码模式不生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -587,6 +600,8 @@ letterSpacing(value: number | string | Resource)
 设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -610,6 +625,8 @@ fontFeature(value: string)
 
 例如，使用等宽数字的输入格式为："ss01" on。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -630,6 +647,8 @@ Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-componen
 wordBreak(value: WordBreak)
 
 设置文本断行规则。该属性在组件设置内联模式时样式生效，但对placeholder文本无效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -653,6 +672,8 @@ textOverflow(value: TextOverflow)
 
 当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -669,6 +690,8 @@ textOverflow(value: TextOverflow)
 textIndent(value: Dimension)
 
 设置首行文本缩进。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -688,6 +711,8 @@ minFontSize(value: number | string | Resource)
 
 自适应字号生效时，fontSize设置不生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -705,6 +730,8 @@ maxFontSize(value: number | string | Resource)
 需配合[minFontSize](#minfontsize12)以及[maxLines](#maxlines10)(组件设置为内联输入风格且编辑态时使用)或布局大小限制使用，单独设置不生效。
 
 自适应字号生效时，fontSize设置不生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -732,6 +759,8 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 >
 >  组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -749,6 +778,8 @@ showPassword(visible: boolean)
 需组合密码模式才能生效，非密码输入模式不生效。
 
 由于小眼睛图标内置更新密码模式的状态，建议在[onSecurityStateChange](#onsecuritystatechange12)上增加状态同步。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -789,13 +820,6 @@ editMenuOptions(editMenu: EditMenuOptions)
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
-
->  **说明：**    
->  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
->  
->  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
->
->   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ### enablePreviewText<sup>12+</sup>
 
@@ -898,6 +922,8 @@ enablePreviewText(enable: boolean)
 
 ## InsertValue<sup>12+</sup>对象说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
@@ -906,6 +932,8 @@ enablePreviewText(enable: boolean)
 | insertValue  | string | 是   | 插入的值。 |
 
 ## DeleteValue<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -941,7 +969,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| callback  | [EditableTextOnChangeCallback](ts-universal-attributes-text-style.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
+| callback  | [EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
 
 ### onSubmit
 
@@ -994,7 +1022,7 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 ### onCopy<sup>8+</sup>
 
-onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。
 
@@ -1010,7 +1038,7 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onCut<sup>8+</sup>
 
-onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
 
@@ -1026,7 +1054,7 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onPaste
 
-onPaste(callback:(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
+onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
 
@@ -1081,6 +1109,8 @@ onSecurityStateChange(callback: Callback\<boolean>)
 
 密码显隐状态切换时，触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1094,6 +1124,8 @@ onSecurityStateChange(callback: Callback\<boolean>)
 onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 在将要输入时，触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1109,6 +1141,8 @@ onDidInsert(callback: Callback\<InsertValue>)
 
 在输入完成时，触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1123,6 +1157,8 @@ onWillDelete(callback: Callback\<DeleteValue, boolean>)
 
 在将要删除时，触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1136,6 +1172,8 @@ onWillDelete(callback: Callback\<DeleteValue, boolean>)
 onDidDelete(callback: Callback\<DeleteValue>)
 
 在删除完成时，触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1235,6 +1273,8 @@ stopEditing(): void
 
 setTextSelection选中文字时的配置。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 类型                                            | 必填 | 说明             |
@@ -1242,6 +1282,8 @@ setTextSelection选中文字时的配置。
 | menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
 
 ## UnderlineColor<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1265,7 +1307,7 @@ setTextSelection选中文字时的配置。
 ## 示例
 
 ### 示例1
-
+TextInput基本使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1341,7 +1383,7 @@ struct TextInputExample {
 ![TextInput](figures/TextInput.png)
 
 ### 示例2
-
+passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
 ```ts
 @Entry
 @Component
@@ -1415,7 +1457,7 @@ struct TextInputExample {
 ![TextInputError](figures/TextInputError.png)
 
 ### 示例3
-
+TextInput绑定自定义键盘使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1458,7 +1500,7 @@ struct TextInputExample {
 
 
 ### 示例4
-
+cancelButton属性接口使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1491,7 +1533,7 @@ struct ClearNodeExample {
 ![cancelButton](figures/TextInputCancelButton.png)
 
 ### 示例5
-
+TextInput计数器使用示例。
 ```ts
 // xxx.ets
 @Entry
@@ -1524,7 +1566,7 @@ struct TextInputExample {
 
 
 ### 示例6
-本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX。
 
 ```ts
 @Entry
@@ -1532,22 +1574,28 @@ struct TextInputExample {
 struct phone_example {
   @State submitValue: string = ''
   @State text: string = ''
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
+  @State teleNumberNoSpace: string = ""
+  @State nextCaret: number = -1 // 用于记录下次光标设置的位置
+  @State actualCh: number = -1 // 用于记录光标在第i个数字后插入或者第i个数字前删除
+  @State lastCaretPosition: number = 0
+  @State lastCaretPositionEnd: number = 0
+  controller: TextInputController = new TextInputController()
 
   isEmpty(str?: string): boolean {
-    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
+    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str)
   }
 
   checkNeedNumberSpace(numText: string) {
-    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g');
-    let isRule: RegExp = new RegExp('^\\+.*');
+    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g')
+    let isRule: RegExp = new RegExp('^\\+.*')
 
     if (isSpace.test(numText)) {
       // 如果电话号码里有特殊字符，就不加空格
       if (isRule.test(numText)) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     }
     return true;
@@ -1555,35 +1603,104 @@ struct phone_example {
 
   removeSpace(str: string): string {
     if (this.isEmpty(str)) {
-      return '';
+      return ''
     }
-    return str.replace(new RegExp("[\\s]", "g"), '');
+    return str.replace(new RegExp("[\\s]", "g"), '')
+  }
+
+  setCaret() {
+    if (this.nextCaret != -1) {
+      console.log("to keep caret position right, change caret to", this.nextCaret)
+      this.controller.caretPosition(this.nextCaret)
+      this.nextCaret = -1
+    }
+  }
+
+  calcCaretPosition(nextText: string) {
+    let befNumberNoSpace: string = this.removeSpace(this.text)
+    this.actualCh = 0
+    if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { // 插入场景
+      for (let i = 0; i < this.lastCaretPosition; i++) {
+        if (this.text[i] != ' ') {
+          this.actualCh += 1
+        }
+      }
+      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length
+      console.log("actualCh: " + this.actualCh)
+      for (let i = 0; i < nextText.length; i++) {
+        if (nextText[i] != ' ') {
+          this.actualCh -= 1
+          if (this.actualCh <= 0) {
+            this.nextCaret = i + 1
+            break;
+          }
+        }
+      }
+    } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
+      if (this.lastCaretPosition === this.text.length) {
+        console.log("Caret at last, no need to change")
+      } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
+        // 按键盘上回退键一个一个删的情况
+        for (let i = this.lastCaretPosition; i < this.text.length; i++) {
+          if (this.text[i] != ' ') {
+            this.actualCh += 1
+          }
+        }
+        for (let i = nextText.length - 1; i >= 0; i--) {
+          if (nextText[i] != ' ') {
+            this.actualCh -= 1
+            if (this.actualCh <= 0) {
+              this.nextCaret = i
+              break;
+            }
+          }
+        }
+      } else {
+        // 剪切/手柄选择 一次删多个字符
+        this.nextCaret = this.lastCaretPosition // 保持光标位置
+      }
+    }
   }
 
   build() {
     Column() {
       Row() {
-        TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
+        TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
           .onChange((number: string) => {
-            let teleNumberNoSpace: string = this.removeSpace(number);
-            if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
-              this.text = teleNumberNoSpace;
+            this.teleNumberNoSpace = this.removeSpace(number);
+            let nextText: string = ""
+            if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              nextText = this.teleNumberNoSpace
             } else if (this.checkNeedNumberSpace(number)) {
-              if (teleNumberNoSpace.length <= 3) {
-                this.text = teleNumberNoSpace;
+              if (this.teleNumberNoSpace.length <= 3) {
+                nextText = this.teleNumberNoSpace
               } else {
-                let split1: string = teleNumberNoSpace.substring(0, 3);
-                let split2: string = teleNumberNoSpace.substring(3);
-                this.text = split1 + ' ' + split2;
-                if (teleNumberNoSpace.length > 7) {
-                  split2 = teleNumberNoSpace.substring(3, 7);
-                  let split3: string = teleNumberNoSpace.substring(7);
-                  this.text = split1 + ' ' + split2 + ' ' + split3;
+                let split1: string = this.teleNumberNoSpace.substring(0, 3)
+                let split2: string = this.teleNumberNoSpace.substring(3)
+                nextText = split1 + ' ' + split2
+                if (this.teleNumberNoSpace.length > 7) {
+                  split2 = this.teleNumberNoSpace.substring(3, 7)
+                  let split3: string = this.teleNumberNoSpace.substring(7)
+                  nextText = split1 + ' ' + split2 + ' ' + split3
                 }
               }
             } else {
-              this.text = number;
+              nextText = number
             }
+            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number)
+            if (this.text === nextText && nextText === number) {
+              // 此时说明数字已经格式化完成了 在这个时候改变光标位置不会被重置掉
+              this.setCaret()
+            } else {
+              this.calcCaretPosition(nextText)
+            }
+            this.text = nextText
+          })
+          .onTextSelectionChange((selectionStart, selectionEnd) => {
+            // 记录光标位置
+            console.log("selection change: ", selectionStart, selectionEnd)
+            this.lastCaretPosition = selectionStart
+            this.lastCaretPositionEnd = selectionEnd
           })
       }
     }
@@ -1750,7 +1867,7 @@ struct textInput {
 
 ### 示例11
 
-自定义键盘弹出发生避让示例
+自定义键盘弹出发生避让示例。
 
 ```ts
 @Entry

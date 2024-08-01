@@ -9,6 +9,7 @@
     - [利用native的方式实现跨线程调用](native-threads-call-js.md)
     - [避免开发过程中的冗余操作](avoiding-redundant-operations.md)
     - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
+    - [使用AOT进行性能优化](performance-optimization-using-aot.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
@@ -26,6 +27,7 @@
     - [避免在滑动场景的高频回调接口中处理耗时操作](avoid_high_frequency_callback_execute_lengthy_operation.md)
     - [合理使用系统接口](reasonable_using_system_interfaces.md)
     - [避免在主线程中执行耗时操作](avoid_time_consuming_operations_in_mainthread.md)
+    - [模糊场景性能优化](fuzzy_scene_performance_optimization.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
@@ -44,6 +46,8 @@
     - [使用同层渲染在Webview上渲染原生组件](webview-render-app-components.md)
     - [减小应用包大小](reduce-package-size.md)
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
+    - [使用ArkUI的FrameNode扩展实现动态布局类框架](imperative_dynamic_layouts.md)
+    - [在线短视频流畅切换](performance-quick-switch-short-video.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)

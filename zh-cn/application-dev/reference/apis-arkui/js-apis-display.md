@@ -16,6 +16,8 @@ import { display } from '@kit.ArkUI';
 
 显示设备的状态枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 值 | 说明 |
@@ -31,6 +33,8 @@ import { display } from '@kit.ArkUI';
 ## Orientation<sup>10+</sup>
 
 显示设备当前显示的方向枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -76,6 +80,8 @@ import { display } from '@kit.ArkUI';
 
 折叠折痕区域。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
@@ -86,6 +92,8 @@ import { display } from '@kit.ArkUI';
 ## Rect<sup>9+</sup>
 
 矩形区域。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -100,6 +108,8 @@ import { display } from '@kit.ArkUI';
 
 瀑布屏曲面部分显示区域。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称   | 类型      | 可读 | 可写 | 说明               |
@@ -113,12 +123,70 @@ import { display } from '@kit.ArkUI';
 
 挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称                        | 类型      | 可读 | 可写 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
+
+## DisplayPhysicalResolution<sup>12+</sup>
+折叠设备的显示模式以及对应的物理屏幕分辨率信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称                        | 类型      | 只读 | 可选 | 说明               |
+| --------------------------- | ------------- | ---- | ---- | ------------------ |
+| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
+| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数应为大于0的整数。|
+| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数应为大于0的整数。|
+
+## display.getAllDisplayPhysicalResolution<sup>12+</sup>
+
+getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution&gt;&gt;
+
+获取当前折叠设备的显示模式以及对应的物理屏幕分辨率信息对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[DisplayPhysicalResolution](#displayphysicalresolution12)&gt;&gt; | Promise对象。返回当前所有的DisplayPhysicalResolution对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let promise = display.getAllDisplayPhysicalResolution();
+promise.then((resolutionObjects) => {
+  console.info('Obtaining physical resolution length: ' + resolutionObjects.length);
+  for (let i = 0; i < resolutionObjects.length; i++) {
+     console.info('resolutionObjects[' + i + '].foldDisplayMode: ' + resolutionObjects[i].foldDisplayMode);  
+     console.info('resolutionObjects[' + i + '].physicalWidth: ' + resolutionObjects[i].physicalWidth);  
+     console.info('resolutionObjects[' + i + '].physicalHeight: ' + resolutionObjects[i].physicalHeight);  
+  }
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain physical resolution. Code: ${err.code}, message: ${err.message}');
+});
+```
 
 ## display.getDefaultDisplaySync<sup>9+</sup>
 
@@ -160,6 +228,8 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 获取当前所有的display对象，使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -199,6 +269,8 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
 getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 获取当前所有的display对象，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -313,6 +385,8 @@ isFoldable(): boolean
 
 检查设备是否可折叠。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -342,6 +416,8 @@ ret = display.isFoldable();
 getFoldStatus(): FoldStatus
 
 获取可折叠设备的当前折叠状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -373,6 +449,8 @@ getFoldDisplayMode(): FoldDisplayMode
 
 获取可折叠设备的显示模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -402,6 +480,8 @@ console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify
 getCurrentFoldCreaseRegion(): FoldCreaseRegion
 
 在当前显示模式下获取折叠折痕区域。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -648,6 +728,8 @@ isCaptured(): boolean
 
 检查设备是否正在截屏、投屏、录屏。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -892,29 +974,33 @@ promise.then((data: Array<display.Display>) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明                                                                                                            |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                            |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | 是 | 否 | 显示设备的id号，该参数应为整数。                                                                                             |
-| name | string | 是 | 否 | 显示设备的名称。                                                                                                      |
-| alive | boolean | 是 | 否 | 显示设备是否启用。                                                                                                     |
-| state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。                                                                                                      |
-| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。                                                                                             |
+| id | number | 是 | 否 | 显示设备的id号，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| name | string | 是 | 否 | 显示设备的名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
+| alive | boolean | 是 | 否 | 显示设备是否启用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                     |
+| state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
+| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
-| densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px，支持的范围为[80.0，640.0]。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。                                                                   |
-| orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。                                                                                                  |
+| densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px，支持的范围为[80.0，640.0]。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                  |
-| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
-| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
-| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
-| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。                                                                                                |
-| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。                                                                                               |
+| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                    |
+| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                |
+| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                               |
+| availableWidth | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| availableHeight | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。使用callback异步回调。建议应用布局规避该区域。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -954,6 +1040,8 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。使用Promise异步回调。建议应用布局规避该区域。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -983,4 +1071,137 @@ promise.then((data: display.CutoutInfo) => {
 }).catch((err: BusinessError) => {
   console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
 });
+```
+
+### getAvailableArea<sup>12+</sup>
+getAvailableArea(): Promise&lt;Rect&gt;
+
+获取当前2in1设备屏幕的可用区域，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[Rect](#rect9)&gt; | Promise对象。返回当前屏幕可用矩形区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  let promise = displayClass.getAvailableArea();
+  promise.then((data) => {
+    console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to get the available area in this display. Code: ' + JSON.stringify(err));
+  })
+} catch (exception) {
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+}
+```
+
+### on('availableAreaChange')<sup>12+</sup>
+on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
+
+开启当前2in1设备屏幕的可用区域监听。当前2in1设备屏幕有可用区域变化时，触发回调函数，返回可用区域。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 是   | 回调函数，返回改变后的可用区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let callback: Callback<display.Rect> = (data: display.Rect) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  displayClass.on("availableAreaChange", callback);
+} catch (exception) {
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+### off('availableAreaChange')<sup>12+</sup>
+
+off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
+
+关闭当前2in1设备屏幕可用区域变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let callback: Callback<display.Rect> = (data: display.Rect) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  displayClass.off("availableAreaChange", callback);
+} catch (exception) {
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
 ```

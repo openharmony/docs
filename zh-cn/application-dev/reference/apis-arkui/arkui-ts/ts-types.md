@@ -34,7 +34,7 @@
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
-| string                | 需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。 |
+| string                | 需要显式指定[像素单位](ts-pixel-units.md)，如'10px'，也可设置百分比字符串，如'100%'。<br/>**说明：** <br/>不指定像素单位时，默认单位vp，如'10'，等同于10。 |
 | number                | 默认单位vp。                                |
 | [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的尺寸。               |
 
@@ -628,6 +628,8 @@ hover事件的回调类型。
 
 type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
 | HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11对象说明)) => void | hover事件的回调。 |
@@ -649,6 +651,8 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void;
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称            | 类型                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
 | VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isVisible：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
@@ -656,6 +660,8 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 ## StyledStringValue<sup>12+</sup>
 
 样式对象类型，用于设置属性字符串的样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 描述       |
 | ------ | ---------- |

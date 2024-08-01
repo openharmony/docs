@@ -34,6 +34,8 @@ type Initializer\<T> = () => T
 
 可以将属性更新到本地的修饰器。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## AttributeUpdater<T, C = Initializer\<T>>
@@ -48,6 +50,8 @@ applyNormalAttribute?(instance: T): void
 
 定义正常态更新属性函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -60,6 +64,8 @@ applyNormalAttribute?(instance: T): void
 initializeModifier(instance: T): void
 
 AttributeUpdater首次设置给组件时提供的样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -109,6 +115,8 @@ struct updaterDemo1 {
 get attribute(): T | undefined
 
 获取AttributeUpdater中组件对应的属性类实例，通过该实例实现属性直通更新的功能。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -163,6 +171,8 @@ updateConstructorParams: C
 
 其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：** 
@@ -202,3 +212,67 @@ struct attributeDemo3 {
 }
 ```
 ![attributeUpdater3](figures/attribute-updater3.gif)
+
+### onComponentChanged
+
+onComponentChanged(instance: T): void
+
+绑定相同的自定义的Modifier对象，组件发生切换时，通过该接口通知到应用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                                     |
+| ------ | ------ | ---- | ------------------------------------------------------------------------ |
+| instance | T | 是 | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。|
+
+**示例：** 
+
+```ts
+// xxx.ets
+import { AttributeUpdater } from '@kit.ArkUI'
+
+class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  initializeModifier(instance: ButtonAttribute): void {
+    instance.backgroundColor('#ff2787d9')
+      .width('50%')
+      .height(30)
+  }
+
+  onComponentChanged(instance: ButtonAttribute) :void {
+    instance.backgroundColor('#ff2787d9')
+      .width('50%')
+      .height(30)
+  }
+}
+
+@Entry
+@Component
+struct updaterDemo4 {
+  @State btnState: boolean = false
+  modifier: MyButtonModifier = new MyButtonModifier()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Test")
+          .onClick(() => {
+          this.btnState = !this.btnState
+        })
+
+        if (this.btnState) {
+          Button("Button")
+            .attributeModifier(this.modifier)
+        } else {
+          Button("Button")
+            .attributeModifier(this.modifier)
+        }
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}

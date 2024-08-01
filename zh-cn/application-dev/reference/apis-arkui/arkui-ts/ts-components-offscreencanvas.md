@@ -252,7 +252,7 @@ struct OffscreenCanvasExamplePage {
 
 ## OffscreenCanvas支持并发线程绘制
 
-从API version 11开始，当应用创建Worker线程，支持使用postMessage将OffscreenCanvas实例传到Worker中进行绘制，并使用onmessage接收Worker线程发送的绘制结果进行显示。
+从API version 11开始，当应用创建[Worker线程](../../../arkts-utils/worker-introduction.md)，支持使用postMessage将OffscreenCanvas实例传到Worker中进行绘制，并使用onmessage接收Worker线程发送的绘制结果进行显示。
 
 > **说明：**
 >

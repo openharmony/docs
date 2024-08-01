@@ -65,13 +65,13 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称           | 类型                               | 只读 | 必填 | 说明        |
+| 名称           | 类型                               | 只读 | 可选 | 说明        |
 | -------------- | --------------------------------- | ---- | ---- |---------- |
-| cameraId       | string                            | 是   | 是   | 相机id。|
-| cameraPosition | [CameraPosition](#cameraposition) | 是   | 是   | 相机位置。    |
-| cameraType     | [CameraType](#cameratype)         | 是   | 是   | 相机类型。    |
-| connectionType | [ConnectionType](#connectiontype) | 是   | 是   | 相机连接类型。 |
-| cameraOrientation<sup>12+</sup> | number | 是   | 是   | 相机旋转角度。 |
+| cameraId       | string                            | 是   | 否   | 相机id。|
+| cameraPosition | [CameraPosition](#cameraposition) | 是   | 否   | 相机位置。    |
+| cameraType     | [CameraType](#cameratype)         | 是   | 否   | 相机类型。    |
+| connectionType | [ConnectionType](#connectiontype) | 是   | 否   | 相机连接类型。 |
+| cameraOrientation<sup>12+</sup> | number | 是   | 否   | 相机旋转角度。 |
 
 ## CameraPosition
 
@@ -133,10 +133,10 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称   | 类型                           |    只读   |     必填     | 说明       |
+| 名称   | 类型                           |    只读   |     可选     | 说明       |
 | ------ | ----------------------------- | --------- |------------ | ---------- |
-| camera | [CameraDevice](#cameradevice) |     否    |       是     | 相机信息。 |
-| status | [CameraStatus](#camerastatus) |     否    |       是     | 相机状态。 |
+| camera | [CameraDevice](#cameradevice) |     否    |       否     | 相机信息。 |
+| status | [CameraStatus](#camerastatus) |     否    |       否     | 相机状态。 |
 
 ## Profile
 
@@ -144,10 +144,10 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                          | 只读 | 必填 | 说明         |
+| 名称      | 类型                          | 只读 | 可选 | 说明         |
 | -------- | ----------------------------- |---- | ---- | ------------- |
-| format   | [CameraFormat](#cameraformat) | 是  |  是  | 输出格式。      |
-| size     | [Size](#size)                 | 是  |  是  | 分辨率。       |
+| format   | [CameraFormat](#cameraformat) | 是  |  否  | 输出格式。      |
+| size     | [Size](#size)                 | 是  |  否  | 分辨率。       |
 
 ## FrameRateRange
 
@@ -166,9 +166,9 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                       | 类型                                      | 只读 | 必填 | 说明        |
+| 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  |  是  | 帧率范围，fps(frames per second)。 |
+| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  |  否  | 帧率范围，fps(frames per second)。 |
 
 ## CameraOutputCapability
 
@@ -177,11 +177,11 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                           | 类型                                                | 只读 | 可选 | 说明                |
-| ----------------------------- | --------------------------------------------------- | ---- | ---- | ------------------- |
-| previewProfiles               | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的预览配置信息。    |
-| photoProfiles                 | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的拍照配置信息。    |
-| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              |  是  | 否 | 支持的录像配置信息。    |
-| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  |  是  | 否 | 支持的metadata流类型信息。|
+| ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
+| previewProfiles               | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的预览配置信息集合。      |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的拍照配置信息集合。        |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              |  是  | 否 | 支持的录像配置信息集合。        |
+| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  |  是  | 否 | 支持的metadata流类型信息集合。 |
 
 ## SceneMode<sup>11+</sup>
 
@@ -189,11 +189,11 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                     | 值        | 说明         |
-| ----------------------- | --------- | ------------ |
-| NORMAL_PHOTO  | 1         | 普通拍照模式。             |
-| NORMAL_VIDEO | 2      | 普通录像模式。      |
-| SECURE_PHOTO<sup>12+</sup> | 12     | 安全相机模式。      |
+| 名称                         | 值       | 说明                                          |
+|----------------------------|---------|---------------------------------------------|
+| NORMAL_PHOTO               | 1       | 普通拍照模式。详情见[PhotoSession](#photosession11)   |
+| NORMAL_VIDEO               | 2       | 普通录像模式。详情见[VideoSession](#videosession11)   |
+| SECURE_PHOTO<sup>12+</sup> | 12      | 安全相机模式。详情见[SecureSession](#securesession12) |
 
 ## CameraErrorCode
 
@@ -1063,11 +1063,11 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称              | 类型       | 只读 | 必填 | 说明        |
+| 名称              | 类型       | 只读 | 可选 | 说明        |
 | ---------------- | ---------- | ---- | ---- | ----------- |
-| isTorchAvailable | boolean    | 是   | 是   | 手电筒是否可用。|
-| isTorchActive    | boolean    | 是   | 是   | 手电筒是否被激活。    |
-| torchLevel       | number     | 是   | 是   | 手电筒亮度等级。取值范围为[0,1]，越靠近1，亮度越大。    |
+| isTorchAvailable | boolean    | 是   | 否   | 手电筒是否可用。|
+| isTorchActive    | boolean    | 是   | 否   | 手电筒是否被激活。    |
+| torchLevel       | number     | 是   | 否   | 手电筒亮度等级。取值范围为[0,1]，越靠近1，亮度越大。    |
 
 ## Size
 
@@ -1086,10 +1086,10 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称    | 类型   | 只读   | 必填   | 说明         |
+| 名称    | 类型   | 只读   | 可选   | 说明         |
 | ------ | ------ | ------ | ------ | ------------ |
-| x      | number | 否     | 是     | 点的x坐标。   |
-| y      | number | 否     | 是     | 点的y坐标。   |
+| x      | number | 否     | 否     | 点的x坐标。   |
+| y      | number | 否     | 否     | 点的y坐标。   |
 
 ## CameraFormat
 
@@ -1912,12 +1912,12 @@ function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRa
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                            | 只读 | 必填 | 说明                                                                   |
+| 名称      | 类型                            | 只读 | 可选 | 说明                                                                   |
 | -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
-| quality  | [QualityLevel](#qualitylevel)   | 否   | 否   | 图片质量(默认低)。                                                           |
-| rotation | [ImageRotation](#imagerotation) | 否   | 否   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
-| location | [Location](#location)           | 否   | 否   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
-| mirror   | boolean                         | 否   | 否   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](#ismirrorsupported)进行判断是否支持。 |
+| quality  | [QualityLevel](#qualitylevel)   | 否   | 是   | 图片质量(默认低)。                                                           |
+| rotation | [ImageRotation](#imagerotation) | 否   | 是   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
+| location | [Location](#location)           | 否   | 是   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
+| mirror   | boolean                         | 否   | 是   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](#ismirrorsupported)进行判断是否支持。 |
 
 ## Photo<sup>11+</sup>
 
@@ -2867,10 +2867,10 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称       | 类型   | 只读 | 必填 | 说明        |
+| 名称       | 类型   | 只读 | 可选 | 说明        |
 | --------- | ------ | ---- | ---- | ---------- |
-| captureId | number | 否   | 是   | 拍照的ID。  |
-| timestamp | number | 否   | 是   | 快门时间戳。 |
+| captureId | number | 否   | 否   | 拍照的ID。  |
+| timestamp | number | 否   | 否   | 快门时间戳。 |
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
@@ -2878,9 +2878,9 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型   | 只读 | 必填 | 说明       |
+| 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
-| captureId | number | 否   | 是   | 拍照的ID。 |
+| captureId | number | 否   | 否   | 拍照的ID。 |
 
 ## CaptureStartInfo<sup>11+</sup>
 
@@ -2888,10 +2888,10 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称       | 类型    | 只读 | 必填 | 说明       |
+| 名称       | 类型    | 只读 | 可选 | 说明       |
 | ---------- | ------ | ---- | ---- | --------- |
-| captureId  | number | 否   | 是   | 拍照的ID。 |
-| time       | number | 否   | 是   | 预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。    |
+| captureId  | number | 否   | 否   | 拍照的ID。 |
+| time       | number | 否   | 否   | 预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。    |
 
 ## CaptureEndInfo
 
@@ -2899,10 +2899,10 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称       | 类型    | 只读 | 必填 | 说明       |
+| 名称       | 类型    | 只读 | 可选 | 说明       |
 | ---------- | ------ | ---- | ---- | ---------|
-| captureId  | number | 否   | 是   | 拍照的ID。 |
-| frameCount | number | 否   | 是   | 帧数。    |
+| captureId  | number | 否   | 否   | 拍照的ID。 |
+| frameCount | number | 否   | 否   | 帧数。    |
 
 ## VideoOutput
 
@@ -3588,11 +3588,11 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称         | 类型                                        | 只读 | 必填 |说明                |
+| 名称         | 类型                                        | 只读 | 可选 |说明                |
 | ----------- | ------------------------------------------- | ---- | ---- | ----------------- |
-| type        | [MetadataObjectType](#metadataobjecttype)   |  是  |  是  | metadata 类型。    |
-| timestamp   | number                                      |  是  |  是  | 当前时间戳（毫秒）。|
-| boundingBox | [Rect](#rect)                               |  是  |  是  | metadata 区域框。  |
+| type        | [MetadataObjectType](#metadataobjecttype)   |  是  |  否  | metadata 类型。    |
+| timestamp   | number                                      |  是  |  否  | 当前时间戳（毫秒）。|
+| boundingBox | [Rect](#rect)                               |  是  |  否  | metadata 区域框。  |
 
 ## FlashMode
 
@@ -5013,9 +5013,9 @@ function isFocusModeSupported(photoSession: camera.PhotoSession): boolean {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称     | 类型        |   只读   |   必填   | 说明       |
+| 名称     | 类型        |   只读   |   可选   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
-| duration |   number   |   否     |    是    | 平滑变焦总时长，单位ms。 |
+| duration |   number   |   否     |    否    | 平滑变焦总时长，单位ms。 |
 
 ## Zoom<sup>11+</sup>
 
@@ -7212,6 +7212,10 @@ PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 普通拍照模式会话类，提供了对闪光灯、曝光、对焦、变焦、色彩空间的操作。
 
+> **说明：**
+>
+> 默认的拍照模式，用于拍摄标准照片。支持多种照片格式和分辨率，适合大多数日常拍摄场景。
+
 ### on('error')<sup>11+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -7394,6 +7398,10 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 普通录像模式会话类，提供了对闪光灯、曝光、对焦、变焦、视频防抖、色彩空间的操作。
 
+> **说明：**
+>
+> 默认的视频录制模式，适用于一般场景。支持720P、1080p等多种分辨率的录制，可选择不同帧率（如30fps、60fps）。
+
 ### on('error')<sup>11+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -7575,6 +7583,11 @@ function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
 SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11)
 
 安全模式会话类，提供了对闪光灯、曝光、对焦、变焦的操作。
+
+> **说明：**
+>
+> 通过[createSession](#createsession11)接口传入[SceneMode](#scenemode11)为SECURE_PHOTO模式创建一个安全模式的会话。该模式开放给人脸识别、银行等有安全诉求的应用，需要结合安全TA使用，支持同时出普通预览流和安全流的业务场景。
+> 安全TA：可用于图片处理，它具备验证服务器下发数据的验签能力、图片签名、解析及组装tlv逻辑的能力，还具备密钥读取、创建及操作能力。
 
 ### addSecureOutput<sup>12+</sup>
 

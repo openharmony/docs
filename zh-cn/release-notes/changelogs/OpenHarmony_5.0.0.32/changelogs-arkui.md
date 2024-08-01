@@ -64,45 +64,6 @@ UIExtensionComponent组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.3 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-onItemDrag接口无法与其他应用产生交互，但生成的拖拽窗口能拖拽出当前应用。
-
-现在限制其能拖出当前应用的行为，与使用范围保持一致。
-
-**变更影响**
-
-该变更为兼容性变更。
-
-API version 12之前，onItemDrag拖起的拖拽窗口可以拖出当前应用窗口外。
-![](figures/OnItemDragBefore.gif)
-
-API version 12及以后，onItemDrag拖起的拖拽窗口不可以拖出当前应用窗口外。
-![](figures/OnItemDragNow.gif)
-
-**起始API Level**
-
-8
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.32开始。
-
-**变更的接口/组件**
-
-Grid组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
-
-List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
-
-**适配指导**
-
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
-
 ## cl.arkui.4 List的constraintSize设置生效
 
 **访问级别**
@@ -583,15 +544,15 @@ struct Index {
 
 **变更原因**
 
-toast显示期间默认不响应返回事件，当前场景不符合规范。
-
-变更前：toast会响应返回手势，toast消失。
-
-变更后：toast不会响应返回手势，toast不消失，返回手势事件传递到页面其他组件。
+业界惯例toast不会响应返回手势事件，当前子窗下的toast会响应返回事件，不符合规范。
 
 **变更影响**
 
 该变更为不兼容变更。
+
+变更前：toast会响应返回手势，toast消失。
+
+变更后：toast不会响应返回手势，toast不消失，返回手势事件传递到页面其他组件。
 
 **起始API Level**
 
@@ -607,7 +568,7 @@ promptAction.showToast
 
 **适配指导**
 
-默认行为变更，无需适配，后续不支持通过返回手势退出toast。
+默认行为变更，无需适配，但应注意后续不支持通过返回手势退出toast。
 
 ## cl.arkui.14 带按钮的气泡样式变更
 **访问级别**
@@ -618,14 +579,16 @@ promptAction.showToast
 
 popup的按钮文本过长时，布局显示异常。
 
+**变更影响**
+
+该变更为不兼容变更。
+
+
 | 变更前 | 变更后 |
 |---------|---------|
 | 按钮文本的最大行数没有限制，按钮内容会相互交叉 | 最多可显示两行文本，文本逐渐缩小到9vp，仍然超长"..."省略 |
 | ![Popup_Before](figures/Popup_Before.jpeg) | ![Popup_After](figures/Popup_After.jpeg) |
 
-**变更影响**
-
-该变更为不兼容变更。
 
 **起始API Level**
 
@@ -641,7 +604,7 @@ bindPopup
 
 **适配指导**
 
-popup样式变更，无需适配。
+默认效果变更，无需适配。
 
 ## cl.arkui.15 toast样式变更
 **访问级别**
@@ -650,16 +613,16 @@ popup样式变更，无需适配。
 
 **变更原因**
 
-toast文本有两行时，文本居中显示，不符合UX规范。
+toast文本有两行时，有概率出现文本居中显示，不符合规范，规范为toast多行显示时，需左对齐显示。
+
+**变更影响**
+
+该变更为不兼容变更。
 
 | 变更前 | 变更后 |
 |---------|---------|
 | 文本居中显示 | 文本左对齐显示 |
 | ![Toast_Before](figures/Toast_Before.PNG) | ![Toast_After](figures/Toast_After.PNG) |
-
-**变更影响**
-
-该变更为不兼容变更。
 
 **起始API Level**
 
@@ -675,4 +638,39 @@ promptAction.showToast
 
 **适配指导**
 
-toast样式变更，无需适配。
+默认效果变更，无需适配。
+
+## cl.arkui.16 高级组件ComposeListItem右边按钮OperateItem类型为arrow或者arrow+text时，在没有配置action的时候，不需要单独响应点击效果，应显示全局的按压效果
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+高级组件ComposeListItem整个组件分为左右两部分，左边是内容区，右边是按钮操作区。现在问题是右边操作区按钮的OperateItem类型为arrow或者arrow+text时，在没有提供action的时候，会单独响应点击效果，预期不应该显示的；需要修改为在没有提供action的时候，右侧操作区不应该响应单独点击效果，而是整个组件响应按压效果。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| 右侧操作区OperateItem类型为arrow或者arrow+text时，没有提供action，右侧操作区单独响应了阴影效果。 | 右侧操作区OperateItem类型为arrow或者arrow+text时，没有提供action，整个组件响应了阴影效果。 |
+| ![ComposeListItem_before](figures/ComposeListItem_Before.png) | ![ComposeListItem_after](figures/ComposeListItem_After.png) |
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+ 高级组件ComposeListItem组件
+
+**适配指导**
+
+默认行为变更，无需适配。

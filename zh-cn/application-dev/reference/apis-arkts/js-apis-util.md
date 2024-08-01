@@ -370,11 +370,12 @@ parseUUID(uuid: string): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 10200002 | Invalid uuid string. |
 
 **示例：**
 
@@ -864,6 +865,10 @@ let retStr = result.encoding
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
+
+> **说明：**
+>
+> 当input是一个空数组时，返回值为undefined。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 

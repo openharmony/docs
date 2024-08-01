@@ -307,7 +307,7 @@ static set&lt;T&gt;(propName: string, newValue: T): boolean
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 如果AppStorage中不存在propName对应的属性，返回false。设置成功则返回true。 |
+| boolean | 如果AppStorage中不存在propName对应的属性，或设值失败，则返回false。设置成功则返回true。 |
 
 **示例：**
 ```ts
@@ -902,7 +902,7 @@ static getShared(): LocalStorage
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**模型约束：**此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **返回值：**
 
@@ -1087,8 +1087,8 @@ ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let refToPropA1: AbstractProperty<number> | undefined = storage.ref('PropA');
-let refToPropA2: AbstractProperty<number> | undefined = storage.ref('PropA'); // linkToPropA2.get() == 47
-linkToPropA1?.set(48); // linkToPropA1.get() == linkToPropA2.get() == 48
+let refToPropA2: AbstractProperty<number> | undefined = storage.ref('PropA'); // refToPropA2.get() == 47
+refToPropA1?.set(48); // refToPropA1.get() == refToPropA2.get() == 48
 ```
 
 ### setAndRef<sup>12+</sup>
@@ -1097,7 +1097,7 @@ setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
 与[ref](#ref12-1)接口类似，如果给定的propName在[LocalStorage](../../../quick-start/arkts-localstorage.md)中存在，则获得LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
 
-与setAndLink的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+与[setAndLink](#setandlink9)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
 
 > **说明：**<br/>
 > 从API version 12开始，LocalStorage支持[Map](../../../quick-start/arkts-localstorage.md#装饰map类型变量)、[Set](../../../quick-start/arkts-localstorage.md#装饰set类型变量)、[Date类型](../../../quick-start/arkts-localstorage.md#装饰date类型变量)，支持null、undefined以及[联合类型](../../../quick-start/arkts-localstorage.md#localstorage支持联合类型)。
@@ -1479,6 +1479,17 @@ set(newValue: T): void
 AppStorage.setOrCreate('PropA', 47);
 let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
 ref1?.set(1); //  ref1.get()=1
+let a: Map<string, number> = new Map([['1', 0]]);
+let ref2 = AppStorage.setAndRef('MapA', a);
+ref2.set(a);
+let b: Set<string> = new Set('1');
+let ref3 = AppStorage.setAndRef('SetB', b);
+ref3.set(b);
+let c: Date = new Date('2024');
+let ref4 = AppStorage.setAndRef('DateC', c);
+ref4.set(c);
+ref2.set(null);
+ref3.set(undefined);
 ```
 
 ### info<sup>12+</sup>
@@ -1564,13 +1575,25 @@ abstract set(newValue: T): void
 AppStorage.setOrCreate('PropA', 47);
 let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 prop1.set(1); //  prop1.get()=1
+// 从API12开始支持Map、Set、Date类型，支持null、undefined以及联合类型。
+let a: Map<string, number> = new Map([['1', 0]]);
+let prop2 = AppStorage.setAndProp('MapA', a);
+prop2.set(a);
+let b: Set<string> = new Set('1');
+let prop3 = AppStorage.setAndProp('SetB', b);
+prop3.set(b);
+let c: Date = new Date('2024');
+let prop4 = AppStorage.setAndProp('DateC', c);
+prop4.set(c);
+prop2.set(null);
+prop3.set(undefined);
 ```
 
 ### aboutToBeDeleted<sup>10+</sup>
 
 abstract aboutToBeDeleted(): void
 
-取消[SubscribedAbstractProperty](#subscribedabstractproperty)实例对[AppStorage](../../../quick-start/arkts-appstorage.md)/[LocalStorage](../../../quick-start/arkts-localstorage.md)的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用set或get方法。
+取消[SubscribedAbstractProperty](#subscribedabstractproperty)实例对[AppStorage](../../../quick-start/arkts-appstorage.md)/[LocalStorage](../../../quick-start/arkts-localstorage.md)的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用[set](#set9-1)或[get](#get9-1)方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2019,318 +2042,3 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 | fontWeightScale      | number          | 字重比例。                                                   |
 | layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |
-
-
-## AppStorageV2
-
-AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../../quick-start/arkts-new-appstoragev2.md)
-
-### connect<sup>12+</sup>
-
-static&nbsp;connect\<T extends object\>( </br >
-  &nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;TypeConstructorWithArgs\<T\>, </br >
-  &nbsp;&nbsp;&nbsp;&nbsp;keyOrDefaultCreator?:&nbsp;string&nbsp;|&nbsp;StorageDefaultCreator\<T\>, </br >
-  &nbsp;&nbsp;&nbsp;&nbsp;defaultCreator?:&nbsp;StorageDefaultCreator\<T\> </br >
-):&nbsp;T&nbsp;|&nbsp;undefined;
-
-将键值对数据储存在应用内存中。如果给定的key已经存在于[AppStorageV2](../../../quick-start/arkts-new-appstoragev2.md)中，返回对应的值；否则，通过获取默认值的构造器构造默认值，并返回。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 参数描述               |
-| -------- | ------ | ---- | ---------------------- |
-| type | TypeConstructorWithArgs\<T\> | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
-| keyOrDefaultCreater | string&nbsp;\|&nbsp;StorageDefaultCreator\<T\> | 否   | 指定的key，或者是获取默认值的构造器。 |
-| defaultCreator | StorageDefaultCreator\<T\> | 否   | 获取默认值的构造器。 |
-
->**说明：**
->
->1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器；
->
->2、确保数据已经存储在AppStorageV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
->
->3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配；
->
->4、key建议使用有意义的值，长度不超过255，使用非法字符或空字符的行为是未定义的。
-
-**返回值：**
-
-| 类型                                   | 描述                                                         |
-| -------------------------------------- | ------------------------------------------------------------ |
-| T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
-
-**示例：**
-
-```ts
-import { AppStorageV2 } from '@kit.ArkUI';
-
-@ObservedV2
-class SampleClass {
-  @Trace p: number = 0;
-}
-
-// 将key为SampleClass、value为new SampleClass()对象的键值对存储到内存中，并赋值给as1
-const as1: SampleClass | undefined = AppStorageV2.connect(SampleClass, () => new SampleClass());
-
-// 将key为key_as2、value为new SampleClass()对象的键值对存储到内存中，并赋值给as2
-const as2: SampleClass = AppStorageV2.connect(SampleClass, 'key_as2', () => new SampleClass())!;
-
-// key为SampleClass已经在AppStorageV2中，将key为SampleClass的值返回给as3
-const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
-```
-
-### remove<sup>12+</sup>
-
-static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
-
-将指定的键值对数据从[AppStorageV2](../../../quick-start/arkts-new-appstoragev2.md)里面删除。如果指定的键值不存在于AppStorageV2中，将删除失败。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 参数描述               |
-| -------- | ------ | ---- | ---------------------- |
-| keyOrType | string \| TypeConstructorWithArgs\<T\> | 是   | 需要删除的key；如果指定的是type类型，删除的key为type的name。 |
-
->**说明：**
->
->删除AppStorageV2中不存在的key会报警告。
-
-**返回值：**
-
-无。
-
-**示例：**
-
-```ts
-// 假设AppStorageV2中存在key为key_as2的键，从AppStorageV2中删除该键值对数据
-AppStorageV2.remove('key_as2');
-
-// 假设AppStorageV2中存在key为SampleClass的键，从AppStorageV2中删除该键值对数据
-AppStorageV2.remove(SampleClass);
-
-// 假设AppStorageV2中不存在key为key_as1的键，报警告
-AppStorageV2.remove('key_as1');
-```
-
-### keys<sup>12+</sup>
-
-static&nbsp;keys():&nbsp;Array\<string\>;
-
-获取[AppStorageV2](../../../quick-start/arkts-new-appstoragev2.md)中的所有key。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-无。
-
-**返回值：**
-
-| 类型                                   | 描述                                                         |
-| -------------------------------------- | ------------------------------------------------------------ |
-| Array<string> | 所有AppStorageV2中的key。 |
-
->**说明：**
->
->key在Array中的顺序是无序的，与key插入到AppStorageV2中的顺序无关。
-
-**示例：**
-
-```ts
-// 假设AppStorageV2中存在两个key（key_as1、key_as2），返回[key_as1、key_as2]赋值给keys
-const keys: Array<string> = AppStorageV2.keys();
-```
-
-
-
-## PersistenceV2
-
-PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../../quick-start/arkts-new-persistencev2.md)
-
-### connect<sup>12+</sup>
-
-static&nbsp;connect\<T extends object\>( </br >
-  &nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;TypeConstructorWithArgs\<T\>, </br >
-  &nbsp;&nbsp;&nbsp;&nbsp;keyOrDefaultCreator?:&nbsp;string&nbsp;|&nbsp;StorageDefaultCreator\<T\>, </br >
-  &nbsp;&nbsp;&nbsp;&nbsp;defaultCreator?:&nbsp;StorageDefaultCreator\<T\> </br >
-):&nbsp;T&nbsp;|&nbsp;undefined;
-
-将键值对数据储存在应用磁盘中（持久化）。如果给定的key已经存在于[PersistenceV2](../../../quick-start/arkts-new-persistencev2.md)中，返回对应的值；否则，通过获取默认值的构造器构造默认值，并返回。如果connect的是[\@ObservedV2](../../../quick-start/arkts-new-observedV2-and-trace.md)对象，该对象的[\@Trace](../../../quick-start/arkts-new-observedV2-and-trace.md)属性的变化，会触发**整个关联对象的自动持久化**；非\@Trace属性的变化则不会，如有必要，可调用PersistenceV2.save接口手动持久化。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 参数描述               |
-| -------- | ------ | ---- | ---------------------- |
-| type | TypeConstructorWithArgs\<T\> | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
-| keyOrDefaultCreater | string&nbsp;\|&nbsp;StorageDefaultCreator\<T\> | 否   | 指定的key，或者是获取默认值的构造器。 |
-| defaultCreator | StorageDefaultCreator\<T\> | 否   | 获取默认值的构造器。 |
-
->**说明：**
->
->1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）；
->
->2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
->
->3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配；
->
->4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
-
-**返回值：**
-
-| 类型                                   | 描述                                                         |
-| -------------------------------------- | ------------------------------------------------------------ |
-| T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
-
-**示例：**
-
-```ts
-import { PersistenceV2, Type } from '@kit.ArkUI';
-
-@ObservedV2
-class SampleClass {
-  @Trace p1: number = 0;
-  p2: number = 1;
-}
-
-@ObservedV2
-class FatherSampleClass {
-  @Trace f: SampleClass = new SampleClass();
-}
-
-// 将key为SampleClass、value为new SampleClass()对象的键值对持久化，并赋值给as1
-const as1: FatherSampleClass | undefined = PersistenceV2.connect(FatherSampleClass, () => new FatherSampleClass());
-
-// 将key为key_as2、value为new SampleClass()对象的键值对持久化，并赋值给as2
-const as2: FatherSampleClass = PersistenceV2.connect(FatherSampleClass, 'key_as2', () => new FatherSampleClass())!;
-
-// key为SampleClass已经在PersistenceV2中，将key为SampleClass的值返回给as3
-const as3: FatherSampleClass = PersistenceV2.connect(FatherSampleClass) as FatherSampleClass;
-
-@Entry
-@Component
-struct SampleComp {
-  v: FatherSampleClass = as1;
-
-  build() {
-    Column() {
-      Text(`${this.v.f.p1}`)
-        .onClick(() => {
-          // 自动持久化
-          this.v.f.p1++;
-        })
-      Text(`${this.v.f.p2}`)
-        .onClick(() => {
-          // 不能自动持久化，需要调用PersistenceV2.save
-          this.v.f.p2++;
-        })
-    }
-  }
-}
-```
-
-### remove<sup>12+</sup>
-
-static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
-
-将指定的键值对数据从[PersistenceV2](../../../quick-start/arkts-new-persistencev2.md)里面删除。如果指定的键值不存在于PersistenceV2中，将删除失败。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 参数描述               |
-| -------- | ------ | ---- | ---------------------- |
-| keyOrType | string \| TypeConstructorWithArgs\<T\> | 是   | 需要删除的key；如果指定的是type类型，删除的key为type的name。 |
-
->**说明：**
->
->删除PersistenceV2中不存在的key会报警告。
-
-**返回值：**
-
-无。
-
-**示例：**
-
-```ts
-// 假设PersistenceV2中存在key为key_as2的键，从PersistenceV2中删除该键值对数据
-PersistenceV2.remove('key_as2');
-
-// 假设PersistenceV2中存在key为SampleClass的键，从PersistenceV2中删除该键值对数据
-PersistenceV2.remove(SampleClass);
-
-// 假设PersistenceV2中不存在key为key_as1的键，报警告
-PersistenceV2.remove('key_as1');
-```
-
-### keys<sup>12+</sup>
-
-static&nbsp;keys():&nbsp;Array\<string\>;
-
-获取[PersistenceV2](../../../quick-start/arkts-new-persistencev2.md)中的所有key。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-无。
-
-**返回值：**
-
-| 类型                                   | 描述                                                         |
-| -------------------------------------- | ------------------------------------------------------------ |
-| Array<string> | 所有PersistenceV2中的key。 |
-
->**说明：**
->
->key在Array中的顺序是无序的，与key插入到PersistenceV2中的顺序无关。
-
-**示例：**
-
-```ts
-// 假设PersistenceV2中存在两个key（key_as1、key_as2），返回[key_as1、key_as2]赋值给keys
-const keys: Array<string> = PersistenceV2.keys();
-```
-
-### save<sup>12+</sup>
-
-static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
-
-将指定的键值对数据持久化一次。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 参数描述               |
-| -------- | ------ | ---- | ---------------------- |
-| keyOrType | string \| TypeConstructorWithArgs\<T\> | 是   | 需要持久化的key；如果指定的是type类型，持久化的key为type的name。 |
-
->**说明：**
->
->由于非[\@Trace](../../../quick-start/arkts-new-observedV2-and-trace.md)的数据改变不会触发[PersistenceV2](../../../quick-start/arkts-new-persistencev2.md)的自动持久化，如有必要，可调用该接口持久化对应key的数据；
->
->手动持久化当前内存中不处于connect状态的key是无意义的。
-
-**返回值：**
-
-无。
-
-**示例：**
-
-```ts
-// 假设PersistenceV2中存在key为key_as2的键，持久化该键值对数据
-PersistenceV2.save('key_as2');
-
-// 假设PersistenceV2中存在key为SampleClass的键，持久化该键值对数据
-PersistenceV2.remove(SampleClass);
-
-// 假设PersistenceV2中不存在key为key_as1的键，无意义的操作
-PersistenceV2.remove('key_as1');
-```

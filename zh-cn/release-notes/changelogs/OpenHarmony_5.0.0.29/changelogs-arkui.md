@@ -228,3 +228,39 @@ API version 12及以后：bindSheet在手机横屏时支持开发者设置挡位
 **适配指导**
 
 默认行为变更，需应用适配。横竖屏设置挡位规则保持一致，参考detents属性的设置请查阅[半模态组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。
+
+## cl.arkui.7 RichEditor/TextInput/TextArea/Search组件编辑态长按时显示单光标
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+RichEditor/TextInput/TextArea/Search组件在编辑态下，若检测到手指长按后进行move操作，则在当前手指触摸位置显示光标。
+
+**变更影响**
+
+该变更为不兼容变更，只影响RichEditor/TextInput/TextArea/Search组件编辑态长按逻辑。
+
+- 变更前： RichEditor/TextInput/TextArea/Search组件编辑态长按时选中触摸内容，并出现双手柄。
+
+- 变更后： RichEditor/TextInput/TextArea/Search组件编辑态长按时显示单光标（涉及光标动效），而不会选中触摸内容。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/text_select.jpg)  |  ![](figures/text_single.jpg)  |
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+UX统一文本编辑交互规范，开发者无需适配。

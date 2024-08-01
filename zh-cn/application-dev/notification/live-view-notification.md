@@ -35,15 +35,11 @@
       ```ts
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
       let color = new ArrayBuffer(4);
-      image.createPixelMap(color, {
+      imagePixelMap = await image.createPixelMap(color, {
         size: {
           height: 1,
           width: 1
         }
-      }).then((data: image.PixelMap) => {
-        imagePixelMap = data;
-      }).catch((err: BusinessError) => {
-        console.log(`createPixelMap failed, error: ${err}`);
       })
       if(imagePixelMap !== undefined) {
         let notificationRequest: notificationManager.NotificationRequest = {

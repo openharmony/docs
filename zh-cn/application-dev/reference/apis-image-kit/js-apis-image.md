@@ -2853,6 +2853,14 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例，IncrementalSource不支持读写Exif信息。
 
+以增量方式创建的图片源实例ImageSource，仅支持使用以下功能，同步、异步callback、异步Promise均支持。
+- 获取图片信息：指定序号-[getImageInfo](#getimageinfo)、直接获取-[getImageInfo](#getimageinfo-1)
+- 获取图片中给定索引处图像的指定属性键的值：[getImageProperty](#getimageproperty11)
+- 批量获取图片中的指定属性键的值：[getImageProperties](#getimageproperties12)
+- 更新增量数据：[updateData](#updatedata9)
+- 创建PixelMap对象：通过图片解码参数创建-[createPixelMap](#createpixelmap7)、通过默认参数创建-[createPixelMap](#createpixelmap7-1) 、通过图片解码参数-[createPixelMap](#createpixelmap7-2)
+- 释放图片源实例：[release](#release)
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2894,6 +2902,8 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例，IncrementalSource不支持读写Exif信息。
+
+此接口支持的功能与[CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9)所生成的实例支持的功能相同
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4718,6 +4728,8 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 从ImageReceiver读取最新的图片，并使用callback返回结果。
 
+**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
@@ -4746,6 +4758,8 @@ readLatestImage(): Promise\<Image>
 
 从ImageReceiver读取最新的图片，并使用promise返回结果。
 
+**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
@@ -4771,6 +4785,8 @@ receiver.readLatestImage().then((img: image.Image) => {
 readNextImage(callback: AsyncCallback\<Image>): void
 
 从ImageReceiver读取下一张图片，并使用callback返回结果。
+
+**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -4799,6 +4815,8 @@ receiver.readNextImage((err: BusinessError, img: image.Image) => {
 readNextImage(): Promise\<Image>
 
 从ImageReceiver读取下一张图片，并使用promise返回结果。
+
+**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -4868,7 +4886,7 @@ receiver.release((err: BusinessError) => {
   if (err) {
     console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
   } else {
-    console.info('Succeeded in releaseing the receiver.');
+    console.info('Succeeded in releasing the receiver.');
   }
 })
 ```
@@ -4895,7 +4913,7 @@ ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存�
 import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.release().then(() => {
-  console.info('Succeeded in releaseing the receiver.');
+  console.info('Succeeded in releasing the receiver.');
 }).catch((error: BusinessError) => {
   console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
 })

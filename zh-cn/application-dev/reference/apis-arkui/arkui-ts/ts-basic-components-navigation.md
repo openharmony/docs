@@ -382,6 +382,8 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 当Navigation中显示Navigation首页时，设置对应系统状态栏的样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -501,6 +503,8 @@ pushPath(info: NavPathInfo, options?: NavigationOptions): void
 
 将info指定的NavDestination页面信息入栈，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -578,6 +582,8 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -690,6 +696,8 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 replacePath(info: NavPathInfo, options?: NavigationOptions): void
 
 替换页面栈操作，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1137,9 +1145,13 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 取消本次交互转场，恢复到页面跳转前的页面栈(不支持取消不可交互转场动画)。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ### updateTransition<sup>12+</sup>
 
 更新交互转场动画进度(不可交互动画不支持动画进度设置)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1318,6 +1330,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 ## LaunchMode<sup>12+</sup>枚举说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称    | 描述  |
 | --------- | ------ |
 | STANDARD | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
@@ -1326,6 +1340,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | NEW_INSTANCE | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
 
 ## NavigationOptions<sup>12+</sup>类型说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -2961,9 +2977,15 @@ class DerivedNavPathStack extends NavPathStack {
   }
 
   // overwrite function of NavPathStack
-  pushPath(info: NavPathInfo, animated?: boolean): void {
+  pushPath(info: NavPathInfo, animated?: boolean): void
+  pushPath(info: NavPathInfo, options?: NavigationOptions): void
+  pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
     console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
-    super.pushPath(info, animated);
+    if (typeof secArg === 'boolean') {
+      super.pushPath(info, secArg);
+    } else {
+      super.pushPath(info, secArg);
+    }
   }
 
   // overwrite and overload function of NavPathStack

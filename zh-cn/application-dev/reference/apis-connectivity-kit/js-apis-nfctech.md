@@ -43,7 +43,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcA' correctly.
 let sak : number = nfcA.getSak();
-console.log("nfcA sak: " + sak);
+console.info("nfcA sak: " + sak);
 ```
 
 ### NfcATag.getAtqa
@@ -69,7 +69,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcA' correctly.
 let atqa : number[] = nfcA.getAtqa();
-console.log("nfcA atqa: " + atqa);
+console.info("nfcA atqa: " + atqa);
 ```
 
 ## NfcBTag
@@ -103,7 +103,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcB' correctly.
 let respAppData : number[] = nfcB.getRespAppData();
-console.log("nfcB respAppData: " + respAppData);
+console.info("nfcB respAppData: " + respAppData);
 ```
 
 ### NfcBTag.getRespProtocol
@@ -129,7 +129,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcB' correctly.
 let respProtocol : number[] = nfcB.getRespProtocol();
-console.log("nfcB respProtocol: " + respProtocol);
+console.info("nfcB respProtocol: " + respProtocol);
 ```
 
 ## NfcFTag
@@ -163,7 +163,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcF' correctly.
 let systemCode : number[] = nfcF.getSystemCode();
-console.log("nfcF systemCode: " + systemCode);
+console.info("nfcF systemCode: " + systemCode);
 ```
 
 ### NfcFTag.getPmm
@@ -189,7 +189,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcF' correctly.
 let pmm : number[] = nfcF.getPmm();
-console.log("nfcF pmm: " + pmm);
+console.info("nfcF pmm: " + pmm);
 ```
 
 ## NfcVTag
@@ -223,7 +223,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcV' correctly.
 let responseFlags : number = nfcV.getResponseFlags();
-console.log("nfcV responseFlags: " + responseFlags);
+console.info("nfcV responseFlags: " + responseFlags);
 ```
 
 ### NfcvTag.getDsfId
@@ -249,7 +249,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcV' correctly.
 let dsfId : number = nfcV.getDsfId();
-console.log("nfcV dsfId: " + dsfId);
+console.info("nfcV dsfId: " + dsfId);
 ```
 
 ## IsoDepTag<sup>9+</sup> 
@@ -283,7 +283,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 let historicalBytes : number[] = isoDep.getHistoricalBytes();
-console.log("isoDep historicalBytes: " + historicalBytes);
+console.info("isoDep historicalBytes: " + historicalBytes);
 ```
 
 ### IsoDepTag.getHiLayerResponse<sup>9+</sup>
@@ -309,7 +309,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 let hiLayerResponse : number[] = isoDep.getHiLayerResponse();
-console.log("isoDep hiLayerResponse: " + hiLayerResponse);
+console.info("isoDep hiLayerResponse: " + hiLayerResponse);
 ```
 
 ### IsoDepTag.isExtendedApduSupported<sup>9+</sup>
@@ -352,14 +352,14 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!isoDep.isTagConnected()) {
         if (!isoDep.connectTag()) {
-            console.log("isoDep connectTag failed.");
+            console.error("isoDep connectTag failed.");
             return;
         }
     }
 
     try {
         isoDep.isExtendedApduSupported().then((response: boolean) => {
-            console.log("isoDep isExtendedApduSupported Promise response: " + response);
+            console.info("isoDep isExtendedApduSupported Promise response: " + response);
         }).catch((err: BusinessError) => {
             console.error("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
         });
@@ -411,7 +411,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!isoDep.isTagConnected()) {
         if (!isoDep.connectTag()) {
-            console.log("isoDep connectTag failed.");
+            console.error("isoDep connectTag failed.");
             return;
         }
     }
@@ -419,9 +419,9 @@ function nfcTechDemo() {
     try {
         isoDep.isExtendedApduSupported((err: BusinessError, response: boolean) => {
             if (err) {
-                console.log("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}");
+                console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}");
             } else {
-                console.log("isoDep isExtendedApduSupported AsyncCallback response: " + response);
+                console.info("isoDep isExtendedApduSupported AsyncCallback response: " + response);
             }
         });
     } catch (busiErr) {
@@ -459,7 +459,7 @@ import { tag } from '@kit.ConnectivityKit';
 // let ndefMessage : tag.NdefMessage = ndefTag.getNdefMessage();
 
 let ndefRecords : tag.NdefRecord[] = ndefMessage.getNdefRecords();
-console.log("ndef ndefRecords number: " + ndefRecords.length);
+console.info("ndef ndefRecords number: " + ndefRecords.length);
 ```
 
 ## NdefTag<sup>9+</sup>
@@ -493,7 +493,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let ndefTagType : tag.NfcForumType = ndefTag.getNdefTagType();
-console.log("ndef ndefTagType: " + ndefTagType);
+console.info("ndef ndefTagType: " + ndefTagType);
 ```
 
 ### NdefTag.getNdefMessage<sup>9+</sup>
@@ -518,7 +518,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let ndefMessage : tag.NdefMessage = ndefTag.getNdefMessage();
-console.log("ndef ndefMessage: " + ndefMessage);
+console.info("ndef ndefMessage: " + ndefMessage);
 ```
 
 ### NdefTag.isNdefWritable<sup>9+</sup>
@@ -544,7 +544,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let isWritable : boolean = ndefTag.isNdefWritable();
-console.log("ndef isNdefWritable: " + isWritable);
+console.info("ndef isNdefWritable: " + isWritable);
 ```
 
 ### NdefTag.readNdef<sup>9+</sup>
@@ -587,14 +587,14 @@ function nfcTechDemo(){
     // connect the tag at first if not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
 
     try {
         ndefTag.readNdef().then((ndefmessage : tag.NdefMessage) => {
-            console.log("ndef readNdef Promise ndefmessage: " + ndefmessage);
+            console.info("ndef readNdef Promise ndefmessage: " + ndefmessage);
         }).catch((err : BusinessError)=> {
             console.error("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -646,7 +646,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
@@ -654,13 +654,13 @@ function nfcTechDemo() {
     try {
         ndefTag.readNdef((err : BusinessError, ndefmessage : tag.NdefMessage)=> {
             if (err) {
-                console.log("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
             } else {
-            console.log("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
+                console.info("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
             }
         });
     } catch (businessError) {
-        console.log("ndef readNdef AsyncCallback catch Code: ${(businessError : BusinessError).code}," +
+        console.error("ndef readNdef AsyncCallback catch Code: ${(businessError : BusinessError).code}," +
         " message: ${(businessError : BusinessError).message}");
     }
 }
@@ -718,14 +718,14 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
 
     try {
         ndefTag.writeNdef(ndefMessage).then(() => {
-            console.log("ndef writeNdef Promise success.");
+            console.info("ndef writeNdef Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
         });
@@ -782,7 +782,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
@@ -792,7 +792,7 @@ function nfcTechDemo() {
             if (err) {
                 console.error("ndef writeNdef AsyncCallback Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("ndef writeNdef AsyncCallback success.");
+                console.info("ndef writeNdef AsyncCallback success.");
             }
         }); 
     } catch (businessError) {
@@ -836,7 +836,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let canSetReadOnly : boolean = ndefTag.canSetReadOnly();
-console.log("ndef canSetReadOnly: " + canSetReadOnly);
+console.info("ndef canSetReadOnly: " + canSetReadOnly);
 ```
 
 ### NdefTag.setReadOnly<sup>9+</sup>
@@ -880,14 +880,14 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
 
     try {
         ndefTag.setReadOnly().then(() => {
-            console.log("ndef setReadOnly Promise success.");
+            console.info("ndef setReadOnly Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -939,7 +939,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
@@ -947,9 +947,9 @@ function nfcTechDemo() {
     try {
         ndefTag.setReadOnly((err : BusinessError)=> {
             if (err) {
-                console.log("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("ndef setReadOnly AsyncCallback success.");
+                console.info("ndef setReadOnly AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -999,7 +999,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let ndefTypeString : string = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
-    console.log("ndef ndefTypeString: " + ndefTypeString);
+    console.info("ndef ndefTypeString: " + ndefTypeString);
 } catch (businessError) {
     console.error("ndef getNdefTagTypeString catch businessError Code: ${(businessError as Businsess).code}, " +
         "message: ${(businessError as Businsess).message}");
@@ -1063,7 +1063,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1072,7 +1072,7 @@ function nfcTechDemo() {
         let sectorIndex = 1; // change it to be correct index.
         let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // MUST be 6 bytes, change it to be correct key.
         mifareClassic.authenticateSector(sectorIndex, key, true).then(() => {
-            console.log("mifareClassic authenticateSector Promise success.");
+            console.info("mifareClassic authenticateSector Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
         });
@@ -1126,7 +1126,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1136,9 +1136,9 @@ function nfcTechDemo() {
         let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // MUST be 6 bytes, change it to be correct key.
         mifareClassic.authenticateSector(sectorIndex, key, true, (err : BusinessError)=> {
             if (err) {
-                console.log("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
+                console.error("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareClassic authenticateSector AsyncCallback success.");
+                console.info("mifareClassic authenticateSector AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1195,7 +1195,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1203,7 +1203,7 @@ function nfcTechDemo() {
     try {
         let blockIndex = 1; // change it to be correct index.
         mifareClassic.readSingleBlock(blockIndex).then((data : number[]) => {
-            console.log("mifareClassic readSingleBlock Promise data: " + data);
+            console.info("mifareClassic readSingleBlock Promise data: " + data);
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
@@ -1256,7 +1256,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1265,9 +1265,9 @@ function nfcTechDemo() {
         let blockIndex = 1; // change it to be correct index.
         mifareClassic.readSingleBlock(blockIndex, (err : BusinessError, data : number[])=> {
             if (err) {
-                console.log("mifareClassic readSingleBlock AsyncCallback err: " + err);
+                console.error("mifareClassic readSingleBlock AsyncCallback err: " + err);
             } else {
-                console.log("mifareClassic readSingleBlock AsyncCallback data: " + data);
+                console.info("mifareClassic readSingleBlock AsyncCallback data: " + data);
             }
         });
     } catch (businessError) {
@@ -1325,7 +1325,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1335,7 +1335,7 @@ function nfcTechDemo() {
         let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
             0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
         mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
-            console.log("mifareClassic writeSingleBlock Promise success.");
+            console.info("mifareClassic writeSingleBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
@@ -1389,7 +1389,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1400,10 +1400,10 @@ function nfcTechDemo() {
             0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
         mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
             if (err) {
-                console.log("mifareClassic writeSingleBlock AsyncCallback err Code:" +
+                console.error("mifareClassic writeSingleBlock AsyncCallback err Code:" +
                 "${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareClassic writeSingleBlock AsyncCallback success.");
+                console.info("mifareClassic writeSingleBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1461,7 +1461,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1470,7 +1470,7 @@ function nfcTechDemo() {
         let blockIndex = 1; // change it to be correct index.
         let value = 0x20; // change it to be correct data.
         mifareClassic.incrementBlock(blockIndex, value).then(() => {
-            console.log("mifareClassic incrementBlock Promise success.");
+            console.info("mifareClassic incrementBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -1524,7 +1524,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1534,9 +1534,9 @@ function nfcTechDemo() {
         let value = 0x20; // change it to be correct data.
         mifareClassic.incrementBlock(blockIndex, value, (err : BusinessError)=> {
             if (err) {
-                console.log("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareClassic incrementBlock AsyncCallback success.");
+                console.info("mifareClassic incrementBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1594,7 +1594,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1603,7 +1603,7 @@ function nfcTechDemo() {
         let blockIndex = 1; // change it to be correct index.
         let value = 0x20; // change it to be correct data.
         mifareClassic.decrementBlock(blockIndex, value).then(() => {
-            console.log("mifareClassic decrementBlock Promise success.");
+            console.info("mifareClassic decrementBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
@@ -1657,7 +1657,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1670,7 +1670,7 @@ function nfcTechDemo() {
                 console.error("mifareClassic decrementBlock AsyncCallback errCode:" + 
                   "${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareClassic decrementBlock AsyncCallback success.");
+                console.info("mifareClassic decrementBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1735,7 +1735,7 @@ function nfcTechDemo() {
     try {
         let blockIndex = 1; // change it to be correct index.
         mifareClassic.transferToBlock(blockIndex).then(() => {
-            console.log("mifareClassic transferToBlock Promise success.");
+            console.info("mifareClassic transferToBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -1788,7 +1788,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1800,7 +1800,7 @@ function nfcTechDemo() {
                 console.error("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}," +
                     "message: ${err.message}");
             } else {
-                console.log("mifareClassic transferToBlock AsyncCallback success.");
+                console.info("mifareClassic transferToBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1857,7 +1857,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }   
     }
@@ -1865,7 +1865,7 @@ function nfcTechDemo() {
     try {
         let blockIndex = 1; // change it to be correct index.
         mifareClassic.restoreFromBlock(blockIndex).then(() => {
-            console.log("mifareClassic restoreFromBlock Promise success.");
+            console.info("mifareClassic restoreFromBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
@@ -1918,7 +1918,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1927,10 +1927,10 @@ function nfcTechDemo() {
         let blockIndex = 1; // change it to be correct index.
         mifareClassic.restoreFromBlock(blockIndex, (err : BusinessError)=> {
             if (err) {
-                console.log("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}," +
+                console.error("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}," +
                     " message: ${err.message}");
             } else {
-                console.log("mifareClassic restoreFromBlock AsyncCallback success.");
+                console.info("mifareClassic restoreFromBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1964,7 +1964,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let sectorCount : number = mifareClassic.getSectorCount();
-console.log("mifareClassic sectorCount: " + sectorCount);
+console.info("mifareClassic sectorCount: " + sectorCount);
 ```
 
 ### MifareClassicTag.getBlockCountInSector<sup>9+</sup>
@@ -2008,7 +2008,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let sectorIndex = 1; // change it to be correct index.
     let blockCnt : number = mifareClassic.getBlockCountInSector(sectorIndex);
-    console.log("mifareClassic blockCnt: " + blockCnt);
+    console.info("mifareClassic blockCnt: " + blockCnt);
 } catch (businessError) {
     console.error("mifareClassic getBlockCountInSector catch businessError Code: ${(businessError as Businsess).code}, " +
         "message: ${(businessError as Businsess).message}");
@@ -2038,7 +2038,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let getType : tag.MifareClassicType = mifareClassic.getType();
-console.log("mifareClassic getType: " + getType);
+console.info("mifareClassic getType: " + getType);
 ```
 
 ### MifareClassicTag.getTagSize<sup>9+</sup>
@@ -2065,7 +2065,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let tagSize : number = mifareClassic.getTagSize();
-console.log("mifareClassic tagSize: " + tagSize);
+console.info("mifareClassic tagSize: " + tagSize);
 ```
 
 ### MifareClassicTag.isEmulatedTag<sup>9+</sup>
@@ -2092,7 +2092,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let isEmulatedTag : boolean = mifareClassic.isEmulatedTag();
-console.log("mifareClassic isEmulatedTag: " + isEmulatedTag);
+console.info("mifareClassic isEmulatedTag: " + isEmulatedTag);
 ```
 
 ### MifareClassicTag.getBlockIndex<sup>9+</sup>
@@ -2136,7 +2136,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let sectorIndex = 1; // change it to be correct index.
     let blockIndex : number = mifareClassic.getBlockIndex(sectorIndex);
-    console.log("mifareClassic blockIndex: " + blockIndex);
+    console.info("mifareClassic blockIndex: " + blockIndex);
 } catch (businessError) {
     console.error("mifareClassic getBlockIndex catch businessError Code: ${(businessError as Businsess).code}, " +
         "message: ${(businessError as Businsess).message}");
@@ -2184,7 +2184,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let blockIndex = 1; // change it to be correct index.
     let sectorIndex : number = mifareClassic.getSectorIndex(blockIndex);
-    console.log("mifareClassic sectorIndex: " + sectorIndex);
+    console.info("mifareClassic sectorIndex: " + sectorIndex);
 } catch (businessError) {
     console.error("mifareClassic getSectorIndex catch businessError Code: ${(businessError as Businsess).code}, " +
        "message: ${(businessError as Businsess).message}");
@@ -2247,7 +2247,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareUltralight.isTagConnected()) {
         if (!mifareUltralight.connectTag()) {
-            console.log("mifareUltralight connectTag failed.");
+            console.error("mifareUltralight connectTag failed.");
             return;
         }
     }
@@ -2255,7 +2255,7 @@ function nfcTechDemo() {
     try {
         let pageIndex = 1; // change it to be correct index.
         mifareUltralight.readMultiplePages(pageIndex).then((data : number[]) => {
-            console.log("mifareUltralight readMultiplePages Promise data = " + data);
+            console.info("mifareUltralight readMultiplePages Promise data = " + data);
         }).catch((err : BusinessError)=> {
             console.error("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
         });
@@ -2308,7 +2308,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareUltralight.isTagConnected()) {
         if (!mifareUltralight.connectTag()) {
-            console.log("mifareUltralight connectTag failed.");
+            console.error("mifareUltralight connectTag failed.");
             return;
         }
     }
@@ -2319,7 +2319,7 @@ function nfcTechDemo() {
             if (err) {
             console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareUltralight readMultiplePages AsyncCallback data: " + data);
+                console.info("mifareUltralight readMultiplePages AsyncCallback data: " + data);
             }
         });
     } catch (businessError) {
@@ -2377,7 +2377,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareUltralight.isTagConnected()) {
         if (!mifareUltralight.connectTag()) {
-            console.log("mifareUltralight connectTag failed.");
+            console.error("mifareUltralight connectTag failed.");
             return;
         }
     }
@@ -2386,7 +2386,7 @@ function nfcTechDemo() {
         let pageIndex = 1; // change it to be correct index.
         let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
         mifareUltralight.writeSinglePage(pageIndex, rawData).then(() => {
-            console.log("mifareUltralight writeSinglePage Promise success.");
+            console.info("mifareUltralight writeSinglePage Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -2440,7 +2440,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!mifareUltralight.isTagConnected()) {
         if (!mifareUltralight.connectTag()) {
-            console.log("mifareUltralight connectTag failed.");
+            console.error("mifareUltralight connectTag failed.");
             return;
         }
     }
@@ -2453,7 +2453,7 @@ function nfcTechDemo() {
                 console.error("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}," +
                     "message: ${err.message}");
             } else {
-                console.log("mifareUltralight writeSinglePage AsyncCallback success.");
+                console.info("mifareUltralight writeSinglePage AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -2486,7 +2486,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 let getType : tag.MifareUltralightType = mifareClassic.getType();
-console.log("mifareUltralight getType: " + getType);
+console.info("mifareUltralight getType: " + getType);
 ```
 
 ## NdefFormatableTag<sup>9+</sup>
@@ -2544,7 +2544,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!ndefFormatable.isTagConnected()) {
         if (!ndefFormatable.connectTag()) {
-            console.log("ndefFormatable connectTag failed.");
+            console.error("ndefFormatable connectTag failed.");
             return;
         }
     }
@@ -2556,7 +2556,7 @@ function nfcTechDemo() {
         // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
         ndefFormatable.format(ndefMessage).then(() => {
-            console.log("ndefFormatable format Promise success.");
+            console.info("ndefFormatable format Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -2614,7 +2614,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!ndefFormatable.isTagConnected()) {
         if (!ndefFormatable.connectTag()) {
-            console.log("ndefFormatable connectTag failed.");
+            console.error("ndefFormatable connectTag failed.");
             return;
         }
     }
@@ -2626,13 +2626,13 @@ function nfcTechDemo() {
 
         ndefFormatable.format(ndefMessage, (err : BusinessError)=> {
             if (err) {
-                console.log("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
+                console.error("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("ndefFormatable format AsyncCallback success.");
+                console.info("ndefFormatable format AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.log("ndefFormatable format AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+        console.error("ndefFormatable format AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
             "message: ${(businessError as Businsess).message}");
     }
 }
@@ -2685,7 +2685,7 @@ function nfcTechDemo() {
     // connect the tag at first if not connected.
     if (!ndefFormatable.isTagConnected()) {
         if (!ndefFormatable.connectTag()) {
-            console.log("ndefFormatable connectTag failed.");
+            console.error("ndefFormatable connectTag failed.");
             return;
         }
     }
@@ -2697,9 +2697,9 @@ function nfcTechDemo() {
         // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
         ndefFormatable.formatReadOnly(ndefMessage).then(() => {
-            console.log("ndefFormatable formatReadOnly Promise success.");
+            console.info("ndefFormatable formatReadOnly Promise success.");
         }).catch((err : BusinessError)=> {
-            console.log("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
+            console.error("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
         console.error("ndefFormatable formatReadOnly Promise catch Code: ${(businessError as Businsess).code}, " +
@@ -2770,7 +2770,7 @@ function nfcTechDemo() {
             if (err) {
                 console.error("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("ndefFormatable formatReadOnly AsyncCallback success.");
+                console.info("ndefFormatable formatReadOnly AsyncCallback success.");
             }
         });
     } catch (businessError) {
