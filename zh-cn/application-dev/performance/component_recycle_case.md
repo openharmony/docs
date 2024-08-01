@@ -190,7 +190,7 @@ export function interactiveButton($$: Temp) {
 
 ## 优化状态管理，精准控制组件刷新范围使用
 
-### 使用attributeModifier精准控制组件属性的刷新，避免组件不必要的属性刷新
+### 使用AttributeUpdater精准控制组件属性的刷新，避免组件不必要的属性刷新
 
 复用场景常用在高频的刷新场景，精准控制组件的刷新范围可以有效减少主线程渲染负载，提升滑动性能。正反例如下：
 
@@ -206,15 +206,20 @@ export struct LessEmbeddedComponent {
 
   build() {
     Column() {
-      TopBar()
+      Text('use nothing')
       List({ space: ListConstants.LIST_SPACE }) {
         LazyForEach(momentData, (moment: FriendMoment) => {
           ListItem() {
-            OneMomentNoModifier({moment: moment, fontSize: moment.size})
+            OneMomentNoModifier({ color: moment.color })
+              .onClick(() => {
+                console.log(`my id is ${moment.id}`)
+              })
           }
         }, (moment: FriendMoment) => moment.id)
       }
-      .cachedCount(Constants.CACHED_COUNT)
+      .width("100%")
+      .height("100%")
+      .cachedCount(5)
     }
   }
 }
@@ -222,11 +227,10 @@ export struct LessEmbeddedComponent {
 @Reusable
 @Component
 export struct OneMomentNoModifier {
-  @Prop moment: FriendMoment;
-  @State fontSize: number | Resource = $r('app.integer.list_history_userText_fontSize');
+  @State color: string | number | Resource = "";
 
   aboutToReuse(params: Record<string, Object>): void {
-    this.fontSize = params.fontSize as number;
+    this.color = params.color as number;
   }
     
   build() {
@@ -332,8 +336,7 @@ export struct OneMomentNoModifier {
         .attributeModifier(this.textUpdater) // 采用attributeUpdater来对需要更新的fontColor属性进行精准刷新，避免不必要的属性刷新。
         .textAlign(TextAlign.Center)
         .fontStyle(FontStyle.Normal)
-        .fontSize(this.fontSize) // 此处使用属性直接进行刷新，会造成Text所有属性都刷新
-        .fontColor($r('app.color.title_font_color'))
+        .fontSize(13)
         .lineHeight($r('app.integer.list_history_userText_line_height'))
         .opacity($r('app.float.opacity_zero_point_six'))
         .margin({ top: $r('app.integer.list_history_userText_margin_top') })
@@ -362,7 +365,7 @@ export struct OneMomentNoModifier {
 
 **优化效果**
 
-在正反例中，针对列表滑动场景中，单个列表项中Text组件字体大小属性的修改，反例中采用了普通组件属性刷新方式实现，正例中采用了attributeModifier动态属性设置方式实现。
+在正反例中，针对列表滑动场景中，单个列表项中Text组件字体颜色属性的修改，反例中采用了普通组件属性刷新方式实现，正例中采用了AttributeUpdater动态属性设置方式实现。
 
 优化后的`H:CustomNode:BuildRecycle OneMomentNoModifier`的耗时，如下表所示：
 
