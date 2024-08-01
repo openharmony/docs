@@ -582,7 +582,6 @@
           <!--Del-->
           - [应用触发数据备份/恢复（仅对系统应用开放）](file-management/app-file-backup.md)
           <!--DelEnd-->
-        - [文件授权访问(ArkTS)](file-management/app-file-authorization.md)
       - 用户文件<!--user-files-->
         - [用户文件概述](file-management/user-file-overview.md)
         - [用户文件uri介绍](file-management/user-file-uri-intro.md)
