@@ -28,9 +28,9 @@ import { ArrayList } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in an array list (called container later).|
+| length | number | Yes | No | Number of elements in an array list (called container later). |
 
 
 ### constructor
@@ -45,7 +45,7 @@ A constructor used to create an **ArrayList** instance.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200012 | The ArrayList's constructor cannot be directly invoked. |
 
@@ -66,21 +66,21 @@ Adds an element at the end of this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The add method cannot be bound. |
 
@@ -112,16 +112,16 @@ Inserts an element at the specified position in this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
-| index | number | Yes| Index of the position where the element is to be inserted.|
+| element | T | Yes | Target element. |
+| index | number | Yes | Index of the position where the element is to be inserted. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
@@ -146,21 +146,21 @@ Checks whether this container has the specified element.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified element is contained; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The has method cannot be bound. |
 
@@ -182,21 +182,21 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified element is not found.|
+| number | Returns the position index if obtained; returns **-1** if the specified element is not found. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getIndexOf method cannot be bound. |
 
@@ -224,21 +224,21 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified element is not found.|
+| number | Returns the position index if obtained; returns **-1** if the specified element is not found. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getLastIndexOf method cannot be bound. |
 
@@ -266,21 +266,21 @@ Removes an element with the specified position from this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes | Position index of the target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
@@ -308,21 +308,21 @@ Removes the first occurrence of the specified element from this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
+| element | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -347,16 +347,16 @@ Removes from this container all of the elements within a range, including the el
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| fromIndex | number | Yes| Index of the start position.|
-| toIndex | number | Yes| Index of the end position.|
+| fromIndex | number | Yes | Index of the start position. |
+| toIndex | number | Yes | Index of the end position. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
@@ -384,24 +384,24 @@ Replaces all elements in this container with new elements, and returns the new o
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked for the replacement.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
+| callbackFn | function | Yes | Callback invoked for the replacement. |
+| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
 
 callbackFn
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
-| arrlist | ArrayList&lt;T&gt; | No| Instance that calls the **replaceAllElements** API. The default value is this instance.|
+| value | T | Yes | Value of the element that is currently traversed. |
+| index | number | No | Position index of the element that is currently traversed. The default value is **0**. |
+| arrlist | ArrayList&lt;T&gt; | No | Instance that calls the **replaceAllElements** API. The default value is this instance. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The replaceAllElements method cannot be bound. |
@@ -431,24 +431,24 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked for the replacement.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
+| callbackFn | function | Yes | Callback invoked for the replacement. |
+| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
 
 callbackFn
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
-| arrlist | ArrayList&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
+| value | T | Yes | Value of the element that is currently traversed. |
+| index | number | No | Position index of the element that is currently traversed. The default value is **0**. |
+| arrlist | ArrayList&lt;T&gt; | No | Instance that calls the **forEach** API. The default value is this instance. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
@@ -476,22 +476,22 @@ Sorts elements in this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Callback invoked for sorting. The default value is the callback function for sorting elements in ascending order.|
+| comparator | function | No | Callback invoked for sorting. The default value is the callback function for sorting elements in ascending order. |
 
 comparator
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| firstValue | T | Yes| Previous element.|
-| secondValue | T | Yes| Next element.|
+| firstValue | T | Yes | Previous element. |
+| secondValue | T | Yes | Next element. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The sort method cannot be bound. |
@@ -519,22 +519,22 @@ Obtains elements within a range in this container, including the element at the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| fromIndex | number | Yes| Index of the start position.|
-| toIndex | number | Yes| Index of the end position.|
+| fromIndex | number | Yes | Index of the start position. |
+| toIndex | number | Yes | Index of the end position. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| ArrayList&lt;T&gt; | New **ArrayList** instance obtained.|
+| ArrayList&lt;T&gt; | New **ArrayList** instance obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
@@ -563,7 +563,7 @@ Clears this container and sets its length to **0**.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -589,15 +589,15 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| ArrayList&lt;T&gt; | New **ArrayList** instance obtained.|
+| ArrayList&lt;T&gt; | New **ArrayList** instance obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The clone method cannot be bound. |
 
@@ -622,15 +622,15 @@ Obtains the capacity of this container.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Capacity obtained.|
+| number | Capacity obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getCapacity method cannot be bound. |
 
@@ -655,15 +655,15 @@ Converts this container into an array.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Array&lt;T&gt; | Array obtained.|
+| Array&lt;T&gt; | Array obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The convertToArray method cannot be bound. |
 
@@ -688,15 +688,15 @@ Checks whether this container is empty (contains no element).
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Returns **true** if the container is empty; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -721,15 +721,15 @@ Increases the capacity of this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| newCapacity | number | Yes| New capacity.|
+| newCapacity | number | Yes | New capacity. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
@@ -758,7 +758,7 @@ Trims the capacity of this container to its current length.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The trimToCurrentLength method cannot be bound. |
 
@@ -787,15 +787,15 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained.|
+| IterableIterator&lt;T&gt; | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 
