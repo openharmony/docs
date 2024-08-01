@@ -385,6 +385,7 @@
             - [模糊](ui/arkts-blur-effect.md)
             - [阴影](ui/arkts-shadow-effect.md)
             - [色彩](ui/arkts-color-effect.md)
+          - [帧动画](ui/arkts-animator.md)
         - 支持交互事件<!--arkts-events-->
           - [交互事件概述](ui/arkts-event-overview.md)
           - 使用通用事件<!--arkts-common-events-->
@@ -406,6 +407,10 @@
             - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
+          - 自定义扩展<!--arkts-user-defined-modifier-->
+            - [自定义扩展概述](ui/arkts-user-defined-modifier.md)
+            - [AttributeModifier](ui/arkts-user-defined-extension-attributeModifier.md)
+            - [AttributeUpdater](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
         - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
