@@ -75,7 +75,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 3. 设置音频回调函数
 
-    多音频并发处理可参考[多音频播放的并发策略](audio-playback-concurrency.md)，仅接口语言差异。
+    多音频并发处理可参考文档[处理音频焦点事件](audio-playback-concurrency.md)，仅接口语言差异。
 
     ```c++
     // 自定义写入数据函数
