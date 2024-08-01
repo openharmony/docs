@@ -31,7 +31,7 @@ The following table describes the fields in a document URI.
 
 - Use **select()** or **save()** of [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) to select or save a document.
 - Use **select()** or **save()** of [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) to select or save an audio file.
-- Use [PhotoViewPicker.save](../reference/apis-core-file-kit/js-apis-file-picker.md#save) to save an image or video. The URI of the image or video saved is returned.<!--Del-->
+- Use [PhotoViewPicker.save](../reference/apis-core-file-kit/js-apis-file-picker.md#save) to save an image or video. The URI of the image or video saved is returned.
 - Use [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md). The [FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo) object contains the URI of the file or directory. Note that the APIs of [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) can be called only by a system application. 
 
 You can obtain the document URIs of the files and folders in the following directories:
@@ -42,11 +42,11 @@ You can obtain the document URIs of the files and folders in the following direc
 - **Desktop** directory
 - **Documents** directory
 - **Share** directory of the shared disk
-<!--DelEnd-->
+
 
 ### Using a Document URI
 
-Applications of the normal APL can call [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) APIs only to access files based on document URIs. "Permission denied" will be reported if an API of other modules is used. For details about the sample code, see [Selecting Documents](./select-user-file.md#selecting-documents) and [Saving Documents](./save-user-file.md#saving-documents).<!--Del-->
+Applications of the normal APL can call [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) APIs only to access files based on document URIs. "Permission denied" will be reported if an API of other modules is used. For details about the sample code, see [Selecting Documents](./select-user-file.md#selecting-documents) and [Saving Documents](./save-user-file.md#saving-documents).
 
 Applications of the system_basic or system_core APL can call **@ohos.file.fs** and [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) APIs to access files based on the URIs. To call **@ohos.file.fileAccess** APIs, the application must have the ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permissions declared in **module.json5** file. "Permission denied" will be reported if an API of other modules is used. The following example walks you through on how to use **@ohos.file.fileAccess** APIs to create a document and rename the document based on the URI.
 
@@ -101,7 +101,7 @@ async function example() {
     }
   }
 ```
-<!--DelEnd-->
+
 
 ## Media File URI
 
@@ -132,25 +132,25 @@ The following table describes the fields in a media file URI.
 | 'IMG_datetime_0001' | Indicates the name of the image stored in the user file system without the file name extension.|
 | 'VID_datetime_0001' | Indicates the name of the video stored in the user file system without the file name extension.|
 | 'AUD_datetime_0001' | Indicates the name of the audio file stored in the user file system without the file name extension.|
-|<!--DelRow--> 'displayName.jpg' | Indicates the image name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new image name is also changed.|
-|<!--DelRow--> 'displayName.mp4' | Indicates the video name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new video name is also changed.|
-|<!--DelRow--> 'displayName.mp3' | Indicates the audio file name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new audio name is also changed.|
+| 'displayName.jpg' | Indicates the image name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new image name is also changed.|
+| 'displayName.mp4' | Indicates the video name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new video name is also changed.|
+| 'displayName.mp3' | Indicates the audio file name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new audio name is also changed.|
 
 ### Obtaining a Media File URI
 
 - Use [PhotoViewPicker.select](../reference/apis-core-file-kit/js-apis-file-picker.md#select) to select a media file.
 
-- Use [getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) or [createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset) of [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).<!--Del-->
+- Use [getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) or [createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset) of [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
 
 - Use [getPhotoAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getphotoassets), [getAudioAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getaudioassets), [createAudioAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createaudioasset10), or [createPhotoAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createphotoasset) of [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md).
-  <!--DelEnd-->
+
 
 ### Using a Media File URI
 
-Applications of the normal APL can call [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md) APIs to process media files based on their URI. For details about the sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri). To call the APIs, the application must have the ohos.permission.READ_IMAGEVIDEO permission.<!--Del-->
+Applications of the normal APL can call [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md) APIs to process media files based on their URI. For details about the sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri). To call the APIs, the application must have the ohos.permission.READ_IMAGEVIDEO permission.
 
 Applications of the system_basic or system_core APL can call **photoAccessHelper** and [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md) APIs to process media files based on their URI. For details about how to use the APIs, see the API reference document.
-<!--DelEnd-->
+
 
 Without the ohos.permission.READ_IMAGEVIDEO permission, the application of the normal APL can use [PhotoViewPicker.select](../reference/apis-core-file-kit/js-apis-file-picker.md#select) to obtain the URI, and use [photoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) to obtain the **PhotoAsset** object corresponding to the URI. The **PhotoAsset** object can be used to call [getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail) to obtain the thumbnail and call [get](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get) to read certain information in [PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys).
 
@@ -234,7 +234,7 @@ try {
   }
 }
 ```
-<!--Del-->
+
 ## Copying a File by URI (for System Applications Only)
 
 To copy a file to the specified directory based on the URI, perform the following:
@@ -250,7 +250,7 @@ To copy a file to the specified directory based on the URI, perform the followin
 5. Use helper.[copyFile](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#copyfile11)(srcUri, destUri, fileName) to copy the file to the specified directory.
 
 Sample code:
-<!--DelEnd-->
+
 
 ```
 import { BusinessError } from '@ohos.base';
