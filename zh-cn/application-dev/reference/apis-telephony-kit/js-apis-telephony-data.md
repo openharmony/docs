@@ -465,10 +465,10 @@ isCellularDataRoamingEnabledSync(slotId: number): boolean
 import { data } from '@kit.TelephonyKit';
 
 try {
-    let isEnabled: boolean = data.isCellularDataEnabledSync();
-    console.log(`isCellularDataEnabledSync success : ${isEnabled}`);
+    let isEnabled: boolean = data.isCellularDataRoamingEnabledSync(0);
+    console.log(`isCellularDataRoamingEnabledSync success : ${isEnabled}`);
 } catch (error) {
-    console.error(`isCellularDataEnabledSync fail : err->${JSON.stringify(error)}`);  
+    console.error(`isCellularDataRoamingEnabledSync fail : err->${JSON.stringify(error)}`);  
 }
 ```
 
