@@ -29,7 +29,7 @@
 ### format
 
 ```
-const char* ImagePacker_Opts_::format
+const char* ImagePacker_Opts::format
 ```
 **描述**
 编码格式
