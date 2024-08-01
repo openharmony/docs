@@ -286,9 +286,6 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-#define ffrt_deps_define(name, dep1, ...) const void* __v_##name[] = {dep1, ##__VA_ARGS__}; \
-    ffrt_deps_t name = {sizeof(__v_##name) / sizeof(void*), __v_##name}
-
 void fib_ffrt(void* arg)
 {
     fib_ffrt_s* p = (fib_ffrt_s*)arg;
@@ -301,10 +298,14 @@ void fib_ffrt(void* arg)
         int y1, y2;
         fib_ffrt_s s1 = {x - 1, &y1};
         fib_ffrt_s s2 = {x - 2, &y2};
-        ffrt_deps_define(dx, &x);
-        ffrt_deps_define(dy1, &y1);
-        ffrt_deps_define(dy2, &y2);
-        ffrt_deps_define(dy12, &y1, &y2);
+        const std::vector<ffrt_dependence_t> dx_deps = {{ffrt_dependence_data, &x}};
+        ffrt_deps_t dx{static_cast<uint32_t>(dx_deps.size()), dx_deps.data()};
+        const std::vector<ffrt_dependence_t> dy1_deps = {{ffrt_dependence_data, &y1}};
+        ffrt_deps_t dy1{static_cast<uint32_t>(dy1_deps.size()), dy1_deps.data()};
+        const std::vector<ffrt_dependence_t> dy2_deps = {{ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy2{static_cast<uint32_t>(dy2_deps.size()), dy2_deps.data()};
+        const std::vector<ffrt_dependence_t> dy12_deps = {{ffrt_dependence_data, &y1}, {ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy12{static_cast<uint32_t>(dy12_deps.size()), dy12_deps.data()};
         ffrt_submit_c(fib_ffrt, NULL, &s1, &dx, &dy1, NULL);
         ffrt_submit_c(fib_ffrt, NULL, &s2, &dx, &dy2, NULL);
         ffrt_wait_deps(&dy12);
@@ -316,7 +317,8 @@ int main(int narg, char** argv)
 {
     int r;
     fib_ffrt_s s = {10, &r};
-    ffrt_deps_define(dr, &r);
+    const std::vector<ffrt_dependence_t> dr_deps = {{ffrt_dependence_data, &r}};
+    ffrt_deps_t dr{static_cast<uint32_t>(dr_deps.size()), dr_deps.data()};
     ffrt_submit_c(fib_ffrt, NULL, &s, NULL, &dr, NULL);
     ffrt_wait_deps(&dr);
     printf("fibonacci 10: %d\n", r);
