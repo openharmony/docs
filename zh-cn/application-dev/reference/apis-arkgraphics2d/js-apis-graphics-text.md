@@ -1808,3 +1808,81 @@ struct Index {
   }
 }
 ```
+
+## FontDescriptor<sup>14+</sup>
+
+字体描述符信息。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| - | - | -  | - | - |
+| path | string | 否 | 是 | 字体绝对路径，默认值为空。 |
+| postScriptName | string | 否 | 是 | 字体PostScript名称，默认值为空。 |
+| fullName | string | 否 | 是 | 字体名称，默认值为空。 |
+| fontFamily | string | 否 | 是 | 字体家族，默认值为空。 |
+| fontSubfamily | string | 否 | 是 | 子字体家族，默认值为空。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重。 |
+| width | number | 否 | 是 | 字体宽度，取值范围大于0，默认值为空。 |
+| italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0 。 |
+| monoSpace | boolean | 否 | 是 | 是否是等宽字体，默认值是false。 |
+| symbolic | boolean | 否 | 是 | 是否支持符号, 默认值是false。 |
+
+## matchFontDescriptors <sup>14+</sup>
+
+matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
+
+matchFontDescriptors，使用Promise异步回调。根据指定的字体描述符返回所有符合要求的系统字体描述符。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| - | - | - | - |
+| desc | [FontDescriptor](#fontdescriptor14) | 是 | 指定需要用来做匹配的字体描述符，其中path字段不作为有效匹配字段，其他字段为非默认值时生效，如果所有字段都是默认值，则返回所有的系统字体描述符，如果匹配失败，返回空数组。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| - | - |
+| Promise&lt;Array&lt;[FontDescriptor](#fontdescriptor14)&gt;&gt; | Promise对象，返回所有匹配到的系统字体描述符。 |
+
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { JSON } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("font descriptor")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            console.log(`Get font descriptor start`)
+            let promise = text.matchFontDescriptors({
+              weight: text.FontWeight.W400,
+            })
+            promise.then((data) => {
+              console.info(`Font descriptor array size: ${data.length}`);
+              console.info(`Font descriptor result: ${JSON.stringify(data)}`)
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to match the font descriptor, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
