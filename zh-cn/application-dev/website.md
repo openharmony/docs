@@ -2805,6 +2805,7 @@
           - [MDNS错误码](reference/apis-network-kit/errorcode-net-mdns.md)
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
+          - [webSocket错误码](reference/apis-network-kit/errorcode-net-webSocket.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
           - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)
