@@ -1075,6 +1075,7 @@
         - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
         - [避免开发过程中的冗余操作](performance/avoiding-redundant-operations.md)
         - [线程间通信场景](performance/thread_communication.md)
+        - [ArrayBuffer序列化和转移](performance/thread_data_transfer.md)
       - 减少卡顿丢帧
         - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
         - [组件复用使用指导](performance/component-recycle.md)
@@ -1109,7 +1110,6 @@
         - [Web组件开发性能提升指导](performance/performance-web-import.md)
         - [合理处理高负载组件的渲染](performance/reasonably-dispose-highly-loaded-component-render.md)
         - [全局自定义组件复用实现](performance/node_custom_component_reusable_pool.md)
-        - [ArrayBuffer序列化和转移](performance/thread_data_transfer.md)
       - [减小应用包大小](performance/reduce-package-size.md)
       - 性能工具
         - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)

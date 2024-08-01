@@ -3,7 +3,7 @@
 ## 概述
 
 常见的应用性能问题，开发者可以从丢帧问题（如滑动列表时的丢帧、窗口动画不连贯）和响应速度问题（如应用启动白屏过长、滑动不跟手）两个角度去分析。在分析性能问题之前、验证性能优化方案之时，开发者会需要对应用的性能指标做检测。本文会先说明丢帧和响应速度问题相关的性能指标检测方法，然后再阐述两个角度下，略有不同的问题分析思路。 
-  
+
 本文主要是以Trace数据为切入点进行分析，相应的工具可以使用SmartPerf Host或DevEco Studio内置的Frame等。若开发者需要补充SmartPerf Host工具和Trace相关知识，可以分别参考《[性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)》和《[常用trace使用指导](common-trace-using-instructions.md)》等应用开发文档。
 
 ## 应用性能指标
@@ -27,7 +27,7 @@
 
 
 可见，不同trace标签的选取，对估算用户真实感知到的平均帧率，是略有不同的。
- 
+
 在了解估算原理后，值得说明的是，SmartPerf Host针对部分标签，已经可以实现框选时间范围内平均帧率的自动计算。例如，框选的范围内存在RSMainThread::DoComposition泳道，平均帧率自动计算效果如图2所示，而其相应的平均帧率算法如下：  
 
 帧数 = 框选时间范围内，完整的DoComposition个数。  
@@ -37,7 +37,7 @@
 
 **图2 SmartPerf Host平均帧率自动计算**
  ![alt text](figures/application-performance-guide-2.png)
- 
+
 ### 完成时延
 
 这里以点击应用tab，做页面跳转的场景为例，通过Trace分析其完成时延。  
@@ -45,7 +45,7 @@
 
 **图3 页面跳转完成时延**
  ![alt text](figures/application-performance-guide-3.png)
- 
+
 在系统侧，如图4所示，用户点击屏幕后，CPU会收到硬件中断；aptouch进程会响应中断，判断哪些像素被点击、是否是手势；如果是手势，多模会收到手势信号，形成点击事件，执行应用注册的事件回调。
 
 **图4 system侧Trace**
@@ -55,7 +55,7 @@
  | irp	 | CPU收到硬件中断 | 
  | aptouch_daemon | 	响应中断，哪些像素被点，判断是不是手势 | 
  | mmi_service	 | 多模收到手势，会执行应用注册的回调 | 
- 
+
 在app侧，如图5所示，应用收到点击，运行onClick中的回调，UI后端引擎会在测量、布局做完后，将组件树信息序列化后传给RS侧。
 
 **图5 app侧Trace**
@@ -64,7 +64,7 @@
  | --- |	--- |
  |DispatchTouchEvent |	应用收到事件，开始运行onClick的回调 |
  |MarshRSTransactionData cmdCount:36 transactionFlag:[7291，51] |	App将组件树信息序列化后发给RS |
- 
+
 图形图像子系统中的Render Service，是负责界面内容绘制的部件，如图6所示，它收到App侧序列化的组件树信息后，将其反序列化，更新统一渲染树后，翻译为GPU绘制指令，最后将GPU绘制好的图层，放到硬件合成器上做合成，层层堆叠，最终显示到屏幕上。
 
 **图6 RS侧Trace**
@@ -73,15 +73,15 @@ RS侧trace标签示例	含义
 RSMainThread::ProcessCommandUni [7291，51]	反序列化组件树信息
 RenderFrame	将渲染树翻译为GPU绘制指令
 Repaint	硬件合成器合成绘制
- 
+
 App侧序列化与RS侧反序列化的Trace示例标签中都有 [7291，51]，分别是线程号与帧编号标识。可以看到被处理的帧信息，是按编号在App侧与RS侧一一对应的。  
- 
+
 不同开发者分析问题的目的不同，所关注的问题层级和入口也会不同，因此对响应时间的起点与终点的界定也有可能不同。这里以系统行为的硬件中断为起点，RS侧硬件合成器合成绘制、提交上屏为终点，测量响应时间。
 
 **图7 测量完成时延**
  ![alt text](figures/application-performance-guide-7.png)
 如图7所示，该点击事件完成时延约为138.4ms。
- 
+
 ## 应用性能分析
 
 ### 丢帧问题分析思路
@@ -101,19 +101,21 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 #### 问题分析
 
 导致应用丢帧的原因非常多，可能是应用本身原因，可能是系统原因，也有可能是硬件层原因。不同卡顿原因在Trace中有不同表现，识别需要大量经验积累。
- 
+
 分析过程，主要是结合App主进程和RenderService渲染进程Trace数据，先排查系统、硬件是否异常，再分析应用本身原因。
 1.	看线程状态和运行核，看是否被其他进程抢占资源，排除系统侧运行异常。
 
     **看线程状态**
 
     从图8可以看到，应用线程大部分时间处于Running状态，无特殊异常。
+    
     **图8 丢帧处应用主线程状态**
     ![alt text](figures/application-performance-guide-8.png)
     
     **看运行频率**
-
+    
     查看关键任务是否跑在了小核，以低频运行。从Thread Usage信息栏，如图9所示，可以看到丢帧处应用线程和前面正常帧类似，都主要运行在大核上。其运行频点，可以参考Freq Usage信息栏，如图10所示。
+    
     **图9 丢帧处应用主线程运行核**
     ![alt text](figures/application-performance-guide-9.png)
     **图10 Freq Usage频点信息**
@@ -139,7 +141,7 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 - 如果定位是RS侧问题，需要进一步审视是否是界面布局过于复杂。  
 
 最终，根据卡顿原因，结合业务场景和API找出适合解决方案，并用Trace等数据验证优化结果。
- 
+
 ### 响应速度问题分析思路
 
 这里以冷启动场景的响应速度为例，做具体分析思路的说明。
@@ -178,14 +180,14 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 | 启动UI Ability	| OHOS::AppExecFwk::MainTread::HandleLaunchAbility()| 
 | 创建窗口	| AbilityMonitor::OnWindowStageCreate()| 
 | 绘制应用UI界面首诊	| JsRuntime::RunScript() RSMainThread::SendCommands()| 
- 
+
 而实际分析时，开发者可以借助SmartPerf Host提供的AppStartup模板，将各启动阶段自动拆解出来，如图14所示。关于AppStartup模板详细使用方法，请参考《[使用SmartPerf-Host分析应用性能](performance-optimization-using-smartperf-host.md)》中相关章节。
 
 **图14 AppStartup泳道图展示**
 
  ![alt text](figures/application-performance-guide-14.png)
 之后，开发者可以结合应用启动各阶段Trace信息，对比应用前一个版本或竞品表现，找出差异点，大致分析是哪阶段时间增加了。
- 
+
 **分析系统耗时点**
 
 如果分析是系统的问题，则查看系统对应的部分，一般情况要优先查看系统是否异常，例如：
@@ -212,7 +214,7 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 - 代码逻辑优化：在相关生命周期中减少冗余、避免耗时，提升执行效率，包括善用数据结构、缓存、优化调整时序等。
 - 视觉感知优化：通过交互设计的优化，利用动效动画的形式，在视觉层面提升用户响应速度的感知。
 最终，根据延迟原因，结合业务场景和API，找出适合解决方案，并用Trace等数据验证优化结果。
- 
+
 
 ## 总结
 文章首先介绍了通过分析Trace的方式，检测应用问题所对应的基础性能指标：  
