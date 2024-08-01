@@ -61,6 +61,7 @@ scan(): void
 Starts a scan for WLAN.
 
 > **NOTE**
+>
 > This API is supported since API version 9 and deprecated since API version 10. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
@@ -97,6 +98,7 @@ getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 Obtains the scan result. This API uses a promise to return the result.
 
 > **NOTE**
+>
 > This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
@@ -127,6 +129,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 Obtains the scan result. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
@@ -201,6 +204,7 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;
 Obtains the scan result. This API returns the result synchronously.
 
 > **NOTE**
+>
 > This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
