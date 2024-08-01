@@ -136,7 +136,7 @@ Places a task group in the internal queue of the task pool. The task group will 
 
 | Type                | Description                              |
 | ----------------    | ---------------------------------- |
-| Promise\<Object[]>  | Promise used to return an object array that carries the function execution result.|
+| Promise\<Object[]>  | Promise used to return an object that carries the function execution result.|
 
 **Error codes**
 
