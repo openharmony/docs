@@ -4222,15 +4222,15 @@ isImsSwitchEnabledSync\(slotId: number\): boolean
 
 **示例：**
 
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+<!--code_no_check-->
 
+```ts
 let slotId: number = 0;
 try {
     let isEnabled: boolean = call.isImsSwitchEnabledSync(slotId);
     console.log(`isImsSwitchEnabledSync success : ${isEnabled}`);
-} catch (err: BusinessError) {
-    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(err)}`);  
+} catch (error) {
+    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(error)}`);  
 }
 ```
 
