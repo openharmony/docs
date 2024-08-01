@@ -37,10 +37,10 @@ You can use Core File Kit in any of the following scenarios:
 - Uploading application files to a network server and downloading network resource files from a network server to the local application file directory.
 - Obtaining the storage space of an application, and the total and available space of a file system.
 - Sharing application files to other applications and using the files shared by other applications.
-- Accessing the data backup and restore framework to customize data backup and restore behaviors, such as whether to allow backup and restore and specifying the data to be backed up, by modifying the configuration file.<!--Del-->
+- Accessing the data backup and restore framework to customize data backup and restore behaviors, such as whether to allow backup and restore and specifying the data to be backed up, by modifying the configuration file.
 - Triggering data backup and restore (available only for system applications).
-<!--DelEnd-->
-- Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files<!--Del--> , and develop the user file manager (only for system applications)<!--DelEnd-->.
+
+- Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files, and develop the user file manager (only for system applications).
 - Accessing and copying files across devices.
 
 ## Features
