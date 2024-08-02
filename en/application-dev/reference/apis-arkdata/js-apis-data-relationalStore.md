@@ -541,7 +541,7 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 ## Asset<sup>10+</sup>
 
-Defines information about an asset (such as a document, image, and video). The asset APIs do not support **Datashare**.
+Defines information about an asset (such as a document, image, and video).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
