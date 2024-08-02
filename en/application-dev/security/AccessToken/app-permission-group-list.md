@@ -14,6 +14,8 @@
 
 - The following lists the permission groups supported by the system. For details about the permissions, see [Permissions for All Applications](permissions-for-all.md).
 
+<!--RP1-->
+
 ## Location
 
 - [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all.md#ohospermissionlocation_in_background)
@@ -32,22 +34,19 @@
 
 ## Contacts
 
-<!--RP1-->
 - [ohos.permission.READ_CONTACTS](permissions-for-system-apps.md#ohospermissionread_contacts)
 
 - [ohos.permission.WRITE_CONTACTS](permissions-for-system-apps.md#ohospermissionwrite_contacts)
-<!--RP1End-->
 
 ## Calendar
 
 - [ohos.permission.READ_CALENDAR](permissions-for-all.md#ohospermissionread_calendar)
 
 - [ohos.permission.WRITE_CALENDAR](permissions-for-all.md#ohospermissionwrite_calendar)
-<!--Del-->
+
 - [ohos.permission.READ_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionread_whole_calendar)
 
 - [ohos.permission.WRITE_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionwrite_whole_calendar)
-<!--DelEnd-->
 
 ## Fitness
 
@@ -59,30 +58,25 @@
 
 ## Images and Videos
 
-<!--RP2-->
 - [ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)
 
 - [ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo)
-<!--RP2End-->
+
 - [ohos.permission.MEDIA_LOCATION](permissions-for-all.md#ohospermissionmedia_location)
 
 ## Music and Audio
 
-<!--RP3-->
 - [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)
 
 - [ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio)
-<!--RP3End-->
 
 ## Ad Tracking
 
 - [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all.md#ohospermissionapp_tracking_consent)
 
-<!--Del-->
 ## Installed Bundle List
 
 - [ohos.permission.GET_INSTALLED_BUNDLE_LIST](permissions-for-system-apps.md#ohospermissionget_installed_bundle_list)
-<!--DelEnd-->
 
 ## Multi-device Collaboration
 
@@ -92,7 +86,6 @@
 
 - [ohos.permission.ACCESS_BLUETOOTH](permissions-for-all.md#ohospermissionaccess_bluetooth)
 
-<!--Del-->
 ## Phone
 
 - [ohos.permission.ANSWER_CALL](permissions-for-system-apps.md#ohospermissionanswer_call)
@@ -118,36 +111,31 @@
 - [ohos.permission.RECEIVE_WAP_MESSAGES](permissions-for-system-apps.md#ohospermissionreceive_wap_messages)
 
 - [ohos.permission.SEND_MESSAGES](permissions-for-system-apps.md#ohospermissionsend_messages)
-<!--DelEnd-->
 
 ## Pasteboard
 
-<!--RP4-->
 - [ohos.permission.READ_PASTEBOARD](permissions-for-system-apps.md#ohospermissionread_pasteboard)
-<!--RP4End-->
 
-<!--Del-->
 ## Directory
 
-- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_download_directory)
+- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all.md#ohospermissionread_write_download_directory)
 
 - [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_desktop_directory)
 
-- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_documents_directory)
-<!--DelEnd-->
+- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all.md#ohospermissionread_write_documents_directory)
 
 ## NearLink
 
 - [ohos.permission.ACCESS_NEARLINK](permissions-for-all.md#ohospermissionaccess_nearlink)
 
+<!--RP1End-->
+
 ## Files<sup>(deprecated)</sup>
 
 > **NOTE**
->
 > This permission group is deprecated since API version 12.
 
 <!--Del-->
-
 - ohos.permission.READ_DOCUMENT
 
 - ohos.permission.WRITE_DOCUMENT
@@ -165,9 +153,8 @@
 
 - To read audio clips in the media library:
 
-  Apply for the <!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio) or [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End--> permission to read and write images and videos in the media library.
+  Apply for the restricted permission<!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio) or [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End--> to read or write audio files in the media library.
 
 - To read documents in **Files**:
 
   Use the file Picker to read documents in **Files**. For details, see [Selecting Documents](../../file-management/select-user-file.md#selecting-documents) and [Saving Documents](../../file-management/save-user-file.md#saving-documents).
-

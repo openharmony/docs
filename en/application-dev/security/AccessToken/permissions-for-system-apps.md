@@ -13,11 +13,47 @@ The following lists the system_grant permissions that can be requested via the A
 
 For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
 
+### ohos.permission.PRE_START_ATOMIC_SERVICE
+
+Allows a window to be displayed with animation for an atomic service without the loading dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.CONTROL_LOCATION_SWITCH
 
 Allows an application to turn on and off the location service.
 
 **Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.SUBSCRIBE_SWING_ABILITY
+
+Allows an application to use the subscription capability powered by smart sensing.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.MANAGER_SWING_MOTION
+
+Allows an application to use the air gesture adaptation capability.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -258,6 +294,30 @@ Allows an application to call the API for restoring factory settings.
 Allows an application to start the upgrade service to perform assisted or collaborative update for other devices.
 
 **Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.RECEIVE_UPDATE_MESSAGE
+
+Allows a system application or system ability to listen for the key events occurred in the system update process.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.GET_ALL_PROCESSES
+
+Allows a system application or system ability to read files in **/proc**.
+
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 
@@ -1363,7 +1423,7 @@ Allows an application to pair with a Bluetooth device and access the Contacts or
 
 ### ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
-Allows an application to manage distributed account information.
+Allows an application to manage information about distributed accounts.
 
 **Permission level**: system_basic
 
@@ -2011,18 +2071,6 @@ Allows an applications or service to use the critical asset trusted ring.
 
 **Valid since**: 11
 
-### ohos.permission.FILE_ACCESS_PERSIST
-
-Allows an application to support persistent access to file URIs.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 11
-
 ### ohos.permission.RECEIVE_APP_INSTALL_INFO_CHANGE
 
 Allows an application to listen for the installation progress of other applications.
@@ -2205,7 +2253,7 @@ Allows a system application to set the super privacy mode.
 
 ### ohos.permission.ACCESS_PRIVATE_SPACE_MANAGER
 
-Allows a system app or system service to start the PrivateSpace manager.
+Allows a system application or system service to start the PrivateSpace manager.
 
 **Permission level**: system_basic
 
@@ -2697,6 +2745,34 @@ Allows an application to obtain the NearLink MAC address of the peer device.
 
 **Valid since**: 12
 
+### ohos.permission.MANAGE_UWB
+
+Allows a system application to manage the ultra-wideband (UWB) function,
+
+for example, enabling or disabling UWB communication, querying the chip type, and querying UWB capabilities.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.USE_UWB_RANGING
+
+Allows a system application to use UWB ranging,
+
+for example, opening a session for UWB ranging, starting ranging, stoping ranging, and closing a session.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.MANAGE_FINDNETWORK
 
 Allows an application to manage the **Find Network** switch and pair and unpair accessories.
@@ -3035,7 +3111,7 @@ Allows a system application to use infrared interfaces.
 
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 
-Allows an application to set whether to support app cache and quick startup after cached.
+Allows an application to set whether to support application cache and quick startup after cached.
 
 **Permission level**: system_basic
 
@@ -3275,7 +3351,7 @@ Allows a system application to inject input events.
 
 ### ohos.permission.QUERY_SECURITY_EVENT
 
-Allows an application to obtain detailed security events.
+Allows an application to obtain detailed security event information.
 
 **Permission level**: system_basic
 
@@ -3383,21 +3459,9 @@ Allows a system application to access the over-the-air update directory.
 
 ### ohos.permission.MANAGE_MOUSE_CURSOR
 
-Allows a system application to set the mouse cursor status (such as position and state).
+Allows a system application to set the mouse cursor status.
 
 **Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
-### ohos.permission.RECEIVE_FUSION_MESSAGES
-
-Allows a system ability or system application to receive fusion service messages.
-
-**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -3410,6 +3474,90 @@ Allows a system ability or system application to receive fusion service messages
 Allows a system application to filter input events.
 
 **Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACTIVATE_DEVICE_PSI
+
+Allows a system application or system ability to report the device activation status.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.DUMP_AUDIO
+
+Allows an application to dump audio data to a local storage device.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.RECEIVE_FUSION_MESSAGES
+
+Allows a system application or system ability to receive fusion service messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.PUBLISH_LOCATION_EVENT
+
+Allows an application to publish common events related to location management.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_MULTICORE_HYBRID_ABILITY
+
+Allows an application to access the system service APIs of the smart watch.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_DEVICE_COLLABORATION_SERVICE
+
+Allows an application to use the multi-screen collaboration service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.GET_APP_DOMAIN_BUNDLE_INFO
+
+Allows an application to access the mappings between applications and domain names.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -3638,18 +3786,6 @@ Allows a system service to enable distributed hardware resources.
 **Enable via ACL**: false
 
 **Valid since**: 11
-
-### ohos.permission.ACCESS_MULTICORE_HYBRID_ABILITY
-
-Allows an application to access the watch system service.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
 
 ## user_grant Permissions (Available via ACL)
 
@@ -3933,33 +4069,9 @@ Allows an application to read the pasteboard.
 
 **Valid since**: 11
 
-### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
-
-Allows an application to access the **Download** directory in the user directory.
-
-**Permission level**: system_basic
-
-**Authorization mode**: user_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 11
-
-### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
-
-Allows an application to access the **Documents** directory in the user directory.
-
-**Permission level**: system_basic
-
-**Authorization mode**: user_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 11
-
 ### ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
-Allows an application to access the **Desktop** directory in the user directory.
+Allows an application to access the **Desktop** directory and its subdirectories in the user directory.
 
 **Permission level**: system_basic
 
@@ -3973,10 +4085,10 @@ Allows an application to access the **Desktop** directory in the user directory.
 
 Allows an application to install beta applications.
 
-**Permission level**：system_core
+**Permission level**: system_core
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
