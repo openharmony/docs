@@ -34,6 +34,7 @@ libnative_window.so
 ```c++
 #include <sys/poll.h>
 #include <sys/mman.h>
+#include <unistd.h>
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <native_window/external_window.h>
 ```
@@ -134,7 +135,7 @@ libnative_window.so
     }
     ```
 
-5. **将生产的内容写入OHNativeWindowBuffer，在这之前需要等待fenceFd可用（注意fenceFd不等于-1才需要调用poll）**。
+5. **将生产的内容写入OHNativeWindowBuffer，在这之前需要等待fenceFd可用（注意fenceFd不等于-1才需要调用poll），如果没有fence同步，则可能造成花屏，裂屏，hebc fault等问题**。
     ```c++
     int retCode = -1;
     uint32_t timeout = 3000;
@@ -145,6 +146,7 @@ libnative_window.so
         do {
             retCode = poll(&pollfds, 1, timeout);
         } while (retCode == -1 && (errno == EINTR || errno == EAGAIN));
+        close(fenceFd); // 防止fd泄漏
     }
 
     static uint32_t value = 0x00;
@@ -157,7 +159,7 @@ libnative_window.so
     }
     ```
 
-5. **提交OHNativeWindowBuffer到图形队列**。
+5. **提交OHNativeWindowBuffer到图形队列。请注意FlushBuffer接口的fenceFd不可以和RequestBuffer接口获取的fenceFd相同，可传入默认值-1**。
     ```c++
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};
