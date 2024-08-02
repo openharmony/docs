@@ -227,7 +227,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
+getBundleStats(packageName: string, index?: number): Promise&lt;BundleStats&gt;
 
 异步获取应用存储数据的空间大小（单位为Byte），以Promise方式返回。
 
@@ -242,6 +242,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
   | 参数名      | 类型   | 必填 | 说明     |
   | ----------- | ------ | ---- | -------- |
   | packageName | string | 是   | 应用包名 |
+  | index<sup>12+</sup> | number | 是   | 可选参数，分身应用的索引号，默认值为0（表示未分身的主应用），分身应用索引号默认占用创建时从0开始最小的未占用索引号，用户在创建分身应用时也可以自定义索引号 |
 
 **返回值：**
 
@@ -266,8 +267,10 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import storageStatistics from "@ohos.storageStatistics";
   let packageName: string = "";
-  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
+  let index: number = 1;
+  storageStatistics.getBundleStats(packageName, index).then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
     console.error("getBundleStats failed with error:" + JSON.stringify(err));
@@ -276,7 +279,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
+getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;, index?: number): void
 
 异步获取应用存储数据的空间大小（单位为Byte），以callback方式返回。
 
@@ -292,6 +295,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
   | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据的空间大小之后的回调 |
+  | index<sup>12+</sup> | number | 是   | 可选参数，分身应用的索引号，默认值为0（表示未分身的主应用），分身应用索引号默认占用创建时从0开始最小的未占用索引号，用户在创建分身应用时也可以自定义索引号 |
 
 **错误码：**
 
@@ -310,7 +314,9 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import storageStatistics from "@ohos.storageStatistics";
   let packageName: string = "";
+  let index: number = 1;
   storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
     if (error) {
       console.error("getBundleStats failed with error:" + JSON.stringify(error));
@@ -318,7 +324,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
       // do something
       console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
     }
-  });
+  }, index);
   ```
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
