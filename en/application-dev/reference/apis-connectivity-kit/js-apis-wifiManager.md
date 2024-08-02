@@ -148,7 +148,6 @@ ohos.permission.GET_WIFI_PEERS_MAC is available only for system applications.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
