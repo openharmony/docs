@@ -29,7 +29,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 ### 开发步骤及注意事项
 
 1. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8)。
-     
+
     ```ts
     import { audio } from '@kit.AudioKit';
 
@@ -62,7 +62,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     ```
 
 2. 调用on('writeData')方法，订阅监听音频数据写入回调。
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo } from '@kit.CoreFileKit';
@@ -92,7 +92,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     ```
 
 3. 调用start()方法进入running状态，开始渲染音频。
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -106,7 +106,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     ```
 
 4. 调用stop()方法停止渲染。
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -120,7 +120,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     ```
 
 5. 调用release()方法销毁实例，释放资源。
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -133,10 +133,21 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     });
     ```
 
+### 选择正确的StreamUsage
+
+创建播放器时候，开发者需要根据应用场景指定播放器的`StreamUsage`，选择正确的`StreamUsage`可以避免用户遇到不符合预期的行为。
+
+在音频API文档[StreamUsage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-audio-kit/js-apis-audio.md#streamusage)介绍中，列举了每一种类型推荐的应用场景。例如音乐场景推荐使用`STREAM_USAGE_MUSIC`，电影或者视频场景推荐使用`STREAM_USAGE_MOVIE`，游戏场景推荐使用`STREAM_USAGE_GAME`，等等。
+
+如果开发者配置了不正确的`StreamUsage`，可能带来一些不符合预期的行为。例如以下场景。
+
+- 游戏场景错误使用`STREAM_USAGE_MUSIC`类型，游戏应用将无法和其他音乐应用并发播放，而游戏场景通常可以与其他音乐应用并发播放。
+- 导航场景错误使用`STREAM_USAGE_MUSIC`类型，导航应用播报时候会导致正在播放的音乐停止播放，而导航场景我们通常期望正在播放的音乐仅仅降低音量播放。
+
 ### 完整示例
 
 下面展示了使用AudioRenderer渲染音频文件的示例代码。
-  
+
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -273,4 +284,4 @@ async function release() {
 }
 ```
 
-当同优先级或高优先级音频流要使用输出设备时，当前音频流会被中断，应用可以自行响应中断事件并做出处理。具体的音频并发处理方式可参考[多音频播放的并发策略](audio-playback-concurrency.md)。
+当同优先级或高优先级音频流要使用输出设备时，当前音频流会被中断，应用可以自行响应中断事件并做出处理。具体的音频并发处理方式可参考[处理音频焦点事件](audio-playback-concurrency.md)。

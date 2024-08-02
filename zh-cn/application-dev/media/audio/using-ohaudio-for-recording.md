@@ -75,7 +75,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 3. 设置音频回调函数
 
-    多音频并发处理可参考[多音频播放的并发策略](audio-playback-concurrency.md)，仅接口语言差异。
+    多音频并发处理可参考文档[处理音频焦点事件](audio-playback-concurrency.md)，仅接口语言差异。
 
     ```c++
     // 自定义写入数据函数
@@ -204,6 +204,6 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 
 ## 相关实例
 
-针对音频通话开发，有以下相关实例可供参考：
+针对OHAudio开发音频录制，有以下相关实例可供参考：
 
-- [录制和播放（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+- [OHAudio录制和播放](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/OHAudio)
