@@ -2059,7 +2059,7 @@ Allows a system application to set the super privacy mode.
 
 ### ohos.permission.ACCESS_PRIVATE_SPACE_MANAGER
 
-Allows a system app or system service to start the PrivateSpace manager.
+Allows a system application or system service to start the PrivateSpace manager.
 
 **Permission level**: system_basic
 
@@ -2957,11 +2957,11 @@ Allows an application to uninstall a cloned application.
 
 **Valid since**: 12
 
-### ohos.permission.ACCESS_SCREEN_LOCK_MEDIA_DATA
+## system_grant Permissions (Unavailable via ACL)
 
-Allows an application to access images and videos when the screen is locked.
+The following lists the system_grant permissions that cannot be requested via the ACL.
 
-**Permission level**: system_core
+For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
 
 ### ohos.permission.RECEIVER_STARTUP_COMPLETED
 
