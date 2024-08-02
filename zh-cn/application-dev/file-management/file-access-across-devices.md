@@ -52,8 +52,8 @@
 
   // 定义访问公共文件目录的回调
   let listeners : fs.DfsListeners = {
-  onStatus: function (networkId: string, status: number): void {
-    console.info('Failed to access public directory');
+    onStatus: function (networkId: string, status: number): void {
+      console.info('Failed to access public directory');
   }
   }
 
@@ -87,7 +87,7 @@
     }
   }).catch((error) => {
     let err: BusinessError = error as BusinessError;
-    console.error(`Failed to connectDfs Code: ${error.code}, message: ${error.message}`);
+    console.error(`Failed to connectDfs Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -106,6 +106,6 @@
     console.info("Success to disconnectDfs");
   }).catch((error) => {
     let err: BusinessError = error as BusinessError;
-    console.error(`Failed to disconnectDfs Code: ${error.code}, message: ${error.message}`)
+    console.error(`Failed to disconnectDfs Code: ${err.code}, message: ${err.message}`)
   })
   ```
