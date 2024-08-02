@@ -238,6 +238,7 @@ struct DatePickerExample {
 ![datePicker](figures/DatePickerApi10.gif)
 
 ```ts
+// 该示例主要演示如何设置表冠事件灵敏度。
 // xxx.ets
 @Entry
 @Component
