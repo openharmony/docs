@@ -56,7 +56,7 @@ Extension生命周期回调，在执行备份数据时回调，由开发者提�
   ```
 ### onBackupEx
 
-onBackupEx(backupInfo: string): string | Promise<string>;
+onBackupEx(backupInfo: string): string | Promise\<string>;
 
 备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用
 onBackupEx与onBackup互斥，如果重写onBackupEx，则优先调用onBackupEx。
