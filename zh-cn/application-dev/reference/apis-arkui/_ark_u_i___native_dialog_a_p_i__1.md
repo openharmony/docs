@@ -34,6 +34,7 @@ ArkUI提供的Native侧自定义弹窗接口集合。
 | int32_t(\* [registerOnWillDismiss](#registeronwilldismiss) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_OnWillDismissEvent](_ark_u_i___native_module.md#arkui_onwilldismissevent) eventHandler) | 当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗，是否关闭由用户自行决定。  | 
 | int32_t(\* [show](#show) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, bool showInSubWindow) | 显示自定义弹窗。  | 
 | int32_t(\* [close](#close) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle) | 关闭自定义弹窗，如已关闭，则不生效。  | 
+| int32_t(\* [registerOnWillDismissWithUserData](#registeronwilldismisswithuserdata) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void \*userData, void(\*callback)([ArkUI_DialogDismissEvent](_ark_u_i___native_module.md#arkui_dialogdismissevent) \*event)) | 注册系统关闭自定义弹窗的监听事件。  | 
 
 
 ## 结构体成员变量说明
@@ -162,6 +163,28 @@ int32_t(* ArkUI_NativeDialogAPI_1::registerOnWillDismiss) (ArkUI_NativeDialogHan
 **注解：**
 
 registerOnWillDismiss方法需要在调用show方法之前调用。
+
+**返回：**
+
+ [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+
+### registerOnWillDismissWithUserData
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::registerOnWillDismissWithUserData) (ArkUI_NativeDialogHandle handle, void *userData, void(*callback)(ArkUI_DialogDismissEvent *event))
+```
+**描述：**
+
+注册系统关闭自定义弹窗的监听事件。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| userData | 用户自定义数据指针。  | 
+| callback | 监听自定义弹窗关闭的回调事件。  | 
 
 **返回：**
 
