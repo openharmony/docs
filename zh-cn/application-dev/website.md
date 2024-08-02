@@ -117,7 +117,7 @@
             - [UIAbility组件启动模式](application-models/uiability-launch-type.md)
             - [UIAbility组件基本用法](application-models/uiability-usage.md)
             - [UIAbility组件与UI的数据同步](application-models/uiability-data-sync-with-ui.md)
-            - [UIAbility组件间交互（设备内）](application-models/uiability-intra-device-interaction.md)
+            - [启动应用内的UIAbility组件](application-models/uiability-intra-device-interaction.md)
           - [ExtensionAbility组件](application-models/extensionability-overview.md)
             <!--Del-->
             - [ServiceExtensionAbility（仅对系统应用开放）](application-models/serviceextensionability.md)
