@@ -40,11 +40,11 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | displayVersion | string | 是 | 否 | 产品版本。 |
 | incrementalVersion | string | 是 | 否 | 差异版本号。 |
 | osReleaseType | string | 是 | 否 | 系统的发布类型，取值为：<br/>-&nbsp;Canary：面向特定开发者发布的早期预览版本，不承诺API稳定性。<br/>-&nbsp;Beta：面向开发者公开发布的Beta版本，不承诺API稳定性。<br/>-&nbsp;Release：面向开发者公开发布的正式版本，承诺API稳定性。 |
-| osFullName | string | 是 | 否 | 系统版本<!--Del-->，版本格式OpenHarmony-x.x.x.x,x为数值<!--DelEnd-->。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| majorVersion | number | 是 | 否 | Major版本号，随主版本更新增加<!--Del-->，值为osFullName中的第一位数值，建议直接使用deviceInfo.majorVersion获取，不建议开发者解析osFullName获取<!--DelEnd-->。 |
-| seniorVersion | number | 是 | 否 | Senior版本号<!--Del-->，随局部架构、重大特性增加，值为osFullName中的第二位数值，建议直接使用deviceInfo.seniorVersion获取，不建议开发者自主解析osFullName获取<!--DelEnd-->。 |
-| featureVersion | number | 是 | 否 | Feature版本号，标识规划的新特性版本<!--Del-->，值为osFullName中的第三位数值，建议直接使用deviceInfo.featureVersion获取，不建议开发者自主解析osFullName获取<!--DelEnd-->。 |
-| buildVersion | number | 是 | 否 | Build版本号，标识编译构建的版本号<!--Del-->，值为osFullName中的第四位数值，建议直接使用deviceInfo.buildVersion获取，不建议开发者自主解析osFullName获取<!--DelEnd-->。 |
+| osFullName | string | 是 | 否 | 系统版本，版本格式OpenHarmony-x.x.x.x,x为数值。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| majorVersion | number | 是 | 否 | Major版本号，随主版本更新增加，值为osFullName中的第一位数值，建议直接使用deviceInfo.majorVersion获取，不建议开发者解析osFullName获取。 |
+| seniorVersion | number | 是 | 否 | Senior版本号，随局部架构、重大特性增加，值为osFullName中的第二位数值，建议直接使用deviceInfo.seniorVersion获取，不建议开发者自主解析osFullName获取。 |
+| featureVersion | number | 是 | 否 | Feature版本号，标识规划的新特性版本，值为osFullName中的第三位数值，建议直接使用deviceInfo.featureVersion获取，不建议开发者自主解析osFullName获取。 |
+| buildVersion | number | 是 | 否 | Build版本号，标识编译构建的版本号，值为osFullName中的第四位数值，建议直接使用deviceInfo.buildVersion获取，不建议开发者自主解析osFullName获取。 |
 | sdkApiVersion | number | 是 | 否 | 系统软件API版本。 |
 | firstApiVersion | number | 是 | 否 | 首个版本系统软件API版本。 |
 | versionId | string | 是 | 否 | 版本ID。 |
