@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 
 ## 导入模块
@@ -21,17 +21,17 @@ import { ArcList, ArcListAttribute } from '@kit.ArkUI';
 >
 > ArcList的子组件的索引值计算规则：
 >
-> 按子组件的顺序依次递增。
+> - 按子组件的顺序依次递增。  
 >
-> if/else语句中，只有条件成立的分支内的子组件会参与索引值计算，条件不成立的分支内子组件不计算索引值。
+> - if/else语句中，只有条件成立的分支内的子组件会参与索引值计算，条件不成立的分支内子组件不计算索引值。  
 >
-> ForEach/LazyForEach语句中，会计算展开所有子节点索引值。
+> - ForEach/LazyForEach语句中，会计算展开所有子节点索引值。  
 >
-> [if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)发生变化以后，会更新子节点索引值。
+> - [if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)发生变化以后，会更新子节点索引值。  
 >
-> ArcList子组件visibility属性设置为Hidden或None依然会计算索引值。
+> - ArcList子组件visibility属性设置为Hidden或None依然会计算索引值。  
 >
-> ArcList子组件的visibility属性设置为None时不显示，但该子组件上下的space还会生效。
+> - ArcList子组件的visibility属性设置为None时不显示，但该子组件上下的space还会生效。  
 
 
 ## 接口
@@ -86,7 +86,7 @@ space(space: Optional\<LengthMetrics>)
 
 ### scrollBar
 
-status: Optional\<BarState>
+scrollBar(status: Optional\<BarState>)
 
 设置滚动条状态。
 
@@ -102,7 +102,7 @@ status: Optional\<BarState>
 
 ### cachedCount
 
-count: Optional\<number>
+cachedCount(count: Optional\<number>)
 
 设置列表中ArcArcListItem的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。
 
@@ -126,9 +126,7 @@ chainAnimation(enable: Optional\<boolean>)
 
 链式联动效果：ArcList内的arclist-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。
 
-链式动效生效需要满足以下前提条件：
-
- 1、ArcList边缘效果为Spring类型。
+链式动效生效需要满足前提条件：ArcList边缘效果为Spring类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -232,9 +230,9 @@ childrenMainSize(size: Optional\<ChildrenMainSize>)
 
 **参数：** 
 
-| 参数名 | 类型                                                     | 必填 | 说明                                                         |
-| ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| size   | [Optional\<ChildrenMainSize>](#childrenmainsize对象说明) | 是   | 1. 作用：<br/>通过ChildrenMainSize对象向ArcList组件准确提供所有子组件在主轴方向的大小信息，能够使ArcList组件在子组件的主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景也能维护自己准确的滑动位置，进而使[scrollTo](ts-container-scroll.md#scrollto)能跳转到准确的指定位置，[currentOffset](ts-container-scroll.md#currentoffset)能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。<br/>2.使用约束：<br/>（1）提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ArcList组件。 |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size   | [Optional\<ChildrenMainSize>](ts-container-list.md#childrenmainsize对象说明12) | 是   | 通过ChildrenMainSize对象向ArcList组件准确提供所有子组件在主轴方向的大小信息，能够使ArcList组件在子组件的主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景也能维护自己准确的滑动位置，进而使[scrollTo](ts-container-scroll.md#scrollto)能跳转到准确的指定位置，[currentOffset](ts-container-scroll.md#currentoffset)能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。<br/>说明：<br/>提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ArcList组件。 |
 
 ## 事件
 
@@ -353,11 +351,15 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [Optional\<OnScrollCallback>](#onscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
+| handler | [Optional\<OnScrollCallback>](ts-container-list.md#onscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
 
 ## ArkListOptions对象说明
 
-**参数：**
+包含创建ArcList组件的基础参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 | 参数名       | 参数类型                                    | 必填 | 参数描述                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -373,6 +375,10 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 有子组件划入或划出ArcList显示区域时触发的回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
 | start  | number | 是   | ArcList显示区域内第一个子组件的索引值。   |
@@ -383,153 +389,15 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 列表滑动前触发。
 
-| 参数名       | 类型                                                       | 必填 | 说明                                                         |
-| ------------ | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scrollOffset | number                                                     | 是   | 每帧滚动的偏移量，ArcList的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState  | [ScrollState](ts-container-arclist.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
-| scrollSource | ScrollSource                                               | 是   | 当前滑动来源。                                               |
-
-## OnScrollCallback对象说明
-
-列表滑动时触发的回调。
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| scrollOffset | number | 是 | 每帧滚动的偏移量，ArcList的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](ts-container-arclist.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
-
-## ScrollState枚举说明
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称     |  枚举值  | 描述                                       |
-| ------ | ------ | ---------------------------------------- |
-| Idle   |  0  | 空闲状态。使用控制器提供的方法控制滚动时触发，拖动滚动条滚动时触发。<br/>**说明：** <br/> 从API version 10开始，调整为滚动状态回归空闲时触发， <br/>控制器提供的无动画方法控制滚动时触发。 |
-| Scroll |  1  | 滚动状态。使用手指拖动ArcList滚动时触发。<br/>**说明：** <br/> 从API version 10开始，拖动滚动条滚动和滚动鼠标滚轮时也会触发。 |
-| Fling  |  2  | 惯性滚动状态。快速划动松手后进行惯性滚动和划动到边缘回弹时触发。<br/>**说明：** <br/> 从API version 10开始，由动画控制的滚动都触发。包括快速划动松手后的惯性滚动， <br/>划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动， <br/>使用滚动控制器提供的带动画的方法控制的滚动。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-ScrollState枚举变更如下。
-
-| 场景            | API version 9及以下 | API version 10开始 |
-| ------------- | ---------------- | ---------------- |
-| 手指拖动滑动        | Scroll           | Scroll           |
-| 惯性滚动          | Fling            | Fling            |
-| 过界回弹          | Fling            | Fling            |
-| 鼠标滚轮滚动        | Idle             | Scroll           |
-| 拖动滚动条         | Idle             | Scroll           |
-| 滚动控制器滚动（带动画）  | Idle             | Fling            |
-| 滚动控制器滚动（不带动画） | Idle             | Idle             |
-
-## ChildrenMainSize对象说明
-
-维护ArcList组件的子组件在主轴方向的大小信息，仅支持一对一绑定到ArcList组件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-### constructor
-
-constructor(childDefaultSize: number): void
-
-ChildrenMainSize有参构造函数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 名称   | 类型                            | 必填   | 描述                   |
-| ---- | ----------------------------- | ---- | -------------------- |
-| childDefaultSize | number | 是    | 子组件在主轴方向的默认大小。<br/>单位：vp<br/>**说明：** <br/>必须是有限的非负数值，否则抛出异常。|
-
-
-### childDefaultSize
-
-set childDefaultSize(value: number): void
-
-修改子组件在主轴方向的默认大小。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 名称   | 类型                            | 必填   | 描述                   |
-| ---- | ----------------------------- | ---- | -------------------- |
-| value | number | 是    | 子组件在主轴方向的默认大小。<br/>单位：vp<br/>**说明：** <br/>必须是有限的非负数值，否则抛出异常。|
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | 参数错误。可能原因：<br/>1、未指定必需参数。<br/>2、无效的参数类型。<br/>3、参数校验失败。 |
-
-get childDefaultSize(): number
-
-获取子组件在主轴方向的默认大小。
-
-**返回值：** 
-
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| number | 子组件在主轴方向的默认大小。<br/>单位：vp |
-
-### splice
-
-splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
-
-批量增删改子组件在主轴方向的大小信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 名称   | 类型                            | 必填   | 描述                   |
-| ---- | ----------------------------- | ---- | -------------------- |
-| start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
-| deleteCount | number | 否    | 从start开始删除的大小信息的数量。<br/>**说明：** <br/>1.  必须是有限的非负数值，否则处理为0。<br/>2. 非整数会被截断为整数。<br/>3. start + deleteCount - 1可以超过最大索引值，会删除索引值start开始之后的所有子组件的大小信息。 |
-| childrenSize | Array\<number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
-
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | 参数错误。可能原因：<br/>1、未指定必需参数。<br/>2、无效的参数类型。<br/>3、参数校验失败。 |
-
-
-> **说明：**
->
-> - 如果仅使用start参数，表示删除索引值start及之后的子组件的大小信息。
-> - 如果仅使用start和deleteCount参数，表示删除索引值start开始的deleteCount数量的子组件的大小信息。一般在删除子组件时使用。
-> - 如果使用3个参数，表示删除索引值start开始的deleteCount数量的子组件的大小信息，再在start位置插入childrenSize中所有的大小信息。一般在增加子组件或者批量更新子组件主轴方向大小的时候使用，如果仅是增加子组件，deleteCount为0，childrenSize的元素数量和增加子组件的个数应该相等；如果仅是批量更新子组件主轴方向的大小，childrenSize的元素数量应该和deleteCount相等，即为批量更新的数量。
-> - 如果想要通知某个子组件的大小为默认大小，childrenSize中对应的值不应该给一个有限的非负值，而应该给NaN，任意负值等能被处理成默认大小的值。
-
-### update
-
-update(index: number, childSize: number): void
-
-修改指定索引值对应的子组件的主轴方向的大小信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 名称   | 类型                            | 必填   | 描述                   |
-| ---- | ----------------------------- | ---- | -------------------- |
-| start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
-| childSize | number | 是    | 要更新成的大小。<br/>单位：vp <br/>**说明：** <br/>1.数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | 参数错误。可能原因：<br/>1、未指定必需参数。<br/>2、无效的参数类型。<br/>3、参数校验失败。 |
+| 参数名       | 类型                                                    | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| scrollOffset | number                                                  | 是   | 每帧滚动的偏移量，ArcList的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
+| scrollSource | ScrollSource                                            | 是   | 当前滑动来源。                                               |
 
 ## 示例
 
@@ -570,7 +438,7 @@ struct Index {
       .width(this.watchSize)
       .height(this.watchSize)
       .clip(new Circle({ width: '100%', height: '100%' }))
-      .backgroundColor(Color.Green)
+      .backgroundColor(0x707070)
 
       ArcList({ initialIndex: 0, header: this.tabBar1 }) {
         ForEach(this.numItems, (item: number, index: number) => {
@@ -579,12 +447,17 @@ struct Index {
               .width('100%')
               .height('100px')
               .fontSize('40px')
+              .focusable(true)
+              .focusOnTouch(true)
+              .backgroundColor(0x17A98D)
           }.align(Alignment.Center)
         }, (item: string, index: number) => item + index)
       }
       .space(LengthMetrics.px(10))
       .borderRadius(this.watchSize)
-      .border({ width: '1px', color: Color.Red })
+      .focusable(true)
+      .focusOnTouch(true)
+      .defaultFocus(true)
     }
     .align(Alignment.Center)
     .width(this.watchSize)
