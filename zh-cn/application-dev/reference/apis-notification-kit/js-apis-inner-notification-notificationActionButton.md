@@ -13,6 +13,6 @@
 | 名称      | 类型                                            | 只读 | 可选 | 说明                      |
 | --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
 | title     | string                                          | 否  | 否  | 按钮标题。                  |
-| wantAgent | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)   | 否  | 否  | 点击按钮时触发的WantAgent。 |
-| extras    | { [key: string]: any }                          | 否  | 是  | 按钮扩展信息。（预留能力，暂未支持）。              |
+| wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)   | 否  | 否  | 点击按钮时触发的WantAgent。 |
+| extras    | { [key: string]: any }                          | 否  | 是  | 按钮扩展信息。预留能力，暂未支持。              |
 | userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | 否  | 是  | 用户输入对象实例。表示用户输入时的标识。          |
