@@ -45,7 +45,7 @@ In addition, the development guide and API reference are reconstructed by kit fo
 - New style objects and component style attribute methods are provided to support style reuse and dynamic switching.
    - The universal attribute style supports **Style** objects.
    - Component-specific attribute styles support objects derived from **Style**.
-   - The polymorphic style is switched to the **Style** object.
+   - The polymorphic style is switched to the **Style** object. 
 
 
 ### Application Framework
@@ -72,7 +72,7 @@ In addition, the development guide and API reference are reconstructed by kit fo
 
 - The DFX mechanism is enhanced. For example, the subsystem supports service process dotting, upper-layer distributed service statistics, and service alarms for network monitoring events.
 
-- The IPC provides APIs for querying reference technologies and timestamps, and the maintenance and debugging capabilities are enhanced.
+- The IPC provides APIs for querying reference counts and timestamps, and the maintenance and debugging capabilities are enhanced.
 
 
 ### Distributed Data Management
@@ -429,12 +429,12 @@ MindSpore Lite provides C APIs for on-device machine learning.
 
 **Table 1** Version mapping of software and tools
 
-| Software/Tool| Version| Remarks|
+| Software/Tool | Version | Remarks | 
 | -------- | -------- | -------- |
-| OpenHarmony | 4.1 Release | NA |
-| Public SDK | Ohos_sdk_public 4.1.7.5 (API Version 11 Release) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.|
-| (Optional) HUAWEI DevEco Studio| 4.1 Release | Recommended for developing OpenHarmony applications How to obtain:<br><br>SHA-256 checksum: c46be4f3cfde27af1806cfc9860d9c366e66a20e31e15180cf3a90ab05464650<br><br>SHA-256 checksum: 15d6136959b715e4bb2160c41d405b889820ea26ceadbb416509a43e59ed7f09<br><br>SHA-256 checksum: ac04ca7c2344ec8f27531d5a59261ff037deed2c5a3d42ef88e6f90f4ed45484 |
-| (Optional) HUAWEI DevEco Device Tool| 4.0 Release | Recommended for developing OpenHarmony smart devices<br>[Click here](https://device.harmonyos.com/cn/develop/ide#download). |
+| OpenHarmony | 4.1 Release | NA | 
+| Public SDK | Ohos_sdk_public 4.1.7.5 (API Version 11 Release) | This toolkit is intended for application developers and does not contain system APIs that require system permissions. | 
+| (Optional) HUAWEI DevEco Studio | 4.1 Release | Recommended for developing OpenHarmony applications How to obtain:<br><br>SHA-256 checksum: c46be4f3cfde27af1806cfc9860d9c366e66a20e31e15180cf3a90ab05464650<br><br>SHA-256 checksum: 15d6136959b715e4bb2160c41d405b889820ea26ceadbb416509a43e59ed7f09<br><br>SHA-256 checksum: ac04ca7c2344ec8f27531d5a59261ff037deed2c5a3d42ef88e6f90f4ed45484  | 
+| (Optional) HUAWEI DevEco Device Tool | 4.0 Release | Recommended for developing OpenHarmony smart devices<br>[Click here](https://device.harmonyos.com/cn/develop/ide#download). | 
 
 
 ## Source Code Acquisition
@@ -504,16 +504,16 @@ Use the **repo** tool to download the source code over HTTPS.
 
 **Table 2** Mirrors for acquiring source code
 
-| Source Code                               | Version| Mirror                                                | SHA-256 Checksum                                            | Software Package Size|
+| Source Code                               | Version | Mirror                                                | SHA-256 Checksum                                            | Software Package Size |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| Full code base (for mini, small, and standard systems)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/code-v4.1-Release.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/code-v4.1-Release.tar.gz.sha256)| 31.6 GB |
-| Hi3861 solution (binary)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_pegasus.tar.gz.sha256)| 29.2 MB |
-| Hi3516 solution-LiteOS (binary)| 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_LiteOS.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_LiteOS.tar.gz.sha256)| 318.7 MB |
-| Hi3516 solution-Linux (binary) | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_Linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_Linux.tar.gz.sha256)| 215.8 MB |
-| RK3568 standard system solution (binary)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/dayu200_standard_arm32.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/dayu200_standard_arm32.tar.gz.sha256)| 8.4 GB |
-| Public SDK package for the standard system (macOS)            | 4.1.7.5 | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-mac-public.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-mac-public.tar.gz.sha256) | 841 MB |
-| Public SDK package for the standard system (macOS-M1)            | 4.1.7.5  | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 897.8 MB |
-| Public SDK package for the standard system (Windows\Linux)  | 4.1.7.5   | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-windows_linux-public.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.2 GB |
+| Full code base (for mini, small, and standard systems)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/code-v4.1-Release.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/code-v4.1-Release.tar.gz.sha256) | 31.6 GB |
+| Hi3861 solution (binary)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_pegasus.tar.gz.sha256) | 29.2 MB |
+| Hi3516 solution-LiteOS (binary) | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_LiteOS.tar.gz)  | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 318.7 MB |
+| Hi3516 solution-Linux (binary) | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_Linux.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_Linux.tar.gz.sha256) | 215.8 MB |
+| RK3568 standard system solution (binary)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/dayu200_standard_arm32.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/dayu200_standard_arm32.tar.gz.sha256) | 8.4 GB |
+| Public SDK package for the standard system (macOS)            | 4.1.7.5 | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-mac-public-signed.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-mac-public-signed.tar.gz.sha256) | 1.1 GB |
+| Public SDK package for the standard system (macOS-M1)            | 4.1.7.5  | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/L2-SDK-MAC-M1-PUBLIC-signed.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/L2-SDK-MAC-M1-PUBLIC-signed.tar.gz.sha256) | 1.1 GB |
+| Public SDK package for the standard system (Windows\Linux)  | 4.1.7.5   | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-windows_linux-public.tar.gz)  | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/ohos-sdk-windows_linux-public.tar.gz.sha256)  | 2.2 GB |
 
 
 ## Update Description
@@ -541,18 +541,18 @@ For more information, visit [Samples](https://gitee.com/openharmony/applications
 
 **Table 4** Resolved issues
 
-| Issue No.| Description|
+| Issue No. | Description | 
 | -------- | -------- |
-| I8PEOF | A system freeze may occur due to LIFECYCLE_TIMEOUT of the com.ohos.mms process. As such, a white screen is displayed.|
-| I8QET3 | A C++ crash may occur in libbluetooth_server.z.so of the OS_IPC_10_25363 thread of the bluetooth_servi process. As such, the Bluetooth service is abnormal.|
-| I8QH9S | A C++ crash may occur in libnative_appdatafwk.z.so of the os.settingsdata thread of the com.ohos.settingsdata process. As such, the background data management process stops.|
-| I8QNI7 | A system freeze may occur due to SERVICE_BLOCK of the foundation process.|
-| I8QSZ1 | An app freeze occurs in libsamgr_proxy.z.so of the com.ohos.systemui process, due to THREAD_BLOCK_6S.|
-| Vulnerabilities (such as I7TYTF) in 43 open-source components| 43 open-source component vulnerabilities, such as protection_fault in the errseq_set function of the kernel|
-| I78THF | The maligpu version in the RK3568 kernel patch is too old (11.29), and a large number of CVE vulnerabilities are not fixed.|
-| I83D6I | If Bluetooth is repeatedly enabled and disabled in Settings, there is a possibility that an app freeze occurs.|
-| I827LU | Memory leakage occurs when Bluetooth is repeatedly enabled and disabled in Settings. A memory leak of 15 MB occurs within one hour.|
-| I82V2W | Memory leakage occurs when Bluetooth is repeatedly enabled and disabled in Settings. The memory usage of Settings increases to 180 MB within one hour.|
+| I8PEOF | A system freeze may occur due to LIFECYCLE_TIMEOUT of the com.ohos.mms process. As such, a white screen is displayed. |
+| I8QET3 | A C++ crash may occur in libbluetooth_server.z.so of the OS_IPC_10_25363 thread of the bluetooth_servi process. As such, the Bluetooth service is abnormal. |
+| I8QH9S | A C++ crash may occur in libnative_appdatafwk.z.so of the os.settingsdata thread of the com.ohos.settingsdata process. As such, the background data management process stops. |
+| I8QNI7 | A system freeze may occur due to SERVICE_BLOCK of the foundation process. |
+| I8QSZ1 | An app freeze occurs in libsamgr_proxy.z.so of the com.ohos.systemui process, due to THREAD_BLOCK_6S. |
+| Vulnerabilities (such as I7TYTF) in 43 open-source components | 43 open-source component vulnerabilities, such as protection_fault in the errseq_set function of the kernel |
+| I78THF | The maligpu version in the RK3568 kernel patch is too old (11.29), and a large number of CVE vulnerabilities are not fixed. |
+| I83D6I | If Bluetooth is repeatedly enabled and disabled in Settings, there is a possibility that an app freeze occurs. |
+| I827LU | Memory leakage occurs when Bluetooth is repeatedly enabled and disabled in Settings. A memory leak of 15 MB occurs within one hour. |
+| I82V2W | Memory leakage occurs when Bluetooth is repeatedly enabled and disabled in Settings. The memory usage of Settings increases to 180 MB within one hour. |
 
 
 
@@ -560,30 +560,30 @@ For more information, visit [Samples](https://gitee.com/openharmony/applications
 
 **Table 5** Known issues
 
-| Issue No.| Description| Impact| To Be Resolved By|
+| Issue No. | Description | Impact | To Be Resolved By | 
 | -------- | -------- | -------- | -------- |
-| I8WP8M | Create a large folder by moving an application icon on the home screen to overlap with another application icon, and then move an application icon out of the folder. Repeat this operation. Five minutes later, a total of about 25 MB memory is leaked on the launcher, that is, a 673.68 KB memory leak for each operation.| The system freezes when the memory leak reaches a certain amount.<br>Workaround: Close background applications or restart the device.| April 30|
-| I98AV0 | Repeatedly turn on and then turn off the location information switch. When this operation lasts for 5 minutes, a total of about 14 MB memory is leaked on the distributeddata process, that is, a 95.57 KB memory leak for each operation.| The system freezes when the memory leak reaches a certain amount.<br>Workaround: Exit the current page.| April 30|
-| I9A9NO | Repeatedly touch the upper right corner of the SMS application to create an SMS message and then touch **Back**. When this operation lasts for 5 minutes, a total of about 50 MB memory is leaked, that is, a 341.33 KB memory leak for each operation.| The system freezes when the memory leak reaches a certain amount.<br>Workaround: Exit the application.| April 30|
-| I8QLRO | There is a low probability that a C++ crash occurs in libbtstack.z.so of the stack thread of the bluetooth_servi process.| The Bluetooth service automatically recovers, and users are unaware of the exception.| April 30|
-| I8TLYJ | There is a low probability that a C++ crash occurs in libbtstack.z.so of the SaInit1 thread of the bluetooth_servi process.| The Bluetooth service automatically recovers, and users are unaware of the exception.| April 30|
-| I8TM99 | There is a low probability that a C++ crash occurs in libbtframework.z.so of the softbus_server thread of the softbus_server process.| The DSoftBus service automatically recovers, and users are unaware of the exception.| April 30|
-| I8VFJS | There is a low probability that a JS crash occurs in ObservedPropertyAbstractPU of the com.ohos.settings process.| There is a low probability that the Settings application crashes. Users can exit the application to reclaim the memory.| April 30|
-| I98NGO | There is a low probability that an app freeze occurs in the com.ohos.settings process because THREAD_BLOCK_6S is stuck in the libbtframework.z.so stack.| There is a low probability that the Settings application crashes. Users can exit the application to reclaim the memory.| April 30|
-| I90A2N | There is a possibility that an app freeze occurs in the com.ohos.systemui process because THREAD_BLOCK_6S is stuck in the libeventhandler.z.so stack.| There is no response when users touches or swipes on the phone. This issue can be resolved when users access the control panel or notification center again.| May 30|
-| I963UO | There is a possibility that a C++ crash occurs in libEGL.so of the RSRenderThread thread in the com.ohos.systemui process.| The screen automatically locks. The issue does not persist after users unlock the screen.| May 30|
-| I9A089 | There is a moderate probability that a system freeze occurs in the foundation process due to SERVICE_BLOCK.| After the system freezes for 5 seconds, a 1-second startup animation is played, and the screen is locked. The issue does not persist after users unlock the screen.| April 15|
-| I9AYM2 | There is a low possibility that an app freeze occurs in the com.ohos.note process because THREAD_BLOCK_6S is stuck in the libweb_engine.so stack.| The Notes application freezes. The issue does not persist after the application is restarted.| May 30|
-| I9CGOZ | There is a high probability that an app freeze occurs in the com.ohos.camera process because THREAD_BLOCK_6S is stuck in the libcamera_framework.z.so stack.| The Camera application does not respond. The issue does not persist after the application is restarted.| April 30|
-| I9AEO0 | There is a low probability that an app freeze occurs in the com.ohos.settings process due to APP_INPUT_BLOCK.| The Settings application does not respond. The issue does not persist after the application is restarted.| April 30|
-| I8QH9S | There is a low probability that a C++ crash occurs in libnative_appdatafwk.z.so of the os.settingsdata thread of the com.ohos.settingsdata process.| The settingsdata service breaks down. It automatically starts when users access the data again. This has no impact on users.| April 15|
-| I963TL | There is a low probability that a C++ crash occurs in libark_jsruntime.so of the com.ohos.mms thread of the com.ohos.mms process.| The SMS application does not respond or automatically exits. The issue does not persist after the application is restarted.| April 30|
-| I9635I | There is a low probability that the device automatically restarts.| The impact is controllable. No workaround is required.| April 30|
-| I96JJ7 | There is a low probability that a C++ crash occurs in libace_compatible.z.so of the com.ohos.note thread of the com.ohos.note process.| The Notes application may crash. The issue does not persist after the application is restarted.| April 30|
-| I993H9 | There is a possibility that an app freeze occurs in the com.ohos.smartperf process because THREAD_BLOCK_6S is stuck in the libglobal_resmgr.z.so stack.| When users use the SmartPerf application to view real-time performance data of other applications, the application freezes.<br>Workaround: The system automatically clears the application process. The issue does not persist after the application is restarted.| April 30|
-| I97U6G | There is a low possibility that an app freeze occurs in the com.ohos.certmanager process because THREAD_BLOCK_6S is stuck in the librender_service_client.z.so stack.| The system automatically exits the certificate management application when it is frozen. The impact is controllable.| April 30|
-| I98KIG | There is a low probability that an app freeze occurs in the com.ohos.camera process because THREAD_BLOCK_6S is stuck in the libcamera_framework.z.so stack.| The Camera application freezes. The issue does not persist after users exit the application, clear the memory, and open the application again.| April 15|
-| I98NFR | There is a low probability that a C++ crash occurs in libwm.z.so of the ohos.smartperf thread of the com.ohos.smartperf process.| There is a low probability that the application exits. The issue does not persist after the application is restarted.| April 30|
-| I98AWP | There is a low probability that a C++ crash occurs in libweb_engine.so of the com.ohos.note thread of the com.ohos.note process.| The Notes application may crash. The issue does not persist after the application is restarted.| April 30|
-| I96ZWB | The peer device cannot be found after device networking.| When using the distributed audio service, OpenHarmony 4.0 and 4.1 devices cannot be compatible or interoperate with each other. The impact is controllable.| May 30|
-| I96CJL | The networking between mini-system devices fails.| The impact is controllable, and no workaround is available.| May 30|
+| I8WP8M | Create a large folder by moving an application icon on the home screen to overlap with another application icon, and then move an application icon out of the folder. Repeat this operation. Five minutes later, a total of about 25 MB memory is leaked on the launcher, that is, a 673.68 KB memory leak for each operation. | The system freezes when the memory leak reaches a certain amount.<br>Workaround: Close background applications or restart the device. | April 30 |
+| I98AV0 | Repeatedly turn on and then turn off the location information switch. When this operation lasts for 5 minutes, a total of about 14 MB memory is leaked on the distributeddata process, that is, a 95.57 KB memory leak for each operation. | The system freezes when the memory leak reaches a certain amount.<br>Workaround: Exit the current page. | April 30 |
+| I9A9NO | Repeatedly touch the upper right corner of the SMS application to create an SMS message and then touch **Back**. When this operation lasts for 5 minutes, a total of about 50 MB memory is leaked, that is, a 341.33 KB memory leak for each operation. | The system freezes when the memory leak reaches a certain amount.<br>Workaround: Exit the application. | April 30 |
+| I8QLRO | There is a low probability that a C++ crash occurs in libbtstack.z.so of the stack thread of the bluetooth_servi process. | The Bluetooth service automatically recovers, and users are unaware of the exception. | April 30 |
+| I8TLYJ | There is a low probability that a C++ crash occurs in libbtstack.z.so of the SaInit1 thread of the bluetooth_servi process. | The Bluetooth service automatically recovers, and users are unaware of the exception. | April 30 |
+| I8TM99 | There is a low probability that a C++ crash occurs in libbtframework.z.so of the softbus_server thread of the softbus_server process. | The DSoftBus service automatically recovers, and users are unaware of the exception. | April 30 |
+| I8VFJS | There is a low probability that a JS crash occurs in ObservedPropertyAbstractPU of the com.ohos.settings process. | There is a low probability that the Settings application crashes. Users can exit the application to reclaim the memory. | April 30 |
+| I98NGO | There is a low probability that an app freeze occurs in the com.ohos.settings process because THREAD_BLOCK_6S is stuck in the libbtframework.z.so stack. | There is a low probability that the Settings application crashes. Users can exit the application to reclaim the memory. | April 30 |
+| I90A2N | There is a possibility that an app freeze occurs in the com.ohos.systemui process because THREAD_BLOCK_6S is stuck in the libeventhandler.z.so stack. | There is no response when users touches or swipes on the phone. This issue can be resolved when users access the control panel or notification center again. | May 30 |
+| I963UO | There is a possibility that a C++ crash occurs in libEGL.so of the RSRenderThread thread in the com.ohos.systemui process. | The screen automatically locks. The issue does not persist after users unlock the screen. | May 30 |
+| I9A089 | There is a moderate probability that a system freeze occurs in the foundation process due to SERVICE_BLOCK. | After the system freezes for 5 seconds, a 1-second startup animation is played, and the screen is locked. The issue does not persist after users unlock the screen. | April 15 |
+| I9AYM2 | There is a low possibility that an app freeze occurs in the com.ohos.note process because THREAD_BLOCK_6S is stuck in the libweb_engine.so stack. | The Notes application freezes. The issue does not persist after the application is restarted. | May 30 |
+| I9CGOZ | There is a high probability that an app freeze occurs in the com.ohos.camera process because THREAD_BLOCK_6S is stuck in the libcamera_framework.z.so stack. | The Camera application does not respond. The issue does not persist after the application is restarted. | April 30 |
+| I9AEO0 | There is a low probability that an app freeze occurs in the com.ohos.settings process due to APP_INPUT_BLOCK. | The Settings application does not respond. The issue does not persist after the application is restarted. | April 30 |
+| I8QH9S | There is a low probability that a C++ crash occurs in libnative_appdatafwk.z.so of the os.settingsdata thread of the com.ohos.settingsdata process. | The settingsdata service breaks down. It automatically starts when users access the data again. This has no impact on users. | April 15 |
+| I963TL | There is a low probability that a C++ crash occurs in libark_jsruntime.so of the com.ohos.mms thread of the com.ohos.mms process. | The SMS application does not respond or automatically exits. The issue does not persist after the application is restarted. | April 30 |
+| I9635I | There is a low probability that the device automatically restarts. | The impact is controllable. No workaround is required. | April 30 |
+| I96JJ7 | There is a low probability that a C++ crash occurs in libace_compatible.z.so of the com.ohos.note thread of the com.ohos.note process. | The Notes application may crash. The issue does not persist after the application is restarted. | April 30 |
+| I993H9 | There is a possibility that an app freeze occurs in the com.ohos.smartperf process because THREAD_BLOCK_6S is stuck in the libglobal_resmgr.z.so stack. | When users use the SmartPerf application to view real-time performance data of other applications, the application freezes.<br>Workaround: The system automatically clears the application process. The issue does not persist after the application is restarted. | April 30 |
+| I97U6G | There is a low possibility that an app freeze occurs in the com.ohos.certmanager process because THREAD_BLOCK_6S is stuck in the librender_service_client.z.so stack. | The system automatically exits the certificate management application when it is frozen. The impact is controllable. | April 30 |
+| I98KIG | There is a low probability that an app freeze occurs in the com.ohos.camera process because THREAD_BLOCK_6S is stuck in the libcamera_framework.z.so stack. | The Camera application freezes. The issue does not persist after users exit the application, clear the memory, and open the application again. | April 15 |
+| I98NFR | There is a low probability that a C++ crash occurs in libwm.z.so of the ohos.smartperf thread of the com.ohos.smartperf process. | There is a low probability that the application exits. The issue does not persist after the application is restarted. | April 30 |
+| I98AWP | There is a low probability that a C++ crash occurs in libweb_engine.so of the com.ohos.note thread of the com.ohos.note process. | The Notes application may crash. The issue does not persist after the application is restarted. | April 30 |
+| I96ZWB | The peer device cannot be found after device networking. | When using the distributed audio service, OpenHarmony 4.0 and 4.1 devices cannot be compatible or interoperate with each other. The impact is controllable. | May 30 |
+| I96CJL | The networking between mini-system devices fails. | The impact is controllable, and no workaround is available. | May 30 |
