@@ -162,7 +162,7 @@ The notification sending frequency reaches the upper limit.
 
 **可能原因**
 
-通知发送频率超过每秒10个。
+通知发送频率超过每秒10个，或者更新频率超过每秒20条。
 
 **处理步骤**
 

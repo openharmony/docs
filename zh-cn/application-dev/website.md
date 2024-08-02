@@ -117,7 +117,7 @@
             - [UIAbility组件启动模式](application-models/uiability-launch-type.md)
             - [UIAbility组件基本用法](application-models/uiability-usage.md)
             - [UIAbility组件与UI的数据同步](application-models/uiability-data-sync-with-ui.md)
-            - [UIAbility组件间交互（设备内）](application-models/uiability-intra-device-interaction.md)
+            - [启动应用内的UIAbility组件](application-models/uiability-intra-device-interaction.md)
           - [ExtensionAbility组件](application-models/extensionability-overview.md)
             <!--Del-->
             - [ServiceExtensionAbility（仅对系统应用开放）](application-models/serviceextensionability.md)
@@ -379,6 +379,7 @@
             - [模糊](ui/arkts-blur-effect.md)
             - [阴影](ui/arkts-shadow-effect.md)
             - [色彩](ui/arkts-color-effect.md)
+          - [帧动画](ui/arkts-animator.md)
         - 支持交互事件<!--arkts-events-->
           - [交互事件概述](ui/arkts-event-overview.md)
           - 使用通用事件<!--arkts-common-events-->
@@ -400,6 +401,10 @@
             - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
+          - 自定义扩展<!--arkts-user-defined-modifier-->
+            - [自定义扩展概述](ui/arkts-user-defined-modifier.md)
+            - [AttributeModifier](ui/arkts-user-defined-extension-attributeModifier.md)
+            - [AttributeUpdater](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
         - 主题设置<!--arkts-theme-->
           - [设置主题换肤](ui/theme_skinning.md)

@@ -18,12 +18,7 @@
 
 2. 需要获取应用的偏好语言。
    ```ts
-   try {  
      let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
-   } catch(error) {
-     let err: BusinessError = error as BusinessError;
-     console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-   }
    ```
    
 3. 设置应用的偏好语言。将应用偏好语言设置为目标语言后，该应用的界面会切换为目标语言。设置应用的偏好语言仅影响应用本身，不会影响系统语言设置。

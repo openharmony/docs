@@ -187,7 +187,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -228,7 +228,7 @@ promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -778,7 +778,7 @@ let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
@@ -815,7 +815,7 @@ promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -845,7 +845,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -879,7 +879,7 @@ let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -943,7 +943,7 @@ displayClass = display.getDefaultDisplaySync();
 displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
@@ -981,6 +981,6 @@ let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
 promise.then((data: display.CutoutInfo) => {
   console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```

@@ -32,11 +32,11 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 类型                    | 说明                                     |
-| --------------------- | -------------------------------------- |
-| string                | 需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。 |
-| number                | 默认单位vp。                                |
-| [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的尺寸。               |
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| string                | 需要显式指定[像素单位](ts-pixel-units.md)，如'10px'，也可设置百分比字符串，如'100%'。<br/>**说明：** <br/>不指定像素单位时，默认单位vp，如'10'，等同于10。 |
+| number                | 默认单位vp。                                                 |
+| [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的尺寸。             |
 
 ## ResourceStr
 
@@ -484,30 +484,6 @@
 | offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 | offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 
-## SwiperAnimationEvent<sup>10+</sup>
-
-Swiper组件动画相关信息集合。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称            | 类型定义       | 必填            | 描述                                       |
-| ------------- | ---------------------- | ---------|------------------------------- |
-| currentOffset | number | 是 | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 是 | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 是 | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
-
-## TabsAnimationEvent<sup>11+</sup>
-
-Tabs组件动画相关信息集合。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称            | 类型定义      |  必填             | 描述                                       |
-| ------------- | ---------------------- | ----------------|------------------------ |
-| currentOffset | number | 是 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 是 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 是 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
-
 ## SafeAreaType<sup>10+</sup>
 
 扩展安全区域的枚举类型。
@@ -571,29 +547,6 @@ Tabs组件动画相关信息集合。
 | ------ | ----------------------| ---------- |
 | X | [Dimension](#dimension10) | 跟手点X轴坐标。 |
 | Y | [Dimension](#dimension10) | 跟手点Y轴坐标。 |
-
-## TabContentAnimatedTransition<sup>11+</sup>
-
-Tabs自定义切换动画相关信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称            | 类型定义         | 必填          | 描述                                       |
-| ------------- | ---------------------- | ------------------|---------------------- |
-| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
-| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | 是 | 自定义切换动画具体内容。|
-
-## TabContentTransitionProxy<sup>11+</sup>
-
-Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称            | 类型定义     |  必填              | 描述                                       |
-| ------------- | ---------------------- | ----------------------|------------------ |
-| from | number | 是 | 自定义动画起始页面对应的index值。|
-| to | number | 是 | 自定义动画目标页面对应的index值。|
-| finishTransition() | void | 是 | 通知Tabs组件，此次自定义动画已结束。|
 
 ## PixelRoundPolicy<sup>11+</sup>
 

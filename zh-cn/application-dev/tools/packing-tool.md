@@ -83,8 +83,6 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 
 **App打包时HAP合法性校验：** 在对工程内的HAP包打包生成App包时，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion相同，moduleName唯一。对于FA模型，还需要保证json文件中配置的package唯一。HAP模块之间需要保证apiReleaseType相同，HSP模块不校验apiReleaseType。
 
-**打包app时的压缩规则：** 打包app时，对release模式的hap、hsp包会进行压缩，对debug模式的hap、hsp包不会压缩。
-
 >**说明：**
 >
 >从API version 12开始，App打包不再对versionName校验。
@@ -132,8 +130,8 @@ java -jar app_packing_tool.jar --mode multiApp --hap-list [option] --hsp-list [o
 | 指令         | 是否必选项 | 选项        | 描述                                                                                                  |
 |------------|-------|-----------|-----------------------------------------------------------------------------------------------------|
 | --mode     | 是     | multiApp  | 打包类型，在将多个HAP打入同一个App时，需保证每个HAP满足合法性校验规则。                                                            |
-| --hap-list | 否     | HAP的路径    | HAP包文件路径，文件名必须以.hap为后缀。如果是多个hap包需要”，“分隔。<br/>hap文件路径也可以是目录。                                          |
-| --hsp-list | 否     | HSP的路径    | HSP包文件路径，文件名必须以.hsp为后缀。如果是多个hsp包需要”，“分隔。<br/>hsp文件路径也可以是目录。                                          |
+| --hap-list | 否     | HAP的路径    | HAP包文件路径，文件名必须以.hap为后缀。如果是多个HAP包需要”，“分隔。<br/>HAP文件路径也可以是目录。                                          |
+| --hsp-list | 否     | HSP的路径    | HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要”，“分隔。<br/>HSP文件路径也可以是目录。                                          |
 | --app-list | 否     | App的路径    | App文件路径，文件名必须以.app为后缀。如果是多个App包需要用”，“分隔。<br/>App文件路径也可以是目录。<br/>--hap-list，--hsp-list，--app-list不可以都不传。 |
 | --out-path | 是     | NA | 目标文件路径，文件名必须以.hqf为后缀。 |
 | --force    | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                                                                  |
@@ -180,9 +178,6 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <opti
 | --hqf-list | 是     | NA          | HQF文件路径，多个HQF以英文逗号隔开。              |
 | --out-path | 是     | NA          | 目标文件路径，文件名必须以.appqf为后缀。            |
 | --force    | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
-
-
-           |
 
 ## 版本归一指令（versionNormalize）
 

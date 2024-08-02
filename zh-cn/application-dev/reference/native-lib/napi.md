@@ -10,6 +10,20 @@ Node-API可以去除底层的JavaScript引擎的差异，提供一套稳定的�
 
 OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
 
+## 引入Node-API能力
+
+如果开发者需要使用Node-API相关功能，首先请添加头文件：
+
+```cpp
+#include <napi/native_api.h>
+```
+
+其次在CMakeLists.txt中添加以下动态链接库：
+
+```
+libace_napi.z.so
+```
+
 ## 已从Node-API组件标准库中导出的符号列表
 
 从Node-API标准库导出的接口，其使用方法及行为同Node.js一致。相关接口声明及参数约束请参考[Node-API](https://nodejs.org/docs/latest-v8.x/api/n-api.html)文档。
