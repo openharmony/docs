@@ -173,6 +173,74 @@ struct Child {
 }
 ```
 
+## aboutToRecycle<sup>10+</sup>
+
+aboutToRecycle?(): void
+
+组件的生命周期回调，在可复用组件从组件树上被加入到复用缓存之前调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+// xxx.ets
+export class Message {
+  value: string | undefined;
+
+  constructor(value: string) {
+    this.value = value;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State switch: boolean = true;
+
+  build() {
+    Column() {
+      Button('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.switch = !this.switch;
+        })
+      if (this.switch) {
+        Child({ message: new Message('Child') })
+      }
+    }
+    .height("100%")
+    .width('100%')
+  }
+}
+
+@Reusable
+@Component
+struct Child {
+  @State message: Message = new Message('AboutToReuse');
+
+  aboutToReuse(params: Record<string, ESObject>) {
+    console.info("Reuse Child");
+    this.message = params.message as Message;
+  }
+
+  aboutToRecycle() {
+    //这里可以释放比较占内存的内容或其他非必要资源引用，避免一直占用内存，引发内存泄漏
+    console.info("Recycle Child,child进入复用池中");
+  }
+
+  build() {
+    Column() {
+      Text(this.message.value)
+        .fontSize(20)
+    }
+    .borderWidth(2)
+    .height(100)
+  }
+}
+```
+
 ## onWillApplyTheme<sup>12+</sup>
 
 onWillApplyTheme?(theme: Theme): void
