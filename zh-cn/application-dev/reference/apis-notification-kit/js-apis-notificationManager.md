@@ -18,6 +18,8 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 发布通知。使用callback异步回调。
 
+如果新发布通知与已发布通知的ID相同，则新通知将取代原有通知。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **参数：**
@@ -80,6 +82,8 @@ notificationManager.publish(notificationRequest, publishCallback);
 publish(request: NotificationRequest): Promise\<void\>
 
 发布通知。使用Promise异步回调。
+
+如果新发布通知与已发布通知的ID相同，则新通知将取代原有通知。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -280,6 +284,12 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
+**参数：**
+
+| 参数名     | 类型                  | 必填 | 说明                 |
+| -------- | --------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通知的回调方法。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
@@ -290,12 +300,6 @@ cancelAll(callback: AsyncCallback\<void\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
-
-**参数：**
-
-| 参数名     | 类型                  | 必填 | 说明                 |
-| -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定通知的回调方法。 |
 
 **示例：**
 
@@ -449,7 +453,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
 | 参数名     | 类型                              | 必填 | 说明                                                        |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)                          | 是   | 通知渠道类型，目前分为社交通信、服务提醒、内容咨询和其他类型。 |
+| slotType | [SlotType](#slottype)                          | 是   | 通知渠道类型，例如社交通信、服务提醒、内容咨询等类型。 |
 | callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 表示被指定通道的回调方法。                                        |
 
 **错误码：**
@@ -492,7 +496,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 | 参数名     | 类型     | 必填 | 说明                                                        |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | 是   | 通知渠道类型，目前分为社交通信、服务提醒、内容咨询和其他类型。 |
+| slotType | [SlotType](#slottype) | 是   | 通知渠道类型，例如社交通信、服务提醒、内容咨询等类型。 |
 
 **返回值：**
 
@@ -616,7 +620,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                                                        |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)              | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
+| slotType | [SlotType](#slottype)              | 是   | 通知渠道类型，例如社交通信、服务提醒、内容咨询等类型。 |
 | callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。                                        |
 
 **错误码：**
@@ -659,7 +663,7 @@ removeSlot(slotType: SlotType): Promise\<void\>
 
 | 参数名     | 类型     | 必填 | 说明                                                        |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
+| slotType | [SlotType](#slottype) | 是   | 通知渠道类型，例如社交通信、服务提醒、内容咨询等类型。 |
 
 **返回值：**
 
@@ -788,8 +792,6 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -833,9 +835,7 @@ isNotificationEnabled(): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1094,7 +1094,7 @@ notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 
 ## notificationManager.getActiveNotifications
 
-getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
+getActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 获取当前应用未删除的通知列表。使用Promise异步回调。
 
@@ -1185,7 +1185,7 @@ cancelGroup(groupName: string): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明           |
 | --------- | ------ | ---- | -------------- |
-| groupName | string | 是   | 通知组名称。 |
+| groupName | string | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象指定。 |
 
 **返回值：**
 
@@ -1398,7 +1398,7 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 | 参数名   | 类型                     | 必填 | 说明                 |
 | -------- | ------------------------ | ---- |--------------------|
-| context | UIAbilityContext | 是   | 通知弹窗绑定Ability的上下文。 |
+| context | [UIAbilityContext](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是   | 通知弹窗绑定Ability的上下文。 |
 | callback | AsyncCallback\<void\> | 是   | 应用请求通知使能的回调函数。     |
 
 **错误码：**
@@ -1458,7 +1458,7 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 | 参数名   | 类型                     | 必填 | 说明                 |
 | -------- | ------------------------ | ---- |--------------------|
-| context | UIAbilityContext | 是   | 通知弹窗绑定Ability的上下文。 |
+| context | [UIAbilityContext](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是   | 通知弹窗绑定Ability的上下文。 |
 
 **返回值：**
 
@@ -1595,11 +1595,11 @@ notificationManager.isDistributedEnabled()
 | --------------------------------- | ----------- |------------------|
 | NOTIFICATION_CONTENT_BASIC_TEXT   | 0          | 普通类型通知。          |
 | NOTIFICATION_CONTENT_LONG_TEXT    | 1          | 长文本类型通知。         |
-| NOTIFICATION_CONTENT_PICTURE      | 2          | 图片类型通知。（预留能力，暂未支持）。          |
-| NOTIFICATION_CONTENT_CONVERSATION | 3          | 社交类型通知。（预留能力，暂未支持）。 |
+| NOTIFICATION_CONTENT_PICTURE      | 2          | 图片类型通知。          |
+| NOTIFICATION_CONTENT_CONVERSATION | 3          | 社交类型通知。预留能力，暂未支持。|
 | NOTIFICATION_CONTENT_MULTILINE    | 4          | 多行文本类型通知。        |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | 实况窗类型通知。（预留能力，暂未支持）。        |
-| NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>    | 6 | 普通实况窗类型通知。（预留能力，暂未支持）。  |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | 实况窗类型通知。不支持三方应用直接创建该类型通知，可以由系统代理创建系统实况窗类型通知后，三方应用发布同ID的通知来更新指定内容。|
+| NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>    | 6 | 普通实况窗类型通知。只支持系统应用。  |
 
 ## SlotLevel
 
@@ -1620,10 +1620,10 @@ notificationManager.isDistributedEnabled()
 
 | 名称                 | 值       | 说明       |
 | -------------------- | -------- | ---------- |
-| UNKNOWN_TYPE         | 0 | 未知类型。 |
-| SOCIAL_COMMUNICATION | 1 | 社交通信。 |
-| SERVICE_INFORMATION  | 2 | 服务提醒。 |
-| CONTENT_INFORMATION  | 3 | 内容资讯。 |
-| LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗。（预留能力，暂未支持）。 |
-| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客服消息。该类型用于用户与商家之间的客服消息，需由用户主动发起。  |
-| OTHER_TYPES          | 0xFFFF | 其他。 |
+| UNKNOWN_TYPE         | 0 | 未知类型。该类型对应[SlotLevel](#slotlevel)为LEVEL_MIN。 |
+| SOCIAL_COMMUNICATION | 1 | 社交通信。该类型对应[SlotLevel](#slotlevel)为LEVEL_HIGH。 |
+| SERVICE_INFORMATION  | 2 | 服务提醒。该类型对应[SlotLevel](#slotlevel)为LEVEL_DEFAULT。|
+| CONTENT_INFORMATION  | 3 | 内容资讯。该类型对应[SlotLevel](#slotlevel)为LEVEL_MIN。 |
+| LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗。不支持三方应用直接创建该渠道类型通知，可以由系统代理创建后，三方应用发布同ID的通知来更新指定内容。该类型对应[SlotLevel](#slotlevel)为LEVEL_DEFAULT。 |
+| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客服消息。该类型用于用户与商家之间的客服消息，需由用户主动发起。该类型对应[SlotLevel](#slotlevel)为LEVEL_LOW。  |
+| OTHER_TYPES          | 0xFFFF | 其他。该类型对应[SlotLevel](#slotlevel)为LEVEL_MIN。 |

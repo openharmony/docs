@@ -26,6 +26,10 @@
    import { notificationManager } from '@kit.NotificationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { image } from '@kit.ImageKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 发布通知。
@@ -81,20 +85,20 @@
         // publish回调
         let publishCallback = (err: BusinessError): void => {
           if (err) {
-            console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `publish failed, code is ${err.code}, message is ${err.message}`);
           } else {
-            console.info("publish success");
+            hilog.info(DOMAIN_NUMBER, TAG, `publish success`);
           }
         };
         // 按钮回调(用户点击按钮，会返回这个回调，业务自己决定如何处理)
         let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-          console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+          hilog.info(DOMAIN_NUMBER, TAG, `response callback: ` + JSON.stringify(option) + `notificationId` + id);
         }
         let systemLiveViewSubscriber: notificationManager.SystemLiveViewSubscriber  = {
           onResponse: onResponseCallback
         };
         // 订阅系统实况窗(按钮)
-        notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
+        await notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
         // 发布通知
         notificationManager.publish(notificationRequest, publishCallback);
       }

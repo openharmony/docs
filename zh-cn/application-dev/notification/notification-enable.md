@@ -35,7 +35,7 @@
     ```ts
     let context = getContext(this) as common.UIAbilityContext;
     notificationManager.isNotificationEnabled().then((data: boolean) => {
-      console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+      hilog.info(DOMAIN_NUMBER, TAG, "isNotificationEnabled success, data: " + JSON.stringify(data));
       if(!data){
         notificationManager.requestEnableNotification(context).then(() => {
           hilog.info(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification success`);

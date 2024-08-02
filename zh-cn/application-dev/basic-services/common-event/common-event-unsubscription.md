@@ -10,7 +10,7 @@
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| unsubscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback?:&nbsp;AsyncCallback) | 取消订阅公共事件 |
+| unsubscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md#commoneventsubscriber),&nbsp;callback?:&nbsp;AsyncCallback) | 取消订阅公共事件 |
 
 
 ## 开发步骤
@@ -22,6 +22,7 @@
    import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 根据[动态订阅公共事件](common-event-subscription.md)章节的步骤来订阅某个事件。
@@ -33,12 +34,9 @@
    if (this.subscriber !== null) {
      commonEventManager.unsubscribe(this.subscriber, (err: BusinessError) => {
        if (err) {
-         console.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+         hilog.error(DOMAIN_NUMBER, TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
        } else {
-         promptAction.showToast({
-           message: $r('app.string.unsubscribe_success_toast')
-         });
-         console.info(TAG, `Unsubscribe success`);
+         hilog.info(DOMAIN_NUMBER, TAG, `Unsubscribe success`);
          this.subscriber = null;
        }
      })
