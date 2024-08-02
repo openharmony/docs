@@ -52,6 +52,8 @@ fontSize(value: number | string | Resource)
 
 设置SymbolGlyph组件大小。
 
+组件的图标显示大小由fontSize控制，设置width或height后，其他通用属性仅对组件的占位大小生效。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
