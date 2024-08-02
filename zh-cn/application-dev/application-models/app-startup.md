@@ -24,7 +24,9 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 2. [设置启动参数](#设置启动参数)：在启动参数文件中，设置超时时间和启动任务的监听器等参数。
 3. [为每个待初始化组件添加启动任务](#为每个待初始化组件添加启动任务)：通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口，启动框架将会按顺序执行初始化流程。
 
-## 定义启动框架配置文件
+## 开发步骤
+
+### 定义启动框架配置文件
 
 1. 在“resources/base/profile”路径下，新建启动框架配置文件。文件名可以自定义，本文以"startup_config.json"为例。
 
@@ -139,7 +141,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
           }
           ```
 
-## 设置启动参数
+### 设置启动参数
 
 在启动参数配置文件（本文为“ets/startup/StartupConfig.ets”文件）中，使用[StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)接口实现启动框架公共参数的配置，包括超时时间和启动任务的监听器等参数，其中需要用到如下接口：
 
@@ -176,7 +178,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 }
 ```
 
-## 为每个待初始化组件添加启动任务
+### 为每个待初始化组件添加启动任务
 
 上述操作中已完成启动框架配置文件、启动参数的配置，还需要在每个组件对应的启动任务文件中，通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)来添加启动任务。其中，需要用到下面的两个方法：
 
@@ -212,7 +214,7 @@ export default class StartupTask_001 extends StartupTask {
 }
 ```
 
-## （可选）修改启动模式
+### （可选）修改启动模式
 
 `AppStartup`分别提供了自动和手动两种方式来执行启动任务，默认采用自动模式。开发者可以根据需要修改为手动模式。
 
