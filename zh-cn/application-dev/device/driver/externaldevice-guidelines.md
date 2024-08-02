@@ -1,8 +1,8 @@
-# 扩展外设管理开发指导
+# 扩展外设管理客户端开发指导
 
 ## 场景介绍
 
-扩展外设主要是指通过物理接口连入主设备的配件设备，如手写板、打印机和扫描仪等。应用通过扩展外设管理能力可以查询绑定扩展外设，从而使用扩展外设驱动提供的定制能力来使用扩展外设，如打印机的配套软件。
+扩展外设管理主要是指通过物理接口连入主设备的配件设备，如手写板、打印机和扫描仪等。应用通过扩展外设管理能力可以查询绑定扩展外设，从而使用扩展外设驱动提供的定制能力来使用扩展外设，如打印机的配套软件。
 
 扩展外设支持Tablet和特定设备上使用。
 
@@ -25,7 +25,6 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 | USB DDK接口 | API10 | 4.0及以上 |
 | HID DDK接口 | API11 | 4.1及以上 |
 
-
 ### HDC配置
 
 hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)
@@ -38,21 +37,7 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)
 
-## 操作流程
-
-扩展外设管理驱动开发，分为驱动客户端开发和驱动服务端开发。
-
-* [驱动客户端](#驱动客户端开发指导)：绑定驱动，获取远程对象，与驱动服务端进行通信。
-
-* [驱动服务端](#驱动服务端开发指导)：获取驱动客户端传递信息，并进行信息处理，返回给客户端。
-
-## 驱动客户端开发指导
-
-客户端：开发相关前端页面和客户端功能，不涉及驱动开发。
-
-### 接口说明
-
-扩展外设管理主要提供的功能有：查询扩展外设列表、绑定查询到的设备、解绑已绑定的设备、查询扩展外设详细信息和查询扩展外设驱动详细信息。
+## 接口说明
 
 扩展外设管理开放能力如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)。
 
@@ -78,7 +63,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 | queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt; | 查询扩展外设驱动详细信息列表。 |
 <!--DelEnd-->
 
-### 开发步骤
+## 开发步骤
 
 应用可通过查询绑定扩展外设，从而使用扩展外设的定制驱动能力。开发示例如下：
 
@@ -244,17 +229,3 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
    }
    ```
 <!--DelEnd-->
-
-## 驱动服务端开发指导
-
-开发相关外设对应驱动，主要是调用扩展外设管理模块的DriverExtensionAbility；
-
-开发详情请见[DriverExtensionAbility](./driverextensionability.md)简介。
-
-## 常见问题
-
-### SDK版本问题
-
-编译或运行时报错：“usb/usb_ddk_api.h not found”, "hid/hid_ddk_api.h not found" 等，请检查编译的OpenHarmony/HarmonyOS版本。如果是运行时，请检查设备的系统版本
-
-安装出现报错 “compileSdkVersion and releaseType of the app do not match the apiVersion and releaseType on the device” 请检查设备系统版本与hap版本是否匹配

@@ -1,4 +1,6 @@
-# DriverExtensionAbility
+# 扩展外设管理驱动开发指导
+
+## 场景介绍
 
 [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)是DRIVER类型的ExtensionAbility组件，提供驱动相关扩展框架。对于部分设备，支持插入外接的硬件模块来扩展设备能力， 此时可以以应用方式安装该硬件模块的驱动程序。通过DriverExtensionAbility可实现此类应用的开发。
 
@@ -100,23 +102,23 @@
            "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
            "metadata": [
             {
-              "name": "bus", // 必填项，所属总线
+              "name": "bus", // 必填项，所属总线，目前仅支持USB总线
               "value": "USB",
             },
             {
-              "name": "desc", // 必填项，必要的驱动描述
+              "name": "desc", // 选填项，必要的驱动描述
               "value": "the sample of driverExtensionAbility",
             },
             {
-              "name": "vendor", // 必填项，驱动厂商名称
+              "name": "vendor", // 选填项，驱动厂商名称
               "value": "string",
             },
             {
-              "name": "vid", // 支持 USB vendor id 列表，用逗号分隔，不可为空
+              "name": "vid", // 必填项，USB vendor id 列表，用逗号分隔
               "value": "string, string",
             },
             {
-              "name": "pid", // 支持的 USB product id 列表，用逗号分隔，不可为空
+              "name": "pid", // 必填项，USB product id 列表，用逗号分隔
               "value": "string, string",
             }
            ]
