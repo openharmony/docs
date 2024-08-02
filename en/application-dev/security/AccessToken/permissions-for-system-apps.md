@@ -4091,4 +4091,4 @@ Allows an application to install beta applications.
 
 **Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
