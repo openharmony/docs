@@ -71,10 +71,10 @@ Picker配置选项。
 | checkBoxColor                 | string                                  | 否   | 勾选框的背景色。格式为8位十六进制颜色代码。                               |
 | backgroundColor               | string                                  | 否   | picker宫格页面背景色。格式为8位十六进制颜色代码。                         |
 | isRepeatSelectSupported       | boolean                                 | 否   | 是否支持单张图片重复选择。true表示支持。                               |
-| checkboxTextColor             | string                                  | 否   | 勾选框内文本颜色。格式为8位十六进制颜色代码。                              |
+| checkboxTextColor             | string                                  | 否   | 勾选框内文本颜色。格式为8位十六进制颜色代码。 （该能力暂不支持）                             |
 | photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | 否   | 大图背景颜色。包括跟随系统、浅色模式以及深色模式，默认为跟随系统。                |
 | maxSelectedReminderMode | [ReminderMode](#remindermode)           | 否   | 选择数量达到最大时的提示方式。包括弹toast提示、不提示以及蒙层提示，默认为弹toast提示。 |
-| orientation                   | [PickerOrientation](#pickerorientation) | 否   | 宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。                  |
+| orientation                   | [PickerOrientation](#pickerorientation) | 否   | 宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。（该能力暂不支持）                  |
 | selectMode                    | [SelectMode](#selectmode)               | 否   | 选择模式。包括多选和单选，默认为多选。                              |
 | maxPhotoSelectNumber          | number                                  | 否   | 图片最大的选择数量。最大值为500，受到最大选择总数的限制。                   |
 | maxVideoSelectNumber          | number                                  | 否   | 视频最大的选择数量。最大值为500，受到最大选择总数的限制。                   |
@@ -218,7 +218,7 @@ setMaxSelected(maxSelected: MaxSelected): void
 
 ## PickerOrientation
 
-Picker宫格页面滑动预览的方向。
+Picker宫格页面滑动预览的方向。（该能力暂不支持）
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
