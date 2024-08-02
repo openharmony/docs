@@ -45,7 +45,7 @@
     - [动画概述](arkts-animation.md)
     - 属性动画
       - [属性动画概述](arkts-attribute-animation-overview.md)
-      - [属性动画接口说明](arkts-attribute-animation-apis.md)
+      - [实现属性动画](arkts-attribute-animation-apis.md)
       - [自定义属性动画](arkts-custom-attribute-animation.md)
     - 转场动画
       - [转场动画概述](arkts-transition-overview.md)
