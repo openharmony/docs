@@ -164,7 +164,7 @@ async function example() {
 
 ## 读取动态照片资源
 
-对于一个动态照片对象，应用可以通过MovingPhoto.requestContent的接口导出图片和视频到应用沙箱，或者读取图片或视频的ArrayBuffer内容。
+对于一个动态照片对象，应用可以通过[MovingPhoto.requestContent](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestcontent12)的接口导出图片和视频到应用沙箱，或者读取图片或视频的ArrayBuffer内容。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
