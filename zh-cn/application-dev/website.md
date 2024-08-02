@@ -364,7 +364,7 @@
           - [动画概述](ui/arkts-animation.md)
           - 属性动画<!--arkts-animation-attribute-->
             - [属性动画概述](ui/arkts-attribute-animation-overview.md)
-            - [属性动画接口说明](ui/arkts-attribute-animation-apis.md)
+            - [实现属性动画](ui/arkts-attribute-animation-apis.md)
             - [自定义属性动画](ui/arkts-custom-attribute-animation.md)
           - 转场动画<!--arkts-animation-transition-->
             - [转场动画概述](ui/arkts-transition-overview.md)
