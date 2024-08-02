@@ -1097,6 +1097,7 @@
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
+      - [处理音频焦点事件](media/audio/audio-playback-concurrency.md)
       - 音频播放<!--audio-playback-->
         - [音频播放开发概述](media/audio/audio-playback-overview.md)
         - [使用AudioRenderer开发音频播放功能](media/audio/using-audiorenderer-for-playback.md)
@@ -1105,7 +1106,6 @@
         <!--DelEnd-->
         - [使用OHAudio开发音频播放功能(C/C++)](media/audio/using-ohaudio-for-playback.md)
         - [使用AudioHaptic开发音振协同播放功能](media/audio/using-audiohaptic-for-playback.md)
-        - [多音频播放的并发策略](media/audio/audio-playback-concurrency.md)
         - [播放音量管理](media/audio/volume-management.md)
         - [音效管理](media/audio/audio-effect-management.md)
         <!--Del-->
