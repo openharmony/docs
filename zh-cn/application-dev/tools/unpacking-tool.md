@@ -16,7 +16,7 @@
 #### 示例
 
 ```
-java -jar app_unpacking_tool.jar --mode <option> --hap-path <options> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> [--force true]
 ```
 
 #### 参数含义及规范
@@ -36,7 +36,7 @@ java -jar app_unpacking_tool.jar --mode <option> --hap-path <options> --out-path
 #### 示例
 
 ```
-java -jar app_unpacking_tool.jar --mode <options> --har-path <option> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode har --har-path <path> --out-path <path> [--force true]
 ```
 
 #### 参数含义及规范
@@ -55,7 +55,7 @@ java -jar app_unpacking_tool.jar --mode <options> --har-path <option> --out-path
 #### 示例
 
 ```
-java -jar app_unpacking_tool.jar --mode <options> --app-path <option> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode app --app-path <path> --out-path <path> [--force true]
 ```
 
 #### 参数含义及规范
@@ -74,7 +74,7 @@ java -jar app_unpacking_tool.jar --mode <options> --app-path <option> --out-path
 #### 示例
 
 ```
-java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <option> --out-path <option> --force true
+java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <path> --out-path <path> [--force true]
 ```
 
 #### 参数含义及规范
@@ -94,7 +94,7 @@ java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <option> --o
 #### 示例
 
 ```
-java -jar app_unpacking_tool.jar --mode <option> --hsp-path <options> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> [--force true]
 ```
 
 #### 参数含义及规范
@@ -113,7 +113,7 @@ java -jar app_unpacking_tool.jar --mode <option> --hsp-path <options> --out-path
 #### 示例
 
 ```
-java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <path> [--force true]
 ```
 
 #### 参数含义及规范

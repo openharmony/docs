@@ -13,14 +13,14 @@
 
 
     ```
-    java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true --compress-level 5 --pkg-context-path <option>
+    java -jar app_packing_tool.jar --mode hap --json-path <path> [--resources-path <path>] [--ets-path <path>] [--index-path <path>] [--pack-info-path <path>] [--lib-path <path>] --out-path <path> [--force true] [--compress-level 5] [--pkg-context-path <path>] [--hnp-path <path>]
     ```
 
 - FA模型示例：
 
 
     ```
-    java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option] --compress-level 5
+    java -jar app_packing_tool.jar --mode hap --json-path <path> [--maple-so-path <path>] [--profile-path <path>] [--maple-so-dir <path>] [--dex-path <path>] [--lib-path <path>] [--resources-path <path>] [--index-path <path>] --out-path <path> [--force true] [--compress-level 5]
     ```
 
 **表1** HAP打包指令参数说明
@@ -55,7 +55,7 @@ HSP包实现了多个HAP对文件的共享，开发者可以使用打包工具�
 
 示例：
 ```
-java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true --compress-level 5 --pkg-context-path <option>
+java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <path>] [--ets-path <path>] [--index-path <path>] [--pack-info-path <path>] [--lib-path <path>] --out-path <path> [--force true] [--compress-level 5] [--pkg-context-path <path>]
 ```
 
 **表2** HSP打包指令参数说明
@@ -92,7 +92,7 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info-path [option] --force [option]
+java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--force true]
 ```
 
 **表3** App打包指令参数说明
@@ -124,7 +124,7 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode multiApp --hap-list [option] --hsp-list [option] --app-list [option] --out-path <option>
+java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <path>] [--app-list <path>] --out-path <option> [--force true]
 ```
 
 **表4** 多工程打包指令参数说明
@@ -147,7 +147,7 @@ HQF包适用于应用存在一些问题，需要紧急修复的场景。开发�
 示例:
 
 ```
-java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --resources-path <option> --out-path <option>
+java -jar app_packing_tool.jar --mode hqf --json-path <path> [--lib-path <path>] [--ets-path <path>] [--resources-path <path>] --out-path <path> [--force true]
 ```
 
 **表5** HQF打包指令参数说明
@@ -169,7 +169,7 @@ APPQF包由一个或多个HQF文件组成。这些HQF包在应用市场会从APP
 示例:
 
 ```
-java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <option>
+java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> [--force true]
 ```
 
 **表6** APPQF打包指令参数说明
@@ -226,7 +226,7 @@ java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hs
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode res --entrycard-path [option] --pack-info-path [option] --out-path [option] --force [option]
+java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-path <path> --out-path <path> [--force true]
 ```
 
 **表9** 参数含义及规范
@@ -250,7 +250,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path [option] --pack-info-
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode fastApp --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info-path [option] --force [option]
+java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true]
 ```
 
 **表10** 参数含义及规范
