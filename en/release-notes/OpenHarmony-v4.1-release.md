@@ -72,7 +72,7 @@ In addition, the development guide and API reference are reconstructed by kit fo
 
 - The DFX mechanism is enhanced. For example, the subsystem supports service process dotting, upper-layer distributed service statistics, and service alarms for network monitoring events.
 
-- The IPC provides APIs for querying reference technologies and timestamps, and the maintenance and debugging capabilities are enhanced.
+- The IPC provides APIs for querying reference counts and timestamps, and the maintenance and debugging capabilities are enhanced.
 
 
 ### Distributed Data Management
@@ -429,12 +429,12 @@ MindSpore Lite provides C APIs for on-device machine learning.
 
 **Table 1** Version mapping of software and tools
 
-| Software/Tool| Version| Remarks| 
+| Software/Tool| Version| Remarks|
 | -------- | -------- | -------- |
-| OpenHarmony | 4.1 Release | NA | 
-| Public SDK | Ohos_sdk_public 4.1.7.5 (API Version 11 Release) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.| 
-| (Optional) HUAWEI DevEco Studio| 4.1 Release | Recommended for developing OpenHarmony applications How to obtain:<br><br>SHA-256 checksum: c46be4f3cfde27af1806cfc9860d9c366e66a20e31e15180cf3a90ab05464650<br><br>SHA-256 checksum: 15d6136959b715e4bb2160c41d405b889820ea26ceadbb416509a43e59ed7f09<br><br>SHA-256 checksum: ac04ca7c2344ec8f27531d5a59261ff037deed2c5a3d42ef88e6f90f4ed45484 | 
-| (Optional) HUAWEI DevEco Device Tool| 4.0 Release | Recommended for developing OpenHarmony smart devices<br>[Click here](https://device.harmonyos.com/cn/develop/ide#download). | 
+| OpenHarmony | 4.1 Release | NA |
+| Public SDK | Ohos_sdk_public 4.1.7.5 (API Version 11 Release) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.|
+| (Optional) HUAWEI DevEco Studio| 4.1 Release | Recommended for developing OpenHarmony applications How to obtain:<br><br>SHA-256 checksum: c46be4f3cfde27af1806cfc9860d9c366e66a20e31e15180cf3a90ab05464650<br><br>SHA-256 checksum: 15d6136959b715e4bb2160c41d405b889820ea26ceadbb416509a43e59ed7f09<br><br>SHA-256 checksum: ac04ca7c2344ec8f27531d5a59261ff037deed2c5a3d42ef88e6f90f4ed45484 |
+| (Optional) HUAWEI DevEco Device Tool| 4.0 Release | Recommended for developing OpenHarmony smart devices<br>[Click here](https://device.harmonyos.com/cn/develop/ide#download). |
 
 
 ## Source Code Acquisition
@@ -541,7 +541,7 @@ For more information, visit [Samples](https://gitee.com/openharmony/applications
 
 **Table 4** Resolved issues
 
-| Issue No.| Description| 
+| Issue No.| Description|
 | -------- | -------- |
 | I8PEOF | A system freeze may occur due to LIFECYCLE_TIMEOUT of the com.ohos.mms process. As such, a white screen is displayed.|
 | I8QET3 | A C++ crash may occur in libbluetooth_server.z.so of the OS_IPC_10_25363 thread of the bluetooth_servi process. As such, the Bluetooth service is abnormal.|
@@ -560,7 +560,7 @@ For more information, visit [Samples](https://gitee.com/openharmony/applications
 
 **Table 5** Known issues
 
-| Issue No.| Description| Impact| To Be Resolved By| 
+| Issue No.| Description| Impact| To Be Resolved By|
 | -------- | -------- | -------- | -------- |
 | I8WP8M | Create a large folder by moving an application icon on the home screen to overlap with another application icon, and then move an application icon out of the folder. Repeat this operation. Five minutes later, a total of about 25 MB memory is leaked on the launcher, that is, a 673.68 KB memory leak for each operation.| The system freezes when the memory leak reaches a certain amount.<br>Workaround: Close background applications or restart the device.| April 30|
 | I98AV0 | Repeatedly turn on and then turn off the location information switch. When this operation lasts for 5 minutes, a total of about 14 MB memory is leaked on the distributeddata process, that is, a 95.57 KB memory leak for each operation.| The system freezes when the memory leak reaches a certain amount.<br>Workaround: Exit the current page.| April 30|
