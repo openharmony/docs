@@ -70,7 +70,7 @@ API 8
 
 | 变更前               | 变更后                                                          |
 |-------------------|--------------------------------------------------------------|
-| #include <string> | #include <stddef.h><br>#include <stdint.h><br>#include <stdbool.h> |
+| #include <string>   | #include <stddef.h><br>#include <stdint.h><br>#include <stdbool.h> |
 
 **适配指导**
 
