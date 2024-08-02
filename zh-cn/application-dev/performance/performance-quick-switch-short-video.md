@@ -16,7 +16,7 @@
 
 在线短视频滑动切换
 
-<img src="figures/performance-quick-switch-short-video-image0.gif" width="300"/>
+![performance-quick-switch-short-video-image0](figures/performance-quick-switch-short-video-image0.gif)
 
 ## 场景说明
 
