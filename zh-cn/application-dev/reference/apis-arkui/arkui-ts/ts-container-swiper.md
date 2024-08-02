@@ -722,7 +722,7 @@ onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAn
 | ------------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | index                     | number                                                     | 是   | 当前显示元素的索引。                                         |
 | targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
-| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](ts-types.md#swiperanimationevent10) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
+| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
 
 ### onAnimationEnd<sup>9+</sup>
 
@@ -743,7 +743,7 @@ onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 | 参数名                  | 类型                                                       | 必填 | 说明                                                         |
 | ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | index                   | number                                                     | 是   | 当前显示元素的索引。                                         |
-| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](ts-types.md#swiperanimationevent10) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
+| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
 ### onGestureSwipe<sup>10+</sup>
 
@@ -760,7 +760,7 @@ onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 | 参数名    | 类型                                                       | 必填 | 说明                                                         |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | index     | number                                                     | 是   | 当前显示元素的索引。                                         |
-| extraInfo | [SwiperAnimationEvent](ts-types.md#swiperanimationevent10) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
+| extraInfo | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
 ### customContentTransition<sup>12+</sup>
 
@@ -798,16 +798,32 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12类型说明) | 是 | Swiper滑动时触发的回调。 |
 
+## SwiperAnimationEvent<sup>10+</sup>对象说明
+
+Swiper组件动画相关信息集合。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 类型       | 描述                                       |
+| ------------- | ---------------------- | ------------------------------- |
+| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
+
 ## SwiperContentAnimatedTransition<sup>12+</sup>对象说明
 
 Swiper自定义切换动画相关信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ---- | ---- | ---- |
-| timeout | number | 否 | Swiper自定义切换动画超时时间。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)的finishTransition接口通知Swiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即将该页面节点下渲染树。单位ms，默认值为0。 |
-| transition | Callback<[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)> | 是 | 自定义切换动画具体内容。 |
+| 参数名 | 类型 | 说明 |
+| ------ | ---- | ---- |
+| selectedIndex | number | 当前选中页面的索引。 |
+| index | number | 视窗内页面的索引。 |
+| position | number | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
+| mainAxisLength | number | index对应页面在主轴方向上的长度。 |
 
 ## SwiperContentTransitionProxy<sup>12+</sup>对象说明
 
