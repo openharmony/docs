@@ -3976,27 +3976,3 @@ Allows an application to install beta applications.
 **Enable via ACL**：true
 
 **Valid since**：12
-
-### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
-
-Allowed to publish a custom public event called usual-event_dems.rotation_change.
-
-**Permission level**：system_core
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：12
-
-### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
-
-Allowed to publish a custom public event called usual_event_dms.cast_plugged_change.
-
-**Permission level**：system_core
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：12

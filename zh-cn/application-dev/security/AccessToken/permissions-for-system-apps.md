@@ -3783,6 +3783,42 @@
 
 **起始版本**：11
 
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+允许应用安装开发者内测构建应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
+
+允许SA向应用或者系统服务发送屏幕旋转状态信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
+
+允许SA向应用或者系统服务发送投屏线缆插入拔出状态信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
@@ -4076,39 +4112,3 @@
 **ACL使能**：true
 
 **起始版本**：11
-
-### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
-
-允许应用安装开发者内测构建应用。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
-
-允许发布usual_event_dms.rotation_change自定义公共事件。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
-
-允许发布usual_event_dms.cast_plugged_change自定义公共事件。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
