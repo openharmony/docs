@@ -44,7 +44,7 @@ Node模块相关接口需要在主线程上调用。
 | int32_t(\* [registerNodeCustomEvent](#registernodecustomevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) eventType, int32_t targetId, void \*userData) | 注册自定义节点事件函数。事件触发时通过registerNodeCustomEventReceiver注册的自定义事件入口函数返回。  | 
 | void(\* [unregisterNodeCustomEvent](#unregisternodecustomevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) eventType) | 反注册自定义节点事件函数。  | 
 | void(\* [registerNodeCustomEventReceiver](#registernodecustomeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) \*event)) | 注册自定义节点事件回调统一入口函数。  | 
-|  void(\* [unregisterNodeEventReceiver](#unregisternodeeventreceiver) )() | 反注册自定义节点事件回调统一入口函数。  | 
+|  void(\* [unregisterNodeCustomEventReceiver](#unregisternodecustomeventreceiver) )() | 反注册自定义节点事件回调统一入口函数。  | 
 | int32_t(\* [setMeasuredSize](#setmeasuredsize) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t width, int32_t height) | 在测算回调函数中设置组件的测算完成后的宽和高。  | 
 | int32_t(\* [setLayoutPosition](#setlayoutposition) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t positionX, int32_t positionY) | 在布局回调函数中设置组件的位置。  | 
 | [ArkUI_IntSize](_ark_u_i___int_size.md)(\* [getMeasuredSize](#getmeasuredsize) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取组件测算完成后的宽高尺寸。  | 
