@@ -188,25 +188,29 @@ let rect: Rect;
 
 ## PageUpdateType
 
+type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
+
 页面刷新类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                | 类型                | 描述               |
-| ----------------- | ----------------- | ---------------- |
-| pageContentUpdate | string | 表示页面内容刷新。 |
-| pageStateUpdate   | string | 表示页面状态刷新。 |
+| 类型                | 说明            |
+| ----------------- | ---------------- |
+| string | 表示页面内容刷新，值固定为'pageContentUpdate'字符串。 |
+| string | 表示页面内容刷新，值固定为'pageStateUpdate'字符串。 |
 
 ## TouchGuideType
+
+TouchGuideType = 'touchBegin' | 'touchEnd'
 
 触摸浏览事件类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称         | 类型                | 描述                  |
-| ---------- | ---------- | ------------------- |
-| touchBegin | string | 表示触摸浏览时开始触摸。 |
-| touchEnd   | string | 表示触摸浏览时结束触摸。 |
+| 类型                | 说明                  |
+| ---------- | ------------------- |
+| string | 表示触摸浏览时开始触摸，值固定为'touchBegin'字符串。 |
+| string | 表示触摸浏览时结束触摸，值固定为'touchEnd'字符串。 |
 
 ## AccessibilityExtensionAbility.onConnect<sup>(deprecated)</sup>
 

@@ -14,15 +14,17 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 ## AbilityState
 
+type AbilityState = 'enable' | 'disable' | 'install'
+
 辅助应用状态类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称      | 描述       |
+| 类型      | 说明       |
 | ------- | -------- |
-| enable  | 辅助应用已启用。 |
-| disable | 辅助应用已禁用。 |
-| install | 辅助应用已安装。 |
+| string  | 表示辅助应用已启用，值固定为'enable'字符串。 |
+| string  | 辅助应用已禁用，值固定为'disable'字符串。 |
+| string  | 辅助应用已安装，值固定为'install'字符串。 |
 
 ## AbilityType
 
@@ -62,65 +64,77 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 ## Action
 
+type Action = 'accessibilityFocus' | 'clearAccessibilityFocus' | 'focus' | 'clearFocus' | 'clearSelection' |
+  'click' | 'longClick' | 'cut' | 'copy' | 'paste' | 'select' | 'setText' | 'delete' |
+  'scrollForward' | 'scrollBackward' | 'setSelection' | 'setCursorPosition' | 'home' |
+  'back' | 'recentTask' | 'notificationCenter' | 'controlCenter' | 'common'
+
 应用所支持的目标动作，需要配置参数的目标动作已在描述中标明。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                      | 描述                 |
+| 类型                      | 说明                 |
 | ----------------------- |--------------------|
-| click                   | 表示点击操作。            |
-| longClick               | 表示长按操作。            |
-| scrollForward           | 表示向前滚动操作。 |
-| scrollBackward          | 表示向后滚动操作。 |
-| focus                   | 表示获得焦点操作。 |
-| clearFocus              | 表示清除焦点操作。 |
-| clearSelection          | 表示清除选择操作。当前版本暂不支持。 |
-| accessibilityFocus      | 表示获得无障碍焦点操作。       |
-| clearAccessibilityFocus | 表示清除无障碍焦点操作。       |
-| cut                     | 表示剪切操作。   |
-| copy                    | 表示复制操作。   |
-| paste                   | 表示粘贴操作。   |
-| select                  | 表示选择操作。   |
-| setText                 | 表示设置文本操作，需配置参数setText。 |
-| delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
-| common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
-| home<sup>12+</sup>                | 表示返回桌面操作。   |
-| back<sup>12+</sup>                | 表示返回上一级操作。   |
-| recentTask<sup>12+</sup>          | 表示打开最近任务操作。   |
-| notificationCenter<sup>12+</sup>  | 表示打开通知栏操作。   |
-| controlCenter<sup>12+</sup>       | 表示打开控制中心操作。   |
-| setCursorPosition<sup>12+</sup>   | 表示设置光标位置操作，需配置参数offset。   |
+| string                   | 表示点击操作，值固定为'click'字符串。            |
+| string               | 表示长按操作，值固定为'longClick'字符串。            |
+| string           | 表示向前滚动操作，值固定为'scrollForward'字符串。 |
+| string          | 表示向后滚动操作，值固定为'scrollBackward'字符串。 |
+| string                   | 表示获得焦点操作，值固定为'focus'字符串。 |
+| string              | 表示清除焦点操作，值固定为'clearFocus'字符串。 |
+| string          | 表示清除选择操作。当前版本暂不支持。 |
+| string      | 表示获得无障碍焦点操作，值固定为'accessibilityFocus'字符串。       |
+| string      | 表示清除无障碍焦点操作，值固定为'clearAccessibilityFocus'字符串。       |
+| string                     | 表示剪切操作，值固定为'cut'字符串。   |
+| string                    | 表示复制操作，值固定为'copy'字符串。   |
+| string                   | 表示粘贴操作，值固定为'paste'字符串。   |
+| string                  | 表示选择操作，值固定为'select'字符串。   |
+| string                 | 表示设置文本操作，需配置参数setText，值固定为'setCursorPosition'字符串。 |
+| string                  | 表示删除操作。当前版本暂不支持。   |
+| string            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard，值固定为'setSelection'字符串。   |
+| string            | 表示没有特定操作，用于主动聚焦、主动播报等场景，值固定为'common'字符串。   |
+| string                | 表示返回桌面操作，值固定为'home'字符串。   |
+| string                | 表示返回上一级操作，值固定为'back'字符串。   |
+| string          | 表示打开最近任务操作，值固定为'recentTask'字符串。   |
+| string      | 表示打开通知栏操作，值固定为'notificationCenter'字符串。   |
+| string       | 表示打开控制中心操作，值固定为'controlCenter'字符串。   |
+| string     | 表示设置光标位置操作，需配置参数offset，值固定为'setCursorPosition'字符串。   |
 
 ## Capability
+
+type Capability = 'retrieve' | 'touchGuide' | 'keyEventObserver' | 'zoom' | 'gesture'
 
 辅助应用能力类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称               | 描述                    |
+| 类型               | 说明                    |
 | ---------------- |-----------------------|
-| retrieve         | 具有检索窗口内容的能力。          |
-| touchGuide       | 具有触摸探索模式的能力。          |
-| keyEventObserver | 具有过滤按键事件的能力。          |
-| zoom             | 具有控制显示放大的能力。当前版本暂不支持。 |
-| gesture          | 具有执行手势动作的能力。          |
+| string         | 具有检索窗口内容的能力，值固定为'retrieve'字符串。          |
+| string       | 具有触摸探索模式的能力，值固定为'touchGuide'字符串。          |
+| string | 具有过滤按键事件的能力，值固定为'keyEventObserver'字符串。          |
+| string             | 具有控制显示放大的能力，值固定为'zoom'字符串。当前版本暂不支持。 |
+| string          | 具有执行手势动作的能力，值固定为'gesture'字符串。          |
 
 ## CaptionsFontEdgeType<sup>8+</sup>
+
+type CaptionsFontEdgeType = 'none' | 'raised' | 'depressed' | 'uniform' | 'dropShadow'
 
 字幕字体边缘类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
-| 名称         | 描述    |
+| 类型         | 说明    |
 | ---------- | ----- |
-| none       | 无效果。  |
-| raised     | 凸起效果。 |
-| depressed  | 凹陷效果。 |
-| uniform    | 轮廓效果。 |
-| dropShadow | 阴影效果。 |
+| string       | 表示无效果，值固定为'none'字符串。  |
+| string     | 表示凸起效果，值固定为'raised'字符串。 |
+| string  | 表示凹陷效果，值固定为'depressed'字符串。 |
+| string    | 表示轮廓效果，值固定为'uniform'字符串。 |
+| string | 表示阴影效果，值固定为'dropShadow'字符串。 |
 
 ## CaptionsFontFamily<sup>8+</sup>
+
+type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' |      
+  'monospacedSansSerif' | 'sansSerif' | 'casual' | 'cursive' | 'smallCapitals'
 
 字幕字体。
 
@@ -128,14 +142,14 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 | 名称                  | 描述                |
 | ------------------- | ----------------- |
-| default             | 默认字体。             |
-| monospacedSerif     | 等宽 Serif 字体。      |
-| serif               | Serif 字体。         |
-| monospacedSansSerif | 等宽 Sans Serif 字体。 |
-| sansSerif           | Sans Serif 字体。    |
-| casual              | 非正式字体。            |
-| cursive             | 手写字体。             |
-| smallCapitals       | 小型大写字母字体。         |
+| string             | 表示默认字体，值固定为'default'字符串。             |
+| string         | 表示等宽 Serif 字体，值固定为'monospacedSerif'字符串。      |
+| string               | 表示Serif 字体，值固定为'serif'字符串。         |
+| string        | 表示等宽 Sans Serif 字体，值固定为'monospacedSansSerif'字符串。 |
+| string           | 表示Sans Serif 字体，值固定为'sansSerif'字符串。    |
+| string              | 表示非正式字体，值固定为'casual'字符串。            |
+| string             | 表示手写字体，值固定为'cursive'字符串。             |
+| string       | 表示小型大写字母字体，值固定为'smallCapitals'字符串。         |
 
 ## CaptionsStyle<sup>8+</sup>
 
@@ -402,54 +416,63 @@ constructor(type: EventType, bundleName: string, triggerAction: Action)
 
 ## EventType
 
+type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
+'click' | 'longClick' | 'focus' | 'select' | 'hoverEnter' | 'hoverExit' |
+'textUpdate' | 'textSelectionUpdate' | 'scroll' | 'requestFocusForAccessibility' |
+'announceForAccessibility'
+
 无障碍事件类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                      | 描述                     |
+| 类型                      | 说明                     |
 | ----------------------- |------------------------|
-| accessibilityFocus      | 描述获得无障碍焦点的事件。          |
-| accessibilityFocusClear | 描述清除无障碍焦点的事件。          |
-| click                   | 描述点击组件的事件。             |
-| longClick               | 描述长按组件的事件。             |
-| select                  | 描述选择组件的事件。    |
-| hoverEnter              | 描述悬停进入组件的事件。  |
-| hoverExit               | 描述悬停离开组件的事件。  |
-| focus                   | 描述组件获得焦点的事件。当前版本暂不支持。  |
-| textUpdate              | 描述组件文本已更改的事件。 |
-| textSelectionUpdate     | 描述选定文本已更改的事件。当前版本暂不支持。 |
-| scroll                  | 描述滚动视图的事件。    |
-| requestFocusForAccessibility<sup>12+</sup>     | 描述主动聚焦的事件。 |
-| announceForAccessibility<sup>12+</sup>         | 描述主动播报的事件。 |
+| string      | 表示获得无障碍焦点的事件，值固定为'accessibilityFocus'字符串。          |
+| string | 表示清除无障碍焦点的事件，值固定为'accessibilityFocusClear'字符串。          |
+| string                   | 表示点击组件的事件，值固定为'click'字符串。             |
+| string               | 表示长按组件的事件，值固定为'longClick'字符串。             |
+| string                  | 表示选择组件的事件，值固定为'select'字符串。    |
+| string              | 表示悬停进入组件的事件，值固定为'hoverEnter'字符串。  |
+| string               | 表示悬停离开组件的事件，值固定为'hoverExit'字符串。  |
+| string                   | 表示组件获得焦点的事件，值固定为'focus'字符串。当前版本暂不支持。  |
+| string              | 表示组件文本已更改的事件，值固定为'textUpdate'字符串。 |
+| string     | 表示选定文本已更改的事件，值固定为'textSelectionUpdate'字符串。当前版本暂不支持。 |
+| string                  | 表示滚动视图的事件，值固定为'scroll'字符串。    |
+| string     | 表示主动聚焦的事件，值固定为'requestFocusForAccessibility'字符串。 |
+| string         | 表示主动播报的事件，值固定为'announceForAccessibility'字符串。 |
 
 
 ## TextMoveUnit
+
+type TextMoveUnit = 'char' | 'word' | 'line' | 'page' | 'paragraph'
 
 文本无障碍导航移动粒度。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称        | 描述              |
+| 类型        | 说明              |
 | --------- | --------------- |
-| char      | 以字符为移动粒度遍历节点文本。 |
-| word      | 以词为移动粒度遍历节点文本。  |
-| line      | 以行为移动粒度遍历节点文本。  |
-| page      | 以页为移动粒度遍历节点文本。  |
-| paragraph | 以段落为移动粒度遍历节点文本。 |
+| string      | 表示以字符为移动粒度遍历节点文本，值固定为'char'字符串。 |
+| string      | 表示以词为移动粒度遍历节点文本，值固定为'word'字符串。  |
+| string      | 表示以行为移动粒度遍历节点文本，值固定为'line'字符串。  |
+| string      | 表示以页为移动粒度遍历节点文本，值固定为'page'字符串。  |
+| string | 表示以段落为移动粒度遍历节点文本，值固定为'paragraph'字符串。 |
 
 ## WindowUpdateType
+
+type WindowUpdateType = 'add' | 'remove' | 'bounds' | 'active' | 'focus'
 
 窗口变化类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称     | 描述                 |
+| 类型     | 说明                 |
 | ------ | ------------------ |
-| add    | 添加窗口的窗口变化事件。       |
-| remove | 一个窗口被删除的窗口变化事件。    |
-| bounds | 窗口边界已更改的窗口变化事件。    |
-| active | 窗口变为活动或不活动的窗口变化事件。 |
-| focus  | 窗口焦点发生变化的窗口变化事件。   |
+| string    | 表示添加窗口的窗口变化事件，值固定为'add'字符串。       |
+| string | 表示一个窗口被删除的窗口变化事件，值固定为'remove'字符串。    |
+| string | 表示窗口边界已更改的窗口变化事件，值固定为'bounds'字符串。    |
+| string | 表示窗口变为活动或不活动的窗口变化事件，值固定为'active'字符串。 |
+| string  | 表示窗口焦点发生变化的窗口变化事件，值固定为'focus'字符串。   |
 
 ## accessibility.getAbilityLists<sup>(deprecated)</sup>
 

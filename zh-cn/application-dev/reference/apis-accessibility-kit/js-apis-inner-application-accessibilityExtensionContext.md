@@ -72,7 +72,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | selected             | boolean                                                            | 是   | 否   | 元素是否被选中。 |
 | startIndex           | number                                                             | 是   | 否   | 在屏幕上的第一个项目的列表索引。 |
 | text                 | string                                                             | 是   | 否   | 元素的文本。 |
-| textLengthLimit      | string                                                             | 是   | 否   | 元素文本的最大长度限制。 |
+| textLengthLimit      | number                                                             | 是   | 否   | 元素文本的最大长度限制。 |
 | textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | 是   | 否   | 文本被读取时的移动单位。 |
 | triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | 是   | 否   | 触发元素事件的动作。 |
 | type                 | [WindowType](#windowtype)                                          | 是   | 否   | 元素的窗口类型。 |
@@ -86,29 +86,33 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## FocusDirection
 
+type FocusDirection = 'up' | 'down' | 'left' | 'right' | 'forward' | 'backward'
+
 表示查询下一焦点元素的方向。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称       | 说明      |
+| 类型       | 说明      |
 | -------- | ------- |
-| up       | 表示向上查询。 |
-| down     | 表示向下查询。 |
-| left     | 表示向左查询。 |
-| right    | 表示向右查询。 |
-| forward  | 表示向前查询。 |
-| backward | 表示向后查询。 |
+| string       | 表示向上查询，值固定为'up'字符串。 |
+| string     | 表示向下查询，值固定为'down'字符串。 |
+| string     | 表示向左查询，值固定为'left'字符串。 |
+| string    | 表示向右查询，值固定为'right'字符串。 |
+| string  | 表示向前查询，值固定为'forward'字符串。 |
+| string | 表示向后查询，值固定为'backward'字符串。 |
 
 ## FocusType
+
+type FocusType = 'accessibility' | 'normal'
 
 表示查询焦点元素的类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称            | 说明          |
+| 类型            | 说明          |
 | ------------- | ----------- |
-| accessibility | 表示无障碍的焦点类型。 |
-| normal        | 表示普通的焦点类型。  |
+| string | 表示无障碍的焦点类型，值固定为'accessibility'字符串。 |
+| string        | 表示普通的焦点类型，值固定为'normal'字符串。  |
 
 ## Rect
 
@@ -125,14 +129,16 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## WindowType
 
+type WindowType = 'application' | 'system'
+
 表示窗口的类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称          | 说明        |
+| 类型          | 说明        |
 | ----------- | --------- |
-| application | 表示应用窗口类型。 |
-| system      | 表示系统窗口类型。 |
+| string | 表示应用窗口类型，值固定为'application'字符串。 |
+| string      | 表示系统窗口类型，值固定为'system'字符串。 |
 
 ## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 
