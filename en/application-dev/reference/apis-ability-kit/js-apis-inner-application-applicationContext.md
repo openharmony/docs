@@ -698,7 +698,7 @@ Sets the language for the application. This API can be called only by the main t
 
 | Name | Type         | Mandatory | Description                |
 | ------ | ------------- | ---- | -------------------- |
-| language | string | Yes  | Target language. The list of supported languages can be obtained by using **static getSystemLanguage(): Array<string>** in @ohos.i18n.d.ts. |
+| language | string | Yes  | Target language. The list of supported languages can be obtained by using **static getSystemLanguage(): Array\<string>** in @ohos.i18n.d.ts. |
 
 **Error codes**
 
