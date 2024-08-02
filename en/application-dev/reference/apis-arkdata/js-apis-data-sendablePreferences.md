@@ -1,4 +1,4 @@
-# @ohos.data.sendablePreferences (Sendable Preferences)
+# @ohos.data.sendablePreferences (Shared Preferences)
 
 
 The **sendablePreferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
@@ -26,7 +26,7 @@ import { sendablePreferences } from '@kit.ArkData';
 | Name            | Type | Readable | Writable | Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 80 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 8192 bytes. |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes. |
 
 ## sendablePreferences.getPreferences
 
