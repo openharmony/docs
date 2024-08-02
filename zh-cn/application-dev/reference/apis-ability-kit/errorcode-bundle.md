@@ -791,13 +791,15 @@ The specified developerId is invalid.
 The specified application cannot be uninstalled.
 
 **错误描述**<br/>
-调用bundleManager模块中的switchUninstallState接口时，指定的应用不允许被卸载。
+调用BundleInstaller模块中的uninstall接口或bundleManager模块中的switchUninstallState接口时，指定的应用不允许被卸载。
 
 **可能原因**<br/>
-指定的应用具有不可卸载特权。
+1. 调用uninstall接口卸载指定应用时，应用由于自身业务拒绝了此次卸载操作。
+2. 调用switchUninstallState接口时，指定的应用具有不可卸载特权。
 
 **处理步骤**<br/>
-检查指定的应用是否具有不可卸载特权。
+1. 查看应用提示的无法卸载的具体原因，并进行相应操作。
+2. 检查指定的应用是否具有不可卸载特权。
 
 ## 17700061 指定的应用分身索引无效
 
