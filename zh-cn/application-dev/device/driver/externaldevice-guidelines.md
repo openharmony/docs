@@ -73,19 +73,20 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 
 * 开发驱动客户端，请选择Empty Ability模板。
 * 开发驱动服务端，请选择Native C++模板。
-* 同时开发驱动客户端和服务端，请选择Native C++模板。 
+* 同时开发驱动客户端和服务端，请选择Native C++模板。
 
-2. 创建tool文件夹，新建一个RpcTool.ets文件，以下示例代码都在RpcTool.ets文件中添加；
+2. 创建tool文件夹，新建一个RpcTool.ets文件，以下示例代码都在RpcTool.ets文件中添加；(仅供参考)
 
 ![rpctool.ets文件](./figures/rpcTool.png)
 
-2. 查询设备列表。
+3. 查询设备列表。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     let matchDevice: deviceManager.USBDevice | null = null;
+
     try {
       let devices: Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
       for (let item of devices) {
@@ -106,7 +107,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
     }
     ```
 
-3. 绑定相应的设备。
+4. 绑定相应的设备。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
@@ -121,7 +122,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
     let remoteObject : rpc.IRemoteObject | null = null;
     try {
       // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
-      deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
+      deviceManager.bindDevice(matchDevice.deviceId, (error : BusinessError, data : number) => {
         console.error('Device is disconnected');
       }, (error : BusinessError, data : DataType) => {
         if (error) {
@@ -141,7 +142,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
     }
     ```
 
-4. 绑定成功后使用设备驱动能力。
+5. 绑定成功后使用设备驱动能力。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -151,7 +152,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     let reply: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeString('hello');
-    let code = 1;
+    let code = 99;
     // remoteObject应用可以通过绑定设备获取到
     let remoteObject : rpc.IRemoteObject | null = null;
     // code和data内容取决于驱动提供的接口
@@ -167,7 +168,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
     }
     ```
 
-5. 设备使用完成，解绑设备。
+6. 设备使用完成，解绑设备。
 
     ```ts
     import { deviceManager } from '@kit.DriverDevelopmentKit';
