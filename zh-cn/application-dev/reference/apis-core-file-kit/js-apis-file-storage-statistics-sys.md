@@ -242,7 +242,7 @@ getBundleStats(packageName: string, index?: number): Promise&lt;BundleStats&gt;
   | 参数名      | 类型   | 必填 | 说明     |
   | ----------- | ------ | ---- | -------- |
   | packageName | string | 是   | 应用包名 |
-  | index<sup>12+</sup> | number | 是   | 可选参数，分身应用的索引号，默认值为0（表示未分身的主应用），分身应用索引号默认占用创建时从0开始最小的未占用索引号，用户在创建分身应用时也可以自定义索引号 |
+  | index<sup>12+</sup> | number | 否   | 可选参数，分身应用的索引号，默认值为0（表示未分身的主应用），分身应用索引号默认占用创建时从0开始最小的未占用索引号，用户在创建分身应用时也可以自定义索引号 |
 
 **返回值：**
 
@@ -295,7 +295,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;,
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
   | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据的空间大小之后的回调 |
-  | index<sup>12+</sup> | number | 是   | 可选参数，分身应用的索引号，默认值为0（表示未分身的主应用），分身应用索引号默认占用创建时从0开始最小的未占用索引号，用户在创建分身应用时也可以自定义索引号 |
+  | index<sup>12+</sup> | number | 否   | 可选参数，分身应用的索引号，默认值为0（表示未分身的主应用），分身应用索引号默认占用创建时从0开始最小的未占用索引号，用户在创建分身应用时也可以自定义索引号 |
 
 **错误码：**
 
