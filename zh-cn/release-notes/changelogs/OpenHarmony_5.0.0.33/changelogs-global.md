@@ -54,7 +54,9 @@ string库文件是C++标准库，影响头文件在C语言环境下正常使用�
 
 该变更为不兼容变更
 
-若开发者引用了string库函数，且未手动引入string库头文件，则会出现编译不过的问题。
+变更前：开发者使用了raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数。
+
+变更后：会出现编译不过的情况。
 
 **起始API Level**
 
@@ -66,11 +68,17 @@ API 8
 
 **变更的接口/组件**
 
-string头文件
+| 变更前               | 变更后                                                          |
+|-------------------|--------------------------------------------------------------|
+| #include <string> | #include <stddef.h><br>#include <stdint.h><br>#include <stdbool.h> |
 
 **适配指导**
 
-若开发者在变更前引用了string库函数，且未手动引入string库头文件依赖raw_file.h头文件，可以通过#include引入头文件解决。
+1、开发者使用raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，需要进行适配，通过include引入string头文件即可解决。
+
+2、开发者使用raw_file.h头文件且引用了string头文件，无需进行适配。
+
+3、开发者仅使用raw_file.h头文件，没有调用string库函数，无需进行适配。
 
 ## cl.golbal.3 raw_file模块接口废弃
 
