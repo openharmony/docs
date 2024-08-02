@@ -695,7 +695,7 @@ setLanguage(language: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取。  |
+| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的[static getSystemLanguages(): Array\<string>;](../apis-localization-kit/js-apis-i18n.md#getsystemlanguage9)获取。  |
 
 **错误码**：
 
