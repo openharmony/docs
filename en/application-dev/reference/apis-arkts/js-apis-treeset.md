@@ -25,11 +25,13 @@ import { TreeSet } from '@kit.ArkTS';
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a tree set (called container later).|
+| length | number | Yes | No | Number of elements in a tree set (called container later). |
 
 
 ### constructor
@@ -38,21 +40,23 @@ constructor(comparator?: (firstValue: T, secondValue: T) => boolean)
 
 A constructor used to create a **TreeSet** instance. It supports sorting elements in ascending or descending order by using comparators.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Custom comparator, which can be used to sort elements based on the comparison relationship. The default value is **hole** (a blank placeholder), indicating that no comparator is provided.|
+| comparator | function | No | Custom comparator, which can be used to sort elements based on the comparison relationship. The default value is **hole** (a blank placeholder), indicating that no comparator is provided.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 | 10200012 | The TreeSet's constructor cannot be directly invoked. |
 
 **Example**
@@ -99,19 +103,21 @@ isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Returns **true** if the container is empty; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -129,25 +135,27 @@ has(value: T): boolean
 
 Checks whether this container has the specified value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Target value.|
+| value | T | Yes | Target value. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the specified value is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified value is contained; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The has method cannot be bound. |
 
@@ -165,19 +173,21 @@ getFirstValue(): T
 
 Obtains the value of the first element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Value obtained. If nothing is obtained, **undefined** is returned.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getFirstValue method cannot be bound. |
 
@@ -197,19 +207,21 @@ getLastValue(): T
 
 Obtains the value of the last element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Value obtained. If nothing is obtained, **undefined** is returned.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getLastValue method cannot be bound. |
 
@@ -229,25 +241,27 @@ add(value: T): boolean
 
 Adds an element to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Target element.|
+| value | T | Yes | Target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The add method cannot be bound. |
@@ -266,25 +280,27 @@ remove(value: T): boolean
 
 Removes the element with the specified key from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Key of the target element.|
+| value | T | Yes | Key of the target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -304,25 +320,27 @@ getLowerValue(key: T): T
 
 Obtains the value that is placed in front of the input key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | T | Yes| Input key.|
+| key | T | Yes | Input key. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Value obtained. If nothing is obtained, **undefined** is returned.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The getLowerValue method cannot be bound. |
@@ -344,25 +362,27 @@ getHigherValue(key: T): T
 
 Obtains the value that is placed next to the input key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | T | Yes| Input key.|
+| key | T | Yes | Input key. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Value obtained. If nothing is obtained, **undefined** is returned.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The getHigherValue method cannot be bound. |
@@ -384,19 +404,21 @@ popFirst(): T
 
 Removes the first element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Element removed. If nothing is obtained, **undefined** is returned.|
+| T | Element removed. If nothing is obtained, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The popFirst method cannot be bound. |
 
@@ -416,19 +438,21 @@ popLast(): T
 
 Removes the last element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Element removed. If nothing is obtained, **undefined** is returned.|
+| T | Element removed. If nothing is obtained, **undefined** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The popLast method cannot be bound. |
 
@@ -448,13 +472,15 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -474,19 +500,21 @@ values(): IterableIterator&lt;T&gt;
 
 Obtains an iterator that contains all the values in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained.|
+| IterableIterator&lt;T&gt; | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The values method cannot be bound. |
 
@@ -511,27 +539,29 @@ forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
+| callbackFn | function | Yes | Callback invoked to traverse the elements in the container. |
+| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
 
 callbackFn
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
-| key | T | No| Key of the element that is currently traversed. The default value is the key of the first key-value pair.|
-| set | TreeSet&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
+| value | T | No | Value of the element that is currently traversed. The default value is the value of the first key-value pair. |
+| key | T | No | Key of the element that is currently traversed. The default value is the key of the first key-value pair. |
+| set | TreeSet&lt;T&gt; | No | Instance that calls the **forEach** API. The default value is this instance. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
@@ -546,7 +576,16 @@ treeSet.forEach((value ?: string, key ?: string) :void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// You are not advised to use the set or remove APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
+}
+```
 
 ### entries
 
@@ -554,19 +593,21 @@ entries(): IterableIterator<[T, T]>
 
 Obtains an iterator that contains all the elements in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator<[T, T]> | Iterator obtained.|
+| IterableIterator<[T, T]> | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The entries method cannot be bound. |
 
@@ -583,7 +624,16 @@ while(!t.done) {
   t = it.next()
 }
 ```
-
+```ts
+// You are not advised to use the set or remove APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -595,19 +645,21 @@ Obtains an iterator, each item of which is a JavaScript object.
 >
 > This API cannot be used in .ets files.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained.|
+| IterableIterator&lt;T&gt; | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 
@@ -628,5 +680,15 @@ let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+```
+```ts
+// You are not advised to use the set or remove APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
 }
 ```

@@ -29,7 +29,7 @@ Creates a **GattServer** instance.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| GattServer | **GattServer** instance created.|
+| GattServer | **GattServer** instance created. |
 
 **Example**
 
@@ -53,19 +53,19 @@ Creates a **GattClientDevice** instance.
 
 | Name     | Type    | Mandatory  | Description                                  |
 | -------- | ------ | ---- | ------------------------------------ |
-| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX. |
 
 **Return value**
 
 | Type                                   | Description                                  |
 | ------------------------------------- | ------------------------------------ |
-| [GattClientDevice](#gattclientdevice) | **GattClientDevice** instance created. Before using an API of the client, you must create a **GattClientDevice** instance.|
+| [GattClientDevice](#gattclientdevice) | **GattClientDevice** instance created. Before using an API of the client, you must create a **GattClientDevice** instance. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
@@ -96,13 +96,13 @@ Obtains the Bluetooth Low Energy (BLE) devices connected to this device.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of the BLE devices connected to this device. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
+| Array&lt;string&gt; | Addresses of the BLE devices connected to this device. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -138,14 +138,14 @@ Starts BLE scanning.
 
 | Name    | Type                                    | Mandatory  | Description                                 |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | Yes   | Criteria for filtering the scan result. Set this parameter to **null** if you do not want to filter the scan result.|
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | Yes   | Criteria for filtering the scan result. Set this parameter to **null** if you do not want to filter the scan result. |
 | options | [ScanOptions](#scanoptions)            | No   | Scan options.                    |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -196,7 +196,7 @@ Stops BLE scanning.
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -234,18 +234,17 @@ Starts BLE advertising.
 | ----------- | ------------------------------------- | ---- | -------------- |
 | setting     | [AdvertiseSetting](#advertisesetting) | Yes   | Settings related to BLE advertising.   |
 | advData     | [AdvertiseData](#advertisedata)       | Yes   | Content of the BLE advertisement packet.     |
-| advResponse | [AdvertiseData](#advertisedata)       | No   | Response to the BLE scan request.|
+| advResponse | [AdvertiseData](#advertisedata)       | No   | Response to the BLE scan request. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
-
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
@@ -314,7 +313,7 @@ Stops BLE advertising.
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -349,13 +348,13 @@ Starts BLE advertising. This API uses an asynchronous callback to return the res
 | Name              | Type                                   | Mandatory | Description                            |
 | ------------------- | --------------------------------------- | ----- | ------------------------------- |
 | advertisingParams   | [AdvertisingParams](#advertisingparams11) | Yes   | Parameters for starting BLE advertising.          |
-| callback            | AsyncCallback&lt;number&gt;             | Yes   | Callback used to return the advertisement ID.|
+| callback            | AsyncCallback&lt;number&gt;             | Yes   | Callback used to return the advertisement ID. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------------------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
@@ -446,13 +445,13 @@ Starts BLE advertising. This API uses a promise to return the result.
 
 | Type                      | Description                           |
 | -------------------------- | ------------------------------- |
-| Promise&lt;number&gt;      | Promise used to return the BLE advertisement ID.|
+| Promise&lt;number&gt;      | Promise used to return the BLE advertisement ID. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------------------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
@@ -540,7 +539,7 @@ Temporarily enables BLE advertising. This API uses an asynchronous callback to r
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                     |
@@ -649,7 +648,7 @@ Temporarily enables BLE advertising. This API uses a promise to return the resul
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                   |
@@ -752,7 +751,7 @@ Disables BLE advertising temporarily. This API uses an asynchronous callback to 
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                     |
@@ -858,7 +857,7 @@ Disables BLE advertising temporarily. This API uses a promise to return the resu
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                  |
@@ -957,7 +956,7 @@ Stops BLE advertising. This API uses an asynchronous callback to return the resu
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                  |
@@ -1060,7 +1059,7 @@ Stops BLE advertising. This API uses a promise to return the result.
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                 |
@@ -1151,13 +1150,13 @@ Subscribes to BLE advertising status. This API uses an asynchronous callback to 
 | Name     | Type                                                                   | Mandatory  | Description                                                     |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | Yes   | Event type. The value is **advertisingStateChange**, which indicates the advertising status change.       |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | Yes   | Callback used to return the advertising status. You need to implement this callback.|
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | Yes   | Callback used to return the advertising status. You need to implement this callback. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
@@ -1194,13 +1193,13 @@ Unsubscribes from BLE advertising status.
 | Name     | Type                                                                   | Mandatory  | Description                                                     |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | Yes   | Event type. The value is **advertisingStateChange**, which indicates the advertising status change.       |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
 |401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
@@ -1240,13 +1239,13 @@ Subscribes to BLE device discovery events. This API uses an asynchronous callbac
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEDeviceFind**, which indicates an event of discovering a BLE device.  |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1285,14 +1284,14 @@ Unsubscribes from BLE device discovery events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEDeviceFind**, which indicates an event of discovering a BLE device.       |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1336,13 +1335,13 @@ Adds a service to this GATT server.
 
 | Name    | Type                         | Mandatory  | Description                      |
 | ------- | --------------------------- | ---- | ------------------------ |
-| service | [GattService](#gattservice) | Yes   | Service to add. Settings related to BLE advertising.|
+| service | [GattService](#gattservice) | Yes   | Service to add. Settings related to BLE advertising. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1404,13 +1403,13 @@ Removes a service from this GATT server.
 
 | Name        | Type    | Mandatory  | Description                                      |
 | ----------- | ------ | ---- | ---------------------------------------- |
-| serviceUuid | string | Yes   | Universally unique identifier (UUID) of the service to remove, for example, **00001810-0000-1000-8000-00805F9B34FB**.|
+| serviceUuid | string | Yes   | Universally unique identifier (UUID) of the service to remove, for example, **00001810-0000-1000-8000-00805F9B34FB**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1450,7 +1449,7 @@ Closes this GATT server to unregister it from the protocol stack. The closed [Ga
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -1487,15 +1486,15 @@ Notifies a connected client device when a characteristic value changes. This API
 
 | Name                 | Type                                      | Mandatory  | Description                                     |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
-| deviceId             | string                                   | Yes   | Address of the client that receives the notifications, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId             | string                                   | Yes   | Address of the client that receives the notifications, for example, XX:XX:XX:XX:XX:XX. |
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | Yes   | New characteristic value.                              |
-| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1546,20 +1545,20 @@ Notifies a connected client device when a characteristic value changes. This API
 
 | Name                 | Type                                      | Mandatory  | Description                                     |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
-| deviceId             | string                                   | Yes   | Address of the client that receives the notifications, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId             | string                                   | Yes   | Address of the client that receives the notifications, for example, XX:XX:XX:XX:XX:XX. |
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | Yes   | New characteristic value.                              |
 
 **Return value**
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1606,13 +1605,13 @@ Sends a response to a read or write request from the GATT client.
 
 | Name           | Type                               | Mandatory  | Description             |
 | -------------- | --------------------------------- | ---- | --------------- |
-| serverResponse | [ServerResponse](#serverresponse) | Yes   | Response returned by the GATT server.|
+| serverResponse | [ServerResponse](#serverresponse) | Yes   | Response returned by the GATT server. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1661,14 +1660,14 @@ Subscribes to characteristic read request events. This API uses an asynchronous 
 
 | Name     | Type                                      | Mandatory  | Description                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **characteristicRead**, which indicates a characteristic read request event.|
+| type     | string                                   | Yes   | Event type. The value is **characteristicRead**, which indicates a characteristic read request event. |
 | callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.           |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1717,13 +1716,13 @@ Unsubscribes from characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **characteristicRead**, which indicates a characteristic read request event.   |
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1758,14 +1757,14 @@ Subscribes to characteristic write request events. This API uses an asynchronous
 
 | Name     | Type                                      | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event.|
+| type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event. |
 | callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.            |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1817,13 +1816,13 @@ Unsubscribes from characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event.  |
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1858,14 +1857,14 @@ Subscribes to descriptor read request events. This API uses an asynchronous call
 
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **descriptorRead**, which indicates a descriptor read request event.|
+| type     | string                                   | Yes   | Event type. The value is **descriptorRead**, which indicates a descriptor read request event. |
 | callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.       |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1914,13 +1913,13 @@ Unsubscribes from descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorRead**, which indicates a descriptor read request event.       |
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -1955,14 +1954,14 @@ Subscribes to descriptor write request events. This API uses an asynchronous cal
 
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **descriptorWrite**, which indicates a descriptor write request event.|
+| type     | string                                   | Yes   | Event type. The value is **descriptorWrite**, which indicates a descriptor write request event. |
 | callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.        |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2014,13 +2013,13 @@ Unsubscribes from descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorWrite**, which indicates a descriptor write request event.      |
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2055,14 +2054,14 @@ Subscribes to BLE connection state changes. This API uses an asynchronous callba
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
+| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes. |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback used to return the BLE connection state.                         |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2102,14 +2101,14 @@ Unsubscribes from BLE connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes. |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2143,13 +2142,13 @@ Subscribes to MTU status changes for the server. This API uses an asynchronous c
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
-| callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes.|
+| callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2185,13 +2184,13 @@ Unsubscribes from MTU status changes for the server.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
-| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2231,7 +2230,7 @@ Connects to the remote BLE device.
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -2268,7 +2267,7 @@ Disconnects from the remote BLE device.
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -2305,7 +2304,7 @@ Closes this GATT client to unregister it from the protocol stack. The closed [Ga
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -2342,13 +2341,13 @@ Obtains the name of the remote BLE device. This API uses an asynchronous callbac
 
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the remote BLE device name obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the remote BLE device name obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.          |
@@ -2390,13 +2389,13 @@ Obtains the name of the remote BLE device. This API uses a promise to return the
 
 | Type                   | Description                                |
 | --------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the remote BLE device name.|
+| Promise&lt;string&gt; | Promise used to return the remote BLE device name. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
@@ -2437,13 +2436,13 @@ Obtains all services of the remote BLE device. This API uses an asynchronous cal
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Yes   | Callback used to return the services obtained.|
+| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Yes   | Callback used to return the services obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.            |
@@ -2494,13 +2493,13 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 | Type                                      | Description                         |
 | ---------------------------------------- | --------------------------- |
-| Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Promise used to return the services obtained.|
+| Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Promise used to return the services obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.          |
@@ -2542,13 +2541,13 @@ Reads the characteristic value of the specific service of the remote BLE device.
 | Name           | Type                                      | Mandatory  | Description                     |
 | -------------- | ---------------------------------------- | ---- | ----------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic)  | Yes   | Characteristic value to read.               |
-| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback used to return the characteristic value read.|
+| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback used to return the characteristic value read. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2611,19 +2610,19 @@ Reads the characteristic value of the specific service of the remote BLE device.
 
 | Name           | Type                                     | Mandatory  | Description      |
 | -------------- | --------------------------------------- | ---- | -------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Characteristic value to read.|
+| characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Characteristic value to read. |
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | Promise used to return the characteristic value read.|
+| Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | Promise used to return the characteristic value read. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2678,13 +2677,13 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 | Name       | Type                                      | Mandatory  | Description                     |
 | ---------- | ---------------------------------------- | ---- | ----------------------- |
 | descriptor | [BLEDescriptor](#bledescriptor)          | Yes   | Descriptor to read.               |
-| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Callback used to return the descriptor read.|
+| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Callback used to return the descriptor read. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2740,19 +2739,19 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 
 | Name       | Type                             | Mandatory  | Description      |
 | ---------- | ------------------------------- | ---- | -------- |
-| descriptor | [BLEDescriptor](#bledescriptor) | Yes   | Descriptor to read.|
+| descriptor | [BLEDescriptor](#bledescriptor) | Yes   | Descriptor to read. |
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | Promise used to return the descriptor read.|
+| Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | Promise used to return the descriptor read. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2799,15 +2798,15 @@ Writes a characteristic value to the remote BLE device. This API uses an asynchr
 
 | Name           | Type                                     | Mandatory  | Description                 |
 | -------------- | --------------------------------------- | ---- | ------------------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Binary value and other parameters of the BLE device characteristic.|
-| writeType | GattWriteType | Yes   | Write type of the Bluetooth device characteristic value.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the write operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Binary value and other parameters of the BLE device characteristic. |
+| writeType | GattWriteType | Yes   | Write type of the Bluetooth device characteristic value. |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the write operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2866,20 +2865,20 @@ Writes a characteristic value to the remote BLE device. This API uses a promise 
 
 | Name           | Type                                     | Mandatory  | Description                 |
 | -------------- | --------------------------------------- | ---- | ------------------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Binary value and other parameters of the BLE device characteristic.|
-| writeType | GattWriteType | Yes   | Write type of the Bluetooth device characteristic value.|
+| characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Binary value and other parameters of the BLE device characteristic. |
+| writeType | GattWriteType | Yes   | Write type of the Bluetooth device characteristic value. |
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise used to return the descriptor read.|
+| Promise&lt;void&gt; | Promise used to return the descriptor read. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2932,14 +2931,14 @@ Writes binary data to the specific descriptor of the remote BLE device. This API
 
 | Name       | Type                             | Mandatory  | Description                |
 | ---------- | ------------------------------- | ---- | ------------------ |
-| descriptor | [BLEDescriptor](#bledescriptor) | Yes   | Binary value and other parameters of the BLE device descriptor.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the write operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| descriptor | [BLEDescriptor](#bledescriptor) | Yes   | Binary value and other parameters of the BLE device descriptor. |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the write operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -2986,19 +2985,19 @@ Writes binary data to the specific descriptor of the remote BLE device. This API
 
 | Name       | Type                             | Mandatory  | Description                |
 | ---------- | ------------------------------- | ---- | ------------------ |
-| descriptor | [BLEDescriptor](#bledescriptor) | Yes   | Binary value and other parameters of the BLE device descriptor.|
+| descriptor | [BLEDescriptor](#bledescriptor) | Yes   | Binary value and other parameters of the BLE device descriptor. |
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise used to return the descriptor read.|
+| Promise&lt;void&gt; | Promise used to return the descriptor read. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3047,13 +3046,13 @@ Obtains the RSSI of the remote BLE device. It can be used only after a connectio
 
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the RSSI, in dBm.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the RSSI, in dBm. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.         |
@@ -3094,13 +3093,13 @@ Obtains the RSSI of the remote BLE device. It can be used only after a connectio
 
 | Type                   | Description                               |
 | --------------------- | --------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the RSSI, in dBm.|
+| Promise&lt;number&gt; | Promise used to return the RSSI, in dBm. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.               |
@@ -3139,13 +3138,13 @@ Sets the maximum transmission unit (MTU) that can be transmitted between the GAT
 
 | Name | Type    | Mandatory  | Description            |
 | ---- | ------ | ---- | -------------- |
-| mtu  | number | Yes   | MTU to set, which ranges from 22 to 512 bytes.|
+| mtu  | number | Yes   | MTU to set, which ranges from 22 to 512 bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3183,14 +3182,14 @@ Sets a notification for the change of a characteristic. The GATT client that sub
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite. |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3241,19 +3240,19 @@ Sets a notification for the change of a characteristic. The GATT client that sub
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite. |
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3304,14 +3303,14 @@ Sets an indication for the change of a characteristic. The GATT client must ackn
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3362,19 +3361,19 @@ Sets an indication for the change of a characteristic. The GATT client must ackn
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3424,14 +3423,14 @@ Subscribes to BLE characteristic changes. The client can receive a notification 
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes.|
+| type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes. |
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback used to return the characteristic value changes.                 |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3471,14 +3470,14 @@ Unsubscribes from BLE characteristic changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes.|
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes. |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3513,14 +3512,14 @@ Subscribes to BLE connection state changes. This API uses an asynchronous callba
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes.|
+| type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes. |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback used to return the BLE connection state.                          |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3559,14 +3558,14 @@ Unsubscribes from BLE connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes.|
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes. |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3601,14 +3600,14 @@ Subscribes to MTU status changes for the client. This API uses an asynchronous c
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
-| callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes.|
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered. |
+| callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3645,14 +3644,14 @@ Unsubscribes from MTU status changes for the client.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered.|
-| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered. |
+| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
@@ -3681,7 +3680,7 @@ Defines the GATT service API parameters.
 
 | Name             | Type                                    | Readable  | Writable  | Description                                      |
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid     | string                                   | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid     | string                                   | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
 | isPrimary       | boolean                                  | Yes   | Yes   | Whether the service is a primary service. The value **true** means a primary service.               |
 | characteristics | Array&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Yes   | List of characteristics of the service.                            |
 | includeServices | Array&lt;[GattService](#gattservice)&gt; | Yes   | Yes   | Services on which the service depends.                            |
@@ -3697,8 +3696,8 @@ Defines the characteristic API parameters.
 
 | Name                 | Type                                    | Readable  | Writable  | Description                                |
 | ------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string                                   | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid  | string                  | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid         | string                                   | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
+| characteristicUuid  | string                  | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**. |
 | characteristicValue | ArrayBuffer                              | Yes   | Yes   | Binary value of the characteristic.                     |
 | descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Yes   | List of descriptors of the characteristic.               |
 | properties  | [GattProperties](#gattproperties) |   Yes  | Yes    | Properties of the characteristic.    |
@@ -3714,9 +3713,9 @@ Represents a BLE descriptor.
 
 | Name                | Type       | Readable  | Writable  | Description                                      |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid        | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| descriptorUuid     | string      | Yes   | Yes   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid        | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
+| characteristicUuid | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**. |
+| descriptorUuid     | string      | Yes   | Yes   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**. |
 | descriptorValue    | ArrayBuffer | Yes   | Yes   | Binary value of the descriptor.                             |
 
 
@@ -3730,10 +3729,10 @@ Defines the parameters in the notifications sent when the server characteristic 
 
 | Name                 | Type       | Readable  | Writable  | Description                                      |
 | ------------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid  | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid         | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
+| characteristicUuid  | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**. |
 | characteristicValue | ArrayBuffer | Yes   | Yes   | Binary value of the characteristic.                              |
-| confirm             | boolean     | Yes   | Yes   | Whether the indication or notification needs to be acknowledged by the remote end. Set this parameter to **true** for an indication, which needs to be acknowledged by the remote end. Set this parameter to **false** for a notification, which does not need to be acknowledged by the remote end.|
+| confirm             | boolean     | Yes   | Yes   | Whether the indication or notification needs to be acknowledged by the remote end. Set this parameter to **true** for an indication, which needs to be acknowledged by the remote end. Set this parameter to **false** for a notification, which does not need to be acknowledged by the remote end. |
 
 
 ## CharacteristicReadRequest
@@ -3746,11 +3745,11 @@ Defines the parameters of the **CharacteristicReadReq** event received by the se
 
 | Name                | Type  | Readable  | Writable  | Description                                      |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicReadReq** event, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicReadReq** event, for example, XX:XX:XX:XX:XX:XX. |
 | transId            | number | Yes   | No   | Transmission ID of the read request. The response returned by the server must use the same transmission ID.      |
-| offset             | number | Yes   | No   | Position from which the characteristic value is read. For example, **k** means to read from the kth byte. The response returned by the server must use the same offset.|
-| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| offset             | number | Yes   | No   | Position from which the characteristic value is read. For example, **k** means to read from the kth byte. The response returned by the server must use the same offset. |
+| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**. |
+| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
 
 
 ## CharacteristicWriteRequest
@@ -3763,14 +3762,14 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 
 | Name                | Type  | Readable  | Writable  | Description                                      |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicWriteReq** event, for example, XX:XX:XX:XX:XX:XX. |
 | transId            | number | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
-| offset             | number | Yes   | No   | Start position for writing the characteristic value. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
-| isPrepared             | boolean | Yes   | No   | Whether the write request is executed immediately.|
-| needRsp             | boolean | Yes   | No   | Whether to send a response to the GATT client.|
-| value             | ArrayBuffer | Yes   | No   | Binary value of the descriptor to write.|
-| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| offset             | number | Yes   | No   | Start position for writing the characteristic value. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset. |
+| isPrepared             | boolean | Yes   | No   | Whether the write request is executed immediately. |
+| needRsp             | boolean | Yes   | No   | Whether to send a response to the GATT client. |
+| value             | ArrayBuffer | Yes   | No   | Binary value of the descriptor to write. |
+| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**. |
+| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
 
 
 ## DescriptorReadRequest
@@ -3783,12 +3782,12 @@ Defines the parameters of the **DescriptorReadReq** event received by the server
 
 | Name                | Type  | Readable  | Writable  | Description                                      |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | Yes   | No   | Address of the remote device that sends a **DescriptorReadReq** event, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId           | string | Yes   | No   | Address of the remote device that sends a **DescriptorReadReq** event, for example, XX:XX:XX:XX:XX:XX. |
 | transId            | number | Yes   | No   | Transmission ID of the read request. The response returned by the server must use the same transmission ID.      |
-| offset             | number | Yes   | No   | Position from which the descriptor is read. For example, **k** means to read from the kth byte. The response returned by the server must use the same offset.|
-| descriptorUuid     | string | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| offset             | number | Yes   | No   | Position from which the descriptor is read. For example, **k** means to read from the kth byte. The response returned by the server must use the same offset. |
+| descriptorUuid     | string | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**. |
+| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**. |
+| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
 
 
 ## DescriptorWriteRequest
@@ -3801,15 +3800,15 @@ Defines the parameters of the **DescriptorWriteReq** event received by the serve
 
 | Name                | Type       | Readable  | Writable  | Description                                      |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| deviceId           | string      | Yes   | No   | Address of the remote device that sends a **DescriptorWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId           | string      | Yes   | No   | Address of the remote device that sends a **DescriptorWriteReq** event, for example, XX:XX:XX:XX:XX:XX. |
 | transId            | number      | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
-| offset             | number      | Yes   | No   | Start position for writing the descriptor. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
+| offset             | number      | Yes   | No   | Start position for writing the descriptor. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset. |
 | isPrepared             | boolean     | Yes   | No   | Whether the write request is executed immediately.                            |
 | needRsp            | boolean     | Yes   | No   | Whether to send a response to the GATT client.                      |
 | value              | ArrayBuffer | Yes   | No   | Binary value of the descriptor to write.                          |
-| descriptorUuid     | string      | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid | string      | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| serviceUuid        | string      | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| descriptorUuid     | string      | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**. |
+| characteristicUuid | string      | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**. |
+| serviceUuid        | string      | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
 
 
 ## ServerResponse
@@ -3825,7 +3824,7 @@ Defines the parameters of the server's response to the GATT client's read/write 
 | deviceId | string      | Yes   | No   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.      |
 | transId  | number      | Yes   | No   | Transmission ID of the request. The value must be the same as the ID carried in the read/write request received.       |
 | status   | number      | Yes   | No   | Response state. Set this parameter to **0**, which indicates a normal response.                  |
-| offset   | number      | Yes   | No   | Start read/write position. The value must be the same as the offset carried in the read/write request.|
+| offset   | number      | Yes   | No   | Start read/write position. The value must be the same as the offset carried in the read/write request. |
 | value    | ArrayBuffer | Yes   | No   | Binary data in the response.                         |
 
 
@@ -3837,9 +3836,9 @@ Represents the GATT profile connection state.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name    | Type                                         | Readable| Writable| Description                                         |
+| Name    | Type                                         | Readable | Writable | Description                                         |
 | -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
-| deviceId | string                                            | Yes  | No  | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string                                            | Yes  | No  | Address of the remote device, for example, XX:XX:XX:XX:XX:XX. |
 | state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | Yes  | Yes  | BLE connection state.                      |
 
 
@@ -3853,7 +3852,7 @@ Defines the scan result.
 
 | Name      | Type       | Readable  | Writable  | Description                                |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | Yes   | No   | Address of the scanned device, for example, XX:XX:XX:XX:XX:XX. For security purposes, the device address is a random MAC address. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
+| deviceId | string      | Yes   | No   | Address of the scanned device, for example, XX:XX:XX:XX:XX:XX. For security purposes, the device address is a random MAC address. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off. |
 | rssi     | number      | Yes   | No   | RSSI of the device.                   |
 | data     | ArrayBuffer | Yes   | No   | Advertisement packets sent by the device.                   |
 | deviceName | string | Yes   | No   | Name of the device detected.                   |
@@ -3870,8 +3869,8 @@ Defines the BLE advertising parameters.
 
 | Name         | Type   | Readable  | Writable  | Description                                      |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **160** slots (100 ms). The maximum value is **16384** slots. The default value is **1600** slots (1s).|
-| txPower     | number  | Yes   | Yes   | Transmit power, in dBm. The value range is -127 to 1. The default value is **-7**. <br>Recommended value: **1** for high transmit power, **-7** for medium transmit power, and **-15** for low transmit power.  |
+| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **160** slots (100 ms). The maximum value is **16384** slots. The default value is **1600** slots (1s). |
+| txPower     | number  | Yes   | Yes   | Transmit power, in dBm. The value range is -127 to 1. The default value is **-7**.<br>Recommended value: **1** for high transmit power, **-7** for medium transmit power, and **-15** for low transmit power.  |
 | connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable. The value **true** (default) means the advertisement is connectable; the value **false** means the opposite.                  |
 
 
@@ -3885,7 +3884,7 @@ Represents the content of a BLE advertising packet, which is 31 bytes in size.
 
 | Name             | Type                                    | Readable  | Writable  | Description                         |
 | --------------- | ---------------------------------------- | ---- | ---- | --------------------------- |
-| serviceUuids    | Array&lt;string&gt;                      | Yes   | Yes   | List of service UUIDs to broadcast.|
+| serviceUuids    | Array&lt;string&gt;                      | Yes   | Yes   | List of service UUIDs to broadcast. |
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | Yes   | Yes   | List of manufacturers to broadcast.          |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | Yes   | Yes   | List of service data to broadcast.              |
 | includeDeviceName | boolean     | Yes   | Yes   | Whether the device name is contained. This parameter is optional. To carry the device name, set this parameter to **true**. Otherwise, set this parameter to **false** or leave it unspecified. Note that the advertising packet containing the device name cannot exceed 31 bytes.       |
@@ -3900,7 +3899,7 @@ Defines the parameters for starting BLE advertising for the first time.
 | ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
 | advertisingSettings<sup>11+</sup> | AdvertiseSetting                | Yes   | Yes   | Parameters related advertising settings.   |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the advertising packet.     |
-| advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the response to the scan request.|
+| advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the response to the scan request. |
 | duration<sup>11+</sup>    | number   | Yes   | Yes   | Duration for the advertising, in 10 ms.<br>Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.   |
 
 ## AdvertisingEnableParams<sup>11+</sup>
@@ -3945,7 +3944,7 @@ Defines the content of a BLE advertisement packet.
 
 | Name              | Type               | Readable  | Writable  | Description                |
 | ---------------- | ------------------- | ---- | ---- | ------------------ |
-| manufactureId    | number  | Yes   | Yes   | Manufacturer ID allocated by the Bluetooth SIG.|
+| manufactureId    | number  | Yes   | Yes   | Manufacturer ID allocated by the Bluetooth SIG. |
 | manufactureValue | ArrayBuffer         | Yes   | Yes   | Manufacturer data.    |
 
 
@@ -3959,7 +3958,7 @@ Defines the service data contained in an advertisement packet.
 
 | Name          | Type       | Readable  | Writable  | Description        |
 | ------------ | ----------- | ---- | ---- | ---------- |
-| serviceUuid  | string      | Yes   | Yes   | Service UUID.|
+| serviceUuid  | string      | Yes   | Yes   | Service UUID. |
 | serviceValue | ArrayBuffer | Yes   | Yes   | Service data.   |
 
 
@@ -3975,15 +3974,15 @@ Defines the scan filter parameters.
 | ------------------------------------------ | -------- | ---- | ------------------------------------------------------------ |
 | deviceId                                 | string      | No   | Address of the BLE device to filter, for example, XX:XX:XX:XX:XX:XX.          |
 | name                                     | string      | No   | Name of the BLE device to filter.                                       |
-| serviceUuid                              | string      | No   | Service UUID of the device to filter, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| serviceUuidMask             | string      | No    | Service UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
-| serviceSolicitationUuid     | string      | No    | Service solicitation UUID of the device to filter, for example, **00001888-0000-1000-8000-00805F9B34FB**.|
-| serviceSolicitationUuidMask | string      | No    | Service solicitation UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
-| serviceData                 | ArrayBuffer | No    | Service data of the device to filter, for example, **[0x90, 0x00, 0xF1, 0xF2]**.|
-| serviceDataMask             | ArrayBuffer | No    | Service data mask of the device to filter, for example, **[0xFF,0xFF,0xFF,0xFF]**.|
+| serviceUuid                              | string      | No   | Service UUID of the device to filter, for example, **00001888-0000-1000-8000-00805f9b34fb**. |
+| serviceUuidMask             | string      | No    | Service UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**. |
+| serviceSolicitationUuid     | string      | No    | Service solicitation UUID of the device to filter, for example, **00001888-0000-1000-8000-00805F9B34FB**. |
+| serviceSolicitationUuidMask | string      | No    | Service solicitation UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**. |
+| serviceData                 | ArrayBuffer | No    | Service data of the device to filter, for example, **[0x90, 0x00, 0xF1, 0xF2]**. |
+| serviceDataMask             | ArrayBuffer | No    | Service data mask of the device to filter, for example, **[0xFF,0xFF,0xFF,0xFF]**. |
 | manufactureId               | number      | No    | Manufacturer ID of the device to filter, for example, **0x0006**.                |
-| manufactureData             | ArrayBuffer | No    | Manufacturer data of the device to filter, for example, **[0x1F,0x2F,0x3F]**.|
-| manufactureDataMask         | ArrayBuffer | No    | Manufacturer data mask of the device to filter, for example, **[0xFF, 0xFF, 0xFF]**.|
+| manufactureData             | ArrayBuffer | No    | Manufacturer data of the device to filter, for example, **[0x1F,0x2F,0x3F]**. |
+| manufactureDataMask         | ArrayBuffer | No    | Manufacturer data mask of the device to filter, for example, **[0xFF, 0xFF, 0xFF]**. |
 
 
 ## ScanOptions
@@ -3998,8 +3997,8 @@ Defines the scan configuration parameters.
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
 | interval  | number                  | Yes   | Yes   | Delay in reporting the scan result. The default value is **0**.                   |
 | dutyMode  | [ScanDuty](#scanduty)   | Yes   | Yes   | Scan duty. The default value is SCAN_MODE_LOW_POWER.       |
-| matchMode | [MatchMode](#matchmode) | Yes   | Yes   | Hardware filtering match mode. The default value is **MATCH_MODE_AGGRESSIVE**.|
-| phyType<sup>12+</sup> | [PhyType](#phytype12) | Yes   | Yes   | Physical layer (PHY) type used in scanning.|
+| matchMode | [MatchMode](#matchmode) | Yes   | Yes   | Hardware filtering match mode. The default value is **MATCH_MODE_AGGRESSIVE**. |
+| phyType<sup>12+</sup> | [PhyType](#phytype12) | Yes   | Yes   | Physical layer (PHY) type used in scanning. |
 
 
 ## GattProperties<a name="GattProperties"></a>
@@ -4012,11 +4011,11 @@ Defines the properties of a GATT characteristic.
 
 | Name      | Type | Mandatory  | Description         |
 | -------- | ------ |---- | ----------- |
-| write    | boolean | No | Permits writes of the characteristic value (with a response).|
-| writeNoResponse | boolean | No   | Permits writes of the characteristic value (without a response).|
-| read | boolean   |  No   | Permits reads of the characteristic value.|
-| notify | boolean   | No   | Permits notifications of the characteristic value.|
-| indicate | boolean   | No   | Permits notifications of the characteristic value without acknowledgement.|
+| write    | boolean | No | Permits writes of the characteristic value (with a response). |
+| writeNoResponse | boolean | No   | Permits writes of the characteristic value (without a response). |
+| read | boolean   |  No   | Permits reads of the characteristic value. |
+| notify | boolean   | No   | Permits notifications of the characteristic value. |
+| indicate | boolean   | No   | Permits notifications of the characteristic value without acknowledgement. |
 
 
 ## GattWriteType<a name="GattWriteType"></a>
@@ -4043,7 +4042,7 @@ Enumerates the scan duties.
 
 | Name                   | Value | Description          |
 | --------------------- | ---- | ------------ |
-| SCAN_MODE_LOW_POWER   | 0    | Low-power mode, which is the default value.|
+| SCAN_MODE_LOW_POWER   | 0    | Low-power mode, which is the default value. |
 | SCAN_MODE_BALANCED    | 1    | Balanced mode.     |
 | SCAN_MODE_LOW_LATENCY | 2    | Low-latency mode.    |
 
@@ -4058,7 +4057,7 @@ Enumerates the hardware match modes of BLE scan filters.
 
 | Name                   | Value | Description                                      |
 | --------------------- | ---- | ---------------------------------------- |
-| MATCH_MODE_AGGRESSIVE | 1    | Hardware reports the scan result with a lower threshold of signal strength and few number of matches in a duration. This is the default value.|
+| MATCH_MODE_AGGRESSIVE | 1    | Hardware reports the scan result with a lower threshold of signal strength and few number of matches in a duration. This is the default value. |
 | MATCH_MODE_STICKY     | 2    | Hardware reports the scan result with a higher threshold of signal strength and sightings.      |
 
 ## AdvertisingState<sup>11+</sup>

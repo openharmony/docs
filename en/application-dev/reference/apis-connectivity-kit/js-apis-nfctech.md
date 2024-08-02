@@ -32,9 +32,9 @@ Obtains the SAK value of this NFC-A tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number  | SAK value obtained. The SAK is a hexadecimal number ranging from **0x00** to **0xFF**.|
+| number  | SAK value obtained. The SAK is a hexadecimal number ranging from **0x00** to **0xFF**. |
 
 **Example**
 
@@ -43,7 +43,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'nfcA' correctly.
 let sak : number = nfcA.getSak();
-console.log("nfcA sak: " + sak);
+console.info("nfcA sak: " + sak);
 ```
 
 ### NfcATag.getAtqa
@@ -58,9 +58,9 @@ Obtains the ATQA value of this NFC-A tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number[]  | ATQA value obtained. Each number of the ATQA is a hexadecimal number ranging from **0x00** to **0xFF**.|
+| number[]  | ATQA value obtained. Each number of the ATQA is a hexadecimal number ranging from **0x00** to **0xFF**. |
 
 **Example**
 
@@ -69,7 +69,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'nfcA' correctly.
 let atqa : number[] = nfcA.getAtqa();
-console.log("nfcA atqa: " + atqa);
+console.info("nfcA atqa: " + atqa);
 ```
 
 ## NfcBTag
@@ -92,9 +92,9 @@ Obtains the application data of this NFC-B tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number[]  | Application data obtained, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| number[]  | Application data obtained, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
 
 **Example**
 
@@ -103,7 +103,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'nfcB' correctly.
 let respAppData : number[] = nfcB.getRespAppData();
-console.log("nfcB respAppData: " + respAppData);
+console.info("nfcB respAppData: " + respAppData);
 ```
 
 ### NfcBTag.getRespProtocol
@@ -118,7 +118,7 @@ Obtains the protocol information of this NFC-B tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number[]  | Protocol information obtained, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
@@ -129,7 +129,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'nfcB' correctly.
 let respProtocol : number[] = nfcB.getRespProtocol();
-console.log("nfcB respProtocol: " + respProtocol);
+console.info("nfcB respProtocol: " + respProtocol);
 ```
 
 ## NfcFTag
@@ -152,7 +152,7 @@ Obtains the system code from this NFC-F tag.
 
 **Return value**
 
-| **Type**| **Description**                           |
+| **Type** | **Description**                           |
 | ------------------ | --------------------------|
 | number[]  | System code obtained, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
@@ -163,7 +163,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'nfcF' correctly.
 let systemCode : number[] = nfcF.getSystemCode();
-console.log("nfcF systemCode: " + systemCode);
+console.info("nfcF systemCode: " + systemCode);
 ```
 
 ### NfcFTag.getPmm
@@ -178,7 +178,7 @@ Obtains the PMm (consisting of the IC code and manufacturer parameters) informat
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number[]  | PMm information obtained, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
@@ -189,7 +189,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'nfcF' correctly.
 let pmm : number[] = nfcF.getPmm();
-console.log("nfcF pmm: " + pmm);
+console.info("nfcF pmm: " + pmm);
 ```
 
 ## NfcVTag
@@ -212,7 +212,7 @@ Obtains the response flags from this NFC-V tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number | Response flags obtained, which consist of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
@@ -223,7 +223,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'nfcV' correctly.
 let responseFlags : number = nfcV.getResponseFlags();
-console.log("nfcV responseFlags: " + responseFlags);
+console.info("nfcV responseFlags: " + responseFlags);
 ```
 
 ### NfcvTag.getDsfId
@@ -238,7 +238,7 @@ Obtains the data storage format identifier (DSFID) from this NFC-V tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number | DSFID obtained, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
@@ -249,7 +249,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'nfcV' correctly.
 let dsfId : number = nfcV.getDsfId();
-console.log("nfcV dsfId: " + dsfId);
+console.info("nfcV dsfId: " + dsfId);
 ```
 
 ## IsoDepTag<sup>9+</sup> 
@@ -272,7 +272,7 @@ Obtains the historical bytes for the given tag. This API applies only to the Iso
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number[] | Historical bytes obtained, which consist of hexadecimal numbers ranging from **0x00** to **0xFF**. If the IsoDep tag uses the NFC-B technology, **null** will be returned.|
 
@@ -283,7 +283,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'isoDep' correctly.
 let historicalBytes : number[] = isoDep.getHistoricalBytes();
-console.log("isoDep historicalBytes: " + historicalBytes);
+console.info("isoDep historicalBytes: " + historicalBytes);
 ```
 
 ### IsoDepTag.getHiLayerResponse<sup>9+</sup>
@@ -298,7 +298,7 @@ Obtains the higher-layer response bytes for the given tag. This API applies only
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number[] | Higher-layer response bytes obtained, which consist of hexadecimal numbers ranging from **0x00** to **0xFF**. If the IsoDep tag uses the NFC-A technology, **null** will be returned.|
 
@@ -309,7 +309,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'isoDep' correctly.
 let hiLayerResponse : number[] = isoDep.getHiLayerResponse();
-console.log("isoDep hiLayerResponse: " + hiLayerResponse);
+console.info("isoDep hiLayerResponse: " + hiLayerResponse);
 ```
 
 ### IsoDepTag.isExtendedApduSupported<sup>9+</sup>
@@ -326,7 +326,7 @@ Checks whether an extended application protocol data unit (APDU) is supported. T
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the extended APDU is supported; the value **false** means the opposite.|
 
@@ -334,7 +334,7 @@ Checks whether an extended application protocol data unit (APDU) is supported. T
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -352,14 +352,14 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!isoDep.isTagConnected()) {
         if (!isoDep.connectTag()) {
-            console.log("isoDep connectTag failed.");
+            console.error("isoDep connectTag failed.");
             return;
         }
     }
 
     try {
         isoDep.isExtendedApduSupported().then((response: boolean) => {
-            console.log("isoDep isExtendedApduSupported Promise response: " + response);
+            console.info("isoDep isExtendedApduSupported Promise response: " + response);
         }).catch((err: BusinessError) => {
             console.error("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
         });
@@ -385,15 +385,15 @@ Checks whether an extended APDU is supported. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the extended APDU is supported, **true** is returned; otherwise, **false** is returned.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the extended APDU is supported, **true** is returned; otherwise, **false** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -411,7 +411,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!isoDep.isTagConnected()) {
         if (!isoDep.connectTag()) {
-            console.log("isoDep connectTag failed.");
+            console.error("isoDep connectTag failed.");
             return;
         }
     }
@@ -419,9 +419,9 @@ function nfcTechDemo() {
     try {
         isoDep.isExtendedApduSupported((err: BusinessError, response: boolean) => {
             if (err) {
-                console.log("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}");
+                console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}");
             } else {
-                console.log("isoDep isExtendedApduSupported AsyncCallback response: " + response);
+                console.info("isoDep isExtendedApduSupported AsyncCallback response: " + response);
             }
         });
     } catch (busiErr) {
@@ -445,9 +445,9 @@ Obtains all NDEF records.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | List of NDEF records obtained. For details, see *NFCForum-TS-NDEF_1.0*.|
+| [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | List of NDEF records obtained. For details, see *NFCForum-TS-NDEF_1.0*. |
 
 **Example**
 
@@ -459,7 +459,7 @@ import { tag } from '@kit.ConnectivityKit';
 // let ndefMessage : tag.NdefMessage = ndefTag.getNdefMessage();
 
 let ndefRecords : tag.NdefRecord[] = ndefMessage.getNdefRecords();
-console.log("ndef ndefRecords number: " + ndefRecords.length);
+console.info("ndef ndefRecords number: " + ndefRecords.length);
 ```
 
 ## NdefTag<sup>9+</sup>
@@ -482,7 +482,7 @@ Obtains the NDEF tag type.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | NDEF tag type obtained. It can be NFC FORUM TYPE 1, 2, 3, or 4.|
 
@@ -493,7 +493,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'ndefTag' correctly.
 let ndefTagType : tag.NfcForumType = ndefTag.getNdefTagType();
-console.log("ndef ndefTagType: " + ndefTagType);
+console.info("ndef ndefTagType: " + ndefTagType);
 ```
 
 ### NdefTag.getNdefMessage<sup>9+</sup>
@@ -508,7 +508,7 @@ Obtains the NDEF message from this NDEF tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | [NdefMessage](#ndefmessage9)  | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
@@ -518,7 +518,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'ndefTag' correctly.
 let ndefMessage : tag.NdefMessage = ndefTag.getNdefMessage();
-console.log("ndef ndefMessage: " + ndefMessage);
+console.info("ndef ndefMessage: " + ndefMessage);
 ```
 
 ### NdefTag.isNdefWritable<sup>9+</sup>
@@ -533,7 +533,7 @@ Check whether this NDEF tag is writable. Before calling the data write API, chec
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | boolean | Promise used to return the result. If the tag is writable, **true** is returned; otherwise, **false** is returned.|
 
@@ -544,7 +544,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'ndefTag' correctly.
 let isWritable : boolean = ndefTag.isNdefWritable();
-console.log("ndef isNdefWritable: " + isWritable);
+console.info("ndef isNdefWritable: " + isWritable);
 ```
 
 ### NdefTag.readNdef<sup>9+</sup>
@@ -561,7 +561,7 @@ Reads the NDEF message from this tag. This API uses a promise to return the resu
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | Promise\<[NdefMessage](#ndefmessage9)> | Promise used to return the message object read.|
 
@@ -569,7 +569,7 @@ Reads the NDEF message from this tag. This API uses a promise to return the resu
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -587,14 +587,14 @@ function nfcTechDemo(){
     // Connect to the tag if it is not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
 
     try {
         ndefTag.readNdef().then((ndefmessage : tag.NdefMessage) => {
-            console.log("ndef readNdef Promise ndefmessage: " + ndefmessage);
+            console.info("ndef readNdef Promise ndefmessage: " + ndefmessage);
         }).catch((err : BusinessError)=> {
             console.error("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -620,7 +620,7 @@ Reads the NDEF message from this tag. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback\<[NdefMessage](#ndefmessage9)> | Yes  | Callback used to return the NDEF message read.|
 
@@ -628,7 +628,7 @@ Reads the NDEF message from this tag. This API uses an asynchronous callback to 
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -646,7 +646,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
@@ -654,13 +654,13 @@ function nfcTechDemo() {
     try {
         ndefTag.readNdef((err : BusinessError, ndefmessage : tag.NdefMessage)=> {
             if (err) {
-                console.log("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
             } else {
-            console.log("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
+                console.info("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
             }
         });
     } catch (businessError) {
-        console.log("ndef readNdef AsyncCallback catch Code: ${(businessError : BusinessError).code}," +
+        console.error("ndef readNdef AsyncCallback catch Code: ${(businessError : BusinessError).code}," +
         " message: ${(businessError : BusinessError).message}");
     }
 }
@@ -681,7 +681,7 @@ Writes an NDEF message to this tag. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | msg | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write.|
 
@@ -689,13 +689,13 @@ Writes an NDEF message to this tag. This API uses a promise to return the result
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -718,14 +718,14 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
 
     try {
         ndefTag.writeNdef(ndefMessage).then(() => {
-            console.log("ndef writeNdef Promise success.");
+            console.info("ndef writeNdef Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
         });
@@ -750,16 +750,16 @@ Writes an NDEF message to this tag. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| msg | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| msg | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -782,7 +782,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
@@ -792,7 +792,7 @@ function nfcTechDemo() {
             if (err) {
                 console.error("ndef writeNdef AsyncCallback Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("ndef writeNdef AsyncCallback success.");
+                console.info("ndef writeNdef AsyncCallback success.");
             }
         }); 
     } catch (businessError) {
@@ -816,15 +816,15 @@ Checks whether this NDEF tag can be set to read-only.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| boolean| Returns **true** if the tag can be set to read-only; returns **false** otherwise.|
+| boolean| Returns **true** if the tag can be set to read-only; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 3100201 | Tag running state is abnormal in service. |
@@ -836,7 +836,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'ndefTag' correctly.
 let canSetReadOnly : boolean = ndefTag.canSetReadOnly();
-console.log("ndef canSetReadOnly: " + canSetReadOnly);
+console.info("ndef canSetReadOnly: " + canSetReadOnly);
 ```
 
 ### NdefTag.setReadOnly<sup>9+</sup>
@@ -855,13 +855,13 @@ Sets this NDEF tag to read-only. This API uses a promise to return the result.
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -880,14 +880,14 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
 
     try {
         ndefTag.setReadOnly().then(() => {
-            console.log("ndef setReadOnly Promise success.");
+            console.info("ndef setReadOnly Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -912,15 +912,15 @@ Sets this NDEF tag to read-only. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -939,7 +939,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!ndefTag.isTagConnected()) {
         if (!ndefTag.connectTag()) {
-            console.log("ndefTag connectTag failed.");
+            console.error("ndefTag connectTag failed.");
             return;
         }
     }
@@ -947,9 +947,9 @@ function nfcTechDemo() {
     try {
         ndefTag.setReadOnly((err : BusinessError)=> {
             if (err) {
-                console.log("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("ndef setReadOnly AsyncCallback success.");
+                console.info("ndef setReadOnly AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -971,13 +971,13 @@ Converts an NFC Forum Type tag to a string defined in the NFC Forum.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| type | [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | Yes  | NDEF tag type. It can be NFC FORUM type 1, 2, 3, or 4.|
+| type | [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | Yes  | NDEF tag type. It can be NFC FORUM type 1, 2, 3, or 4. |
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | string | Byte array obtained.|
 
@@ -985,7 +985,7 @@ Converts an NFC Forum Type tag to a string defined in the NFC Forum.
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 
@@ -999,7 +999,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let ndefTypeString : string = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
-    console.log("ndef ndefTypeString: " + ndefTypeString);
+    console.info("ndef ndefTypeString: " + ndefTypeString);
 } catch (businessError) {
     console.error("ndef getNdefTagTypeString catch businessError Code: ${(businessError as Businsess).code}, " +
         "message: ${(businessError as Businsess).message}");
@@ -1028,23 +1028,23 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| sectorIndex | number | Yes  | Index of the sector to authenticate. The sector indexes start from **0**.|
-| key | number[]| Yes  | Key (6 bytes) used for sector authentication.|
+| sectorIndex | number | Yes  | Index of the sector to authenticate. The sector indexes start from **0**. |
+| key | number[]| Yes  | Key (6 bytes) used for sector authentication. |
 | isKeyA | boolean | Yes  | Whether the key is key A. The value **true** indicates key A, and **false** indicates key B.|
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1063,7 +1063,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1072,7 +1072,7 @@ function nfcTechDemo() {
         let sectorIndex = 1; // Change it as required.
         let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // The key must be of 6 bytes.
         mifareClassic.authenticateSector(sectorIndex, key, true).then(() => {
-            console.log("mifareClassic authenticateSector Promise success.");
+            console.info("mifareClassic authenticateSector Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
         });
@@ -1097,10 +1097,10 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| sectorIndex | number | Yes  | Index of the sector to authenticate. The sector indexes start from **0**.|
-| key | number[]| Yes  | Key (6 bytes) used for sector authentication.|
+| sectorIndex | number | Yes  | Index of the sector to authenticate. The sector indexes start from **0**. |
+| key | number[]| Yes  | Key (6 bytes) used for sector authentication. |
 | isKeyA | boolean | Yes  | Whether the key is key A. The value **true** indicates key A, and **false** indicates key B.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
@@ -1108,7 +1108,7 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1126,7 +1126,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1136,9 +1136,9 @@ function nfcTechDemo() {
         let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // The key must be of 6 bytes.
         mifareClassic.authenticateSector(sectorIndex, key, true, (err : BusinessError)=> {
             if (err) {
-                console.log("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
+                console.error("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareClassic authenticateSector AsyncCallback success.");
+                console.info("mifareClassic authenticateSector AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1162,13 +1162,13 @@ Reads a block (16 bytes) on this tag. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes  | Index of the block to read. The block indexes start from **0**.|
+| blockIndex | number | Yes  | Index of the block to read. The block indexes start from **0**. |
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | Promise\<number[]> | Promise used to return the block data read.|
 
@@ -1176,7 +1176,7 @@ Reads a block (16 bytes) on this tag. This API uses a promise to return the resu
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1195,7 +1195,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1203,7 +1203,7 @@ function nfcTechDemo() {
     try {
         let blockIndex = 1; // Change it as required.
         mifareClassic.readSingleBlock(blockIndex).then((data : number[]) => {
-            console.log("mifareClassic readSingleBlock Promise data: " + data);
+            console.info("mifareClassic readSingleBlock Promise data: " + data);
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
@@ -1228,16 +1228,16 @@ Reads a block (16 bytes) on this tag. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes  | Index of the block to read. The block indexes start from **0**.|
-| callback | AsyncCallback\<number[]> | Yes  |Callback used to return the block data read.|
+| blockIndex | number | Yes  | Index of the block to read. The block indexes start from **0**. |
+| callback | AsyncCallback\<number[]> | Yes  |Callback used to return the block data read. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1256,7 +1256,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1265,9 +1265,9 @@ function nfcTechDemo() {
         let blockIndex = 1; // Change it as required.
         mifareClassic.readSingleBlock(blockIndex, (err : BusinessError, data : number[])=> {
             if (err) {
-                console.log("mifareClassic readSingleBlock AsyncCallback err: " + err);
+                console.error("mifareClassic readSingleBlock AsyncCallback err: " + err);
             } else {
-                console.log("mifareClassic readSingleBlock AsyncCallback data: " + data);
+                console.info("mifareClassic readSingleBlock AsyncCallback data: " + data);
             }
         });
     } catch (businessError) {
@@ -1291,22 +1291,22 @@ Writes data to a block on this tag. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the target block. The block indexes start from **0**.|
-| data | number[] | Yes  | 16-byte data to write.|
+| data | number[] | Yes  | 16-byte data to write. |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1325,7 +1325,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1335,7 +1335,7 @@ function nfcTechDemo() {
         let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
         0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // It must be 16 bytes.
         mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
-            console.log("mifareClassic writeSingleBlock Promise success.");
+            console.info("mifareClassic writeSingleBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
@@ -1360,17 +1360,17 @@ Writes data to a block on this tag. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the target block. The block indexes start from **0**.|
-| data | number[] | Yes  | 16-byte data to write.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| data | number[] | Yes  | 16-byte data to write. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1389,7 +1389,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1400,10 +1400,10 @@ function nfcTechDemo() {
             0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // It must be 16 bytes.
         mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
             if (err) {
-                console.log("mifareClassic writeSingleBlock AsyncCallback err Code:" +
+                console.error("mifareClassic writeSingleBlock AsyncCallback err Code:" +
                 "${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareClassic writeSingleBlock AsyncCallback success.");
+                console.info("mifareClassic writeSingleBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1427,22 +1427,22 @@ Increments a block with the specified value and saves the result in a buffer for
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**.|
-| value | number | Yes  | Block data to increment. The value cannot be a negative number.|
+| blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**. |
+| value | number | Yes  | Block data to increment. The value cannot be a negative number. |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1461,7 +1461,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1470,7 +1470,7 @@ function nfcTechDemo() {
         let blockIndex = 1; // Change it as required.
         let value = 0x20; // Change it as required.
         mifareClassic.incrementBlock(blockIndex, value).then(() => {
-            console.log("mifareClassic incrementBlock Promise success.");
+            console.info("mifareClassic incrementBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -1495,17 +1495,17 @@ Increments a block with the specified value and saves the result in a buffer for
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**.|
-| value | number | Yes  | Block data to increment. The value cannot be a negative number.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**. |
+| value | number | Yes  | Block data to increment. The value cannot be a negative number. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1524,7 +1524,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1534,9 +1534,9 @@ function nfcTechDemo() {
         let value = 0x20; // Change it as required.
         mifareClassic.incrementBlock(blockIndex, value, (err : BusinessError)=> {
             if (err) {
-                console.log("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareClassic incrementBlock AsyncCallback success.");
+                console.info("mifareClassic incrementBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1560,22 +1560,22 @@ Decrements a block with the specified value and saves the result in a buffer for
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to decrement. The block indexes start from **0**.|
-| value | number | Yes  | Block data to decrement. The value cannot be a negative number.|
+| value | number | Yes  | Block data to decrement. The value cannot be a negative number. |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1594,7 +1594,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1603,7 +1603,7 @@ function nfcTechDemo() {
         let blockIndex = 1; // Change it as required.
         let value = 0x20; // Change it as required.
         mifareClassic.decrementBlock(blockIndex, value).then(() => {
-            console.log("mifareClassic decrementBlock Promise success.");
+            console.info("mifareClassic decrementBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
@@ -1628,17 +1628,17 @@ Decrements a block with the specified value. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to decrement. The block indexes start from **0**.|
-| value | number | Yes  | Block data to decrement. The value cannot be a negative number.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| value | number | Yes  | Block data to decrement. The value cannot be a negative number. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1657,7 +1657,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1670,7 +1670,7 @@ function nfcTechDemo() {
                 console.error("mifareClassic decrementBlock AsyncCallback errCode:" + 
                   "${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareClassic decrementBlock AsyncCallback success.");
+                console.info("mifareClassic decrementBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1694,7 +1694,7 @@ Transfers data from the temporary register to a block. This API uses a promise t
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes | Index of the block, to which data is transferred. The value starts form **0**.|
 
@@ -1702,13 +1702,13 @@ Transfers data from the temporary register to a block. This API uses a promise t
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1735,7 +1735,7 @@ function nfcTechDemo() {
     try {
         let blockIndex = 1; // Change it as required.
         mifareClassic.transferToBlock(blockIndex).then(() => {
-            console.log("mifareClassic transferToBlock Promise success.");
+            console.info("mifareClassic transferToBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -1760,16 +1760,16 @@ Transfers data from the temporary register to a block. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block, to which data is transferred. The value starts form **0**.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1788,7 +1788,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1800,7 +1800,7 @@ function nfcTechDemo() {
                 console.error("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}," +
                     "message: ${err.message}");
             } else {
-                console.log("mifareClassic transferToBlock AsyncCallback success.");
+                console.info("mifareClassic transferToBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1824,7 +1824,7 @@ Restores data in the temporary register from a block. This API uses a promise to
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block, from which data is restored. The value starts form **0**.|
 
@@ -1832,13 +1832,13 @@ Restores data in the temporary register from a block. This API uses a promise to
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1857,7 +1857,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }   
     }
@@ -1865,7 +1865,7 @@ function nfcTechDemo() {
     try {
         let blockIndex = 1; // Change it as required.
         mifareClassic.restoreFromBlock(blockIndex).then(() => {
-            console.log("mifareClassic restoreFromBlock Promise success.");
+            console.info("mifareClassic restoreFromBlock Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
@@ -1890,7 +1890,7 @@ Restores data in the temporary register from a block. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block, from which data is restored. The value starts form **0**.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
@@ -1899,7 +1899,7 @@ Restores data in the temporary register from a block. This API uses an asynchron
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -1918,7 +1918,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareClassic.isTagConnected()) {
         if (!mifareClassic.connectTag()) {
-            console.log("mifareClassic connectTag failed.");
+            console.error("mifareClassic connectTag failed.");
             return;
         }
     }
@@ -1927,10 +1927,10 @@ function nfcTechDemo() {
         let blockIndex = 1; // Change it as required.
         mifareClassic.restoreFromBlock(blockIndex, (err : BusinessError)=> {
             if (err) {
-                console.log("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}," +
+                console.error("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}," +
                     " message: ${err.message}");
             } else {
-                console.log("mifareClassic restoreFromBlock AsyncCallback success.");
+                console.info("mifareClassic restoreFromBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -1952,7 +1952,7 @@ Obtains the number of sectors in this MIFARE Classic tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number | Number of sectors obtained.|
 
@@ -1964,7 +1964,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'mifareClassic' correctly.
 let sectorCount : number = mifareClassic.getSectorCount();
-console.log("mifareClassic sectorCount: " + sectorCount);
+console.info("mifareClassic sectorCount: " + sectorCount);
 ```
 
 ### MifareClassicTag.getBlockCountInSector<sup>9+</sup>
@@ -1979,13 +1979,13 @@ Obtains the number of blocks in a sector.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | sectorIndex | number | Yes  | Index of the target sector. The sector indexes start from **0**.|
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number | Number of blocks obtained.|
 
@@ -1993,7 +1993,7 @@ Obtains the number of blocks in a sector.
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 
@@ -2008,7 +2008,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let sectorIndex = 1; // Change it as required.
     let blockCnt : number = mifareClassic.getBlockCountInSector(sectorIndex);
-    console.log("mifareClassic blockCnt: " + blockCnt);
+    console.info("mifareClassic blockCnt: " + blockCnt);
 } catch (businessError) {
     console.error("mifareClassic getBlockCountInSector catch businessError Code: ${(businessError as Businsess).code}, " +
         "message: ${(businessError as Businsess).message}");
@@ -2027,7 +2027,7 @@ Obtains the type of this MIFARE Classic tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9) | Type of the MIFARE Classic tag obtained.|
 
@@ -2038,7 +2038,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'mifareClassic' correctly.
 let getType : tag.MifareClassicType = mifareClassic.getType();
-console.log("mifareClassic getType: " + getType);
+console.info("mifareClassic getType: " + getType);
 ```
 
 ### MifareClassicTag.getTagSize<sup>9+</sup>
@@ -2053,7 +2053,7 @@ Obtains the size of this tag. For details, see [MifareClassicSize](js-apis-nfcTa
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | number | Tag size obtained, in bytes. For details, see [MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9).|
 
@@ -2065,7 +2065,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'mifareClassic' correctly.
 let tagSize : number = mifareClassic.getTagSize();
-console.log("mifareClassic tagSize: " + tagSize);
+console.info("mifareClassic tagSize: " + tagSize);
 ```
 
 ### MifareClassicTag.isEmulatedTag<sup>9+</sup>
@@ -2080,9 +2080,9 @@ Checks whether it is an emulated tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| boolean |Returns **true** if the tag is an emulated tag; returns **false** otherwise.|
+| boolean |Returns **true** if the tag is an emulated tag; returns **false** otherwise. |
 
 **Example**
 
@@ -2092,7 +2092,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'mifareClassic' correctly.
 let isEmulatedTag : boolean = mifareClassic.isEmulatedTag();
-console.log("mifareClassic isEmulatedTag: " + isEmulatedTag);
+console.info("mifareClassic isEmulatedTag: " + isEmulatedTag);
 ```
 
 ### MifareClassicTag.getBlockIndex<sup>9+</sup>
@@ -2107,21 +2107,21 @@ Obtains the index of the first block in a sector.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| sectorIndex | number | Yes  | Index of the target sector. The sector indexes start from **0**.|
+| sectorIndex | number | Yes  | Index of the target sector. The sector indexes start from **0**. |
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number | Index of the first block obtained.|
+| number | Index of the first block obtained. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 
@@ -2136,7 +2136,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let sectorIndex = 1; // Change it as required.
     let blockIndex : number = mifareClassic.getBlockIndex(sectorIndex);
-    console.log("mifareClassic blockIndex: " + blockIndex);
+    console.info("mifareClassic blockIndex: " + blockIndex);
 } catch (businessError) {
     console.error("mifareClassic getBlockIndex catch businessError Code: ${(businessError as Businsess).code}, " +
         "message: ${(businessError as Businsess).message}");
@@ -2155,21 +2155,21 @@ Obtains the index of the sector that holds the specified block.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes| Index of the block. The block indexes start from **0**.|
+| blockIndex | number | Yes | Index of the block. The block indexes start from **0**. |
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number | Index of the sector obtained.|
+| number | Index of the sector obtained. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 
@@ -2184,7 +2184,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let blockIndex = 1; // Change it as required.
     let sectorIndex : number = mifareClassic.getSectorIndex(blockIndex);
-    console.log("mifareClassic sectorIndex: " + sectorIndex);
+    console.info("mifareClassic sectorIndex: " + sectorIndex);
 } catch (businessError) {
     console.error("mifareClassic getSectorIndex catch businessError Code: ${(businessError as Businsess).code}, " +
        "message: ${(businessError as Businsess).message}");
@@ -2213,13 +2213,13 @@ Reads four pages of data (4 bytes per page) from this tag. This API uses a promi
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| pageIndex | number | Yes  | Index of the first page to read. The page indexes start from **0**.|
+| pageIndex | number | Yes  | Index of the first page to read. The page indexes start from **0**. |
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | Promise\<number[]> | Promise used to return the data read, which is 16 bytes in total.|
 
@@ -2227,7 +2227,7 @@ Reads four pages of data (4 bytes per page) from this tag. This API uses a promi
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -2247,7 +2247,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareUltralight.isTagConnected()) {
         if (!mifareUltralight.connectTag()) {
-            console.log("mifareUltralight connectTag failed.");
+            console.error("mifareUltralight connectTag failed.");
             return;
         }
     }
@@ -2255,7 +2255,7 @@ function nfcTechDemo() {
     try {
         let pageIndex = 1; // Change it as required.
         mifareUltralight.readMultiplePages(pageIndex).then((data : number[]) => {
-            console.log("mifareUltralight readMultiplePages Promise data = " + data);
+            console.info("mifareUltralight readMultiplePages Promise data = " + data);
         }).catch((err : BusinessError)=> {
             console.error("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
         });
@@ -2280,16 +2280,16 @@ Reads four pages of data (4 bytes per page) from this tag. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| pageIndex | number | Yes  | Index of the first page to read. The page indexes start from **0**.|
+| pageIndex | number | Yes  | Index of the first page to read. The page indexes start from **0**. |
 | callback | AsyncCallback\<number[]> | Yes  | Callback used to return the data read, which is 16 bytes in total.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -2308,7 +2308,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareUltralight.isTagConnected()) {
         if (!mifareUltralight.connectTag()) {
-            console.log("mifareUltralight connectTag failed.");
+            console.error("mifareUltralight connectTag failed.");
             return;
         }
     }
@@ -2319,7 +2319,7 @@ function nfcTechDemo() {
             if (err) {
             console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("mifareUltralight readMultiplePages AsyncCallback data: " + data);
+                console.info("mifareUltralight readMultiplePages AsyncCallback data: " + data);
             }
         });
     } catch (businessError) {
@@ -2343,22 +2343,22 @@ Writes one page (4 bytes) of data to this tag. This API uses a promise to return
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| pageIndex | number | Yes  | Index of the page to write. The page indexes start from **0**.|
-| data | number[] | Yes  | 4-byte data to write.|
+| pageIndex | number | Yes  | Index of the page to write. The page indexes start from **0**. |
+| data | number[] | Yes  | 4-byte data to write. |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -2377,7 +2377,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareUltralight.isTagConnected()) {
         if (!mifareUltralight.connectTag()) {
-            console.log("mifareUltralight connectTag failed.");
+            console.error("mifareUltralight connectTag failed.");
             return;
         }
     }
@@ -2386,7 +2386,7 @@ function nfcTechDemo() {
         let pageIndex = 1; // Change it as required.
         let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
         mifareUltralight.writeSinglePage(pageIndex, rawData).then(() => {
-            console.log("mifareUltralight writeSinglePage Promise success.");
+            console.info("mifareUltralight writeSinglePage Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -2411,17 +2411,17 @@ Writes one page (4 bytes) of data to this tag. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                    |
+| Name  | Type                   | Mandatory | Description                    |
 | -------- | ----------------------- | ---- | ------------------------ |
-| pageIndex | number | Yes  | Index of the page to write. The page indexes start from **0**.|
-| data | number[] | Yes  | 4-byte data to write.|
-| callback|AsyncCallback\<void> |Yes| Callback used to return the result.|
+| pageIndex | number | Yes  | Index of the page to write. The page indexes start from **0**. |
+| data | number[] | Yes  | 4-byte data to write. |
+| callback|AsyncCallback\<void> |Yes| Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -2440,7 +2440,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!mifareUltralight.isTagConnected()) {
         if (!mifareUltralight.connectTag()) {
-            console.log("mifareUltralight connectTag failed.");
+            console.error("mifareUltralight connectTag failed.");
             return;
         }
     }
@@ -2453,7 +2453,7 @@ function nfcTechDemo() {
                 console.error("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}," +
                     "message: ${err.message}");
             } else {
-                console.log("mifareUltralight writeSinglePage AsyncCallback success.");
+                console.info("mifareUltralight writeSinglePage AsyncCallback success.");
             }
         });
     } catch (businessError) {
@@ -2475,7 +2475,7 @@ Obtains the type of this MIFARE Ultralight tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9) | Type of the MIFARE Ultralight tag obtained.|
 
@@ -2486,7 +2486,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'mifareUltralight' correctly.
 let getType : tag.MifareUltralightType = mifareClassic.getType();
-console.log("mifareUltralight getType: " + getType);
+console.info("mifareUltralight getType: " + getType);
 ```
 
 ## NdefFormatableTag<sup>9+</sup>
@@ -2511,21 +2511,21 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. If this parameter is **null**, the tag is formatted only (no data will be written).|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. If this parameter is **null**, the tag is formatted only (no data will be written). |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -2544,7 +2544,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!ndefFormatable.isTagConnected()) {
         if (!ndefFormatable.connectTag()) {
-            console.log("ndefFormatable connectTag failed.");
+            console.error("ndefFormatable connectTag failed.");
             return;
         }
     }
@@ -2556,7 +2556,7 @@ function nfcTechDemo() {
         // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
         ndefFormatable.format(ndefMessage).then(() => {
-            console.log("ndefFormatable format Promise success.");
+            console.info("ndefFormatable format Promise success.");
         }).catch((err : BusinessError)=> {
             console.error("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
         });
@@ -2581,21 +2581,21 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only (no data will be written).|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only (no data will be written). |
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | Callback used to return the result.|
+| callback: AsyncCallback\<void> | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -2614,7 +2614,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!ndefFormatable.isTagConnected()) {
         if (!ndefFormatable.connectTag()) {
-            console.log("ndefFormatable connectTag failed.");
+            console.error("ndefFormatable connectTag failed.");
             return;
         }
     }
@@ -2626,13 +2626,13 @@ function nfcTechDemo() {
 
         ndefFormatable.format(ndefMessage, (err : BusinessError)=> {
             if (err) {
-                console.log("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
+                console.error("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("ndefFormatable format AsyncCallback success.");
+                console.info("ndefFormatable format AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.log("ndefFormatable format AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+        console.error("ndefFormatable format AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
             "message: ${(businessError as Businsess).message}");
     }
 }
@@ -2652,21 +2652,21 @@ Formats this tag as an NDEF tag, writes an NDEF message to it, and then sets the
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. If this parameter is **null**, the tag is formatted only (no data will be written).|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. If this parameter is **null**, the tag is formatted only (no data will be written). |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -2685,7 +2685,7 @@ function nfcTechDemo() {
     // Connect to the tag if it is not connected.
     if (!ndefFormatable.isTagConnected()) {
         if (!ndefFormatable.connectTag()) {
-            console.log("ndefFormatable connectTag failed.");
+            console.error("ndefFormatable connectTag failed.");
             return;
         }
     }
@@ -2697,9 +2697,9 @@ function nfcTechDemo() {
         // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
         ndefFormatable.formatReadOnly(ndefMessage).then(() => {
-            console.log("ndefFormatable formatReadOnly Promise success.");
+            console.info("ndefFormatable formatReadOnly Promise success.");
         }).catch((err : BusinessError)=> {
-            console.log("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
+            console.error("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
         console.error("ndefFormatable formatReadOnly Promise catch Code: ${(businessError as Businsess).code}, " +
@@ -2722,21 +2722,21 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. If this parameter is **null**, the tag is formatted only (no data will be written).|
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | Callback used to return the result.|
+| callback: AsyncCallback\<void> | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -2770,7 +2770,7 @@ function nfcTechDemo() {
             if (err) {
                 console.error("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
             } else {
-                console.log("ndefFormatable formatReadOnly AsyncCallback success.");
+                console.info("ndefFormatable formatReadOnly AsyncCallback success.");
             }
         });
     } catch (businessError) {

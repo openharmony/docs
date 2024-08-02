@@ -4222,15 +4222,15 @@ isImsSwitchEnabledSync\(slotId: number\): boolean
 
 **示例：**
 
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+<!--code_no_check-->
 
+```ts
 let slotId: number = 0;
 try {
     let isEnabled: boolean = call.isImsSwitchEnabledSync(slotId);
     console.log(`isImsSwitchEnabledSync success : ${isEnabled}`);
-} catch (err: BusinessError) {
-    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(err)}`);  
+} catch (error) {
+    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(error)}`);  
 }
 ```
 
@@ -4657,7 +4657,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 
 | 参数名      | 类型                         | 必填 | 说明                                       |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
+| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：*#*#2846579#*#*(工程菜单)。 |
 | callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回暗码广播的结果。              |
 
 **错误码：**
@@ -4678,7 +4678,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
+call.inputDialerSpecialCode('*#*#2846579#*#*', (err: BusinessError) => {
     if (err) {
         console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(err)}`);
     } else {
@@ -4703,7 +4703,7 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 
 | 参数名      | 类型                         | 必填 | 说明                                       |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
+| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：*#*#2846579#*#*(工程菜单)。 |
 
 **返回值：**
 
@@ -4730,7 +4730,7 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    call.inputDialerSpecialCode('2846579');
+    call.inputDialerSpecialCode('*#*#2846579#*#*');
     console.log(`inputDialerSpecialCode success`);
 } catch (error) {
     console.error(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);

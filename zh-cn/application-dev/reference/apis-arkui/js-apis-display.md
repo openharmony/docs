@@ -179,12 +179,12 @@ let promise = display.getAllDisplayPhysicalResolution();
 promise.then((resolutionObjects) => {
   console.info('Obtaining physical resolution length: ' + resolutionObjects.length);
   for (let i = 0; i < resolutionObjects.length; i++) {
-     console.info('resolutionObjects[' + i + '].foldDisplayMode: ' + resolutionObjects[i].foldDisplayMode);  
-     console.info('resolutionObjects[' + i + '].physicalWidth: ' + resolutionObjects[i].physicalWidth);  
-     console.info('resolutionObjects[' + i + '].physicalHeight: ' + resolutionObjects[i].physicalHeight);  
+     console.info(`resolutionObjects[${i}].foldDisplayMode: ${resolutionObjects[i].foldDisplayMode}`);
+     console.info(`resolutionObjects[${i}].physicalWidth: ${resolutionObjects[i].physicalWidth}`); 
+     console.info(`resolutionObjects[${i}].physicalHeight: ${resolutionObjects[i].physicalHeight}`); 
   }
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain physical resolution. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain physical resolution. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -257,7 +257,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -300,7 +300,7 @@ promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -860,7 +860,7 @@ let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
@@ -897,7 +897,7 @@ promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -927,7 +927,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -961,7 +961,7 @@ let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1029,7 +1029,7 @@ displayClass = display.getDefaultDisplaySync();
 displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
@@ -1069,7 +1069,7 @@ let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
 promise.then((data: display.CutoutInfo) => {
   console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1110,10 +1110,10 @@ try {
   promise.then((data) => {
     console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error('Failed to get the available area in this display. Code: ' + JSON.stringify(err));
+    console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
   })
 } catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1157,7 +1157,7 @@ try {
   displayClass = display.getDefaultDisplaySync();
   displayClass.on("availableAreaChange", callback);
 } catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1202,6 +1202,6 @@ try {
   displayClass = display.getDefaultDisplaySync();
   displayClass.off("availableAreaChange", callback);
 } catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```

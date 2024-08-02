@@ -21,6 +21,8 @@
     - [\@Concurrent Decorator: Declaring and Verifying Concurrent Functions](arkts-concurrent.md)
     - [Sendable Development](arkts-sendable.md)
     - [System Objects That Accessed Sendable](arkts-sendable-system-object-list.md)
+    - [ArkTS Asynchronous Lock](arkts-async-lock-introduction.md)
+    - [ArkTS Collections](arkts-collections-introduction.md)
     - [Sharable Module Development](arkts-sendable-module.md)
     - [Behavior Differences Between ArkTS Collections APIs and Native APIs](arkts-collections-vs-native-api-comparison.md)
 - Container
@@ -35,3 +37,5 @@
 - [Code Obfuscation](source-obfuscation.md)
 - Memory Management
   - [GC Introduction](gc-introduction.md)
+- Module Loading
+  - [Dynamically Loading a Native Module in Synchronous Mode](js-apis-load-native-module.md)

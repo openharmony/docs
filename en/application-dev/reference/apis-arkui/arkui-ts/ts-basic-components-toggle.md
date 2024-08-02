@@ -283,7 +283,7 @@ class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
     Circle({ width: 150, height: 150 })
       .fill(config.isOn ? (config.contentModifier as MySwitchStyle).selectedColor : Color.Blue)
     Row() {
-      Button ('Blue '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp)))
+      Button ('Blue '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(false);
         })
@@ -302,7 +302,7 @@ struct Index {
     Column({ space: 50 }) {
       Toggle({ type: ToggleType.Switch})
         .enabled(true)
-        .contentModifier (new MySwitchStyle (Color.Yellow, ''))
+        .contentModifier (new MySwitchStyle (Color.Yellow, 'light'))
         .onChange((isOn: boolean) => {
           console.info('Switch Log:' + isOn)
         })

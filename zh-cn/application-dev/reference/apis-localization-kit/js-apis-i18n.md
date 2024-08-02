@@ -5,6 +5,8 @@
 >  **说明：**
 >  - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+>  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。API version 12对应[CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42)，数据变化请参考官方链接。
+>
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 
 
@@ -131,14 +133,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLanguages failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
   ```
 
 ### getSystemCountries<sup>9+</sup>
@@ -257,14 +252,7 @@ static getSystemLanguage(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -285,14 +273,7 @@ static getSystemRegion(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemRegion: string = i18n.System.getSystemRegion(); // 获取系统当前地区设置
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemRegion: string = i18n.System.getSystemRegion(); // 获取系统当前地区设置
   ```
 
 ### getSystemLocale<sup>9+</sup>
@@ -313,14 +294,7 @@ static getSystemLocale(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLocale: string = i18n.System.getSystemLocale();  // 获取系统当前Locale
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLocale: string = i18n.System.getSystemLocale();  // 获取系统当前Locale
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -343,14 +317,7 @@ static is24HourClock(): boolean
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let is24HourClock: boolean = i18n.System.is24HourClock();  // 系统24小时开关是否开启
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.is24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let is24HourClock: boolean = i18n.System.is24HourClock();  // 系统24小时开关是否开启
   ```
 
 
@@ -372,14 +339,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getPreferredLanguageList failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
   ```
 
 ### getFirstPreferredLanguage<sup>9+</sup>
@@ -400,14 +360,7 @@ static getFirstPreferredLanguage(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getFirstPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
   ```
 
 ### setAppPreferredLanguage<sup>11+</sup>
@@ -465,14 +418,7 @@ static getAppPreferredLanguage(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   ```
 
 
@@ -494,14 +440,7 @@ static getUsingLocalDigit(): boolean
 
 **示例：**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let status: boolean = i18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let status: boolean = i18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   ```
 
 
