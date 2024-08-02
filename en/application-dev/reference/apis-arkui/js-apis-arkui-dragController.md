@@ -597,6 +597,7 @@ import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';
 import { UIContext } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
 
 
 let storages = LocalStorage.getShared();
@@ -609,6 +610,8 @@ struct DragControllerPage {
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -626,28 +629,30 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button('Drag Here').onDragEnter(() => {
-          try {
-            let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
-            let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
-            let foregroundColor: ResourceColor = Color.Green;
+      Button('Drag Here')
+        .margin(10)
+        .onDragEnter(() => {
+        try {
+          let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+          let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
+          let foregroundColor: ResourceColor = Color.Green;
 
-            let previewAnimation: dragController.AnimationOptions = {
-              curve: curves.cubicBezierCurve(0.2,0,0,1),
-            }
-            previewObj.animate(previewAnimation, () => {
-              previewObj.setForegroundColor(foregroundColor);
-            });
-          } catch (error) {
-            let msg = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
+          let previewAnimation: dragController.AnimationOptions = {
+            curve: curves.cubicBezierCurve(0.2,0,0,1),
           }
+          previewObj.animate(previewAnimation, () => {
+            previewObj.setForegroundColor(foregroundColor);
+          });
+        } catch (error) {
+          let msg = (error as BusinessError).message;
+          let code = (error as BusinessError).code;
+          hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
+        }
       })
-      .onDrop(() => {
-
-      })
-      Button ('Drag').onTouch ((event?:TouchEvent) => {
+        .onDrop(() => {
+          promptAction.showToast({duration: 100, message: 'Drag Success', bottom: 400})
+        })
+      Button('Drag').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
             let text = new UDC.Text()
@@ -657,22 +662,22 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
-              }
-              let eve:tmp = new tmp()
-              dragController.executeDrag(() => {
-                this.DraggingBuilder()
-              }, dragInfo, (err , eve) => {
-                hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
-                if (eve && eve.event) {
-                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    hilog.info(0x0000, 'success', '');
-                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                    hilog.info(0x0000, 'failed', '');
-                  }
+            class tmp{
+              event:DragEvent|undefined = undefined
+              extraParams:string = ''
+            }
+            let eve:tmp = new tmp()
+            dragController.executeDrag(() => {
+              this.DraggingBuilder()
+            }, dragInfo, (err , eve) => {
+              hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
+              if (eve && eve.event) {
+                if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  hilog.info(0x0000, 'success', '');
+                } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  hilog.info(0x0000, 'failed', '');
                 }
+              }
             })
           }
         }
@@ -682,3 +687,4 @@ struct DragControllerPage {
     .height('100%')
   }
 }
+  ```
