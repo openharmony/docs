@@ -45,7 +45,7 @@
         })
         .width('100%')
         .height('100%')
-        // 是否静音播放，此处由按钮控制，默认值为false静音播放。
+        // 是否静音播放，此处由按钮控制，默认值为false非静音播放。
         .muted(this.isMuted)
         // 视频显示模式，设置为Contain，默认值为Cover。
         .objectFit(ImageFit.Contain)
