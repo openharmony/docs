@@ -5874,6 +5874,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6166,6 +6167,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6456,6 +6458,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6602,6 +6605,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 

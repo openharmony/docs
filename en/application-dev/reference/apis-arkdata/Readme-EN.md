@@ -9,6 +9,7 @@
   - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.sendablePreferences (Sendable Preferences)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
+  - [@ohos.data.sendableRelationalStore (Shared RDB Store)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (Unified Data Channel)](js-apis-data-unifiedDataChannel.md)
   - [@ohos.data.unifiedDataChannel (Uniform Data Channel) (System API)](js-apis-data-unifiedDataChannel-sys.md)
   - [@ohos.data.uniformDataStruct (Uniform Data Structs)](js-apis-data-uniformDataStruct.md)
