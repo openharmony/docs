@@ -56,11 +56,11 @@ string库文件是C++标准库，影响头文件在C语言环境下正常使用�
 
 变更前：
 
-C++编译环境下开发者使用了raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，可以正常编译成功。
+C++编译环境下开发者使用了raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，可以编译成功。
 
 变更后：
 
-C++编译环境下开发者使用了raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，会出现编译不过的情况。
+C++编译环境下开发者使用了raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，会编译失败。
 
 **起始API Level**
 
