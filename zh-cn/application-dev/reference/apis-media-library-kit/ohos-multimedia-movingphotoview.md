@@ -56,7 +56,7 @@ muted(isMuted: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | 是   | 是否静音。<br/>默认值：false<br/>false：静音<br/>true：非静音 |
+| isMuted | boolean | 是   | 是否静音。<br/>默认值：false<br/>false：非静音<br/>true：静音 |
 
 ### objectFit
 
@@ -317,4 +317,3 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
-![movingphotoview](figures/movingphotoview.gif)
