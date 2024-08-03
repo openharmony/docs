@@ -1095,6 +1095,8 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | ALWAYS_ACTIVE | 一直有模糊效果。|
@@ -1104,6 +1106,8 @@ Nullable\<T> {
 ## BlurType<sup>13+</sup>
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
