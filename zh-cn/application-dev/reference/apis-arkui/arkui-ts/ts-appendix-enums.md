@@ -794,29 +794,6 @@ Nullable\<T> {
 | SELECTABLE_FOCUSABLE | 文本可选择，可获焦并Touch后获得焦点。 |
 | UNSELECTABLE     | 文本不可选择，不可获焦，设置属性selection、bindSelectionMenu、copyOption都不生效。  |
 
-## GestureJudgeResult<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称  | 描述                                   |
-| ----- | -------------------------------------- |
-| CONTINUE  | 不影响系统手势判定流程。|
-| REJECT  | 对于用户自定义的手势判定结果为失败。|
-
-## GestureType<sup>11+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称  | 描述                                   |
-| ----- | -------------------------------------- |
-| TAP_GESTURE   | 点击手势|
-| LONG_PRESS_GESTURE  | 长按手势|
-| PAN_GESTURE    | 拖动手势|
-| PINCH_GESTURE   | 捏合手势|
-| SWIPE_GESTURE    | 滑动手势|
-| ROTATION_GESTURE   | 旋转手势|
-| DRAG    | 拖拽|
-| CLICK   | 点击|
 ## FinishCallbackType<sup>11+</sup>
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -1085,16 +1062,6 @@ Nullable\<T> {
 | ---------- | ------------------------ | ------------------------ |
 | DEFAULT | 0 | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
 | PRESERVE_POSITION  | 1 | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
-
-## FocusPriority<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称          | 描述        |
-| ----------- | --------- |
-| AUTO | 默认的优先级，缺省时组件的获焦优先级。 |
-| PRIOR | 容器内优先获焦的优先级。优先级高于AUTO。 |
-| PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
 
 ## AppRotation<sup>12+</sup>
 
