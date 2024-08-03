@@ -413,6 +413,10 @@ getFrameNodeById(id: string): FrameNode | null
 | ---------------------------------------- | ------------- |
 | [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
 
+> **说明：**
+>
+> getFrameNodeById通过遍历节点树查询接口，性能较差。
+
 **示例：**
 
 ```ts
