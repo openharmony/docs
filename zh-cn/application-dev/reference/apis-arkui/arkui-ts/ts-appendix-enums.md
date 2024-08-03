@@ -843,6 +843,9 @@ Nullable\<T> {
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
+| policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：FOLLOWS_WINDOW_ACTIVE_STATE <br/> |
+| inactiveColor | ResourceColor | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。<br/> |
+| type | [BlurType](ts-appendix-enums.md#blurtype13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW<br/> |
 ## EllipsisMode<sup>11+</sup>
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
