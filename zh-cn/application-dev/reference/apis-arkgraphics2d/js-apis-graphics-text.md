@@ -348,7 +348,7 @@ loadFontSync(name: string, path: string | Resource): void
 | 参数名 | 类型               | 必填 | 说明                              |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
 | name  | string             | 是   | 加载成字体后，调用该字体所使用的命名。                                                |
-| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要导入的字体文件的路径，应为 "File:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
+| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要导入的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
 
 **示例：**
 
@@ -370,6 +370,54 @@ struct Index {
         this.fun();
       })
     }
+  }
+}
+```
+
+### loadFont<sup>14+</sup>
+
+loadFont(name: string, path: string | Resource): Promise\<void>
+
+使用指定的别名和文件路径加载对应字体，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+|   参数名 | 类型               | 必填 | 说明                              |
+|   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
+|   name   | string             | 是   | 该字体对应使用的别名，可填写任意值，可使用该别名指定并使用该字体。 |
+|   path   | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要加载的字体文件的路径，支持两种格式： "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+let fontCollection: text.FontCollection = new text.FontCollection();
+
+@Entry
+@Component
+struct RenderTest {
+  async loadFontPromise() {
+    fontCollection.loadFont('testName', 'file:///system/fonts/a.ttf').then((data) => {
+      console.info(`Succeeded in doing loadFont ${JSON.stringify(data)} `);
+    }).catch((error: Error) => {
+      console.error(`Failed to do loadFont, error: ${JSON.stringify(error)} message: ${error.message}`);
+    });
+  }
+
+  aboutToAppear() {
+    this.loadFontPromise();
+  }
+
+  build() {
   }
 }
 ```
@@ -491,6 +539,104 @@ layoutSync(width: number): void
 ```ts
 paragraph.layoutSync(100);
 ```
+
+### layout<sup>14+</sup>
+
+layout(width: number): Promise\<void>
+
+进行排版，计算所有字形的位置，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+|   参数名   |    类型               | 必填 | 说明                                    |
+|   -----   |   ------------------  | ---- | --------------------------------------- |
+|   width   | number                | 是   | 单行的最大宽度，取值范围为大于0的浮点数，单位为物理像素单位px。    |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { drawing, text } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit';
+
+let textStyle: text.TextStyle = {
+  color: {
+    alpha: 255,
+    red: 255,
+    green: 0,
+    blue: 0
+  },
+  fontSize: 30,
+};
+let paragraphStyle: text.ParagraphStyle = {
+  textStyle: textStyle,
+};
+let fontCollection: text.FontCollection = new text.FontCollection();
+let paragraphGraphBuilder = new text.ParagraphBuilder(paragraphStyle, fontCollection);
+// 添加文本字符串
+paragraphGraphBuilder.addText("test");
+// 生成排版对象
+let paragraph = paragraphGraphBuilder.build();
+
+function textFunc(pixelmap: PixelMap) {
+  // 通过图片对象构造画布
+  let canvas = new drawing.Canvas(pixelmap);
+  // 进行绘制文本字符串
+  paragraph.paint(canvas, 100, 10);
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixelmap?: PixelMap = undefined;
+  fun: Function = textFunc;
+
+  async prepareLayoutPromise() {
+    // 排版对象进行布局计算
+    paragraph.layout(200).then((data) => {
+      console.info(`Succeeded in doing layout,  ${JSON.stringify(data)}`);
+    }).catch((error: Error) => {
+      console.error(`Failed to do layout, error: ${JSON.stringify(error)} message: ${error.message}`);
+    });
+  }
+
+  aboutToAppear() {
+    this.prepareLayoutPromise();
+  }
+
+  build() {
+    Column() {
+      Image(this.pixelmap).width(200).height(200);
+      Button("layout")
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          if (this.pixelmap == undefined) {
+            // 构造图片对象
+            this.pixelmap = image.createPixelMapSync(color, opts);
+          }
+          // 进行绘制文字
+          this.fun(this.pixelmap);
+        })
+    }
+  }
+}
+```
+
+>**说明：**
+>
+>示意图展示了layout接口示例代码点击按钮之后的运行结果。
+>
+>![zh-ch_image_layout.png](figures/zh-ch_image_layout.png)
 
 ### paint
 
