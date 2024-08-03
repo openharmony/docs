@@ -4,15 +4,15 @@ The **Node** module provides level-2 module APIs of custom nodes to export and u
 
 * [BuilderNode](./js-apis-arkui-builderNode.md#buildernode) module: provides APIs for creating a BuilderNode – a custom node that can be used to mount native components. Avoid mounting a BuilderNode as a child node to other custom nodes.
 
-* [FrameNode](./js-apis-arkui-frameNode.md#framenode) module: provides APIs for a FrameNode, which represents an entity node in the component tree. It can be used by a [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) to mount a [BuilderNode](./js-apis-arkui-builderNode.md#buildernode) (that holds the to FrameNode) to a [\<NodeContainer>](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) or mount a [RenderNode](./js-apis-arkui-renderNode.md#rendernode) to another FrameNode.
+* [FrameNode](./js-apis-arkui-frameNode.md#framenode) module: provides APIs for a FrameNode, which represents an entity node in the component tree. It can be used by a [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) to mount a [BuilderNode](./js-apis-arkui-builderNode.md#buildernode) (that holds the FrameNode) to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) or mount a [RenderNode](./js-apis-arkui-renderNode.md#rendernode) to another FrameNode.
 
-* [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) module: provides APIs for managing custom nodes, such as creating, showing, and updating custom nodes, and APIs for mounting custom nodes to a [\<NodeContainer>](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+* [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) module: provides APIs for managing custom nodes, such as creating, showing, and updating custom nodes, and APIs for mounting custom nodes to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
 
 * [Graphics](./js-apis-arkui-graphics.md#graphics) module: provides APIs for defining attributes of a custom node.
 
 * [RenderNode](./js-apis-arkui-renderNode.md#rendernode) module: provides APIs for creating a RenderNode in custom drawing settings with C APIs.
 
-* [XComponentNode](./js-apis-arkui-xcomponentNode.md#xcomponentnode) module: provides APIs a XComponentNode – a **\<XComponent>** in the component tree. You can write EGL/OpenGL ES and media data and display it on the **\<XComponent>**, whose rendering type can be dynamically modified.
+* [XComponentNode](./js-apis-arkui-xcomponentNode.md#xcomponentnode) module: provides APIs a XComponentNode, an **XComponent** in the component tree. You can write EGL/OpenGL ES and media data and display it on the **XComponent**, whose rendering type can be dynamically modified.
 
 > **NOTE**
 >
