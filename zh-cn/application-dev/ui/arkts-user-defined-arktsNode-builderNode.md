@@ -37,6 +37,12 @@ BuilderNode对象为一个模板类，需要在创建的时候指定类型。该
 > **说明：**
 >
 > 无状态的UI方法全局@Builder最多拥有一个根节点。
+>
+> build方法中对应的@Builder支持一个参数作为入参。
+>
+> build中对于@Builder嵌套@Builder进行使用的场景，需要保证嵌套的参数与build的中提供的入参一致。
+> 
+> 对于@Builder嵌套@Builder进行使用的场景，如果入参类型不一致，则要求增加[BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12)字段作为[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build12)的入参。
 
 创建离线节点以及原生组件树，结合FrameNode进行使用。
 
@@ -180,6 +186,8 @@ struct Index {
 
 
 使用update更新BuilderNode中的节点。
+
+使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)触发BuilderNode中节点的全量更新。
 
 更新BuilderNode中的节点。
 
