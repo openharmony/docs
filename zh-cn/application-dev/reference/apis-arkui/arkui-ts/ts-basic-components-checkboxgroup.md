@@ -116,7 +116,7 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
+| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
 
 ### checkboxShape<sup>12</sup>
 
@@ -180,14 +180,6 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 | All   | 群组多选择框全部选择。 |
 | Part  | 群组多选择框部分选择。 |
 | None  | 群组多选择框全部没有选择。 |
-
-## MarkStyle<sup>10+</sup>对象说明
-
-| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
-| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
-| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框群组组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## 示例
 
