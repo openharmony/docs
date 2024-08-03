@@ -439,7 +439,7 @@ struct ChipPage {
   build() {
     Column() {
       Chip({
-        direction: Direction.Auto,
+        direction: Direction.Rtl,
         prefixIcon: {
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
