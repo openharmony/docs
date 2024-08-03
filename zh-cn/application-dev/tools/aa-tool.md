@@ -68,7 +68,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 以隐式启动Ability为例。
   > **说明：**
   > 
-  > 本例中仅介绍了部分字段的使用。关于Ability匹配的详细规则参考[显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)**。
+  > 本例中仅介绍了部分字段的使用。关于Ability匹配的详细规则参考[显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)。
 
 
 1. 修改module.json5配置，为目标Ability配置uris。
@@ -79,13 +79,15 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
         "exported": true,
         "skills": [
           {
+            "actions":[
+              "ohos.want.action.viewData"
+            ],
             "uris":[
               {
                 "scheme": "https",
                 "host": "www.test.com",
                 "port": "8080",
                 "path": "path",
-                "type": "text/plain"
               }
             ]
           }
@@ -95,16 +97,10 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 2. 隐式启动Ability。
 
 
-    - 直接使用-U命令启动。
+    - 使用-U命令启动。
 
         ```bash
         aa start -U https://www.test.com:8080/path
-        ```
-
-    - 如果需要通过类型进行匹配，则需要使用-t字段。
-  
-        ```bash
-        aa start -U https://www.test.com:8080/path -t text/plain
         ```
 
     - 如果启动时需要携带参数，可以使用如下命令。
