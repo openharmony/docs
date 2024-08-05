@@ -684,6 +684,19 @@
 | MIN_FONT_SIZE_FIRST     | 设置文本高度自适应方式为以缩小字体优先。     |
 | LAYOUT_CONSTRAINT_FIRST | 设置文本高度自适应方式为以布局约束（高度）优先。 |
 
+## NestedScrollMode<sup>10+</sup>枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                             |
+| ------ | ------------------------------ |
+| SELF_ONLY   | 只自身滚动，不与父组件联动。  |
+| SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
+| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
+
 ## ObscuredReasons<sup>10+</sup>
 
 该接口支持在ArkTS卡片中使用。
@@ -1104,3 +1117,22 @@ Nullable\<T> {
 | ------- | ---- | ---------------------------------- |
 | BACKWARD | 0    | 向后删除。 |
 | FORWARD    | 1    | 向前删除。 |
+
+## ScrollSource<sup>12+</sup>枚举说明
+
+滑动操作的来源。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     |  枚举值  | 描述                                       |
+| ------ | ------ | ---------------------------------------- |
+| DRAG   |  0  | 拖拽事件。 |
+| FLING |  1  | 拖拽结束之后的惯性滑动。 |
+| EDGE_EFFECT  |  2  | EdgeEffect.Spring的边缘滚动效果。 |
+| OTHER_USER_INPUT  |  3  | 除拖拽外的其他用户输入，如鼠标滚轮、键盘事件等。 |
+| SCROLL_BAR  |  4  | 滚动条的拖拽事件。 |
+| SCROLL_BAR_FLING  |  5  | 滚动条拖拽结束后的带速度的惯性滑动。 |
+| SCROLLER  |  6  | Scroller的不带动效方法。 |
+| SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |

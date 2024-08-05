@@ -20,6 +20,8 @@ Refresh(value: RefreshOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -27,6 +29,8 @@ Refresh(value: RefreshOptions)
 | value |  [RefreshOptions](#refreshoptions对象说明)| 是 | 刷新组件参数。 |
 
 ## RefreshOptions对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数         | 参数名                                      | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -138,6 +142,8 @@ onOffsetChange(callback: Callback\<number>)
 ## RefreshStatus枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 值       | 描述                   |
 | -------- | -------- | -------------------- |

@@ -18,6 +18,8 @@ ScrollBar(value: ScrollBarOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -27,6 +29,8 @@ ScrollBar(value: ScrollBarOptions)
 ## ScrollBarOptions对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -45,6 +49,8 @@ ScrollBar(value: ScrollBarOptions)
 ## ScrollBarDirection枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
