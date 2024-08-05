@@ -45,7 +45,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
          createIfMissing: true,
          encrypt: true,
          backup: false,
-         autoSync: true,
+         autoSync: false,
          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
          securityLevel: distributedKVStore.SecurityLevel.S1
        };

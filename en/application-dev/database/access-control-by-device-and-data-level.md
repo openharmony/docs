@@ -15,9 +15,9 @@ The data can be rated into four security levels: S1, S2, S3, and S4.
   | Risk Level| Security Level| Definition| Example| 
 | -------- | -------- | -------- | -------- |
 | Critical| S4 | Special data types defined by industry laws and regulations, involving the most private individual information or data that may cause severe adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information| 
-| High| S3 | Data that may cause critical adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Individual real-time precise positioning information and movement trajectory| 
-| Moderate| S2 | Data that may cause major adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Detailed addresses and nicknames of individuals| 
-| Low| S1 | Data that may cause minor adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Gender, nationality, and user application records| 
+| High | S3 | Data that may cause critical adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed. | Individual real-time precise positioning information and movement trajectory | 
+| Moderate | S2 | Data that may cause major adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed. | Detailed addresses and nicknames of individuals | 
+| Low | S1 | Data that may cause minor adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed. | Gender, nationality, and user application records | 
 
 
 ### Device Security Levels
@@ -77,7 +77,7 @@ try {
       createIfMissing: true,
       encrypt: true,
       backup: false,
-      autoSync: true,
+      autoSync: false,
       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
       securityLevel: distributedKVStore.SecurityLevel.S1
     };
