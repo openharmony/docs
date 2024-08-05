@@ -42,7 +42,7 @@ hilog命令行使用方式：
 | -T | --Tag | &lt;tag&gt; | 指定tag。 | 
 | -a | --head | &lt;n&gt; | 只显示前&lt;n&gt;行日志。 | 
 | -z | --tail | &lt;n&gt; | 只显示后&lt;n&gt;行日志。 | 
-| -P | --pid | &lt;pid&gt; | 标识不同的pid。 | 
+|<!--DelRow--> -P | --pid | &lt;pid&gt; | 标识不同的pid。 | 
 | -e | --regex | &lt;expr&gt; | 只打印日志消息与&lt;expr&gt;匹配的行，其中&lt;expr&gt;是一个正则表达式。 | 
 | -f | --filename | &lt;filename&gt; | 设置落盘的文件名。 | 
 | -l | --length | &lt;length&gt; | 设置落盘的文件大小，需要大于等于64K。 | 
