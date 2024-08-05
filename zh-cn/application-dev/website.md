@@ -1348,11 +1348,11 @@
       - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
       - [多线程能力场景化](performance/multi_thread_capability.md)
       - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
-      - [避免开发过程中的冗余操作](performance/avoiding-redundant-operations.md)      
-      - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](performance/native_drawing_substitute_canvas.md)
+      - [避免开发过程中的冗余操作](performance/avoiding-redundant-operations.md)    
       - [使用AOT进行性能优化](performance/performance-optimization-using-aot.md)
       - [线程间通信场景](performance/thread_communication.md)
       - [ArrayBuffer序列化和转移](performance/thread_data_transfer.md)
+      - [高负载场景下线程优先级设置防止关键线程被打断](performance/qos-protect-critical-threads.md)
     - 减少卡顿丢帧
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
       - [组件复用使用指导](performance/component-recycle.md)
@@ -1370,6 +1370,7 @@
       - [合理使用系统提供的接口](performance/reasonable_using_system_interfaces.md)
       - [避免在主线程中执行耗时操作](performance/avoid_time_consuming_operations_in_mainthread.md)
       - [模糊场景性能优化](performance/fuzzy_scene_performance_optimization.md)
+      - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](performance/native_drawing_substitute_canvas.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
