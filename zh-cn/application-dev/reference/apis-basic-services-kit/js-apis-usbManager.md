@@ -510,13 +510,17 @@ let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[
 let ret: number = usbManager.getFileDescriptor(devicepipe);
 ```
 
-## usbManager.controlTransfer
+## usbManager.controlTransfer<sup>(deprecated)</sup>
 
 controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt;
 
 控制传输。
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+
+**说明：**
+
+> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [usbControlTransfer](#usbControlTransfer) 替代。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -572,6 +576,71 @@ usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 usbManager.controlTransfer(devicepipe, param).then((ret: number) => {
  console.log(`controlTransfer = ${ret}`);
+})
+```
+
+## usbManager.usbControlTransfer
+
+usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout ?: number): Promise&lt;number&gt;
+
+控制传输。
+
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+
+**系统能力：**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
+| requestparam | [USBDeviceRequestParams](#USBDeviceRequestParams) | 是 | 控制传输参数。 |
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
+
+**示例：**
+
+```ts
+class PARA {
+  bmRequestType: number = 0
+  bRequest: number = 0
+  wValue: number = 0
+  wIndex: number = 0
+  wLength: number = 0
+  data: Uint8Array = new Uint8Array()
+}
+
+let param: PARA = {
+  bmRequestType: 0,
+  bRequest: 0,
+  wValue:0,
+  wIndex: 0,
+  wLength: 0,
+  data: new Uint8Array()
+};
+
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+usbManager.usbControlTransfer(devicepipe, param).then((ret: number) => {
+ console.log(`usbControlTransfer = ${ret}`);
 })
 ```
 
@@ -771,6 +840,21 @@ USB设备消息传输通道，用于确定设备。
 | reqType | [USBControlRequestType](#usbcontrolrequesttype) | 是   |请求控制类型。          |
 | value   | number                                          | 是   |请求参数。            |
 | index   | number                                          | 是   |请求参数value对应的索引值。 |
+| data    | Uint8Array                                      | 是   |用于写入或读取的缓冲区。     |
+
+## USBDeviceRequestParams
+
+控制传输参数。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称      | 类型                                            | 必填               |说明               |
+| ------- | ----------------------------------------------- | ---------------- |---------------- |
+| bmRequestType | number                                    | 是   |请求控制类型。            |
+| bRequest  | number                                        | 是   |请求类型。          |
+| wValue | number                                           | 是   |请求参数。          |
+| wIndex   | number                                         | 是   |请求参数value对应的索引值。            |
+| wLength   | number                                        | 是   |请求数据的长度 |
 | data    | Uint8Array                                      | 是   |用于写入或读取的缓冲区。     |
 
 ## USBRequestTargetType
