@@ -562,7 +562,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 
 **说明：**
 
-将资源句柄（fd）传递给媒体播放器之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个媒体播放器。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致播放异常。
+将资源句柄（fd）传递给媒体播放器之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVMetadataExtractor / AVImageGenerator / AVPlayer。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致播放异常。
 
 ### on('stateChange')<sup>9+</sup>
 
@@ -4370,6 +4370,10 @@ avTranscoder.off('complete');
 | fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> 当应用从远端获取音视频媒体文件，在应用未下载完整音视频资源时，可以设置dataSrc提前获取该资源的元数据。|
 
+**说明：**
+
+将资源句柄（fd）传递给 AVMetadataExtractor 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVMetadataExtractor / AVImageGenerator / AVPlayer。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频元数据获取异常。
+
 ### fetchMetadata<sup>11+</sup>
 
 fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
@@ -6632,6 +6636,10 @@ media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+
+**说明：**
+
+将资源句柄（fd）传递给 AVImageGenerator 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVMetadataExtractor / AVImageGenerator / AVPlayer。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频缩略图获取异常。
 
 ### fetchFrameByTime<sup>12+</sup>
 
