@@ -44,9 +44,9 @@ import fileShare from '@ohos.fileshare';
 
 | 名称      | 类型                                   | 必填 | 说明                |
 |---------|--------------------------------------|-----|-----------------------|
-| uri     | string                               | 否  | 授予或使能权限失败的URI。         |
-| code    | [PolicyErrorCode](#policyerrorcode11) | 否  | 授权策略失败的URI对应的错误码。 |
-| message | string                               | 否   | 授权策略失败的URI对应的原因。  |
+| uri     | string                               | 是  | 授予或使能权限失败的URI。         |
+| code    | [PolicyErrorCode](#policyerrorcode11) | 是  | 授权策略失败的URI对应的错误码。 |
+| message | string                               | 是   | 授权策略失败的URI对应的原因。  |
 
 ## PolicyInfo<sup>11+</sup>
 
