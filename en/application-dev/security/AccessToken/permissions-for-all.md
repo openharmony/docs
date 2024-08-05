@@ -353,6 +353,16 @@ Allows an application to support persistent access to file URIs.
 
 **Valid since**: 11
 
+### ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
+
+Allows an application to access the car distributed engine.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 12
+
 ## user_grant Permissions
 
 The [user_grant permissions](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).

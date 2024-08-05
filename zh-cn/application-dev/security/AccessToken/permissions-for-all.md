@@ -353,6 +353,16 @@
 
 **起始版本**：11
 
+### ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
+
+允许应用访问出行分布式业务引擎。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：12
+
 ## user_grant（用户授权）权限列表
 
 以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) 。
