@@ -635,6 +635,24 @@ maxFontScale(scale: number | Resource)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
+### halfLeading<sup>12+</sup>
+
+halfLeading(halfLeading: boolean)
+
+设置文本是否将行间距平分至行的顶部与底部。
+
+组件侧设置halfLeading优先级高于module.json5配置文件中的halfLeading配置项。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -891,7 +909,7 @@ struct TextExample2 {
 
 ### 示例3
 
-textShadow，heightAdaptivePolicy，TextOverflow.MARQUEE使用示例：
+textShadow、heightAdaptivePolicy、TextOverflow.MARQUEE使用示例
 
 ```ts
 @Extend(Text)
@@ -910,7 +928,7 @@ function style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {
 @Component
 struct TextExample3 {
   build() {
-    Column({ space: 8 }) {
+    Column() {
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       // 设置文字阴影效果
       Text('textShadow')
@@ -1441,3 +1459,33 @@ struct TextExample11 {
 ```
 
 ![textEditMenuOptions](figures/textEditMenuOptions.gif)
+
+### 示例12
+
+halfLeading使用示例。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample12 {
+  build() {
+    Column({ space: 10 }) {
+      // 设置文本是否居中对齐
+      Text('halfLeading').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Text("This is the text with the halfLeading set.")
+        .lineHeight(60)
+        .halfLeading(true)
+        .borderWidth(1)
+        .width('80%')
+      Text("This is the text without the halfLeading set.")
+        .lineHeight(60)
+        .halfLeading(false)
+        .borderWidth(1)
+        .width('80%')
+    }
+  }
+}
+```
+
+![textHalfLeading](figures/textHalfLeading.PNG)
