@@ -180,7 +180,7 @@ static napi_value lowQoSCalculate(napi_env env, napi_callback_info info) {
  
 
 ```c++
-static napi_value lowQoSCalculate(napi_env env, napi_callback_info info) {
+static napi_value highQoSCalculate(napi_env env, napi_callback_info info) {
     g_durationTime = 0;
     // 开启TASKS个线程模拟系统负载
     if (!g_addLoad) {
