@@ -90,7 +90,7 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 
 ## maskShape<sup>12+</sup>
 
-mask(value: CircleShape | EllipseShape | PathShape | RectShape)
+maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 为组件上添加指定形状的遮罩。
 

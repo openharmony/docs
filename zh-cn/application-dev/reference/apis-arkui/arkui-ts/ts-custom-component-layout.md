@@ -164,7 +164,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
  getMargin() : DirectionalEdgesT\<number\>
 
- 获取子组件的padding信息。
+ 获取子组件的margin信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
