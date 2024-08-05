@@ -249,6 +249,22 @@ enterKeyType(value: EnterKeyType)
 | ------ | ------ | ---- | ----------------------------------- |
 | value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
+### enableKeyboardOnFocus<sup>13+</sup>
+
+enableKeyboardOnFocus(isEnabled: boolean)
+
+设置RichEditor通过点击以外的方式获焦时，是否绑定输入法。
+
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------- | ---- | ----------------------------------------------------------- |
+| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
 
 ## 事件
 
