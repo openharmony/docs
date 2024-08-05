@@ -1171,6 +1171,42 @@ let array2 = new collections.Array(7, 8, 9);
 let concatArray = array.concat(array1, array2); // concatArray的内容为：[1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
+### [index: number]
+
+&#91;index: number&#93;: T
+
+返回Array指定索引位置的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 参数名    | 类型   | 必填 | 说明                                                            |
+| ----- | ------ | ---- | ------------------------------------------------------------------ |
+| index | number | 是   | 所需代码单元的从零开始的索引。当index<0 或者index>=length，则会抛出错误。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ----- | ------------------------ |
+|   T   | Array给定的元素数据类型。  |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                             |
+| ------- | ------------------------------------ |
+| 401 |        Parameter error.                  |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let array = new collections.Array<number>(1, 2, 4);
+console.info("Element at index 1: ", array[1]);
+```
+
 ## collections.Map
 
 一种非线性数据结构。
@@ -3362,4 +3398,41 @@ let iterator: IterableIterator<number> = array.values();
 for (const value of iterator) {
   console.info("" + value); // 依次输出 1,2,3,4,5
 }
+```
+
+### [index: number]
+
+&#91;index: number&#93;: number
+
+返回TypedArray指定索引位置的元素，适用于Int8Array，Int16Array，Int32Array，Uint8Array，Uint16Array，Uint32Array 6种数据类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 参数名    | 类型   | 必填 | 说明                     |
+| ----- | ------ | ---- | -------------------------- |
+| index | number | 是   | 所需代码单元的从零开始的索引。|
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ----- | ---------------------|
+| number | 返回number数据类型。 |
+
+**示例：**
+
+```ts
+let int8Array = collections.Int8Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int8Array[1]);
+let int16Array = collections.Int16Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int16Array[1]);
+let int32Array = collections.Int32Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int32Array[1]);
+let uint8Array = collections.Uint8Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint8Array[1]);
+let uint16Array = collections.Uint16Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint16Array[1]);
+let uint32Array = collections.Uint32Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint32Array[1]);
 ```
