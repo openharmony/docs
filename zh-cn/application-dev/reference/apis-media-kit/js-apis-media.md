@@ -4348,7 +4348,7 @@ avTranscoder.off('complete');
 | audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为源音频码率|
 | audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 是  | 输出音频的编码格式，当前仅支持AAC。                   |
 | fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出音视频文件的封装格式，当前音频文件仅支持M4A，视频文件仅支持MP4。|
-| videoBitrate         | number | 否 |  否   | 输出视频的码率，单位为比特率（bps）。|
+| videoBitrate         | number | 否 |  是   | 输出视频的码率，单位为比特率（bps）。|
 | videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。|
 | videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px）。用户不设置，则默认设置为源视频帧的宽|
 | videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px）。用户不设置，则默认设置为源视频帧的高|
