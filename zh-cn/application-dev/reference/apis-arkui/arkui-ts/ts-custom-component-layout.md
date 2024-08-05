@@ -170,7 +170,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
  getMargin() : DirectionalEdgesT\<number\>
 
- 获取子组件的padding信息。
+ 获取子组件的margin信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
