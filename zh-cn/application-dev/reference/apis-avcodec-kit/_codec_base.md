@@ -16,7 +16,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | 名称                                                         | 描述                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------ |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。                     |
-| [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。  <!--Del-->（此规格暂未开放）<!--DelEnd-->  |
 | [OH_AVCODEC_MIMETYPE_AUDIO_AAC](#oh_avcodec_mimetype_audio_aac) | AAC音频编解码器的MIME类型。                            |
 | [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](#oh_avcodec_mimetype_audio_flac) | FLAC音频编解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。                           |
@@ -224,7 +223,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | 名称 | 描述 | 
 | -------- | -------- |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。 |
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。  <!--Del-->（此规格暂未开放）<!--DelEnd-->    |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AAC](#oh_avcodec_mimetype_audio_aac) | AAC音频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](#oh_avcodec_mimetype_audio_flac) | FLAC音频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。 |
@@ -1446,19 +1444,6 @@ AVC(H.264)视频编解码器的MIME类型。
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 9
-
-
-### OH_AVCODEC_MIMETYPE_VIDEO_VVC
-
-```
-const char* OH_AVCODEC_MIMETYPE_VIDEO_VVC
-```
-**描述**
-VVC(H.266)视频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->
-
-**系统能力：** SystemCapability.Multimedia.Media.CodecBase
-
-**起始版本：** 12
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_HEVC
