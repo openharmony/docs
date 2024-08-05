@@ -803,7 +803,7 @@ Defines the resolution to use when a conflict occurs during data insertion or mo
 
 ## Progress<sup>10+</sup>
 
-Enumerates the device-cloud sync progresses. Use the enum name rather than the enum value.
+Enumerates the stages in the device-cloud sync progress. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
