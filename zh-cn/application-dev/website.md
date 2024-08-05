@@ -395,13 +395,13 @@
             - [多层级手势事件](ui/arkts-gesture-events-multi-level-gesture.md)
         - 使用自定义能力<!--arkts-user-defined-capabilities-->
           - [自定义能力概述](ui/arkts-user-defined.md)
-          - 自定义节点<!--arkts-user-defined-nodes-->
+          - 自定义节点<!--arkts-nodes-->
             - [自定义节点概述](ui/arkts-user-defined-node.md)
             - [自定义占位节点](ui/arkts-user-defined-place-hoder.md)
             - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
-          - 自定义扩展<!--arkts-user-defined-modifier-->
+          - 自定义扩展<!--arkts-modifier-->
             - [自定义扩展概述](ui/arkts-user-defined-modifier.md)
             - [AttributeModifier](ui/arkts-user-defined-extension-attributeModifier.md)
             - [AttributeUpdater](ui/arkts-user-defined-extension-attributeUpdater.md)
@@ -530,6 +530,7 @@
         - [拦截Web组件发起的网络请求](web/web-scheme-handler.md)
         - [自定义页面请求响应](web/web-resource-interception-request-mgmt.md)
         - [加速Web页面的访问](web/web-predictor.md)
+        - [Web组件在不同窗口间迁移](web/web-component-migrate.md)
       - 管理网页文件上传与下载<!--web-manage-upload-download-->
         - [上传文件](web/web-file-upload.md)
         - [使用Web组件的下载能力](web/web-download.md)
