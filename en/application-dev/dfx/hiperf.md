@@ -73,12 +73,6 @@ The **record** command samples the specified application and saves the sampling 
 Usage: hiperf record [options] [command [command-args]] 
 ```
 
-Sample all processes in the system for 3 seconds and display detailed log information.
-
-```
-hiperf record -d 3 -a --verbose
-```
-
 Sample the process whose PID is 267 for 10 seconds and use DWARF for backtracking.
 
 ```
@@ -140,7 +134,7 @@ hiperf dump --help
 The **report** command displays the sampling data (read from **perf.data**) and converts it to the required format (for example, JSON or ProtoBuf).
 
 ```
-Usage: hiperf dump [option] \<filename\>
+Usage: hiperf report [option] \<filename\>
 ```
 
 Output a common report, with the minimum display percentage of 1%.
