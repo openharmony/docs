@@ -218,7 +218,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 - Components or UI descriptions irrelevant to the state variable are not re-rendered, thereby implementing on-demand page updates.
 
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Decorating Variables of Simple Types
@@ -649,3 +649,118 @@ export class Model {
 ```
 
 In the preceding example, the state variable is changed through a method of the class. After the button is clicked, the page content changes from "failed" to "success."
+
+### A State Variable Causes a Re-render of Merely the Bound UI Component
+
+Example 1
+
+```ts
+class Parent {
+  son: string = '000';
+}
+
+@Entry
+@Component
+struct Test {
+  @State son: string = '111';
+  @State parent: Parent = new Parent();
+
+  aboutToAppear(): void {
+    this.parent.son = this.son;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.son}`);
+      Text(`${this.parent.son}`);
+      Button('change')
+        .onClick(() => {
+          this.parent.son = '222';
+        })
+    }
+  }
+}
+```
+
+In the preceding example, clicking **Button('change')** changes the second-line text from **'111'** to **'222'**, but does not change the first-line text. This is because **son** is of the primitive string type, for which a shallow copy is performed. In shallow copy, clicking the button changes the value of **son** in **parent**, but the value of **this.son** remains unchanged.
+
+Example 2
+
+```ts
+class Son {
+  son: string = '000';
+
+  constructor(son: string) {
+    this.son = son;
+  }
+}
+
+class Parent {
+  son: Son = new Son('111');
+}
+
+@Entry
+@Component
+struct Test {
+  @State son: Son = new Son('222');
+  @State parent: Parent = new Parent();
+
+  aboutToAppear(): void {
+    this.parent.son = this.son;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.son.son}`);
+      Text(`${this.parent.son.son}`);
+      Button('change')
+        .onClick(() => {
+          this.parent.son.son = '333';
+        })
+    }
+  }
+}
+```
+
+In the preceding example, a reference of **son** is assigned to the **son** property of **parent** in **aboutToAppear**. In this case, if you click the button to change the property in **son**, the first **Text** component is re-rendered, but not the second **Text** component, which is unable to observe changes at the second layer.
+
+Example 3
+
+```ts
+class Son {
+  son: string = '000';
+
+  constructor(son: string) {
+    this.son = son;
+  }
+}
+
+class Parent {
+  son: Son = new Son('111');
+}
+
+@Entry
+@Component
+struct Test {
+  @State son: Son = new Son('222');
+  @State parent: Parent = new Parent();
+
+  aboutToAppear(): void {
+    this.parent.son = this.son;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.son.son}`);
+      Text(`${this.parent.son.son}`);
+      Button('change')
+        .onClick(() => {
+          this.parent.son = new Son('444');
+          this.parent.son.son = '333';
+        })
+    }
+  }
+}
+```
+
+In the preceding example, clicking **Button('change')** changes the second-line text from **'222'** to **'333'**, but does not change the first-line text. This is because **this.parent.son = new Son('444')'** is executed after the button is clicked, which means that a **Son** object is created, and then **this.parent.son.son = '333'** is executed. As a result, clicking the button changes the value of **son** in the new **Son** object, and the one in the original Son object is not affected.
