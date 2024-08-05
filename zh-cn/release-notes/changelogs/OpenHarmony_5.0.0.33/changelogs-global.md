@@ -59,6 +59,8 @@ raw_file模块引用了string头文件，string头文件是C++标准库文件，
 C++编译环境下开发者使用了raw_file.h头文件，但开发者没有引用string头文件，调用了"std::string"等string库函数，可以编译成功。
 
 ```
+#include <rawfile/raw_file.h>
+
 static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value argv[2] = {NULL};
@@ -79,6 +81,8 @@ static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
 C++编译环境下开发者使用了raw_file.h头文件，但开发者没有引用string头文件，调用了"std::string"等string库函数，会编译失败。
 
 ```
+#include <rawfile/raw_file.h>
+
 static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value argv[2] = {NULL};
@@ -113,7 +117,8 @@ API 8
 C++编译环境下开发者使用raw_file.h头文件，但开发者没有引用string头文件，调用了"std::string"等string库函数，需要进行适配，通过include引入string头文件即可解决。
 
 ```
-#include <string>  // 手动引用string头文件
+#include <rawfile/raw_file.h>
+#include <string>           // 手动引用string头文件
 
 static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
     size_t argc = 2;
