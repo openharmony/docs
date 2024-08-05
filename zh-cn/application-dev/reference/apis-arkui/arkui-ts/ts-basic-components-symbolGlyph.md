@@ -31,7 +31,7 @@ SymbolGlyph(value: Resource)
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 设置SymbolGlyph组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
-| fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 设置SymbolGlyph组件大小。<br/>默认值：系统默认值。 |
+| fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 设置SymbolGlyph组件大小。<br/>组件的图标显示大小由fontSize控制，设置width或height后，其他通用属性仅对组件的占位大小生效。<br/>默认值：系统默认值。 |
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 设置SymbolGlyph组件粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_folder_badge_plus支持分层与多色模式。 |
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 设置SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
