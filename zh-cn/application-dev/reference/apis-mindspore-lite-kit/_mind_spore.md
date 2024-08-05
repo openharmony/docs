@@ -18,7 +18,7 @@
 | [data_type.h](data__type_8h.md) | 声明了张量的数据的类型。<br/>引用文件：&lt;mindspore/data_type.h&gt;<br/>库：libmindspore_lite_ndk.so |
 | [format.h](format_8h.md) | 提供张量数据的排列格式。<br/>引用文件：&lt;mindspore/format.h&gt;<br/>库：libmindspore_lite_ndk.so |
 | [model.h](model_8h.md) | 提供了模型相关接口，可以用于模型创建、模型推理等。<br/>引用文件：&lt;mindspore/model.h&gt;<br/>库：libmindspore_lite_ndk.so |
-| [status.h](status_8h.md) | 提供了Mindspore Lite运行时的状态码。<br/>引用文件：&lt;mindspore/status.h&gt;<br/>库：libmindspore_lite_ndk.so |
+| [status.h](status_8h.md) | 提供了MindSpore Lite运行时的状态码。<br/>引用文件：&lt;mindspore/status.h&gt;<br/>库：libmindspore_lite_ndk.so |
 | [tensor.h](tensor_8h.md) | 提供了张量相关的接口，可用于创建和修改张量信息。<br/>引用文件：&lt;mindspore/tensor.h&gt;<br/>库：libmindspore_lite_ndk.so |
 | [types.h](types_8h.md) | 提供了MindSpore Lite支持的模型文件类型和设备类型。<br/>引用文件：&lt;mindspore/types.h&gt;<br/>库：libmindspore_lite_ndk.so |
 
@@ -43,8 +43,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ContextHandle](#oh_ai_contexthandle) | Mindspore的上下文信息的指针，该指针会指向Context。 |
-| [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) | Mindspore的运行设备信息的指针。 |
+| [OH_AI_ContextHandle](#oh_ai_contexthandle) | MindSpore的上下文信息的指针，该指针会指向Context。 |
+| [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) | MindSpore的运行设备信息的指针。 |
 | [OH_AI_DataType](#oh_ai_datatype) | MSTensor保存的数据支持的类型。 |
 | [OH_AI_Format](#oh_ai_format) | MSTensor保存的数据支持的排列格式。 |
 | [OH_AI_ModelHandle](#oh_ai_modelhandle) | 指向模型对象的指针。 |
@@ -53,7 +53,7 @@
 | [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**MS_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](#oh_ai_callbackparam) | 回调函数中传入的算子信息。 |
 | [OH_AI_KernelCallBack](#oh_ai_kernelcallback)) (const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) inputs, const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) outputs, const [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) kernel_Info) | 回调函数指针。 |
-| [OH_AI_Status](#oh_ai_status) | Minspore的状态码 |
+| [OH_AI_Status](#oh_ai_status) | MindSpore的状态码 |
 | [OH_AI_TensorHandle](#oh_ai_tensorhandle) | 指向张量对象句柄 |
 | [OH_AI_ModelType](#oh_ai_modeltype) | 模型文件的类型 |
 | [OH_AI_DeviceType](#oh_ai_devicetype) | 设备类型信息，包含了目前支持的设备类型。 |
@@ -73,7 +73,7 @@
 | [OH_AI_DataType](#oh_ai_datatype) {<br/>OH_AI_DATATYPE_UNKNOWN = 0, OH_AI_DATATYPE_OBJECTTYPE_STRING = 12, OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14,<br/>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29, OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30, OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32,<br/>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37,<br/>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38, OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39, OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42,<br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44, OH_AI_DATATYPE_NUMBERTYPE_END = 46, OH_AI_DataTypeInvalid = INT32_MAX<br/>} | MSTensor保存的数据支持的类型。 |
 | [OH_AI_Format](#oh_ai_format) {<br/>OH_AI_FORMAT_NCHW = 0, OH_AI_FORMAT_NHWC = 1, OH_AI_FORMAT_NHWC4 = 2, OH_AI_FORMAT_HWKC = 3,<br/>OH_AI_FORMAT_HWCK = 4, OH_AI_FORMAT_KCHW = 5, OH_AI_FORMAT_CKHW = 6, OH_AI_FORMAT_KHWC = 7,<br/>OH_AI_FORMAT_CHWK = 8, OH_AI_FORMAT_HW = 9, OH_AI_FORMAT_HW4 = 10, OH_AI_FORMAT_NC = 11,<br/>OH_AI_FORMAT_NC4 = 12, OH_AI_FORMAT_NC4HW4 = 13, OH_AI_FORMAT_NCDHW = 15, OH_AI_FORMAT_NWC = 16,<br/>OH_AI_FORMAT_NCW = 17<br/>} | MSTensor保存的数据支持的排列格式。 |
 | [OH_AI_CompCode](#oh_ai_compcode) { <br/>OH_AI_COMPCODE_CORE = 0x00000000u, <br/>OH_AI_COMPCODE_MD = 0x10000000u, <br/>OH_AI_COMPCODE_ME = 0x20000000u, <br/>OH_AI_COMPCODE_MC = 0x30000000u, <br/>OH_AI_COMPCODE_LITE = 0xF0000000u<br/> } | MindSpore不同组件的代码。
-| [OH_AI_Status](#oh_ai_status) {<br/>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br/>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br/>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br/>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br/>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br/>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br/>} | Minspore的状态码 |
+| [OH_AI_Status](#oh_ai_status) {<br/>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br/>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br/>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br/>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br/>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br/>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br/>} | MindSpore的状态码 |
 | [OH_AI_ModelType](#oh_ai_modeltype) { OH_AI_MODELTYPE_MINDIR = 0, OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | 模型文件的类型 |
 | [OH_AI_DeviceType](#oh_ai_devicetype) {<br/>OH_AI_DEVICETYPE_CPU = 0, OH_AI_DEVICETYPE_GPU, OH_AI_DEVICETYPE_KIRIN_NPU, OH_AI_DEVICETYPE_NNRT = 60,<br/>OH_AI_DEVICETYPE_INVALID = 100<br/>} | 设备类型信息，包含了目前支持的设备类型。 |
 | [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) { OH_AI_NNRTDEVICE_OTHERS = 0, OH_AI_NNRTDEVICE_CPU = 1, OH_AI_NNRTDEVICE_GPU = 2, OH_AI_NNRTDEVICE_ACCELERATOR = 3 } | NNRt管理的硬件设备类型 |
@@ -238,7 +238,7 @@ typedef void* OH_AI_ContextHandle
 
 **描述**
 
-Mindspore的上下文信息的指针，该指针会指向Context。
+MindSpore的上下文信息的指针，该指针会指向Context。
 
 **起始版本：** 9
 
@@ -264,7 +264,7 @@ typedef void* OH_AI_DeviceInfoHandle
 
 **描述**
 
-Mindspore的运行设备信息的指针。
+MindSpore的运行设备信息的指针。
 
 **起始版本：** 9
 
@@ -383,7 +383,7 @@ typedef enum OH_AI_Status OH_AI_Status
 
 **描述**
 
-Minspore的状态码
+MindSpore的状态码
 
 **起始版本：** 9
 
@@ -438,7 +438,7 @@ enum OH_AI_CompCode
 
 **描述**
 
-Minspore不同组件的代码
+MindSpore不同组件的代码
 
 **起始版本：** 9
 
@@ -673,35 +673,35 @@ enum OH_AI_Status
 
 **描述**
 
-Minspore的状态码
+MindSpore的状态码
 
 **起始版本：** 9
 
 | 枚举值 | 描述 |
 | -------- | -------- |
 | OH_AI_STATUS_SUCCESS | 通用的成功状态码 |
-| OH_AI_STATUS_CORE_FAILED | Mindspore Core 失败状态码 |
-| OH_AI_STATUS_LITE_ERROR | Mindspore Lite 异常状态码 |
-| OH_AI_STATUS_LITE_NULLPTR | Mindspore Lite 空指针状态码 |
-| OH_AI_STATUS_LITE_PARAM_INVALID | Mindspore Lite 参数异常状态码 |
-| OH_AI_STATUS_LITE_NO_CHANGE | Mindspore Lite 未改变状态码 |
-| OH_AI_STATUS_LITE_SUCCESS_EXIT | Mindspore Lite 没有错误但是退出的状态码 |
-| OH_AI_STATUS_LITE_MEMORY_FAILED | Mindspore Lite 内存分配失败的状态码 |
-| OH_AI_STATUS_LITE_NOT_SUPPORT | Mindspore Lite 功能未支持的状态码 |
-| OH_AI_STATUS_LITE_THREADPOOL_ERROR | Mindspore Lite 线程池异常状态码 |
-| OH_AI_STATUS_LITE_UNINITIALIZED_OBJ | Mindspore Lite 未初始化状态码 |
-| OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE | Mindspore Lite 张量溢出错误的状态码 |
-| OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR | Mindspore Lite 输入张量异常的状态码 |
-| OH_AI_STATUS_LITE_REENTRANT_ERROR | Mindspore Lite 重入异常的状态码 |
-| OH_AI_STATUS_LITE_GRAPH_FILE_ERROR | Mindspore Lite 文件异常状态码 |
-| OH_AI_STATUS_LITE_NOT_FIND_OP | Mindspore Lite 未找到算子的状态码 |
-| OH_AI_STATUS_LITE_INVALID_OP_NAME | Mindspore Lite 无效算子状态码 |
-| OH_AI_STATUS_LITE_INVALID_OP_ATTR | Mindspore Lite 无效算子超参数状态码 |
-| OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE | Mindspore Lite 算子执行失败的状态码 |
-| OH_AI_STATUS_LITE_FORMAT_ERROR | Mindspore Lite 张量格式异常状态码 |
-| OH_AI_STATUS_LITE_INFER_ERROR | Mindspore Lite 形状推理异常状态码 |
-| OH_AI_STATUS_LITE_INFER_INVALID | Mindspore Lite 无效的形状推理的状态码 |
-| OH_AI_STATUS_LITE_INPUT_PARAM_INVALID | Mindspore Lite 用户输入的参数无效状态码 |
+| OH_AI_STATUS_CORE_FAILED | MindSpore Core 失败状态码 |
+| OH_AI_STATUS_LITE_ERROR | MindSpore Lite 异常状态码 |
+| OH_AI_STATUS_LITE_NULLPTR | MindSpore Lite 空指针状态码 |
+| OH_AI_STATUS_LITE_PARAM_INVALID | MindSpore Lite 参数异常状态码 |
+| OH_AI_STATUS_LITE_NO_CHANGE | MindSpore Lite 未改变状态码 |
+| OH_AI_STATUS_LITE_SUCCESS_EXIT | MindSpore Lite 没有错误但是退出的状态码 |
+| OH_AI_STATUS_LITE_MEMORY_FAILED | MindSpore Lite 内存分配失败的状态码 |
+| OH_AI_STATUS_LITE_NOT_SUPPORT | MindSpore Lite 功能未支持的状态码 |
+| OH_AI_STATUS_LITE_THREADPOOL_ERROR | MindSpore Lite 线程池异常状态码 |
+| OH_AI_STATUS_LITE_UNINITIALIZED_OBJ | MindSpore Lite 未初始化状态码 |
+| OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE | MindSpore Lite 张量溢出错误的状态码 |
+| OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR | MindSpore Lite 输入张量异常的状态码 |
+| OH_AI_STATUS_LITE_REENTRANT_ERROR | MindSpore Lite 重入异常的状态码 |
+| OH_AI_STATUS_LITE_GRAPH_FILE_ERROR | MindSpore Lite 文件异常状态码 |
+| OH_AI_STATUS_LITE_NOT_FIND_OP | MindSpore Lite 未找到算子的状态码 |
+| OH_AI_STATUS_LITE_INVALID_OP_NAME | MindSpore Lite 无效算子状态码 |
+| OH_AI_STATUS_LITE_INVALID_OP_ATTR | MindSpore Lite 无效算子超参数状态码 |
+| OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE | MindSpore Lite 算子执行失败的状态码 |
+| OH_AI_STATUS_LITE_FORMAT_ERROR | MindSpore Lite 张量格式异常状态码 |
+| OH_AI_STATUS_LITE_INFER_ERROR | MindSpore Lite 形状推理异常状态码 |
+| OH_AI_STATUS_LITE_INFER_INVALID | MindSpore Lite 无效的形状推理的状态码 |
+| OH_AI_STATUS_LITE_INPUT_PARAM_INVALID | MindSpore Lite 用户输入的参数无效状态码 |
 
 
 ## 函数说明
@@ -1014,7 +1014,7 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle devi
 
 向设备信息中添加键/值对形式的扩展配置。只对NNRt设备信息有效。
 
-注意：当前仅支持{"CachePath": "YourCachePath"}，{"CacheVersion": "YouCacheVersion"}， {"QuantParam": "YourQuantConfig"} 三种键值对配置，用户根据使用情况替换具体的值。
+注意：当前仅支持{"CachePath": "YourCachePath"}，{"CacheVersion": "YouCacheVersion"}，{"QuantBuffer": "YourQuantBuffer"}，{"ModelName": "YourModelName"}，{"isProfiling": "YourisProfiling"}，{"opLayout": "YouropLayout"}，{"InputDims": "YourInputDims"}，{"DynamicDims": "YourDynamicDims"} 八种键值对配置，用户根据使用情况替换具体的值。
 
 **起始版本：** 10
 
