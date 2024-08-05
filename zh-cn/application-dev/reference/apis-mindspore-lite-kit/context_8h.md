@@ -21,8 +21,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) | Mindspore的上下文信息的指针，该指针会指向Context。 |
-| [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) | Mindspore的运行设备信息的指针。 |
+| [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) | MindSpore的上下文信息的指针，该指针会指向Context。 |
+| [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) | MindSpore的运行设备信息的指针。 |
 
 
 ### 函数
