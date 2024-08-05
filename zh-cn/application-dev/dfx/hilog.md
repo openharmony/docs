@@ -23,9 +23,9 @@ hilog命令行使用方式：
 | -g |  |  | 查询buffer的大小，配合-t指定某一类型使用，默认app和core。 | 
 | -G | --buffer-size | &lt;size&gt; | 设置指定&lt;type&gt;日志类型缓冲区的大小，配合-t指定某一类型使用，默认app和core， 可使用B/K/M/G为单位。 | 
 | -r |  |  | 清除buffer日志，配合-t指定某一类型使用，默认app和core。 | 
-| -p | --privacy | &lt;on/off&gt; | 支持系统调试时日志隐私开关控制。 | 
-|  |  | on | 打开隐私开关，显示&lt;private&gt;。 | 
-|  |  | off | 关闭隐私开关，显示明文。 | 
+| <!--DelRow-->-p | --privacy | &lt;on/off&gt; | 支持系统调试时日志隐私开关控制。 | 
+| <!--DelRow--> |  | on | 打开隐私开关，显示&lt;private&gt;。 | 
+| <!--DelRow--> |  | off | 关闭隐私开关，显示明文。 | 
 | -k |  | &lt;on/off&gt; | Kernel日志读取开关控制。 | 
 |  |  | on | 打开读取kernel日志。 | 
 |  |  | off | 关闭读取kernel日志。 | 
@@ -42,7 +42,7 @@ hilog命令行使用方式：
 | -T | --Tag | &lt;tag&gt; | 指定tag。 | 
 | -a | --head | &lt;n&gt; | 只显示前&lt;n&gt;行日志。 | 
 | -z | --tail | &lt;n&gt; | 只显示后&lt;n&gt;行日志。 | 
-|<!--DelRow--> -P | --pid | &lt;pid&gt; | 标识不同的pid。 | 
+| -P | --pid | &lt;pid&gt; | 标识不同的pid。 | 
 | -e | --regex | &lt;expr&gt; | 只打印日志消息与&lt;expr&gt;匹配的行，其中&lt;expr&gt;是一个正则表达式。 | 
 | -f | --filename | &lt;filename&gt; | 设置落盘的文件名。 | 
 | -l | --length | &lt;length&gt; | 设置落盘的文件大小，需要大于等于64K。 | 
