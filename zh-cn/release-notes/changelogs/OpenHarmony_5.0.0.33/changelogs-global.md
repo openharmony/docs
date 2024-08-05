@@ -110,7 +110,7 @@ API 8
 
 **适配指导**
 
-C++编译环境下开发者使用raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，需要进行适配，通过include引入string头文件即可解决。
+C++编译环境下开发者使用raw_file.h头文件，但开发者没有引用string头文件，调用了"std::string"等string库函数，需要进行适配，通过include引入string头文件即可解决。
 
 ```
 #include <string>  // 手动引用string头文件
