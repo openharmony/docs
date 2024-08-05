@@ -1045,6 +1045,18 @@
 
 **起始版本**：9
 
+### ohos.permission.GET_DISPOSED_APP_STATUS
+
+允许查询应用的处置状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
@@ -1083,15 +1095,17 @@
 
 ### ohos.permission.INPUT_MONITORING
 
-允许应用监听输入事件,仅系统签名应用可申请此权限。
+允许应用监听输入事件。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：7
+
+**变更信息**：API version 7-11为system_core；从API version 12开始为system_basic。
 
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -2575,15 +2589,17 @@
 
 ### ohos.permission.INTERCEPT_INPUT_EVENT
 
-允许系统应用拦截输入事件。
+允许应用拦截输入事件。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：11
+
+**变更信息**：API version 11为system_core；从API version 12开始为system_basic。
 
 ### ohos.permission.RECORD_VOICE_CALL
 
@@ -3561,6 +3577,54 @@
 
 **起始版本**：12
 
+### ohos.permission.OPEN_FILE
+
+允许系统应用拉起文件管理应用，并打开文件/文件夹。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PROCESS_FILE_COPY_PASTE
+
+允许系统应用拉起文件管理应用，并复制、剪切、粘贴文件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CLEAR_RECYCLEBIN
+
+允许系统应用拉起文件管理应用，并清空回收站。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_FILE_THUMBNAIL
+
+允许系统服务获取文件缩略图。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -3782,6 +3846,42 @@
 **ACL使能**：false
 
 **起始版本**：11
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+允许应用安装开发者内测构建应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
+
+允许SA向应用或者系统服务发送屏幕旋转状态信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
+
+允许SA向应用或者系统服务发送投屏线缆插入拔出状态信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 
@@ -4076,15 +4176,3 @@
 **ACL使能**：true
 
 **起始版本**：11
-
-### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
-
-允许应用安装开发者内测构建应用。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12

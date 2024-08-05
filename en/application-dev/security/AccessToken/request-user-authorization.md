@@ -92,6 +92,8 @@ The following example steps you through on how to request the permission for usi
 
    You can have [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) called in **onWindowStageCreate()** of the UIAbility to dynamically request user authorization, or request user authorization on the UI based on service requirements.
 
+   When applying for permissions using **onWindowStageCreate()**, the application needs to wait until the **loadContent()** or **setUIContent()** API is complete or call **[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)** in **loadContent()** or **setUIContent()**. Otherwise, **requestPermissionsFromUser()** will fail before **Content** is loaded.
+
    <!--RP1--><!--RP1End-->
 
    <!--RP2-->

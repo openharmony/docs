@@ -214,6 +214,22 @@ Obtains the width and height of the canvas.
 | ------------- | ---------------- |
 | [Size](#size) | Width and height of the canvas. |
 
+### sizeInPixel
+
+get sizeInPixel(): Size
+
+Obtains the width and height of the canvas in px.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type         | Description            |
+| ------------- | ---------------- |
+| [Size](#size) | Width and height of the canvas, in px. |
+
 ### canvas
 
 get canvas(): drawing.Canvas
@@ -241,6 +257,7 @@ class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
     const size = context.size;
     const canvas = context.canvas;
+    const sizeInPixel = context.sizeInPixel;
   }
 }
 

@@ -240,3 +240,82 @@ Popup（气泡组件）
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.5 Menu(菜单组件)组件内borderRadius方法支持设置LocalizedBorderRadiuses类型参数
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+bindMenu和bindContextMenu组件内borderRadius方法不支持设置LocalizedBorderRadiuses类型参数
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+在menu内使用borderRadius方法设置菜单圆角时，不支持LocalizedBorderRadiuses类型的参数。
+
+![menu_before](figures/menu_before.png) 
+
+变更后：
+在menu内使用borderRadius方法设置菜单圆角时，支持LocalizedBorderRadiuses类型的参数，并支持镜像。
+
+![menu_after](figures/menu_after.png) 
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36开始。
+
+**变更的接口/组件**
+
+Menu（菜单组件）
+
+**适配指导**
+
+开发者可以在menu内通过borderRadius接口设置菜单圆角，且当参数类型为LocalizedBorderRadiuses类型时，支持镜像能力。
+
+```ts
+import { LengthMetrics } from '@ohos.arkui.node';
+
+@Entry
+@Component
+struct Index {
+
+  @Builder
+  MyMenu(){
+    Menu() {
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+        .enabled(true)
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text('click to show menu')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .bindMenu(this.MyMenu, {
+        enableArrow: true,
+        // 设置圆角
+        borderRadius: { topStart: LengthMetrics.vp(20), bottomStart: LengthMetrics.vp(60) }
+      })
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

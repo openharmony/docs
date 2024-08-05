@@ -53,6 +53,8 @@ constructor(src?: image.PixelMap)
 
 A constructor used to create a **PixelMapDrawableDescriptor** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -64,7 +66,7 @@ A constructor used to create a **PixelMapDrawableDescriptor** object.
 
 ## LayeredDrawableDescriptor
 
-Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources. This API is inherited from [DrawableDescriptor](#drawabledescriptor).
+Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources. This API inherits from [DrawableDescriptor](#drawabledescriptor).
 
 The **drawable.json** file is located under **entry/src/main/resources/base/media** in the project directory. Below shows the file content:
 
@@ -297,7 +299,9 @@ struct Index {
 
 ## AnimationOptions<sup>12+</sup>
 
-Provides the playback options of the animation with a pixel map image array in an **\<Image>** component.
+Provides the playback options of the animation with a pixel map image array in an **Image** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -321,13 +325,15 @@ struct Example {
 
 ## AnimatedDrawableDescriptor<sup>12+</sup>
 
-Implements an **AnimatedDrawableDescriptor** object, which can be passed in when the **\<Image>** component is used to play the pixel map image array. Inherits from [DrawableDescriptor](#drawabledescriptor).
+Implements an **AnimatedDrawableDescriptor** object, which can be passed in when the **Image** component is used to play the pixel map image array. Inherits from [DrawableDescriptor](#drawabledescriptor).
 
 ### constructor<sup>12+</sup>
 
 constructor(pixelMaps: Array\<image.PixelMap>, options?: AnimationOptions)
 
 A constructor used to create an **AnimatedDrawableDescriptor** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

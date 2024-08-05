@@ -250,7 +250,6 @@ try {
 5. 使用helper.[copyFile](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#copyfile11)(srcUri, destUri, fileName) 进行文件操作。
 
 复制文件代码示例：
-<!--DelEnd-->
 
 ```
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -301,3 +300,4 @@ async function example() {
     }
   }
 ```
+<!--DelEnd-->

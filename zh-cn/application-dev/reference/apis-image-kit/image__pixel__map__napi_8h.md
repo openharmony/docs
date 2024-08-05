@@ -11,7 +11,7 @@
 
 **起始版本：** 8
 
-**废弃起始版本：** 8
+**废弃版本：** 8
 
 **废弃替代：** [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md)
 
@@ -25,7 +25,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | 用于定义PixelMap的相关信息。 | 
+| struct  [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | 用于定义 pixel map 的相关信息。  | 
 
 
 ### 枚举
@@ -41,8 +41,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::Media::OH_GetImageInfo](image.md#oh_getimageinfo) (napi_env env, napi_value value, [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) \*info) | 获取**PixelMap**的信息，并记录信息到[OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)结构中。 | 
-| [OHOS::Media::OH_AccessPixels](image.md#oh_accesspixels) (napi_env env, napi_value value, void \*\*addrPtr) | 获取**PixelMap**对象数据的内存地址，并锁定该内存。 | 
-| [OHOS::Media::OH_UnAccessPixels](image.md#oh_unaccesspixels) (napi_env env, napi_value value) | 释放**PixelMap**对象数据的内存锁, 用于匹配方法**OH_AccessPixels**。 | 
-
-<!--no_check-->
+| int32_t [OH_GetImageInfo](image.md#oh_getimageinfo) (napi_env env, napi_value value, [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) \*info) | 获取 **PixelMap** 的信息，并记录信息到[OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)结构中。  | 
+| int32_t [OH_AccessPixels](image.md#oh_accesspixels) (napi_env env, napi_value value, void \*\*addrPtr) | 获取**PixelMap**对象数据的内存地址，并锁定该内存。  | 
+| int32_t [OH_UnAccessPixels](image.md#oh_unaccesspixels) (napi_env env, napi_value value) | 释放**PixelMap**对象数据的内存锁, 用于匹配方法**OH_AccessPixels**。  | 

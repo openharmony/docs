@@ -12,7 +12,7 @@ The **performanceMonitor** module provides APIs for performance monitoring indic
 ## Modules to Import
 
 ```ts
-import performanceMonitor from '@ohos.arkui.performanceMonitor';
+import { performanceMonitor } from '@kit.ArkUI';
 ```
 
 
@@ -22,11 +22,11 @@ Enumerates types of actions that trigger user scenes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -- | -- | -- |
 | LAST_DOWN | 0 | Pressing against the screen. |
-| LAST_UP | 1 | Lifting a finger off the screen.|
-| FIRST_MOVE | 2 | First swiping on the screen.|
+| LAST_UP | 1 | Lifting a finger off the screen. |
+| FIRST_MOVE | 2 | First swiping on the screen. |
 
 
 ## performanceMonitor.begin
@@ -38,15 +38,15 @@ Starts a user scene.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type| Mandatory| Note|
+| Name | Type | Mandatory | Description |
 | -- | -- | -- | -- |
-| scene | string | Yes| User scene ID.|
-| startInputType | [ActionType](#actiontype)| Yes| Type of action that triggers the user scene.|
-| note | string| No| Important information about the user scene.|
+| scene | string | Yes | User scene ID. |
+| startInputType | [ActionType](#actiontype)| Yes | Type of action that triggers the user scene. |
+| note | string| No | Important information about the user scene. |
 
-**Example**
+**Example** 
   ```ts
 performanceMonitor.begin("LAUNCHER_APP_LAUNCH_FROM_ICON", performanceMonitor.ActionType.LAST_UP, "APP_START_BEGIN");
   ```
@@ -60,12 +60,12 @@ Ends a user scene.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-| Name| Type| Mandatory| Description|
+**Parameters** 
+| Name | Type | Mandatory | Description |
 | -- | -- | -- | -- |
-| scene | string | Yes| User scene ID, which corresponds to that in **begin**.|
+| scene | string | Yes | User scene ID, which corresponds to that in **begin**. |
 
-**Example**
+**Example** 
   ```ts
 performanceMonitor.end("LAUNCHER_APP_LAUNCH_FROM_ICON");
   ```
