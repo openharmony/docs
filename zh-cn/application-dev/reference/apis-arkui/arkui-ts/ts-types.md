@@ -372,6 +372,18 @@
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
 
+## MarkStyle<sup>10+</sup>对象说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
+| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
+| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+
 ## PixelStretchEffectOptions<sup>10+</sup>
 
 像素扩展属性集合,用于描述像素扩展的信息。

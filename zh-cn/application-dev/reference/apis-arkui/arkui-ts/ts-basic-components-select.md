@@ -24,13 +24,11 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
 ## SelectOption对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 参数名 | 参数类型                            | 必填 | 参数描述       |
 | ------ | ----------------------------------- | ---- | -------------- |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉选项内容。 |
-| icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉选项图片。 |
-| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片。<br/>symbolIcon优先级高于icon。|
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉选项内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉选项图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片。<br/>symbolIcon优先级高于icon。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -322,7 +320,7 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](#optionwidthmode11枚举说明) | 是   | 下拉菜单项的宽度。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11枚举说明) | 是   | 下拉菜单项的宽度。 |
 
 ### optionHeight<sup>11+</sup>
 
@@ -375,15 +373,6 @@ menuBackgroundBlurStyle(value: BlurStyle)
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 是   | 下拉菜单的背景模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
-
-## OptionWidthMode<sup>11+</sup>枚举说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称        | 描述                           |
-| ----------- | ------------------------------ |
-| FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
-| FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
 
 ## ArrowPosition<sup>10+</sup>枚举说明
 
