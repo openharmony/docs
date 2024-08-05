@@ -21,13 +21,13 @@ The key-value (KV) database stores data in the form of KV pairs. You can use KV 
 
 The following table lists the APIs used for KV data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
-| API| Description| 
+| API | Description | 
 | -------- | -------- |
-| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Creates and obtains a KV store of the specified type.| 
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Adds a KV pair of the specified type to this KV store.| 
-| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | Obtains the value of the specified key.| 
-| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a KV pair based on the specified key.| 
+| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects. | 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type. | 
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Adds a KV pair of the specified type to this KV store. | 
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | Obtains the value of the specified key. | 
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a KV pair based on the specified key. | 
 
 
 ## How to Develop
@@ -82,6 +82,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
    
    // FA model
    import featureAbility from '@ohos.ability.featureAbility';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // Obtain the context.
@@ -166,8 +167,6 @@ The following table lists the APIs used for KV data persistence. Most of the API
 4. Use **get()** to obtain the value of a key.<br>Example:
      
    ```js
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -193,8 +192,6 @@ The following table lists the APIs used for KV data persistence. Most of the API
 5. Use **delete()** to delete the data of the specified key.<br>Example:
      
    ```js
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
