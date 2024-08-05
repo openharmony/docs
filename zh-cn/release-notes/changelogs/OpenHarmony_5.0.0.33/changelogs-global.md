@@ -40,7 +40,7 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 变更前开发者如果有在默认语言目录配置“WLAN”字串，mcc目录配置“Wi-Fi”字串，变更后需要适配将“WLAN”字串配置在mcc目录，“Wi-Fi”字串配置在默认语言目录。
 
-## cl.golbal.2 raw_file头文件变更
+## cl.LocalizationKit.2 raw_file头文件变更
 
 **访问级别**
 
