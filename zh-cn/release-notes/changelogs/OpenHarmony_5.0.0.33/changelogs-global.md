@@ -40,7 +40,7 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 变更前开发者如果有在默认语言目录配置“WLAN”字串，mcc目录配置“Wi-Fi”字串，变更后需要适配将“WLAN”字串配置在mcc目录，“Wi-Fi”字串配置在默认语言目录。
 
-## cl.golbal.2 string头文件变更
+## cl.golbal.2 raw_file头文件变更
 
 **访问级别**
 
@@ -48,7 +48,7 @@ SystemCapability.Global.ResourceManager获取资源相关接口。
 
 **变更原因**
 
-string库文件是C++标准库，影响头文件在C语言环境下正常使用。
+raw_file模块引用了string头文件，string头文件是C++标准库文件，导致raw_file模块在C语言环境下无法使用。
 
 **变更影响**
 
@@ -56,11 +56,43 @@ string库文件是C++标准库，影响头文件在C语言环境下正常使用�
 
 变更前：
 
-C++编译环境下开发者使用了raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，可以编译成功。
+C++编译环境下开发者使用了raw_file.h头文件，但开发者没有引用string头文件，调用了"std::string"等string库函数，可以编译成功。
+
+```
+static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
+    size_t argc = 2;
+    napi_value argv[2] = {NULL};
+    napi_get_cb_info(env, info, &argc, argv, NULL, NULL);
+    napi_valuetype valueType;
+    napi_typeof(env, argv[0], &valueType);
+    NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
+    size_t strSize;
+    char strBuf[256];
+    napi_get_value_string_utf8(env, argv[1], strBuf, sizeof(strBuf), &strSize);
+    std::string filename(strBuf, strSize);   // 编译通过
+    RawFile *rawFile = OH_ResourceManager_OpenRawFile(mNativeResMgr, filename.c_str());
+}
+```
 
 变更后：
 
-C++编译环境下开发者使用了raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，会编译失败。
+C++编译环境下开发者使用了raw_file.h头文件，但开发者没有引用string头文件，调用了"std::string"等string库函数，会编译失败。
+
+```
+static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
+    size_t argc = 2;
+    napi_value argv[2] = {NULL};
+    napi_get_cb_info(env, info, &argc, argv, NULL, NULL);
+    napi_valuetype valueType;
+    napi_typeof(env, argv[0], &valueType);
+    NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
+    size_t strSize;
+    char strBuf[256];
+    napi_get_value_string_utf8(env, argv[1], strBuf, sizeof(strBuf), &strSize);
+    std::string filename(strBuf, strSize);   // 编译失败
+    RawFile *rawFile = OH_ResourceManager_OpenRawFile(mNativeResMgr, filename.c_str());
+}
+```
 
 **起始API Level**
 
@@ -78,11 +110,25 @@ API 8
 
 **适配指导**
 
-1、C++编译环境下开发者使用raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，需要进行适配，通过include引入string头文件即可解决。
+C++编译环境下开发者使用raw_file.h头文件，但没有引用string头文件，调用了"std::string"等string库函数，需要进行适配，通过include引入string头文件即可解决。
 
-2、C++编译环境下开发者使用raw_file.h头文件且引用了string头文件，无需进行适配。
+```
+#include <string>  // 手动引用string头文件
 
-3、C++编译环境下开发者仅使用raw_file.h头文件，没有调用string库函数，无需进行适配。
+static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
+    size_t argc = 2;
+    napi_value argv[2] = {NULL};
+    napi_get_cb_info(env, info, &argc, argv, NULL, NULL);
+    napi_valuetype valueType;
+    napi_typeof(env, argv[0], &valueType);
+    NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
+    size_t strSize;
+    char strBuf[256];
+    napi_get_value_string_utf8(env, argv[1], strBuf, sizeof(strBuf), &strSize);
+    std::string filename(strBuf, strSize);   // 编译通过
+    RawFile *rawFile = OH_ResourceManager_OpenRawFile(mNativeResMgr, filename.c_str());
+}
+```
 
 ## cl.golbal.3 raw_file模块接口废弃
 
