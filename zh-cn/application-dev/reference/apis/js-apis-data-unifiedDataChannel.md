@@ -108,7 +108,7 @@ for (let i = 0; i < records.length; i++) {
 
 ## Summary
 
-描述某一统一数据对象的数据摘要，包括所含数据类型及大小，当前暂不支持。
+描述某一统一数据对象的数据摘要，包括所含数据类型及大小。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
