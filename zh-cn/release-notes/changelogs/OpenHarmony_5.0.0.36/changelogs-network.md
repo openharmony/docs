@@ -39,3 +39,5 @@ API version
 完成服务器域名相关配置，可参考此[指导文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)
 进行配置。
 
+开发者在进行元服务应用开发时，若遇到webSocket.connect接口失败，请用catch捕获错误；若webSocket.connect接口失败错误码是2302998，可以到[AppGallery Connect](https://developer.huawei.com/consumer/cn/service/josp/agc/index.html)完成服务器域名相关配置，可参考此[指导文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)
+
