@@ -2890,7 +2890,7 @@ export default class EntryAbility extends UIAbility {
 
 startMoving(): Promise<void>
 
-开始移动窗口。
+开始移动窗口，仅对PC设备的系统窗口生效，其它设备类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2950,7 +2950,7 @@ export class myWindowMgr extends ServiceExtensionAbility {
 
 enableDrag(enable: boolean): Promise<void>
 
-允许拖拽窗口。
+使能/禁止拖拽窗口，仅对PC设备的系统窗口生效，其它设备类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
