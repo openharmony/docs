@@ -2153,6 +2153,7 @@ struct Parent {
 
 - ### 在List内使用屏幕闪烁
 在List的onScrollIndex方法中调用onDataReloaded有产生屏幕闪烁的风险。
+
 ```ts
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
@@ -2296,10 +2297,12 @@ struct MyComponent {
   }
 }
 ```
+
 当List下拉到底的时候，屏闪效果如下图  
 ![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)
 
 用onDatasetChange代替onDataReloaded，不仅可以修复闪屏的问题，还能提升加载性能。
+
 ```ts
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
@@ -2443,5 +2446,6 @@ struct MyComponent {
   }
 }
 ```
+
 修复后的效果如下图  
 ![LazyForEach-Screen-Flicker-Repair](figures/LazyForEach-Screen-Flicker-Repair.gif)
