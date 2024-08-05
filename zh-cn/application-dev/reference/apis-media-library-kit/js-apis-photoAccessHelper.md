@@ -975,7 +975,7 @@ async function example() {
 
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。         |
+| uri                       | string                   | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型                                               |
 | displayName               | string                   | 是   | 否   | 显示文件名，包含后缀名。                                 |
 
@@ -2867,6 +2867,8 @@ constructor(asset: PhotoAsset)
 
 构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -2909,6 +2911,8 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 创建图片资产变更请求。
 
 通过fileUri指定待创建资产的数据来源，可参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3180,6 +3184,8 @@ getAsset(): PhotoAsset
 
 **注意**：对于创建资产的变更请求，在调用[applyChanges](#applychanges11)提交生效之前，该接口返回null。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -3220,6 +3226,8 @@ async function example() {
 setTitle(title: string): void
 
 修改媒体资产的标题。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
