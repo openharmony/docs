@@ -20,4 +20,4 @@ Create table failed.
 
 **处理步骤**
 
-检查是否已经有加入相同session的对象。
+使用[genSessionId](../../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)创建的sessionId来避免加入已经存在的session。
