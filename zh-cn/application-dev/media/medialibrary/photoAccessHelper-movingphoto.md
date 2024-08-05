@@ -11,8 +11,6 @@
 
 拍摄动态照片的能力由Camera Kit提供，开发者可参考[Camera Kit-动态照片](../camera/camera-moving-photo.md)。
 
-
-
 ## 保存动态照片资源
 
 使用安全控件保存动态照片资源后，可用于获取MovingPhoto对象，从而完成播放动态照片等操作。 

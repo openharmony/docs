@@ -9,7 +9,6 @@
 - 该组件长按触发播放时组件区域放大为1.1倍。
 - 该组件使用[AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9)进行播放，同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
 
-
 ## 开发步骤
 
 1. 导入动态照片模块。
@@ -90,8 +89,4 @@
       .justifyContent(FlexAlign.Center)
       .height('15%')
    ```
-
-## 效果展示
-
-如图所示，播放动态照片文件。
    
