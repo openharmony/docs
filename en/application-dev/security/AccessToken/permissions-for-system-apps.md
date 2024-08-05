@@ -3565,6 +3565,54 @@ Allows an application to access the mappings between applications and domain nam
 
 **Valid since**: 12
 
+### ohos.permission.OPEN_FILE
+
+Allows a system application to start the File Manager application to open files or folders.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
+### ohos.permission.PROCESS_FILE_COPY_PASTE
+
+Allows a system application to start the File Manager application to copy, cut, and paste files.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
+### ohos.permission.CLEAR_RECYCLEBIN
+
+Allow a system application to start the File Manager application to clear the trash.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
+### ohos.permission.GET_FILE_THUMBNAIL
+
+Allow a system application to obtain file thumbnails.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -4093,50 +4141,3 @@ Allows an application to install beta applications.
 
 **Valid since**: 12
 
-### ohos.permission.OPEN_FILE
-
-Allows a system application to start the File Manager application to open files or folders.
-
-**Permission level**：system_basic
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：12
-
-### ohos.permission.PROCESS_FILE_COPY_PASTE
-
-Allows a system application to start the File Manager application to copy, cut, and paste files.
-
-**Permission level**：system_basic
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：12
-
-### ohos.permission.CLEAR_RECYCLEBIN
-
-Allow a system application to start the File Manager application to clear the trash.
-
-**Permission level**：system_basic
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：12
-
-### ohos.permission.GET_FILE_THUMBNAIL
-
-Allow a system application to obtain file thumbnails.
-
-**Permission level**：system_basic
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：12
