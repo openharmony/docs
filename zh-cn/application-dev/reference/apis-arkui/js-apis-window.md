@@ -1337,7 +1337,7 @@ try {
 
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调。
+移动窗口位置，使用Promise异步回调，调用成功即返回。
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
@@ -1376,6 +1376,60 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.moveWindowTo(300, 300);
+  promise.then(() => {
+    console.info('Succeeded in moving the window.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### moveWindowToAsync<sup>12+</sup>
+
+moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
+
+移动窗口位置，使用Promise异步回调，调用生效（在界面应用）后返回，回调中可使用getWindowProperties获取最终生效结果。
+
+全屏模式窗口不支持该操作。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | ----- | -- | --------------------------------------------- |
+| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+| 1300010 | The operation is not supported in full-screen mode. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let promise = windowClass.moveWindowToAsync(300, 300);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
   }).catch((err: BusinessError) => {
@@ -1448,7 +1502,7 @@ try {
 
 resize(width: number, height: number): Promise&lt;void&gt;
 
-改变当前窗口大小，使用Promise异步回调。
+改变当前窗口大小，使用Promise异步回调，调用成功即返回。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
@@ -1495,6 +1549,69 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.resize(500, 1000);
+  promise.then(() => {
+    console.info('Succeeded in changing the window size.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### resizeAsync<sup>12+</sup>
+
+resizeAsync(width: number, height: number): Promise&lt;void&gt;
+
+改变当前窗口大小，使用Promise异步回调，调用生效（在界面应用）后返回，回调中可使用getWindowProperties获取最终生效结果。
+
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+
+系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
+
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
+
+全屏模式窗口不支持该操作。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | -- | ------------------------ |
+| width  | number | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
+| height | number | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+| 1300010 | The operation is not supported in full-screen mode. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let promise = windowClass.resizeAsync(500, 1000);
   promise.then(() => {
     console.info('Succeeded in changing the window size.');
   }).catch((err: BusinessError) => {
