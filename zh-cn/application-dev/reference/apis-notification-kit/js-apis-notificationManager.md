@@ -1392,7 +1392,7 @@ notificationManager.requestEnableNotification().then(() => {
 });
 ```
 
-## notificationManager.requestEnableNotification<sup>10+<sup>
+## notificationManager.requestEnableNotification<sup>10+</sup>
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
@@ -1453,7 +1453,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## notificationManager.requestEnableNotification<sup>10+<sup>
+## notificationManager.requestEnableNotification<sup>10+</sup>
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
