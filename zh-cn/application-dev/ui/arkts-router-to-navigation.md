@@ -44,7 +44,7 @@
 | geometryTransition共享元素动画                | 支持（NavDestination之间共享）        | 不支持                                 |
 | 页面生命周期监听                              | UIObserver.on('navDestinationUpdate') | UIObserver.on('routerPageUpdate')      |
 | 获取页面栈对象                                | 支持                                  | 不支持                                 |
-| 路由拦截                                      | 支持通过setInercption做路由拦截       | 不支持                                 |
+| 路由拦截                                      | 支持通过setInterception做路由拦截       | 不支持                                 |
 | 路由栈信息查询                                | 支持                                  | getState() & getLength()               |
 | 路由栈move操作                                | moveToTop & moveIndexToTop            | 不支持                                 |
 | 沉浸式页面                                    | 支持                                  | 不支持，需通过window配置               |
