@@ -108,9 +108,8 @@ Menu中MenuItem全部设置margin后，左右边距不对称，变更后左右�
 struct Index {
   build() {
     Column() {
-      Text('click for menu')
+      Text('click for Menu')
         .fontSize(20)
-        .position({ x: 100, y: 270 })
         .margin({ top: 20 })
         .bindMenu(this.TestMenuItemMarginLeftAndRight)
     }
@@ -125,6 +124,7 @@ struct Index {
     }
     .borderWidth(2)
     .borderColor(Color.Red)
+    .width(200)
   }
 }
 ```
