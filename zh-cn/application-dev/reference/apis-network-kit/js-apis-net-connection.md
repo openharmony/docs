@@ -2435,18 +2435,26 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | 名称                     | 类型                                | 必填  | 说明                                                         |
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
-| bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。从API12开始可以通过传递WLAN热点信息表示应用希望激活的WLAN网络，所需字段见[WifiDeviceConfig](../apis-connectivity-kit/js-apis-wifiManager.md#wifideviceconfig9)。 |
+| bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。从API12开始可以通过传递注册的WLAN热点信息networkId表示应用希望激活的WLAN网络。 |
 
 **示例：**
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import wifiManager from '@ohos.wifiManager';
 
-let netConnectionCellular = connection.createNetConnection({
-  netCapabilities: {
-    bearerTypes: [connection.NetBearType.BEARER_WIFI]
-  },
-  bearerPrivateIdentifier: "{\"ident\": \"wifi\", \"ssid\": \"wlan0\", \"preSharedKey\": \"password\", \"securityType\": 3}"
+let config: wifiManager.WifiDeviceConfig = {
+  ssid: "wlan0",
+  preSharedKey: "password";
+  securityType: 1
+};
+wifiManager.addCoandidateConfig(config).then((networkId: number) => {
+  let netConnectionCellular = connection.createNetConnection({
+    netCapabilities: {
+      bearerTypes: [connection.NetBearType.BEARER_WIFI]
+    },
+    bearerPrivateIdentifier: `{"networkId": ${networkId}}`
+  });
 });
 ```
 
