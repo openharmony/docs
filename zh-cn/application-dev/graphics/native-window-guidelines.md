@@ -32,6 +32,9 @@ libnative_window.so
 
 **头文件**
 ```c++
+#include <sys/poll.h>
+#include <sys/mman.h>
+#include <unistd.h>
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <native_window/external_window.h>
 ```
@@ -113,9 +116,12 @@ libnative_window.so
 3. **从图形队列申请OHNativeWindowBuffer**。
     ```c++
     OHNativeWindowBuffer* buffer = nullptr;
-    int fenceFd;
+    int releaseFenceFd = -1;
     // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
-    OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
+    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &releaseFenceFd);
+    if (ret != 0 || buffer == nullptr) {
+        return;
+    }
     // 通过 OH_NativeWindow_GetBufferHandleFromNative 获取 buffer 的 handle
     BufferHandle* bufferHandle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
     ```
@@ -132,8 +138,20 @@ libnative_window.so
     }
     ```
 
-5. **将生产的内容写入OHNativeWindowBuffer**。
+5. **将生产的内容写入OHNativeWindowBuffer，在这之前需要等待releaseFenceFd可用（注意releaseFenceFd不等于-1才需要调用poll）。如果没有等待releaseFenceFd事件的数据可用（POLLIN），则可能造成花屏、裂屏、HEBC（High Efficiency Bandwidth Compression，高效带宽压缩） fault等问题。releaseFenceFd是消费者进程创建的一个文件句柄，代表消费者消费buffer完毕，buffer可读，生产者可以开始填充buffer内容。**
     ```c++
+    int retCode = -1;
+    uint32_t timeout = 3000;
+    if (releaseFenceFd != -1) {
+        struct pollfd pollfds = {0};
+        pollfds.fd = releaseFenceFd;
+        pollfds.events = POLLIN;
+        do {
+            retCode = poll(&pollfds, 1, timeout);
+        } while (retCode == -1 && (errno == EINTR || errno == EAGAIN));
+        close(releaseFenceFd); // 防止fd泄漏
+    }
+
     static uint32_t value = 0x00;
     value++;
     uint32_t *pixel = static_cast<uint32_t *>(mappedAddr); // 使用mmap获取到的地址来访问内存
@@ -144,12 +162,13 @@ libnative_window.so
     }
     ```
 
-5. **提交OHNativeWindowBuffer到图形队列**。
+5. **提交OHNativeWindowBuffer到图形队列。请注意OH_NativeWindow_NativeWindowFlushBuffer接口的acquireFenceFd不可以和OH_NativeWindow_NativeWindowRequestBuffer接口获取的releaseFenceFd相同，acquireFenceFd可传入默认值-1。acquireFenceFd是生产者需要传入的文件句柄，消费者获取到buffer后可根据消费者传入的acquireFenceFd决定何时去渲染并上屏buffer内容。**
     ```c++
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};
+    int acquireFenceFd = -1;
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
-    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
+    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, acquireFenceFd, region);
     ```
 6. **取消内存映射munmap**。
     ```c++
