@@ -93,13 +93,16 @@ struct CounterView {
   label: string = 'unknown';
 
   build() {
-    Row() {
+    Column({ space: 20 }) {
       Text(`${this.label}`)
       Button(`counter ${this.counter} +1`)
         .onClick(() => {
           this.counter += 1;
         })
     }
+    .margin(10)
+    .padding(10)
+    .border({ width: 1 })
   }
 }
 
@@ -120,6 +123,8 @@ struct MainView {
           this.toggle = !this.toggle;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -133,20 +138,24 @@ CounterView（label为 'CounterView \#positive'）子组件在初次渲染时创
 以下示例展示了条件更改时，若需要保留counter值所做的修改。
 
 
-```
+```ts
 @Component
 struct CounterView {
   @Link counter: number;
   label: string = 'unknown';
 
   build() {
-    Row() {
+    Column({ space: 20 }) {
       Text(`${this.label}`)
+        .fontSize(20)
       Button(`counter ${this.counter} +1`)
         .onClick(() => {
           this.counter += 1;
         })
     }
+    .margin(10)
+    .padding(10)
+    .border({ width: 1 })
   }
 }
 
@@ -168,6 +177,8 @@ struct MainView {
           this.toggle = !this.toggle;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -188,7 +199,7 @@ struct CompA {
   @State toggleColor: boolean = false;
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       Text('Before')
         .fontSize(15)
       if (this.toggle) {
@@ -224,6 +235,8 @@ struct CompA {
           this.toggleColor = !this.toggleColor;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
