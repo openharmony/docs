@@ -25,7 +25,7 @@ EGL_EGLEXT_PROTOTYPES
 
 ## 支持的接口说明
 
-Openharmony目前支持EGL部分接口，支持的接口会随着版本演进，持续更新。
+OpenHarmony目前支持EGL部分接口，支持的接口会随着版本演进，持续更新。
 
 目前支持的接口如下：
 
