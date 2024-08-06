@@ -384,19 +384,6 @@
 | size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 | strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
-## PixelStretchEffectOptions<sup>10+</sup>
-
-像素扩展属性集合,用于描述像素扩展的信息。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 类型                | 必填   | 说明             |
-| ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
-| right  | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
-| top    | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
-| bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
-
 ## ModalTransition<sup>10+</sup>
 
 全屏模态转场方式枚举类型，用于设置全屏模态转场类型。
@@ -664,33 +651,6 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 | Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-
-## LengthMetrics<sup>12+</sup>
-
-用于设置长度属性。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**属性：**
-
-| 名称              | 类型       | 必填 | 描述                          |
-| ----------------- | ---------- | ---- | ----------------------------- |
-| value       | number | 是 | 长度属性的值。   |
-| unit | [LengthUnit](#lengthunit12)     | 是 | 长度属性的单位。|
-
-## LengthUnit<sup>12+</sup>
-
-长度属性单位枚举。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| [PX](#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
-| [VP](#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
-| [FP](#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
-| [PERCENT](#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
-| [LPX](#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
 ## DividerStyleOptions<sup>12+</sup>
 

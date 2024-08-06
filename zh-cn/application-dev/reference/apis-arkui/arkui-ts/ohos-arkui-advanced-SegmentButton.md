@@ -66,7 +66,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 | localizedButtonPadding<sup>12+</sup>  | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
 | localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距，默认值：0。                                                                                                                                                                                                                                                     |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Direction.Auto                                                                                                                                                                                                                                           |
-| backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                         |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                         |
 
 ### constructor
 
@@ -173,7 +173,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 | localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
 | localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距，默认值：0。                                                                                                                                                                                                                                                     |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Auto                                                                                                                                                                                                                                          |
-| backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                      |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                      |
 
 ## TabSegmentButtonConstructionOptions
 

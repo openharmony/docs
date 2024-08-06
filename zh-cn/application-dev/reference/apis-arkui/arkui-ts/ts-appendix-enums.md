@@ -62,17 +62,6 @@
 | Dashed | 显示为一系列短的方形虚线。                 |
 | Solid  | 显示为一条实线。                      |
 
-## OutlineStyle<sup>11+</sup>
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
-| DASHED | 显示为一系列短的方形虚线。                 |
-| SOLID  | 显示为一条实线。                      |
-
 ## LineJoinStyle
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -467,15 +456,6 @@
 | Static   | 目标页面元素的位置保持不变，可以配置透明度动画。目前，只有为重定向到目标页面而配置的静态效果才会生效。 |
 | Exchange | 将源页面元素移动到目标页面元素位置并适当缩放。                  |
 
-## ShadowType<sup>10+<sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称       | 描述                                   |
-| -------- | ---------------------------------------- |
-| COLOR    | 颜色。                                    |
-| BLUR     | 模糊。                                    |
-
 ## FontStyle
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -624,26 +604,6 @@
 | Transparent | 自身节点和子节点响应触摸事件的命中测试，并允许对被该节点屏蔽的其他节点进行命中测试。 |
 | None        | 自身节点不会响应触摸事件的命中测试，但子节点会对触摸事件进行命中测试。      |
 
-## BlurStyle<sup>9+</sup>
-
-该接口支持在ArkTS卡片中使用。
-
-| 名称                   | 描述        |
-| -------------------- | --------- |
-| Thin                 | 轻薄材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| Regular              | 普通厚度材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Thick                | 厚材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
-| BACKGROUND_THIN       | 近距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_REGULAR    | 中距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_THICK      | 远距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| NONE<sup>10+</sup> | 关闭模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-
 ## DialogButtonStyle<sup>10+</sup>枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -664,15 +624,6 @@
 | SYSTEM | 跟随系统深浅色模式。 |
 | LIGHT  | 固定使用浅色模式。  |
 | DARK   | 固定使用深色模式。  |
-
-## AdaptiveColor<sup>10+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称      | 描述                        |
-| ------- | ------------------------- |
-| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。采用非DEFAULT方式较耗时。    |
-| AVERAGE | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
@@ -706,17 +657,6 @@
 | 名称        | 描述                     |
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
-
-## TransitionEdge<sup>10+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述     |
-| ------ | ------ |
-| TOP    | 窗口的上边缘 |
-| BOTTOM | 窗口的下边缘 |
-| START  | 窗口的左边缘 |
-| END    | 窗口的右边缘 |
 
 ## ClickEffectLevel<sup>10+</sup>
 
@@ -817,48 +757,7 @@ Nullable\<T> {
 | ROTATION_GESTURE   | 旋转手势|
 | DRAG    | 拖拽|
 | CLICK   | 点击|
-## FinishCallbackType<sup>11+</sup>
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称       | 描述                                                         |
-| --------- | ------------------------------------------------------------ |
-| REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
-| LOGICALLY | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |
-
-## BlurOptions<sup>11+</sup>
-灰阶模糊参数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称        |   类型   |   必填 | 说明                        |
-| ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,255]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
-
-## ForegroundEffectOptions<sup>12+</sup>
-前景效果参数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称        |   类型         |   必填 |  说明                        |
-| ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
-
-## BackgroundEffectOptions<sup>11+</sup>
-背景效果参数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称        |   类型         |   必填 |  说明                        |
-| ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。  |
-| saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 50]。     |
-| brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 2]。 |
-| color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
-| blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -960,17 +859,6 @@ Nullable\<T> {
 | MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，不透明度设置不生效。|
 |  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个颜色。当用户设置多个颜色时，仅生效第一个颜色。<br/> 不透明度与图层相关，第一层100%、第二层50%、第三层20%。  |
 
-## BlendApplyType<sup>11+</sup>
-
-指示如何将指定的混合模式应用于视图的内容。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称           | 描述                                                             |
-| ---------------| ---------------------------------------------------------------- |
-| FAST           |   在目标图像上按顺序混合视图的内容。                        |
-| OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
-
 ## DismissReason<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1053,8 +941,8 @@ Nullable\<T> {
 
 | 名称          | 类型        |  只读     | 必填      | 说明      |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 否 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 否 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
+| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
 
 ## MenuPolicy<sup>12+</sup>
 
