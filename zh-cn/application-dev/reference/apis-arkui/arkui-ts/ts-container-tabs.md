@@ -198,6 +198,22 @@ animationMode(mode: Optional\<AnimationMode\>)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签时切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode.CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
 
+### barPosition<sup>9+</sup>
+
+barPosition(value: BarPosition)
+
+设置Tabs的页签位置。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                               | 必填 | 说明                  |
+| ----- | ---------------------------------- | ---- | -------------------- |
+| value | [BarPosition](#barposition枚举说明)| 是  | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
+
 ### divider<sup>10+</sup>
 
 divider(value: DividerStyle | null)
@@ -300,7 +316,7 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 
 设置边缘回弹效果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -635,7 +651,7 @@ TabsController的构造函数。
 
 ### changeIndex
 
-changeIndex(value: number)
+changeIndex(value: number): void
 
 控制Tabs切换到指定页签。
 
@@ -656,6 +672,8 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 控制Tabs预加载指定子节点。调用该接口后会一次性加载所有指定的子节点，因此为了性能考虑，建议分批加载子节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
