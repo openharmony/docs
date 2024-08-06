@@ -2441,7 +2441,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 ```ts
 import { connection } from '@kit.NetworkKit';
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let config: wifiManager.WifiDeviceConfig = {
   ssid: "wlan0",
