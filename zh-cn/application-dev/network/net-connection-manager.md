@@ -290,7 +290,7 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
       // 循环获取网络列表每个netHandle对应的网络的连接信息
       connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
         console.info("getConnectionProperties get data: " + JSON.stringify(data));
-      }
+      })
     }
   }
 })
