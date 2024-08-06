@@ -96,8 +96,8 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
   import { rpc } from '@kit.IPCKit';
 
   const REQUEST_CODE: number = 99; // 自定义通信Code，此处仅供参考
-  const productId: number = 4258;  // 请声明连接USB设备的productId
-  const vendorId: number = 4817;   // 请声明连接USB设备的vendorId
+  const productId: number = 4258;  // 请声明连接的USB设备的productId
+  const vendorId: number = 4817;   // 请声明连接的USB设备的vendorId
   ```
 
 **注意：**
@@ -185,63 +185,73 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
   }
   ```
 
-6. 设备使用完成，解绑设备。
+7. 渲染UI界面，更多UI界面开发请参考[UI开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-ui-development-V5)。
 
   ```ts
-
-  try {
-    // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
-    deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
-      if (error) {
-        let errCode = (error as BusinessError).code;
-        let message = (error as BusinessError).message;
-        console.error(`unbindDevice async fail. Code is ${errCode}, message is ${message}`);
-        return;
+  build() {
+    Row() {
+      Column() {
+        Text(this.message) // 显示"Hello"
+          .fontSize(60)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => { // 点击"Hello"，与远程对象通信，显示"Hello world"
+            this.communicateWithRemote();
+          })
       }
-      console.info(`unbindDevice success`);
-    });
-  } catch (error) {
-    let errCode = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
+      .width('100%')
+    }
+    .height('100%')
   }
   ```
 <!--Del-->
 系统应用可通过查询外设详细信息和驱动详细信息，从而管理外设和驱动。开发示例如下：
 
-1. 查询扩展外设详细信息列表。
+1. 导入相关Kit
 
-   ```ts
-   import { deviceManager } from '@kit.DriverDevelopmentKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   
-   try {
-      // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-      let deviceInfos : Array<deviceManager.DeviceInfo> = deviceManager.queryDeviceInfo(12345678);
-      for (let item of deviceInfos) {
-         console.info(`Device id is ${item.deviceId}`)
-      }
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`Failed to query device info. Code is ${err.code}, message is ${err.message}`);
-    }
-   ```
+ ```ts
+  import { deviceManager } from '@kit.DriverDevelopmentKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+ ```
 
-2. 查询扩展外设驱动详细信息列表。
+2. 查询扩展外设详细信息列表。
 
-   ```ts
-   import { deviceManager } from '@kit.DriverDevelopmentKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   
-   try {
-      // driver-12345为示例driverUid，应用开发时可通过queryDeviceInfo查询到相应设备匹配到的驱动的driverUid作为入参
-      let driverInfos : Array<deviceManager.DriverInfo> = deviceManager.queryDriverInfo("driver-12345");
-      for (let item of driverInfos) {
-         console.info(`driver name is ${item.driverName}`)
-      }
+  ```ts 
+  try {
+     // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
+     let deviceInfos : Array<deviceManager.DeviceInfo> = deviceManager.queryDeviceInfo(12345678);
+     for (let item of deviceInfos) {
+        console.info(`Device id is ${item.deviceId}`)
+     }
    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`Failed to query driver info. Code is ${err.code}, message is ${err.message}`);
+     let err: BusinessError = error as BusinessError;
+     console.error(`Failed to query device info. Code is ${err.code}, message is ${err.message}`);
    }
-   ```
+  ```
+
+3. 查询扩展外设驱动详细信息列表。
+
+  ```ts
+  try {
+     // driver-12345为示例driverUid，应用开发时可通过queryDeviceInfo查询到相应设备匹配到的驱动的driverUid作为入参
+     let driverInfos : Array<deviceManager.DriverInfo> = deviceManager.queryDriverInfo("driver-12345");
+     for (let item of driverInfos) {
+        console.info(`driver name is ${item.driverName}`)
+     }
+  } catch (error) {
+     let err: BusinessError = error as BusinessError;
+     console.error(`Failed to query driver info. Code is ${err.code}, message is ${err.message}`);
+  }
+  ```
 <!--DelEnd-->
+
+## 应用签名
+
+应用需要配置签名文件才能安装到我们的设备上，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
+
+自动签名方法以及权限配置方法，请参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
+
+## 开发实例
+
+* [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
+* [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)
+* [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo)
