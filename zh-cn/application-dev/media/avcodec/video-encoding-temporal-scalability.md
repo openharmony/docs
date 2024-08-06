@@ -86,6 +86,8 @@
 
 - **全局时域分层编码TGOP参考模式参数：** 可选配置，影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`、跨帧参考`JUMP_REFERENCE` 和均匀分层`UNIFORMLY_SCALED_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，均匀分层模式丢帧后的码流分布更均匀，如不配置则使用默认值。
 
+    说明：均匀分层模式当前只支持TGOP为2或4。
+
 使用举例1：TGOP=4，相邻参考模式
 
 ![Temporal gop 4 adjacent reference](figures/temporal-scalability-tgop4-adjacent.png)
