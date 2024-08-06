@@ -237,7 +237,7 @@ connection.getDefaultNet().then((data:connection.NetHandle) => {
             console.log(JSON.stringify("BEARER_ETHERNET"));
           }
         }
-      
+
         // 获取网络具体能力(networkCap)
         let itemNumber : Set<number> = new Set(data.networkCap);
         let dataNumber = Array.from(itemNumber.values());
@@ -282,22 +282,14 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
     let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
     let dataNumber = Array.from(itemNumber.values());
     for (let item of dataNumber) {
-      if (netHandle.netId == 0) {
-      // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-      } else {
-        // 循环获取网络列表每个netHandle对应网络的能力信息
-        connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
-          console.info("getNetCapabilities get data: " + JSON.stringify(data));
-        })
-      }
+      // 循环获取网络列表每个netHandle对应网络的能力信息
+      connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
+        console.info("getNetCapabilities get data: " + JSON.stringify(data));
+      })
 
-      if (netHandle.netId == 0) {
-      // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-      } else {
-        // 循环获取网络列表每个netHandle对应的网络的连接信息
-        connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
-          console.info("getConnectionProperties get data: " + JSON.stringify(data));
-        })
+      // 循环获取网络列表每个netHandle对应的网络的连接信息
+      connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
+        console.info("getConnectionProperties get data: " + JSON.stringify(data));
       }
     }
   }
