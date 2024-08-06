@@ -2448,7 +2448,7 @@ let config: wifiManager.WifiDeviceConfig = {
   preSharedKey: "password";
   securityType: 1
 };
-wifiManager.addCoandidateConfig(config).then((networkId: number) => {
+wifiManager.addCandidateConfig(config).then((networkId: number) => {
   let netConnectionCellular = connection.createNetConnection({
     netCapabilities: {
       bearerTypes: [connection.NetBearType.BEARER_WIFI]
