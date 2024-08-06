@@ -229,18 +229,20 @@ initialOffset(value: OffsetOptions)
 
 ## ScrollDirection枚举说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
-| Horizontal | 仅支持水平方向滚动。     |
-| Vertical   | 仅支持竖直方向滚动。     |
-| None       | 不可滚动。               |
-| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃|
+| Horizontal | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Vertical   | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| None       | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃。|
 
 ## ScrollSnapOptions<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 参数类型    | 必填   | 描述       |
 | ---------- | --------------------|-------------------- | -------- |
@@ -298,6 +300,10 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 从API version12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名  | 类型                                                      | 必填 | 说明                   |
@@ -333,7 +339,7 @@ onWillScroll(handler: ScrollOnWillScrollCallback)
 
 ### onDidScroll<sup>12+</sup>
 
-onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明))
+onDidScroll(handler: ScrollOnScrollCallback)
 
 滚动事件回调，Scroll滚动时触发。
 
@@ -355,44 +361,7 @@ onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说�
 
 | 参数名  | 类型                                                      | 必填 | 说明                   |
 | ------- | --------------------------------------------------------- | ---- | ---------------------- |
-| handler | [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) | 是   | Scroll滚动时触发的回调 |
-
-## ScrollOnScrollCallback对象说明
-
-Scroll滚动时触发的回调  
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 参数名      | 类型                                                    | 必填 | 说明                                                         |
-| ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
-| yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               |
-
->  **说明：**
->
->  若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。
-
-## ScrollOnWillScrollCallback<sup>12+</sup>
-
-type ScrollOnWillScrollCallback = (xOffset: number, yOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => void | OffsetResult
-
-Scroll滚动前触发的回调  
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 参数名      | 类型                                                    | 必填 | 说明                                                         |
-| ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
-| yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               | 
-| scrollSource | [ScrollSource](ts-container-list.md#scrollsource12枚举说明) | 是 | 当前滚动操作的来源。 |
-
-**返回值：** 
-
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| void \| [OffsetResult](#offsetresult11) |  返回OffsetResult时按照开发者指定的偏移量滚动；不返回时按回调参数(xOffset，yOffset)滚动。 |
+| handler | [ScrollOnScrollCallback](#scrollonscrollcallback12) | 是   | Scroll滚动时触发的回调 |
 
 ### onScrollEdge
 
@@ -480,6 +449,49 @@ Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+## ScrollOnScrollCallback<sup>12+</sup>
+
+type ScrollOnScrollCallback = (xOffset: number, yOffset: number, scrollState: ScrollState) => void
+
+Scroll滚动时触发的回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名      | 类型                                                    | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
+| yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               |
+
+>  **说明：**
+>
+>  若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。
+
+## ScrollOnWillScrollCallback<sup>12+</sup>
+
+type ScrollOnWillScrollCallback = (xOffset: number, yOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => void | OffsetResult
+
+Scroll滚动前触发的回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名      | 类型                                                    | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
+| yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               | 
+| scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12枚举说明) | 是 | 当前滚动操作的来源。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| void \| [OffsetResult](#offsetresult11) |  返回OffsetResult时按照开发者指定的偏移量滚动；不返回时按回调参数(xOffset，yOffset)滚动。 |
+
 ## Scroller
 
 可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar、Grid、WaterFlow上。
@@ -491,6 +503,15 @@ Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次�
 scroller: Scroller = new Scroller()
 ```
 
+### constructor
+
+constructor()
+
+Scroller的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### scrollTo
 
@@ -500,6 +521,8 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 滑动到指定位置。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
@@ -518,6 +541,10 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
 Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名   | 参数类型 | 必填   | 参数描述      |
@@ -527,12 +554,14 @@ Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
 
 ### fling<sup>12+</sup>
 
-fling(velocity: number)
+fling(velocity: number): void
 
 
 滚动类组件开启按传入的初始速度进行惯性滚动。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -555,7 +584,9 @@ scrollPage(value: { next: boolean }): void
 
 滚动到下一页或者上一页。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -567,7 +598,9 @@ scrollPage(value: { next: boolean }): void
 
 scrollPage(value: { next: boolean, direction?: Axis })
 
-滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用 [scrollPage<sup>9+</sup>](#scrollpage9)   。
+滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用[scrollPage<sup>9+</sup>](#scrollpage9)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -581,6 +614,8 @@ scrollPage(value: { next: boolean, direction?: Axis })
 currentOffset(): OffsetResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型  | 描述 |
 | -------- | -------- |
@@ -600,6 +635,8 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: Sc
 >  仅支持Grid、List、WaterFlow组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -624,6 +661,8 @@ scrollBy(dx: Length, dy: Length)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
@@ -643,6 +682,8 @@ isAtEnd(): boolean
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值**
 
 | 类型         | 描述          |
@@ -660,6 +701,8 @@ getItemRect(index: number): RectResult
 >  支持Scroll、List、Grid、WaterFlow组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -691,6 +734,8 @@ getItemRect(index: number): RectResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型                                                       | 描述                                                         |
 | --------------|-------------------------------------------- | ------------------------------------------------------------ |
 | xOffset | number | 水平滑动偏移;<br/>返回值单位为vp。 |
@@ -699,6 +744,8 @@ getItemRect(index: number): RectResult
 ## ScrollAnimationOptions<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
 | ----- | ------ | ------ | ----------------- |
@@ -709,6 +756,8 @@ getItemRect(index: number): RectResult
 ## ScrollAlign<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
@@ -721,6 +770,8 @@ getItemRect(index: number): RectResult
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型  | 必填 | 描述              |
 | ----- | ------ | ------ | ----------------- |
 | extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
@@ -729,25 +780,18 @@ getItemRect(index: number): RectResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型  | 必填 | 描述              |
 | ----- | ------ | ------ | ----------------- |
-| scrollForward | NestedScrollMode | 是 | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
-| scrollBackward | NestedScrollMode | 是 | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
-
-## NestedScrollMode<sup>10+</sup>枚举说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                             |
-| ------ | ------------------------------ |
-| SELF_ONLY   | 只自身滚动，不与父组件联动。  |
-| SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
-| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
-| PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
+| scrollForward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10枚举说明) | 是 | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10枚举说明) | 是 | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
 ## EdgeEffectOptions<sup>11+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
@@ -757,12 +801,19 @@ getItemRect(index: number): RectResult
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
 | xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滑动偏移<br/>默认值：0 |
 | yOffset | [Dimension](ts-types.md#dimension10) | 否 |垂直滑动偏移<br/>默认值：0|
 
 ## ScrollEdgeOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名    | 参数类型 | 必填 | 参数描述                                                     |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。如果设置小于等于0的值，参数不生效。<br/>默认值：0<br/>  单位： vp/s          |

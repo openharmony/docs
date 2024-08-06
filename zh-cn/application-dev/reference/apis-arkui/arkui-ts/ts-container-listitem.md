@@ -14,13 +14,15 @@
 
 ## 接口
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 ### ListItem<sup>10+</sup>
 
 ListItem(value?: ListItemOptions)
 
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -33,6 +35,10 @@ ListItem(value?: ListItemOptions)
 ListItem(value?: string)
 
 从API version 10开始, 该接口不再维护，推荐使用[ListItem<sup>10+</sup>](#listitem10)。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -126,10 +132,13 @@ swipeAction(value: SwipeActionOptions)
 
 | 参数名 | 类型                                              | 必填 | 说明                 |
 | ------ | ------------------------------------------------- | ---- | -------------------- |
-| value  | [SwipeActionOptions](#swipeactionoptions对象说明) | 是   | ListItem的划出组件。 |
+| value  | [SwipeActionOptions](#swipeactionoptions9对象说明) | 是   | ListItem的划出组件。 |
 
 ## Sticky<sup>(deprecated)</sup>枚举说明
 从API version9开始废弃不再使用，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | None |  0  | 无吸顶效果。 |
@@ -138,6 +147,9 @@ swipeAction(value: SwipeActionOptions)
 
 ## EditMode<sup>(deprecated)</sup>枚举说明
 从API version9开始废弃不再使用，无替代接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 枚举值 | 描述        |
 | ------ | ------ | --------- |
 | None   |  0  | 编辑操作不限制。    |
@@ -148,28 +160,34 @@ swipeAction(value: SwipeActionOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 枚举值 | 描述        |
 | ------ | ------ | --------- |
 |   Spring   |    0    | ListItem划动距离超过划出组件大小后可以继续划动。<br>如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，<br/>松手后按照弹簧阻尼曲线回弹。 |
 |   None   |    1    | ListItem划动距离不能超过划出组件大小。<br>如果设置了删除区域，ListItem划动距离不能超过删除阈值，<br/>并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。 |
 
-## SwipeActionOptions对象说明
+## SwipeActionOptions<sup>9+</sup>对象说明
 
 start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。
 
 滑动手势只在listItem区域上，如果子组件划出ListItem区域外，在ListItem以外部分不会响应划动手势。所以在多列模式下，建议不要将划出组件设置太宽。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                         | 类型                                                         | 必填 | 描述                                                         |
 | ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | start                        | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | end                          | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9枚举说明)                 | 否   | 滑动效果。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。                                     <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。 <br/>**说明：** <br/> 当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## SwipeActionItem<sup>10+</sup>对象说明
 
 List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选项或向左滑动时，item右边的长距离滑动删除选项。
 </br>List水平布局，ListItem向上滑动，item下边的长距离滑动删除选项或向下滑动时，item上边的长距离滑动删除选项。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -183,19 +201,17 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | style | [ListItemStyle](#listitemstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值: ListItemStyle.NONE<br/>设置为ListItemStyle.NONE时无样式。<br/>设置为ListItemStyle.CARD时，建议配合[ListItemGroup](ts-container-listitemgroup.md)的ListItemGroupStyle.CARD同时使用，显示默认卡片样式。  <br/>卡片样式下，ListItem默认规格：高度48vp，宽度100%，左右内边距8vp。如果需要实现ListItem高度自适应，可以把height设置为undefined。<br/>卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱；List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。 |
 
-## SwipeActionOptions<sup>10+</sup>对象说明
-
-| 名称                         | 参数类型                 | 必填 | 描述                                                         |
-| ---------------------------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void | 否   | 当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位 |
-
 ## ListItemStyle<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 枚举值  | 描述               |
 | ---- | ---- | ------------------ |
@@ -205,6 +221,8 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 ## SwipeActionState<sup>11+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 枚举值     | 描述                                                         |
 | --------- | --------- | ------------------------------------------------------------ |
