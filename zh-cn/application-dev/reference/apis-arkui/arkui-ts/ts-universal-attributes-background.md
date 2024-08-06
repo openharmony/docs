@@ -159,7 +159,13 @@ backgroundImageResizable(value: ResizableOptions)
 
 继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                 |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
+| policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：FOLLOWS_WINDOW_ACTIVE_STATE <br/> |
+| inactiveColor | ResourceColor | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。<br/> |
+| type | [BlurType](ts-appendix-enums.md#blurtype13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW<br/> |
 
 
 ## backgroundBrightness<sup>12+</sup> 
