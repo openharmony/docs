@@ -3,7 +3,9 @@
 
 页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
 
-Router适用于[模块](../quick-start/application-package-structure-stage.md)间与模块内页面切换，通过每个页面的url实现模块间解耦。[Navigation](./arkts-navigation-navigation.md)具有更强的功能和自定义能力，推荐使用该组件作为应用的路由框架。Navigation和Router的差异可参考[Router切换Navigation指导](./arkts-router-to-navigation.md)。
+>**说明：**
+>
+>[Navigation](./arkts-navigation-navigation.md)具有更强的功能和自定义能力，推荐使用该组件作为应用的路由框架。Navigation和Router的差异可参考[Router切换Navigation指导](./arkts-router-to-navigation.md)。
 
 ## 页面跳转
 
