@@ -37,6 +37,11 @@ hdc（HarmonyOS Device Connector）是HarmonyOS为开发人员提供的用于调
 
 RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)
 
+## 约束与限制
+
+* 开发我们扩展外设应用，需要有可以植入OpenHarmony系统的开发板或其他设备。
+* 开发客户端和驱动时，需要一个外接USB设备进行调试。
+
 ## 接口说明
 
 扩展外设管理开放能力如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)。
@@ -65,9 +70,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 
 ## 开发步骤
 
-应用可通过查询绑定扩展外设，从而使用扩展外设的定制驱动能力。开发示例如下：
-
-1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
+应用可通过查询绑定扩展外设，从而使用扩展外设的定制驱动能力。开发示例如下(仅供参考)：
 
 **注意：**
 
@@ -75,37 +78,47 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 * 开发驱动服务端，请选择Native C++模板。
 * 同时开发驱动客户端和服务端，请选择Native C++模板。
 
-2. 创建tool文件夹，新建一个RpcTool.ets文件，以下示例代码都在RpcTool.ets文件中添加；(仅供参考)
+1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
 
-![rpctool.ets文件](./figures/rpcTool.png)
+**注意：**
+
+* 以下示例代码均写在entry/src/main/ets/pages/Index.ets文件中。
+
+2. 在文件中导入相关Kit，并声明想要绑定的USB设备的productId、vendorId以及与驱动通信的Code。
+
+  ```ts
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { deviceManager } from '@kit.DriverDevelopmentKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { rpc } from '@kit.IPCKit';
+
+  const REQUEST_CODE: number = 99;
+  const productId: number = 4258; 
+  const vendorId: number = 4817;
+  ```
 
 3. 查询设备列表。
 
-    ```ts
-    import { deviceManager } from '@kit.DriverDevelopmentKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
-
-    let matchDevice: deviceManager.USBDevice | null = null;
-
-    try {
-      let devices: Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
-      for (let item of devices) {
-        let device: deviceManager.USBDevice = item as deviceManager.USBDevice;
-        // 通过productId和vendorId来匹配要使用的USB设备
-        if (device.productId == 1234 && device.vendorId === 2345) {
-          matchDevice = device;
-          break;
-        }
-      }
-    } catch (error) {
-      let errCode = (error as BusinessError).code;
-      let message = (error as BusinessError).message;
-      console.error(`Failed to query device. Code is ${errCode}, message is ${message}`);
+  ```ts
+  private async queryTargetDeviceId(): Promise<number> {
+  try {
+    const devices: Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+    const index = devices.findIndex((item: deviceManager.Device) => {
+      let usbDevice = item as deviceManager.USBDevice;
+      hilog.info(0, 'testTag', `usbDevice.productId = ${usbDevice.productId}, usbDevice.vendorId = ${usbDevice.vendorId}`);
+      return usbDevice.productId === productId && usbDevice.vendorId === vendorId;
+    });
+    if (index < 0) {
+      hilog.error(0, 'testTag', 'can not find device');
+      return -1;
     }
-    if (!matchDevice) {
-      console.error('No match device');
-    }
-    ```
+    return devices[index].deviceId;
+  } catch (e) {
+    hilog.error(0, 'testTag', `queryDevice failed, err: ${JSON.stringify(e)}`);
+  }
+  return -1;
+  }
+  ```
 
 4. 绑定相应的设备。
 
