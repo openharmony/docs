@@ -19,114 +19,140 @@
 
 2. 在driverextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DriverExtAbility.ets。
 
+3. 在文件中导入相关Kit，并定义请求Code。
+
+    ```ts
+    import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
+    import { Want } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+
+    const REQUEST_CODE = 99; // 与扩展外设客户端约定请求码
+    ```
+
 3. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
    
-   ```ts
-   import { rpc } from '@kit.IPCKit';
-   
-   const REQUEST_CODE = 99;
-   
-   class StubTest extends rpc.RemoteObject {
-     constructor(des: string) {
-       super(des);
-     }
-     
-     // 接收应用传递过来的消息处理，以及将处理的结果返回给应用
-     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
-                            option: rpc.MessageOption) {
-       if (code === REQUEST_CODE) {
-         // 接收应用传递过来的数据
-         // 应用使用多次调用data.writeInt()写入多个数据时，驱动可以通过多次调用data.readInt()方法接收对应的数据
-         let optFir: number = data.readInt();
-         let optSec: number = data.readInt();
-         // 驱动将数据的处理结果返回给应用
-         // 示例中为接收了两个数据，并将两个数据的求和返回给应用
-         reply.writeInt(optFir + optSec);
-       }
-       return true;
-     }
-   }
-   ```
-
+    ```ts
+    class StubTest extends rpc.RemoteObject {
+      // 接收应用传递过来的消息处理，以及将处理的结果返回给客户端
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
+        option: rpc.MessageOption) {
+        if (code === REQUEST_CODE) {
+          // 接收应用传递过来的数据
+          // 应用使用多次调用data.writeString()写入多个数据时，驱动可以通过多次调用data.readString()方法接收对应的数据
+          let optFir: string = data.readString();
+          // 驱动将数据的处理结果返回给应用
+          // 示例中为接收了"Hello"，并将"Hello world"返回给应用
+          reply.writeString(optFir + ` world`);
+        }
+        return true;
+      }
+    }
+    ```
 
 4. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
    
-   ```ts
-   import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
-   import { Want } from '@kit.AbilityKit';
-   import { rpc } from '@kit.IPCKit';
-   
-   const TAG: string = '[Example].[Entry].[DriverExtAbility]';
-   const REQUEST_CODE = 99;
-   
-   class StubTest extends rpc.RemoteObject {
-     // ...
-   }
-   
-   export default class DriverExtAbility extends DriverExtensionAbility {
-     onInit(want: Want) {
-       console.info(TAG, `onInit, want: ${want.abilityName}`);
-     }
-   
-     onRelease() {
-       console.info(TAG, `onRelease`);
-     }
-   
-     onConnect(want: Want) {
-       console.info(TAG, `onConnect, want: ${want.abilityName}`);
-       return new StubTest("test");
-     }
-   
-     onDisconnect(want: Want) {
-       console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
-     }
-   
-     onDump(params: Array<string>) {
-       console.info(TAG, `onDump, params:` + JSON.stringify(params));
-       return ['params'];
-     }
-   }
-   ```
+    ```ts
+    export default class DriverExtAbility extends DriverExtensionAbility {
+      onInit(want: Want) {
+        console.info('testTag', `onInit, want: ${want.abilityName}`);
+      }
+
+      onRelease() {
+        console.info('testTag', `onRelease`);
+      }
+
+      onConnect(want: Want) {
+        console.info('testTag', `onConnect, want: ${want.abilityName}`);
+        return new StubTest("test");
+      }
+
+      onDisconnect(want: Want) {
+        console.info('testTag', `onDisconnect, want: ${want.abilityName}`);
+      }
+
+      onDump(params: Array<string>) {
+        console.info('testTag', `onDump, params:` + JSON.stringify(params));
+        return ['params'];
+      }
+    }
+    ```
 
 5. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册DriverExtensionAbility，type标签需要设置为“driver”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
    
-   ```json
-   {
-     "module": {
-       // ...
-       "extensionAbilities": [
-         {
-           "name": "DriverExtAbility",
-           "icon": "$media:startIcon",
-           "description": "driver",
-           "type": "driver",
-           "exported": true,
-           "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
-           "metadata": [
-            {
-              "name": "bus", // 必填项，所属总线，目前仅支持USB总线
-              "value": "USB",
-            },
-            {
-              "name": "desc", // 选填项，必要的驱动描述
-              "value": "the sample of driverExtensionAbility",
-            },
-            {
-              "name": "vendor", // 选填项，驱动厂商名称
-              "value": "string",
-            },
-            {
-              "name": "vid", // 必填项，USB vendor id 列表，用逗号分隔
-              "value": "string, string",
-            },
-            {
-              "name": "pid", // 必填项，USB product id 列表，用逗号分隔
-              "value": "string, string",
-            }
-           ]
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        "name": "entry",
+        "type": "entry",
+        "description": "$string:module_desc",
+        "mainElement": "EntryAbility",
+        "deviceTypes": [
+          "default",
+          "tablet"
+        ],
+        "requestPermissions": [
+          {
+            "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // 此处为扩展外设相关权限，必须配置
+          }
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "pages": "$profile:main_pages",
+        "abilities": [
+          {
+            "name": "EntryAbility",
+            "srcEntry": "./ets/entryability/EntryAbility.ets",
+            "description": "$string:EntryAbility_desc",
+            "icon": "$media:startIcon",
+            "label": "$string:EntryAbility_label",
+            "startWindowIcon": "$media:startIcon",
+            "startWindowBackground": "$color:start_window_background",
+            "exported": true,
+            "skills": [
+              {
+                "entities": [
+                  "entity.system.home"
+                ],
+                "actions": [
+                  "action.system.home"
+                ]
+              }
+            ]
+          }
+        ],
+        "extensionAbilities": [
+          {
+            "name": "DriverExtAbility",
+            "icon": "$media:startIcon",
+            "description": "driver",
+            "type": "driver",
+            "exported": true,
+            "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
+            "metadata": [
+              {
+                "name": "bus", // 必填项，所属总线
+                "value": "USB"
+              },
+              {
+                "name": "desc", // 选填项，必要的驱动描述
+                "value": "the sample of driverExtensionAbility"
+              },
+              {
+                "name": "vendor", // 选填项，驱动厂商名称
+                "value": "string"
+              },
+              {
+                "name": "vid", // 支持 USB vendor id 列表，填写16进制，此处为4817的16进制
+                "value": "0x12D1"
+              },
+              {
+                "name": "pid", // 支持的 USB product id 列表，填写16进制，此处为4258的16进制
+                "value": "0x10A2"
+              }
+            ]
+          }
+        ]
+      }
+    }
+    ```
   
