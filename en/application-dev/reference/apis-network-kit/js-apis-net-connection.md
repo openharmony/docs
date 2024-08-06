@@ -737,13 +737,17 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
-    if (error) {
-      console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
-      return;
-    }
-    console.info("Succeeded to get data: " + JSON.stringify(data));
-  })
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  } else {
+    connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
+        if (error) {
+        console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
+        return;
+        }
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+    })
+  }
 });
 ```
 
@@ -785,9 +789,13 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
-    console.info("Succeeded to get data: " + JSON.stringify(data));
-  })
+  if (netHandle.netId == 0) {
+  // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  } else {
+    connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+    })
+  }
 });
 ```
 
@@ -868,13 +876,17 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
-    if (error) {
-      console.error(`Failed to get net capabilities. Code:${error.code}, message:${error.message}`);
-      return;
-    }
-    console.info("Succeeded to get data: " + JSON.stringify(data));
-  })
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  } else {
+    connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
+      if (error) {
+        console.error(`Failed to get net capabilities. Code:${error.code}, message:${error.message}`);
+        return;
+      }
+      console.info("Succeeded to get data: " + JSON.stringify(data));
+    })
+  }
 });
 ```
 
@@ -918,9 +930,13 @@ Obtains capability information of the network corresponding to the **netHandle**
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
-    console.info("Succeeded to get data: " + JSON.stringify(data));
-  })
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  } else {
+    connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
+      console.info("Succeeded to get data: " + JSON.stringify(data));
+    })
+  }
 });
 ```
 
