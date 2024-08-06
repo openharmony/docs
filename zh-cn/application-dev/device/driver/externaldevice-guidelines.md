@@ -252,6 +252,8 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 
 ## 开发实例
 
+为开发者提供了以下3款产品的Demo，用于参考。
+
 * [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
 * [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)
 * [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo)
