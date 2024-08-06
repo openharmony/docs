@@ -542,12 +542,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
     // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-  } else {  connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
-    if (error) {
-      console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
-      return;
-    }
-    console.info("Succeeded to get data: " + JSON.stringify(data));
+  } else {
+    connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
+      if (error) {
+        console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
+        return;
+      }
+      console.info("Succeeded to get data: " + JSON.stringify(data));
     });
   }
 });
@@ -749,8 +750,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   } else {
     connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
         if (error) {
-        console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
-        return;
+          console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
+          return;
         }
         console.info("Succeeded to get data: " + JSON.stringify(data));
     })
@@ -800,7 +801,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
   } else {
     connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
-        console.info("Succeeded to get data: " + JSON.stringify(data));
+      console.info("Succeeded to get data: " + JSON.stringify(data));
     })
   }
 });
@@ -854,12 +855,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     netHandle = connection.getDefaultNetSync();
     connectionproperties = connection.getConnectionPropertiesSync(netHandle);
     if (error) {
-        console.error(`Failed to get neconnectiont capabilities. Code:${error.code}, message:${error.message}`);
-        return;
-      }
-      console.info("Succeeded to get connectionproperties: " + JSON.stringify(connectionproperties));
+      console.error(`Failed to get neconnectiont capabilities. Code:${error.code}, message:${error.message}`);
+      return;
     }
-  });
+    console.info("Succeeded to get connectionproperties: " + JSON.stringify(connectionproperties));
+  }
+});
 
 ```
 
@@ -1015,10 +1016,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     if (error) {
         console.error(`Failed to get net capabilities sync. Code:${error.code}, message:${error.message}`);
         return;
-      }
-      console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
     }
-  });
+    console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
+  }
+});
 
 ```
 

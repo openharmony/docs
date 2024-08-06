@@ -219,9 +219,9 @@ connection.getDefaultNet().then((data:connection.NetHandle) => {
       console.info("getDefaultNet get data: " + JSON.stringify(data));
       GlobalContext.getContext().netHandle = data;
       // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
-      connection.getNetCapabilities(GlobalContext.getContext().netHandle).then((data: connection.NetCapabilities) => {
+      connection.getNetCapabilities(GlobalContext.getContext().netHandle).then(
+        (data: connection.NetCapabilities) => {
         console.info("getNetCapabilities get data: " + JSON.stringify(data));
-
         // 获取网络类型(bearerTypes)
         let bearerTypes: Set<number> = new Set(data.bearerTypes);
         let bearerTypesNum = Array.from(bearerTypes.values());
