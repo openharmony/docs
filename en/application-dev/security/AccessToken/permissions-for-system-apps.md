@@ -3615,7 +3615,7 @@ Allow a system application to obtain file thumbnails.
 
 ### ohos.permission.ALLOW_CONNECT_CAR
 
-Allows an application to connect car.
+Allows an application to connect to an automobile head unit.
 
 **Permission level**：system_basic
 
