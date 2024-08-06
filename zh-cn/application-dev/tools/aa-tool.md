@@ -67,7 +67,8 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   > 本例中仅介绍了部分字段的使用。关于Ability匹配的详细规则参考[显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)。
 
 
-1. 修改module.json5配置，为目标Ability配置uris。
+  - **目标应用**：修改module.json5配置，为目标Ability配置uris。
+
       ```json
       {
         "name": "TargetAbility",
@@ -80,7 +81,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
             ],
             "uris":[
               {
-                "scheme": "https",
+                "scheme": "myscheme",
                 "host": "www.test.com",
                 "port": "8080",
                 "path": "path",
@@ -90,25 +91,24 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
         ]
       }
       ```
-2. 隐式启动Ability。
 
 
-    - 使用-U命令启动。
+  - **拉起方应用**: 隐式启动Ability。
 
-        ```bash
-        aa start -U https://www.test.com:8080/path
-        ```
-
-    - 如果启动时需要携带参数，可以使用如下命令。
-
+    - 如果需要拉起应用的页面，可以使用-U命令，示例如下：
 
         ```bash
-        aa start -U https://www.test.com:8080/path --pi paramNumber 1 --pb paramBoolean true --ps paramString teststring  --psn paramNullString
+        aa start -U myscheme://www.test.com:8080/path
         ```
 
+    - 在上述基础上，如果需要携带参数，可以使用如下命令：
+
+        ```bash
+        aa start -U myscheme://www.test.com:8080/path --pi paramNumber 1 --pb paramBoolean true --ps paramString teststring  --psn paramNullString
+        ```
 
       UIAbility获取传入参数示例如下：
-
+  
         ```ts
         import UIAbility from '@ohos.app.ability.UIAbility';
         import hilog from '@ohos.hilog';
@@ -123,6 +123,14 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
             let paramNullString = want.parameters.paramNullString
           }
         }
+        ```
+
+    - 如果需要拉起浏览器并跳转指定页面，可以使用-A -U命令，示例如下：
+
+      本例中以`https://www.example.com`为例，请根据实际情况替换为真实的网址。
+
+        ```bash
+        aa start -A ohos.want.action.viewData -U https://www.example.com
         ```
 
 
