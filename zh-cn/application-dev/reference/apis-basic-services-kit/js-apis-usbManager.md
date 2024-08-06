@@ -520,7 +520,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 **说明：**
 
-> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [usbControlTransfer](#usbManagerusbControlTransfer) 替代。
+> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [usbControlTransfer](#usbmanagerusbControlTransfer) 替代。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
