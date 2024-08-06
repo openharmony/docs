@@ -24,7 +24,7 @@ The following table lists the uniform data structs provided by the UDMF.
 | 'general.folder'        |        Folder         | Folder    |
 | 'openharmony.form'      |   SystemDefinedForm   | Widget      |
 | 'openharmony.app-item'  | SystemDefinedAppItem  | Icon      |
-| 'openharmony.pixel-map' | SystemDefinedPixelMap | Pixel map|
+| 'openharmony.pixel-map' | SystemDefinedPixelMap | Pixel map |
 
 ## Constraints
 
@@ -41,7 +41,7 @@ The following table lists the commonly used APIs for managing uniform data struc
 | UnifiedRecord | getType(): string                      | Obtains the type of this data record.                        |
 | UnifiedData   | constructor(record: UnifiedRecord)     | A constructor used to create a **UnifiedData** object with a data record.                    |
 | UnifiedData   | addRecord(record: UnifiedRecord): void | Adds a data record to this **UnifiedRecord** object.                      |
-| UnifiedData   | getRecords(): Array\<UnifiedRecord>    | Obtains all data records from this **UnifiedData** object. The data obtained is of the **UnifiedRecord** type. Before using the data, you need to obtain the data type by using **getType** and convert the data type to a child class.|
+| UnifiedData   | getRecords(): Array\<UnifiedRecord>    | Obtains all data records from this **UnifiedData** object. The data obtained is of the **UnifiedRecord** type. Before using the data, you need to obtain the data type by using **getType** and convert the data type to a child class. |
 
 
 ## How to Develop
@@ -116,3 +116,4 @@ The following describes how to encapsulate an image and a plaint text into an ob
      }
    }
    ```
+

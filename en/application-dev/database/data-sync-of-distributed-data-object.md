@@ -27,7 +27,7 @@ The distributed data object (**distributedDataObject**) module implements global
 
 ## Working Principles
 
-**Figure 1** Working mechanism
+**Figure 1** Working mechanism 
 
 ![distributedObject](figures/distributedObject.jpg)
 
@@ -44,9 +44,9 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 
 **Table 1** Correspondence between a distributed data object and a distributed database
 
-| Distributed Data Object Instance| Object Instance| Property Name| Property Value| 
+| Distributed Data Object Instance | Object Instance | Property Name | Property Value | 
 | -------- | -------- | -------- | -------- |
-| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database| 
+| Distributed in-memory database | Database identified by **sessionID** | Key of a record in the database | Value of a record in the database | 
 
 
 ### Cross-Device Sync and Data Change Notification
@@ -74,7 +74,7 @@ After the sync relationship is established, each session has a copy of shared ob
 
 Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed property needs to be synced.
 
-**Figure 3** Sync of distributed data objects
+**Figure 3** Sync of distributed data objects 
 
 
 ![distributedObject_syncView](figures/distributedObject_syncView.jpg)
@@ -93,10 +93,6 @@ You need to persist distributed data objects in the following scenarios:
 ### Asset Sync Mechanism
 
 In a distributed object, [asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset) is used to describe a local entity asset file. When the distributed object is synced across devices, the file is also synced to other devices with it. Currently, only asset is supported. The type [assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets) is not supported. To synchronize multiple assets, use each asset as a root property of the distributed object.
-
-### Resolution of Joint Asset Conflicts 
-
-When an asset in a distributed object and an asset in an RDB store point to the same entity asset file, that is, the URIs of the two assets are the same, a conflict occurs. Such assets are called joint assets. To resolve the conflict of joint assets, bind the asset and the RDB store. The binding is automatically released when the application exits the session.
 
 ## Constraints
 
@@ -124,19 +120,19 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| create(context: Context, source: object): DataObject | Creates a distributed data object instance.|
-| genSessionId(): string | Generates a session ID for distributed data objects.|
-| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data sync. Automatic sync is performed for devices with the same session ID on a trusted network.|
-| setSessionId(callback: AsyncCallback&lt;void&gt;): void | Exits all sessions.|
-| on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Subscribes to data changes of the distributed data object.|
-| off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Unsubscribes from data changes of the distributed data object.|
-| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | Subscribes to status changes of the distributed data object.|
-| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object.|
-| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object.|
-| revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object.|
-| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | Binds an asset and its RDB store.|
+| create(context: Context, source: object): DataObject | Creates a distributed data object instance. |
+| genSessionId(): string | Generates a session ID for distributed data objects. |
+| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data sync. Automatic sync is performed for devices with the same session ID on a trusted network. |
+| setSessionId(callback: AsyncCallback&lt;void&gt;): void | Exits all sessions. |
+| on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Subscribes to data changes of the distributed data object. |
+| off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Unsubscribes from data changes of the distributed data object. |
+| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | Subscribes to status changes of the distributed data object. |
+| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object. |
+| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object. |
+| revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object. |
+| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | Binds an asset and its RDB store. |
 
 
 ## How to Develop
@@ -357,90 +353,172 @@ The following example demonstrates how to implement sync of distributed data obj
     });
     ```
 
-### Asset Sync Across Devices
+### Using Distributed Data Objects in Cross-Device Migration
 
-The asset type allows the file described by **asset** to be synced across devices with its distributed data object. The device that holds the asset file is the source device, and the device that obtains the asset file is the destination device.
+1. Create a distributed data object in **onContinue()** for the application on the source device, and save data.
 
-1. Import the **distributedDataObject** and **commonType** modules.
+    1.1 Call **create()** to create a distributed data object instance.
 
-   ```ts
-   import { distributedDataObject, commonType } from '@kit.ArkData';
-   ```
+    1.2 Call **genSessionId()** to generate a **sessionId**, call **setSessionId()** to set a **sessionId**, and add the **sessionId** to **wantParam**. The distributed data objects with the same **sessionId** can connect to the same network. 
 
-2. Apply for permissions.
+    1.3 Obtain the network ID from **wantParam** for the application on the target device and call **save()** with this network ID to save data to the target device.
 
-   1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
-   2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+2. Create a distributed data object in **onCreate()** and **onNewWant()** for the application on the target device, and register a listener for the "restored" state.
 
-3. Create a distributed data object that contains the asset for the source device and add the device to the network.
+    2.1 Call **create()** to create a distributed data object instance for the application on the target device.
 
-    ```ts
-    import { UIAbility } from '@kit.AbilityKit';
-    import { window } from '@kit.ArkUI';
-    import { BusinessError } from '@kit.BasicServicesKit';
+    2.2 Register a listener callback for the data recovery state. If "restored" is returned by the listener callback registered, the distributed data object of the target device has obtained the data transferred from the source device.
 
-    class Note {
-      title: string | undefined
-      text: string | undefined
-      attachment: commonType.Asset | undefined
+    2.3 Obtain the **sessionId** of the source device from **want.parameters** and call **setSessionId** to set the same **sessionId** for the target device.
 
-      constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
-        this.title = title;
-        this.text = text;
-        this.attachment = attachment;
+> **NOTE**
+>
+> - In cross-device migration, after **setsessionId()** is called on the source device to set **sessionId**, call **save()** to save data to the target device.
+>
+> - The **continuable** tag must be set for cross-device migration. <!--RP1-->For details, see [How to Develop](../application-models/hop-cross-device-migration.md#how-to-develop).<!--RP1End-->
+>
+> - The **sessionId** field in **wantParam** is used by other services. You are advised to customize a key for accessing the **sessionId** field.
+>
+> - Use data of the Asset type to record information about assets (such as documents, images, and videos). When asset data is migrated, the corresponding asset is also migrated to the target device.
+>
+> - The initial value of the service data must be set to **undefined** on the target device so that the data saved on the source device can be restored on the target device. Otherwise, the data on the source device will be overwritten by the data set on the target device. For asset data, you need to set each attribute of the asset data to **undefined** instead of setting the entire asset data to **undefined**.
+>
+> - Currently, the asset array is not supported. If multiple files need to be migrated, define an asset data record for each file to migrate.
+>
+> - Currently, only files in distributed file directory can be migrated. Files in other directories can be copied or moved to distributed file directory before migration. For details about how to move or copy files and obtain URIs, see [File Management](../reference/apis-core-file-kit/js-apis-file-fs.md) and [File URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md).
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { commonType, distributedDataObject } from '@kit.ArkData';
+import { fileIo, fileUri } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Define service data.
+class Data {
+  title: string | undefined;
+  text: string | undefined;
+  attachment: commonType.Asset; // Use data of the commonType.Asset to record files in the distributed file directory. When asset data is migrated, the corresponding files are also migrated to the target device. (If files do not need to be migrated, do not set this field and createAttachment and createEmptyAttachment.)
+  // attachment2: commonType.Asset; // The asset array is not supported currently. If multiple files need to be migrated, define an asset data record for each file to migrate.
+
+  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset) {
+    this.title = title;
+    this.text = text;
+    this.attachment = attachment;
+  }
+}
+
+const TAG = '[DistributedDataObject]';
+let dataObject: distributedDataObject.DataObject;
+
+export default class EntryAbility extends UIAbility {
+  // 1. Create a distributed data object in **onContinue()** for the application on the source device, and save data to the target device.
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult | Promise<AbilityConstant.OnContinueResult> {
+    // 1.1 Call create() to create a distributed data object instance.
+    let attachment = this.createAttachment();
+    let data = new Data('The title', 'The text', attachment);
+    dataObject = distributedDataObject.create(this.context, data);
+
+    // 1.2 Call genSessionId() to generate a sessionId, call setSessionId() to set a sessionId, and add the sessionId to wantParam.
+    let sessionId = distributedDataObject.genSessionId();
+    console.log(TAG + `gen sessionId: ${sessionId}`);
+    dataObject.setSessionId(sessionId);
+    wantParam.distributedSessionId = sessionId;
+
+    // 1.3 Obtain networkId from **wantParam** for the application on the target device and call save() with this network ID to save data to the target device.
+    let deviceId = wantParam.targetDevice as string;
+    console.log(TAG + `get deviceId: ${deviceId}`);
+    dataObject.save(deviceId);
+    return AbilityConstant.OnContinueResult.AGREE;
+  }
+
+  // 2. Create a distributed data object in onCreate() for the application on the target device (for cold start), and add it to the network for data migration.
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      if (want.parameters && want.parameters.distributedSessionId) {
+        this.restoreDistributedDataObject(want);
       }
     }
+  }
 
-    class EntryAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-        let attachment: commonType.Asset = {
-          name: 'test_img.jpg',
-          uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
-          path: '/dir/test_img.jpg',
-          createTime: '2024-01-02 10:00:00',
-          modifyTime: '2024-01-02 10:00:00',
-          size: '5',
-          status: commonType.AssetStatus.ASSET_NORMAL
-        }
-        // Create a custom note type that contains an image asset.
-        let note: Note = new Note('test', "test", attachment);
-        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
-        localObject.setSessionId('123456');
+  // 2. Create a distributed data object in onNewWant() for the application on the target device (for hot start), and add it to the network for data migration.
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      if (want.parameters && want.parameters.distributedSessionId) {
+        this.restoreDistributedDataObject(want);
       }
     }
-    ```
+  }
 
-4. Create a distributed data object for the destination device and add the device to the network.
+  restoreDistributedDataObject(want: Want) {
+    if (!want.parameters || !want.parameters.distributedSessionId) {
+      console.error(TAG + 'missing sessionId');
+      return;
+    }
 
-    ```ts
-    let note: Note = new Note(undefined, undefined, undefined);
-    let receiverObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
-    receiverObject.on('change', (sessionId: string, fields: Array<string>) => {
-      if (fields.includes('attachment')) {
-        // When the destination device detects the change in the data of the asset type, the sync of the asset file is complete.
-        console.info('attachment synchronization completed');
+    // 2.1 Call create() to create a distributed data object instance for the application on the target device.
+    let attachment = this.createEmptyAttachment(); // Set each attribute of the asset data to undefined so that the asset data saved on the source device can be restored on the target device.
+    let data = new Data(undefined, undefined, attachment);
+    dataObject = distributedDataObject.create(this.context, data);
+
+    // 2.2 Register a listener callback for the data recovery state. If "restored" is returned by the listener callback registered, the distributed data object of the target device has obtained the data transferred from the source device. If asset data is migrated, the file is also transferred to the target device. 
+    dataObject.on('status', (sessionId: string, networkId: string, status: string) => {
+      if (status == 'restored') {// "restored" indicates that the data saved on the source device is restored on the target device.
+        console.log(TAG + `title: ${dataObject['title']}, text: ${dataObject['text']}`);
       }
     });
-    receiverObject.setSessionId('123456');
-    ```
 
-5. If the asset is a joint asset, bind the asset and its RDB store to resolve the conflict.
+    // 2.3 Obtain the sessionId of the source device from want.parameters and call setSessionId to set the same sessionId for the target device.
+    let sessionId = want.parameters.distributedSessionId as string;
+    console.log(TAG + `get sessionId: ${sessionId}`);
+    dataObject.setSessionId(sessionId);
+  }
 
-    ```ts
-    const bindInfo: distributedDataObject.BindInfo = {
-      storeName: 'notepad',
-      tableName: 'note_t',
-      primaryKey: {
-        'uuid': '00000000-0000-0000-0000-000000000000'
-      },
-      field: 'attachment',
-      assetName: attachment.name
-    }
+  // Create a file in the distributed file directory and use data of the asset type to record the file information. (You can also use the data of asset type to record an existing file in the distributed file directory or copy or move a file from another directory to the distributed file directory and then migrate it.)
+  createAttachment() {
+    let attachment = this.createEmptyAttachment();
+    try {
+      let distributedDir: string = this.context.distributedFilesDir; // Distributed file directory.
+      let fileName: string = 'text_attachment.txt'; // File name.
+      let filePath: string = distributedDir + '/' + fileName; // File path.
+      let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+      fileIo.writeSync(file.fd, 'The text in attachment');
+      fileIo.closeSync(file.fd);
+      let uri: string = fileUri.getUriFromPath(filePath); // Obtain the file URI.
+      let stat = fileIo.statSync(filePath); // Obtain detailed file attribute information.
 
-    localObject.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
-      if (err) {
-        console.error('bindAssetStore failed.');
+      // Write asset data.
+      attachment = {
+        name: fileName,
+        uri: uri,
+        path: filePath,
+        createTime: stat.ctime.toString(),
+        modifyTime: stat.mtime.toString(),
+        size: stat.size.toString()
       }
-      console.info('bindAssetStore success.');
-    });
-    ```
+    } catch (e) {
+      let err = e as BusinessError;
+      console.error(TAG + `file error, error code: ${err.code}, error message: ${err.message}`);
+    }
+    return attachment;
+  }
+
+  createEmptyAttachment() {
+    let attachment: commonType.Asset = {
+      name: undefined,
+      uri: undefined,
+      path: undefined,
+      createTime: undefined,
+      modifyTime: undefined,
+      size: undefined
+    }
+    return attachment;
+  }
+}
+```
+
+
+ 
+
+
