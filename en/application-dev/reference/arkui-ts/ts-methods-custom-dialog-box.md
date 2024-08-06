@@ -130,7 +130,6 @@ struct CustomDialogExample {
         })
         .margin(20)
     }.borderRadius(10)
-    // When using the border or cornerRadius attribute, use it together with the borderRadius attribute.
   }
 }
 
@@ -151,8 +150,7 @@ struct CustomDialogUser {
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
-    customStyle: false,
-    cornerRadius: 10,
+    customStyle: false
   })
 
   // Set dialogController to undefined when the custom component is about to be destroyed.

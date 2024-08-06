@@ -72,7 +72,7 @@ As shown above, the **module.json5** file contains several tags.
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | name | Name of the module. The value is a string with a maximum of 31 bytes and must be unique in the entire application. | String| No|
-| type | Type of the module. The options are as follows:<br>- **entry**: main module of the application.<br>- **feature**: dynamic feature module of the application.<br>- **har**: static shared module.<br>- **shared**: dynamic shared module.| String| No|
+| type | Type of the module. The options are as follows:<br>- **entry**: main module of the application.<br>- **feature**: dynamic feature module of the application.<br>- **shared**: dynamic shared module.<br>- **har**: static shared module.| String| No|
 | srcEntry | Code path of the module. The value is a string with a maximum of 127 bytes.| String| Yes (initial value: left empty)|
 | description | Description of the module. The value is a string with a maximum of 255 bytes or a string resource index.| String| Yes (initial value: left empty)|
 | process | Process name of the module. The value is a string with a maximum of 31 bytes. If **process** is configured under **HAP**, all UIAbilities, DataShareExtensionAbilities, and ServiceExtensionAbilities of the application run in the specified process.<br>**NOTE**<br>This tag applies only to system applications and does not take effect for third-party applications.| String| Yes (initial value: value of **bundleName** under **app** in the **app.json5** file)|

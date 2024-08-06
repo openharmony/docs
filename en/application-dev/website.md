@@ -26,9 +26,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
-      - Quick Fix
-        - [Quick Fix Overview](quick-start/quickfix-principles.md)
-        - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
     - Application Configuration Files in Stage Model
       - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)

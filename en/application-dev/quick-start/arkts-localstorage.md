@@ -85,7 +85,7 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes (the attributes that **Object.keys(observedObject)** returns) can be observed.
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example for Using LocalStorage from Inside the UI](#example-for-using-localstorage-from-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
 
@@ -145,7 +145,7 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes (the attributes that **Object.keys(observedObject)** returns) can be observed.
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example for Using LocalStorage from Inside the UI](#example-for-using-localstorage-from-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
 
@@ -159,8 +159,9 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 3. When the data decorated by \@LocalStorageLink(key) is a state variable, the change of the data is synchronized to LocalStorage, and the owning custom component is re-rendered.
 
+![LocalStorageLink_framework_behavior](figures/LocalStorageLink_framework_behavior.png)
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Example of Using LocalStorage in Application Logic
@@ -190,47 +191,74 @@ This example uses \@LocalStorageLink to show how to:
 
 - Use \@LocalStorageLink to create a two-way data synchronization with the given attribute in LocalStorage.
 
-  ```ts
-  // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage({ 'PropA': 47 });
+```ts
+class PropB {
+  code: number;
 
-  @Component
-  struct Child {
-    // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
-    @LocalStorageLink('PropA') storLink2: number = 1;
+  constructor(code: number) {
+    this.code = code;
+  }
+}
+// Create a new instance and initialize it with the given object.
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+storage.setOrCreate('PropB', new PropB(50));
 
-    build() {
-      Button(`Child from LocalStorage ${this.storLink2}`)
-        // The changes will be synchronized to PropA in LocalStorage and with Parent.storLink1.
-        .onClick(() => this.storLink2 += 1)
+@Component
+struct Child {
+  // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
+  @LocalStorageLink('PropA') childLinkNumber: number = 1;
+  // @LocalStorageLink creates a two-way data synchronization with the PropB attribute in LocalStorage.
+  @LocalStorageLink('PropB') childLinkObject: PropB = new PropB(0);
+
+  build() {
+    Column() {
+      Button(`Child from LocalStorage ${this.childLinkNumber}`) // The changes will be synchronized to PropA in LocalStorage and with Parent.parentLinkNumber.
+        .onClick(() => {
+          this.childLinkNumber += 1;
+        })
+      Button(`Child from LocalStorage ${this.childLinkObject.code}`) // The changes will be synchronized to PropB in LocalStorage and with Parent.parentLinkObject.code.
+        .onClick(() => {
+          this.childLinkObject.code += 1;
+        })
     }
   }
-  // Make LocalStorage accessible from the @Component decorated component.
-  @Entry(storage)
-  @Component
-  struct CompA {
-    // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
-    @LocalStorageLink('PropA') storLink1: number = 1;
+}
+// Make LocalStorage accessible from the @Component decorated component.
+@Entry(storage)
+@Component
+struct CompA {
+  // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
+  @LocalStorageLink('PropA') parentLinkNumber: number = 1;
+  // @LocalStorageLink creates a two-way data synchronization with the PropB attribute in LocalStorage.
+  @LocalStorageLink('PropB') parentLinkObject: PropB = new PropB(0);
 
-    build() {
-      Column({ space: 15 }) {
-        Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
-          .onClick(() => this.storLink1 += 1)
-        // The @Component decorated child component automatically obtains access to the CompA LocalStorage instance.
-        Child()
-      }
+  build() {
+    Column({ space: 15 }) {
+      Button(`Parent from LocalStorage ${this.parentLinkNumber}`) // The initial value from LocalStorage will be 47, because 'PropA' has been initialized.
+        .onClick(() => {
+          this.parentLinkNumber += 1;
+        })
+
+      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`) // The initial value from LocalStorage will be 50, because 'PropB' has been initialized.
+        .onClick(() => {
+          this.parentLinkObject.code += 1;
+        })
+      // The @Component decorated child component automatically obtains access to the CompA LocalStorage instance.
+      Child()
     }
   }
-  ```
+}
+```
 
 
 ### Simple Example of Using \@LocalStorageProp with LocalStorage
 
 In this example, the **CompA** and **Child** components create local data that is one-way synchronized with the PropA attribute in the LocalStorage instance **storage**.
 
-- The change of **this.storProp1** in **CompA** takes effect only in **CompA** and is not synchronized to **storage**.
+- The change of **this.storageProp1** in **CompA** takes effect only in **CompA** and is not synchronized to **storage**.
 
-- In the **Child** component, the value of **storProp2** bound to **Text** is still 47.
+- In the **Child** component, the value of **storageProp2** bound to **Text** is still 47.
 
   ```ts
   // Create a new instance and initialize it with the given object.
@@ -288,7 +316,7 @@ struct CompA {
   build() {
     Column() {
       Text(`incr @LocalStorageLink variable`)
-        // Clicking incr @LocalStorageLink variable increases the value of this.storLink by 1. The change is synchronized back to the storage. The global variable linkToPropA also changes.
+        // Clicking incr @LocalStorageLink variable increases the value of this.storageLink by 1. The change is synchronized back to the storage. The global variable linkToPropA also changes.
 
         .onClick(() => this.storLink += 1)
 
@@ -402,7 +430,7 @@ windowStage.loadContent('pages/Index', this.storage);
 >
 > **LocalStorage.GetShared()** works only on emulators and real devices, not in DevEco Studio Previewer.
 
-In the following example, **propA** on the **Index** page uses the **GetShared()** API to obtain the shared LocalStorage instance. Click the button to go to the **Page** page. Click **Change propA** and then return to the **Index** page. It can be observed that the value of **propA** on the page is changed.
+After an instance of LocalStorage is created within the UIAbility, the following use case demonstrates how to obtain the shared instance through the **GetShared** API and initialize the **Index** component with this instance, **storage**. Within the **Index** component, the @LocalStorageLink decorated variable **propA** retrieves the value of the **PropA** attribute from LocalStorage. After the button is clicked to navigate to the **Page**, and the **Change propA** button is then clicked, the value of **propA** is changed. Upon returning to the **Index** page, the value of **propA** is also synchronized.
 
 ```ts
 // index.ets
@@ -468,6 +496,7 @@ struct Page {
     }
   }
 }
+
 ```
 
 
