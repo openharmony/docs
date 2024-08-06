@@ -29,17 +29,17 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 ## Asset
 
-Defines information about an asset (such as a document, image, and video). The asset APIs do not support **Datashare**.
+Defines information about an asset (such as a document, image, and video).
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
 
-| Name      | Type                       | Mandatory | Description                              |
-| ---------- | --------------------------- | ---- | ---------------------------------- |
+| Name      | Type                                                  | Mandatory | Description                              |
+| ---------- | ------------------------------------------------------ | ---- | ---------------------------------- |
 | name       | string \| undefined<sup>12+</sup>                      | Yes  | Asset name.                      |
-| uri        | string \| undefined<sup>12+</sup>                     | Yes  | Asset URI, which is an absolute path in the system.   |
+| uri        | string \| undefined<sup>12+</sup>                      | Yes  | Asset URI, which is an absolute path in the system.   |
 | path       | string \| undefined<sup>12+</sup>                      | Yes  | Application sandbox path of the asset.          |
-| createTime | string \| undefined<sup>12+</sup>                     | Yes  | Time when the asset was created.            |
-| modifyTime | string \| undefined<sup>12+</sup>                     | Yes  | Time when the asset was last modified.        |
+| createTime | string \| undefined<sup>12+</sup>                      | Yes  | Time when the asset was created.            |
+| modifyTime | string \| undefined<sup>12+</sup>                      | Yes  | Time when the asset was last modified.        |
 | size       | string \| undefined<sup>12+</sup>                      | Yes  | Size of the asset.              |
 | status     | [AssetStatus](#assetstatus) \| undefined<sup>12+</sup> | No  | Asset status. The default value is **ASSET_NORMAL**. |
 

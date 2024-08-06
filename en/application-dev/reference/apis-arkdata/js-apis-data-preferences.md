@@ -25,7 +25,7 @@ import { preferences } from '@kit.ArkData';
 | Name            | Type | Readable | Writable | Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 80 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 8192 bytes. |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes. |
 
 
 ## preferences.getPreferences
@@ -1131,7 +1131,7 @@ Represents the configuration of a **Preferences** instance.
 | Name       | Type  | Mandatory | Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | Yes  | Name of the **Preferences** instance.                                     |
-| dataGroupId | string\|null\|undefined | No  | Application group ID, which needs to be obtained from the AppGallery. This parameter is not supported currently.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br>**Model restriction**: This attribute can be used only in the stage model.|
+| dataGroupId | string\|null\|undefined | No  | Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br>**Model restriction**: This attribute can be used only in the stage model.|
 
 
 ## Preferences

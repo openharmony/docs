@@ -1,6 +1,6 @@
 # @ohos.data.relationalStore (RDB Store)
 
-The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. It does not support transfer of Sendable data across threads.
+The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. It does not support transfer of sendable data across threads.
 The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
 The **relationalStore** module provides the following functionalities:
@@ -439,6 +439,7 @@ class EntryAbility extends UIAbility {
     })
   }
 }
+
 ```
 
 ## relationalStore.deleteRdbStore<sup>10+</sup>
@@ -539,8 +540,8 @@ Defines the RDB store configuration.
 | encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
 | dataGroupId<sup>10+</sup> | string | No | Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | No | Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
-| autoCleanDirtyData<sup>11+</sup> | boolean | No | Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
-| allowRebuild<sup>12+</sup> | boolean | No | Whether auto rebuild is allowed when the RDB store is corrupted. The default value is **false**.<br>The value **true** means auto rebuild is allowed.<br>The value **false** means the opposite.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| autoCleanDirtyData<sup>11+<sup> | boolean | No | Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
+| allowRebuild<sup>12+<sup> | boolean | No | Whether auto rebuild is allowed when the RDB store is corrupted. The default value is **false**.<br>The value **true** means auto rebuild is allowed.<br>The value **false** means the opposite.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -576,7 +577,7 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 ## Asset<sup>10+</sup>
 
-Defines information about an asset (such as a document, image, and video). The asset APIs do not support **Datashare**.
+Defines information about an asset (such as a document, image, and video).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -617,7 +618,7 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 | string  | String. |
 | boolean | Boolean. |
 | Uint8Array<sup>10+</sup>           | Uint8 array.           |
-| Asset<sup>10+</sup>  | [Asset](#asset10). |
+| Asset<sup>10+</sup>  | [Asset](#asset10).    |
 | Assets<sup>10+</sup> | [Assets](#assets10). |
 | Float32Array<sup>12+</sup> | Array of 32-bit floating-point numbers. |
 | bigint<sup>12+</sup> | Integer of any length.<br>If the value type is **bigint**, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example,'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint. |
@@ -626,7 +627,7 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 
 type ValuesBucket = Record<string, ValueType>
 
-Defines the types of the key and value in a KV pair. Data of the Sendable type cannot be passed across threads.
+Defines the data in the form of a KV pair, which cannot be transferred across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -771,7 +772,7 @@ Enumerates the distributed table types. Use the enum name rather than the enum v
 | Name               | Value  | Description                                                                                                |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
 | DISTRIBUTED_DEVICE | 0  | Distributed database table synced between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
-| DISTRIBUTED_CLOUD  | 1   | Distributed database table synced between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| DISTRIBUTED_CLOUD  | 1   | Distributed database table synced between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -863,13 +864,9 @@ Represents the statistics of the overall device-cloud sync (upload and download)
 | code     | [ProgressCode](#progresscode10)                   | Yes  | Device-cloud sync state.                                    |
 | details  | Record<string, [TableDetails](#tabledetails10)> | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud sync statistics of the table. |
 
-
-
-
-
 ## RdbPredicates
 
-Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. Data of the Sendable type cannot be passed across threads. 
+Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. Data of the sendable type cannot be passed across threads. 
 
 ### constructor
 
@@ -2026,10 +2023,10 @@ Before using the APIs of this class, use [executeSql](#executesql) to initialize
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name        | Type           | Read Only      | Mandatory | Description                            |
+| Name        | Type           | Read Only      | Optional | Description                            |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
-| version<sup>10+</sup>  | number | No | Yes  | RDB store version, which is an integer greater than 0.      |
-| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | Yes | Yes | Whether the RDB store has been rebuilt. |
+| version<sup>10+</sup>  | number | No | No  | RDB store version, which is an integer greater than 0.      |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | Yes | No | Whether the RDB store has been rebuilt. |
 
 **Error codes**
 
@@ -2495,21 +2492,6 @@ if(store != undefined) {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
@@ -2556,7 +2538,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -2838,7 +2819,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
@@ -2924,7 +2904,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
@@ -3464,7 +3443,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   })
 }
@@ -3517,7 +3496,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   })
 }
@@ -3573,7 +3552,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3632,7 +3611,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3707,7 +3686,7 @@ if(store != undefined && deviceId != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
@@ -3787,7 +3766,7 @@ if(store != undefined && deviceId != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
@@ -3839,7 +3818,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   })
 }
@@ -3890,7 +3869,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   })
 }
@@ -3944,7 +3923,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4003,7 +3982,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4197,6 +4176,7 @@ if(store != undefined) {
   })
 }
 ```
+
 
 ### execute<sup>12+</sup>
 
@@ -4582,7 +4562,7 @@ if(store != undefined) {
 beginTransaction():void
 
 Starts the transaction before executing an SQL statement.
-This API cannot be used in multi-process or multi-thread scenarios.
+This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4706,7 +4686,7 @@ if(store != null) {
 commit():void
 
 Commits the executed SQL statements.
-This API cannot be used in multi-process or multi-thread scenarios.
+This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4831,7 +4811,7 @@ if(store != null) {
 rollBack():void
 
 Rolls back the SQL statements that have been executed.
-This API cannot be used in multi-process or multi-thread scenarios.
+This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5569,7 +5549,7 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode       | [SyncMode](#syncmode)                             | Yes  | Data sync mode. The value can be **relationalStore.SyncMode.SYNC_MODE_PUSH** or **relationalStore.SyncMode.SYNC_MODE_PULL**.                              |
 | predicates | [RdbPredicates](#rdbpredicates)               | Yes  | **RdbPredicates** object that specifies the data and devices to synchronize.                                        |
-| callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure.  |
+| callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure.  |
 
 **Error codes**
 
@@ -5704,7 +5684,7 @@ Manually starts device-cloud sync for all distributed tables. This API uses an a
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                            |
 | progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.            |
-| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback used to send the sync result to the caller. |
+| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback invoked to send the sync result to the caller. |
 
 **Error codes**
 
@@ -5800,7 +5780,7 @@ Manually starts device-cloud sync of the specified table. This API uses an async
 | mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                            |
 | tables   | string[]                                              | Yes  | Name of the table to synchronize.                                  |
 | progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.            |
-| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback used to send the sync result to the caller. |
+| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback invoked to send the sync result to the caller. |
 
 **Error codes**
 
@@ -5949,7 +5929,7 @@ Subscribes to data changes of specified devices. A callback is called when data 
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.         |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Type of data change to observe. |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback used to return the data change.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the details about the device-cloud sync.<br>- If **type** is **SUBSCRIBE_TYPE_LOCAL_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the data change details in the local RDB store. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback used to return the data change.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the details about the device-cloud sync.<br>If **type** is **SUBSCRIBE_TYPE_LOCAL_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the data change details in the local RDB store. |
 
 **Error codes**
 
@@ -6123,21 +6103,6 @@ try {
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### off('dataChange')
 
@@ -6374,18 +6339,6 @@ try {
   console.error(`Unregister failed, code is ${code},message is ${message}`);
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### emit<sup>10+</sup>
 
@@ -7041,7 +6994,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -7095,6 +7048,7 @@ Obtain the **resultSet** object first.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -7976,21 +7930,6 @@ if(resultSet != undefined) {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### isColumnNull
 
 isColumnNull(columnIndex: number): boolean
@@ -8050,7 +7989,7 @@ if(resultSet != undefined) {
 
 close(): void
 
-Closes this result set.
+Closes this **resultSet** to release memory. If the **resultSet** is not closed, FD or memory leaks may occur.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
