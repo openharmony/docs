@@ -1440,6 +1440,12 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. After this API is called, call [refresh](#refresh) for the registration to take effect.
 
+> **NOTE**
+
+>
+> - It is recommended that **registerJavaScriptProxy** be used only with trusted URLs and over secure HTTPS connections. Injecting JavaScript objects into untrusted web components can expose your application to malicious attacks.
+> - After **registerJavaScriptProxy** is called, the application exposes the registered JavaScript object to all page frames.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**

@@ -1,7 +1,7 @@
 # \@BuilderParam Decorator: @Builder Function Reference
 
 
-In certain circumstances, you may need to add a specific feature, such as a click-to-jump action, to a custom component. However, embedding an event method directly in a component will add the feature to all places where the component is imported. This is where the \@BuilderParam decorator comes into the picture. \@BuilderParam is used to decorate a custom component variable of type Reference to an \@Builder method. When initializing a custom component, you can add the specific feature to it by assigning a value to the variable. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.
+In certain circumstances, you may need to add a specific feature, such as a click-to-jump action, to a custom component. However, embedding an event method directly in a component will add the feature to all places where the component is imported. This is where the \@BuilderParam decorator comes into the picture. \@BuilderParam is used to decorate a custom component variable of type Reference to an \@Builder method (@BuilderParam is used to undertake the @Builder function). When initializing a custom component, you can add the specific feature to it by assigning a value to the variable. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.
 
 
 > **NOTE**
@@ -160,7 +160,7 @@ struct Parent {
   build() {
     Column() {
       this.componentBuilder()
-      Child({ customBuilderParam: this.componentBuilder, customOverBuilderParam: GlobalBuilder1 })
+      Child({ customBuilderParam: this.componentBuilder, customOverBuilderParam: overBuilder })
     }
   }
 }

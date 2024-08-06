@@ -12,11 +12,12 @@ library
 ├── src
 │   └── main
 │       ├── ets
-│       │   ├── pages
-│       │   └── index.ets
+│       │   └── pages
+│       │       └── index.ets
 │       ├── resources
 │       └── module.json5
-└── oh-package.json5
+├── oh-package.json5
+└── index.ets
 ```
 
 ## Exporting ArkUI Components, APIs, and Resources from HSP
@@ -42,8 +43,8 @@ export struct MyTitleBar {
 ```
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { MyTitleBar } from './components/MyTitleBar';
+// library/index.ets
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ```
 
 
@@ -67,8 +68,8 @@ export function minus(a: number, b: number): number {
 ```
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test';
+// library/index.ets
+export { Log, add, minus } from './src/main/ets/utils/test';
 ```
 ### Exporting Native Methods
 The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **libnative.so** file is exported.
@@ -84,8 +85,8 @@ export function nativeMulti(a: number, b: number): number {
 
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { nativeMulti } from './utils/nativeTest';
+// library/index.ets
+export { nativeMulti } from './utils/src/main/ets/nativeTest';
 ```
 
 ### Accessing Resources in an HSP Through $r
@@ -130,8 +131,8 @@ export class ResManager{
 
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { ResManager } from './ResManager';
+// library/index.ets
+export { ResManager } from './src/main/ets/ResManager';
 ```
 
 
@@ -140,11 +141,11 @@ To use APIs in the HSP, first configure the dependency on the HSP in the **oh-pa
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test';
-export { MyTitleBar } from './components/MyTitleBar';
-export { ResManager } from './ResManager';
-export { nativeMulti } from './utils/nativeTest';
+// library/index.ets
+export { Log, add, minus } from './src/main/ets/utils/test';
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
+export { ResManager } from './src/main/ets/ResManager';
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 The APIs can be used as follows in the code of the invoking module:
 ```ts
