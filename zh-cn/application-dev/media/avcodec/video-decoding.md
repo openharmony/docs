@@ -426,7 +426,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (isRender) {
         // 显示并释放已完成处理的信息，index为对应buffer队列下标
         if (isNeedRenderAtTime){
-            // renderTimestamp由调用者结合业务使用指定显示时间，以当前系统时间为例
+            // 获取系统绝对时间，renderTimestamp由调用者结合业务指定显示时间
             int64_t renderTimestamp =
                 chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count();
             ret = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, index, renderTimestamp);
