@@ -41,6 +41,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 
 * 开发我们扩展外设应用，需要有可以植入OpenHarmony系统的开发板或其他设备。
 * 开发客户端和驱动时，需要一个外接USB设备进行调试。
+* 目前仅支持USB总线的设备。
 
 ## 接口说明
 
@@ -74,15 +75,17 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
 
 **注意：**
 
-* 开发驱动客户端，请选择Empty Ability模板。
-* 开发驱动服务端，请选择Native C++模板。
-* 同时开发驱动客户端和服务端，请选择Native C++模板。
+> 开发驱动客户端，请选择Empty Ability模板。
+>
+> 开发驱动服务端，请选择Native C++模板。
+>
+>同时开发驱动客户端和服务端，请选择Native C++模板。
 
 1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
 
 **注意：**
 
-* 以下示例代码均写在entry/src/main/ets/pages/Index.ets文件中。
+> 以下示例代码均写在entry/src/main/ets/pages/Index.ets文件中。
 
 2. 在文件中导入相关Kit，并声明想要绑定的USB设备的productId、vendorId以及与驱动通信的Code。
 
@@ -92,12 +95,23 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
   import { BusinessError } from '@kit.BasicServicesKit';
   import { rpc } from '@kit.IPCKit';
 
-  const REQUEST_CODE: number = 99;
-  const productId: number = 4258; 
-  const vendorId: number = 4817;
+  const REQUEST_CODE: number = 99; // 自定义通信Code，此处仅供参考
+  const productId: number = 4258;  // 请声明连接USB设备的productId
+  const vendorId: number = 4817;   // 请声明连接USB设备的vendorId
   ```
 
-3. 查询设备列表。
+**注意：**
+
+> 第3步开始，以下接口均在struct Index{}中定义。
+
+3. 定义message变量和远程对象变量，后续与驱动通信使用。
+
+  ```ts
+  @State message: string = 'Hello';
+  private remote: rpc.IRemoteObject | null = null;
+  ```
+
+4. 定义查询设备接口，通过queryDevices获取目标设备ID。
 
   ```ts
   private async queryTargetDeviceId(): Promise<number> {
@@ -105,6 +119,7 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
     const devices: Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
     const index = devices.findIndex((item: deviceManager.Device) => {
       let usbDevice = item as deviceManager.USBDevice;
+      // 如果不知道设备productId和vendorId，可以通过该日志查看连接的usb设备的相关信息
       hilog.info(0, 'testTag', `usbDevice.productId = ${usbDevice.productId}, usbDevice.vendorId = ${usbDevice.vendorId}`);
       return usbDevice.productId === productId && usbDevice.vendorId === vendorId;
     });
@@ -113,97 +128,84 @@ RK3568的烧录流程请参考：[快速入门](https://gitee.com/openharmony/do
       return -1;
     }
     return devices[index].deviceId;
-  } catch (e) {
-    hilog.error(0, 'testTag', `queryDevice failed, err: ${JSON.stringify(e)}`);
+  } catch (error) {
+    hilog.error(0, 'testTag', `queryDevice failed, err: ${JSON.stringify(error)}`);
   }
   return -1;
   }
   ```
 
-4. 绑定相应的设备。
+5. 定义获取对应驱动远程对象的接口，通过bindDeviceDriver获取远程对象。
 
-    ```ts
-    import { deviceManager } from '@kit.DriverDevelopmentKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
-    import { rpc } from '@kit.IPCKit';
+  ```ts
+  private async getDriverRemote(deviceId: number): Promise<rpc.IRemoteObject | null> {
+  try {
+    let remoteDeviceDriver: deviceManager.RemoteDeviceDriver = await deviceManager.bindDeviceDriver(deviceId,
+      (err: BusinessError, id: number) => {
+      hilog.info(0, 'testTag', `device[${id}] id disconnect, err: ${JSON.stringify(err)}}`);
+    });
+    return remoteDeviceDriver.remote;
+  } catch (error) {
+    hilog.error(0, 'testTag', `bindDeviceDriver failed, err: ${JSON.stringify(error)}`);
+  }
+    return null;
+  }
+  ```
 
-    interface DataType {
-      deviceId : number;
-      remote : rpc.IRemoteObject;
+6. 定义与远程对象通信接口，通过sendMessageRequest与远程对象进行IPC通信。
+
+  ```ts
+  private async communicateWithRemote(): Promise<void> {
+    const deviceId: number = await this.queryTargetDeviceId();
+    if (deviceId < 0) {
+      hilog.error(0, 'testTag', 'can not find target device');
+      return;
+    }
+    this.remote = await this.getDriverRemote(deviceId);
+    if (this.remote === null) {
+      hilog.error(0, 'testTag', `getDriverRemote failed`);
+      return;
     }
 
-    let remoteObject : rpc.IRemoteObject | null = null;
+    let option = new rpc.MessageOption();
+    let data = new rpc.MessageSequence();
+    let reply = new rpc.MessageSequence();
+
+    // 向驱动发送信息"Hello"
+    data.writeString(this.message); 
+
     try {
-      // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
-      deviceManager.bindDevice(matchDevice.deviceId, (error : BusinessError, data : number) => {
-        console.error('Device is disconnected');
-      }, (error : BusinessError, data : DataType) => {
-        if (error) {
-          console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
-          return;
-        }
-        console.info('bindDevice success');
-        remoteObject = data.remote;
-      });
+      await this.remote.sendMessageRequest(REQUEST_CODE, data, reply, option);
+      // 获取驱动返回信息"Hello world"
+      this.message = reply.readString();
+      hilog.info(0, 'testTag', `sendMessageRequest, message: ${this.message}}`);
     } catch (error) {
-      let errCode = (error as BusinessError).code;
-      let message = (error as BusinessError).message;
-      console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
+      hilog.error(0, 'testTag', `sendMessageRequest failed, err: ${JSON.stringify(error)}`);
     }
-    if (!remoteObject) {
-      console.error('Bind device failed');
-    }
-    ```
-
-5. 绑定成功后使用设备驱动能力。
-
-    ```ts
-    import { BusinessError } from '@kit.BasicServicesKit';
-    import { rpc } from '@kit.IPCKit';
-
-    let option: rpc.MessageOption = new rpc.MessageOption();
-    let data: rpc.MessageSequence = rpc.MessageSequence.create();
-    let reply: rpc.MessageSequence = rpc.MessageSequence.create();
-    data.writeString('hello');
-    let code = 99;
-    // remoteObject应用可以通过绑定设备获取到
-    let remoteObject : rpc.IRemoteObject | null = null;
-    // code和data内容取决于驱动提供的接口
-    if (remoteObject != null) {
-      (remoteObject as rpc.IRemoteObject).sendMessageRequest(code, data, reply, option)
-        .then(() => {
-          console.info('sendMessageRequest finish.');
-        }).catch((error : BusinessError) => {
-          let errCode = (error as BusinessError).code;
-          console.error('sendMessageRequest fail. code:' + errCode);
-        }
-      );
-    }
-    ```
+  }
+  ```
 
 6. 设备使用完成，解绑设备。
 
-    ```ts
-    import { deviceManager } from '@kit.DriverDevelopmentKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
+  ```ts
 
-    try {
-      // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
-      deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
-        if (error) {
-          let errCode = (error as BusinessError).code;
-          let message = (error as BusinessError).message;
-          console.error(`unbindDevice async fail. Code is ${errCode}, message is ${message}`);
-          return;
-        }
-        console.info(`unbindDevice success`);
-      });
-    } catch (error) {
-      let errCode = (error as BusinessError).code;
-      let message = (error as BusinessError).message;
-      console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
-    }
-    ```
+  try {
+    // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
+    deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
+      if (error) {
+        let errCode = (error as BusinessError).code;
+        let message = (error as BusinessError).message;
+        console.error(`unbindDevice async fail. Code is ${errCode}, message is ${message}`);
+        return;
+      }
+      console.info(`unbindDevice success`);
+    });
+  } catch (error) {
+    let errCode = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
+  }
+  ```
 <!--Del-->
 系统应用可通过查询外设详细信息和驱动详细信息，从而管理外设和驱动。开发示例如下：
 
