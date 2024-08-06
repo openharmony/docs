@@ -940,26 +940,7 @@ async function example() {
     ];
     let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
     console.info('showAssetsCreationDialog success, data is ' + desFileUris);
-
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo('uri', desFileUris[0]);
-    let fetchOptions: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates
-    };
-
-    // 通过返回的媒体库uri获取对应的PhotoAsset对象
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(
-      fetchOptions);
-    let photoAssets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-
-    for (let i = 0; i < photoAssets.length; i++) {
-      // 将应用沙箱文件内容写入到媒体库
-      let changeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAssets[i]);
-      changeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, srcFileUris[i]);
-      phAccessHelper.applyChanges(changeRequest);
-    }
-} catch (err) {
+  } catch (err) {
     console.error('showAssetsCreationDialog failed, errCode is ' + err.code + ', errMsg is ' + err.message);
   }
 }
