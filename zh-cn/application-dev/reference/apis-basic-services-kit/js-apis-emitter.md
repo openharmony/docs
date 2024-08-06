@@ -169,7 +169,7 @@ emitter.once("eventId", () => {
 
 ## emitter.once<sup>12+</sup>
 
-once(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
+once<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
 单次订阅指定事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
 
@@ -574,10 +574,10 @@ let count = emitter.getListenerCount("eventId");
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
-| 名称     | 类型                        | 可读 | 可写 | 说明                                 |
+| 名称     | 类型                        | 只读 | 可选 | 说明                                 |
 | -------- | ------------------------------- | ---- | ---- | ------------------------------ |
-| eventId  | number                          | 是   | 是   | 事件ID，由开发者定义用来辨别事件。 |
-| priority | [EventPriority](#eventpriority) | 是   | 是   | 事件被投递的优先级。             |
+| eventId  | number                          | 否   | 否   | 事件ID，由开发者定义用来辨别事件。 |
+| priority | [EventPriority](#eventpriority) | 否   | 是   | 事件被投递的优先级。             |
 
 ## EventData
 
@@ -587,9 +587,9 @@ let count = emitter.getListenerCount("eventId");
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
-| 名称 | 类型           | 可读 | 可写 | 说明           |
+| 名称 | 类型           | 只读 | 可选 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，支持数据类型包括Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive（除了symbol）、RegExp、Set、String、TypedArray，数据大小最大为16M。 |
+| data | [key: string]: any | 否   | 是   | 发送事件时传递的数据，支持数据类型包括Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive（除了symbol）、RegExp、Set、String、TypedArray，数据大小最大为16M。 |
 
 ## Options<sup>11+</sup>
 
@@ -599,9 +599,9 @@ let count = emitter.getListenerCount("eventId");
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
-| 名称     | 类型                            | 可读 | 可写 | 说明           |
+| 名称     | 类型                            | 只读 | 可选 | 说明           |
 | -------- | ------------------------------- | ---- | ---- | -------------- |
-| priority | [EventPriority](#eventpriority) | 是   | 是   | 事件的优先级。 |
+| priority | [EventPriority](#eventpriority) | 否   | 是   | 事件的优先级。 |
 
 ## GenericEventData<T\><sup>12+</sup>
 
@@ -611,7 +611,7 @@ let count = emitter.getListenerCount("eventId");
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
-| 名称     | 类型                            | 可读 | 可写 | 说明           |
+| 名称     | 类型                            | 只读 | 可选 | 说明           |
 | -------- | ------------------------------- | ---- | ---- | -------------- |
-| data | T | 是   | 是   | 发送事件时传递的数据。T：泛型类型。 |
+| data | T | 否   | 是   | 发送事件时传递的数据。T：泛型类型。 |
 

@@ -457,9 +457,3 @@ libnative_rdb_ndk.z.so
     // Delete the database file.
     OH_Rdb_DeleteStore(&config);
     ```
-
-    
-
-
-
-  

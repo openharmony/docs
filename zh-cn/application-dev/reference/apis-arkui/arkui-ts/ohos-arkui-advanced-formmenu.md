@@ -64,7 +64,7 @@ AddFormMenuItem(
 | 名称             | 参数类型                | 必填 | 说明                                                      |
 | --------------- | ---- | ---- | ---------------------------------------------------------------- |
 | formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | 否 | 卡片数据。 |
-| callback        | AsyncCallback<string>                                                                                                | 否 | 返回结果的回调。  |
+| callback        | AsyncCallback\<string>                                                                                                | 否 | 返回结果的回调。  |
 | style           | [FormMenuItemStyle](#formmenuitemstyle)                                                                              | 否 | 菜单自定义样式信息。|
 
 

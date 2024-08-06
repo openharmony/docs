@@ -455,6 +455,8 @@ flingSpeedLimit(speedLimit: number)
 
 限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -613,7 +615,7 @@ onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute
 
 | 类型                                                  | 说明                 |
 | ----------------------------------------------------- | -------------------- |
-| [ComputedBarAttribute](#computedbarattribute对象说明) | 滚动条的位置及长度。 |
+| [ComputedBarAttribute](#computedbarattribute10对象说明) | 滚动条的位置及长度。 |
 
 ### onReachStart<sup>10+</sup>
 
@@ -743,12 +745,14 @@ onDidScroll(handler: OnScrollCallback)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称         | 类型         |   描述         |
 | ---------- | ---------- | ---------- |
 | x | number |  当前拖拽点的x坐标，单位vp。    |
 | y   | number |  当前拖拽点的y坐标，单位vp。    |
 
-## ComputedBarAttribute对象说明
+## ComputedBarAttribute<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

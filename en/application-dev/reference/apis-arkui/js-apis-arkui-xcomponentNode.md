@@ -1,17 +1,19 @@
 # XComponentNode
 
-The **XComponentNode** module provides APIs for the XComponentNode, which represent an [\<XComponent>](arkui-ts/ts-basic-components-xcomponent.md#xcomponent) in the component tree. You can write [EGL](../native-lib/egl.md)/[OpenGL ES](../native-lib/opengles.md) and media data and display it on the **\<XComponent>**, whose rendering type can be dynamically modified.
+The **XComponentNode** module provides APIs for the XComponentNode, which represent an [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent) in the component tree. You can write [EGL](../native-lib/egl.md)/[OpenGL ES](../native-lib/opengles.md) and media data and display it on the **XComponent**, whose rendering type can be dynamically modified.
 
 > **NOTE**
 >
+> The APIs of this module are deprecated since API version 12. You are advised to use BuilderNode](./js-apis-arkui-builderNode.md#buildernode) with the [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent) component instead.
+>
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
+>
 > **XComponentNode** is not available in DevEco Studio Previewer.
 
 ## Modules to Import
 
 ```ts
-import { XComponentNode } from "@ohos.arkui.node";
+import { XComponentNode } from "@kit.ArkUI";
 ```
 
 ## XComponentNode
@@ -26,13 +28,13 @@ Constructor used to create an XComponentNode.
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory| Description                                                        |
+| Name     | Type                                                        | Mandatory | Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | Yes  | UI context. For details about how to obtain it, see [[Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context).|
+| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | Yes  | UI context. For details about how to obtain it, see [[Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context). |
 | options     | [RenderOptions](./js-apis-arkui-builderNode.md#renderoptions) | Yes  | Parameters for creating an XComponentNode.                              |
-| id          | string                                                       | Yes  | Unique ID of the **\<XComponent>**. The value can contain a maximum of 128 characters. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|
-| type        | [XComponentType](arkui-ts/ts-basic-components-xcomponent.md#xcomponenttype10) | Yes  | Type of the **\<XComponent>**. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|
-| libraryName | string                                                       | No  | Name of the dynamic library generated during compilation at the native layer. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|
+| id          | string                                                       | Yes  | Unique ID of the **XComponent**. The value can contain a maximum of 128 characters. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent). |
+| type        | [XComponentType](arkui-ts/ts-basic-components-xcomponent.md#xcomponenttype10)  | Yes  | Type of the **XComponent**. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent). |
+| libraryName | string                                                       | No  | Name of the dynamic library generated during compilation at the native layer. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent). |
 
 > **NOTE**
 >
@@ -48,9 +50,9 @@ Called when the XComponentNode loading is complete.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| event  | Object | No  | Context of the **\<XComponent>** object. The APIs contained in the context are defined by you at the C++ layer.|
+| event  | Object | No  | Context of the **XComponent** object. The APIs contained in the context are defined by you at the C++ layer. |
 
 ### onDestroy
 
@@ -70,25 +72,24 @@ Changes the rendering type of the XComponentNode.
 
 **Parameters**
 
-| Name| Type                                                    | Mandatory| Description            |
+| Name | Type                                                    | Mandatory | Description            |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| type   | [NodeRenderType](./js-apis-arkui-builderNode.md#noderendertype) | Yes| Target rendering type.|
+| type   | [NodeRenderType](./js-apis-arkui-builderNode.md#noderendertype) | Yes | Target rendering type. |
 
 **Return value**
 
-| Type| Description                  |
+| Type | Description                  |
 | ---- | ---------------------- |
-| boolean | Whether the rendering type is changed successfully.|
+| boolean | Whether the rendering type is changed successfully. |
 
 ## Example
 
 ```ts
-import { NodeController, FrameNode, XComponentNode, NodeRenderType } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, FrameNode, XComponentNode, NodeRenderType, UIContext} from '@kit.ArkUI'
 
 class XComponentNodeController extends NodeController {
   private xComponentNode: MyXComponentNode | null = null;
-  private soName: string = "nativerender" // This .so file is compiled and generated by you using the N-API.
+  private soName: string = "tetrahedron_napi" // This .so file is written and generated by you using the Node-API.
 
   constructor() {
     super();
@@ -135,7 +136,3 @@ struct Index {
 ```
 
 ![XComponentNodeSample](figures/xcomponent_node.jpg)
-
-> **NOTE**
->
-> For details about the dynamic library (as build output) of the native layer in the example, see [OpenGL Triangular Pyramid (API Version 10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL).

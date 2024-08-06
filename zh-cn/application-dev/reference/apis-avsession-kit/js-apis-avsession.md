@@ -4605,6 +4605,8 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 投播显示设备状态的枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
 | 名称                        | 值   | 说明         |

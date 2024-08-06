@@ -1,6 +1,6 @@
 # @ohos.arkui.uiExtension (uiExtension)
 
-The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or UIExtensionAbility) to obtain the host application window information or the information about the corresponding **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**).
+The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or UIExtensionAbility) to obtain the host application window information or the information about the corresponding **EmbeddedComponent**<!--Del--> (or **UIExtensionComponent**)<!--DelEnd--> component.
 
 > **NOTE**
 >
@@ -10,7 +10,7 @@ The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or 
 ## Modules to Import
 
 ```
-import uiExtension from '@ohos.arkui.uiExtension'
+import { uiExtension } from '@kit.ArkUI'
 ```
 
 ## WindowProxy
@@ -21,39 +21,43 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 Obtains the area where this window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type |[window.AvoidAreaType](./js-apis-window.md#avoidareatype7) | Yes| Type of the area.|
+| type |[window.AvoidAreaType](./js-apis-window.md#avoidareatype7) | Yes | Type of the area. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-|[window.AvoidArea](./js-apis-window.md#avoidarea7) | Area where the window cannot be displayed.|
+|[window.AvoidArea](./js-apis-window.md#avoidarea7) | Area where the window cannot be displayed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **Example**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-// When 'onSessionCreate' of EmbeddedUIExtensionAbility is executed, the UIExtensionContentSession instance is stored in storage.
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// Obtain the WindowProxy instance of the current EmbeddedUIExtensionAbility from the session.
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// Obtain the information about the area where the window cannot be displayed.
-let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // Obtain the information about the area where the window cannot be displayed.
+    let avoidArea: window.AvoidArea | undefined = extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+    console.info(`avoidArea: ${JSON.stringify(avoidArea)}`);
+  }
+}
 ```
 
 ### on('avoidAreaChange')
@@ -62,35 +66,39 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 
 Subscribes to the event indicating changes to the area where the window cannot be displayed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ------ | ---- | ---- | ---- |
-| type   | string | Yes| Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | Yes| Callback used to return the area information.|
+| type   | string | Yes | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | Yes | Callback used to return the area information. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **Example**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { uiExtension } from '@kit.ArkUI';
 
-// When 'onSessionCreate' of EmbeddedUIExtensionAbility is executed, the UIExtensionContentSession instance is stored in storage.
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// Obtain the WindowProxy instance of the current EmbeddedUIExtensionAbility from the session.
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// Subscribe to the event indicating changes to the area where the window cannot be displayed.
-this.extensionWindow?.on('avoidAreaChange', (info) => {
-    console.info(`The avoid area of the host window is: ${JSON.stringify(info.area)}.`);
-});
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // Subscribe to the event indicating changes to the area where the window cannot be displayed.
+    extensionWindow.on('avoidAreaChange', (info: uiExtension.AvoidAreaInfo) => {
+      console.info(`The avoid area of the host window is: ${JSON.stringify(info.area)}.`);
+    });
+  }
+}
 ```
 
 ### off('avoidAreaChange')
@@ -99,97 +107,115 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 
 Unsubscribes from the event indicating changes to the area where the window cannot be displayed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type| Mandatory| Description|
+| Name  | Type | Mandatory | Description |
 | -------- | ---- | ---- | ---  |
-| type     | string | Yes| Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | No| Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| type     | string | Yes | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | No | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-// When 'onSessionCreate' of EmbeddedUIExtensionAbility is executed, the UIExtensionContentSession instance is stored in storage.
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// Obtain the WindowProxy instance of the current EmbeddedUIExtensionAbility from the session.
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// Cancel all subscriptions to the event indicating changes to the area where the window cannot be displayed.
-this.extensionWindow?.off('avoidAreaChange');
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // Cancel all subscriptions to the event indicating changes to the area where the window cannot be displayed.
+    extensionWindow.off('avoidAreaChange');
+  }
+}
 ```
 
 ### on('windowSizeChange')
 
 on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
-Subscribes to the window size change event.
+Subscribes to the window size change event of the host application.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type                 | Mandatory| Description                  |
+| Name  | Type                 | Mandatory | Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | Yes  | Callback used to return the window size.|
+| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event. |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | Yes  | Callback used to return the window size. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **Example**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-// When 'onSessionCreate' of EmbeddedUIExtensionAbility is executed, the UIExtensionContentSession instance is stored in storage.
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// Obtain the WindowProxy instance of the current EmbeddedUIExtensionAbility from the session.
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// Subscribe to the window size change event.
-this.extensionWindow?.on('windowSizeChange', (size) => {
-    console.info('The host window size is ${JSON.stringify(size)}.');
-});
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // Subscribe to the window size change event of the host application.
+    extensionWindow.on('windowSizeChange', (size: window.Size) => {
+      console.info(`The avoid area of the host window is: ${JSON.stringify(size)}.`);
+    });
+  }
+}
 ```
 
 ### off('windowSizeChange')
 
 off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
-Unsubscribes from the window size change event.
+Unsubscribes from the window size change event of the host application.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type                 | Mandatory| Description                  |
+| Name  | Type                 | Mandatory | Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | No  | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event. |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | No  | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **Example**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-// When 'onSessionCreate' of EmbeddedUIExtensionAbility is executed, the UIExtensionContentSession instance is stored in storage.
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// Obtain the WindowProxy instance of the current EmbeddedUIExtensionAbility from the session.
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// Cancel all subscriptions to the window size change event.
-this.extensionWindow?.off('windowSizeChange');
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // Unsubscribe from the window size change event of the host application.
+    extensionWindow.off('windowSizeChange');
+  }
+}
 ```
 
 ### createSubWindowWithOptions
@@ -200,107 +226,104 @@ Creates a subwindow for this window proxy. This API uses a promise to return the
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
+| Name | Type  | Mandatory | Description          |
 | ------ | ------ | ---- | -------------- |
-| name   | string | Yes  | Name of the subwindow.|
+| name   | string | Yes  | Name of the subwindow. |
 | subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions11) | Yes  | Parameters used for creating the subwindow. |
 
 **Return value**
 
 | Type                            | Description                                            |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise used to return the subwindow created.|
+| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise used to return the subwindow created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). and [Window Error Codes](errorcode-window.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window proxy is abnormal. |
 
 **Example:**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// When 'onSessionCreate' of EmbeddedUIExtensionAbility is executed, the UIExtensionContentSession instance is stored in storage.
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// Obtain the WindowProxy instance of the current EmbeddedUIExtensionAbility from the session.
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-let subWindowOpts: window.SubWindowOptions = {
-  'title': 'This is a subwindow',
-  decorEnabled: true
-};
-// Create a subwindow.
-this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
-  .then((subWindow: window.Window) => {
-    this.subWindow = subWindow;
-    this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
-      if (err && err.code != 0) {
-        return;
-      }
-      this.subWindow?.resize(300, 300, (err, data)=>{
-        if (err && err.code != 0) {
-          return;
-        }
-        this.subWindow?.moveWindowTo(100, 100, (err, data)=>{
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    const subWindowOpts: window.SubWindowOptions = {
+      title: 'This is a subwindow',
+      decorEnabled: true
+    };
+    // Create a subwindow.
+    extensionWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+      .then((subWindow: window.Window) => {
+        subWindow.setUIContent('pages/Index', (err, data) =>{
           if (err && err.code != 0) {
             return;
           }
-          this.subWindow?.showWindow((err, data) => {
-            if (err && err.code == 0) {
-              console.info(`The subwindow has been shown!`);
-            } else {
-              console.error(`Failed to show the subwindow!`);
+          subWindow?.resize(300, 300, (err, data)=>{
+            if (err && err.code != 0) {
+              return;
             }
+            subWindow?.moveWindowTo(100, 100, (err, data)=>{
+              if (err && err.code != 0) {
+                return;
+              }
+              subWindow?.showWindow((err, data) => {
+                if (err && err.code == 0) {
+                  console.info(`The subwindow has been shown!`);
+                } else {
+                  console.error(`Failed to show the subwindow!`);
+                }
+              });
+            });
           });
         });
-      });
-    });
-  }).catch((error: BusinessError) => {
-    console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
-  })
+      }).catch((error: BusinessError) => {
+        console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+      })
+  }
+}
 ```
 
 ## AvoidAreaInfo
 
 Describes the information about the area where the window cannot be displayed.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name| Type                | Description              |
-| ------ | -------------------- | ------------------ |
-| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Type of the area where the window cannot be displayed.  |
-| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | Area where the window cannot be displayed.|
-
-## WindowProxyProperties
-
-Defines information about the host application window and **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**).
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Type       | Description                            |
-| --------------- | ----------- | -------------------------------- |
-| windowProxyRect | [window.Rect](js-apis-window.md#rect7) | Position, width, and height of the **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**).|
+| Name | Type                | Mandatory | Description       |
+| ------ | -------------------- | ------------------ | ------------------ |
+| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Yes | Type of the area where the window cannot be displayed.  |
+| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | Yes| Area where the window cannot be displayed. |
 
 
 ## Example
 
-This example shows how to use all the available APIs in the EmbeddedUIExtensionAbility. The bundle name of the sample application is **com.example.embeddeddemo**, and the EmbeddedUIExtensionAbility to start  is **ExampleEmbeddedAbility**.
+This example shows how to use all the available APIs in the EmbeddedUIExtensionAbility. The bundle name of the sample application is **com.example.embeddeddemo**, and the EmbeddedUIExtensionAbility to start is **ExampleEmbeddedAbility**.
 
 - The EntryAbility (UIAbility) of the sample application loads the **pages/Index.ets** file, whose content is as follows:
 
   ```ts
   // The UIAbility loads pages/Index.ets when started.
-  import Want from '@ohos.app.ability.Want'
+  import { Want } from '@kit.AbilityKit';
 
   @Entry
   @Component
@@ -319,7 +342,7 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
             .width('100%')
             .height('90%')
             .onTerminated((info)=>{
-              this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
             .onError((error)=>{
               this.message = 'Error: code = ' + error.code;
@@ -335,31 +358,29 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
 - The EmbeddedUIExtensionAbility to start by the **\<EmbeddedComponent>** is implemented in the **ets/extensionAbility/ExampleEmbeddedAbility** file. The file content is as follows:
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-  import Want from '@ohos.app.ability.Want';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleEmbeddedAbility]'
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     
     onCreate() {
-      console.log(TAG, `onCreate`);
+      console.info(TAG, `onCreate`);
     }
 
     onForeground() {
-      console.log(TAG, `onForeground`);
+      console.info(TAG, `onForeground`);
     }
 
     onBackground() {
-      console.log(TAG, `onBackground`);
+      console.info(TAG, `onBackground`);
     }
 
     onDestroy() {
-      console.log(TAG, `onDestroy`);
+      console.info(TAG, `onDestroy`);
     }
 
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
       let param: Record<string, UIExtensionContentSession> = {
         'session': session
       };
@@ -372,10 +393,9 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
 - The entry page file of the EmbeddedUIExtensionAbility is **pages/extension.ets**, whose content is as follows:
 
   ```ts
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import uiExtension from '@ohos.arkui.uiExtension';
-  import window from '@ohos.window';
-
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
+  import { uiExtension, window } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let storage = LocalStorage.getShared()
 
   @Entry(storage)
@@ -387,10 +407,10 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
     private subWindow: window.Window | undefined = undefined;
 
     aboutToAppear(): void {
-      this.extensionWindow?.on('windowSizeChange', (size) => {
+      this.extensionWindow?.on('windowSizeChange', (size: window.Size) => {
           console.info(`size = ${JSON.stringify(size)}`);
       });
-      this.extensionWindow?.on('avoidAreaChange', (info) => {
+      this.extensionWindow?.on('avoidAreaChange', (info: uiExtension.AvoidAreaInfo) => {
           console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
       });
     }
@@ -435,7 +455,6 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
                                   } else {
                                       console.error(`Failed to show the subwindow!`);
                                   }
-                                  
                               });
                           });
                       });

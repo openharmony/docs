@@ -7,6 +7,11 @@
 拆包所用的app_unpacking_tool.jar，可以在本地下载的OpenHarmony的SDK库中找到。
 
 
+## 约束与限制
+
+拆包工具需要运行在Java8及其以上环境
+
+
 ## 拆包指令说明
 
 ### HAP包模式拆包指令

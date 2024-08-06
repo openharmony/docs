@@ -39,6 +39,8 @@ API version
 完成服务器域名相关配置，可参考此[指导文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)
 进行配置。
 
+开发者在进行元服务应用开发时，若遇到http请求接口失败，请用catch捕获错误；若http请求接口失败错误码是2300998，可以到[AppGallery Connect](https://developer.huawei.com/consumer/cn/service/josp/agc/index.html)完成服务器域名相关配置，可参考此[指导文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)。
+
 ## cl.network.2 http.requestInStream接口新增2300998错误码
 
 **访问级别**
@@ -77,3 +79,5 @@ API version
 开发者在进行元服务应用开发时，涉及http流式请求，先到[AppGallery Connect](https://developer.huawei.com/consumer/cn/service/josp/agc/index.html)
 完成服务器域名相关配置，可参考此[指导文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)
 进行配置。
+
+开发者在进行元服务应用开发时，若遇到http流式请求接口失败，请用catch捕获错误；若http流式请求接口失败错误码是2300998，可以到[AppGallery Connect](https://developer.huawei.com/consumer/cn/service/josp/agc/index.html)完成服务器域名相关配置，可参考此[指导文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)。

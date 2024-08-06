@@ -198,6 +198,22 @@ animationMode(mode: Optional\<AnimationMode\>)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签时切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode.CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
 
+### barPosition<sup>9+</sup>
+
+barPosition(value: BarPosition)
+
+设置Tabs的页签位置。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                               | 必填 | 说明                  |
+| ----- | ---------------------------------- | ---- | -------------------- |
+| value | [BarPosition](#barposition枚举说明)| 是  | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
+
 ### divider<sup>10+</sup>
 
 divider(value: DividerStyle | null)
@@ -296,11 +312,11 @@ barGridAlign(value: BarGridColumnOptions)
 
 ### edgeEffect<sup>12+</sup>
 
-edgeEffect(value: EdgeEffect)
+edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 
 设置边缘回弹效果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -308,7 +324,7 @@ edgeEffect(value: EdgeEffect)
 
 | 参数名 | 类型                                          | 必填 | 说明                                         |
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
-| value  | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
+| edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -457,7 +473,7 @@ onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimat
 | ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index       | number                                                 | 是   | 当前显示元素的索引。                                         |
 | targetIndex | number                                                 | 是   | 切换动画目标元素的索引。                                     |
-| event       | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
+| event       | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
 
 ### onAnimationEnd<sup>11+</sup>
 
@@ -474,7 +490,7 @@ onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
 | 参数名 | 类型                                                   | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index  | number                                                 | 是   | 当前显示元素的索引。                                         |
-| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+| event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
 ### onGestureSwipe<sup>11+</sup>
 
@@ -491,7 +507,7 @@ onGestureSwipe(handler: (index: number, event: TabsAnimationEvent) => void)
 | 参数名 | 类型                                                   | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index  | number                                                 | 是   | 当前显示元素的索引。                                         |
-| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+| event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
 ### customContentTransition<sup>11+</sup>
 
@@ -520,7 +536,7 @@ customContentTransition(delegate: (from: number, to: number) => TabContentAnimat
 
 | 类型                                                         | 说明                     |
 | ------------------------------------------------------------ | ------------------------ |
-| [TabContentAnimatedTransition](ts-types.md#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
+| [TabContentAnimatedTransition](#tabcontentanimatedtransition11对象说明)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
 
 ### onContentWillChange<sup>12+</sup>
 
@@ -557,6 +573,57 @@ onContentWillChange(handler: (currentIndex: number, comingIndex: number) => bool
 | ------- | ------------------------------------------------------------ |
 | boolean | 当回调函数handler的返回值为true时，Tabs可以切换到新页面。<br/>当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。 |
 
+## TabsAnimationEvent<sup>11+</sup>对象说明
+
+Tabs组件动画相关信息集合。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 类型      | 描述                                       |
+| ------------- | ---------------------- | ------------------------ |
+| currentOffset | number | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
+| targetOffset | number | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
+| velocity | number | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
+
+## TabContentAnimatedTransition<sup>11+</sup>对象说明
+
+Tabs自定义切换动画相关信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 类型         | 必填   | 描述                                       |
+| ------------- | ---------------------- | ---- |---------------------- |
+| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11对象说明)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11对象说明)) => void | 是 | 自定义切换动画具体内容。|
+
+## TabContentTransitionProxy<sup>11+</sup>对象说明
+
+Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+| 名称  | 类型     | 描述                         |
+| ----- | -------- | --------------------------- |
+| from | number | 自定义动画起始页面对应的index值。|
+| to | number | 自定义动画目标页面对应的index值。|
+
+### finishTransition
+
+finishTransition()
+
+通知Tabs组件，此页面的自定义动画已结束。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## TabsController
 
@@ -584,7 +651,7 @@ TabsController的构造函数。
 
 ### changeIndex
 
-changeIndex(value: number)
+changeIndex(value: number): void
 
 控制Tabs切换到指定页签。
 
@@ -605,6 +672,8 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 控制Tabs预加载指定子节点。调用该接口后会一次性加载所有指定的子节点，因此为了性能考虑，建议分批加载子节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 

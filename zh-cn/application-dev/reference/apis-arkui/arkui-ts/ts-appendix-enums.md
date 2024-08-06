@@ -644,6 +644,17 @@
 | COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
+## DialogButtonStyle<sup>10+</sup>枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+| 名称      | 描述                              |
+| --------- | --------------------------------- |
+| DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
+| HIGHLIGHT | 蓝底白字。                        |
+
 ## ThemeColorMode<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -672,6 +683,19 @@
 | MAX_LINES_FIRST         | 设置文本高度自适应方式为以MaxLines优先。 |
 | MIN_FONT_SIZE_FIRST     | 设置文本高度自适应方式为以缩小字体优先。     |
 | LAYOUT_CONSTRAINT_FIRST | 设置文本高度自适应方式为以布局约束（高度）优先。 |
+
+## NestedScrollMode<sup>10+</sup>枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                             |
+| ------ | ------------------------------ |
+| SELF_ONLY   | 只自身滚动，不与父组件联动。  |
+| SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
+| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
 
 ## ObscuredReasons<sup>10+</sup>
 
@@ -724,14 +748,6 @@
 | DEFAULT | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。 |
 | INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。 |
 
-## MenuPreviewMode<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称  | 描述                                   |
-| ----- | -------------------------------------- |
-| NONE  | 不显示预览内容。                       |
-| IMAGE | 预览内容为触发长按悬浮菜单组件的截图。 |
 
 ## Nullable <sup>11+</sup>
 
@@ -838,8 +854,8 @@ Nullable\<T> {
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。  |
-| saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为0。推荐取值范围：[0, 50]。     |
-| brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为0。推荐取值范围：[0, 2]。 |
+| saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 50]。     |
+| brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 2]。 |
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
@@ -897,6 +913,17 @@ Nullable\<T> {
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
+
+## OptionWidthMode<sup>11+</sup>枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称        | 描述                           |
+| ----------- | ------------------------------ |
+| FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
+| FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
 
 ## SelectionMenuOptions<sup>11+</sup>
 
@@ -1113,3 +1140,22 @@ Nullable\<T> {
 | ------ | ----------------------------- |
 | WITHIN_WINDOW | 透控件下层模糊。|
 | BEHIND_WINDOW | 透窗口下层模糊。|
+
+## ScrollSource<sup>12+</sup>枚举说明
+
+滑动操作的来源。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     |  枚举值  | 描述                                       |
+| ------ | ------ | ---------------------------------------- |
+| DRAG   |  0  | 拖拽事件。 |
+| FLING |  1  | 拖拽结束之后的惯性滑动。 |
+| EDGE_EFFECT  |  2  | EdgeEffect.Spring的边缘滚动效果。 |
+| OTHER_USER_INPUT  |  3  | 除拖拽外的其他用户输入，如鼠标滚轮、键盘事件等。 |
+| SCROLL_BAR  |  4  | 滚动条的拖拽事件。 |
+| SCROLL_BAR_FLING  |  5  | 滚动条拖拽结束后的带速度的惯性滑动。 |
+| SCROLLER  |  6  | Scroller的不带动效方法。 |
+| SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |

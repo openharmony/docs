@@ -10,6 +10,7 @@
 > - 当ListItemGroup的父组件List的listDirection属性为Axis.Vertical时，设置[通用属性height](ts-universal-attributes-size.md)属性不生效。ListItemGroup的高度为header高度、footer高度和所有ListItem布局后总高度之和。
 > - 当父组件List的listDirection属性为Axis.Horizontal时，设置[通用属性width](ts-universal-attributes-size.md)属性不生效。ListItemGroup的宽度为header宽度、footer宽度和所有ListItem布局后总宽度之和。
 > - 当前ListItemGroup内部的ListItem组件不支持编辑、拖拽功能，即ListItem组件的editable属性不生效。
+> - ListItemGroup使用direction属性设置布局方向不生效，ListItemGroup组件布局方向跟随父容器List组件的布局方向。
 
 ## 子组件
 
@@ -22,6 +23,8 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -31,6 +34,8 @@ ListItemGroup(options?: ListItemGroupOptions)
 ## ListItemGroupOptions对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名              | 参数类型                                            | 必填 | 参数描述                                                     |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -80,6 +85,8 @@ childrenMainSize(value: ChildrenMainSize)
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 枚举值  | 描述               |
 | ---- | ---- | ------------------ |

@@ -28,6 +28,7 @@
   - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
   - [加速Web页面的访问](web-predictor.md)
   - [Web前进后退缓存](web-set-back-forward-cache.md)
+  - [Web组件在不同窗口间迁移](web-component-migrate.md)
 - 管理网页文件上传与下载
   - [上传文件](web-file-upload.md)
   - [使用Web组件的下载能力](web-download.md)
