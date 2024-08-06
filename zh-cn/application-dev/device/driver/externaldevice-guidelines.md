@@ -18,11 +18,11 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 
 目前各SDK支持的版本如下：
 
-| 外设SDK名称 | 接口类型 | 支持API版本 | 对应OpenHarmony/HarmonyOS版本 |
+| SDK相关库 | 接口类型 | 支持API版本 | 对应OpenHarmony/HarmonyOS版本 |
 | ------------ | ------------ | ------------ | ------------ |
-| 应用开发接口 | TS API接口 | API10及以上 | 4.0及以上 |
-| USB DDK接口 | C API接口 | API10及以上 | 4.0及以上 |
-| HID DDK接口 | C API接口 | API11及以上 | 4.1及以上 |
+| @kit.DriverDevelopmentKit.d.ts | TS API接口 | API10及以上 | 4.0及以上 |
+| libusb_ndk.z.so | C API接口 | API10及以上 | 4.0及以上 |
+| libhid.z.so | C API接口 | API11及以上 | 4.1及以上 |
 
 ### HDC配置
 
@@ -41,14 +41,15 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 **表1** 扩展外设管理开放能力接口
 
-| 接口名                                                                                                                                                      | 描述                                                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;                                                                                         | 查询扩展外设列表。                                                                       |
+| 接口名                                                                                                                                                       | 描述                                                                                    |
+| -----------------------------------------------------------------------------------------------------------------------------------------------------------  | --------------------------------------------------------------------------------------- |
+| queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;                                                                                          | 查询扩展外设列表。                                                                       |
 | bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void | 绑定设备，绑定成功后返回设备驱动的IRemoteObject通信对象，通过该对象与设备驱动进行交互。 |
 | bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;                       | 绑定设备的Promise形式。                                                                 |
-| unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                 | 解绑设备。                                                                              |
-| unbindDevice(deviceId: number): Promise&lt;number&gt;                                                                                                       | 解绑设备的Promise形式。                                                                              |
-
+| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback<number>, callback: AsyncCallback<RemoteDeviceDriver>): void;                                  | 绑定设备，API11开始支持。                                                                 |
+| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback<number>): Promise<RemoteDeviceDriver>;                                                        | 绑定设备的Promise形式，API11开始支持。    
+| unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                  | 解绑设备。                                                                              |
+| unbindDevice(deviceId: number): Promise&lt;number&gt;                                                                                                        | 解绑设备的Promise形式。                                                                              |
 
 <!--Del-->
 扩展外设管理系统接口如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager-sys.md)。
@@ -65,6 +66,8 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 应用可通过查询绑定扩展外设，从而使用扩展外设的定制驱动能力。开发示例如下(仅供参考)：
 
+1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
+
 **注意：**
 
 > 开发驱动客户端，请选择Empty Ability模板。
@@ -73,11 +76,6 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 >
 >同时开发驱动客户端和服务端，请选择Native C++模板。
 
-1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
-
-**注意：**
-
-> 以下示例代码均写在entry/src/main/ets/pages/Index.ets文件中。
 
 2. 在文件中导入相关Kit，并声明想要绑定的USB设备的productId、vendorId以及与驱动通信的Code。
 
@@ -94,7 +92,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 **注意：**
 
-> 第3步开始，以下接口均在struct Index{}中定义。
+> 以下示例代码均写在entry/src/main/ets/pages/Index.ets文件中。
 
 3. 定义message变量和远程对象变量，后续与驱动通信使用。
 
@@ -102,6 +100,10 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
     @State message: string = 'Hello';
     private remote: rpc.IRemoteObject | null = null;
     ```
+
+**注意：**
+
+> 第3步开始，以下接口均在struct Index{}中定义。
 
 4. 定义查询设备接口，通过queryDevices获取目标设备ID。
 
