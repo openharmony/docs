@@ -212,12 +212,12 @@ export class GlobalContext {
 
 // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)
 connection.getDefaultNet().then((data:connection.NetHandle) => {
-  if (data) {
-    console.info("getDefaultNet get data: " + JSON.stringify(data));
-    GlobalContext.getContext().netHandle = data;
-    if (netHandle.netId == 0) {
+  if (netHandle.netId == 0) {
     // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-    } else {
+  } else {
+    if (data) {
+      console.info("getDefaultNet get data: " + JSON.stringify(data));
+      GlobalContext.getContext().netHandle = data;
       // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
       connection.getNetCapabilities(GlobalContext.getContext().netHandle).then((data: connection.NetCapabilities) => {
         console.info("getNetCapabilities get data: " + JSON.stringify(data));
@@ -262,7 +262,7 @@ connection.getDefaultNet().then((data:connection.NetHandle) => {
       })
     }
   }
-})
+});
 
 if (netHandle.netId == 0) {
   // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
