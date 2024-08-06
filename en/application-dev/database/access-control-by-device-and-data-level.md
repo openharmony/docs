@@ -99,7 +99,7 @@ try {
 ```
 
 
-## Setting the Security Level for an RDB Store 
+## Setting the Security Level for an RDB Store
 
 When an RDB store is created, the **securityLevel** parameter specifies the security level of the RDB store. The following example shows how to create an RDB store with security level of S1.
 

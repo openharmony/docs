@@ -12,7 +12,7 @@ Applications call **Preference** APIs through the ArkTS interface to read and wr
 
 The preference persistent file of an application is stored in the application sandbox. You can use **context** to obtain the file path. For details, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths).
 
-**Figure 1** Preferences working mechanism 
+**Figure 1** Preferences working mechanism
 
 ![preferences](figures/preferences.jpg)
 
@@ -208,7 +208,7 @@ The following table lists the APIs used for persisting user preference data. For
    > **NOTE**
    >
    > - The deleted **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will be caused.
-   > 
+   >
    > - The deleted data and files cannot be restored.
 
    Example:

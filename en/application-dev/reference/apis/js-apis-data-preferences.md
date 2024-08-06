@@ -20,10 +20,10 @@ import dataPreferences from '@ohos.data.preferences';
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name            | Type| Readable| Writable| Description                                   |
+| Name            | Type | Readable | Writable | Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 80 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes.|
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes. |
 
 
 ## dataPreferences.getPreferences
@@ -36,11 +36,11 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                                            | Mandatory| Description                                                        |
+| Name  | Type                                            | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                                |
 | name     | string                                           | Yes  | Name of the **Preferences** instance.                                     |
-| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -109,16 +109,16 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 **Parameters**
 
-| Name | Type                                 | Mandatory| Description                   |
+| Name | Type                                 | Mandatory | Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance.|
+| name    | string                                | Yes  | Name of the **Preferences** instance. |
 
 **Return value**
 
 | Type                                      | Description                              |
 | ------------------------------------------ | ---------------------------------- |
-| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.|
+| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained. |
 
 **Example**
 
@@ -185,9 +185,9 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory| Description                                                                                                                                                                          |
+| Name  | Type                                         | Mandatory | Description                                                                                                                                                                          |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                                       | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| context  | Context                                       | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | options  | [Options](#options10)                              | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error object.                                                                                   |
 
@@ -195,7 +195,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
@@ -242,7 +242,7 @@ let preferences: dataPreferences.Preferences | null = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
                 if (err) {
                     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -270,22 +270,22 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 **Parameters**
 
-| Name | Type            | Mandatory| Description                                                                                                                                                                          |
+| Name | Type            | Mandatory | Description                                                                                                                                                                          |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 
 **Return value**
 
 | Type                                   | Description                              |
 | --------------------------------------- | ---------------------------------- |
-| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.|
+| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained. |
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
@@ -329,7 +329,7 @@ let preferences: dataPreferences.Preferences | null = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options =  { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options =  { name: 'myStore' };
             let promise = dataPreferences.getPreferences(this.context, options);
             promise.then((object: dataPreferences.Preferences) => {
                 preferences = object;
@@ -356,22 +356,22 @@ Obtains a **Preferences** instance. This API returns the result synchronously.
 
 **Parameters**
 
-| Name | Type                 | Mandatory| Description                                                        |
+| Name | Type                 | Mandatory | Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                           |
 
 **Return value**
 
 | Type                       | Description                 |
 | --------------------------- | --------------------- |
-| [Preferences](#preferences) | **Preferences** instance obtained.|
+| [Preferences](#preferences) | **Preferences** instance obtained. |
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                       |
+| ID | Error Message                       |
 | -------- | ------------------------------- |
 | 15501001 | Only supported in stage mode.   |
 | 15501002 | The data group id is not valid. |
@@ -410,7 +410,7 @@ let preferences: dataPreferences.Preferences | null = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             preferences = dataPreferences.getPreferencesSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
@@ -433,17 +433,17 @@ After the **Preferences** instance is deleted, do not use it to perform data ope
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory| Description                                                |
+| Name  | Type                                 | Mandatory | Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance.                             |
-| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------|
 | 15500010 | Failed to delete preferences file. |
 
@@ -511,22 +511,22 @@ After the **Preferences** instance is deleted, do not use it to perform data ope
 
 **Parameters**
 
-| Name | Type                                 | Mandatory| Description                   |
+| Name | Type                                 | Mandatory | Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance.|
+| name    | string                                | Yes  | Name of the **Preferences** instance. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------|
 | 15500010 | Failed to delete preferences file. |
 
@@ -592,9 +592,9 @@ After the **Preferences** instance is deleted, do not use it to perform data ope
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                                                                                                                                          |
+| Name  | Type                     | Mandatory | Description                                                                                                                                                                          |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | options  | [Options](#options10)          | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.                                                                                                                          |
 
@@ -602,7 +602,7 @@ After the **Preferences** instance is deleted, do not use it to perform data ope
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                          |
+| ID | Error Message                          |
 | -------- | ---------------------------------- |
 | 15500010 | Failed to delete preferences file. |
 | 15501001 | Only supported in stage mode. |
@@ -645,7 +645,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
@@ -675,22 +675,22 @@ After the **Preferences** instance is deleted, do not use it to perform data ope
 
 **Parameters**
 
-| Name | Type            | Mandatory| Description                                                                                                                                                                          |
+| Name | Type            | Mandatory | Description                                                                                                                                                                          |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                          |
+| ID | Error Message                          |
 | -------- | ---------------------------------- |
 | 15500010 | Failed to delete preferences file. |
 | 15501001 | Only supported in stage mode. |
@@ -732,7 +732,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try{
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             let promise = dataPreferences.deletePreferences(this.context, options);
             promise.then(() => {
                 console.info("Succeeded in deleting preferences.");
@@ -763,11 +763,11 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory| Description                                                |
+| Name  | Type                                 | Mandatory | Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance.                             |
-| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -834,16 +834,16 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 
 **Parameters**
 
-| Name | Type                                 | Mandatory| Description                   |
+| Name | Type                                 | Mandatory | Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance.|
+| name    | string                                | Yes  | Name of the **Preferences** instance. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -908,10 +908,10 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 
 **Parameters**
 
-| Name | Type                                 | Mandatory| Description                   |
+| Name | Type                                 | Mandatory | Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance.|
+| name    | string                                | Yes  | Name of the **Preferences** instance. |
 
 **Example**
 
@@ -965,9 +965,9 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                                                                                                                                          |
+| Name  | Type                     | Mandatory | Description                                                                                                                                                                          |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | options  | [Options](#options10)          | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.                                                                                                                          |
 
@@ -975,7 +975,7 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
@@ -1015,7 +1015,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
@@ -1046,22 +1046,22 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 
 **Parameters**
 
-| Name | Type            | Mandatory| Description                                                                                                                                                                          |
+| Name | Type            | Mandatory | Description                                                                                                                                                                          |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                      |
+| ID | Error Message                      |
 | -------- | ------------------------------ |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
@@ -1100,7 +1100,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             let promise = dataPreferences.removePreferencesFromCache(this.context, options);
             promise.then(() => {
                 console.info("Succeeded in removing preferences.");
@@ -1130,16 +1130,16 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 
 **Parameters**
 
-| Name | Type                 | Mandatory| Description                                                        |
+| Name | Type                 | Mandatory | Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                           |
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                       |
+| ID | Error Message                       |
 | -------- | ------------------------------- |
 | 15501001 | Only supported in stage mode.   |
 | 15501002 | The data group id is not valid. |
@@ -1171,7 +1171,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             dataPreferences.removePreferencesFromCacheSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
@@ -1188,10 +1188,10 @@ Represents the configuration options of a **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name       | Type  | Mandatory| Description                                                        |
+| Name       | Type  | Mandatory | Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | Yes  | Name of the **Preferences** instance.                                     |
-| dataGroupId | string | No  | Application group ID, which needs to be obtained from the AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **Preferences** instance created in the sandbox directory corresponding to the **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.|
+| dataGroupId | string | No  | Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **Preferences** instance created in the sandbox directory corresponding to the **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application. |
 
 ## Preferences
 
@@ -1210,11 +1210,11 @@ Obtains the value of a key from this **Preferences** instance. This API uses an 
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
+| Name  | Type                                        | Mandatory | Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
-| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.|
+| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>. |
+| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -1247,16 +1247,16 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 
  **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                                        |
+| Name  | Type                   | Mandatory | Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>. |
 
 **Return value**
 
 | Type                               | Description                         |
 | ----------------------------------- | ----------------------------- |
-| Promise<[ValueType](#valuetype)&gt; | Promise used to return the value obtained.|
+| Promise<[ValueType](#valuetype)&gt; | Promise used to return the value obtained. |
 
 **Example**
 
@@ -1287,16 +1287,16 @@ Obtains the value of a key from this **Preferences** instance. This API returns 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                                        |
+| Name  | Type                   | Mandatory | Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>. |
 
 **Return value**
 
 | Type                               | Description                         |
 | ----------------------------------- | ----------------------------- |
-| [ValueType](#valuetype) | Returns the value obtained.|
+| [ValueType](#valuetype) | Returns the value obtained. |
 
 **Example**
 
@@ -1321,9 +1321,9 @@ Obtains all KV pairs from this **Preferences** instance. This API uses an asynch
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                        |
+| Name  | Type                       | Mandatory | Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** provides all KV pairs obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** provides all KV pairs obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -1367,7 +1367,7 @@ Obtains all KV pairs from this **Preferences** instance. This API uses a promise
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;Object&gt; | Promise used to return the KV pairs obtained.|
+| Promise&lt;Object&gt; | Promise used to return the KV pairs obtained. |
 
 **Example**
 
@@ -1409,7 +1409,7 @@ Obtains all KV pairs from this **Preferences** instance. This API returns the re
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Object | Returns all KV pairs obtained.|
+| Object | Returns all KV pairs obtained. |
 
 **Example**
 
@@ -1442,14 +1442,15 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
    > **NOTE**
    >
    > If the specified key already exists, the **put()** API overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
+
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                        |
+| Name  | Type                     | Mandatory | Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
-| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
+| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Example**
@@ -1482,20 +1483,21 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
    > **NOTE**
    >
    > If the specified key already exists, the **put()** API overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
+
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                                                        |
+| Name | Type                   | Mandatory | Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -1526,14 +1528,15 @@ Writes data to this **Preferences** instance. This API returns the result synchr
    > **NOTE**
    >
    > If the specified key already exists, the **putSync()** API overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
+
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                                                        |
+| Name | Type                   | Mandatory | Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>. |
 
 **Example**
 
@@ -1558,10 +1561,10 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                        |
+| Name  | Type                        | Mandatory | Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                       | Yes  | Key of the data to check. It cannot be empty.                             |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned. |
 
 **Example**
 
@@ -1598,15 +1601,15 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                           |
+| Name | Type  | Mandatory | Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the data to check. It cannot be empty.|
+| key    | string | Yes  | Key of the data to check. It cannot be empty. |
 
 **Return value**
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned. |
 
 **Example**
 
@@ -1642,15 +1645,15 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                           |
+| Name | Type  | Mandatory | Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the data to check. It cannot be empty.|
+| key    | string | Yes  | Key of the data to check. It cannot be empty. |
 
 **Return value**
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
+| boolean | If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned. |
 
 **Example**
 
@@ -1680,10 +1683,10 @@ Deletes a KV pair from this **Preferences** instance. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                |
+| Name  | Type                     | Mandatory | Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty.                     |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -1716,15 +1719,15 @@ Deletes a KV pair from this **Preferences** instance. This API uses a promise to
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                           |
+| Name | Type  | Mandatory | Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
+| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -1756,9 +1759,9 @@ Deletes a KV pair from this **Preferences** instance. This API returns the resul
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                           |
+| Name | Type  | Mandatory | Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
+| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty. |
 
 **Example**
 
@@ -1783,9 +1786,9 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                |
+| Name  | Type                     | Mandatory | Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -1820,7 +1823,7 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -1852,9 +1855,9 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                |
+| Name  | Type                     | Mandatory | Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -1889,7 +1892,7 @@ Clears this **Preferences** instance. This API uses a promise to return the resu
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -1942,9 +1945,9 @@ Subscribes to data changes. A callback will be triggered to return the new value
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                    |
+| Name  | Type    | Mandatory | Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
-| type     | string   | Yes  | Event type. The value **change** indicates data changes.|
+| type     | string   | Yes  | Event type. The value **change** indicates data changes. |
 | callback | Function | Yes  | Callback invoked to return data changes.<br>**key** is the key whose value is changed.    |
 
 **Example**
@@ -1976,16 +1979,16 @@ Subscribes to inter-process data changes. For the multiple processes holding the
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| Name  | Type    | Mandatory | Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
+| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes. |
 | callback | Function | Yes  | Callback invoked to return inter-process data changes.<br>**key** is the key whose value is changed.                        |
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
-| ID| Error Message                              |
+| ID | Error Message                              |
 | -------- | -------------------------------------- |
 | 15500019 | Failed to obtain subscription service. |
 
@@ -2018,10 +2021,10 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| Name  | Type    | Mandatory | Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value **change** indicates data changes.                    |
-| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.<br>**key** is the key whose value is changed.|
+| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.<br>**key** is the key whose value is changed. |
 
 **Example**
 
@@ -2053,9 +2056,9 @@ Unsubscribes from inter-process data changes.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| Name  | Type    | Mandatory | Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
+| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes. |
 | callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for inter-process data changes will be unregistered.<br>**key** is the key whose value is changed.|
 
 **Example**
@@ -2090,4 +2093,4 @@ Enumerates the value types.
 | boolean         | The value is true or false.          |
 | Array\<number>  | The value is an array of numbers.  |
 | Array\<boolean> | The value is a Boolean array.  |
-| Array\<string>  | The value is an array of strings.|
+| Array\<string>  | The value is an array of strings. |
