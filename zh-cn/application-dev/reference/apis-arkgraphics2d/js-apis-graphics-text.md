@@ -497,14 +497,15 @@ struct Index {
 
 | 名称                 | 类型                                        | 只读 | 可选 | 说明                                          |
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
-| textStyle            | [TextStyle](#textstyle)                    | 是   | 是   | 作用于整个段落的文本样式，默认为初始的TextStyle。|
+| textStyle            | [TextStyle](#textstyle)                    | 是   | 是   | 作用于整个段落的文本样式，默认为初始的文本样式。|
 | textDirection        | [TextDirection](#textdirection)            | 是   | 是   | 文本方向，默认为LTR。                          |
-| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。                     |
+| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。当与制表符对齐方式同时配置时（即同时配置tab属性时），制表符对齐方式不生效。|
 | wordBreak            | [WordBreak](#wordbreak)                    | 是   | 是   | 断词类型，默认为BREAK_WORD。                    |
 | maxLines             | number                                     | 是   | 是   | 最大行数限制，整数，默认为1e9。                  |
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
 | strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
+| tab<sup>14+</sup>   | [TextTab](#texttab14)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
 
 
 ## PlaceholderAlignment
@@ -1917,3 +1918,28 @@ struct Index {
   }
 }
 ```
+
+## TextTab<sup>14+</sup>
+
+段落风格的文本制表符，储存了对齐方式和位置。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称               | 类型                    | 只读 | 可选 | 说明                                               |
+| -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
+| alignment          | [TextAlign](#textalign) | 是   |  否  | 段落中制表符之后的文本对齐方式，支持设置[TextAlign](#textalign)的LEFT左对齐、RIGHT右对齐和CENTER居中对齐方式，其他枚举值为左对齐效果，默认为左对齐效果。 |
+| location           | number                  | 是   |  否  | 制表符之后的文本对齐位置，浮点数，单位为物理像素px，最小值为1.0，当该值小于1.0时，该制表符会被替换为一个空格。 |
+
+**示例：**
+
+alignment为CENTER，location为200，文本为"12/t345"：
+
+![zh-ch_image_AlignmentCenter.png](figures/zh-ch_image_AlignmentCenter.png)
+
+alignment为LEFT，location为100，文本为"abccccccccc/tdef"：
+
+![zh-ch_image_AlignmentLeft.png](figures/zh-ch_image_AlignmentLeft.png)
+
+alignment为RIGHT，location为100，文本为"aabcdef/tg hi/tjkl/tmno/tp qr"：
+
+![zh-ch_image_AlignmentRight.png](figures/zh-ch_image_AlignmentRight.png)
