@@ -27,3 +27,60 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 - 由于不同线程中上下文对象是不同的，因此TaskPool工作线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用，具体请见[多线程安全注意事项](multi-thread-safety.md)。
 
 - 序列化传输的数据量大小限制为16MB。
+
+- Promise不支持跨线程传递，不能作为concurrent function的返回值。
+
+```ts
+// 正例
+@Concurrent
+async function asyncFunc(val1:number, val2:number): Promise<number> {
+  let ret: number = await new Promise((resolve, reject) => {
+    let value = val1 + val2;
+    resolve(value);
+  });
+  return ret; // 支持。直接返回Promise的结果。
+}
+
+function taskpoolExecute() {
+  taskpool.execute(asyncFunc, 10, 20).then((result: Object) => {
+    console.info("taskPoolTest task result: " + result);
+  }).catch((err: string) => {
+    console.error("taskPoolTest test occur error: " + err);
+  });
+}
+taskpoolExecute()
+```
+
+<!--code_no_check-->
+```ts
+// 反例1:
+@Concurrent
+async function asyncFunc(val1:number, val2:number): Promise<number> {
+  let ret: number = await new Promise((resolve, reject) => {
+    let value = val1 + val2;
+    resolve(value);
+  });
+  return Promise.resolve(ret); // 不支持。Promise.resolve仍是Promise，其状态是pending，无法作为返回值使用。
+}
+
+// 反例2:
+@Concurrent
+async function asyncFunc(val1:number, val2:number): Promise<number> {
+  // 不支持。其状态是pending，无法作为返回值使用。
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let value = val1 + val2;
+      resolve(value);
+    }, 2000);
+  }); 
+}
+
+function taskpoolExecute() {
+  taskpool.execute(asyncFunc, 10, 20).then((result: Object) => {
+    console.info("taskPoolTest task result: " + result);
+  }).catch((err: string) => {
+    console.error("taskPoolTest test occur error: " + err);
+  });
+}
+taskpoolExecute()
+```
