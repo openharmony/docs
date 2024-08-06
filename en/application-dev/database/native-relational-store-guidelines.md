@@ -123,7 +123,7 @@ libnative_rdb_ndk.z.so
    OH_Rdb_Store *store_ = OH_Rdb_GetOrOpen(&config, &errCode);
    ```
 
-2. Call **OH_Rdb_Execute** to create a table, and call **OH_Rdb_Insert** to insert data to the table. <br>Example:
+2. Call **OH_Rdb_Execute** to create a table, and call **OH_Rdb_Insert** to insert data to the table.<br>Example:
 
    ```c
    char createTableSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, "
@@ -151,7 +151,7 @@ libnative_rdb_ndk.z.so
 
 3. Modify or delete data based on the conditions specified by **OH_Predicates**.
 
-   Call **OH_Rdb_Update** to modify data, and call **OH_Rdb_Delete** to delete data. <br>Example:
+   Call **OH_Rdb_Update** to modify data, and call **OH_Rdb_Delete** to delete data.<br>Example:
 
    ```c
    // Modify data.
@@ -193,7 +193,7 @@ libnative_rdb_ndk.z.so
 
 4. Query data based on the conditions specified by **OH_Predicates**.
 
-   Call **OH_Rdb_Query** to query data. The data obtained is returned in an **OH_Cursor** object. <br>Example:
+   Call **OH_Rdb_Query** to query data. The data obtained is returned in an **OH_Cursor** object.<br>Example:
 
    ```c
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
@@ -304,7 +304,7 @@ libnative_rdb_ndk.z.so
 
 7. Obtain the last modification time of data. 
 
-   Call **OH_Rdb_FindModifyTime** to obtain the last modification time of data in the specified column of a table. This API returns an **OH_Cursor** object with two columns of data. The first column is the primary key or row ID, and the second column is the last modification time. <br>Example:
+   Call **OH_Rdb_FindModifyTime** to obtain the last modification time of data in the specified column of a table. This API returns an **OH_Cursor** object with two columns of data. The first column is the primary key or row ID, and the second column is the last modification time.<br>Example:
 
    ```c
    OH_VObject *values = OH_Rdb_CreateValueObject();
@@ -316,7 +316,7 @@ libnative_rdb_ndk.z.so
 
 8. Create distributed tables. 
 
-   Call **OH_Rdb_SetDistributedTables** to set distributed tables for the table (created by using **OH_Rdb_Execute**). Before using this API, ensure that the cloud service is available. <br>Example:
+   Call **OH_Rdb_SetDistributedTables** to set distributed tables for the table (created by using **OH_Rdb_Execute**). Before using this API, ensure that the cloud service is available.<br>Example:
 
    ```c
    constexpr int TABLE_COUNT = 1;
@@ -327,7 +327,7 @@ libnative_rdb_ndk.z.so
 
 9. Manually perform device-cloud sync for the distributed tables. 
 
-   Call **OH_Rdb_CloudSync** to perform device-cloud sync for the tables. Before using this API, ensure that the cloud service is available. <br>Example:
+   Call **OH_Rdb_CloudSync** to perform device-cloud sync for the tables. Before using this API, ensure that the cloud service is available.<br>Example:
 
    ```c
    // Define a callback.
@@ -341,7 +341,7 @@ libnative_rdb_ndk.z.so
 
 10. Register a data observer for the specified event type for an RDB store. When the data changes, the registered callback will be invoked to process the observation. 
 
-    Call **OH_Rdb_Subscribe** to subscribe to data changes. Before using this API, ensure that the cloud service is available. <br>Example:
+    Call **OH_Rdb_Subscribe** to subscribe to data changes. Before using this API, ensure that the cloud service is available.<br>Example:
 
     ```c
     // Define a callback.
@@ -356,7 +356,7 @@ libnative_rdb_ndk.z.so
 
 11. Unsubscribe from the events of the specified type for an RDB store. After that, the callback will not be invoked to process the observation. 
 
-     Call **OH_Rdb_Unsubscribe** to unsubscribe from data changes. Before using this API, ensure that the cloud service is available. <br>Example:
+     Call **OH_Rdb_Unsubscribe** to unsubscribe from data changes. Before using this API, ensure that the cloud service is available.<br>Example:
 
      ```c
      // Define a callback.
@@ -371,7 +371,7 @@ libnative_rdb_ndk.z.so
 
 12. Register an observer for auto sync progress of an RDB store. When auto sync is performed on the RDB store, the registered callback will be invoked to process the observation. 
 
-     Call **OH_Rdb_SubscribeAutoSyncProgress** to subscribe to the auto sync progress. Before using this API, ensure that the cloud service is available. <br>Example:
+     Call **OH_Rdb_SubscribeAutoSyncProgress** to subscribe to the auto sync progress. Before using this API, ensure that the cloud service is available.<br>Example:
 
      ```c
      // Define a callback.
@@ -385,7 +385,7 @@ libnative_rdb_ndk.z.so
 
 13. Unsubscribe from the auto sync progress from an RDB store. After that, the callback will not be invoked to process the observation. 
 
-     Call **OH_Rdb_UnsubscribeAutoSyncProgress** to unsubscribe from the auto sync progress. Before using this API, ensure that the cloud service is available. <br>Example:
+     Call **OH_Rdb_UnsubscribeAutoSyncProgress** to unsubscribe from the auto sync progress. Before using this API, ensure that the cloud service is available.<br>Example:
 
      ```c
      // Define a callback.
@@ -399,7 +399,7 @@ libnative_rdb_ndk.z.so
 
 14. Delete an RDB store. 
 
-    Call **OH_Rdb_DeleteStore** to delete the RDB store and related database file. <br>Example:
+    Call **OH_Rdb_DeleteStore** to delete the RDB store and related database file.<br>Example:
 
      ```c
      // Close the database instance.

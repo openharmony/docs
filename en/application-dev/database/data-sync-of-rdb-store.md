@@ -12,7 +12,7 @@ OpenHamony supports sync of the relational data of an application across multipl
 
 - Distributed table list<br>After a table is created for an application in an RDB store, you can set it as a distributed table. When querying the RDB store of a remote device, you can obtain the distributed table name of the remote device based on the local table name.
 
-- Sync mode<br>Data can be synced between devices in either of the following ways: <br>- Pushing data from a local device to a remote device. <br>- Pulling data from a remote device to a local device.
+- Sync mode<br>Data can be synced between devices in either of the following ways: <br>- Pushing data from a local device to a remote device.<br>- Pulling data from a remote device to a local device.
 
 
 ## Working Principles

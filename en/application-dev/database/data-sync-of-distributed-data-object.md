@@ -44,9 +44,9 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 
 **Table 1** Correspondence between a distributed data object and a distributed database
 
-| Distributed Data Object Instance| Object Instance| Property Name| Property Value| 
+| Distributed Data Object Instance | Object Instance | Property Name | Property Value | 
 | -------- | -------- | -------- | -------- |
-| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database| 
+| Distributed in-memory database | Database identified by **sessionID** | Key of a record in the database | Value of a record in the database | 
 
 
 ### Cross-Device Sync and Data Change Notification
@@ -55,7 +55,7 @@ One of the most important functions of distributed data objects is to implement 
 
 As shown in the following figure, distributed data object 1 of device A and distributed data object 1 of device B are set with the same session ID **session1**, and sync relationship of session 1 is established between the two objects.
 
-  **Figure 2** Object sync relationship 
+  **Figure 2** Object sync relationship
 
 ![distributedObject_sync](figures/distributedObject_sync.jpg)
 
@@ -94,7 +94,7 @@ You need to persist distributed data objects in the following scenarios:
 
 In a distributed object, [asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset) is used to describe a local entity asset file. When the distributed object is synced across devices, the file is also synced to other devices with it. Currently, only asset is supported. The type [assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets) is not supported. To synchronize multiple assets, use each asset as a root property of the distributed object.
 
-### Resolution of Joint Asset Conflicts 
+### Resolution of Joint Asset Conflicts
 
 When an asset in a distributed object and an asset in an RDB store point to the same entity asset file, that is, the URIs of the two assets are the same, a conflict occurs. Such assets are called joint assets. To resolve the conflict of joint assets, bind the asset and the RDB store. The binding is automatically released when the application exits the session.
 
@@ -124,19 +124,19 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| create(context: Context, source: object): DataObject | Creates a distributed data object instance.|
-| genSessionId(): string | Generates a session ID for distributed data objects.|
-| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data sync. Automatic sync is performed for devices with the same session ID on a trusted network.|
-| setSessionId(callback: AsyncCallback&lt;void&gt;): void | Exits all sessions.|
-| on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Subscribes to data changes of the distributed data object.|
-| off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Unsubscribes from data changes of the distributed data object.|
-| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | Subscribes to status changes of the distributed data object.|
-| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object.|
-| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object.|
-| revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object.|
-| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | Binds an asset and its RDB store.|
+| create(context: Context, source: object): DataObject | Creates a distributed data object instance. |
+| genSessionId(): string | Generates a session ID for distributed data objects. |
+| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data sync. Automatic sync is performed for devices with the same session ID on a trusted network. |
+| setSessionId(callback: AsyncCallback&lt;void&gt;): void | Exits all sessions. |
+| on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Subscribes to data changes of the distributed data object. |
+| off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Unsubscribes from data changes of the distributed data object. |
+| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | Subscribes to status changes of the distributed data object. |
+| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object. |
+| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object. |
+| revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object. |
+| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | Binds an asset and its RDB store. |
 
 
 ## How to Develop
@@ -235,8 +235,8 @@ The following example demonstrates how to implement sync of distributed data obj
 
 4. Set the same session ID for the distributed data objects for data sync. The data objects in the sync network include the local and remote objects.
 
-   > **NOTE**
-   > 
+  > **NOTE**
+  >
    > If the data of a distributed data object added to the network is different from that in the network, the data of the other distributed data objects will be synced with that of the newly added distributed data object. To enable the newly added distributed data object to sync data with the distributed data object in the network, set its attributes to **undefined**.
 
    ```ts
@@ -293,7 +293,7 @@ The following example demonstrates how to implement sync of distributed data obj
 7. Access a distributed data object. Obtain the distributed data object properties, which are the latest data on the network.
 
    ```ts
-   console.info(`name:${localObject['name']}`); 
+   console.info(`name:${localObject['name']}`);
    ```
 
 8. Unsubscribe from data changes. You can specify the callback to unregister. If you do not specify the callback, this API unregisters all data change callbacks of the distributed data object.
@@ -308,8 +308,8 @@ The following example demonstrates how to implement sync of distributed data obj
        }
      }
    });
-   // Unregister all data change callbacks. 
-   localObject.off('change'); 
+   // Unregister all data change callbacks.
+   localObject.off('change');
    ```
 
 9. Subscribe to status changes of a distributed data object. A callback will be invoked to report the status change when the target distributed data object goes online or offline.

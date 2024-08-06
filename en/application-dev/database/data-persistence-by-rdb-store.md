@@ -53,7 +53,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 ## How to Develop
 Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
-1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store. <br>Example:
+1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store.<br>Example:
 
    Stage model:
      
@@ -173,7 +173,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    > 
    > - When an application calls **getRdbStore()** to obtain an RDB store instance for the first time, the corresponding database file is generated in the application sandbox. When the RDB store is used, temporary files ended with **-wal** and **-shm** may be generated in the same directory as the database file. If you want to move the database files to other places, you must also move these temporary files. After the application is uninstalled, the database files and temporary files generated on the device are also removed.
 
-2. Use **insert()** to insert data to the RDB store. <br>Example:
+2. Use **insert()** to insert data to the RDB store.<br>Example:
      
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
@@ -221,7 +221,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
 
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Use **update()** to modify data and **delete()** to delete data. <br>Example:
+   Use **update()** to modify data and **delete()** to delete data.<br>Example:
      
    ```ts
    // Modify data.
@@ -279,7 +279,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Use **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
+   Use **query()** to query data. The data obtained is returned in a **ResultSet** object.<br>Example:
      
    ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -311,7 +311,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
 
 5. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
+   Use **deleteRdbStore()** to delete the RDB store and related database files.<br>Example:
    
    Stage model:
 
