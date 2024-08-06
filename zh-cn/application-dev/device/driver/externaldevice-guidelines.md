@@ -18,11 +18,11 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 
 目前各SDK支持的版本如下：
 
-| SDK相关库 | 接口类型 | 支持API版本 | 对应OpenHarmony/HarmonyOS版本 |
+| 外设相关SDK | 接口类型 | 支持API版本 | 对应OpenHarmony/HarmonyOS版本 |
 | ------------ | ------------ | ------------ | ------------ |
 | @kit.DriverDevelopmentKit.d.ts | TS API接口 | API10及以上 | 4.0及以上 |
-| libusb_ndk.z.so | C API接口 | API10及以上 | 4.0及以上 |
-| libhid.z.so | C API接口 | API11及以上 | 4.1及以上 |
+| [USB DDK接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/usb-ddk-guidelines.md) | C API接口 | API10及以上 | 4.0及以上 |
+| [HID DDK接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/hid-ddk-guidelines.md) | C API接口 | API11及以上 | 4.1及以上 |
 
 ### HDC配置
 
