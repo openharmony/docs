@@ -88,7 +88,7 @@ Sendable interface需同时满足以下两个规则：
 
 > **说明：**
 >
-> 从API version 11开始，该装饰器支持在ArkTS卡片中使用。
+> 从API version 11开始，支持使用@Sendable装饰器校验Sendable class。
 
 ### 装饰器说明
 | \@Sendable类装饰器         | 说明                                                                   |
