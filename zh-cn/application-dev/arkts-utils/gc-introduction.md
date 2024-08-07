@@ -102,7 +102,9 @@ heap中会生成两个Semi Space供copying使用。
 
 ![image](./figures/gc-process.png)
 
-### HPPGC
+### HPP GC
+
+HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾回收，其中“High Performance”主要三方面，包含分代模型、混合算法和GC流程优化，以下主要是对HPP GC的流程中的一些具体策略的介绍。
 
 #### Young GC
 
