@@ -225,23 +225,4 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
     }
   }
   ```
-  ### getBackupInfo<sup>12+</sup>
-
-getBackupInfo(): string;
-
-在调用方查询应用数据时执行，由开发者提供扩展查询应用数据的操作。
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**示例：**
-
-  ```ts
-
-  class BackupExt extends BackupExtensionAbility {
-    getBackupInfo(): string {
-      console.log(`getBackupInfo ok`);
-      let info = "app diy info";
-      return info;
-    }
-  }
-  ```
+  
