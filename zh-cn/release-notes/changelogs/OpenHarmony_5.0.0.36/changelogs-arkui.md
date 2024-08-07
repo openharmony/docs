@@ -334,7 +334,7 @@ struct Index {
 
 该变更为兼容性变更。
 
-从API version 12开始，setWindowSystemBarEnable 的callback方式调用将不推荐使用，推荐使用Promise方式的同名接口。
+从API version 12开始，setWindowSystemBarEnable的callback方式调用将不推荐使用，推荐使用Promise方式的同名接口。
 
 **起始 API Level**
 
