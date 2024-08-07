@@ -372,7 +372,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 是   | 下拉菜单的背景模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | 下拉菜单的背景模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
 ## ArrowPosition<sup>10+</sup>枚举说明
 

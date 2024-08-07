@@ -35,7 +35,7 @@ Notification Kit支持的能力主要包括:
 >
 > 实际显示效果依赖设备能力和通知中心UI设计样式。
 
-Notification Kit支持的通知样式：
+Notification Kit中常用的通知样式如下：
 | 类型 | 通知样式 | 规格描述 |
 | ---- | --------| ------- |
 | [文本](./text-notification.md)           | ![text_notification](figures/text_notification.png)   | 通知文本内容最多显示三行，超长后以“...”截断。 |

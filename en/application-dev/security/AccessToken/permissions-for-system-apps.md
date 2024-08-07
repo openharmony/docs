@@ -3613,6 +3613,18 @@ Allow a system application to obtain file thumbnails.
 
 **Valid since**：12
 
+### ohos.permission.NETWORK_DHCP
+
+Allows a system application to apply for IP address from the DHCP server.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.ALLOW_CONNECT_CAR
 
 Allows an application to connect to an automobile head unit.

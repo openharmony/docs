@@ -3625,6 +3625,18 @@
 
 **起始版本**：12
 
+### ohos.permission.NETWORK_DHCP
+
+允许系统应用从DHCP申请IP地址以及分配IP地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ALLOW_CONNECT_CAR
 
 允许应用连接车机。
