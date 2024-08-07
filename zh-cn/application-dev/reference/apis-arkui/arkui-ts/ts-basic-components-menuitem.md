@@ -20,7 +20,7 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 
 | 参数  | 类型                                                                                                                          | 必填 | 参数描述                     |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------- | ---- | ---------------------------- |
-| value | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 包含设置MenuItem的各项信息。 |
+| value | [MenuItemOptions](#menuitemoptions类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 包含设置MenuItem的各项信息。 |
 
 ## MenuItemOptions类型说明
 

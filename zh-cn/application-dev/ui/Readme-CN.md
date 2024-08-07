@@ -45,7 +45,7 @@
     - [动画概述](arkts-animation.md)
     - 属性动画
       - [属性动画概述](arkts-attribute-animation-overview.md)
-      - [属性动画接口说明](arkts-attribute-animation-apis.md)
+      - [实现属性动画](arkts-attribute-animation-apis.md)
       - [自定义属性动画](arkts-custom-attribute-animation.md)
     - 转场动画
       - [转场动画概述](arkts-transition-overview.md)
@@ -88,6 +88,10 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+    - 自定义扩展
+      - [自定义扩展概述](arkts-user-defined-modifier.md)
+      - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)
+      - [AttributeUpdater](arkts-user-defined-extension-attributeUpdater.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置

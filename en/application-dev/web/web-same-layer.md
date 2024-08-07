@@ -1,27 +1,53 @@
-# Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer
+# Rendering and Drawing Video and Button Components at the Same Layer
 
-For details about the components that support same-layer rendering, see [NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype).
+With the same-layer rendering feature of ArkWeb, you can render and draw native components at the same layer as the **\<Web>** component for your application. For details about the components that support same-layer rendering, see [NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype).
 
-You enable or disable same-layer rendering through [enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11). To use same-layer rendering, the **\<embed>** element must be explicitly used in the HTML file, and the **type** attribute of the element must start with **native/**.
-
-
-The background color for same-layer rendering is white. Only one layer of **\<Web>** components can be nested.
-
-
-- To start with, add the following permission to the **module.json5** file:
+- To start with, add the Internet permission to the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
   
-  ```ts
-  "ohos.permission.INTERNET"
-  ```
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+   ```
+
+## Constraints
+The following constraints apply when same-layer rendering is used:
+
+- W3C standards-based tags cannot be defined as tags for same-layer rendering.
+
+- The **<object>** tags and **\<embed>** tags cannot be configured for same-layer rendering at the same time.
+
+- To deliver best possible performance, keep the number of tags at the same layer on a page within five.
+
+- The maximum height of tags at the same layer is 8192 px, and the maximum texture size is 8192 px.
+
+- Only one nesting level is supported for the **\<Web>** component. If multiple nesting levels are detected, an error message is displayed.
+
+- The following touchscreen events are supported in the region for same-layer rendering: swipe, tap, pinch, and long press; dragging is not supported.
+
+- When same-layer rendering is enabled, web pages opened by the **\<Web>** component do not support the pinch gesture or scale APIs, including [initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale), [zoom](../reference/apis-arkweb/js-apis-webview.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin), and [zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout).
+
+- The region for same-layer rendering does not support mouse, keyboard, and touchpad events.
+
+- When same-layer rendering is enabled, web pages opened by the **\<Web>** component do not support the unified rendering mode [RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode).
+
+
+## Drawing the XComponent+AVPlayer and Button Components
+
+### Enabling Same-Layer Rendering
+
+You enable or disable same-layer rendering through [enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11). To use same-layer rendering, the **\<embed>** element must be explicitly used in the HTML file, and the **type** attribute of the element must start with **native/**. The background of the elements corresponding to the tags at the same layer is transparent.
 
 - Example of using same-layer rendering on the application side:
 
   ```ts
+  // HAP's src/main/ets/pages/Index.ets
   // Create a NodeController instance.
-  import webview from '@ohos.web.webview';
-  import {UIContext} from '@ohos.arkui.UIContext';
-  import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
-  import {AVPlayerDemo} from './PlayerDemo';
+  import { webview } from '@kit.ArkWeb';
+  import { UIContext, NodeController, BuilderNode, NodeRenderType, FrameNode } from "@kit.ArkUI";
+  import { AVPlayerDemo } from './PlayerDemo';
 
   @Observed
   declare class Params {
@@ -67,9 +93,7 @@ The background color for same-layer rendering is white. Only one layer of **\<We
       }
       if (!this.rootNode) { // When rootNode is set to undefined
         this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
-        if (this.type_ === 'native/button') {
-          this.rootNode.build(wrapBuilder(ButtonBuilder), {textOne: "myButton1", textTwo : "myButton2", width : this.width_, height : this.height_});
-        } else if (this.type_ === 'native/video') {
+        if (this.type_ === 'native/video') {
           this.rootNode.build(wrapBuilder(VideoBuilder), {textOne: "myButton", width : this.width_, height : this.height_});
         } else {
           // other
@@ -107,26 +131,6 @@ The background color for same-layer rendering is white. Only one layer of **\<We
   }
 
   @Component
-  struct ButtonComponent {
-    @ObjectLink params: Params
-    @State bkColor: Color = Color.Red
-
-    build() {
-      Column() {
-        Button(this.params.textOne)
-          .border({ width: 2, color: Color.Red})
-          .backgroundColor(this.bkColor)
-
-        Button(this.params.textTwo)
-          .border({ width: 2, color: Color.Red})
-          .backgroundColor(this.bkColor)
-      }
-      .width(this.params.width)
-      .height(this.params.height)
-    }
-  }
-
-  @Component
   struct VideoComponent {
     @ObjectLink params: Params
     @State bkColor: Color = Color.Red
@@ -137,8 +141,6 @@ The background color for same-layer rendering is white. Only one layer of **\<We
     build() {
       Column() {
         Button(this.params.textOne)
-          .border({ width: 2, color: Color.Red})
-          .backgroundColor(this.bkColor)
 
         XComponent({ id: 'video_player_id', type: XComponentType.SURFACE, controller: this.mXComponentController})
           .border({width: 1, color: Color.Red})
@@ -148,22 +150,19 @@ The background color for same-layer rendering is white. Only one layer of **\<We
             this.player_changed = !this.player_changed;
             this.player.avPlayerLiveDemo()
           })
+          .width(300)
+          .height(200)
       }
+      // The width and height of the outermost container in the custom component must be the width and height of the tag at the same layer.
       .width(this.params.width)
       .height(this.params.height)
     }
   }
   // In @Builder, add the specific dynamic component content.
   @Builder
-  function ButtonBuilder(params: Params) {
-    ButtonComponent({ params: params })
-      .backgroundColor(Color.Green)
-  }
-
-  @Builder
   function VideoBuilder(params: Params) {
     VideoComponent({ params: params })
-      .backgroundColor(Color.Green)
+      .backgroundColor(Color.Gray)
   }
 
   @Entry
@@ -185,19 +184,20 @@ The background color for same-layer rendering is white. Only one layer of **\<We
             ForEach(this.componentIdArr, (componentId: string) => {
               NodeContainer(this.nodeControllerMap.get(componentId))
             }, (embedId: string) => embedId)
-            // Load the local test.html page in the <Web> component.
+            // Load the local test.html page.
             Web({ src: $rawfile("test.html"), controller: this.browserTabController })
                 // Enable same-layer rendering.
               .enableNativeEmbedMode(true)
                 // Obtain the lifecycle change data of the <embed> element.
               .onNativeEmbedLifecycleChange((embed) => {
                 console.log("NativeEmbed surfaceId" + embed.surfaceId);
-                // Obtain the ID of the <embed> element on the web side.
+                // 1. If embed.info.id is used as the key for mapping nodeController, explicitly specify the ID on the HTML5 page.
                 const componentId = embed.info?.id?.toString() as string
                 if (embed.status == NativeEmbedStatus.CREATE) {
                   console.log("NativeEmbed create" + JSON.stringify(embed.info))
                   // Create a NodeController instance, set parameters, and rebuild.
                   let nodeController = new MyNodeController()
+                  // 1. The unit of embed.info.width and embed.info.height is px, which needs to be converted to the default unit vp on the ets side.
                   nodeController.setRenderOption({surfaceId : embed.surfaceId as string, type : embed.info?.type as string,
                     renderType : NodeRenderType.RENDER_TYPE_TEXTURE, embedId : embed.embedId as string,
                     width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
@@ -220,6 +220,7 @@ The background color for same-layer rendering is white. Only one layer of **\<We
                 console.log("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
                 this.componentIdArr.forEach((componentId: string) => {
                   let nodeController = this.nodeControllerMap.get(componentId)
+                  // Send the obtained event of the region at the same layer to the nodeController corresponding to embedId of the region.
                   if (nodeController?.getEmbedId() === touch.embedId) {
                     let ret = nodeController?.postEvent(touch.touchEvent)
                     if (ret) {
@@ -227,9 +228,9 @@ The background color for same-layer rendering is white. Only one layer of **\<We
                     } else {
                       console.log("onNativeEmbedGestureEvent fail " + componentId)
                     }
-                    if (event.result) {
+                    if (touch.result) {
                       // Notify the <Web> component of the gesture event consumption result.
-                      event.result.setGestureEventResult(ret);
+                      touch.result.setGestureEventResult(ret);
                     }
                   }
                 })
@@ -240,11 +241,13 @@ The background color for same-layer rendering is white. Only one layer of **\<We
     }
   }
   ```
-- Example of application code for video playback in **./PlayerDemo.ets**:
+
+- Example of using video playback on the application side:
 
   ```ts
-  import media from '@ohos.multimedia.media';
-  import {BusinessError} from '@ohos.base';
+  // HAP's src/main/ets/pages/PlayerDemo.ets
+  import { media } from '@kit.MediaKit';
+  import { BusinessError } from '@ohos.base';
 
   export class AVPlayerDemo {
     private count: number = 0;
@@ -325,6 +328,7 @@ The background color for same-layer rendering is white. Only one layer of **\<We
       // Set a callback function for state changes.
       this.setAVPlayerCallback(avPlayer);
       this.isSeek = false; // The seek operation is not supported.
+      // Replace the URL with the actual URL of the video source.
       avPlayer.url = 'https://xxx.xxx/demo.mp4';
     }
   }
@@ -333,7 +337,8 @@ The background color for same-layer rendering is white. Only one layer of **\<We
 - Example of the frontend page:
 
   ```html
-  <!Document>
+  <!--HAP's src/main/resources/rawfile/test.html-->
+  <!DOCTYPE html>
   <html>
   <head>
       <title>Same-layer rendering test html</title>
@@ -342,17 +347,259 @@ The background color for same-layer rendering is white. Only one layer of **\<We
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=xxx?" style = "background-color:red"/>
+          <embed id="nativeVideo" type = "native/video" width="1000" height="1500" src="test" style = "background-color:red"/>
       </div>
-      <div id="bodyId1">
-          <embed id="nativeVideo" type = "native/video" width="500" height="500" src="test" style = "background-color:red"/>
+  </div>
+  </body>
+  </html>
+  ```
+  
+  ![web-same-layer](figures/web-same-layer.png)
+
+### Enabling Same-Layer Rendering and Specifying the Label Name and Custom Type
+
+You can also use [registerNativeEmbedRule(tag: string, type: string)](../reference/apis-arkweb/ts-basic-components-web.md#registernativeembedrule12) to specify the tag and type.
+
+For the **tag** parameter, only **embed** and **object** are supported. For the **type** parameter, you can specify any string. These two parameters are case insensitive: The ArkWeb kernel converts the values into lowercase letters. The **tag** parameter uses the full string for matching, and **type** uses the prefix for matching.
+
+If you do not use this API or the API receives an invalid string (for example, an empty string), the kernel uses the default prefix mode "embedded" + "native/". If the specified type is the same as any object or embedded type defined by W3C, as in **registerNativeEmbedRule("object", "application/pdf")**,
+ArkWeb will follow the W3C standard behavior and will not identify it as a tag at the same layer.
+
+- Example of using **registerNativeEmbedRule** on the application side: 
+
+  ```ts
+  class MyNodeController extends NodeController {
+    ...
+    makeNode(uiContext: UIContext): FrameNode | null{
+
+      if (this.type_ === 'test') {
+        ...
+      } else if (this.type_ === 'test/video') {
+        ...
+      } else {
+        // other
+      }
+	  ...
+    }
+    ...
+  }
+  ...
+
+    build(){
+        ...
+          Stack() {
+            ...
+            Web({ src: $rawfile("test.html"), controller: this.browserTabController })
+               // Enable same-layer rendering.
+              .enableNativeEmbedMode(true)
+               // Register the same-layer tag of "object" and type of "test."
+              .registerNativeEmbedRule("object", "test")
+              ...
+		  }
+		...
+	}
+
+  ```
+
+- Example of using **registerNativeEmbedRule** on the frontend page, with the tag of "object" and type of "test":
+
+  ```html
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Same-layer rendering test html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div>
+          <object id="nativeButton" type="test" width="800" height="800" data="test?params1=xxx?" style = "background-color:red"/>
+            <param name="id" value="playerId" />
+            <param name="data" value='{}' />
+		  </object>
+      </div>
+      <div>
+          <object id="nativeVideo" type="test/video" width="500" height="500" data="test" style = "background-color:red"/><object>
       </div>
   </div>
   <div id="button" width="500" height="200">
       <p>bottom</p>
   </div>
+
   </body>
   </html>
   ```
 
-  ![web-same-layer](figures/web-same-layer.png)
+## Drawing the TextInput Component and Synchronizing Position Information Returned During Same-Layer Element Updates to the Component
+
+The same-layer elements are updated as a result of scrolling, scaling, or any other behavior that may cause a re-layout. The positions of same-layer elements are based on the **\<Web>** component coordinate system. For web page scaling that does not change the element size, only the position changes, and the width and height remain at the initial values.
+
+For components that require location information, such as **\<TextInput>** and **\<TextArea>**, you need to synchronize the location information reported by the same-layer elements to the components in real time.
+
+- Complete sample code on the application side:
+
+  ```ts
+  ...
+  class MyNodeController extends NodeController {
+    ...
+    makeNode(uiContext: UIContext): FrameNode | null{
+
+      if (this.type_ === 'application/view') {
+        this.rootNode.build(wrapBuilder(TextInputBuilder), {
+          textOne: "myInput",
+          width: this.width_,
+          height: this.height_
+        }); 
+      } else {
+        // other
+      }
+      ...
+    }
+    ...
+  }
+
+
+  @Component
+  struct TextInputComponent {
+    @Prop params: Params
+    @State bkColor: Color = Color.Red
+    mXComponentController: XComponentController = new XComponentController();
+
+    build() {
+      Column() {
+        TextInput({ text: `${this.params.textOne}` })
+          .height(50)
+          .width(200)
+          .backgroundColor(Color.Green)
+          .onTouch((event) => {
+            console.log('input1 event ' + JSON.stringify(event));
+          }).margin({ top: 30})
+
+        TextInput({ text: `${this.params.textOne}` })
+          .height(50)
+          .width(200)
+          .backgroundColor(Color.Green)
+          .onTouch((event) => {
+            console.log('input2 event ' + JSON.stringify(event));
+          }).margin({ top: 30})
+
+        TextInput({ text: `${this.params.textOne}` })
+          .height(50)
+          .width(200)
+          .backgroundColor(Color.Green)
+          .onTouch((event) => {
+            console.log('input2 event ' + JSON.stringify(event));
+          }).margin({ top: 30})
+      }
+      .width(this.params.width)
+      .height(this.params.height)
+    }
+  }
+
+  @Builder
+  function TextInputBuilder(params: Params) {
+    TextInputComponent({ params: params })
+      .height(params.height)
+      .width(params.width)
+      .backgroundColor(Color.Red)
+  }
+
+  @Entry
+  @Component
+  struct Page {
+    browserTabController: WebviewController = new webview.WebviewController()
+    private nodeControllerMap: Map<string, MyNodeController> = new Map();
+    @State componentIdArr: Array<string> = [];
+    @State edges: Edges = {};
+
+    build() {
+      Row() {
+        Column() {
+          Stack(){
+            ForEach(this.componentIdArr, (componentId: string) => {
+              NodeContainer(this.nodeControllerMap.get(componentId)).position(this.edges)
+            }, (embedId: string) => embedId)
+
+            Web({ src: $rawfile('test.html'), controller: this.browserTabController})
+              .enableNativeEmbedMode(true)
+              .registerNativeEmbedRule("object", "APPlication/view")
+              .onNativeEmbedLifecycleChange((embed) => {
+                const componentId = embed.info?.id?.toString() as string;
+                if (embed.status == NativeEmbedStatus.CREATE) {
+                  // You are advised to use position in edges mode to avoid extra precision loss caused by floating-point calculation during the conversion between px and vp.
+                  this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
+                  let nodeController = new MyNodeController()
+                  nodeController.setRenderOption({surfaceId : embed.surfaceId as string,
+                    type : embed.info?.type as string,
+                    renderType : NodeRenderType.RENDER_TYPE_TEXTURE,
+                    embedId : embed.embedId as string,
+                    width : px2vp(embed.info?.width),
+                    height :px2vp(embed.info?.height)})
+                  nodeController.rebuild()
+
+                  this.nodeControllerMap.set(componentId, nodeController)
+                  this.componentIdArr.push(componentId)
+                } else if (embed.status == NativeEmbedStatus.UPDATE) {
+                  console.log("NativeEmbed update" + JSON.stringify(embed.info))
+
+                  this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
+                  let nodeController = this.nodeControllerMap.get(componentId)
+
+                  nodeController?.updateNode({text: 'update',   width : px2vp(embed.info?.width),
+                    height :px2vp(embed.info?.height)} as ESObject)
+                  nodeController?.rebuild()
+                } else {
+                  let nodeController = this.nodeControllerMap.get(componentId)
+                  nodeController?.setBuilderNode(null)
+                  nodeController?.rebuild()
+                }
+              })
+              .onNativeEmbedGestureEvent((touch) => {
+                this.componentIdArr.forEach((componentId: string) => {
+                  let nodeController = this.nodeControllerMap.get(componentId)
+                  if (nodeController?.getEmbedId() === touch.embedId) {
+                    let ret = nodeController?.postEvent(touch.touchEvent)
+                    if (ret) {
+                      console.log("onNativeEmbedGestureEvent success " + componentId)
+                    } else {
+                      console.log("onNativeEmbedGestureEvent fail " + componentId)
+                    }
+                  }
+                })
+              })
+          }
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+
+  ```
+
+- Example of the frontend page:
+
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Same-layer rendering test html</title>
+      <meta charset="UTF-8">
+      <style>
+      html {
+          background-color: blue;
+      }
+      </style>
+  </head>
+  <body>
+
+  <div id="bodyId" style="width:800px; height:1000px; margin-top:1000px;">
+      <object id="cameraTest" type="application/view" width="100%" height="100%" ></object>
+  </div>
+  <div style="height:1000px;">
+  </div>
+
+  </body>
+  </html>
+  ```

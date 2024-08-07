@@ -136,15 +136,13 @@ properties.getDelayData = ((type: string) => {
 
 Provides APIs for encapsulating a set of data records.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 ### Attributes
 
-| Name | Type | Read Only | Optional | Description |
-| -------- | -------- | -------- | -------- | -------- |
-| properties<sup>12+</sup> | [UnifiedDataProperties](#unifieddataproperties12) | No | No | Properties of all the data records in a unified data object, including the timestamp, tag, application range, and additional data. |
+| Name | Type | Read Only | Optional | Description                                                                                             |
+| -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------|
+| properties<sup>12+</sup> | [UnifiedDataProperties](#unifieddataproperties12) | No | No | Properties of all the data records in a unified data object, including the timestamp, tag, application range, and additional data.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ### constructor<sup>12+</sup>
 
@@ -869,10 +867,10 @@ Defines the data operation performed by the UDMF. It includes two optional param
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 
-| Name      | Type                     | Readable | Writable | Optional | Description                                                                                                                                                                                                                               |
-|-----------|-------------------------|----|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| intention | [Intention](#intention) | Yes | Yes | Yes | Type of the data channel related to the data operation.                                                                                                                                                                                                                 |
-| key       | string                  | Yes | Yes | Yes | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated. |
+| Name      | Type                   | Read-Only | Optional | Description                                                                                                                                                                                                                               |
+|-----------|-------------------------|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| intention | [Intention](#intention) | No | Yes | Type of the data channel related to the data operation.                                                                                                                                                                                                                 |
+| key       | string                  | No | Yes | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated. |
 
 
 

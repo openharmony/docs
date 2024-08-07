@@ -77,7 +77,7 @@ switchPointColor(color: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                       |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Switch类型的圆形滑块颜色。<br/>默认值：'#ffffffff' |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Switch类型的圆形滑块颜色。<br/>默认值：'#ffffffff' |
 
 ### switchStyle<sup>12+</sup>
 
@@ -153,6 +153,7 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 | 参数名  | 类型    |    默认值      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
 | isOn   | boolean| false  |  |</br>如果isOn属性没有设置默认值是false。</br>如果设置isOn属性，此值与设置isOn属性的值相同。 |
+| enabled | boolean | - | 是否可以切换状态。 |
 | triggerChange |Callback\<boolean>| - |触发switch选中状态变化。 |
 
 

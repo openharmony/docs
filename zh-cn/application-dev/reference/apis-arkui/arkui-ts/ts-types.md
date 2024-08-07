@@ -372,18 +372,17 @@
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
 
-## PixelStretchEffectOptions<sup>10+</sup>
-
-像素扩展属性集合,用于描述像素扩展的信息。
+## MarkStyle<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                | 必填   | 说明             |
-| ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
-| right  | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
-| top    | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
-| bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
+| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
+| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## ModalTransition<sup>10+</sup>
 
@@ -484,30 +483,6 @@
 | offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 | offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 
-## SwiperAnimationEvent<sup>10+</sup>
-
-Swiper组件动画相关信息集合。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称            | 类型定义       | 必填            | 描述                                       |
-| ------------- | ---------------------- | ---------|------------------------------- |
-| currentOffset | number | 是 | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 是 | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 是 | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
-
-## TabsAnimationEvent<sup>11+</sup>
-
-Tabs组件动画相关信息集合。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称            | 类型定义      |  必填             | 描述                                       |
-| ------------- | ---------------------- | ----------------|------------------------ |
-| currentOffset | number | 是 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 是 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 是 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
-
 ## SafeAreaType<sup>10+</sup>
 
 扩展安全区域的枚举类型。
@@ -571,29 +546,6 @@ Tabs组件动画相关信息集合。
 | ------ | ----------------------| ---------- |
 | X | [Dimension](#dimension10) | 跟手点X轴坐标。 |
 | Y | [Dimension](#dimension10) | 跟手点Y轴坐标。 |
-
-## TabContentAnimatedTransition<sup>11+</sup>
-
-Tabs自定义切换动画相关信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称            | 类型定义         | 必填          | 描述                                       |
-| ------------- | ---------------------- | ------------------|---------------------- |
-| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
-| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | 是 | 自定义切换动画具体内容。|
-
-## TabContentTransitionProxy<sup>11+</sup>
-
-Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称            | 类型定义     |  必填              | 描述                                       |
-| ------------- | ---------------------- | ----------------------|------------------ |
-| from | number | 是 | 自定义动画起始页面对应的index值。|
-| to | number | 是 | 自定义动画目标页面对应的index值。|
-| finishTransition() | void | 是 | 通知Tabs组件，此次自定义动画已结束。|
 
 ## PixelRoundPolicy<sup>11+</sup>
 
@@ -699,33 +651,6 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 | Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-
-## LengthMetrics<sup>12+</sup>
-
-用于设置长度属性。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**属性：**
-
-| 名称              | 类型       | 必填 | 描述                          |
-| ----------------- | ---------- | ---- | ----------------------------- |
-| value       | number | 是 | 长度属性的值。   |
-| unit | [LengthUnit](#lengthunit12)     | 是 | 长度属性的单位。|
-
-## LengthUnit<sup>12+</sup>
-
-长度属性单位枚举。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| [PX](#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
-| [VP](#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
-| [FP](#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
-| [PERCENT](#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
-| [LPX](#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
 ## DividerStyleOptions<sup>12+</sup>
 

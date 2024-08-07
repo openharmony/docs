@@ -343,6 +343,16 @@ After the application obtains this permission, a directory in **/el5** will be a
 
 **Valid since**: 12
 
+### ohos.permission.FILE_ACCESS_PERSIST
+
+Allows an application to support persistent access to file URIs.
+
+**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+
+**Authorization mode**: system_grant
+
+**Valid since**: 11
+
 ## user_grant Permissions
 
 The [user_grant permissions](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).
@@ -504,6 +514,26 @@ Allows an application to use NearLink, such as device pairing and connecting to 
 **Authorization mode**: user_grant
 
 **Valid since**: 12
+
+### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+Allows an application to access the **Download** directory and its subdirectories in the user directory.
+
+**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+
+**Authorization mode**: user_grant
+
+**Valid since**: 11
+
+### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+Allows an application to access the **Documents** directory and its subdirectories in the user directory.
+
+**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+
+**Authorization mode**: user_grant
+
+**Valid since**: 11
 
 ### ohos.permission.READ_MEDIA
 

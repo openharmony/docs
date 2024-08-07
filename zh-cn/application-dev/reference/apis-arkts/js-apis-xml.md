@@ -598,6 +598,10 @@ getDepth(): number
 
 获取元素的当前深度。
 
+> **说明：**
+>
+> 标签内的空白事件深度与标签的深度保持一致。
+
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang

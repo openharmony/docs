@@ -41,7 +41,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | incrementalVersion | string | 是 | 否 | 差异版本号。 |
 | osReleaseType | string | 是 | 否 | 系统的发布类型，取值为：<br/>-&nbsp;Canary：面向特定开发者发布的早期预览版本，不承诺API稳定性。<br/>-&nbsp;Beta：面向开发者公开发布的Beta版本，不承诺API稳定性。<br/>-&nbsp;Release：面向开发者公开发布的正式版本，承诺API稳定性。 |
 | osFullName | string | 是 | 否 | 系统版本，版本格式OpenHarmony-x.x.x.x,x为数值。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| majorVersion | number | 是 | 否 | Major版本号，随主版本更新增加,值为osFullName中的第一位数值，建议直接使用deviceInfo.majorVersion获取，不建议开发者解析osFullName获取。 |
+| majorVersion | number | 是 | 否 | Major版本号，随主版本更新增加，值为osFullName中的第一位数值，建议直接使用deviceInfo.majorVersion获取，不建议开发者解析osFullName获取。 |
 | seniorVersion | number | 是 | 否 | Senior版本号，随局部架构、重大特性增加，值为osFullName中的第二位数值，建议直接使用deviceInfo.seniorVersion获取，不建议开发者自主解析osFullName获取。 |
 | featureVersion | number | 是 | 否 | Feature版本号，标识规划的新特性版本，值为osFullName中的第三位数值，建议直接使用deviceInfo.featureVersion获取，不建议开发者自主解析osFullName获取。 |
 | buildVersion | number | 是 | 否 | Build版本号，标识编译构建的版本号，值为osFullName中的第四位数值，建议直接使用deviceInfo.buildVersion获取，不建议开发者自主解析osFullName获取。 |
@@ -54,10 +54,10 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
 | udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID |
-| distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称，由发行方定义。 |
-| distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号，由发行方定义。 |
-| distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本，由发行方定义。 |
-| distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型，由发行方定义。 |
+| distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
+| distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP1--><!--RP1End--> |
+| distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本<!--Del-->，由发行方定义<!--DelEnd-->。 |
+| distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型<!--Del-->，由发行方定义<!--DelEnd-->。 |
 | ODID<sup>12+</sup> | String | 是 | 否 |开发者匿名设备标识符。<br/>**ODID值会在以下场景重新生成**：<br/>手机恢复出厂设置。<br/>同一设备上同一个开发者的应用全部卸载后重新安装时。<br/>**ODID生成规则**：<br/>同一设备上运行的同一个开发者的应用，ODID相同。<br/>同一个设备上不同开发者的应用，ODID不同。<br/>不同设备上同一个开发者的应用，ODID不同。<br/>不同设备上不同开发者的应用，ODID不同。<br/>**说明**：数据长度为37字节。 |
 
 **示例**

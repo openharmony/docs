@@ -353,8 +353,8 @@ console.log(t.createController()!.value);
 **应用代码**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params: Object = myRouter.getParams();
+import { router } from '@kit.ArkUI';
+let params: Object = router.getParams();
 let funNum: number = params['funNum'];
 let target: string = params['target'];
 ```
@@ -362,8 +362,8 @@ let target: string = params['target'];
 **建议改法**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params = myRouter.getParams() as Record<string, string | number>;
+import { router } from '@kit.ArkUI';
+let params = router.getParams() as Record<string, string | number>;
 let funNum: number = params.funNum as number;
 let target: string = params.target as string;
 ```
@@ -438,7 +438,7 @@ const area = {
 **建议改法**
 
 ```typescript
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 const area: image.PositionArea = {
   pixels: new ArrayBuffer(8),
@@ -953,25 +953,25 @@ for (let arr of map) {
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (e: BusinessError) {
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
@@ -1038,7 +1038,7 @@ type OptionsFlags = Record<keyof C, string>
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error;
@@ -1048,7 +1048,7 @@ function ThrowError(error: BusinessError) {
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error as Error;
@@ -1156,29 +1156,47 @@ class Test {
 **应用代码**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest(): notification.NotificationRequest {
-  // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = {
-  ...buildNotifyLongRequest(),
-  deliveryTime: new Date().getTime()
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = {
+  ...test.foo(),
+  type: 0
 }
 ```
 
 **建议改法**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest():notification.NotificationRequest {
-    // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = buildNotifyLongRequest();
-notificationRequest.deliveryTime = new Date().getTime();
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = test.foo();
+t.type = 0;
 ```
 
 **原因**
@@ -1738,7 +1756,7 @@ try {
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   

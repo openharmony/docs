@@ -199,17 +199,14 @@ class Cat { sleep () {}; meow () {} }
 class Dog { sleep () {}; bark () {} }
 class Frog { sleep () {}; leap () {} }
 
-type Animal = Cat | Dog | Frog | number
+type Animal = Cat | Dog | Frog
 
-let animal: Animal = new Frog();
-if (animal instanceof Frog) {
-  let frog: Frog = animal as Frog; // animal在这里是Frog类型
-  animal.leap();
-  frog.leap();
-  // 结果：青蛙跳了两次
+function foo(animal: Animal) {
+  if (animal instanceof Frog) {
+    animal.leap();  // animal在这里是Frog类型
+  }
+  animal.sleep(); // Animal具有sleep方法
 }
-
-animal.sleep (); // 任何动物都可以睡觉
 ```
 
 #### `Aliases`类型
@@ -219,7 +216,7 @@ animal.sleep (); // 任何动物都可以睡觉
 ```typescript
 type Matrix = number[][];
 type Handler = (s: string, no: number) => string;
-type Predicate <T> = (x: T) => Boolean;
+type Predicate <T> = (x: T) => boolean;
 type NullableObject = Object | null;
 ```
 

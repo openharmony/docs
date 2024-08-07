@@ -1081,7 +1081,7 @@ Wi-Fi状态变化。
 ## Store Kit
 Store Kit面向应用发布如下系统公共事件。
 
-### COMMON_EVENT_PRIVACY_POLICY_STATE_CHANGED<sup>11+<sup>
+### COMMON_EVENT_PRIVACY_STATE_CHANGED<sup>11+<sup>
 表示隐私签署结果的公共事件。
 隐私弹框场景下，用户点击同意，会发送此事件。
 
@@ -2002,4 +2002,5 @@ Store Kit面向应用发布如下系统公共事件。
 **订阅者所需权限：** 无
 
 **取值：** "usual.event.SPN_INFO_CHANGED"
+<!--no_check-->
  

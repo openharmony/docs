@@ -381,6 +381,8 @@ struct Index {
 
 constructor()
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 创建AudioViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
@@ -739,6 +741,8 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 ### constructor<sup>12+</sup>
 
 constructor(context: Context)
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1119,10 +1123,10 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
-| 名称                    | 类型                | 只读 | 必填 | 说明                           |
-| ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | 是   | 否   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。  |
-| isOriginalPhoto        | boolean    | 是   | 否   | 返回图库选择后的媒体文件是否为原图。true为原图，false不是原图。  |
+| 名称                    | 类型                | 必填 | 说明                           |
+| ----------------------- | ------------------- | ----| ------------------------------ |
+| photoUris        | Array&lt;string&gt;    | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。  |
+| isOriginalPhoto        | boolean    | 是   | 返回图库选择后的媒体文件是否为原图。true为原图，false不是原图。  |
 
 ## PhotoSaveOptions<sup>(deprecated)</sup>
 

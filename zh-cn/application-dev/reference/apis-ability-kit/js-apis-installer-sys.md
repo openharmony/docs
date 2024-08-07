@@ -457,6 +457,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
@@ -522,6 +523,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
@@ -588,6 +590,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**

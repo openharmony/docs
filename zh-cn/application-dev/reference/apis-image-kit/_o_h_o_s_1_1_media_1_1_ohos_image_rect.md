@@ -19,10 +19,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [x](#x) | 矩形x坐标值 | 
-| [y](#y) | 矩形y坐标值 | 
-| [width](#width) | 矩形宽度值，用pixels表示 | 
-| [height](#height) | 矩形高度值，用pixels表示 | 
+| int32_t [x](#x) | 矩形x坐标值  | 
+| int32_t [y](#y) | 矩形y坐标值  | 
+| int32_t [width](#width) | 矩形宽度值，用pixels表示  | 
+| int32_t [height](#height) | 矩形高度值，用pixels表示  | 
 
 
 ## 结构体成员变量说明
@@ -33,9 +33,7 @@
 ```
 int32_t OhosImageRect::height
 ```
-
 **描述**
-
 矩形高度值，用pixels表示
 
 
@@ -44,9 +42,7 @@ int32_t OhosImageRect::height
 ```
 int32_t OhosImageRect::width
 ```
-
 **描述**
-
 矩形宽度值，用pixels表示
 
 
@@ -55,9 +51,7 @@ int32_t OhosImageRect::width
 ```
 int32_t OhosImageRect::x
 ```
-
 **描述**
-
 矩形x坐标值
 
 
@@ -66,7 +60,5 @@ int32_t OhosImageRect::x
 ```
 int32_t OhosImageRect::y
 ```
-
 **描述**
-
 矩形y坐标值

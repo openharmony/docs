@@ -6,7 +6,7 @@
 该解决方案使用：
 - 视频播放框架AVPlayer和滑块视图容器Swiper进行短视频滑动轮播切换。
 - 绘制组件XComponent的Surface类型动态渲染视频流。
-- 使用LazyForEach进行数据懒加载,设置cachedCount属性来指定缓存数量，同时搭配组件复用能力以达到高性能效果，（在冷启动过程中创建一个AVPlayer并进行数据初始化到prepared阶段，在轮播过程中，每次异步创建一个播放器为下一个视频播放做准备）。
+- 使用LazyForEach进行数据懒加载，设置cachedCount属性来指定缓存数量，同时搭配组件复用能力以达到高性能效果，（在冷启动过程中创建一个AVPlayer并进行数据初始化到prepared阶段，在轮播过程中，每次异步创建一个播放器为下一个视频播放做准备）。
   
 最终实现短视频快速切换起播时延达到≤200ms的效果。
 
@@ -16,7 +16,7 @@
 
 在线短视频滑动切换
 
-<img src="../performance/figures/performance-quick-switch-short-video-image0.gif" width="300"/>
+![performance-quick-switch-short-video-image0.gif](figures/performance-quick-switch-short-video-image0.gif)
 
 ## 场景说明
 
