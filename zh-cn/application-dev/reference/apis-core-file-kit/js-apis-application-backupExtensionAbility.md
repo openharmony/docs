@@ -81,7 +81,7 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
     }
   }
   ```
-  ### onRestoreEx
+  ### onRestoreEx<sup>12+</sup>
 
 onRestoreEx(bundleVersion: BundleVersion, bundleInfo: string): string;
 
@@ -106,27 +106,6 @@ onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符�
   class BackupExt extends BackupExtension {
     async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): Promise<string> {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
-      let info = "app diy info";
-      return info;
-    }
-  }
-  ```
-
-  ### getBackupInfo
-
-getBackupInfo(): string;
-
-在调用方查询应用数据时执行，由开发者提供扩展查询应用数据的操作。
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**示例：**
-
-  ```ts
-
-  class BackupExt extends BackupExtension {
-    getBackupInfo(): string {
-      console.log(`getBackupInfo ok`);
       let info = "app diy info";
       return info;
     }
