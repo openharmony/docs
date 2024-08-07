@@ -320,7 +320,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.5 setWindowSystemBarEnable 接口废弃变更
+## cl.arkui.6 setWindowSystemBarEnable 接口废弃变更
 
 **访问级别**
 
@@ -328,13 +328,13 @@ struct Index {
 
 **变更原因**
 
-该接口有 Promise 和 Callback 两种调用方式，使用 Callback 方式的接口错误码不满足 ArkTs API 异常处理规范，标废弃，使用同名的 Promise 接口代替。
+该接口有Promise和callback两种调用方式，使用callback方式的接口错误码不满足ArkTS API异常处理规范，标废弃，使用同名的Promise接口代替。
 
 **变更影响**
 
 该变更为兼容性变更。
 
-从 API version 12 开始，setWindowSystemBarEnable 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
+从API version 12开始，setWindowSystemBarEnable 的callback方式调用将不推荐使用，推荐使用Promise方式的同名接口。
 
 **起始 API Level**
 
@@ -342,7 +342,7 @@ API 9
 
 **变更发生版本**
 
-从 OpenHarmony SDK 5.0.0.36 版本开始。
+从OpenHarmony SDK 5.0.0.36版本开始。
 
 **变更的接口/组件**
 
@@ -352,7 +352,7 @@ Window#setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback:
 
 不涉及
 
-## cl.arkui.6 setWindowLayoutFullScreen 接口废弃变更
+## cl.arkui.7 setWindowLayoutFullScreen 接口废弃变更
 
 **访问级别**
 
@@ -360,13 +360,13 @@ Window#setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback:
 
 **变更原因**
 
-该接口有 Promise 和 Callback 两种调用方式，使用 Callback 方式的接口错误码不满足 ArkTs API 异常处理规范，标废弃，使用同名的 Promise 接口代替。
+该接口有Promise和callback两种调用方式，使用callback方式的接口错误码不满足ArkTS API异常处理规范，标废弃，使用同名的Promise接口代替。
 
 **变更影响**
 
 该变更为兼容性变更。
 
-从 API version 12 setWindowLayoutFullScreen 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
+从API version 12 setWindowLayoutFullScreen的callback方式调用将不推荐使用，推荐使用Promise方式的同名接口。
 
 **起始 API Level**
 
@@ -374,7 +374,7 @@ API 9
 
 **变更发生版本**
 
-从 OpenHarmony SDK 5.0.0.36 版本开始。
+从OpenHarmony SDK 5.0.0.36版本开始。
 
 **变更的接口/组件**
 
@@ -384,7 +384,7 @@ Window#setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCal
 
 不涉及
 
-## cl.arkui.7 setWindowSystemBarProperties 接口废弃变更
+## cl.arkui.8 setWindowSystemBarProperties 接口废弃变更
 
 **访问级别**
 
@@ -392,13 +392,13 @@ Window#setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCal
 
 **变更原因**
 
-该接口有 Promise 和 Callback 两种调用方式，使用 Callback 方式的接口错误码不满足 ArkTs API 异常处理规范，标废弃，使用同名的 Promise 接口代替。
+该接口有Promise和callback两种调用方式，使用callback方式的接口错误码不满足ArkTS API异常处理规范，标废弃，使用同名的Promise接口代替。
 
 **变更影响**
 
 该变更为兼容性变更。
 
-从 API version 12 开始，setWindowSystemBarProperties 的 Callback 方式调用将不推荐使用，推荐使用 Promise 方式的同名接口。
+从API version 12开始，setWindowSystemBarProperties的callback方式调用将不推荐使用，推荐使用Promise方式的同名接口。
 
 **起始 API Level**
 
@@ -406,7 +406,7 @@ API 9
 
 **变更发生版本**
 
-从 OpenHarmony SDK 5.0.0.36 版本开始。
+从OpenHarmony SDK 5.0.0.36版本开始。
 
 **变更的接口/组件**
 
