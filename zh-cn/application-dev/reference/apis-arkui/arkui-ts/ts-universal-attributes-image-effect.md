@@ -23,7 +23,7 @@ blur(value: number, options?: BlurOptions)
 | 参数名                | 类型                                              | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value                 | number                                            | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
-| options<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
+| options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
 
 ## backdropBlur
 
@@ -42,7 +42,7 @@ backdropBlur(value: number, options?: BlurOptions)
 | 参数名                | 类型                                              | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value                 | number                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
-| options<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
+| options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
 
 >  **说明：**
 >
@@ -260,7 +260,22 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [BlendMode](#blendmode11枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE   |
-| type   | [BlendApplyType](ts-appendix-enums.md#blendapplytype11)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。     |
+| type   | [BlendApplyType](#blendapplytype11)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。     |
+
+## BlendApplyType<sup>11+</sup>
+
+指示如何将指定的混合模式应用于视图的内容。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 描述                                                             |
+| ---------------| ---------------------------------------------------------------- |
+| FAST           |   在目标图像上按顺序混合视图的内容。                        |
+| OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -326,7 +341,22 @@ pixelStretchEffect(options: PixelStretchEffectOptions)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | 是   | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。 |
+| options | [PixelStretchEffectOptions](#pixelstretcheffectoptions10) | 是   | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。 |
+
+## PixelStretchEffectOptions<sup>10+</sup>
+
+像素扩展属性集合,用于描述像素扩展的信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                | 必填   | 说明             |
+| ------ | ----------------- | ---- | -------------- |
+| left   | [Length](ts-types.md#length) | 否    | 组件图像左边沿像素扩展距离。 |
+| right  | [Length](ts-types.md#length) | 否    | 组件图像右边沿像素扩展距离。 |
+| top    | [Length](ts-types.md#length) | 否    | 组件图像上边沿像素扩展距离。 |
+| bottom | [Length](ts-types.md#length) | 否    | 组件图像下边沿像素扩展距离。 |
 
 ## systemBarEffect<sup>12+</sup>
 
@@ -337,6 +367,17 @@ systemBarEffect()
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## ShadowType<sup>10+<sup>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 描述                                   |
+| -------- | ---------------------------------------- |
+| COLOR    | 颜色。                                    |
+| BLUR     | 模糊。                                    |
 
 
 ## ShadowOptions对象说明
@@ -351,7 +392,7 @@ systemBarEffect()
 | 名称      | 类型                                       | 必填   | 说明                                       |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>单位：px<br/>**说明：**  <br/>设置小于0的值时，按值为0处理。<br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      否    | 阴影类型。<br/>默认为COLOR。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](#shadowtype10)  |      否    | 阴影类型。<br/>默认为COLOR。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
 | color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#属性)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetX为Resource类型，则传入的值需为number类型。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetY为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
