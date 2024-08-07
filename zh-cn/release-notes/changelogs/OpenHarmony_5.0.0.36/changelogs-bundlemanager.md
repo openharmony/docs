@@ -12,9 +12,11 @@ bm install、bm uninstall命令在-u未指定情况下，默认为全部用户�
 
 **变更影响**
 
-该变更为非兼容性变更。
-
- bm install、bm uninstall命令在-u未指定情况下，修改为默认当前活跃用户。
+该变更为不兼容变更。
+变更前：
+bm install、bm uninstall命令在-u未指定情况下，默认为全部用户。
+变更后：
+bm install、bm uninstall命令在-u未指定情况下，默认当前活跃用户。
 
 **API Level**
 
