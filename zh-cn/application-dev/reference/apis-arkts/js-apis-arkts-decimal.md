@@ -254,7 +254,7 @@ console.info("test Decimal trunc:" + a.toString()); // '2'
 
 ### clamp
 
-clamp(n: Value, min: Value, max: Value): Decimal
+clamp(min: Value, max: Value): Decimal
 
 返回一个值为将该Decimal的值限制在min到max范围内的Decimal对象。
 
@@ -266,7 +266,6 @@ clamp(n: Value, min: Value, max: Value): Decimal
 
 | 参数名 | 类型            | 必填 | 说明                     |
 | ------ | --------------- | ---- | ------------------------ |
-| n      | [Value](#value) | 是   | 需要限制的值。           |
 | min    | [Value](#value) | 是   | 限制的最小值。包含该值。 |
 | max    | [Value](#value) | 是   | 限制的最大值。包含该值。 |
 
@@ -288,7 +287,7 @@ clamp(n: Value, min: Value, max: Value): Decimal
 **示例：**
 
 ```ts
-let a: Decimal = Decimal.clamp(10.1, 0, 10);
+let a: Decimal = new Decimal(10.1).clamp(0, 10);
 console.info("test Decimal clamp:" + a.toString()); // '10'
 ```
 
@@ -1381,9 +1380,9 @@ isZero(): boolean
 
 **返回值：**
 
-| 类型    | 说明                                    |
-| ------- | --------------------------------------- |
-| boolean | true表示该Decimal为0，其余情况为false。 |
+| 类型    | 说明                                          |
+| ------- | --------------------------------------------- |
+| boolean | true表示该Decimal为0或是-0，其余情况为false。 |
 
 **示例：**
 
@@ -3206,7 +3205,7 @@ console.info("test Decimal exp:" + a.toString()); // '7.3890560989306502272'
 
 static log(n: Value, base: Value): Decimal
 
-返回一个值为以n为底base的对数的Decimal对象。
+返回一个值为以base为底n的对数的Decimal对象。
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
@@ -3218,8 +3217,8 @@ static log(n: Value, base: Value): Decimal
 
 | 参数名 | 类型            | 必填 | 说明             |
 | ------ | --------------- | ---- | ---------------- |
-| n      | [Value](#value) | 是   | 对数运算的底。   |
-| base   | [Value](#value) | 是   | 对数运算的真数。 |
+| n      | [Value](#value) | 是   | 对数运算的真数。 |
+| base   | [Value](#value) | 是   | 对数运算的底。   |
 
 **返回值：**
 
@@ -4025,7 +4024,7 @@ let a: Decimal = Decimal.random();
 
 static random(significantDigits: number): Decimal
 
-返回一个值为大于等于0小于1的随机值的Decimal对象，随机值保留significantDigits位小数。
+返回一个值为大于等于0小于1的随机值的Decimal对象，随机值保留significantDigits位有效数字。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -4033,9 +4032,9 @@ static random(significantDigits: number): Decimal
 
 **参数：**
 
-| 参数名            | 类型   | 必填 | 说明               |
-| ----------------- | ------ | ---- | ------------------ |
-| significantDigits | number | 是   | 随机值小数位个数。 |
+| 参数名            | 类型   | 必填 | 说明                   |
+| ----------------- | ------ | ---- | ---------------------- |
+| significantDigits | number | 是   | 随机值保留的有效数字。 |
 
 **返回值：**
 

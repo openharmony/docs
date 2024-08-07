@@ -12,12 +12,14 @@ The **Router** module provides APIs to access pages through URLs. You can use th
 >
 > - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 >
-> - To achieve a better transition effect, you are advised to use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
+> - To achieve a better transition effect, you are advised to use the [Navigation](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
+>
+> - When the **pushUrl** or **pushNamedRoute** API uses a callback to return the result, the information obtained from the callback using APIs such as **getLength** may represent an intermediate state of the stack and might not be consistent with the final state.
 
 ## Modules to Import
 
 ```
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -26,34 +28,37 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 Navigates to a specified page in the application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters.|
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -89,24 +94,27 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a specified page in the application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters.|
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **Example**
 
@@ -146,6 +154,8 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 Navigates to a specified page in the application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -153,28 +163,29 @@ Navigates to a specified page in the application.
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -210,6 +221,8 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 Navigates to a specified page in the application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -217,18 +230,19 @@ Navigates to a specified page in the application.
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **Example**
 
@@ -267,35 +281,38 @@ router.pushUrl({
 
 replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
-Replaces the current page with another one in the application and destroys the current page. This API cannot be used to configure page transition effects. To configure page transition effects, use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component.
+Replaces the current page with another one in the application and destroys the current page. This API cannot be used to configure page transition effects. To configure page transition effects, use the [Navigation](../../ui/arkts-navigation-navigation.md) component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
+| Name | Type                           | Mandatory | Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page.|
+| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page. |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -321,23 +338,26 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Replaces the current page with another one in the application and destroys the current page.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
+| Name | Type                           | Mandatory | Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page.|
+| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page. |
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **Example**
 
@@ -368,6 +388,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 Replaces the current page with another one in the application and destroys the current page.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Parameters**
@@ -375,28 +397,29 @@ Replaces the current page with another one in the application and destroys the c
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
 
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -422,6 +445,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 Replaces the current page with another one in the application and destroys the current page.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Parameters**
@@ -429,17 +454,18 @@ Replaces the current page with another one in the application and destroys the c
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **Example**
 
@@ -471,34 +497,37 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 Navigates to a page using the named route. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters.|
+| options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters. |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
-**Example**
+**Example** 
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -534,7 +563,9 @@ For details, see [UI Development-Named Route](../../ui/arkts-routing.md#named-ro
 
 pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
-Navigates to a page using the named route. This API uses an asynchronous callback to return the result.
+Navigates to a page using the named route. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -542,18 +573,19 @@ Navigates to a page using the named route. This API uses an asynchronous callbac
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters.|
+| options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters. |
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **Example**
 
@@ -593,6 +625,8 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 
 Navigates to a page using the named route. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -600,28 +634,29 @@ Navigates to a page using the named route. This API uses a promise to return the
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -655,7 +690,9 @@ try {
 
 pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
-Navigates to a page using the named route. This API uses an asynchronous callback to return the result.
+Navigates to a page using the named route. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -664,18 +701,19 @@ Navigates to a page using the named route. This API uses an asynchronous callbac
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **Example**
 
@@ -716,33 +754,36 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
+| Name | Type                           | Mandatory | Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [NamedRouterOptions](#namedrouteroptions10) | Yes  | Description of the new page.|
+| options | [NamedRouterOptions](#namedrouteroptions10) | Yes  | Description of the new page. |
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -766,25 +807,28 @@ try {
 
 replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
-Replaces the current page with another one using the named route and destroys the current page. This API uses an asynchronous callback to return the result.
+Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
+| Name | Type                           | Mandatory | Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [NamedRouterOptions](#namedrouteroptions10) | Yes  | Description of the new page.|
+| options | [NamedRouterOptions](#namedrouteroptions10) | Yes  | Description of the new page. |
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **Example**
 
@@ -815,6 +859,8 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -822,28 +868,29 @@ Replaces the current page with another one using the named route and destroys th
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
 
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -867,7 +914,9 @@ try {
 
 replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
-Replaces the current page with another one using the named route and destroys the current page. This API uses an asynchronous callback to return the result.
+Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -876,17 +925,18 @@ Replaces the current page with another one using the named route and destroys th
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **Example**
 
@@ -918,13 +968,15 @@ back(options?: RouterOptions ): void
 
 Returns to the previous page or a specified page.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                        |
+| Name | Type                           | Mandatory | Description                                                        |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
+| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up. The **back** API does not work if **url** is set to a slash (/). |
 
 **Example**
 
@@ -932,11 +984,39 @@ Returns to the previous page or a specified page.
 router.back({url:'pages/detail'});    
 ```
 
+## router.back<sup>12+</sup>
+
+back(index: number, params?: Object): void;
+
+Returns to the specified page.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                             | Mandatory  | Description        |
+| ------- | ------------------------------- | ---- | ---------- |
+| index | number | Yes   | Index of the target page to navigate to. |
+| params    | Object      | No   | Parameters carried when returning to the page. |
+
+**Example**
+
+```ts
+router.back(1);    
+```
+```ts
+router.back(1, {info: 'From Home'}); // Returning with parameters.
+```
+
 ## router.clear
 
 clear(): void
 
 Clears all historical pages in the stack and retains only the current page at the top of the stack.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -952,13 +1032,15 @@ getLength(): string
 
 Obtains the number of pages in the current stack.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
 | Type    | Description                |
 | ------ | ------------------ |
-| string | Number of pages in the stack. The maximum value is **32**.|
+| string | Number of pages in the stack. The maximum value is **32**. |
 
 **Example**
 
@@ -971,7 +1053,9 @@ console.log('pages stack size = ' + size);
 
 getState(): RouterState
 
-Obtains state information about the current page.
+Obtains state information about the page at the top of the navigation stack.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -979,9 +1063,9 @@ Obtains state information about the current page.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| [RouterState](#routerstate) | Page routing state.|
+| [RouterState](#routerstate) | Page routing state. |
 
-**Example**
+**Example** 
 
 ```ts
 let page = router.getState();
@@ -990,17 +1074,85 @@ console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
 ```
 
+## router.getStateByIndex<sup>12+</sup>
+
+getStateByIndex(index: number): RouterState | undefined
+
+Obtains the status information about a page by its index.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                             | Mandatory  | Description        |
+| ------- | ------------------------------- | ---- | ---------- |
+| index    | number | Yes  | Index of the target page. |
+
+**Return value**
+
+| Type                         | Description     |
+| --------------------------- | ------- |
+| [RouterState](#routerstate) \| undefined | State information about the target page; **undefined** if the specified index does not exist. |
+
+**Example** 
+
+```ts
+let options:router.RouterState | undefined = router.getStateByIndex(1);
+if (options != undefined) {
+  console.log('index = ' + options.index);
+  console.log('name = ' + options.name);
+  console.log('path = ' + options.path);
+  console.log('params = ' + options.params);
+}
+```
+## router.getStateByUrl<sup>12+</sup>
+
+getStateByUrl(url: string): Array&lt;RouterState&gt;
+
+Obtains the status information about a page by its URL.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                             | Mandatory  | Description        |
+| ------- | ------------------------------- | ---- | ---------- |
+| url    | string | Yes  | URL of the target page. |
+
+**Return value**
+
+| Type                         | Description     |
+| --------------------------- | ------- |
+| Array<[RouterState](#routerstate)> | Page routing state. |
+
+**Example** 
+
+```ts
+let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
+for (let i: number = 0; i < options.length; i++) {
+  console.log('index = ' + options[i].index);
+  console.log('name = ' + options[i].name);
+  console.log('path = ' + options[i].path);
+  console.log('params = ' + options[i].params);
+}
+```
+
 ## RouterState
 
 Describes the page routing state.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
-| index | number | Yes  | Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.|
-| name  | string | No  | Name of the current page, that is, the file name.                          |
-| path  | string | Yes  | Path of the current page.                                        |
+| index | number | Yes  | Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| name  | string | Yes | Name of the current page, that is, the file name.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| path  | string | Yes  | Path of the current page.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| params<sup>12+</sup>  | Object |  Yes | Parameters carried on the current page.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                        |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
 
@@ -1008,26 +1160,29 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 Enables the display of a confirm dialog box before returning to the previous page.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box.|
+| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box. |
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message|
+| ID  | Error Message |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   router.showAlertBeforeBackPage({
@@ -1041,17 +1196,21 @@ try {
 
 Describes the confirm dialog box.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Type    | Mandatory  | Description      |
 | ------- | ------ | ---- | -------- |
-| message | string | Yes   | Content displayed in the confirm dialog box.|
+| message | string | Yes   | Content displayed in the confirm dialog box. |
 
 ## router.hideAlertBeforeBackPage<sup>9+</sup>
 
 hideAlertBeforeBackPage(): void
 
 Disables the display of a confirm dialog box before returning to the previous page.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1067,13 +1226,15 @@ getParams(): Object
 
 Obtains the parameters passed from the page that initiates redirection to the current page.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
 | Type  | Description                              |
 | ------ | ---------------------------------- |
-| object | Parameters passed from the page that initiates redirection to the current page.|
+| object | Parameters passed from the page that initiates redirection to the current page. |
 
 **Example**
 
@@ -1085,49 +1246,59 @@ router.getParams();
 
 Describes the page routing options.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name  | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | Yes  | URL of the target page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- Particular path. If the URL is a slash (/), the home page is displayed.|
-| params | object | No  | Data that needs to be passed to the target page during redirection. The received data becomes invalid when the page is switched to another page. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type.|
+| url    | string | Yes  | URL of the target page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- special value. If the value of url is **"/"**, the application navigates to the home page. By default, the home page is set to the first item in the **src** value array. |
+| params | Object | No  | Data that needs to be passed to the target page during redirection. The received data becomes invalid when the page is switched to another page. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type. |
 
 
   > **NOTE**
+  >
   > The page routing stack supports a maximum of 32 pages.
 
 ## RouterMode<sup>9+</sup>
 
 Enumerates the routing modes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Standard | Multi-instance mode. It is the default routing mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If the routing mode is not used, the page is redirected to in multi-instance mode.|
-| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page is moved to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode.|
+| Standard | Multi-instance mode. It is the default routing mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If no routing mode is used, the navigation will be carried out according to the default multi-instance mode. |
+| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page is moved to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode. |
 
 ## NamedRouterOptions<sup>10+</sup>
 
 Describes the named route options.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name  | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | Yes  | Name of the target named route.|
-| params | object | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.|
+| name   | string | Yes  | Name of the target named route.                                |
+| params | Object | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed. |
 
 ## Examples
 
 ### JavaScript-based Web-like Development Paradigm
 
 The following sample code applies only to JavaScript files, not ArkTS files.
+
+<!--code_no_check-->
+
 ```js
 // Current page
 export default {
   pushPage() {
-    router.push({
+    router.pushUrl({
       url: 'pages/detail/detail',
       params: {
         data1: 'message'
@@ -1136,6 +1307,8 @@ export default {
   }
 }
 ```
+<!--code_no_check-->
+
 ```js
 // detail page
 export default {
@@ -1149,8 +1322,8 @@ export default {
 
 ```ts
 // Navigate to the target page through router.pushUrl with the params parameter carried.
-import router from '@ohos.router'
-import { BusinessError } from '@ohos.base'
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 // Define the class for passing parameters.
 class innerParams {
@@ -1210,7 +1383,7 @@ struct Index {
 
 ```ts
 // Receive the transferred parameters on the second page.
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 class innerParams {
   array:number[]
@@ -1274,7 +1447,7 @@ This API is deprecated since API version 9. You are advised to use [pushUrl<sup>
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters.|
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
 
 
 **Example**
@@ -1316,9 +1489,9 @@ This API is deprecated since API version 9. You are advised to use [replaceUrl<s
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
+| Name | Type                           | Mandatory | Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page.|
+| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page. |
 
 **Example**
 
@@ -1351,7 +1524,7 @@ This API is deprecated since API version 9. You are advised to use [showAlertBef
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box.|
+| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box. |
 
 **Example**
 

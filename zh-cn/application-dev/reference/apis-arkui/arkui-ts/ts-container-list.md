@@ -56,6 +56,8 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名       | 参数类型                                    | 必填 | 参数描述                                                     |
@@ -161,8 +163,6 @@ editMode(value: boolean)
 设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3)实现删除选中的list项。
 
 从API version9开始废弃不再使用，无替代接口。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -438,6 +438,8 @@ flingSpeedLimit(speedLimit: number)
 
 限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -464,9 +466,11 @@ childrenMainSize(value: ChildrenMainSize)
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
-该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                        |
 | ------ | ------ | ------------------------- |
@@ -476,9 +480,11 @@ childrenMainSize(value: ChildrenMainSize)
 
 ## StickyStyle<sup>9+</sup>枚举说明
 
-该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                                 |
 | ------ | ------ | ---------------------------------- |
@@ -490,11 +496,13 @@ childrenMainSize(value: ChildrenMainSize)
 
 设置列表项滚动结束对齐效果。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 左右和上下这种两端对齐的样式：当列表位移至末端，则需要将末端的item完整显示，同时不能露出边界空白区域，此时另一端可以出现不限位对齐的现象。
 
 只支持item等高场景限位，不等高场景可能存在不准确的情况。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -507,6 +515,8 @@ childrenMainSize(value: ChildrenMainSize)
 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型     | 必填 | 说明                   |
 | :------- | -------- | ---- | ---------------------- |
@@ -765,6 +775,8 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -831,9 +843,14 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 | handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12对象说明) | 是 | 当前显示内容发生改变的时候触发回调。 |
 
 ## OnScrollCallback<sup>12+</sup>对象说明
+
+type OnScrollCallback = (scrollOffset: number, scrollState: ScrollState) => void
+
 列表滑动时触发的回调  
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -845,6 +862,8 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -862,13 +881,15 @@ type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scr
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | scrollOffset | number | 是 | 每帧滑动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 | scrollState | [ScrollState](#scrollstate枚举说明) | 是 | 当前滑动状态。 |
-| scrollSource | [ScrollSource](#scrollsource12枚举说明) | 是 | 当前滑动操作的来源。 |
+| scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12枚举说明) | 是 | 当前滑动操作的来源。 |
 
 **返回值：** 
 
@@ -876,22 +897,11 @@ type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scr
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | void \| [ScrollResult](#scrollresult12对象说明) |  返回ScrollResult时按照开发者指定的偏移量滑动；不返回时按回调参数scrollOffset滑动。 |
 
-## ScrollSource<sup>12+</sup>枚举说明
+## ScrollResult<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称     |  枚举值  | 描述                                       |
-| ------ | ------ | ---------------------------------------- |
-| DRAG   |  0  | 拖拽事件。 |
-| FLING |  1  | 拖拽结束之后的惯性滑动。 |
-| EDGE_EFFECT  |  2  | EdgeEffect.Spring的边缘滚动效果。 |
-| OTHER_USER_INPUT  |  3  | 除拖拽外的其他用户输入，如鼠标滚轮、键盘事件等。 |
-| SCROLL_BAR  |  4  | 滚动条的拖拽事件。 |
-| SCROLL_BAR_FLING  |  5  | 滚动条拖拽结束后的带速度的惯性滑动。 |
-| SCROLLER  |  6  | Scroller的不带动效方法。 |
-| SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
-
-## ScrollResult<sup>12+</sup>对象说明
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -921,6 +931,8 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 获取[ListItemGroup](ts-container-listitemgroup.md)中的[ListItem](ts-container-listitem.md)的大小和相对于List的位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -962,6 +974,8 @@ scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名                | 参数类型 | 必填 | 参数描述                                                     |
@@ -988,6 +1002,8 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
@@ -1009,9 +1025,14 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 > - ListScroller必须绑定到List组件上。
 
 ## OnScrollVisibleContentChangeCallback<sup>12+</sup>对象说明
+
+type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end: VisibleListContentInfo) => void
+
 有子组件划入或划出List显示区域时触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -1022,6 +1043,8 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | index | number | 是 | List显示区域内ListItem或ListItemGroup的索引值。 |
@@ -1031,6 +1054,8 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 ## ListItemGroupArea<sup>12+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -1053,6 +1078,8 @@ ChildrenMainSize有参构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -1067,6 +1094,8 @@ set childDefaultSize(value: number): void
 修改子组件在主轴方向的默认大小。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1086,6 +1115,10 @@ get childDefaultSize(): number
 
 获取子组件在主轴方向的默认大小。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：** 
 
 | 类型                                                         | 说明                                                         |
@@ -1099,6 +1132,8 @@ splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 批量增删改子组件在主轴方向的大小信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1132,6 +1167,8 @@ update(index: number, childSize: number): void
 修改指定索引值对应的子组件的主轴方向的大小信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 

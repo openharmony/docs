@@ -1045,6 +1045,18 @@
 
 **起始版本**：9
 
+### ohos.permission.GET_DISPOSED_APP_STATUS
+
+允许查询应用的处置状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
@@ -3556,6 +3568,54 @@
 ### ohos.permission.GET_APP_DOMAIN_BUNDLE_INFO
 
 允许应用访问应用和域名的映射关系。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.OPEN_FILE
+
+允许系统应用拉起文件管理应用，并打开文件/文件夹。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PROCESS_FILE_COPY_PASTE
+
+允许系统应用拉起文件管理应用，并复制、剪切、粘贴文件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CLEAR_RECYCLEBIN
+
+允许系统应用拉起文件管理应用，并清空回收站。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_FILE_THUMBNAIL
+
+允许系统服务获取文件缩略图。
 
 **权限级别**：system_basic
 

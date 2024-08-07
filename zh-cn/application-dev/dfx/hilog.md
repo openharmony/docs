@@ -23,9 +23,9 @@ hilog命令行使用方式：
 | -g |  |  | 查询buffer的大小，配合-t指定某一类型使用，默认app和core。 | 
 | -G | --buffer-size | &lt;size&gt; | 设置指定&lt;type&gt;日志类型缓冲区的大小，配合-t指定某一类型使用，默认app和core， 可使用B/K/M/G为单位。 | 
 | -r |  |  | 清除buffer日志，配合-t指定某一类型使用，默认app和core。 | 
-| -p | --privacy | &lt;on/off&gt; | 支持系统调试时日志隐私开关控制。 | 
-|  |  | on | 打开隐私开关，显示&lt;private&gt;。 | 
-|  |  | off | 关闭隐私开关，显示明文。 | 
+| <!--DelRow-->-p | --privacy | &lt;on/off&gt; | 支持系统调试时日志隐私开关控制。 | 
+| <!--DelRow--> |  | on | 打开隐私开关，显示&lt;private&gt;。 | 
+| <!--DelRow--> |  | off | 关闭隐私开关，显示明文。 | 
 | -k |  | &lt;on/off&gt; | Kernel日志读取开关控制。 | 
 |  |  | on | 打开读取kernel日志。 | 
 |  |  | off | 关闭读取kernel日志。 | 

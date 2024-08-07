@@ -544,8 +544,8 @@ struct Page {
 >
 > 从API version 12开始，自定义组件支持接收LocalStorage实例。
 > 当自定义组件作为子节点，定义了成员属性时，LocalStorage实例必须要放在第二个参数位置传递，否则会报类型不匹配的编译问题。
-> 当在自定义组件中定义了属性时，暂时不支持只有一个LocalStorage实例作为入参。如果没定义属性，可以只[传入一个LocalStorage实例作为入参](#当自定义组件没有定义属性时可以只传入一个localstorage实例作为入参)。
-> 如果定义的属性不需要从父组件初始化变量，则[第一个参数需要传{}](#当定义的属性不需要从父组件初始化变量时第一个参数需要传)。
+> 当在自定义组件中定义了属性时，暂时不支持只有一个LocalStorage实例作为入参。如果没定义属性，可以只传入一个LocalStorage实例作为入参。
+> 如果定义的属性不需要从父组件初始化变量，则第一个参数需要传{}。
 > 作为构造参数传给子组件的LocalStorage实例在初始化时就会被决定，可以通过@LocalStorageLink或者LocalStorage的API修改LocalStorage实例中保存的属性值，但LocalStorage实例自身不能被动态修改。
 
 ```ts
@@ -592,7 +592,7 @@ struct Child {
 }
 ```
 
-### 当自定义组件没有定义属性时，可以只传入一个LocalStorage实例作为入参
+1. 当自定义组件没有定义属性时，可以只传入一个LocalStorage实例作为入参。
 
 ```ts
 let localStorage1: LocalStorage = new LocalStorage();
@@ -634,7 +634,7 @@ struct Child {
 }
 ```
 
-### 当定义的属性不需要从父组件初始化变量时，第一个参数需要传{}
+2. 当定义的属性不需要从父组件初始化变量时，第一个参数需要传{}。
 
 ```ts
 let localStorage1: LocalStorage = new LocalStorage();

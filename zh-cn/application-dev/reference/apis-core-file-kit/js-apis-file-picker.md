@@ -381,6 +381,8 @@ struct Index {
 
 constructor()
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 创建AudioViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
@@ -739,6 +741,8 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 ### constructor<sup>12+</sup>
 
 constructor(context: Context)
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
