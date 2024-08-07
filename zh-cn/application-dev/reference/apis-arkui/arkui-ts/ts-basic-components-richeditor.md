@@ -223,6 +223,8 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -231,7 +233,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 否   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
 
 ### enterKeyType<sup>12+</sup>
 
@@ -807,8 +809,9 @@ closeSelectionMenu(): void
 
 关闭自定义选择菜单或系统默认选择菜单。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### getTypingStyle<sup>12+</sup>
 
@@ -906,6 +909,8 @@ getLayoutManager(): LayoutManager
 
 获取布局管理器对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -919,6 +924,8 @@ getLayoutManager(): LayoutManager
 getPreviewText(): PreviewText
 
 获取预上屏信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1159,7 +1166,7 @@ updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
 
 ### getSpans
 
-getSpans(value?: RichEditorRange): Array<RichEditorTextSpanResult| RichEditorImageSpanResult>
+getSpans(value?: RichEditorRange): Array<RichEditorImageSpanResult| RichEditorTextSpanResult>
 
 获取span信息。
 
@@ -1291,7 +1298,7 @@ fromStyledString(value: StyledString): Array\<RichEditorSpan>
 
 | 参数名   | 类型                                | 必填   | 说明       |
 | ----- | ----------------------------------- | ---- | ---------- |
-| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取的范围。 |
+| value | [StyledString](ts-universal-styled-string.md#styledstring) | 是    | 转换前的属性字符串。 |
 
 **返回值：**
 
@@ -1313,7 +1320,7 @@ toStyledString(value: RichEditorRange): StyledString
 
 | 参数名   | 类型                                | 必填   | 说明       |
 | ----- | ----------------------------------- | ---- | ---------- |
-| value | [RichEditorRange](#richeditorrange) | 否    | 需要获取的范围。 |
+| value | [RichEditorRange](#richeditorrange) | 是   | 需要获取的范围。 |
 
 **返回值：**
 
