@@ -38,9 +38,9 @@
 | const char \* [OH_Utd_GetIconFile](_u_d_m_f.md#oh_utd_geticonfile) ([OH_Utd](_u_d_m_f.md#oh_utd) \*pThis) | 获取统一数据类型[OH_Utd](_u_d_m_f.md#oh_utd)中的默认图标文件路径。 | 
 | const char \*\* [OH_Utd_GetBelongingToTypes](_u_d_m_f.md#oh_utd_getbelongingtotypes) ([OH_Utd](_u_d_m_f.md#oh_utd) \*pThis, unsigned int \*count) | 获取统一数据类型[OH_Utd](_u_d_m_f.md#oh_utd)中的归属关系结果集。 | 
 | const char \*\* [OH_Utd_GetFilenameExtensions](_u_d_m_f.md#oh_utd_getfilenameextensions) ([OH_Utd](_u_d_m_f.md#oh_utd) \*pThis, unsigned int \*count) | 获取统一数据类型[OH_Utd](_u_d_m_f.md#oh_utd)所关联的的文件名后缀结果集。 | 
-| const char \*\* [OH_Utd_GetMimeTypes](_u_d_m_f.md#oh_utd_getmimetypes) ([OH_Utd](_u_d_m_f.md#oh_utd) \*pThis, unsigned int \*count) | 获取[OH_Utd](_u_d_m_f.md#oh_utd)所关联的多用途互联网邮件扩展类型结果集。 | 
+| const char \*\* [OH_Utd_GetMimeTypes](_u_d_m_f.md#oh_utd_getmimetypes) ([OH_Utd](_u_d_m_f.md#oh_utd) \*pThis, unsigned int \*count) | 获取[OH_Utd](_u_d_m_f.md#oh_utd)所关联的MIME类型结果集。 | 
 | const char \*\* [OH_Utd_GetTypesByFilenameExtension](_u_d_m_f.md#oh_utd_gettypesbyfilenameextension) (const char \*extension, unsigned int \*count) | 通过文件名后缀获取关联的统一标准数据描述类型结果集。 | 
-| const char \*\* [OH_Utd_GetTypesByMimeType](_u_d_m_f.md#oh_utd_gettypesbymimetype) (const char \*mimeType, unsigned int \*count) | 通过多用途互联网邮件扩展类型获取所关联的标准数据类型结果集。 | 
+| const char \*\* [OH_Utd_GetTypesByMimeType](_u_d_m_f.md#oh_utd_gettypesbymimetype) (const char \*mimeType, unsigned int \*count) | 通过MIME类型获取所关联的标准数据类型结果集。 | 
 | bool [OH_Utd_BelongsTo](_u_d_m_f.md#oh_utd_belongsto) (const char \*srcTypeId, const char \*destTypeId) | 判断两个标准化数据描述类型是否存在归属关系。 | 
 | bool [OH_Utd_IsLower](_u_d_m_f.md#oh_utd_islower) (const char \*srcTypeId, const char \*destTypeId) | 判断原标准化数据类型是否是目标标准化数据类型的低层级类型。 例如TYPE_SCRIPT为SOURCE_CODE的低层级类型，TYPE_SCRIPT和SOURCE_CODE为PLAIN_TEXT的低层级类型。 | 
 | bool [OH_Utd_IsHigher](_u_d_m_f.md#oh_utd_ishigher) (const char \*srcTypeId, const char \*destTypeId) | 判断原标准化数据类型是否是目标标准化数据类型的高层级类型。 例如SOURCE_CODE为TYPE_SCRIPT的高层级类型，PLAIN_TEXT为SOURCE_CODE和TYPE_SCRIPT的高层级类型。 | 

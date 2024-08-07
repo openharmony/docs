@@ -23,8 +23,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [UDMF_META_ENTITY](_u_d_m_f.md#udmf_meta_entity)   "general.entity" | 所有表示物理存储类型的基类型，无归属类型。 | 
-| [UDMF_META_OBJECT](_u_d_m_f.md#udmf_meta_object)   "general.object" | 所有表示逻辑内容类型的基类型，无归属类型。 | 
+| [UDMF_META_ENTITY](_u_d_m_f.md#udmf_meta_entity)   "general.entity" | 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。 | 
+| [UDMF_META_OBJECT](_u_d_m_f.md#udmf_meta_object)   "general.object" | 所有表示逻辑内容类型的基类型，用于描述类型的功能性特征，无归属类型。 | 
 | [UDMF_META_COMPOSITE_OBJECT](_u_d_m_f.md#udmf_meta_composite_object)   "general.composite-object" | 所有组合内容类型（例如PDF文件类型混合了文本和图片类数据）的基类型，归属类型为OBJECT。 | 
 | [UDMF_META_TEXT](_u_d_m_f.md#udmf_meta_text)   "general.text" | 所有文本的基类型，归属类型为OBJECT。 | 
 | [UDMF_META_PLAIN_TEXT](_u_d_m_f.md#udmf_meta_plain_text)   "general.plain-text" | 未指定编码的文本类型，没有标识符，归属类型为TEXT。 | 
