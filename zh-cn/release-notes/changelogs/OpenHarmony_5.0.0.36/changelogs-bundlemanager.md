@@ -8,7 +8,7 @@
 
 **变更原因**
 
-bm install、bm uninstall命令在-u未指定情况下，默认为全部用户，存在安全隐患。
+bm install、bm uninstall命令在-u未指定情况下，默认为全部用户，需要变更为当前活跃用户，提高安全性。
 
 **变更影响**
 
