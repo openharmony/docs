@@ -61,7 +61,7 @@ verticalAlign(value: ImageSpanAlignment)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSpanAlignment](#imagespanalignment) | 是   | 图片基于文本的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
+| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment枚举说明) | 是   | 图片基于文本的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
 
 ### objectFit
 
@@ -78,17 +78,6 @@ objectFit(value: ImageFit)
 | 参数名 | 类型                                      | 必填 | 说明                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的缩放类型。<br/>默认值：ImageFit.Cover |
-
-## ImageSpanAlignment
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                           |
-| -------- | ------------------------------ |
-| TOP      | 图片上边沿与行上边沿对齐。   |
-| CENTER   | 图片中间与行中间对齐。       |
-| BOTTOM   | 图片下边沿与行下边沿对齐。   |
-| BASELINE | 图片下边沿与文本BaseLine对齐。 |
 
 ## 事件
 
