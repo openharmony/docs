@@ -3613,6 +3613,18 @@ Allow a system application to obtain file thumbnails.
 
 **Valid since**：12
 
+### ohos.permission.NETWORK_DHCP
+
+Allows a system application to apply for IP address from the DHCP server.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
