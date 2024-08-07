@@ -164,9 +164,11 @@ RichEditor(this.options)
 ## 添加事件
 ### 添加组件初始化完成后可触发的回调
   
-  通过[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onready)来添加组件初始化完成后可触发的回调。
+通过[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onready)来添加组件初始化完成后可触发的回调。
 
-  ```ts
+其中callback是订阅富文本组件初始化完成的回调，为必填参数。
+
+```ts
 RichEditor(this.options)
     .onReady(() => {
         this.controller.addTextSpan('onReady回调内容是组件内预置文本。', {
@@ -176,14 +178,16 @@ RichEditor(this.options)
             }
         })
     })
-  ```
+```
   
 ![alt text](figures/richeditor_image_onReady.gif)
 
 ### 添加组件内容被选中时可触发的回调
   
 通过[onSelect](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onselect)来添加组件内容被选中时可触发的回调。
-  
+
+其中callback参数中，[RichEditorSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorselection)为选中的所有span信息，为必填参数。
+
 触发该回调有两种方式：可通过鼠标左键按下选择，松开左键后触发回调，也可通过手指选择，松开手指触发回调。
 
 ```ts
@@ -341,7 +345,6 @@ RichEditor(this.options)
 ```
 
 ### 添加完成复制前可触发的回调
-onCopy(callback: Callback<CopyEvent>)
 
 通过[onCopy](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncopy12)添加完成粘贴前可触发的回调。
 
