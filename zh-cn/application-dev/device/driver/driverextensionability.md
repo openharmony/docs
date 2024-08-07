@@ -9,6 +9,7 @@
 每个类型的ExtensionAbility都有自己的Context，DriverExtensionAbility通过[DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md)提供相关能力。
 
 ## 环境搭建
+
 请参考[扩展外设管理客户端开发指导](externaldevice-guidelines.md)中的环境搭建。
 
 ## 开发步骤
@@ -29,7 +30,7 @@
     const REQUEST_CODE = 99; // 与扩展外设客户端约定请求码
     ```
 
-3. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
+4. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
    
     ```ts
     class StubTest extends rpc.RemoteObject {
@@ -49,7 +50,7 @@
     }
     ```
 
-4. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
+5. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
    
     ```ts
     export default class DriverExtAbility extends DriverExtensionAbility {
@@ -77,7 +78,7 @@
     }
     ```
 
-5. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册DriverExtensionAbility，type标签需要设置为“driver”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+6. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册DriverExtensionAbility，type标签需要设置为“driver”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
    
     ```json
     {
@@ -155,4 +156,28 @@
       }
     }
     ```
-  
+
+## DDK能力
+
+扩展外设为驱动开发提供了HID DDK和USB DDK两种能力；
+
+具体使用方法，请参考：
+
+* [HID DDK开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/hid-ddk-guidelines.md)
+* [USB DDK开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/usb-ddk-guidelines.md)
+
+## 应用签名
+
+应用需要配置签名文件才能安装到我们的设备上，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
+
+自动签名方法以及权限配置方法，请参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
+
+如果是开发HarmonyOs应用，则涉及[HarmonyOS应用/服务发布](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-publish-app-0000001053223745-V5);
+
+## 开发实例
+
+为开发者提供了以下3款产品的Demo，用于参考。
+
+* [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
+* [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)
+* [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo)
