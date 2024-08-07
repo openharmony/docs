@@ -164,7 +164,7 @@ RichEditor(this.options)
 ## 添加事件
 ### 添加组件初始化完成后可触发的回调
   
-  通过[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onReady)来添加组件初始化完成后可触发的回调。
+  通过[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onready)来添加组件初始化完成后可触发的回调。
 
   ```ts
 RichEditor(this.options)
@@ -182,7 +182,7 @@ RichEditor(this.options)
 
 ### 添加组件内容被选中时可触发的回调
   
-通过[onSelect](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onSelect)来添加组件内容被选中时可触发的回调。
+通过[onSelect](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onselect)来添加组件内容被选中时可触发的回调。
   
 触发该回调有两种方式：可通过鼠标左键按下选择，松开左键后触发回调，也可通过手指选择，松开手指触发回调。
 
@@ -216,7 +216,7 @@ RichEditor(this.options1)
 
 ### 添加输入法输入内容前可触发的回调
   
-通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#aboutToIMEInput)添加输入法输入内容前可触发的回调。
+通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)添加输入法输入内容前可触发的回调。
 
 其中callback参数中：[RichEditorInsertValue](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorinsertvalue)为输入法将要输入内容信息；boolean为true时，组件执行添加内容操作。boolean为false时，组件不执行添加内容操作。为必填参数。
 
@@ -249,7 +249,7 @@ RichEditor(this.options)
 
 ### 添加输入法完成输入后可触发的回调
   
-通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onIMEInputComplete)添加输入法完成输入后可触发的回调。
+通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)添加输入法完成输入后可触发的回调。
 
 其中callback参数中：[RichEditorTextSpanResult](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanresult)为输入法完成输入后的文本Span信息。为必填参数。
 
@@ -343,7 +343,7 @@ RichEditor(this.options)
 ### 添加完成复制前可触发的回调
 onCopy(callback: Callback<CopyEvent>)
 
-通过[onCopy](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onCopy12)添加完成粘贴前可触发的回调。
+通过[onCopy](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncopy12)添加完成粘贴前可触发的回调。
 
 其中callback为必填参数。用于定义用户复制事件。
 
@@ -480,9 +480,9 @@ Button('addTextSpan', {
 
 ## 添加图片内容
 
-通过[addImageSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addImageSpan)添加图片内容。
+通过[addImageSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addimagespan)添加图片内容。
   
-其中value是图片内容，为必填参数；options是图片选项，用于添加图片的偏移位置和图片样式信息（[RichEditorImageSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#RichEditorImageSpanOptions)），为非必填参数。
+其中value是图片内容，为必填参数；options是图片选项，用于添加图片的偏移位置和图片样式信息（[RichEditorImageSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorimagespanoptions)），为非必填参数。
 
 添加图片内容，如果组件光标闪烁，插入后光标位置更新为新插入图片的后面。
 
