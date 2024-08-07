@@ -141,6 +141,7 @@
       <!--Del-->
       - [点光源设置 (系统接口)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
       <!--DelEnd-->
+    - [滚动组件通用属性与事件](arkui-ts/ts-container-scrollable-common.md)
     - 手势处理
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
       - [TapGesture](arkui-ts/ts-basic-gestures-tapgesture.md)
