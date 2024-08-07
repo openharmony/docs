@@ -6927,7 +6927,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -6941,14 +6941,14 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| names    | Array<'status'\|'navigation'> | 是   | 设置窗口全屏模式时状态栏、导航栏和底部导航条是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| names    | Array<'status'\|'navigation'> | 是   | 设置窗口全屏模式时状态栏、三键导航栏和底部导航条是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 
 **示例：**
 
 ```ts
-// 此处以不显示导航栏、状态栏、底部导航条为例
+// 此处以不显示三键导航栏、状态栏、底部导航条为例
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6983,7 +6983,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、导航栏通过navigation控制，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -6997,7 +6997,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 | 参数名 | 类型  | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| names  | Array<'status'\|'navigation'> | 是   | 设置窗口全屏模式时状态栏、导航栏、底部导航条是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| names  | Array<'status'\|'navigation'> | 是   | 设置窗口全屏模式时状态栏、三键导航栏、底部导航条是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 
 **返回值：**
 
@@ -7009,7 +7009,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// 此处以不显示导航栏、状态栏、底部导航条为例
+// 此处以不显示三键导航栏、状态栏、底部导航条为例
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7042,7 +7042,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+设置主窗口三键导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -7056,7 +7056,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| systemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏、状态栏的属性。 |
+| systemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 三键导航栏、状态栏的属性。 |
 | callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
 
 **示例：**
@@ -7102,7 +7102,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口导航栏、状态栏的属性，使用Promise异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+设置主窗口三键导航栏、状态栏的属性，使用Promise异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
 子窗口调用后不生效。
 
@@ -7116,7 +7116,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| systemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏、状态栏的属性。 |
+| systemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 三键导航栏、状态栏的属性。 |
 
 **返回值：**
 
