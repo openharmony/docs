@@ -15,13 +15,25 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | 是     |  给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
+| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](#gesturejudgeresult11) | 是     |  给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回当前组件。 |
+
+
+## GestureJudgeResult<sup>11+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| CONTINUE  | 不影响系统手势判定流程。|
+| REJECT  | 对于用户自定义的手势判定结果为失败。|
 
 ## GestureInfo对象说明
 
@@ -30,8 +42,25 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | 名称            | 类型                        | 描述         |
 | ---------------  | -------------------------   | -----------|
 | tag              | string                      | 手势标记。<br/>**说明：**<br/>如果未设置事件标识tag属性的情况下，此处tag不返回或者返回undefined。  |
-| type             | [GestureControl.GestureType](ts-appendix-enums.md#gesturetype11)  | 手势类型。 |
+| type             | [GestureControl.GestureType](#gesturetype11)  | 手势类型。 |
 | isSystemGesture  | boolean                     | 判断当前手势是否是组件自带的手势。<br/>默认值：false |
+
+## GestureType<sup>11+</sup>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| TAP_GESTURE   | 点击手势|
+| LONG_PRESS_GESTURE  | 长按手势|
+| PAN_GESTURE    | 拖动手势|
+| PINCH_GESTURE   | 捏合手势|
+| SWIPE_GESTURE    | 滑动手势|
+| ROTATION_GESTURE   | 旋转手势|
+| DRAG    | 拖拽|
+| CLICK   | 点击|
 
 ## BaseEvent对象说明
 
