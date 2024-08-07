@@ -140,3 +140,19 @@ libusb_ndk.z.so
     // 释放USB DDK
     OH_Usb_Release();
     ```
+
+## 开发实例
+
+为开发者提供了以下3款产品的Demo，用于参考，请查看对应Demo的entry/src/main/cpp文件路径。
+
+* [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
+
+  >相关代码路径：entry/src/main/cpp/hello.cpp
+
+* [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)
+
+  >相关代码路径：entry/src/main/cpp/hello.cpp
+
+* [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo)
+
+  >相关代码路径：entry/src/main/cpp/hello.cpp

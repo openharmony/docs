@@ -90,8 +90,15 @@ libhid.z.so
     // 销毁HID设备
     int32_t ret = OH_Hid_DestroyDevice(deviceId);
     ```
+
 ## 开发实例
 
-以[手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)为例，请参考手写板中的HID DDK的使用方法；
+为开发者提供了以下2款产品的Demo，用于参考，请查看对应Demo的entry/src/main/cpp文件路径。
 
-相关代码路径：entry/src/main/cpp/inject_thread.cpp
+* [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
+
+  >相关代码路径：entry/src/main/cpp/inject_thread.cpp
+
+* [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)
+
+  >相关代码路径：entry/src/main/cpp/inject_thread.cpp
