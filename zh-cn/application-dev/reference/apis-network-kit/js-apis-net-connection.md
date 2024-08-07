@@ -798,7 +798,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-  // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
   } else {
     connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
       console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -1264,13 +1264,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-  } else {
-    connection.reportNetConnected(netHandle, (error: BusinessError) => {
-      console.log(JSON.stringify(error));
-    });
-  }
+  connection.reportNetConnected(netHandle, (error: BusinessError) => {
+    console.log(JSON.stringify(error));
+  });
 });
 ```
 
@@ -1311,13 +1307,9 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-  } else {
-    connection.reportNetConnected(netHandle).then(() => {
-      console.log(`report success`);
-    });
-  }
+  connection.reportNetConnected(netHandle).then(() => {
+    console.log(`report success`);
+  });
 });
 ```
 
@@ -1354,13 +1346,9 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-  } else {
-    connection.reportNetDisconnected(netHandle).then( () => {
-      console.log(`report success`);
-    });
-  }
+  connection.reportNetDisconnected(netHandle).then( () => {
+    console.log(`report success`);
+  });
 });
 ```
 
@@ -1401,13 +1389,9 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-  } else {
-    connection.reportNetDisconnected(netHandle).then( () => {
-      console.log(`report success`);
-    });
-  }
+  connection.reportNetDisconnected(netHandle).then( () => {
+    console.log(`report success`);
+  });
 });
 ```
 
