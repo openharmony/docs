@@ -248,7 +248,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 ## 开发实例
 
-为开发者提供了以下3款产品的Demo，用于参考。
+为开发者提供了以下3款产品的Demo，用于参考，请查看对应Demo的驱动服务端开发。
 
 * [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
 * [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)

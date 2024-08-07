@@ -170,13 +170,15 @@
 
 应用需要配置签名文件才能安装到我们的设备上，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
 
+如果使用HID/USB DDK请添加对应权限，具体权限请查看上方开发指导；
+
 自动签名方法以及权限配置方法，请参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
 
 如果是开发HarmonyOs应用，则涉及[HarmonyOS应用/服务发布](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-publish-app-0000001053223745-V5);
 
 ## 开发实例
 
-为开发者提供了以下3款产品的Demo，用于参考。
+为开发者提供了以下3款产品的Demo，用于参考，请查看对应Demo的驱动客户端开发。
 
 * [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
 * [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)
