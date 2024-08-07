@@ -29,8 +29,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [UDMF_KEY_BUFFER_LEN](#udmf_key_buffer_len)   (512) | 统一数据对象唯一标识符最小空间长度。 | 
-| [UDMF_META_ENTITY](#udmf_meta_entity)   "general.entity" | 所有表示物理存储类型的基类型，无归属类型。 | 
-| [UDMF_META_OBJECT](#udmf_meta_object)   "general.object" | 所有表示逻辑内容类型的基类型，无归属类型。 | 
+| [UDMF_META_ENTITY](#udmf_meta_entity)   "general.entity" | 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。 | 
+| [UDMF_META_OBJECT](#udmf_meta_object)   "general.object" | 所有表示逻辑内容类型的基类型，用于描述类型的功能性特征，无归属类型。 | 
 | [UDMF_META_COMPOSITE_OBJECT](#udmf_meta_composite_object)   "general.composite-object" | 所有组合内容类型（例如PDF文件类型混合了文本和图片类数据）的基类型，归属类型为OBJECT。 | 
 | [UDMF_META_TEXT](#udmf_meta_text)   "general.text" | 所有文本的基类型，归属类型为OBJECT。 | 
 | [UDMF_META_PLAIN_TEXT](#udmf_meta_plain_text)   "general.plain-text" | 未指定编码的文本类型，没有标识符，归属类型为TEXT。 | 
@@ -272,9 +272,9 @@
 | const char \* [OH_Utd_GetIconFile](#oh_utd_geticonfile) ([OH_Utd](#oh_utd) \*pThis) | 获取统一数据类型[OH_Utd](#oh_utd)中的默认图标文件路径。 | 
 | const char \*\* [OH_Utd_GetBelongingToTypes](#oh_utd_getbelongingtotypes) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | 获取统一数据类型[OH_Utd](#oh_utd)中的归属关系结果集。 | 
 | const char \*\* [OH_Utd_GetFilenameExtensions](#oh_utd_getfilenameextensions) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | 获取统一数据类型[OH_Utd](#oh_utd)所关联的的文件名后缀结果集。 | 
-| const char \*\* [OH_Utd_GetMimeTypes](#oh_utd_getmimetypes) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | 获取[OH_Utd](#oh_utd)所关联的多用途互联网邮件扩展类型结果集。 | 
+| const char \*\* [OH_Utd_GetMimeTypes](#oh_utd_getmimetypes) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | 获取[OH_Utd](#oh_utd)所关联的MIME类型结果集。 | 
 | const char \*\* [OH_Utd_GetTypesByFilenameExtension](#oh_utd_gettypesbyfilenameextension) (const char \*extension, unsigned int \*count) | 通过文件名后缀获取关联的统一标准数据描述类型结果集。 | 
-| const char \*\* [OH_Utd_GetTypesByMimeType](#oh_utd_gettypesbymimetype) (const char \*mimeType, unsigned int \*count) | 通过多用途互联网邮件扩展类型获取所关联的标准数据类型结果集。 | 
+| const char \*\* [OH_Utd_GetTypesByMimeType](#oh_utd_gettypesbymimetype) (const char \*mimeType, unsigned int \*count) | 通过MIME类型获取所关联的标准数据类型结果集。 | 
 | bool [OH_Utd_BelongsTo](#oh_utd_belongsto) (const char \*srcTypeId, const char \*destTypeId) | 判断两个标准化数据描述类型是否存在归属关系。 | 
 | bool [OH_Utd_IsLower](#oh_utd_islower) (const char \*srcTypeId, const char \*destTypeId) | 判断原标准化数据类型是否是目标标准化数据类型的低层级类型。 例如TYPE_SCRIPT为SOURCE_CODE的低层级类型，TYPE_SCRIPT和SOURCE_CODE为PLAIN_TEXT的低层级类型。 | 
 | bool [OH_Utd_IsHigher](#oh_utd_ishigher) (const char \*srcTypeId, const char \*destTypeId) | 判断原标准化数据类型是否是目标标准化数据类型的高层级类型。 例如SOURCE_CODE为TYPE_SCRIPT的高层级类型，PLAIN_TEXT为SOURCE_CODE和TYPE_SCRIPT的高层级类型。 | 
@@ -657,7 +657,7 @@ Encapsulated PostScript类型，归属类型为POSTSCRIPT。
 
 **描述**
 
-所有表示物理存储类型的基类型，无归属类型。
+所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
 
 **起始版本：** 12
 
@@ -1086,7 +1086,7 @@ MPGE-4视频类型，归属类型为VIDEO。
 
 **描述**
 
-所有表示逻辑内容类型的基类型，无归属类型。
+所有表示逻辑内容类型的基类型，用于描述类型的功能性特征，无归属类型。
 
 **起始版本：** 12
 
@@ -2345,7 +2345,7 @@ int OH_UdmfData_AddRecord (OH_UdmfData * pThis, OH_UdmfRecord * record )
 | 名称 | 描述 | 
 | -------- | -------- |
 | pThis | 表示指向统一数据对象[OH_UdmfData](#oh_udmfdata)实例的指针。 | 
-| record | 表示指向统一数据数据[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| record | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
 
 **返回：**
 
@@ -3025,7 +3025,7 @@ int OH_UdmfRecord_GetAppItem (OH_UdmfRecord* pThis, OH_UdsAppItem* appItem )
 | 名称 | 描述 | 
 | -------- | -------- |
 | pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
-| appItem | 表示指向桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例的指针。 | 
+| appItem | 该参数是输出参数，表示指向桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例的指针。 | 
 
 **返回：**
 
@@ -3089,7 +3089,7 @@ int OH_UdmfRecord_GetHtml (OH_UdmfRecord* pThis, OH_UdsHtml* html )
 | 名称 | 描述 | 
 | -------- | -------- |
 | pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
-| html | 表示指向超文本标记语言类型[OH_UdsHtml](#oh_udshtml)实例的指针。 | 
+| html | 该参数是输出参数，表示指向超文本标记语言类型[OH_UdsHtml](#oh_udshtml)实例的指针。 | 
 
 **返回：**
 
@@ -3121,7 +3121,7 @@ int OH_UdmfRecord_GetHyperlink (OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink
 | 名称 | 描述 | 
 | -------- | -------- |
 | pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
-| hyperlink | 表示指向超链接类型[OH_UdsHyperlink](#oh_udshyperlink)实例的指针。 | 
+| hyperlink | 该参数是输出参数，表示指向超链接类型[OH_UdsHyperlink](#oh_udshyperlink)实例的指针。 | 
 
 **返回：**
 
@@ -3153,7 +3153,7 @@ int OH_UdmfRecord_GetPlainText (OH_UdmfRecord* pThis, OH_UdsPlainText* plainText
 | 名称 | 描述 | 
 | -------- | -------- |
 | pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
-| plainText | 表示指向纯文本类型[OH_UdsPlainText](#oh_udsplaintext)实例的指针。 | 
+| plainText | 该参数是输出参数，表示指向纯文本类型[OH_UdsPlainText](#oh_udsplaintext)实例的指针。 | 
 
 **返回：**
 
@@ -4366,7 +4366,7 @@ const char** OH_Utd_GetMimeTypes (OH_Utd* pThis, unsigned int* count )
 
 **描述**
 
-获取[OH_Utd](#oh_utd)所关联的多用途互联网邮件扩展类型结果集。
+获取[OH_Utd](#oh_utd)所关联的MIME类型结果集。
 
 **起始版本：** 12
 
@@ -4375,11 +4375,11 @@ const char** OH_Utd_GetMimeTypes (OH_Utd* pThis, unsigned int* count )
 | 名称 | 描述 | 
 | -------- | -------- |
 | pThis | 表示一个指向统一数据类型[OH_Utd](#oh_utd)对象的指针。 | 
-| count | 该参数是输出参数，结果集中的多用途互联网邮件扩展类型数量会写入该变量。 | 
+| count | 该参数是输出参数，结果集中的MIME类型数量会写入该变量。 | 
 
 **返回：**
 
-当入参有效时返回多用途互联网邮件扩展类型结果集的字符串指针列表，否则返回nullptr。
+当入参有效时返回MIME类型结果集的字符串指针列表，否则返回nullptr。
 
 **参见：**
 
@@ -4472,7 +4472,7 @@ const char** OH_Utd_GetTypesByMimeType (const char* mimeType, unsigned int* coun
 
 **描述**
 
-通过多用途互联网邮件扩展类型获取所关联的标准数据类型结果集。
+通过MIME类型获取所关联的标准数据类型结果集。
 
 **起始版本：** 12
 
@@ -4480,7 +4480,7 @@ const char** OH_Utd_GetTypesByMimeType (const char* mimeType, unsigned int* coun
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mimeType | 表示多用途互联网邮件扩展类型。 | 
+| mimeType | 表示MIME类型字符串。 | 
 | count | 该参数是输出参数，结果集中的类型数量会写入该变量。 | 
 
 **返回：**
