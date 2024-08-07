@@ -116,7 +116,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 ## PhotoEditorExtensionAbility.onDestroy
-onDestroy(): void | Promise<void>
+onDestroy(): void | Promise\<void>
 
 PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。 
 
