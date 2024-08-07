@@ -39,7 +39,7 @@ RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
 
 >  **说明：**
 >
->  align属性只支持上方丶中间和下方位置的对齐方式。
+>  align属性只支持上方、中间和下方位置的对齐方式。
 
 ### customKeyboard
 
