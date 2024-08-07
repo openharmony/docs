@@ -143,7 +143,7 @@ libusb_ndk.z.so
 
 ## 开发实例
 
-为开发者提供了以下3款产品的Demo，用于参考，请查看对应Demo的entry/src/main/cpp文件路径。
+为开发者提供了以下3款产品的Demo，用于参考USB DDK的使用方法，请查看对应Demo的entry/src/main/cpp文件路径。
 
 * [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
 
