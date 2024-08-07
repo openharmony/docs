@@ -362,7 +362,7 @@ Check the changes in the **Parent** custom component.
 
 2. Click **countStorage ${this.playCount} incr by 1** to call the **set** API in LocalStorage to update the attributes corresponding to **countStorage** in LocalStorage. The components bound to** playCountLink** in the **Child** component are updated synchronously.
 
-3. The **playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}** **\<Text>** component is not updated synchronously, because **storage.get<number>('countStorage')** returns a regular variable. The update of a regular variable does not cause the **\<Text>** component to be re-rendered.
+3. The **playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}** **\<Text>** component is not updated synchronously, because **storage.get\<number>('countStorage')** returns a regular variable. The update of a regular variable does not cause the **\<Text>** component to be re-rendered.
 
 Changes in the **Child** custom component:
 
