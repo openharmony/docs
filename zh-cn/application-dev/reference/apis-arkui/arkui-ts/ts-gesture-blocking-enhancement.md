@@ -34,7 +34,7 @@ type ShouldBuiltInRecognizerParallelWithCallback = (current: GestureRecognizer, 
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| current | [GestureRecognizer](#gesturerecognizer) | 是   | 当前组件的系统内置手势识别器，当前版本只提供内置的[PAN_GESTURE](./ts-appendix-enums.md#gesturejudgeresult11)类型的手势识别器。 |
+| current | [GestureRecognizer](#gesturerecognizer) | 是   | 当前组件的系统内置手势识别器，当前版本只提供内置的[PAN_GESTURE](ts-gesture-customize-judge.md#gesturejudgeresult11)类型的手势识别器。 |
 | others | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | 响应链上更高优先级的其他组件相同类别的手势识别器。 |
 
 **返回值：**
@@ -73,7 +73,7 @@ getType(): GestureControl.GestureType
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [GestureControl.GestureType](ts-appendix-enums.md#gesturetype11) | 当前手势识别器的类型。 |
+| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype11) | 当前手势识别器的类型。 |
 
 ### isBuiltIn
 
@@ -265,8 +265,7 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [GestureJudgeResult](./ts-appendix-enums.md#gesturejudgeresult11) | 手势是否裁决成功的判定结果。 |
-
+| [GestureJudgeResult](ts-gesture-customize-judge.md#gesturejudgeresult11) | 手势是否裁决成功的判定结果。 |
 
 ## 示例
 
