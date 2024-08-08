@@ -589,7 +589,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:113
+// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:57
 ```
 
 ### getDepth
