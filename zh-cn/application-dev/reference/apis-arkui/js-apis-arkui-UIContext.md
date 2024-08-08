@@ -4655,11 +4655,11 @@ try {
 };
 ```
 
-### openToast<sup>12+</sup>
+### openToast<sup>13+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4729,11 +4729,11 @@ struct toastExample {
 }
 ```
 
-### closeToast<sup>12+</sup>
+### closeToast<sup>13+</sup>
 
 closeToast(toastId: number): void
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4754,7 +4754,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-示例请看[openToaset12](#opentoast12)的示例。
+示例请看[openToaset13](#opentoast13)的示例。
 
 ### showDialog
 
