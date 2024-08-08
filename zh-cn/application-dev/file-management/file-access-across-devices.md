@@ -30,7 +30,7 @@
     fs.writeSync(file.fd, 'content');
     // 关闭文件
     fs.closeSync(file.fd);
-  } catch (error) {
+  } catch (error: BusinessError) {
     let err: BusinessError = error as BusinessError;
     console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
   } 
@@ -52,9 +52,9 @@
 
   // 定义访问公共文件目录的回调
   let listeners : fs.DfsListeners = {
-    onStatus: function (networkId: string, status: number): void {
+    onStatus: (networkId: string, status: number): void => {
       console.info('Failed to access public directory');
-  }
+    }
   }
 
   // 访问并挂载公共文件目录
@@ -81,11 +81,11 @@
       // 打印读取到的文件数据
       let buf = buffer.from(arrayBuffer, 0, num);
       console.info('read result: ' + buf.toString());
-    } catch (error) {
+    } catch (error: BusinessError) {
       let err: BusinessError = error as BusinessError;
       console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     let err: BusinessError = error as BusinessError;
     console.error(`Failed to connectDfs Code: ${err.code}, message: ${err.message}`);
   });
@@ -104,7 +104,7 @@
   // 取消公共文件目录挂载
   fs.disconnectDfs(networkId).then(() => {
     console.info("Success to disconnectDfs");
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     let err: BusinessError = error as BusinessError;
     console.error(`Failed to disconnectDfs Code: ${err.code}, message: ${err.message}`)
   })
