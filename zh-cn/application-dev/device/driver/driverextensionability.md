@@ -164,10 +164,15 @@
     }
     ```
 
+<<<<<<< HEAD
   7. 完成客户端和驱动示例代码开发后，请参考[使用本地真机运行应用/服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-run-device-0000001670539800-V5)，将Hap导入设备中，并点击hap中的Hello，查看是否会转变为Hello world，即实现ipc通信功能。
 
 ## 扩展设备能力
 
+=======
+## 扩展设备能力
+
+>>>>>>> 29d9ef42f1 (修改SDK版本配置章节)
 扩展外设管理提供了HID DDK和USB DDK两种能力，用于驱动开发；
 
 具体使用方法，请参考：
@@ -183,8 +188,11 @@
 
 自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5#section18815157237)。
 
+<<<<<<< HEAD
 权限配置方法： 请参考[使用ACL的签名配置指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5#section157591551175916)。
 
+=======
+>>>>>>> 29d9ef42f1 (修改SDK版本配置章节)
 ## 开发实例
 
 为开发者提供了以下3款产品的Demo，用于参考，请查看对应Demo的驱动服务端开发。
