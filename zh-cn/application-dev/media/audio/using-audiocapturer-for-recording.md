@@ -16,6 +16,9 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 ### 开发步骤及注意事项
 
 1. 配置音频采集参数并创建AudioCapturer实例，音频采集参数的详细信息可以查看[AudioCapturerOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiocaptureroptions8)。
+   
+   > **说明：**
+   > 当设置Mic音频源（即SourceType为SOURCE_TYPE_MIC）时，需要申请麦克风权限ohos.permission.MICROPHONE，申请方式参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
      
    ```ts
     import { audio } from '@kit.AudioKit';
