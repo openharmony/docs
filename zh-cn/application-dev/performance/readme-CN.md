@@ -3,6 +3,7 @@
   - [应用开发性能优化入门引导](application-performance-optimization-guidance.md)
   - [应用性能优化常见问题解决指导](performance-optimization-practical-guidance.md)
   - ArkTS高性能编程
+    - [高性能编程规范](high-performance-programming.md)
     - [高效并发编程](efficient-concurrent-programming.md)
     - [N-API高效开发指导](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
     - [多线程能力场景化](multi_thread_capability.md)
