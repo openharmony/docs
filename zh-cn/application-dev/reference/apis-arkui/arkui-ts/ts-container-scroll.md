@@ -30,7 +30,7 @@ Scroll(scroller?: Scroller)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
 
 ### scrollable
 
@@ -129,7 +129,7 @@ edgeEffect(edgeEffect: EdgeEffect, options?: EdgeEffectOptions)
 | 参数名                | 类型                                              | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | edgeEffect            | [EdgeEffect](ts-appendix-enums.md#edgeeffect)     | 是   | Scroll组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None |
-| options<sup>11+</sup> | [EdgeEffectOptions](#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: true } |
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scrollable-common.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: true } |
 
 ### enableScrollInteraction<sup>10+</sup>
 
@@ -161,7 +161,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名 | 类型                                                  | 必填 | 说明           |
 | ------ | ----------------------------------------------------- | ---- | -------------- |
-| value  | [NestedScrollOptions](#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。<br/>默认值：{ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_ONLY }|
+| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。<br/>默认值：{ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_ONLY }|
 
 ### friction<sup>10+</sup>
 
@@ -194,22 +194,6 @@ enablePaging(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
 | value  | boolean | 是   | 是否支持划动翻页。设置为true支持滑动翻页，false不支持。 <br/>默认值：false |
-
-### flingSpeedLimit<sup>11+</sup>
-
-flingSpeedLimit(speedLimit: number)
-
-限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名     | 类型   | 必填 | 说明                            |
-| ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
 ### initialOffset<sup>12+</sup>
 
@@ -252,6 +236,8 @@ initialOffset(value: OffsetOptions)
 | enableSnapToEnd | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，允许Scroll在最后一个限位点和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
 
 ## 事件
+
+除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
 
 ### onScrollFrameBegin<sup>9+</sup>
 
@@ -420,30 +406,6 @@ onScrollStop(event: () => void)
 触发该事件的条件 ：
 
 1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### onReachStart<sup>11+</sup>
-
-onReachStart(event: () => void)
-
-Scroll到达起始位置时触发。
-
-Scroll初始化时会触发一次，滚动到起始位置时触发一次。Scroll边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### onReachEnd<sup>11+</sup>
-
-onReachEnd(event: () => void)
-
-Scroll到达末尾位置时触发。
-
-Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -775,27 +737,6 @@ getItemRect(index: number): RectResult
 | 名称   | 类型  | 必填 | 描述              |
 | ----- | ------ | ------ | ----------------- |
 | extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
-
-## NestedScrollOptions<sup>10+</sup>对象说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 类型  | 必填 | 描述              |
-| ----- | ------ | ------ | ----------------- |
-| scrollForward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10枚举说明) | 是 | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
-| scrollBackward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10枚举说明) | 是 | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
-
-## EdgeEffectOptions<sup>11+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名   | 类型  | 必填 | 描述              |
-| ----- | ------| ------- | ----------------- |
-| alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|
 
 ## ScrollPageOptions<sup>12+</sup>对象说明
 
