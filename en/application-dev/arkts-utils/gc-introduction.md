@@ -253,7 +253,7 @@ Idle young GC can coexist with concurrent marking to prevent the GC threshold fr
 - Type: JS interface
 - Description: Determines whether full GC is required. In the background scenario or if the expected survival rate is lower than the preset value, full GC is triggered. In performance-sensitive scenarios, full GC is not triggered.
 - Use scenario: The developer asks the system to perform GC.
-- Log keywords: There is no direct log. Only external trigger (**GCReason::EXTERNAL_TRIGGER**) can be found.
+- Log keywords: There is no direct log. Only external trigger (**GCReason::TRIGGER_BY_JS**) can be found.
 
 ### ArkTools.forceFullGC()
 
@@ -261,7 +261,7 @@ Idle young GC can coexist with concurrent marking to prevent the GC threshold fr
 - Type: JS interface
 - Description: Triggers GC directly. Specifically, full GC is triggered for the local heap of the calling thread, and shared GC is triggered for the shared heap of the calling thread.
 - Use scenario: large home screen, developer debugging
-- Log keywords: There is no direct log. Only external trigger (**GCReason::EXTERNAL_TRIGGER**) can be found.
+- Log keywords: There is no direct log. Only external trigger (**GCReason::TRIGGER_BY_JS**) can be found.
 
 Example:
 
