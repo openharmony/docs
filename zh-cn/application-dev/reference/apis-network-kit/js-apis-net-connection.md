@@ -2442,11 +2442,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 ```ts
 import { connection } from '@kit.NetworkKit';
 import { wifiManager } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: wifiManager.WifiDeviceConfig = {
   ssid: "TEST",
   preSharedKey: "**********";
-  securityType: 3
+  securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
 let metworkId: number = await wifiManager.addCandidateConfig(config);
 let netConnectionWlan = connection.createNetConnection({
