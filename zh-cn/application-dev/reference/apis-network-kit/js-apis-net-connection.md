@@ -2446,10 +2446,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: wifiManager.WifiDeviceConfig = {
   ssid: "TEST",
-  preSharedKey: "**********";
+  preSharedKey: "**********",
   securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
-let metworkId: number = await wifiManager.addCandidateConfig(config);
+let networkId: number = await wifiManager.addCandidateConfig(config);
 let netConnectionWlan = connection.createNetConnection({
   netCapabilities: {
     bearerTypes: [connection.NetBearType.BEARER_WIFI]
