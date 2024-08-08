@@ -85,6 +85,7 @@
     
     ```typescript  
         mod2 c executed
+        mod1 a executed
         mod1 b executed
         main executed
     ```
