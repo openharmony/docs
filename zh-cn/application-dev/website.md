@@ -494,7 +494,7 @@
             - [svg动画](ui/ui-js-animate-svg.md)
           - JS动画<!--ui-js-animation-js-->
             - [组件动画](ui/ui-js-animate-component.md)
-            - 插值器动画
+            - 插值器动画<!--ui-js-interpolator-animation-->
               - [动画动效](ui/ui-js-animate-dynamic-effects.md)
               - [动画帧](ui/ui-js-animate-frame.md)
         - [自定义组件](ui/ui-js-custom-components.md)
@@ -1210,12 +1210,11 @@
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
       - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
-        - [插件管理(ArkTS)](media/drm/drm-plugin-management.md)
-        - [系统管理(ArkTS)](media/drm/drm-mediakeysystem-management.md)
-        - [会话管理(ArkTS)](media/drm/drm-mediakeysession-management.md)
+        - [DRM系统管理(ArkTS)](media/drm/drm-mediakeysystem-management.md)
+        - [DRM会话管理(ArkTS)](media/drm/drm-mediakeysession-management.md)
       - 数字版权保护开发指导(C/C++)<!--drm-native-->
-        - [系统管理(C/C++)](media/drm/native-drm-mediakeysystem-management.md)
-        - [会话管理(C/C++)](media/drm/native-drm-mediakeysession-management.md)
+        - [DRM系统管理(C/C++)](media/drm/native-drm-mediakeysystem-management.md)
+        - [DRM会话管理(C/C++)](media/drm/native-drm-mediakeysession-management.md)
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
       - 图片开发指导(ArkTS)<!--image-arkts-dev-->
@@ -1934,6 +1933,7 @@
             <!--Del-->
             - [点光源设置 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-point-light-style-sys.md)
             <!--DelEnd-->
+          - [滚动组件通用属性与事件](reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md)
           - 手势处理
             - [绑定手势方法](reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
             - [TapGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)
