@@ -58,7 +58,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 ## 开发步骤
 
-应用可通过查询绑定扩展外设，从而使用扩展外设的定制驱动能力。开发示例如下(仅供参考)：
+应用可通过查询绑定扩展外设，从而使用扩展外设的定制驱动能力。开发示例如下（仅供参考）：
 
 1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
 
@@ -237,8 +237,6 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 应用需要配置签名文件才能安装到我们的设备上，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
 
 自动签名方法以及权限配置方法，请参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
-
-如果是开发HarmonyOs应用，则涉及[HarmonyOS应用/服务发布](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-publish-app-0000001053223745-V5);
 
 ## 开发实例
 
