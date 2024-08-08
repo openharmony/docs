@@ -1,6 +1,6 @@
-# DLP Kit Development
+# DLP Service Development
 
-Data Loss Prevention (DLP) Kit is a system solution provided to prevent leakage of sensitive data. It provides a file format called DLP. A DLP file consists of the original file in ciphertext and the authorization credential, and ".dlp" is added to the end of the original file name (including the file name extension), for example, **test.docx.dlp**.
+The Data Loss Prevention (DLP) service is a system solution provided to prevent leakage of sensitive data. It provides a file format called DLP. A DLP file consists of the original file in ciphertext and the authorization credential, and ".dlp" is added to the end of the original file name (including the file name extension), for example, **test.docx.dlp**.
 
 A DLP file can be accessed only after a device-cloud authentication (network connection required) is successful. The permissions for accessing a DLP file include the following:
 
@@ -16,41 +16,41 @@ Normally, the app is unaware of the sandbox and accesses the file in plaintext, 
 
 For an app in the DLP sandbox state, the permissions granted to the app are restricted based on the permission on the DLP file.
 
-| App Permission| Description| Read Only| Edit/Full Control|
+| App Permission | Description | Read-Only | Edit/Full Control |
 | -------- | -------- | -------- | -------- |
-| ohos.permission.USE_BLUETOOTH | Allows an app to use Bluetooth.| Unavailable| Unavailable|
-| ohos.permission.INTERNET |Allows an app to access the Internet.|  Unavailable| Unavailable|
-| ohos.permission.DISTRIBUTED_DATASYNC | Allows an app to exchange user data (such as images, music, videos, and app data) with another device.| Unavailable| Unavailable|
-| ohos.permission.WRITE_MEDIA | Allows an app to read and write media files, such as images, videos, and audio clips.| Unavailable| Available|
-| ohos.permission.NFC_TAG | Allows an app to use NFC.| Unavailable| Available|
+| ohos.permission.USE_BLUETOOTH | Allows an app to use Bluetooth. | Unavailable | Unavailable |
+| ohos.permission.INTERNET |Allows an app to access the Internet. |  Unavailable | Unavailable |
+| ohos.permission.DISTRIBUTED_DATASYNC | Allows an app to exchange user data (such as images, music, videos, and app data) with another device. | Unavailable | Unavailable |
+| ohos.permission.WRITE_MEDIA | Allows an app to read and write media files, such as images, videos, and audio clips. | Unavailable | Available |
+| ohos.permission.NFC_TAG | Allows an app to use NFC. | Unavailable | Available |
 
 ## Available APIs
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| isDLPFile(fd: number): Promise&lt;boolean&gt; <br> isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| Checks whether a file is a DLP file.|
-| getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt; <br>getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void  | Obtains the DLP permission information of this sandbox app.|
-| getOriginalFileName(fileName: string): string | Obtains the original name of a DLP file.|
-| getDLPSuffix(): string | Obtains the file name extension of this DLP file.|
-| on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void | Subscribes to the file open event of DLP files. The app will be notified when a DLP file is opened.|
-| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | Unsubscribes from the file open event of DLP files.|
-| isInSandbox(): Promise&lt;boolean&gt; <br>isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void | Checks whether this app is running in a sandbox.|
-| getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;<br>getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void | Obtains the file name extension types that can be appended with .dlp.|
-| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br> setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the sandbox app retention state. If the retention state is set for a DLP file, the sandbox app will not be automatically uninstalled when the DLP file is closed.|
-| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the sandbox app retention state.|
-| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox apps in the retention state.|
-| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently.|
+| isDLPFile(fd: number): Promise&lt;boolean&gt; <br> isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| Checks whether a file is a DLP file. |
+| getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt; <br>getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void  | Obtains the DLP permission information of this sandbox app. |
+| getOriginalFileName(fileName: string): string | Obtains the original name of a DLP file. |
+| getDLPSuffix(): string | Obtains the file name extension of this DLP file. |
+| on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void | Subscribes to the file open event of DLP files. The app will be notified when a DLP file is opened. |
+| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | Unsubscribes from the file open event of DLP files. |
+| isInSandbox(): Promise&lt;boolean&gt; <br>isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void | Checks whether this app is running in a sandbox. |
+| getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;<br>getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void | Obtains the file name extension types that can be appended with .dlp. |
+| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br> setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the sandbox app retention state. If the retention state is set for a DLP file, the sandbox app will not be automatically uninstalled when the DLP file is closed. |
+| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the sandbox app retention state. |
+| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox apps in the retention state. |
+| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently. |
 |setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|Sets sandbox app configuration.|
 |getSandboxAppConfig(): Promise&lt;string&gt;|Obtains the sandbox app configuration.|
 |cleanSandboxAppConfig(): Promise&lt;void&gt;|Clears the sandbox app configuration.|
-| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br>| Starts the DLP manager app on the current UIAbility page in borderless mode (available only for the stage model).|
+| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | Starts the DLP manager app on the current UIAbility page in borderless mode (available only for the stage model). |
 
 ## How to Develop
 
-1. Import the [dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md) module.
+1. Import the [dlpPermission](../../reference/apis-data-protection-kit/js-apis-dlppermission.md) module.
 
    ```ts
-   import { dlpPermission } from '@kit.DataLossPreventionKit';
+   import { dlpPermission } from '@kit.DataProtectionKit';
    ```
 
 2. Open a DLP file. The system automatically installs a DLP sandbox app for your app. <br>Add the following code to your app:
@@ -132,7 +132,7 @@ For an app in the DLP sandbox state, the permissions granted to the app are rest
 6. Check whether the opened file is a DLP file.
 
    ```ts
-   import { dlpPermission } from '@kit.DataLossPreventionKit';
+   import { dlpPermission } from '@kit.DataProtectionKit';
    import { fileIo } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -241,7 +241,7 @@ For an app in the DLP sandbox state, the permissions granted to the app are rest
 13. Start the DLP manager app in borderless mode. This API can be called only in the UIAbility context and supports only the stage model.
 
     ```ts
-    import { dlpPermission } from '@kit.DataLossPreventionKit';
+    import { dlpPermission } from '@kit.DataProtectionKit';
     import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -264,7 +264,7 @@ For an app in the DLP sandbox state, the permissions granted to the app are rest
 
 14. Check whether the current system provides the DLP feature.
     ```ts
-    import { dlpPermission } from '@kit.DataLossPreventionKit';
+    import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     dlpPermission.isDLPFeatureProvided().then((res) => {

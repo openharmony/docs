@@ -10,7 +10,7 @@ Data loss prevention (DLP) is a system solution provided to prevent data disclos
 ## Modules to Import
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 ```
 
 ## dlpPermission.getDLPGatheringPolicy
@@ -27,25 +27,25 @@ Obtains the DLP sandbox gathering policy. This API uses a promise to return the 
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Promise used to return the DLP sandbox aggregation policy obtained.|
+| Promise&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Promise used to return the DLP sandbox aggregation policy obtained. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -70,26 +70,26 @@ Obtains the DLP sandbox gathering policy. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Yes | Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -109,7 +109,7 @@ try {
 
 installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri: string): Promise&lt;DLPSandboxInfo&gt;
 
-Installs a DLP sandbox application for an application. This API uses a promise to return the application sandbox installed.
+Installs a DLP sandbox application for an application. This API uses a promise to return the sandbox application installed.
 
 **System API**: This is a system API.
 
@@ -119,35 +119,35 @@ Installs a DLP sandbox application for an application. This API uses a promise t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of the application.|
-| access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | Yes| Permission on the DLP file.|
-| userId | number | Yes| Current user ID, which is the OS account ID obtained by the account subsystem. The default super user ID is **100**.|
-| uri | string | Yes| URI of the DLP file.|
+| bundleName | string | Yes | Bundle name of the application. |
+| access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | Yes | Permission on the DLP file. |
+| userId | number | Yes | Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**. |
+| uri | string | Yes | URI of the DLP file. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Promise used to return the information about the sandbox application installed.|
+| Promise&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Promise used to return the information about the sandbox application installed. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -173,30 +173,30 @@ Installs a DLP sandbox application for an application. This API uses an asynchro
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of the application.|
-| access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | Yes| Permission on the DLP file.|
-| userId | number | Yes| Current user ID, which is the OS account ID obtained by the account subsystem. The default super user ID is **100**.|
-| uri | string | Yes| URI of the DLP file.|
-| callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Yes| Callback invoked to return the information about the sandbox application installed.|
+| bundleName | string | Yes | Bundle name of the application. |
+| access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | Yes | Permission on the DLP file. |
+| userId | number | Yes | Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**. |
+| uri | string | Yes | URI of the DLP file. |
+| callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Yes | Callback invoked to return the information about the sandbox application installed. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -227,34 +227,34 @@ Uninstalls a DLP sandbox application for an application. This API uses a promise
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of the application.|
-| userId | number | Yes| Current user ID, which is the OS account ID obtained by the account subsystem. The default super user ID is **100**.|
-| appIndex | number | Yes| Index of the DLP sandbox application.|
+| bundleName | string | Yes | Bundle name of the application. |
+| userId | number | Yes | Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**. |
+| appIndex | number | Yes | DLP sandbox index. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -282,29 +282,29 @@ Uninstalls a DLP sandbox application for an application. This API uses an asynch
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of the application.|
-| userId | number | Yes| Current user ID, which is the OS account ID obtained by the account subsystem. The default super user ID is **100**.|
-| appIndex | number | Yes| DLP sandbox appliction index, which is the value returned after **installDLPSandbox** is successfully called.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the uninstallation result.|
+| bundleName | string | Yes | Bundle name of the application. |
+| userId | number | Yes | Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**. |
+| appIndex | number | Yes | DLP sandbox application index, which is the value returned after **installDLPSandbox** is successfully called. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the uninstallation result. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
@@ -337,27 +337,27 @@ Subscribes to a DLP sandbox uninstall event.
 **System capability**: SystemCapability.Security.DataLossPrevention
 
 **Parameters**
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | Yes| Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event.|
-| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | Yes| Callback invoked when a sandbox application is uninstalled.|
+| type | 'uninstallDLPSandbox' | Yes | Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event. |
+| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | Yes | Callback invoked when a sandbox application is uninstalled. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -382,27 +382,27 @@ Unsubscribes from the DLP sandbox uninstall event.
 **System capability**: SystemCapability.Security.DataLossPrevention
 
 **Parameters**
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | Yes| Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event.|
-| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | No| Callback for the sandbox uninstall event. By default, this parameter is left blank, which unregisters all callbacks for the sandbox uninstall event.|
+| type | 'uninstallDLPSandbox' | Yes | Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event. |
+| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | No | Callback for the sandbox uninstall event. By default, this parameter is left blank, which unregisters all callbacks for the sandbox uninstall event. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 19100001 | Invalid parameter value. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -424,9 +424,9 @@ Provides APIs for managing DLP files. A **DLPFile** instance indicates a DLP fil
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name| Type| Read Only| Mandatory| Description|
+| Name | Type | Read Only | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpProperty | [DLPProperty](#dlpproperty) | No| Yes| Authorized user information.|
+| dlpProperty | [DLPProperty](#dlpproperty) | No | Yes | Authorized user information. |
 
 ### addDLPLinkFile
 
@@ -442,33 +442,33 @@ Adds a link file to the Filesystem in Userspace (FUSE). The link file is a virtu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to add.|
+| linkFileName | string | Yes | Name of the link file to add. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -517,28 +517,28 @@ Adds a link file to the FUSE. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to add.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| linkFileName | string | Yes | Name of the link file to add. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -592,26 +592,26 @@ Stops the read and write on the FUSE. This API uses a promise to return the resu
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -661,27 +661,27 @@ Stops the read and write on the FUSE. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -736,26 +736,26 @@ Resumes the read and write on the FUSE. This API uses a promise to return the re
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -806,27 +806,27 @@ Resumes the read and write on the FUSE. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -882,33 +882,33 @@ Replaces a link file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | linkFileName | string | Yes| Name of the link file to replace.|
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -960,28 +960,28 @@ Replaces a link file. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | linkFileName | string | Yes| Name of the link file to replace.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1038,33 +1038,33 @@ Deletes a link file from the FUSE. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | linkFileName | string | Yes| Name of the link file to delete.|
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1114,28 +1114,28 @@ Deletes a link file. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | linkFileName | string | Yes| Name of the link file to delete.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1190,21 +1190,21 @@ Recovers the plaintext of a DLP file. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | Yes| FD of the target plaintext file.|
+| plaintextFd | number | Yes | FD of the target plaintext file. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1213,16 +1213,16 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
-| 19100005 | Remote credential server error. |
-| 19100008 | Not DLP file. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100010 | DLP file is read-only. |
-| 19100011 | System service exception. |
+| 19100010 | The DLP file is read only. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1273,16 +1273,16 @@ Recovers the plaintext of a DLP file. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | Yes| FD of the target plaintext file.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| plaintextFd | number | Yes | FD of the target plaintext file. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1291,16 +1291,16 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
-| 19100005 | Remote credential server error. |
-| 19100008 | Not DLP file. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100010 | DLP file is read-only. |
-| 19100011 | System service exception. |
+| 19100010 | The DLP file is read only. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1359,26 +1359,26 @@ Closes this **DLPFile** instance. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1430,27 +1430,27 @@ Closes this **DLPFile** instance. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1505,23 +1505,23 @@ Generates a DLP file, which is an encrypted file that can be accessed only by au
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | Yes| FD of the plaintext file to be encrypted.|
-| ciphertextFd | number | Yes| FD of the encrypted file.|
-| property | [DLPProperty](#dlpproperty) | Yes| Authorized user information, which includes the authorized user list, owner account, and contact account information.|
+| plaintextFd | number | Yes | FD of the plaintext file to be encrypted. |
+| ciphertextFd | number | Yes | FD of the encrypted file. |
+| property | [DLPProperty](#dlpproperty) | Yes | Authorization information, which includes the authorized user list, owner account, and contact account information. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise used to return the result. If the operation is successful, a **DLPFile** instance is returned. Otherwise, **null** is returned.|
+| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise used to return the result. If the operation is successful, a **DLPFile** instance is returned. Otherwise, **null** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1530,14 +1530,14 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
-| 19100005 | Remote credential server error. |
+| 19100005 | Credential authentication server error. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1579,18 +1579,18 @@ Generates a DLP file, which is an encrypted file that can be accessed only by au
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | Yes| FD of the plaintext file to be encrypted.|
-| ciphertextFd | number | Yes| FD of the encrypted file.|
-| property | [DLPProperty](#dlpproperty) | Yes| Authorized user information, which includes the authorized user list, owner account, and contact account information.|
-| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance created.|
+| plaintextFd | number | Yes | FD of the plaintext file to be encrypted. |
+| ciphertextFd | number | Yes | FD of the encrypted file. |
+| property | [DLPProperty](#dlpproperty) | Yes | Authorization information, which includes the authorized user list, owner account, and contact account information. |
+| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes | Callback invoked to return the **DLPFile** instance created. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1599,14 +1599,14 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
-| 19100005 | Remote credential server error. |
+| 19100005 | Credential authentication server error. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1651,22 +1651,22 @@ Opens a DLP file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| ciphertextFd | number | Yes| FD of the encrypted file.|
-| appId | string | Yes| ID of the caller.|
+| ciphertextFd | number | Yes | FD of the encrypted file. |
+| appId | string | Yes | ID of the caller. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise used to return the result. If the operation is successful, a **DLPFile** instance is returned. Otherwise, **null** is returned.|
+| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise used to return the result. If the operation is successful, a **DLPFile** instance is returned. Otherwise, **null** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1675,10 +1675,10 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
-| 19100005 | Remote credential server error. |
-| 19100008 | Not DLP file. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 | 19100018 | Not authorized application. |
 | 19100019 | The DLP file has expired. |
 | 19100020 | No network connection. |
@@ -1686,7 +1686,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1734,17 +1734,17 @@ Opens a DLP file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| ciphertextFd | number | Yes| FD of the encrypted file.|
-| appId | string | Yes| ID of the caller.|
+| ciphertextFd | number | Yes | FD of the encrypted file. |
+| appId | string | Yes | ID of the caller. |
 | callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance opened.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1753,10 +1753,10 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 | 19100002 | Credential task error. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
-| 19100005 | Remote credential server error. |
-| 19100008 | Not DLP file. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
-| 19100011 | System service exception. |
+| 19100011 | The system ability works abnormally. |
 | 19100018 | Not authorized application. |
 | 19100019 | The DLP file has expired. |
 | 19100020 | No network connection. |
@@ -1764,7 +1764,7 @@ For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.m
 **Example**
 
 ```ts
-import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1810,10 +1810,10 @@ Represents the DLP sandbox information.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | Yes| No| Index of the DLP sandbox application.|
-| tokenID | number | Yes| No| Token ID of the DLP sandbox application.|
+| appIndex | number | Yes | No | Index of the DLP sandbox application. |
+| tokenID | number | Yes | No | Token ID of the DLP sandbox application. |
 
 ## DLPSandboxState
 
@@ -1823,10 +1823,10 @@ Represents the DLP sandbox identity information.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| No| Bundle name of the application.|
-| appIndex | number | Yes| No| Index of the DLP sandbox application.|
+| bundleName | string | Yes | No | Bundle name of the application. |
+| appIndex | number | Yes | No | Index of the DLP sandbox application. |
 
 ## AccountType
 
@@ -1836,10 +1836,10 @@ Enumerates the types of authorized accounts.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -------- | -------- | -------- |
-| CLOUD_ACCOUNT | 1 | Cloud account.|
-| DOMAIN_ACCOUNT | 2 | Domain account.|
+| CLOUD_ACCOUNT | 1 | Cloud account. |
+| DOMAIN_ACCOUNT | 2 | Domain account. |
 
 ## AuthUser
 
@@ -1849,12 +1849,12 @@ Represents the user authorization information.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name| Type| Read Only| Mandatory| Description|
+| Name | Type | Read Only | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| authAccount | string | No| Yes| Account of the user who can access the DLP file.|
-| authAccountType | [AccountType](#accounttype) | No| Yes| Type of the account.|
-| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | No| Yes| Permission granted to the user.|
-| permExpiryTime | number | No| Yes| Time when the authorization expires.|
+| authAccount | string | No | Yes | Account of the user who can access the DLP file. |
+| authAccountType | [AccountType](#accounttype) | No | Yes | Type of the account. |
+| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | No | Yes | Permission granted to the user. |
+| permExpiryTime | number | No | Yes | Time when the authorization expires. |
 
 ## DLPProperty
 
@@ -1864,16 +1864,16 @@ Represents the authorization information.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name| Type| Read Only| Mandatory| Description|
+| Name | Type | Read Only | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| ownerAccount | string | No| Yes| Account of the owner who can set the permission.|
-| ownerAccountID | string | No| Yes| Account ID of the owner.|
-| ownerAccountType | [AccountType](#accounttype) | No| Yes| Account type of the owner.|
-| authUserList | Array&lt;[AuthUser](#authuser)&gt; | No| No| List of users who are authorized to access the DLP file. By default, this parameter is left blank.|
+| ownerAccount | string | No | Yes | Account of the owner who can set the permission. |
+| ownerAccountID | string | No | Yes | Account ID of the owner. |
+| ownerAccountType | [AccountType](#accounttype) | No | Yes | Account type of the owner. |
+| authUserList | Array&lt;[AuthUser](#authuser)&gt; | No | No | List of users who are authorized to access the DLP file. By default, this parameter is left blank. |
 | contactAccount | string | No| Yes| Account of the contact.|
-| offlineAccess | boolean | No| Yes| Whether the file can be accessed offline.|
-| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | No| No| Permission granted to everyone. This parameter is left blank by default.|
-| expireTime<sup>11+</sup> | number | No| No| Timestamp when the file permission has expired. This parameter is left blank by default.|
+| offlineAccess | boolean | No | Yes | Whether the file can be accessed offline. |
+| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | No | No | Permission granted to everyone. This parameter is left blank by default. |
+| expireTime<sup>11+</sup> | number | No | No | Timestamp when the file permission has expired. This parameter is left blank by default. |
 
 ## GatheringPolicyType
 
@@ -1885,7 +1885,7 @@ Enumerates the DLP sandbox gathering policy types. **GATHERING** allows the DLP 
 
 **Parameters**
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -------- | -------- | -------- |
-| GATHERING | 1 | Allows the DLP files of the same permission type to be opened in a sandbox. For example, the files of the same permission type can be opened in tab pages of a window.|
-| NON_GATHERING | 2 | Allows the DLP files of different permission types to be opened in different sandboxes.|
+| GATHERING | 1 | Allows the DLP files of the same permission type to be opened in a sandbox. For example, the files of the same permission type can be opened in tab pages of a window. |
+| NON_GATHERING | 2 | Allows the DLP files of different permission types to be opened in different sandboxes. |
