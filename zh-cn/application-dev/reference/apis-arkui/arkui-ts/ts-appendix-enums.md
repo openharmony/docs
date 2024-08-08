@@ -756,39 +756,6 @@ Nullable\<T> {
 | CENTER | 位于父组件居中位置。 |
 | END | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
 
-## TextDataDetectorType<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称  | 描述                                   |
-| ----- | -------------------------------------- |
-| PHONE_NUMBER  | 电话号码 |
-| URL | 链接 |
-| EMAIL | 邮箱 |
-| ADDRESS | 地址 |
-
-## TextSpanType<sup>11+</sup>
-
-[Span](ts-basic-components-span.md)类型信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称 | 说明 |
-| -------- | -------- |
-| TEXT | Span为文字类型。 |
-| IMAGE | Span为图像类型。|
-| MIXED | Span为图文混合类型。|
-
-## TextResponseType<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称         | 描述            |
-| ---------- | ------------- |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
-
 ## OptionWidthMode<sup>11+</sup>枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -810,30 +777,6 @@ Nullable\<T> {
 | ------ | ------ | ------ | ------ | -------------------------------------- |
 | onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | 否 | 否 | 自定义选择菜单弹出时回调。 |
 | onDisappear | () => void | 否 | 否 | 自定义选择菜单关闭时回调。 |
-
-## SymbolEffectStrategy<sup>11+</sup>
-
-动效类型的枚举值。设置动效后启动即生效，无需触发。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| NONE | 无动效（默认值）。 |
-| SCALE | 整体缩放动效。                 |
-|  HIERARCHICAL  | 层级动效。  |
-
-## SymbolRenderingStrategy<sup>11+</sup>
-
-渲染模式的枚举值。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| SINGLE  | 单色模式（默认值）。<br/> 默认为黑色，可以设置一个颜色。<br/> 当用户设置多个颜色时，仅生效第一个颜色。 |
-| MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，不透明度设置不生效。|
-|  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个颜色。当用户设置多个颜色时，仅生效第一个颜色。<br/> 不透明度与图层相关，第一层100%、第二层50%、第三层20%。  |
 
 ## DismissReason<sup>12+</sup>
 
@@ -882,24 +825,6 @@ Nullable\<T> {
 | NO_FORCE_ROUND | 不取整计算。|
 | FORCE_CEIL | 取上整计算。|
 | FORCE_FLOOR | 取下整计算。|
-
-## StyledStringKey<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
-| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
-| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
-| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
-| LINE_HEIGHT | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。|
-| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
-| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
-| PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
-| IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
-| CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
-| USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
 
 ## TextDecorationStyle<sup>12+</sup>
 
@@ -961,17 +886,6 @@ Nullable\<T> {
 | ROTATION_180 | 应用方向为180度。|
 | ROTATION_270 | 应用方向为270度。|
 
-## TextDeleteDirection<sup>12+</sup>
-
-定义删除文本方向。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称    | 值   | 描述                               |
-| ------- | ---- | ---------------------------------- |
-| BACKWARD | 0    | 向后删除。 |
-| FORWARD    | 1    | 向前删除。 |
-
 ## BlurStyleActivePolicy<sup>13+</sup>
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
@@ -1013,3 +927,16 @@ Nullable\<T> {
 | SCROLL_BAR_FLING  |  5  | 滚动条拖拽结束后的带速度的惯性滑动。 |
 | SCROLLER  |  6  | Scroller的不带动效方法。 |
 | SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
+
+## ImageSpanAlignment枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                           |
+| -------- | ------------------------------ |
+| TOP      | 图片上边沿与行上边沿对齐。   |
+| CENTER   | 图片中间与行中间对齐。       |
+| BOTTOM   | 图片下边沿与行下边沿对齐。   |
+| BASELINE | 图片下边沿与文本BaseLine对齐。 |
