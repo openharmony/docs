@@ -325,7 +325,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 - 接口类型：js接口
 - 作用：调用后由VM主动触发判断当前是否适合进行一次full GC。后台场景、内存预期存活率低于设定值，则会触发，判断为敏感状态则不会触发。
 - 使用场景：开发者提示系统进行GC
-- 典型日志：无直接日志，仅可区分外部触发（`GCReason::EXTERNAL_TRIGGER`）
+- 典型日志：无直接日志，仅可区分外部触发（`GCReason::TRIGGER_BY_JS`）
 
 
 使用参考

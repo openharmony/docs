@@ -326,7 +326,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 - Type: JS interface
 - Description: Determines whether full GC is required. In the background scenario or if the expected survival rate is lower than the preset value, full GC is triggered. In performance-sensitive scenarios, full GC is not triggered.
 - Use scenario: The developer asks the system to perform GC.
-- Log keywords: There is no direct log. Only external trigger (**GCReason::EXTERNAL_TRIGGER**) can be found.
+- Log keywords: There is no direct log. Only external trigger (**GCReason::TRIGGER_BY_JS**) can be found.
 
 
 Example:
