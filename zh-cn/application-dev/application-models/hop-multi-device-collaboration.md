@@ -72,7 +72,6 @@
       } catch (err) {
         hilog.error(DOMAIN_NUMBER, TAG, 'createDeviceManager err: ' + JSON.stringify(err));
       }
-      ;
     }
 
     function getRemoteDeviceId(): string | undefined {
@@ -899,7 +898,6 @@
                         } catch (error) {
                           hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
                         }
-                        ;
                       }
                     }).catch((error: BusinessError) => {
                       hilog.error(DOMAIN_NUMBER, TAG, `get remote caller failed with ${error}`);
@@ -1032,7 +1030,6 @@
             } catch (error) {
               hilog.info(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
             }
-            ;
           }
           // ...
         }
@@ -1061,7 +1058,6 @@
         } catch (error) {
           hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
         }
-        ;
       }
     }
     ```
