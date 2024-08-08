@@ -1017,7 +1017,9 @@ notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知渠道。使用callback异步回调。
+设置指定应用的通知渠道。使用callback异步回调。
+
+设置前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1072,7 +1074,9 @@ notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCal
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
-设定指定应用的通知渠道。使用Promise异步回调。
+设置指定应用的通知渠道。使用Promise异步回调。
+
+设置前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1483,7 +1487,7 @@ notificationManager.getAllActiveNotifications().then((data: Array<notificationMa
 });
 ```
 
-## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+## notificationManager.getActiveNotificationByFilter<sup>11+</sup>
 
 getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallback\<NotificationRequest\>): void
 
@@ -1541,7 +1545,7 @@ let getActiveNotificationByFilterCallback = (err: BusinessError, data: notificat
 notificationManager.getActiveNotificationByFilter(filter, getActiveNotificationByFilterCallback);
 ```
 
-## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+## notificationManager.getActiveNotificationByFilter<sup>11+</sup>
 
 getActiveNotificationByFilter(filter: NotificationFilter): Promise\<NotificationRequest\>
 
@@ -3567,6 +3571,8 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。
 
+系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3617,6 +3623,8 @@ try{
 on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: (checkInfo: NotificationCheckInfo) => Promise\<NotificationCheckResult\>): void
 
 注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。使用Promise异步回调。
+
+系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4104,6 +4112,8 @@ notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
 getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<NotificationSlot>
 
 获取指定应用指定类型的通知渠道。使用Promise异步回调。
+
+获取前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
 **系统能力**：SystemCapability.Notification.Notification
 

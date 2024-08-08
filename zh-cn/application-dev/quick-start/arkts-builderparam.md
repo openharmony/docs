@@ -39,7 +39,7 @@
   ```ts
   @Component
   struct Child {
-    @Builder customBuilder() {}
+    @Builder customBuilder() {};
     // 使用父组件@Builder装饰的方法初始化子组件@BuilderParam
     @BuilderParam customBuilderParam: () => void = this.customBuilder;
 
@@ -69,17 +69,16 @@
   ![builderparam-demo1](figures/builderparam-demo1.png)
 
 
-- 需注意this指向正确。
+- 需要注意this的指向。
 
-  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。@Builder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向在Child的label，即“Child”。@Builder componentBuilder()通过():void=>{this.componentBuilder()}的形式传给子组件@BuilderParam customChangeThisBuilderParam，因为箭头函数的this指向的是宿主对象，所以label的值为“Parent”。
-
+以下示例对this的指向做了介绍。
 
   ```ts
   @Component
   struct Child {
-    label: string = `Child`
-    @Builder customBuilder() {}
-    @Builder customChangeThisBuilder() {}
+    label: string = `Child`;
+    @Builder customBuilder() {};
+    @Builder customChangeThisBuilder() {};
     @BuilderParam customBuilderParam: () => void = this.customBuilder;
     @BuilderParam customChangeThisBuilderParam: () => void = this.customChangeThisBuilder;
 
@@ -94,7 +93,7 @@
   @Entry
   @Component
   struct Parent {
-    label: string = `Parent`
+    label: string = `Parent`;
 
     @Builder componentBuilder() {
       Text(`${this.label}`)
@@ -102,8 +101,15 @@
 
     build() {
       Column() {
+        // 调用this.componentBuilder()时，this指向当前@Entry所装饰的Parent组件，即label变量的值为"Parent"。
         this.componentBuilder()
-        Child({ customBuilderParam: this.componentBuilder, customChangeThisBuilderParam: ():void=>{this.componentBuilder()} })
+        Child({
+          // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this指向的是子组件Child，即label变量的值为"Child"。
+          customBuilderParam: this.componentBuilder,
+          // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderPara，
+          // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent"。
+          customChangeThisBuilderParam: (): void => { this.componentBuilder() }
+        })
       }
     }
   }
@@ -120,12 +126,12 @@
 
 \@BuilderParam装饰的方法可以是有参数和无参数的两种形式，需与指向的\@Builder方法类型匹配。\@BuilderParam装饰的方法类型需要和\@Builder方法类型一致。
 
-
 ```ts
 class Tmp{
-  label:string = ''
+  label: string = '';
 }
-@Builder function overBuilder($$ : Tmp) {
+
+@Builder function overBuilder($$: Tmp) {
   Text($$.label)
     .width(400)
     .height(50)
@@ -134,12 +140,12 @@ class Tmp{
 
 @Component
 struct Child {
-  label: string = 'Child'
-  @Builder customBuilder() {}
+  label: string = 'Child';
+  @Builder customBuilder() {};
   // 无参数类型，指向的componentBuilder也是无参数类型
   @BuilderParam customBuilderParam: () => void = this.customBuilder;
   // 有参数类型，指向的overBuilder也是有参数类型的方法
-  @BuilderParam customOverBuilderParam: ($$ : Tmp) => void = overBuilder;
+  @BuilderParam customOverBuilderParam: ($$: Tmp) => void = overBuilder;
 
   build() {
     Column() {
@@ -152,7 +158,7 @@ struct Child {
 @Entry
 @Component
 struct Parent {
-  label: string = 'Parent'
+  label: string = 'Parent';
 
   @Builder componentBuilder() {
     Text(`${this.label}`)
@@ -188,9 +194,9 @@ struct Parent {
 @Component
 struct CustomContainer {
   @Prop header: string = '';
-  @Builder closerBuilder(){}
+  @Builder closerBuilder(){};
   // 使用父组件的尾随闭包{}(@Builder装饰的方法)初始化子组件@BuilderParam
-  @BuilderParam closer: () => void = this.closerBuilder
+  @BuilderParam closer: () => void = this.closerBuilder;
 
   build() {
     Column() {
@@ -234,3 +240,170 @@ struct CustomContainerUser {
 **图4** 示例效果图
 
 ![builderparam-demo4](figures/builderparam-demo4.png)
+
+### 使用全局和局部\@Builder初始化\@BuilderParam
+
+在自定义组件中，使用\@BuilderParam修饰的变量接收来着父组件通过\@Builder传递的内容进行初始化，因为父组件的\@Builder可以使用箭头函数的形式改变当前的this指向，所以当使用\@BuilderParam修饰的变量时，会展示出不同的内容。
+
+```ts
+@Component
+struct ChildPage {
+  label: string = `Child Page`;
+  @Builder customBuilder() {};
+  @BuilderParam customBuilderParam: () => void = this.customBuilder;
+  @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
+
+  build() {
+    Column() {
+      this.customBuilderParam()
+      this.customChangeThisBuilderParam()
+    }
+  }
+}
+
+const builder_value: string = 'Hello World';
+@Builder function overBuilder() {
+  Row() {
+    Text(`全局 Builder: ${builder_value}`)
+      .fontSize(20)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+
+@Entry
+@Component
+struct ParentPage {
+  label: string = `Parent Page`;
+
+  @Builder componentBuilder() {
+    Row(){
+      Text(`局部 Builder :${this.label}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      // 调用this.componentBuilder()时，this指向当前@Entry所装饰的ParentPage组件，所以label变量的值为"Parent Page"。
+      this.componentBuilder()
+      ChildPage({
+        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为"Child Page"。
+        customBuilderParam: this.componentBuilder,
+        // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderPara，
+        // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent Page"。
+        customChangeThisBuilderParam: (): void => { this.componentBuilder() }
+      })
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      // 调用全局overBuilder()时，this指向当前整个活动页，所以展示的内容为"Hello World"。
+      overBuilder()
+      ChildPage({
+        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向当前整个活动页，所以展示的内容为"Hello World"。
+        customBuilderParam: overBuilder,
+        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，this指向当前整个活动页，所以展示的内容为"Hello World"。
+        customChangeThisBuilderParam: overBuilder
+      })
+    }
+  }
+}
+```
+**图5** 示例效果图
+
+![builderparam-demo5](figures/builderparam-demo5.png)
+
+## 常见问题
+
+### 改变内容UI不刷新
+
+当调用自定义组件ChildPage时，把\@Builder作为参数通过this.componentBuilder的形式传递，当前this会指向自定义组件内部，所以在父组件里面改变label的值，自定义组件ChildPage是感知不到的。
+
+【反例】
+
+```ts
+@Component
+struct ChildPage {
+  @State label: string = `Child Page`;
+  @Builder customBuilder() {};
+  @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
+
+  build() {
+    Column() {
+      this.customChangeThisBuilderParam()
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentPage {
+  @State label: string = `Parent Page`;
+
+  @Builder componentBuilder() {
+    Row(){
+      Text(`Builder :${this.label}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      ChildPage({
+        customChangeThisBuilderParam: this.componentBuilder // 此处传递参数导致
+      })
+      Button('点击改变label内容')
+        .onClick(() => {
+          this.label = 'Hello World';
+        })
+    }
+  }
+}
+```
+
+使用箭头函数的形式把\@Builder传递进自定义组件ChildPage中，当前this指向会停留在父组件ParentPage里，所以在父组件里改变label的值，自定义组件ChildPage会感知到并重新渲染UI。
+
+【正例】
+
+```ts
+@Component
+struct ChildPage {
+  @State label: string = `Child Page`;
+  @Builder customBuilder() {};
+  @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
+
+  build() {
+    Column() {
+      this.customChangeThisBuilderParam()
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentPage {
+  @State label: string = `Parent Page`;
+
+  @Builder componentBuilder() {
+    Row(){
+      Text(`Builder :${this.label}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      ChildPage({
+        customChangeThisBuilderParam: () => { this.componentBuilder() }
+      })
+      Button('点击改变label内容')
+        .onClick(() => {
+          this.label = 'Hello World';
+        })
+    }
+  }
+}
+```

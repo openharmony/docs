@@ -243,7 +243,7 @@ struct Page {
 }
 ```
 
-In the preceding example, the state variable **this.translateObj.translateX** is used in multiple child components at the same level. When it changes, all these associated components are re-rendered. Since the changes of these components are the same, you can associate the state variable with their parent component to reduce the number of components re-rendered. Analysis reveals that all these child components are located in the **\<Column>** component under strcut **Page**. Therefore, you can associate the **translate** attribute to the **\<Column>** component instead.
+In the preceding example, the state variable **this.translateObj.translateX** is used in multiple child components at the same level. When it changes, all these associated components are re-rendered. Since the changes of these components are the same, you can associate the state variable with their parent component to reduce the number of components re-rendered. Analysis reveals that all these child components are located in the **\<Column>** component under struct **Page**. Therefore, you can associate the **translate** attribute to the **\<Column>** component instead.
 
 [Correct Usage]
 
@@ -295,11 +295,11 @@ struct Page1 {
 ## Properly Controlling the Number of Components Associated with Object State Variables
 
 
-When a complex object is defined as a state variable, take care to control the number of components associated with the object - a change to any property of the object will cause a re-render of these components, even when they do not directly use the changed property. To reduce redundant re-renders and help deliver a smooth experience, split the complex object as appropriate and control the number of components associated with the object. For details, see <!--Del-->[<!--DelEnd-->**Precisely Controlling Render Scope**<!--Del-->](../performance/precisely-control-render-scope.md)<!--DelEnd--> and [**Proper Use of State Management**](../quick-start/properly-use-state-management-to-develope.md).
+When a complex object is defined as a state variable, take care to control the number of components associated with the object - a change to any property of the object will cause a re-render of these components, even when they do not directly use the changed property. To reduce redundant re-renders and help deliver a smooth experience, split the complex object as appropriate and control the number of components associated with the object. For details, see [Precisely Controlling Render Scope](https://gitee.com/openharmony/docs/blob/master/en/application-dev/performance/precisely-control-render-scope.md) and [Proper Use of State Management](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/properly-use-state-management-to-develope.md).
 
 ## Querying the Number of Components Associated with a State Variable
 
-During application development, you can use HiDumper to view the number of components associated with a state variable for performance optimization. For details, see <!--Del-->[<!--DelEnd-->State Variable Component Location Tool Practice<!--Del-->](../performance/state_variable_dfx_pratice.md)<!--DelEnd-->.
+During application development, you can use HiDumper to view the number of components associated with a state variable for performance optimization. For details, see [State Variable Component Location Tool Practice](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/state_variable_dfx_pratice.md).
 
 
 ## Avoid Frequent Reads of State Variables in a Loop
@@ -370,4 +370,107 @@ struct Index {
   }
 }
 ```
-<!--no_check-->
+
+## Using Temporary Variables instead of State Variables
+
+During application development, you should reduce direct value changes to the state variables and compute data by using temporary variables.
+
+When a state variable changes, ArkUI queries the components that require the use of state variables and executes an update method to render the components. However, by computing the temporary variables instead of directly changing the state variables, ArkUI can query and render components only when the last state variable changes, reducing unnecessary behaviors and improving application performance. For details about the behavior of state variables, see [@State Decorator: State Owned by Component](arkts-state.md).
+
+[Incorrect Usage]
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  appendMsg(newMsg: string) {
+    // Performance Tracing
+    hiTraceMeter.startTrace('StateVariable', 1);
+    this.message += newMsg;
+    this.message += ';';
+    this.message += '<br/>';
+    hiTraceMeter.finishTrace('StateVariable', 1);
+  }
+
+  build() {
+    Column() {
+      Button ('Print Log')
+        .onClick(() => {
+          this.appendMsg('Change State Variables');
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+In this case, state variables are directly changed, triggering the computation for three times. The running duration is as follows.
+
+![](figures/hp_arkui_use_state_var.png)
+
+[Correct Usage]
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  appendMsg(newMsg: string) {
+    // Performance Tracing
+    hiTraceMeter.startTrace('TemporaryVariable', 2);
+    let message = this.message;
+    message += newMsg;
+    message += ';';
+    message += '<br/>';
+    this.message = message;
+    hiTraceMeter.finishTrace('TemporaryVariable', 2);
+  }
+
+  build() {
+    Column() {
+      Button ('Print Log')
+        .onClick(() => {
+          this.appendMsg('Change Temporary Variables');
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+In this case, temporary variables are used instead of state variables, triggering the computation for three times. The running duration is as follows.
+
+![](figures/hp_arkui_use_local_var.png)
+
+[Summary]
+| **Computation Method** | **Time Required (for Reference Only)** | **Description** |
+| ------ | ------- | ------------------------------------- |
+| Changing state variables | 1.01ms | Increases unnecessary query and rendering of ArkUI, causing poor performance. |
+| Using temporary variables for computing | 0.63ms | Streamlines ArkUI behaviors and improve application performance. |
