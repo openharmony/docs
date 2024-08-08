@@ -127,3 +127,67 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.3 Waterflow组件onScroll接口废弃变更
+
+**废弃原因**
+
+onScroll事件在Scroll组件和List、Grid、WaterFlow组件中回调时机不一样，Scroll组件在布局前回调，其他组件在布局后回调，开发者使用时，对回调时机可能会混淆。
+
+在API version 12，ArkUI提供了onWillScroll和onDidScroll两种回调时机更明确的接口。其中，Waterflow组件的onDidScroll接口可以完全替换onScroll接口，所以废弃Waterflow的onScroll接口。
+
+
+**废弃影响**
+
+该变更为兼容性变更。
+
+从API version 12开始，Waterflow的onScroll接口将废弃，推荐使用OnDidScroll接口替代。
+
+**起始 API Level**
+
+API 11
+
+**废弃发生版本**
+
+从OpenHarmony SDK 5.0.0.38版本开始。
+
+**废弃的接口/组件**
+
+Waterflow组件的OnScroll接口。
+
+**适配指导**
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State data: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+  build() {
+    Column({ space: 10 }) {
+      WaterFlow() {
+        ForEach(this.data, (item: number) => {
+          FlowItem() {
+          }
+          .height(100).width('100%')
+        })
+      }
+      .columnsGap(10)
+      .rowsGap(10)
+      .columnsTemplate("1fr 1fr")
+      .width("80%")
+      .height("100%")
+      // 变更前
+      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+        console.log('onScroll scrollOffset: ' + scrollOffset + ', scrollState: ' + scrollState)
+      })
+      // 变更后
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
+        console.log('onDidScroll scrollOffset: ' + scrollOffset + ', scrollState: ' + scrollState)
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
