@@ -16,13 +16,7 @@ DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我�
 
 ### SDK版本配置
 
-目前各SDK支持的版本如下：
-
-| 外设相关SDK | 接口类型 | 支持API版本 | 对应OpenHarmony/HarmonyOS版本 |
-| ------------ | ------------ | ------------ | ------------ |
-| @kit.DriverDevelopmentKit.d.ts | TS API接口 | API10及以上 | 4.0及以上 |
-| [USB DDK接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/usb-ddk-guidelines.md) | C API接口 | API10及以上 | 4.0及以上 |
-| [HID DDK接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/hid-ddk-guidelines.md) | C API接口 | API11及以上 | 4.1及以上 |
+扩展外设提供的ArkTs接口，所需SDK版本为API10及以上版本才可使用。
 
 ### HDC配置
 
@@ -37,9 +31,9 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 ## 接口说明
 
-扩展外设管理开放能力如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)。
+扩展外设管理基本能力如下，更多详情请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)。
 
-**表1** 扩展外设管理开放能力接口
+**表1** 扩展外设管理基本能力接口
 
 | 接口名                                                                                                                                                       | 描述                                                                                    |
 | -----------------------------------------------------------------------------------------------------------------------------------------------------------  | --------------------------------------------------------------------------------------- |
@@ -68,16 +62,20 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
 
-**注意：**
+    **注意：**
 
-> 开发驱动客户端，请选择Empty Ability模板。
->
-> 开发驱动服务端，请选择Native C++模板。
->
->同时开发驱动客户端和服务端，请选择Native C++模板。
+    > 开发驱动客户端，请选择Empty Ability模板。
+    >
+    > 开发驱动服务端，请选择Native C++模板。
+    >
+    >同时开发驱动客户端和服务端，请选择Native C++模板。
 
 
 2. 在文件中导入相关Kit，并声明想要绑定的USB设备的productId、vendorId以及与驱动通信的Code。
+
+    **说明：**
+
+    > 以下示例代码均写在entry/src/main/ets/pages/Index.ets文件中。
 
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -90,20 +88,16 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
     const vendorId: number = 4817;   // 请声明连接的USB设备的vendorId
     ```
 
-**注意：**
-
-> 以下示例代码均写在entry/src/main/ets/pages/Index.ets文件中。
-
 3. 定义message变量和远程对象变量，后续与驱动通信使用。
+
+    **说明：**
+
+    > 第3步开始，以下接口均在struct Index{}中定义。
 
     ```ts
     @State message: string = 'Hello';
     private remote: rpc.IRemoteObject | null = null;
     ```
-
-**注意：**
-
-> 第3步开始，以下接口均在struct Index{}中定义。
 
 4. 定义查询设备接口，通过queryDevices获取目标设备ID。
 
