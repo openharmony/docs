@@ -427,7 +427,7 @@
           - [Single Gesture](ui/arkts-gesture-events-single-gesture.md)
           - [Combined Gestures](ui/arkts-gesture-events-combined-gestures.md)
           - [Multi-level Gesture Events](ui/arkts-gesture-events-multi-level-gesture.md)
-      - - Using Customization Capabilities
+      - Using Customization Capabilities
         - [Customization Capability Overview](ui/arkts-user-defined.md)
         - Using Custom Nodes
           - [Custom Node Overview](ui/arkts-user-defined-node.md)
@@ -435,7 +435,7 @@
           - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
           - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
           - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
-      - - Using NDK APIs to Build UIs
+      - Using NDK APIs to Build UIs
         - [NDK API Overview](ui/ndk-build-ui-overview.md)
         - [Integrating with ArkTS Pages](ui/ndk-access-the-arkts-page.md)
         - - Adding Interaction Events
