@@ -501,7 +501,7 @@ Codec MIME类型枚举。
 
 ## PlaybackInfoKey<sup>12+</sup>
 
-媒体信息描述枚举。
+播放信息描述枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1290,7 +1290,7 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 
 getPlaybackInfo(): Promise\<PlaybackInfo>
 
-获取音视频轨道信息，可以在prepared/playing/paused状态调用。通过Promise获取返回值。
+获取播放过程信息，可以在prepared/playing/paused状态调用。通过Promise获取返回值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2608,7 +2608,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 ## PlaybackInfo<sup>12+</sup>
 
-通过key-value方式获取媒体信息。
+通过key-value方式获取播放信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
