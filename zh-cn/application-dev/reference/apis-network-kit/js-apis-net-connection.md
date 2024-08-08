@@ -2444,8 +2444,8 @@ import { connection } from '@kit.NetworkKit';
 import { wifiManager } from '@kit.ConnectivityKit';
 
 let config: wifiManager.WifiDeviceConfig = {
-  ssid: "wlan0",
-  preSharedKey: "password";
+  ssid: "TEST",
+  preSharedKey: "**********";
   securityType: 1
 };
 let metworkId: number = await wifiManager.addCandidateConfig(config)
