@@ -703,7 +703,7 @@ closeCustomDialog(dialogId: number): void
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
 | DEFAULT  | 0    | Toast 显示在应用内。   |
-| TOP_MOST | 1    | Toast 显示在应用之上。 |
+| TOP_MOST<sup>(deprecated)</sup> | 1    | Toast 显示在应用之上。从API version 11开始支持，从API version 12开始废弃。建议使用ToastShowMode.DEFAULT替代。 |
 
 ## ShowDialogOptions
 
