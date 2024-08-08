@@ -929,7 +929,7 @@ type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | '
 **原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
-
+<!--RP1-->
 | 参数名            | 类型   | 必填 | 说明                           |
 | ---------------- | ------ | ------------------------------ | ------------------------------ |
 | unknown          | string | 是 | 没有明确使用场景，最低优先级。 |
@@ -941,6 +941,7 @@ type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | '
 | media            | string | 是 | 用于多媒体场景。         |
 | physicalFeedback | string | 是 | 用于物理反馈场景。       |
 | simulateReality  | string | 是 | 用于模拟现实场景。       |
+<!--RP1-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 
