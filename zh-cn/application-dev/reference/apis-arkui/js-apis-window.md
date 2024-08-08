@@ -1582,6 +1582,75 @@ try {
 }
 ```
 
+### setWindowLayoutFullScreen<sup>9+</sup>
+
+setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
+
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名             | 类型    | 必填 | 说明                                                                                                          |
+| ------------------ | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
+| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen = true;
+      try {
+        let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
+        promise.then(() => {
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
 ### setImmersiveModeEnabledState<sup>12+</sup>
 
 setImmersiveModeEnabledState(enabled: boolean): void
@@ -5920,75 +5989,6 @@ export default class EntryAbility extends UIAbility {
             return;
           }
           console.info('Succeeded in setting the window layout to full-screen mode.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
-}
-```
-
-### setWindowLayoutFullScreen<sup>9+</sup>
-
-setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
-
-设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
-沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 参数名             | 类型    | 必填 | 说明                                                                                                          |
-| ------------------ | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
-| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                                                                               |
-| 1300003  | This window manager service works abnormally.                                                                |
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let isLayoutFullScreen = true;
-      try {
-        let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
-        promise.then(() => {
-          console.info('Succeeded in setting the window layout to full-screen mode.');
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
         });
       } catch (exception) {
         console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
