@@ -1,6 +1,6 @@
 # 概述
 
-- 应用链接（[Deep Linking](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/deep-linking-startup.md)[、App Linking](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/app-linking-startup.md)）是系统推荐的指向性[应用跳转](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/link-between-apps-overview.md")方案，开发者可以通过在[module.json5配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md)申明[skills中的URI](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md#skills%25E6%25A0%2587%25E7%25AD%25BE)对外暴露可跳入的应用链接。
+- 应用链接（[Deep Linking](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/deep-linking-startup.md)[、App Linking](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/app-linking-startup.md)）是系统推荐的指向性[应用跳转](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/link-between-apps-overview.md)方案，开发者可以通过在[module.json5配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md)申明[skills中的URI](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md#skills标签)对外暴露可跳入的应用链接。
 
 - URI中的linkFeature字段，用于标识通过应用链接跳转后的标准化应用功能（如登录、支付、分享等），取值为系统预定义的linkFeature值，配置时请注意保持linkFeature与实际链接功能相对应。
 
