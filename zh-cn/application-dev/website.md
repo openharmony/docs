@@ -494,7 +494,7 @@
             - [svg动画](ui/ui-js-animate-svg.md)
           - JS动画<!--ui-js-animation-js-->
             - [组件动画](ui/ui-js-animate-component.md)
-            - 插值器动画
+            - 插值器动画<!--ui-js-interpolator-animation-->
               - [动画动效](ui/ui-js-animate-dynamic-effects.md)
               - [动画帧](ui/ui-js-animate-frame.md)
         - [自定义组件](ui/ui-js-custom-components.md)
