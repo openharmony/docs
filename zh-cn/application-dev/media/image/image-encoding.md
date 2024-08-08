@@ -20,6 +20,10 @@
 2. 设置编码输出流和编码参数。
 
     - format为图像的编码格式；quality为图像质量，范围从0-100，100为最佳质量
+
+      > **说明：**
+      > 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，PackingOption.format设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
+
       ```ts
       let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
       ```
