@@ -1,13 +1,13 @@
 # Subscribing to Address Sanitizer Events (ArkTS)
 
-## **Available APIs**
+## Available APIs
 
 For details about how to use the APIs (such as parameter usage constraints and value ranges), see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 | **API**                                             | **Description**                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to subscribe to application events.|
-| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events.|
+| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to subscribe to application events. |
+| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events. |
 
 ## **How to Develop**
 
@@ -24,7 +24,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
                libentry:
                  - index.d.ts
            - CMakeLists.txt
-           - hello.cpp
+           - napi_init.cpp
          ets:
            - entryability:
                - EntryAbility.ts
@@ -35,8 +35,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
 2. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, import the dependent modules.
 
    ```ts
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
-   import hilog from '@ohos.hilog';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
 3. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, add a watcher in **onCreate** to subscribe to system events. The sample code is as follows:
@@ -83,7 +82,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
    export const test: () => void;
    ```
 
-5. In the **entry/src/main/cpp/hello.cpp** file, implement the array bounds write scenario and provide Node-API for the application layer code to call. The sample code is as follows:
+5. In the **entry/src/main/cpp/napi_init.cpp** file, implement the array bounds write scenario and provide Node-API for the application layer code to call. The sample code is as follows:
 
    ```c++
    #include "napi/native_api.h"
@@ -96,11 +95,37 @@ The following describes how to subscribe to an address sanitizer event for an ar
        return {};
    }
 
+   static napi_value Add(napi_env env, napi_callback_info info)
+   {
+       size_t argc = 2;
+       napi_value args[2] = {nullptr};
+
+       napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+
+       napi_valuetype valuetype0;
+       napi_typeof(env, args[0], &valuetype0);
+
+       napi_valuetype valuetype1;
+       napi_typeof(env, args[1], &valuetype1);
+
+       double value0;
+       napi_get_value_double(env, args[0], &value0);
+
+       double value1;
+       napi_get_value_double(env, args[1], &value1);
+
+       napi_value sum;
+       napi_create_double(env, value0 + value1, &sum);
+
+       return sum;
+
+   }
+
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
    {
        napi_property_descriptor desc[] = {
-           {"test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr }
+           { "test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr }
        };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
@@ -114,8 +139,8 @@ The following describes how to subscribe to an address sanitizer event for an ar
        .nm_register_func = Init,
        .nm_modname = "entry",
        .nm_priv = ((void*)0),
-       .reserved = {0},
-   }
+       .reserved = { 0 },
+   };
 
    extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
    {
@@ -126,16 +151,22 @@ The following describes how to subscribe to an address sanitizer event for an ar
 6. Edit the **entry/src/main/ets/pages/Index.ets** file. The sample code is as follows:
 
    ```ts
-   import testNapi form 'libentry.so'
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import testNapi from 'libentry.so';
 
    @Entry
    @Component
    struct Index {
+     @State message: string = 'Hello World';
+
      build() {
        Row() {
-         Column() {
-           Button("address-sanitizer").onClick(() = > {
-             testNapi.test();
+       Column() {
+         Text(this.message)
+           .fontSize(50)
+           .fontWeight(FontWeight.Bold)
+           .onClick(() => {
+             hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
            })
          }
          .width('100%')
@@ -145,7 +176,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
    }
    ```
 
-7. In DevEco Studio, choose **entry**, click **Edit Configurations**, select **Address Sanitizer**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+7. In DevEco Studio, choose **entry**, click **Edit Configurations**, select **Diagnostics**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent onReceive: domain=OS
