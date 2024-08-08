@@ -1045,6 +1045,18 @@ Allows an application to set and query the application handling state.
 
 **Valid since**: 9
 
+### ohos.permission.GET_DISPOSED_APP_STATUS
+
+Allows an application to obtain the disposed application status.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.FILE_ACCESS_MANAGER
 
 Allows a file management application to access user data files through the FAF.
@@ -1093,7 +1105,7 @@ Allows an application to listen for input events.
 
 **Valid since**: 7
 
-**Changelog**: The permission level is system_core in API versions 7 to 11, and system_basic since API versions 12.
+**Changelog**: The permission level is **system_core** in API versions 7 to 11 and **system_basic** since API versions 12.
 
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -1121,7 +1133,7 @@ Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
-Allows an application to obtain detailed security event data.
+Allows an application to obtain detailed security event information.
 
 **Permission level**: system_core
 
@@ -1303,7 +1315,7 @@ Allows an application to manage the download sessions.
 
 ### ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
-Allows an application to obtain distributed account information.
+Allows an application to obtain information about distributed accounts.
 
 **Permission level**: system_basic
 
@@ -1315,7 +1327,7 @@ Allows an application to obtain distributed account information.
 
 ### ohos.permission.GET_LOCAL_ACCOUNTS
 
-Allows an application to obtain local account information.
+Allows an application to obtain information about local accounts.
 
 **Permission level**: system_basic
 
@@ -2587,7 +2599,7 @@ Allows an application to intercept input events.
 
 **Valid since**: 11
 
-**Changelog**: The permission level is system_core in API versions 11, and system_basic since API versions 12.
+**Changelog**: The permission level is **system_core** in API version 11 and **system_basic** since API versions 12.
 
 ### ohos.permission.RECORD_VOICE_CALL
 
@@ -3569,53 +3581,41 @@ Allows an application to access the mappings between applications and domain nam
 
 Allows a system application to start the File Manager application to open files or folders.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
 
 ### ohos.permission.PROCESS_FILE_COPY_PASTE
 
 Allows a system application to start the File Manager application to copy, cut, and paste files.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
 
 ### ohos.permission.CLEAR_RECYCLEBIN
 
-Allow a system application to start the File Manager application to clear the trash.
+Allows a system application to start the File Manager application to clear the trash.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
 
 ### ohos.permission.GET_FILE_THUMBNAIL
 
-Allow a system application to obtain file thumbnails.
-
-**Permission level**：system_basic
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：12
-
-### ohos.permission.NETWORK_DHCP
-
-Allows a system application to apply for IP address from the DHCP server.
+Allows a system ability to obtain file thumbnails.
 
 **Permission level**: system_basic
 
@@ -3846,6 +3846,42 @@ Allows a system service to enable distributed hardware resources.
 **Enable via ACL**: false
 
 **Valid since**: 11
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+Allows an application to install beta applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
+
+Allows a system ability to send screen rotation events to applications or other system abilities.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
+
+Allows a system ability to send the projection cable plug-in and plug-out events to applications or other system abilities.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
 
 ## user_grant Permissions (Available via ACL)
 
@@ -4140,16 +4176,3 @@ Allows an application to access the **Desktop** directory and its subdirectories
 **Enable via ACL**: true
 
 **Valid since**: 11
-
-### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
-
-Allows an application to install beta applications.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
