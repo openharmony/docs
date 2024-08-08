@@ -540,10 +540,10 @@ Error: signature verification failed due to not trusted app source.
 
 1. 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
 2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
-```
-//UDID获取命令
-hdc shell bm get -u
-```
+	```
+	//UDID获取命令
+	hdc shell bm get -u
+	```
 
 
 ### 9568289 权限请求失败导致安装失败
@@ -665,7 +665,6 @@ proxyData标签requiredReadPermission和requiredWritePermission属性验证失�
 **可能原因**
 
 用户工程module.json中，proxyData标签requiredReadPermission和requiredWritePermission属性验证失败，这两个属性要求system_basic或system_core权限等级。
-![示例图](figures/zh-cn_image_9568316_1.png)
 
 **处理步骤**
 
@@ -684,7 +683,6 @@ proxyData标签uri属性验证失败。
 **可能原因**
 
 用户工程module.json中，proxyData标签uri属性验证失败，不满足uri格式要求。
-![示例图](figures/zh-cn_image_9568315_1.png)
 
 **处理步骤**
 
@@ -702,7 +700,7 @@ Error: install debug type not same.
 
 **可能原因**
 
-1. 开发者使用IDE的debug按钮安装了应用，后面打包之后又通过hdc install方式安装。
+开发者使用IDE的debug按钮安装了应用，后面打包之后又通过hdc install方式安装。
 
 **处理步骤**
 
@@ -720,7 +718,7 @@ bundleType错误导致应用安装失败。
 
 **可能原因**
 
-1. 新安装应用的的bundleType与已安装的有相同bundleName应用不一致。
+新安装应用的的bundleType与已安装的有相同bundleName应用不一致。
        
 **处理步骤**
 
@@ -740,15 +738,15 @@ UserID 0用户只允许安装singleton权限应用，singleton权限应用只允
 
 **可能原因**
 
-1. singleton权限应用安装未指定UserID 0。
+singleton权限应用安装未指定UserID 0。
 
 **处理步骤**
 
 1. 应用是singleton权限，安装时指定UserID 0。
-```
-//指定userId安装命令
-hdc install -p hap名.hap -u 0
-```
+	```
+	//指定userId安装命令
+	hdc install -p hap名.hap -u 0
+	```
 
 
 ### 9568263 无法降级安装
@@ -762,7 +760,7 @@ Error: install version downgrade.
 
 **可能原因**
 
-1. 正在安装应用的VersionCode小于系统中已安装应用的VersionCode。
+正在安装应用的VersionCode小于系统中已安装应用的VersionCode。
 
 **处理步骤**
 
@@ -780,7 +778,7 @@ Error: device type is not supported.
 
 **可能原因**
 
-1. 正在安装的应用不支持当前设备类型。
+正在安装的应用不支持当前设备类型。
 
 **处理步骤**
 
@@ -805,14 +803,14 @@ Error: isolationMode does not match the system.
 **处理步骤**
 
 1. 按照设备的隔离模式配置HAP配置文件isolationMode属性。  
-```
-//查询设备persist.bms.supportIsolationMode值，若返回errNum is:106说明没配置
-hdc shell
-param get persist.bms.supportIsolationMode
-//配置设备persist.bms.supportIsolationMode值
-hdc shell
-param set persist.bms.supportIsolationMode [true|false]
-```
+	```
+	//查询设备persist.bms.supportIsolationMode值，若返回errNum is:106说明没配置
+	hdc shell
+	param get persist.bms.supportIsolationMode
+	//配置设备persist.bms.supportIsolationMode值
+	hdc shell
+	param set persist.bms.supportIsolationMode [true|false]
+	```
 
 
 ### 9568315 数据代理的uri属性错误
@@ -826,15 +824,15 @@ Error: uri in proxy data is wrong.
 
 **可能原因**
 
-1. uri不满足格式规范。
+uri不满足格式规范。
 
 **处理步骤**
 
 1. 确认uri满足格式规范。
-```
-//uri格式规范
-不同数据代理的uri不可重复，且需要满足datashareproxy://当前应用包名/xxx的格式
-```
+	```
+	//uri格式规范
+	不同数据代理的uri不可重复，且需要满足datashareproxy://当前应用包名/xxx的格式
+	```
 
 
 ### 9568310 兼容策略不同      
@@ -848,7 +846,7 @@ Error: compatible policy not same.
 
 **可能原因**
 
-1. 设备中已安装相同包名的hap包。
+设备中已安装相同包名的hap包。
 
 **处理步骤**
 
@@ -866,7 +864,7 @@ Error: bundle manager service is died.
 
 **可能原因**
 
-1. 使用bm install -p ***.hap方式安装预置应用会杀掉正在运行的应用，导致异常（例如foundation进程重启）。
+使用bm install -p ***.hap方式安装预置应用会杀掉正在运行的应用，导致异常（例如foundation进程重启）。
 
 **处理步骤**
 
