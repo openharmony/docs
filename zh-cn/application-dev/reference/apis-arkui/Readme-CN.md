@@ -22,7 +22,7 @@
     - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
     - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
     - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
-    - [@ohos.router (页面路由)](js-apis-router.md)
+    - [@ohos.router (页面路由)(不推荐)](js-apis-router.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
     <!--Del-->

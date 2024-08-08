@@ -36,7 +36,7 @@
       - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 设置组件导航和页面路由
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
-    - [页面路由 (@ohos.router)](arkts-routing.md)
+    - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
