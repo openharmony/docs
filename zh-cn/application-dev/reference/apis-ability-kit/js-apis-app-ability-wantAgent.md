@@ -1215,7 +1215,7 @@ try {
 | UNKNOWN_TYPE      | 0 | 不识别的类型。            |
 | START_ABILITY     | 1 | 开启一个有页面的Ability。 |
 | START_ABILITIES   | 2 | 开启多个有页面的Ability。 |
-| START_SERVICE     | 3 | 开启一个无页面的ability。 |
+| START_SERVICE     | 3 | 开启一个无页面的Ability（仅在FA模型下生效）。 |
 | SEND_COMMON_EVENT | 4 | 发送一个公共事件。        |
 
 
