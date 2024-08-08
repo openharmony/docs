@@ -9,6 +9,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 下图展示了AudioCapturer的状态变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应的行为。需要注意的是在确定的状态执行不合适的方法可能导致AudioCapturer发生错误，建议开发者在调用状态转换的方法前进行状态检查，避免程序运行产生预期以外的结果。
 
 **图1** AudioCapturer状态变化示意图
+
 ![AudioCapturer status change](figures/audiocapturer-status-change.png)
 
 使用on('stateChange')方法可以监听AudioCapturer的状态变化，每个状态对应值与说明见[AudioState](../../reference/apis-audio-kit/js-apis-audio.md#audiostate8)。
