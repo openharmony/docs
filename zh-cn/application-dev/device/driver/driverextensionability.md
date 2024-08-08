@@ -12,6 +12,13 @@
 
 请参考[扩展外设管理客户端开发指导](externaldevice-guidelines.md)中的环境搭建。
 
+### SDK版本配置
+
+| NDK接口 | SDK版本 |
+|---------|--------|
+| USB DDK | API10及以上 |
+| HID DDK | API11及以上 |
+
 ## 开发步骤
 
 开发者在实现一个驱动时，需要在DevEco Studio工程中手动新建一个DriverExtensionAbility，具体步骤如下。
@@ -157,9 +164,9 @@
     }
     ```
 
-## DDK能力
+## 扩展设备能力
 
-扩展外设为驱动开发提供了HID DDK和USB DDK两种能力；
+扩展外设管理提供了HID DDK和USB DDK两种能力，用于驱动开发；
 
 具体使用方法，请参考：
 
@@ -170,11 +177,9 @@
 
 应用需要配置签名文件才能安装到我们的设备上，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
 
-如果使用HID/USB DDK请添加对应权限，具体权限请查看上方开发指导；
+如果使用HID/USB DDK请添加对应权限，具体权限请查看上方开发指导。
 
 自动签名方法以及权限配置方法，请参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
-
-如果是开发HarmonyOs应用，则涉及[HarmonyOS应用/服务发布](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-publish-app-0000001053223745-V5);
 
 ## 开发实例
 
