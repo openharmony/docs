@@ -1596,25 +1596,25 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名             | 类型    | 必填 | 说明                                                                                                          |
-| ------------------ | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
-| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
+| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
-| 错误码ID | 错误信息                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                                                                               |
-| 1300003  | This window manager service works abnormally.                                                                |
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
