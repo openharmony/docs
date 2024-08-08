@@ -396,6 +396,10 @@ struct Index {
 
 - 对象整体改变，但监听的属性不变时，不触发\@Monitor回调。
 
+下面的示例按照Step1-Step2-Step3的顺序点击，表现为代码注释中的行为。
+
+如果只点击Step2或Step3，改变name、age的值，此时会触发onNameChange和onAgeChange方法。
+
 ```ts
 @ObservedV2
 class Info {
@@ -427,15 +431,15 @@ struct Index {
   info: Info = new Info("Tom", 25);
   build() {
     Column() {
-      Button("1、Only change name")
+      Button("Step1、Only change name")
         .onClick(() => {
           this.info.person = new Person("Jack", 25);  // 能够触发onNameChange方法，不触发onAgeChange方法
         })
-      Button("2、Only change age")
+      Button("Step2、Only change age")
         .onClick(() => {
           this.info.person = new Person("Jack", 18);  // 能够触发onAgeChange方法，不触发onNameChange方法
         })
-      Button("3、Change name and age")
+      Button("Step3、Change name and age")
         .onClick(() => {
           this.info.person = new Person("Lucy", 19);  // 能够触发onNameChange、onAgeChange方法
         })
