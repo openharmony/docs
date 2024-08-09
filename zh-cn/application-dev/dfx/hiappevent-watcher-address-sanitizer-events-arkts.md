@@ -95,32 +95,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
        return {};
    }
 
-   static napi_value Add(napi_env env, napi_callback_info info)
-   {
-       size_t argc = 2;
-       napi_value args[2] = {nullptr};
-
-       napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-
-       napi_valuetype valuetype0;
-       napi_typeof(env, args[0], &valuetype0);
-
-       napi_valuetype valuetype1;
-       napi_typeof(env, args[1], &valuetype1);
-
-       double value0;
-       napi_get_value_double(env, args[0], &value0);
-
-       double value1;
-       napi_get_value_double(env, args[1], &value1);
-
-       napi_value sum;
-       napi_create_double(env, value0 + value1, &sum);
-
-       return sum;
-
-   }
-
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
    {
