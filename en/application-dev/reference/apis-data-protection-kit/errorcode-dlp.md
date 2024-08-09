@@ -17,7 +17,7 @@ Invalid parameter values are detected.
 
 **Possible Causes**
 
-- The account is empty or exceeds 1024 characters.
+- The value of **account** is empty or exceeds 1024 characters.
 
 - The account type is incorrect.
 
@@ -126,7 +126,7 @@ Check the credential authentication server and try again.
 
 **Error Message**
 
-No permission to invoke this api, it is for DLP sandbox app.
+No permission to call this API, which is available only for DLP sandbox applications.
 
 **Description**
 
@@ -145,7 +145,7 @@ The caller must be a DLP sandbox application.
 
 **Error Message**
 
-No permission to invoke this api, it is not for DLP sandbox app.
+No permission to call this API, which is available only for non-DLP sandbox applications.
 
 **Description**
 
@@ -164,7 +164,7 @@ The caller cannot be a DLP sandbox application.
 
 **Error Message**
 
-File is not DLP file.
+The file is not a DLP file.
 
 **Description**
 
@@ -183,7 +183,7 @@ Use a DLP file.
 
 **Error Message**
 
-Operate DLP file fail.
+Failed to operate the DLP file.
 
 **Description**
 
@@ -210,7 +210,7 @@ The operation on the DLP file fails.
 
 **Error Message**
 
-DLP file is read only.
+The DLP file is read only.
 
 **Description**
 
@@ -231,7 +231,7 @@ Check the permission on the file.
 
 **Error Message**
 
-The system ability work abnormally.
+The system ability works abnormally.
 
 **Description**
 
@@ -277,11 +277,11 @@ Try again later or restart the device.
 
 **Error Message**
 
-User has no permission.
+The user does not have the permission.
 
 **Description**
 
-The user does not have the permission to access the file.
+The user has no permission.
 
 **Solution**
 
@@ -292,7 +292,7 @@ Check the user permissions.
 
 **Error Message**
 
-Account not login.
+Account not logged in.
 
 **Description**
 
@@ -307,7 +307,7 @@ Log in with the account.
 
 **Error Message**
 
-System need to be upgraded.
+Upgrade required.
 
 **Description**
 
@@ -322,7 +322,7 @@ Upgrade the system.
 
 **Error Message**
 
-Uri does not exist in want.
+uri missing in want.
 
 **Description**
 
@@ -337,7 +337,7 @@ Set parameters correctly.
 
 **Error Message**
 
-DisplayName does not exist in want (under parameters).
+displayName missing in want.
 
 **Description**
 

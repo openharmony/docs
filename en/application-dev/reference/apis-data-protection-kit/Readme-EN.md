@@ -1,4 +1,4 @@
-# Data Loss Prevention Kit API Reference
+# Data Protection Kit (Data Protection Service)
 
 - ArkTS APIs
   - [@ohos.dlpPermission (DLP)](js-apis-dlppermission.md)

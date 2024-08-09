@@ -1,6 +1,6 @@
-# Introduction to DLP Kit
+# Introduction to the DLP Service
 
-Data Loss Prevention (DLP) Kit is a system solution provided to prevent leakage of sensitive data. It provides capabilities for file access management, encryption of the data stored, and access authorization. The data owner can grant the permission (read only, edit, or full control) on a confidential file based on account authentication. The confidential file is encrypted and stored in ciphertext. Only the user who has passed the device-cloud authentication using a DLP-capable device can access or modify the file.
+The Data Loss Prevention (DLP) service is a system-level solution provided to prevent data disclosure. It provides capabilities for cross-device file access management, encrypted storage, and access authorization. The data owner can grant the permission (read only, edit, or full control) on a confidential file based on account authentication. The confidential file is encrypted and stored in ciphertext. Only the user who has passed the device-cloud authentication using a DLP-capable device can access or modify the file.
 
 DLP is a system solution. You can implement complete DLP capabilities with little or no adaptation.
 
