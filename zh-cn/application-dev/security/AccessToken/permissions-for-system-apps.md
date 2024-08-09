@@ -3649,6 +3649,30 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_ACCESSORY
+
+允许应用获取配件信息、向配件发送数据及获取配件回复的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.COLLECT_ACCESSORY_LOG
+
+允许应用获取配件日志。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
