@@ -27,38 +27,38 @@
 
 ## 接口说明
 
-详细的接口说明请参考[暂未完成](../reference/apis-arkdata/_r_d_b.md)。
+详细的接口说明请参考[UDMF接口文档](../reference/apis-arkdata/_u_d_m_f.md)。
 
-| 接口名称 | 描述                                             |
-| -------- |------------------------------------------------|
-| OH_Utd* OH_Utd_Create(const char* typeId) | 创建一个指向统一数据类型描述符OH_Utd的指针。                      |
-| void OH_Utd_Destroy(OH_Utd* pThis) | 销毁指向统一数据类型描述符OH_Utd的指针。                        |
-| const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count) | 通过文件后缀名获取标准化数据类型ID。 |
-| const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count) | 通过MIME类型获取标准化数据类型ID。|
-| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2) | 判断两种标准化数据类型是否相等。                               |
-| void OH_Utd_DestroyStringList(const char** list, unsigned int count) | 销毁字符串列表数据。                                     |
-| OH_UdsHyperlink* OH_UdsHyperlink_Create() | 创建一个指向标准化数据结构超链接类型OH_UdsHyperlink的指针。          |
-| void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis) | 销毁指向标准化数据结构超链接类型OH_UdsHyperlink的指针。            |
-| const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的标准化数据类型ID。                  |
-| const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的链接URL。                      |
-| const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的链接内容描述。                     |
-| int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url) | 设置OH_UdsHyperlink中的链接URL。                      |
-| int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | 设置OH_UdsHyperlink中的链接内容描述。|
-| OH_UdmfData* OH_UdmfData_Create() | 创建一个指向统一数据对象OH_UdmfData的指针。                    |
-| void OH_UdmfData_Destroy(OH_UdmfData* pThis) | 销毁指向统一数据对象OH_UdmfData的指针。                      |
-| int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | 向OH_UdmfData中增加一条OH_UdmfRecord数据记录。|
-| bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type) | 判断统一数据对象OH_UdmfData是否存在指定类型。                   |
-| OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | 获取OH_UdmfData中全部的数据记录。 |
-| OH_UdmfRecord* OH_UdmfRecord_Create() | 创建一个指向统一数据记录OH_UdmfRecord的指针。                  |
-| void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis) | 销毁指向统一数据记录OH_UdmfRecord的指针。                    |
-| int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 向OH_UdmfRecord添加超链接类型数据。                       |
-| char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count) | 获取OH_UdmfRecord中全部的数据类型。                       |
-| int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 获取OH_UdmfRecord中超链接类型数据。                       |
-| int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | 从UDMF数据库中获取数据                                  |
-| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen) | 向UDMF数据库中写入数据                                  |
+| 接口名称 | 描述                                    |
+| -------- |---------------------------------------|
+| OH_Utd* OH_Utd_Create(const char* typeId) | 创建一个指向统一数据类型描述符OH_Utd的指针。             |
+| void OH_Utd_Destroy(OH_Utd* pThis) | 销毁指向统一数据类型描述符OH_Utd的指针。               |
+| const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count) | 通过文件后缀名获取标准化数据类型ID。                   |
+| const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count) | 通过MIME类型获取标准化数据类型ID。                  |
+| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2) | 判断两种标准化数据类型是否相等。                      |
+| void OH_Utd_DestroyStringList(const char** list, unsigned int count) | 销毁字符串列表数据。                            |
+| OH_UdsHyperlink* OH_UdsHyperlink_Create() | 创建一个指向标准化数据结构超链接类型OH_UdsHyperlink的指针。 |
+| void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis) | 销毁指向标准化数据结构超链接类型OH_UdsHyperlink的指针。   |
+| const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的标准化数据类型ID。         |
+| const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的链接URL。             |
+| const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis) | 获取OH_UdsHyperlink中的链接内容描述。            |
+| int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url) | 设置OH_UdsHyperlink中的链接URL。             |
+| int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | 设置OH_UdsHyperlink中的链接内容描述。            |
+| OH_UdmfData* OH_UdmfData_Create() | 创建一个指向统一数据对象OH_UdmfData的指针。           |
+| void OH_UdmfData_Destroy(OH_UdmfData* pThis) | 销毁指向统一数据对象OH_UdmfData的指针。             |
+| int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | 向OH_UdmfData中增加一条OH_UdmfRecord数据记录。   |
+| bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type) | 判断统一数据对象OH_UdmfData是否存在指定类型。          |
+| OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | 获取OH_UdmfData中全部的数据记录。                |
+| OH_UdmfRecord* OH_UdmfRecord_Create() | 创建一个指向统一数据记录OH_UdmfRecord的指针。         |
+| void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis) | 销毁指向统一数据记录OH_UdmfRecord的指针。           |
+| int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 向OH_UdmfRecord添加超链接类型数据。              |
+| char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count) | 获取OH_UdmfRecord中全部的数据类型。              |
+| int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 获取OH_UdmfRecord中超链接类型数据。              |
+| int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | 从UDMF数据库中获取数据。                        |
+| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen) | 向UDMF数据库中写入数据。                        |
 
 
-### 添加动态链接库
+## 添加动态链接库
 
 CMakeLists.txt中添加以下lib。
 
@@ -66,9 +66,10 @@ CMakeLists.txt中添加以下lib。
 libudmf.so
 ```
 
-### 引用头文件
+## 引用头文件
 
 ```c
+#include <cstdio>
 #include <cstring>
 #include <database/udmf/utd.h>
 #include <database/udmf/uds.h>
@@ -76,7 +77,7 @@ libudmf.so
 #include <database/udmf/udmf_meta.h>
 #include <database/udmf/udmf_err_code.h>
 ```
-### 通过不同方式获取纯文本类型数据
+## 通过不同方式获取纯文本类型数据
 
 下面以获取纯文本数据的查询场景为例，说明如何使用UTD
 1. 通过后缀名“.txt”获取UTD的typeId。
@@ -111,7 +112,7 @@ OH_Utd_Destroy(utd1);
 OH_Utd_Destroy(utd2);
 ```
 
-### 使用UDMF来发送UDS数据
+## 使用UDMF来发送UDS数据
 
 下面以发送超链接hyperlink类型数据场景为例，说明如何使用UDS与UDMF。
 1. 创建超链接hyperlink数据的UDS数据结构。
@@ -153,7 +154,7 @@ OH_UdmfRecord_Destroy(record);
 OH_UdmfData_Destroy(data);
 ```
 
-### 使用UDMF来接收UDS数据
+## 使用UDMF来接收UDS数据
 
 下面继续以获取超链接hyperlink类型数据场景为例，说明如何使用UDS与UDMF。
 1. 创建统一数据OH_UdmfData，用来承载数据库中读取的数据。
@@ -166,7 +167,7 @@ OH_UdmfData_Destroy(data);
 ```c
 // 1. 创建统一数据OH_UdmfData。
 OH_UdmfData* readData = OH_UdmfData_Create();
-// 此处key为示例，不可直接使用，其值应与OH_Udmf_SetUnifiedData接口中获取到的key值保持一致
+// 此处key为示例，不可直接使用，其值应与OH_Udmf_SetUnifiedData接口中获取到的key值保持一致。
 char key[] = {"udmf://Drag/com.ohos.test/0123456789"};
 // 2. 通过key值从数据库中获取到数据。
 if (OH_Udmf_GetUnifiedData(key, Udmf_Intention::UDMF_INTENTION_DRAG, readData) != Udmf_ErrCode::UDMF_E_OK) {
@@ -182,17 +183,17 @@ if (!OH_UdmfData_HasType(readData, UDMF_META_HYPERLINK)) {
 unsigned int recordsCount = 0;
 OH_UdmfRecord** records = OH_UdmfData_GetRecords(readData, &recordsCount);
 printf("the count of records count is %u", recordsCount);
-// 创建hyperlink的UDS，用来承载record中读取出来的hyperlink数据
+// 创建hyperlink的UDS，用来承载record中读取出来的hyperlink数据。
 OH_UdsHyperlink* hyperlink = OH_UdsHyperlink_Create();
-// 获取records中的元素
+// 获取records中的元素。
 for (int i = 0; i < recordsCount; i++) {
-    // 获取OH_UdmfRecord类型列表
+    // 获取OH_UdmfRecord类型列表。
     unsigned int* recordTypeIdCount = 0;
     char** typeIdsFromRecord = OH_UdmfRecord_GetTypes(records[i], recordTypeIdCount);
     for (unsigned int j = 0; j < *recordTypeIdCount; j++) {
-        // 从OH_UdmfRecord中获取超链接类型数据
+        // 从OH_UdmfRecord中获取超链接类型数据。
         if (strcmp(typeIdsFromRecord[j], UDMF_META_HYPERLINK)) {
-            // 获取hyperlink数据
+            // 获取hyperlink数据。
             if (OH_UdmfRecord_GetHyperlink(records[i], hyperlink) != Udmf_ErrCode::UDMF_E_OK) {
                 printf("Fail get hyperlink from record!");
             }
@@ -203,7 +204,7 @@ for (int i = 0; i < recordsCount; i++) {
 printf("The hyperlink type id is : %s", OH_UdsHyperlink_GetType(hyperlink));
 printf("The hyperlink url is : %s", OH_UdsHyperlink_GetUrl(hyperlink));
 printf("The hyperlink description is : %s", OH_UdsHyperlink_GetDescription(hyperlink));
-// 6. 销毁指针
+// 6. 销毁指针。
 OH_UdsHyperlink_Destroy(hyperlink);
 OH_UdmfData_Destroy(readData);
 ```
