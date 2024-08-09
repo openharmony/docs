@@ -1393,6 +1393,7 @@
       - [减小应用包大小](performance/reduce-package-size.md)
       - [使用ArkUI的FrameNode扩展实现动态布局类框架](performance/imperative_dynamic_layouts.md)
       - [在线短视频流畅切换](performance/performance-quick-switch-short-video.md)
+      - [合理使用缓存提升性能](performance/reasonable_using_cache_improve_performance.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
