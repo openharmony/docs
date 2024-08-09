@@ -160,7 +160,7 @@ struct StackExample {
   build() {
     Column() {
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
@@ -199,7 +199,7 @@ struct StackExample2 {
   build() {
     Column() { // 父容器
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
