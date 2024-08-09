@@ -71,7 +71,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | cameraPosition | [CameraPosition](#cameraposition) | 是   | 否   | 相机位置。    |
 | cameraType     | [CameraType](#cameratype)         | 是   | 否   | 相机类型。    |
 | connectionType | [ConnectionType](#connectiontype) | 是   | 否   | 相机连接类型。 |
-| cameraOrientation<sup>12+</sup> | number | 是   | 否   | 相机旋转角度。 |
+| cameraOrientation<sup>12+</sup> | number | 是   | 否   | 相机旋转角度，取值范围为0°-360°。 |
 
 ## CameraPosition
 
