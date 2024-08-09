@@ -3,46 +3,46 @@
 <!--Del-->
 - [Application Development Overview](application-dev-guide.md)
 <!--DelEnd-->
-- Quick Start
-  - Getting Started
+- Getting Started<!--application-getting-started-->
+  - Quick Start<!--quick-start-->
     - [Before You Start](quick-start/start-overview.md)
     - [Building the First ArkTS Application in Stage Model](quick-start/start-with-ets-stage.md)
-  - Development Fundamentals
-    - Application Package Fundamentals
+  - Development Fundamentals<!--development-fundamentals-->
+    - Application Package Fundamentals<!--application-package-fundamentals-->
       - [Application Package Overview](quick-start/application-package-overview.md)
-      - Application Package Structure
+      - Application Package Structure<!--application-package-structure-->
         - [Application Package Structure in Stage Model](quick-start/application-package-structure-stage.md)
         - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
-      - Application Package Development and Usage
+      - Application Package Development and Usage<!--application-package-dev-->
         - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
         - [Dynamic Import](quick-start/arkts-dynamic-import.md)
       - [Application Installation and Uninstallation](quick-start/application-package-install-uninstall.md)
-    - Application Configuration Files in Stage Model
+    - Application Configuration Files in Stage Model<!--application-configuration-file-stage-->
       - [Overview of Application Configuration Files in Stage Model](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)
       - [module.json5 Configuration File](quick-start/module-configuration-file.md)
-    - Application Configuration Files in FA Model
+    - Application Configuration Files in FA Model<!--application-configuration-file-fa-->
       - [Overview of Application Configuration Files in FA Model](quick-start/application-configuration-file-overview-fa.md)
       - [Structure of the app Tag](quick-start/app-structure.md)
       - [Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
       - [Structure of the module Tag](quick-start/module-structure.md)
   - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
-  - Learning ArkTS
+  - Learning ArkTS<!--learning-arkts-->
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
     - [Introduction to ArkTS](quick-start/introduction-to-arkts.md)
     - [Basic Principles of Ark Bytecode](quick-start/arkts-bytecode-fundamentals.md)
     - [Ark Bytecode File Format](quick-start/arkts-bytecode-file-format.md)
-    - TypeScript to ArkTS Migration Guide
+    - TypeScript to ArkTS Migration Guide<!--typescript-to-arkts-migration-->
       - [ArkTS Migration Background](quick-start/arkts-migration-background.md)
       - [TypeScript to ArkTS Cookbook](quick-start/typescript-to-arkts-migration-guide.md)
       - [Adaptation Cases](quick-start/arkts-more-cases.md)
     - [ArkTS Performant Programming Practices](quick-start/arkts-high-performance-programming.md)
-    - Basic Syntax of UI Paradigms
+    - Basic Syntax of UI Paradigms<!--arkts-ui-paradigm-basic-syntax-->
       - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
       - [Declarative UI Description](quick-start/arkts-declarative-ui-description.md)
-      - Custom Components
+      - Custom Components<!--arkts-custom-components-->
         - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
         - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
         - [Custom Component Layout](quick-start/arkts-page-custom-components-layout.md)
@@ -56,22 +56,22 @@
       - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
       - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
       - [\@Require Decorator: Validating Constructor Input Parameters](quick-start/arkts-require.md)
-    - State Management
+    - State Management<!--arkts-state-management-->
       - [State Management Overview](quick-start/arkts-state-management-overview.md)
-      - State Management (V1 Stable Version)
-        - Component State Management
+      - State Management (V1 Stable Version)<!--arkts-state-management-v1-->
+        - Component State Management<!--arkts-component-state-management-->
           - [\@State Decorator: State Owned by Component](quick-start/arkts-state.md)
           - [\@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components](quick-start/arkts-prop.md)
           - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](quick-start/arkts-link.md)
           - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](quick-start/arkts-provide-and-consume.md)
           - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](quick-start/arkts-observed-and-objectlink.md)
-        - Application State Management
+        - Application State Management<!--arkts-application-state-management-->
           - [Application State Management Overview](quick-start/arkts-application-state-management-overview.md)
           - [LocalStorage: UI State Storage](quick-start/arkts-localstorage.md)
           - [AppStorage: Application-wide UI State Storage](quick-start/arkts-appstorage.md)
           - [PersistentStorage: Application State Persistence](quick-start/arkts-persiststorage.md)
           - [Environment: Device Environment Query](quick-start/arkts-environment.md)
-        - Other State Management Features
+        - Other State Management Features<!--arkts-other-state-mgmt-functions-->
           - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
           - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
@@ -79,7 +79,7 @@
         - [MVVM](quick-start/arkts-mvvm.md)
         - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
         - [Proper Use of State Management](quick-start/properly-use-state-management-to-develope.md)
-      - State Management (V2 Trial Version)
+      - State Management (V2 Trial Version)<!--arkts-state-management-v2-->
         - [\@ObservedV2 and \@Trace Decorators: Observing Class Property Changes](quick-start/arkts-new-observedV2-and-trace.md)
         - [\@ComponentV2 Decorator: Custom Component](quick-start/arkts-new-componentV2.md)
         - [\@Local Decorator: Representing the Internal State of Components](quick-start/arkts-new-local.md)
@@ -91,21 +91,21 @@
         - [\\@Computed Decorator: Computed Property](quick-start/arkts-new-Computed.md)
         - [!! Syntax: Two-Way Binding](quick-start/arkts-new-binding.md)
         - [Repeat: Reusing Child Components](quick-start/arkts-new-rendering-control-repeat.md)
-    - Rendering Control
+    - Rendering ControlState Management (V2 Trial Version)<!--arkts-rendering-control-->
       - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
       - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
       - [ContentSlot: Developing in a Hybrid Mode](quick-start/arkts-rendering-control-contentslot.md)
 - Development
-  - Ability Kit
+  - Ability Kit<!--ability-kit-->
     - [Introduction to Ability Kit](application-models/abilitykit-overview.md)
     - [Application Models](application-models/application-models.md)
-    - Stage Model Development
+    - Stage Model Development<!--stage-model-development-->
       - [Stage Model Development Overview](application-models/stage-model-development-overview.md)
-      - Stage Model Application Components
+      - Stage Model Application Components<!--stage-model-application-components-->
         - [Application- or Component-Level Configuration](application-models/application-component-configuration-stage.md)
-        - UIAbility Component
+        - UIAbility Component<!--uiability-->
           - [UIAbility Overview](application-models/uiability-overview.md)
           - [UIAbility Lifecycle](application-models/uiability-lifecycle.md)
           - [UIAbility Launch Type](application-models/uiability-launch-type.md)
@@ -119,47 +119,47 @@
           - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
         - [AbilityStage Component Container](application-models/abilitystage.md)
         - [Context](application-models/application-context-stage.md)
-        - Want
+        - Want<!--want-->
           - [Want Overview](application-models/want-overview.md)
           - [Matching Rules of Explicit Want and Implicit Want](application-models/explicit-implicit-want-mappings.md)
           - [Using Explicit Want to Start an Application Component](application-models/ability-startup-with-explicit-want.md)
         - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
         - [AppStartup Development](application-models/app-startup.md)
         <!--Del-->
-        - Inter-Device Application Component Interaction (Hopping)
+        - Inter-Device Application Component Interaction (Hopping)<!--hop-->
           - [Hopping Overview](application-models/inter-device-interaction-hop-overview.md)
           - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
           - [Multi-device Collaboration](application-models/hop-multi-device-collaboration.md)
         <!--DelEnd-->
         - [Subscribing to System Environment Variable Changes](application-models/subscribe-system-environment-variable-changes.md)
-      - Inter-Application Redirection
+      - Inter-Application Redirection<!--inter-app-redirection-->
         - [Overview of Application Redirection](application-models/link-between-apps-overview.md)
-        - Directional Redirection
+        - Directional Redirection<!--directional-redirection-->
           - [(Optional) Using canOpenLink to Check Application Accessibility](application-models/canopenlink.md)
           - [Using Deep Linking for Application Redirection](application-models/deep-linking-startup.md)
           <!--Del-->
           - [Using App Linking for Application Redirection](application-models/app-linking-startup.md)
           <!--DelEnd-->
           - [Switching from Explicit Want Redirection to Linking Redirection](application-models/uiability-startup-adjust.md)
-        - Common Intent Redirection
+        - Common Intent Redirection<!--common-intent-redirection-->
           - [Using startAbilityByType to Start Vertical Applications](application-models/start-intent-panel.md)
           - [Using startAbility to Start a File Application](application-models/file-processing-apps-startup.md)
         - [Starting a System Application](application-models/system-app-startup.md)
       - [Process Model (Stage Model)](application-models/process-model-stage.md)
       - [Thread Model (Stage Model)](application-models/thread-model-stage.md)
       <!--Del-->
-      - Mission Management (for System Applications Only)
+      - Mission Management (for System Applications Only)<!--mission-management-->
         - [Mission Management Scenarios](application-models/mission-management-overview.md)
         - [Mission and Launch Type](application-models/mission-management-launch-type.md)
         - [Page Stack and Mission List](application-models/page-mission-stack.md)
         - [Setting the Icon and Name of a Mission Snapshot](application-models/mission-set-icon-name-for-task-snapshot.md)
       <!--DelEnd-->
       - [Application Configuration File (Stage Model)](application-models/config-file-stage.md)
-    - FA Model Development
+    - FA Model Development<!--fa-model-development-->
       - [FA Model Development Overview](application-models/fa-model-development-overview.md)
-      - FA Model Application Components
+      - FA Model Application Components<!--fa-model-application-components-->
         - [Application- or Component-Level Configuration](application-models/application-component-configuration-fa.md)
-        - PageAbility Component Development
+        - PageAbility Component Development<!--pageability-->
           - [PageAbility Overview](application-models/pageability-overview.md)
           - [PageAbility Configuration](application-models/pageability-configuration.md)
           - [PageAbility Lifecycle](application-models/pageability-lifecycle.md)
@@ -174,14 +174,14 @@
           - [Window Properties](application-models/window-properties.md)
           - [Requesting Permissions](application-models/request-permissions.md)
           - [Redirection Rules](application-models/redirection-rules.md)
-        - ServiceAbility Component Development
+        - ServiceAbility Component Development<!--serviceability-->
           - [ServiceAbility Overview](application-models/serviceability-overview.md)
           - [ServiceAbility Configuration](application-models/serviceability-configuration.md)
           - [ServiceAbility Lifecycle](application-models/serviceability-lifecycle.md)
           - [Creating a ServiceAbility](application-models/create-serviceability.md)
           - [Starting a ServiceAbility](application-models/start-serviceability.md)
           - [Connecting to a ServiceAbility](application-models/connect-serviceability.md)
-        - DataAbility Component Development
+        - DataAbility Component Development<!--dataability-->
           - [DataAbility Overview](application-models/dataability-overview.md)
           - [DataAbility Configuration](application-models/dataability-configuration.md)
           - [DataAbility Lifecycle](application-models/dataability-lifecycle.md)
@@ -199,25 +199,25 @@
       <!--DelEnd-->
       - [Application Configuration File (FA Model)](application-models/config-file-fa.md)
     <!--Del-->
-    - Development of Component Interaction Between the FA Model and Stage Model
+    - Development of Component Interaction Between the FA Model and Stage Model<!--fa-stage-interaction-->
       - [Component Interaction Between the FA Model and Stage Model](application-models/fa-stage-interaction-overview.md)
       - [Starting a UIAbility from the FA Model](application-models/start-uiability-from-fa.md)
       - [Connecting to a ServiceExtensionAbility from the FA Model](application-models/bind-serviceextensionability-from-fa.md)
       - [Accessing a DataShareExtensionAbility from the FA Model](application-models/access-datashareextensionability-from-fa.md)
       - [Starting a PageAbility from the Stage Model](application-models/start-pageability-from-stage.md)
       - [Connecting to a ServiceAbility from the Stage Model](application-models/bind-serviceability-from-stage.md)
-    - Switching from the FA Model to the Stage Model
+    - Switching from the FA Model to the Stage Model<!--fa-to-stage-switc-->
       - [Model Switching Overview](application-models/model-switch-overview.md)
-      - Configuration File Switching
+      - Configuration File Switching<!--configuration-file-switch-->
         - [Differences in Configuration Files](application-models/configuration-file-diff.md)
         - [Switching of app and deviceConfig](application-models/app-deviceconfig-switch.md)
         - [Switching of module](application-models/module-switch.md)
-      - Component Switching
+      - Component Switching<!--component-switch--
         - [PageAbility Switching](application-models/pageability-switch.md)
         - [ServiceAbility Switching](application-models/serviceability-switch.md)
         - [DataAbility Switching](application-models/dataability-switch.md)
       - [Widget Switching](application-models/widget-switch.md)
-      - API Switching
+      - API Switching<!--api-switch-->
         - [API Switching Overview](application-models/api-switch-overview.md)
         - [Context Switching](application-models/context-switch.md)
         - [featureAbility Switching](application-models/featureability-switch.md)
@@ -233,69 +233,69 @@
         - [window Switching](application-models/window-switch.md)
         - [Storage Switching](application-models/storage-switch.md)
     <!--DelEnd-->
-    - Access Control
+    - Access Control<!--access-control-->
       - [Access Control Overview](security/AccessToken/access-token-overview.md)
-      - Application Permission Management
+      - Application Permission Management<!--app-permission-mgmt-->
         - [Application Permission Management Overview](security/AccessToken/app-permission-mgmt-overview.md)
-        - Requesting Application Permissions
+        - Requesting Application Permissions<!--request-app-permissions-->
           - [Workflow for Using Permissions](security/AccessToken/determine-application-mode.md)
           - [Declaring Permissions](security/AccessToken/declare-permissions.md)
           - [Requesting User Authorization](security/AccessToken/request-user-authorization.md)
           - [Requesting Restricted Permissions](security/AccessToken/declare-permissions-in-acl.md)
-        - Application Permissions
+        - Application Permissions<!--app-permissions-->
           - [Permissions for All Applications](security/AccessToken/permissions-for-all.md)
           <!--Del-->
           - [Permissions for System Applications](security/AccessToken/permissions-for-system-apps.md)
           <!--DelEnd-->
           - [Permissions for MDM Applications](security/AccessToken/permissions-for-mdm-apps.md)
         - [Application Permission Groups](security/AccessToken/app-permission-group-list.md)
-      - Using Security Components
+      - Using Security Components<!--security-components-->
         - [Security Component Overview](security/AccessToken/security-component-overview.md)
         - [Using PasteButton](security/AccessToken/pastebutton.md)
         - [Using SaveButton](security/AccessToken/savebutton.md)
         - [Using LocationButton](security/AccessToken/locationbutton.md)
-  - Accessibility Kit
+  - Accessibility Kit<!--accessibility-kit-->
     - [Introduction to Accessibility Kit](accessibility/accessibilityKit.md)
     - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
   <!--Del-->
-  - Ads Kit
+  - Ads Kit<!--ads-kit-->
     - [OAID Service](ads-service/oaid/oaid-service.md)  
     - [Resetting OAID Information (for System Applications Only)](ads-service/oaid/oaid-service-sys.md)
   <!--DelEnd-->
-  - ArkData
+  - ArkData<!--arkdata-->
     - [Introduction to ArkData](database/data-mgmt-overview.md)
-    - Unified Data Definition
+    - Unified Data Definition<!--uniform-data-definition-->
       - [Unified Data Definition Overview](database/unified-data-definition-overview.md)
       - [Unified Data Types](database/uniform-data-type-descriptors.md)
       - [Unified Data Structs](database/uniform-data-structure.md)
-    - Application Data Persistence
+    - Application Data Persistence<!--app-data-persistence-->
       - [Overview of Application Data Persistence](database/app-data-persistence-overview.md)
       - [Persisting Preferences Data](database/data-persistence-by-preferences.md)
       - [Persisting KV Store Data](database/data-persistence-by-kv-store.md)
       - [Persisting RDB Store Data](database/data-persistence-by-rdb-store.md)
-    - Distributed Application Data Synchronization
+    - Distributed Application Data Synchronization<!--distributed-data-sync-->
       - [Distributed Application Data Synchronization Overview](database/sync-app-data-across-devices-overview.md)
       - [Cross-Device Synchronization of KV Stores](database/data-sync-of-kv-store.md)
       - [Cross-Device Synchronization of RDB Stores](database/data-sync-of-rdb-store.md)
       - [Cross-Device Synchronization of Distributed Data Objects](database/data-sync-of-distributed-data-object.md)
-    - Data Reliability and Security
+    - Data Reliability and Security<!--data-reliability-security-->
       - [Data Reliability and Security Overview](database/data-reliability-security-overview.md)
       - [Database Backup and Restoration](database/data-backup-and-restore.md)
       - [Database Encryption](database/data-encryption.md)
       - [Access Control by Device and Data Level](database/access-control-by-device-and-data-level.md)
-    - Cross-Application Data Sharing
+    - Cross-Application Data Sharing<!--cross-app-data-share-->
       - [Data Sharing Overview](database/data-share-overview.md)
       <!--Del-->
-      - One-to-Many Data Sharing (for System Applications Only)
+      - One-to-Many Data Sharing (for System Applications Only)<!--one-to-many-data-share-->
         - [Sharing Data Using DataShareExtensionAbility](database/share-data-by-datashareextensionability.md)
         - [Silent Access via the DatamgrService](database/share-data-by-silent-access.md)
       <!--DelEnd-->
-      - Many-to-Many Data Sharing
+      - Many-to-Many Data Sharing<!--many-to-many-data-share-->
         - [Sharing Data via Unified Data Channels](database/unified-data-channels.md)
     - [RelationalStore Development (C/C++)](database/native-relational-store-guidelines.md)
-  - ArkGraphics 2D
+  - ArkGraphics 2D<!--arkgraphics-2d-->
     - [Introduction to ArkGraphics 2D](graphics/arkgraphics2D-introduction.md)
-    - Using Variable Frame Rates
+    - Using Variable Frame Rates<!--displaysync-->
       - [Introduction to Variable Frame Rates](graphics/displaysync-overview.md)
       - [Requesting Frame Rates for Animations](graphics/displaysync-animation.md)
       - [Requesting Frame Rates for UI Components](graphics/displaysync-ui.md)
@@ -308,19 +308,19 @@
     - [Native Image Development (C/C++)](graphics/native-image-guidelines.md)
     - [Native Vsync Development (C/C++)](graphics/native-vsync-guidelines.md)
     - [Native Window Development (C/C++)](graphics/native-window-guidelines.md)
-  - ArkGraphics 3D
+  - ArkGraphics 3D<!--arkgraphics-3d-->
     - [Introduction to ArkGraphics 3D](graphics3d/arkgraphics3D-overview.md)
     - [Building and Managing ArkGraphics 3D Scenes](graphics3d/arkgraphics3D-scene.md)
     - [Creating and Using ArkGraphics 3D Resources](graphics3d/arkgraphics3D-resource.md)
     - [Controlling and Managing ArkGraphics 3D Scene Animations](graphics3d/arkgraphics3D-animation.md)
-  - ArkTS
+  - ArkTS<!--arkts-->
     - [Introduction to ArkTS](arkts-utils/arkts-commonlibrary-overview.md)
-    - Concurrency
+    - Concurrency<!--concurrency-->
       - [Concurrency Overview](arkts-utils/concurrency-overview.md)
-      - Using Asynchronous Concurrency for Development
+      - Using Asynchronous Concurrency for Development<!--asynchronous-concurrency-->
         - [Asynchronous Concurrency Overview (Promise and Async/Await)](arkts-utils/async-concurrency-overview.md)
         - [Single I/O Task Development (Promise and Async/Await)](arkts-utils/single-io-development.md)
-      - Using Multithreaded Concurrency for Development
+      - Using Multithreaded Concurrency for Development<!--multithreaded-concurrency-->
         - [Multithreaded Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
         - [TaskPool Introduction](arkts-utils/taskpool-introduction.md)
         - [Worker Introduction](arkts-utils/worker-introduction.md)
@@ -328,7 +328,7 @@
         - [CPU Intensive Task Development (TaskPool and Worker)](arkts-utils/cpu-intensive-task-development.md)
         - [I/O Intensive Task Development (TaskPool)](arkts-utils/io-intensive-task-development.md)
         - [Synchronous Task Development (TaskPool and Worker)](arkts-utils/sync-task-development.md)
-      - Appendix
+      - Appendix<!--appendixes-->
         - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
         - [Serialization Types Supported by TaskPool and Worker](arkts-utils/serialization-support-types.md)
         - [Precautions for Multithread Safe](arkts-utils/multi-thread-safety.md)
@@ -337,25 +337,25 @@
         - [System Objects That Accessed Sendable](arkts-utils/arkts-sendable-system-object-list.md)
         - [Sharable Module Development](arkts-utils/arkts-sendable-module.md)
         - [Behavior Differences Between ArkTS Collections APIs and Native APIs](arkts-utils/arkts-collections-vs-native-api-comparison.md)
-    - Container
+    - Container<!--containers-->
       - [Container Overview](arkts-utils/container-overview.md)
       - [Linear Containers](arkts-utils/linear-container.md)
       - [Nonlinear Containers](arkts-utils/nonlinear-container.md)
-    - XML Generation, Parsing, and Conversion
+    - XML Generation, Parsing, and Conversion<!--xml-generation-parsing-conversion-->
       - [XML Overview](arkts-utils/xml-overview.md)
       - [XML Generation](arkts-utils/xml-generation.md)
       - [XML Parsing](arkts-utils/xml-parsing.md)
       - [XML Conversion](arkts-utils/xml-conversion.md)
     - [Code Obfuscation](arkts-utils/source-obfuscation.md)
-    - Memory Management
+    - Memory Management<!--arkts-memory-management-->
       - [GC Introduction](arkts-utils/gc-introduction.md)
-  - ArkUI
+  - ArkUI<!--arkui-->
     - [Introduction to ArkUI](ui/arkui-overview.md)
-    - UI Development (ArkTS-based Declarative Development Paradigm)
+    - UI Development (ArkTS-based Declarative Development Paradigm)<!--arkts-ui-development-->
       - [UI Development (ArkTS-based Declarative Development Paradigm) Overview](ui/arkts-ui-development-overview.md)
-      - Layout Development
+      - Layout Development<!--arkts-layout-development-->
         - [Layout Overview](ui/arkts-layout-development-overview.md)
-        - Building a Layout
+        - Building a Layout<!--arkts-build-layout-->
           - [Linear Layout (Row/Column)](ui/arkts-layout-development-linear.md)
           - [Stack Layout (Stack)](ui/arkts-layout-development-stack-layout.md)
           - [Flex Layout (Flex)](ui/arkts-layout-development-flex-layout.md)
@@ -366,8 +366,8 @@
           - [Creating a Grid (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
           - [Tabs](ui/arkts-navigation-tabs.md)
-      - Adding a Component
-        - Adding a Common Component
+      - Adding a Component<!--arkts-add-component-->
+        - Adding a Common Component<!--arkts-add-common-component-->
           - [Button](ui/arkts-common-components-button.md)
           - [Radio Button (Radio)](ui/arkts-common-components-radio-button.md)
           - [Toggle](ui/arkts-common-components-switch.md)
@@ -379,23 +379,23 @@
           - [Video Playback (Video)](ui/arkts-common-components-video-player.md)
           - [CustomDraw (XComponent)](ui/arkts-common-components-xcomponent.md)
           - [Native XComponent](ui/napi-xcomponent-guidelines.md)
-        - Adding a Popup and Menu
+        - Adding a Popup and Menu<!--arkts-add-popup-menu-->
           - [Popup](ui/arkts-popup-and-menu-components-popup.md)
           - [Menu](ui/arkts-popup-and-menu-components-menu.md)
-      - Setting Component Navigation and Page Routing
+      - Setting Component Navigation and Page Routing<!--arkts-set-navigation-routing-->
         - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
         - [Page Routing (@ohos.router)](ui/arkts-routing.md)
         - [Page Routing](ui/arkts-router-to-navigation.md)
-      - Using Graphics
+      - Using Graphics<!--arkts-draw-graphics-->
         - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
         - [Drawing Custom Graphics on the Canvas (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
-      - Using Animation
+      - Using Animation<!--arkts-use-animation-->
         - [Animation Overview](ui/arkts-animation.md)
-        - Property Animation
+        - Property Animation<!--arkts-animation-attribute-->
           - [Property Animation Overview](ui/arkts-attribute-animation-overview.md)
           - [Property Animation APIs](ui/arkts-attribute-animation-apis.md)
           - [Custom Property Animation](ui/arkts-custom-attribute-animation.md)
-        - Transition Animation
+        - Transition Animation<!--arkts-animation-transition-->
           - [Transition Animation Overview](ui/arkts-transition-overview.md)
           - [Enter/Exit Transition](ui/arkts-enter-exit-transition.md)
           - [Navigation Transition](ui/arkts-navigation-transition.md)
@@ -405,40 +405,40 @@
           - [Page Transition Animation (Not Recommended)](ui/arkts-page-transition-animation.md)
         - [Particle Animation](ui/arkts-particle-animation.md)
         - [Component Animation](ui/arkts-component-animation.md)
-        - Animation Curve
+        - Animation Curve<!--arkts-animation-curve-->
           - [Animation Curve Overview](ui/arkts-curve-overview.md)
           - [Traditional Curve](ui/arkts-traditional-curve.md)
           - [Spring Curve](ui/arkts-spring-curve.md)
         - [Animation Smoothing](ui/arkts-animation-smoothing.md)
-        - Animation Effects
+        - Animation Effects<!--arkts-animation-effects-->
           - [Blur Effect](ui/arkts-blur-effect.md)
           - [Shadow Effect](ui/arkts-shadow-effect.md)
           - [Color Effect](ui/arkts-color-effect.md)
-      - Using Interaction Events
+      - Using Interaction Events<!--arkts-events-->
         - [Interaction Event Overview](ui/arkts-event-overview.md)
-        - Universal Events
+        - Universal Events<!--arkts-common-events-->
           - [Event Dispatch](ui/arkts-common-events-distribute.md)
           - [Touchscreen Event](ui/arkts-common-events-touch-screen-event.md)
           - [Keyboard and Mouse Event](ui/arkts-common-events-device-input-event.md)
           - [Focus Event](ui/arkts-common-events-focus-event.md)
           - [Drag Event](ui/arkts-common-events-drag-event.md)
-        - Gesture Events
+        - Gesture Events<!--arkts-gesture-events-->
           - [Gesture Binding](ui/arkts-gesture-events-binding.md)
           - [Single Gesture](ui/arkts-gesture-events-single-gesture.md)
           - [Combined Gestures](ui/arkts-gesture-events-combined-gestures.md)
           - [Multi-level Gesture Events](ui/arkts-gesture-events-multi-level-gesture.md)
-      - Using Customization Capabilities
+      - Using Customization Capabilities<!--arkts-user-defined-capabilities-->
         - [Customization Capability Overview](ui/arkts-user-defined.md)
-        - Using Custom Nodes
+        - Using Custom Nodes<!--arkts-nodes-->
           - [Custom Node Overview](ui/arkts-user-defined-node.md)
           - [Custom Placeholder Node](ui/arkts-user-defined-place-hoder.md)
           - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
           - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
           - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
-      - Using NDK APIs to Build UIs
+      - Using NDK APIs to Build UIs<!--arkts-use-ndk-->
         - [NDK API Overview](ui/ndk-build-ui-overview.md)
         - [Integrating with ArkTS Pages](ui/ndk-access-the-arkts-page.md)
-        - - Adding Interaction Events
+        - Adding Interaction Events<!--arkts-add-event-->
           - [Listening for Component Events](ui/ndk-listen-to-component-events.md)
           - [Binding Gesture Events](ui/ndk-bind-gesture-events.md)
         - [Using Animations](ui/ndk-use-animation.md)
@@ -446,24 +446,24 @@
         - [Building Dialog Boxes](ui/ndk-build-pop-up-window.md)
         - [Building Custom Components](ui/ndk-build-custom-components.md)
         - [Embedded ArkTS Component](ui/ndk-embed-arkts-components.md)
-      - Theme Settings
+      - Theme Settings<!--arkts-theme-->
         - [Setting the Theme and Skin](ui/theme_skinning.md)
-    - UI Development (JavaScript-compatible Web-like Development Paradigm)
+    - UI Development (JavaScript-compatible Web-like Development Paradigm)<!--ui-js-dev-->
       - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui/ui-js-overview.md)
-      - Framework Overview
+      - Framework Overview<!--js-framework-overview-->
         - [File Organization](ui/js-framework-file.md)
         - ["js" Tag](ui/js-framework-js-tag.md)
         - [app.js](ui/js-framework-js-file.md)
-        - Syntax
+        - Syntax<!--js-framework-syntax-->
           - [HML](ui/js-framework-syntax-hml.md)
           - [CSS](ui/js-framework-syntax-css.md)
           - [JavaScript](ui/js-framework-syntax-js.md)
         - [Lifecycle](ui/js-framework-lifecycle.md)
         - [Resource Limitations and Access](ui/js-framework-resource-restriction.md)
         - [Multi-Language Capability](ui/js-framework-multiple-languages.md)
-      - Building the UI
+      - Building the UI<!--ui-js-building-ui-->
         - [Component Overview](ui/ui-js-building-ui-component.md)
-        - Building the Layout
+        - Building the Layout<!--arkts-build-layout-->
           - [Layout Description](ui/ui-js-building-ui-layout-intro.md)
           - [Adding Title and Paragraph Text](ui/ui-js-building-ui-layout-text.md)
           - [Adding an Image](ui/ui-js-building-ui-layout-image.md)
@@ -473,15 +473,15 @@
         - [Developing Animations](ui/ui-js-building-ui-animation.md)
         - [Defining Gesture Events](ui/ui-js-building-ui-event.md)
         - [Defining Page Routes](ui/ui-js-building-ui-routes.md)
-      - Common Component Development Guidelines
-        - Container Component Development
+      - Common Component Development<!--ui-js-components-->
+        - Container Component Development<!--ui-js-container-components-->
           - [List Development](ui/ui-js-components-list.md)
           - [Dialog Development](ui/ui-js-components-dialog.md)
           - [Form Development](ui/ui-js-components-form.md)
           - [Stepper Development](ui/ui-js-components-stepper.md)
           - [Tabs Development](ui/ui-js-component-tabs.md)
           - [Swiper Development](ui/ui-js-components-swiper.md)
-        - Basic Component Development
+        - Basic Component Development<!--ui-js-basic-components-->
           - [Text Development](ui/ui-js-components-text.md)
           - [Input Development](ui/ui-js-components-input.md)
           - [Button Development](ui/ui-js-components-button.md)
@@ -497,32 +497,32 @@
           - [Marquee Development](ui/ui-js-components-marquee.md)
           - [Qrcode Development](ui/ui-js-components-qrcode.md)
           - [Search Development](ui/ui-js-components-search.md)
-        - Canvas Development
+        - Canvas Development<!--ui-js-canvas-->
           - [Canvas](ui/ui-js-components-canvas.md)
           - [CanvasRenderingContext2D](ui/ui-js-components-canvasrenderingcontext2d.md)
           - [Path2D](ui/ui-js-components-path2d.md)
           - [OffscreenCanvasRenderingContext2D](ui/ui-js-components-offscreencanvas.md)
         - [Grid Layout](ui/ui-js-components-grid.md)
-        - SVG Development
+        - SVG Development<!--ui-js-svg-->
           - [Basics](ui/ui-js-components-svg-overview.md)
           - [Graph Drawing](ui/ui-js-components-svg-graphics.md)
           - [Path Drawing](ui/ui-js-components-svg-path.md)
           - [Text Drawing](ui/ui-js-components-svg-text.md)
-      - Animation Development Guidelines
-        - CSS Animation
+      - Animation Development<!--ui-js-animation-->
+        - CSS Animation<!--ui-js-animation-css-->
           - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
           - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
           - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
           - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
-        - JavaScript Animation
+        - JavaScript Animation<!--ui-js-animation-js-->
           - [Component Animation](ui/ui-js-animate-component.md)
           - Interpolator Animation
             - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)
             - [Animation Frame](ui/ui-js-animate-frame.md)
       - [Custom Components](ui/ui-js-custom-components.md)
-      - WebGL
+      - WebGL<!--ui-js-webgl-->
         - [Using WebGL to Draw Graphics](webgl/webgl-2d-guidelines.md)
-    - Window Manager
+    - Window Manager<!--window-manager-->
       - [Window Overview](windowmanager/window-overview.md)
       - [Application Window Development (Stage Model)](windowmanager/application-window-stage.md)
       - [Application Window Development (FA Model)](windowmanager/application-window-fa.md)
@@ -531,50 +531,50 @@
       - [WindowExtensionAbility (for System Applications Only)](windowmanager/windowextensionability.md)
       <!--DelEnd-->
       - [Using NativeWindowEventFilter to Filter Multimodal Input Events (C/C++)](windowmanager/native-window-event-filter.md)
-  - ArkWeb
+  - ArkWeb<!--arkweb-->
     - [Introduction to ArkWeb](web/web-component-overview.md)
     - [Lifecycle of Web Components](web/web-event-sequence.md)
-    - Setting Basic Attributes and Events
+    - Setting Basic Attributes and Events<!--web-set-attributes-events-->
       - [Default User Agent String](web/web-default-userAgent.md)
       - [Managing Cookies and Data Storage](web/web-cookie-and-data-storage-mgmt.md)
       - [Setting the Dark Mode](web/web-set-dark-mode.md)
       - [Opening Pages in a New Window](web/web-open-in-new-window.md)
       - [Managing Location Permissions](web/web-geolocation-permission.md)
       - [Using Incognito Mode](web/web-incognito-mode.md)
-    - Using Frontend Page JavaScript Code on the Application
+    - Using Frontend Page JavaScript Code on the Application<!--web-use-frontend-page-js-->
       - [Invoking Frontend Page Functions on the Application](web/web-in-app-frontend-page-function-invoking.md)
       - [Invoking Application Functions on the Frontend Page](web/web-in-page-app-function-invoking.md)
       - [Establishing a Data Channel Between the Application and the Frontend Page](web/web-app-page-data-channel.md)
-    - Managing Web Page Interactions
+    - Managing Web Page Interactions<!--web-manage-page-interaction-->
       - [Implementing Nested Scrolling](web/web-nested-scrolling.md)
-    - Managing Cyber Security and Privacy for the Web Component
+    - Managing Cyber Security and Privacy for the Web Component<!--web-manage-cyber-security-privacy-->
       - [Resolving Cross-Origin Resource Access](web/web-cross-origin.md)
       - [Intelligent Tracking Prevention](web/web-intelligent-tracking-prevention.md)
-    - Managing Web Page Loading and Browsing Records
+    - Managing Web Page Loading and Browsing Records<!--web-manage-loading-browsing-->
       - [Loading Pages by Using the Web Component](web/web-page-loading-with-web-components.md)
       - [Managing Page Redirection and Browsing History Navigation](web/web-redirection-and-browsing-history-mgmt.md)
       - [Intercepting Network Requests Initiated by Web Components](web/web-scheme-handler.md)
       - [Customizing Page Request Responses](web/web-resource-interception-request-mgmt.md)
       - [Accelerating Web Page Access with Preconnecting and Prefetching](web/web-predictor.md)
-    - Managing Web Page File Upload and Download
+    - Managing Web Page File Upload and Download<!--web-manage-upload-download-->
       - [Uploading Files](web/web-file-upload.md)
       - [Downloading Files](web/web-download.md)
-    - Using Web Multimedia
+    - Using Web Multimedia<!--web-use-multimedia-->
       - [Starting a Camera and Microphone with WebRTC](web/web-rtc.md)
       - [Media Playback in Hosted Web Pages](web/app-takeovers-web-media.md)
-    - Processing Web Page Content
+    - Processing Web Page Content<!--web-process-page-content-->
       - [Printing Frontend Pages](web/web-print.md)
       - [Previewing PDF Document Using Web Components](web/web-pdf-preview.md)
     - [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web/web-same-layer.md)
-    - Web Debugging
+    - Web Debugging<!--web-debugging-->
       - [Debugging Frontend Pages by Using DevTools](web/web-debugging-with-devtools.md)
       - [Using Crashpad to Collect Web Component Crash Information](web/web-crashpad.md)
-  - Asset Store Kit
+  - Asset Store Kit<!--asset-store-kit-->
     - [Introduction to Asset Store Kit](security/AssetStoreKit/asset-store-kit-overview.md)
-    - Scenarios
+    - Scenarios<!--asset-scenarios-->
       - [Protecting Asset Data](security/AssetStoreKit/asset-scenario1.md)
       - [Protecting Asset Data with User Authentication](security/AssetStoreKit/asset-scenario2.md)
-    - Asset Store Kit Development (ArkTS)
+    - Asset Store Kit Development (ArkTS)<!--asset-arkts-->
       - [Adding an Asset (ArkTS)](security/AssetStoreKit/asset-js-add.md)
       - [Removing Assets (ArkTS)](security/AssetStoreKit/asset-js-remove.md)
       - [Updating an Asset (ArkTS)](security/AssetStoreKit/asset-js-update.md)
@@ -583,14 +583,14 @@
       <!--Del-->
       - [Performing Asset Operations in Specified User Space (for System Applications Only) (ArkTS)](security/AssetStoreKit/asset-as-user-sys.md)
       <!--DelEnd-->
-    - Asset Store Kit Development (C/C++)
+    - Asset Store Kit Development (C/C++)<!--asset-native-->
       - [Adding an Asset (C/C++)](security/AssetStoreKit/asset-native-add.md)
       - [Removing Assets (C/C++)](security/AssetStoreKit/asset-native-remove.md)
       - [Updating an Asset (C/C++)](security/AssetStoreKit/asset-native-update.md)
       - [Querying Assets (C/C++)](security/AssetStoreKit/asset-native-query.md)
-  - Audio Kit
+  - Audio Kit<!--audio-kit-->
     - [Introduction to Audio Kit](media/audio/audio-kit-intro.md)
-    - Audio Playback
+    - Audio Playback<!--audio-playback-->
       - [Audio Playback Overview](media/audio/audio-playback-overview.md)
       - [Using AudioRenderer for Audio Playback](media/audio/using-audiorenderer-for-playback.md)
       <!--Del-->
@@ -609,48 +609,48 @@
       <!--Del-->
       - [Distributed Audio Playback (for System Applications Only)](media/audio/distributed-audio-playback.md)
       <!--DelEnd-->
-    - Audio Recording
+    - Audio Recording<!--audio-recording-->
       - [Audio Recording Overview](media/audio/audio-recording-overview.md)
       - [Using AudioCapturer for Audio Recording](media/audio/using-audiocapturer-for-recording.md)
       - [Using OHAudio for Audio Recording (C/C++)](media/audio/using-ohaudio-for-recording.md)
       - [Microphone Management](media/audio/mic-management.md)
       - [Audio Recording Stream Management](media/audio/audio-recording-stream-management.md)
       - [Audio Input Device Management](media/audio/audio-input-device-management.md)
-    - Audio Call
+    - Audio Call<!--audio-call-->
       - [Audio Call Overview](media/audio/audio-call-overview.md)
       - [Developing Audio Call](media/audio/audio-call-development.md)
-    - Not Recommended
+    - Not Recommended<!--not-recommended-->
       - [Switching from OpenSL ES to OHAudio (C/C++)](media/audio/replace-opensles-by-ohaudio.md)
       - [Using OpenSL ES for Audio Playback (C/C++)](media/audio/using-opensl-es-for-playback.md)
       - [Using OpenSL ES for Audio Recording (C/C++)](media/audio/using-opensl-es-for-recording.md)
-  - AVCodec Kit
+  - AVCodec Kit<!--avcodec-kit-->
     - [Introduction to AVCodec Kit](media/avcodec/avcodec-kit-intro.md)
-    - Audio and Video Codecs
+    - Audio and Video Codecs<!--audio-video-codec-->
       - [Obtaining Supported Codecs](media/avcodec/obtain-supported-codecs.md)
       - [Audio Encoding](media/avcodec/audio-encoding.md)
       - [Audio Decoding](media/avcodec/audio-decoding.md)
       - [Video Encoding](media/avcodec/video-encoding.md)
       - [Temporal Layered Video Encoding](media/avcodec/video-encoding-temporal-scalability.md)
       - [Video Decoding](media/avcodec/video-decoding.md)
-    - File Muxing and Demuxing
+    - File Muxing and Demuxing<!--file-muxing-demuxing-->
       - [Audio and Video Muxing](media/avcodec/audio-video-muxer.md)
       - [Audio and Video Demuxing](media/avcodec/audio-video-demuxer.md)
-  - AVSession Kit
+  - AVSession Kit<!--avsession-kit-->
     - [Introduction to AVSession Kit](media/avsession/avsession-overview.md)
-    - Local AVSession
+    - Local AVSession<!--local-avsession-->
       - [Local AVSession Overview](media/avsession/local-avsession-overview.md)
       - [AVSession Provider](media/avsession/using-avsession-developer.md)
       - [Accessing AVSession](media/avsession/avsession-access-scene.md)
       <!--Del-->
       - [AVSession Controller (for System Applications Only)](media/avsession/using-avsession-controller.md)
       <!--DelEnd-->
-    - Distributed AVSession
+    - Distributed AVSession<!--distributed-avsession-->
       <!--Del-->
       - [Distributed AVSession Overview (for System Applications Only)](media/avsession/distributed-avsession-overview.md)
       - [Using Distributed AVSession (for System Applications Only)](media/avsession/using-distributed-avsession.md)
       <!--DelEnd-->
       - [Using the Call Device Switching Component](media/avsession/using-switch-call-devices.md)
-  - Background Tasks Kit
+  - Background Tasks Kit<!--background-task-kit-->
     - Background Task Management
       - [Background Task Overview](task-management/background-task-overview.md)
       - [Transient Task](task-management/transient-task.md)
@@ -661,16 +661,16 @@
       - [Requesting Efficiency Resources (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
       <!--DelEnd-->
     <!--Del-->
-    - Device Usage Statistics (for System Applications Only)
+    - Device Usage Statistics (for System Applications Only)<!--device-usage-statistics-->
       - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
       - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
     <!--DelEnd-->
-  - Basic Service Kit
+  - Basic Service Kit<!--basic-services-kit-->
     - [Introduction to Basic Services Kit](basic-services/basic-services-kit-overview.md)
-    - Application Events
+    - Application Events<!--app-events-->
       - IPC
           - [Introduction to Common Events](basic-services/common-event/common-event-overview.md)
-          - Common Event Subscription
+          - Common Event Subscription<!--common-event-->
               <!--Del-->
               - [Common Event Subscription Overview](basic-services/common-event/common-event-subscription-overview.md)
               <!--DelEnd-->
@@ -683,43 +683,43 @@
           <!--Del-->
           - [Removing Sticky Common Events (for System Applications Only)](basic-services/common-event/common-event-remove-sticky.md)
           <!--DelEnd-->
-      - Inter-Thread Communication
+      - Inter-Thread Communication<!--event-itc-->
           - [Using Emitter for Inter-Thread Communication](basic-services/common-event/itc-with-emitter.md)
-    - Account Management
+    - Account Management<!--account-management--
       <!--Del-->
       - [Account Management Overview](basic-services/account/account-overview.md)
-      - System Account       
+      - System Account<!--os-account-->      
         - [Managing System Accounts (for System Applications Only)](basic-services/account/manage-os-account.md)
         - [Applying Constraints for System Accounts](basic-services/account/control-os-account-by-constraints.md)
         - [Managing System Account Credentials (for System Applications Only)](basic-services/account/manage-os-account-credential.md)
-      - Domain Account (for System Applications Only)
+      - Domain Account (for System Applications Only)<!--domain-account-->
         - [Managing Domain Accounts](basic-services/account/manage-domain-account.md)
         - [Authenticating Domain Accounts](basic-services/account/auth-domain-account.md)
         - [Managing Domain Account Plugins](basic-services/account/manage-domain-plugin.md)
-      - Distributed Account (for System Applications Only)
+      - Distributed Account (for System Applications Only)<!--distributed-account-->
         - [Managing Distributed Accounts](basic-services/account/manage-distributed-account.md)
       <!--DelEnd-->
-      - App Account
+      - App Account<!--application-account-->
         - [Managing App Accounts](basic-services/account/manage-application-account.md)
-    - USB Service
+    - USB Service<!--usb-->
         - [USB Service Development Overview](basic-services/usb/usb-overview.md)
         - [USB Service Development](basic-services/usb/usb-guidelines.md)
     <!--Del-->
-    - Update Service
+    - Update Service<!--update-->
       - [Sample Server Development Overview](basic-services/update/sample-server-overview.md)
       - [Sample Server Development](basic-services/update/sample-server-guidelines.md)
     <!--DelEnd-->
-    - Pasteboard Service
+    - Pasteboard Service<!--pasteboard-->
       - [Delayed Copy and Paste Function of the Pasteboard](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
-    - Upload/Download
+    - Upload/Download<!--upload-download-->
       - [Uploading and Downloading Application Files](basic-services/request/app-file-upload-download.md)
-  - Calendar Kit
+  - Calendar Kit<!--calendar-kit-->
     - [Introduction to Calendar Kit](calendarmanager/calendarmanager-overview.md)
     - [Calendar Kit Development](calendarmanager/calendarmanager-guidelines.md)
-  - Camera Kit
+  - Camera Kit<!--camera-kit-->
     - [Introduction to Camera Kit](media/camera/camera-overview.md)
     - [Camera Development Preparations](media/camera/camera-preparation.md)
-    - Camera Development (ArkTS)
+    - Camera Development (ArkTS)<!--camera-dev-arkts-->
       - [Device Input Management (ArkTS)](media/camera/camera-device-input.md)
       - [Camera Session Management (ArkTS)](media/camera/camera-session-management.md)
       - [Camera Preview (ArkTS)](media/camera/camera-preview.md)
@@ -731,7 +731,7 @@
       <!--DelEnd-->
       - [Deferred Photo Delivery (ArkTS)](media/camera/camera-deferred-capture.md)
       - [Moving Photos (ArkTS)](media/camera/camera-moving-photo.md)
-    - Camera Best Practices (ArkTS)
+    - Camera Best Practices (ArkTS)<!--Camera-best-practices-arkts-->
       - [Camera Photographing Sample (ArkTS)](media/camera/camera-shooting-case.md)
       - [Camera Recording Sample (ArkTS)](media/camera/camera-recording-case.md)
       - [Dual-Channel Preview (ArkTS)](media/camera/camera-dual-channel-preview.md)
@@ -740,7 +740,7 @@
       - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](media/camera/camera-performance-improvement.md)
       - [High-Performance Camera Photographing Sample (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo-case.md)
       <!--DelEnd-->
-    - Camera Development (C/C++)
+    - Camera Development (C/C++)<!--camera-dev-native-->
       - [Device Input Management (C/C++)](media/camera/native-camera-device-input.md)
       - [Camera Session Management (C/C++)](media/camera/native-camera-session-management.md)
       - [Camera Preview (C/C++)](media/camera/native-camera-preview.md)
@@ -749,33 +749,33 @@
       - [Camera Recording (C/C++)](media/camera/native-camera-recording.md)
       - [Secondary Processing of Video Streams (C/C++)](media/camera/native-camera-recording-imageReceiver.md)
       - [Camera Metadata (C/C++)](media/camera/native-camera-metadata.md)
-    - Camera Best Practices (C/C++)
+    - Camera Best Practices (C/C++)<!--camera-best-practices-native-->
       - [Camera Photographing Sample (C/C++)](media/camera/native-camera-shooting-case.md)
       - [Camera Recording Sample (C/C++)](media/camera/native-camera-recording-case.md)
       - [Sample of Secondary Processing of Recording Streams (C/C++)](media/camera/native-camera-recording-case-imageReceiver.md)
-  - Connectivity Kit
+  - Connectivity Kit<!--connectivity-kit-->
     - [Introduction to Connectivity Kit](connectivity/connectivity-kit-intro.md)
-    - Bluetooth
+    - Bluetooth<!--bluetooth-->
       - [Bluetooth Overview](connectivity/bluetooth/bluetooth-overview.md)
       - [Bluetooth Setting Development](connectivity/bluetooth/br-development-guide.md)
       - [BLE Development](connectivity/bluetooth/ble-development-guide.md)
       - [GATT Development](connectivity/bluetooth/gatt-development-guide.md)
       - [SPP Development](connectivity/bluetooth/spp-development-guide.md)
-    - NFC
+    - NFC<!--nfc-->
       - [NFC Tag Read/Write Development](connectivity/nfc/nfc-tag-access-guide.md)
       - [HCE Development](connectivity/nfc/nfc-hce-guide.md)
       - [SE Access Development](connectivity/nfc/nfc-se-access-guide.md)
-    - WLAN
+    - WLAN<!--wlan-->
       - [WLAN Service Development Overview](connectivity/wlan/wlan-overview.md)
       - [P2P Development Guide](connectivity/wlan/p2p-development-guide.md)
-  - Contacts Kit
+  - Contacts Kit<!--contacts-kit-->
     - [Contacts Kit Development](contacts/contacts-intro.md)
-  - Core File Kit
+  - Core File Kit<!--core-file-kit-->
     - [Introduction to Core File Kit](file-management/core-file-kit-intro.md)
-    - Application Files
+    - Application Files<!--app-file-->
       - [Application File Overview](file-management/app-file-overview.md)
       - [Application Sandbox](file-management/app-sandbox-directory.md)
-      - Application File Access and Management
+      - Application File Access and Management!--app-file-access-management-->
         - [Accessing Application Files (ArkTS)](file-management/app-file-access.md)
         - [Accessing Application Files (C/C++)](file-management/native-fileio-guidelines.md)
         - [Obtaining Application and File System Space Statistics](file-management/app-fs-space-statistics.md)
@@ -783,19 +783,19 @@
       - [Pushing Files to an Application Sandbox Directory](file-management/send-file-to-app-sandbox.md)
       <!--DelEnd-->
       - [Sharing an Application File](file-management/share-app-file.md)
-      - Application Data Backup and Restore
+      - Application Data Backup and Restore<!--app-file-backup-restore-->
         - [Application Data Backup and Restore Overview](file-management/app-file-backup-overview.md)
         - [Accessing Backup and Restore](file-management/app-file-backup-extension.md)
         <!--Del-->
         - [Triggering Backup and Restore (for System Applications Only)](file-management/app-file-backup.md)
         <!--DelEnd-->
       - [Authorizing File Access (ArkTS)](file-management/app-file-authorization.md)
-    - User Files
+    - User Files<!--user-files-->
       - [User File Overview](file-management/user-file-overview.md)
       - [User File URI](file-management/user-file-uri-intro.md)
       - [FileUri Development (C/C++)](file-management/native-fileuri-guidelines.md)
       - [Obtaining the User Directory Environment (C/C++)](file-management/native-environment-guidelines.md)
-      - Selecting and Saving User Files
+      - Selecting and Saving User Files<!--select-save-user-file-->
         - [Selecting User Files](file-management/select-user-file.md)
         - [Saving User Files](file-management/save-user-file.md)
         - [Persisting Permissions (ArkTS)](file-management/file-persistPermission.md)
@@ -805,19 +805,19 @@
       - [Developing a File Manager Application (for System Applications Only)](file-management/dev-user-file-manager.md)
       - [Managing External Storage Devices (for System Applications Only)](file-management/manage-external-storage.md)
       <!--DelEnd-->
-    - Distributed File System
+    - Distributed File System<!--distributed-fs-->
       - [Distributed File System Overview](file-management/distributed-fs-overview.md)
       - [Setting the Security Level of a Distributed File](file-management/set-security-label.md)
       - [Accessing Files Across Devices](file-management/file-access-across-devices.md)
       - [Cross-Device File Copy](file-management/file-copy-across-devices.md)
-  - Crypto Architecture Kit
+  - Crypto Architecture Kit<!--crypto-architecture-kit-->
     - [Introduction to Crypto Architecture Kit](security/CryptoArchitectureKit/crypto-architecture-kit-intro.md)
-    - Key Generation and Conversion
+    - Key Generation and Conversion<!--crypto-key-generation-conversion-->
       - [Key Generation and Conversion Overview](security/CryptoArchitectureKit/crypto-key-generation-conversion-overview.md)
-      - Key Generation and Conversion Specifications
+      - Key Generation and Conversion Specifications<!--crypto-key-generation-conversion-spec-->
         - [Symmetric Key Generation and Conversion Specifications](security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)
         - [Asymmetric Key Generation and Conversion Specifications](security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)
-      - Key Generation and Conversion Development
+      - Key Generation and Conversion Development<!--crypto-key-generation-conversion-dev-->
         - [Randomly Generating a Symmetric Key](security/CryptoArchitectureKit/crypto-generate-sym-key-randomly.md)
         - [Converting Binary Data into a Symmetric Key](security/CryptoArchitectureKit/crypto-convert-binary-data-to-sym-key.md)
         - [Randomly Generating an Asymmetric Key Pair](security/CryptoArchitectureKit/crypto-generate-asym-key-pair-randomly.md)
@@ -826,13 +826,13 @@
         - [Converting a Compressed or Uncompressed ECC Public Key](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
         - [Converting Compressed or Uncompressed ECC Point Data](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point.md)
         - [Converting a PEM String into an Asymmetric Key Pair](security/CryptoArchitectureKit/crypto-convert-string-data-to-asym-key-pair.md)
-    - Encryption and Decryption
+    - Encryption and Decryption<!--crypto-encryption-decryption-->
       - [Encryption and Decryption Overview](security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md)
-      - Encryption and Decryption Algorithm Specifications
+      - Encryption and Decryption Algorithm Specifications<!--crypto-encrypt-decrypt-spec-->
         - [Symmetric Key Encryption and Decryption Algorithm Specifications](security/CryptoArchitectureKit/crypto-sym-encrypt-decrypt-spec.md)
         - [Asymmetric Key Encryption and Decryption Algorithm Specifications](security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)
         - [Encryption and Decryption by Segment](security/CryptoArchitectureKit/crypto-encrypt-decrypt-by-segment.md)
-      - Encryption and Decryption Development
+      - Encryption and Decryption Development<!--crypto-encrypt-decrypt-dev-->
         - [Encryption and Decryption with an AES Symmetric Key (GCM Mode)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)
         - [Encryption and Decryption with an AES Symmetric Key (CBC Mode)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc.md)
         - [Encryption and Decryption with an AES Symmetric Key (ECB Mode)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ecb.md)
@@ -845,34 +845,34 @@
         - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)](security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
         - [Encryption and Decryption with an SM2 Asymmetric Key Pair](security/CryptoArchitectureKit/crypto-sm2-asym-encrypt-decrypt.md)
         - [Converting SM2 Ciphertext](security/CryptoArchitectureKit/crypto-sm2-ciphertext-conversion.md)
-    - Signing and Signature Verification
+    - Signing and Signature Verification<!--crypto-sign-sig-verify-->
       - [Signing and Signature Verification Overview and Algorithm Specifications](security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)
-      - Signing and Signature Verification Development
+      - Signing and Signature Verification Development<!--crypto-sign-sig-verify-dev-->
         - [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)
         - [Signing and Signature Recovery Using an RSA Key Pair (PKCS1 Mode)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-recover-pkcs1.md)
         - [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)
         - [Signing and Signature Verification with an RSA Key Pair (PSS Mode)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pss.md)
         - [Signing and Signature Verification with an ECDSA Key Pair](security/CryptoArchitectureKit/crypto-ecdsa-sign-sig-verify.md)
         - [Signing and Signature Verification with an SM2 Key Pair](security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1.md)
-    - Key Agreement
+    - Key Agreement<!--crypto-key-agreement-->
       - [Key Agreement Overview and Algorithm Specifications](security/CryptoArchitectureKit/crypto-key-agreement-overview.md)
-      - Key Agreement Development
+      - Key Agreement Development<!--crypto-key-agreement-dev-->
         - [Key Agreement Using ECDH](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
         - [Key Agreement Using X25519](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
         - [Key Agreement Using DH](security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
     - [MD Operation](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
     - [MAC Operation](security/CryptoArchitectureKit/crypto-compute-mac.md)
     - [Random Number Generation](security/CryptoArchitectureKit/crypto-generate-random-number.md)
-    - Key Derivation
+    - Key Derivation<!--crypto-key-derivation-->
       - [Key Derivation Overview and Algorithm Specifications](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
       - [Key Derivation Using PBKDF2](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
       - [Key Derivation Using HKDF](security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
-  - Data Loss Prevention Kit (DLP Kit)
+  - Data Protection Kit<!--data-protection-kit-->
     - [Introduction to DLP Kit](security/DataLossPreventionKit/dlp-overview.md)
     - [DLP Kit Development](security/DataLossPreventionKit/dlp-guidelines.md)
-  - Device Certificate Kit
+  - Device Certificate Kit<!--device-certificate-kit-->
     - [Introduction to Device Certificate Kit](security/DeviceCertificateKit/device-certificate-kit-intro.md)
-    - Certificate Framework
+    - Certificate Framework<!--certificate-framework-->
       - [Certificate Framework Overview](security/DeviceCertificateKit/certificate-framework-overview.md)
       - [Certificate Development](security/DeviceCertificateKit/create-parse-verify-cert-object.md)
       - [Certificate Extension Development](security/DeviceCertificateKit/create-parse-verify-certextension-object.md)
@@ -881,46 +881,46 @@
       - [Certificate Chain Validator Development](security/DeviceCertificateKit/create-verify-cerchainvalidator-object.md)
       - [Certificate and CRL Collection Development](security/DeviceCertificateKit/create-get-cert-crl-object.md)
       - [Certificate Chain Development](security/DeviceCertificateKit/create-verify-certchain-object.md)
-    - Certificate Management
+    - Certificate Management<!--certManager-->
       - [Certificate Management Overview](security/DeviceCertificateKit/certManager-overview.md)
       - [Certificate Management Development](security/DeviceCertificateKit/certManager-guidelines.md)
-  - Distributed Service Kit
+  - Distributed Service Kit<!--distributed-service-kit-->
       - [Introduction to Distributed Service Kit](distributedservice/distributedservice-kit-intro.md)
       - [Distributed Device Management Development](distributedservice/devicemanager-guidelines.md)
-  - Driver Development Kit
+  - Driver Development Kit<!--driver-development-kit-->
       - [Introduction to Driver Development Kit](device/driver/driverdevelopment-overview.md)
       - [DriverExtensionAbility](device/driver/driverextensionability.md)
       - [Peripheral Management Development](device/driver/externaldevice-guidelines.md)
-  - DRM Kit
+  - DRM Kit<!--drm-kit-->
     - [Introduction to DRM Kit](media/drm/drm-overview.md)
-    - DRM Development (ArkTS)
+    - DRM Development (ArkTS)<!--drm-arkts-dev-->
       - [DRM Plug-in Management (ArkTS)](media/drm/drm-plugin-management.md)
       - [Media Key System Management (ArkTS)](media/drm/drm-mediakeysystem-management.md)
       - [Media Key Session Management (ArkTS)](media/drm/drm-mediakeysession-management.md)
-    - DRM Development (C/C++)
+    - DRM Development (C/C++)<!--drm-native-->
       - [Media Key System Management (C/C++)](media/drm/native-drm-mediakeysystem-management.md)
       - [Media Key Session Management (C/C++)](media/drm/native-drm-mediakeysession-management.md)
-  - Form Kit
+  - Form Kit<!--form-kit-->
     - [Introduction to Form Kit](form/formkit-overview.md)
-    - Service Widget Development in Stage Model
-      - Developing an ArkTS Widget
+    - Service Widget Development in Stage Model<!--arkts-ui-widget-stage-->
+      - Developing an ArkTS Widget<!--arkts-ui-widget-->
         - [ArkTS Widget Working Principles](form/arkts-ui-widget-working-principles.md)
         - [ArkTS Widget Related Modules](form/arkts-ui-widget-modules.md)
-        - ArkTS Widget Development
+        - ArkTS Widget Development<!--arkts-ui-widget-dev-->
           - [Creating an ArkTS Widget](form/arkts-ui-widget-creation.md)
           - [Configuring Widget Configuration Files](form/arkts-ui-widget-configuration.md)
           - [Widget Lifecycle Management](form/arkts-ui-widget-lifecycle.md)
-          - Widget Page Development
+          - Widget Page Development<!--arkts-ui-widget-page-->
             - [Widget Page Capability Overview](form/arkts-ui-widget-page-overview.md)
             - [Using Animations in the Widget](form/arkts-ui-widget-page-animation.md)
             - [Applying Custom Drawing in the Widget](form/arkts-ui-widget-page-custom-drawing.md)
-          - Widget Event Development
+          - Widget Event Development<!--arkts-ui-widget-event-->
             - [Widget Event Capability Overview](form/arkts-ui-widget-event-overview.md)
             - [Redirecting to a UIAbility Through the router Event](form/arkts-ui-widget-event-router.md)
             - [Launching a UIAbility in the Background Through the call Event](form/arkts-ui-widget-event-call.md)
             - [Updating Widget Content Through the message Event](form/arkts-ui-widget-event-formextensionability.md)
             - [Updating Widget Content Through the router or call Event](form/arkts-ui-widget-event-uiability.md)
-          - Widget Data Interaction
+          - Widget Data Interaction<!--arkts-ui-widget-interaction-->
             - [Widget Data Interaction Overview](form/arkts-ui-widget-interaction-overview.md)
             - [Configuring a Widget to Update Periodically](form/arkts-ui-widget-update-by-time.md)
             <!--Del-->
@@ -933,18 +933,18 @@
         <!--DelEnd-->
       - [Developing a JS Widget](form/js-ui-widget-development.md)
     - [Service Widget Development in FA Model](form/widget-development-fa.md)
-  - Function Flow Runtime Kit
+  - Function Flow Runtime Kit<!--ffrt-kit-->
     - [Introduction to Function Flow Runtime Kit](ffrt/ffrt-overview.md)
     - [Function Flow Runtime Development](ffrt/ffrt-development-guideline.md)
-  - Image Kit
+  - Image Kit<!--image-kit-->
     - [Introduction to Image Kit](media/image/image-overview.md)
-    - Image Development (ArkTS)
+    - mage Development (ArkTS)<!--image-arkts-dev-->
       - [Using ImageSource to Encode Images](media/image/image-decoding.md)
       - [Using PixelMap to Transform Images](media/image/image-transformation.md)
       - [Using PixelMap to Perform PixelMap Operations](media/image/image-pixelmap-operation.md)
       - [Using ImagePacker to Encode Images](media/image/image-encoding.md)
       - [Editing Image EXIF Information](media/image/image-tool.md)
-    - Image Development (C/C++)
+    - Image Development (C/C++)<!--image-native-->
       - [Introduction to the Image_NativeModule Structs](media/image/image-structure-c.md)
       - [Using Image_NativeModule to Decode Images](media/image/image-source-c.md)
       - [Using Image_NativeModule to Receive Images](media/image/image-receiver-c.md)
@@ -952,19 +952,19 @@
       - [Using Image_NativeModule to Process Image Information](media/image/image-info-c.md)
       - [Using Image_NativeModule to Encode Images](media/image/image-packer-c.md)
       - [Using ImageEffect to Edit Images](media/image/image-effect-guidelines.md)
-    - Image Development (Dependent on JS Objects) (C/C++)
+    - Image Development (Dependent on JS Objects) (C/C++)<!--image-native-js-objects-->
       - [Using Image to Decode Images](media/image/image-decoding-native.md)
       - [Using Image to Receive Images](media/image/image-receiver-native.md)
       - [Using Image to Transform Images](media/image/image-transformation-native.md)
       - [Using PixelMap to Process PixelMap Data](media/image/image-pixelmap-operation-native.md)
       - [Using Image to Encode Images](media/image/image-encoding-native.md)
-  - IME Kit
+  - IME Kit<!--ime-kit-->
     - [Introduction to IME Kit](inputmethod/ime-kit-intro.md)
     - [Implementing an Input Method Application](inputmethod/inputmethod_application_guide.md)
     - [Implementing a Custom Text Input Box](inputmethod/custom_input_box_guide.md)
     - [Switching Between Input Methods](inputmethod/switch_inputmehod_guide.md)
     - [Input Method Subtype Development](inputmethod/input_method_subtype_guide.md)
-  - Input Kit (Multimodal Input)
+  - Input Kit<!--input-kit-->
     - [Introduction to Input Kit](device/input/input-overview.md)
     - [Input Device Development](device/input/inputdevice-guidelines.md)
     - [Mouse Pointer Development](device/input/pointerstyle-guidelines.md)
@@ -974,16 +974,16 @@
     - [Input Consumer Development](device/input/inputconsumer-guidelines.md)
     - [Shortcut Key Development](device/input/shortkey-guidelines.md)
     <!--DelEnd-->
-  - IPC Kit
+  - IPC Kit<!--ipc-kit-->
     - [IPC & RPC Overview](ipc/ipc-rpc-overview.md)
     - [IPC & RPC Development](ipc/ipc-rpc-development-guideline.md)
     - [Subscribing to State Changes of a Remote Object](ipc/subscribe-remote-state.md)
-  - Localization Kit
+  - Localization Kit<!--localization-kit-->
     - [Introduction to Localization Kit](internationalization/i18n-l10n.md)
-    - Application Internationalization
+    - Application Internationalization<!--i18n-->
         - [UI Design for Internationalization](internationalization/i18n-ui-design.md)
         - [Locale and Cultural Habit Division](internationalization/i18n-locale-culture.md)
-        - Language and User Preference Setting
+        - Language and User Preference Setting<!--i18n-language-user-preferences-->
             - [System Language and Region Setting](internationalization/i18n-system-language-region.md)
             - [Preferred Language Setting](internationalization/i18n-preferred-language.md)
             <!--Del-->
@@ -993,82 +993,82 @@
         - [Number and Unit of Measurement Formatting](internationalization/i18n-numbers-weights-measures.md)
         - [Phone Number Formatting](internationalization/i18n-phone-numbers.md)
         - [Calendar Setting](internationalization/i18n-calendar.md)
-        - Time Zone and DST Setting
+        - Time Zone and DST Setting<!--i18n-time-zone-dst-->
             - [Timezone Setting](internationalization/i18n-time-zone.md)
             - [DST Transition](internationalization/i18n-dst-transition.md)
-        - Multilingual Sorting
+        - Multilingual Sorting<!--i18n-sorting-->
             - [Overview of Multilingual Sorting](internationalization/i18n-sorting-overview.md)
             - [Sorting by Local Habits](internationalization/i18n-sorting-local.md)
             - [Sorting by Indexes](internationalization/i18n-sorting-index.md)
         - [Character Processing](internationalization/i18n-character-processing.md)
-        - Name Localization
+        - Name Localization<!--i18n-name-localization-->
             - [Language and Locale Name Localization](internationalization/i18n-language-region-display.md)
             - [Time Zone Name Localization](internationalization/i18n-time-zone-display.md)
-    - Application Localization
+    - Application Localization<!--i10n-->
         - [Multilingual Resource Provisioning](internationalization/l10n-multilingual-resources.md)
-        - Application Translation
+        - Application Translation<!--i10n-translation-->
             - [Hard Coding and Concatenation Prevention](internationalization/l10n-hard-coding-concatenate.md)
             - [Scene and Context Clarification for Translation](internationalization/l10n-translation-scene.md)
             - [Singular/Plural Form Selection](internationalization/l10n-singular-plural.md)
-    - Localization Testing
-        - Pseudo-Localization Testing
+    - Localization Testing<!--i10n-testing-->
+        - Pseudo-Localization Testing<!--pseudo-i18n-testing-->
             - [Overview of Pseudo-Localization Testing](internationalization/pseudo-i18n-testing-overview.md)
             - [Pseudo-Localization Testing for Translation](internationalization/pseudo-i18n-testing-translation.md)
             - [Pseudo-Localization Testing for UI Mirroring](internationalization/pseudo-i18n-testing-mirror.md)
         - [Linguistic Testing](internationalization/linguistic-testing.md)
-  - Location Kit
+  - Location Kit<!--location-kit-->
     - [Introduction to Location Kit](device/location/location-kit-intro.md)
     - [Applying for Location Permissions](device/location/location-permission-guidelines.md)
     - [Obtaining Device Location Information](device/location/location-guidelines.md)
     - [Geocoding and Reverse Geocoding](device/location/geocode-guidelines.md)
     - [Geofencing](device/location/geofence-guidelines.md)
-  - MDM Kit
+  - MDM Kit<!--mdm-kit-->
     - [Introduction to MDM Kit](mdm/mdm-kit-intro.md)
     - [MDM Kit Development](mdm/mdm-kit-guide.md)
     - [EnterpriseAdminExtensionAbility Development](mdm/mdm-kit-admin.md)
-  - Media Kit
+  - Media Kit<!--media-kit-->
     - [Introduction to Media Kit](media/media/media-kit-intro.md)
-    - Audio Playback and Recording
+    - Audio Playback and Recording<!--audio-playback-recording--
       - [Using AVPlayer for Audio Playback (ArkTS)](media/media/using-avplayer-for-playback.md)
       - [Using AVPlayer for Audio Playback (C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
       - [Using SoundPool for Audio Playback](media/media/using-soundpool-for-playback.md)
       - [Using AVRecorder for Audio Recording](media/media/using-avrecorder-for-recording.md)
       - [Obtaining Audio/Video Metadata (ArkTS)](media/media/avmetadataextractor.md)
-    - Video Playback and Recording
+    - Video Playback and Recording<!--video-playback-recording-->
       - [Video Playback](media/media/video-playback.md)
       - [Video Recording](media/media/video-recording.md)
       - [Using AVScreenCapture to Obtain Original Streams (C/C++)](media/media/using-avscreencapture-for-buffer.md)
       - [Using AVScreenCapture to Save Recordings in Files (C/C++)](media/media/using-avscreencapture-for-file.md)
       - [Obtaining Video Thumbnails (ArkTS)](media/media/avimagegenerator.md)
-  - Media Library Kit
+  - Media Library Kit<!--medialibrary-kit-->
     - [Introduction to Media Library Kit](media/medialibrary/photoAccessHelper-overview.md)
     - [Selecting Media Assets Using Picker](media/medialibrary/photoAccessHelper-photoviewpicker.md)
     - [Creating a Media Asset Using SaveButton](media/medialibrary/photoAccessHelper-savebutton.md)
-    - Restricted Open Capabilities
+    - Restricted Open Capabilities<!--restricted-open-capabilities-->
       - [Before You Start](media/medialibrary/photoAccessHelper-preparation.md)
       - [Managing Media Assets](media/medialibrary/photoAccessHelper-resource-guidelines.md)
       - [Managing User Albums](media/medialibrary/photoAccessHelper-userAlbum-guidelines.md)
       - [Managing System Albums](media/medialibrary/photoAccessHelper-systemAlbum-guidelines.md)
       - [Observing Media Assets](media/medialibrary/photoAccessHelper-notify-guidelines.md)
       - [Requesting Media Assets Using MediaAssetManager (C/C++)](media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md)
-  - MindSpore Lite Kit
+  - MindSpore Lite Kit<!--mindspore-lite-kit-->
     - [Introduction to MindSpore Lite Kit](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
     - [Using MindSpore Lite for Image Classification (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
     - [Using MindSpore Lite for Image Classification (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
     - [Using MindSpore Lite for Offline Model Conversion and Inference](ai/mindspore/mindspore-lite-converter-guidelines.md)
     - [Using MindSpore Lite for Model Inference (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
     - [Using the MindSpore Lite Engine for On-Device Training (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
-  - MultimodalAwareness Kit
+  - Multimodal Awareness Kit<!--multimodal-awareness-kit-->
     - [Introduction to MultimodalAwareness Kit](device/stationary/multimodalawareness-kit-intro.md)
     - [Stationary Development](device/stationary/stationary-guidelines.md)
-  - Network Kit
+  - Network Kit<!--network-kit-->
     - [Introduction to Network Kit](network/net-mgmt-overview.md)
-    - Data Transmission Capabilities of Network Kit
+    - Data Transmission Capabilities of Network Kit<!--network-kit-data-transmission-->
         - [HTTP Data Request](network/http-request.md)
         - [WebSocket Connection](network/websocket-connection.md)
         - [Socket Connection](network/socket-connection.md)
         - [MDNS](network/net-mdns.md)
-    - Network Management Capabilities of Network Kit
+    - Network Management Capabilities of Network Kit<!--network-kit-network-management-->
         - [Network Connection Management](network/net-connection-manager.md)
         - [NetConnection Development (C/C++)](network/native-netmanager-guidelines.md)
         - [Traffic Management](network/net-statistics.md)
@@ -1077,15 +1077,15 @@
         - [Ethernet Connection Management (for System Applications Only)](network/net-ethernet.md)  
         - [VPN Management (for System Applications Only)](network/net-vpn.md)
         <!--DelEnd-->
-  - Neural Network Runtime Kit
+  - Neural Network Runtime Kit<!--neural-network-runtime-kit-->
     - [Introduction to Neural Network Runtime Kit](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
     - [Connecting the Neural Network Runtime to an AI Inference Framework](ai/nnrt/neural-network-runtime-guidelines.md)
-  - Notification Kit
+  - Notification Kit<!--notification-kit-->
     - [Introduction to Notification Kit](notification/notification-overview.md)
     - [Requesting Notification Authorization](notification/notification-enable.md)
     - [Notification Badge](notification/notification-badge.md)
     - [Managing Notification Slots](notification/notification-slot.md)
-    - Publishing a Notification
+    - Publishing a Notification<!--publish-notification-->
       - [Publishing a Text Notification](notification/text-notification.md)
       - [Publishing a Progress Notification](notification/progress-bar-notification.md)
       <!--Del-->
@@ -1095,58 +1095,56 @@
     <!--Del-->
     - [Notification Subscription (for System Applications Only)](notification/notification-subscription.md)
     <!--DelEnd-->
-  - Performance Analysis Kit
+  - Performance Analysis Kit<!--performance-analysis-kit-->
     - [Introduction to Performance Analysis Kit](dfx/performance-analysis-kit-overview.md)
-    - HiLog Usage
+    - HiLog Usage<!--hilog-dev-->
       - [Using HiLog to Print Logs (ArkTS)](dfx/hilog-guidelines-arkts.md)
       - [Using HiLog to Print Logs (C/C++)](dfx/hilog-guidelines-ndk.md)
-    - HiAppEvent Usage
+    - HiAppEvent Usage<!--hiappevent-->
       - [Introduction to HiAppEvent](dfx/hiappevent-intro.md)
-      - Event Subscription
-        - Application Events
+      - Event Subscription<!--event-subscription-->
+        - Application Events<!--app-event-->
           - [Subscribing to Application Events (ArkTS)](dfx/hiappevent-watcher-app-events-arkts.md)
           - [Subscribing to Application Events (C/C++)](dfx/hiappevent-watcher-app-events-ndk.md)
-        - System Events
-          - Crash Event
+        - System Events<!--system-events-->
+          - Crash Events<!--crash-events-->
             - [Crash Event Overview](dfx/hiappevent-watcher-crash-events.md)
             - [Subscribing to Crash Events (ArkTS)](dfx/hiappevent-watcher-crash-events-arkts.md)
             - [Subscribing to Crash Events (C/C++)](dfx/hiappevent-watcher-crash-events-ndk.md)
-          - Freeze Event
+          - Freeze Event<!--freeze-events-->
             - [Freeze Event Overview](dfx/hiappevent-watcher-freeze-events.md)
             - [Subscribing to Freeze Events (ArkTS)](dfx/hiappevent-watcher-freeze-events-arkts.md)
             - [Subscribing to Freeze Events (C/C++)](dfx/hiappevent-watcher-freeze-events-ndk.md)
-          - Resource Leak Event
+          - Resource Leak Event<!--resource-leak-events-->
             - [Resource Leak Event Overview](dfx/hiappevent-watcher-resourceleak-events.md)
             - [Subscribing to Resource Leak Events (ArkTS)](dfx/hiappevent-watcher-resourceleak-events-arkts.md)
             - [Subscribing to Resource Leak Events (C/C++)](dfx/hiappevent-watcher-resourceleak-events-ndk.md)
-          - Address Sanitizer Event
+          - Address Sanitizer Event<!--address-sanitizer-events-->
             - [Address Sanitizer Event Overview](dfx/hiappevent-watcher-address-sanitizer-events.md)
             - [Subscribing to Address Sanitizer Events (ArkTS)](dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
-            - [Subscribing to Address Sanitizer Events (C/C++)](dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
-          - Main Thread Jank Event
+          - Main Thread Jank Event<!--main-thread-jank-events-->
             - [Main Thread Jank Event Overview](dfx/hiappevent-watcher-mainthreadjank-events.md)
             - [Subscribing to Main Thread Jank Events (ArkTS)](dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
-            - [Subscribing to Main Thread Jank Events (C/C++)](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
       <!--Del-->
       - [Reporting Events](dfx/hiappevent-event-reporting.md)
       <!--DelEnd-->
-    - HiTraceMeter Usage
+    - HiTraceMeter Usage<!--hitracemeter-->
       - [Using HiTraceMeter to Trace Performance (ArkTS/JS)](dfx/hitracemeter-guidelines-arkts.md)
       - [Using HiTraceMeter to Trace Performance (C/C++)](dfx/hitracemeter-guidelines-ndk.md)
       - [Viewing HiTraceMeter Logs](dfx/hitracemeter-view.md)
-    - HiTraceChain
+    - HiTraceChain Usage<!--hitracechain-->
       - [Using HiTraceChain (ArkTS/JS)](dfx/hitracechain-guidelines-arkts.md)
       - [Using HiTraceChain (C/C++)](dfx/hitracechain-guidelines-ndk.md)
-    - HiChecker
+    - HiChecker Usage<!--hichecker-->
       - [Using HiChecker (ArkTS/JS)](dfx/hichecker-guidelines-arkts.md)
-    - Error Management
+    - Error Management<!--error-manager-->
       - [Development of Error Manager](dfx/errormanager-guidelines.md)
       - [Development of Application Recovery](dfx/apprecovery-guidelines.md)
-    - Fault Analysis
+    - Fault Analysis<!--fault-analysis-->
       - [Analyzing JSCrash (Process Crash)](dfx/jscrash-guidelines.md)
       - [Analyzing CPP Crash (Process Crash)](dfx/cppcrash-guidelines.md)
       - [Analyzing Application Freeze (appfreeze)](dfx/appfreeze-guidelines.md)
-    - Command Line Tools
+    - Command Line Tools<!--perform-command-line-utilities-->
       - [hdc](dfx/hdc.md)
       - [hilog](dfx/hilog.md)
       - [hidumper](dfx/hidumper.md)
@@ -1156,99 +1154,99 @@
       <!--Del-->
       - [uinput](dfx/uinput.md)
       <!--DelEnd-->
-  - Sensor Service Kit
+  - Sensor Service Kit<!--sensor-service-kit-->
     - [Introduction to Sensor Service Kit](device/sensor/sensorservice-kit-intro.md)
-    - Sensor
+    - Sensor<!--sensor-->
       - [Sensor Overview](device/sensor/sensor-overview.md)
       - [Sensor Development](device/sensor/sensor-guidelines.md)
-    - Vibrator
+    - Vibrator<!--vibrator-->
       - [Vibrator Overview](device/sensor/vibrator-overview.md)
       - [Vibrator Development](device/sensor/vibrator-guidelines.md)
-  - Telephony Kit
+  - Telephony Kit<!--telephony-kit-->
     - [Telephony Service Overview](telephony/telephony-overview.md)
     - [Call Service Development](telephony/telephony-call.md)
     - [SMS Service Development](telephony/telephony-sms.md)
-  - Test Kit
+  - Test Kit<!--test-kit-->
     - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
     - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
     - [wukong User Guide](application-test/wukong-guidelines.md)
-  - Universal Keystore Kit
+  - Universal Keystore Kit<!--huks-kit-->
     - [Introduction to Universal Keystore Kit](security/UniversalKeystoreKit/huks-overview.md)
     - [Basic Concepts of HUKS](security/UniversalKeystoreKit/huks-concepts.md)
-    - Key Generation and Import
-      - Key Generation
+    - Key Generation and Import<!--huks-key-generation-import-->
+      - Key Generation<!--huks-key-generation-->
         - [Key Generation Overview and Algorithm Specifications](security/UniversalKeystoreKit/huks-key-generation-overview.md)
-        - Development
+        - Development<!--huks-key-generation-dev-->
           - [Generating a Key (ArkTS)](security/UniversalKeystoreKit/huks-key-generation-arkts.md)
           - [Generating a Key (C/C++)](security/UniversalKeystoreKit/huks-key-generation-ndk.md)
-      - Key Import
+      - Key Import<!--huks-key-import-->
         - [Key Import Overview and Algorithm Specifications](security/UniversalKeystoreKit/huks-key-import-overview.md)
-        - Development
+        - Development<!--huks-key-import-dev-->
           - [Importing a Key in Plaintext (ArkTS)](security/UniversalKeystoreKit/huks-import-key-in-plaintext-arkts.md)
           - [Importing a Key in Plaintext (C/C++)](security/UniversalKeystoreKit/huks-import-key-in-plaintext-ndk.md)
           - [Importing a Key in Ciphertext (ArkTS)](security/UniversalKeystoreKit/huks-import-wrapped-key-arkts.md)
           - [Importing a Key in Ciphertext (C/C++)](security/UniversalKeystoreKit/huks-import-wrapped-key-ndk.md)
-    - Key Use
+    - Key Use<!--huks-key-use-->
       - [General Process of Using a Key](security/UniversalKeystoreKit/huks-key-use-overview.md)
-      - Encryption and Decryption
+      - Encryption and Decryption<!--huks-encryption-decryption-->
         - [Encryption and Decryption Overview and Algorithm Specifications](security/UniversalKeystoreKit/huks-encryption-decryption-overview.md)
-        - Development
+        - Development<!--huks-encryption-decryption-dev-->
           - [Encryption and Decryption (ArkTS)](security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md)
           - [Encryption and Decryption (C/C++)](security/UniversalKeystoreKit/huks-encryption-decryption-ndk.md)
-      - Signing and Signature Verification
+      - Signing and Signature Verification<!--huks-signing-signature-verification-->
         - [Signing and Signature Verification Overview and Algorithm Specifications](security/UniversalKeystoreKit/huks-signing-signature-verification-overview.md)
-        - Development
+        - Development<!--huks-signing-signature-verification-dev-->
           - [Signing and Signature Verification (ArkTS)](security/UniversalKeystoreKit/huks-signing-signature-verification-arkts.md)
           - [Signing and Signature Verification (C/C++)](security/UniversalKeystoreKit/huks-signing-signature-verification-ndk.md)
-      - Key Agreement
+      - Key Agreement<!--huks-key-agreement-->
         - [Key Agreement Overview and Algorithm Specifications](security/UniversalKeystoreKit/huks-key-agreement-overview.md)
-        - Development
+        - Development<!--huks-key-agreement-dev-->
           - [Key Agreement (ArkTS)](security/UniversalKeystoreKit/huks-key-agreement-arkts.md)
           - [Key Agreement (C/C++)](security/UniversalKeystoreKit/huks-key-agreement-ndk.md)
-      - Key Derivation
+      - Key Derivation<!--huks-key-derivation-->
         - [Key Derivation Overview and Algorithm Specifications](security/UniversalKeystoreKit/huks-key-derivation-overview.md)
-        - Development
+        - Development<!--huks-key-derivation-dev-->
           - [Key Derivation (ArkTS)](security/UniversalKeystoreKit/huks-key-derivation-arkts.md)
           - [Key Derivation (C/C++)](security/UniversalKeystoreKit/huks-key-derivation-ndk.md)
-      - Access Control
+      - Access Control <!--huks-identity-authentication-->
         - [HUKS Access Control Overview](security/UniversalKeystoreKit/huks-identity-authentication-overview.md)
-        - Development
+        - Development<!--huks-identity-authentication-dev-->
           - [HUKS Access Control Development](security/UniversalKeystoreKit/huks-user-identity-authentication.md)
           - [Refined Access Control Development](security/UniversalKeystoreKit/huks-refined-user-identity-authentication.md)
-    - Key Deletion
+    - Key Deletion <!--huks-delete-key-->
       - [Deleting a Key (ArkTS)](security/UniversalKeystoreKit/huks-delete-key-arkts.md)
       - [Deleting a Key (C/C++)](security/UniversalKeystoreKit/huks-delete-key-ndk.md)
-    - Key Attestation
+    - Key Attestation<!--huks-key-attestation-->
       - [Key Attestation Overview and Algorithm Specifications](security/UniversalKeystoreKit/huks-key-attestation-overview.md)
-      - Development
+      - Development<!--huks-key-attestation-dev-->
         - [Anonymous Key Attestation (ArkTS)](security/UniversalKeystoreKit/huks-key-anon-attestation-arkts.md)
         - [Anonymous Key Attestation (C/C++)](security/UniversalKeystoreKit/huks-key-anon-attestation-ndk.md)
         <!--Del-->
         - [Non-anonymous Key Attestation (ArkTS)](security/UniversalKeystoreKit/huks-key-attestation-arkts.md)
         - [Non-anonymous Key attestation (C/C++)](security/UniversalKeystoreKit/huks-key-attestation-ndk.md)
         <!--DelEnd-->
-    - Other Operations
-      - Checking Key Existence
+    - Other Operations<!--huks-other-operations-->
+      - Checking Key Existence<!--huks-check-key-->
         - [Checking a Key (ArkTS)](security/UniversalKeystoreKit/huks-check-key-arkts.md)
         - [Checking a Key (C/C++)](security/UniversalKeystoreKit/huks-check-key-ndk.md)
-      - Obtaining Key Properties
+      - Obtaining Key Properties<!--huks-obtain-key-properties-->
         - [Obtaining Key Properties (ArkTS)](security/UniversalKeystoreKit/huks-obtain-key-properties-arkts.md)
         - [Obtaining Key Properties (C/C++)](security/UniversalKeystoreKit/huks-obtain-key-properties-ndk.md)
-      - Exporting a Key
+      - Exporting a Key<!--huks-export-key-->
         - [Exporting a Key (ArkTS)](security/UniversalKeystoreKit/huks-export-key-arkts.md)
         - [Exporting a Key (C/C++)](security/UniversalKeystoreKit/huks-export-key-ndk.md)
-      - Querying Key Aliases
+      - Querying Key Aliases<!--huks-list-aliases-->
         - [Querying Key Aliases (ArkTS)](security/UniversalKeystoreKit/huks-list-aliases-arkts.md)
         - [Querying Key Aliases (C/C++)](security/UniversalKeystoreKit/huks-list-aliases-ndk.md)
-      - HMAC
+      - HMAC<!--huks-hmac-->
         - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
         - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
       <!--Del-->
       - [Specifying the User for Key Operations (for System Applications Only)](security/UniversalKeystoreKit/huks-as-user-sys.md)
       <!--DelEnd-->
-  - User Authentication Kit
+  - User Authentication Kit<!--user-authentication-kit-->
     - [Introduction to User Authentication Kit](security/UserAuthenticationKit/user-authentication-overview.md)
-    - User Authentication Development
+    - User Authentication Development<!--user-authentication-dev-->
       - [Before You Start](security/UserAuthenticationKit/prerequisites.md)
       - [Obtaining Supported Authentication Capabilities](security/UserAuthenticationKit/obtain-supported-authentication-capabilities.md)
       - [Initiating User Authentication](security/UserAuthenticationKit/start-authentication.md)
@@ -1256,25 +1254,25 @@
       - [Applying Custom Authentication](security/UserAuthenticationKit/apply-custom-authentication.md)
       - [Obtaining Enrolled Credential Information](security/UserAuthenticationKit/obtain-enrolled-state-capabilities.md)
       - [Using Embedded User Identity Authentication Icons](security/UserAuthenticationKit/user-auth-icon.md)
-  - NDK Development
+  - NDK Development<!--ndk-development-->
     - [Getting Started with the NDK](napi/ndk-development-overview.md)
     - [Creating an NDK Project](napi/create-with-ndk.md)
-    - Building an NDK Project
+    - Building an NDK Project<!--build-with-ndk-->
       - [NDK Project Building Overview](napi/build-with-ndk-overview.md)
       - [Building an NDK Project with the DevEco Studio Template](napi/build-with-ndk-ide.md)
       - [Building an NDK Project with the Command Line CMake](napi/build-with-ndk-cmake.md)
       - [Building an NDK Project with Prebuilt Libraries](napi/build-with-ndk-prebuilts.md)
-    - Code Development
+    - Code Development<!--coding-->
       - [Development Overview](napi/develop-code-overview.md)
-      - C/C++ Standard Library
+      - C/C++ Standard Library<!--c-cpp-->
         - [C/C++ Mechanisms](napi/c-cpp-overview.md)
         - [fdsan](napi/fdsan.md)
-      - Node-API Development
+      - Node-API Development<!--node-api-->
         - [Node-API Overview](napi/napi-introduction.md)
         - [Node-API Data Types and APIs](napi/napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi/napi-guidelines.md)
         - [Node-API Development Process](napi/use-napi-process.md)
-        - Typical Scenarios
+        - Typical Scenarios of Node-API<!--napi-scenarios-->
           - [Asynchronous Task Development Using Node-API](napi/use-napi-asynchronous-task.md)
           - [Thread Safety Development Using Node-API](napi/use-napi-thread-safety.md)
           - [Wrapping a Native Object in an ArkTS Object](napi/use-napi-object-wrap.md)
@@ -1286,40 +1284,96 @@
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
           - [Using Node-API Extension Capabilities](napi/use-napi-about-extension.md)
         - [Node-API FAQs](napi/use-napi-faqs.md)
-      - Using JSVM-API to Implement Interaction Between JS and C/C++
+      - Using JSVM-API to Implement Interaction Between JS and C/C++<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
         - [JSVM-API Data Types and APIs](napi/jsvm-data-types-interfaces.md)
         - [JSVM-API Development Specifications](napi/jsvm-guidelines.md)
         - [JSVM Debugging and Tuning Capabilities](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
-        - Typical Scenarios of JSVM-API
+        - Typical Scenarios of JSVM-API<!--jsvm-scenarios-->
           - [Creating and Destroying JS VMs Using JSVM-API](napi/use-jsvm-runtime-task.md)
-      - Resource Management
+      - Resource Management<!--resource-management-->
         - [Raw File Development](napi/rawfile-guidelines.md)
-      - Thread Scheduling
+      - Thread Scheduling<!--thread-scheduling-->
         - [QoS Development](napi/qos-guidelines.md)
-      - Memory Management
+      - Memory Management<!--memory-management-->
         - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
-      - Device Management
+      - Device Management<!--device-management-->
         - [USB DDK Development](napi/usb-ddk-guidelines.md)
         - [HID DDK Development](napi/hid-ddk-guidelines.md)
-      - Bundle Management
+      - Bundle Management<!--bundle-management-->
         - [Native Bundle Development](napi/native-bundle-guidelines.md)
-      - Network Management
+      - Network Management<!--network-management-->
         - [NetConnection Development](napi/native-netmanager-guidelines.md)
-    - Debugging and Profiling
+    - Debugging and Profiling<!--debugging-profiling-->
       - [Overview of Debugging and Profiling](napi/debug-performance-profiling-overview.md)
       - [Debugging in DevEco Studio](napi/debug-ide.md)
       - [C/C++ Memory Error Detection](napi/debug-asan.md)
-    - Hardware Compatibility
+    - Hardware Compatibility<!--hardware-compatibility-->
       - [Introduction to Hardware Compatibility](napi/hw-guide.md)
       - [OpenHarmony ABI](napi/ohos-abi.md)
       - [CPU Features](napi/cpu-features.md)
       - [Using Neon Instructions](napi/neon-guide.md)
+  <!--Del-->
+  - Performance
+    - [Application Performance Improvement Overview](performance/performance-overview.md)
+    - [Getting Started with Application Development Performance Optimization](performance/application-performance-optimization-guidance.md)
+    - [Troubleshooting Guide for Application Performance Optimization](performance/performance-optimization-practical-guidance.md)
+    - ArkTS High-Performance Programming
+      - [Efficient Concurrent Programming](performance/efficient-concurrent-programming.md)
+      - [Secure and Efficient N-API Development](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+      - [Scenario-based Practice of the Multithread Capability](performance/multi_thread_capability.md)
+      - [Using Native to Implement Cross-Thread Invoking](performance/native-threads-call-js.md)
+      - [Avoiding Redundant Operations During Development](performance/avoiding-redundant-operations.md)   
+    - Reducing Frame Freezing
+      - [Proper LazyForEach Usage for Optimization](performance/lazyforeach_optimization.md)
+      - [Best Practices for Component Reuse](performance/component-recycle.md)
+      - [Component Reuse Overview](performance/component-reuse-overview.md)
+      - [High-Performance WaterFlow Development](performance/waterflow_optimization.md)
+      - [Swiper High-Performance Development](performance/swiper_optimization.md)
+      - [Proper State Management](performance/proper_state_management.md)
+      - [Precisely Controlling Render Scope](performance/precisely-control-render-scope.md)
+      - [Using renderGroup Properly](performance/reasonable-using-renderGroup.md)
+      - [Reasonably Using Multithreaded Shared Memory](performance/thread_memory_shared.md)
+      - [High-Performance Grid Development](performance/grid_optimization.md)
+      - [Properly Using the Freezing Function of Customized PV Modules](performance/custom_component_freeze.md)
+      - [Avoiding Processing Time-consuming Operations in the High-frequency Callback API in the Sliding Scenario](performance/avoid_high_frequency_callback_execute_lengthy_operation.md)
+      - [Reasonable Use of APIs Provided by the System](performance/reasonable_using_system_interfaces.md)
+      - [Avoid Time-consuming Operations in the Main Thread](performance/avoid_time_consuming_operations_in_mainthread.md)
+    - Improving Application Startup and Response Times
+      - [Speeding Up Application Cold Start](performance/improve-application-cold-start-speed.md)
+      - [Speeding Up Application Response](performance/improve-application-response.md)
+      - [Flex Layout Performance Improvement](performance/flex-development-performance-boost.md)
+      - [Reducing Nesting](performance/reduce-view-nesting-levels.md)
+      - [Properly Choosing Between if/else and Visibility](performance/proper-choice-between-if-and-visibility.md)
+      - [Proper IPC Usage](performance/reasonable-using-ipc.md)
+      - [Improving File Upload and Download Performance](performance/improve-file-upload-and-download-performance.md)
+      - [Reducing Redundant Operations on First Frame Drawing](performance/reduce-redundant-operations-when-render-first-frame.md)
+      - [Best Practices for List Performance Optimization](performance/list-perf-improvment.md)
+      - [Application Animation Practice](performance/animation_practice.md)
+      - [More Performance Improvement Methods](performance/arkts-performance-improvement-recommendation.md)
+      - [Dynamic Import](performance/performance-dynamic-import.md)
+      - [Reasonably Running Background Tasks](performance/reasonable-running-backgroundTask.md)
+      - [Web Component Development Performance Improvement](performance/performance-web-import.md)
+      - [Reasonably Handling the Rendering of High-load Components](performance/reasonably-dispose-highly-loaded-component-render.md)
+      - [Implementation of Global Customized Component Reuse](performance/node_custom_component_reusable_pool.md)
+      - [Reducing the Size of Application Packages](performance/reduce-package-size.md)
+      - [Using the FrameNode Extension of ArkUI to Implement the Dynamic Layout Framework](performance/imperative_dynamic_layouts.md)
+    - Profiling Tools
+      - [CPU Profiler](performance/application-performance-analysis.md)
+      - [Using HiDumper to Improve Performance](performance/performance-optimization-using-hidumper.md)
+      - [Using SmartPerf-Host to Analyze Application Performance](performance/performance-optimization-using-smartperf-host.md)
+      - [Typical Traces](performance/common-trace-using-instructions.md)
+      - [Practice of the State Variable Component Locating Tool](performance/state_variable_dfx_pratice.md)
+      - [Practice of Analyzing Delay Performance Problems](performance/delay_related_performance.md)
+      - [Web Performance Problem Analysis Cases](performance/web-analyse.md)
+      - [Application Performance Problem Analysis Guide](performance/application-performance-guide.md)
+      - [Page Layout Checker ArkUI Inspector Usage Guide](performance/arkUI-inspector.md)
+  <!--DelEnd-->
 - Tools
-  - Debugging
+  - Debugging Tools<!--system-debug-optimize-->
     - [Ability Assistant](tools/aa-tool.md)
     - [Bundle Manager](tools/bm-tool.md)
-    - Packing and Unpacking Tools
+    - Packing and Unpacking Tools<!--packing-unpacking-->
       - [Packing Tool](tools/packing-tool.md)
       - [Unpacking Tool](tools/unpacking-tool.md)
     - [App Check Tool](tools/app-check-tool.md)
@@ -1328,7 +1382,7 @@
     - [restool](tools/restool.md)
     - [LLDB](tools/lldb-tool.md)
     - [param](tools/param-tool.md)
-    - Command Line Tools
+    - Command Line Utilities<!--perform-command-line-utilities-->
       - [Toybox](tools/toybox.md)
 - API References
   - [SystemCapability](reference/syscap.md)
@@ -2663,7 +2717,7 @@
         - [@ohos.commonEvent (Common Event) (System API)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB) (System API)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
         - [@ohos.systemParameter (System Parameter) (System API)](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)
-          <!--DelEnd-->
+        <!--DelEnd-->
         - [@ohos.systemTime (System Time and Time Zone)](reference/apis-basic-services-kit/js-apis-system-time.md)
     - C APIs<!--basic-services-c-->
       - Modules<!--basic-services-module-->
@@ -3241,9 +3295,9 @@
         - [@ohos.multimedia.medialibrary (Media Library Management) (System API)](reference/apis-media-library-kit/js-apis-medialibrary-sys.md)
         <!--DelEnd-->
     - ArkTS Components<!--media-library-comp-->
-      - [@ohos.file.AlbumPickerComponent (\<AlbumPickerComponent>)](reference/apis-media-library-kit/ohos-file-AlbumPickerComponent.md)
-      - [@ohos.file.PhotoPickerComponent (\<PhotoPicker> Component)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
-      - [@ohos.multimedia.movingphotoview (\<MovingPhotoView> Component)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
+      - [@ohos.file.AlbumPickerComponent (AlbumPickerComponent)](reference/apis-media-library-kit/ohos-file-AlbumPickerComponent.md)
+      - [@ohos.file.PhotoPickerComponent (PhotoPicker Component)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
+      - [@ohos.multimedia.movingphotoview (MovingPhotoView Component)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
     - C APIs<!--media-library-c-->
       - Modules<!--media-library-module-->
         - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)

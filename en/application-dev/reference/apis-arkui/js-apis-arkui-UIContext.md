@@ -5538,7 +5538,7 @@ struct Index {
 }
 ```
 
-![contextMenuController_close](figures/contextMenuController_close.gif)
+
 
 ## MeasureUtils<sup>12+</sup>
 

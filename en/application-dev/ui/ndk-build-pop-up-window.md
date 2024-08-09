@@ -162,4 +162,4 @@ You can create an interactive page to open or close the dialog box.
    }
    ```
 
-   ![en-us_image_0000001902966196](figures/en-us_image_0000001902966196.gif)
+   

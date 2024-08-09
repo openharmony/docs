@@ -349,7 +349,7 @@ When the user clicks the back button, a confirmation dialog box is displayed, pr
 
 ### Custom Confirmation Dialog Box
 
-To implement a custom confirmation dialog box, use APIs in the [PromptAction]((../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) module or customize a popup window . This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
+To implement a custom confirmation dialog box, use APIs in the [PromptAction](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) module or customize a popup window . This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
 
 Before using the **Router** module, import it first.
 
