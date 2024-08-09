@@ -528,15 +528,12 @@ struct RequestFocusExample {
 
 ## 主动获焦/失焦
 
-- 使用focusControl中的方法
-  ```ts
-  requestFocus(value: string): boolean
-  ```
-
-  调用此接口可以主动让焦点转移至参数指定的组件上，焦点转移生效时间为下一个帧信号。
-
-
 - 使用FocusController中的方法
+
+  更推荐使用FocusController中的requestFocus主动获取焦点。优势如下：
+  - 当前帧生效，避免被下一帧组件树变化影响。
+  - 有异常值返回，便于排查主动获取焦点失败的原因。
+  - 避免多实例场景中取到错误实例。
 
   需先使用UIContext中的[getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
 
@@ -550,14 +547,21 @@ struct RequestFocusExample {
   ```
   清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
 
+- 使用focusControl中的方法
+  ```ts
+  requestFocus(value: string): boolean
+  ```
+
+  调用此接口可以主动让焦点转移至参数指定的组件上，焦点转移生效时间为下一个帧信号。
+
 
 ```ts
 // focusTest.ets
 @Entry
 @Component
 struct RequestExample {
-  @State btColor: Color = Color.Blue
-  @State btColor2: Color = Color.Blue
+  @State btColor: string = '#ff2787d9'
+  @State btColor2: string = '#ff2787d9'
 
   build() {
     Column({ space: 20 }) {
@@ -569,10 +573,10 @@ struct RequestExample {
           .focusOnTouch(true)
           .backgroundColor(this.btColor)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor = '#ffd5d5d5'
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor = '#ff2787d9'
           })
           .id("testButton")
 
@@ -583,17 +587,17 @@ struct RequestExample {
           .focusOnTouch(true)
           .backgroundColor(this.btColor2)
           .onFocus(() => {
-            this.btColor2 = Color.Red
+            this.btColor2 = '#ffd5d5d5'
           })
           .onBlur(() => {
-            this.btColor2 = Color.Blue
+            this.btColor2 = '#ff2787d9'
           })
           .id("testButton2")
 
         Divider()
           .vertical(false)
           .width("80%")
-          .backgroundColor(Color.Black)
+          .backgroundColor('#ff707070')
           .height(10)
 
         Button('FocusController.requestFocus')
@@ -601,18 +605,21 @@ struct RequestExample {
           .onClick(() => {
             this.getUIContext().getFocusController().requestFocus("testButton")
           })
+          .backgroundColor('#ff2787d9')
 
         Button("focusControl.requestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
             focusControl.requestFocus("testButton2")
           })
+          .backgroundColor('#ff2787d9')
 
         Button("clearFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
             this.getUIContext().getFocusController().clearFocus()
           })
+          .backgroundColor('#ff2787d9')
       }
     }
     .width('100%')
@@ -620,6 +627,9 @@ struct RequestExample {
   }
 }
 ```
+
+![focus-2](figures/focus-2.gif)
+
 上述示例包含以下3步：
 
 - 点击FocusController.requestFocus按钮，第一个Button获焦
