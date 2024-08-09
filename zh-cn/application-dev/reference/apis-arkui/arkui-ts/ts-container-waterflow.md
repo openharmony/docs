@@ -745,6 +745,7 @@ struct WaterFlowDemo {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
+              Image('res/waterFlowTest(' + item % 5 + ').jpg')
             }
           }
           .width('100%')
@@ -789,7 +790,11 @@ struct ReusableFlowItem {
   }
 
   build() {
-    Text("N" + this.item).fontSize(16).height('100%')
+    Image('res/waterFlowTest(' + this.item % 5 + ').jpg')
+        .overlay('N' + this.item, { align: Alignment.Top })
+        .objectFit(ImageFit.Fill)
+        .width('100%')
+        .layoutWeight(1)
   }
 }
 
