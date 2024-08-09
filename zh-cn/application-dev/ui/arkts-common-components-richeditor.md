@@ -218,6 +218,54 @@ RichEditor(this.options1)
 
 ![alt text](figures/richeditor_image_onSelect.gif)
 
+## 添加图文变化前和图文变化后可触发的回调
+
+通过[onWillChange](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onwillchange12)添加图文变化前可触发的回调。通过[onDidChange](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidchange12)添加图文变化后可触发的回调。
+
+onWillChange的callback中：[RichEditorChangeValue](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorchangevalue12)为图文变化信息；boolean为true时，表示当前图文允许被更改。boolean为false时，表示当前图文不允许被更改。
+
+onDidChange的callback中：[OnDidChangeCallback](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidchangecallback12)为图文变化前后的内容范围。
+
+使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的RichEditor组件不支持这两种回调。
+
+```ts
+RichEditor(this.options)
+    .onReady(() => {
+        this.controller.addTextSpan('组件内图文变化前，触发回调。\n图文变化后，触发回调。', {
+            style: {
+                fontColor: Color.Black,
+                fontSize: 15
+            }
+        })
+    })
+    .onWillChange((value: RichEditorChangeValue) => {
+        this.controller1.addTextSpan('组件内图文变化前，触发回调：\n' + JSON.stringify(value), {
+            style: {
+                fontColor: Color.Gray,
+                fontSize: 10
+            }
+        })
+        return true;
+    })
+    .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
+        this.controller1.addTextSpan('\n图文变化后，触发回调：\nrangeBefore:' + JSON.stringify(rangeBefore) + '\nrangeAfter：' + JSON.stringify(rangeBefore), {
+            style: {
+                fontColor: Color.Gray,
+                fontSize: 10
+            }
+        })
+        return true;
+    })
+    .width(300)
+    .height(50)
+Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
+RichEditor(this.options1)
+    .width(300)
+    .height(70)
+```
+
+![alt text](figures/richeditor_image_ondid.gif)
+
 ### 添加输入法输入内容前和完成输入后可触发的回调
   
 通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)添加输入法输入内容前可触发的回调。通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)添加输入法完成输入后可触发的回调。
