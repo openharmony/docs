@@ -463,7 +463,7 @@
         - [Multi-Language Capability](ui/js-framework-multiple-languages.md)
       - Building the UI<!--ui-js-building-ui-->
         - [Component Overview](ui/ui-js-building-ui-component.md)
-        - Building the Layout<!--arkts-build-layout-->
+        - Building the Layout<!--ui-js-building-layout-->
           - [Layout Description](ui/ui-js-building-ui-layout-intro.md)
           - [Adding Title and Paragraph Text](ui/ui-js-building-ui-layout-text.md)
           - [Adding an Image](ui/ui-js-building-ui-layout-image.md)
@@ -1382,7 +1382,7 @@
     - [restool](tools/restool.md)
     - [LLDB](tools/lldb-tool.md)
     - [param](tools/param-tool.md)
-    - Command Line Utilities<!--perform-command-line-utilities-->
+    - Command Line Utilities<!--command-line-utilities-->
       - [Toybox](tools/toybox.md)
 - API References
   - [SystemCapability](reference/syscap.md)
