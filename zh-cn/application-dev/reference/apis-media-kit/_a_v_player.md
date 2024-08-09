@@ -968,7 +968,7 @@ OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode (OH_AVPlayer *player, OH_AudioInt
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针。  | 
-| interruptMode | player音频流使用的打断模式[OH_AudioStream_Usage](../apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)。  | 
+| interruptMode | player音频流使用的打断模式[OH_AudioInterrupt_Mode](../apis-audio-kit/_o_h_audio.md#oh_audiointerrupt_mode)。  | 
 
 **返回：**
 
