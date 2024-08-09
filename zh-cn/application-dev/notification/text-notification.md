@@ -25,16 +25,16 @@
 1. 导入模块。
    
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import Base from '@ohos.base';
-   import hilog from '@ohos.hilog';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = '[PublishOperation]';
    const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 构造NotificationRequest对象，并发布通知。
-   - 普通文本类型通知由标题、文本内容和附加信息三个字段组成，其中标题和文本内容是必填字段，大小均需要小于200字节。
+   - 普通文本类型通知由标题、文本内容和附加信息三个字段组成，其中标题和文本内容是必填字段，大小均需要小于200字节，超出部分会被截断。
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
@@ -48,7 +48,7 @@
           }
         }
       };
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+      notificationManager.publish(notificationRequest, (err: BusinessError) => {
         if (err) {
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -58,7 +58,7 @@
       ```
 
 
-   - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题，其字段均小于200字节。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，多行文本内容多行显示。
+   - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题，其字段均小于200字节，超出部分会被截断。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，多行文本内容多行显示。
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
@@ -75,7 +75,7 @@
         }
       };
       // 发布通知
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+      notificationManager.publish(notificationRequest, (err: BusinessError) => {
         if (err) {
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -86,7 +86,7 @@
 3. 删除通知。
 
    ```ts
-    notificationManager.cancel(1, (err:Base.BusinessError) => {
+    notificationManager.cancel(1, (err: BusinessError) => {
       if (err) {
         hilog.error(DOMAIN_NUMBER, TAG, `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
         return;

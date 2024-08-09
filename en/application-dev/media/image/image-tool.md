@@ -1,4 +1,4 @@
-# Image Tool
+# Editing EXIF Data
 
 The image tool provides the capabilities of reading and editing Exchangeable Image File Format (EXIF) data of an image.
 
@@ -16,7 +16,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#getimageproperty11)
 
    ```ts
    // Import the required module.
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
 
    // Obtain the sandbox path and create an ImageSource object.
    const fd : number = 0; // Obtain the file descriptor of the image to be processed.
@@ -26,7 +26,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#getimageproperty11)
 2. Read and edit EXIF data.
 
     ```ts
-    import {BusinessError} from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
     // Read the EXIF data, where BitsPerSample indicates the number of bits per pixel.
     let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
     imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {

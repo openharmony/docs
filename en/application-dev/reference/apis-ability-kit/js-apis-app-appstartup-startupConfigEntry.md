@@ -1,7 +1,7 @@
 # @ohos.app.appstartup.StartupConfigEntry
 
 
-The @ohos.app.appstartup.StartupConfigEntry module provides the API for configuring the AppStartup framework.
+The StartupConfigEntry module provides the API for configuring the AppStartup framework.
 
 > **NOTE**
 >
@@ -25,32 +25,33 @@ Called during application startup to configure the AppStartup framework.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| StartupConfig | AppStartup framework configuration.|
+| StartupConfig | AppStartup framework configuration. |
 
 **Example**
 
 ```ts
-import { StartupConfigEntry, StartupConfig, StartupListener } from '@kit.AbilityKit';
+import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
-    console.info('StartupTest MyStartupConfigEntry onConfig');
-    let onCompletedCallback = (error: BusinessError) => {
-      console.info('StartupTest MyStartupConfigEntry callback, error=' + JSON.stringify(error));
+    hilog.info(0x0000, 'testTag', `onConfig`);
+    let onCompletedCallback = (error: BusinessError<void>) => {
+      hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        console.error('onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
+        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
-        console.info('onCompletedCallback: success');
+        hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
     }
     let startupListener: StartupListener = {
       'onCompleted': onCompletedCallback
     }
     let config: StartupConfig = {
-      'timeoutMs': 5000,
+      'timeoutMs': 10000,
       'startupListener': startupListener
     }
     return config;

@@ -1205,12 +1205,12 @@ Defines a reverse geocoding request.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
-| latitude | number | Yes| Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
-| longitude | number | Yes| Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
-| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
+| locale | string | No| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| latitude | number | No| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
+| longitude | number | No| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
+| maxItems | number | No| Yes| Maximum number of location records to be returned. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
 
 
 ## GeoCodeRequest<sup>(deprecated)</sup>
@@ -1224,15 +1224,15 @@ Defines a reverse geocoding request.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
-| description | string | Yes| Yes| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
-| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
-| minLatitude | number | Yes| Yes| Minimum latitude. This parameter is used with **minLongitude**, **maxLatitude**, and **maxLongitude** to specify the latitude and longitude ranges. The value ranges from **-90** to **90**.|
-| minLongitude | number | Yes| Yes| Minimum longitude. The value ranges from **-180** to **180**.|
-| maxLatitude | number | Yes| Yes| Maximum latitude. The value ranges from **-90** to **90**.|
-| maxLongitude | number | Yes| Yes| Maximum longitude. The value ranges from **-180** to **180**.|
+| locale | string | No| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| description | string | No| No| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
+| maxItems | number | No| Yes| Maximum number of location records to be returned. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
+| minLatitude | number | No| Yes| Minimum latitude. This parameter is used with **minLongitude**, **maxLatitude**, and **maxLongitude** to specify the latitude and longitude ranges. The value ranges from **-90** to **90**.|
+| minLongitude | number | No| Yes| Minimum longitude. The value ranges from **-180** to **180**.|
+| maxLatitude | number | No| Yes| Maximum latitude. The value ranges from **-90** to **90**.|
+| maxLongitude | number | No| Yes| Maximum longitude. The value ranges from **-180** to **180**.|
 
 
 ## GeoAddress<sup>(deprecated)</sup>
@@ -1246,26 +1246,26 @@ Geocoding address information.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| latitude<sup>7+</sup> | number | Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
-| longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
-| locale<sup>7+</sup> | string | Yes| No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
-| placeName<sup>7+</sup> | string | Yes| No| Landmark of the location.|
-| countryCode<sup>7+</sup> | string | Yes| No| Country code.|
-| countryName<sup>7+</sup> | string | Yes| No| Country name.|
-| administrativeArea<sup>7+</sup> | string | Yes| No| Administrative region name.|
-| subAdministrativeArea<sup>7+</sup> | string | Yes| No| Sub-administrative region name.|
-| locality<sup>7+</sup> | string | Yes| No| Locality information.|
-| subLocality<sup>7+</sup> | string | Yes| No| Sub-locality information.|
-| roadName<sup>7+</sup> | string | Yes| No| Road name.|
-| subRoadName<sup>7+</sup> | string | Yes| No| Auxiliary road information.|
-| premises<sup>7+</sup> | string | Yes| No| House information.|
-| postalCode<sup>7+</sup> | string | Yes| No| Postal code.|
-| phoneNumber<sup>7+</sup> | string | Yes| No| Phone number.|
-| addressUrl<sup>7+</sup> | string | Yes| No| Website URL.|
-| descriptions<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Additional descriptions.|
-| descriptionsSize<sup>7+</sup> | number | Yes| No| Total number of additional descriptions. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
+| latitude<sup>7+</sup> | number | No| Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
+| longitude<sup>7+</sup> | number | No| Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
+| locale<sup>7+</sup> | string | No| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| placeName<sup>7+</sup> | string | No| Yes| Landmark of the location.|
+| countryCode<sup>7+</sup> | string | No| Yes| Country code.|
+| countryName<sup>7+</sup> | string | No| Yes| Country name.|
+| administrativeArea<sup>7+</sup> | string | No| Yes| Administrative region name.|
+| subAdministrativeArea<sup>7+</sup> | string | No| Yes| Sub-administrative region name.|
+| locality<sup>7+</sup> | string | No| Yes| Locality information.|
+| subLocality<sup>7+</sup> | string | No| Yes| Sub-locality information.|
+| roadName<sup>7+</sup> | string | No| Yes| Road name.|
+| subRoadName<sup>7+</sup> | string | No| Yes| Auxiliary road information.|
+| premises<sup>7+</sup> | string | No| Yes| House information.|
+| postalCode<sup>7+</sup> | string | No| Yes| Postal code.|
+| phoneNumber<sup>7+</sup> | string | No| Yes| Phone number.|
+| addressUrl<sup>7+</sup> | string | No| Yes| Website URL.|
+| descriptions<sup>7+</sup> | Array&lt;string&gt; | No| Yes| Additional descriptions.|
+| descriptionsSize<sup>7+</sup> | number | No| Yes| Total number of additional descriptions. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
 
 
 ## LocationRequest<sup>(deprecated)</sup>
@@ -1279,13 +1279,13 @@ Defines a location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
-| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
-| timeInterval | number | Yes| Yes| Time interval at which location information is reported, in seconds. The value must be greater than **0**.|
-| distanceInterval | number | Yes| Yes| Distance interval at which location information is reported. The value must be greater than **0**, in meters.|
-| maxAccuracy | number | Yes| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY\_TRACKING**, or **CAR\_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY\_LIFE_SERVICE** or **NO\_POWER** or **priority** is set to **LOW\_POWER** or **FIRST\_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
+| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | No| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
+| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | No| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
+| timeInterval | number | No| Yes| Time interval at which location information is reported, in seconds. The value must be greater than **0**.|
+| distanceInterval | number | No| Yes| Distance interval at which location information is reported. The value must be greater than **0**, in meters.|
+| maxAccuracy | number | No| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY\_TRACKING**, or **CAR\_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY\_LIFE_SERVICE** or **NO\_POWER** or **priority** is set to **LOW\_POWER** or **FIRST\_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
 
 
 ## CurrentLocationRequest<sup>(deprecated)</sup>
@@ -1299,12 +1299,12 @@ Defines a location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
-| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
-| maxAccuracy | number | Yes| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY\_TRACKING**, or **CAR\_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY\_LIFE_SERVICE** or **NO\_POWER** or **priority** is set to **LOW\_POWER** or **FIRST\_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
-| timeoutMs | number | Yes| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The value must be greater than or equal to **1000**.|
+| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | No| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
+| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | No| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
+| maxAccuracy | number | No| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY\_TRACKING**, or **CAR\_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY\_LIFE_SERVICE** or **NO\_POWER** or **priority** is set to **LOW\_POWER** or **FIRST\_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
+| timeoutMs | number | No| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The value must be greater than or equal to **1000**.|
 
 
 ## SatelliteStatusInfo<sup>(deprecated)</sup>
@@ -1319,14 +1319,14 @@ Defines the satellite status information.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| satellitesNumber | number | Yes| No| Number of satellites. The value must be greater than or equal to **0**.|
-| satelliteIds | Array&lt;number&gt; | Yes| No| Array of satellite IDs. The value must be greater than or equal to **0**.|
-| carrierToNoiseDensitys | Array&lt;number&gt; | Yes| No| Carrier-to-noise density ratio, that is, **cn0**. The value must be greater than **0**.|
-| altitudes | Array&lt;number&gt; | Yes| No| Satellite altitude angle information. The value ranges from **-90** to **90**, in degrees.|
-| azimuths | Array&lt;number&gt; | Yes| No| Azimuth information. The value ranges from **0** to **360**, in degrees.|
-| carrierFrequencies | Array&lt;number&gt; | Yes| No| Carrier frequency. The value must be greater than or equal to **0**, in Hz.|
+| satellitesNumber | number | No| No| Number of satellites. The value must be greater than or equal to **0**.|
+| satelliteIds | Array&lt;number&gt; | No| No| Array of satellite IDs. The value must be greater than or equal to **0**.|
+| carrierToNoiseDensitys | Array&lt;number&gt; | No| No| Carrier-to-noise density ratio, that is, **cn0**. The value must be greater than **0**.|
+| altitudes | Array&lt;number&gt; | No| No| Satellite altitude angle information. The value ranges from **-90** to **90**, in degrees.|
+| azimuths | Array&lt;number&gt; | No| No| Azimuth information. The value ranges from **0** to **360**, in degrees.|
+| carrierFrequencies | Array&lt;number&gt; | No| No| Carrier frequency. The value must be greater than or equal to **0**, in Hz.|
 
 
 ## CachedGnssLocationsRequest<sup>(deprecated)</sup>
@@ -1341,10 +1341,10 @@ Represents a request for reporting cached GNSS locations.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| reportingPeriodSec | number | Yes| Yes| Interval for reporting the cached GNSS locations, in milliseconds. The value must be greater than **0**.|
-| wakeUpCacheQueueFull | boolean | Yes| Yes | **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
+| reportingPeriodSec | number | No| No| Interval for reporting the cached GNSS locations, in milliseconds. The value must be greater than **0**.|
+| wakeUpCacheQueueFull | boolean | No| No| **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
 
 
 ## Geofence<sup>(deprecated)</sup>
@@ -1359,12 +1359,12 @@ Defines a GNSS geofence. Currently, only circular geofences are supported.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number | Yes| Yes|Latitude information. The value ranges from **-90** to **90**.|
-| longitude | number | Yes|Yes| Longitude information. The value ranges from **-180** to **180**.|
-| radius | number | Yes|Yes| Radius of a circular geofence. The value must be greater than **0**, in meters.|
-| expiration | number | Yes|Yes| Expiration period of a geofence, in milliseconds. The value must be greater than **0**.|
+| latitude | number | No| No|Latitude information. The value ranges from **-90** to **90**.|
+| longitude | number | No| No| Longitude information. The value ranges from **-180** to **180**.|
+| radius | number | No| No| Radius of a circular geofence. The value must be greater than **0**, in meters.|
+| expiration | number | No| No| Expiration period of a geofence, in milliseconds. The value must be greater than **0**.|
 
 
 ## GeofenceRequest<sup>(deprecated)</sup>
@@ -1379,11 +1379,11 @@ Defines a geofence request.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes | Priority of the location information.|
-| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes | Location scenario.|
-| geofence | [Geofence](#geofencedeprecated)| Yes| Yes | Geofence information.|
+| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | No| No| Priority of the location information.|
+| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | No| No| Location scenario.|
+| geofence | [Geofence](#geofencedeprecated)| No| No| Geofence information.|
 
 
 ## LocationCommand<sup>(deprecated)</sup>
@@ -1398,10 +1398,10 @@ Defines a location command.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated)  | Yes| Yes | Location scenario.|
-| command | string | Yes| Yes | Extended command, in the string format.|
+| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated)  | No| No| Location scenario.|
+| command | string | No| No| Extended command, in the string format.|
 
 
 ## Location<sup>(deprecated)</sup>
@@ -1415,18 +1415,18 @@ Defines location information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| latitude<sup>7+</sup> | number | Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
-| longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
-| altitude<sup>7+</sup> | number | Yes| No| Location altitude, in meters.|
-| accuracy<sup>7+</sup> | number | Yes| No| Location accuracy, in meters.|
-| speed<sup>7+</sup> | number | Yes| No| Speed, in m/s.|
-| timeStamp<sup>7+</sup> | number | Yes| No| Location timestamp in the UTC format.|
-| direction<sup>7+</sup> | number | Yes| No| Direction information. The value ranges from **0** to **360**, in degrees.|
-| timeSinceBoot<sup>7+</sup> | number | Yes| No| Location timestamp since boot.|
-| additions<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Additional description.|
-| additionSize<sup>7+</sup> | number | Yes| No| Number of additional descriptions. The value must be greater than or equal to **0**.|
+| latitude<sup>7+</sup> | number | No| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
+| longitude<sup>7+</sup> | number | No| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
+| altitude<sup>7+</sup> | number | No| No| Location altitude, in meters.|
+| accuracy<sup>7+</sup> | number | No| No| Location accuracy, in meters.|
+| speed<sup>7+</sup> | number | No| No| Speed, in m/s.|
+| timeStamp<sup>7+</sup> | number | No| No| Location timestamp in the UTC format.|
+| direction<sup>7+</sup> | number | No| No| Direction information. The value ranges from **0** to **360**, in degrees.|
+| timeSinceBoot<sup>7+</sup> | number | No| No| Location timestamp since boot.|
+| additions<sup>7+</sup> | Array&lt;string&gt; | No| Yes| Additional description.|
+| additionSize<sup>7+</sup> | number | No| Yes| Number of additional descriptions. The value must be greater than or equal to **0**.|
 
 
 ## LocationPrivacyType<sup>(deprecated)</sup>

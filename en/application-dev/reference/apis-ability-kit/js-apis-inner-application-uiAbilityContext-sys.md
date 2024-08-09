@@ -6,13 +6,12 @@
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
->  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
 >  - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 > **NOTE**
@@ -23,15 +22,12 @@ import common from '@ohos.app.ability.common';
 
 startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
-Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result when the ability is terminated.
+Starts an ability with the account ID specified and returns the result when the ability is terminated. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
-> **NOTE**
-> 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -41,17 +37,17 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -75,15 +71,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
-
     let want: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
@@ -116,15 +108,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-Starts an ability with the start options and account ID specified. This API uses an asynchronous callback to return the result when the ability is terminated.
+Starts an ability with the account ID and start options specified and returns the result when the ability is terminated. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
-> **NOTE**
-> 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -134,18 +123,18 @@ Starts an ability with the start options and account ID specified. This API uses
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback\<void\> | Yes| Callback invoked when the ability is terminated.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
+| callback | AsyncCallback\<void\> | Yes | Callback invoked when the ability is terminated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -169,15 +158,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, StartOptions, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
-
     let want: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
@@ -213,15 +198,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
-Starts an ability with the account ID specified. This API uses a promise to return the result when the ability is terminated.
+Starts an ability with the account ID specified and returns the result when the ability is terminated. This API uses a promise to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
-> **NOTE**
-> 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -231,23 +213,23 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the ability result when the ability is terminated.|
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the ability result when the ability is terminated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -271,14 +253,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, StartOptions, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -321,16 +299,16 @@ Starts a ServiceExtensionAbility. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ServiceExtensionAbility. |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -349,12 +327,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -394,15 +370,15 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ServiceExtensionAbility. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -421,12 +397,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -462,7 +436,8 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 
 > **NOTE**
 > 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -472,17 +447,17 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ServiceExtensionAbility. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -501,12 +476,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -543,7 +516,8 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 
 > **NOTE**
 > 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -553,16 +527,16 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -581,12 +555,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -626,16 +598,16 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ServiceExtensionAbility. |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -651,13 +623,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -683,7 +653,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-  ```
+```
 
 ## UIAbilityContext.stopServiceExtensionAbility
 
@@ -697,15 +667,15 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ServiceExtensionAbility. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -719,13 +689,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -751,7 +719,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-  ```
+```
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
@@ -761,7 +729,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 > **NOTE**
 > 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -771,17 +739,17 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ServiceExtensionAbility. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -796,12 +764,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -838,7 +804,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 > **NOTE**
 > 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -848,16 +814,16 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ServiceExtensionAbility. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -872,12 +838,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -910,11 +874,12 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
-Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template, with the account ID specified.
+Connects this ability to a ServiceExtensionAbility, with the account ID specified. This API can be called only by the main thread.
 
 > **NOTE**
-> 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -924,23 +889,23 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Instance of the callback function after the connection to the ServiceExtensionAbility is set up.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes | Instance of the callback function after the connection to the ServiceExtensionAbility is set up. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the ability connection. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -957,14 +922,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -976,16 +938,17 @@ export default class EntryAbility extends UIAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.info('onFailed...');
       }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
     } catch (err) {
@@ -1002,15 +965,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
-Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result.
+Starts an ability with want and the account ID specified. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
-> **NOTE**
-> 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1020,17 +980,17 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -1054,12 +1014,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1093,15 +1051,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-Starts an ability with the account ID and start options specified. This API uses an asynchronous callback to return the result.
+Starts an ability with want, the account ID, and start options specified. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
-> **NOTE**
-> 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1111,18 +1066,18 @@ Starts an ability with the account ID and start options specified. This API uses
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
+| callback | AsyncCallback\<void\> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -1146,13 +1101,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1189,15 +1141,12 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
-Starts an ability with the account ID specified. This API uses a promise to return the result.
+Starts an ability with want, the account ID, and start options specified. This API uses a promise to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
-> **NOTE**
-> 
-> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
+> Permission verification is not required when **accountId** specifies the current user.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1207,17 +1156,17 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| accountId | number | Yes | ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -1241,13 +1190,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1291,16 +1237,16 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | Yes| Icon of the ability to set.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| icon | image.PixelMap | Yes | Icon of the ability to set. |
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -1309,9 +1255,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { UIAbility } from '@kit.AbilityKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1327,10 +1273,9 @@ export default class EntryAbility extends UIAbility {
       this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
         console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
       })
-    })
-      .catch((err: BusinessError) => {
-        console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
-      });
+    }).catch((err: BusinessError) => {
+      console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
 }
 ```
@@ -1348,21 +1293,21 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | Yes| Icon of the ability to set.|
+| icon | image.PixelMap | Yes | Icon of the ability to set. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -1370,42 +1315,41 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import image from '@ohos.multimedia.image';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  export default class EntryAbility extends UIAbility {
-    onForeground() {
-      let imagePixelMap: image.PixelMap;
-      let color = new ArrayBuffer(0);
-      image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
-      }).then((data) => {
-          imagePixelMap = data;
-          this.context.setMissionIcon(imagePixelMap)
-            .then(() => {
-              console.info('setMissionIcon succeed');
-            })
-            .catch((err: BusinessError) => {
-              console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
-            });
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let imagePixelMap: image.PixelMap;
+    let color = new ArrayBuffer(0);
+    image.createPixelMap(color, {
+      size: {
+        height: 100,
+        width: 100
+      }
+    }).then((data) => {
+      imagePixelMap = data;
+      this.context.setMissionIcon(imagePixelMap)
+        .then(() => {
+          console.info('setMissionIcon succeed');
         })
         .catch((err: BusinessError) => {
-          console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+          console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
         });
-    }
+    }).catch((err: BusinessError) => {
+      console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ## UIAbilityContext.startRecentAbility
 
 startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
+Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
@@ -1417,16 +1361,16 @@ Starts an ability. If the ability has multiple instances, the latest instance is
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
@@ -1449,12 +1393,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1484,8 +1426,9 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
-You can use this API to carry start options.
+Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+
+
 
 > **NOTE**
 >
@@ -1497,17 +1440,17 @@ You can use this API to carry start options.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
@@ -1530,13 +1473,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1570,8 +1510,7 @@ export default class EntryAbility extends UIAbility {
 
 startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-Starts an ability. If the ability has multiple instances, the latest instance is started.
-This API uses a promise to return the result.
+Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses a promise to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
@@ -1583,16 +1522,16 @@ This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
@@ -1615,13 +1554,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1655,7 +1591,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
-Starts an ability with the account ID specified and obtains the caller object for communicating with the ability.
+Starts an ability with the account ID specified and obtains the caller object for communicating with the ability. This API can be called only by the main thread.
 
 Observe the following when using this API:
  - If an application needs to call this API to start an ability that belongs to another user, it must have the **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** and **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permissions.
@@ -1671,22 +1607,22 @@ Observe the following when using this API:
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
-| accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
+| want | [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background. |
+| accountId | number | Yes | ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9). |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | Promise used to return the caller object to communicate with.|
+| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | Promise used to return the caller object to communicate with. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -1705,19 +1641,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, Caller } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // ID of a system account. The value -1 indicates the current user.
     let accountId = -1;
-
     // Specify the ability to start.
     let want: Want = {
       bundleName: 'com.acts.actscalleeabilityrely',
@@ -1738,11 +1669,11 @@ export default class EntryAbility extends UIAbility {
           console.log('startAbilityByCallWithAccount succeed');
         }).catch((error: BusinessError) => {
         // Process service logic errors.
-        console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
       });
     } catch (paramError) {
       // Process input parameter errors.
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -1752,7 +1683,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
+Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
@@ -1764,16 +1695,16 @@ Starts an ability with the caller information specified. The caller information 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
@@ -1796,9 +1727,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1818,36 +1747,34 @@ export default class EntryAbility extends UIAbility {
     })
   }
 }
-
 ```
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-Starts an ability with the caller information and start options specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
+Starts an ability with the caller information and start options specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 16000001 | The specified ability does not exist. |
@@ -1868,10 +1795,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, Want, AbilityConstant, StartOptions } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1880,10 +1804,9 @@ export default class EntryAbility extends UIAbility {
     localWant.bundleName = 'com.example.demo';
     localWant.moduleName = 'entry';
     localWant.abilityName = 'TestAbility';
-
     let option: StartOptions = {
       displayId: 0
-    }
+    };
 
     // Start a new ability using the caller information.
     this.context.startAbilityAsCaller(localWant, option, (err) => {
@@ -1895,14 +1818,13 @@ export default class EntryAbility extends UIAbility {
     })
   }
 }
-
 ```
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result.
+Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
@@ -1914,22 +1836,22 @@ Starts an ability with the caller information specified. The caller information 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
@@ -1952,11 +1874,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, AbilityConstant, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1965,10 +1884,9 @@ export default class EntryAbility extends UIAbility {
     localWant.bundleName = 'com.example.demo';
     localWant.moduleName = 'entry';
     localWant.abilityName = 'TestAbility';
-
     let option: StartOptions = {
       displayId: 0
-    }
+    };
 
     // Start a new ability using the caller information.
     this.context.startAbilityAsCaller(localWant, option)
@@ -1980,16 +1898,17 @@ export default class EntryAbility extends UIAbility {
       })
   }
 }
-
 ```
 
 ## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses a promise to return the result.
+Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. This API uses a promise to return the result. It can be called only by the main thread.
 
-Before starting the UIExtensionAility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
+The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**.
+
+Before starting the UIExtensionAbility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAbility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
 
 > **NOTE**
 >
@@ -2001,21 +1920,21 @@ Before starting the UIExtensionAility, ensure that the foreground application ha
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the UIExtensionAility.|
+| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes | Want information used to start the UIExtensionAbility. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
@@ -2023,9 +1942,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -2063,30 +1981,31 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses an asynchronous callback to return the result.
+Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
-Before starting the UIExtensionAility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
+The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**.
+
+Before starting the UIExtensionAbility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAbility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the UIExtensionAility.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
+| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes | Want information used to start the UIExtensionAbility. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
@@ -2094,15 +2013,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
-     let want: Want = {
+    let want: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'com.example.myapplication.UIExtAbility',
+      abilityName: 'UIExtAbility',
       moduleName: 'entry_test',
       parameters: {
         'bundleName': 'com.example.myapplication',
@@ -2113,15 +2031,15 @@ export default class EntryAbility extends UIAbility {
 
     try {
       this.context.requestModalUIExtension(want, (err: BusinessError) => {
-        if (err.code) { 
+        if (err.code) {
           // Process service logic errors.
           console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // Carry out normal service processing.
         console.info('requestModalUIExtension succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // Process input parameter errors.
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;

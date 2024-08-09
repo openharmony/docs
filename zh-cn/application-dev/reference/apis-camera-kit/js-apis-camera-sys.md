@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import camera from '@ohos.multimedia.camera';
+import { camera } from '@kit.CameraKit';
 ```
 
 ## CameraDevice
@@ -178,9 +178,13 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, curMuted: boolean): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   let isMuted: boolean = curMuted;
   console.info(`cameraMute status: ${isMuted}`);
 }
@@ -210,7 +214,7 @@ off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, curMuted: boolean): void {
   let isMuted: boolean = curMuted;
@@ -255,7 +259,7 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 
 function isPreLaunchSupported(context: common.BaseContext): boolean {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -304,8 +308,8 @@ setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setPrelaunchConfig(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -337,8 +341,8 @@ prelaunch(): void
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function preLaunch(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -385,7 +389,7 @@ createDeferredPreviewOutput(profile: Profile): PreviewOutput
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 
 function getDeferredPreviewOutput(context: common.BaseContext, previewProfile: camera.Profile): camera.PreviewOutput {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -423,8 +427,8 @@ preSwitchCamera(cameraId: string): void
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -513,7 +517,7 @@ addDeferredSurface(surfaceId: string): void
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 
 async function preview(context: common.BaseContext, cameraDevice: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, mode: camera.SceneMode, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -635,7 +639,7 @@ enableSketch(enabled: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function enableSketch(previewOutput: camera.PreviewOutput, session: camera.Session, cameraInput: camera.CameraInput): void {
   try {
@@ -682,7 +686,7 @@ attachSketchSurface(surfaceId: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function attachSketchSurface(previewOutput: camera.PreviewOutput, session: camera.Session, cameraInput: camera.CameraInput, sketchSurfaceId: string): void {
   try {
@@ -728,9 +732,13 @@ on(type: 'sketchStatusChanged', callback: AsyncCallback\<SketchStatusData\>): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(error: BusinessError, data: camera.SketchStatusData): void {
+  if (error !== undefined && error.code !== 0) {
+    console.error(`Callback Error, errorCode: ${error.code}`);
+    return;
+  }
   console.info(`sketch errorCode is ${error.code}, data is ${JSON.stringify(data)}`);
 }
 
@@ -817,7 +825,7 @@ getThumbnail(): Promise<image.PixelMap>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function getThumbnail(proxyObj: camera.DeferredPhotoProxy): void {
   proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
@@ -885,7 +893,7 @@ confirmCapture()
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function confirmCapture(photoOutput: camera.PhotoOutput): void {
   try {
@@ -1047,7 +1055,7 @@ isAutoHighQualityPhotoSupported(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isAutoHighQualityPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
   return photoOutput.isAutoHighQualityPhotoSupported();
@@ -1084,7 +1092,7 @@ enableAutoHighQualityPhoto(enabled: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function enableAutoHighQualityPhoto(photoOutput: camera.PhotoOutput): void {
   return photoOutput.enableAutoHighQualityPhoto(true);
@@ -1119,10 +1127,14 @@ on(type: 'deferredPhotoProxyAvailable', callback: AsyncCallback\<DeferredPhotoPr
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 function callback(err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
     AppStorage.setOrCreate('proxyThumbnail', thumbnail);
   });
@@ -1161,8 +1173,8 @@ off(type: 'deferredPhotoProxyAvailable', callback?: AsyncCallback\<DeferredPhoto
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 function callback(err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void {
   proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
@@ -1205,7 +1217,7 @@ isQuickThumbnailSupported(): boolean
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 
 async function isQuickThumbnailSupported(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -1258,8 +1270,8 @@ enableQuickThumbnail(enabled: boolean): void
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function enableQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -1311,9 +1323,9 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 function callback(err: BusinessError, pixelMap: image.PixelMap): void {
   if (err || pixelMap === undefined) {
@@ -1410,7 +1422,7 @@ isMirrorSupported(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isMirrorSupported(videoOutput: camera.VideoOutput): boolean {
   return videoOutput.isMirrorSupported();
@@ -1446,7 +1458,7 @@ enableMirror(enabled: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function enableMirror(videoOutput: camera.VideoOutput): void {
   return videoOutput.enableMirror(true);
@@ -1865,33 +1877,31 @@ enableSceneFeature(type: SceneFeatureType, enabled: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-function enableSceneFeature(photoSession: camera.PhotoSession): void {
-  try {
-    photoSession.beginConfig();
-    photoSession.addInput(cameraInput);
-    photoSession.addOutput(previewOutput);
-    photoSession.commitConfig();
+function enableSceneFeature(photoSession: camera.PhotoSessionForSys, cameraInput: camera.CameraInput, previewOutput: camera.PreviewOutput): void {
+  photoSession.beginConfig();
+  photoSession.addInput(cameraInput);
+  photoSession.addOutput(previewOutput);
+  photoSession.commitConfig();
 
-    photoSession.on('featureDetection', camera.SceneFeatureType.MOON_CAPTURE_BOOST,
-      (err, statusObject) => {
-        console.info(
-          `on featureDetectionStatus featureType:${statusObject.featureType} detected:${statusObject.detected}`);
-        if (statusObject.featureType === camera.SceneFeatureType.MOON_CAPTURE_BOOST) {
-          try {
-            photoSession.enableSceneFeature(statusObject.featureType, statusObject.detected);
-          } catch (error) {
-            return false;
-          }
+  photoSession.on('featureDetection', camera.SceneFeatureType.MOON_CAPTURE_BOOST,
+    (err: BusinessError, statusObject: camera.SceneFeatureDetectionResult) => {
+      if (err !== undefined && err.code !== 0) {
+        console.error(`Callback Error, errorCode: ${err.code}`);
+        return;
+      }
+      console.info(
+        `on featureDetectionStatus featureType:${statusObject.featureType} detected:${statusObject.detected}`);
+      if (statusObject.featureType === camera.SceneFeatureType.MOON_CAPTURE_BOOST) {
+        try {
+          photoSession.enableSceneFeature(statusObject.featureType, statusObject.detected);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(`The enableSceneFeature call failed. error code: ${err.code}`);
         }
-      });
-
-  } catch (error) {
-    // 失败返回错误码error.code并处理
-    let err = error as BusinessError;
-    console.error(`The enableSceneFeature call failed. error code: ${err.code}`);
-  }
+      }
+    });
 }
 ```
 
@@ -1940,7 +1950,7 @@ getZoomPointInfos(): Array\<ZoomPointInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomPointInfos(): Array<ZoomPointInfo> {
   try {
@@ -1982,7 +1992,7 @@ prepareZoom(): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function prepareZoom(sessionExtendsZoom: camera.Zoom): void {
   try {
@@ -2017,7 +2027,7 @@ unprepareZoom(): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
   try {
@@ -2332,7 +2342,7 @@ setPortraitEffect(effect: PortraitEffect): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setPortraitEffect(portraitPhotoSession: camera.PortraitPhotoSession, portraitEffects: Array<camera.PortraitEffect>): void {
   if (portraitEffects === undefined || portraitEffects.length <= 0) {
@@ -2835,9 +2845,13 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, macroStatus: boolean): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Macro state: ${macroStatus}`);
 }
 
@@ -2908,9 +2922,13 @@ on(type: 'featureDetection', featureType: SceneFeatureType, callback: AsyncCallb
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, result: camera.SceneFeatureDetectionResult): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`feature type: ${result.featureType}`);
   console.info(`feature status: ${result.detected}`);
 }
@@ -2998,9 +3016,13 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, macroStatus: boolean): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Macro state: ${macroStatus}`);
 }
 
@@ -3068,7 +3090,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Portrait photo session error code: ${err.code}`);
@@ -3124,9 +3146,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -3180,9 +3206,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -3242,7 +3272,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Night photo session error code: ${err.code}`);
@@ -3298,9 +3328,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -3354,9 +3388,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -3418,9 +3456,13 @@ on(type: 'lcdFlashStatus', callback: AsyncCallback\<[LcdFlashStatus](#lcdflashst
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`lcdFlashStatus: ${lcdFlashStatus}`);
 }
 
@@ -3496,7 +3538,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`High resolution photo session error code: ${err.code}`);
@@ -3567,9 +3609,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -3660,7 +3706,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Portrait photo session error code: ${err.code}`);
@@ -3732,9 +3778,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -3804,9 +3854,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -3876,9 +3930,13 @@ on(type: 'slowMotionStatus', callback: AsyncCallback\<SlowMotionStatus\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, slowMotionStatus: camera.SlowMotionStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The slow motion status: ${slowMotionStatus}`);
 }
 
@@ -3950,7 +4008,7 @@ isSlowMotionDetectionSupported(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isSlowMotionDetectionSupported(slowMotionVideoSession: camera.SlowMotionVideoSession): boolean {
   let isSupported: boolean = false;
@@ -3998,7 +4056,7 @@ setSlowMotionDetectionArea(area: Rect): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
   try {
@@ -4129,7 +4187,7 @@ isExposureMeteringModeSupported(aeMeteringMode: ExposureMeteringMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isExposureMeteringModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let isSupported: boolean = false;
@@ -4178,7 +4236,7 @@ getExposureMeteringMode(): ExposureMeteringMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPhotoSession): camera.ExposureMeteringMode | undefined {
   let exposureMeteringMode: camera.ExposureMeteringMode | undefined = undefined;
@@ -4222,7 +4280,7 @@ setExposureMeteringMode(aeMeteringMode: ExposureMeteringMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
   try {
@@ -4267,7 +4325,7 @@ isFocusAssistSupported(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isFocusAssistSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let status: boolean = false;
@@ -4318,7 +4376,7 @@ setFocusAssist(enabled: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
   try {
@@ -4359,7 +4417,7 @@ getFocusAssist(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let isFocusAssistOpened: boolean;
@@ -4407,7 +4465,7 @@ setFocusDistance(distance: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setFocusDistance(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
   try {
@@ -4449,7 +4507,7 @@ getFocusDistance(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getFocusDistance(professionalPhotoSession: camera.ProfessionalPhotoSession): number {
   let distance: number = 0;
@@ -4496,7 +4554,7 @@ isManualIsoSupported(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isManualIsoSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let status: boolean = false;
@@ -4539,7 +4597,7 @@ getIsoRange(): Array\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getIsoRange(professionalPhotoSession: camera.ProfessionalPhotoSession): Array<number> {
   let isoRange: Array<number> = [];
@@ -4588,7 +4646,7 @@ setIso(iso: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setIso(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
   try {
@@ -4630,7 +4688,7 @@ getIso(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getIso(professionalPhotoSession: camera.ProfessionalPhotoSession): number {
   let iso: number = 0;
@@ -4700,7 +4758,7 @@ isWhiteBalanceModeSupported(mode: WhiteBalanceMode): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function isWhiteBalanceModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let status: boolean = false;
@@ -4744,7 +4802,7 @@ getWhiteBalanceRange(): Array\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getWhiteBalanceRange(professionalPhotoSession: camera.ProfessionalPhotoSession): Array<number> {
   let range: Array<number> = [];
@@ -4794,7 +4852,7 @@ setWhiteBalanceMode(mode: WhiteBalanceMode): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
   try {
@@ -4835,7 +4893,7 @@ getWhiteBalanceMode(): WhiteBalanceMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoSession): camera.WhiteBalanceMode | undefined {
   let whiteBalanceMode: camera.WhiteBalanceMode | undefined = undefined;
@@ -4878,7 +4936,7 @@ setWhiteBalance(whiteBalance: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function setWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
   try {
@@ -4920,7 +4978,7 @@ getWhiteBalance(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSession): number {
   let whiteBalance: number = 0;
@@ -4969,7 +5027,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Professional photo session error code: ${err.code}`);
@@ -5041,9 +5099,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -5113,9 +5175,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -5183,7 +5249,13 @@ on(type: 'isoInfo', callback: AsyncCallback\<IsoInfo\>): void
 **示例：**
 
 ```ts
-function isoInfoCallback(info: IsoInfo): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isoInfoCallback(err: BusinessError, info: camera.IsoInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.log(`ISO value: ${info.iso}`);
 }
 
@@ -5249,8 +5321,14 @@ on(type: 'exposureInfo', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-
 **示例：**
 
 ```ts
-function exposureInfoCallback(info: ExposureInfo): void {
-  console.log(`exposureTimeValue: ${info.exposureTimeValue}`);
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function exposureInfoCallback(err: BusinessError, info: camera.ExposureInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`exposureTimeValue: ${info.exposureTime}`);
 }
 
 function registerExposureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
@@ -5315,7 +5393,13 @@ on(type: 'apertureInfo', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-
 **示例：**
 
 ```ts
-function apertureInfoCallback(info: ApertureInfo): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function apertureInfoCallback(err: BusinessError, info: camera.ApertureInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.log(`Aperture value: ${info.aperture}`);
 }
 
@@ -5381,7 +5465,13 @@ on(type: 'luminationInfo', callback: AsyncCallback\<[LuminationInfo](js-apis-cam
 **示例：**
 
 ```ts
-function luminationInfoCallback(info: LuminationInfo): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function luminationInfoCallback(err: BusinessError, info: camera.LuminationInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.log(`Lumination: ${info.lumination}`);
 }
 
@@ -5455,7 +5545,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`Professional video session error code: ${err.code}`);
@@ -5527,9 +5617,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -5599,9 +5693,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -5669,7 +5767,13 @@ on(type: 'isoInfo', callback: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#iso
 **示例：**
 
 ```ts
-function isoInfoCallback(info: IsoInfo): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isoInfoCallback(err: BusinessError, info: camera.IsoInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.log(`ISO value: ${info.iso}`);
 }
 
@@ -5735,8 +5839,14 @@ on(type: 'exposureInfo', callback: AsyncCallback\<[ExposureInfo]((js-apis-camera
 **示例：**
 
 ```ts
-function exposureInfoCallback(info: ExposureInfo): void {
-  console.log(`exposureTimeValue: ${info.exposureTimeValue}`);
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function exposureInfoCallback(err: BusinessError, info: camera.ExposureInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`exposureTimeValue: ${info.exposureTime}`);
 }
 
 function registerExposureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
@@ -5801,7 +5911,13 @@ on(type: 'apertureInfo', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-
 **示例：**
 
 ```ts
-function apertureInfoCallback(info: ApertureInfo): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function apertureInfoCallback(err: BusinessError, info: camera.ApertureInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.log(`Aperture value: ${info.aperture}`);
 }
 
@@ -5867,7 +5983,13 @@ on(type: 'luminationInfo', callback: AsyncCallback\<[LuminationInfo]((js-apis-ca
 **示例：**
 
 ```ts
-function luminationInfoCallback(info: LuminationInfo): void {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function luminationInfoCallback(err: BusinessError, info: camera.LuminationInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.log(`Lumination: ${info.lumination}`);
 }
 
@@ -5941,7 +6063,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`MacroPhotoSession error code: ${err.code}`);
@@ -6013,9 +6135,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -6085,9 +6211,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -6163,7 +6293,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
   console.error(`MacroPhotoSession error code: ${err.code}`);
@@ -6235,9 +6365,13 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`Focus state: ${focusState}`);
 }
 
@@ -6307,9 +6441,13 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
 }
 
@@ -6383,8 +6521,6 @@ isLcdFlashSupported(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 function isLcdFlashSupported(nightPhotoSession: camera.NightPhotoSession): boolean {
   return nightPhotoSession.isLcdFlashSupported();
 }

@@ -48,7 +48,7 @@ import { tag } from '@kit.ConnectivityKit';
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let tagInfo : TagInfo = tag.getIsoDep(tagInfo).getTagInfo();
-console.log("tag tagInfo: " + tagInfo);
+console.info("tag tagInfo: " + tagInfo);
 ```
 
 ### tagSession.connectTag<sup>(deprecated)</sup>
@@ -79,7 +79,7 @@ import { tag } from '@kit.ConnectivityKit';
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let connectStatus : boolean = tag.getIsoDep(tagInfo).connectTag();
-console.log("connectStatus: " + connectStatus);
+console.info("connectStatus: " + connectStatus);
 ```
 
 ### tagSession.connect<sup>9+</sup>
@@ -114,9 +114,9 @@ import { tag } from '@kit.ConnectivityKit';
 
 try {
     tag.getIsoDep(tagInfo).connect(); 
-    console.log("tag connect success");
+    console.info("tag connect success");
 } catch (businessError) {
-    console.log("tag connect businessError: " + businessError);
+    console.error("tag connect businessError: " + businessError);
 }
 ```
 
@@ -176,9 +176,9 @@ import { tag } from '@kit.ConnectivityKit';
 
 try {
     tag.getIsoDep(tagInfo).resetConnection(); 
-    console.log("tag resetConnection success");
+    console.info("tag resetConnection success");
 } catch (businessError) {
-    console.log("tag resetConnection businessError: " + businessError);
+    console.error("tag resetConnection businessError: " + businessError);
 }
 ```
 
@@ -208,7 +208,7 @@ import { tag } from '@kit.ConnectivityKit';
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let isTagConnected = tag.getIsoDep(tagInfo).isTagConnected(); 
-console.log("isTagConnected: " + isTagConnected);
+console.info("isTagConnected: " + isTagConnected);
 ```
 
 ### tagSession.isConnected<sup>9+</sup>
@@ -246,9 +246,9 @@ import { tag } from '@kit.ConnectivityKit';
 
 try {
     let isConnected = tag.getIsoDep(tagInfo).isConnected(); 
-    console.log("tag isConnected = " + isConnected);
+    console.info("tag isConnected = " + isConnected);
 } catch (businessError) {
-    console.log("tag isConnected businessError: " + businessError);
+    console.error("tag isConnected businessError: " + businessError);
 }
 ```
 
@@ -279,7 +279,7 @@ import { tag } from '@kit.ConnectivityKit';
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let maxSendLen = tag.getIsoDep(tagInfo).getMaxSendLength(); 
-console.log("tag maxSendLen: " + maxSendLen);
+console.info("tag maxSendLen: " + maxSendLen);
 ```
 
 ### tagSession.getMaxTransmitSize<sup>9+</sup>
@@ -291,6 +291,8 @@ getMaxTransmitSize(): number
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -317,9 +319,9 @@ import { tag } from '@kit.ConnectivityKit';
 
 try {
     let maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
-    console.log("tag maxTransmitSize = " + maxTransmitSize);
+    console.info("tag maxTransmitSize = " + maxTransmitSize);
 } catch (businessError) {
-    console.log("tag getMaxTransmitSize businessError: " + businessError);
+    console.error("tag getMaxTransmitSize businessError: " + businessError);
 }
 ```
 
@@ -351,7 +353,7 @@ import { tag } from '@kit.ConnectivityKit';
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let sendDataTimeout = tag.getIsoDep(tagInfo).getSendDataTimeout(); 
-console.log("tag sendDataTimeout: " + sendDataTimeout);
+console.info("tag sendDataTimeout: " + sendDataTimeout);
 ```
 
 ### tagSession.getTimeout<sup>9+</sup>
@@ -392,9 +394,9 @@ import { tag } from '@kit.ConnectivityKit';
 
 try {
     let timeout = tag.getIsoDep(tagInfo).getTimeout(); 
-    console.log("tag timeout = " + timeout);
+    console.info("tag timeout = " + timeout);
 } catch (businessError) {
-    console.log("tag getTimeout businessError: " + businessError);
+    console.error("tag getTimeout businessError: " + businessError);
 }
 ```
 
@@ -433,7 +435,7 @@ import { tag } from '@kit.ConnectivityKit';
 
 let timeoutMs = 700;  // change it to be correct.
 let setStatus = tag.getIsoDep(tagInfo).setSendDataTimeout(timeoutMs); 
-console.log("tag setSendDataTimeout setStatus: " + setStatus);
+console.info("tag setSendDataTimeout setStatus: " + setStatus);
 ```
 
 ### tagSession.setTimeout<sup>9+</sup>
@@ -461,7 +463,7 @@ setTimeout(timeout: number): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
@@ -476,9 +478,9 @@ import { tag } from '@kit.ConnectivityKit';
 let timeoutMs = 700;  // change it to be correct.
 try {
     tag.getIsoDep(tagInfo).setTimeout(timeoutMs); 
-    console.log("tag setTimeout success");
+    console.info("tag setTimeout success");
 } catch (businessError) {
-    console.log("tag setTimeout businessError: " + businessError);
+    console.error("tag setTimeout businessError: " + businessError);
 }
 ```
 
@@ -520,16 +522,16 @@ function tagSessionDemo() {
     // connect the tag at first if not connected.
     if (!tag.getIsoDep(tagInfo).isTagConnected()) {
         if (!tag.getIsoDep(tagInfo).connectTag()) {
-            console.log("tagSession connectTag failed.");
+            console.error("tagSession connectTag failed.");
             return;
         }
     }  
 
     let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
     tag.getIsoDep(tagInfo).sendData(cmdData).then((response) => {
-    console.log("tagSession sendData Promise response: " + response);
+    console.info("tagSession sendData Promise response: " + response);
     }).catch((err : BusinessError)=> {
-    console.log("tagSession sendData Promise err: " + err);
+    console.error("tagSession sendData Promise err: " + err);
     });
 }
 ```
@@ -566,7 +568,7 @@ function tagSessionDemo() {
     // connect the tag at first if not connected.
     if (!tag.getIsoDep(tagInfo).isTagConnected()) {
         if (!tag.getIsoDep(tagInfo).connectTag()) {
-            console.log("tagSession connectTag failed.");
+            console.error("tagSession connectTag failed.");
             return;
         }
     }
@@ -574,9 +576,9 @@ function tagSessionDemo() {
     let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
     tag.getIsoDep(tagInfo).sendData(cmdData, (err, response)=> {
         if (err) {
-            console.log("tagSession sendData AsyncCallback err: " + err);
+            console.error("tagSession sendData AsyncCallback err: " + err);
         } else {
-            console.log("tagSession sendData AsyncCallback response: " + response);
+            console.info("tagSession sendData AsyncCallback response: " + response);
         }
     });
 }
@@ -613,7 +615,7 @@ transmit(data: number[]): Promise<number[]>
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
@@ -634,19 +636,19 @@ function tagSessionDemo() {
             tag.getIsoDep(tagInfo).connect();
         }
     } catch (businessError) {
-        console.log("tag connect businessError: " + businessError);
+        console.error("tag connect businessError: " + businessError);
         return;
     }
 
     let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
     try {
     tag.getIsoDep(tagInfo).transmit(cmdData).then((response) => {
-        console.log("tagSession transmit Promise response: " + response);
+        console.info("tagSession transmit Promise response: " + response);
     }).catch((err : BusinessError)=> {
-        console.log("tagSession transmit Promise err: " + err);
+        console.error("tagSession transmit Promise err: " + err);
     });
     } catch (businessError) {
-        console.log("tag transmit businessError: " + businessError);
+        console.error("tag transmit businessError: " + businessError);
         return;
     }
 }
@@ -678,7 +680,7 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
@@ -698,7 +700,7 @@ function tagSessionDemo() {
             tag.getIsoDep(tagInfo).connect();
         }
     } catch (businessError) {
-        console.log("tag connect businessError: " + businessError);
+        console.error("tag connect businessError: " + businessError);
         return;
     }
 
@@ -706,13 +708,13 @@ function tagSessionDemo() {
     try {
         tag.getIsoDep(tagInfo).transmit(cmdData, (err, response)=> {
             if (err) {
-                console.log("tagSession transmit AsyncCallback err: " + err);
+                console.error("tagSession transmit AsyncCallback err: " + err);
             } else {
-                console.log("tagSession transmit AsyncCallback response: " + response);
+                console.info("tagSession transmit AsyncCallback response: " + response);
             }
         });
     } catch (businessError) {
-        console.log("tag transmit businessError: " + businessError);
+        console.error("tag transmit businessError: " + businessError);
         return;
     }
 }

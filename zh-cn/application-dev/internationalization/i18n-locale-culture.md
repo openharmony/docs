@@ -62,7 +62,7 @@
    - 使用默认的Locale构造函数，创建区域识别对象。使用默认Locale构造函数创建的区域对象表示当前系统区域。
 
    ```ts
-   let date = new Date(2023, 9, 23);
+   let date = new Date(2023, 9, 15);
    
    // 方法一：通过区域标识字符串创建区域标识对象
    let zhLocale = new intl.Locale("zh-Hans-CN-u-nu-latn");
@@ -80,13 +80,13 @@
    ```ts
    // 方法一
    let zhDateTimeFmt = new intl.DateTimeFormat(zhLocale.toString());
-   let result = zhDateTimeFmt.format(date); // result = "2023/10/23"
+   let result = zhDateTimeFmt.format(date); // result = "2023/10/15"
    
    // 方法二
    let enDateTimeFmt = new intl.DateTimeFormat(enLocale.toString());
-   result = enDateTimeFmt.format(date); // result = "10/23/2023"
+   result = enDateTimeFmt.format(date); // result = "10/15/23"
    
    // 方法三
    let systemDateTimeFmt = new intl.DateTimeFormat(systemLocale.toString());
-   result = systemDateTimeFmt.format(date); // result = "2023/10/23" （具体显示效果依赖于当前系统环境）
+   result = systemDateTimeFmt.format(date); // result = "2023/10/15" （具体显示效果依赖于当前系统环境）
    ```

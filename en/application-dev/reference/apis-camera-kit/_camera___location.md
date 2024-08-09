@@ -3,7 +3,7 @@
 
 ## Overview
 
-The Camera_Location struct defines the location where a photo is taken.
+The Camera_Location struct describes the location where a photo is taken.
 
 **Since**: 11
 

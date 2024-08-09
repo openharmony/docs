@@ -21,7 +21,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块
 
 ```ts
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@kit.TestKit';
+import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 ```
 
 ## MatchPattern
@@ -120,17 +120,15 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 窗口的标志属性信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称                 | 类型    | 可读 | 可写 | 说明                                                         |
 | -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。                                         |
-| title                | string  | 是   | 否   | 窗口的标题信息。                                             |
-| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。                                       |
+| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
-| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。                                   |
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
 
@@ -214,7 +212,7 @@ text(txt: string, pattern?: MatchPattern): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -251,7 +249,7 @@ id(id: string): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -267,6 +265,10 @@ type(tp: string): On
 
 指定目标控件的控件类型属性，返回On对象自身。
 
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -275,7 +277,7 @@ type(tp: string): On
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| tp     | string | 是   | 指定控件类型。 |
+| tp     | string | 是   | 指定控件类型。|
 
 **返回值：**
 
@@ -289,7 +291,7 @@ type(tp: string): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -327,7 +329,7 @@ clickable(b?: boolean): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -364,7 +366,7 @@ longClickable(b?: boolean): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -402,7 +404,7 @@ scrollable(b?: boolean): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -439,7 +441,7 @@ enabled(b?: boolean): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -453,6 +455,8 @@ let on:On = ON.enabled(true); // 使用静态构造器ON创建On对象，指定�
 focused(b?: boolean): On
 
 指定目标控件的获焦状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -474,7 +478,7 @@ focused(b?: boolean): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -511,7 +515,7 @@ selected(b?: boolean): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -548,7 +552,7 @@ checked(b?: boolean): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -585,7 +589,7 @@ checkable(b?: boolean): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -622,7 +626,7 @@ isBefore(on: On): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -661,7 +665,7 @@ isAfter(on: On): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -700,7 +704,7 @@ within(on: On): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -738,7 +742,7 @@ inWindow(bundleName: string): On;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -776,7 +780,7 @@ description(val: string, pattern?: MatchPattern): On
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1405,7 +1409,7 @@ inputText(text: string): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1477,7 +1481,7 @@ scrollSearch(on: On): Promise\<Component>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1514,7 +1518,7 @@ scrollToTop(speed?: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -1551,7 +1555,7 @@ scrollToBottom(speed?: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
@@ -1588,7 +1592,7 @@ dragTo(target: Component): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1626,7 +1630,7 @@ pinchOut(scale: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1663,7 +1667,7 @@ pinchIn(scale: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1773,7 +1777,7 @@ Driver对象在给定的时间内延时。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1814,7 +1818,7 @@ findComponent(on: On): Promise\<Component>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1855,7 +1859,7 @@ findComponents(on: On): Promise\<Array\<Component>>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1896,7 +1900,7 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1938,7 +1942,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -1974,7 +1978,7 @@ assertComponentExist(on: On): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000003 | Assertion failed.   |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2037,7 +2041,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2074,7 +2078,7 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2111,7 +2115,7 @@ Driver对象采取如下操作：在目标坐标点单击。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2147,7 +2151,7 @@ Driver对象采取如下操作：在目标坐标点双击。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2183,7 +2187,7 @@ Driver对象采取如下操作：在目标坐标点长按。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2222,7 +2226,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2261,7 +2265,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2302,7 +2306,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2337,7 +2341,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2406,7 +2410,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2573,7 +2577,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2611,7 +2615,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2653,7 +2657,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2700,7 +2704,7 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2742,7 +2746,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2780,7 +2784,7 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2819,7 +2823,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2854,7 +2858,7 @@ mouseMoveTo(p: Point): Promise\<void>;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2928,7 +2932,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -2966,7 +2970,7 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3004,7 +3008,7 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3041,7 +3045,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3078,7 +3082,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3114,7 +3118,7 @@ inputText(p: Point, text: string): Promise\<void>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3161,7 +3165,7 @@ static create(fingers: number, steps: number): PointerMatrix
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3196,7 +3200,7 @@ setPoint(finger: number, step: number, point: Point): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3495,7 +3499,7 @@ moveTo(x: number, y: number): Promise\<void>
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
 | 17000005 | This operation is not supported.         |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3535,7 +3539,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
 | 17000005 | This operation is not supported.         |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3766,7 +3770,7 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -3807,7 +3811,7 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 

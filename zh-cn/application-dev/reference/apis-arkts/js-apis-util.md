@@ -181,6 +181,10 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果 Promise 已解决，则为 null），第二个参数将是已解决的值。
 
+> **说明：**
+>
+> 该接口要求参数original必须是异步函数类型。如果传入的参数不是异步函数，不会进行拦截，但是会输出错误信息："callbackWrapper: The type of Parameter must be AsyncFunction"。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -338,8 +342,7 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 ```ts
 let uuid = util.generateRandomBinaryUUID(true);
 console.info(JSON.stringify(uuid));
-// 输出：
-// 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+// 输出随机生成的UUID
 ```
 
 ## util.parseUUID<sup>9+</sup>
@@ -366,11 +369,12 @@ parseUUID(uuid: string): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 10200002 | Invalid uuid string. |
 
 **示例：**
 
@@ -799,7 +803,7 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le。 |
+| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、UTF-8、GBK、GB2312、gb2312、GB18030、iso-8859-1。 |
 | fatal | boolean | 是 | 否 | 是否显示致命错误。 |
 | ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte&nbsp;order&nbsp;marker）标记，默认值为false&nbsp;，表示解码结果包含BOM标记。 |
 
@@ -808,6 +812,8 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 constructor()
 
 TextDecoder的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -858,6 +864,10 @@ let retStr = result.encoding
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
+
+> **说明：**
+>
+> 当input是一个空数组时，返回值为undefined。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -1126,9 +1136,9 @@ encodeInto(input?: string): Uint8Array
 
 ```ts
 let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encodeInto("\uD800¥¥");
+let result = textEncoder.encodeInto("\uD800¥¥");
+console.info("result = " + result);
+// 输出结果: result = 237,160,128,194,165,194,165
 ```
 
 ### encodeIntoUint8Array<sup>9+</sup>
@@ -1165,11 +1175,12 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 **示例：**
 
 ```ts
-let that = new util.TextEncoder();
+let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
 let dest = new Uint8Array(buffer);
-let result = new Object();
-result = that.encodeIntoUint8Array('abcd', dest);
+let result = textEncoder.encodeIntoUint8Array('abcd', dest);
+console.info("dest = " + dest);
+// 输出结果: dest = 97,98,99,100
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1200,11 +1211,12 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 **示例：**
 
 ```ts
-let that = new util.TextEncoder();
+let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
 let dest = new Uint8Array(buffer);
-let result = new Object();
-result = that.encodeInto('abcd', dest);
+let result = textEncoder.encodeInto('abcd', dest);
+console.info("dest = " + dest);
+// 输出结果: dest = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
@@ -1235,9 +1247,9 @@ encode(input?: string): Uint8Array
 
 ```ts
 let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encode("\uD800¥¥");
+let result = textEncoder.encode("\uD800¥¥");
+console.info("result = " + result);
+// 输出结果: result = 237,160,128,194,165,194,165
 ```
 
 ## RationalNumber<sup>8+</sup>
@@ -2409,6 +2421,7 @@ for (let value of arrayValue) {
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
@@ -2475,6 +2488,8 @@ class Temperature{
 type ScopeType = ScopeComparable | number
 
 用于表示范围中的值的类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3556,8 +3571,10 @@ isAnyArrayBuffer(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isAnyArrayBuffer(new ArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isAnyArrayBuffer(new ArrayBuffer(0));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3588,8 +3605,10 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isArrayBufferView(new Int8Array([]));
+  let type = new util.types();
+  let result = type.isArrayBufferView(new Int8Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3618,11 +3637,13 @@ isArgumentsObject(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   function foo() {
-      let result = that.isArgumentsObject(arguments);
+      let result = type.isArgumentsObject(arguments);
+      console.info("result = " + result);
   }
   let f = foo();
+  // 输出结果：result = true
   ```
 
 
@@ -3651,8 +3672,10 @@ isArrayBuffer(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isArrayBuffer(new ArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isArrayBuffer(new ArrayBuffer(0));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3681,8 +3704,10 @@ isAsyncFunction(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isAsyncFunction(async () => {});
+  let type = new util.types();
+  let result = type.isAsyncFunction(async () => {});
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3711,8 +3736,10 @@ isBooleanObject(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBooleanObject(new Boolean(true));
+  let type = new util.types();
+  let result = type.isBooleanObject(new Boolean(true));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3741,8 +3768,10 @@ isBoxedPrimitive(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBoxedPrimitive(new Boolean(false));
+  let type = new util.types();
+  let result = type.isBoxedPrimitive(new Boolean(false));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3771,9 +3800,11 @@ isDataView(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const ab = new ArrayBuffer(20);
-  let result = that.isDataView(new DataView(ab));
+  let result = type.isDataView(new DataView(ab));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3802,8 +3833,10 @@ isDate(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isDate(new Date());
+  let type = new util.types();
+  let result = type.isDate(new Date());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3832,8 +3865,10 @@ isExternal(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isExternal(true);
+  let type = new util.types();
+  let result = type.isExternal(true);
+  console.info("result = " + result);
+  // 输出结果：result = false
   ```
 
 
@@ -3862,8 +3897,10 @@ isFloat32Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isFloat32Array(new Float32Array());
+  let type = new util.types();
+  let result = type.isFloat32Array(new Float32Array());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3892,8 +3929,10 @@ isFloat64Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isFloat64Array(new Float64Array());
+  let type = new util.types();
+  let result = type.isFloat64Array(new Float64Array());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3925,9 +3964,12 @@ isGeneratorFunction(value: Object): boolean
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
-  let that = new util.types();
-  let result = that.isGeneratorFunction(function* foo() {});
+  let type = new util.types();
+  let result = type.isGeneratorFunction(function* foo() {});
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3959,12 +4001,15 @@ isGeneratorObject(value: Object): boolean
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   // 本接口不支持在.ets文件中使用。
-  let that = new util.types();
+  let type = new util.types();
   function* foo() {};
   const generator = foo();
-  let result = that.isGeneratorObject(generator);
+  let result = type.isGeneratorObject(generator);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3993,8 +4038,10 @@ isInt8Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt8Array(new Int8Array([]));
+  let type = new util.types();
+  let result = type.isInt8Array(new Int8Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4023,8 +4070,10 @@ isInt16Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt16Array(new Int16Array([]));
+  let type = new util.types();
+  let result = type.isInt16Array(new Int16Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4053,8 +4102,10 @@ isInt32Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt32Array(new Int32Array([]));
+  let type = new util.types();
+  let result = type.isInt32Array(new Int32Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4083,8 +4134,10 @@ isMap(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isMap(new Map());
+  let type = new util.types();
+  let result = type.isMap(new Map());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4114,9 +4167,11 @@ isMapIterator(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const map : Map<number,number> = new Map();
-  let result = that.isMapIterator(map.keys());
+  let result = type.isMapIterator(map.keys());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4145,8 +4200,10 @@ isNativeError(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isNativeError(new TypeError());
+  let type = new util.types();
+  let result = type.isNativeError(new TypeError());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4175,8 +4232,10 @@ isNumberObject(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isNumberObject(new Number(0));
+  let type = new util.types();
+  let result = type.isNumberObject(new Number(0));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4205,8 +4264,10 @@ isPromise(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isPromise(Promise.resolve(1));
+  let type = new util.types();
+  let result = type.isPromise(Promise.resolve(1));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4237,10 +4298,12 @@ isProxy(value: Object): boolean
   ```ts
   class Target{
   }
-  let that = new util.types();
+  let type = new util.types();
   const target : Target = {};
   const proxy = new Proxy(target, target);
-  let result = that.isProxy(proxy);
+  let result = type.isProxy(proxy);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4269,8 +4332,10 @@ isRegExp(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isRegExp(new RegExp('abc'));
+  let type = new util.types();
+  let result = type.isRegExp(new RegExp('abc'));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4299,9 +4364,11 @@ isSet(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   let set : Set<number> = new Set();
-  let result = that.isSet(set);
+  let result = type.isSet(set);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4330,9 +4397,11 @@ isSetIterator(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const set : Set<number> = new Set();
-  let result = that.isSetIterator(set.keys());
+  let result = type.isSetIterator(set.keys());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4361,8 +4430,10 @@ isStringObject(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isStringObject(new String('foo'));
+  let type = new util.types();
+  let result = type.isStringObject(new String('foo'));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4394,11 +4465,14 @@ isSymbolObject(value: Object): boolean
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   // 本接口不支持在.ets文件中使用。
-  let that = new util.types();
+  let type = new util.types();
   const symbols = Symbol('foo');
-  let result = that.isSymbolObject(Object(symbols));
+  let result = type.isSymbolObject(Object(symbols));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4429,8 +4503,10 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isTypedArray(new Float64Array([]));
+  let type = new util.types();
+  let result = type.isTypedArray(new Float64Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4459,8 +4535,10 @@ isUint8Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint8Array(new Uint8Array([]));
+  let type = new util.types();
+  let result = type.isUint8Array(new Uint8Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4489,8 +4567,10 @@ isUint8ClampedArray(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
+  let type = new util.types();
+  let result = type.isUint8ClampedArray(new Uint8ClampedArray([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4519,8 +4599,10 @@ isUint16Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint16Array(new Uint16Array([]));
+  let type = new util.types();
+  let result = type.isUint16Array(new Uint16Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4549,8 +4631,10 @@ isUint32Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint32Array(new Uint32Array([]));
+  let type = new util.types();
+  let result = type.isUint32Array(new Uint32Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4579,9 +4663,11 @@ isWeakMap(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   let value : WeakMap<object, number> = new WeakMap();
-  let result = that.isWeakMap(value);
+  let result = type.isWeakMap(value);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4610,8 +4696,10 @@ isWeakSet(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isWeakSet(new WeakSet());
+  let type = new util.types();
+  let result = type.isWeakSet(new WeakSet());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4640,8 +4728,10 @@ isBigInt64Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBigInt64Array(new BigInt64Array([]));
+  let type = new util.types();
+  let result = type.isBigInt64Array(new BigInt64Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4670,8 +4760,10 @@ isBigUint64Array(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBigUint64Array(new BigUint64Array([]));
+  let type = new util.types();
+  let result = type.isBigUint64Array(new BigUint64Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4703,11 +4795,14 @@ isModuleNamespaceObject(value: Object): boolean
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   // 本接口不支持在.ets文件中使用。
   import { url } from '@kit.ArkTS';
-  let that = new util.types();
-  let result = that.isModuleNamespaceObject(url);
+  let type = new util.types();
+  let result = type.isModuleNamespaceObject(url);
+  console.info("result = " + result);
+  // 输出结果：result = false
   ```
 
 
@@ -4736,8 +4831,10 @@ isSharedArrayBuffer(value: Object): boolean
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 ## LruBuffer<sup>(deprecated)</sup>

@@ -13,7 +13,7 @@ The **app** tag contains application-wide configuration. The following table des
 | apiVersion | Operating system and API version on which the application depends.| Object| Yes (initial value: left empty)|
 | smartWindowSize | Screen size used when the application runs in the emulator.| String| Yes (initial value: left empty)|
 | smartWindowDeviceType | Types of emulated devices on which the application can run.| String array| Yes (initial value: left empty)|
-| asanEnabled |   Whether to enable AddressSanitizer (ASan) to detect memory corruption issues such as buffer overflows.<br>- **true**: ASan is enabled.<br>- **false**: ASan is disabled. Note that ASan is not available in the Release version.| Boolean| Yes (initial value: **false**)|
+| asanEnabled |   Whether to enable AddressSanitizer (ASan) to detect memory corruption issues such as buffer overflows.<br>- **true**: ASan is enabled.<br>- **false**: ASan is disabled.| Boolean| Yes (initial value: **false**)|
 
 ## Internal Structure of the version Attribute
 

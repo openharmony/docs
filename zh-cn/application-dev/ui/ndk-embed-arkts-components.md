@@ -29,10 +29,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    // MixedModule.ets
    // 使用ComponentContent能力创建ArkTS组件
    
-   import { NodeContent } from '@ohos.arkui.node'
-   import { UIContext } from '@ohos.arkui.UIContext';
-   import { RefreshModifier } from '@ohos.arkui.modifier';
-   import { ComponentContent } from '@ohos.arkui.node'
+   import { NodeContent,  UIContext, RefreshModifier, ComponentContent } from '@kit.ArkUI';
    
    // 定义Native侧和ArkTS进行交互的数据对象。
    interface NativeRefreshAttribute {
@@ -160,7 +157,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    ```ts
    // entry.ets
    import nativeNode from 'libentry.so';
-   import { NodeContent } from '@ohos.arkui.node';
+   import { NodeContent } from '@kit.ArkUI';
    import { createMixedRefresh, updateMixedRefresh } from './MixedModule'
    
    @Entry

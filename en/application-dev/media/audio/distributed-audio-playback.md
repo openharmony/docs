@@ -10,15 +10,15 @@ Before continuing audio playback on another device in the same network, you must
 
 When obtaining the device list on the network, you can specify **DeviceFlag** to filter out the required devices.
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| NONE_DEVICES_FLAG<sup>9+</sup> | No device is available. This is a system API.| 
-| OUTPUT_DEVICES_FLAG | Local output device.| 
-| INPUT_DEVICES_FLAG | Local input device.| 
-| ALL_DEVICES_FLAG | Local input and output device.| 
-| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | Remote output device. This is a system API.| 
-| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup> | Remote input device. This is a system API.| 
-| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup> | Remote input and output device. This is a system API.| 
+| NONE_DEVICES_FLAG<sup>9+</sup> | No device is available. This is a system API. | 
+| OUTPUT_DEVICES_FLAG | Local output device. | 
+| INPUT_DEVICES_FLAG | Local input device. | 
+| ALL_DEVICES_FLAG | Local input and output device. | 
+| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | Remote output device. This is a system API. | 
+| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup> | Remote input device. This is a system API. | 
+| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup> | Remote input and output device. This is a system API. | 
 
 For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
@@ -31,8 +31,8 @@ For details about the API reference, see [AudioRoutingManager](../../reference/a
 3. Call **selectOutputDevice** to select a remote device, on which all the audio streams will continue playing.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
@@ -73,16 +73,15 @@ async function selectOutputDevice(): Promise<void> {
 4. Call **selectOutputDeviceByFilter** to select a remote device, on which the specified audio stream will continue playing.
  
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
 let outputAudioRendererFilter: audio.AudioRendererFilter  = {
     uid: 20010041,
     rendererInfo: {
-        content: audio.ContentType.CONTENT_TYPE_MUSIC,
-        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
         rendererFlags: 0 } as audio.AudioRendererInfo,
     rendererId: 0 };
 

@@ -9,13 +9,13 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 
 **Table 1** XML parsing options
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| supportDoctype | boolean | No| Whether to ignore the document type. The default value is **false**, indicating that the document type is parsed.|
-| ignoreNameSpace | boolean | No| Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed.|
-| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **tagValue**, which consists of a tag and its value. The default value is **null**, indicating that XML tags and tag values are not parsed.|
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is **null**, indicating that XML attributes and attribute values are not parsed.|
-| tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | No| Callback used to return **tokenValue**, which consists of the event type and the attributes of **parseInfo**. The default value is **null**, indicating that the event type and the attributes of **parseInfo** are not parsed.|
+| supportDoctype | boolean | No | Whether to ignore the document type. The default value is **false**, indicating that the document type is parsed. |
+| ignoreNameSpace | boolean | No | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed. |
+| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No | Callback used to return **tagValue**, which consists of a tag and its value. The default value is **null**, indicating that XML tags and tag values are not parsed. |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No | Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is **null**, indicating that XML attributes and attribute values are not parsed. |
+| tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | No | Callback used to return **tokenValue**, which consists of the event type and the attributes of **parseInfo**. The default value is **null**, indicating that the event type and the attributes of **parseInfo** are not parsed. |
 
 
 ## Precautions
@@ -30,12 +30,10 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 1. Import the modules.
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
 2. Create an **XmlPullParser** object.
-
    The **XmlPullParser** object can be created based on an object of the ArrayBuffer or DataView type.
 
     ```ts
@@ -94,8 +92,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 1. Import the modules.
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
 2. Create an **XmlPullParser** object.
@@ -142,8 +139,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 1. Import the modules.
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
 2. Create an **XmlPullParser** object.
@@ -198,8 +194,7 @@ In the following example, all parsing options are invoked to parse XML tags, att
 
 
 ```ts
-import xml from '@ohos.xml';
-import util from '@ohos.util';
+import { xml, util } from '@kit.ArkTS';
 
 let strXml: string =
   '<?xml version="1.0" encoding="UTF-8"?>' +

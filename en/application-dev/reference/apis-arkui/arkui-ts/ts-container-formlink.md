@@ -21,6 +21,8 @@ This component supports only one child component.
 
 FormLink(options: FormLinkOptions)
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name      | Type                           | Mandatory  | Description  |

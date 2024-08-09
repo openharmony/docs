@@ -1,4 +1,4 @@
-# Device Certificate Kit API Reference
+# Device Certificate Kit (Device Certificate Service)
 
 - ArkTS APIs
   - [@ohos.security.cert (Certificate)](js-apis-cert.md)

@@ -81,13 +81,13 @@ The relationship between a permission group and its permissions is not fixed. Fo
   | APL| Description| Available To|
   | -------- | -------- | -------- |
   | normal | Allows an application to access common system resources beyond the default rules, such as configuring Wi-Fi and invoking the camera to take photos.<br>Access to these resources (including data and functions) imposes low risks on user privacy and other applications.| Applications with the normal or higher APL.|
-  | system_basic | Allows an application to access resources related to basic OS services (basic functions provided or preset by the system), such as system settings and identity authentication.<br>Access to these resources imposes low risks to user privacy and other applications.| Applications with the system_basic or system_core APL.|
+  | system_basic | Allows an application to access resources related to basic OS services (basic functions provided or preset by the system), such as system settings and identity authentication.<br>Access to these resources imposes low risks to user privacy and other applications.| <!--RP1-->Applications with the system_basic or system_core APL.<!--RP1End--> |
   | system_core | Allows an application to access OS core resources, which are critical to underlying core services. If these resources are corrupted, the OS cannot run properly.| - Applications with the system_core APL.<br>- System applications only.|
 
 - ACL
 
   Permission APLs and application APLs are in one-to-one correspondence. In principle, an application with a lower APL cannot request a permission with a higher APL. However, you can use the Access Control List (ACL) to enable an application to have permissions beyond its APL.
 
-  All the system permissions are defined with the **Enable via ACL** field. If the value is true, the application can be granted to an application with a lower APL via the ACL. <!--Del-->For the definition of a permission, see [Permissions for System Applications](permissions-for-system-apps.md).<!--DelEnd-->
+  All the system permissions are defined with the **Enable via ACL** field. If the value is true, the application can be granted to an application with a lower APL via the ACL. For the definition of a permission, see <!--RP2-->[Permissions for System Applications](permissions-for-system-apps.md)<!--RP2End-->.
 
   For example, to implement a special feature, application A with the normal APL requires permission P, whose APL is system_basic. If **Enable via ACL** is true for permission P, application A can request permission P via the ACL.

@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述OsAccount向应用提供系统帐号能力。
+描述OsAccount向应用提供系统账号能力。
 
 **起始版本：** 12
 
@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [os_account.h](os__account_8h.md) | 声明访问和管理系统帐号信息的API。 | 
+| [os_account.h](os__account_8h.md) | 声明访问和管理系统账号信息的API。 | 
 | [os_account_common.h](os__account__common_8h.md) | 提供OsAccount接口的公共类型定义。 | 
 
 
@@ -37,7 +37,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OsAccount_ErrCode](#osaccount_errcode) [OH_OsAccount_GetName](#oh_osaccount_getname) (char \*buffer, size_t buffer_size) | 获取调用方进程所属的系统帐号的名称。 | 
+| [OsAccount_ErrCode](#osaccount_errcode) [OH_OsAccount_GetName](#oh_osaccount_getname) (char \*buffer, size_t buffer_size) | 获取调用方进程所属的系统账号的名称。 | 
 
 
 ## 类型定义说明
@@ -89,7 +89,7 @@ OsAccount_ErrCode OH_OsAccount_GetName (char *buffer, size_t buffer_size)
 
 **描述**
 
-获取调用方进程所属的系统帐号的名称。
+获取调用方进程所属的系统账号的名称。
 
 **系统能力：** SystemCapability.Account.OsAccount
 

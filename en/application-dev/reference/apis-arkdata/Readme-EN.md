@@ -1,6 +1,6 @@
 # ArkData (ArkData Management)
 
-- ArkTS APIs 
+- ArkTS APIs  
   - [@ohos.data.commonType (Common Data Types)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
   - [@ohos.data.dataSharePredicates (DataShare Predicates)](js-apis-data-dataSharePredicates.md)
@@ -9,7 +9,9 @@
   - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.sendablePreferences (Sendable Preferences)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
+  - [@ohos.data.sendableRelationalStore (Shared RDB Store)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (Unified Data Channel)](js-apis-data-unifiedDataChannel.md)
+  - [@ohos.data.unifiedDataChannel (Uniform Data Channel) (System API)](js-apis-data-unifiedDataChannel-sys.md)
   - [@ohos.data.uniformDataStruct (Uniform Data Structs)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (Uniform Data Definition and Description)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
@@ -68,4 +70,4 @@
   - [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md)
   - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
   - [User Preference Error Codes](errorcode-preferences.md)
-
+  - [UDMF Error Codes] (errorcode-udmf.md)

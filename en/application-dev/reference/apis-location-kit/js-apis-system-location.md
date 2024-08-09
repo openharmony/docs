@@ -217,13 +217,13 @@ Defines the location information, including the longitude, latitude, and locatio
 
 **System capability**: SystemCapability.Location.Location.Lite
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| longitude | number | Yes| No| Longitude.|
-| latitude | number | Yes| No| Latitude.|
-| altitude | number | Yes| No| Altitude.|
-| accuracy | number | Yes| No| Location accuracy.|
-| time | number | Yes| No| Time when the location is obtained.|
+| longitude | number | No| No| Longitude.|
+| latitude | number | No| No| Latitude.|
+| altitude | number | No| No| Altitude.|
+| accuracy | number | No| No| Location accuracy.|
+| time | number | No| No| Time when the location is obtained.|
 
 ## GetLocationTypeOption<sup>(deprecated)</sup>
 
@@ -249,9 +249,9 @@ Defines the list of location types supported by the current device
 
 **System capability**: SystemCapability.Location.Location.Lite
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| types | Array&lt;string&gt; | Yes| No| Available location types, ['gps', 'network']|
+| types | Array&lt;string&gt; | No| No| Available location types, ['gps', 'network']|
 
 ## SubscribeLocationOption<sup>(deprecated)</sup>
 

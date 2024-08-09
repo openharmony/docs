@@ -413,6 +413,10 @@ getFrameNodeById(id: string): FrameNode | null
 | ---------------------------------------- | ------------- |
 | [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
 
+> **说明：**
+>
+> getFrameNodeById通过遍历节点树查询接口，性能较差。
+
 **示例：**
 
 ```ts
@@ -515,6 +519,8 @@ struct PageInfoExample {
 
 @Component
 struct MyComponent {
+  @State content: string = '';
+
   build() {
     Column() {
       Text('PageInfoExample')
@@ -865,9 +871,10 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
-import { AnimatorOptions } from '@kit.ArkUI';
+import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+// used in UIAbility
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -938,7 +945,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 **示例：**
 
 ```ts
-import {KeyboardAvoidMode, UIContext} from '@kit.ArkUI';
+import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -976,7 +983,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 **示例：**
 
 ```ts
-import {KeyboardAvoidMode, UIContext} from '@kit.ArkUI';
+import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -986,7 +993,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      hilog.info("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+      hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -1497,7 +1504,7 @@ struct Index {
 
 ### postFrameCallback<sup>12+</sup>
 
-postFrameCallback(frameCallback: FrameCallback)
+postFrameCallback(frameCallback: FrameCallback): void
 
 注册一个在下一帧进行渲染时执行的回调。
 
@@ -1545,7 +1552,7 @@ struct Index {
 
 ### postDelayedFrameCallback<sup>12+</sup>
 
-postDelayedFrameCallback(frameCallback: FrameCallback, delayTime: number)
+postDelayedFrameCallback(frameCallback: FrameCallback, delayTime: number): void
 
 注册一个回调，在延迟一段时间后的下一帧进行渲染时执行。
 
@@ -1598,6 +1605,8 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 
 请求组件的动态帧率场景，用于自定义场景相关帧率配置。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1632,7 +1641,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 > 3. 不支持设置SheetOptions.UIContext。
 >
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1754,7 +1763,7 @@ struct UIContextBindSheet {
 
 ### updateBindSheet<sup>12+</sup>
 
-updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, SheetOptions: SheetOptions，partialUpdate?: boolean ): Promise&lt;void&gt;
+updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOptions: SheetOptions，partialUpdate?: boolean ): Promise&lt;void&gt;
 
 更新bindSheetContent对应的半模态页面的样式，使用Promise异步回调。
 
@@ -1763,7 +1772,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, Sheet
 > 不支持更新SheetOptions.UIContext、SheetOptions.mode、回调函数。
 >
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1772,7 +1781,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, Sheet
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
-| SheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | 是    |   半模态页面样式。<br/>**说明：** <br/>不支持更新SheetOptions.uiContext、SheetOptions.mode、回调函数。 |
+| sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | 是    |   半模态页面样式。<br/>**说明：** <br/>不支持更新SheetOptions.uiContext、SheetOptions.mode、回调函数。 |
 | partialUpdate | boolean | 否    |   半模态页面更新方式, 默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新SheetOptions中的指定属性。 <br/>2. false为全量更新，除SheetOptions中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
@@ -2230,7 +2239,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
 
-**示例：**
+**示例：** 
 
 ```ts
 import { UIObserver } from '@kit.ArkUI';
@@ -2301,6 +2310,8 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
 监听滚动事件的开始和结束。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -2319,6 +2330,8 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
 取消监听滚动事件的开始和结束。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2339,6 +2352,8 @@ on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<o
 
 监听滚动事件的开始和结束。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -2358,6 +2373,8 @@ on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<o
 off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\<observer.ScrollEventInfo\>): void
 
 取消监听滚动事件的开始和结束。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2454,7 +2471,7 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 **示例：**
 
 ```ts
-import {UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = this.getUIContext().getUIObserver();
 observer.on('routerPageUpdate', (info) => {
@@ -2482,7 +2499,7 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 **示例：**
 
 ```ts
-import {UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = this.getUIContext().getUIObserver();
 function callBackFunc(info:observer.RouterPageInfo) {};
@@ -2495,6 +2512,8 @@ observer.off('routerPageUpdate', callBackFunc);
 on(type: 'densityUpdate', callback: Callback\<observer.DensityInfo\>): void
 
 监听屏幕像素密度变化。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2539,6 +2558,8 @@ struct Index {
 off(type: 'densityUpdate', callback?: Callback\<observer.DensityInfo\>): void
 
 取消监听屏幕像素密度的变化。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2589,6 +2610,8 @@ on(type: 'willDraw', callback: Callback\<void\>): void
 
 监听每一帧绘制指令下发情况。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -2623,6 +2646,8 @@ struct Index {
 off(type: 'willDraw', callback?: Callback\<void\>): void
 
 取消监听每一帧绘制指令下发情况。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2664,6 +2689,8 @@ on(type: 'didLayout', callback: Callback\<void\>): void
 
 监听每一帧布局完成情况。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -2698,6 +2725,8 @@ struct Index {
 off(type: 'didLayout', callback?: Callback\<void\>): void
 
 取消监听每一帧布局完成情况。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2739,6 +2768,8 @@ on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwit
 
 监听Navigation的页面切换事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -2754,6 +2785,7 @@ on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwit
 // Index.ets
 // 演示 UIObserver.on('navDestinationSwitch', callback)
 // UIObserver.off('navDestinationSwitch', callback)
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -2764,7 +2796,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
@@ -2810,6 +2842,8 @@ off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSw
 
 取消监听Navigation的页面切换事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -2826,6 +2860,8 @@ off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSw
 on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchObserverOptions, callback: Callback\<observer.NavDestinationSwitchInfo\>): void
 
 监听Navigation的页面切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2901,6 +2937,8 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 取消监听Navigation的页面切换事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -2919,6 +2957,8 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -2932,7 +2972,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2945,6 +2985,8 @@ observer.on('willClick', callback);
 off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2959,7 +3001,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2973,20 +3015,22 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。 |
 | callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。  |
 
 **示例：**
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2999,6 +3043,8 @@ observer.on('didClick', callback);
 off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3013,7 +3059,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -3026,6 +3072,8 @@ observer.off('didClick', callback);
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 监听点击事件指令下发情况。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3040,7 +3088,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -3053,6 +3101,8 @@ observer.on('willClick', callback);
 off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3067,7 +3117,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -3081,20 +3131,22 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| type     | string                                                      | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。 |
 | callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。    |
 
 **示例：**
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -3107,6 +3159,8 @@ observer.on('didClick', callback);
 off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3121,7 +3175,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@kit.ArkUI';
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -3306,6 +3360,8 @@ type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => v
 
 ArkTS GestureEvent事件监听函数类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3319,6 +3375,8 @@ ArkTS GestureEvent事件监听函数类型。
 type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
 
 ArkTS GestureEvent事件监听函数类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4294,6 +4352,8 @@ back(index: number, params?: Object): void;
 
 返回指定的页面。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -4398,6 +4458,8 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 通过索引值获取对应页面的状态信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -4431,6 +4493,8 @@ if (options != undefined) {
 getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerstate)>
 
 通过url获取当前页面的状态信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4594,6 +4658,107 @@ try {
   console.error(`showToast args error code is ${code}, message is ${message}`);
 };
 ```
+
+### openToast<sup>12+</sup>
+
+openToast(options: ShowToastOptions): Promise&lt;number&gt;
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明           |
+| ------- | ------------------------------------------------------------ | ---- | -------------- |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是   | 文本弹窗选项。 |
+
+**返回值**
+
+| 类型             | 说明                                 |
+| ---------------- | ------------------------------------ |
+| Promise&lt;number&gt; | 返回供closeToast使用的文本提示框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct toastExample {
+  @State toastId: number = 0;
+  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  build() {
+    Column() {
+      Button('Open Toast')
+        .height(100)
+        .onClick(() => {
+          try {
+            this.promptAction.openToast({
+              message: 'Toast Massage',
+              duration: 10000,
+            }).then((toastId: number) => {
+              this.toastId = toastId;
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`OpenToast error code is ${code}, message is ${message}`);
+          };
+        })
+      Blank().height(50);
+      Button('Close Toast')
+        .height(100)
+        .onClick(() => {
+          try {
+            this.promptAction.closeToast(this.toastId);
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`CloseToast error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+### closeToast<sup>12+</sup>
+
+closeToast(toastId: number): void
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数**
+
+| 参数名  | 类型   | 必填 | 说明                          |
+| ------- | ------ | ---- | ----------------------------- |
+| toastId | number | 是   | openToast返回的文本提示框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+示例请看[openToaset12](#opentoast12)的示例。
 
 ### showDialog
 
@@ -5187,7 +5352,7 @@ struct Index {
 
 ### executeDrag<sup>11+</sup>
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt;dragController.DragEventParam&gt;): void
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
 
@@ -5200,10 +5365,10 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
-| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo) | 是   | 拖拽信息。                                                   |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
-**错误码：**
+**错误码：** 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID | 错误信息      |
@@ -5267,7 +5432,7 @@ struct DragControllerPage {
 
 ### executeDrag<sup>11+</sup>
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;dragController.DragEventParam&gt;
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回拖拽事件结果。
 
@@ -5284,9 +5449,9 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 **返回值：**
 
-| 类型                                                   | 说明               |
-| ------------------------------------------------------ | ------------------ |
-| Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
@@ -5555,6 +5720,8 @@ setDragEventStrictReportingEnabled(enable: boolean): void
 
 当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** : SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5604,6 +5771,8 @@ import { window, UIContext } from '@kit.ArkUI';
 addComponentContent(content: ComponentContent, index?: number): void
 
 在OverlayManager上新增指定节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5718,6 +5887,8 @@ removeComponentContent(content: ComponentContent): void
 
 在overlay上删除指定节点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5736,6 +5907,8 @@ showComponentContent(content: ComponentContent): void
 
 在OverlayManager上显示指定节点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5752,7 +5925,9 @@ showComponentContent(content: ComponentContent): void
 
 hideComponentContent(content: ComponentContent): void
 
-在OverlayManager上显示指定节点。
+在OverlayManager上隐藏指定节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5772,6 +5947,8 @@ showAllComponentContents(): void
 
 显示OverlayManager上所有的ComponentContent。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -5783,6 +5960,8 @@ showAllComponentContents(): void
 hideAllComponentContents(): void
 
 隐藏OverlayManager上的所有ComponentContent。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6025,7 +6204,7 @@ clearFocus(): void
 
 清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6082,7 +6261,7 @@ requestFocus(key: string): void
 
 通过组件的id将焦点转移到组件树对应的实体节点。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6421,7 +6600,7 @@ struct Index {
 
 ### get<sup>12+</sup>
 
-get(id: string, callback: AsyncCallback<image.PixelMap>): void
+get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnapshot.SnapshotOptions): void
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
 
@@ -6439,6 +6618,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
+| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **示例：**
 
@@ -6465,7 +6645,7 @@ struct SnapshotExample {
               return;
             }
             this.pixmap = pixmap
-          })
+          }, {scale : 2, waitUntilRenderFinished : true})
         }).margin(10)
     }
     .width('100%')
@@ -6477,7 +6657,7 @@ struct SnapshotExample {
 
 ### get<sup>12+</sup>
 
-get(id: string): Promise<image.PixelMap>
+get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
 
@@ -6494,6 +6674,7 @@ get(id: string): Promise<image.PixelMap>
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
@@ -6522,7 +6703,7 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           this.uiContext.getComponentSnapshot()
-            .get("root")
+            .get("root", {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
             })
@@ -6540,7 +6721,7 @@ struct SnapshotExample {
 
 ### createFromBuilder<sup>12+</sup>
 
-createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
+createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
 在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过回调返回结果。
 > **说明：** 
@@ -6559,6 +6740,9 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **示例：**
 
@@ -6603,7 +6787,7 @@ struct ComponentSnapshotExample {
                 return;
               }
               this.pixmap = pixmap
-            })
+            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
         })
       Image(this.pixmap)
         .margin(10)
@@ -6617,7 +6801,7 @@ struct ComponentSnapshotExample {
 
 ### createFromBuilder<sup>12+</sup>
 
-createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
+createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过Promise返回结果。
 
@@ -6642,6 +6826,9 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **示例：**
 
@@ -6679,7 +6866,7 @@ struct ComponentSnapshotExample {
           this.uiContext.getComponentSnapshot()
             .createFromBuilder(() => {
               this.RandomBuilder()
-            })
+            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
             })
@@ -6704,6 +6891,8 @@ struct ComponentSnapshotExample {
 ### onFrame<sup>12+</sup>
 
 在下一帧进行渲染时，该方法将被执行。
+
+onFrame(frameTimeInNano: number): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6765,7 +6954,7 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 
 设置期望帧率范围。
 
-一个页面有两个Swiper组件，其中一个设置期望帧率范围，另一个也会受到期望帧率范围影响。
+最终结果不一定是设置的帧率，会由系统能力做综合决策，尽量满足开发者的设置帧率。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6898,13 +7087,21 @@ struct Frame {
 
 SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应Swiper的动态帧率场景。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 | 名称       | 类型                                                      | 只读 | 可选 | 说明                                |
 | --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
 | type      | [SwiperDynamicSyncSceneType](#swiperdynamicsyncscenetype12) | 是   | 否   | Swiper的动态帧率场景。             |
 
 ## SwiperDynamicSyncSceneType<sup>12+</sup>
 
-枚举值，表示动态帧率场景的类型
+枚举值，表示动态帧率场景的类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |

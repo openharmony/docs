@@ -9,13 +9,13 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 1. Import the module.
 
    ```ts
-   import drm from '@ohos.multimedia.drm';
+   import { drm } from '@kit.DrmKit';
    ```
 
 2. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the DRM module.
 
    ```ts
-   import {BusinessError} from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. Call **setConfigurationString** in the **MediaKeySystem** class to set a configuration item in the form of a string. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).

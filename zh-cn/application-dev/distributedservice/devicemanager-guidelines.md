@@ -94,7 +94,7 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 
 ### 接口说明
 
-startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
 
 发现周边同局域网或者开启蓝牙的设备。详细信息参见：[startDiscovering](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#startdiscovering)。
 
@@ -162,7 +162,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 ### 接口说明
 
-bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , callback: AsyncCallback&lt;{deviceId: string}>): void;
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void;
 
 设备绑定。详细信息参见：[bindTarget](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#bindtarget)。
 
@@ -239,7 +239,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 ### 接口说明
 
-on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
 
 设备上下线监听。详细信息参见：[on('deviceStateChange')](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#ondevicestatechange)。
 

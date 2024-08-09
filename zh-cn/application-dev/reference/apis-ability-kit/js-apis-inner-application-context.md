@@ -15,25 +15,23 @@ import { common } from '@kit.AbilityKit';
 
 ## 属性
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                  | 类型     | 只读   | 必填   | 说明                                                               |
+| 名称                  | 类型     | 只读   | 可选   | 说明                                                               |
 |---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
-| resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | 否    | 是    | 资源管理对象。                                                          |
-| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 是    | 当前应用程序的信息。                                                       |
-| cacheDir            | string | 否    | 是    | 缓存目录。                                                            |
-| tempDir             | string | 否    | 是    | 临时目录。                                                            |
-| resourceDir<sup>11+<sup>         | string | 否    | 是    | 资源目录。                                                            |
-| filesDir            | string | 否    | 是    | 文件目录。                                                            |
-| databaseDir         | string | 否    | 是    | 数据库目录。                                                           |
-| preferencesDir      | string | 否    | 是    | preferences目录。                                                   |
-| bundleCodeDir       | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。 |
-| distributedFilesDir | string | 否    | 是    | 分布式文件目录。                                                         |
-| cloudFileDir<sup>12+</sup>        | string | 否    | 是    | 云文件目录。                                                        |
-| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。                                           |
-| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。                                                          |
+| resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | 否    | 否    | 资源管理对象。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 否    | 当前应用程序的信息。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| cacheDir            | string | 否    | 否    | 缓存目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| tempDir             | string | 否    | 否    | 临时目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| resourceDir<sup>11+<sup>         | string | 否    | 否    | 资源目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| filesDir            | string | 否    | 否    | 文件目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| databaseDir         | string | 否    | 否    | 数据库目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| preferencesDir      | string | 否    | 否    | preferences目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| bundleCodeDir       | string | 否    | 否    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| distributedFilesDir | string | 否    | 否    | 分布式文件目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| cloudFileDir<sup>12+</sup>        | string | 否    | 否    | 云文件目录。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 否    | 文件分区信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## Context.createModuleContext
 

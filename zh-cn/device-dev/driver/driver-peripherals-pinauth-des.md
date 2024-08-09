@@ -126,10 +126,14 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
     └── service    # Pin_auth驱动实现入口
         ├── inc      # 头文件
         └── src      # 源文件
-            ├── executor_impl.cpp               # 认证、录入等功能接口实现
+            ├── all_in_one_impl.cpp             # 全功能执行器认证、录入等功能接口实现
+            ├── verifier_impl.cpp               # 认证器认证、录入等功能接口实现
+            ├── collector_impl.cpp              # 采集器认证、录入等功能接口实现
+            ├── executor_impl_common.cpp        # 工具类
             ├── pin_auth_interface_driver.cpp   # Pin_auth驱动入口
             └── pin_auth_interface_service.cpp  # 获取执行器列表接口实现
 ```
+
 
 下面结合DEMO实例介绍驱动开发的具体步骤。
 
@@ -235,7 +239,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
 
 
-1. 完成获取执行器列表接口实现，详细代码参见[pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp)文件。
+2. 完成获取执行器列表接口实现，详细代码参见[pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp)文件。
 
    ```c++
    // 执行器实现类
@@ -321,7 +325,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
 
 
-1. 完成执行器每个功能接口实现，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/executor_impl.cpp)文件。
+3. 完成执行器每个功能接口实现，详细代码参见[all_in_one_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/all_in_one_impl.cpp)文件。
 
    ```c++
    // 实现获取执行器信息接口（仅作示例）

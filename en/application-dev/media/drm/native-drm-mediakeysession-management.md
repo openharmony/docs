@@ -302,7 +302,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
    ```
 
-10. Call **OH_MediaKeySession_SetMediaKeySessionCallback** in the **MediaKeySession** class to set a callback to listen for the media key session status.
+10. Call **OH_MediaKeySession_SetMediaKeySessionCallback** in the **MediaKeySession** class to set a callback to listen for the media key system status.
 
     ```c++
     DRM_ErrCode TestSessoinEventCallBack(DRM_EventType  eventType, uint8_t *info,
@@ -340,7 +340,46 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
     ```
 
-11. Call **OH_MediaKeySession_Destroy** in the **MediaKeySession** class to destroy this **MediaKeySession** instance.
+11. Call **OH_MediaKeySession_SetCallback** in the **MediaKeySession** class to set a callback to listen for the media key system status.
+
+    ```c++
+    DRM_ErrCode TestSessoinEventCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_EventType eventType,
+    uint8_t *info, int32_t infoLen, char *extra)
+    {
+     return DRM_ERR_OK;
+    }
+    DRM_ErrCode TestSessoinKeyChangeCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo,
+    bool hasNewGoodKeys)
+    {
+     return DRM_ERR_OK;
+    }
+    DRM_ErrCode MediaKeySession_SetMediaKeySessionCallbackWithObj()
+    {
+     MediaKeySystem *keySystem = NULL;
+     const char *name = "com.clearplay.drm";
+     ret = OH_MediaKeySystem_Create(name, &keySystem);
+     if (ret != DRM_OK) {
+         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+         return ret;
+     }
+     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
+     MediaKeySession *keySession = NULL;
+     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
+     if (ret != DRM_OK) {
+         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
+         return ret;
+     }
+     OH_MediaKeySession_Callback sessionCallback = { TestSessoinEventCallBackWithObj, TestSessoinKeyChangeCallBackWithObj };
+     ret = OH_MediaKeySession_SetCallback(keySession,
+        &sessionCallback);
+     if (ret != DRM_OK) {
+         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_SetCallback failed.");
+         return ret;
+     }
+    }
+    ```
+
+12. Call **OH_MediaKeySession_Destroy** in the **MediaKeySession** class to destroy this **MediaKeySession** instance.
 
     ```c++
     MediaKeySystem *keySystem = NULL;

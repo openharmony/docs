@@ -85,6 +85,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| void [OH_Drawing_TypographyPaintOnPath](_drawing.md#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*, double, double) | 沿路径绘制文本。 | 
 | [OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \* [OH_Drawing_CreateTypographyStyle](_drawing.md#oh_drawing_createtypographystyle) (void) | 创建指向OH_Drawing_TypographyStyle对象的指针。 | 
 | void [OH_Drawing_DestroyTypographyStyle](_drawing.md#oh_drawing_destroytypographystyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 释放被OH_Drawing_TypographyStyle对象占据的内存。 | 
 | void [OH_Drawing_SetTypographyTextDirection](_drawing.md#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本方向。 | 
@@ -212,6 +213,7 @@
 | void [OH_Drawing_TextStyleSetBackgroundRect](_drawing.md#oh_drawing_textstylesetbackgroundrect) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) \*, int styleId) | 设置文本背景矩形框和样式id。样式id仅当背景框为圆角矩形时有效。 | 
 | void [OH_Drawing_TypographyHandlerAddSymbol](_drawing.md#oh_drawing_typographyhandleraddsymbol) ([OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate) \*, uint32_t symbol) | 设置排版创建过程中的符号。 | 
 | void [OH_Drawing_TextStyleAddFontFeature](_drawing.md#oh_drawing_textstyleaddfontfeature) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const char \*tag, int value) | 添加文本字体特征。 | 
+| void [OH_Drawing_TextStyleAddFontVariation](_drawing.md#oh_drawing_textstyleaddfontvariation) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const char \*tag, int value) | 添加可变字体属性。 |
 | [OH_Drawing_FontFeature](_o_h___drawing___font_feature.md) \* [OH_Drawing_TextStyleGetFontFeatures](_drawing.md#oh_drawing_textstylegetfontfeatures) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取字体特征map容器中的所有内容。 | 
 | void [OH_Drawing_TextStyleDestroyFontFeatures](_drawing.md#oh_drawing_textstyledestroyfontfeatures) ([OH_Drawing_FontFeature](_o_h___drawing___font_feature.md) \*, size_t fontFeatureSize) | 释放存放字体特征所有内容的结构体数组所占用的空间。 | 
 | size_t [OH_Drawing_TextStyleGetFontFeatureSize](_drawing.md#oh_drawing_textstylegetfontfeaturesize) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取字体特征map容器的大小。 | 

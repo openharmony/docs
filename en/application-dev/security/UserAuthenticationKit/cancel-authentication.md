@@ -27,8 +27,8 @@ This topic describes only the API for canceling authentication. For details abou
 Example: Initiate the facial and lock screen password authentication with the authentication trust level greater than or equal to ATL3 and cancel it.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam: userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),

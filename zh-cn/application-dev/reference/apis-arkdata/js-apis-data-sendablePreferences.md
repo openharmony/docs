@@ -9,7 +9,8 @@
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+>
+> 首选项无法保证进程并发安全，会有文件损坏和数据丢失的风险，不支持在多进程场景下使用。
 
 ## 导入模块
 
@@ -947,7 +948,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${keyValue}`)
+  console.info(`observer : ${data}`)
 }
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);

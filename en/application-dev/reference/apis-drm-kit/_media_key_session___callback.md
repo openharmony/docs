@@ -3,7 +3,7 @@
 
 ## Overview
 
-The MediaKeySession_Callback struct describes the callback used to listen for events such as media key expiry or change.
+The MediaKeySession_Callback struct describes the callback used to listen for events such as media key expiry or change, without returning media key session instances. It applies to the scenario where a single media key session needs to be decrypted.
 
 **Since**: 11
 

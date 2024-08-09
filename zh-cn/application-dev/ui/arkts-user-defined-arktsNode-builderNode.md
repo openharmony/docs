@@ -8,6 +8,10 @@ BuilderNode创建的ArkTS原生控件树支持与自定义节点(例如：FrameN
 
 BuilderNode提供了组件预创建的能力，能够自定义原生组件的创建开始的时间，在后续的业务中动态挂载显示。对于一些在创建初始化耗时较长的声明式组件，比如[Web](../reference/apis-arkweb/ts-basic-components-web.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)等，预创建可以有效减少组件初始化的耗时。
 
+![zh-cn_image_builder-node](figures/builder-node.png)
+
+BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通过BuilderNode中的Update方式触发更新，不建议通过BuilderNode中获取的RenderNode对节点进行修改操作。
+
 > **说明：**
 > 
 > - BuilderNode只支持一个由[wrapBuilder](../quick-start/arkts-wrapBuilder.md)包装的[全局\@Builder](../quick-start/arkts-builder.md#全局自定义构建函数).
@@ -33,6 +37,12 @@ BuilderNode对象为一个模板类，需要在创建的时候指定类型。该
 > **说明：**
 >
 > 无状态的UI方法全局@Builder最多拥有一个根节点。
+>
+> build方法中对应的@Builder支持一个参数作为入参。
+>
+> build中对于@Builder嵌套@Builder进行使用的场景，需要保证嵌套的参数与build的中提供的入参一致。
+> 
+> 对于@Builder嵌套@Builder进行使用的场景，如果入参类型不一致，则要求增加[BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12)字段作为[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build12)的入参。
 
 创建离线节点以及原生组件树，结合FrameNode进行使用。
 
@@ -177,6 +187,8 @@ struct Index {
 
 使用update更新BuilderNode中的节点。
 
+使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)触发BuilderNode中节点的全量更新。
+
 更新BuilderNode中的节点。
 
 ```ts
@@ -254,7 +266,7 @@ struct Index {
       Column() {
         NodeContainer(this.textNodeController)
           .width('100%')
-          .height(100)
+          .height(200)
           .backgroundColor('#FFF0F0F0')
         Button('Update')
           .onClick(() => {
@@ -356,3 +368,4 @@ struct MyComponent {
   }
 }
 ```
+

@@ -31,7 +31,7 @@ Span(value: string | Resource)
 
 ## 属性
 
-通用属性方法仅支持[文本通用](ts-universal-attributes-text-style.md)。
+属性继承自[BaseSpan](#basespan)，通用属性方法仅支持[文本通用](ts-universal-attributes-text-style.md)。
 
 ### decoration
 
@@ -49,7 +49,7 @@ decoration(value: DecorationStyleInterface)
 
 | 参数名 | 类型                                                         | 必填 | 描述                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{&nbsp;type:&nbsp;TextDecorationType.None,&nbsp;color:&nbsp;Color.Black,&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;} |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
 
 ### letterSpacing
 
@@ -135,6 +135,22 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是   | 文字阴影效果。 |
 
+## 事件
+
+通用事件仅支持[点击事件](ts-universal-events-click.md)。
+
+>  **说明：**
+>
+>  由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。
+
+## BaseSpan
+
+定义BaseSpan基础类，包含Span的通用属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ### textBackgroundStyle<sup>11+</sup>
 
 textBackgroundStyle(style: TextBackgroundStyle)
@@ -149,7 +165,7 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 | 参数名 | 类型                                                         | 必填 | 描述                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| style  | [TextBackgroundStyle](#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
 ### baselineOffset<sup>12+</sup>
 
@@ -157,22 +173,26 @@ baselineOffset(value: LengthMetrics)
 
 设置Span基线的偏移量。此属性与父组件的baselineOffset是共存的。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 描述                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置Span基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0 |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置Span基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0<br/>在ImageSpan中，设置为非0时会导致设置verticalAlign失效。 |
 
-## 事件
+## TextBackgroundStyle对象说明
 
-通用事件仅支持[点击事件](ts-universal-events-click.md)。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
->  **说明：**
->
->  由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+| 名称   | 参数类型                                                                 | 必填 | 描述         |
+| ------ | ------------------------------------------------------------------------ | ---- | ------------ |
+| color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 文本背景色。 |
+| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 文本背景圆角。 |
 
 ## 示例
 ### 示例1

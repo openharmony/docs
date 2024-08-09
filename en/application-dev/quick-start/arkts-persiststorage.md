@@ -1,4 +1,4 @@
-# PersistentStorage: Application State Persistence
+# PersistentStorage: Persisting Application State
 
 
 During application development, you may want selected attributes to persist even when the application is closed. In this case, you'll need PersistentStorage.
@@ -35,7 +35,7 @@ It is recommended that the persistent variables of PersistentStorage be less tha
 
 PersistentStorage can be called to persist data only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask), is specified.  
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Accessing PersistentStorage Initialized Attribute from AppStorage

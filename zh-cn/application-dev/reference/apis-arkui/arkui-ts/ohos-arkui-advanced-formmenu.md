@@ -42,6 +42,7 @@ AddFormMenuItem(
 
 **装饰器类型：**@Component
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,6 +56,7 @@ AddFormMenuItem(
 
 ## AddFormOptions
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,12 +64,13 @@ AddFormMenuItem(
 | 名称             | 参数类型                | 必填 | 说明                                                      |
 | --------------- | ---- | ---- | ---------------------------------------------------------------- |
 | formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | 否 | 卡片数据。 |
-| callback        | AsyncCallback<string>                                                                                                | 否 | 返回结果的回调。  |
+| callback        | AsyncCallback\<string>                                                                                                | 否 | 返回结果的回调。  |
 | style           | [FormMenuItemStyle](#formmenuitemstyle)                                                                              | 否 | 菜单自定义样式信息。|
 
 
 ## FormMenuItemStyle
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

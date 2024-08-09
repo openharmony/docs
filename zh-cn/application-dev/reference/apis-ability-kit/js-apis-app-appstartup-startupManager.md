@@ -74,7 +74,7 @@ export default class EntryAbility extends UIAbility {
       console.log('Startup catch error ,error= ' + errMsg);
     }
   }
-  ...
+  // ...
 }
 ```
 

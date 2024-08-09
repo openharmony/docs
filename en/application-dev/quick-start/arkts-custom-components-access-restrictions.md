@@ -13,7 +13,7 @@ In ArkTS, use of the access modifiers – **private**, **public**, and **protect
 
 - For regular variables (which do not involve re-rendering) and variables decorated by \@State, \@Prop, \@Provide, or \@BuilderParam, when declared as **private**, value assignment is not allowed during custom component construction.
 
-- For variables decorated by \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageLink, or \@Consume, **public** access is not allowed.
+- For variables decorated by \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageProp, or \@Consume, **public** access is not allowed.
 
 - For variables decorated by \@Link or \@ObjectLink, **private** access is not allowed.
 
@@ -71,12 +71,13 @@ Property 'builder_value' is private and can not be initialized through the compo
 Property 'regular_value' is private and can not be initialized through the component constructor.
 ```
 
-2. If a member variable is modified by both the **public** access modifier and the \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageLink, or \@Consume decorator, a build error is reported.
+2. If a member variable is modified by both the **public** access modifier and the \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageProp, or \@Consume decorator, a build error is reported.
 
 ```ts
 @Entry
 @Component
 struct AccessRestrictions {
+  @Provide consume_value: string = "Hello";
   build() {
     Column() {
       ComponentChild()
@@ -118,9 +119,11 @@ Property 'consume_value' can not be decorated with both @Consume and public.
 @Entry
 @Component
 struct AccessRestrictions {
+  @State link_value: string = "Hello";
+  @State objectLink_value: ComponentObj = new ComponentObj();
   build() {
     Column() {
-      ComponentChild({link_value: "Hello", objectLink_value: new ComponentObj()})
+      ComponentChild({link_value: this.link_value, objectLink_value: this.objectLink_value})
     }
     .width('100%')
   }

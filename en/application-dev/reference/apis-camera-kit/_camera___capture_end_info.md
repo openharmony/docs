@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_CaptureEndInfo** struct defines the capture end information.
+The Camera_CaptureEndInfo struct describes the capture end information.
 
 **Since**: 11
 

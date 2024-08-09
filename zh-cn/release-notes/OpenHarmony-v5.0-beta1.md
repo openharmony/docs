@@ -855,7 +855,7 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 | -------- | -------- | -------- |
 | OpenHarmony | 5.0 Beta1 | NA |
 | Public SDK | Ohos_sdk_public 5.0.0.25 (API Version 12 Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。 |
-| HUAWEI DevEco Studio（可选） | 5.0 Beta1 | OpenHarmony应用开发推荐使用。获取方式：*待后续提供* |
+| HUAWEI DevEco Studio（可选） | 5.0 Beta1 | OpenHarmony应用开发推荐使用。获取方式：<br />[点击跳转至下载页面](https://developer.huawei.com/consumer/cn/download/) |
 | HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。获取方式：<br />[点击跳转至下载页面](https://device.harmonyos.com/cn/develop/ide#download) |
 
 

@@ -9,7 +9,10 @@
   - [Obtaining Audio/Video Metadata](avmetadataextractor.md)
 - Video Playback and Recording
   - [Video Playback](video-playback.md)
+  - [Adding External Subtitles to Videos](video-subtitle.md)
   - [Video Recording](video-recording.md)
   - [Using AVScreenCapture to Obtain Original Streams (C/C++)](using-avscreencapture-for-buffer.md)
   - [Using AVScreenCapture to Save Recordings in Files (C/C++)](using-avscreencapture-for-file.md)
   - [Obtaining Video Thumbnails](avimagegenerator.md)
+- Video Transcoding
+  - [Using AVTranscoder for Video Transcoding](using-avtranscoder-for-transcodering.md)

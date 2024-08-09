@@ -519,7 +519,7 @@ comparator的参数说明：
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 10200011 | The sort method cannot be bound. |
 
 **示例：**
@@ -749,6 +749,48 @@ arrayList.add(4);
 let result: boolean = arrayList.isEmpty();
 ```
 
+### \[index: number\]<sup>12+</sup>
+
+\[index: number\]: T
+
+取指定索引值对应位置的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 元素的位置索引。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 容器中对应索引值为index的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let arrayList: ArrayList<number> = new ArrayList();
+arrayList.add(2);
+arrayList.add(4);
+arrayList.add(5);
+arrayList.add(4);
+let result: number = arrayList[2];
+```
+
 ### increaseCapacityTo
 
 increaseCapacityTo(newCapacity: number): void
@@ -790,7 +832,7 @@ arrayList.increaseCapacityTo(8);
 
 trimToCurrentLength(): void
 
-把容量限制为当前的length大小。
+释放ArrayList中预留的空间，把容量调整为当前的元素个数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

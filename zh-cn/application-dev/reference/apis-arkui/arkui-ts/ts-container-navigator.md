@@ -143,7 +143,7 @@ class TextObject {
 
 ```ts
 // Detail.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI'
 
 @Entry
 @Component

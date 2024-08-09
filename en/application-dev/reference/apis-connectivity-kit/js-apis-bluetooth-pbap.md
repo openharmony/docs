@@ -11,7 +11,7 @@ The **pbap** module provides APIs for accessing the phone book of a device using
 ## Modules to Import
 
 ```js
-import pbap from '@ohos.bluetooth.pbap';
+import { pbap } from '@kit.ConnectivityKit';
 ```
 
 
@@ -29,10 +29,20 @@ Create a **PbapServerProfile** instance.
 | ----------------------------- | ---------- |
 | PbapServerProfile | **PbapServerProfile** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     console.info('pbapServer success');

@@ -1,6 +1,6 @@
 # @ohos.graphics.text (文本模块)
 
-本模块允许开发者创建复杂的文本段落，包括多样的文本样式、段落样式、换行规则等，并最终将这些信息转换为能在屏幕上高效渲染的布局数据。
+本模块允许开发者创建复杂的文本段落，包括多样的文本样式、段落样式、换行规则等，并最终将这些信息转换为能在屏幕上高效渲染的布局数据，本模块采用屏幕物理像素单位px。
 
 该模块提供以下创建复杂的文本段落的常用功能：
 
@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
+import { text } from '@kit.ArkGraphics2D';
 ```
 
 ## TextAlign
@@ -78,12 +78,12 @@ import { drawing } from '@kit.ArkGraphics2D'
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称                      | 类型                                                  | 只读 | 必填 | 说明                                         |
+| 名称                      | 类型                                                  | 只读 | 可选 | 说明                                         |
 | ------------------------- | --------------------------------------------------- | ---- | ---- | -------------------------------------------- |
-| textDecoration            | [TextDecorationType](#textdecorationtype)           | 是   | 否   | 装饰线类型，默认为NONE。                       |
-| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 否   | 装饰线颜色，默认为透明。                       |
-| decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | 是   | 否   | 装饰线样式，默认为SOLID。                      |
-| decorationThicknessScale  | number                                              | 是   | 否   | 装饰线粗细相对于默认值的比例，浮点数，默认为1.0。|
+| textDecoration            | [TextDecorationType](#textdecorationtype)           | 是   | 是   | 装饰线类型，默认为NONE。                       |
+| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 是   | 装饰线颜色，默认为透明。                       |
+| decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | 是   | 是   | 装饰线样式，默认为SOLID。                      |
+| decorationThicknessScale  | number                                              | 是   | 是   | 装饰线粗细相对于默认值的比例，浮点数，默认为1.0。|
 
 ## TextDecorationType
 
@@ -233,6 +233,17 @@ import { drawing } from '@kit.ArkGraphics2D'
 | name      | string                                               | 是  |  否   | 字体特征键值对中关键字所标识的字符串。       |
 | value     | number                                               | 是  |  否   | 字体特征键值对的值。                        |
 
+## FontVariation
+
+可变字体属性。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
+| --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
+| axis      | string                                               | 是  |  否   | 可变字体属性键值对中关键字所标识的字符串。       |
+| value     | number                                               | 是  |  否   | 可变字体属性键值对的值。                        |
+
 ## TextStyle
 
 文本样式。
@@ -258,6 +269,7 @@ import { drawing } from '@kit.ArkGraphics2D'
 | locale        | string                                               | 是 | 是 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
 | baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
+| fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本字体阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
 
@@ -362,6 +374,32 @@ struct Index {
 }
 ```
 
+### clearCaches
+
+clearCaches(): void
+
+清理字体排版缓存（字体排版缓存本身设有内存上限和清理机制，所占内存有限，如无内存要求，不建议清理）。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button().onClick(() => {
+        text.FontCollection.getGlobalInstance().clearCaches();
+      })
+    }
+  }
+}
+```
+
 ## ParagraphStyle
 
 段落样式。
@@ -409,13 +447,13 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称           | 类型                                           | 只读 | 必填 | 说明                         |
+| 名称           | 类型                                           | 只读 | 可选 | 说明                         |
 | -------------- | --------------------------------------------- | ---- | --- | --------------------------- |
-| width          | number                                        | 是   | 是   | 占位符的宽度，浮点数，单位为逻辑像素。|
-| height         | number                                        | 是   | 是   | 占位符的高度，浮点数，单位为逻辑像素。|
-| align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 是   | 相对于周围文本的纵向的对齐方式。|
-| baseline       | [TextBaseline](#textbaseline)                 | 是   | 是   | 基线类型。                   |
-| baselineOffset | number                                        | 是   | 是   | 基线偏移量，浮点数，单位为逻辑像素。  |
+| width          | number                                        | 是   | 否   | 占位符的宽度，浮点数，单位为逻辑像素。|
+| height         | number                                        | 是   | 否   | 占位符的高度，浮点数，单位为逻辑像素。|
+| align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 否   | 相对于周围文本的纵向的对齐方式。|
+| baseline       | [TextBaseline](#textbaseline)                 | 是   | 否   | 基线类型。                   |
+| baselineOffset | number                                        | 是   | 否   | 基线偏移量，浮点数，单位为逻辑像素。  |
 
 ## Range
 
@@ -423,10 +461,10 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称   | 类型   | 只读 | 必填 | 说明            |
+| 名称   | 类型   | 只读 | 可选 | 说明            |
 | ----- | ------ | ---- | --- | --------------- |
-| start | number | 是   | 是   | 区间左侧端点索引，整数。|
-| end   | number | 是   | 是   | 区间右侧端点索引，整数。|
+| start | number | 是   | 否   | 区间左侧端点索引，整数。|
+| end   | number | 是   | 否   | 区间右侧端点索引，整数。|
 
 ## Paragraph
 
@@ -451,24 +489,7 @@ layoutSync(width: number): void
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  paragraph.layoutSync(100);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+paragraph.layoutSync(100);
 ```
 
 ### paint
@@ -490,31 +511,40 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
+const color: ArrayBuffer = new ArrayBuffer(160000);
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
+let canvas = new drawing.Canvas(pixelMap);
+paragraph.paint(canvas, 0, 0);
+```
 
-function Text() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
-  paragraph.paint(canvas, 0, 0);
-}
+### paintOnPath
 
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+paintOnPath(canvas: drawing.Canvas, path: drawing.Path, hOffset: number, vOffset: number): void
+
+在画布上沿路径绘制文本。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标画布。         |
+| path | [drawing.Path](js-apis-graphics-drawing.md#path) | 是   | 确认文字位置的路径。         |
+|    hOffset   | number                                               | 是   | 沿路径方向偏置，从路径起点向前为正，向后为负。|
+|    vOffset   | number                                               | 是   | 沿路径垂直方向偏置，沿路径方向左侧为负，右侧为正。|
+
+**示例：**
+
+```ts
+const color: ArrayBuffer = new ArrayBuffer(160000);
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
+let canvas = new drawing.Canvas(pixelMap);
+let path = new drawing.Path();
+path.arcTo(20, 20, 180, 180, 180, 90);
+paragraph.paintOnPath(canvas, path, 0, 0);
 ```
 
 ### getMaxWidth
@@ -534,24 +564,7 @@ getMaxWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function Text() {
-  let maxWidth = paragraph.getMaxWidth();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let maxWidth = paragraph.getMaxWidth();
 ```
 
 ### getHeight
@@ -571,24 +584,7 @@ getHeight(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function Text() {
-  let height = paragraph.getHeight();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let height = paragraph.getHeight();
 ```
 
 ### getLongestLine
@@ -608,24 +604,7 @@ getLongestLine(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function Text() {
-  let longestLine = paragraph.getLongestLine();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let longestLine = paragraph.getLongestLine();
 ```
 
 ### getMinIntrinsicWidth
@@ -645,24 +624,7 @@ getMinIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function Text() {
-  let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
 ```
 
 ### getMaxIntrinsicWidth
@@ -682,24 +644,7 @@ getMaxIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
 ```
 
 ### getAlphabeticBaseline
@@ -719,24 +664,7 @@ getAlphabeticBaseline(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let alphabeticBaseline = paragraph.getAlphabeticBaseline();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let alphabeticBaseline = paragraph.getAlphabeticBaseline();
 ```
 
 ### getIdeographicBaseline
@@ -756,24 +684,7 @@ getIdeographicBaseline(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let ideographicBaseline = paragraph.getIdeographicBaseline();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let ideographicBaseline = paragraph.getIdeographicBaseline();
 ```
 
 ### getRectsForRange
@@ -801,25 +712,8 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let range: text.Range = { start: 0, end: 1};
-  let rects = paragraph.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let range: text.Range = { start: 0, end: 1};
+let rects = paragraph.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
 ```
 
 ### getRectsForPlaceholders
@@ -839,24 +733,7 @@ getRectsForPlaceholders(): Array\<TextBox>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let placeholderRects = paragraph.getRectsForPlaceholders();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let placeholderRects = paragraph.getRectsForPlaceholders();
 ```
 
 ### getGlyphPositionAtCoordinate
@@ -883,24 +760,7 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
 ```
 
 ### getWordBoundary
@@ -926,24 +786,7 @@ getWordBoundary(offset: number): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let wordRange = paragraph.getWordBoundary(0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let wordRange = paragraph.getWordBoundary(0);
 ```
 
 ### getLineCount
@@ -963,24 +806,7 @@ getLineCount(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let lineCount = paragraph.getLineCount();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lineCount = paragraph.getLineCount();
 ```
 
 ### getLineHeight
@@ -1006,24 +832,7 @@ getLineHeight(line: number): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let lineHeight = paragraph.getLineHeight(0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lineHeight = paragraph.getLineHeight(0);
 ```
 
 ### getLineWidth
@@ -1049,24 +858,7 @@ getLineWidth(line: number): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let lineWidth = paragraph.getLineWidth(0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lineWidth = paragraph.getLineWidth(0);
 ```
 
 ### didExceedMaxLines
@@ -1086,24 +878,7 @@ didExceedMaxLines(): boolean
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let didExceed = paragraph.didExceedMaxLines();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let didExceed = paragraph.didExceedMaxLines();
 ```
 
 ### getTextLines
@@ -1123,24 +898,7 @@ getTextLines(): Array\<TextLine>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let lines = paragraph.getTextLines();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lines = paragraph.getTextLines();
 ```
 
 ### getActualTextRange
@@ -1167,35 +925,7 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let myTextStyle: text.TextStyle = {
-    color: { alpha: 255, red: 255, green: 0, blue: 0 },
-    fontSize: 33,
-  };
-  let myParagraphStyle: text.ParagraphStyle = {
-    textStyle: myTextStyle,
-    align: 3,
-  };
-  let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  let paragraph = ParagraphGraphBuilder.build();
-  let rang = paragraph.getActualTextRange(0, true);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let rang = paragraph.getActualTextRange(0, true);
 ```
 
 
@@ -1216,35 +946,7 @@ getLineMetrics(): Array\<LineMetrics>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let myTextStyle: text.TextStyle = {
-    color: { alpha: 255, red: 255, green: 0, blue: 0 },
-    fontSize: 33,
-  };
-  let myParagraphStyle: text.ParagraphStyle = {
-    textStyle: myTextStyle,
-    align: 3,
-  };
-  let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  let paragraph = ParagraphGraphBuilder.build();
-  let arrLineMetrc =  paragraph.getLineMetrics();
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let arrLineMetrc =  paragraph.getLineMetrics();
 ```
 
 ### getLineMetrics
@@ -1270,35 +972,7 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function Text() {
-  let myTextStyle: text.TextStyle = {
-    color: { alpha: 255, red: 255, green: 0, blue: 0 },
-    fontSize: 33,
-  };
-  let myParagraphStyle: text.ParagraphStyle = {
-    textStyle: myTextStyle,
-    align: 3,
-  };
-  let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  let paragraph = ParagraphGraphBuilder.build();
-  let lineMetrics =  paragraph.getLineMetrics(0);
-}
-
-@Entry
-@Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
 ## RunMetrics
@@ -1310,7 +984,7 @@ struct Index {
 | 名称      | 类型                                                | 只读 | 可选 | 说明        |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
 | textStyle | [TextStyle](#textstyle)                             | 是   | 否   | 字体的样式信息。|
-| fontMetrics | [FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 是   | 否   | 字体度量信息。    |
+| fontMetrics | [drawing.FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 是   | 否   | 字体度量信息。    |
 
 ## LineMetrics
 
@@ -1338,10 +1012,10 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称      | 类型                                                | 只读 | 必填 | 说明        |
+| 名称      | 类型                                                | 只读 | 可选 | 说明        |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
-| rect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 是   | 矩形区域信息。|
-| direction | [TextDirection](#textdirection)                    | 是   | 是   | 文本方向。    |
+| rect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 否   | 矩形区域信息。|
+| direction | [TextDirection](#textdirection)                    | 是   | 否   | 文本方向。    |
 
 ## PositionWithAffinity
 
@@ -1349,10 +1023,10 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称      | 类型                   | 只读 | 必填 | 说明                      |
+| 名称      | 类型                   | 只读 | 可选 | 说明                      |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
-| position  | number                | 是   | 是   | 字形相对于段落的索引，整数。  |
-| affinity  | [Affinity](#affinity) | 是   | 是   | 位置亲和度。               |
+| position  | number                | 是   | 否   | 字形相对于段落的索引，整数。  |
+| affinity  | [Affinity](#affinity) | 是   | 否   | 位置亲和度。               |
 
 ## RectWidthStyle
 
@@ -1660,9 +1334,7 @@ build(): Paragraph
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
+import { drawing, text, common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit';
 
 function Text() {

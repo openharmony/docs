@@ -99,7 +99,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
-  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 
 **示例**
@@ -165,7 +165,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationServiceState”，表示位置服务状态。 |
-  | callback | Callback&lt;boolean&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;boolean&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 
 **示例**
@@ -234,7 +234,7 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsReporting”，表示GNSS缓存定位结果上报。 |
-  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 
 **示例**
@@ -302,7 +302,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): v
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssStatusChange”，表示订阅GNSS卫星状态信息上报。 |
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **示例**
 
@@ -368,7 +368,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“nmeaMessageChange”，表示订阅GNSS&nbsp;NMEA信息上报。 |
-  | callback | Callback&lt;string&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;string&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 
 **示例**

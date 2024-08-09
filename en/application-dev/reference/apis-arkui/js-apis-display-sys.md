@@ -11,7 +11,7 @@ The **Display** module provides APIs for managing displays, such as obtaining in
 ## Modules to Import
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 ```
 
 ## display.hasPrivateWindow<sup>9+</sup>
@@ -26,21 +26,21 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 **Parameters**
 
-| Name| Type                     | Mandatory| Description      |
+| Name | Type                     | Mandatory | Description      |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0.|
+| id     | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0. |
 
 **Return value**
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br>|
+|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br> |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
@@ -48,7 +48,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 try {
@@ -85,23 +85,23 @@ Subscribes to privacy mode changes of this display. When there is a privacy wind
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                   |
+| Name  | Type                                      | Mandatory | Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
-| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
+| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes. |
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **Example**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<boolean> = (data: boolean) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -125,16 +125,16 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                   |
+| Name  | Type                                      | Mandatory | Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
-| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
+| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes. |
+| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
@@ -159,15 +159,15 @@ Sets the display mode of the foldable device.
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                   |
+| Name  | Type                                      | Mandatory | Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | Yes  | Display mode.|
+| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | Yes  | Display mode. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
@@ -176,7 +176,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 try {
   let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_FULL;
@@ -187,7 +187,6 @@ try {
 ```
 
 ## display.setFoldStatusLocked<sup>11+</sup>
-
 setFoldStatusLocked(locked: boolean): void
 
 Sets whether to lock the current fold status of the foldable device.
@@ -198,15 +197,15 @@ Sets whether to lock the current fold status of the foldable device.
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                   |
+| Name  | Type                                      | Mandatory | Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| locked     | boolean    | Yes  | Whether to lock the current fold status of the foldable device. The value **true** means to lock the current fold status, and **false** means the opposite.|
+| locked     | boolean    | Yes  | Whether to lock the current fold status of the foldable device. The value **true** means to lock the current fold status, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
@@ -215,7 +214,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 try {
   let locked: boolean = false;
@@ -241,15 +240,15 @@ Checks whether this screen contains an immersive window. This API uses an asynch
 
 **Parameters**
 
-| Name     | Type                       | Mandatory| Description                                                        |
+| Name     | Type                       | Mandatory | Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite.|
+| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
@@ -258,8 +257,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
@@ -285,13 +284,13 @@ Checks whether this screen contains an immersive window. This API uses a promise
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
@@ -300,8 +299,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
@@ -326,13 +325,13 @@ Obtains the available area of the current screen. This API uses a promise to ret
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Rect](js-apis-display.md#rect9)&gt; | Promise used to return the available area, which is a rectangle.|
+| Promise&lt;[Rect](js-apis-display.md#rect9)&gt; | Promise used to return the available area, which is a rectangle. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 801 | Capability not supported on this device. |
@@ -341,8 +340,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 try {
@@ -369,16 +368,16 @@ Subscribes to changes of the available area on the current screen. This API uses
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                   |
+| Name  | Type                                      | Mandatory | Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the screen changes.|
-| callback | Callback&lt;[Rect](js-apis-display.md#rect9)&gt; | Yes  | Callback used to return the new available area.|
+| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the screen changes. |
+| callback | Callback&lt;[Rect](js-apis-display.md#rect9)&gt; | Yes  | Callback used to return the new available area. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
@@ -388,8 +387,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Callback } from '@ohos.base';
-import display from '@ohos.display'
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -415,16 +414,16 @@ Unsubscribes from changes of the available area on the current screen.
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                   |
+| Name  | Type                                      | Mandatory | Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the screen changes.|
-| callback | Callback&lt;[Rect](js-apis-display.md#rect9)&gt; | No  | Callback used for unsubscription. If no value is passed in, all subscriptions to the specified event are canceled.|
+| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the screen changes. |
+| callback | Callback&lt;[Rect](js-apis-display.md#rect9)&gt; | No  | Callback used for unsubscription. If no value is passed in, all subscriptions to the specified event are canceled. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
@@ -434,8 +433,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Callback } from '@ohos.base';
-import display from '@ohos.display'
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));

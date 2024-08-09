@@ -324,7 +324,8 @@ struct ImageAnimatorExample {
 ### 播放PixelMap动画
 
 ```ts
-import image from '@ohos.multimedia.image'
+import { image } from '@kit.ImageKit'
+
 @Entry
 @Component
 struct ImageAnimatorExample {

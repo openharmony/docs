@@ -5,6 +5,10 @@
 
 The **image_pixel_map_mdk.h** file declares the APIs used to lock, access, and unlock a pixel map.
 
+**Library**: libpixelmap_ndk.z.so
+
+**File to include**: &lt;multimedia/image_framework/image_pixel_map_mdk.h&gt;
+
 **Since**: 10
 
 **Related module**: [Image](image.md)

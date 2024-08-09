@@ -377,6 +377,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
@@ -427,6 +428,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
@@ -462,6 +464,14 @@ Obtains the array of time zone city items after sorting.
 |       Type       |         Description         |
 | ----------------- | -------------------- |
 | Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | Array of time zone city items.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
   ```ts

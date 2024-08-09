@@ -40,7 +40,7 @@ When the device receives a cell broadcast message, the event notification servic
 
 ## COMMON_EVENT_STK_COMMAND
 
-(Reserved, not supported yet) Indicates that an STK command is sent.
+Indicates that an STK command is sent.
 
 - Value: usual.event.STK_COMMAND
 - Required subscriber permissions: none
@@ -49,7 +49,7 @@ When an STK command is sent, the event notification service is triggered to publ
 
 ## COMMON_EVENT_STK_SESSION_END
 
-(Reserved event, not supported currently) Indicates that an STK session has ended.
+Indicates that an STK session has ended.
 
 - Value: usual.event.STK_SESSION_END
 - Required subscriber permissions: none
@@ -58,7 +58,7 @@ When an STK session ends, the event notification service is triggered to publish
 
 ## COMMON_EVENT_STK_CARD_STATE_CHANGED
 
-(Reserved event, not supported currently) Indicates that the STK card status has been updated.
+Indicates that the STK card status has been updated.
 
 - Value: usual.event.STK_CARD_STATE_CHANGED
 - Required subscriber permissions: none
@@ -67,7 +67,7 @@ When the STK card status is updated, the event notification service is triggered
 
 ## COMMON_EVENT_STK_ALPHA_IDENTIFIER
 
-(Reserved event, not supported currently) Indicates that an STK Alpha identifier is sent.
+Indicates that an STK Alpha identifier is sent.
 
 - Value: usual.event.STK_ALPHA_IDENTIFIER
 - Required subscriber permissions: none

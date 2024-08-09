@@ -22,9 +22,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | Permission                                      | APL    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications.|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications. |
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
@@ -48,10 +48,10 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory| Description                                              |
+| Name     | Type                                                        | Mandatory | Description                                              |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md)                 | Yes  | **ElementName**.                           |
-| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the remote ability information.|
+| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the remote ability information. |
 
 
 
@@ -77,15 +77,15 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type                                        | Mandatory| Description                   |
+| Name     | Type                                        | Mandatory | Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes  | **ElementName**.|
+| elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes  | **ElementName**. |
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)> | Promise used to return the remote ability information.|
+| Promise\<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)> | Promise used to return the remote ability information. |
 
 ## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
 
@@ -109,10 +109,10 @@ This is a system API.
 
 **Parameters**
 
-| Name      | Type                                                        | Mandatory| Description                                              |
+| Name      | Type                                                        | Mandatory | Description                                              |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)>          | Yes  | **ElementName** array, whose maximum length is 10.                  |
-| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return an array of the remote ability information.|
+| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return an array of the remote ability information. |
 
 
 
@@ -138,12 +138,12 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type                                               | Mandatory| Description                 |
+| Name     | Type                                               | Mandatory | Description                 |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
+| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | Yes  | **ElementName** array, whose maximum length is 10. |
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)>> | Promise used to return the remote ability information.|
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)>> | Promise used to return the remote ability information. |

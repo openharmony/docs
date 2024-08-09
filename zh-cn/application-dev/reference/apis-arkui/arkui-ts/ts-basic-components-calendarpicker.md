@@ -110,7 +110,8 @@ onChange(callback: (value: Date) => void)
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date()
+  private selectedDate: Date = new Date('2024-03-05')
+
   build() {
     Column() {
       Text('月历日期选择器').fontSize(30)
@@ -123,7 +124,7 @@ struct CalendarPickerExample {
             console.info("CalendarPicker onChange:" + JSON.stringify(value))
           })
       }.alignItems(HorizontalAlign.End).width("100%")
-    }.width('100%').margin({top:350})
+    }.width('100%').margin({ top: 350 })
   }
 }
 ```

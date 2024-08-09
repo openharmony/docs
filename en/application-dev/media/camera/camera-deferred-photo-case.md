@@ -15,12 +15,12 @@ After obtaining the output stream capabilities supported by the camera, create a
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { camera } from '@kit.CameraKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 let context = getContext(this);
 
@@ -77,6 +77,10 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   }
   // Listen for camera status changes.
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error(`cameraStatus with errorCode: ${err.code}`);
+      return;
+    }
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });
@@ -245,13 +249,13 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     });
   });
     
-  // Check whether deferred delivery is supported.
+  // Check whether deferred photo delivery is supported.
   let isSupportDeferred: boolean = photoOutput.isDeferredImageDeliverySupported(camera.DeferredDeliveryImageType.PHOTO);
   console.info('isDeferredImageDeliverySupported res:' + isSupportDeferred);
   if (isSupportDeferred) {
-    // Enable deferred delivery.
+    // Enable deferred photo delivery.
 	photoOutput.deferImageDelivery(camera.DeferredDeliveryImageType.PHOTO);
-    // Check whether deferred delivery is enabled.
+    // Check whether deferred photo delivery is enabled.
     let isSupportEnabled: boolean = photoOutput.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
     console.info('isDeferredImageDeliveryEnabled res:' + isSupportEnabled);
   }
@@ -363,5 +367,3 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   photoSession = undefined;
 }
 ```
-
- <!--no_check--> 

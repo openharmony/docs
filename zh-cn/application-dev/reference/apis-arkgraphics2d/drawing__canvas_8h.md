@@ -43,6 +43,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasDrawSingleCharacter](_drawing.md#oh_drawing_canvasdrawsinglecharacter) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, const char \*str, const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*font, float x, float y) | 用于绘制单个字符。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。  |
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasClipRegion](_drawing.md#oh_drawing_canvasclipregion) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, const [OH_Drawing_Region](_drawing.md#oh_drawing_region) \*region, [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) clipOp) | 用于裁剪一个区域。 | 
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasDrawColor](_drawing.md#oh_drawing_canvasdrawcolor) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, uint32_t color, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode) blendMode) | 用于使用指定的颜色及混合模式来填充整个画布。 | 
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasGetImageInfo](_drawing.md#oh_drawing_canvasgetimageinfo) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*imageInfo) | 用于获取画布的图像信息。 | 

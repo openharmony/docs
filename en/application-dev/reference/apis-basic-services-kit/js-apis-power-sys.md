@@ -154,6 +154,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 
@@ -314,6 +315,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 

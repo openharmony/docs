@@ -382,6 +382,8 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 当Navigation中显示Navigation首页时，设置对应系统状态栏的样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -488,6 +490,8 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -500,6 +504,10 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 pushPath(info: NavPathInfo, options?: NavigationOptions): void
 
 将info指定的NavDestination页面信息入栈，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -515,6 +523,8 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 将name指定的NavDestination页面信息入栈，传递的数据为param。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -532,6 +542,8 @@ pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -548,6 +560,8 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -578,6 +592,10 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -611,6 +629,8 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -643,6 +663,8 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -678,6 +700,8 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -690,6 +714,10 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 replacePath(info: NavPathInfo, options?: NavigationOptions): void
 
 替换页面栈操作，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -706,6 +734,8 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -721,6 +751,8 @@ removeByIndexes(indexes: Array<number\>): number
 将页面栈内索引值在indexes中的NavDestination页面删除。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -742,6 +774,8 @@ removeByName(name: string): number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -754,6 +788,28 @@ removeByName(name: string): number
 | ----------- | ------------------------ |
 | number | 返回删除的NavDestination页面数量。 |
 
+### removeByNavDestinationId<sup>12+</sup>
+
+removeByNavDestinationId(navDestinationId: string): boolean
+
+将页面栈内指定navDestinationId的NavDestination页面删除。navDestinationId可以在NavDestination的[onReady](ts-basic-components-navdestination.md#onready11)回调中获取，也可以在[NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo)中获取。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| navDestinationId  | string  | 是    | 删除的NavDestination页面的唯一标识符navDestinationId。   |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| boolean | 返回是否成功删除该页面，true为删除成功。 |
+
 ### pop<sup>10+</sup>
 
 pop(animated?: boolean): NavPathInfo | undefined
@@ -761,6 +817,8 @@ pop(animated?: boolean): NavPathInfo | undefined
 弹出路由栈栈顶元素。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -782,6 +840,8 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 弹出路由栈栈顶元素，并触发onPop回调传入页面处理结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -805,6 +865,8 @@ popToName(name: string, animated?: boolean): number
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型     | 必填   | 描述                  |
@@ -825,6 +887,8 @@ popToName(name: string, result: Object, animated?: boolean): number
 回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -848,6 +912,8 @@ popToIndex(index: number, animated?: boolean): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -862,6 +928,8 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 回退路由栈到index指定的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -878,6 +946,8 @@ moveToTop(name: string, animated?: boolean): number
 将由栈底开始第一个名为name的NavDestination页面移到栈顶。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -900,6 +970,8 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -915,6 +987,8 @@ clear(animated?: boolean): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -929,6 +1003,8 @@ getAllPathName(): Array<string\>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型             | 说明                         |
@@ -942,6 +1018,8 @@ getParamByIndex(index: number): unknown | undefined
 获取index指定的NavDestination页面的参数信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -964,6 +1042,8 @@ getParamByName(name: string): Array<unknown\>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型     | 必填   | 描述                  |
@@ -983,6 +1063,8 @@ getIndexByName(name: string): Array<number\>
 获取全部名为name的NavDestination页面的位置索引。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1004,6 +1086,8 @@ size(): number
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明     |
@@ -1017,6 +1101,8 @@ disableAnimation(value: boolean): void
 关闭（true）或打开（false）当前Navigation中所有转场动画。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1032,6 +1118,8 @@ getParent(): NavPathStack | null
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明     |
@@ -1045,6 +1133,8 @@ setInterception(interception: NavigationInterception): void
 设置Navigation页面跳转拦截回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1062,6 +1152,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -1076,6 +1168,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -1088,6 +1182,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 跳转Destination信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1105,6 +1201,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|------|
@@ -1118,6 +1216,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 自定义转场动画代理对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1133,13 +1233,23 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### cancelTransition<sup>12+</sup>
 
 取消本次交互转场，恢复到页面跳转前的页面栈(不支持取消不可交互转场动画)。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### updateTransition<sup>12+</sup>
 
 更新交互转场动画进度(不可交互动画不支持动画进度设置)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1152,6 +1262,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 Navigation跳转拦截对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型     | 必填 | 描述    |
 | ---- | ----- | ----- | ----   |
@@ -1202,6 +1314,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称         | 类型                                       | 必填   | 描述                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value      | ResourceStr                              | 是    | 工具栏单个选项的显示文本。                            |
@@ -1216,6 +1330,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称       | 描述                                       |
 | -------- | ---------------------------------------- |
 | NORMAL   | 设置工具栏单个选项为NORMAL态，该选项显示默认样式，可以触发Hover，Press，Focus事件并显示对应的多态样式。 |
@@ -1225,6 +1341,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## NavigationTitleMode枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
@@ -1236,6 +1354,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型     | 必填   | 描述     |
 | ---- | ------ | ---- | ------ |
 | main | string | 是    | 设置主标题。 |
@@ -1244,6 +1364,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## NavigationCustomTitle<sup>9+</sup>类型说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                       | 必填   | 描述       |
 | ------- | ---------------------------------------- | ---- | -------- |
@@ -1254,6 +1376,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称    | 描述               |
 | ----- | ---------------- |
 | Start | 双栏显示时，主列在主轴方向首部。 |
@@ -1262,6 +1386,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## NavigationMode<sup>9+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
@@ -1273,6 +1399,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 描述                         |
 | ----------- | -------------------------- |
 | MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
@@ -1281,6 +1409,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## NavigationOperation<sup>11+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 描述  |
 |---------|------|
@@ -1292,6 +1422,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称    | 描述  |
 |---------|------|
 |STANDARD | 标题栏与内容区采用上下布局。|
@@ -1302,7 +1434,7 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景:<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -1311,20 +1443,31 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。 |
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
+| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
 
 ## LaunchMode<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 描述  |
 | --------- | ------ |
 | STANDARD | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
 | MOVE_TO_TOP_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
-| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。|
+| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
+| NEW_INSTANCE | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
 
 ## NavigationOptions<sup>12+</sup>类型说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -1334,6 +1477,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## 示例
 
 ### 示例1
+
+该示例主要演示Navigation页面的布局。
 
 ```ts
 // xxx.ets
@@ -1439,6 +1584,9 @@ struct NavigationExample {
 
 
 ### 示例2
+
+该示例主要演示NavPathStack中方法的使用及路由拦截。
+
 ```ts
 // Index.ets
 
@@ -2154,6 +2302,9 @@ export class CustomTransition {
 ![navigation_interactive_transition](figures/navigation_interactive_transition.gif)
 
 ### 示例4
+
+该示例主要演示Navigation带参返回。
+
 ```ts
 // Index.ets
 
@@ -2179,7 +2330,7 @@ struct NavigationExample {
 ```
 ```ts
 // PageOne.ets
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass{
   count:number = 10
@@ -2952,9 +3103,15 @@ class DerivedNavPathStack extends NavPathStack {
   }
 
   // overwrite function of NavPathStack
-  pushPath(info: NavPathInfo, animated?: boolean): void {
+  pushPath(info: NavPathInfo, animated?: boolean): void
+  pushPath(info: NavPathInfo, options?: NavigationOptions): void
+  pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
     console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
-    super.pushPath(info, animated);
+    if (typeof secArg === 'boolean') {
+      super.pushPath(info, secArg);
+    } else {
+      super.pushPath(info, secArg);
+    }
   }
 
   // overwrite and overload function of NavPathStack

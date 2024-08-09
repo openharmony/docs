@@ -22,6 +22,8 @@ Injects keys (including single keys and combination keys).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
 **Parameters**
 
 | Name      | Type                   | Mandatory  | Description       |
@@ -78,6 +80,8 @@ injectKeyEvent(keyEvent: KeyEventData): void
 Injects key events (for both single keys and combination keys).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+Permission required: ohos.permission.INJECT_INPUT_EVENT
 
 **Parameters**
 
@@ -136,6 +140,8 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 Injects a mouse/touchpad event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+Permission required: ohos.permission.INJECT_INPUT_EVENT
 
 **Parameters**
 
@@ -237,6 +243,8 @@ Injects a touchscreen event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
 **Parameters**
 
 | Name      | Type                   | Mandatory  | Description       |
@@ -324,6 +332,8 @@ permitInjection(result: boolean): void
 Specifies whether to authorize event injection.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+Permission required: ohos.permission.INJECT_INPUT_EVENT
 
 **Parameters**
 

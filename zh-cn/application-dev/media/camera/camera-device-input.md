@@ -9,9 +9,9 @@
 1. 导入camera接口，接口中提供了相机相关的属性和方法，导入方法如下。
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. 通过[getCameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameragetcameramanager)方法，获取cameraManager对象。
@@ -91,6 +91,10 @@
 ```ts
 function onCameraStatus(cameraManager: camera.CameraManager): void {
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error(`Callback Error, errorCode: ${err.code}`);
+      return;
+    }
     console.info(`camera: ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });

@@ -73,12 +73,6 @@ hiperf list hw
 Usage: hiperf record [options] [command [command-args]] 
 ```
 
-对全系统所有进程采样3秒，并且显示详细的信息。
-
-```
-hiperf record -d 3 -a --verbose
-```
-
 对指定的PID为267的进程采样10秒，并且使用dwarf回栈。
 
 ```
@@ -140,7 +134,7 @@ hiperf dump --help
 此命令主要用于展示相关采样数据（从perf.data中读取）并且转换为用户需要的格式（比如Json或者ProtoBuf）。
 
 ```
-Usage: hiperf dump [option] \<filename\>
+Usage: hiperf report [option] \<filename\>
 ```
 
 范例输出普通报告的命令，限制为占比不超过1%。

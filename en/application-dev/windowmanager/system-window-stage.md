@@ -30,7 +30,7 @@ For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window
 | Window            | hide (callback: AsyncCallback\<void>): void                  | Hides this window. This is a system API.                            |
 | Window            | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
 | Window            | getTransitionController(): TransitionController              | Obtains the transition animation controller. This is a system API.                  |
-| TransitionContext | completeTransition(isCompleted: boolean): void               | Completes the transition. This API can be called only after [animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) is executed. This is a system API.|
+| TransitionContext | completeTransition(isCompleted: boolean): void               | Completes the transition. This API can be called only after [animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) is executed. This is a system API. |
 | Window            | showWithAnimation(callback: AsyncCallback\<void>): void      | Shows this window and plays an animation during the process. This is a system API.            |
 | Window            | hideWithAnimation(callback: AsyncCallback\<void>): void      | Hides this window and plays an animation during the process. This is a system API.            |
 
@@ -58,12 +58,11 @@ This section uses the volume bar as an example to describe how to develop a syst
    When the volume bar window is no longer needed, you can call **hide** or **destroyWindow** to hide or destroy it.
 
 ```ts
-import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class ServiceExtensionAbility1 extends ExtensionContext {
+export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // 1. Create a volume bar window.
     let windowClass: window.Window | null = null;
@@ -155,7 +154,7 @@ You can determine whether to play an animation when a system window is showing o
 
 ```ts
 // Import the showWithAnimation and hideWithAnimation methods to the .ts file.
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 
 export class AnimationConfig {
   private animationForShownCallFunc_: Function = undefined;
@@ -201,13 +200,9 @@ export class AnimationConfig {
 
 ```ts
 // In the .ets file, implement the operation of creating the main window.
-import window from '@ohos.window';
-import Want from '@ohos.app.ability.Want';
-import hilog from '@ohos.hilog';
-import common from '@ohos.app.ability.common';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { window } from '@kit.ArkUI';
+import { UIAbility, Want, AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want,launchParam:AbilityConstant.LaunchParam) {
@@ -249,9 +244,8 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // In the xxx.ets file, implement the attribute setting of the subwindow.
-import window from '@ohos.window';
-import router from '@ohos.router';
-import common from '@ohos.app.ability.common';
+import { window, router } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -282,12 +276,10 @@ struct transferCtrlSubWindow {
 
 ```ts
 // In the .ets file, implement the operations of creating a subwindow and displaying or hiding a window.
-import window from '@ohos.window';
-import router from '@ohos.router';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { window, router } from '@kit.ArkUI';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { AnimationConfig } from '../entryability/AnimationConfig';
-import Want from '@ohos.app.ability.Want';
 
 @Entry
 @Component

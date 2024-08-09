@@ -96,7 +96,7 @@ export { func2 } from './src/main/ts/test';
 ### 导出native方法
 在HAR中也可以包含C++编写的so。对于so中的native方法，HAR通过以下方式导出，以导出libnative.so的加法接口add为例：
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeAdd(a: number, b: number): number {
@@ -294,6 +294,7 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 
 > **说明：**
 > 
+> 编译HAR时，如果没有开启混淆能力，编译后的产物是源码文件。<br/>
 > 仅Stage模型的ArkTS工程支持混淆。  
 > HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 

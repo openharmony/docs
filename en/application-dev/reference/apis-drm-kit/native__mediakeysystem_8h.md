@@ -5,7 +5,9 @@
 
 The **native_mediakeysystem.h** file declares the **MediaKeySystem** API. The APIs can be used to check whether a specific DRM is supported, create a media key session, obtain and set configurations, obtain statistics information, obtain the content protection level, generate media key system requests, process responses to media key system requests, listen for events, and manage offline media keys.
 
-**Library**: libnative_drm.z.so
+**Library**: libnative_drm.so
+
+**File to include**: &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -21,22 +23,24 @@ The **native_mediakeysystem.h** file declares the **MediaKeySystem** API. The AP
 
 | Name| Description| 
 | -------- | -------- |
-| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [MediaKeySystem_Callback](_drm.md#mediakeysystem_callback)) ([DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered. | 
+| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [MediaKeySystem_Callback](_drm.md#mediakeysystem_callback)) ([DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered. It does not return media key system instances and applies to the scenario where a single media key system is used. | 
+| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [OH_MediaKeySystem_Callback](_drm.md#oh_mediakeysystem_callback)) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, [DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered. It returns media key system instances and applies to the scenario with where media key systems are used. | 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
+| [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_SetCallback](_drm.md#oh_mediakeysystem_setcallback) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, [OH_MediaKeySystem_Callback](_drm.md#oh_mediakeysystem_callback) callback) | Sets a media key system event callback. | 
 | bool [OH_MediaKeySystem_IsSupported](_drm.md#oh_mediakeysystem_issupported) (const char \*name) | Checks whether a media key system is supported. | 
 | bool [OH_MediaKeySystem_IsSupported2](_drm.md#oh_mediakeysystem_issupported2) (const char \*name, const char \*mimeType) | Checks whether a media key system is supported. | 
 | bool [OH_MediaKeySystem_IsSupported3](_drm.md#oh_mediakeysystem_issupported3) (const char \*name, const char \*mimeType, [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel) contentProtectionLevel) | Checks whether a media key system is supported. | 
-| Drm_ErrCode [OH_MediaKeySystem_GetMediaKeySystems](_drm.md#oh_mediakeysystem_getmediakeysystems) ([DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) \*infos, uint32_t \*count) | Obtains the names and UUIDs of the supported media key systems. | 
+| [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_GetMediaKeySystems](_drm.md#oh_mediakeysystem_getmediakeysystems) ([DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) \*infos, uint32_t \*count) | Obtains the names and UUIDs of the supported media key systems. | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_Create](_drm.md#oh_mediakeysystem_create) (const char \*name, [MediaKeySystem](_drm.md#mediakeysystem) \*\*mediaKeySystem) | Creates a **MediaKeySystem** instance by name. | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_SetConfigurationString](_drm.md#oh_mediakeysystem_setconfigurationstring) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, const char \*configName, const char \*value) | Sets a configuration item in the form of a string for a media key system. | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_GetConfigurationString](_drm.md#oh_mediakeysystem_getconfigurationstring) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, const char \*configName, char \*value, int32_t valueLen) | Obtains the value of a configuration item in the form of a string for a media key system. | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_SetConfigurationByteArray](_drm.md#oh_mediakeysystem_setconfigurationbytearray) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t valueLen) | Sets a configuration item in the form of a byte array for a media key system. | 
-| [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_GetConfigurationByteArray](_drm.md#oh_mediakeysystem_getconfigurationbytearray) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t \*valueLen) | Obtains the value of a configuration item in the form of a string for a media key system. | 
+| [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_GetConfigurationByteArray](_drm.md#oh_mediakeysystem_getconfigurationbytearray) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t \*valueLen) | Obtains the value of a configuration item in the form of a byte array for a media key system. | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_GetStatistics](_drm.md#oh_mediakeysystem_getstatistics) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, [DRM_Statistics](_d_r_m___statistics.md) \*statistics) | Obtains the statistics information about a media key system. | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_GetMaxContentProtectionLevel](_drm.md#oh_mediakeysystem_getmaxcontentprotectionlevel) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel) \*contentProtectionLevel) | Obtains the media key system with the maximum content protection level supported by the device. | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySystem_SetMediaKeySystemCallback](_drm.md#oh_mediakeysystem_setmediakeysystemcallback) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, [MediaKeySystem_Callback](_drm.md#mediakeysystem_callback) callback) | Sets a media key system event callback. | 

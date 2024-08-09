@@ -17,6 +17,8 @@ The packing process is as follows:
 
 **Library**: libimage_packer_ndk.z.so
 
+**File to include**: &lt;multimedia/image_framework/image_packer_mdk.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image
 
 **Since**: 11
@@ -31,14 +33,14 @@ The packing process is as follows:
 
 | Name| Description| 
 | -------- | -------- |
-| [ImagePacker_Opts_](_image_packer___opts__.md) | Defines the image packing options.| 
+| [ImagePacker_Opts](_image_packer___opts__.md) | Defines the image packing options.| 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| [ImagePacker_Native](image.md#imagepacker_native) | Defines the ImagePacker instance at the native layer.| 
+| [ImagePacker_Native](image.md#imagepacker_native) | Defines the **ImagePacker** instance at the native layer.| 
 | [ImagePacker_Opts](image.md#imagepacker_opts) | Defines the alias of the image packing options.| 
 
 

@@ -1,4 +1,4 @@
-# \@Extend Decorator: Extension of Built-in Components
+# \@Extend Decorator: Extending Built-in Components
 
 
 Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which allows you to add a new attribute feature to a built-in component.

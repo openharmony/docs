@@ -5,7 +5,7 @@
 
 Defines common types used in **OsAccount** APIs.
 
-**Library**: libos_account.so
+**Library**: libos_account_ndk.so
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -19,13 +19,13 @@ Defines common types used in **OsAccount** APIs.
 
 ### Types
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| typedef enum [OsAccount_ErrCode](_os_account.md#osaccount_errcode-1) [OsAccount_ErrCode](_os_account.md#osaccount_errcode) | Defines an enum for error codes.| 
+| typedef enum [OsAccount_ErrCode](_os_account.md#osaccount_errcode-1) [OsAccount_ErrCode](_os_account.md#osaccount_errcode) | Defines an enum for error codes. | 
 
 
 ### Enums
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| [OsAccount_ErrCode](_os_account.md#osaccount_errcode-1) {<br>OS_ACCOUNT_ERR_OK = 0,<br>OS_ACCOUNT_ERR_INTERNAL_ERROR = 12300001,<br>OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002<br>} | Enumerates the error codes.| 
+| [OsAccount_ErrCode](_os_account.md#osaccount_errcode-1) {<br>OS_ACCOUNT_ERR_OK = 0,<br>OS_ACCOUNT_ERR_INTERNAL_ERROR = 12300001,<br>OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002<br>} | Enumerates the error codes. | 

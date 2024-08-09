@@ -24,6 +24,7 @@ For more information, see [Peripheral Management](../../reference/apis-driverdev
 | unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                 | Unbinds a peripheral device. This API uses an asynchronous callback to return the result.                                                                             |
 | unbindDevice(deviceId: number): Promise&lt;number&gt;                                                                                                       | Unbinds a peripheral device. This API uses a promise to return the result.                                                                             |
 
+<!--Del-->
 The following table lists the APIs for extended peripheral management. For details, see [deviceManager API Reference](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager-sys.md).
 
 **Table 2** APIs for extended peripheral management
@@ -32,6 +33,7 @@ The following table lists the APIs for extended peripheral management. For detai
 |------------------------------------------------------------------------------|-----------------|
 | queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;  | Obtains the list of detailed information about peripherals.  |
 | queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt; | Obtains the list of detailed information about peripheral drivers.|
+<!--DelEnd-->
 
 ## How to Develop
 
@@ -148,7 +150,7 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
       console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
     }
     ```
-
+<!--Del-->
 System applications can query detailed information about peripherals and drivers to implement management. The development procedure is as follows:
 
 1. Obtain the list of detailed information about peripherals.
@@ -184,3 +186,4 @@ System applications can query detailed information about peripherals and drivers
       console.error(`Failed to query driver info. Code is ${err.code}, message is ${err.message}`);
    }
    ```
+<!--DelEnd-->

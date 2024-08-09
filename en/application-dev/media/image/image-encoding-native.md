@@ -1,4 +1,4 @@
-# Image Encoding (C/C++)
+# Using Image to Encode Images
 
 You can call the native APIs provided by the **ImagePacker** module to encode images, that is, to compress a **PixelMap** object into an image in the desired format.
 
@@ -39,6 +39,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // Add the header file image_packer_mdk.h.
    #include "multimedia/image_framework/image_packer_mdk.h"
    ```
+
 2. Create an encoder instance.
 
    You must use napi_env to create an encoder.
@@ -49,6 +50,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // Use napi_env to create an encoder. If result is IMAGE_RESULT_SUCCESS, the encoder is created.
    int32_t result = OH_ImagePacker_Create(env, &packer);
    ```
+
 3. Initialize resources.
 
    Call **OH_ImagePacker_InitNative** to initialize the native encoder instance.
@@ -57,6 +59,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // Initialize the native instance through napi_env and the created encoder instance.
    ImagePacker_Native* nativePacker = OH_ImagePacker_InitNative(env, packer);
    ```
+
 4. Perform encoding.
 
    The following input parameters are provided for the encoding APIs:
@@ -66,10 +69,11 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    - Image source (napi_value), **PixelMap** object, or** ImageSource** object (when **CreatePixelMap** is not called yet) to be encoded
 
    - Encoding parameters, including the encoding format and encoding quality
-     
+
    The encoding APIs can output data to the buffer (memory) or a file. They have the same input parameters, as described previously. You can select either of them as required.
 
    Example: output data to the buffer (memory)
+
    ```cpp
    // Encoding parameters
    struct ImagePacker_Opts_ opts;
@@ -84,7 +88,9 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // Start to encode the input source. If IMAGE_RESULT_SUCCESS is returned, the encoding is successful. In this case, bufferSize indicates the size of the buffer used for encoding.
    int32_t result = OH_ImagePacker_PackToData(nativePacker, source, &opts, outData, &bufferSize);
    ```
+
    Example: output data to a file
+
    ```cpp
    // Encoding parameters
    struct ImagePacker_Opts_ opts;
@@ -101,6 +107,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
       close(fd);
    }
    ```
+
 5. Destroy the encoder instance and release resources.
 
    > **NOTE**

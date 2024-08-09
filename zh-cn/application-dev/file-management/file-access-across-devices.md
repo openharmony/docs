@@ -13,9 +13,9 @@
    设备A上在分布式路径下创建测试文件，并写入内容。示例中的context的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
    let pathDir: string = context.distributedFilesDir;
@@ -39,10 +39,10 @@
    设备B上在分布式路径下读取测试文件。
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import buffer from '@ohos.buffer';
-   import { BusinessError } from '@ohos.base';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { buffer } from '@kit.ArkTS';
    
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
    let pathDir: string = context.distributedFilesDir;

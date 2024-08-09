@@ -221,7 +221,7 @@
 6. 拖拽发起方可以通过设置onDragEnd回调感知拖拽结果
 
     ```ts
-    import promptAction from '@ohos.promptAction';
+    import { promptAction } from '@kit.ArkUI';
 
     .onDragEnd((event) => {
         // onDragEnd里取到的result值在接收方onDrop设置

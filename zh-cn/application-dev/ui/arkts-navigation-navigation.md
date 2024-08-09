@@ -55,11 +55,23 @@ Navigation组件通过mode属性设置页面的显示模式。
   @Component
   struct NavigationExample {
     @State TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+    @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
     private arr: number[] = [1, 2, 3];
+
+    @Builder
+    PageMap(name: string) {
+      if (name === "NavDestinationTitle1") {
+        pageOneTmp()
+      } else if (name === "NavDestinationTitle2") {
+        pageTwoTmp()
+      } else if (name === "NavDestinationTitle3") {
+        pageThreeTmp()
+      }
+    }
   
     build() {
       Column() {
-        Navigation() {
+        Navigation(this.pageInfos) {
           TextInput({ placeholder: 'search...' })
             .width("90%")
             .height(40)
@@ -68,20 +80,17 @@ Navigation组件通过mode属性设置页面的显示模式。
           List({ space: 12 }) {
             ForEach(this.arr, (item:string) => {
               ListItem() {
-                NavRouter() {
-                  Text("NavRouter" + item)
-                    .width("100%")
-                    .height(72)
-                    .backgroundColor('#FFFFFF')
-                    .borderRadius(24)
-                    .fontSize(16)
-                    .fontWeight(500)
-                    .textAlign(TextAlign.Center)
-                  NavDestination() {
-                    Text("NavDestinationContent" + item)
-                  }
-                  .title("NavDestinationTitle" + item)
-                }
+                Text("NavRouter" + item)
+                  .width("100%")
+                  .height(72)
+                  .backgroundColor('#FFFFFF')
+                  .borderRadius(24)
+                  .fontSize(16)
+                  .fontWeight(500)
+                  .textAlign(TextAlign.Center)
+                  .onClick(()=>{
+                    this.pageInfos.pushPath({ name: "NavDestinationTitle" + item})
+                  })
               }
             }, (item:string):string => item)
           }
@@ -90,6 +99,7 @@ Navigation组件通过mode属性设置页面的显示模式。
         }
         .title("主标题")
         .mode(NavigationMode.Split)
+        .navDestination(this.PageMap)
         .menus([
           {value: "", icon: "./image/ic_public_search.svg", action: ()=> {}},
           {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
@@ -102,6 +112,60 @@ Navigation组件通过mode属性设置页面的显示模式。
       .height('100%')
       .width('100%')
       .backgroundColor('#F1F3F5')
+    }
+  }
+
+  // PageOne.ets
+  @Component
+  export struct pageOneTmp {
+    @Consume('pageInfos') pageInfos: NavPathStack;
+    build() {
+      NavDestination() {
+        Column() {
+          Text("NavDestinationContent1")
+        }.width('100%').height('100%')
+      }.title("NavDestinationTitle1")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+    }
+  }
+
+  // PageTwo.ets
+  @Component
+  export struct pageTwoTmp {
+    @Consume('pageInfos') pageInfos: NavPathStack;
+    build() {
+      NavDestination() {
+        Column() {
+          Text("NavDestinationContent2")
+        }.width('100%').height('100%')
+      }.title("NavDestinationTitle2")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+    }
+  }
+
+  // PageThree.ets
+  @Component
+  export struct pageThreeTmp {
+    @Consume('pageInfos') pageInfos: NavPathStack;
+    build() {
+      NavDestination() {
+        Column() {
+          Text("NavDestinationContent3")
+        }.width('100%').height('100%')
+      }.title("NavDestinationTitle3")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
     }
   }
   ```
@@ -601,7 +665,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 系统路由表
 
-从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置router_map.json文件，在触发路由跳转时，应用只需要通过NavPactStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
+从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置router_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
    

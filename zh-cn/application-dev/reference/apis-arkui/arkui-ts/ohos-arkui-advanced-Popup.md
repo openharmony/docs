@@ -48,7 +48,7 @@ PopupOptions定义Popup的具体式样参数。
 | showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 设置popup关闭按钮。<br />默认值：true |
 | onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。|
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。 |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                | 布局方向。<br/>默认值：Auto                                |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                | 布局方向。<br/>默认值：Direction.Auto                                |
 
 ## PopupTextOptions
 

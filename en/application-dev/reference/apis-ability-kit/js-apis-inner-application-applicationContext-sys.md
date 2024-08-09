@@ -11,7 +11,7 @@ The ApplicationContext module, inherited from [Context](js-apis-inner-applicatio
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Instructions
@@ -32,21 +32,21 @@ A **UIExtensionAbility** instance can be preloaded for multiple times. Each time
 
 **System API**: This is a system API.
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information of the UIExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information of the UIExtensionAbility. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
@@ -58,12 +58,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate() {
     let want: Want = {
       bundleName: 'com.ohos.uiextensionprovider',
@@ -75,8 +73,8 @@ export default class EntryAbility extends UIAbility {
       }
     };
     try {
-        let applicationContext = this.context.getApplicationConext();
-        applicationContext.preloadUIExtensionAbility(want)
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.preloadUIExtensionAbility(want)
         .then(() => {
           // Carry out normal service processing.
           console.info('preloadUIExtensionAbility succeed');
@@ -89,62 +87,7 @@ export default class EntryAbility extends UIAbility {
       // Process input parameter errors.
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.error('preloadUIExtensionAbility failed');
-    }
-  }
-}
-```
-
-## ApplicationContext.setSupportedProcessCache<sup>12+</sup>
-
-setSupportedProcessCache(isSupported : boolean): void
-
-Sets whether the application itself supports process cache, which enables quick startup after caching.
-
-> **NOTE**
->
-> The process cache support status set by this API takes effect for an instance with a single process. The status can be set multiple times for different process instances, and the settings do not affect each other. However, the status can be set only once for a process instance. After a process instance is destroyed, the status is not retained and can be reset.
-
-**Model restriction**: This API can be used only in the stage model.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.SET_PROCESS_CACHE_STATE
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-| Name       | Type    | Mandatory| Description                      |
-| ------------- | -------- | ---- | -------------------------- |
-| isSupported | boolean | Yes| Whether process cache is supported. The value **true** means that process cache is supported, and **false** means the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message|
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 401 | The input parameter is not a valid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-| 16000200 | The supported process cache state cannot be set more than once. |
-
-**Example**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import type Want from '@ohos.app.ability.Want';
-
-export default class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let applicationContext = this.context.getApplicationContext();
-    try {
-      applicationContext.setSupportedProcessCache(false);
-    } catch (error) {
-      console.error(`setSupportedProcessCache fail, error: ${JSON.stringify(error)}`);
+      console.error(`preloadUIExtensionAbility failed. code: ${code}, msg: ${message}`);
     }
   }
 }

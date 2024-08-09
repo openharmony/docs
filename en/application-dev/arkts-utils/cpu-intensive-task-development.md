@@ -21,7 +21,7 @@ If a task can be completed in a background thread within 3 minutes, you are advi
 3. Summarize and process the result arrays.
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function imageProcessing(dataSlice: ArrayBuffer): ArrayBuffer {
@@ -81,7 +81,8 @@ The following uses the training of a region-specific house price prediction mode
 2. In the main thread, call [constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9) of **ThreadWorker** to create a **Worker** object. The calling thread is the host thread.
 
     ```ts
-    import worker from '@ohos.worker';
+    // Index.ets
+    import { worker } from '@kit.ArkTS';
 
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
     ```
@@ -91,9 +92,7 @@ The following uses the training of a region-specific house price prediction mode
    For example, the host thread sends training and prediction messages to the worker thread, and receives messages sent back by the worker thread.
 
     ```ts
-    import worker  from '@ohos.worker';
-
-    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+    // Index.ets
     let done = false;
 
     // Receive the result from the worker thread.
@@ -116,7 +115,8 @@ The following uses the training of a region-specific house price prediction mode
 4. Bind the **Worker** object in the **MyWorker.ts** file. The calling thread is the worker thread.
 
    ```ts
-   import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
+   // MyWorker.ts
+   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    ```
@@ -126,8 +126,7 @@ The following uses the training of a region-specific house price prediction mode
     For example, the prediction model and its training process are defined in the worker thread, and messages are exchanged with the main thread.
 
     ```ts
-    import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
-    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+    // MyWorker.ts
     // Define the training model and result.
     let result: Array<number>;
     // Define the prediction function.

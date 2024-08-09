@@ -52,7 +52,7 @@ Applies a shadow effect to the component.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets. Yet, the [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) type is not supported in ArkTS widgets.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,9 +227,9 @@ renderGroup(value: boolean)
 
 Sets whether the component and its child components are rendered off the screen and then drawn together with its parent.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -259,6 +259,8 @@ Defines how the component's content (including the content of it child component
 useShadowBatching(value: boolean)
 
 Sets whether to draw shadows of child nodes in the component at the same layer, so that the shadows of elements at the same layer overlap.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -323,16 +325,19 @@ Applies a system bar effect to the component, which means to invert colors based
 
 Provides the shadow attributes, including the blur radius, color, and offset along the x-axis and y-axis.
 
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>Unit: px<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **radius** is of the Resource type, its value must be of the number type.<br>This API can be used in atomic services since API version 11.|
-| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      No   | Shadow type.<br>This API can be used in atomic services since API version 11.<br>Default value: **COLOR**       |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>Since API version 11, this API supports **ColoringStrategy**, which cannot be used with ArkTS widgets or the [textShadow](ts-basic-components-text.md#attributes) attribute.<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.                      |
-| offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetX** is of the Resource type, its value must be of the number type.<br>|
-| offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetY** is of the Resource type, its value must be of the number type.<br>|
-| fill<sup>11+</sup>     | boolean                                    | No   | Whether to fill the inside of the component with shadow.<br>The default value is **false**.<br>**NOTE**<br>This attribute does not take effect in [textShadow](ts-basic-components-text.md#attributes).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
+| radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>Unit: px<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **radius** is of the Resource type, its value must be of the number type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      No   | Shadow type.<br>Default value: **COLOR**<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>Since API version 11, this API supports **ColoringStrategy**, which cannot be used with ArkTS widgets or the [textShadow](ts-basic-components-text.md#attributes) attribute.<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetX** is of the Resource type, its value must be of the number type.<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
+| offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetY** is of the Resource type, its value must be of the number type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fill<sup>11+</sup>     | boolean                                    | No   | Whether to fill the inside of the component with shadow.<br>The default value is **false**.<br>**NOTE**<br>This attribute does not take effect in [textShadow](ts-basic-components-text.md#attributes).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ShadowStyle<sup>10+</sup>
 

@@ -53,9 +53,9 @@ Geocoding address information.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | Yes| No| **true**: The geographic address is obtained from the mock reverse geocoding function.<br>**false**: The geographic address is not obtained from the mock reverse geocoding function.<br>**System API**: This is a system API.|
+| isFromMock | Boolean | No| Yes| **true**: The geographic address is obtained from the mock reverse geocoding function.<br>**false**: The geographic address is not obtained from the mock reverse geocoding function.<br>**System API**: This is a system API.|
 
 
 ## Location
@@ -64,9 +64,9 @@ Location information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | Yes| No| **true**: The location information is obtained from the mock location function.<br>**false**: The location information is not obtained from the location simulation function.<br>**System API**: This is a system API.|
+| isFromMock | Boolean | No| Yes| **true**: The location information is obtained from the mock location function.<br>**false**: The location information is not obtained from the location simulation function.<br>**System API**: This is a system API.|
 
 
 ## ReverseGeocodingMockInfo
@@ -77,10 +77,10 @@ Defines the configuration of the mock reverse geocoding function.
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | Yes| Yes| Latitude and longitude information.|
-| geoAddress |  [GeoAddress](#geoaddress) | Yes| Yes|Geographical name.|
+| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | No| No| Latitude and longitude information.|
+| geoAddress |  [GeoAddress](#geoaddress) | No| No|Geographical name.|
 
 
 ## LocationMockConfig
@@ -91,10 +91,10 @@ Defines the configuration of the mock location function.
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| timeInterval | number | Yes| Yes| Time interval at which mock locations are reported, in seconds.|
-| locations | Array&lt;[Location](#location)&gt; | Yes| Yes| Array of mocked locations.|
+| timeInterval | number | No| No| Time interval at which mock locations are reported, in seconds.|
+| locations | Array&lt;[Location](#location)&gt; | No| No| Array of mocked locations.|
 
 ## LocatingRequiredDataConfig<sup>10+</sup>
 
@@ -104,12 +104,12 @@ Defines the configuration for obtaining the required data of the location servic
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | Yes| Yes| Type of the required data.|
-| needStartScan |  boolean | Yes| Yes| **true**: Scanning needs to be initiated.<br>**false**: Scanning does not need to be initiated.|
-| scanInterval |  number | Yes| Yes| Scanning interval, in milliseconds. The specified value must be greater than **0**. The default value is **10000**.|
-| scanTimeout |  number | Yes| Yes| Scanning timeout interval, in milliseconds. The value ranges from **0** to **600000**. The default value is **10000**.|
+| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | No| No| Type of the required data.|
+| needStartScan |  boolean | No| No| **true**: Scanning needs to be initiated.<br>**false**: Scanning does not need to be initiated.|
+| scanInterval |  number | No| Yes| Scanning interval, in milliseconds. The specified value must be greater than **0**. The default value is **10000**.|
+| scanTimeout |  number | No| Yes| Scanning timeout interval, in milliseconds. The value ranges from **0** to **600000**. The default value is **10000**.|
 
 
 ## LocatingRequiredData<sup>10+</sup>
@@ -120,10 +120,10 @@ Defines the required data of the location service, including the Wi-Fi or Blueto
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| wifiData | [WifiScanInfo](#wifiscaninfo10) | Yes| No| Wi-Fi scanning result.|
-| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | Yes| No| Bluetooth scanning result.|
+| wifiData | [WifiScanInfo](#wifiscaninfo10) | No| Yes| Wi-Fi scanning result.|
+| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | No| Yes| Bluetooth scanning result.|
 
 
 ## WifiScanInfo<sup>10+</sup>
@@ -134,13 +134,13 @@ Defines the Wi-Fi scanning information, including the SSID, BSSID, and RSSI of t
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| Service set identifier (SSID) of a Wi-Fi hotspot, in UTF-8 format.|
-| bssid | string | Yes| No| Base station subsystem identifier (BSSID) of a Wi-Fi hotspot.|
-| rssi | number | Yes| No| Received signal strength indicator (RSSI) of a Wi-Fi hotspot, in dBm.|
-| frequency | number | Yes| No| Frequency of a Wi-Fi hotspot.|
-| timestamp | number | Yes| No| Scanning timestamp.|
+| ssid | string | No| No| Service set identifier (SSID) of a Wi-Fi hotspot, in UTF-8 format.|
+| bssid | string | No| No| Base station subsystem identifier (BSSID) of a Wi-Fi hotspot.|
+| rssi | number | No| No| Received signal strength indicator (RSSI) of a Wi-Fi hotspot, in dBm.|
+| frequency | number | No| No| Frequency of a Wi-Fi hotspot.|
+| timestamp | number | No| No| Scanning timestamp.|
 
 
 ## BluetoothScanInfo<sup>10+</sup>
@@ -151,12 +151,12 @@ Defines the Bluetooth scanning information.
 
 **System API**: This is a system API.
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| No| Name of a Bluetooth device.|
-| macAddress | string | Yes| No| MAC address of a Bluetooth device.|
-| rssi | number | Yes| No| Signal strength of a Bluetooth device, in dBm.|
-| timestamp | number | Yes| No| Scanning timestamp.|
+| deviceName | string | No| No| Name of a Bluetooth device.|
+| macAddress | string | No| No| MAC address of a Bluetooth device.|
+| rssi | number | No| No| Signal strength of a Bluetooth device, in dBm.|
+| timestamp | number | No| No| Scanning timestamp.|
 
 ## LocationPrivacyType
 

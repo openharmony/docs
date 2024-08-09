@@ -287,6 +287,47 @@ data.isCellularDataEnabled().then((data: boolean) => {
 });
 ```
 
+## data.isCellularDataEnabledSync<sup>12+</sup>
+
+isCellularDataEnabledSync(): boolean
+
+Checks whether the cellular data service is enabled. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Whether the cellular data service is enabled.<br>**true**: The cellular data service is enabled.<br>**false**: The cellular data service is disabled.|
+
+**Error codes**
+
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+
+| ID| Error Message                  |
+| -------- | -------------------------- |
+| 201      | Permission denied.         |
+| 8300002  | Service connection failed. |
+| 8300003  | System internal error.     |
+| 8300999  | Unknown error.             |
+
+**Example**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let isEnabled: boolean = data.isCellularDataEnabledSync();
+    console.log(`isCellularDataEnabledSync success : ${isEnabled}`);
+} catch (err: BusinessError) {
+    console.error(`isCellularDataEnabledSync fail : err->${JSON.stringify(err)}`);  
+}
+```
+
 ## data.isCellularDataRoamingEnabled
 
 isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>): void
@@ -380,6 +421,55 @@ data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
 });
 ```
 
+## data.isCellularDataRoamingEnabledSync<sup>12+</sup>
+
+isCellularDataRoamingEnabledSync(slotId: number): boolean
+
+Checks whether roaming is enabled for the cellular data service. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Whether roaming is enabled for the cellular data service.<br>**true**: Roaming is enabled for the cellular data service.<br>**false**: Roaming is disabled for the cellular data service.|
+
+**Error codes**
+
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 8300001  | Invalid parameter value.                                     |
+| 8300002  | Service connection failed.                                   |
+| 8300003  | System internal error.                                       |
+| 8300999  | Unknown error.                                               |
+
+**Example**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let slotId: number = 0;
+try {
+    let isEnabled: boolean = data.isCellularDataRoamingEnabledSync(slotId);
+    console.log(`isCellularDataRoamingEnabledSync success : ${isEnabled}`);
+} catch (err: BusinessError) {
+    console.error(`isCellularDataRoamingEnabledSync fail : err->${JSON.stringify(err)}`);  
+}
+```
 
 ## data.getDefaultCellularDataSimId<sup>10+</sup>
 

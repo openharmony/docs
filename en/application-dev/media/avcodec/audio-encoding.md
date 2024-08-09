@@ -12,7 +12,7 @@ Currently, the following encoding capabilities are supported:
 | m4a      | AAC              |
 | flac     | FLAC            |
 | aac      | AAC              |
-| amr      | AMR (AMR-NB and AMR-WB)|
+| mp3      | MP3              |
 | raw      | G711mu           |
 <!--RP1--><!--RP1End-->
 
@@ -143,9 +143,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         unique_lock<mutex> lock(signal->outMutex_);
         signal->outQueue_.push(index);
         signal->outBufferQueue_.push(data);
-        if (attr) {
-            signal->attrQueue_.push(*attr);
-        }
     }
     signal_ = new AEncBufferSignal();
     OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
@@ -164,26 +161,28 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    For FLAC encoding, the compliance level and sampling precision are also mandatory.
 
-   The following provides the AAC invoking process.
+   The code snippet below shows the API call process, where AAC encoding at the bit rate of 32000 bit/s is carried out on the PCM audio with the 44100 Hz sampling rate, 2-channel stereo, and SAMPLE_S16LE sampling format.
 
     ```cpp
     int32_t ret;
     // (Mandatory) Configure the audio sampling rate.
-    constexpr uint32_t DEFAULT_SAMPLERATE = 44100; 
+    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
     // (Mandatory) Configure the audio bit rate.
     constexpr uint64_t DEFAULT_BITRATE = 32000;
     // (Mandatory) Configure the number of audio channels.
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
     // (Mandatory) Configure the audio channel type.
-    constexpr AudioChannelLayout CHANNEL_LAYOUT = AudioChannelLayout::STEREO;
-    // (Mandatory) Configure the audio bit depth. Only SAMPLE_F32P is available for AAC encoding.
-    constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_F32LE;
+    constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
+    // (Mandatory) Configure the audio bit depth.
+    constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
     // Configure the audio compliance level. The default value is 0, and the value ranges from -2 to 2.
     constexpr int32_t COMPLIANCE_LEVEL = 0;
-    // (Mandatory) Configure the audio sampling precision. SAMPLE_S16LE, SAMPLE_S24LE, and SAMPLE_S32LE are available.
-    constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
-    // (Optional) Configure the maximum input length.
-    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024 * DEFAULT_CHANNEL_COUNT * sizeof(float); // aac
+    // (Mandatory) Configure the audio sampling precision (SAMPLE_S16LE used as an example).
+    constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S16LE;
+    // A frame of audio data takes 20 ms.
+    constexpr float TIME_PER_FRAME = 0.02;
+    // (Optional) Configure the maximum input length and the size of each frame of audio data.
+    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = DEFAULT_SAMPLERATE * TIME_PER_FRAME * DEFAULT_CHANNEL_COUNT * sizeof(short); // aac
     OH_AVFormat *format = OH_AVFormat_Create();
     // Set the format.
     OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
@@ -199,18 +198,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-    The following provides the FLAC invoking process.
+    The following shows the API call process in the case of FLAC encoding.
 
     ```cpp
     int32_t ret;
     // (Mandatory) Configure the audio sampling rate.
-    constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
+    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
     // (Mandatory) Configure the audio bit rate.
     constexpr uint64_t DEFAULT_BITRATE = 261000;
     // (Mandatory) Configure the number of audio channels.
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
     // (Mandatory) Configure the audio channel type.
-    constexpr AudioChannelLayout CHANNEL_LAYOUT = AudioChannelLayout::STEREO;
+    constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // (Mandatory) Configure the audio bit depth. Only SAMPLE_S16LE and SAMPLE_S32LE are available for FLAC encoding.
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S32LE;
     // Configure the audio compliance level. The default value is 0, and the value ranges from -2 to 2.
@@ -220,7 +219,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     OH_AVFormat *format = OH_AVFormat_Create();
     // Set the format.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SMAPLERATE);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, BITS_PER_CODED_SAMPLE); 
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT); 
@@ -232,6 +231,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // Exception handling.
     }
     ```
+
+    <!--RP2--><!--RP2End-->
 
 5. Call **OH_AudioCodec_Prepare()** to prepare internal resources for the encoder.
 
@@ -247,9 +248,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
     unique_ptr<ofstream> outFile_ = make_unique<ofstream>();
-    // Open the path of the binary file to be encoded.
+    // Open the path of the binary file to be encoded. (A PCM file is used as an example.)
     inputFile_->open(inputFilePath.data(), ios::in | ios::binary); 
-    // Configure the path of the output file.
+    // Configure the path of the output file. (An encoded stream file is used as an example.)
     outFile_->open(outputFilePath.data(), ios::out | ios::binary);
     // Start encoding.
     ret = OH_AudioCodec_Start(audioEnc_);
@@ -261,12 +262,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 7. Call **OH_AudioCodec_PushInputBuffer()** to write the data to encode.
    
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
-   
-   For AAC encoding, **FRAME_SIZE** (number of sampling points) is fixed at **1024**.
-   
-   For FLAC encoding, set **FRAME_SIZE** based on the table below.
 
-   | Sampling Rate| FRAME_SIZE|
+   For AAC encoding, set **SAMPLES_PER_FRAME** to the number of PCM samples every 20 ms, that is, sampling rate x 0.02.
+
+   For FLAC encoding, set **SAMPLES_PER_FRAME** based on the table below.
+
+   | Sampling Rate| Sample Count|
    | :----: | :----: |
    |  8000  |  576  |
    | 16000 |  1152  |
@@ -280,12 +281,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    > **NOTE**
    >
-   > If **FRAME_SIZE** is not set to **1024** for AAC encoding, an error code is returned. In the case of FLAC encoding, if **FRAME_SIZE** is set to a value greater than the value listed in the table for a given sampling rate, an error code is returned; if **FRAME_SIZE** is set to a value less than the value listed, the encoded file may be damaged.
+   > It is recommended that **SAMPLES_PER_FRAME** in AAC encoding be the number of PCM samples every 20 ms, that is, sampling rate x 0.02. In the case of FLAC encoding, if the number of samples is greater than the corresponding value provided in the table, an error code is returned. If the number is less than the corresponding value provided in the table, the encoded file may be damaged.
 
    ```c++
-    constexpr int32_t FRAME_SIZE = 1024; // aac
+    // Number of samples per frame.
+    constexpr int32_t SAMPLES_PER_FRAME = DEFAULT_SAMPLERATE * TIME_PER_FRAME;
+    // Number of audio channels. For AMR encoding, only mono audio input is supported.
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
-    constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * FRAME_SIZE * sizeof(float); // aac
+    // Length of the input data of each frame, that is, number of audio channels x number of samples per frame x number of bytes per sample (SAMPLE_S16LE used as an example).
+    constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * SAMPLES_PER_FRAME * sizeof(short);
     uint32_t index = signal_->inQueue_.front();
     auto buffer = signal_->inBufferQueue_.front();
     OH_AVCodecBufferAttr attr = {0};

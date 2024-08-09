@@ -17,8 +17,8 @@
 1. 导入相关接口，导入方法如下。
      
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 调用cameraManager类中的[createSession](../../reference/apis-camera-kit/js-apis-camera.md#createsession11)方法创建一个会话。

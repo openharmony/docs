@@ -176,7 +176,6 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 | bundleName | string        | 是   | 服务返回的应用名称                                          |
 | err        | BusinessError | 否   | 当发生err时，为错误对象，否则为undefined data为bundle名称。 |
 
-
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
@@ -206,6 +205,7 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
     console.info('onBundleBegin success');
   }
   ```
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -262,6 +262,7 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
     console.info('onBundleEnd success with bundleName: ' + bundleName);
   }
   ```
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -350,7 +351,6 @@ onResultReport (bundleName: string, result: string)
     console.info('onResultReport result : ' + result);
   }
   ```
-
 
 ## backup.getLocalCapabilities
 
@@ -544,6 +544,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
     }
   }
   ```
+
 ## backup.getBackupInfo
 
 getBackupInfo(bundleToBackup: string): string;
@@ -649,6 +650,60 @@ updateTimer(bundleName: string, timeout: number): void;
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('updateTimer failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
+## backup.updateSendRate
+
+updateSendRate(bundleName: string, sendRate: number): boolean;
+
+调用时机为onBundleBegin之后，onBundleEnd之前
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName|string | 是   | 需要控制速率对应的应用名称
+| sendRate | number | 是   | 需要应用设置的fd发送速率大小，以秒为单位，范围0~800，默认60/秒，当为0时，表示停止发送，等到设置非0值时激活发送。如果设置值超过最大值800，按照800进行发送。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| boolean | 发送速率是否设置成功 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | The input parameter is invalid. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import backup form '@ohos.file.backup';
+
+  function updateSendRate() {
+    try {
+      let bundleName = "com.example.myApp";
+      let sendRate = 300;
+      let result = backup.updateSendRate(bundleName, sendRate);
+      if (result) {
+        console.info('updateSendRate success');
+      } else {
+        console.info('updateSendRate fail');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('updateSendRate failed with err: ' + JSON.stringify(err));
     }
   }
   ```
@@ -825,7 +880,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
 添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用Promise异步回调。
 
-从API version 12开始, 新增可选参数infos, 可携带备份所需要的信息
+从API version 12开始, 新增可选参数infos, 可携带备份时各应用所需要的扩展信息, infos和bundlesToBackup根据索引一一对应。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -836,7 +891,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
-| infos           | string[] | 否   | 备份所需信息的数组, 需与bundlesToBackup相同索引的内容对应, 从API version 12开始支持。|
+| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应, 从API version 12开始支持。|
 
 **返回值：**
 
@@ -910,31 +965,51 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
     try {
       let backupApps: Array<string> = [
         "com.example.hiworld",
+        "com.example.myApp"
       ];
       await sessionBackup.appendBundles(backupApps);
       console.info('appendBundles success');
+      // 携带扩展参数, 其中infos,details和外层的type节点为固定节点
       let infos: Array<string> = [
         `
          {
           "infos":[
             {
-              "details": [
+              "details": [ // 对应com.example.hiworld的info
                 {
                   "detail": [
                     {
-                      "source": "com.example.hiworld", // 应用旧系统包名
-                      "target": "com.example.helloworld" // 应用新系统包名
+                      "encryption_symkey": "",
+                      "encryption_algname": ""
                     }
-                  ]，
-                  "type": "app_mapping_relation"
+                  ],
+                  "type": "encryption_info"
                 }
               ],
-              "type":"unitcast"
+              "type":"unicast"
+            }
+          ]
+         },
+         {
+          "details": [ // 对应com.example.myApp的info
+              {
+                "detail": [
+                    {
+                      "isSameDevice": "",
+                      "deviceType": ""
+                    }
+                  ],
+                  "type": "encryption_info"
+                }
+              ],
+              "type":"unicast"
             }
           ]
          }
-        `
-      ]
+        ]
+      }
+      `
+     ]
       await sessionBackup.appendBundles(backupApps, infos);
       console.info('appendBundles success');
     } catch (error) {
@@ -973,7 +1048,6 @@ release(): Promise&lt;void&gt;
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
 | 13900042 | Unknown error                                                                                  |
-
 
 **示例：**
 
@@ -1108,7 +1182,7 @@ constructor(callbacks: GeneralCallbacks);
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用callback异步回调。
+添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次，使用callback异步回调。
 
 > **说明：**
 >
@@ -1216,8 +1290,8 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
-添加需要恢复的应用。从API version 12开始，新增可选参数infos，可携带应用恢复所需信息。当前整个流程中，
-在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
+添加需要恢复的应用。从API version 12开始，新增可选参数infos，可携带应用恢复所需信息，infos和bundlesToBackup根据索引一一对应。
+当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1235,7 +1309,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | 是   | 用于恢复所需能力文件的文件描述符。 |
 | bundlesToBackup      | string[] | 是   | 需要恢复的应用包名称的数组。       |
-| infos<sup>12+</sup>  | string[] | 否   | 备份所需信息的数组，需与bundlesToBackup数组相同索引的内容对应。从API version 12开始支持。 |
+| infos<sup>12+</sup>  | string[] | 否   | 恢复时各应用所需要扩展信息的数组，与bundlesToBackup根据索引一一对应，从API version 12开始支持。 |
 
 **返回值：**
 
@@ -1314,6 +1388,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
       ];
       await sessionRestore.appendBundles(fileData.fd, restoreApps);
       console.info('appendBundles success');
+      // 携带扩展参数的调用
       let infos: Array<string> = [
         `
          {

@@ -5,6 +5,10 @@
 
 The image_mdk_common.h file declares the common enums and structs used by the image interface.
 
+**Library**: libimage_ndk.z.so
+
+**File to include**: &lt;multimedia/image_framework/image_mdk_common.h&gt;
+
 **Since**: 10
 
 **Related module**: [Image](image.md)

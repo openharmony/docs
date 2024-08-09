@@ -303,6 +303,8 @@ width(value: Length)
 
 设置安全控件自身的宽度，缺省时将根据元素内容自适配宽度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -316,6 +318,8 @@ width(value: Length)
 height(value: Length)
 
 设置安全控件自身的高度，缺省时将根据元素内容自适配高度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -331,6 +335,8 @@ size(value: SizeOptions)
 
 设置高宽尺寸，缺省时将根据元素内容自适配高宽尺寸。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -344,6 +350,8 @@ size(value: SizeOptions)
 constraintSize(value: ConstraintSizeOptions)
 
 设置约束尺寸，组件布局时，进行尺寸范围限制。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

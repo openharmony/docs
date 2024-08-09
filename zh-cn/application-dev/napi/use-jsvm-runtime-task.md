@@ -6,7 +6,7 @@
 
 ## 使用示例
 
-1. 接口声明、编译配置以及模块注册
+1.接口声明和编译配置
 
 **接口声明**
 
@@ -38,57 +38,67 @@
   target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
   ```
 
-**模块注册**
-
-  ```cpp
-  // create_jsvm_runtime.cpp
-  EXTERN_C_START
-  static napi_value Init(napi_env env, napi_value exports) {
-      napi_property_descriptor desc[] = {
-          {"createJsCore", nullptr, CreateJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
-          {"releaseJsCore", nullptr, ReleaseJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
-          {"evalUateJS", nullptr, EvalUateJS, nullptr, nullptr, nullptr, napi_default, nullptr}
-      };
-
-      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-      return exports;
-  }
-  EXTERN_C_END
-
-  static napi_module demoModule = {
-      .nm_version = 1,
-      .nm_flags = 0,
-      .nm_filename = nullptr,
-      .nm_register_func = Init,
-      .nm_modname = "entry",
-      .nm_priv = ((void *)0),
-      .reserved = {0},
-  };
-
-  extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
-  ```
-
-2. 新建多个JS运行时环境并运行JS代码
+2.新建多个JS运行时环境并运行JS代码
 
   ```cpp
   // create_jsvm_runtime.cpp
   #include "napi/native_api.h"
   #include "ark_runtime/jsvm.h"
-  #include "common.h"
-
   #include <bits/alltypes.h>
   #include <deque>
   #include <map>
   #include <unistd.h>
   #include <hilog/log.h>
-  #include "myobject.h"
-
   #include <cstring>
   #include <string>
   #include <vector>
   #include <sstream>
 
   #define LOG_TAG "TEST_TAG"
+  // 用于获取并抛出最后一个错误信息。通过OH_JSVM_GetLastErrorInfo获取错误信息，
+  // 如果没有挂起的异常且错误信息存在，则通过 OH_JSVM_ThrowError 抛出错误。
+  #define GET_AND_THROW_LAST_ERROR(env)                                                                   \
+      do {                                                                                                \
+          const JSVM_ExtendedErrorInfo* errorInfo = nullptr;                                              \
+          OH_JSVM_GetLastErrorInfo((env), &errorInfo);                                                    \
+          bool isPending = false;                                                                         \
+          OH_JSVM_IsExceptionPending((env), &isPending);                                                  \
+              JSVM_Value error;                                                                           \
+          if (isPending && JSVM_OK == OH_JSVM_GetAndClearLastException((env), &error)) {                  \
+                                                                                                          \
+              JSVM_Value stack;                                                                           \
+              OH_JSVM_GetNamedProperty((env), error, "stack", &stack);                                    \
+                                                                                                          \
+              JSVM_Value message;                                                                         \
+              OH_JSVM_GetNamedProperty((env), error, "message", &message);                                \
+                                                                                                          \
+              char stackstr[256];                                                                         \
+              OH_JSVM_GetValueStringUtf8(env, stack, stackstr, 256, nullptr);                             \
+              OH_LOG_INFO(LOG_APP, "JSVM error stack: %{public}s", stackstr);                             \
+              char messagestr[256];                                                                       \
+              OH_JSVM_GetValueStringUtf8(env, message, messagestr, 256, nullptr);                         \
+              OH_LOG_INFO(LOG_APP, "JSVM error message: %{public}s", messagestr);                         \
+          }                                                                                               \
+          if (!isPending && errorInfo != nullptr) {                                                       \
+              const char* errorMessage =                                                                  \
+                  errorInfo->errorMessage != nullptr ? errorInfo->errorMessage : "empty error message";   \
+              OH_JSVM_ThrowError((env), nullptr, errorMessage);                                           \
+          }                                                                                               \
+      } while (0)
+
+  // 用于调用theCall并检查其返回值是否为JSVM_OK。
+  // 如果不是，则调用GET_AND_THROW_LAST_ERROR处理错误并返回retVal。
+  #define JSVM_CALL_BASE(env, theCall, retVal)                                                            \
+      do {                                                                                                \
+          if ((theCall) != JSVM_OK) {                                                                     \
+              GET_AND_THROW_LAST_ERROR((env));                                                            \
+              return retVal;                                                                              \
+          }                                                                                               \
+      } while (0)
+
+  // JSVM_CALL_BASE的简化版本，返回nullptr 
+  #define JSVM_CALL(env, theCall) JSVM_CALL_BASE(env, theCall, nullptr)
+
   using namespace std;
   // 定义map管理每个独立vm环境
   static map<int, JSVM_VM*> g_vmMap;
@@ -432,8 +442,8 @@
               napi_create_string_utf8(env, stdResult.c_str(), stdResult.length(), &res);
       }
           bool aal = false;
-          PumpMessageLoop(*g_vmMap[envId], &aal);
-          PerformMicrotaskCheckpoint(*g_vmMap[envId]);
+          OH_JSVM_PumpMessageLoop(*g_vmMap[envId], &aal);
+          OH_JSVM_PerformMicrotaskCheckpoint(*g_vmMap[envId]);
           OH_JSVM_CloseHandleScope(*g_envMap[envId], handlescope);
       }
       OH_LOG_ERROR(LOG_APP, "JSVM EvalUateJS END");
@@ -441,7 +451,37 @@
   }
   ```
 
-  3. ArkTS侧示例代码
+**模块注册**
+
+  ```cpp
+  // create_jsvm_runtime.cpp
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports) {
+      napi_property_descriptor desc[] = {
+          {"createJsCore", nullptr, CreateJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
+          {"releaseJsCore", nullptr, ReleaseJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
+          {"evalUateJS", nullptr, EvalUateJS, nullptr, nullptr, nullptr, napi_default, nullptr}
+      };
+
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
+  }
+  EXTERN_C_END
+
+  static napi_module demoModule = {
+      .nm_version = 1,
+      .nm_flags = 0,
+      .nm_filename = nullptr,
+      .nm_register_func = Init,
+      .nm_modname = "entry",
+      .nm_priv = ((void *)0),
+      .reserved = {0},
+  };
+
+  extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+  ```
+
+3.ArkTS侧示例代码
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -472,7 +512,7 @@
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
             .onClick(() => {
-              let sourceCodeStr = `{
+              let sourcecodestr = `{
             let a = "hello World";
             consoleinfo(a);
             const mPromise = createPromise();
@@ -487,12 +527,13 @@
             let a = "second hello";
             consoleinfo(a);
             let b = add(99, 1);
-            assertEqual(100, b);"
-            "assertEqual(add(99, 1), 100);
+            assertEqual(100, b);
+            assertEqual(add(99, 1), 100);
             createPromise().then((result) => {
             assertEqual(result, 1);
-            consoleinfo(onJSResultCallback(result, '999','666'));});"
-            "a
+            consoleinfo(onJSResultCallback(result, '999','666'));
+            });
+            a;
             };`;
 
               // 创建首个运行环境，并绑定TS回调

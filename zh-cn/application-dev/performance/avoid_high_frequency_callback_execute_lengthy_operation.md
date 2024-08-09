@@ -62,7 +62,7 @@ aboutToReuse(params: Record<string, number>) {
 
 **效果对比**
 
-下面是使用SmartPerf工具抓取trace来分析滑动时在aboutToReuse中进行耗时操作和不进行耗时操作的性能差异。
+下面是使用SmartPerf工具抓取trace来分析滑动时在aboutToReuse中进行耗时操作和不进行耗时操作的性能差异。抓取trace前，需要先打开ArkUI节点树布局详细过程的trace开关，否则抓不到下面提到的trace标签“H:aboutToReuse ReusableChildComponent”。通过`hdc shell`进入命令行交互模式，执行`param set persist.ace.trace.layout.enabled true`命令打开。
 
 图2 反例滑动时单个aboutToReuse耗时
 

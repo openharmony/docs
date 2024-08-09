@@ -155,8 +155,8 @@ import { geoLocationManager } from '@kit.LocationKit';
 | altitudes | Array&lt;number&gt; | 否 | 否 | 表示卫星高度角信息。单位是“度”，取值范围为-90到90。 |
 | azimuths | Array&lt;number&gt; | 否 | 否 | 表示方位角。单位是“度”，取值范围为0到360。 |
 | carrierFrequencies | Array&lt;number&gt; | 否 | 否 | 表示载波频率。单位是Hz，取值范围为大于等于0。 |
-| satelliteConstellation<sup>12+</sup> | Array&lt;[SatelliteConstellationCategory](#satelliteconstellationcategory12)&gt; | 否 | 否 | 表示卫星星座类型。 |
-| satelliteAdditionalInfo<sup>12+</sup> | Array&lt;number&gt; | 否 | 否 | 表示卫星的附加信息。<br/>每个比特位代表不同含义，具体定义参见[SatelliteAdditionalInfo](#satelliteadditionalinfo12)。 |
+| satelliteConstellation<sup>12+</sup> | Array&lt;[SatelliteConstellationCategory](#satelliteconstellationcategory12)&gt; | 否 | 是 | 表示卫星星座类型。 |
+| satelliteAdditionalInfo<sup>12+</sup> | Array&lt;number&gt; | 否 | 是 | 表示卫星的附加信息。<br/>每个比特位代表不同含义，具体定义参见[SatelliteAdditionalInfo](#satelliteadditionalinfo12)。 |
 
 
 ## CachedGnssLocationsRequest
@@ -228,12 +228,12 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | timeSinceBoot | number | 否 | 否 | 表示位置时间戳，开机时间格式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | additions | Array&lt;string&gt;| 否 | 是 | 附加信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | additionSize | number| 否 | 是 | 附加信息数量。取值范围为大于等于0。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| 否 | 是 | 附加信息。具体内容和顺序与additions一致。该字段暂未实现。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| altitudeAccuracy<sup>12+</sup> |number | 否 | 否 | 表示高度信息的精度，单位米。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| speedAccuracy<sup>12+</sup> | number| 否 | 否 | 表示速度信息的精度，单位米每秒。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| directionAccuracy<sup>12+</sup> | number| 否 | 否 | 表示航向信息的精度。单位是“度”，取值范围为0到360。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| uncertaintyOfTimeSinceBoot<sup>12+</sup> | number| 否 | 否 | 表示位置时间戳的不确定度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| sourceType<sup>12+</sup> | [LocationSourceType](#locationsourcetype12) | 否 | 否 | 表示定位结果的来源。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| 否 | 是 | 附加信息。具体内容和顺序与additions一致。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| altitudeAccuracy<sup>12+</sup> |number | 否 | 是 | 表示高度信息的精度，单位米。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| speedAccuracy<sup>12+</sup> | number| 否 | 是 | 表示速度信息的精度，单位米每秒。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| directionAccuracy<sup>12+</sup> | number| 否 | 是 | 表示航向信息的精度。单位是“度”，取值范围为0到360。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| uncertaintyOfTimeSinceBoot<sup>12+</sup> | number| 否 | 是 | 表示位置时间戳的不确定度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| sourceType<sup>12+</sup> | [LocationSourceType](#locationsourcetype12) | 否 | 是 | 表示定位结果的来源。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## GeofenceTransition<sup>12+</sup>
@@ -429,7 +429,7 @@ GNSS地理围栏请求参数。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| PRIORITY_ACCURACY  | 0x501 | 表示精度优先。<br/>定位精度优先策略会同时使用GNSS定位和网络定位技术，并把一段时间内精度较好的结果返回给应用；这个时间段长度为“SingleLocationRequest](#singlelocationrequest12).locatingTimeoutMs”与“30秒”中的较小者。<br/>对设备的硬件资源消耗较大，功耗较大。  |
+| PRIORITY_ACCURACY  | 0x501 | 表示精度优先。<br/>定位精度优先策略会同时使用GNSS定位和网络定位技术，并把一段时间内精度较好的结果返回给应用；这个时间段长度为[SingleLocationRequest](#singlelocationrequest12).locatingTimeoutMs与“30秒”中的较小者。<br/>对设备的硬件资源消耗较大，功耗较大。  |
 | PRIORITY_LOCATING_SPEED  | 0x502 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该类型。<br/>快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果，我们会把最先拿到的定位结果返回给应用。对设备的硬件资源消耗较大，功耗也较大。 |
 
 
@@ -545,7 +545,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
-  | callback | Callback&lt;[Location](#location)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[Location](#location)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -652,7 +652,7 @@ off(type: 'locationError', callback?: Callback&lt;LocationError&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationError”，表示持续定位过程中的错误码变化。 |
-  | callback | Callback&lt;[LocationError](#locationerror12)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[LocationError](#locationerror12)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -736,7 +736,7 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationEnabledChange”，表示位置服务状态。 |
-  | callback | Callback&lt;boolean&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;boolean&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -828,7 +828,7 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -922,7 +922,7 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“satelliteStatusChange”，表示订阅GNSS卫星状态信息上报。 |
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -1016,7 +1016,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“nmeaMessage”，表示订阅GNSS&nbsp;NMEA信息上报。 |
-  | callback | Callback&lt;string&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;string&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -1231,7 +1231,7 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“countryCodeChange”，表示取消订阅国家码信息变化事件。 |
-  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 

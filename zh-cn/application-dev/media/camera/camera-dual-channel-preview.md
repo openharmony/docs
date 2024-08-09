@@ -26,7 +26,7 @@
    创建双路预览流的SurfaceId，除XComponent组件的SurfaceId外，还需要使用ImageReceiver组件创建生成的SurfaceId，需要使用image模块提供的接口。
 
    ```ts
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
    ```
 2. 创建ImageReceiver对象。
    ```ts
@@ -63,7 +63,7 @@
    将步骤2、3生成的两路SurfaceId通过[createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput)方法传递到相机服务，创建两路预览流，其余流程按照正常预览流程开发。
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
+   import { camera } from '@kit.CameraKit';
 
    async function createDualChannelPreview(cameraManager: camera.CameraManager, XComponentSurfaceId: string, receiver: image.ImageReceiver): Promise<void> {
      // 获取支持的相机设备对象
@@ -128,7 +128,7 @@
    通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/js-apis-image.md)。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    function onImageArrival(receiver: image.ImageReceiver): void {
      receiver.on('imageArrival', () => {

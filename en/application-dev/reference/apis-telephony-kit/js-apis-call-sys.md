@@ -4185,6 +4185,54 @@ call.isImsSwitchEnabled(0).then((data: boolean) => {
 });
 ```
 
+## call.isImsSwitchEnabledSync<sup>12+</sup>
+
+isImsSwitchEnabledSync\(slotId: number\): boolean
+
+Checks whether the IMS service is enabled. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| boolean | Whether the IMS service is enabled. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Non-system applications use system APIs.                     |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
+| 8300001  | Invalid parameter value.                                     |
+| 8300002  | Operation failed. Cannot connect to service.                 |
+| 8300003  | System internal error.                                       |
+| 8300999  | Unknown error code.                                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let slotId: number = 0;
+try {
+    let isEnabled: boolean = call.isImsSwitchEnabledSync(slotId);
+    console.log(`isImsSwitchEnabledSync success : ${isEnabled}`);
+} catch (err: BusinessError) {
+    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(err)}`);  
+}
+```
 
 ## call.closeUnfinishedUssd<sup>10+</sup>
 

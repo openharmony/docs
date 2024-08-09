@@ -22,6 +22,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 | processName | string | 是 | 否 | 进程名称。 |
 
 **示例：**
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 

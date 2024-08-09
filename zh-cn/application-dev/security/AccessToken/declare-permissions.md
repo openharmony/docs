@@ -9,8 +9,8 @@
 | 属性 | 说明 | 取值范围 |
 | -------- | -------- | -------- |
 | name | 必须，填写需要使用的权限名称。 | 需为系统已定义的权限，取值范围请参考[应用权限列表](permissions-for-all.md)。 |
-| reason | 可选，当申请的权限为user_grant权限时此字段必填，用于描述申请权限的原因。<br/>**说明：**<br/>该字段用于应用上架校验，当申请的权限为user_grant权限时必填，并且需要进行多语种适配。 | 使用string类资源引用。格式为$string: \*\*\*。<br/>可参考[权限使用理由的文案内容规范](#权限使用理由的文案内容规范)。 |
-| usedScene | 可选，当申请的权限为user_grant权限时此字段必填。描述权限使用的场景由abilities和when组成。其中abilities可以配置为多个UIAbility组件，when表示调用时机。<br/>**说明：**<br/>默认为可选，当申请的权限为user_grant权限时，abilities标签必填，when标签可选。 | abilities：UIAbility或者ExtensionAbility组件的名称。<br/>when：inuse（使用时）、always（始终）。 |
+| reason | 可选，用于描述申请权限的原因，当申请的权限为user_grant权限时此字段必填。<br/>**说明：**<br/>该字段用于应用上架校验，当申请的权限为user_grant权限时必填，并且需要进行多语种适配。 | 使用string类资源引用。格式为$string: \*\*\*。<br/>可参考[权限使用理由的文案内容规范](#权限使用理由的文案内容规范)。 |
+| usedScene | 可选，用于描述权限使用的场景，当申请的权限为user_grant权限时建议填写此字段。<br/>描述权限使用的场景由abilities和when组成。其中abilities可以配置为多个UIAbility组件，when表示调用时机。 | abilities：UIAbility或者ExtensionAbility组件的名称。<br/>when：inuse（使用时）、always（始终）。 |
 
 ## 声明样例
 

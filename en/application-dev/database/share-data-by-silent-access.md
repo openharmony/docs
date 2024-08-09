@@ -389,5 +389,3 @@ The data provider calls the **enableSilentProxy** API to dynamically enable sile
      }
    }
    ```
-
-   

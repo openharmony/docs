@@ -448,14 +448,14 @@ let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
   audioDevices = data;
-  console.info(`Promise returned to indicate that the device list is obtained.`);
+  console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err: BusinessError) => {
   console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
 if (audioDevices !== undefined) {
   avSession.castAudio('all', audioDevices as audio.AudioDeviceDescriptors).then(() => {
-    console.info(`CreateController : SUCCESS`);
+    console.info('CreateController : SUCCESS');
   }).catch((err: BusinessError) => {
     console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
   });
@@ -507,7 +507,7 @@ let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
   audioDevices = data;
-  console.info(`Promise returned to indicate that the device list is obtained.`);
+  console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err: BusinessError) => {
   console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -517,7 +517,7 @@ if (audioDevices !== undefined) {
     if (err) {
       console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`CastAudio : SUCCESS `);
+      console.info('CastAudio : SUCCESS ');
     }
   });
 }
@@ -566,7 +566,7 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.startAVPlayback("com.example.myapplication", "121278").then(() => {
-  console.info(`startAVPlayback : SUCCESS`);
+  console.info('startAVPlayback : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`startAVPlayback BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -842,7 +842,7 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 ```ts
 avSession.on('sessionServiceDie', () => {
-  console.info(`on sessionServiceDie  : session is  Died `);
+  console.info('on sessionServiceDie  : session is  Died ');
 });
 ```
 
@@ -922,7 +922,7 @@ avSession.sendSystemAVKeyEvent(event, (err: BusinessError) => {
   if (err) {
     console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SendSystemAVKeyEvent : SUCCESS `);
+    console.info('SendSystemAVKeyEvent : SUCCESS ');
   }
 });
 ```
@@ -972,7 +972,7 @@ let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
 let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 
 avSession.sendSystemAVKeyEvent(event).then(() => {
-  console.info(`SendSystemAVKeyEvent Successfully`);
+  console.info('SendSystemAVKeyEvent Successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1032,7 +1032,7 @@ avSession.sendSystemControlCommand(avcommand, (err) => {
   if (err) {
     console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`sendSystemControlCommand successfully`);
+    console.info('sendSystemControlCommand successfully');
   }
 });
 ```
@@ -1095,7 +1095,7 @@ let avcommand: avSession.AVControlCommand = {command:cmd};
 // let cmd : avSession.AVControlCommandType = 'toggleFavorite';
 // let avcommand = {command:cmd, parameter:"false"};
 avSession.sendSystemControlCommand(avcommand).then(() => {
-  console.info(`SendSystemControlCommand successfully`);
+  console.info('SendSystemControlCommand successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1137,7 +1137,7 @@ avSession.startCastDeviceDiscovery((err: BusinessError) => {
   if (err) {
     console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`startCastDeviceDiscovery successfully`);
+    console.info('startCastDeviceDiscovery successfully');
   }
 });
 ```
@@ -1177,7 +1177,7 @@ avSession.startCastDeviceDiscovery(filter, (err: BusinessError) => {
   if (err) {
     console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`startCastDeviceDiscovery successfully`);
+    console.info('startCastDeviceDiscovery successfully');
   }
 });
 ```
@@ -1222,7 +1222,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let filter = 2;
 let drmSchemes = ['3d5e6d35-9b9a-41e8-b843-dd3c6e72c42c'];
 avSession.startCastDeviceDiscovery(filter, drmSchemes).then(() => {
-  console.info(`startCastDeviceDiscovery successfully`);
+  console.info('startCastDeviceDiscovery successfully');
 }).catch((err: BusinessError) => {
   console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1254,7 +1254,7 @@ avSession.stopCastDeviceDiscovery((err: BusinessError) => {
   if (err) {
     console.error(`stopCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`stopCastDeviceDiscovery successfully`);
+    console.info('stopCastDeviceDiscovery successfully');
   }
 });
 ```
@@ -1281,7 +1281,7 @@ stopCastDeviceDiscovery(): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.stopCastDeviceDiscovery().then(() => {
-  console.info(`stopCastDeviceDiscovery successfully`);
+  console.info('stopCastDeviceDiscovery successfully');
 }).catch((err: BusinessError) => {
   console.error(`stopCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1321,7 +1321,7 @@ avSession.setDiscoverable(true, (err: BusinessError) => {
   if (err) {
     console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`setDiscoverable successfully`);
+    console.info('setDiscoverable successfully');
   }
 });
 ```
@@ -1362,7 +1362,7 @@ setDiscoverable(enable: boolean): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.setDiscoverable(true).then(() => {
-  console.info(`setDiscoverable successfully`);
+  console.info('setDiscoverable successfully');
 }).catch((err: BusinessError) => {
   console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1547,7 +1547,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string = "";  //供后续函数入参使用
+let sessionId: string = "";  // 供后续函数入参使用
 
 let aVCastController: avSession.AVCastController;
 avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
@@ -1605,7 +1605,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string = "";  //供后续函数入参使用
+let sessionId: string = "";  // 供后续函数入参使用
 
 let aVCastController: avSession.AVCastController;
 avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
@@ -1665,7 +1665,7 @@ if (castDevice !== undefined) {
     if (err) {
       console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`startCasting successfully`);
+      console.info('startCasting successfully');
     }
   });
 }
@@ -1723,7 +1723,7 @@ avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
 });
 if (castDevice !== undefined) {
   avSession.startCasting(myToken, castDevice).then(() => {
-    console.info(`startCasting successfully`);
+    console.info('startCasting successfully');
   }).catch((err: BusinessError) => {
     console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
   });
@@ -1768,7 +1768,7 @@ avSession.stopCasting(myToken, (err: BusinessError) => {
   if (err) {
     console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`stopCasting successfully`);
+    console.info('stopCasting successfully');
   }
 });
 ```
@@ -1813,7 +1813,7 @@ let myToken: avSession.SessionToken = {
   sessionId: sessionId,
 }
 avSession.stopCasting(myToken).then(() => {
-  console.info(`stopCasting successfully`);
+  console.info('stopCasting successfully');
 }).catch((err: BusinessError) => {
   console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1864,7 +1864,7 @@ media.createAVRecorder().then((avRecorder) => {
   });
 })
 aVCastController.setDisplaySurface(surfaceID).then(() => {
-  console.info(`setDisplaySurface : SUCCESS`);
+  console.info('setDisplaySurface : SUCCESS');
 });
 ```
 
@@ -1915,7 +1915,7 @@ aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
   if (err) {
     console.error(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`setDisplaySurface : SUCCESS`);
+    console.info('setDisplaySurface : SUCCESS');
   }
 });
 ```

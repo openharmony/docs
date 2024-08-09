@@ -54,10 +54,10 @@ system_basic等级及以上的应用使用此类uri的方式除了上述通过fs
 2. 使用获取到的文件uri进行重命名操作。
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import fileAccess from '@ohos.file.fileAccess';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
+import { fileAccess } from '@kit.CoreFileKit';
 // context 是EntryAbility 传过来的context
 let context = getContext(this) as common.UIAbilityContext;
 
@@ -174,10 +174,10 @@ system_basic等级及以上的应用使用此类uri的方式除了上述通过ph
 下面为通过临时授权方式使用媒体文件uri进行获取缩略图和读取文件部分信息的示例代码：
 
 ```ts
-import picker from '@ohos.file.picker';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { BusinessError } from '@ohos.base';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { picker } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { dataSharePredicates } from '@kit.ArkData';
 
 // 定义一个uri数组，用于接收PhotoViewPicker选择图片返回的uri
 let uris: Array<string> = [];
@@ -250,13 +250,12 @@ try {
 5. 使用helper.[copyFile](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#copyfile11)(srcUri, destUri, fileName) 进行文件操作。
 
 复制文件代码示例：
-<!--DelEnd-->
 
 ```
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import fileAccess from '@ohos.file.fileAccess';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
+import { fileAccess } from '@kit.CoreFileKit';
 
 // context 是EntryAbility 传过来的context
 let context = getContext(this) as common.UIAbilityContext;
@@ -301,3 +300,4 @@ async function example() {
     }
   }
 ```
+<!--DelEnd-->

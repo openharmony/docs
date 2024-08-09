@@ -1,6 +1,6 @@
 # \@AnimatableExtend装饰器：定义可动画属性
 
-@AnimatableExtend装饰器用于自定义可动画的属性方法，在这个属性方法中修改组件不可动画的属性。在动画执行过程时，通过逐帧回调函数修改不可动画属性值，让不可动画属性也能实现动画效果。
+@AnimatableExtend装饰器用于自定义可动画的属性方法，在这个属性方法中修改组件不可动画的属性。在动画执行过程时，通过逐帧回调函数修改不可动画属性值，让不可动画属性也能实现动画效果。也可通过逐帧回调函数每帧修改可动画属性的值，实现逐帧布局的效果。
 
 - 可动画属性：如果一个属性方法在animation属性前调用，改变这个属性的值可以生效animation属性的动画效果，这个属性称为可动画属性。比如height、width、backgroundColor、translate属性，Text组件的fontSize属性等。
 
@@ -39,33 +39,35 @@
 
 ## 使用场景
 
-以下示例实现字体大小的动画效果。
+以下示例通过改变Text组件宽度实现逐帧布局的效果。
 
 
 ```ts
-@AnimatableExtend(Text) function animatableFontSize(size: number) {
-  .fontSize(size)
+@AnimatableExtend(Text)
+function animatableWidth(width: number) {
+  .width(width)
 }
 
 @Entry
 @Component
 struct AnimatablePropertyExample {
-  @State fontSize: number = 20
+  @State textWidth: number = 80;
+
   build() {
     Column() {
       Text("AnimatableProperty")
-        .animatableFontSize(this.fontSize)
-        .animation({duration: 1000, curve: "ease"})
+        .animatableWidth(this.textWidth)
+        .animation({ duration: 2000, curve: Curve.Ease })
       Button("Play")
         .onClick(() => {
-          this.fontSize = this.fontSize == 20 ? 36 : 20
+          this.textWidth = this.textWidth == 80 ? 160 : 80;
         })
     }.width("100%")
     .padding(10)
   }
 }
 ```
-![image](figures/animatable-font-size.gif)
+![image](figures/AnimatableProperty.gif)
 
 
 以下示例实现折线的动画效果。  
@@ -158,7 +160,7 @@ struct AnimatablePropertyExample {
     Column() {
       Polyline()
         .animatablePoints(this.points)
-        .animation({duration: 1000, curve: "ease"})
+        .animation({duration: 1000, curve: Curve.Ease})
         .size({height:220, width:300})
         .fill(Color.Green)
         .stroke(Color.Red)

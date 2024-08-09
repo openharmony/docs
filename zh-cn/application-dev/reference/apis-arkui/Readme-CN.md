@@ -14,6 +14,7 @@
     - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
+    - [@ohos.arkui.StateManagement (状态管理)](js-apis-StateManagement.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
     - [@ohos.font (注册自定义字体)](js-apis-font.md)
     - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
@@ -21,7 +22,7 @@
     - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
     - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
     - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
-    - [@ohos.router (页面路由)](js-apis-router.md)
+    - [@ohos.router (页面路由)(不推荐)](js-apis-router.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
     <!--Del-->
@@ -77,6 +78,7 @@
       - [按键事件](arkui-ts/ts-universal-events-key.md)
       - [焦点事件](arkui-ts/ts-universal-focus-event.md)
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
+      - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
       - [组件尺寸变化事件](arkui-ts/ts-universal-component-size-change-event.md)
       - [组件可见区域变化事件](arkui-ts/ts-universal-component-visible-area-change-event.md)
@@ -139,6 +141,7 @@
       <!--Del-->
       - [点光源设置 (系统接口)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
       <!--DelEnd-->
+    - [滚动组件通用属性与事件](arkui-ts/ts-container-scrollable-common.md)
     - 手势处理
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
       - [TapGesture](arkui-ts/ts-basic-gestures-tapgesture.md)
@@ -301,6 +304,10 @@
     - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
     - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
     - [@ohos.arkui.advanced.FoldSplitContainer (分栏布局)](arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
+    - [@ohos.atomicservice.AtomicServiceNavigation (导航根视图容器)](arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
+    - [@ohos.atomicservice.AtomicServiceTabs (页签容器)](arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
+    - [@ohos.atomicservice.AtomicServiceWeb (Web高阶组件)](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
+    - [@ohos.atomicservice.InterstitialDialogAction (弹框)](arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
   - 安全控件
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
     - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
@@ -337,6 +344,10 @@
     - [文本类型定义](arkui-ts/ts-text-common.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
   - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
+  - 渲染控制<!--rendering-control-->
+    - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
+    - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
+    - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
   - [像素单位](arkui-ts/ts-pixel-units.md)
   - [枚举说明](arkui-ts/ts-appendix-enums.md)
   - [设置事件回调](arkui-ts/ts-uicommonevent.md)
@@ -363,6 +374,7 @@
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
   - 头文件
+    - [drag_and_drop.h](drag__and__drop_8h.md)
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
     - [native_animate.h](native__animate_8h.md)
     - [native_dialog.h](native__dialog_8h.md)
@@ -415,6 +427,7 @@
     - [图像AI分析错误码](errorcode-image-analyzer.md)
     - [焦点错误码](errorcode-focus.md)
     - [系统资源错误码](errorcode-system-resource.md)
+    - [半模态错误码](errorcode-bindSheet.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
