@@ -22,6 +22,7 @@ Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按�
 - 允许Repeat包含在if/else条件渲染语句中，也允许Repeat中出现if/else条件渲染语句。
 - Repeat内部使用键值作为标识，因此键值生成器必须针对每个数据生成唯一的值，如果多个数据同一时刻生成的键值相同，会导致UI组件渲染出现问题。
 - 未开启virtualScroll目前暂时不支持template模板，复用会有问题。
+- 当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递RepeatItem.item或RepeatItem.index，将会出现UI渲染异常。
 
 ## 键值生成规则
 
