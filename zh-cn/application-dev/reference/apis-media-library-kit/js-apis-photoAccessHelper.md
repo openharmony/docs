@@ -183,13 +183,11 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式根据指定连拍照片的封面uri来查询一组连拍图片资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
-
 **参数：**
 
 | 参数名  | 类型                | 必填 | 说明             |
 | ------- | ------------------- | ---- | ---------------- |
-| burstKey | string   | 是   | 连拍照片的唯一标识：uuid     |
+| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid     |
 | options | [FetchOptions](#fetchoptions)   | 是   | 连拍照片检索选项。     |
 
 **返回值：**
@@ -206,7 +204,7 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | System inner fail.         |
+| 14000011       | Internal system error.         |
 
 **示例：**
 
