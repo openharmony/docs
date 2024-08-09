@@ -2,7 +2,7 @@
 
 FullScreenLaunchComponent允许开发者以全屏方式拉起元服务，使得应用能够提供更原生和友好的用户体验。
 
-![uiextension-ability](figures/embeddable-ui-ability.png)
+![embeddable-ui-ability](figures/embeddable-ui-ability.png)
 
 ## 基本概念
 
@@ -21,7 +21,7 @@ FullScreenLaunchComponent提供的一种跨进程的应用共享能力，在使�
 
 实现后能够在使用方应用页面中以组件方式展示提供方应用的页面：
 
-![uiextension-component](figures/fullscreenlaunch-component.png)
+![fullscreenlaunch-component](figures/fullscreenlaunch-component.png)
 
 
 ## 能力范围
