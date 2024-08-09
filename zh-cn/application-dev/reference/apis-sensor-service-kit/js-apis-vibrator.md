@@ -941,7 +941,7 @@ type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | '
 | media            | string | 是 | 用于多媒体场景。         |
 | physicalFeedback | string | 是 | 用于物理反馈场景。       |
 | simulateReality  | string | 是 | 用于模拟现实场景。       |
-<!--RP1-->
+<!--RP1E-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 
