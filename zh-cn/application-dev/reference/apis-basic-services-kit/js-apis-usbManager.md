@@ -520,7 +520,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 **说明：**
 
-> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [usbControlTransfer](#usbmanagerusbcontroltransfer) 替代。
+> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [usbControlTransfer](#usbmanagerusbcontroltransfer12) 替代。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -579,7 +579,7 @@ usbManager.controlTransfer(devicepipe, param).then((ret: number) => {
 })
 ```
 
-## usbManager.usbControlTransfer
+## usbManager.usbControlTransfer<sup>12+</sup>
 
 usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout ?: number): Promise&lt;number&gt;
 
@@ -594,7 +594,7 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| requestparam | [USBDeviceRequestParams](#usbdevicerequestparams) | 是 | 控制传输参数。 |
+| requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | 是 | 控制传输参数。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
 
 **错误码：**
@@ -842,7 +842,7 @@ USB设备消息传输通道，用于确定设备。
 | index   | number                                          | 是   |请求参数value对应的索引值。 |
 | data    | Uint8Array                                      | 是   |用于写入或读取的缓冲区。     |
 
-## USBDeviceRequestParams
+## USBDeviceRequestParams<sup>12+</sup>
 
 控制传输参数。
 
