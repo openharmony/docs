@@ -26,7 +26,7 @@
 
 **废弃发生版本**
 
-从OpenHarmony SDK 5.0.0.38开始。
+从OpenHarmony SDK 5.0.0.36开始。
 
 **废弃的接口/组件**
 
@@ -35,13 +35,13 @@
 | audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean, callback: AsyncCallback<void>): void | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
 | audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean): Promise<void> | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
 | audio.AudioSpatializationManager#isSpatializationEnabled(): boolean | 使用带有指定设备描述参数的查询接口替换 | audio.AudioSpatializationManager#isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean |
-| audio.AudioSpatializationManager#on(type: 'spatializationEnabledChange', callback: Callback<boolean>): void | 使用带有指定设备描述参数的开始监听接口替换 | audio.AudioSpatializationManager#on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<{deviceDescriptor: AudioDeviceDescriptor, enabled: boolean}>): void |
-| audio.AudioSpatializationManager#off(type: 'spatializationEnabledChange', callback?: Callback<boolean>): void | 使用带有指定设备描述参数的停止监听接口替换 | audio.AudioSpatializationManager#off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<{deviceDescriptor: AudioDeviceDescriptor, enabled: boolean}>): void |
+| audio.AudioSpatializationManager#on(type: 'spatializationEnabledChange', callback: Callback<boolean>): void | 使用带有指定设备描述参数的开始监听接口替换 | audio.AudioSpatializationManager#on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnableStateForDevice>): void |
+| audio.AudioSpatializationManager#off(type: 'spatializationEnabledChange', callback?: Callback<boolean>): void | 使用带有指定设备描述参数的停止监听接口替换 | audio.AudioSpatializationManager#off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnableStateForDevice>): void |
 | audio.AudioSpatializationManager#setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback<void>): void | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
 | audio.AudioSpatializationManager#setHeadTrackingEnabled(enable: boolean): Promise<void> | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
 | audio.AudioSpatializationManager#isHeadTrackingEnabled(): boolean | 使用带有指定设备描述参数的查询接口替换 | audio.AudioSpatializationManager#isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean |
-| audio.AudioSpatializationManager#on(type: 'headTrackingEnabledChange', callback: Callback<boolean>): void | 使用带有指定设备描述参数的开始监听接口替换 | audio.AudioSpatializationManager#on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<{deviceDescriptor: AudioDeviceDescriptor, enabled: boolean}>): void |
-| audio.AudioSpatializationManager#off(type: 'headTrackingEnabledChange', callback?: Callback<boolean>): void | 使用带有指定设备描述参数的停止监听接口替换 | audio.AudioSpatializationManager#off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<{deviceDescriptor: AudioDeviceDescriptor, enabled: boolean}>): void |
+| audio.AudioSpatializationManager#on(type: 'headTrackingEnabledChange', callback: Callback<boolean>): void | 使用带有指定设备描述参数的开始监听接口替换 | audio.AudioSpatializationManager#on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnableStateForDevice>): void |
+| audio.AudioSpatializationManager#off(type: 'headTrackingEnabledChange', callback?: Callback<boolean>): void | 使用带有指定设备描述参数的停止监听接口替换 | audio.AudioSpatializationManager#off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnableStateForDevice>): void |
 
 **适配指导**
 
