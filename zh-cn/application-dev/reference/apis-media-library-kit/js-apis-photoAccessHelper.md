@@ -187,7 +187,7 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 | 参数名  | 类型                | 必填 | 说明             |
 | ------- | ------------------- | ---- | ---------------- |
-| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid     |
+| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](#photokeys)的BURST_KEY)     |
 | options | [FetchOptions](#fetchoptions)   | 是   | 连拍照片检索选项。     |
 
 **返回值：**
