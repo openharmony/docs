@@ -218,71 +218,53 @@ RichEditor(this.options1)
 
 ![alt text](figures/richeditor_image_onSelect.gif)
 
-### 添加输入法输入内容前可触发的回调
+### 添加输入法输入内容前和完成输入后可触发的回调
   
-通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)添加输入法输入内容前可触发的回调。
+通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)添加输入法输入内容前可触发的回调。通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)添加输入法完成输入后可触发的回调。
 
-在callback中：[RichEditorInsertValue](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorinsertvalue)为输入法将要输入内容信息；boolean为true时，组件执行添加内容操作。boolean为false时，组件不执行添加内容操作。
+aboutToIMEInput的callback中：[RichEditorInsertValue](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorinsertvalue)为输入法将要输入内容信息；boolean为true时，组件执行添加内容操作。boolean为false时，组件不执行添加内容操作。
 
-使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的RichEditor组件不支持该回调。
+onIMEInputComplete的callback中：[RichEditorTextSpanResult](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanresult)为输入法完成输入后的文本Span信息。
+
+使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的RichEditor组件不支持这两种回调。
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('输入法输入内容前，触发回调。', {
-            style: {
+          .onReady(() => {
+            this.controller.addTextSpan('输入法输入内容前，触发回调。\n输入法完成输入后，触发回调。' , {
+              style: {
                 fontColor: Color.Black,
                 fontSize: 15
-            }
-        })
-    })
-    .aboutToIMEInput((value: RichEditorInsertValue) => {
-        this.controller1.addTextSpan(JSON.stringify(value), {
-            style: {
+              }
+            })
+          })
+          .aboutToIMEInput((value: RichEditorInsertValue) => {
+            this.controller1.addTextSpan('输入法输入内容前，触发回调：\n'+JSON.stringify(value), {
+              style: {
                 fontColor: Color.Gray,
                 fontSize: 10
-            }
-        })
-        return true;
-    })
+              }
+            })
+            return true;
+          })
+          .onIMEInputComplete((value: RichEditorTextSpanResult) => {
+            this.controller1.addTextSpan('输入法完成输入后，触发回调：\n'+ JSON.stringify(value), {
+              style: {
+                fontColor: Color.Gray,
+                fontSize: 10
+              }
+            })
+            return true;
+          })
+          .width(300)
+          .height(50)
+Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
+RichEditor(this.options1)
     .width(300)
-    .height(50)
+    .height(70)
 ```
 
-![alt text](figures/richeditor_image_aboutToIMEInput.gif)
-
-### 添加输入法完成输入后可触发的回调
-  
-通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)添加输入法完成输入后可触发的回调。
-
-在callback中：[RichEditorTextSpanResult](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanresult)为输入法完成输入后的文本Span信息。
-
-使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的RichEditor组件不支持该回调。
-
-```ts
-RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('输入法完成输入后，触发回调。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
-    })
-    .onIMEInputComplete((value: RichEditorTextSpanResult) => {
-        this.controller1.addTextSpan(JSON.stringify(value), {
-            style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-            }
-        })
-        return true;
-    })
-    .width(300)
-    .height(50)
-  ```
-
-![alt text](figures/richeditor_image_on_ime_input_complete.gif)
+![alt text](figures/richeditor_image_aboutToIMEInput2.0.gif)
 
 ### 添加完成粘贴前可触发的回调
   
@@ -526,20 +508,16 @@ Button('addImageSpan', {
 ```ts
 @Builder
 TextBuilder() {
-    Text("hello").padding('20').borderWidth(1).width('100%')
+    Row() {
+            Image($r('app.media.startIcon')).width(50).height(50).margin(16)
+            Column() {
+                Text("文本文档.txt").fontWeight(FontWeight.Bold).fontSize(16)
+                Text("123.45KB").fontColor('#8a8a8a').fontSize(12)
+            }.alignItems(HorizontalAlign.Start)
+        }.backgroundColor('#f4f4f4')
+        .borderRadius("20")
+        .width(220)
 }
-
-RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('点击按钮在此处添加builderspan。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
-    })
-    .width(300)
-    .height(100)
 
 Button('addBuilderSpan', {
         buttonStyle: ButtonStyleMode.NORMAL
@@ -553,7 +531,7 @@ Button('addBuilderSpan', {
         this.controller.addBuilderSpan(this.my_builder)
     })
 ```
-![alt text](figures/richeditor_image_add_builder_span.gif)   
+![alt text](figures/richeditor_image_add_builder_span2.0.gif)   
 
 ## 添加SymbolSpan内容
   
