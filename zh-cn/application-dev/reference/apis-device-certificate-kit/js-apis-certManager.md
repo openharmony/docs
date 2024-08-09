@@ -1214,7 +1214,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getPrivateCertificates().then((cmResult) => {
-    if (cmResult.credentialList == undefined) {
+    if (cmResult?.credentialList == undefined) {
       console.info('The result of getting all private certificates installed by the application is undefined.');
     } else {
       let list = cmResult.credentialList;
