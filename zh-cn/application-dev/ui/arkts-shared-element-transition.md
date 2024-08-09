@@ -18,8 +18,8 @@
 1. 构建需要展开的页面，并通过状态变量构建好普通状态和展开状态的界面。
 
       ```ts
-      class Tmp{
-        set(item:CradData):CradData{
+      class Tmp {
+        set(item: PostData): PostData {
           return item
         }
       }
@@ -28,7 +28,8 @@
       export struct MyExtendView {
         // 声明与父组件进行交互的是否展开状态变量
         @Link isExpand: boolean;
-        @State cardList: Array<CardData> = xxxx;
+        // 列表数据需开发者自行实现
+        @State cardList: Array<PostData> = xxxx;
       
         build() {
           List() {
@@ -38,10 +39,10 @@
                 .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.8) }))
             }
       
-            ForEach(this.cardList, (item: CradData) => {
-              let Item:Tmp = new Tmp()
-              let Imp:Tmp = Item.set(item)
-              let Mc:Record<string,Tmp> = {'cardData':Imp}
+            ForEach(this.cardList, (item: PostData) => {
+              let Item: Tmp = new Tmp()
+              let Imp: Tmp = Item.set(item)
+              let Mc: Record<string, Tmp> = {'cardData': Imp}
               MyCard(Mc) // 封装的卡片组件，需自行实现
             })
           }
