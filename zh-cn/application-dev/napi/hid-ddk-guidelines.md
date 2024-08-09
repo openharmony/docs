@@ -22,7 +22,7 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 
 详细的接口说明请参考[HID DDK](../reference/apis-driverdevelopment-kit/_hid_ddk.md)。
 
-## HID DDK开发步骤
+## 开发步骤
 
 以下步骤描述了如何使用 **HID DDK**开发HID设备驱动：
 
@@ -39,7 +39,9 @@ libhid.z.so
 #include <hid/hid_ddk_types.h>
 ```
 
-1. **创建设备**。使用 **hid_ddk_api.h** 的 **OH_Hid_CreateDevice** 接口创建HID设备，成功返回设备deviceId（**非负数**），失败返回错误码（**负数**）。
+1. **创建设备**。
+
+    使用 **hid_ddk_api.h** 的 **OH_Hid_CreateDevice** 接口创建HID设备，成功返回设备deviceId（**非负数**），失败返回错误码（**负数**）。
 
     ```c++
    // 构建HID设备属性
@@ -73,7 +75,9 @@ libhid.z.so
     int32_t deviceId = OH_Hid_CreateDevice(&hidDevice, &hidEventProp);
     ```
 
-2. **向指定deviceId的HID设备发送事件**。使用 **hid_ddk_api.h** 的 **OH_Hid_EmitEvent** 向指定的deviceId的设备发送事件。
+2. **向指定deviceId的HID设备发送事件**。
+
+    使用 **hid_ddk_api.h** 的 **OH_Hid_EmitEvent** 向指定的deviceId的设备发送事件。
 
     ```c++
     // 构建需要发送事件
@@ -84,7 +88,9 @@ libhid.z.so
     int32_t ret = OH_Hid_EmitEvent(deviceId, itemVec.data(), (uint16_t)itemVec.size());
     ```
 
-3. **释放资源**。在所有请求处理完毕，程序退出前，使用 **hid_ddk_api.h** 的 **OH_Hid_DestroyDevice** 接口销毁HID设备。
+3. **释放资源**。
+
+    在所有请求处理完毕，程序退出前，使用 **hid_ddk_api.h** 的 **OH_Hid_DestroyDevice** 接口销毁HID设备。
 
     ```c++
     // 销毁HID设备
