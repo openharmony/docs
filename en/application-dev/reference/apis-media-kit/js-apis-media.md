@@ -3883,6 +3883,10 @@ Enumerates the audio source types for video recording.
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source. |
 | AUDIO_SOURCE_TYPE_MIC     | 1    | Microphone audio input source.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| AUDIO_SOURCE_TYPE_VOICE_RECOGNITION | 2    | Voice recognition. |
+| AUDIO_SOURCE_TYPE_VOICE_COMMUNICATION     | 7    | Wechat call， Weetime call. |
+| AUDIO_SOURCE_TYPE_VOICE_MESSAGE | 10    | Wechat short voice message，Weetime short voice message. |
+| AUDIO_SOURCE_TYPE_CAMCORDER     | 13    | Camera app capture audio data |
 
 ## VideoSourceType<sup>9+</sup>
 
