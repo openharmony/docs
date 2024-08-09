@@ -71,7 +71,7 @@ Call the **write** API again to perform event logging.
 
 **Error Message**
 
-The event length exceeds the limit
+The event length exceeds the limit.
 
 **Description**
 
@@ -291,3 +291,21 @@ More than 50 queries are performed in one second.
 **Solution**
 
 Check whether more than 50 queries are performed in one second.
+
+## 11200305 Unsubscription Failed
+
+**Error Message**
+
+Unsubscription failed.
+
+**Description**
+
+This error code is reported when the **unsubscribe()** API fails to be called.
+
+**Possible Causes**
+
+The HiView service is abnormal.
+
+**Solution**
+
+Call the **unsubscribe()** API again.
