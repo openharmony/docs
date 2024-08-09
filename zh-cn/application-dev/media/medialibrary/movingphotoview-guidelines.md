@@ -89,4 +89,7 @@
       .justifyContent(FlexAlign.Center)
       .height('15%')
    ```
-   
+
+## 效果展示
+
+![](figures/moving-photo-view.gif)
