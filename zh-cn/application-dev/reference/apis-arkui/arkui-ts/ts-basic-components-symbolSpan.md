@@ -98,7 +98,7 @@ renderingStrategy(value: SymbolRenderingStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 是   | SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
+| value  | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11) | 是   | SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
 
 不同渲染策略效果可参考以下示意图。
 
@@ -118,7 +118,7 @@ effectStrategy(value: SymbolEffectStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                       |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
-| value  | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 是   | SymbolSpan动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
+| value  | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11) | 是   | SymbolSpan动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
 
 ## 事件
 
