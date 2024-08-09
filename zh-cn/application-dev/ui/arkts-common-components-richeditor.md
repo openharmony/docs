@@ -218,7 +218,7 @@ RichEditor(this.options1)
 
 ![alt text](figures/richeditor_image_onSelect.gif)
 
-## 添加图文变化前和图文变化后可触发的回调
+### 添加图文变化前和图文变化后可触发的回调
 
 通过[onWillChange](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onwillchange12)添加图文变化前可触发的回调。通过[onDidChange](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidchange12)添加图文变化后可触发的回调。
 
