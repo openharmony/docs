@@ -44,7 +44,7 @@
 | setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用callback回调 |
 | getDefaultNetSync(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。|
 | hasDefaultNet(callback: AsyncCallback\<boolean>): void; |检查默认数据网络是否被激活，使用callback回调 |
-| getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的MetHandle对象列表，使用callback回调 |
+| getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的NetHandle对象列表，使用callback回调 |
 | getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |查询netHandle对应的网络的连接信息，使用callback回调 |
 | getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |获取netHandle对应的网络的能力信息，使用callback回调 |
 | isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法 |
