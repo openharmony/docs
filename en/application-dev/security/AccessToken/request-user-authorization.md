@@ -29,6 +29,11 @@ This topic elaborates steps 3 and 4.
 
 - Frequent pop-up windows may disturb user experience and are not recommended. If a user rejects the authorization, the window for requesting user authorization will not be displayed again. The application needs to provide information to guide the user to manually grant the permission in **Settings**.
 
+- The system permission pop-up window cannot be obscured.
+
+  The system permission pop-up window cannot be obscured by other components. The information in the pop-up window must be completely displayed so that the user can identify and complete authorization.
+  If the system permission pop-up window is displayed in the same position as another component, the system permission pop-up window takes precedence over the other component by default.
+
 ## How to Develop
 
 The following example steps you through on how to request the permission for using the microphone.
