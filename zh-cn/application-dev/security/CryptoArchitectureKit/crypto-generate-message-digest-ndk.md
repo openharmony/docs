@@ -44,7 +44,7 @@
 
 ### 摘要算法（一次性传入）
 
-1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要操作实例（OH_CryptoDigest）。
+1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要操作实例[OH_CryptoDigest](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest)。
 
 2. 调用[OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update)，传入自定义消息，进行摘要更新计算。单次update长度没有限制。
 
@@ -91,11 +91,11 @@ static OH_Crypto_ErrCode doTestMd()
 
 ### 分段摘要算法
 
-1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要操作实例（Md）。
+1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要操作实例[OH_CryptoDigest](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest)。
 
-2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-7)，进行摘要更新计算。
+2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update)，进行摘要更新计算。
 
-3. 调用[OH_CryptoDigest_Final](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest-1)，获取摘要计算结果。
+3. 调用[OH_CryptoDigest_Final](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_final)，获取摘要计算结果。
 
 4. 调用[OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength)，获取摘要计算长度，单位为字节。
 

@@ -24,6 +24,8 @@ WaterFlow(options?:  WaterFlowOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -38,13 +40,23 @@ WaterFlow(options?:  WaterFlowOptions)
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。  |
+| sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | layoutMode<sup>12+</sup> |[WaterFlowLayoutMode](#waterflowlayoutmode12枚举说明) | 否 | 设置WaterFlow的布局模式，根据使用场景选择更切合的模式。<br/>**说明：** <br/>默认值：[ALWAYS_TOP_DOWN](#waterflowlayoutmode12枚举说明)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 
 ## WaterFlowSections<sup>12+</sup>
 
 瀑布流分组信息。
+
+### constructor
+
+constructor()
+
+创建一个瀑布流分组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### splice<sup>12+</sup>
 
@@ -53,6 +65,8 @@ splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>):
 移除或者替换已存在的分组和/或添加新分组。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -77,6 +91,8 @@ push(section: SectionOptions): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -96,6 +112,8 @@ update(sectionIndex: number, section: SectionOptions): boolean
 修改指定索引分组的配置信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -118,6 +136,8 @@ values(): Array\<SectionOptions\>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：** 
 
 | 类型                                                         | 说明                                                         |
@@ -132,6 +152,8 @@ length(): number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：** 
 
 | 类型                                                         | 说明                                                         |
@@ -143,6 +165,8 @@ length(): number
 FlowItem分组配置信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -164,6 +188,8 @@ type GetItemMainSizeByIndex = (index: number) => number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -180,6 +206,8 @@ type GetItemMainSizeByIndex = (index: number) => number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 枚举值 | 描述 |
 | ------ | ------ | -------------------- |
 | ALWAYS_TOP_DOWN | 0 | 默认的从上到下的布局模式。视窗内的FlowItem依赖视窗上方所有FlowItem的布局信息。因此跳转或切换列数时，需要计算出上方所有的FlowItem的布局信息。 |
@@ -188,7 +216,7 @@ type GetItemMainSizeByIndex = (index: number) => number
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
 
 ### columnsTemplate
 
@@ -338,7 +366,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
+| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
 
 ### friction<sup>10+</sup>
 
@@ -372,90 +400,9 @@ cachedCount(value: number)
 | ------ | ------ | ---- | ---------------------------------------- |
 | value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
 
-### scrollBar<sup>11+</sup>
-
-scrollBar(barState: BarState)
-
-设置滚动条状态。滚动条位置和长度以已布局过的总高度和当前偏移为准，在瀑布流布局全部子节点之前随着滑动持续变化。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                      | 必填 | 说明                                  |
-| -------- | ----------------------------------------- | ---- | ------------------------------------- |
-| barState | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Off |
-
-### scrollBarWidth<sup>11+</sup>
-
-scrollBarWidth(value: number | string)
-
-设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过WaterFlow组件主轴方向的高度，则滚动条的宽度会变为默认值。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                       | 必填 | 说明                                      |
-| ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
-
-### scrollBarColor<sup>11+</sup>
-
-scrollBarColor(color: Color | number | string)
-
-设置滚动条的颜色。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明           |
-| ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。 |
-
-### edgeEffect<sup>11+</sup>
-
-edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
-
-设置边缘滑动效果。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名                | 类型                                                         | 必填 | 说明                                                         |
-| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | 设置瀑布流组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None |
-| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明) | 否   | 设置组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false } |
-
-### flingSpeedLimit<sup>11+</sup>
-
-flingSpeedLimit(speedLimit: number)
-
-限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名     | 类型   | 必填 | 说明                            |
-| ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
-
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
 
 ### onReachStart
 
@@ -520,79 +467,6 @@ onScrollIndex(event: (first: number, last: number) => void)
 | ------ | ------ | ---- | ------------------------------------- |
 | first  | number | 是   | 当前显示的瀑布流起始位置的索引值。 |
 | last   | number | 是   | 当前显示的瀑布流终止位置的索引值。    |
-
-### onScrollStart<sup>11+</sup>
-
-onScrollStart(event: () => void)
-
-瀑布流滑动开始时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### onScrollStop<sup>11+</sup>
-
-onScrollStop(event: () => void)
-
-瀑布流滑动停止时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### onScroll<sup>(deprecated)</sup>
-onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) 
-
-瀑布流滑动时触发。
-
-从API version11开始使用。
-
-从API version12开始废弃不再使用，建议使用[onDidScroll](#ondidscroll12)替代。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| scrollOffset | number | 是 | 每帧滚动的偏移量，瀑布流的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
-
-### onWillScroll<sup>12+</sup>
-onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
-
-瀑布流滑动前触发，返回当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源，其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定瀑布流将要滑动的偏移。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| handler | Optional&lt;[OnWillScrollCallback](ts-container-list.md#onwillscrollcallback12对象说明)&gt; | 是 | 瀑布流滑动前触发的回调。 |
-
-> **说明：** 
-> 
-> 调用ScrollEdge和不带动画的ScrollToIndex时,不触发onWillScroll。
-
-
-### onDidScroll<sup>12+</sup> 
-onDidScroll(handler: OnScrollCallback)
-
-瀑布流滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback12对象说明) | 是 | 瀑布流滑动时触发的回调。 |
 
 ## 示例
 
@@ -871,6 +745,7 @@ struct WaterFlowDemo {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
+              Image('res/waterFlowTest(' + item % 5 + ').jpg')
             }
           }
           .width('100%')
@@ -915,7 +790,11 @@ struct ReusableFlowItem {
   }
 
   build() {
-    Text("N" + this.item).fontSize(16).height('100%')
+    Image('res/waterFlowTest(' + this.item % 5 + ').jpg')
+        .overlay('N' + this.item, { align: Alignment.Top })
+        .objectFit(ImageFit.Fill)
+        .width('100%')
+        .layoutWeight(1)
   }
 }
 

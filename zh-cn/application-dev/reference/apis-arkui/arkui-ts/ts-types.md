@@ -372,18 +372,17 @@
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
 
-## PixelStretchEffectOptions<sup>10+</sup>
-
-像素扩展属性集合,用于描述像素扩展的信息。
+## MarkStyle<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                | 必填   | 说明             |
-| ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
-| right  | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
-| top    | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
-| bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
+| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
+| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## ModalTransition<sup>10+</sup>
 
@@ -630,17 +629,6 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 | CustomSpan | 自定义绘制Span样式。 |
 | UserDataSpan | UserDataSpan样式。 |
 
-## SubmitEvent<sup>11+</sup>
-
-定义用户提交事件。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称              | 类型       | 必填 | 描述                                               |
-| ----------------- | ---------- | ---- | -------------------------------------------------- |
-| keepEditableState | () => void | 是   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
-| text              | string     | 是   | 输入框文本内容。                                   |
-
 ## EnterKeyType枚举说明
 
 | 名称                   | 描述               |
@@ -652,33 +640,6 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 | Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-
-## LengthMetrics<sup>12+</sup>
-
-用于设置长度属性。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**属性：**
-
-| 名称              | 类型       | 必填 | 描述                          |
-| ----------------- | ---------- | ---- | ----------------------------- |
-| value       | number | 是 | 长度属性的值。   |
-| unit | [LengthUnit](#lengthunit12)     | 是 | 长度属性的单位。|
-
-## LengthUnit<sup>12+</sup>
-
-长度属性单位枚举。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| [PX](#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
-| [VP](#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
-| [FP](#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
-| [PERCENT](#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
-| [LPX](#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
 ## DividerStyleOptions<sup>12+</sup>
 
@@ -754,7 +715,7 @@ getCaretOffset(): CaretOffset
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
+| [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置。 |
 
 > **说明：**
 >
@@ -762,3 +723,50 @@ getCaretOffset(): CaretOffset
 > - 在Search组件中，返回的位置信息是相对Search组件中搜索图标的偏移值。
 > - 在Search组件中，不输入文本时，返回值中有相对Search组件的位置信息。
 > - 返回值中的位置信息是光标相对于可编辑组件的位置。
+
+## TextDecorationOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
+| color  | &nbsp;[ResourceColor](#resourcecolor) | 否   | 设置文本装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
+
+## SelectionOptions<sup>12+</sup>对象说明
+
+setTextSelection选中文字时的配置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                            | 必填 | 说明             |
+| ---------- | ----------------------------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## CaretOffset<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型     | 描述             |
+| ----- | ------ | -------------- |
+| index | number | 光标所在位置的索引值。    |
+| x     | number | 光标相对输入框的x坐标位值，单位px。 |
+| y     | number | 光标相对输入框的y坐标位值，单位px。 |
+
+## InputCounterOptions<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名              | 类型    | 描述                                                         |
+| ------------------- | ------- | ------------------------------------------------------------ |
+| thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
+| highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |

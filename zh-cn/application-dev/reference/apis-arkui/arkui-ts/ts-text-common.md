@@ -214,13 +214,24 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | menuItem | [TextMenuItem](#textmenuitem对象说明) | 是   | 菜单项。 |
-| range | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是   | 选中的文本信息。 |
+| range | [TextRange](#textrange12) | 是   | 选中的文本信息。 |
 
 **返回值：**
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
 | boolean | 菜单项的执行逻辑。<br/>返回为true，拦截系统默认逻辑，仅执行自定义逻辑。<br/>返回为false，先执行自定义逻辑，再执行系统逻辑。 |
+
+## TextRange<sup>12+</sup>
+
+文本范围。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| start | number | 否 | 起始索引。 |
+| end | number | 否 | 结束索引。 |
 
 ## EditableTextOnChangeCallback<sup>12+</sup>
 
@@ -234,3 +245,64 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | -- | -- | -- | -- |
 | value | string | 是 | 文本框内正式上屏的文本内容。 |
 | previewText | [PreviewText](ts-basic-components-richeditor.md#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
+
+## TextDataDetectorType<sup>11+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| PHONE_NUMBER  | 电话号码 |
+| URL | 链接 |
+| EMAIL | 邮箱 |
+| ADDRESS | 地址 |
+| DATE_TIME | 时间 |
+
+## TextDeleteDirection<sup>12+</sup>枚举说明
+
+定义删除文本方向。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| BACKWARD | 0    | 向后删除。 |
+| FORWARD    | 1    | 向前删除。 |
+
+## InsertValue<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| insertOffset  | number | 是   | 插入的值的位置信息。 |
+| insertValue  | string | 是   | 插入的值。 |
+
+## DeleteValue<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| deleteOffset  | number | 是   | 删除的值的位置信息。 |
+| direction  | [TextDeleteDirection](#textdeletedirection12枚举说明) | 是   | 删除值的方向。 |
+| deleteValue  | string | 是   | 删除的值。 |
+
+## TextDataDetectorConfig<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型  | 必填 | 说明  |
+| ------ | -------- | ---- | ------------------------------------------- |
+| types   | [TextDataDetectorType[]](ts-text-common.md#textdatadetectortype11枚举说明) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
+| onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |

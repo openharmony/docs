@@ -115,5 +115,3 @@ Example:
 | int [OH_HiAppEvent_AddWatcher](_hi_app_event.md#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher) | Adds a watcher. Once a watcher is added, it starts to listen for system messages. | 
 | int [OH_HiAppEvent_RemoveWatcher](_hi_app_event.md#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher) | Removes a watcher. Once a watcher is removed, it stops listening for system messages. | 
 | void [OH_HiAppEvent_ClearData](_hi_app_event.md#oh_hiappevent_cleardata) (void) | Clears the events saved by all watchers. | 
-
-<!--no_check-->

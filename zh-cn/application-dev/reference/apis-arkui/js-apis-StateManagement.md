@@ -139,7 +139,7 @@ static&nbsp;keys():&nbsp;Array\<string\>;
 
 | 类型                                   | 描述                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| Array<string> | 所有AppStorageV2中的key。 |
+| Array\<string\> | 所有AppStorageV2中的key。 |
 
 >**说明：**
 >
@@ -304,7 +304,7 @@ static&nbsp;keys():&nbsp;Array\<string\>;
 
 | 类型                                   | 描述                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| Array<string> | 所有PersistenceV2中的key。 |
+| Array\<string\> | 所有PersistenceV2中的key。 |
 
 >**说明：**
 >

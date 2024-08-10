@@ -1448,9 +1448,9 @@ Preferences.flush()保存并刷新文件内容。
 
 开发语言：ArkTS
 
-配套版本：API9版本SDK，版本号：3.2.11.9
+配套版本：API10版本SDK，版本号：4.0.10.18
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/GamePuzzle)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/GamePuzzle)
 
 #### 图片编辑
 
@@ -1596,9 +1596,9 @@ Preferences.flush()保存并刷新文件内容。
 
 开发语言：ArkTS
 
-配套版本：API9版本SDK，版本号：3.2.11.9
+配套版本：API11版本SDK，版本号：4.1.5.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Recorder)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Recorder)
 
 #### 视频播放
 
@@ -2166,7 +2166,7 @@ Preferences.flush()保存并刷新文件内容。
 * 该示例entry部分分为五个模块：
   * 进入模块
     * 使用到应用文上下文，createSubscriber方法创建订阅者，getCurrentTime获取获取自Unix纪元以来经过的时间进行对用户操作行为的监测功能页面开发。
-    * 参考接口：[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.commonEventManager](reference/apis-basic-services-kit/js-apis-commonEventManager.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.commonEvent](reference/apis-basic-services-kit/js-apis-commonEvent.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.systemTime](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
+    * 参考接口：[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.commonEventManager](reference/apis-basic-services-kit/js-apis-commonEventManager.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.commonEvent](reference/apis-basic-services-kit/js-apis-commonEvent.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.systemTime](reference/apis-basic-services-kit/js-apis-system-timer-sys.md)
   
   * 历史模块
     * 使用到应用文上下文，getPreferences方法获取Preferences实例，组件Header进行历史页面开发。
@@ -2693,7 +2693,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了DLP文件管理相关的功能，使用[@ohos.dlpPermission](reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)、[@ohos.file.fileAccess](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)、[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)、[@ohos.app.ability.Want](reference/apis-ability-kit/js-apis-app-ability-want.md)等接口，实现了生成和打开DLP文件、查看原始应用沙箱目录的原始文件打开列表、编辑保存文件、拉取文件夹、查看文件权限和监听DLP文件的功能。
+本示例主要展示了DLP文件管理相关的功能，使用[@ohos.dlpPermission](reference/apis-data-protection-kit/js-apis-dlppermission.md)、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)、[@ohos.file.fileAccess](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)、[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)、[@ohos.app.ability.Want](reference/apis-ability-kit/js-apis-app-ability-want.md)等接口，实现了生成和打开DLP文件、查看原始应用沙箱目录的原始文件打开列表、编辑保存文件、拉取文件夹、查看文件权限和监听DLP文件的功能。
 
 ##### 使用
 
@@ -5726,7 +5726,7 @@ return formInfo.FormState.READY }。
     
   * 日期和时间模块
     * 使用i18n接口中is24HourClock方法判断系统时间是否为24小时制，getTimeZone方法获取日历对象的时区，set24HourClock方法修改系统时间的24小时制设置，setTime方法设置系统时间，setDate方法设置系统日期，getTimezone方法获取系统时区。
-    * 接口参考：[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n-sys.md)，[@ohos.systemTime](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
+    * 接口参考：[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n-sys.md)，[@ohos.systemTime](reference/apis-basic-services-kit/js-apis-system-timer-sys.md)
 
   * 区域格式示例模块
     * 使用i18n接口中is24HourClock方法判断系统时间是否为24小时制，NumberFormat方法创建一个NumberFormat对象，getResourceManager方法获取当前应用的资源管理对。
@@ -5945,7 +5945,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例是一个安全类App，使用[@ohos.dlpPermission](reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md) 接口展示了普通文件加密受限的过程。
+本示例是一个安全类App，使用[@ohos.dlpPermission](reference/apis-data-protection-kit/js-apis-dlppermission.md) 接口展示了普通文件加密受限的过程。
 
 ##### 使用
 

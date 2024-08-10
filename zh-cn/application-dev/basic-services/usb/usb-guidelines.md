@@ -30,7 +30,7 @@ USB类开放能力如下，具体请查阅[API参考文档](../../reference/apis
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | 释放注册过的通信接口。                                                   |
 | getFileDescriptor(pipe: USBDevicePipe): number                 | 获取文件描述符。                                             |
 | getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。                                        |
-| controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt; | 控制传输。                                                   |
+| usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout?: number): Promise&lt;number&gt; | 控制传输。                                                   |
 
 
 ## 开发步骤

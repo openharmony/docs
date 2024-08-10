@@ -44,7 +44,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | 参数名   | 参数类型                                    | 必填 | 参数描述                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
-| layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | 否 | 滚动Grid布局选项。 |
+| layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | 否 | Grid布局选项。 |
 
 ## GridLayoutOptions<sup>10+</sup>
 
@@ -65,7 +65,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
 
 ### columnsTemplate
 
@@ -204,7 +204,7 @@ scrollBar(value: BarState)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
+| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Auto<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10及以上版本的默认值为BarState.Auto。 |
 
 ### scrollBarColor
 
@@ -220,7 +220,7 @@ scrollBarColor(value: Color | number | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。 |
+| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度） |
 
 ### scrollBarWidth
 
@@ -350,7 +350,7 @@ cellLength(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------- |
-| value  | number | 是   | 一行的高度或者一列的宽度。<br/>默认值：第一个元素的大小 |
+| value  | number | 是   | 一行的高度或者一列的宽度。<br/>默认值：第一个元素的大小 <br/>单位：vp|
 
 ### multiSelectable<sup>8+</sup>
 
@@ -399,7 +399,7 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | Grid组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None |
-| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false } |
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scrollable-common.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false } |
 
 ### enableScrollInteraction<sup>10+</sup>
 
@@ -431,7 +431,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
+| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
 
 ### friction<sup>10+</sup>
 
@@ -448,20 +448,6 @@ friction(value: number | Resource)
 | 参数名 | 类型                                                 | 必填 | 说明                                                        |
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
-
-### flingSpeedLimit<sup>11+</sup>
-
-flingSpeedLimit(speedLimit: number)
-
-限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名     | 类型   | 必填 | 说明                            |
-| ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
 ## GridDirection<sup>8+</sup>枚举说明
 
@@ -482,7 +468,7 @@ flingSpeedLimit(speedLimit: number)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
 
 ### onScrollIndex
 
@@ -519,7 +505,7 @@ onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \
 
 | 参数名    | 类型                                  | 必填 | 说明                   |
 | --------- | ------------------------------------- | ---- | ---------------------- |
-| event     | [ItemDragInfo](#itemdraginfo对象说明) | 是   | 拖拽点的信息。         |
+| event     | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。         |
 | itemIndex | number                                | 是   | 被拖拽网格元素索引值。 |
 
 ### onItemDragEnter<sup>8+</sup>
@@ -536,7 +522,7 @@ onItemDragEnter(event: (event: ItemDragInfo) => void)
 
 | 参数名 | 类型                                  | 必填 | 说明           |
 | ------ | ------------------------------------- | ---- | -------------- |
-| event  | [ItemDragInfo](#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+| event  | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
 
 ### onItemDragMove<sup>8+</sup>
 
@@ -552,7 +538,7 @@ onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: numb
 
 | 参数名      | 类型                                  | 必填 | 说明           |
 | ----------- | ------------------------------------- | ---- | -------------- |
-| event       | [ItemDragInfo](#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+| event       | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
 | itemIndex   | number                                | 是   | 拖拽起始位置。 |
 | insertIndex | number                                | 是   | 拖拽插入位置。 |
 
@@ -570,7 +556,7 @@ onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 | 参数名    | 类型                                  | 必填 | 说明                       |
 | --------- | ------------------------------------- | ---- | -------------------------- |
-| event     | [ItemDragInfo](#itemdraginfo对象说明) | 是   | 拖拽点的信息。             |
+| event     | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。             |
 | itemIndex | number                                | 是   | 拖拽离开的网格元素索引值。 |
 
 ### onItemDrop<sup>8+</sup>
@@ -587,7 +573,7 @@ onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, 
 
 | 参数名      | 类型                                  | 必填 | 说明           |
 | ----------- | ------------------------------------- | ---- | -------------- |
-| event       | [ItemDragInfo](#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+| event       | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
 | itemIndex   | number                                | 是   | 拖拽起始位置。 |
 | insertIndex | number                                | 是   | 拖拽插入位置。 |
 | isSuccess   | boolean                               | 是   | 是否成功释放   |
@@ -613,7 +599,7 @@ onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute
 
 | 类型                                                  | 说明                 |
 | ----------------------------------------------------- | -------------------- |
-| [ComputedBarAttribute](#computedbarattribute对象说明) | 滚动条的位置及长度。 |
+| [ComputedBarAttribute](#computedbarattribute10对象说明) | 滚动条的位置及长度。 |
 
 ### onReachStart<sup>10+</sup>
 
@@ -644,8 +630,6 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
 
 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
-
-当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量。当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -691,7 +675,7 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 
 从API version 10开始使用。
 
-从API version 12开始废弃不再使用，建议使用[onDidScroll](#ondidscroll12)替代。
+从API version 12开始废弃不再使用，建议使用[onDidScroll](ts-container-scrollable-common.md#ondidscroll12)替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -704,51 +688,7 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 | scrollOffset | number | 是 | 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
 
-### onWillScroll<sup>12+</sup> 
-onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
-
-网格滑动前触发，回调当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源。其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定网格将要滑动的偏移。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| handler | Optional&lt;[OnWillScrollCallback](ts-container-list.md#onwillscrollcallback12对象说明)&gt; | 是 | 网格滑动前触发的回调。 |
-
-> **说明：** 
-> 
-> 调用ScrollEdge和不带动画的ScrollToIndex时,不触发onWillScroll。
-
-
-### onDidScroll<sup>12+</sup> 
-onDidScroll(handler: OnScrollCallback)
-
-网格滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback12对象说明) | 是 | 网格滑动时触发的回调。 |
-
-## ItemDragInfo对象说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称         | 类型         |   描述         |
-| ---------- | ---------- | ---------- |
-| x | number |  当前拖拽点的x坐标，单位vp。    |
-| y   | number |  当前拖拽点的y坐标，单位vp。    |
-
-## ComputedBarAttribute对象说明
+## ComputedBarAttribute<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

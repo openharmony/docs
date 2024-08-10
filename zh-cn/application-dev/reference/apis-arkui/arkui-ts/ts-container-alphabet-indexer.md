@@ -18,6 +18,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -372,7 +374,7 @@ popupBackgroundBlurStyle(value: BlurStyle)
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>默认值：COMPONENT_REGULAR。 |
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>默认值：COMPONENT_REGULAR。 |
 
 ### popupTitleBackground<sup>12+</sup>   
 
@@ -392,15 +394,19 @@ popupTitleBackground(value: ResourceColor)
 
 ### enableHapticFeedback<sup>12+</sup>
 
-enableHapticFeedback(enable: boolean)
+enableHapticFeedback(value: boolean)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                                  | 必填 | 说明                         |
 |-------------|-----------------------------------------------------|----|----------------------------|
-| enable | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
+| value | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
 
 ## IndexerAlign枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |

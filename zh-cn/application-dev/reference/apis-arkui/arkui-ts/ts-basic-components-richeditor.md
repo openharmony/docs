@@ -249,6 +249,22 @@ enterKeyType(value: EnterKeyType)
 | ------ | ------ | ---- | ----------------------------------- |
 | value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
+### enableKeyboardOnFocus<sup>13+</sup>
+
+enableKeyboardOnFocus(isEnabled: boolean)
+
+设置RichEditor通过点击以外的方式获焦时，是否绑定输入法。
+
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------- | ---- | ----------------------------------------------------------- |
+| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
 
 ## 事件
 
@@ -738,7 +754,7 @@ setSelection的选择项配置。
 
 | 名称                    | 类型                                       | 必填   | 说明                  |
 | --------------------- | ---------------------------------------- | ---- | ------------------- |
-| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是    | 替换前文本Span的具体信息。 |
+| rangeBefore | [TextRange](ts-text-common.md#textrange12) | 是    | 替换前文本Span的具体信息。 |
 | replacedSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后文本Span的具体信息。 |
 | replacedImageSpans | Array<[RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 替换后ImageSpan的具体信息。 |
 | replacedSymbolSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后SymbolSpan的具体信息。 |
@@ -1762,8 +1778,8 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
-| rangeAfter | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
+| rangeBefore | [TextRange](ts-text-common.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
+| rangeAfter | [TextRange](ts-text-common.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
 
 ## StyledStringChangedListener<sup>12+</sup>
 属性字符串的文本内容变化监听器。
@@ -1777,7 +1793,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| range | [TextRange](ts-text-common.md#textrange12) | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
 | replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 
 

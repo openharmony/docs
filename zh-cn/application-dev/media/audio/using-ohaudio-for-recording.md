@@ -204,6 +204,6 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 
 ## 相关实例
 
-针对音频通话开发，有以下相关实例可供参考：
+针对OHAudio开发音频录制，有以下相关实例可供参考：
 
-- [录制和播放（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+- [OHAudio录制和播放](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/OHAudio)

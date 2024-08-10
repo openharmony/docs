@@ -32,10 +32,10 @@ import { fileUri } from '@kit.CoreFileKit';
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| path<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应路径名。 |
-| name<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应文件名。 |
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | --------| -------- | -------- |
+| path<sup>10+</sup> | string | 是 | 获取FileUri对应路径名。 |
+| name<sup>10+</sup> | string | 是 | 获取FileUri对应文件名。 |
 
 ### constructor<sup>10+</sup>
 

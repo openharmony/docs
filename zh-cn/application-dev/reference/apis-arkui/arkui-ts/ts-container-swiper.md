@@ -35,7 +35,11 @@
 
 Swiper(controller?: SwiperController)
 
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
@@ -122,7 +126,7 @@ indicator(value: DotIndicator | DigitIndicator | boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DotIndicator](#dotindicator10)<sup>10+</sup>&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)<sup>10+</sup>&nbsp;\|&nbsp;boolean | 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
+| value  | [DotIndicator](#dotindicator10对象说明)<sup>10+</sup>&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10对象说明)<sup>10+</sup>&nbsp;\|&nbsp;boolean | 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
 
 ### loop
 
@@ -279,7 +283,7 @@ indicatorStyle(value?: IndicatorStyle)
 
 设置导航点样式。
 
-从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10对象说明)代替。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -317,7 +321,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 | 参数名                     | 类型                                                         | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
+| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10对象说明)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
 | swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值；如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：false |
 
 ### effectMode<sup>8+</sup>
@@ -352,7 +356,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 
 | 参数名                     | 类型                                             | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                      | boolean&nbsp;\|&nbsp;[ArrowStyle](#arrowstyle10) | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。设置为false不显示箭头和底板，true显示默认的箭头和底板样式。<br/>默认值：false |
+| value                      | boolean&nbsp;\|&nbsp;[ArrowStyle](#arrowstyle10对象说明) | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。设置为false不显示箭头和底板，true显示默认的箭头和底板样式。<br/>默认值：false |
 | isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
 
 ### nextMargin<sup>10+</sup>
@@ -435,7 +439,7 @@ indicatorInteractive(value: boolean)
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
-从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10对象说明)代替。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -567,7 +571,7 @@ finishAnimation(callback?: () => void)
 | -------- | ---------- | ---- | -------- |
 | callback | () => void | 否    | 动画结束的回调。 |
 
-## Indicator<sup>10+</sup>
+## Indicator<sup>10+</sup>对象说明
 
 设置导航点距离Swiper组件距离。
 
@@ -577,6 +581,8 @@ finishAnimation(callback?: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### 属性
+
 | 参数名    | 参数类型                         | 必填项  | 参数描述                                     |
 | ------ | ---------------------------- | ---- | ---------------------------------------- |
 | left   | [Length](ts-types.md#length) | 是    | 设置导航点距离Swiper组件左边的距离。<br/>默认值：0<br/>单位：vp |
@@ -585,12 +591,34 @@ finishAnimation(callback?: () => void)
 | bottom | [Length](ts-types.md#length) | 是    | 设置导航点距离Swiper组件底部的距离。<br/>默认值：0<br/>单位：vp |
 | start<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离<br/>默认值：0<br/>单位：vp <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | end<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| static dot | 无 | 是 | 返回一个DotIndicator对象。 |
-| static digit | 无 | 是 | 返回一个DigitIndicator对象。 |
 
-## DotIndicator<sup>10+</sup>
+### dot
 
-圆点指示器属性及功能继承自Indicator。
+static dot()
+
+返回一个DotIndicator对象。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### digit
+
+static digit()
+
+返回一个DigitIndicator对象。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## DotIndicator<sup>10+</sup>对象说明
+
+圆点指示器属性及功能继承自[Indicator](#indicator10对象说明)。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -607,7 +635,7 @@ finishAnimation(callback?: () => void)
 | mask                          | boolean                                    | 是     | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
 | color                         | [ResourceColor](ts-types.md#resourcecolor) | 是     | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
 | selectedColor                 | [ResourceColor](ts-types.md#resourcecolor) | 是     | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
-| maxDisplayCount<sup>12+</sup> | number                                     | 是     | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。|
+| maxDisplayCount<sup>12+</sup> | number                                     | 是     | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ### constructor
 
@@ -625,9 +653,9 @@ DotIndicator的构造函数。
 >
 >按压导航点时，导航点会放大至1.33倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
 
-## DigitIndicator<sup>10+</sup>
+## DigitIndicator<sup>10+</sup>对象说明
 
-数字指示器属性及功能继承自Indicator。
+数字指示器属性及功能继承自[Indicator](#indicator10对象说明)。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -654,7 +682,7 @@ DigitIndicator的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## ArrowStyle<sup>10+</sup>
+## ArrowStyle<sup>10+</sup>对象说明
 左右箭头属性。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -670,7 +698,7 @@ DigitIndicator的构造函数。
 | arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>showBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
 | arrowColor       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置箭头颜色。<br/>默认值：'\#182431'                 |
 
-## SwiperAutoFill<sup>10+</sup>
+## SwiperAutoFill<sup>10+</sup>对象说明
 
 自适应属性。
 
@@ -863,9 +891,11 @@ Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。
 
 ### finishTransition<sup>12+</sup>
 
-finishTransition()
+finishTransition(): void
 
 通知Swiper组件，此页面的自定义动画已结束。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

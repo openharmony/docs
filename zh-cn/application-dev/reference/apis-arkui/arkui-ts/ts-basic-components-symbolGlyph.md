@@ -52,6 +52,8 @@ fontSize(value: number | string | Resource)
 
 设置SymbolGlyph组件大小。
 
+组件的图标显示大小由fontSize控制，设置width或height后，其他通用属性仅对组件的占位大小生效。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -94,7 +96,7 @@ renderingStrategy(value: SymbolRenderingStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 是   | SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
+| value  | [SymbolRenderingStrategy](#symbolrenderingstrategy11枚举说明) | 是   | SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
 
 不同渲染策略效果可参考以下示意图。
 
@@ -114,7 +116,7 @@ effectStrategy(value: SymbolEffectStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 是   | SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
+| value  | [SymbolEffectStrategy](#symboleffectstrategy11枚举说明) | 是   | SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
 
 ### symbolEffect<sup>12+</sup>
 
@@ -309,6 +311,36 @@ PulseSymbolEffect的构造函数，脉冲动效。
 | ---------- | ---- | ---------- |
 | CUMULATIVE | 0    | 累加模式。 |
 | ITERATIVE  | 1    | 迭代模式。 |
+
+## SymbolEffectStrategy<sup>11+</sup>枚举说明
+
+动效类型的枚举值。设置动效后启动即生效，无需触发。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| NONE | 无动效（默认值）。 |
+| SCALE | 整体缩放动效。                 |
+|  HIERARCHICAL  | 层级动效。  |
+
+## SymbolRenderingStrategy<sup>11+</sup>枚举说明
+
+渲染模式的枚举值。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| SINGLE  | 单色模式（默认值）。<br/> 默认为黑色，可以设置一个颜色。<br/> 当用户设置多个颜色时，仅生效第一个颜色。 |
+| MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，不透明度设置不生效。|
+|  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个颜色。当用户设置多个颜色时，仅生效第一个颜色。<br/> 不透明度与图层相关，第一层100%、第二层50%、第三层20%。  |
 
 ## 事件
 
