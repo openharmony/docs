@@ -1,15 +1,6 @@
 # 媒体子系统Changelog
 
-## cl.multimedia.1 @ohos.multimedia.audio AudioSpatializationManager内部setSpatializationEnabled: void接口废弃
-## cl.multimedia.2 @ohos.multimedia.audio AudioSpatializationManager内部setSpatializationEnabled: Promise<void>接口废弃
-## cl.multimedia.3 @ohos.multimedia.audio AudioSpatializationManager内部isSpatializationEnabled接口废弃
-## cl.multimedia.4 @ohos.multimedia.audio AudioSpatializationManager内部on(type: 'spatializationEnabledChange')接口废弃
-## cl.multimedia.5 @ohos.multimedia.audio AudioSpatializationManager内部off(type: 'spatializationEnabledChange')接口废弃
-## cl.multimedia.6 @ohos.multimedia.audio AudioSpatializationManager内部setHeadTrackingEnabled: void接口废弃
-## cl.multimedia.7 @ohos.multimedia.audio AudioSpatializationManager内部setHeadTrackingEnabled: Promise<void>接口废弃
-## cl.multimedia.8 @ohos.multimedia.audio AudioSpatializationManager内部isHeadTrackingEnabled接口废弃
-## cl.multimedia.9 @ohos.multimedia.audio AudioSpatializationManager内部on(type: 'headTrackingEnabledChange')接口废弃
-## cl.multimedia.10 @ohos.multimedia.audio AudioSpatializationManager内部off(type: 'headTrackingEnabledChange')接口废弃
+## cl.multimedia.1 @ohos.multimedia.audio AudioSpatializationManager内部空间音频和头动跟踪开关查询、设置和监听接口废弃
 
 **访问级别**
 
