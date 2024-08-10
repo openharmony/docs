@@ -165,6 +165,6 @@ libusb_ndk.z.so
 
   >相关代码路径：entry/src/main/cpp/hello.cpp
 
-* [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo)
+* [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo-standard)
 
   >相关代码路径：entry/src/main/cpp/hello.cpp
