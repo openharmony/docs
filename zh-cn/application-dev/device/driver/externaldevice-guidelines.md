@@ -28,6 +28,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 * 当前开发调试及验证，以RK3568作为开发设备进行说明。关于RK3568的编译、烧录操作等方法，可参考[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)。
 * 开发客户端和驱动时，需要一个外接USB设备进行调试，**当前仅支持USB总线的外接设备**。
+* 需要知道外接USB设备的ProductId和VendorId，用于定义驱动以及IPC通信。
 
 ## 接口说明
 
@@ -60,13 +61,9 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 应用可通过查询绑定扩展外设，从而使用扩展外设的定制驱动能力。
 
-开发示例如下（仅供参考）：
+开发示例如下（仅供参考）：为开发者提供的示例代码为同时开发客户端和服务端的Demo，并实现IPC通信。
 
-  * 为开发者提供的示例代码为同时开发客户端和服务端的Demo，并实现IPC通信。
-  
-  * 服务端的示例代码请参考[扩展外设管理驱动开发指导](driverextensionability.md)。
-
-1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)
+1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5)，创建一个OpenHarmony工程。
 
     **注意：**
 
@@ -197,6 +194,9 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
       .height('100%')
     }
     ```
+
+8. 接下来请参考[扩展外设管理驱动开发指导](driverextensionability.md)，进行对应驱动的示例代码开发。
+
 <!--Del-->
 系统应用可通过查询外设详细信息和驱动详细信息，从而管理外设和驱动。开发示例如下：
 
@@ -239,6 +239,8 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 <!--DelEnd-->
 
 ## 应用签名
+
+**注意：** 先配置权限，再自动签名。
 
 应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
 
