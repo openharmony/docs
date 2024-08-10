@@ -175,7 +175,7 @@
 
 ## 应用签名
 
-应用需要配置签名文件才能安装到我们的设备上，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
+应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
 
 如果使用HID/USB DDK请添加对应权限，具体权限请查看上方开发指导。
 
@@ -187,4 +187,4 @@
 
 * [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
 * [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)
-* [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo)
+* [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo-standard)

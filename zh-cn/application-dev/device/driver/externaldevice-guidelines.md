@@ -234,7 +234,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 ## 应用签名
 
-应用需要配置签名文件才能安装到我们的设备上，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
+应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
 
 自动签名方法以及权限配置方法，请参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
 
