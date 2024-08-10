@@ -232,7 +232,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 3. 模块Module中的调用
 4. switch语句中的调用
 
-#### `-print-namecache` filepath
+#### -print-namecache *filepath*
 
 将名称缓存保存到指定的文件路径。名称缓存包含名称混淆前后的映射。  
 
@@ -240,7 +240,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 每次全量构建工程时都会生成新的namecache.json文件，因此您每次发布新版本时都要注意保存一个该文件的副本。
 
-#### `-apply-namecache` filepath
+#### -apply-namecache *filepath*
 
 复用指定的名称缓存文件。名字将会被混淆成缓存映射对应的名字，如果没有对应，将会被混淆成新的随机段名字。
 该选项应该在增量编译场景中被使用。
@@ -257,9 +257,36 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。
 
+#### -print-kept-names *filepath*
+
+该选项支持输出未混淆名单和全量白名单。其中，*filepath*为可选参数。
+
+当*filepath*参数缺省时，未混淆名单（keptNames.json）和全量白名单（whitelist.json）默认输出到缓存路径`build/default/cache/{...}/release/obfuscation`中。
+
+当*filepath*配置参数时，未混淆名单还会输出到该参数指定的路径中。其中，*filepath*仅支持相对路径，相对路径的起始位置为混淆配置文件的当前目录。*filepath*参数中的文件名请以`.json`为后缀。
+
+全量白名单（whitelist.json）包含本次模块编译流程中收集到的全部白名单，分为以下七种：
+
+(1)'sdk'：表示系统api。
+
+(2)'lang'：表示语言中的关键字。
+
+(3)'conf'：表示用户配置的保留选项中的白名单。
+
+(4)'struct'：表示ArkUI的struct中的属性。
+
+(5)'export'：表示被导出的名称及其属性。
+
+(6)'strProp': 表示字符串属性。
+
+(7)'enum'：表示enum中的成员（该名单仅在编译HAR模块时存在）。
+
+未混淆名单（keptNames.json）中包含未混淆的名称及未混淆的原因。其中，未混淆原因有以下七种：与sdk白名单重名、与语言白名单重名、与用户配置白名单重名、与struct白名单重名、与导出白名单重名、与字符串属性白名单重名（未开启字符串属性混淆的情况下）以及与enum白名单重名（在编译HAR模块的情况下）。
+
+
 ### 保留选项
 
-#### `-keep-property-name` [,identifiers,...]
+#### -keep-property-name *[,identifiers,...]*
 
 指定想保留的属性名，支持使用名称类通配符。例如下面的例子:
 
@@ -334,7 +361,7 @@ const dataToInsert = {
 };
 ```
 
-#### `-keep-global-name` [,identifiers,...]
+#### -keep-global-name *[,identifiers,...]*
 
 指定要保留的顶层作用域的名称，支持使用名称类通配符。例如，
 
@@ -367,7 +394,7 @@ class MyClass {}
 let d = new MyClass();      // MyClass 可以被正确地混淆
 ```
 
-#### `-keep-file-name` [,identifiers,...]
+#### -keep-file-name *[,identifiers,...]*
 
 指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用名称类通配符。例如，
 
@@ -385,7 +412,7 @@ const moduleName = './file2'
 const module2 = import(moduleName)    // 动态引用方式无法识别moduleName是否是路径，应该被保留
 ```
 
-#### `-keep-comments` [,identifiers,...]
+#### -keep-comments *[,identifiers,...]*
 
 保留声明文件中元素上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 
@@ -406,11 +433,11 @@ Human
 export class exportClass {}
 ```
 
-#### `-keep-dts` filepath
+#### -keep-dts *filepath*
 
 保留指定绝对路径的`.d.ts`文件中的名称。这里的文件路径也可以是一个目录，这种情况下目录中所有`.d.ts`文件中的名称都会被保留。
 
-#### `-keep` filepath
+#### -keep *filepath*
 
 保留指定相对路径中的所有名称(例如变量名、类名、属性名等)不被混淆。这个路径可以是文件与文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
 路径仅支持相对路径，`./`与`../`为相对于混淆配置文件所在目录，支持使用路径类通配符。
