@@ -1,7 +1,7 @@
 # 拆包工具
 
 
-拆包工具是OpenHarmony提供的一种调测工具，支持通过命令行方式将HAP、HAR、HSP、App等文件解压成文件夹，并且提供Java接口对HAP、HSP、App等文件进行解析。
+拆包工具是OpenHarmony提供的一种调测工具，支持通过命令行方式将HAP、HSP、App等文件解压成文件夹，并且提供Java接口对HAP、HSP、App等文件进行解析。
 
 
 拆包所用的app_unpacking_tool.jar，可以在本地下载的OpenHarmony的SDK库中找到。
@@ -33,25 +33,6 @@ java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> 
 | --rpcid    | 否         | true或者false | 是否单独将rpcid文件从HAP包中提取到指定目录，如果为true，将仅提取rpcid文件，不对HAP包进行拆包。 |
 | --out-path | 是         | NA            | 拆包目标文件路径。                                           |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
-
-### har包模式拆包指令
-
-开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将har包解压出来。
-
-#### 示例
-
-```
-java -jar app_unpacking_tool.jar --mode har --har-path <path> --out-path <path> [--force true]
-```
-
-#### 参数含义及规范
-
-| 指令       | 是否必选项 | 选项          | 描述                                                        |
-| ---------- | ---------- |-------------| ----------------------------------------------------------- |
-| --mode     | 是         | har         | 拆包类型。                                                  |
-| --har-path | 是         | NA          | har包路径。                                                 |
-| --out-path | 是         | NA          | 拆包目标文件路径。                                          |
-| --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
 ### App包模式拆包指令
 
