@@ -16,6 +16,8 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
 ## DrawableDescriptor
 
+支持传入png，jpg，bmp，svg，gif，webp，astc，sut格式的资源类型。
+
 ### getPixelMap
 
 getPixelMap(): image.PixelMap
