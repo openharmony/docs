@@ -253,7 +253,8 @@ makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
+// 获取context
+let context = getContext(this) as Context;
 call.makeCall(context，"138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
 }).catch((err: BusinessError) => {
