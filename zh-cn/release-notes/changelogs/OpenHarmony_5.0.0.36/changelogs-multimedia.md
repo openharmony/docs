@@ -24,6 +24,7 @@
 |            接口声明            |               废弃说明               |           代替接口            |
 | :----------------------------: | :----------------------------------: | :---------------------------: |
 | audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean, callback: AsyncCallback<void>): void | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
+| audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean, callback: AsyncCallback<void>): void | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
 | audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean): Promise<void> | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
 | audio.AudioSpatializationManager#isSpatializationEnabled(): boolean | 使用带有指定设备描述参数的查询接口替换 | audio.AudioSpatializationManager#isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean |
 | audio.AudioSpatializationManager#on(type: 'spatializationEnabledChange', callback: Callback<boolean>): void | 使用带有指定设备描述参数的开始监听接口替换 | audio.AudioSpatializationManager#on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice>): void |
