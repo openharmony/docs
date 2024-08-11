@@ -463,7 +463,7 @@
         - [多语言支持](ui/js-framework-multiple-languages.md)
       - 构建用户界面<!--ui-js-building-ui-->
         - [组件介绍](ui/ui-js-building-ui-component.md)
-        - 构建布局<!--arkts-build-layout-->
+        - 构建布局<!--ui-js-building-layout-->
           - [布局说明](ui/ui-js-building-ui-layout-intro.md)
           - [添加标题行和文本区域](ui/ui-js-building-ui-layout-text.md)
           - [添加图片区域](ui/ui-js-building-ui-layout-image.md)
@@ -1417,7 +1417,7 @@
     - [restool工具](tools/restool.md)
     - [LLDB工具](tools/lldb-tool.md)
     - [param工具](tools/param-tool.md)
-    - 命令行工具<!--perform-command-line-utilities-->
+    - 命令行工具<!--command-line-utilities-->
       - [toybox工具](tools/toybox.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
