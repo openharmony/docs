@@ -228,6 +228,7 @@ on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callb
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locatingRequiredDataChange')} due to limited device capabilities.          |
 |3301800 | Failed to start WiFi or Bluetooth scanning.                            |
@@ -275,6 +276,7 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locatingRequiredDataChange')} due to limited device capabilities.          |
 
@@ -512,6 +514,7 @@ setMockedLocations(config: LocationMockConfig): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -770,6 +773,7 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.getLocatingRequiredData} due to limited device capabilities.          |
 |3301800  | Failed to start WiFi or Bluetooth scanning.                    |
@@ -816,6 +820,7 @@ on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                        |
@@ -858,6 +863,7 @@ off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.        |
@@ -900,6 +906,7 @@ getLocationIconStatus(): LocationIconStatus;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.getLocationIconStatus} due to limited device capabilities.          |
 |3301000  | The location service is unavailable.                  |
 
