@@ -894,7 +894,11 @@ if(store != undefined) {
 
 lockCloudContainer(): Promise&lt;number&gt;
 
-手动执行端云同步时，首先对云表加锁，使用Promise异步处理。
+手动对云端表加锁，使用Promise异步处理。
+
+> **说明：**
+>
+> 若需要手动对云端加锁，端云不支持自动同步，autoSync(js-apis-data-relationalStore.md)为false。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -904,7 +908,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 | 类型                | 说明                                    |
 | ------------------- | ---------------------------------------|
-| Promise&lt;number&gt; | Promise对象，返回锁的时长，单位：ms。 |
+| Promise&lt;number&gt; | Promise对象，返回对云端表锁的时长，单位：ms。 |
 
 **示例：**
 
@@ -930,7 +934,7 @@ if(store != undefined) {
 
 unlockCloudContainer(): Promise&lt;void&gt;
 
-非自动同步，对云表解锁，使用Promise异步处理。
+手动对云端表解锁，使用Promise异步处理。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
