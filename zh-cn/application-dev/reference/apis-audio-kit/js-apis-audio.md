@@ -4150,6 +4150,8 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 
 该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
 
+推荐开发者使用AVSession提供的[设备切换组件](../../media/avsession/using-switch-call-devices.md)，实现通话设备切换。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
@@ -4181,6 +4183,8 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Pr
 设置通信设备激活状态，使用Promise方式异步返回结果。
 
 该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
+
+推荐开发者使用AVSession提供的[设备切换组件](../../media/avsession/using-switch-call-devices.md)，实现通话设备切换。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 

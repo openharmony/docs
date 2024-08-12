@@ -953,7 +953,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 | ------ | ------ | ------ | ------|
 | index | number | 是 | List显示区域内ListItem或ListItemGroup的索引值。 |
 | itemGroupArea | [ListItemGroupArea](#listitemgrouparea12枚举说明) | 否 | 如果当前可视页面的上边或下边在某个ListItemGroup之中，将会显示它所处的位置。 |
-| itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Star或End的ListItem在Group中的索引。 |
+| itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Start或End的ListItem在Group中的索引。 |
 
 ## ListItemGroupArea<sup>12+</sup>枚举说明
 

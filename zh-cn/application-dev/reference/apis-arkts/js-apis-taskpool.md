@@ -225,10 +225,10 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 **示例：**
 
 ```ts
-@Concurrent
 // import BusinessError
 import { BusinessError } from '@kit.BasicServicesKit'
 
+@Concurrent
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
 }
