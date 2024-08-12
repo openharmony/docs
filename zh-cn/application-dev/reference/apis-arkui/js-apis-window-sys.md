@@ -2918,34 +2918,22 @@ startMoving(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { window } from '@ohos.window';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { ServiceExtensionAbility } from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
 export class ServiceExtAbility extends ServiceExtensionAbility {
     async startMoving() {
-        let windowClass: window | undefined = undefined;
-        // 创建系统窗口
-        let config: window.Configuration = {
-            name: "myWindow",
-            windowType: window.WindowType.TYPE_GLOBAL_SEARCH,
-            ctx: this.context
-        };
-        let promise = await window.createWindow(config);
-        promise.then((data) => {
-            windowClass = data;
-            await windowClass.setUIContent("pages/search");
-            await windowClass.setWindowTouchable(true);
-            try {
-                windowClass.startMoving().then(() => {
-                    console.info('startMoving successful.');
-                }).catch((err: BusinessError) => {
-                    console.error('startMoving catch error:' + err.code + ',message:' + err.message);
-                });
-            } catch (exception) {
-                console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
-            }
-        });
+        await windowClass.setUIContent("pages/search");
+        await windowClass.setWindowTouchable(true);
+        try {
+            windowClass.startMoving().then(() => {
+                console.info('startMoving successful.');
+            }).catch((err: BusinessError) => {
+                console.error('startMoving catch error:' + err.code + ',message:' + err.message);
+            });
+        } catch (exception) {
+            console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
+        }
     }
 }
 ```
@@ -2988,37 +2976,26 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { window } from '@ohos.window';
-import { ServiceExtensionAbility } from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export class ServiceExtAbility extends ServiceExtensionAbility {
     async createWindow(): Promise<void> {
+        windowClass.setUIContent('pages/serch');
+        windowClass.setWindowTouchable(true);
+        let limits: window.WindowLimits = {
+            maxWidth: 500,
+            maxHeight: 1000,
+            minWidth: 500,
+            minHeight: 500
+        };
         try {
-            let windowClass: window | undefined = undefined;
-            let config: window.Configuration = {
-                name: 'myWindow',
-                windowType: window.WindowType.TYPE_GLOBAL_SEARCH,
-                ctx: this.context
-            }
-            let promise = await window.createWindow(config);
-            promise.then((data) => {
-                windowClass = data;
-                await windowClass.setUIContent('pages/serch');
-                await windowClass.setWindowTouchable(true);
-                let limits: window.WindowLimits = {
-                    maxWidth: 500,
-                    maxHeight: 1000,
-                    minWidth: 500,
-                    minHeight: 500
-                };
-                windowClass.enableDrag(true).then(() => {
-                    console.info('enableDrag successfully');
-                }).catch((err: BusinessError) => {
-                    console.error('enableDrag: ' + err.code + ',message:' + err.message);
-                });
-                await windowClass.setWindowLimits(limits);
+            windowClass.enableDrag(true).then(() => {
+                console.info('enableDrag successfully');
+            }).catch((err: BusinessError) => {
+                console.error('enableDrag: ' + err.code + ',message:' + err.message);
             });
+            await windowClass.setWindowLimits(limits);
         } catch (err) {
             console.error('createWindow err: ' + err.code + ',message:' + err.message);
         }
