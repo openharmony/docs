@@ -128,7 +128,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 4. 数据传输。
 
-(1).批量传输。
+  (1).批量传输。
 
    ```ts
    import { usbManager } from '@kit.BasicServicesKit';
@@ -161,28 +161,28 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    });
    ```
 
-(2).控制传输。
+  (2).控制传输。
 
-```ts
-import { usbManager } from '@kit.BasicServicesKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    import { usbManager } from '@kit.BasicServicesKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-/*
- 构造控制传输参数
-*/
-let getdevicedescriptorparam: USBDeviceRequestParams = {
-  bmRequestType: 0x80,    //0x80指一次由设备到主机的标准请求命令
-  bRequest: 0x06,    //0x06指获取描述符
-  wValue:0x01 << 8 | 0,    //该值为2个字节，高字节指描述符类型，此处0x01指设备描述符；低字节指描述符索引，设备描述符不涉及，填0
-  wIndex: 0,    //索引值，可填0
-  wLength: 18,    //描述符的长度，此处18表示设备描述符长度
-  data: new Uint8Array(18)
-};
+    /*
+    构造控制传输参数
+    */
+    let getdevicedescriptorparam: USBDeviceRequestParams = {
+      bmRequestType: 0x80,    //0x80指一次由设备到主机的标准请求命令
+      bRequest: 0x06,    //0x06指获取描述符
+      wValue:0x01 << 8 | 0,    //该值为2个字节，高字节指描述符类型，此处0x01指设备描述符；低字节指描述符索引，设备描述符不涉及，填0
+      wIndex: 0,    //索引值，可填0
+      wLength: 18,    //描述符的长度，此处18表示设备描述符长度，最大支持1024
+      data: new Uint8Array(18)
+    };
 
-usbManager.usbControlTransfer(pipe, getdevicedescriptorparam).then((ret: number) => {
- console.info("usbControlTransfer = ${ret}");
-})
-```
+    usbManager.usbControlTransfer(pipe, getdevicedescriptorparam).then((ret: number) => {
+    console.info("usbControlTransfer = ${ret}");
+    })
+    ```
 
 5. 释放接口，关闭设备。
 
