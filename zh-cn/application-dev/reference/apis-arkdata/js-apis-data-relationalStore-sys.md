@@ -898,7 +898,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 若需要手动对云端加锁，端云不支持自动同步，autoSync(js-apis-data-relationalStore.md)为false。
+> 若需要手动对云端表加锁，端云不支持自动同步，[autoSync](js-apis-data-relationalStore.md#distributedconfig10)为false。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
