@@ -28,20 +28,20 @@ import { AtomicServiceWeb } from '@kit.ArkUI';
 ## AtomicServiceWeb
 
 AtomicServiceWeb({
-src: ResourceStr,
-controller: AtomicServiceWebController,
-navPathStack?: NavPathStack,
-mixedMode?: MixedMode,
-darkMode?: WebDarkMode,
-forceDarkAccess?: boolean,
-onMessage?: Callback\<OnMessageEvent\>,
-onErrorReceive?: Callback\<OnErrorReceiveEvent\>,
-onHttpErrorReceive?: Callback\<OnHttpErrorReceiveEvent\>,
-onPageBegin?: Callback\<OnPageBeginEvent\>,
-onPageEnd?: Callback\<OnPageEndEvent\>,
-onControllerAttached?: Callback\<void\>,
-onLoadIntercept?: Callback\<OnLoadInterceptEvent, boolean\>,
-onProgressChange?: Callback\<OnProgressChangeEvent\>
+  src: ResourceStr,
+  controller: AtomicServiceWebController,
+  navPathStack?: NavPathStack,
+  mixedMode?: MixedMode,
+  darkMode?: WebDarkMode,
+  forceDarkAccess?: boolean,
+  onMessage?: Callback\<OnMessageEvent\>,
+  onErrorReceive?: Callback\<OnErrorReceiveEvent\>,
+  onHttpErrorReceive?: Callback\<OnHttpErrorReceiveEvent\>,
+  onPageBegin?: Callback\<OnPageBeginEvent\>,
+  onPageEnd?: Callback\<OnPageEndEvent\>,
+  onControllerAttached?: Callback\<void\>,
+  onLoadIntercept?: Callback\<OnLoadInterceptEvent, boolean\>,
+  onProgressChange?: Callback\<OnProgressChangeEvent\>
 })
 
 **装饰器类型：**@Component
@@ -191,7 +191,7 @@ refresh(): void
 
 forward(): void
 
-按照历史栈，前进一个页面。一般结合accessForward一起使用。
+按照历史栈，前进一个页面。一般结合[accessForward](#accessforward)一起使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -209,7 +209,7 @@ forward(): void
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](#accesbackward)一起使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -261,7 +261,7 @@ accessBackward(): boolean
 
 | 类型      | 说明                    |
 |---------|-----------------------|
-| boolean | 可以后退返回true,否则返回false。 |
+| boolean | 可以后退返回true，否则返回false。 |
 
 **错误码：**
 
@@ -315,7 +315,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 | 参数名     | 类型                              | 必填 | 说明             |
 |---------|---------------------------------|----|:---------------|
-| url     | string \| Resource              | 是  | 需要加载的 URL。     |
+| url     | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)               | 是  | 需要加载的 URL。     |
 | headers | Array\<[WebHeader](#webheader)> | 否  | URL的附加HTTP请求头。 |
 
 **错误码：**
