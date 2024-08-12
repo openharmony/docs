@@ -1,6 +1,6 @@
-# 全屏启动元服务组件（FullScreenLaunchComponent）
+# 全屏启动原子化服务组件（FullScreenLaunchComponent）
 
-FullScreenLaunchComponent允许开发者以全屏方式拉起元服务，使得应用能够提供更原生和友好的用户体验。
+FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，使得应用能够提供更原生和友好的用户体验。
 
 ![embeddable-ui-ability](figures/embeddable-ui-ability.png)
 
@@ -8,7 +8,7 @@ FullScreenLaunchComponent允许开发者以全屏方式拉起元服务，使得�
 
 - [FullScreenLaunchComponent](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)组件
 
-  ​在使用方应用定义使用，在是ArkUI提供的提供的组件，可以使用ArkTS的声明式范式在应用中使用。FullScreenLaunchComponent是基于[UIExtension](./arkts-ui-extension-components.md)封装的高级组件，区别于系统接口[UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)，FullScreenLaunchComponent开放第三方应用使用。
+  FullScreenLaunchComponent 是由 ArkUI 提供的高级组件，允许在使用方应用中通过 ArkTS 的声明式范式进行定义和使用。该组件基于 [UIExtension](./arkts-ui-extension-components.md) 封装，但不同于系统接口 [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)，FullScreenLaunchComponent 向第三方应用开放使用权限，当被拉起方授权使用方应用嵌入式运行原子化服务时，使用方应用可全屏嵌入式运行该服务；若未授权，则使用方应用将以跳出式方式拉起原子化服务。
 
 - [EmbeddableUIAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)组件
 
@@ -28,36 +28,19 @@ FullScreenLaunchComponent提供的一种跨进程的应用共享能力，在使�
 
 ### 组件基本能力
 
-- 提供嵌入式的扩展能力，能够让使用方全屏嵌入式运行元服务。
+提供嵌入式的扩展能力，能够让使用方全屏嵌入式运行原子化服务。当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 
 ### EmbeddableUIAbility进程应用可用能力范围
 
 FullScreenLaunchComponent为了实现跨应用的能力共享，存在较开放的灵活性，通过跨进程的方式拉起提供方应用提供的能力供当前使用方（宿主方）使用。在运行机制上，是两个进程之间的业务交互行为，和一般组件和宿主方存在根本上的差异。
 
-以下给出针对FullScreenLaunchComponent，在EmbeddableUIAbility内提供方应用能够使用的属性、事件、组件、Node-Api接口等方面的范围，便于使用方应用与提供方应用在使用FullScreenLaunchComponent组件时进行参照。
+以下给出针对FullScreenLaunchComponent，在EmbeddableUIAbility内提供方应用能够使用的属性、事件、组件、Node-API接口等方面的范围，便于使用方应用与提供方应用在使用FullScreenLaunchComponent组件时进行参照。
 
-由于组件相关的能力更新较快，当前列举的不支持以及部分支持的能力，仅代表当前的能力范围。新增能力是否支持可通过各项能力支持原则说明进行判断，不支持的能力需要通过提出issue给相关不支持组件以及FullScreenLaunchComponent，由组件和FullScreenLaunchComponent分析可行性后支持。
+以下为当前组件不支持及部分支持的能力
 
 **通用属性**
 
-当前组件可以通过属性影响其他组件或者使用方应用信息（应用上下文UIContext、应用窗口信息等）的能力，由于跨进程的机制问题，则FullScreenLaunchComponent组件默认不支持。
-
-组件支持的属性存在跨组件场景的情况下，不支持如下能力：
-
-- 提供方组件的属性对其他组件、宿主应用组件的属性存在控制、赋值、合并整合等场景，如[组件标识](../reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)。
-- 提供方组件的属性控制提供方组件显示效果、动效等超出FullScreenLaunchComponent组件边界的场景，如[全屏模态转场](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)。
-
-详情如下：
-
-| 属性                                                         | 能力规格 | 功能说明                                                     | 规格补充说明                                                 |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [组件标识](../reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md) | 不支持   | id为组件的唯一标识，在整个应用内唯一。本模块提供组件标识相关接口，可以获取指定id组件的属性，也提供向指定id组件发送事件的功能。 | FullScreenLaunchComponent自身可以使用组件标识，提供方也可以正常设置组件标识。但针对宿主方和提供方并未实现统一的标识管理，宿主方无法通过组件标识查询提供方内组件的信息，所以提供方内部设置组件标识无效。 |
-| [背景模糊设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md) | 不支持   | 设置组件的模糊、阴影、球面效果以及设置图片的图像效果         | —                                                            |
-| [分布式迁移标识](../reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md) | 不支持   | 组件的分布式迁移标识，指明了该组件在分布式迁移场景下可以将特定状态恢复到对端设备。 | —                                                            |
-| [拖拽控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md) | 不支持   | 设置组件是否可以响应拖拽事件。                               | —                                                            |
-| [全屏模态转场](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | 部分支持 | 通过bindContentCover属性为组件绑定全屏模态页面，在组件插入和删除时可通过设置转场参数ModalTransition显示过渡动效。 | 在FullScreenLaunchComponent内的提供方产生的页面无法超出FullScreenLaunchComponent组件的范围，不能像其他组件一样直接达到效果，需要应用开发者设置FullScreenLaunchComponent的全屏模式。 |
-| [半模态专场](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | 部分支持 | 通过bindSheet属性为组件绑定半模态页面，在组件插入时可通过设置自定义或默认的内置高度确定半模态大小。 | 在FullScreenLaunchComponent内的提供方产生的页面无法超出FullScreenLaunchComponent组件的范围，不能像其他组件一样直接达到效果，需要应用开发者设置FullScreenLaunchComponent的全屏模式。 |
-|                                                              |          |                                                              |                                                              |
+不支持通用属性
 
 **组件**
 
@@ -74,7 +57,7 @@ FullScreenLaunchComponent为了实现跨应用的能力共享，存在较开放�
 | [PluginComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | 不支持   | 用于给插件组件的使用者请求组件和数据，使用者发送组件模板和数据。支撑SystemUI实现插件化方式集成其他业务提供的UI。 | 1、和FullScreenLaunchComponent能力类似，容易出现嵌套，增加复杂度；<br/>2、由于FullScreenLaunchComponent组件的提供方已经在另一个进程中，默认能力下，无法提供访问宿主组件访问的能力。 |
 | [FormComponent（系统接口）](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | 不支持   | 提供卡片组件，实现卡片的显示功能。                           | 卡片组件提供的是跨进程的组件调用能力，FullScreenLaunchComponent中嵌套使用会导致进程关系复杂，导致功能性能方面的问题。 |
 | [IsolatedComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md) | 不支持   | IsolatedComponent用于支持在本页面内嵌入显示独立Abc（.abc文件）提供的UI，展示的内容在受限worker线程中运行。 | 由于云卡能力也是一种跨应用调度的能力，FullScreenLaunchComponent中暂不支持拉起云卡。 |
-| [FullScreenLaunchComponent (全屏启动元服务组件)](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md) | 不支持   | 全屏启动元服务组件，当被拉起方授权使用方可以嵌入式运行元服务时，使用方全屏嵌入式运行元服务；未授权时，使用方跳出式拉起元服务。 | 由于是一种跨应用调度的能力，FullScreenLaunchComponent中暂不支持嵌套拉起。  |
+| [FullScreenLaunchComponent (全屏启动原子化服务组件)](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md) | 不支持   | 全屏启动原子化服务组件，当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。 | 由于是一种跨应用调度的能力，FullScreenLaunchComponent中暂不支持嵌套拉起。  |
 | [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md) | 不支持   | EmbeddedComponent用于支持在当前页面嵌入本应用内其他[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)提供的UI。EmbeddedUIExtensionAbility在独立进程中运行，完成页面布局和渲染。 | 由于是一种跨应用调度的能力，FullScreenLaunchComponent中暂不支持嵌套拉起。  |
 | [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md) | 不支持   | 远程控制窗口组件，可以通过此组件控制应用窗口，提供启动退出过程中控件动画和应用窗口联动动画能力。 | FullScreenLaunchComponent中的组件已经在另一个进程中，无法影响控制宿主应用的窗口。 |
 | [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | 不支持   | 富文本组件，解析并显示HTML格式文本。                         | —                                                            |
@@ -120,8 +103,8 @@ FullScreenLaunchComponent组件（使用方）可以访问调用集成了Embedda
 
 使用模式
 
-- 当被拉起方授权使用方可以嵌入式运行元服务时，使用方全屏嵌入式运行元服务
-- 未授权时，使用方跳出式拉起元服务。
+- 当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务
+- 未授权时，使用方跳出式拉起原子化服务。
 
 嵌入式模式下为了避免被使用方的子窗遮挡，使用方的交互行为将受限，使用方无法再创建任何子窗覆盖到提供方的窗口上。
 

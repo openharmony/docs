@@ -29,6 +29,7 @@
       - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
       - [自定义渲染 (XComponent)](arkts-common-components-xcomponent.md)
       - [Native XComponent](napi-xcomponent-guidelines.md)
+      - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
