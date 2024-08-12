@@ -191,3 +191,59 @@ struct Index {
   }
 }
 ```
+## cl.arkui.4  状态管理V2版本组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam,必须声明类型 
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+ V2组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam装饰器不需要写类型就可以编译成功，而装饰器是有类型限制的，所以这些装饰器需要加上类型校验。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：V2组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam修饰的变量没有写类型不会被校验。
+
+变更后：V2组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam修饰的变量没有写类型会被校验。
+
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.38 版本开始。
+
+**变更的接口/组件**
+
+无。
+
+**适配指导**
+
+在V2组件内，每一个被@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam修饰的变量加上类型声明。
+
+```ts
+
+@Builder
+function testBuilder() {
+  
+}
+
+@Entry
+@ComponentV2
+struct V2ComponentMember {
+  @Local localValue: string = 'localValue';
+  @BuilderParam builderParamValue: () => void = testBuilder;
+  @Param paramValue: string = 'paramValue';
+  @Event eventValue: string = 'eventValue';
+  @Provider() providerValue: string = 'providerValue';
+  @Consumer() consumerValue: string = 'consumerValue';
+  build() {
+
+  }
+}
+```
