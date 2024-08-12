@@ -128,7 +128,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 4. 数据传输。当前仅支持批量传输和控制传输。
 
-    - 批量传输
+  - 批量传输
 
     ```ts
     import { usbManager } from '@kit.BasicServicesKit';
@@ -161,7 +161,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
     });
     ```
 
-    - 控制传输
+  - 控制传输
 
     ```ts
     import { usbManager } from '@kit.BasicServicesKit';
