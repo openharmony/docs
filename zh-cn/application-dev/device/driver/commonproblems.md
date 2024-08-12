@@ -27,3 +27,19 @@
 | 应用开发接口（ArkTS接口）| API10 | 4.0及以上 |
 | USB DDK接口 | API10 | 4.0及以上 |
 | HID DDK接口 | API11 | 4.1及以上 |
+
+### 解决措施
+
+根据[应用调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-app-debugging-V5)中的解决方法，在build-profile.json5中的buildOption/externalNativeOptions内手动配置abiFilters的值
+
+  ```
+  "buildOption": {
+    "externalNativeOptions": {
+      "abiFilters": [
+        "arm64-v8a",
+        "armeabi-v7a", // RK3568必须配置
+        "x86_64",
+       ]
+    },
+  }
+  ```
