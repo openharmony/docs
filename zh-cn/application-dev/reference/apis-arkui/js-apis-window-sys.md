@@ -2890,7 +2890,7 @@ export default class EntryAbility extends UIAbility {
 
 startMoving(): Promise&lt;void&gt;
 
-开始移动窗口。仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。并且仅在鼠标点击事件回调中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。使用Promise异步回调。
+开始移动窗口。仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。并且仅在onTouch事件回调方法中的Down事件类型中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
