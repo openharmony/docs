@@ -2650,21 +2650,21 @@
             - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - C API
           - 模块
-            - [CryptoAsymKeyApi](_crypto_asym_key_api.md)
-            - [CryptoCommonApi](_crypto_common_api.md)
-            - [CryptoDigestApi](_crypto_digest_api.md)
-            - [CryptoSignatureApi](_crypto_signature_api.md)
-            - [CryptoSymCipherApi](_crypto_sym_cipher_api.md)
-            - [CryptoSymKeyApi](_crypto_sym_key_api.md)
+            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)
+            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)
+            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)
+            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)
+            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)
+            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
           - 头文件
-            - [crypto_asym_key.h](crypto__asym__key_8h.md)
-            - [crypto_common.h](crypto__common_8h.md)
-            - [crypto_digest.h](crypto__digest_8h.md)
-            - [crypto_signature.h](crypto__signature_8h.md)
-            - [crypto_sym_cipher.h](crypto__sym__cipher_8h.md)
-            - [crypto_sym_key.h](crypto__sym__key_8h.md)
+            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)
+            - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)
+            - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)
+            - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)
+            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)
+            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
           - 结构体
-            - [Crypto_DataBlob](_crypto___data_blob.md)  
+            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)  
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit（数据保护服务）<!--data-protection-api-->
