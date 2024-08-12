@@ -185,7 +185,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
           Text(this.message) // 显示"Hello"
             .fontSize(60)
             .fontWeight(FontWeight.Bold)
-            .onClick(() => { // 点击"Hello"，与远程对象通信，显示"Hello world"
+            .onClick(() => { // 点击"Hello"，与远程对象通信，显示"Hello World"
               this.communicateWithRemote();
             })
         }

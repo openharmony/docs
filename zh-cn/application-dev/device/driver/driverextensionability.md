@@ -49,8 +49,8 @@
           // 应用使用多次调用data.writeString()写入多个数据时，驱动可以通过多次调用data.readString()方法接收对应的数据
           let optFir: string = data.readString();
           // 驱动将数据的处理结果返回给应用
-          // 示例中为接收了"Hello"，并将"Hello world"返回给应用
-          reply.writeString(optFir + ` world`);
+          // 示例中为接收了"Hello"，并将"Hello World"返回给应用
+          reply.writeString(optFir + ` World`);
         }
         return true;
       }
@@ -164,6 +164,8 @@
     }
     ```
 
+  7. 完成客户端和驱动示例代码开发后，请参考[使用本地真机运行应用/服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-run-device-0000001670539800-V5)，将Hap导入设备中，并点击hap中的Hello，查看是否会转变为Hello world，即实现ipc通信功能。
+
 ## 扩展设备能力
 
 扩展外设管理提供了HID DDK和USB DDK两种能力，用于驱动开发；
@@ -179,7 +181,9 @@
 
 如果使用HID/USB DDK请添加对应权限，具体权限请查看上方开发指导。
 
-自动签名方法以及权限配置方法，请参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
+自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5#section18815157237)。
+
+权限配置方法： 请参考[使用ACL的签名配置指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5#section157591551175916)。
 
 ## 开发实例
 
