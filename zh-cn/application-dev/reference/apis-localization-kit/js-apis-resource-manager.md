@@ -5149,25 +5149,6 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
   }
   ```
 
-### release<sup>7+</sup>
-
-release()
-
-用户释放创建的resourceManager, 此接口暂不支持。
-
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**示例：** 
-  ```ts
-  try {
-    this.context.resourceManager.release();
-  } catch (error) {
-    console.error("release error is " + error);
-  }
-  ```
-
 ### addResource<sup>10+</sup>
 
 addResource(path: string) : void
@@ -5601,6 +5582,27 @@ updateOverrideConfiguration(configuration: Configuration) : void
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`updateOverrideConfiguration failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### release<sup>(deprecated)</sup>
+
+release()
+
+用户释放创建的resourceManager, 此接口暂不支持。
+
+从API version 7开始支持，API version 12开始不再维护。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.release();
+  } catch (error) {
+    console.error("release error is " + error);
   }
   ```
 
