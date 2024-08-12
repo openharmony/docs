@@ -2888,7 +2888,7 @@ export default class EntryAbility extends UIAbility {
 
 ### startMoving<sup>13+</sup>
 
-startMoving(): Promise<void>
+startMoving(): Promise&lt;void&gt;
 
 开始移动窗口。仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。成功调用此接口后，窗口将跟随鼠标移动。使用Promise异步回调。
 
@@ -2918,9 +2918,9 @@ startMoving(): Promise<void>
 **示例：**
 
 ```ts
-import window from '@ohos.window';
+import { window } from '@ohos.window';
 import { BusinessError } from '@kit.BasicServicesKit';
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import { ServiceExtensionAbility } from '@ohos.app.ability.ServiceExtensionAbility';
 
 export class myWindowMgr extends ServiceExtensionAbility {
     async startMoving() {
@@ -2935,9 +2935,9 @@ export class myWindowMgr extends ServiceExtensionAbility {
         await win.setWindowTouchable(true);
         try {
             win.startMoving().then(() => {
-                console.log('startMoving successful.');
+                console.info('startMoving successful.');
             }).catch((err: BusinessError) => {
-                console.log('startMoving catch error:' + err.code + ',message:' + err.message);
+                console.error('startMoving catch error:' + err.code + ',message:' + err.message);
             });
         } catch (exception) {
             console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -2948,7 +2948,7 @@ export class myWindowMgr extends ServiceExtensionAbility {
 
 ### enableDrag<sup>13+</sup>
 
-enableDrag(enable: boolean): Promise<void>
+enableDrag(enable: boolean): Promise&lt;void&gt;
 
 使能/禁止拖拽窗口。仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。使能后，将允许通过鼠标对窗口进行拉伸操作。使用Promise异步回调。
 
@@ -2984,8 +2984,8 @@ enableDrag(enable: boolean): Promise<void>
 **示例：**
 
 ```ts
-import window from '@ohos.window';
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import { window } from '@ohos.window';
+import { ServiceExtensionAbility } from '@ohos.app.ability.ServiceExtensionAbility';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export class myWindowMgr extends ServiceExtensionAbility {
@@ -3007,13 +3007,13 @@ export class myWindowMgr extends ServiceExtensionAbility {
                 minHeight: 500
             };
             win.enableDrag(true).then(() => {
-                console.log('enableDrag successfully');
+                console.info('enableDrag successfully');
             }).catch((err: BusinessError) => {
                 console.error('enableDrag: ' + err.code + ',message:' + err.message);
             });
             await win.setWindowLimits(limits);
         } catch (err) {
-            console.log('createWindow err: ' + err.code + ',message:' + err.message);
+            console.error('createWindow err: ' + err.code + ',message:' + err.message);
         }
     }
 }
