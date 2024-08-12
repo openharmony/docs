@@ -17,9 +17,11 @@ FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，�
 
 ## 实现原理
 
-FullScreenLaunchComponent提供的一种跨进程的应用共享能力，在使用方应用进程中使用FullScreenLaunchComponent以组件方式嵌入集成到应用。当应用启动时，通过AMS（Application Management Service）调度拉起提供方应用进程。它主要负责应用程序的启动、退出、切换等管理任务。
+FullScreenLaunchComponent提供的一种全屏启动原子化服务的能力。需要拉起原子化服务时，拉起方向AMS查询拉起方是否授权使用方可以嵌入式运行原子化服务。已授权时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 
-实现后能够在使用方应用页面中以组件方式展示提供方应用的页面：
+全屏嵌入式运行原子化服务是指，通过UIExtensionComponent的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容。能够实现组件式的交互体验。
+
+跳出式运行原子化服务是指，非组件化的方式拉起EmbeddableUIAbility，交互体验接近独立窗口。
 
 ![fullscreenlaunch-component](figures/fullscreenlaunch-component.png)
 
@@ -28,7 +30,9 @@ FullScreenLaunchComponent提供的一种跨进程的应用共享能力，在使�
 
 ### 组件基本能力
 
-提供嵌入式的扩展能力，能够让使用方全屏嵌入式运行原子化服务。当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
+- 当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务EmbeddableUIAbility
+- 当被拉起方未授权使用方可以嵌入式运行原子化服务时，使用方跳出式拉起原子化服务EmbeddableUIAbility
+- 提供图标占位自定义组件功能，控件展示图标占位，点击图标后拉起原子化服务
 
 ### EmbeddableUIAbility进程应用可用能力范围
 
@@ -111,12 +115,11 @@ FullScreenLaunchComponent组件（使用方）可以访问调用集成了Embedda
 
 **嵌套约束**
 
-由于FullScreenLaunchComponent的能力特点，可以实现 A应用(UIAbility)->B应用(EmbeddableUIAbility)->C应用(EmbeddableUIAbility)这种嵌套能力依赖。但是，由于跨进程的关系，过多的嵌套层次会导致应用交互性能体验急剧下降。所以，做出如下约束：
-
-- 嵌套层次不超过3层：过多的嵌套层次会导致多次跨进程的交互，导致交互响应性能下降，最终的交互体验差。
-- 不允许循环嵌套：循环嵌套是指 A应用(UIAbility)->B应用(EmbeddableUIAbility)->C应用(EmbeddableUIAbility)->B应用(EmbeddableUIAbility)，由于应用的处理是存在同步场景的，在同步场景下，会导致B应用无法响应，最终死锁。
+FullScreenLaunchComponent暂不支持嵌套，比如A应用(UIAbility)->B应用(EmbeddableUIAbility)->C应用(EmbeddableUIAbility)这种嵌套能力依赖。
 
 **事件处理机制约束**
+
+FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换后传递给提供方EmbeddableUIAbility处理。
 
 对事件传递处理方式进行区分，针对不同事件使用场景确定同步或异步方式：
 
@@ -125,19 +128,18 @@ FullScreenLaunchComponent组件（使用方）可以访问调用集成了Embedda
 
 应用开发者使用FullScreenLaunchComponent能力时，需要遵守如下设计场景约束：
 
-- 同步处理的事件场景：可能由于嵌套层次较多存在的性能问题或循环嵌套应用导致的功能问题，无法从FullScreenLaunchComponent组件机制上解决，需要应用开发者根据自身业务场景分析解决，如减少嵌套层次，或使用非FullScreenLaunchComponent组件方案代替。
-- 异步处理的事件场景：FullScreenLaunchComponent组件以及宿主应用侧组件可以同时收到事件。需要应用开发者结合应用场景进行处理，如宿主应用侧组件不做事件处理。如果无法避免，建议替换FullScreenLaunchComponent组件来保障交互体验。
+异步处理的事件场景：FullScreenLaunchComponent组件以及宿主应用侧组件可以同时收到事件。需要应用开发者结合应用场景进行处理，如宿主应用侧组件不做事件处理。如果无法避免，建议替换FullScreenLaunchComponent组件来保障交互体验。
 
 | 场景     | 分类                       | 是否支持 | 同步/异步（宿主与提供方） | 备注                                                         |
 | -------- | -------------------------- | -------- | ------------------------- | ------------------------------------------------------------ |
 | 通用事件 | 点击事件（Click）          | 支持     | 异步                      | —                                                            |
 | 通用事件 | 触摸事件（Touch）          | 支持     | 异步                      | —                                                            |
 | 通用事件 | 拖拽事件（onDragXXX）      | 支持     | 异步                      | —                                                            |
-| 通用事件 | 按键事件（KeyEvent）       | 支持     | 同步                      | 循环嵌套或者嵌套过深会导致应用无法响应，提供默认兜底机制：支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
-| 通用事件 | 焦点事件（onFocus/onBlur） | 支持     | 同步                      | 循环嵌套或者嵌套过深会导致应用无法响应，提供默认兜底机制：支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
+| 通用事件 | 按键事件（KeyEvent）       | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
+| 通用事件 | 焦点事件（onFocus/onBlur） | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
 | 通用事件 | 鼠标事件（onHove/onMouse） | 支持     | 异步                      | —                                                            |
 | 手势处理 | —                          | 支持     | 异步                      | —                                                            |
-| 无障碍   | —                          | 支持     | 同步                      | 循环嵌套或者嵌套过深会导致应用无法响应，提供默认兜底机制：支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
+| 无障碍   | —                          | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
 
 **页面渲染效果体验约束**
 
@@ -159,3 +161,7 @@ FullScreenLaunchComponent组件（使用方）可以访问调用集成了Embedda
 
 如果消减后效果不能完全满足应用交互诉求，由于跨进程的能力约束，建议应用优先考虑其他方案。
 
+**其他约束**
+
+- 不支持在运行过程中修改切换后端拉起的原子化服务EmbeddableUIAbility
+- 不支持预览，不在开发IDE中提供预览能力
