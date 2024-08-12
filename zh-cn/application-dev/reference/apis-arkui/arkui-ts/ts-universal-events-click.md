@@ -26,7 +26,7 @@ onClick(event: Callback<ClickEvent>, distanceThreshold: number): T
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
-| distanceThreshold  | number | 是   | 点击事件移动阈值。当设置的值小于0时，会被转化为默认值。<br/>默认值：正无穷大<br/>**说明：**<br/>当手指的移动距离超出所设置的点击手势移动阈值时，点击手势识别失败。 |
+| distanceThreshold  | number | 是   | 点击事件移动阈值。当设置的值小于0时，会被转化为默认值。<br/>默认值：2^31-1<br/>**说明：**<br/>当手指的移动距离超出所设置的点击手势移动阈值时，点击手势识别失败。 |
 
 ## onClick
 
