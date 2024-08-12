@@ -8,7 +8,7 @@
 
 ## onClick<sup>12+</sup>
 
-onClick(event: Callback<ClickEvent>, distanceThreshold: number): T
+onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 点击动作触发该回调。
 

@@ -4186,7 +4186,7 @@ avTranscoder.release().then(() => {
 
 ### on('progressUpdate')<sup>12+</sup>
 
-on(type: 'progressUpdate', callback: Callback<number>): void
+on(type: 'progressUpdate', callback: Callback\<number>): void
 
 注册转码进度更新事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
 
@@ -4209,7 +4209,7 @@ avTranscoder.on('progressUpdate', (progress: number) => {
 
 ### off('progressUpdate')<sup>12+</sup>
 
-off(type:'progressUpdate', callback?: Callback<number>): void
+off(type:'progressUpdate', callback?: Callback\<number>): void
 
 取消注册转码进度更新事件。
 
@@ -4293,7 +4293,7 @@ avTranscoder.off('error');
 
 ### on('complete')<sup>12+</sup>
 
-on(type: 'complete', callback: Callback<void>): void
+on(type: 'complete', callback: Callback\<void>): void
 
 注册转码完成事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
 
@@ -4318,7 +4318,7 @@ avTranscoder.on('complete', () => {
 
 ### off('complete')<sup>12+</sup>
 
-off(type:'complete', callback?: Callback<void>): void
+off(type:'complete', callback?: Callback\<void>): void
 
 取消注册转码完成事件。
 
