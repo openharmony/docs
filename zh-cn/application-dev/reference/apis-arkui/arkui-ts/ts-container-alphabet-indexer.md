@@ -132,6 +132,7 @@ struct AlphabetIndexerSample {
         .height('100%')
 
         AlphabetIndexer({ arrayValue: this.value, selected: 0 })
+          .autoCollapse(false)
           .selectedColor(0xFFFFFF) // 选中项文本颜色
           .popupColor(0xFFFAF0) // 弹出框文本颜色
           .selectedBackgroundColor(0xCCCCCC) // 选中项背景颜色

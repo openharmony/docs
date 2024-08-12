@@ -130,8 +130,10 @@ struct RefreshExample {
       }
       .alignItems(VerticalAlign.Center)
     }
-    .width("100%").align(Alignment.Center)
+    .align(Alignment.Center)
+    .clip(true)
     .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+    .width("100%")
   }
 
   build() {
