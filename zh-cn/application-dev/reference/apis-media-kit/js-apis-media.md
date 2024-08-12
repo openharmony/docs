@@ -3858,10 +3858,11 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | 默认的音频输入源类型。 |
 | AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| AUDIO_SOURCE_TYPE_VOICE_RECOGNITION | 2    | 表示语音识别场景的音频源。 |
-| AUDIO_SOURCE_TYPE_VOICE_COMMUNICATION     | 7    | 表示语音通话场景的音频源。 |
-| AUDIO_SOURCE_TYPE_VOICE_MESSAGE | 10    | 表示短语音消息的音频源。 |
-| AUDIO_SOURCE_TYPE_CAMCORDER     | 13    | 表示相机录像的音频源。 |
+| AUDIO_SOURCE_TYPE_VOICE_RECOGNITION<sup>12+</sup> | 2    | 表示语音识别场景的音频源。 |
+| AUDIO_SOURCE_TYPE_VOICE_COMMUNICATION<sup>12+</sup>     | 7    | 表示语音通话场景的音频源。 |
+| AUDIO_SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup> | 10    | 表示短语音消息的音频源。 |
+| AUDIO_SOURCE_TYPE_CAMCORDER<sup>12+</sup>     | 13    | 表示相机录像的音频源。 |
+
 ## VideoSourceType<sup>9+</sup>
 
 表示视频录制中视频源类型的枚举。
