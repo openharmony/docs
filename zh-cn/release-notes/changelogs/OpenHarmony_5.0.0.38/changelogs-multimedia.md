@@ -1,3 +1,5 @@
+# 媒体子系统Changelog
+
 ## cl.multimedia.1 AVMetadata.hdrType 只读属性补齐
 
 **访问级别**
@@ -10,7 +12,7 @@
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 若对AVMetadata.hdrType进行过赋值的代码，会在编译时报错。之前的版本虽然赋值成功，但无法生效。建议删除赋值的代码。
 
 **起始 API Level**
