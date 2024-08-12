@@ -33,7 +33,7 @@ scheme://host[:port]/path/
 
 下面以授权登录场景举例说明：
 
-    ```
+```json
     "uris": [
         {
             "scheme": "xxx",
@@ -42,7 +42,7 @@ scheme://host[:port]/path/
             "linkFeature": "Login" 
         }
     ]
-    ```
+```
 
 标准化应用功能**linkFeature**的枚举定义。
 
