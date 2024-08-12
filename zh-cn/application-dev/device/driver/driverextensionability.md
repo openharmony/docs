@@ -38,7 +38,7 @@
     ```
 
 4. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
-   
+
     ```ts
     class StubTest extends rpc.RemoteObject {
       // 接收应用传递过来的消息处理，以及将处理的结果返回给客户端
@@ -58,7 +58,7 @@
     ```
 
 5. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
-   
+
     ```ts
     export default class DriverExtAbility extends DriverExtensionAbility {
       onInit(want: Want) {
@@ -86,7 +86,7 @@
     ```
 
 6. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册DriverExtensionAbility，type标签需要设置为“driver”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
-   
+
     ```json
     {
       "module": {
@@ -164,15 +164,10 @@
     }
     ```
 
-<<<<<<< HEAD
-  7. 完成客户端和驱动示例代码开发后，请参考[使用本地真机运行应用/服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-run-device-0000001670539800-V5)，将Hap导入设备中，并点击hap中的Hello，查看是否会转变为Hello world，即实现ipc通信功能。
+7. 完成客户端和驱动示例代码开发后，请参考[使用本地真机运行应用/服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-run-device-0000001670539800-V5)，将Hap导入设备中，并点击hap中的Hello，查看是否会转变为Hello world，即实现ipc通信功能。
 
 ## 扩展设备能力
 
-=======
-## 扩展设备能力
-
->>>>>>> 29d9ef42f1 (修改SDK版本配置章节)
 扩展外设管理提供了HID DDK和USB DDK两种能力，用于驱动开发；
 
 具体使用方法，请参考：
@@ -188,11 +183,8 @@
 
 自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5#section18815157237)。
 
-<<<<<<< HEAD
 权限配置方法： 请参考[使用ACL的签名配置指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5#section157591551175916)。
 
-=======
->>>>>>> 29d9ef42f1 (修改SDK版本配置章节)
 ## 开发实例
 
 为开发者提供了以下3款产品的Demo，用于参考，请查看对应Demo的驱动服务端开发。
