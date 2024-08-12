@@ -471,8 +471,6 @@ struct Index {
 
 下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[build()](#build)接口获取到Paragraph对象实例，再通过此实例调用对应方法。
 
-```
-
 ### layoutSync
 
 layoutSync(width: number): void
