@@ -92,6 +92,7 @@
     - [@ohos.bundle.installer (installer模块)(系统接口)](js-apis-installer-sys.md)
     - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)(系统接口)](js-apis-launcherBundleManager-sys.md)
     - [@ohos.bundle.overlay (overlay模块)(系统接口)](js-apis-overlay-sys.md)
+    - [@ohos.bundle.shortcutManager (shortcutManager模块)(系统接口)](js-apis-shortcutManager-sys.md)
     - [@ohos.distributedMissionManager (分布式任务管理)(系统接口)](js-apis-distributedMissionManager-sys.md)
     - [@ohos.privacyManager (隐私管理)(系统接口)](js-apis-privacyManager-sys.md)
     <!--DelEnd-->

@@ -135,5 +135,4 @@
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
 <!--DelEnd-->
-- [程序访问控制](../security/AccessToken/Readme-CN.md)
 - [Native子进程开发指导（C/C++)](capi_nativechildprocess_development_guideline.md)

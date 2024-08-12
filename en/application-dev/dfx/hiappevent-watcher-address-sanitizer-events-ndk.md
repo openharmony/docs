@@ -116,7 +116,7 @@ The following describes how to subscribe an address sanitizer event for an array
          OH_HiAppEvent_AddWatcher(systemEventWatcher);
          return {};
      }
-     ```
+     ``` 
 
    - Watcher of the onTrigger type:
 
