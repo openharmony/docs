@@ -5091,7 +5091,7 @@ VoIP通话信息。
 | voipBundleName    | string     | 是   |  三方应用包名  |
 | showBannerForIncomingCall<sup>12+</sup>    | boolean     | 否   |  上报来电时是否显示来电横幅  |
 | isConferenceCall<sup>12+</sup>    | boolean     | 否   |  上报是否是电话会议  |
-| isSupportVoiceAnswer<sup>12+</sup>    | boolean     | 否   |  上报来电时是否支持语音接听  |
+| isVoiceAnswerSupported<sup>12+</sup>    | boolean     | 否   |  上报来电时是否支持语音接听  |
 
 ## ConferenceState<sup>7+</sup>
 
