@@ -10,7 +10,7 @@
 
 clip(value: boolean)
 
-是否对当前组件的子组件进行裁剪。
+是否对子组件超出当前组件范围外的区域进行裁剪。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
