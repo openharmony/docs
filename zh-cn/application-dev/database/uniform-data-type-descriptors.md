@@ -23,7 +23,7 @@
 
 ### 标准化数据类型的分类原则
 
-UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为两类。图中涉及的标准化数据类型可见[UniformDataType](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
+UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为两类。OpenHarmony中预制了常用的标准化数据类型，详见[UniformDataType](./uniform-data-type-list.md)。
 
 - **按物理分类**的根节点为general.entity，用于描述类型的物理属性，比如文件、目录等，具体可见图1。
 
@@ -55,7 +55,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 ## 预置数据类型
 
-基于常用的数据类型，预先定义了一部分标准数据类型描述符，即预置数据类型。如用于描述音频文件的“general.audio”，描述视频文件的“general.video”，更多预置数据类型参考[ UniformDataType](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
+基于常用的数据类型，预先定义了一部分标准数据类型描述符，即预置数据类型。如用于描述音频文件的“general.audio”，描述视频文件的“general.video”，更多预置数据类型参考[UniformDataType](./uniform-data-type-list.md)。
 
 
 ## 应用自定义数据类型
