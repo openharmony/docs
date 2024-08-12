@@ -241,7 +241,14 @@ focusable(value: boolean)
 enabled(value: boolean)
 ```
 
-设置组件是否可交互。若设置为false，则组件无交互能力，自然无法获焦。
+设置组件可交互性属性[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)为`false`，则组件不可交互，无法获焦。
+
+
+```ts
+visibility(value: Visibility)
+```
+
+设置组件可见性属性[visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)为`Visibility.None`或`Visibility.Hidden`，则组件不可见，无法获焦。
 
 
 ```ts
