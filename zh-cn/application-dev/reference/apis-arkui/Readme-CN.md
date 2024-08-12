@@ -341,7 +341,7 @@
     - [PasteButton](arkui-ts/ts-security-components-pastebutton.md)
     - [SaveButton](arkui-ts/ts-security-components-savebutton.md)
     <!--Del-->
-    - [SaveButton (系统接口)](ts-security-components-savebutton-sys.md)
+    - [SaveButton (系统接口)](arkui-ts/ts-security-components-savebutton-sys.md)
     <!--DelEnd-->
   - 主题
     - [WithTheme](arkui-ts/ts-container-with-theme.md) 
@@ -380,10 +380,10 @@
     - [PluginComponent (系统接口)](arkui-ts/ts-basic-components-plugincomponent-sys.md)
   <!--DelEnd-->
   - 已停止维护的组件与接口
-   - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
-   - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
-   - [Panel](arkui-ts/ts-container-panel.md)
-   - [点击控制](arkui-ts/ts-universal-attributes-click.md)
+    - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
+    - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
+    - [Panel](arkui-ts/ts-container-panel.md)
+    - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - JS组件 
   - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
   - [兼容JS的类Web开发范式（ArkUI.Lite）](arkui-js-lite/Readme-CN.md)
