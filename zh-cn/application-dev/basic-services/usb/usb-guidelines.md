@@ -170,7 +170,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
     /*
     构造控制传输参数
     */
-    let getdevicedescriptorparam: USBDeviceRequestParams = {
+    let param: usbManager.USBDeviceRequestParams = {
       bmRequestType: 0x80,    //0x80指一次由设备到主机的标准请求命令
       bRequest: 0x06,    //0x06指获取描述符
       wValue:0x01 << 8 | 0,    //该值为2个字节，高字节指描述符类型，此处0x01指设备描述符；低字节指描述符索引，设备描述符不涉及，填0
@@ -179,7 +179,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
       data: new Uint8Array(18)
     };
 
-    usbManager.usbControlTransfer(pipe, getdevicedescriptorparam).then((ret: number) => {
+    usbManager.usbControlTransfer(pipe, param).then((ret: number) => {
     console.info("usbControlTransfer = ${ret}");
     })
     ```
