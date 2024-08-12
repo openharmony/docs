@@ -894,7 +894,7 @@ if(store != undefined) {
 
 lockCloudContainer(): Promise&lt;number&gt;
 
-非自动同步，手动执行端云同步时,首先对云表加锁，使用Promise异步处理。
+手动执行端云同步时，首先对云表加锁，使用Promise异步处理。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -904,15 +904,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 | 类型                | 说明                                    |
 | ------------------- | ---------------------------------------|
-| Promise&lt;void&gt; | Promise对象，返回锁的时长，单位：ms。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**            |
-|-----------|---------------------------|
-| 202       |  Permission verification failed, application which is not a system application uses system API. |
+| Promise&lt;number&gt; | Promise对象，返回锁的时长，单位：ms。 |
 
 **示例：**
 
@@ -925,11 +917,11 @@ predicates.in("id", ["id1", "id2"]);
 if(store != undefined) {
   try {
     let time = await (store as relationalStore.RdbStore).lockCloudContainer();
-     console.info('lockCloudContainer succeeded time:' + time);
+    console.info('lockCloudContainer succeeded time:' + time);
   } catch (err) {
     let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`lockCloudContainer failed, code is ${code},message is ${message}`););
+    let message = (err as BusinessError).message;
+    console.error(`lockCloudContainer failed, code is ${code}, message is ${message}`);
   }
 };
 ```
@@ -944,14 +936,6 @@ unlockCloudContainer(): Promise&lt;void&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**            |
-|-----------|---------------------------|
-| 202       |  Permission verification failed, application which is not a system application uses system API.  |
-
 **示例：**
 
 ```ts
@@ -962,12 +946,12 @@ predicates.in("id", ["id1", "id2"]);
 
 if(store != undefined) {
   try {
-    let time = await (store as relationalStore.RdbStore).unlockCloudContainer();
-     console.info('unlockCloudContainer succeeded');
+    await (store as relationalStore.RdbStore).unlockCloudContainer();
+    console.info('unlockCloudContainer succeeded');
   } catch (err) {
     let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`unlockCloudContainer failed, code is ${code},message is ${message}`););
+    let message = (err as BusinessError).message;
+    console.error(`unlockCloudContainer failed, code is ${code}, message is ${message}`);
   }
 };
 ```
