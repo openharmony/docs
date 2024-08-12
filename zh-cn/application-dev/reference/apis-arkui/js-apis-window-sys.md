@@ -2923,7 +2923,7 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
 export class ServiceExtAbility extends ServiceExtensionAbility {
     async startMoving() {
-        await windowClass.setUIContent("pages/search");
+        await windowClass.setUIContent("pages/search"); // 注意windowClass是系统窗口类型
         await windowClass.setWindowTouchable(true);
         try {
             windowClass.startMoving().then(() => {
