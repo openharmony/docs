@@ -1,4 +1,4 @@
-#  @ohos.arkui.advanced.Chip (操作块组件)
+# Chip
 
 操作块，用于搜索框历史记录或者邮件发送列表等场景。
 

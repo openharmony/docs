@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.TabTitleBar (页签型标题栏)
+# TabTitleBar
 
 
 页签型标题栏，用于页面之间的切换。仅一级页面适用。
