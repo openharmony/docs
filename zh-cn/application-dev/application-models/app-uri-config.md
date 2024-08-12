@@ -33,7 +33,7 @@ scheme://host[:port]/path/
 
 下面以授权登录场景举例说明：
 
-    ```json
+    ```
     "uris": [
         {
             "scheme": "xxx",
