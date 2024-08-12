@@ -3,7 +3,6 @@
 HiAppEvent provides APIs for subscribing to main thread jank events.
 
 - [Subscribing to Main Thread Jank Events (ArkTS)](hiappevent-watcher-mainthreadjank-events-arkts.md)
-- [Subscribing to Main Thread Jank Events (C/C++)](hiappevent-watcher-mainthreadjank-events-ndk.md)
 
 The **params** parameter in the event information is described as follows.
 
