@@ -2929,7 +2929,7 @@ export class ServiceExtAbility extends ServiceExtensionAbility {
             windowClass.startMoving().then(() => {
                 console.info('startMoving successful.');
             }).catch((err: BusinessError) => {
-                console.error('startMoving catch error:' + err.code + ',message:' + err.message);
+                console.error(`startMoving catch error: ${err.code}, message: ${err.message}`);
             });
         } catch (exception) {
             console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -2993,11 +2993,11 @@ export class ServiceExtAbility extends ServiceExtensionAbility {
             windowClass.enableDrag(true).then(() => {
                 console.info('enableDrag successfully');
             }).catch((err: BusinessError) => {
-                console.error('enableDrag: ' + err.code + ',message:' + err.message);
+                console.error(`Failed to enable drag window: ${err.code}, message: ${err.message}`);
             });
             await windowClass.setWindowLimits(limits);
         } catch (err) {
-            console.error('createWindow err: ' + err.code + ',message:' + err.message);
+            console.error(`Failed to enable drag window, Cause code: ${err.code}, message: $err.message`);
         }
     }
 }
