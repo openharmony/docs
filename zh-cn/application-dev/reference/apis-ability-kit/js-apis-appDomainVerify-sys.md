@@ -16,7 +16,7 @@ import { appDomainVerify } from '@kit.AbilityKit';
 
 | 权限                                    | 权限等级    | 描述             |
 | --------------------------------------- | ----------- | ---------------- |
-| ohos.permission.GET_APP_DOMAIN_BUNDLE_INFO | system_basic | 默认应用相关权限。 |
+| ohos.permission.GET_APP_DOMAIN_BUNDLE_INFO | system_basic | 允许应用访问应用和域名的映射关系的权限。 |
 
 权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
