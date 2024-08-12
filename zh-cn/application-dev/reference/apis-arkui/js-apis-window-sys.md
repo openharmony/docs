@@ -2922,7 +2922,7 @@ import { window } from '@ohos.window';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ServiceExtensionAbility } from '@ohos.app.ability.ServiceExtensionAbility';
 
-export class myWindowMgr extends ServiceExtensionAbility {
+export class ServiceExtAbility extends ServiceExtensionAbility {
     async startMoving() {
         // 创建系统窗口
         let config: window.Configuration = {
@@ -2988,7 +2988,7 @@ import { window } from '@ohos.window';
 import { ServiceExtensionAbility } from '@ohos.app.ability.ServiceExtensionAbility';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export class myWindowMgr extends ServiceExtensionAbility {
+export class ServiceExtAbility extends ServiceExtensionAbility {
     async createWindow(): Promise<void> {
         try {
             console.info('window create');
