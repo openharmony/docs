@@ -677,4 +677,4 @@ export struct PageTwo {
   ]
 }
 ```
-
+![NavPushPathHelperDemo.gif](figures/NavPushPathHelperDemo.gif)
