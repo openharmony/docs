@@ -28,6 +28,10 @@
 | USB DDK接口 | API10 | 4.0及以上 |
 | HID DDK接口 | API11 | 4.1及以上 |
 
+### 问题现象
+
+安装HAP出现报错："code:9568347 error: install parse native so failed"
+
 ### 解决措施
 
 根据[应用调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-app-debugging-V5)中的解决方法，在build-profile.json5中的buildOption/externalNativeOptions内手动配置abiFilters的值
