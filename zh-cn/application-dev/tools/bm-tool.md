@@ -882,7 +882,7 @@ Error: verify code signature failed.
 
 **可能原因**
 
-* 场景一：包没有签名。
+* 场景一：包没有代码签名信息。
 
 * 场景二：签名证书问题。
 
