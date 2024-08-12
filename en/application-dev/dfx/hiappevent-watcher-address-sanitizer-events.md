@@ -3,7 +3,6 @@
 HiAppEvent provides APIs for subscribing to address sanitizer events of the system.
 
 - [Subscribing to Address Sanitizer Events (ArkTS)](hiappevent-watcher-address-sanitizer-events-arkts.md)
-- [Subscribing to Address Sanitizer Events (C/C++)](hiappevent-watcher-address-sanitizer-events-ndk.md)
 
 The **params** parameter in the event information is described as follows:
 
