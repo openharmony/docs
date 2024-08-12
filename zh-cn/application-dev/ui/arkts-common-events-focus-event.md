@@ -649,7 +649,7 @@ focusScopePriority(scopeId: string, priority?: FocusPriority)
 focusScopeId(id: string, isGroup?: boolean)
 ```
 
-设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
+设置当前容器组件的id标识，设置当前容器组件是否为焦点组。焦点组与tabIndex不能混用。
 
 ```ts
 // focusTest.ets
