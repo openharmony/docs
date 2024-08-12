@@ -209,7 +209,7 @@ forward(): void
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合[accessBackward](#accesbackward)一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](#accessbackward)一起使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -315,7 +315,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 | 参数名     | 类型                              | 必填 | 说明             |
 |---------|---------------------------------|----|:---------------|
-| url     | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)               | 是  | 需要加载的 URL。     |
+| url     | string \| [Resource](../../apis-arkui/arkui-ts/ts-types.md#resource)               | 是  | 需要加载的 URL。     |
 | headers | Array\<[WebHeader](#webheader)> | 否  | URL的附加HTTP请求头。 |
 
 **错误码：**
