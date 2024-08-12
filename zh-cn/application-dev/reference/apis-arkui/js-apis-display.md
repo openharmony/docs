@@ -1205,3 +1205,43 @@ try {
   console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+
+## display.getDisplayByIdSync<sup>12+</sup>
+
+getDisplayByIdSync(displayId: number): Display
+
+根据displayId获取对应的display对象。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型                           | 说明                                           |
+| ------------------------------| ----------------------------------------------|
+| [Display](#display) | 返回displayId对应的display对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+
+try {
+  let displayId = 0; 
+  displayClass = display.getDisplayByIdSync(displayId);
+} catch (exception) {
+  console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
