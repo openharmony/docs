@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SegmentButton (分段按钮)
+# SegmentButton
 
 分段按钮组件，包含页签类分段按钮、单选类分段按钮、多选类分段按钮。
 

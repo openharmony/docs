@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ChipGroup (操作块组组件)
+# ChipGroup
 
 ChipGroup高级组件，提供操作块群组，用于对文件或者资源内容进行分类等场景。
 
