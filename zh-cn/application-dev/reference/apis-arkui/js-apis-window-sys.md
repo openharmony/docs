@@ -2981,7 +2981,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class ServiceExtAbility extends ServiceExtensionAbility {
     async createWindow(): Promise<void> {
-        windowClass.setUIContent('pages/serch');
+        windowClass.setUIContent('pages/search');
         windowClass.setWindowTouchable(true);
         let limits: window.WindowLimits = {
             maxWidth: 500,
