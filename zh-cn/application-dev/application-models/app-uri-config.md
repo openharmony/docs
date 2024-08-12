@@ -34,14 +34,14 @@ scheme://host[:port]/path/
 下面以授权登录场景举例说明：
 
 ```json
-    "uris": [
-        {
-            "scheme": "xxx",
-            "host": "xxx.xxx.xxx",
-            "path": "xxx/xxxx",
-            "linkFeature": "Login" 
-        }
-    ]
+"uris": [
+    {
+        "scheme": "xxx",
+        "host": "xxx.xxx.xxx",
+        "path": "xxx/xxxx",
+        "linkFeature": "Login" 
+    }
+]
 ```
 
 标准化应用功能**linkFeature**的枚举定义。
