@@ -869,3 +869,32 @@ Error: bundle manager service is died.
 **处理步骤**
 
 1. 预置应用请参考OTA升级。
+
+
+### 9568393 验证代码签名失败      
+**错误信息**
+
+Error: verify code signature failed.
+
+**错误描述**
+
+验证代码签名失败。
+
+**可能原因**
+
+* 场景一：包没有签名。
+
+* 场景二：签名证书问题。
+
+
+**处理步骤**
+
+* 场景一：使用鸿蒙SDK签名工具验证包是否签名。
+	```
+	//验证签名指令
+	java -jar SDK安装路径（DevEco工具安装目录中sdk）\toolchains\lib\hap-sign-tool.jar verify-app -outCertChain out.cer -outProfile out.p7b -inFile 包路径\**.hap
+	// 执行结果1：can not find codesign block。说明包没有签名
+	// 执行结果2：verify codesign success。说明包已签名
+	```
+
+* 场景二：检查签名流程和签名证书，参考<!--RP8-->[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)<!--RP8End-->。
