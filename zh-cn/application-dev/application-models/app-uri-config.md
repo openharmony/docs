@@ -29,7 +29,7 @@ scheme://host[:port]/path/
 
 ## 配置示例
 
-参考应用链接（[Deep Linking](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/deep-linking-startup.md)、[App Linking](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/app-linking-startup.md)）的配置要求进行URI配置，最后在URI配置中指定相对应的linkFeature即可。
+参考应用链接（[Deep Linking](deep-linking-startup.md)、[App Linking](app-linking-startup.md)）的配置要求进行URI配置，最后在URI配置中指定相对应的linkFeature即可。
 
 下面以授权登录场景举例说明：
 
