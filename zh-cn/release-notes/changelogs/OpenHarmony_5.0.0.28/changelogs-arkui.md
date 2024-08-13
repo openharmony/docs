@@ -425,7 +425,7 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 
 **变更原因**
 
-扩展 TipsDialog imageRes 支持 pixelMap 和 string 类型的图片，修改参数  imageSize，title 由必填改为非必填，提升用户使用体验。
+扩展 TipsDialog 参数 imageRes 支持 pixelMap 和 string 类型的图片，修改参数 imageSize，title 由必填改为非必填，提升用户使用体验。
 
 **变更影响**
 
