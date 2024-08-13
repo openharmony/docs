@@ -3002,7 +3002,7 @@ try {
     console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-    console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
