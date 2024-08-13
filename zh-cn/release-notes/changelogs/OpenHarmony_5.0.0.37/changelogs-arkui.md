@@ -39,3 +39,73 @@ WaterFlow组件布局模式WaterFlowLayoutMode.SLIDING_WINDOW。
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+
+## cl.arkui.2 滚动类组件默认最大抛划限速变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+滚动类组件（List、Scroll、Grid、WaterFlow）快速抛划时，划动距离太近，需要优为化快速划动，提升体验。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：滚动类组件默认最大抛划限速为4200vp/s
+
+变更后：滚动类组件默认最大抛划限速为12000vp/s
+
+下表变更前后快速抛划效果对比：
+|变更前 | 变更后 |
+| --- |--- | 
+|![](figures/flingSpeedLimit4200.gif) |![](figures/flingSpeedLimit12000.gif)  |
+
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.36 版本开始。
+
+**变更的接口/组件**
+
+滚动类组件flingSpeedLimit属性。
+
+**适配指导**
+
+无需适配，如果滚动速度过快导致性能问题，可以flingSpeedLimit接口设置最大抛划限速。
+
+```ts
+@Entry
+@Component
+struct ListItemExample {
+  private arr: number[] = []
+
+  about
+
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 0 }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }.width('90%')
+      .flingSpeedLimit(4200)
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+  }
+}
+```
