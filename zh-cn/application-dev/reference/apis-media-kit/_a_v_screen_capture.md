@@ -265,7 +265,7 @@ typedef void(* OH_AVScreenCapture_OnBufferAvailable) (OH_AVScreenCapture *captur
 | capture | 指向OH_AVScreenCapture实例的指针。  | 
 | buffer | 指向OH_AVBuffer缓存区实例的指针，该回调方法执行结束返回后，数据缓存区不再有效。  | 
 | bufferType | 可用缓冲区的数据类型。  | 
-| timestamp | 时间戳。  | 
+| timestamp | 时间戳, 单位纳秒。  | 
 | userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 | 
 
 
@@ -741,7 +741,7 @@ enum OH_AVScreenCaptureStateCode
 | OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER  | 麦克风被静音。 当前版本暂不支持。   | 
 | OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER  | 麦克风被取消静音。 当前版本暂不支持。   | 
 | OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE  | 进入隐私弹窗。 当前版本暂不支持。   | 
-| OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE  | 隐私弹窗退出。 当前版本暂不支持。   |
+| OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE  | 隐私弹窗退出。 当前版本暂不支持。   | 
 
 
 ### OH_CaptureMode
