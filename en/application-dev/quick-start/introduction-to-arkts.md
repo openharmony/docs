@@ -925,7 +925,7 @@ jack.getName()?.length; // Builds ok, no runtime error
 
 Setters and getters can be used to provide controlled access to object properties.
 
-In the following example, a setter is used to forbid setting invalid values of the 'age' property:
+In the following example, a setter is used to forbid setting invalid values of the '_age' property:
 
 ```typescript
 class Person {
@@ -964,7 +964,8 @@ class RectangleSize {
   private height: number = 0
   private width: number = 0
   constructor(height: number, width: number) {
-    // ...
+    this.height = height;
+    this.width = width;
   }
   calculateArea(): number {
     return this.height * this.width;
@@ -1725,20 +1726,6 @@ For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import
 ### Top-Level Statements
 
 A module can contain any statements at the module level, except `return` ones.
-
-If a module contains a `main` function (program entry point), then top-level statements of the module are executed immediately before the body of this function.
-Otherwise, they are executed before execution of any other function of the module.
-
-### Program Entry Point
-
-An entry point of a program (application) is the top-level `main` function.
-The `main` function must have either an empty parameter list or a single parameter of `string[]` type.
-
-```typescript
-function main() {
-  console.log('this is the program entry');
-}
-```
 
 ## Keywords
 
