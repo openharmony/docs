@@ -368,7 +368,7 @@ onDeleteComplete(callback:Callback\<void\>)
 
 onPaste(callback: [PasteEventCallback](#pasteeventcallback12) )
 
-完成粘贴前，触发回调。系统的默认粘贴，只支持纯文本的粘贴。开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。
+完成粘贴前，触发回调。开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
