@@ -18,7 +18,7 @@ import { MeasureText } from '@kit.ArkUI'
 
 measureText(options: MeasureOptions): number
 
-计算指定文本单行布局下的宽度。
+计算指定文本的宽度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -66,7 +66,7 @@ struct Index {
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
-计算指定文本单行布局下的宽度和高度。
+计算指定文本的宽度和高度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
