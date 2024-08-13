@@ -2928,27 +2928,27 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-    @State message: string = 'Hello World';
-    build() {
-        row() {
-            Column() {
-                // 设置最小宽度为160
-                Blank('160').onTouch((event: TouchEvent) => {
-                    if (event.type === TouchType.Down) {
-                        try {
-                            windowClass.startMoving().then(() => {
-                                console.info('Succeeded in start moving.')
-                            }).catch((err: BusinessError) => {
-                                console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
-                            });
-                        } catch (exception) {
-                            console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
-                        }
-                    }
-                }
+  @State message: string = 'Hello World';
+  build() {
+    row() {
+      Column() {
+        // 设置最小宽度为160
+        Blank('160').onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            try {
+              windowClass.startMoving().then(() => {
+                console.info('Succeeded in start moving.')
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
             }
+          }
         }
+      }
     }
+  }
 }
 ```
 
@@ -2957,7 +2957,9 @@ struct Index {
 enableDrag(enable: boolean): Promise&lt;void&gt;
 
 使能/禁止拖拽窗口。使用Promise异步回调。
+
 使能后，将允许通过鼠标对窗口进行拉伸操作。
+
 仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -2994,11 +2996,11 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
-    windowClass.enableDrag(true).then(() => { 
-        console.info('succeeded in setting window draggable');
-    }).catch((err: BusinessError) => {
-        console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
-    });
+  windowClass.enableDrag(true).then(() => { 
+    console.info('succeeded in setting window draggable');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
+  });
 } catch (exception) {
     console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
 }
