@@ -2937,7 +2937,7 @@ struct Index {
           if (event.type === TouchType.Down) {
             try {
               windowClass.startMoving().then(() => {
-                console.info('Succeeded in start moving.')
+                console.info('Succeeded in starting moving window.')
               }).catch((err: BusinessError) => {
                 console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
               });
