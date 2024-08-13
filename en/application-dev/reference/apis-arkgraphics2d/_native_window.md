@@ -15,27 +15,27 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 ### Files
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| [external_window.h](external__window_8h.md) | Declares the functions for obtaining and using **NativeWindow**.| 
+| [external_window.h](external__window_8h.md) | Declares the functions for obtaining and using **NativeWindow**. | 
 
 
 ### Structs
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| struct  [Region](_region.md) | Describes the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.| 
-| struct  [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | Describes the HDR metadata.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
-| struct  [OHExtDataHandle](_o_h_ext_data_handle.md) | Describes the extended data handle.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
+| struct  [Region](_region.md) | Describes the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**. | 
+| struct  [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | Describes the HDR metadata.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided. | 
+| struct  [OHExtDataHandle](_o_h_ext_data_handle.md) | Describes the extended data handle.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided. | 
 
 
 ### Types
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Provides the capability of accessing the **OHNativeWindow**.| 
-| typedef struct NativeWindowBuffer [OHNativeWindowBuffer](#ohnativewindowbuffer) | Provides the capability of accessing the **OHNativeWindowBuffer**.| 
-| typedef struct [Region](_region.md)  [Region](#region) | Defines a struct for the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.| 
+| typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Provides the capability of accessing the **OHNativeWindow**. | 
+| typedef struct NativeWindowBuffer [OHNativeWindowBuffer](#ohnativewindowbuffer) | Provides the capability of accessing the **OHNativeWindowBuffer**. | 
+| typedef struct [Region](_region.md)  [Region](#region) | Defines a struct for the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**. | 
 | typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | Defines an enum for the error codes. | 
 | typedef enum [NativeWindowOperation](#nativewindowoperation)  [NativeWindowOperation](#nativewindowoperation) | Defines an enum for the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function. | 
 | typedef enum [OHScalingModeV2](#ohscalingmodev2)  [OHScalingModeV2](#ohscalingmodev2) | Defines an enum for the rendering scaling modes. | 
@@ -43,41 +43,41 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 ### Enums
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation-1) {<br>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br>} | Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.|
-| [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | Enumerates the scaling modes.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
+| [NativeWindowOperation](#nativewindowoperation-1) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>} | Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function. |
+| [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | Enumerates the scaling modes.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided. | 
 | [OHScalingModeV2](#ohscalingmodev2-1) {<br>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br>OH_SCALING_MODE_SCALE_FIT_V2<br>} | Enumerates the rendering scaling modes. | 
-| [OHHDRMetadataKey](#ohhdrmetadatakey) {<br>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br>} | Enumerates the HDR metadata keys.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
+| [OHHDRMetadataKey](#ohhdrmetadatakey) {<br>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br>} | Enumerates the HDR metadata keys.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided. | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | Enumerates the error codes.   | 
 
 
 ### Functions
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| [OHNativeWindow](#ohnativewindow) \* [OH_NativeWindow_CreateNativeWindow](#oh_nativewindow_createnativewindow) (void \*pSurface) | Creates an **OHNativeWindow** instance. A new **OHNativeWindow** instance is created each time this function is called. If this function is unavailable, you can create an **OHNativeWindow** instance by calling **OH_NativeImage_AcquireNativeWindow** or through the **XComponent**.| 
-| void [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) ([OHNativeWindow](#ohnativewindow) \*window) | Decreases the reference count of an **OHNativeWindow** instance by 1 and when the reference count reaches 0, destroys the instance.| 
-| [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called. If this function is unavailable, you can create an **OHNativeWindowBuffer** instance by calling [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer).| 
-| [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer) (OH_NativeBuffer \*nativeBuffer) | Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called.| 
-| void [OH_NativeWindow_DestroyNativeWindowBuffer](#oh_nativewindow_destroynativewindowbuffer) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Decreases the reference count of an **OHNativeWindowBuffer** instance by 1 and when the reference count reaches 0, destroys the instance.| 
-| int32_t [OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.| 
-| int32_t [OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer, int fenceFd, [Region](_region.md) region) | Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption.| 
-| int32_t [OH_NativeWindow_GetLastFlushedBuffer](#oh_nativewindow_getlastflushedbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance.| 
-| int32_t [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWindow** instance, without filling in any content. The **OHNativeWindowBuffer** can be used for a new request.| 
-| int32_t [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) ([OHNativeWindow](#ohnativewindow) \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.| 
-| BufferHandle \* [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.| 
-| int32_t [OH_NativeWindow_NativeObjectReference](#oh_nativewindow_nativeobjectreference) (void \*obj) | Adds the reference count of a native object.| 
-| int32_t [OH_NativeWindow_NativeObjectUnreference](#oh_nativewindow_nativeobjectunreference) (void \*obj) | Decreases the reference count of a native object and, when the reference count reaches 0, destroys this object.| 
-| int32_t [OH_NativeWindow_GetNativeObjectMagic](#oh_nativewindow_getnativeobjectmagic) (void \*obj) | Obtains the magic ID of a native object.| 
-| int32_t [OH_NativeWindow_NativeWindowSetScalingMode](#oh_nativewindow_nativewindowsetscalingmode) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, [OHScalingMode](#ohscalingmode) scalingMode) | Sets a scaling mode for an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided.| 
-| int32_t [OH_NativeWindow_NativeWindowSetMetaData](#oh_nativewindow_nativewindowsetmetadata) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | Sets metadata for an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided.| 
-| int32_t [OH_NativeWindow_NativeWindowSetMetaDataSet](#oh_nativewindow_nativewindowsetmetadataset) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | Sets a metadata set for an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided.| 
-| int32_t [OH_NativeWindow_NativeWindowSetTunnelHandle](#oh_nativewindow_nativewindowsettunnelhandle) ([OHNativeWindow](#ohnativewindow) \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | Sets a tunnel handle to an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided.| 
-| int32_t [OH_NativeWindow_NativeWindowAttachBuffer](#oh_nativewindow_nativewindowattachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Attaches an **OHNativeWindowBuffer** to an **OHNativeWindow** instance.| 
-| int32_t [OH_NativeWindow_NativeWindowDetachBuffer](#oh_nativewindow_nativewindowdetachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Detaches an **OHNativeWindowBuffer** from an **OHNativeWindow** instance.| 
-| int32_t [OH_NativeWindow_GetSurfaceId](#oh_nativewindow_getsurfaceid) ([OHNativeWindow](#ohnativewindow) \*window, uint64_t \*surfaceId) | Obtains a surface ID through an **OHNativeWindow**.| 
-| int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](#ohnativewindow) \*\*window) | Creates an **OHNativeWindow** instance based on a surface ID.| 
+| [OHNativeWindow](#ohnativewindow) \* [OH_NativeWindow_CreateNativeWindow](#oh_nativewindow_createnativewindow) (void \*pSurface) | Creates an **OHNativeWindow** instance. A new **OHNativeWindow** instance is created each time this function is called. If this function is unavailable, you can create an **OHNativeWindow** instance by calling **OH_NativeImage_AcquireNativeWindow** or through the **XComponent**. | 
+| void [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) ([OHNativeWindow](#ohnativewindow) \*window) | Decreases the reference count of an **OHNativeWindow** instance by 1 and when the reference count reaches 0, destroys the instance. | 
+| [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called. This function is unavailable. You are advised to use [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer). | 
+| [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer) (OH_NativeBuffer \*nativeBuffer) | Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called. | 
+| void [OH_NativeWindow_DestroyNativeWindowBuffer](#oh_nativewindow_destroynativewindowbuffer) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Decreases the reference count of an **OHNativeWindowBuffer** instance by 1 and when the reference count reaches 0, destroys the instance. | 
+| int32_t [OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production. | 
+| int32_t [OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer, int fenceFd, [Region](_region.md) region) | Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption. | 
+| int32_t [OH_NativeWindow_GetLastFlushedBuffer](#oh_nativewindow_getlastflushedbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance. | 
+| int32_t [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWindow** instance, without filling in any content. The **OHNativeWindowBuffer** can be used for a new request. | 
+| int32_t [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) ([OHNativeWindow](#ohnativewindow) \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format. | 
+| BufferHandle \* [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance. | 
+| int32_t [OH_NativeWindow_NativeObjectReference](#oh_nativewindow_nativeobjectreference) (void \*obj) | Adds the reference count of a native object. | 
+| int32_t [OH_NativeWindow_NativeObjectUnreference](#oh_nativewindow_nativeobjectunreference) (void \*obj) | Decreases the reference count of a native object and, when the reference count reaches 0, destroys this object. | 
+| int32_t [OH_NativeWindow_GetNativeObjectMagic](#oh_nativewindow_getnativeobjectmagic) (void \*obj) | Obtains the magic ID of a native object. | 
+| int32_t [OH_NativeWindow_NativeWindowSetScalingMode](#oh_nativewindow_nativewindowsetscalingmode) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, [OHScalingMode](#ohscalingmode) scalingMode) | Sets a scaling mode for an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided. | 
+| int32_t [OH_NativeWindow_NativeWindowSetMetaData](#oh_nativewindow_nativewindowsetmetadata) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | Sets metadata for an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided. | 
+| int32_t [OH_NativeWindow_NativeWindowSetMetaDataSet](#oh_nativewindow_nativewindowsetmetadataset) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | Sets a metadata set for an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided. | 
+| int32_t [OH_NativeWindow_NativeWindowSetTunnelHandle](#oh_nativewindow_nativewindowsettunnelhandle) ([OHNativeWindow](#ohnativewindow) \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | Sets a tunnel handle to an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided. | 
+| int32_t [OH_NativeWindow_NativeWindowAttachBuffer](#oh_nativewindow_nativewindowattachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Attaches an **OHNativeWindowBuffer** to an **OHNativeWindow** instance. | 
+| int32_t [OH_NativeWindow_NativeWindowDetachBuffer](#oh_nativewindow_nativewindowdetachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Detaches an **OHNativeWindowBuffer** from an **OHNativeWindow** instance. | 
+| int32_t [OH_NativeWindow_GetSurfaceId](#oh_nativewindow_getsurfaceid) ([OHNativeWindow](#ohnativewindow) \*window, uint64_t \*surfaceId) | Obtains a surface ID through an **OHNativeWindow**. | 
+| int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](#ohnativewindow) \*\*window) | Creates an **OHNativeWindow** instance based on a surface ID. | 
 | int32_t [OH_NativeWindow_NativeWindowSetScalingModeV2](#oh_nativewindow_nativewindowsetscalingmodev2)  ([OHNativeWindow](#ohnativewindow) \*window, [OHScalingModeV2](#ohscalingmodev2) scalingMode) | Sets a rendering scaling mode for an **OHNativeWindow** instance. |
 | int32_t [OH_NativeWindow_GetLastFlushedBufferV2](#oh_nativewindow_getlastflushedbufferv2) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance. The difference between this function and **OH_NativeWindow_GetLastFlushedBuffer** lies in the matrix. | 
 | void [OH_NativeWindow_SetBufferHold](#oh_nativewindow_setbufferhold) ([OHNativeWindow](#ohnativewindow) \*window) | Buffers a frame in advance and holds it for the interval of a frame to offset the possible loss of subsequent oversized frames. | 
@@ -174,7 +174,7 @@ Enumerates the error codes.
 
 **Since**: 12
 
-| Value| Description| 
+| Value | Description | 
 | -------- | -------- |
 | NATIVE_ERROR_OK  | The operation is successful.  | 
 | NATIVE_ERROR_INVALID_ARGUMENTS  | An input parameter is invalid.  | 
@@ -204,26 +204,26 @@ Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** 
 
 **Since**: 8
 
-| Value| Description| 
+| Value | Description | 
 | -------- | -------- |
-| SET_BUFFER_GEOMETRY | Setting the geometry for the local window buffer.<br>Variable arguments in the function: [Input] int32_t width and [Input] int32_t height.| 
-| GET_BUFFER_GEOMETRY | Obtaining the geometry of the local window buffer.<br>Variable arguments in the function: [Output] int32_t *height and [Output] int32_t *width.| 
-| GET_FORMAT | Obtaining the format of the local window buffer.<br>Variable argument in the function: [Output] int32_t *format.| 
-| SET_FORMAT | Setting the format for the local window buffer.<br>Variable argument in the function: [Input] int32_t format.| 
-| GET_USAGE | Obtaining the usage mode of the local window buffer.<br>Variable argument in the function: [Output] int32_t *usage.| 
-| SET_USAGE | Setting the usage mode for the local window buffer.<br>Variable argument in the function: [Input] int32_t usage.| 
-| SET_STRIDE | Setting the stride for the local window buffer.<br>Variable argument in the function: [Input] int32_t stride.| 
-| GET_STRIDE | Obtaining the stride of the local window buffer.<br>Variable argument in the function: [Output] int32_t *stride.| 
-| SET_SWAP_INTERVAL | Setting the swap interval for the local window buffer.<br>Variable argument in the function: [Input] int32_t interval.| 
-| GET_SWAP_INTERVAL | Obtaining the swap interval of the local window buffer.<br>Variable argument in the function: [Output] int32_t *interval.| 
-| SET_TIMEOUT | Setting the timeout duration for requesting the local window buffer.<br>Variable argument in the function: [Input] int32_t timeout.| 
-| GET_TIMEOUT | Obtaining the timeout duration for requesting the local window buffer.<br>Variable argument in the function: [Output] int32_t *timeout.| 
-| SET_COLOR_GAMUT | Setting the color gamut for the local window buffer.<br>Variable argument in the function: [Input] int32_t colorGamut.| 
-| GET_COLOR_GAMUT | Obtaining the color gamut of the local window buffer.<br>Variable argument in the function: [Output] int32_t *colorGamut.| 
-| SET_TRANSFORM | Setting the transform for the local window buffer.<br>Variable argument in the function: [Input] int32_t transform.| 
-| GET_TRANSFORM | Obtaining the transform of the local window buffer.<br>Variable argument in the function: [Output] int32_t *transform.| 
-| SET_UI_TIMESTAMP | Setting the UI timestamp for the local window buffer.<br>Variable argument in the function: [Input] uint64_t uiTimestamp.| 
-| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | Obtaining the memory queue size.<br>Variable argument in the function: [Output] int32_t \*size.<br>This value is supported since API version 12.| 
+| SET_BUFFER_GEOMETRY | Setting the geometry for the local window buffer.<br>Variable arguments in the function: [Input] int32_t width and [Input] int32_t height. | 
+| GET_BUFFER_GEOMETRY | Obtaining the geometry of the local window buffer.<br>Variable arguments in the function: [Output] int32_t *height and [Output] int32_t *width. | 
+| GET_FORMAT | Obtaining the format of the local window buffer.<br>Variable argument in the function: [Output] int32_t *format. | 
+| SET_FORMAT | Setting the format for the local window buffer.<br>Variable argument in the function: [Input] int32_t format. | 
+| GET_USAGE | Obtaining the usage mode of the local window buffer.<br>Variable argument in the function: [Output] uint64_t \*usage. | 
+| SET_USAGE | Setting the usage mode for the local window buffer.<br>Variable argument in the function: [Input] uint64_t usage. | 
+| SET_STRIDE | Setting the stride for the local window buffer.<br>Variable argument in the function: [Input] int32_t stride. | 
+| GET_STRIDE | Obtaining the stride of the local window buffer.<br>Variable argument in the function: [Output] int32_t *stride. | 
+| SET_SWAP_INTERVAL | Setting the swap interval for the local window buffer.<br>Variable argument in the function: [Input] int32_t interval. | 
+| GET_SWAP_INTERVAL | Obtaining the swap interval of the local window buffer.<br>Variable argument in the function: [Output] int32_t *interval. | 
+| SET_TIMEOUT | Setting the timeout duration for requesting the local window buffer.<br>Variable argument in the function: [Input] int32_t timeout. | 
+| GET_TIMEOUT | Obtaining the timeout duration for requesting the local window buffer.<br>Variable argument in the function: [Output] int32_t *timeout. | 
+| SET_COLOR_GAMUT | Setting the color gamut for the local window buffer.<br>Variable argument in the function: [Input] int32_t colorGamut. | 
+| GET_COLOR_GAMUT | Obtaining the color gamut of the local window buffer.<br>Variable argument in the function: [Output] int32_t *colorGamut. | 
+| SET_TRANSFORM | Setting the transform for the local window buffer.<br>Variable argument in the function: [Input] int32_t transform. | 
+| GET_TRANSFORM | Obtaining the transform of the local window buffer.<br>Variable argument in the function: [Output] int32_t *transform. | 
+| SET_UI_TIMESTAMP | Setting the UI timestamp for the local window buffer.<br>Variable argument in the function: [Input] uint64_t uiTimestamp. | 
+| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | Obtaining the memory queue size.<br>Variable argument in the function: [Output] int32_t \*size.<br>This value is supported since API version 12. | 
 
 
 ### OHHDRMetadataKey
@@ -240,22 +240,22 @@ Enumerates the HDR metadata keys.
 
 **Deprecated**: This enum is deprecated since API version 10. No substitute is provided.
 
-| Value| Description| 
+| Value | Description | 
 | -------- | -------- |
-| OH_METAKEY_RED_PRIMARY_X | X coordinate of the red primary color.| 
-| OH_METAKEY_RED_PRIMARY_Y | Y coordinate of the red primary color.| 
-| OH_METAKEY_GREEN_PRIMARY_X | X coordinate of the green primary color.| 
-| OH_METAKEY_GREEN_PRIMARY_Y | Y coordinate of the green primary color.| 
-| OH_METAKEY_BLUE_PRIMARY_X | X coordinate of the blue primary color.| 
-| OH_METAKEY_BLUE_PRIMARY_Y | Y coordinate of the blue primary color.| 
-| OH_METAKEY_WHITE_PRIMARY_X | X coordinate of the white point.| 
-| OH_METAKEY_WHITE_PRIMARY_Y | Y coordinate of the white point.| 
-| OH_METAKEY_MAX_LUMINANCE | Maximum luminance.| 
-| OH_METAKEY_MIN_LUMINANCE | Minimum luminance.| 
-| OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL | Maximum content light level (MaxCLL).| 
-| OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL | Maximum frame average light level (MaxFALLL).| 
-| OH_METAKEY_HDR10_PLUS | HDR10 Plus.| 
-| OH_METAKEY_HDR_VIVID | Vivid.| 
+| OH_METAKEY_RED_PRIMARY_X | X coordinate of the red primary color. | 
+| OH_METAKEY_RED_PRIMARY_Y | Y coordinate of the red primary color. | 
+| OH_METAKEY_GREEN_PRIMARY_X | X coordinate of the green primary color. | 
+| OH_METAKEY_GREEN_PRIMARY_Y | Y coordinate of the green primary color. | 
+| OH_METAKEY_BLUE_PRIMARY_X | X coordinate of the blue primary color. | 
+| OH_METAKEY_BLUE_PRIMARY_Y | Y coordinate of the blue primary color. | 
+| OH_METAKEY_WHITE_PRIMARY_X | X coordinate of the white point. | 
+| OH_METAKEY_WHITE_PRIMARY_Y | Y coordinate of the white point. | 
+| OH_METAKEY_MAX_LUMINANCE | Maximum luminance. | 
+| OH_METAKEY_MIN_LUMINANCE | Minimum luminance. | 
+| OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL | Maximum content light level (MaxCLL). | 
+| OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL | Maximum frame average light level (MaxFALLL). | 
+| OH_METAKEY_HDR10_PLUS | HDR10 Plus. | 
+| OH_METAKEY_HDR_VIVID | Vivid. | 
 
 
 ### OHScalingMode
@@ -272,12 +272,12 @@ Enumerates the scaling modes.
 
 **Deprecated**: This enum is deprecated since API version 10. No substitute is provided.
 
-| Value| Description| 
+| Value | Description | 
 | -------- | -------- |
-| OH_SCALING_MODE_FREEZE | The window content cannot be updated before the buffer of the window size is received.| 
-| OH_SCALING_MODE_SCALE_TO_WINDOW | The buffer is scaled in two dimensions to match the window size.| 
-| OH_SCALING_MODE_SCALE_CROP | The buffer is scaled uniformly so that its smaller size can match the window size.| 
-| OH_SCALING_MODE_NO_SCALE_CROP | The window is cropped to the size of the buffer's cropping rectangle. Pixels outside the cropping rectangle are considered completely transparent.| 
+| OH_SCALING_MODE_FREEZE | The window content cannot be updated before the buffer of the window size is received. | 
+| OH_SCALING_MODE_SCALE_TO_WINDOW | The buffer is scaled in two dimensions to match the window size. | 
+| OH_SCALING_MODE_SCALE_CROP | The buffer is scaled uniformly so that its smaller size can match the window size. | 
+| OH_SCALING_MODE_NO_SCALE_CROP | The window is cropped to the size of the buffer's cropping rectangle. Pixels outside the cropping rectangle are considered completely transparent. | 
 
 
 ### OHScalingModeV2
@@ -290,17 +290,18 @@ enum OHScalingModeV2
 Enumerates the rendering scaling modes.
 
 **Since**: 12
-| Value| Description| 
-| -------- | -------- |
-| OH_SCALING_MODE_FREEZE_V2  | Freezes the window. The window content is not updated until a buffer with the same size as the window is received.| 
-| OH_SCALING_MODE_SCALE_TO_WINDOW_V2  | Scales the buffer to match the window size.| 
-| OH_SCALING_MODE_SCALE_CROP_V2  | Scales the buffer at the original aspect ratio to enable the smaller side of the buffer to match the window, while making the excess part transparent.| 
-| OH_SCALING_MODE_NO_SCALE_CROP_V2  | Crops the buffer by window size. Pixels outside the cropping rectangle are considered completely transparent.| 
-| OH_SCALING_MODE_SCALE_FIT_V2  | Scales the buffer at the original aspect ratio to fully display the buffer content, while filling the unfilled area of the window with the background color. This mode is not available for the development board and emulator.| 
 
+| Value | Description | 
+| -------- | -------- |
+| OH_SCALING_MODE_FREEZE_V2  | Freezes the window. The window content is not updated until a buffer with the same size as the window is received. | 
+| OH_SCALING_MODE_SCALE_TO_WINDOW_V2  | Scales the buffer to match the window size.| 
+| OH_SCALING_MODE_SCALE_CROP_V2  | Scales the buffer at the original aspect ratio to enable the smaller side of the buffer to match the window, while making the excess part transparent. | 
+| OH_SCALING_MODE_NO_SCALE_CROP_V2  | Crops the buffer by window size. Pixels outside the cropping rectangle are considered completely transparent. | 
+| OH_SCALING_MODE_SCALE_FIT_V2  | Scales the buffer at the original aspect ratio to fully display the buffer content, while filling the unfilled area of the window with the background color. This mode is not available for the<!--Del--> development board and<!--DelEnd--> emulator.| 
 
 
 ## Function Description
+
 
 ### OH_NativeWindow_GetLastFlushedBufferV2()
 
@@ -318,7 +319,7 @@ Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last t
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
 | window | Pointer to an **OHNativeWindow** instance. | 
 | buffer | Double pointer to an **OHNativeWindowBuffer** instance. | 
@@ -345,7 +346,7 @@ Buffers a frame in advance and holds it for the interval of a frame to offset th
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
 | window | Pointer to an [OHNativeWindow](_o_h___native_image.md#ohnativewindow) instance. | 
 
@@ -367,9 +368,9 @@ Creates an **OHNativeWindow** instance. A new **OHNativeWindow** instance is cre
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| pSurface | Pointer to a **ProduceSurface**. The type is **sptr&lt;OHOS::Surface&gt;**.| 
+| pSurface | Pointer to a **ProduceSurface**. The type is **sptr&lt;OHOS::Surface&gt;**. | 
 
 **Returns**
 
@@ -392,9 +393,9 @@ Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** ins
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| nativeBuffer | Pointer to an **OH_NativeBuffer** instance.| 
+| nativeBuffer | Pointer to an **OH_NativeBuffer** instance. | 
 
 **Returns**
 
@@ -411,7 +412,7 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer 
 
 Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called.
 
-If this function is unavailable, you can create an **OHNativeWindowBuffer** instance by calling [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer).
+This function is unavailable. Use [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer) instead.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -419,9 +420,9 @@ If this function is unavailable, you can create an **OHNativeWindowBuffer** inst
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| pSurfaceBuffer | Pointer to a **ProduceSurfaceBuffer**. The type is **sptr&lt;OHOS::SurfaceBuffer&gt;**.| 
+| pSurfaceBuffer | Pointer to a **ProduceSurfaceBuffer**. The type is **sptr&lt;OHOS::SurfaceBuffer&gt;**. | 
 
 **Returns**
 
@@ -444,10 +445,10 @@ Creates an **OHNativeWindow** instance based on a surface ID.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| surfaceId | Surface ID.| 
-| window | Double pointer to an **OHNativeWindowBuffer** instance.| 
+| surfaceId | Surface ID. | 
+| window | Double pointer to an **OHNativeWindow** instance. | 
 
 **Returns**
 
@@ -470,9 +471,9 @@ Decreases the reference count of an **OHNativeWindow** instance by 1 and when th
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
 
 
 ### OH_NativeWindow_DestroyNativeWindowBuffer()
@@ -491,9 +492,9 @@ Decreases the reference count of an **OHNativeWindowBuffer** instance by 1 and w
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
+| buffer | Pointer to an **OHNativeWindowBuffer** instance. | 
 
 
 ### OH_NativeWindow_GetBufferHandleFromNative()
@@ -512,9 +513,9 @@ Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instanc
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
+| buffer | Pointer to an **OHNativeWindowBuffer** instance. | 
 
 **Returns**
 
@@ -537,12 +538,12 @@ Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last t
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| buffer | Double pointer to an **OHNativeWindowBuffer** instance.| 
-| fenceFd | Pointer to a file descriptor.| 
-| matrix | Retrieved 4*4 transformation matrix.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| buffer | Double pointer to an **OHNativeWindowBuffer** instance. | 
+| fenceFd | Pointer to a file descriptor. | 
+| matrix | Retrieved 4*4 transformation matrix. | 
 
 **Returns**
 
@@ -565,9 +566,9 @@ Obtains the magic ID of a native object.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| obj | Pointer to an **OHNativeWindow** or **OHNativeWindowBuffer** instance.| 
+| obj | Pointer to an **OHNativeWindow** or **OHNativeWindowBuffer** instance. | 
 
 **Returns**
 
@@ -590,10 +591,10 @@ Obtains a surface ID through an **OHNativeWindow**.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| surfaceId | Pointer to the surface ID.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| surfaceId | Pointer to the surface ID. | 
 
 **Returns**
 
@@ -616,9 +617,9 @@ Adds the reference count of a native object.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| obj | Pointer to an **OHNativeWindow** or **OHNativeWindowBuffer** instance.| 
+| obj | Pointer to an **OHNativeWindow** or **OHNativeWindowBuffer** instance. | 
 
 **Returns**
 
@@ -641,9 +642,9 @@ Decreases the reference count of a native object and when the reference count re
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| obj | Pointer to an **OHNativeWindow** or **OHNativeWindowBuffer** instance.| 
+| obj | Pointer to an **OHNativeWindow** or **OHNativeWindowBuffer** instance. | 
 
 **Returns**
 
@@ -666,10 +667,10 @@ Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWi
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| buffer | Pointer to an **OHNativeWindowBuffer** instance. | 
 
 **Returns**
 
@@ -691,10 +692,10 @@ Attaches an **OHNativeWindowBuffer** to an **OHNativeWindow** instance.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| buffer | Pointer to an **OHNativeWindowBuffer** instance. | 
 
 **Returns**
 
@@ -717,10 +718,10 @@ Detaches an **OHNativeWindowBuffer** from an **OHNativeWindow** instance.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| buffer | Pointer to an **OHNativeWindowBuffer** instance. | 
 
 **Returns**
 
@@ -743,12 +744,12 @@ Flushes the **OHNativeWindowBuffer** filled with the produced content to the buf
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
-| fenceFd | File descriptor handle, which is used for timing synchronization.| 
-| region | Dirty region where content is updated.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| buffer | Pointer to an **OHNativeWindowBuffer** instance. | 
+| fenceFd | File descriptor handle, which is used for timing synchronization. | 
+| region | Dirty region where content is updated. | 
 
 **Returns**
 
@@ -771,11 +772,11 @@ Sets or obtains the attributes of an **OHNativeWindow** instance, including the 
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| code | Operation code. For details, see [NativeWindowOperation](#nativewindowoperation).| 
-| ... | Variable argument, which must correspond to the operation code.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| code | Operation code. For details, see [NativeWindowOperation](#nativewindowoperation). | 
+| ... | Variable argument, which must correspond to the operation code. | 
 
 **Returns**
 
@@ -798,11 +799,11 @@ Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for 
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| buffer | Double pointer to an **OHNativeWindowBuffer** instance.| 
-| fenceFd | Pointer to a file descriptor handle.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| buffer | Double pointer to an **OHNativeWindowBuffer** instance. | 
+| fenceFd | Pointer to a file descriptor handle. | 
 
 **Returns**
 
@@ -827,12 +828,12 @@ Sets metadata for an **OHNativeWindow**.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| sequence | Sequence of the producer buffer.| 
-| size | Size of the **OHHDRMetaData** array.| 
-| metaData| Pointer to the **OHHDRMetaData** array.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| sequence | Sequence of the producer buffer. | 
+| size | Size of the **OHHDRMetaData** array. | 
+| metaData | Pointer to the **OHHDRMetaData** array. | 
 
 **Returns**
 
@@ -857,13 +858,13 @@ Sets a metadata set for an **OHNativeWindow**.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| sequence | Sequence of the producer buffer.| 
-| key | Metadata key. For details, see [OHHDRMetadataKey](#ohhdrmetadatakey).| 
-| size | Size of the uint8_t vector.| 
-| metaData| Pointer to the uint8_t vector.| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| sequence | Sequence of the producer buffer. | 
+| key | Metadata key. For details, see [OHHDRMetadataKey](#ohhdrmetadatakey). | 
+| size | Size of the uint8_t vector. | 
+| metaData | Pointer to the uint8_t vector. | 
 
 **Returns**
 
@@ -888,11 +889,11 @@ Sets a scaling mode for an **OHNativeWindow**.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| sequence | Sequence of the producer buffer.| 
-| scalingMode | Scaling mode to set. For details, see [OHScalingMode](#ohscalingmode).| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| sequence | Sequence of the producer buffer. | 
+| scalingMode | Scaling mode to set. For details, see [OHScalingMode](#ohscalingmode). | 
 
 **Returns**
 
@@ -913,7 +914,7 @@ Sets a rendering scaling mode for an **OHNativeWindow** instance.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
 | window | Pointer to an **OHNativeWindow** instance. | 
 | scalingMode | Scaling mode. For details about the available options, see **OHScalingModeV2**. | 
@@ -940,10 +941,10 @@ Sets a tunnel handle to an **OHNativeWindow**.
 
 **Parameters**
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| window | Pointer to an **OHNativeWindow** instance.| 
-| handle | Pointer to an [OHExtDataHandle](_o_h_ext_data_handle.md).| 
+| window | Pointer to an **OHNativeWindow** instance. | 
+| handle | Pointer to an [OHExtDataHandle](_o_h_ext_data_handle.md). | 
 
 **Returns**
 

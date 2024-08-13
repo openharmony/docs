@@ -32,35 +32,35 @@ The table below shows the effect of each blend mode, where the yellow rectangle 
 
 | Name       | Value  | Description                                                        | Diagram  |
 | ----------- | ---- | ------------------------------------------------------------ | -------- |
-| CLEAR       | 0    | Clear mode. r = 0.                                           | ![CLEAR](./figures/image_BlendMode_Clear.png) |
-| SRC         | 1    | r = s (The four channels of **result** are equal to the four channels of **source**, that is, the result is equal to the source.)| ![SRC](./figures/image_BlendMode_Src.png) |
-| DST         | 2    | r = d (The four channels of **result** are equal to the four channels of **destination**, that is, the result is equal to the destination.)| ![DST](./figures/image_BlendMode_Dst.png) |
-| SRC_OVER    | 3    | r = s + (1 - sa) * d                                         | ![SRC_OVER](./figures/image_BlendMode_SrcOver.png) |
-| DST_OVER    | 4    | r = d + (1 - da) * s                                         | ![DST_OVER](./figures/image_BlendMode_DstOver.png) |
-| SRC_IN      | 5    | r = s * da                                                   | ![SRC_IN](./figures/image_BlendMode_SrcIn.png) |
-| DST_IN      | 6    | r = d * sa                                                   | ![DST_IN](./figures/image_BlendMode_DstIn.png) |
-| SRC_OUT     | 7    | r = s * (1 - da)                                             | ![SRC_OUT](./figures/image_BlendMode_SrcOut.png) |
-| DST_OUT     | 8    | r = d * (1 - sa)                                             | ![DST_OUT](./figures/image_BlendMode_DstOut.png) |
-| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)                                    | ![SRC_ATOP](./figures/image_BlendMode_SrcATop.png) |
-| DST_ATOP    | 10   | r = d * sa + s * (1 - da)                                    | ![DST_ATOP](./figures/image_BlendMode_DstATop.png) |
-| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)                              | ![XOR](./figures/image_BlendMode_Xor.png) |
-| PLUS        | 12   | r = min(s + d, 1)                                            | ![PLUS](./figures/image_BlendMode_Plus.png) |
-| MODULATE    | 13   | r = s * d                                                    | ![MODULATE](./figures/image_BlendMode_Modulate.png) |
-| SCREEN      | 14   | Screen mode. r = s + d - s * d                                  | ![SCREEN](./figures/image_BlendMode_Screen.png) |
-| OVERLAY     | 15   | Overlay mode.                                                    | ![OVERLAY](./figures/image_BlendMode_Overlay.png) |
-| DARKEN      | 16   | Darken mode. rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d | ![DARKEN](./figures/image_BlendMode_Darken.png) |
-| LIGHTEN     | 17   | Lighten mode. rc = rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d | ![LIGHTEN](./figures/image_BlendMode_Lighten.png) |
-| COLOR_DODGE | 18   | Color dodge mode.                                                | ![COLOR_DODGE](./figures/image_BlendMode_ColorDodge.png) |
-| COLOR_BURN  | 19   | Color burn mode.                                                | ![COLOR_BURN](./figures/image_BlendMode_ColorBurn.png) |
-| HARD_LIGHT  | 20   | Hard light mode.                                                    | ![HARD_LIGHT](./figures/image_BlendMode_HardLight.png) |
-| SOFT_LIGHT  | 21   | Soft light mode.                                                    | ![SOFT_LIGHT](./figures/image_BlendMode_SoftLight.png) |
-| DIFFERENCE  | 22   | Difference mode. rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d | ![DIFFERENCE](./figures/image_BlendMode_Difference.png) |
-| EXCLUSION   | 23   | Exclusion mode. rc = s + d - two(s * d), ra = s + (1 - sa) * d     | ![EXCLUSION](./figures/image_BlendMode_Exclusion.png) |
-| MULTIPLY    | 24   | Multiply mode. r = s * (1 - da) + d * (1 - sa) + s * d            | ![MULTIPLY](./figures/image_BlendMode_Multiply.png) |
-| HUE         | 25   | Hue mode.                                                    | ![HUE](./figures/image_BlendMode_Hue.png) |
-| SATURATION  | 26   | Saturation mode.                                                  | ![SATURATION](./figures/image_BlendMode_Saturation.png) |
-| COLOR       | 27   | Color mode.                                                    | ![COLOR](./figures/image_BlendMode_Color.png) |
-| LUMINOSITY  | 28   | Luminosity mode.                                                    | ![LUMINOSITY](./figures/image_BlendMode_Luminosity.png) |
+| CLEAR       | 0    | Clear mode. r = 0.                                           | ![CLEAR](./figures/image_BlendMode_Clear.png)  |
+| SRC         | 1    | r = s (The four channels of **result** are equal to the four channels of **source**, that is, the result is equal to the source.) | ![SRC](./figures/image_BlendMode_Src.png)  |
+| DST         | 2    | r = d (The four channels of **result** are equal to the four channels of **destination**, that is, the result is equal to the destination.) | ![DST](./figures/image_BlendMode_Dst.png)  |
+| SRC_OVER    | 3    | r = s + (1 - sa) * d                                         | ![SRC_OVER](./figures/image_BlendMode_SrcOver.png)  |
+| DST_OVER    | 4    | r = d + (1 - da) * s                                         | ![DST_OVER](./figures/image_BlendMode_DstOver.png)  |
+| SRC_IN      | 5    | r = s * da                                                   | ![SRC_IN](./figures/image_BlendMode_SrcIn.png)  |
+| DST_IN      | 6    | r = d * sa                                                   | ![DST_IN](./figures/image_BlendMode_DstIn.png)  |
+| SRC_OUT     | 7    | r = s * (1 - da)                                             | ![SRC_OUT](./figures/image_BlendMode_SrcOut.png)  |
+| DST_OUT     | 8    | r = d * (1 - sa)                                             | ![DST_OUT](./figures/image_BlendMode_DstOut.png)  |
+| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)                                    | ![SRC_ATOP](./figures/image_BlendMode_SrcATop.png)  |
+| DST_ATOP    | 10   | r = d * sa + s * (1 - da)                                    | ![DST_ATOP](./figures/image_BlendMode_DstATop.png)  |
+| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)                              | ![XOR](./figures/image_BlendMode_Xor.png)  |
+| PLUS        | 12   | r = min(s + d, 1)                                            | ![PLUS](./figures/image_BlendMode_Plus.png)  |
+| MODULATE    | 13   | r = s * d                                                    | ![MODULATE](./figures/image_BlendMode_Modulate.png)  |
+| SCREEN      | 14   | Screen mode. r = s + d - s * d                                  | ![SCREEN](./figures/image_BlendMode_Screen.png)  |
+| OVERLAY     | 15   | Overlay mode.                                                    | ![OVERLAY](./figures/image_BlendMode_Overlay.png)  |
+| DARKEN      | 16   | Darken mode. rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d  | ![DARKEN](./figures/image_BlendMode_Darken.png)  |
+| LIGHTEN     | 17   | Lighten mode. rc = rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d  | ![LIGHTEN](./figures/image_BlendMode_Lighten.png)  |
+| COLOR_DODGE | 18   | Color dodge mode.                                                | ![COLOR_DODGE](./figures/image_BlendMode_ColorDodge.png)  |
+| COLOR_BURN  | 19   | Color burn mode.                                                | ![COLOR_BURN](./figures/image_BlendMode_ColorBurn.png)  |
+| HARD_LIGHT  | 20   | Hard light mode.                                                    | ![HARD_LIGHT](./figures/image_BlendMode_HardLight.png)  |
+| SOFT_LIGHT  | 21   | Soft light mode.                                                    | ![SOFT_LIGHT](./figures/image_BlendMode_SoftLight.png)  |
+| DIFFERENCE  | 22   | Difference mode. rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d  | ![DIFFERENCE](./figures/image_BlendMode_Difference.png)  |
+| EXCLUSION   | 23   | Exclusion mode. rc = s + d - two(s * d), ra = s + (1 - sa) * d     | ![EXCLUSION](./figures/image_BlendMode_Exclusion.png)  |
+| MULTIPLY    | 24   | Multiply mode. r = s * (1 - da) + d * (1 - sa) + s * d            | ![MULTIPLY](./figures/image_BlendMode_Multiply.png)  |
+| HUE         | 25   | Hue mode.                                                    | ![HUE](./figures/image_BlendMode_Hue.png)  |
+| SATURATION  | 26   | Saturation mode.                                                  | ![SATURATION](./figures/image_BlendMode_Saturation.png)  |
+| COLOR       | 27   | Color mode.                                                    | ![COLOR](./figures/image_BlendMode_Color.png)  |
+| LUMINOSITY  | 28   | Luminosity mode.                                                    | ![LUMINOSITY](./figures/image_BlendMode_Luminosity.png)  |
 
 ## Path
 
@@ -70,22 +70,22 @@ A compound geometric path consisting of line segments, arcs, quadratic Bezier cu
 
 moveTo(x: number, y: number) : void
 
-Sets the start point of a path.
+Sets the start point of this path.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                   |
+| Name | Type  | Mandatory | Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| x      | number | Yes  | X coordinate of the start point. The value is a floating point number.|
-| y      | number | Yes  | Y coordinate of the start point. The value is a floating point number.|
+| x      | number | Yes  | X coordinate of the start point. The value is a floating point number. |
+| y      | number | Yes  | Y coordinate of the start point. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -101,22 +101,22 @@ path.moveTo(10,10);
 
 lineTo(x: number, y: number) : void
 
-Draws a line segment from the last point of a path to the target point.
+Draws a line segment from the last point of this path to the target point.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                   |
+| Name | Type  | Mandatory | Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| x      | number | Yes  | X coordinate of the target point. The value is a floating point number.|
-| y      | number | Yes  | Y coordinate of the target point. The value is a floating point number.|
+| x      | number | Yes  | X coordinate of the target point. The value is a floating point number. |
+| y      | number | Yes  | Y coordinate of the target point. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -133,26 +133,26 @@ path.lineTo(10, 15);
 
 arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg: number): void
 
-Draws an arc to a path. This is done by using angle arc mode. In this mode, a rectangle that encloses an ellipse is specified first, and then a start angle and a sweep angle are specified. The arc is a portion of the ellipse defined by the start angle and the sweep angle. By default, a line segment from the last point of the path to the start point of the arc is also added.
+Draws an arc to this path. This is done by using angle arc mode. In this mode, a rectangle that encloses an ellipse is specified first, and then a start angle and a sweep angle are specified. The arc is a portion of the ellipse defined by the start angle and the sweep angle. By default, a line segment from the last point of the path to the start point of the arc is also added.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                      |
+| Name  | Type  | Mandatory | Description                      |
 | -------- | ------ | ---- | -------------------------- |
-| x1       | number | Yes  | X coordinate of the upper left corner of the rectangle. The value is a floating point number.|
-| y1       | number | Yes  | Y coordinate of the upper left corner of the rectangle. The value is a floating point number.|
-| x2       | number | Yes  | X coordinate of the lower right corner of the rectangle. The value is a floating point number.|
-| y2       | number | Yes  | Y coordinate of the lower right corner of the rectangle. The value is a floating point number.|
-| startDeg | number | Yes  | Start angle, in degrees. The value is a floating point number.|
-| sweepDeg | number | Yes  | Sweep degree. The value is a floating point number.|
+| x1       | number | Yes  | X coordinate of the upper left corner of the rectangle. The value is a floating point number. |
+| y1       | number | Yes  | Y coordinate of the upper left corner of the rectangle. The value is a floating point number. |
+| x2       | number | Yes  | X coordinate of the lower right corner of the rectangle. The value is a floating point number. |
+| y2       | number | Yes  | Y coordinate of the lower right corner of the rectangle. The value is a floating point number. |
+| startDeg | number | Yes  | Start angle, in degrees. The value is a floating point number. |
+| sweepDeg | number | Yes  | Sweep degree. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -169,24 +169,24 @@ path.arcTo(10, 15, 10, 10, 10, 10);
 
 quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
-Draws a quadratic Bezier curve from the last point of a path to the target point.
+Draws a quadratic Bezier curve from the last point of this path to the target point.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                 |
+| Name | Type  | Mandatory | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| ctrlX  | number | Yes  | X coordinate of the control point. The value is a floating point number.|
-| ctrlY  | number | Yes  | Y coordinate of the control point. The value is a floating point number.|
-| endX   | number | Yes  | X coordinate of the target point. The value is a floating point number.|
-| endY   | number | Yes  | Y coordinate of the target point. The value is a floating point number.|
+| ctrlX  | number | Yes  | X coordinate of the control point. The value is a floating point number. |
+| ctrlY  | number | Yes  | Y coordinate of the control point. The value is a floating point number. |
+| endX   | number | Yes  | X coordinate of the target point. The value is a floating point number. |
+| endY   | number | Yes  | Y coordinate of the target point. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -203,26 +203,26 @@ path.quadTo(10, 15, 10, 10);
 
 cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-Draws a cubic Bezier curve from the last point of a path to the target point.
+Draws a cubic Bezier curve from the last point of this path to the target point.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                       |
+| Name | Type  | Mandatory | Description                       |
 | ------ | ------ | ---- | --------------------------- |
-| ctrlX1 | number | Yes  | X coordinate of the first control point. The value is a floating point number.|
-| ctrlY1 | number | Yes  | Y coordinate of the first control point. The value is a floating point number.|
-| ctrlX2 | number | Yes  | X coordinate of the second control point. The value is a floating point number.|
-| ctrlY2 | number | Yes  | Y coordinate of the second control point. The value is a floating point number.|
-| endX   | number | Yes  | X coordinate of the target point. The value is a floating point number.|
-| endY   | number | Yes  | Y coordinate of the target point. The value is a floating point number.|
+| ctrlX1 | number | Yes  | X coordinate of the first control point. The value is a floating point number. |
+| ctrlY1 | number | Yes  | Y coordinate of the first control point. The value is a floating point number. |
+| ctrlX2 | number | Yes  | X coordinate of the second control point. The value is a floating point number. |
+| ctrlY2 | number | Yes  | Y coordinate of the second control point. The value is a floating point number. |
+| endX   | number | Yes  | X coordinate of the target point. The value is a floating point number. |
+| endY   | number | Yes  | Y coordinate of the target point. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -239,7 +239,7 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 
 close(): void
 
-Draws a line segment from the current point to the start point of a path.
+Draws a line segment from the current point to the start point of this path.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -257,7 +257,7 @@ path.close();
 
 reset(): void
 
-Resets path data.
+Resets the path data.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -285,15 +285,15 @@ A constructor used to create a **Canvas** object.
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description          |
+| Name  | Type                                        | Mandatory | Description          |
 | -------- | -------------------------------------------- | ---- | -------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map used to create the object.|
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map used to create the object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -330,15 +330,15 @@ Draws a rectangle. By default, black is used for filling.
 
 **Parameters**
 
-| Name| Type                                              | Mandatory| Description          |
+| Name | Type                                              | Mandatory | Description          |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Rectangle to draw.|
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Rectangle to draw. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -354,7 +354,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -370,17 +370,17 @@ Draws a circle. If the radius is less than or equal to zero, nothing is drawn. B
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description               |
+| Name | Type  | Mandatory | Description               |
 | ------ | ------ | ---- | ------------------- |
-| x      | number | Yes  | X coordinate of the center of the circle. The value is a floating point number.|
-| y      | number | Yes  | Y coordinate of the center of the circle. The value is a floating point number.|
-| radius | number | Yes  | Radius of the circle. The value is a floating point number greater than 0.|
+| x      | number | Yes  | X coordinate of the center of the circle. The value is a floating point number. |
+| y      | number | Yes  | Y coordinate of the center of the circle. The value is a floating point number. |
+| radius | number | Yes  | Radius of the circle. The value is a floating point number greater than 0. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -412,18 +412,18 @@ Draws an image. The coordinates of the upper left corner of the image are (left,
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                           |
+| Name  | Type                                        | Mandatory | Description                           |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map of the image.                 |
-| left     | number                                       | Yes  | X coordinate of the upper left corner of the image. The value is a floating point number.|
-| top      | number                                       | Yes  | Y coordinate of the upper left corner of the image. The value is a floating point number.|
-| samplingOptions<sup>12+</sup>  | [SamplingOptions](#samplingoptions12)  | No | Sampling options. By default, the **SamplingOptions** object created using the no-argument constructor is used.|
+| left     | number                                       | Yes  | X coordinate of the upper left corner of the image. The value is a floating point number. |
+| top      | number                                       | Yes  | Y coordinate of the upper left corner of the image. The value is a floating point number. |
+| samplingOptions<sup>12+</sup>  | [SamplingOptions](#samplingoptions12)  | No | Sampling options. By default, the **SamplingOptions** object created using the no-argument constructor is used. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -456,16 +456,16 @@ Draws the background color.
 
 **Parameters**
 
-| Name   | Type                                                | Mandatory| Description                            |
+| Name   | Type                                                | Mandatory | Description                            |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | color     | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.                  |
-| blendMode | [BlendMode](#blendmode)                              | No  | Blend mode. The default mode is **SRC_OVER**.|
+| blendMode | [BlendMode](#blendmode)                              | No  | Blend mode. The default mode is **SRC_OVER**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -498,21 +498,21 @@ Draws a pixel map based on a mesh, where mesh vertices are evenly distributed ac
 
 **Parameters**
 
-| Name     | Type           | Mandatory| Description                           |
+| Name     | Type           | Mandatory | Description                           |
 | ----------- | -------------  | ---- | ------------------------------- |
-| pixelmap    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map to draw.|
-| meshWidth   | number         | Yes  | Number of columns in the mesh. The value is an integer greater than 0.|
-| meshHeight  | number         | Yes  | Number of rows in the mesh. The value is an integer greater than 0.|
-| vertices    | Array\<number> | Yes  | Array of vertices, which specify the position to draw. The value is a floating-point array and the size must be ((meshWidth+1) * (meshHeight+1) + vertOffset) * 2.|
-| vertOffset  | number         | Yes  | Number of vert elements to skip before drawing. The value is an integer greater than or equal to 0.|
-| colors      | Array\<number> | Yes  | Array of colors, which specify the color at each vertex. The value is an integer array and can be null. The size must be (meshWidth+1) * (meshHeight+1) + colorOffset.|
-| colorOffset | number         | Yes  | Number of color elements to skip before drawing. The value is an integer greater than or equal to 0.|
+| pixelmap    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map to draw. |
+| meshWidth   | number         | Yes  | Number of columns in the mesh. The value is an integer greater than 0. |
+| meshHeight  | number         | Yes  | Number of rows in the mesh. The value is an integer greater than 0. |
+| vertices    | Array\<number> | Yes  | Array of vertices, which specify the position to draw. The value is a floating-point array and the size must be ((meshWidth+1) * (meshHeight+1) + vertOffset) * 2. |
+| vertOffset  | number         | Yes  | Number of vert elements to skip before drawing. The value is an integer greater than or equal to 0. |
+| colors      | Array\<number> | Yes  | Array of colors, which specify the color at each vertex. The value is an integer array and can be null. The size must be (meshWidth+1) * (meshHeight+1) + colorOffset. |
+| colorOffset | number         | Yes  | Number of color elements to skip before drawing. The value is an integer greater than or equal to 0. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -528,10 +528,10 @@ class DrawingRenderNode extends RenderNode {
   async draw(context : DrawContext) {
     const canvas = context.canvas;
     if (this.pixelMap != null) {
-      const brush = new drawing.Brush(); // only support brush
+      const brush = new drawing.Brush(); // Only brush is supported. There is no drawing effect when pen is used.
       canvas.attachBrush(brush);
       let verts : Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360]; // 18
-      canvas.drawPixelMapMesh(pixelMap, 2, 2, verts, 0, null, 0);
+      canvas.drawPixelMapMesh(this.pixelMap, 2, 2, verts, 0, null, 0);
       canvas.detachBrush();
     }
   }
@@ -548,16 +548,16 @@ Draws a point.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description               |
+| Name | Type  | Mandatory | Description               |
 | ------ | ------ | ---- | ------------------- |
-| x      | number | Yes  | X coordinate of the point. The value is a floating point number.|
-| y      | number | Yes  | Y coordinate of the point. The value is a floating point number.|
+| x      | number | Yes  | X coordinate of the point. The value is a floating point number. |
+| y      | number | Yes  | Y coordinate of the point. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -589,15 +589,15 @@ Draws a custom path, which contains a set of path outlines. Each path outline ca
 
 **Parameters**
 
-| Name| Type         | Mandatory| Description              |
+| Name | Type         | Mandatory | Description              |
 | ------ | ------------- | ---- | ------------------ |
-| path   | [Path](#path) | Yes  | **Path** object to draw.|
+| path   | [Path](#path) | Yes  | **Path** object to draw. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -633,18 +633,18 @@ Draws a line segment from the start point to the end point. If the coordinates o
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                   |
+| Name | Type  | Mandatory | Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| x0     | number | Yes  | X coordinate of the start point of the line segment. The value is a floating point number.|
-| y0     | number | Yes  | Y coordinate of the start point of the line segment. The value is a floating point number.|
-| x1     | number | Yes  | X coordinate of the end point of the line segment. The value is a floating point number.|
-| y1     | number | Yes  | Y coordinate of the end point of the line segment. The value is a floating point number.|
+| x0     | number | Yes  | X coordinate of the start point of the line segment. The value is a floating point number. |
+| y0     | number | Yes  | Y coordinate of the start point of the line segment. The value is a floating point number. |
+| x1     | number | Yes  | X coordinate of the end point of the line segment. The value is a floating point number. |
+| y1     | number | Yes  | Y coordinate of the end point of the line segment. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -676,11 +676,11 @@ Draws a text blob.
 
 **Parameters**
 
-| Name| Type                 | Mandatory| Description                                      |
+| Name | Type                 | Mandatory | Description                                      |
 | ------ | --------------------- | ---- | ------------------------------------------ |
 | blob   | [TextBlob](#textblob) | Yes  | **TextBlob** object.                            |
-| x      | number                | Yes  | X coordinate of the left point (red point in the figure below) of the text baseline (blue line in the figure below). The value is a floating point number.|
-| y      | number                | Yes  | Y coordinate of the left point (red point in the figure below) of the text baseline (blue line in the figure below). The value is a floating point number.|
+| x      | number                | Yes  | X coordinate of the left point (red point in the figure below) of the text baseline (blue line in the figure below). The value is a floating point number. |
+| y      | number                | Yes  | Y coordinate of the left point (red point in the figure below) of the text baseline (blue line in the figure below). The value is a floating point number. |
 
 ![image_Text_Blob.png](figures/image_Text_Blob.png)
 
@@ -688,7 +688,7 @@ Draws a text blob.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -726,15 +726,15 @@ Attaches a pen to a canvas so that the canvas can use the style and color of the
 
 **Parameters**
 
-| Name| Type       | Mandatory| Description      |
+| Name | Type       | Mandatory | Description      |
 | ------ | ----------- | ---- | ---------- |
-| pen    | [Pen](#pen) | Yes  | **Pen** object.|
+| pen    | [Pen](#pen) | Yes  | **Pen** object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -750,7 +750,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -770,15 +770,15 @@ Attaches a brush to a canvas so that the canvas can use the style and color of t
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description      |
+| Name | Type           | Mandatory | Description      |
 | ------ | --------------- | ---- | ---------- |
-| brush  | [Brush](#brush) | Yes  | **Brush** object.|
+| brush  | [Brush](#brush) | Yes  | **Brush** object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -793,7 +793,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -819,7 +819,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -844,7 +844,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -860,17 +860,17 @@ Clips a path.
 
 **Parameters**
 
-| Name      | Type              | Mandatory| Description                               |
+| Name      | Type              | Mandatory | Description                               |
 | ------------ | ----------------- | ---- | ------------------------------------|
-| path         | [Path](#path)     | Yes  | Path.                                                |
+| path         | [Path](#path)     | Yes  | **Path** object.                                                |
 | clipOp       | [ClipOp](#clipop12) | No  | Clip mode. The default value is **INTERSECT**.                                    |
-| doAntiAlias  | boolean           | No  | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. The default value is **false**.|
+| doAntiAlias  | boolean           | No  | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. The default value is **false**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -910,13 +910,13 @@ Clips a rectangle.
 | ----------- | ---------------------------------------- | ---- | ------------------- |
 | rect        | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes   | Rectangle.     |
 | clipOp      | [ClipOp](#clipop12)                  | No   | Clip mode. The default value is **INTERSECT**.    |
-| doAntiAlias | boolean           | No  | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. The default value is **false**.|
+| doAntiAlias | boolean           | No  | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. The default value is **false**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -950,7 +950,7 @@ Saves the current canvas status (canvas matrix) to the top of the stack.
 
 | Type  | Description               |
 | ------ | ------------------ |
-| number | Number of canvas statuses. The value is a positive integer.|
+| number | Number of canvas statuses. The value is a positive integer. |
 
 **Example**
 
@@ -979,14 +979,14 @@ Scales the canvas.
 
 | Name | Type    | Mandatory  | Description        |
 | ---- | ------ | ---- | ----------------- |
-| sx   | number | Yes  | Scale ratio on the X axis. The value is a floating point number.|
-| sy   | number | Yes  | Scale ratio on the Y axis. The value is a floating point number.|
+| sx   | number | Yes  | Scale ratio on the X axis. The value is a floating point number. |
+| sy   | number | Yes  | Scale ratio on the Y axis. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1028,7 +1028,7 @@ Skews the canvas in both the horizontal and vertical directions.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1064,14 +1064,14 @@ Rotates the canvas by a certain angle.
 | Name | Type    | Mandatory  | Description        |
 | ---- | ------ | ------ | ------------------------ |
 | degrees       | number | Yes   | Angle to rotate, in degrees. The value is a floating point number. A positive value indicates a clockwise rotation, and a negative value indicates a counterclockwise rotation. |
-| sx            | number | Yes   | X coordinate of the rotation center. The value is a floating point number.|
-| sy            | number | Yes   | Y coordinate of the rotation center. The value is a floating point number.|
+| sx            | number | Yes   | X coordinate of the rotation center. The value is a floating point number. |
+| sy            | number | Yes   | Y coordinate of the rotation center. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1104,7 +1104,7 @@ Translates the canvas by a given distance.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description               |
+| Name | Type  | Mandatory | Description               |
 | ----- | ------ | ---- | ------------------- |
 | dx    | number | Yes  | Distance to translate on the X axis. The value is a floating point number.  |
 | dy    | number | Yes  | Distance to translate on the Y axis. The value is a floating point number.  |
@@ -1113,7 +1113,7 @@ Translates the canvas by a given distance.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1148,7 +1148,7 @@ Obtains the number of canvas statuses (canvas matrices) saved in the stack.
 
 | Type   | Description                                |
 | ------ | ------------------------------------ |
-| number | Number of canvas statuses that have been saved. The value is a positive integer.|
+| number | Number of canvas statuses that have been saved. The value is a positive integer. |
 
 **Example**
 
@@ -1183,13 +1183,13 @@ Restores to a given number of canvas statuses (canvas matrices).
 
 | Name  | Type    | Mandatory  | Description                   |
 | ----- | ------ | ---- | ----------------------------- |
-| count | number | Yes  | Depth of the canvas statuses to restore. The value is an integer. If the value is less than or equal to 1, the canvas is restored to the initial state. If the value is greater than the number of canvas statuses that have been saved, no operation is performed.|
+| count | number | Yes  | Depth of the canvas statuses to restore. The value is an integer. If the value is less than or equal to 1, the canvas is restored to the initial state. If the value is greater than the number of canvas statuses that have been saved, no operation is performed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1250,11 +1250,11 @@ Describes a series of consecutive glyphs with the same attributes in a text blob
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name     | Type  | Readable| Writable| Description                     |
+| Name     | Type  | Readable | Writable | Description                     |
 | --------- | ------ | ---- | ---- | ------------------------- |
-| glyph     | number | Yes  | Yes  | Index of the glyph. The value is an integer. If a floating point number is passed in, the value is rounded down.|
-| positionX | number | Yes  | Yes  | X coordinate of the start point of the text blob. The value is a floating point number.|
-| positionY | number | Yes  | Yes  | Y coordinate of the start point of the text blob. The value is a floating point number.|
+| glyph     | number | Yes  | Yes  | Index of the glyph. The value is an integer. If a floating point number is passed in, the value is rounded down. |
+| positionX | number | Yes  | Yes  | X coordinate of the start point of the text blob. The value is a floating point number. |
+| positionY | number | Yes  | Yes  | Y coordinate of the start point of the text blob. The value is a floating point number. |
 
 ## TextEncoding
 
@@ -1265,19 +1265,20 @@ Enumerates the text encoding types.
 | Name                  | Value  | Description                          |
 | ---------------------- | ---- | ------------------------------ |
 | TEXT_ENCODING_UTF8     | 0    | One byte is used to indicate UTF-8 or ASCII characters. |
-| TEXT_ENCODING_UTF16    | 1    | Two bytes are used to indicate most Unicode characters.|
+| TEXT_ENCODING_UTF16    | 1    | Two bytes are used to indicate most Unicode characters. |
 | TEXT_ENCODING_UTF32    | 2    | Four bytes are used to indicate all Unicode characters.  |
 | TEXT_ENCODING_GLYPH_ID | 3    | Two bytes are used to indicate the glyph index.  |
 
 ## ClipOp<sup>12+</sup>
 Enumerates the canvas clipping modes.
 
+
 **System capability**: SystemCapability.Graphics.Drawing
 
 | Name                | Value   | Description          | Diagram  |
 | ------------------ | ---- | ---------------- | -------- |
-| DIFFERENCE | 0    | Clips a specified area. That is, the difference set is obtained.| ![DIFFERENCE](./figures/image_ClipOp_Difference.png) |
-| INTERSECT  | 1    | Retains a specified area. That is, the intersection is obtained.| ![INTERSECT](./figures/image_ClipOp_Intersect.png) |
+| DIFFERENCE | 0    | Clips a specified area. That is, the difference set is obtained. | ![DIFFERENCE](./figures/image_ClipOp_Difference.png)  |
+| INTERSECT  | 1    | Retains a specified area. That is, the intersection is obtained. | ![INTERSECT](./figures/image_ClipOp_Intersect.png)  |
 
 > **NOTE**
 >
@@ -1291,8 +1292,8 @@ Enumerates the filter modes.
 
 | Name                 | Value   | Description     |
 | ------------------- | ---- | ------- |
-| FILTER_MODE_NEAREST | 0    | Nearest filter mode.|
-| FILTER_MODE_LINEAR  | 1    | Linear filter mode.|
+| FILTER_MODE_NEAREST | 0    | Nearest filter mode. |
+| FILTER_MODE_LINEAR  | 1    | Linear filter mode. |
 
 ## TextBlob
 
@@ -1308,23 +1309,23 @@ Converts a value of the string type into a **TextBlob** object.
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description                                  |
+| Name  | Type                         | Mandatory | Description                                  |
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string                        | Yes  | Content to be used for drawing the text blob.                  |
-| font     | [Font](#font)                 | Yes  | Text size, font, and text scale.          |
-| encoding | [TextEncoding](#textencoding) | No  | Encoding type. The default value is **TEXT_ENCODING_UTF8**.|
+| font     | [Font](#font)                 | Yes  | **Font** object.          |
+| encoding | [TextEncoding](#textencoding) | No  | Encoding type. The default value is **TEXT_ENCODING_UTF8**. |
 
 **Return value**
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| [TextBlob](#textblob) | **TextBlob** object.|
+| [TextBlob](#textblob) | **TextBlob** object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1358,23 +1359,23 @@ Creates a **Textblob** object based on the RunBuffer information.
 
 **Parameters**
 
-| Name| Type                                              | Mandatory| Description                          |
+| Name | Type                                              | Mandatory | Description                          |
 | ------ | -------------------------------------------------- | ---- | ------------------------------ |
 | pos    | Array\<[TextBlobRunBuffer](#textblobrunbuffer)>    | Yes  | **TextBlobRunBuffer** array.       |
-| font   | [Font](#font)                                      | Yes  | Text size, font, and text scale.  |
-| bounds | [common2D.Rect](js-apis-graphics-common2D.md#rect) | No  | Bounding box. If this parameter is not set, there is no bounding box.|
+| font   | [Font](#font)                                      | Yes  | **Font** object.  |
+| bounds | [common2D.Rect](js-apis-graphics-common2D.md#rect) | No  | Bounding box. If this parameter is not set, there is no bounding box. |
 
 **Return value**
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| [TextBlob](#textblob) | **TextBlob** object.|
+| [TextBlob](#textblob) | **TextBlob** object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1417,7 +1418,7 @@ Obtains the rectangular bounding box of the text blob.
 
 | Type                                              | Description                  |
 | -------------------------------------------------- | ---------------------- |
-| [common2D.Rect](js-apis-graphics-common2D.md#rect) | Rectangular bounding box.|
+| [common2D.Rect](js-apis-graphics-common2D.md#rect) | Rectangular bounding box. |
 
 **Example**
 
@@ -1445,7 +1446,7 @@ Obtains the name of the typeface, that is, the name of the font family.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | Typeface name.|
+| string | Typeface name. |
 
 **Example**
 
@@ -1470,15 +1471,15 @@ Enables subpixel font rendering.
 
 **Parameters**
 
-| Name    | Type   | Mandatory| Description                                                        |
+| Name    | Type   | Mandatory | Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| isSubpixel | boolean | Yes  | Whether to enable subpixel font rendering. The value **true** means to enable subpixel font rendering, and **false** means the opposite.|
+| isSubpixel | boolean | Yes  | Whether to enable subpixel font rendering. The value **true** means to enable subpixel font rendering, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1500,15 +1501,15 @@ Enables emboldened fonts.
 
 **Parameters**
 
-| Name    | Type   | Mandatory| Description                                                 |
+| Name    | Type   | Mandatory | Description                                                 |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| isEmbolden | boolean | Yes  | Whether to enable emboldened fonts. The value **true** means to enable emboldened fonts, and **false** means the opposite.|
+| isEmbolden | boolean | Yes  | Whether to enable emboldened fonts. The value **true** means to enable emboldened fonts, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1530,15 +1531,15 @@ Enables linear font scaling.
 
 **Parameters**
 
-| Name         | Type   | Mandatory| Description                                                       |
+| Name         | Type   | Mandatory | Description                                                       |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| isLinearMetrics | boolean | Yes  | Whether to enable linear font scaling. The value **true** means to enable linear font scaling, and **false** means the opposite.|
+| isLinearMetrics | boolean | Yes  | Whether to enable linear font scaling. The value **true** means to enable linear font scaling, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1554,21 +1555,21 @@ font.enableLinearMetrics(true);
 
 setSize(textSize: number): void
 
-Sets the text size. A value less than or equal to 0 is invalid.
+Sets the text size.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description            |
+| Name  | Type  | Mandatory | Description            |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | Yes  | Text size. The value is a floating point number greater than 0.|
+| textSize | number | Yes  | Text size. The value is a floating point number. If a negative number is passed in, the size is set to 0. If the size is 0, the text drawn will not be displayed.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -1592,7 +1593,7 @@ Obtains the text size.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| number | Text size. The value is a floating point number.|
+| number | Text size. The value is a floating point number. |
 
 **Example**
 
@@ -1613,15 +1614,15 @@ Sets the typeface.
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description  |
+| Name  | Type                 | Mandatory | Description  |
 | -------- | --------------------- | ---- | ------ |
-| typeface | [Typeface](#typeface) | Yes  | **Typeface** object.|
+| typeface | [Typeface](#typeface) | Yes  | **Typeface** object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1645,7 +1646,7 @@ Obtains the typeface.
 
 | Type                 | Description  |
 | --------------------- | ------ |
-| [Typeface](#typeface) | **Typeface** object.|
+| [Typeface](#typeface) | **Typeface** object. |
 
 **Example**
 
@@ -1667,7 +1668,7 @@ Obtains the font metrics of the typeface.
 
 | Type                       | Description             |
 | --------------------------- | ----------------- |
-| [FontMetrics](#fontmetrics) | Font metrics.|
+| [FontMetrics](#fontmetrics) | Font metrics. |
 
 **Example**
 
@@ -1691,22 +1692,22 @@ Measures the text width.
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description      |
+| Name  | Type                         | Mandatory | Description      |
 | -------- | ----------------------------- | ---- | ---------- |
-| text     | string                        | Yes  | Text content.|
-| encoding | [TextEncoding](#textencoding) | Yes  | Encoding format.|
+| text     | string                        | Yes  | Text content. |
+| encoding | [TextEncoding](#textencoding) | Yes  | Encoding format. |
 
 **Return value**
 
 | Type  | Description            |
 | ------ | ---------------- |
-| number | Width of the text. The value is a floating point number.|
+| number | Width of the text. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1746,22 +1747,22 @@ Creates a **ColorFilter** object with a given color and blend mode.
 
 **Parameters**
 
-| Name| Type                                                | Mandatory| Description            |
+| Name | Type                                                | Mandatory | Description            |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.|
-| mode   | [BlendMode](#blendmode)                              | Yes  | Blend mode.|
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255. |
+| mode   | [BlendMode](#blendmode)                              | Yes  | Blend mode. |
 
 **Return value**
 
 | Type                       | Description              |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | **ColorFilter** object created.|
+| [ColorFilter](#colorfilter) | **ColorFilter** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -1783,22 +1784,22 @@ Creates a **ColorFilter** object by combining another two color filters.
 
 **Parameters**
 
-| Name| Type                       | Mandatory| Description                            |
+| Name | Type                       | Mandatory | Description                            |
 | ------ | --------------------------- | ---- | -------------------------------- |
-| outer  | [ColorFilter](#colorfilter) | Yes  | Color filter that takes effect later in the new filter.|
-| inner  | [ColorFilter](#colorfilter) | Yes  | Color filter that takes effect first in the new filter.|
+| outer  | [ColorFilter](#colorfilter) | Yes  | Color filter that takes effect later in the new filter. |
+| inner  | [ColorFilter](#colorfilter) | Yes  | Color filter that takes effect first in the new filter. |
 
 **Return value**
 
 | Type                       | Description              |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | **ColorFilter** object created.|
+| [ColorFilter](#colorfilter) | **ColorFilter** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1824,7 +1825,7 @@ Creates a **ColorFilter** object that applies the sRGB gamma curve to the RGB ch
 
 | Type                       | Description              |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | **ColorFilter** object created.|
+| [ColorFilter](#colorfilter) | **ColorFilter** object created. |
 
 **Example**
 
@@ -1845,7 +1846,7 @@ Creates a **ColorFilter** object that applies the RGB channels to the sRGB gamma
 
 | Type                       | Description              |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | **ColorFilter** object created.|
+| [ColorFilter](#colorfilter) | **ColorFilter** object created. |
 
 **Example**
 
@@ -1866,7 +1867,7 @@ Creates a **ColorFilter** object that multiplies the luma into the alpha channel
 
 | Type                       | Description              |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | **ColorFilter** object created.|
+| [ColorFilter](#colorfilter) | **ColorFilter** object created. |
 
 **Example**
 
@@ -1883,9 +1884,9 @@ Enumerates the join styles of a pen. The join style defines the shape of the joi
 
 | Name       | Value  | Description                                                        | Diagram  |
 | ----------- | ---- | ----------------------------------------------------------- | -------- |
-| MITER_JOIN | 0    | Mitered corner. If the angle of a polyline is small, its miter length may be inappropriate. In this case, you need to use the miter limit to limit the miter length.| ![MITER_JOIN](./figures/image_JoinStyle_Miter_Join.png) |
-| ROUND_JOIN | 1    | Round corner.| ![ROUND_JOIN](./figures/image_JoinStyle_Round_Join.png) |
-| BEVEL_JOIN | 2    | Beveled corner.| ![BEVEL_JOIN](./figures/image_JoinStyle_Bevel_Join.png) |
+| MITER_JOIN | 0    | Mitered corner. If the angle of a polyline is small, its miter length may be inappropriate. In this case, you need to use the miter limit to limit the miter length. | ![MITER_JOIN](./figures/image_JoinStyle_Miter_Join.png)  |
+| ROUND_JOIN | 1    | Round corner. | ![ROUND_JOIN](./figures/image_JoinStyle_Round_Join.png)  |
+| BEVEL_JOIN | 2    | Beveled corner. | ![BEVEL_JOIN](./figures/image_JoinStyle_Bevel_Join.png)  |
 
 ## CapStyle<sup>12+</sup>
 
@@ -1895,9 +1896,9 @@ Enumerates the cap styles of a pen. The cap style defines the style of both ends
 
 | Name       | Value  | Description                                                        | Diagram  |
 | ---------- | ---- | ----------------------------------------------------------- | -------- |
-| FLAT_CAP   | 0    | There is no cap style. Both ends of the line segment are cut off square.| ![FLAT_CAP](./figures/image_CapStyle_Flat_Cap.png) |
-| SQUARE_CAP | 1    | Square cap style. Both ends have a square, the height of which is half of the width of the line segment, with the same width.| ![SQUARE_CAP](./figures/image_CapStyle_Square_Cap.png) |
-| ROUND_CAP  | 2    | Round cap style. Both ends have a semicircle centered, the diameter of which is the same as the width of the line segment.| ![ROUND_CAP](./figures/image_CapStyle_Round_Cap.png) |
+| FLAT_CAP   | 0    | There is no cap style. Both ends of the line segment are cut off square. | ![FLAT_CAP](./figures/image_CapStyle_Flat_Cap.png)  |
+| SQUARE_CAP | 1    | Square cap style. Both ends have a square, the height of which is half of the width of the line segment, with the same width. | ![SQUARE_CAP](./figures/image_CapStyle_Square_Cap.png)  |
+| ROUND_CAP  | 2    | Round cap style. Both ends have a semicircle centered, the diameter of which is the same as the width of the line segment. | ![ROUND_CAP](./figures/image_CapStyle_Round_Cap.png)  |
 
 ## BlurType<sup>12+</sup>
 
@@ -1905,12 +1906,12 @@ Enumerates the blur types of a mask filter.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name  | Value| Description              | Diagram  |
+| Name  | Value | Description              | Diagram  |
 | ------ | - | ------------------ | -------- |
-| NORMAL | 0 | Blurs both inside and outside the original border.         | ![NORMAL](./figures/image_BlueType_Normal.png) |
-| SOLID  | 1 | Draws solid inside the border, and blurs outside.| ![SOLID](./figures/image_BlueType_Solid.png) |
-| OUTER  | 2 | Draws nothing inside the border, and blurs outside.| ![OUTER](./figures/image_BlueType_Outer.png) |
-| INNER  | 3 | Blurs inside the border, and draws nothing outside.| ![INNER](./figures/image_BlueType_Inner.png) |
+| NORMAL | 0 | Blurs both inside and outside the original border.         | ![NORMAL](./figures/image_BlueType_Normal.png)  |
+| SOLID  | 1 | Draws solid inside the border, and blurs outside. | ![SOLID](./figures/image_BlueType_Solid.png)  |
+| OUTER  | 2 | Draws nothing inside the border, and blurs outside. | ![OUTER](./figures/image_BlueType_Outer.png)  |
+| INNER  | 3 | Blurs inside the border, and draws nothing outside. | ![INNER](./figures/image_BlueType_Inner.png)  |
 
 ## SamplingOptions<sup>12+</sup>
 
@@ -1948,7 +1949,7 @@ Creates a **SamplingOptions** object.
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                                |
+| Name    | Type                  | Mandatory | Description                                |
 | ---------- | --------------------- | ---- | ----------------------------------- |
 | filterMode | [FilterMode](#filtermode12)    | Yes  | Filter mode.                   |
 
@@ -1956,7 +1957,7 @@ Creates a **SamplingOptions** object.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -1987,22 +1988,22 @@ Creates a mask filter with a blur effect.
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                                |
+| Name    | Type                  | Mandatory | Description                                |
 | ---------- | --------------------- | ---- | ----------------------------------- |
 | blurType   | [BlurType](#blurtype12) | Yes  | Blur type.                          |
-| sigma      | number                | Yes  | Standard deviation of the Gaussian blur to apply. The value must be a floating point number greater than 0.|
+| sigma      | number                | Yes  | Standard deviation of the Gaussian blur to apply. The value must be a floating point number greater than 0. |
 
 **Return value**
 
 | Type                     | Description               |
 | ------------------------- | ------------------ |
-| [MaskFilter](#maskfilter12) | **Maskfilter** object created.|
+| [MaskFilter](#maskfilter12) | **MaskFilter** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -2042,13 +2043,13 @@ Creates a **PathEffect** object that converts a path into a dotted line.
 
 | Type                     | Description                  |
 | ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | **PathEffect** object created.|
+| [PathEffect](#patheffect12) | **PathEffect** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -2080,24 +2081,24 @@ Creates a **ShadowLayer** object.
 
 **Parameters**
 
-| Name    | Type     | Mandatory| Description                                |
+| Name    | Type     | Mandatory | Description                                |
 | ---------- | -------- | ---- | ----------------------------------- |
 | blurRadius  | number   | Yes  | Radius of the shadow layer. The value must be a floating point number greater than 0.    |
 | x           | number   | Yes  | Offset on the X axis. The value is a floating point number.       |
 | y           | number   | Yes  | Offset on the Y axis. The value is a floating point number.       |
-| color       | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.|
+| color       | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255. |
 
 **Return value**
 
 | Type                       | Description                 |
 | --------------------------- | -------------------- |
-| [ShadowLayer](#shadowlayer12) | **ShadowLayer** object created.|
+| [ShadowLayer](#shadowlayer12) | **ShadowLayer** object created. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -2129,15 +2130,15 @@ Sets a color for this pen.
 
 **Parameters**
 
-| Name| Type                                                | Mandatory| Description            |
+| Name | Type                                                | Mandatory | Description            |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.|
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -2154,21 +2155,21 @@ pen.setColor(color);
 
 setStrokeWidth(width: number) : void
 
-Sets a stroke width for this pen.
+Sets the stroke width for this pen. The value **0** is treated as an unusually thin width. During drawing, the width of 0 is always drawn as 1 pixel wide, regardless of any scaling applied to the canvas. Negative values are also regarded as the value **0** during the drawing process.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| width  | number | Yes  | Stroke width. The value is a floating point number. If a value less than 1 is passed in, the value **1** is used.|
+| width  | number | Yes  | Stroke width. The value is a floating point number. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2190,15 +2191,15 @@ Enables anti-aliasing for this pen. Anti-aliasing makes the edges of the content
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                             |
+| Name | Type   | Mandatory | Description                                             |
 | ------ | ------- | ---- | ------------------------------------------------- |
-| aa     | boolean | Yes  | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite.|
+| aa     | boolean | Yes  | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2220,15 +2221,15 @@ Sets an alpha value for this pen.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                    |
+| Name | Type  | Mandatory | Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| alpha  | number | Yes  | Alpha value. The value is an integer in the range [0, 255]. If a floating point number is passed in, the value is rounded down.|
+| alpha  | number | Yes  | Alpha value. The value is an integer in the range [0, 255]. If a floating point number is passed in, the value is rounded down. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -2250,15 +2251,15 @@ Sets a color filter for this pen.
 
 **Parameters**
 
-| Name| Type                       | Mandatory| Description        |
+| Name | Type                       | Mandatory | Description        |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | Yes  | Color filter.|
+| filter | [ColorFilter](#colorfilter) | Yes  | Color filter. If null is passed in, the color filter is cleared. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2281,15 +2282,15 @@ Adds a mask filter for this pen.
 
 **Parameters**
 
-| Name| Type                      | Mandatory| Description     |
+| Name | Type                      | Mandatory | Description     |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | Yes  | Mask filter.|
+| filter | [MaskFilter](#maskfilter12) | Yes  | Mask filter. If null is passed in, the mask filter is cleared. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2320,15 +2321,15 @@ Sets the path effect for this pen.
 
 **Parameters**
 
-| Name | Type                      | Mandatory| Description        |
+| Name | Type                      | Mandatory | Description        |
 | ------- | ------------------------- | ---- | ------------ |
-| effect  | [PathEffect](#patheffect12) | Yes  | Path effect.|
+| effect  | [PathEffect](#patheffect12) | Yes  | Path effect. If null is passed in, the path filter is cleared. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2353,21 +2354,21 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-Sets a shadow layer for this pen. If null is passed in, the existing shadow layer is cleared. Currently, this API is valid only for texts.
+Sets a shadow layer for this pen. The shadow layer effect takes effect only when text is drawn.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name | Type                      | Mandatory| Description     |
+| Name | Type                      | Mandatory | Description     |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | Yes  | Shadow layer.|
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | Yes  | Shadow layer. If null is passed in, the shadow layer is cleared. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2409,15 +2410,15 @@ Sets a blend mode for this pen.
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description            |
+| Name | Type                   | Mandatory | Description            |
 | ------ | ----------------------- | ---- | ---------------- |
-| mode   | [BlendMode](#blendmode) | Yes  | Blend mode.|
+| mode   | [BlendMode](#blendmode) | Yes  | Blend mode. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2439,7 +2440,7 @@ Sets the join style for this pen.
 
 **Parameters**
 
-| Name| Type                    | Mandatory| Description            |
+| Name | Type                    | Mandatory | Description            |
 | ------ | ----------------------- | ---- | --------------- |
 | style  | [JoinStyle](#joinstyle12) | Yes  | Join style.    |
 
@@ -2447,7 +2448,7 @@ Sets the join style for this pen.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2508,7 +2509,7 @@ Sets the cap style for this pen.
 
 **Parameters**
 
-| Name| Type                    | Mandatory| Description                  |
+| Name | Type                    | Mandatory | Description                  |
 | ------ | ----------------------- | ---- | --------------------- |
 | style  | [CapStyle](#capstyle12)   | Yes  | A variable that describes the cap style.   |
 
@@ -2516,7 +2517,7 @@ Sets the cap style for this pen.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2548,7 +2549,7 @@ Obtains the cap style of this pen.
 
 | Type        | Description               |
 | ------------ | ------------------ |
-| CapStyle     | Cap style.|
+| CapStyle     | Cap style. |
 
 **Example**
 
@@ -2577,15 +2578,15 @@ Enables dithering for this pen. Dithering make the drawn color more realistic.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                                     |
+| Name | Type   | Mandatory | Description                                                     |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| dither | boolean | Yes  | Whether to enable dithering. The value **true** means to enable dithering, and **false** means the opposite.|
+| dither | boolean | Yes  | Whether to enable dithering. The value **true** means to enable dithering, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2611,15 +2612,15 @@ Sets a color for this brush.
 
 **Parameters**
 
-| Name| Type                                                | Mandatory| Description            |
+| Name | Type                                                | Mandatory | Description            |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.|
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -2642,15 +2643,15 @@ Enables anti-aliasing for this brush. Anti-aliasing makes the edges of the conte
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                             |
+| Name | Type   | Mandatory | Description                                             |
 | ------ | ------- | ---- | ------------------------------------------------- |
-| aa     | boolean | Yes  | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite.|
+| aa     | boolean | Yes  | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2672,15 +2673,15 @@ Sets an alpha value for this brush.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                    |
+| Name | Type  | Mandatory | Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| alpha  | number | Yes  | Alpha value. The value is an integer in the range [0, 255]. If a floating point number is passed in, the value is rounded down.|
+| alpha  | number | Yes  | Alpha value. The value is an integer in the range [0, 255]. If a floating point number is passed in, the value is rounded down. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
@@ -2702,15 +2703,15 @@ Sets a color filter for this brush.
 
 **Parameters**
 
-| Name| Type                       | Mandatory| Description        |
+| Name | Type                       | Mandatory | Description        |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | Yes  | Color filter.|
+| filter | [ColorFilter](#colorfilter) | Yes  | Color filter. If null is passed in, the color filter is cleared. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2733,15 +2734,15 @@ Adds a mask filter for this brush.
 
 **Parameters**
 
-| Name| Type                      | Mandatory| Description     |
+| Name | Type                      | Mandatory | Description     |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | Yes  | Mask filter.|
+| filter | [MaskFilter](#maskfilter12) | Yes  | Mask filter. If null is passed in, the mask filter is cleared. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2764,21 +2765,21 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-Sets the shadow layer for this brush. If null is passed in, the existing shadow layer is cleared. Currently, this function is valid only for texts.
+Sets a shadow layer for this brush. The shadow layer effect takes effect only when text is drawn.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Parameters**
 
-| Name | Type                      | Mandatory| Description     |
+| Name | Type                      | Mandatory | Description     |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | Yes  | Shadow layer.|
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | Yes  | Shadow layer. If null is passed in, the shadow layer is cleared. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
@@ -2835,15 +2836,15 @@ Sets a blend mode for this brush.
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description            |
+| Name | Type                   | Mandatory | Description            |
 | ------ | ----------------------- | ---- | ---------------- |
-| mode   | [BlendMode](#blendmode) | Yes  | Blend mode.|
+| mode   | [BlendMode](#blendmode) | Yes  | Blend mode. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
