@@ -784,7 +784,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -965,7 +965,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let setBadgeNumberCallback = (err: BusinessError): void => {
     if (err) {
-        console.info(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
+        console.error(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setBadgeNumber success");
     }
