@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
+import { text } from '@kit.ArkGraphics2D';
 ```
 
 ## TextAlign
@@ -179,14 +179,14 @@ import { drawing } from '@kit.ArkGraphics2D'
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 否 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 是 | 否 | 文本基线型，默认为ALPHABETIC。               |
 | fontFamilies  | Array\<string>                                       | 是 | 否 | 字体类型，默认为系统字体。                    |
-| fontSize      | number                                               | 是 | 否 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。  |
-| letterSpacing | number                                               | 是 | 否 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为逻辑像素。|
-| wordSpacing   | number                                               | 是 | 否 | 单词间距，浮点数，默认为0.0，单位为逻辑像素。                 |
-| heightScale   | number                                               | 是 | 否 | 行高缩放倍数，浮点数，默认为1.0。              |
+| fontSize      | number                                               | 是 | 否 | 字体大小，浮点数，默认为14.0，单位为物理像素px。  |
+| letterSpacing | number                                               | 是 | 否 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为物理像素px。|
+| wordSpacing   | number                                               | 是 | 否 | 单词间距，浮点数，默认为0.0，单位为物理像素px。                 |
+| heightScale   | number                                               | 是 | 否 | 行高缩放倍数，浮点数，默认为1.0，heightOnly为true时生效。              |
 | halfLeading   | boolean                                              | 是 | 否 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
 | heightOnly    | boolean                                              | 是 | 否 | true表示根据字体大小计算文本框的高度，false表示根据行高和行距，默认为false。|
 | ellipsis      | string                                               | 是 | 否 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 否 | 省略号类型，默认为END。                        |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 否 | 省略号类型，默认为END，行尾省略号。                        |
 | locale        | string                                               | 是 | 否 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
 
 ## FontCollection
@@ -212,7 +212,7 @@ static getGlobalInstance(): FontCollection
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let fontCollection = text.FontCollection.getGlobalInstance();
   fontCollection.loadFontSync('test', 'File://');
 }
@@ -220,7 +220,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -251,7 +251,7 @@ loadFontSync(name: string, path: string | Resource): void
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let fontCollection = new text.FontCollection;
   fontCollection.loadFontSync('test', 'File://');
 }
@@ -259,7 +259,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -316,11 +316,11 @@ struct Index {
 
 | 名称           | 类型                                           | 只读 | 必填 | 说明                         |
 | -------------- | --------------------------------------------- | ---- | --- | --------------------------- |
-| width          | number                                        | 是   | 是   | 占位符的宽度，浮点数，单位为逻辑像素。|
-| height         | number                                        | 是   | 是   | 占位符的高度，浮点数，单位为逻辑像素。|
+| width          | number                                        | 是   | 是   | 占位符的宽度，浮点数，单位为物理像素px。|
+| height         | number                                        | 是   | 是   | 占位符的高度，浮点数，单位为物理像素px。|
 | align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 是   | 相对于周围文本的纵向的对齐方式。|
 | baseline       | [TextBaseline](#textbaseline)                 | 是   | 是   | 基线类型。                   |
-| baselineOffset | number                                        | 是   | 是   | 基线偏移量，浮点数，单位为逻辑像素。  |
+| baselineOffset | number                                        | 是   | 是   | 基线偏移量，浮点数，单位为物理像素px。  |
 
 ## Range
 
@@ -351,21 +351,21 @@ layoutSync(width: number): void
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
-| width | number | 是   | 单行的最大宽度，浮点数，单位为逻辑像素。|
+| width | number | 是   | 单行的最大宽度，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   paragraph.layoutSync(100);
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -400,7 +400,7 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
   let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
   let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
@@ -411,7 +411,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -434,21 +434,21 @@ getMaxWidth(): number
 
 | 类型   | 说明       |
 | ------ | --------- |
-| number | 最大的行宽，浮点数，单位为逻辑像素。|
+| number | 最大的行宽，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let maxWidth = paragraph.getMaxWidth();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -471,21 +471,21 @@ getHeight(): number
 
 | 类型   | 说明   |
 | ------ | ----- |
-| number | 总高度，浮点数，单位为逻辑像素。|
+| number | 总高度，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let height = paragraph.getHeight();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -508,21 +508,21 @@ getLongestLine(): number
 
 | 类型   | 说明           |
 | ------ | ------------- |
-| number | 最长一行的宽度，浮点数，单位为逻辑像素。|
+| number | 最长一行的宽度，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let longestLine = paragraph.getLongestLine();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -545,21 +545,21 @@ getMinIntrinsicWidth(): number
 
 | 类型   | 说明                           |
 | ------ | ----------------------------- |
-| number | 该段落所占水平空间的最小固有宽度，浮点数，单位为逻辑像素。|
+| number | 该段落所占水平空间的最小固有宽度，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -582,21 +582,21 @@ getMaxIntrinsicWidth(): number
 
 | 类型   | 说明                           |
 | ------ | ----------------------------- |
-| number | 该段落所占水平空间的最大固有宽度，浮点数，单位为逻辑像素。|
+| number | 该段落所占水平空间的最大固有宽度，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -619,21 +619,21 @@ getAlphabeticBaseline(): number
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| number | 拉丁字母下的基线位置，浮点数，单位为逻辑像素。|
+| number | 拉丁字母下的基线位置，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let alphabeticBaseline = paragraph.getAlphabeticBaseline();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -656,21 +656,21 @@ getIdeographicBaseline(): number
 
 | 类型   | 说明                  |
 | ------ | -------------------- |
-| number | 获取表意字下的基线位置，浮点数，单位为逻辑像素。|
+| number | 获取表意字下的基线位置，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let ideographicBaseline = paragraph.getIdeographicBaseline();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -708,7 +708,7 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let range: text.Range = { start: 0, end: 1};
   let rects = paragraph.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
 }
@@ -716,7 +716,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -746,14 +746,14 @@ getRectsForPlaceholders(): Array\<TextBox>
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let placeholderRects = paragraph.getRectsForPlaceholders();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -790,14 +790,14 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -833,14 +833,14 @@ getWordBoundary(offset: number): Range
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let wordRange = paragraph.getWordBoundary(0);
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -870,14 +870,14 @@ getLineCount(): number
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let lineCount = paragraph.getLineCount();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -913,14 +913,14 @@ getLineHeight(line: number): number
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let lineHeight = paragraph.getLineHeight(0);
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -956,14 +956,14 @@ getLineWidth(line: number): number
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let lineWidth = paragraph.getLineWidth(0);
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -993,14 +993,14 @@ didExceedMaxLines(): boolean
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let didExceed = paragraph.didExceedMaxLines();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1030,14 +1030,14 @@ getTextLines(): Array\<TextLine>
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let lines = paragraph.getTextLines();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1131,14 +1131,14 @@ ParagraphBuilder对象的构造函数。
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1147,7 +1147,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1184,14 +1184,14 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1201,7 +1201,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1228,14 +1228,14 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1246,7 +1246,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1279,14 +1279,14 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1296,7 +1296,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1329,9 +1329,9 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myParagraphStyle: text.ParagraphStyle = {
-    align: 3,
+    align: text.TextAlign.END,
   };
   let myPlaceholderSpan: text.PlaceholderSpan = {
     width: 10000,
@@ -1348,7 +1348,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1381,9 +1381,9 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myParagraphStyle: text.ParagraphStyle = {
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1393,7 +1393,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1429,14 +1429,14 @@ getGlyphCount(): number
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let GlyphCount = lines[0].getGlyphCount();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1466,14 +1466,14 @@ getTextRange(): Range
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let textRange = lines[0].getTextRange();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1503,14 +1503,14 @@ getGlyphRuns(): Array\<Run>
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let runs = lines[0].getGlyphRuns();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1545,7 +1545,7 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
   let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
   let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
@@ -1556,7 +1556,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1592,14 +1592,14 @@ getGlyphCount(): number
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let glyphs = runs[0].getGlyphCount();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1629,14 +1629,14 @@ getGlyphs(): Array\<number>
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let glyph = runs[0].getGlyphs();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1666,14 +1666,14 @@ getPositions(): Array<common2D.Point>
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let positions = runs[0].getPositions();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1703,14 +1703,14 @@ getOffsets(): Array<common2D.Point>
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let offsets = runs[0].getOffsets();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1741,14 +1741,14 @@ getFont(): drawing.Font
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let font = runs[0].getFont();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1783,7 +1783,7 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
   let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
   let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
@@ -1794,7 +1794,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
