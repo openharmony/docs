@@ -27,7 +27,7 @@
 | -------- | -------- |
 | struct  [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) | 媒体密钥请求信息。 | 
 | struct  [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) | 媒体密钥请求。 | 
-| struct  [DRM_Statistics](_d_r_m___statistics.md) | MediaKeySystem的度量信息。 | 
+| struct  [DRM_Statistics](_d_r_m___statistics.md) | MediaKeySystem的度量记录。 | 
 | struct  [DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md) | 离线媒体密钥标识列表。 | 
 | struct  [DRM_KeysInfo](_d_r_m___keys_info.md) | 媒体密钥信息。 | 
 | struct  [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | 媒体密钥状态。 | 
@@ -61,8 +61,8 @@
 | [MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)&nbsp;&nbsp;&nbsp;64 | 媒体密钥状态名称的最大长度。 | 
 | [MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)&nbsp;&nbsp;&nbsp;256 | 媒体密钥状态值的最大长度。 | 
 | [DRM_UUID_LEN](#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | DRM解决方案的UUID长度。 | 
-| [MAX_PSSH_DATA_LEN](#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | PSSH数据的最大长度。 | 
-| [MAX_PSSH_INFO_COUNT](#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | PSSH信息的最大数量。 | 
+| [MAX_PSSH_DATA_LEN](#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | PSSH（Protected System Specific Header）信息的最大长度。 | 
+| [MAX_PSSH_INFO_COUNT](#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | PSSH（Protected System Specific Header）信息的最大数量。 | 
 | [MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)&nbsp;&nbsp;&nbsp;128 | MediaKeySystem名称的最大长度。  | 
 | [MAX_MEDIA_KEY_SYSTEM_NUM](#max_media_key_system_num)&nbsp;&nbsp;&nbsp;8 | MediaKeySystem的最大数量。  | 
 
@@ -138,10 +138,10 @@
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationString](#oh_mediakeysystem_setconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, const char \*value) | 设置字符串类型的配置信息。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationString](#oh_mediakeysystem_getconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, char \*value, int32_t valueLen) | 获取字符串类型的配置属性值。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationByteArray](#oh_mediakeysystem_setconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t valueLen) | 设置数组类型的配置信息。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationByteArray](#oh_mediakeysystem_getconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t \*valueLen) | 按字符数组类型名称获取媒体密钥系统配置值。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetStatistics](#oh_mediakeysystem_getstatistics) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_Statistics](_d_r_m___statistics.md) \*statistics) | 获取媒体密钥系统度量信息。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationByteArray](#oh_mediakeysystem_getconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t \*valueLen) | 按字符数组类型名称获取MediaKeySystem配置值。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetStatistics](#oh_mediakeysystem_getstatistics) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_Statistics](_d_r_m___statistics.md) \*statistics) | 获取MediaKeySystem度量记录。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetMaxContentProtectionLevel](#oh_mediakeysystem_getmaxcontentprotectionlevel) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | 获取当前DRM解决方案支持的最大内容保护级别。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetMediaKeySystemCallback](#oh_mediakeysystem_setmediakeysystemcallback) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [MediaKeySystem_Callback](#mediakeysystem_callback) callback) | 设置媒体密钥系统事件回调。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetMediaKeySystemCallback](#oh_mediakeysystem_setmediakeysystemcallback) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [MediaKeySystem_Callback](#mediakeysystem_callback) callback) | 设置MediaKeySystem事件回调。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_CreateMediaKeySession](#oh_mediakeysystem_createmediakeysession) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*level, [MediaKeySession](#mediakeysession) \*\*mediaKeySession) | 创建媒体密钥会话实例。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GenerateKeySystemRequest](#oh_mediakeysystem_generatekeysystemrequest) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, uint8_t \*request, int32_t \*requestLen, char \*defaultUrl, int32_t defaultUrlLen) | 生成设备DRM请求。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_ProcessKeySystemResponse](#oh_mediakeysystem_processkeysystemresponse) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, uint8_t \*response, int32_t responseLen) | 处理设备DRM证书请求响应。 | 
@@ -180,10 +180,10 @@
 | char [DRM_MediaKeyStatus::statusName](#statusname) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)] | 媒体密钥状态名称数组。 | 
 | char [DRM_MediaKeyStatus::statusValue](#statusvalue-22) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)] | 媒体密钥状态值数组。 | 
 | uint8_t [DRM_PsshInfo::uuid](#uuid-12) [[DRM_UUID_LEN](#drm_uuid_len)] | DRM解决方案唯一标识。 | 
-| int32_t [DRM_PsshInfo::dataLen](#datalen-22) | PSSH数据长度。 | 
-| uint8_t [DRM_PsshInfo::data](#data-22) [[MAX_PSSH_DATA_LEN](#max_pssh_data_len)] | uint8_t PSSH信息。 | 
-| uint32_t [DRM_MediaKeySystemInfo::psshCount](#psshcount) | PSSH信息数量。 | 
-| [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | PSSH信息。 | 
+| int32_t [DRM_PsshInfo::dataLen](#datalen-22) | PSSH信息长度。 | 
+| uint8_t [DRM_PsshInfo::data](#data-22) [[MAX_PSSH_DATA_LEN](#max_pssh_data_len)] | PSSH（Protected System Specific Header）信息。 | 
+| uint32_t [DRM_MediaKeySystemInfo::psshCount](#psshcount) | PSSH（Protected System Specific Header）信息数量。 | 
+| [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | PSSH（Protected System Specific Header）信息。 | 
 | char [DRM_MediaKeySystemDescription::name](#name) [[MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)] | DRM解决方案的名称。  | 
 | uint8_t [DRM_MediaKeySystemDescription::uuid](#uuid-22) [[DRM_UUID_LEN](#drm_uuid_len)] | DRM解决方案唯一标识。  | 
 | [MediaKeySession_EventCallback](#mediakeysession_eventcallback) [MediaKeySession_Callback::eventCallback](#eventcallback-12) | MediaKeySession事件回调，如密钥过期等。 | 
@@ -204,7 +204,7 @@
 
 **描述**
 
-Drm系统 uuid长度。
+DRM解决方案唯一标识长度。
 
 **起始版本：** 11
 
@@ -217,7 +217,7 @@ Drm系统 uuid长度。
 
 **描述**
 
-URL最大长度。
+DRM服务的URL最大长度。
 
 **起始版本：** 11
 
@@ -243,7 +243,7 @@ URL最大长度。
 
 **描述**
 
-密钥标识的最大长度。
+媒体密钥标识的最大长度。
 
 **起始版本：** 11
 
@@ -269,7 +269,7 @@ URL最大长度。
 
 **描述**
 
-密钥状态值的最大长度。
+媒体密钥状态值的最大长度。
 
 **起始版本：** 11
 
@@ -295,7 +295,7 @@ URL最大长度。
 
 **描述**
 
-媒体密钥请求选项的最大数量。
+媒体密钥请求中可选数据的最大数量。
 
 **起始版本：** 11
 
@@ -308,7 +308,7 @@ URL最大长度。
 
 **描述**
 
-媒体密钥请求选项数据的最大长度。
+媒体密钥请求中可选数据的最大长度。
 
 **起始版本：** 11
 
@@ -321,7 +321,7 @@ URL最大长度。
 
 **描述**
 
-媒体密钥请求选项名称的最大长度。
+媒体密钥请求中可选数据名称的最大长度。
 
 **起始版本：** 11
 
@@ -372,7 +372,7 @@ URL最大长度。
 ```
 **描述**
 
-媒体密钥系统名称的最大长度。
+DRM解决方案名称的最大长度。
 
 **起始版本：** 12
 
@@ -384,7 +384,7 @@ URL最大长度。
 ```
 **描述**
 
-支持的媒体密钥系统的最大数量。
+支持的DRM解决方案的最大数量。
 
 **起始版本：** 12
 
@@ -397,7 +397,7 @@ URL最大长度。
 
 **描述**
 
-媒体mimetype类型的最大长度。
+媒体类型的最大长度。
 
 **起始版本：** 11
 
@@ -436,7 +436,7 @@ URL最大长度。
 
 **描述**
 
-PSSH数据的最大长度。
+PSSH信息的最大长度。
 
 **起始版本：** 11
 
@@ -462,7 +462,7 @@ PSSH信息的最大数量。
 
 **描述**
 
-度量信息缓冲区的最大长度。
+度量记录缓冲区的最大长度。
 
 **起始版本：** 11
 
@@ -475,7 +475,7 @@ PSSH信息的最大数量。
 
 **描述**
 
-度量信息的最大数量。
+度量记录的最大数量。
 
 **起始版本：** 11
 
@@ -488,7 +488,7 @@ PSSH信息的最大数量。
 
 **描述**
 
-度量信息名称的最大长度。
+度量记录名称的最大长度。
 
 **起始版本：** 11
 
@@ -628,7 +628,7 @@ typedef struct DRM_MediaKeySystemDescription DRM_MediaKeySystemDescription
 ```
 **描述**
 
-DRM解决方案的名称和唯一标识。
+DRM解决方案的名称和唯一标识列表。
 
 **起始版本：** 12
 
@@ -641,7 +641,7 @@ typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo
 
 **描述**
 
-播放器从媒体源获取媒体密钥系统信息。
+播放器从媒体源获取的DRM信息。
 
 **起始版本：** 11
 
@@ -654,7 +654,7 @@ typedef void(* DRM_MediaKeySystemInfoCallback) (DRM_MediaKeySystemInfo *mediaKey
 
 **描述**
 
-应用程序为从媒体源获取媒体密钥系统信息而设置的回调。
+应用程序为从媒体源获取DRM信息而设置的回调。
 
 **起始版本：** 11
 
@@ -662,7 +662,7 @@ typedef void(* DRM_MediaKeySystemInfoCallback) (DRM_MediaKeySystemInfo *mediaKey
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mediaKeySystemInfo | 从媒体源获取的媒体密钥系统信息。 | 
+| mediaKeySystemInfo | 从媒体源获取的DRM信息。 | 
 
 ### DRM_MediaKeyType
 
@@ -715,7 +715,7 @@ typedef struct DRM_PsshInfo DRM_PsshInfo
 
 **描述**
 
-uuid的PSSH信息。
+包含DRM解决方案唯一标识的PSSH（Protected System Specific Header）信息结构。
 
 **起始版本：** 11
 
@@ -728,7 +728,7 @@ typedef struct DRM_Statistics DRM_Statistics
 
 **描述**
 
-MediaKeySystem的度量信息。
+DRM的度量记录。
 
 **起始版本：** 11
 
@@ -767,7 +767,7 @@ typedef Drm_ErrCode(* MediaKeySession_EventCallback) (DRM_EventType eventType, u
 
 **描述**
 
-事件触发时将调用的回调。
+MediaKeySession事件触发时将调用的回调，如密钥过期事件。
 
 **起始版本：** 11
 
@@ -801,7 +801,7 @@ typedef Drm_ErrCode(* MediaKeySession_KeyChangeCallback) (DRM_KeysInfo *keysInfo
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keysInfo | 从媒体密钥系统获取的密钥信息。 | 
+| keysInfo | 密钥信息。 | 
 | newKeysAvailable | 新密钥是否可用 | 
 
 **返回：**
@@ -817,7 +817,7 @@ typedef struct MediaKeySystem MediaKeySystem
 
 **描述**
 
-媒体密钥系统结构。
+MediaKeySystem结构。
 
 **起始版本：** 11
 
@@ -830,7 +830,7 @@ typedef Drm_ErrCode(* MediaKeySystem_Callback) (DRM_EventType eventType, uint8_t
 
 **描述**
 
-事件触发时将调用的回调，不返回媒体密钥系统实例，适用于单个媒体密钥系统场景。
+MediaKeySystem事件触发时将调用的回调，不返回MediaKeySystem实例，适用于单个MediaKeySystem场景。
 
 **起始版本：** 11
 
@@ -839,9 +839,9 @@ typedef Drm_ErrCode(* MediaKeySystem_Callback) (DRM_EventType eventType, uint8_t
 | 名称 | 描述 | 
 | -------- | -------- |
 | eventType | 事件类型。 | 
-| info | 从媒体密钥系统获取的事件信息。 | 
+| info | 事件信息。 | 
 | infoLen | 事件信息长度。 | 
-| extra | 从媒体密钥系统获得的额外信息。 | 
+| extra | 增量信息。 | 
 
 **返回：**
 
@@ -871,7 +871,7 @@ typedef Drm_ErrCode(* OH_MediaKeySession_EventCallback) (MediaKeySession *mediaK
 
 **描述**
 
-事件触发时将调用的回调。
+MediaKeySystem事件触发时将调用的回调。
 
 **起始版本：** 12
 
@@ -879,11 +879,11 @@ typedef Drm_ErrCode(* OH_MediaKeySession_EventCallback) (MediaKeySession *mediaK
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mediaKeySessoin | 媒体密钥会话实例。 | 
+| mediaKeySessoin | 会话实例。 | 
 | eventType | 事件类型。 | 
-| info | 从媒体密钥会话获取的事件信息。 | 
+| info | 事件信息。 | 
 | infoLen | 事件信息长度。 | 
-| extra | 从媒体密钥会话中获得的额外信息。 | 
+| extra | 增量信息。 | 
 
 **返回：**
 
@@ -907,7 +907,7 @@ typedef Drm_ErrCode(* OH_MediaKeySession_KeyChangeCallback) (MediaKeySession *me
 | 名称 | 描述 | 
 | -------- | -------- |
 | mediaKeySessoin | 媒体密钥会话实例。 | 
-| keysInfo | 从媒体密钥系统获取的密钥信息。 | 
+| keysInfo | 密钥信息。 | 
 | newKeysAvailable | 新密钥是否可用，true表示可用，false表示不可用。 | 
 
 **返回：**
@@ -923,7 +923,7 @@ typedef Drm_ErrCode(* OH_MediaKeySystem_Callback) (MediaKeySystem *mediaKeySyste
 
 **描述**
 
-事件触发时将调用的回调，返回媒体密钥系统实例，适用于多个媒体密钥系统场景。
+MediaKeySystem事件触发时将调用的回调，返回MediaKeySystem实例，适用于多个MediaKeySystem场景。
 
 **起始版本：** 12
 
@@ -931,11 +931,11 @@ typedef Drm_ErrCode(* OH_MediaKeySystem_Callback) (MediaKeySystem *mediaKeySyste
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mediaKeySystem | 媒体密钥系统实例。 | 
+| mediaKeySystem | MediaKeySystem实例。 | 
 | eventType | 事件类型。 | 
-| info | 从媒体密钥系统获取的事件信息。 | 
+| info | 事件信息。 | 
 | infoLen | 事件信息长度。 | 
-| extra | 从媒体密钥系统获得的额外信息。 | 
+| extra | 增量信息。 | 
 
 **返回：**
 
@@ -1351,7 +1351,7 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule (MediaKeySession *medi
 
 **描述**
 
-加密内容是否需要安全解码。
+是否需要安全解码。
 
 **起始版本：** 11
 
@@ -1379,7 +1379,7 @@ Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys (MediaKeySession *mediaKe
 
 **描述**
 
-按ID还原离线媒体密钥。
+恢复线媒体密钥到当前会话。
 
 **起始版本：** 11
 
@@ -1433,7 +1433,7 @@ Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback (MediaKeySession *medi
 
 **描述**
 
-设置媒体密钥会话事件回调。
+设置MediaKeySession会话事件回调。
 
 **起始版本：** 11
 
@@ -1487,7 +1487,7 @@ Drm_ErrCode OH_MediaKeySystem_Create (const char *name, MediaKeySystem **mediaKe
 
 **描述**
 
-根据名称创建媒体密钥系统实例。
+创建MediaKeySystem实例。
 
 **起始版本：** 11
 
@@ -1516,7 +1516,7 @@ Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession (MediaKeySystem *mediaKeySys
 
 **描述**
 
-创建媒体密钥会话实例。
+创建MediaKeySession会话实例。
 
 **起始版本：** 11
 
@@ -1547,7 +1547,7 @@ Drm_ErrCode OH_MediaKeySystem_Destroy (MediaKeySystem *mediaKeySystem)
 
 **描述**
 
-销毁媒体密钥系统实例。
+销毁MediaKeySystem实例。
 
 **起始版本：** 11
 
@@ -1573,7 +1573,7 @@ Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest (MediaKeySystem *mediaKey
 
 **描述**
 
-生成媒体密钥系统提供请求。
+生成设备DRM证书请求。
 
 **起始版本：** 11
 
@@ -1782,8 +1782,8 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus (MediaKeySystem *mediaKey
 | 名称 | 描述 | 
 | -------- | -------- |
 | mediaKeySystem | MediaKeySystem实例。 | 
-| offlineMediaKeyId | 离线媒体密钥标识符。 | 
-| offlineMediaKeyIdLen | 离线媒体密钥标识符长度。 | 
+| offlineMediaKeyId | 离线媒体密钥标识。 | 
+| offlineMediaKeyIdLen | 离线媒体密钥标识长度。 | 
 | status | 媒体密钥状态。 | 
 
 **返回：**
@@ -1802,7 +1802,7 @@ Drm_ErrCode OH_MediaKeySystem_GetStatistics (MediaKeySystem *mediaKeySystem, DRM
 
 **描述**
 
-获取媒体密钥系统度量信息。
+获取度量记录。
 
 **起始版本：** 11
 
@@ -1811,7 +1811,7 @@ Drm_ErrCode OH_MediaKeySystem_GetStatistics (MediaKeySystem *mediaKeySystem, DRM
 | 名称 | 描述 | 
 | -------- | -------- |
 | mediaKeySystem | MediaKeySystem实例。 | 
-| statistics | 度量信息。 | 
+| statistics | 度量记录。 | 
 
 **返回：**
 
@@ -1853,7 +1853,7 @@ bool OH_MediaKeySystem_IsSupported2 (const char *name, const char *mimeType)
 
 **描述**
 
-查询设备是否支持对应的DRM解决方案。
+查询设备是否支持对应的DRM解决方案名称及媒体类型。
 
 **起始版本：** 11
 
@@ -1877,7 +1877,7 @@ bool OH_MediaKeySystem_IsSupported3 (const char *name, const char *mimeType, DRM
 
 **描述**
 
-查询设备是否支持对应的DRM解决方案。
+查询设备是否支持对应的DRM解决方案、媒体类型、内容保护级别。
 
 **起始版本：** 11
 
@@ -1930,7 +1930,7 @@ Drm_ErrCode OH_MediaKeySystem_SetCallback (MediaKeySystem *mediaKeySystem, OH_Me
 
 **描述**
 
-设置媒体密钥系统事件回调。
+设置MediaKeySystem事件回调。
 
 **起始版本：** 12
 
@@ -2012,7 +2012,7 @@ Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback (MediaKeySystem *mediaKe
 
 **描述**
 
-设置媒体密钥系统事件回调。
+设置MediaKeySystem事件回调。
 
 **起始版本：** 11
 
@@ -2041,7 +2041,7 @@ uint8_t DRM_MediaKeyRequest::data[MAX_MEDIA_KEY_REQUEST_DATA_LEN]
 
 **描述**
 
-发送给媒体密钥服务的媒体密钥请求数据。
+发送给DRM服务的媒体密钥请求数据。
 
 
 ### data [2/2]
@@ -2052,7 +2052,7 @@ uint8_t DRM_PsshInfo::data[MAX_PSSH_DATA_LEN]
 
 **描述**
 
-PSSH数据数组。
+PSSH信息。
 
 
 ### dataLen [1/2]
@@ -2074,7 +2074,7 @@ int32_t DRM_PsshInfo::dataLen
 
 **描述**
 
-PSSH数据长度。
+PSSH信息长度。
 
 
 ### defaultUrl
@@ -2150,7 +2150,7 @@ uint8_t DRM_MediaKeyRequestInfo::initData[MAX_INIT_DATA_LEN]
 
 **描述**
 
-PSSH数据。
+媒体密钥请求信息中初始化数据。
 
 
 ### initDataLen
@@ -2161,7 +2161,7 @@ int32_t DRM_MediaKeyRequestInfo::initDataLen
 
 **描述**
 
-PSSH数据长度。
+媒体密钥请求信息中初始化数据的长度。
 
 
 ### keyChangeCallback [1/2]
@@ -2279,7 +2279,7 @@ DRM_PsshInfo DRM_MediaKeySystemInfo::psshInfo[MAX_PSSH_INFO_COUNT]
 
 **描述**
 
-PSSH信息.
+DRM信息中PSSH（Protected System Specific Header）信息数组.
 
 
 ### statisticsCount
@@ -2290,7 +2290,7 @@ uint32_t DRM_Statistics::statisticsCount
 
 **描述**
 
-度量信息的数量。
+度量记录的数量。
 
 
 ### statisticsDescription
@@ -2312,7 +2312,7 @@ char DRM_Statistics::statisticsName[MAX_STATISTICS_COUNT][MAX_STATISTICS_NAME_LE
 
 **描述**
 
-度量信息名称集合。
+度量记录名称集合。
 
 
 ### statusCount
@@ -2334,7 +2334,7 @@ char DRM_MediaKeyStatus::statusName[MAX_MEDIA_KEY_STATUS_COUNT][MAX_MEDIA_KEY_ST
 
 **描述**
 
-媒体密钥状态数组。
+媒体密钥状态的名称数组。
 
 
 ### statusValue [1/2]
