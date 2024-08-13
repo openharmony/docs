@@ -2890,7 +2890,9 @@ export default class EntryAbility extends UIAbility {
 
 startMoving(): Promise&lt;void&gt;
 
-开始移动窗口。仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。并且仅在onTouch事件回调方法中的Down事件类型中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。使用Promise异步回调。
+开始移动窗口，使用Promise异步回调。
+并且仅在onTouch事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2918,21 +2920,30 @@ startMoving(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// ets/pages/Index.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-
-export class ServiceExtAbility extends ServiceExtensionAbility {
-    async startMoving() {
-        await windowClass.setUIContent("pages/search"); // 注意windowClass是系统窗口类型
-        await windowClass.setWindowTouchable(true);
-        try {
-            windowClass.startMoving().then(() => {
-                console.info('startMoving successful.');
-            }).catch((err: BusinessError) => {
-                console.error(`startMoving catch error: ${err.code}, message: ${err.message}`);
-            });
-        } catch (exception) {
-            console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
+export const entryName : string = 'Index';
+@Entry
+@Component
+struct Index {
+    @State message: string = 'Hello World';
+    build() {
+        row() {
+            Column() {
+                Blank('160').onTouch((event: TouchEvent) => {
+                    if (event.type === TouchType.Down) {
+                        try {
+                            windowClass.sartMoving().then(() => {
+                                console.info('Succeeded in start moving.')
+                            }).catch((err: BusinessError) => {
+                                console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+                            });
+                        } catch (exception) {
+                            console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -2942,7 +2953,9 @@ export class ServiceExtAbility extends ServiceExtensionAbility {
 
 enableDrag(enable: boolean): Promise&lt;void&gt;
 
-使能/禁止拖拽窗口。仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。使能后，将允许通过鼠标对窗口进行拉伸操作。使用Promise异步回调。
+使能/禁止拖拽窗口。使用Promise异步回调。
+使能后，将允许通过鼠标对窗口进行拉伸操作。
+仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2976,30 +2989,15 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-export class ServiceExtAbility extends ServiceExtensionAbility {
-    
-        windowClass.setUIContent('pages/search');
-        windowClass.setWindowTouchable(true);
-        let limits: window.WindowLimits = {
-            maxWidth: 500,
-            maxHeight: 1000,
-            minWidth: 500,
-            minHeight: 500
-        };
-        try {
-            windowClass.enableDrag(true).then(() => {
-                console.info('enableDrag successfully');
-            }).catch((err: BusinessError) => {
-                console.error(`Failed to enable drag window: ${err.code}, message: ${err.message}`);
-            });
-            await windowClass.setWindowLimits(limits);
-        } catch (err) {
-            console.error(`Failed to enable drag window, Cause code: ${err.code}, message: $err.message`);
-        }
-    }
+try {
+    windowClass.enableDrag(true).then(() => { 
+        console.info('enableDrag successfully');
+    }).catch((err: BusinessError) => {
+        console.error(`Failed to enable drag window: ${err.code}, message: ${err.message}`);
+    });
+} catch (exception) {
+    console.error(`Failed to enable drag window, Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
