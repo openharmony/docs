@@ -26,6 +26,6 @@
 
 1. 使用媒体会话功能注册到系统内统一管理，否则在应用进入后台时，播放将被强制停止。具体参考[AVSession Kit开发指导](../avsession/avsession-overview.md)。
 
-2. 申请长时任务避免进入挂起（Suspend）状态。具体参考[Background Tasks Kit开发指导](../../task-management/continuous-task.md)。
+2. 申请长时任务避免进入挂起（Suspend）状态。具体参考[长时任务开发指导](../../task-management/continuous-task.md)。
 
 当应用进入后台，播放被中断，如果被媒体会话管控，将打印日志“pause id”；如果没有该日志，则说明被长时任务管控。
