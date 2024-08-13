@@ -291,7 +291,7 @@ accessStep(step: number): boolean
 
 | 类型      | 说明        |
 |---------|-----------|
-| boolean | 页面是否前进或后退 |
+| boolean | 页面是否可前进或者后退给定的step步 |
 
 **错误码：**
 
