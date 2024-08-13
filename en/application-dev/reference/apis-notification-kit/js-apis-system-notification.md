@@ -17,10 +17,10 @@ import notification from '@system.notification';
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name       | Type                                          | Mandatory| Description                     |
+| Name       | Type                                          | Mandatory | Description                     |
 | ----------- | ---------------------------------------------- | ---- | ------------------------- |
 | bundleName  | string                                          | Yes  | Name of the application bundle to which the notification will be redirected after being clicked.                 |
-| abilityName  | string                                          | Yes  | Name of the application ability to which the notification will be redirected after being clicked.|
+| abilityName  | string                                          | Yes  | Name of the application ability to which the notification will be redirected after being clicked. |
 | uri         | string                                          | No  | URI of the page to be redirected to.             |
 
 
@@ -28,7 +28,7 @@ import notification from '@system.notification';
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name         | Type                                          | Mandatory| Description                       |
+| Name         | Type                                          | Mandatory | Description                       |
 | ------------- | ---------------------------------------------- | ---- | ------------------------- |
 | contentTitle  | string                                          | No  | Notification title.                 |
 | contentText   | string                                          | No  | Notification content.                 |
@@ -45,9 +45,9 @@ Displays a notification.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| options | ShowNotificationOptions | No| Notification title.|
+| options | ShowNotificationOptions | No | Notification title. |
 
 **Example**
 ```ts
@@ -64,6 +64,4 @@ let notificationObj: notification = {
     });
   }
 }
-
-export default notificationObj
 ```

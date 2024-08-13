@@ -26,7 +26,7 @@ Make sure the system resources are sufficient.
 
 **Error Message**
 
-marshalling or unmarshalling error.
+Marshalling or unmarshalling error.
 
 **Description**
 
@@ -100,7 +100,7 @@ The notification slot is disabled or has not been added.
 
 **Error Message**
 
-Notification is not allowed to remove.
+Notification deletion disabled.
 
 **Description**
 
@@ -112,13 +112,13 @@ The notification attribute **isUnremovable** is set to true.
 
 **Solution**
 
-Set **isUnremovable** as needed. For details, see [NotificationRequest](./js-apis-notificationManager.md#notificationrequest).
+See [NotificationRequest](./js-apis-notificationManager.md#notificationrequest) to check the notification attribute **isUnremovable**.
 
 ## 1600007 Notification Not Found
 
 **Error Message**
 
-The notification is not exist.
+The notification does not exist.
 
 **Description**
 
@@ -130,13 +130,13 @@ The notification has been canceled or deleted.
 
 **Solution**
 
-N/A
+Not supported
 
 ## 1600008 User Not Found
 
 **Error Message**
 
-The user is not exist.
+The user does not exist.
 
 **Description**
 
@@ -154,7 +154,7 @@ Verify the user information.
 
 **Error Message**
 
-Over max number notifications per second.
+The notification sending frequency reaches the upper limit.
 
 **Description**
 
@@ -162,7 +162,7 @@ This error code is reported when the notification sending frequency reaches the 
 
 **Cause**
 
-More than 10 notifications are sent per second.
+More than 10 notifications are sent per second, or more than 20 notifications are updated per second.
 
 **Solution**
 
@@ -190,7 +190,7 @@ Verify the distributed connection.
 
 **Error Message**
 
-Read template config failed.
+Failed to read the template configuration.
 
 **Description**
 
@@ -221,6 +221,24 @@ A memory allocation error occurs.
 **Solution**
 
 Ensure sufficient system memory.
+
+## 1600013 Notification Pop-up Window Displayed
+
+**Error Message**
+
+A notification dialog box is already displayed.
+
+**Description**
+
+This error code is reported when the notification pop-up window is displayed.
+
+**Cause**
+
+The notification pop-up window is displayed.
+
+**Solution**
+
+Check whether the notification pop-up window is displayed.
 
 ## 17700001 Bundle Name Not Found
 

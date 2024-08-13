@@ -1,20 +1,20 @@
-# ContentSlot: Developing in a Hybrid Mode
+# ContentSlot: Representing a Placeholder in Hybrid Development
 
-To render and manage components created by the native layer using C-APIs.
+The **ContentSlot** component is a component designed to render and manage components created on the native layer using C APIs.
 
-Hybrid development is supported. When the container is an **ArkTS** component and the child component is created on the native side, the **ContentSlot** placeholder component is recommended.
+With support for hybrid development, the **ContentSlot** component is recommended when the container is an ArkTS component and the child component is created on the native side.
 
 ## APIs
 
-### ContentSlot Component API
+### ContentSlot API
 
 ```ts
 ContentSlot(content: Content); // You need to use NodeContent provided by ArkUI as the manager.
 ```
 
-| Name | Type | Mandatory/Optional | Description                                                    |
+| Name | Type | Mandatory | Description                                                    |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| content | Content  | Yes  | As the manager of **ContentSlot**, **Content** can register and trigger the callback of the log-in and log-out events of **ContentSlot** and manage the child components through native APIs. |
+| content | Content  | Yes  | Manager of the **ContentSlot** component. Through the APIs provided by the native side, it can register and trigger the attach and detach event callbacks for **ContentSlot**, as well as manage the child components of **ContentSlot**. |
 
 ```ts
 abstract class Content {
@@ -25,15 +25,15 @@ abstract class Content {
 
 (content: Content): ContentSlotAttribute;
 
-Called when content is added to a placeholder component
+Called when content is added to this **ContentSlot** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type | Mandatory/Optional | Description                                                    |
+| Name | Type | Mandatory | Description                                                    |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| content | Content  | Yes  | As the manager of **ContentSlot**, **Content** can register and trigger the callback of the log-in and log-out events of **ContentSlot** and manage the child components through native APIs. |
+| content | Content  | Yes  | Manager of the **ContentSlot** component. Through the APIs provided by the native side, it can register and trigger the attach and detach event callbacks for **ContentSlot**, as well as manage the child components of **ContentSlot**. |
 
 ### ContentSlotAttribute
 
@@ -49,16 +49,16 @@ Defines the **ContentSlot** attributes to prevent incorrect recursive use of **C
 |OH_ArkUI_NodeContentEvent_GetEventType(ArkUI_NodeContentEvent* event)|Obtains the type of the event triggered on the **Content**.|
 |OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node)|Adds a child component to **Content**.|
 |OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position)|Inserts a child component into **Content**.|
-|OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node)|Removes the child component from **Content**.|
-|OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, ArkUI_NodeContentHandle* content)|Obtains the **Content** pointer in ArkTS from the native side.|
-|typedef enum {<br>   NOTE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0,<br>   NOTE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1,<br>} ArkUI_NodeContentEventType|Triggers log-in and log-out events on **Content**.|
+|OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node)|Removes a child component from **Content**.|
+|OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, ArkUI_NodeContentHandle* content)|Obtains the pointer to **Content** in ArkTS from the native side.|
+|typedef enum {<br>   NOTE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0,<br>   NOTE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1,<br>} ArkUI_NodeContentEventType|Enumerates the event types on **Content**.|
 
 ## Development and Implementation
 
 ### Code Implementation in ArkTS
 
 ```ts
-import { nativeNode } from'libNativeNode.so' // so implemented by the developers
+import { nativeNode } from'libNativeNode.so' // so. file implemented by you.
 import { NodeContent } from '@ohos.arkui.node'
 
 @Component
@@ -66,7 +66,7 @@ struct Parent {
     private nodeContent: Content = new NodeContent();
 
     aboutToAppear() {
-        // Create a node through the C-API and add it to the nodeContent manager.
+        // Create a node through the C API and add it to the nodeContent manager.
         nativeNode.createNativeNode(this.nodeContent);
     }
 
@@ -79,17 +79,17 @@ struct Parent {
 }
 ```
 
-### Native Code Implementation
-For details about the basic development knowledge of Napi, see [Development Overview](../napi/ndk-development-overview.md).
+### Code Implementation in C
+For details about the basic development knowledge of Node-API, see [Getting Started with the NDK](../napi/ndk-development-overview.md).
 
-This topic only describes how to implement the logic code related to **ContentSlot**. For details about how to create components in C, see section [Capi](../reference/apis-arkui/_ark_u_i___native_module.md) in the ArkUI API documents.
+This topic only describes how to implement the logic code related to **ContentSlot**. For details about how to create components in C, see section [ArkUI_NativeModule](../reference/apis-arkui/_ark_u_i___native_module.md) in the ArkUI API documents.
 
 ```c++
 ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
 ArkUI_NativeNode_API_1 *nodeAPI;
 
 napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
-    // Solve null pointer and out-of-bounds data related to napi.
+    // Solve null pointer and out-of-bounds issues related to Node-API.
     if ((env == nullptr) || (info == nullptr)) {
         return nullptr;
     }
@@ -104,7 +104,7 @@ napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
         return nullptr;
     }
     
-    // Point nodeContentHandle_ to nodeContent passed in from ArkTS.
+    // Point nodeContentHandle_ to a nodeContent object passed in from ArkTS.
     OH_ARKUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle_);
     
     nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNode_API_1"));
@@ -112,7 +112,7 @@ napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
             ArkUINodeHandle component;
-            // Create components in C. For details, see section "Capi" in the ArkUI API documents.
+            // Create components in C.
             component = CreateNodeHandle();
             // Add the component to the nodeContent manager.
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
@@ -121,17 +121,17 @@ napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
 }
 ```
 
-#### Registering the Up and Down Tree Events
+#### Registering the Attach and Detach Events
 
 ```c++
 auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
     if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
-        // Logic to be triggered when ContentSlot logs in.
+        // Logic to be triggered when an attach event occurs on ContentSlot.
     } else if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW) {
-        // Logic to be triggered when ContentSlot logs out.
+        // Logic to be triggered when a detach event occurs on ContentSlot.
     };
 }
-// Register this event on nodeContent.
+// Register an event with nodeContent.
 OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
 ```
 
@@ -140,7 +140,7 @@ OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
 ```c++
 ArkUINodeHandle component;
 component = CreateNodeHandle();
-// Add the component to the nodeContent manager.
+// Add a component to the nodeContent manager.
 OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
 ```
 
@@ -149,14 +149,13 @@ OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
 ```c++
 ArkUINodeHandle component;
 component = CreateNodeHandle();
-// Insert the component into the corresponding position of the nodeContent manager.
+// Insert a component into the specified position of the nodeContent manager.
 OH_ArkUI_NodeContent_InsertNode(nodeContentHandle_, component, position);
 ```
 
 #### Removing Child Components
 
 ```c++
-// Remove the corresponding component from nodeContent.
+// Remove a component from the nodeContent manager.
 OH_ArkUI_NodeContent_RemoveNode(nodeContentHandle_, component);
 ```
-<!--no_check-->
