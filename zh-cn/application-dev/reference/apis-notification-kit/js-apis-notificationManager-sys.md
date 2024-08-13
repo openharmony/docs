@@ -45,8 +45,8 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect to the service.                           |
-| 1600004  | Notification disabled.                         |
+| 1600003  | Failed to connect to the service.                    |
+| 1600004  | Notification disabled.                               |
 | 1600005  | Notification slot disabled.                    |
 | 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
@@ -70,7 +70,7 @@ let publishCallback = (err: BusinessError): void => {
         console.info("publish success");
     }
 }
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 // 通知Request对象
 let notificationRequest: notificationManager.NotificationRequest = {
@@ -152,6 +152,7 @@ let notificationRequest: notificationManager.NotificationRequest = {
     }
 };
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.publish(notificationRequest, userId).then(() => {
@@ -177,7 +178,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | 是   | 要创建的通知渠道对象。 |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)       | 是   | 要创建的通知渠道对象。 |
 | callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。 |
 
 **错误码：**
@@ -230,7 +231,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 参数名 | 类型             | 必填 | 说明                 |
 | ---- | ---------------- | ---- | -------------------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 要创建的通知渠道对象。 |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md) | 是   | 要创建的通知渠道对象。 |
 
 **返回值：**
 
@@ -284,7 +285,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 | 参数名     | 类型                      | 必填 | 说明                     |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知渠道对象数组。 |
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | 是   | 要创建的通知渠道对象数组。 |
 | callback | AsyncCallback\<void\>     | 是   | 表示被指定通道的回调方法。     |
 
 **错误码：**
@@ -341,7 +342,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                     |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知渠道对象数组。 |
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | 是   | 要创建的通知渠道对象数组。 |
 
 **返回值：**
 
@@ -401,7 +402,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)   | 是   | 指定应用的包信息。        |
-| enable   | boolean               | 是   | 使能状态。             |
+| enable   | boolean               | 是   | 使能状态（true：使能，false：禁止）。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知使能回调函数。 |
 
 **错误码：**
@@ -453,7 +454,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| enable | boolean      | 是   | 使能状态。   |
+| enable | boolean      | 是   | 使能状态（true：使能，false：禁止）。   |
 
 **返回值：**
 
@@ -492,7 +493,7 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 ## notificationManager.getAllNotificationEnabledBundles<sup>12+</sup>
 
-getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>;
+getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 获取允许通知的应用程序列表。使用Promise异步回调。
 
@@ -532,7 +533,7 @@ notificationManager.getAllNotificationEnabledBundles().then((data: Array<notific
         console.info("Enable bundle is " + JSON.stringify(element.bundle));
     });
 }).catch((err: BusinessError) => {
-    console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
+    console.error("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
 })
 ```
 
@@ -553,7 +554,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。            |
-| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -659,7 +660,7 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
 | userId   | number                | 是   | 指定的用户ID。 |
-| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -688,6 +689,7 @@ let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void =>
     }
 }
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
@@ -729,13 +731,14 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
-| 1600008  | The user does not exist..                  |
+| 1600008  | The user does not exist.                  |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
@@ -762,7 +765,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
-| enable   | boolean               | 是   | 使能状态。             |
+| enable   | boolean               | 是   | 使能状态（true：使能，false：禁止）。             |
 | callback | AsyncCallback\<void\> | 是   | 设定角标使能回调函数。 |
 
 **错误码：**
@@ -814,7 +817,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| enable | boolean      | 是   | 使能状态。   |
+| enable | boolean      | 是   | 使能状态（true：使能，false：禁止）。   |
 
 **返回值：**
 
@@ -868,7 +871,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。               |
-| callback | AsyncCallback\<boolean\> | 是   | 获取角标使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取角标使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -973,7 +976,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| slotFlags   | number | 是   | 通知渠道标识位。 |
+| slotFlags   | number | 是   | 通知渠道标识位。<br>- bit0：铃声提示。0表示关闭，1表示开启。 <br>- bit1：锁屏。0表示关闭，1表示开启。 <br>- bit2：横幅。0表示关闭，1表示开启。 <br>- bit3：亮屏。0表示关闭，1表示开启。 <br>- bit4：振动。0表示关闭，1表示开启。 <br>- bit5：状态栏通知图标。0表示关闭，1表示开启。 |
 
 **返回值：**
 
@@ -1032,7 +1035,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | 是   | 通知渠道。             |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)      | 是   | 通知渠道。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知渠道回调函数。 |
 
 **错误码：**
@@ -1089,7 +1092,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 通知渠道。 |
+| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md) | 是   | 通知渠道。 |
 
 **返回值：**
 
@@ -1153,7 +1156,7 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-|  Promise\<number\>| 以Promise形式返回获取指定应用的通知渠道标识位。 |
+|  Promise\<number\>| 以Promise形式返回获取指定应用的通知渠道标识位。<br>- bit0：铃声提示。0表示关闭，1表示开启。 <br>- bit1：锁屏。0表示关闭，1表示开启。 <br>- bit2：横幅。0表示关闭，1表示开启。 <br>- bit3：亮屏。0表示关闭，1表示开启。 <br>- bit4：振动。0表示关闭，1表示开启。 <br>- bit5：状态栏通知图标。0表示关闭，1表示开启。 |
 
 **错误码：**
 
@@ -1201,7 +1204,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | 是   | 指定应用的包信息。           |
-| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 是   | 获取通知渠道回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)>> | 是   | 获取通知渠道回调函数。 |
 
 **错误码：**
 
@@ -1257,7 +1260,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 以Promise形式返回获取指定应用的通知渠道。 |
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)>> | 以Promise形式返回获取指定应用的通知渠道。 |
 
 **错误码：**
 
@@ -1878,6 +1881,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     end: new Date(2021, 11, 15, 18, 0)
 };
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
@@ -1934,6 +1938,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     end: new Date(2021, 11, 15, 18, 0)
 };
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
@@ -2084,6 +2089,7 @@ let getDoNotDisturbDateCallback = (err: BusinessError, data: notificationManager
     }
 }
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
@@ -2133,6 +2139,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
@@ -2696,7 +2703,7 @@ let callback = (err: BusinessError): void => {
 }
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 // NotificationRequest对象
 let request: notificationManager.NotificationRequest = {
@@ -2752,7 +2759,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect to the service.                |
-| 1600004  | Notification disabled.              |
+| 1600004  | Notification disabled.                    |
 | 1600005  | Notification slot disabled.         |
 | 1600008  | The user does not exist.                    |
 | 1600009  | The notification sending frequency reaches the upper limit. |
@@ -2765,7 +2772,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 // NotificationRequest对象
 let request: notificationManager.NotificationRequest = {
@@ -2824,7 +2831,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect to the service.                |
-| 1600004  | Notification disabled.              |
+| 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot disabled.         |
 | 1600008  | The user does not exist.                    |
 | 1600009  | The notification sending frequency reaches the upper limit. |
@@ -2909,7 +2916,7 @@ let cancelAsBundleCallback = (err: BusinessError): void => {
 }
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
@@ -2962,7 +2969,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
@@ -3012,7 +3019,6 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600003  | Failed to connect to the service.                |
 | 1600007  | The notification does not exist.            |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -3035,6 +3041,8 @@ notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 代理取消当前用户其他应用的通知。使用Promise异步回调。
+
+需要当前应用与其他应用存在代理关系，或者当前应用有ohos.permission.NOTIFICATION_AGENT_CONTROLLER权限。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3158,8 +3166,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | -------- | ----------------------------- | ---- | ----------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。|
 | type     | [SlotType](./js-apis-notificationManager.md#slottype)         | 是   | 指定渠道类型。           |
-| enable   | boolean                       | 是   | 使能状态。               |
-| isForceControl<sup>11+</sup> | boolean                 | 是   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。 |
+| enable   | boolean                       | 是   | 使能状态（true：使能，false：禁止）。               |
+| isForceControl<sup>11+</sup> | boolean                 | 是   | 渠道开关是否受通知授权开关影响（false：受影响，true：不受影响）。 |
 | callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。    |
 
 **错误码：**
@@ -3397,6 +3405,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 let enable: boolean = true;
 let setSyncNotificationEnabledWithoutAppCallback = (err: BusinessError): void => {
@@ -3454,6 +3463,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 let enable: boolean = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
@@ -3502,10 +3512,11 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 let getSyncNotificationEnabledWithoutAppCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
-        console.info(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSyncNotificationEnabledWithoutAppCallback success, data: " + JSON.stringify(data));
     }
@@ -3557,6 +3568,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
   console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
@@ -3567,7 +3579,7 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boo
 
 ## notificationManager.on<sup>10+</sup>
 
-on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。
 
@@ -3674,7 +3686,7 @@ try{
 
 ## notificationManager.off<sup>10+</sup>
 
-off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 取消通知监听回调。
 
@@ -3715,7 +3727,7 @@ try{
 
 ## notificationManager.triggerSystemLiveView<sup>11+</sup>
 
-triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>;
+triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>
 
 触发系统实况窗。使用Promise异步回调。
 
@@ -3779,7 +3791,7 @@ notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions)
 
 ## notificationManager.subscribeSystemLiveView<sup>11+</sup>
 
-subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
+subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 订阅系统实况窗。使用Promise异步回调。
 
@@ -3862,13 +3874,14 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3920,13 +3933,14 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3977,13 +3991,14 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -4030,13 +4045,14 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -4132,7 +4148,7 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Notification
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)> | 以Promise形式返回获取指定应用指定类型的通知渠道。 |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)> | 以Promise形式返回获取指定应用指定类型的通知渠道。 |
 
 **错误码：**
 
@@ -4164,6 +4180,180 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
     console.error(`getSlotByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.addDoNotDisturbProfile<sup>12+</sup>
+
+addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
+
+添加勿扰模式配置信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是 | 勿扰模式的配置信息。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let trustlist: Array<notificationManager.BundleOption> = [
+  {
+    bundle: 'com.example.bundleName',
+    uid: 0
+  },
+  {
+    bundle: 'com.example.bundleName1',
+    uid: 1
+  }
+]
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: '工作模式',
+    trustlist: trustlist
+  }
+]
+
+notificationManager.addDoNotDisturbProfile(templates).then(() => {
+  console.info("addDoNotDisturbProfile success.");
+}).catch((error: BusinessError) => {
+  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.removeDoNotDisturbProfile<sup>12+</sup>
+
+removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
+
+删除勿扰模式配置。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是  | 勿扰模式的配置信息。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: '工作模式'
+  }
+]
+notificationManager.removeDoNotDisturbProfile(templates).then(() => {
+  console.info("removeDoNotDisturbProfile success.");
+}).catch((error: BusinessError) => {
+  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.setAdditionalConfig<sup>12+</sup>
+
+setAdditionalConfig(key: string, value: string): Promise\<number\>
+
+设置通知的系统附加配置信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
+| value   | string | 是  | 附加配置值。参数示例：[bundleName1,bundleName2]。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<number\> | Promise对象，返回0表示设置成功，返回其他值表示设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
+  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -4235,7 +4425,7 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 | contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  | 是   | 通知类型。      |
 | creatorUserId<sup>11+</sup>  | number                       | 是   | 通知的user ID。 |
 | slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        | 是   | 渠道类型。      |
-| extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 通知的附加信息。 |
+| extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 实况通知的附加信息。 |
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -4277,7 +4467,7 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 
 | 名称    | 类型                                  | 必填 | 说明                   |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | 否   | 点击按钮的回调。 |
+| onResponse    | (notificationId: number, buttonOptions: [ButtonOptions](#buttonoptions11)) => void                         | 否   | 点击按钮的回调。 |
 
 
 ## SlotType
@@ -4305,131 +4495,6 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 | NOTIFICATION_STATUS_CLOSE_VIBRATION     |   1<<4   |     关闭振动提示功能。     |
 | NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON     |  1<<5    |     关闭状态栏图标提示功能。     |
 
-
-## notificationManager.addDoNotDisturbProfile<sup>12+</sup>
-
-addDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
-
-添加勿扰模式配置信息。使用Promise异步回调。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**系统接口**: 此接口为系统接口。
-
-**参数：**
-
-| 参数名   | 类型             | 必填 | 说明           |
-| ------ | ---------------- | ---- | -------------- |
-| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是 | 勿扰模式的配置信息。 |
-
-**返回值：**
-
-| 类型      | 说明        |
-|---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect to the service.          |
-| 1600012  | No memory space.                    |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let trustlist: Array<notificationManager.BundleOption> = [
-  {
-    bundle: 'com.example.bundleName',
-    uid: 0
-  },
-  {
-    bundle: 'com.example.bundleName1',
-    uid: 1
-  }
-]
-let templates: Array<notificationManager.DoNotDisturbProfile> = [
-  {
-    id: 3,
-    name: '工作模式',
-    trustlist: trustlist
-  }
-]
-
-notificationManager.addDoNotDisturbProfile(templates).then(() => {
-  console.info("addDoNotDisturbProfile success.");
-}).catch((error: BusinessError) => {
-  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
-});
-```
-
-## notificationManager.removeDoNotDisturbProfile<sup>12+</sup>
-
-removeDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
-
-删除勿扰模式配置。使用Promise异步回调。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**系统接口**: 此接口为系统接口。
-
-**参数：**
-
-| 参数名   | 类型             | 必填 | 说明           |
-| ------ | ---------------- | ---- | -------------- |
-| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是  | 勿扰模式的配置信息。 |
-
-**返回值：**
-
-| 类型      | 说明        |
-|---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect to the service.          |
-| 1600012  | No memory space.                    |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let templates: Array<notificationManager.DoNotDisturbProfile> = [
-  {
-    id: 3,
-    name: '工作模式'
-  }
-]
-notificationManager.removeDoNotDisturbProfile(templates).then(() => {
-  console.info("removeDoNotDisturbProfile success.");
-}).catch((error: BusinessError) => {
-  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
-});
-```
-
 ## DoNotDisturbProfile<sup>12+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
@@ -4438,54 +4503,6 @@ notificationManager.removeDoNotDisturbProfile(templates).then(() => {
 
 | 名称  | 类型                                  | 必填 | 说明                   |
 | ----- | ------------------------------------- | ---- | ---------------------- |
-| id | Number | 是 | 勿扰模式编号。 |
+| id | number | 是 | 勿扰模式编号。 |
 | name | string  | 是 | 勿扰模式名称。 |
 | trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |
-
-## notificationManager.setAdditionalConfig<sup>12+</sup>
-
-setAdditionalConfig(key: string, value: string): Promise\<number\>
-
-设置通知的系统附加配置信息。使用Promise异步回调。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**系统接口**: 此接口为系统接口。
-
-**参数：**
-
-| 参数名   | 类型             | 必填 | 说明           |
-| ------ | ---------------- | ---- | -------------- |
-| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest-sys.md#notificationrequest-1)。 |
-| value   | string | 是  | 附加配置值。参数示例：[bundleName1,bundleName2]。 |
-
-**返回值：**
-
-| 类型      | 说明        |
-|---------|-----------|
-| Promise\<number\> | Promise对象，返回0表示设置成功，返回其他值表示设置失败。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
-  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
-});
-```
