@@ -12,7 +12,7 @@
 
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
 
-如果配置了采集麦克风音频数据，需对应配置麦克风权限和长时任务权限，配置方式请参见[声明权限](../../security/AccessToken/declare-permissions.md)，[申请长时任务](../../task-management/continuous-task.md)。
+如果配置了采集麦克风音频数据，需对应配置麦克风权限ohos.permission.MICROPHONE和申请长时任务，配置方式请参见[向用户申请权限](../../security/AccessToken/request-user-authorization.md)、[申请长时任务](../../task-management/continuous-task.md)。
 
 ## 开发步骤及注意事项
 
