@@ -51,7 +51,7 @@ alt(value:&nbsp;PixelMap)
 
 verticalAlign(value: ImageSpanAlignment)
 
-设置图片基于文本的对齐方式。
+设置图片基于行高的对齐方式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -61,7 +61,7 @@ verticalAlign(value: ImageSpanAlignment)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment枚举说明) | 是   | 图片基于文本的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
+| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment枚举说明) | 是   | 图片基于行高的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
 
 ### objectFit
 

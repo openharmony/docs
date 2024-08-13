@@ -1040,7 +1040,7 @@ onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&n
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-文本选择的位置发生变化时，触发该回调。
+文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
