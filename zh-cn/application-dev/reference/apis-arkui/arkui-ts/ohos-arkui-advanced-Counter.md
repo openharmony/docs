@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.Counter (计数器组件)
+# advanced.Counter
 
 Counter是用于精确调节数值的组件。
 
