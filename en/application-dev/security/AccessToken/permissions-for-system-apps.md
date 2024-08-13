@@ -29,13 +29,13 @@ Allows a window to be displayed with animation for an atomic service without the
 
 Allows a system application to access the bbox directory.
 
-**权限级别**：system_basic
+**Permission level**: system_basic
 
-**授权方式**：system_grant
+**Authorization mode**: system_grant
 
-**ACL使能**：true
+**Enable via ACL**: true
 
-**起始版本**：12
+**Valid since**: 12
 
 ### ohos.permission.CONTROL_LOCATION_SWITCH
 
