@@ -638,6 +638,10 @@ setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;
 
 Enables or disables gesture navigation. This API uses an asynchronous callback to return the result.
 
+For security purposes, the system does not interfere with the disabling and enabling of gesture navigation.
+
+If an application exits abnormally after it disables gesture navigation and wants to restore gesture navigation, it must implement automatic launch and call this API again to enable gesture navigation.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -682,6 +686,9 @@ setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
 
 Enables or disables gesture navigation. This API uses a promise to return the result.
 
+For security purposes, the system does not interfere with the disabling and enabling of gesture navigation.
+
+If an application exits abnormally after it disables gesture navigation and wants to restore gesture navigation, it must implement automatic launch and call this API again to enable gesture navigation.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
