@@ -1,4 +1,4 @@
-# <应用>变更说明
+# 应用变更说明
 
 ## cl.screenlock.1 EventType新增系统事件类型
 
