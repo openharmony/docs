@@ -425,21 +425,21 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 
 **变更原因**
 
-[弹出框] 组件样式能力增强&风格刷新
+扩展 TipsDialog 支持 pixelMap 和 string 类型的图片，修改参数  imageSize，title 由必选改为可选，提升用户使用体验。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前行为：
-1、TipsDialog不支持pixelMap和string类型的图片。
-2、TipsDialog的图片大小为必填。
-3、TipsDialog中间标题必须有。
+变更前：
+1. TipsDialog不支持pixelMap和string类型的图片
+2. TipsDialog的图片大小为必填
+3. TipsDialog中间标题必须有
 
-变更后行为：
-1、TipsDialog支持pixelMap和string类型的图片。
-2、TipsDialog图片大小非必填，默认大小64v*64vp；
-3、TipsDialog中间标题可为非必填，未填不展示标题
+变更后：
+1. TipsDialog支持pixelMap和string类型的图片
+2. TipsDialog图片大小非必填，默认大小64v*64vp
+3. TipsDialog中间标题可为非必填，未填不展示标题
 
 **起始API Level**
 
