@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```
-import systemLoad from '@kit.BasicServicesKit';
+import { systemLoad } from '@kit.BasicServicesKit';
 ```
 
 ## systemLoad.on('systemLoadChange')
