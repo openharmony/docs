@@ -626,7 +626,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -665,7 +664,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -2148,7 +2146,7 @@ Sets the radius of the rounded corners for this window.
 
 | Name     | Type   | Mandatory | Description                                                |
 | ----------- | ------- | ---- |----------------------------------------------------|
-| radius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the window does not use rounded corners. |
+| cornerRadius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the window does not use rounded corners. |
 
 **Error codes**
 
@@ -2321,7 +2319,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ---------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The display device is abnormal.           |
@@ -2367,7 +2364,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ---------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The display device is abnormal.           |
@@ -3223,14 +3219,6 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 | type     | [WindowType](#windowtype7) | Yes  | Window type. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-
 **Example**
 
 ```ts
@@ -3272,14 +3260,6 @@ Sets the type of this window. This API uses a promise to return the result.
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

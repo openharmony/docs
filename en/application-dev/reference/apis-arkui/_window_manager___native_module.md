@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides the capabilities of managing application windows.
+The WindowManager_NativeModule module provides the capabilities of managing application windows.
 
 **Since**: 12
 
@@ -11,35 +11,35 @@ Provides the capabilities of managing application windows.
 ## Summary
 
 
-### File
+### Files
 
-| Name | **Description** | 
+| Name| Description| 
 | -------- | -------- |
-| [oh_window_comm.h](oh__window__comm_8h.md) | Declares the common enums and definitions of the window manager. | 
-| [oh_window_event_filter.h](oh__window__event__filter_8h.md) | Declares the APIs for a window to filter multimodal key events. When a multimodal input event passes through the window, the window can interrupt the event and prevent it from being further distributed. | 
+| [oh_window_comm.h](oh__window__comm_8h.md) | Declares the common enums and definitions of the window manager.| 
+| [oh_window_event_filter.h](oh__window__event__filter_8h.md) | Declares the APIs for a window to filter multimodal key events. When a multimodal input event passes through the window, the window can interrupt the event to prevent it from being further distributed.| 
 
 
 ### Types
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| typedef enum [WindowManager_ErrorCode](#windowmanager_errorcode)  [WindowManager_ErrorCode](#windowmanager_errorcode) | Enumerates the status codes returned by the window manager interface. | 
-| typedef bool(\*[OH_NativeWindowManager_KeyEventFilter](#oh_nativewindowmanager_keyeventfilter)) (Input_KeyEvent \*keyEvent) | Defines a function for filtering a multimodal key event. | 
+| typedef enum [WindowManager_ErrorCode](#windowmanager_errorcode)  [WindowManager_ErrorCode](#windowmanager_errorcode) | Defines an enum for the status codes returned by the window manager interface.| 
+| typedef bool(\*[OH_NativeWindowManager_KeyEventFilter](#oh_nativewindowmanager_keyeventfilter)) (Input_KeyEvent \*keyEvent) | Defines a function for filtering a multimodal key event.| 
 
 
 ### Enums
 
-| Name | **Description** | 
+| Name| Description| 
 | -------- | -------- |
-| [WindowManager_ErrorCode](#windowmanager_errorcode) { OK = 0, INVAILD_WINDOW_ID = 1000, SERVICE_ERROR = 2000 } | Enumerates the status codes returned by the window manager interface. | 
+| [WindowManager_ErrorCode](#windowmanager_errorcode) { OK = 0, INVAILD_WINDOW_ID = 1000, SERVICE_ERROR = 2000 } | Enumerates the status codes returned by the window manager interface.| 
 
 
-### Callback
+### Functions
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| [WindowManager_ErrorCode](#windowmanager_errorcode)  [OH_NativeWindowManager_RegisterKeyEventFilter](#oh_nativewindowmanager_registerkeyeventfilter) (int32_t windowId, [OH_NativeWindowManager_KeyEventFilter](#oh_nativewindowmanager_keyeventfilter) keyEventFilter) | Registers the function for filtering a multimodal key event. | 
-| [WindowManager_ErrorCode](#windowmanager_errorcode)  [OH_NativeWindowManager_UnregisterKeyEventFilter](#oh_nativewindowmanager_unregisterkeyeventfilter) (int32_t windowId) | Unregisters the function for filtering a multimodal key event. | 
+| [WindowManager_ErrorCode](#windowmanager_errorcode)  [OH_NativeWindowManager_RegisterKeyEventFilter](#oh_nativewindowmanager_registerkeyeventfilter) (int32_t windowId, [OH_NativeWindowManager_KeyEventFilter](#oh_nativewindowmanager_keyeventfilter) keyEventFilter) | Registers the function for filtering a multimodal key event.| 
+| [WindowManager_ErrorCode](#windowmanager_errorcode)  [OH_NativeWindowManager_UnregisterKeyEventFilter](#oh_nativewindowmanager_unregisterkeyeventfilter) (int32_t windowId) | Unregisters the function for filtering a multimodal key event.| 
 
 
 ## Type Description
@@ -59,9 +59,9 @@ Defines a function for filtering a multimodal key event.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| keyEvent | Multi-mode key event. For details, see Input_KeyEvent. The event is defined in oh_input_manager. | 
+| keyEvent | Multimodal key event. For details, see **Input_KeyEvent**. The event is defined in **oh_input_manager**.| 
 
 **Returns**
 
@@ -76,7 +76,7 @@ typedef enum WindowManager_ErrorCode WindowManager_ErrorCode
 
 **Description**
 
-Enumerates the status codes returned by the window manager interface.
+Defines an enum for the status codes returned by the window manager interface.
 
 **Since**: 12
 
@@ -96,11 +96,11 @@ Enumerates the status codes returned by the window manager interface.
 
 **Since**: 12
 
-| Enum | Description | 
+| Value| Description| 
 | -------- | -------- |
-| OK | Success. | 
-| INVAILD_WINDOW_ID | /** Invalid window ID. | 
-| SERVICE_ERROR | A system error occurs. | 
+| OK | Operation successful.| 
+| INVAILD_WINDOW_ID | Invalid window ID.| 
+| SERVICE_ERROR | Service error.| 
 
 
 ## Function Description
@@ -120,14 +120,14 @@ Registers the function for filtering a multimodal key event.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| windowId | ID of the window whose key events need to be filtered. | 
-| keyEventFilter | Filters multi-mode keys. | 
+| windowId | ID of the window for which the function is registered.| 
+| keyEventFilter | Function for filtering a multimodal key event.| 
 
 **Returns**
 
-Common status code of the window management API. For details, see [WindowManager_ErrorCode](#windowmanager_errorcode).
+Returns a status code defined in [WindowManager_ErrorCode](#windowmanager_errorcode).
 
 
 ### OH_NativeWindowManager_UnregisterKeyEventFilter()
@@ -144,10 +144,10 @@ Unregisters the function for filtering a multimodal key event.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| windowId | ID of the window whose key event filtering needs to be canceled. | 
+| windowId | ID of the window for which the function is unregistered.| 
 
 **Returns**
 
-Common status code of the window management API. For details, see [WindowManager_ErrorCode](#windowmanager_errorcode).
+Returns a status code defined in [WindowManager_ErrorCode](#windowmanager_errorcode).
