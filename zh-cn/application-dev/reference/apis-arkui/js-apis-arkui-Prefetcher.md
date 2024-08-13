@@ -119,35 +119,6 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void
 | minVisible | number | 是  | 列表可见区域的上界 |
 | maxVisible | number | 是  | 列表可见区域的下界 |
 
-```typescript
-class ImageItem {
-  url: string;
-  imagePixelMap: image.PixelMap | undefined;
-}
-
-@Component
-export struct ListAreaViewOHOSComponent {
-  private readonly dataSource = new MyDataSource();
-  private readonly prefetcher = new BasicPrefetcher(this.dataSource);
-
-  build() {
-    Column() {
-      List() {
-        LazyForEach(this.dataSource, (item: ImageItem) => {
-          ListItem() {
-            ListItemComponent({ songInfo: item })
-              .height('20%')
-          }
-        }, (item: ImageItem) => item.url)
-      }
-      .onScrollIndex((start: number, end: number) => {
-        this.prefetcher.visibleAreaChanged(start, end);
-      })
-    }
-  }
-}
-```
-
 ## IDataSourcePrefetching
 
 实现该接口，提供具备预取能力的DataSource
@@ -167,46 +138,6 @@ export struct ListAreaViewOHOSComponent {
 |-------|--------|----|----------|
 | index | number | 是  | 预取数据项索引值 |
 
-```typescript
-import { IDataSourcePrefetching } from '@kit.ArkUI';
-import { image } from '@kit.ImageKit';
-import { IHttpClient, Request } from './MyHttpClient';
-
-export class MyDataSource implements IDataSourcePrefetching {
-  private readonly http: IHttpClient;
-  private requestsInFlight: HashMap<number, Request> = new HashMap();
-  
-  constructor(httpClient: IHttpClient) {
-    this.http = httpClient;
-  }
-
-  async prefetch(index: number): Promise<void> {
-    const item = this.getData(index);
-    if (!item || item.imagePixelMap) {
-      return;
-    }
-
-    try {
-      const request = http.createHttp();
-      this.requestsInFlight.set(index, request);
-      const response = await request.request(item.url, {expectDataType: http.HttpDataType.ARRAY_BUFFER});
-
-      if (response.responseCode !== 200 || !response.result) {
-        throw new Error('Bad response');
-      }
-
-      const imageSource: image.ImageSource = image.createImageSource(response.result as ArrayBuffer);
-      item.imagePixelMap = await imageSource.createPixelMap();
-    } catch (e) {
-      ...
-    } finally {
-      this.requestsInFlight.remove(index);
-    }
-  }
-  ...
-}
-```
-
 ### cancel
 **元服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -220,27 +151,177 @@ export class MyDataSource implements IDataSourcePrefetching {
 
 列表内容移出屏幕时（比如列表快速滑动场景下），预取算法判断屏幕以外的Item可以被取消预取时，该方法即会被调用。例如，如果HTTP框架支持请求取消，则可以在此处取消在prefetch中发起的网络请求。
 
+## 示例
+
 ```typescript
-import { IDataSourcePrefetching } from '@kit.ArkUI';
+import { BasicPrefetcher, IDataSourcePrefetching } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
-import { IHttpClient, Request } from './MyHttpClient';
 
-export class MyDataSource implements IDataSourcePrefetching {
-  private readonly http: IHttpClient;
-  private requestsInFlight: HashMap<number, Request> = new HashMap();
+const ITEMS_ON_SCREEN = 8;
 
-  constructor(httpClient: IHttpClient) {
-    this.http = httpClient;
+@Component
+export struct PrefetcherDemoComponent {
+  private readonly dataSource = new MyDataSource(2000, 500);
+  private readonly prefetcher = new BasicPrefetcher(this.dataSource);
+
+  build() {
+    Column() {
+      List() {
+        LazyForEach(this.dataSource, (item: PictureItem) => {
+          ListItem() {
+            PictureItemComponent({ info: item })
+              .height(`${100 / ITEMS_ON_SCREEN}%`)
+          }
+        }, (item: PictureItem) => item.title)
+      }
+      .onScrollIndex((start: number, end: number) => {
+        this.prefetcher.visibleAreaChanged(start, end);
+      })
+    }
+  }
+}
+
+@Component
+export default struct PictureItemComponent {
+  @ObjectLink info: PictureItem;
+
+  build() {
+    Row() {
+      Image(this.info.imagePixelMap)
+        .objectFit(ImageFit.Contain)
+        .width('40%')
+      Text(this.info.title)
+        .width('60%')
+    }
+  }
+}
+
+@Observed
+export class PictureItem {
+  readonly color: number;
+  title: string;
+  imagePixelMap: image.PixelMap | undefined;
+  key: string;
+
+  constructor(color: number, title: string) {
+    this.color = color;
+    this.title = title;
+    this.key = title;
+  }
+}
+
+type ItemIndex = number;
+type TimerId = number;
+
+class MyDataSource implements IDataSourcePrefetching {
+  private readonly items: PictureItem[];
+  private readonly fetchDelayMs: number;
+  private readonly fetches: Map<ItemIndex, TimerId> = new Map();
+
+  constructor(numItems: number, fetchDelayMs: number) {
+    this.items = [];
+    this.fetchDelayMs = fetchDelayMs;
+    for (let i = 0; i < numItems; i++) {
+      const item = new PictureItem(getRandomColor(), `Item ${i}`)
+      this.items.push(item);
+    }
   }
 
   async prefetch(index: number): Promise<void> {
-    ...
+    const item = this.items[index];
+    if (item.imagePixelMap) {
+      return;
+    }
+
+    // 模拟高耗时操作
+    return new Promise<void>(resolve => {
+      const timeoutId = setTimeout(async () => {
+        this.fetches.delete(index);
+        const bitmap = create10x10Bitmap(item.color);
+        const imageSource: image.ImageSource = image.createImageSource(bitmap);
+        item.imagePixelMap = await imageSource.createPixelMap();
+        resolve();
+      }, this.fetchDelayMs);
+
+      this.fetches.set(index, timeoutId)
+    });
   }
 
   cancel(index: number): void {
-    const request = this.requestsInFlight.get(index);
-    request?.cancel();
+    const timerId = this.fetches.get(index);
+    if (timerId) {
+      this.fetches.delete(index);
+      clearTimeout(timerId);
+    }
   }
-  ...
+
+  totalCount(): number {
+    return this.items.length;
+  }
+
+  getData(index: number): PictureItem {
+    return this.items[index];
+  }
+
+  registerDataChangeListener(_: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(_: DataChangeListener): void {
+  }
+}
+
+function getRandomColor(): number {
+  const maxColorCode = 256;
+  const r = Math.floor(Math.random() * maxColorCode);
+  const g = Math.floor(Math.random() * maxColorCode);
+  const b = Math.floor(Math.random() * maxColorCode);
+
+  return (r * 256 + g) * 256 + b;
+}
+
+function create10x10Bitmap(color: number): ArrayBuffer {
+  const height = 10;
+  const width = 10;
+
+  const fileHeaderLength = 14;
+  const bitmapInfoLength = 40;
+  const headerLength = fileHeaderLength + bitmapInfoLength;
+  const pixelSize = (width * 3 + 2) * height;
+
+  let length = pixelSize + headerLength;
+
+  const buffer = new ArrayBuffer(length);
+  const view16 = new Uint16Array(buffer);
+
+  view16[0] = 0x4D42;
+  view16[1] = length & 0xffff;
+  view16[2] = length >> 16;
+  view16[5] = headerLength;
+
+  let offset = 7;
+  view16[offset++] = bitmapInfoLength & 0xffff;
+  view16[offset++] = bitmapInfoLength >> 16;
+  view16[offset++] = width & 0xffff;
+  view16[offset++] = width >> 16;
+  view16[offset++] = height & 0xffff;
+  view16[offset++] = height >> 16;
+  view16[offset++] = 1;
+  view16[offset++] = 24;
+
+  const b = color & 0xff;
+  const g = (color >> 8) & 0xff;
+  const r = color >> 16;
+  offset = headerLength;
+  const view8 = new Uint8Array(buffer);
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      view8[offset++] = b;
+      view8[offset++] = g;
+      view8[offset++] = r;
+    }
+    offset += 2;
+  }
+
+  return buffer;
 }
 ```
