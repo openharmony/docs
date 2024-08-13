@@ -2995,6 +2995,7 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   windowClass.enableDrag(true).then(() => { 
     console.info('succeeded in setting window draggable');
