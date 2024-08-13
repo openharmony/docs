@@ -2924,7 +2924,7 @@ startMoving(): Promise&lt;void&gt;
 ```ts
 // ets/pages/Index.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-export const entryName : string = 'Index';
+
 @Entry
 @Component
 struct Index {
@@ -2932,10 +2932,11 @@ struct Index {
     build() {
         row() {
             Column() {
+                // 设置最小宽度为160
                 Blank('160').onTouch((event: TouchEvent) => {
                     if (event.type === TouchType.Down) {
                         try {
-                            windowClass.sartMoving().then(() => {
+                            windowClass.startMoving().then(() => {
                                 console.info('Succeeded in start moving.')
                             }).catch((err: BusinessError) => {
                                 console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
@@ -2994,12 +2995,12 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     windowClass.enableDrag(true).then(() => { 
-        console.info('enableDrag successfully');
+        console.info('succeeded in setting window draggable');
     }).catch((err: BusinessError) => {
-        console.error(`Failed to enable drag window: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
     });
 } catch (exception) {
-    console.error(`Failed to enable drag window, Cause code: ${exception.code}, message: ${exception.message}`);
+    console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
