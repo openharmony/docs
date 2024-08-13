@@ -14,7 +14,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 
 ## UniformDataType
 
-标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
+标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。更多预置数据类型参考[UniformDataType](./uniform-data-type-list.md)。
+下表以枚举形式，列举了常用的标准化数据类型定义。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
