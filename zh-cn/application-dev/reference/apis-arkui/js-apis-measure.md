@@ -17,7 +17,7 @@ import measure from '@ohos.measure'
 
 measureText(options: MeasureOptions): number
 
-计算指定文本单行布局下的宽度。
+计算指定文本的宽度。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +63,7 @@ struct Index {
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
-计算指定文本单行布局下的宽度和高度。
+计算指定文本的宽度和高度。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
