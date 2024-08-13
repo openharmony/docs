@@ -1,6 +1,6 @@
-# 锁屏服务的Changelog
+# <应用>变更说明
 
-## EventType新增系统事件类型
+## cl.screenlock.1 EventType新增系统事件类型
 
 **访问级别**
 
@@ -8,7 +8,7 @@
 
 **变更原因**
 
-新增系统事件类型
+强认证和禁用锁屏功能需要新增系统事件类型新增系统事件类型strongAuthChanged和screenLockDisabledChanged，新增后开发者可以使用强认证功能和禁用锁屏功能
 
 **变更影响**
 
