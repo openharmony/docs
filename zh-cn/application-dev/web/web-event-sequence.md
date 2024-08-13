@@ -73,7 +73,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onControllerAttached(() => {
             // 推荐在此loadUrl、设置自定义用户代理、注入JS对象等
-            console.log('onControllerAttached excute')
+            console.log('onControllerAttached execute')
           })
           .onLoadIntercept((event) => {
             if (event) {
