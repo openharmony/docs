@@ -11,7 +11,7 @@ scheme://host[:port]/path/
 - host：域名或IP地址。例如域名`developer.huawei.com`或IP地址`127.0.0.1`；
 - port：端口号。例如`developer.huawei.com:80`后面的80即为端口号。
 - path：路径，表示域名服务器上的目录或文件路径。例如`developer.huawei.com/consumer/`中`consumer`。
-- linkFeature：标识URI提供的功能类型（如文件打开、分享、导航等），用于实现应用间跳转。取值为长度不超过127字节的字符串，不支持中文。
+- linkFeature：应用的功能类型（如文件打开、分享、导航等）。取值为长度不超过127字节的字符串，不支持中文。
 
 > **说明：**
 > 
@@ -23,13 +23,13 @@ scheme://host[:port]/path/
 
 配置后主要有两类作用，应用间跳转确认体验增强、系统入口呈现
 
-1、应用间跳转确认弹框体验增强：应用申明linkFeature，系统将认证申明的linkFeature与实际拉起的功能是否一致，认证通过后其他应用通过此链接拉起应用时，应用间跳转确认弹框将变为可信跳转确认样式，例如：默认选中x天不再提醒等。
+1. 应用间跳转确认弹框体验增强：应用申明linkFeature，系统将认证申明的linkFeature与实际拉起的功能是否一致，认证通过后其他应用通过此链接拉起应用时，应用间跳转确认弹框将变为可信跳转确认样式，例如：默认选中x天不再提醒等。
 
-2、系统入口呈现：用户在访问系统入口（各系统垂域面板、设置等）时，系统将展示认证通过的应用功能入口；用户点击后，系统可向应用发起功能调用，例如缓存清理、导航、路线规划等
+2. 系统入口呈现：用户在访问系统入口（各系统垂域面板、设置等）时，系统将展示认证通过的应用功能入口；用户点击后，系统可向应用发起功能调用，例如缓存清理、导航、路线规划等
 
 ## 配置示例
 
-参考应用链接（[Deep Linking](deep-linking-startup.md)、[App Linking](app-linking-startup.md)）的配置要求进行URI配置，最后在URI配置中指定相对应的linkFeature即可。
+参考应用链接（[Deep Linking](deep-linking-startup.md)、[App Linking](app-linking-startup.md)）的配置要求进行URI配置。
 
 下面以授权登录场景举例说明：
 
@@ -44,7 +44,7 @@ scheme://host[:port]/path/
 ]
 ```
 
-标准化应用功能**linkFeature**的枚举定义。
+**linkFeature**的枚举定义。
 
 |名称|值|说明|
 |---|---|---|
