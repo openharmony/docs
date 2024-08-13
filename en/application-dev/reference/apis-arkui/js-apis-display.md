@@ -16,6 +16,8 @@ import { display } from '@kit.ArkUI';
 
 Enumerates the display states.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name | Value | Description |
@@ -31,6 +33,8 @@ Enumerates the display states.
 ## Orientation<sup>10+</sup>
 
 Enumerates the orientations of the display.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -76,16 +80,20 @@ Enumerates the display modes of a foldable device.
 
 Defines the crease region of a foldable device.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name  | Type | Readable | Writable | Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| displayId   | number   | Yes  | No  | ID of the screen where the crease is located. |
+| displayId   | number   | Yes  | No  | ID of the display where the crease is located. |
 | creaseRects    | Array\<[Rect](#rect9)>   | Yes  | No  | Crease region. |
 
 ## Rect<sup>9+</sup>
 
 Describes a rectangle on the display.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -100,6 +108,8 @@ Describes a rectangle on the display.
 
 Describes the curved area (an area that is not intended for displaying content) on the waterfall display.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name  | Type     | Readable | Writable | Description              |
@@ -113,12 +123,70 @@ Describes the curved area (an area that is not intended for displaying content) 
 
 Describes the cutout, which is an area that is not intended for displaying content on the display.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name                       | Type     | Readable | Writable | Description              |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Bounding rectangle for punch holes and notches. |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | Yes | No | Curved area on the waterfall display. |
+
+## DisplayPhysicalResolution<sup>12+</sup>
+Describes the display mode of a foldable device and the corresponding physical screen resolution information.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name                       | Type     | Read-Only | Optional | Description              |
+| --------------------------- | ------------- | ---- | ---- | ------------------ |
+| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | Yes  | No  | Display mode of the foldable device. |
+| physicalWidth   | number | Yes | No | Width of the foldable device, in px. The value must be an integer greater than 0.|
+| physicalHeight  | number | Yes | No | Height of the foldable device, in px. The value must be an integer greater than 0.|
+
+## display.getAllDisplayPhysicalResolution<sup>12+</sup>
+
+getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution&gt;&gt;
+
+Obtains the display mode of the current foldable device and the corresponding physical screen resolution information.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type | Description |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[DisplayPhysicalResolution](#displayphysicalresolution12)&gt;&gt; | Promise used to return all the **DisplayPhysicalResolution** objects. |
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
+
+| ID | Error Message |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let promise = display.getAllDisplayPhysicalResolution();
+promise.then((resolutionObjects) => {
+  console.info('Obtaining physical resolution length: ' + resolutionObjects.length);
+  for (let i = 0; i < resolutionObjects.length; i++) {
+     console.info(`resolutionObjects[${i}].foldDisplayMode: ${resolutionObjects[i].foldDisplayMode}`);
+     console.info(`resolutionObjects[${i}].physicalWidth: ${resolutionObjects[i].physicalWidth}`); 
+     console.info(`resolutionObjects[${i}].physicalHeight: ${resolutionObjects[i].physicalHeight}`); 
+  }
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain physical resolution. Code: ${err.code}, message: ${err.message}`);
+});
+```
 
 ## display.getDefaultDisplaySync<sup>9+</sup>
 
@@ -160,6 +228,8 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 Obtains all display objects. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -187,7 +257,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -199,6 +269,8 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
 getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 Obtains all display objects. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -228,7 +300,7 @@ promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -313,6 +385,8 @@ isFoldable(): boolean
 
 Checks whether the device is foldable.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Return value**
@@ -342,6 +416,8 @@ ret = display.isFoldable();
 getFoldStatus(): FoldStatus
 
 Obtains the folding status of the foldable device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -373,6 +449,8 @@ getFoldDisplayMode(): FoldDisplayMode
 
 Obtains the display mode of the foldable device.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Return value**
@@ -402,6 +480,8 @@ console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify
 getCurrentFoldCreaseRegion(): FoldCreaseRegion
 
 Obtains the crease region of the foldable device in the current display mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -648,6 +728,8 @@ isCaptured(): boolean
 
 Checks whether the device screen is being captured, projected, or recorded.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Return value**
@@ -778,7 +860,7 @@ let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
@@ -815,7 +897,7 @@ promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -845,7 +927,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -879,7 +961,7 @@ let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -892,29 +974,33 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name | Type | Readable | Writable | Description                                                                                                           |
+| Name | Type | Read-Only | Optional | Description                                                                                                           |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | Yes | No | ID of the display. The value must be an integer.                                                                                            |
-| name | string | Yes | No | Name of the display.                                                                                                     |
-| alive | boolean | Yes | No | Whether the display is alive.                                                                                                    |
-| state | [DisplayState](#displaystate) | Yes | No | State of the display.                                                                                                     |
-| refreshRate | number | Yes | No | Refresh rate of the display, in hz. The value must be an integer.                                                                                            |
+| id | number | Yes | No | ID of the display. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
+| name | string | Yes | No | Name of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
+| alive | boolean | Yes | No | Whether the display is alive.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                    |
+| state | [DisplayState](#displaystate) | Yes | No | State of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
+| refreshRate | number | Yes | No | Refresh rate of the display, in hz. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
 | rotation | number | Yes | No | Clockwise rotation angle of the screen of the display.<br>The value **0** indicates that the screen of the display rotates clockwise by 0°.<br>The value **1** indicates that the screen of the display rotates clockwise by 90°.<br>The value **2** indicates that the screen of the display rotates clockwise by 180°.<br>The value **3** indicates that the screen of the display rotates clockwise by 270°.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | width | number | Yes | No | Screen width of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
 | height | number | Yes | No | Screen height of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
-| densityDPI | number | Yes | No | Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating point number, in px. The value range is [80.0, 640.0]. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.                                                                  |
-| orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes | No | Orientation of the display.                                                                                                 |
+| densityDPI | number | Yes | No | Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating point number, in px. The value range is [80.0, 640.0]. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                  |
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes | No | Orientation of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | densityPixels | number | Yes | No | Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                 |
-| scaledDensity | number | Yes | No | Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.                                                                   |
-| xDPI | number | Yes | No | Exact physical dots per inch of the screen in the horizontal direction. The value must be a floating point number.                                                                                   |
-| yDPI | number | Yes | No | Exact physical dots per inch of the screen in the vertical direction. The value must be a floating point number.                                                                                   |
-| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | Yes | No | All color spaces supported by the display.                                                                                               |
-| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | Yes | No | All HDR formats supported by the display.                                                                                              |
+| scaledDensity | number | Yes | No | Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                   |
+| xDPI | number | Yes | No | Exact physical dots per inch of the screen in the horizontal direction. The value must be a floating point number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| yDPI | number | Yes | No | Exact physical dots per inch of the screen in the vertical direction. The value must be a floating point number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | Yes | No | All color spaces supported by the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                               |
+| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | Yes | No | All HDR formats supported by the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                              |
+| availableWidth | number | Yes | No | Width of the available area on the screen of a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| availableHeight | number | Yes | No | Height of the available area on the screen of a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 Obtains the cutout information of the display. This API uses an asynchronous callback to return the result. You are advised not to use the cutout area during application layout.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -943,7 +1029,7 @@ displayClass = display.getDefaultDisplaySync();
 displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}');
+    console.error(`Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
@@ -953,6 +1039,8 @@ displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 Obtains the cutout information of the display. This API uses a promise to return the result. You are advised not to use the cutout area during application layout.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -981,6 +1069,139 @@ let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
 promise.then((data: display.CutoutInfo) => {
   console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
+```
+
+### getAvailableArea<sup>12+</sup>
+getAvailableArea(): Promise&lt;Rect&gt;
+
+Obtains the available area of the screen of the current 2-in-1 device. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;[Rect](#rect9)&gt; | Promise used to return the available area, which is a rectangle. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID | Error Message |
+| ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
+| 1400001 | Invalid display or screen. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  let promise = displayClass.getAvailableArea();
+  promise.then((data) => {
+    console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (exception) {
+  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('availableAreaChange')<sup>12+</sup>
+on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
+
+Subscribes to changes of the available area on the screen of the current 2-in-1 device. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory | Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the screen changes. |
+| callback | Callback&lt;[Rect](#rect9)&gt; | Yes  | Callback used to return the new available area. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID | Error Message |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let callback: Callback<display.Rect> = (data: display.Rect) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  displayClass.on("availableAreaChange", callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('availableAreaChange')<sup>12+</sup>
+
+off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
+
+Unsubscribes from changes of the available area on the screen of the current 2-in-1 device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory | Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the screen changes. |
+| callback | Callback&lt;[Rect](#rect9)&gt; | No  | Callback used for unsubscription. If no value is passed in, all subscriptions to the specified event are canceled. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID | Error Message |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
+
+let callback: Callback<display.Rect> = (data: display.Rect) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  displayClass.off("availableAreaChange", callback);
+} catch (exception) {
+  console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
+}
 ```
