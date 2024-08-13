@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为兼容变更。
+该变更为兼容性变更。
 
 变更前：不支持strongAuthChanged和screenLockDisabledChanged这两种系统事件。
 
