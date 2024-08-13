@@ -5211,7 +5211,7 @@ void OH_ArkUI_AnimateOption_SetCurve (ArkUI_AnimateOption * option, ArkUI_Animat
 ### OH_ArkUI_AnimateOption_SetDelay()
 
 ```
-void OH_ArkUI_AnimateOption_SetDelay (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetDelay (ArkUI_AnimateOption * option, int32_t value )
 ```
 **描述：**
 
@@ -5230,7 +5230,7 @@ void OH_ArkUI_AnimateOption_SetDelay (ArkUI_AnimateOption * option, uint32_t val
 ### OH_ArkUI_AnimateOption_SetDuration()
 
 ```
-void OH_ArkUI_AnimateOption_SetDuration (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetDuration (ArkUI_AnimateOption * option, int32_t value )
 ```
 **描述：**
 
@@ -5291,7 +5291,7 @@ void OH_ArkUI_AnimateOption_SetICurve (ArkUI_AnimateOption * option, ArkUI_Curve
 ### OH_ArkUI_AnimateOption_SetIterations()
 
 ```
-void OH_ArkUI_AnimateOption_SetIterations (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetIterations (ArkUI_AnimateOption * option, int32_t value )
 ```
 **描述：**
 
