@@ -25,6 +25,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_BBOX_DIR
+
+允许系统应用读取bbox路径下的日志文件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.CONTROL_LOCATION_SWITCH
 
 允许应用打开和关闭位置信息开关。
