@@ -33,7 +33,7 @@
 
 开发者需将使用@ohos.multimedia.media.d.ts模块中对AVMetadata.hdrType赋值的代码行删除。
 
-## c1.multimedia.1 OH_AVCodecBufferAttr 接口行为变更
+## c1.multimedia.2 OH_AVCodecBufferAttr 接口行为变更
 
 **访问级别**
 
