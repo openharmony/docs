@@ -889,7 +889,7 @@ Error: verify code signature failed.
 
 **处理步骤**
 
-* 场景一：使用鸿蒙SDK签名工具验证包是否签名。
+* 场景一：使用SDK签名工具验证包是否签名。
 	```
 	//验证签名指令
 	java -jar SDK安装路径（DevEco工具安装目录中sdk）\toolchains\lib\hap-sign-tool.jar verify-app -outCertChain out.cer -outProfile out.p7b -inFile 包路径\**.hap
