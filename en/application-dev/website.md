@@ -685,7 +685,7 @@
           <!--DelEnd-->
       - Inter-Thread Communication<!--event-itc-->
           - [Using Emitter for Inter-Thread Communication](basic-services/common-event/itc-with-emitter.md)
-    - Account Management<!--account-management--
+    - Account Management<!--account-management-->
       <!--Del-->
       - [Account Management Overview](basic-services/account/account-overview.md)
       - System Account<!--os-account-->      
@@ -1028,7 +1028,7 @@
     - [EnterpriseAdminExtensionAbility Development](mdm/mdm-kit-admin.md)
   - Media Kit<!--media-kit-->
     - [Introduction to Media Kit](media/media/media-kit-intro.md)
-    - Audio Playback and Recording<!--audio-playback-recording--
+    - Audio Playback and Recording<!--audio-playback-recording-->
       - [Using AVPlayer for Audio Playback (ArkTS)](media/media/using-avplayer-for-playback.md)
       - [Using AVPlayer for Audio Playback (C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
       - [Using SoundPool for Audio Playback](media/media/using-soundpool-for-playback.md)
@@ -1302,8 +1302,6 @@
         - [HID DDK Development](napi/hid-ddk-guidelines.md)
       - Bundle Management<!--bundle-management-->
         - [Native Bundle Development](napi/native-bundle-guidelines.md)
-      - Network Management<!--network-management-->
-        - [NetConnection Development](napi/native-netmanager-guidelines.md)
     - Debugging and Profiling<!--debugging-profiling-->
       - [Overview of Debugging and Profiling](napi/debug-performance-profiling-overview.md)
       - [Debugging in DevEco Studio](napi/debug-ide.md)
@@ -1370,7 +1368,7 @@
       - [Page Layout Checker ArkUI Inspector Usage Guide](performance/arkUI-inspector.md)
   <!--DelEnd-->
 - Tools
-  - Debugging Tools<!--system-debug-optimize-->
+  - Debugging Tools<!--debugging-commands-->
     - [Ability Assistant](tools/aa-tool.md)
     - [Bundle Manager](tools/bm-tool.md)
     - Packing and Unpacking Tools<!--packing-unpacking-->
