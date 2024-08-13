@@ -2084,7 +2084,7 @@
           - [TextTimer](reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md)
           - [Badge](reference/apis-arkui/arkui-ts/ts-container-badge.md)
           - [Counter](reference/apis-arkui/arkui-ts/ts-container-counter.md)
-          - [advanced.Counter](reference/apis-aarkui/arkui-ts/ohos-arkui-advanced-Counter.md)
+          - [advanced.Counter](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Counter.md)
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
           - [ExceptionPrompt](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
