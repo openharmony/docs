@@ -12,6 +12,8 @@
 
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
 
+如果配置了采集麦克风音频数据，需对应配置麦克风权限和长时任务权限，配置方式请参见[声明权限](../../security/AccessToken/declare-permissions.md)，[申请长时任务](../../task-management/continuous-task.md)。
+
 ## 开发步骤及注意事项
 
 使用AVScreenCapture时要明确其状态的变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应的行为。
@@ -140,7 +142,6 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
         // 通话中断状态处理
-        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 处理状态变更

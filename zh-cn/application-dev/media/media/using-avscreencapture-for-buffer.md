@@ -14,6 +14,8 @@
 
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
 
+如果配置了采集麦克风音频数据，需对应配置麦克风权限和长时任务权限，配置方式请参见[声明权限](../../security/AccessToken/declare-permissions.md)，[申请长时任务](../../task-management/continuous-task.md)。
+
 ## 开发步骤及注意事项
 
 使用AVScreenCapture时要明确其状态的变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应的行为。
@@ -22,7 +24,7 @@
 **在 CMake 脚本中链接动态库**
 
 ```c++
-target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
+target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffer.so libnative_media_core.so)
 ```
 
 1. 添加头文件。
@@ -32,6 +34,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     #include <multimedia/player_framework/native_avscreen_capture.h>
     #include <multimedia/player_framework/native_avscreen_capture_base.h>
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+    #include <native_buffer/native_buffer.h>
     #include <fcntl.h>
     #include "string"
     #include "unistd.h"
@@ -111,31 +114,14 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-8. 调用AcquireAudioBuffer()获取音频原始码流数据.
+8. 在回调OnBufferAvailable()中获取并处理音频视频原始码流数据.
 
     ```c++
-    OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
+    OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
+        OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData)
     ```
 
-9. 调用AcquireVideoBuffer()获取视频原始码流数据。
-
-    ```c++
-    OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
-    ```
-
-10. 调用ReleaseAudioBuffer()方法释放音频buffer。
-
-    ```c++
-    OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
-    ```
-
-11. 调用ReleaseVideoBuffer()释放视频数据。
-
-    ```c++
-    OH_AVScreenCapture_ReleaseVideoBuffer(capture);
-    ```
-
-12. 调用Release()方法销毁实例，释放资源。
+9. 调用Release()方法销毁实例，释放资源。
 
     ```c++
     OH_AVScreenCapture_Release(capture);
@@ -161,6 +147,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <multimedia/player_framework/native_avbuffer.h>
+#include <native_buffer/native_buffer.h>
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
@@ -179,7 +166,6 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
         // 通话中断状态处理
-        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 处理状态变更
@@ -208,7 +194,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 从js端获取窗口id number[]
-    vector<int> windowIdsExclude = {};
+    std::vector<int> windowIdsExclude = {};
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     // 获取参数
@@ -228,9 +214,9 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     capture = OH_AVScreenCapture_Create();
     
     // 设置回调 
-    OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
-    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
-    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+    OH_AVScreenCapture_SetErrorCallback(capture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
 
     // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
     OH_AVScreenCapture_SetCanvasRotation(capture, true);
@@ -270,6 +256,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 
     // 开始录屏
     OH_AVScreenCapture_StartScreenCapture(capture);
+
     // mic开关设置
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
 
