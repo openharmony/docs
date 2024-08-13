@@ -7,6 +7,7 @@
     - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-app-ability-abilityLifecycleCallback.md)
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
+    - [@ohos.app.ability.application (Application)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](js-apis-app-ability-atomicServiceOptions.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
@@ -38,6 +39,7 @@
     - [@ohos.app.appstartup.StartupTask](js-apis-app-appstartup-startupTask.md)
     <!--Del-->
     - [@ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)](js-apis-app-ability-abilityConstant-sys.md)
+    - [@ohos.app.ability.application (Application)(系统接口)](js-apis-app-ability-application-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](js-apis-app-ability-autoStartupManager-sys.md)
     - [@ohos.app.ability.common (应用上下文Context)(系统接口)](js-apis-app-ability-common-sys.md)
