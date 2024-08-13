@@ -964,8 +964,8 @@ Nullable\<T> {
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | SPREAD | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例8](ts-container-relativecontainer.md#示例8)。                 |
-| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例9](ts-container-relativecontainer.md#示例9)。                      |
+| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例8)。                 |
+| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例9)。                      |
 
 ## BarrierDirection<sup>12+</sup>
 
