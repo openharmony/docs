@@ -4,7 +4,7 @@
 
 针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。  
 DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本的Stage模型、[编译模式为release](#说明)时自动进行代码混淆，其仅对参数名和局部变量名进行混淆。  
-**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能，如果在模块配置文件build-profile.json5开启代码混淆，混淆规则配置文件obfuscation-rules.txt中默认开启enable-property-obfuscation、-enable-toplevel-obfuscation、-enable-filename-obfuscation、-enable-export-obfuscation四项推荐选项，开发者可进一步在obfuscation-rules.txt文件中更改配置。**
+**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能，如果在模块配置文件build-profile.json5开启代码混淆，混淆规则配置文件obfuscation-rules.txt中默认开启-enable-property-obfuscation、-enable-toplevel-obfuscation、-enable-filename-obfuscation、-enable-export-obfuscation四项推荐选项，开发者可进一步在obfuscation-rules.txt文件中更改配置。**
 
 ### 使用约束
 
@@ -250,12 +250,12 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 #### -remove-comments
 
-删除声明文件中的所有注释，包括单行、多行，及JsDoc注释。以下场景除外：
-声明文件中，在`-keep-comments`中配置的类、方法、struct、枚举等名称上方的JsDoc注释。  
+删除编译生成的声明文件中的JsDoc注释。  
 
 **注意**：  
 
-编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。
+编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。  
+可通过`keep-comments`配置来保留编译生成的声明文件中的JsDoc注释。
 
 ### 保留选项
 
@@ -387,7 +387,7 @@ const module2 = import(moduleName)    // 动态引用方式无法识别moduleNam
 
 #### `-keep-comments` [,identifiers,...]
 
-保留声明文件中元素上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
+保留编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 
 ```
 -keep-comments
@@ -397,7 +397,7 @@ Human
 **注意**：
 
 1. 该选项在开启`-remove-comments`时生效
-2. 当声明文件中某个元素名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如当在`-keep-comments`中配置了exportClass时，如果下面的类名被混淆，其JsDoc注释无法被保留：
+2. 当编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性的名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如当在`-keep-comments`中配置了exportClass时，如果exportClass类名被混淆，其JsDoc注释无法被保留：
 
 ```
 /*
@@ -654,7 +654,7 @@ end-for
 | -keep-global-name            | 保留顶层作用域的名称 | 4.0.9.2 |
 | -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 4.1.5.3 <br> 5.0.0.19 |
 | -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 4.0.9.2 |
-| -keep-comments               | 保留声明文件中元素上方的JsDoc注释 | 4.1.5.3 |
+| -keep-comments               | 保留编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性上方的JsDoc注释 | 4.1.5.3 |
 | -keep                        | 保留指定路径中的所有名称 | 5.0.0.18 |
 | 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
 
