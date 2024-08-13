@@ -36,7 +36,7 @@
               .onClick(() => {
                 postCardAction(this, {
                   action: 'call',
-                  abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
+                  abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility，与module.json5中定义保持
                   params: {
                     formId: this.formId,
                     method: 'funA' // 在EntryAbility中调用的方法名
@@ -51,7 +51,7 @@
               .onClick(() => {
                 postCardAction(this, {
                   action: 'call',
-                  abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
+                  abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility，与module.json5中定义保持
                   params: {
                     formId: this.formId,
                     method: 'funB', // 在EntryAbility中调用的方法名
