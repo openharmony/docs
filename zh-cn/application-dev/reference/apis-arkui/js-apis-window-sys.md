@@ -2167,6 +2167,8 @@ try {
 setBackdropBlur(radius: number): void
 
 设置窗口背景模糊。
+窗口背景是指窗口覆盖的下层区域，与窗口大小相同。
+需要通过setBackgroundColor将窗口内容背景设置成透明，否则无法看到模糊效果。
 
 **系统接口：** 此接口为系统接口。
 
