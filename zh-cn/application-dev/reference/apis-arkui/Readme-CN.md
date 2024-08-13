@@ -68,7 +68,6 @@
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
 - ArkTS组件
-  - [组件导读](arkui-ts/ts-components-summary.md)
   - 组件通用信息
     - 通用事件
       - [点击事件](arkui-ts/ts-universal-events-click.md)
