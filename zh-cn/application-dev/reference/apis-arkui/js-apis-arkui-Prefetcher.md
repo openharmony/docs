@@ -159,8 +159,9 @@ import { image } from '@kit.ImageKit';
 
 const ITEMS_ON_SCREEN = 8;
 
+@Entry
 @Component
-export struct PrefetcherDemoComponent {
+struct PrefetcherDemoComponent {
   private readonly dataSource = new MyDataSource(2000, 500);
   private readonly prefetcher = new BasicPrefetcher(this.dataSource);
 
@@ -182,7 +183,7 @@ export struct PrefetcherDemoComponent {
 }
 
 @Component
-export default struct PictureItemComponent {
+struct PictureItemComponent {
   @ObjectLink info: PictureItem;
 
   build() {
@@ -197,7 +198,7 @@ export default struct PictureItemComponent {
 }
 
 @Observed
-export class PictureItem {
+class PictureItem {
   readonly color: number;
   title: string;
   imagePixelMap: image.PixelMap | undefined;
