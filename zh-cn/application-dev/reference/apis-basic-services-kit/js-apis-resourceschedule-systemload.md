@@ -38,7 +38,7 @@ on(type: 'systemLoadChange', callback: Callback\<SystemLoadLevel>): void
 **示例**：
 
 ```ts
-import { systemLoad }from '@kit.BasicServicesKit';
+import { systemLoad } from '@kit.BasicServicesKit';
 
 function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
     console.log(`system load changed, current level ` + res);
