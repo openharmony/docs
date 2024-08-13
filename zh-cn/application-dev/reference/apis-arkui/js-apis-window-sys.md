@@ -2891,7 +2891,7 @@ export default class EntryAbility extends UIAbility {
 startMoving(): Promise&lt;void&gt;
 
 开始移动窗口，使用Promise异步回调。
-并且仅在onTouch事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+并且仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
 仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
