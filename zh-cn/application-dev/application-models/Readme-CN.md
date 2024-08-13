@@ -41,7 +41,7 @@
       - [（可选）使用canOpenLink判断应用是否可访问](canopenlink.md)
       - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
       <!--Del-->
-      - [使用App Linking实现应用间跳转](app-uri-startup.md)
+      - [使用App Linking实现应用间跳转](app-linking-startup.md)
       <!--DelEnd-->
       - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
       - [应用链接说明](app-uri-config.md)
