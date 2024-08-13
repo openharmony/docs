@@ -316,15 +316,15 @@ Provides UI capabilities of ArkUI on the native side, such as UI component creat
 | uint32_t [OH_ArkUI_AnimateOption_GetDuration](#oh_arkui_animateoption_getduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains the animation duration, in milliseconds. |
 | float [OH_ArkUI_AnimateOption_GetTempo](#oh_arkui_animateoption_gettempo) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains the playback speed of an animation. |
 | [ArkUI_AnimationCurve](#arkui_animationcurve) [OH_ArkUI_AnimateOption_GetCurve](#oh_arkui_animateoption_getcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains an animation curve. |
-| uint32_t [OH_ArkUI_AnimateOption_GetDelay](#oh_arkui_animateoption_getdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains the animation delay, in milliseconds. |
-| uint32_t [OH_ArkUI_AnimateOption_GetIterations](#oh_arkui_animateoption_getiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains the number of times that an animation is played. |
+| int32_t [OH_ArkUI_AnimateOption_GetDelay](#oh_arkui_animateoption_getdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains the animation delay, in milliseconds. |
+| int32_t [OH_ArkUI_AnimateOption_GetIterations](#oh_arkui_animateoption_getiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains the number of times that an animation is played. |
 | [ArkUI_AnimationPlayMode](#arkui_animationplaymode) [OH_ArkUI_AnimateOption_GetPlayMode](#oh_arkui_animateoption_getplaymode) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains the playback mode of an animation. |
 | [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \* [OH_ArkUI_AnimateOption_GetExpectedFrameRateRange](#oh_arkui_animateoption_getexpectedframeraterange) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | Obtains the expected frame rate range of an animation. |
-| void [OH_ArkUI_AnimateOption_SetDuration](#oh_arkui_animateoption_setduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | Sets the animation duration. |
+| void [OH_ArkUI_AnimateOption_SetDuration](#oh_arkui_animateoption_setduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, int32_t value) | Sets the animation duration. |
 | void [OH_ArkUI_AnimateOption_SetTempo](#oh_arkui_animateoption_settempo) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, float value) | Sets the playback speed of an animation. |
 | void [OH_ArkUI_AnimateOption_SetCurve](#oh_arkui_animateoption_setcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_AnimationCurve](#arkui_animationcurve) value) | Animation curve. |
-| void [OH_ArkUI_AnimateOption_SetDelay](#oh_arkui_animateoption_setdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | Sets the animation delay. |
-| void [OH_ArkUI_AnimateOption_SetIterations](#oh_arkui_animateoption_setiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | Number of times that the frame animation is played. |
+| void [OH_ArkUI_AnimateOption_SetDelay](#oh_arkui_animateoption_setdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, int32_t value) | Sets the animation delay. |
+| void [OH_ArkUI_AnimateOption_SetIterations](#oh_arkui_animateoption_setiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, int32_t value) | Number of times that the frame animation is played. |
 | void [OH_ArkUI_AnimateOption_SetPlayMode](#oh_arkui_animateoption_setplaymode) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_AnimationPlayMode](#arkui_animationplaymode) value) | Sets the playback mode for an animation. |
 | void [OH_ArkUI_AnimateOption_SetExpectedFrameRateRange](#oh_arkui_animateoption_setexpectedframeraterange) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \*value) | Defines the expected frame rate range of the animation. |
 | void [OH_ArkUI_AnimateOption_SetICurve](#oh_arkui_animateoption_seticurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value) | Sets the animation curve for an animation. |
@@ -5235,7 +5235,7 @@ Returns the animation curve.
 ### OH_ArkUI_AnimateOption_GetDelay()
 
 ```
-uint32_t OH_ArkUI_AnimateOption_GetDelay (ArkUI_AnimateOption * option)
+int32_t OH_ArkUI_AnimateOption_GetDelay (ArkUI_AnimateOption * option)
 
 ```
 
@@ -5331,7 +5331,7 @@ Returns the animation curve of the specified animation.
 ### OH_ArkUI_AnimateOption_GetIterations()
 
 ```
-uint32_t OH_ArkUI_AnimateOption_GetIterations (ArkUI_AnimateOption * option)
+int32_t OH_ArkUI_AnimateOption_GetIterations (ArkUI_AnimateOption * option)
 
 ```
 
@@ -5424,7 +5424,7 @@ Sets the animation curve.
 ### OH_ArkUI_AnimateOption_SetDelay()
 
 ```
-void OH_ArkUI_AnimateOption_SetDelay (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetDelay (ArkUI_AnimateOption * option, int32_t value )
 
 ```
 
@@ -5445,7 +5445,7 @@ Sets the animation delay.
 ### OH_ArkUI_AnimateOption_SetDuration()
 
 ```
-void OH_ArkUI_AnimateOption_SetDuration (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetDuration (ArkUI_AnimateOption * option, int32_t value )
 
 ```
 
@@ -5512,7 +5512,7 @@ This API is preferred over the value set by **OH_ArkUI_AnimateOption_SetCurve**.
 ### OH_ArkUI_AnimateOption_SetIterations()
 
 ```
-void OH_ArkUI_AnimateOption_SetIterations (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetIterations (ArkUI_AnimateOption * option, int32_t value )
 
 ```
 
