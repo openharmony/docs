@@ -2143,7 +2143,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
           return;
         } else {
           console.info(JSON.stringify(data));
@@ -2156,22 +2156,23 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     };
     udp.bind({address:"192.168.xxx.xxx",
               port:8080,
-              family:1} as socket.NetAddress, (error: BusinessError) => { 
-    if (error) {
-      console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
-      return;
-    }
-    udp.on('message', (data: Data) => {
-      console.info("Succeeded to get data: " + JSON.stringify(data));
-    });
-    netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
+              family:1} as socket.NetAddress, (error: BusinessError) => {
       if (error) {
-        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
-      } else {
-        console.info(JSON.stringify(data));
+        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
+        return;
       }
+      udp.on('message', (data: Data) => {
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+      });
+      netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
+        if (error) {
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          return;
+        } else {
+          console.info(JSON.stringify(data));
+        }
+      });
     });
-  });
 });
 ```
 
@@ -2233,7 +2234,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       netHandle.bindSocket(tcp).then(() => {
         console.info("bind socket success");
       }).catch((error: BusinessError) => {
-        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
       });
     });
   } else {
@@ -2256,7 +2257,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
       });
     });
-}
+  }
 });
 ```
 
