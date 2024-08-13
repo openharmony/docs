@@ -1337,7 +1337,7 @@ try {
 
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调，调用成功即返回，回调中使用getWindowProperties无法获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[moveWindowToAsync()](#movewindowtoasync12)。
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
@@ -1390,7 +1390,7 @@ try {
 
 moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调，调用生效（在界面应用）后返回，回调中可使用getWindowProperties（见示例）获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
 全屏模式窗口不支持该操作。
 
@@ -1504,7 +1504,7 @@ try {
 
 resize(width: number, height: number): Promise&lt;void&gt;
 
-改变当前窗口大小，使用Promise异步回调，调用成功即返回，回调中使用getWindowProperties无法获取最终生效结果。
+改变当前窗口大小，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[resizeAsync()](#resizeasync12)。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
@@ -1565,7 +1565,7 @@ try {
 
 resizeAsync(width: number, height: number): Promise&lt;void&gt;
 
-改变当前窗口大小，使用Promise异步回调，调用生效（在界面应用）后返回，回调中可使用getWindowProperties（见示例）获取最终生效结果。
+改变当前窗口大小，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
