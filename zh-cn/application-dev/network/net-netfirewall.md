@@ -37,16 +37,16 @@
 
 完整的JS API说明以及实例代码请参考：[网络防火墙](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
 
-| 接口 | 描述 |
-| ---- | ---- |
-| setNetFirewallPolicy(userId: number, status: NetFirewallPolicy): Promise\<void> | 设置防火墙状态 |
-| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy> | 查询防火墙状态 |
-| addNetFirewallRule(rule: NetFirewallRule): Promise\<number> | 添加防火墙规则 |
-| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void> | 更新防火墙规则 |
-| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void> | 删除防火墙规则 |
-| getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage> | 查询用户所有防火墙规则 |
-| getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule> | 查询用户单条防火墙规则 |
-| getInterceptRecords(userId: number, requestParam: RequestParam): Promise\<InterceptRecordPage> | 查询防火墙拦截记录 |
+| 接口                                                                                               | 描述              |
+| -------------------------------------------------------------------------------------------------- | ----------------- |
+| setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>                    | 设置防火墙状态    |
+| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>                                  | 查询防火墙状态    |
+| addNetFirewallRule(rule: NetFirewallRule): Promise\<number>                                        | 添加防火墙规则    |
+| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>                                       | 更新防火墙规则    |
+| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>                              | 删除防火墙规则    |
+| getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage>        | 分页查询防火墙规则 |
+| getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>                      | 查询单条防火墙规则 |
+| getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage> | 查询防火墙拦截记录 |
 
 ## 针对特定IP联网访问控制
 
@@ -194,7 +194,7 @@ let interceptRecordParam: netFirewall.RequestParam = {
   orderField: netFirewall.NetFirewallOrderField.ORDER_BY_RECORD_TIME,
   orderType: netFirewall.NetFirewallOrderType.ORDER_DESC
 };
-netFirewall.getInterceptRecords(100, interceptRecordParam).then((result: netFirewall.InterceptRecordPage) => {
+netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFirewall.InterceptedRecordPage) => {
   console.info("result:", JSON.stringify(result));
 }, (error: BusinessError) => {
   console.error("get intercept records failed: " + JSON.stringify(error));

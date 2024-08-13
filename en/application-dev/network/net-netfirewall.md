@@ -1,4 +1,4 @@
-# @ohos.net.netFirewall (Network firewall) (Only open to system applications)
+# @ohos.net.netFirewall (Network firewall) (System interface)
 
 ## Synopsis
 The network firewall provides the following functions :
@@ -36,16 +36,16 @@ The specific development methods are introduced below.
 
 Please refer to the complete JS API description and instance code for reference : [network firewall](../reference/apis-network-kit/js-apis-net-netfirewall.md).
 
-| Interface | Describe |
-| ---- | ---- |
-| setNetFirewallPolicy(userId: number, status: NetFirewallPolicy): Promise\<void> | Set firewall policy |
-| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy> | Query firewall policy |
-| addNetFirewallRule(rule: NetFirewallRule): Promise\<number> | Add firewall rules |
-| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void> | Update firewall rules |
-| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void> | Delete firewall rules |
-| getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage> | Query all firewall rules for users |
-| getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule> | Query user's single firewall rule |
-| getInterceptRecords(userId: number, requestParam: RequestParam): Promise\<InterceptRecordPage> | Query firewall interception records |
+| Interface                                                                                          | Describe                                                             |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>                    | Set firewall policy.                                                 |
+| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>                                  | Check the policy of the firewall.                                    |
+| addNetFirewallRule(rule: NetFirewallRule): Promise\<number>                                        | Add firewall rules.                                                  |
+| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>                                       | Update firewall rules.                                               |
+| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>                              | Delete firewall rules.                                               |
+| getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage>        | Get firewall rules by userId, and it is necessary to specify the pagination query parameters. |
+| getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>                      | Get a specified firewall rule by userId and ruleId.                  |
+| getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage> | Get intercepted records by userId, and it is necessary to specify the pagination query parameters. |
 
 ## Targeting specific IP networking access control
 
@@ -57,7 +57,7 @@ Please refer to the complete JS API description and instance code for reference 
 4. Call the addNetFirewallRule method in user mode to add the firewall rules.
 
 ```ts
-import { netFirewall } from '@kit.NetworkKit';
+import { netFirewall } from '@ohos.net.netFirewall';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let policy: netFirewall.NetFirewallPolicy = {
@@ -136,7 +136,7 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 4. Call the addNetFirewallRule method in user mode to add firewall rules.
 
 ```ts
-import { netFirewall } from '@kit.NetworkKit';
+import { netFirewall } from '@ohos.net.netFirewall';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let policy: netFirewall.NetFirewallPolicy = {
@@ -184,7 +184,7 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 3. Call the getAllInterceptRecords method in user mode to query interception records.
 
 ```ts
-import { netFirewall } from '@kit.NetworkKit';
+import { netFirewall } from '@ohos.net.netFirewall';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let interceptRecordParam: netFirewall.RequestParam = {
@@ -193,7 +193,7 @@ let interceptRecordParam: netFirewall.RequestParam = {
   orderField: netFirewall.NetFirewallOrderField.ORDER_BY_RECORD_TIME,
   orderType: netFirewall.NetFirewallOrderType.ORDER_DESC
 };
-netFirewall.getInterceptRecords(100, interceptRecordParam).then((result: netFirewall.InterceptRecordPage) => {
+netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFirewall.InterceptedRecordPage) => {
     console.info("result:", JSON.stringify(result));
 }, (error: BusinessError) => {
     console.error("get intercept records failed: " + JSON.stringify(error));

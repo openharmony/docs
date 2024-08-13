@@ -31,25 +31,26 @@ Set firewall policy.
 
 | Parameter Name    | Type                                             | Required | Explanation                                                                 |
 | ----------------- | ------------------------------------------------ | -------- | --------------------------------------------------------------------------- |
-| userId            | number                                           | Yes      | User ID                                                                     |
-| policy            | [NetFirewallPolicy](#NetFirewallPolicy)          | Yes      | Firewall on/off status,Default actions for inbound and outbound connections |
+| userId            | number                                           | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exis.    |
+| policy            | [NetFirewallPolicy](#NetFirewallPolicy)          | Yes      | The firewall policy to be set                                               |
 
 **Return value:**
 
-| Type                 | Explanation                                                                                                              |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Promise\<void>       | Return the execution result in the form of Promise.Success does not return, failure returns the corresponding error code.|
+| Type                 | Explanation    |
+| -------------------- | -------------- |
+| Promise\<void>       | Returns void.  |
 
 **Error code:**
 
 | Error code ID | Error message                                |
 | ------------- | -------------------------------------------- |
 | 201           | Permission denied.                           |
+| 202           | Non-system applications use system APIs.     |
 | 401           | Parameter error.                             |
 | 2100001       | Invalid parameter value.                     |
 | 2100002       | Operation failed. Cannot connect to service. |
 | 2100003       | System internal error.                       |
-| 29400000      | The specified user does not exit.            |
+| 29400000      | The specified user does not exist.           |
 
 **Example:**
 
@@ -83,15 +84,15 @@ Check the policy of the firewall.
 
 **Parameters:**
 
-| Parameter Name | Type                                              | Required | Explanation                                |
-| -------------- | ------------------------------------------------- | -------- | ------------------------------------------ |
-| userId         | number                                            | Yes      | User ID                                    |
+| Parameter Name | Type                | Required | Explanation                                                              |
+| -------------- | ------------------- | -------- | ------------------------------------------------------------------------ |
+| userId         | number              | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exist.|
 
 **Return value:**
 
 | Type                                              | Explanation                                           |
 | ------------------------------------------------- | ----------------------------------------------------- |
-| Promise\<[NetFirewallPolicy](#NetFirewallPolicy)> | Return interface information in the form of a Promise.|
+| Promise\<[NetFirewallPolicy](#NetFirewallPolicy)> | Current user firewall policy.                         |
 
 
 **Error code:**
@@ -99,11 +100,12 @@ Check the policy of the firewall.
 | Error code ID | Error message                                 |
 | ------------- | --------------------------------------------- |
 | 201           | Permission denied.                            |
+| 202           | Non-system applications use system APIs.      |
 | 401           | Parameter error.                              |
 | 2100001       | Invalid parameter value.                      |
 | 2100002       | Operation failed. Cannot connect to service.  |
 | 2100003       | System internal error.                        |
-| 29400000      | The specified user does not exit.             |
+| 29400000      | The specified user does not exist.            |
 
 **Example:**
 
@@ -132,26 +134,27 @@ Add firewall rules.
 
 **Parameters:**
 
-| Parameter Name   | Type                                              | Required | Explanation                                |
-| ---------------- | ------------------------------------------------- | -------- | ------------------------------------------ |
-| rule             |  [NetFirewallRule](#NetFirewallRule)              | Yes      | Firewall rules                             |
+| Parameter Name   | Type                                | Required | Explanation          |
+| ---------------- | ----------------------------------- | -------- | -------------------- |
+| rule             |  [NetFirewallRule](#NetFirewallRule)| Yes      | Firewall rule.       |
 
 **Return value:**
 
-| Type                              | Explanation                                             |
-| --------------------------------- | ------------------------------------------------------- |
-| Promise\<number>                  | Return interface information in the form of a Promise.  |
+| Type                              | Explanation                                          |
+| --------------------------------- | ---------------------------------------------------- |
+| Promise\<number>                  | Indicates the rule ID, generated by the system.      |
 
 **Error code:**
 
 | Error code ID | Error message                                                            |
 | ------------- | -----------------------------------------------------------------------  |
 | 201           | Permission denied.                                                       |
+| 202           | Non-system applications use system APIs.                                 |
 | 401           | Parameter error.                                                         |
 | 2100001       | Invalid parameter value.                                                 |
 | 2100002       | Operation failed. Cannot connect to service.                             |
 | 2100003       | System internal error.                                                   |
-| 29400000      | The specified user does not exit.                                        |
+| 29400000      | The specified user does not exist.                                       |
 | 29400001      | The number of firewall rules exceeds the maximum.                        |
 | 29400002      | The number of IP address rules in the firewall rule exceeds the maximum. |
 | 29400003      | The number of port rules in the firewall rule exceeds the maximum.       |
@@ -276,26 +279,27 @@ Update firewall rules.
 
 **Parameters:**
 
-| Parameter Name   | Type                                              | Required | Explanation                                |
-| ---------------- | ------------------------------------------------- | -------- | ------------------------------------------ |
-| rule             | [NetFirewallRule](#NetFirewallRule)               | Yes      | Firewall rules                             |
+| Parameter Name   | Type                                       | Required | Explanation          |
+| ---------------- | -------------------------------------------| -------- | -------------------- |
+| rule             | [NetFirewallRule](#NetFirewallRule)        | Yes      | Firewall rule        |
 
 **Return value:**
 
-| Type                | Explanation                                                                                                               |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| Promise\<void>      | Return the execution result in the form of Promise.Success does not return, failure returns the corresponding error code. |
+| Type                | Explanation                                                               |
+| ------------------- | ------------------------------------------------------------------------- |
+| Promise\<void>      | Returns void.                                                             |
 
 **Error code:**
 
 | Error code ID | Error message                                                                   |
 | ------------- | --------------------------------------------------------------------------------|
 | 201           | Permission denied.                                                              |
+| 202           | Non-system applications use system APIs.                                        |
 | 401           | Parameter error.                                                                |
 | 2100001       | Invalid parameter value.                                                        |
 | 2100002       | Operation failed. Cannot connect to service.                                    |
 | 2100003       | System internal error.                                                          |
-| 29400000      | The specified user does not exit.                                               |
+| 29400000      | The specified user does not exist.                                              |
 | 29400002      | The number of IP address rules in the firewall rule exceeds the maximum.        |
 | 29400003      | The number of port rules in the firewall rule exceeds the maximum.              |
 | 29400004      | The number of domain rules in the firewall rule exceeds the maximum.            |
@@ -353,28 +357,29 @@ Delete firewall rules.
 
 **Parameters:**
 
-| Parameter Name   | Type                                              | Required | Explanation                                |
-| ---------------- | ------------------------------------------------- | -------- | ------------------------------------------ |
-| rule             | NetFirewallRule                                   | Yes      | Firewall rules                             |
-| userId           | number                                            | Yes      | User ID                                    |
-| ruleId           | number                                            | Yes      | Firewall rules ID                          |
+| Parameter Name | Type            | Required | Explanation                                                              |
+| -------------- | --------------- | -------- | ------------------------------------------------------------------------ |
+| rule           | NetFirewallRule | Yes      | Firewall rule                                                            |
+| userId         | number          | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exist.|
+| ruleId         | number          | Yes      | Firewall rules ID.                                                       |
 
 **Return value:**
 
-| Type                | Explanation                                                                                                              |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Promise\<void>      | Return the execution result in the form of Promise.Success does not return, failure returns the corresponding error code.|
+| Type                | Explanation                                                               |
+| ------------------- | ------------------------------------------------------------------------- |
+| Promise\<void>      |  Returns void.                                                            |
 
 **Error code:**
 
 | Error code ID | Error message                                                                   |
 | ------------- | --------------------------------------------------------------------------------|
 | 201           | Permission denied.                                                              |
+| 202           | Non-system applications use system APIs.                                        |
 | 401           | Parameter error.                                                                |
 | 2100001       | Invalid parameter value.                                                        |
 | 2100002       | Operation failed. Cannot connect to service.                                    |
 | 2100003       | System internal error.                                                          |
-| 29400000      | The specified user does not exit.                                               |
+| 29400000      | The specified user does not exist.                                              |
 | 29400006      | The specified rule does not exist.                                              |
   
 **Example:**
@@ -394,7 +399,7 @@ netFirewall.removeNetFirewallRule(100, 1).then(() => {
 
 getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage>
 
-Query all firewall rules for the user.
+Get firewall rules by userId, and it is necessary to specify the pagination query parameters.
 
 **System interface**: This interface is a system interface.
 
@@ -404,32 +409,33 @@ Query all firewall rules for the user.
 
 **Parameters:**
 
-| Parameter Name   | Type                                              | Required | Explanation                       |
-| ---------------- | ------------------------------------------------- | -------- | --------------------------------- |
-| userId           | number                                            | Yes      | User ID                           |
-| requestParam     | RequestParam [RequestParam](#RequestParam)        | Yes      | Query firewall rule parameters    |
+| Parameter Name| Type                         | Required | Explanation                                                              |
+| ------------- | ---------------------------- | -------- | ------------------------------------------------------------------------ |
+| userId        | number                       | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exist.|
+| requestParam  | [RequestParam](#RequestParam)| Yes      | Paging query input parameters.                                           |
 
 **Return value:**
 
-| Type                              | Explanation                                                            |
-| --------------------------------- | ---------------------------------------------------------------------- |
-| Promise\<[FirewallRulePage](#FirewallRulePage)>   | Return interface information in the form of a Promise. |
+| Type                              | Explanation                                                 |
+| --------------------------------- | ----------------------------------------------------------- |
+| Promise\<[FirewallRulePage](#FirewallRulePage)>   | Paginated firewall rule list.               |
 
 **Error code:**
 
 | Error code ID | Error message                                                                   |
 | ------------- | --------------------------------------------------------------------------------|
 | 201           | Permission denied.                                                              |
+| 202           | Non-system applications use system APIs.                                        |
 | 401           | Parameter error.                                                                |
 | 2100001       | Invalid parameter value.                                                        |
 | 2100002       | Operation failed. Cannot connect to service.                                    |
 | 2100003       | System internal error.                                                          |
-| 29400000      | The specified user does not exit.                                               |
+| 29400000      | The specified user does not exist.                                              |
   
 **Example:**
 
 ```ts
-import { netFirewall } from '@kit.NetworkKit';
+import { netFirewall } from '@ohos.net.netFirewall';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ruleParam: netFirewall.RequestParam = {
@@ -449,7 +455,7 @@ netFirewall.getNetFirewallRules(100, ruleParam).then((result: netfirewall.Firewa
 
 getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>
 
-Query individual firewall rules for users.
+Get a specified firewall rule by userId and ruleId.
 
 **System interface**: This interface is a system interface.
 
@@ -459,27 +465,28 @@ Query individual firewall rules for users.
 
 **Parameters:**
 
-| Parameter Name   | Type                                              | Required | Explanation        |
-| ---------------- | ------------------------------------------------- | -------- | ------------------ |
-| userId           | number                                            | Yes      | User ID            |
-| ruleId           | number                                            | Yes      | Firewall rules ID  |
+| Parameter Name| Type   | Required | Explanation                                                               |
+| ------------- | ------ | -------- | ------------------------------------------------------------------------- |
+| userId        | number | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exist. |
+| ruleId        | number | Yes      | Firewall rules ID.                                                        |
 
 **Return value:**
 
-| Type                                            | Explanation                                            |
-| ----------------------------------------------- | ------------------------------------------------------ |
-| Promise\<[NetFirewallRule](#NetFirewallRule)>   | Return interface information in the form of a Promise. |
+| Type                                            | Explanation                                   |
+| ----------------------------------------------- | --------------------------------------------- |
+| Promise\<[NetFirewallRule](#NetFirewallRule)>   | Firewall Rule.                                |
 
 **Error code:**
 
 | Error code ID | Error message                                                                   |
 | ------------- | --------------------------------------------------------------------------------|
 | 201           | Permission denied.                                                              |
+| 202           | Non-system applications use system APIs.                                        |
 | 401           | Parameter error.                                                                |
 | 2100001       | Invalid parameter value.                                                        |
 | 2100002       | Operation failed. Cannot connect to service.                                    |
 | 2100003       | System internal error.                                                          |
-| 29400000      | The specified user does not exit.                                               |
+| 29400000      | The specified user does not exist.                                              |
 | 29400006      | The specified rule does not exist.                                              |
   
 **Example:**
@@ -495,11 +502,11 @@ netFirewall.getNetFirewallRule(100, 1).then((rule: netFirewall.NetFirewallRule) 
 });
 ```
 
-## netFirewall.getInterceptRecords
+## netFirewall.getInterceptedRecords
 
-getInterceptRecords(userId: number, requestParam: RequestParam): Promise<\InterceptRecordPage>
+getInterceptedRecords(userId: number, requestParam: RequestParam): Promise<\InterceptedRecordPage>
 
-Query the firewall's interception records.
+Get intercepted records by userId, and it is necessary to specify the pagination query parameters.
 
 **System interface**: This interface is a system interface.
 
@@ -509,27 +516,28 @@ Query the firewall's interception records.
 
 **Parameters:**
 
-| Parameter Name   | Type                              | Required | Explanation         |
-| ---------------- | --------------------------------- | -------- | ------------------- |
-| userId           | number                            | Yes      | User ID             |
-| requestParam     |  [RequestParam](#RequestParam)    | Yes      | Query parameters    |
+| Parameter Name | Type                          | Required | Explanation                                                               |
+| -------------- | ----------------------------- | -------- | ------------------------------------------------------------------------- |
+| userId         | number                        | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exist. |
+| requestParam   | [RequestParam](#RequestParam) | Yes      | Query parameters                                                          |
 
 **Return value:**
 
-| Type                                                    | Explanation                                                   |
-| ------------------------------------------------------- | ------------------------------------------------------------- |
-| Promise\<[InterceptRecordPage](#InterceptRecordPage)>   | Return interface information in the form of a Promise.        |
+| Type                                                      | Explanation                                                   |
+| --------------------------------------------------------- | ------------------------------------------------------------- |
+| Promise\<[InterceptedRecordPage](#InterceptedRecordPage)> | Block Record List.                                            |
 
 **Error code:**
 
 | Error code ID | Error message                                           |
 | ------------- | --------------------------------------------------------|
 | 201           | Permission denied.                                      |
+| 202           | Non-system applications use system APIs.                |
 | 401           | Parameter error.                                        |
 | 2100001       | Invalid parameter value.                                |
 | 2100002       | Operation failed. Cannot connect to service.            |
 | 2100003       | System internal error.                                  |
-| 29400000      | The specified user does not exit.                       |
+| 29400000      | The specified user does not exist.                      |
   
 **Example:**
 
@@ -543,7 +551,7 @@ let interceptRecordParam: netFirewall.RequestParam = {
   orderField: netFirewall.NetFirewallOrderField.ORDER_BY_RECORD_TIME,
   orderType: netFirewall.NetFirewallOrderType.ORDER_DESC
 };
-netFirewall.getInterceptRecords(100, interceptRecordParam).then((result: netFirewall.InterceptRecordPage) => {
+netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFirewall.InterceptedRecordPage) => {
   console.info("result:", JSON.stringify(result));
 }, (error: BusinessError) => {
   console.error("get intercept records failed: " + JSON.stringify(error));
@@ -552,7 +560,7 @@ netFirewall.getInterceptRecords(100, interceptRecordParam).then((result: netFire
 
 ## NetFirewallRuleDirection
 
-Firewall rules' interception directions are enumerated.
+Firewall rule direction enumeration.
 
 **System interface**: This interface is a system interface.
 
@@ -560,12 +568,12 @@ Firewall rules' interception directions are enumerated.
 
 | Name         | Value   | Explanation   |
 | ------------ | ------- | ------------- |
-| RULE_IN      | 1       | Inbound       |
-| RULE_OUT     | 2       | Outbound      |
+| RULE_IN      | 1       | Inbound.      |
+| RULE_OUT     | 2       | Outbound.     |
 
 ## FirewallRuleAction
 
-Firewall rule action enumeration.
+Firewall rule behavior enumeration.
 
 **System interface**: This interface is a system interface.
 
@@ -573,48 +581,48 @@ Firewall rule action enumeration.
 
 | Name           | Value   | Explanation   |
 | -------------- | ------- |-------------- |
-| RULE_ALLOW     | 0       | Allow         |
-| RULE_DENY      | 1       | Refuse        |
+| RULE_ALLOW     | 0       | Allow access. |
+| RULE_DENY      | 1       | Deny access.  |
 
 ## NetFirewallRuleType
 
-Enumeration of firewall rule types.
+Indicates the firewall rule type.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Name           | Value   | Explanation       |
-| -------------- | ------- | ----------------- |
-| RULE_IP        | 1       | IP class rules    |
-| RULE_DOMAIN    | 2       | Domain name rules |
-| RULE_DNS       | 3       | DNS rules         |
+| Name           | Value   | Explanation        |
+| -------------- | ------- | ------------------ |
+| RULE_IP        | 1       | IP type rules.     |
+| RULE_DOMAIN    | 2       | Domain type rules. |
+| RULE_DNS       | 3       | DNS type rul       |
 
 ## NetFirewallOrderField
 
-Enumeration of firewall rule sorting types.
+Pagination query sorting field.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Name                  | Value   | Explanation                |
-| --------------------- | ------- | -------------------------- |
-| ORDER_BY_RULE_NAME    | 1       | Sort by firewall rule name |
-| ORDER_BY_RECORD_TIME  | 100     | Sort by record time        |
+| Name                  | Value   | Explanation                                                                             |
+| --------------------- | ------- | --------------------------------------------------------------------------------------- |
+| ORDER_BY_RULE_NAME    | 1       | Sort rule names, it can be referenced only by the getNetFirewallRules interface.        |
+| ORDER_BY_RECORD_TIME  | 100     | Sort the recorded time, it can be referenced only by the getNetFirewallRules interface. |
 
 ## NetFirewallOrderType
 
-Enumeration of firewall rule sorting types.
+Pagination query sorting type.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Name                  | Value   | Explanation      |
-| --------------------- | ------- | ---------------- |
-| ORDER_ASC             | 1       | Ascending order  |
-| ORDER_DESC            | 100     | Descending order |
+| Name                  | Value   | Explanation       |
+| --------------------- | ------- | ----------------- |
+| ORDER_ASC             | 1       | Ascending order.  |
+| ORDER_DESC            | 100     | Descending order. |
 
 ## NetFirewallPolicy
 
@@ -624,58 +632,59 @@ Firewall policy.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name | Type                                       | Required | Explanation     |
-| -------------- | ------------------------------------------ |--------- |---------------- |
-| isOpen         | boolean                                    | Yes      | Firewall on/off |
-| inAction       | [FirewallRuleAction](#FirewallRuleAction)  | Yes      | Inbound Action  |
-| outAction      | [FirewallRuleAction](#FirewallRuleAction)  | Yes      | Outbound action |
+| Parameter Name | Type                                       | Required | Explanation                                            |
+| -------------- | ------------------------------------------ |--------- |------------------------------------------------------- |
+| isOpen         | boolean                                    | Yes      | Whether the firewall is open.                          |
+| inAction       | [FirewallRuleAction](#FirewallRuleAction)  | Yes      | Inbound connections are allowed or denied by default.  |
+| outAction      | [FirewallRuleAction](#FirewallRuleAction)  | Yes      | Outbound connections are allowed or denied by default. |
 
-## NetFirewallIpParam
+## NetFirewallIpParams
 
-Firewall rule IP parameters.
-
-**System interface**: This interface is a system interface.
-
-**System capability**: SystemCapability.Communication.NetManager.NetFirewall
-
-| Parameter Name | Type   | Required | Explanation                                                                  |    
-| -------------- | ------ | -------- | ---------------------------------------------------------------------------- |
-| family         | number | No       | IPv4=1, IPv6=2, Default IPv4, Currently not supported for others             |
-| type           | number | Yes      | 1:IP address or subnet,When using a single IP, the mask is 32; 2:IP segment  |
-| address        | string | No       | IP address: Valid when type equals 1, otherwise ignored                      |
-| mask           | number | No       | IPv4:subnet mask,IPv6:prefix, Valid when type equals 1, otherwise ignored    |
-| startIp        | string | No       | Starting IP: Valid when type equals 2, otherwise ignored                     |
-| endIp          | string | No       | End IP: Valid when type equals 2, otherwise ignored                          |
-
-## NetFirewallPortParam
-
-Firewall rule port parameters.
+Firewall IP parameters.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name | Type   | Required | Explanation     |
-| -------------- | ------ | -------- | --------------- |
-| startPort      | number | Yes      | Start Port      |
-| endPort        | number | Yes      | End port        |
+| Parameter Name | Type   | Required | Explanation                                                                              |
+| -------------- | ------ | -------- | ---------------------------------------------------------------------------------------- |
+| type           | number | Yes      | 1: IP address or subnet, when using a single IP, the mask is 32; 2: IP segment.          |
+| family         | number | No       | 1: IPv4, 2: IPv6, default is IPv4.                                                       |
+| address        | string | No       | IP address: Valid when type equals 1, otherwise it will be ignored.                      |
+| mask           | number | No       | IPv4: subnet mask, IPv6: prefix, valid when type equals 1, otherwise it will be ignored. |
+| startIp        | string | No       | Start IP: valid when type equals 2, otherwise it will be ignored.                        |
+| endIp          | string | No       | End IP: valid when type equals 2, otherwise it will be ignored.                          |
 
-## NetFirewallDomainParam
+## NetFirewallPortParams
 
-Firewall rule domain information.
+Firewall port parameters.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name  | Type    | Required | Explanation                                                               |
-| --------------- | ------- | -------- | ------------------------------------------------------------------------- |
-| isWildcard      | boolean | Yes      | Does it contain wildcard characters                                       |
-| domain          | string  | Yes      | When isWildcard is false, the complete domain that needs to be determined |
+| Parameter Name | Type   | Required | Explanation                                                                             |
+| -------------- | ------ | -------- | --------------------------------------------------------------------------------------- |
+| startPort      | number | Yes      | Start port, when there is only one port, the start port is the same as the end port.    |
+| endPort        | number | Yes      | End port, when there is only one port, the start port is the same as the end port.      |
 
-## NetFirewallDnsParam
+## NetFirewallDomainParams
 
-Firewall rule DNS information.
+Firewall domain name parameters.
+
+**System interface**: This interface is a system interface.
+
+**System capability**: SystemCapability.Communication.NetManager.NetFirewall
+
+| Parameter Name  | Type    | Required | Explanation                                                                         |
+| --------------- | ------- | -------- | ----------------------------------------------------------------------------------- |
+| isWildcard      | boolean | Yes      | Is there a universal configuration rule.                                            |
+| domain          | string  | Yes      | Domain: when isWildcard is false, the complete domain that needs to be determined; 
+When isWildcard is true, fuzzy domain only support domains like *.openharmony.cn; *.com.  |
+
+## NetFirewallDnsParams
+
+Firewall DNS parameters.
 
 **System interface**: This interface is a system interface.
 
@@ -683,97 +692,97 @@ Firewall rule DNS information.
 
 | Parameter Name    | Type    | Required | Explanation             |
 | ----------------- | ------- | -------- | ----------------------- |
-| primaryDns        | string  | Yes      | Main Domain Name Server |
+| primaryDns        | string  | Yes      | Primary DNS.            |
 | standbyDns        | string  | No       | Backup DNS              |
 
 
 ## NetFirewallRule
 
-Firewall rule information structure.
+Firewall rules.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name  | Type                                                     | Required | Explanation                                                                             |
-| --------------- | -------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------- |
-| id              | number                                                   | No       | Rule ID                                                                                 |
-| name            | string                                                   | Yes      | Rule Name,Required, at most 128 character                                               |
-| description     | string                                                   | No       | Rule Description, Optional, at most 256 character                                       |
-| direction       | [NetFirewallRuleDirection](#NetFirewallRuleDirection)    | Yes      | Rule direction, Inbound or Outbound                                                     |
-| action          | [FirewallRuleAction](#FirewallRuleAction)                | Yes      | behavior                                                                                |
-| type            | [NetFirewallRuleType](#NetFirewallRuleType)              | Yes      | Rule type                                                                               |
-| isEnabled       | boolean                                                  | Yes      | Is it enabled                                                                           |
-| appUid          | number                                                   | No       | Application or Service UID                                                              |
-| localIps        | Array\<[NetFirewallIpParam](#NetFirewallIpParam)>        | No       | Local IP address: Valid when ruleType=RULE-IP,otherwise, it will be ignored ,at most 20 |
-| remoteIps       | Array\<[NetFirewallIpParam](#NetFirewallIpParam)>        | No       | Remote IP address: Valid when ruleType=RULE-IP,otherwise, it will be ignored,at most 20 |
-| protocol        | number                                                   | No       | Protocol, TCP:6, UDP:17, Valid when ruleType=RULE-IP,otherwise, it will be ignored      |
-| localPorts      | Array\<[NetFirewallPortParam](#NetFirewallPortParam)>    | No       | Local Port: Valid when ruleType=RULE-IP,otherwise, it will be ignored,at most 10        |
-| remotePorts     | Array\<[NetFirewallPortParam](#NetFirewallPortParam)>    | No       | Teleport: Valid when ruleType=RULE-IP,otherwise, it will be ignored,at most 10          |
-| domains         | Array\<[NetFirewallDomainParam](#NetFirewallDomainParam)>| No       | Domain Name List: Valid when ruleType=RULE-IP,otherwise, it will be ignored             |
-| dns             | [NetFirewallDnsParam](#NetFirewallDnsParam)              | No       | DNS:Valid when ruleType=RULE-DNS, otherwise ignored                                     |
-| userId          | number                                                   | Yes      | User ID                                                                                 |
+| Parameter Name | Type                                                       | Required | Explanation                                                                      |
+| -------------- | ---------------------------------------------------------- | -------- | -------------------------------------------------------------------------------- |
+| userId         | number                                                     | Yes      | User id.                                                                         |
+| name           | string                                                     | Yes      | Rule name.                                                                       |
+| direction      | [NetFirewallRuleDirection](#NetFirewallRuleDirection)      | Yes      | Rule direction, Inbound or Outbound.                                             |
+| action         | [FirewallRuleAction](#FirewallRuleAction)                  | Yes      | Rule action.                                                                     |
+| type           | [NetFirewallRuleType](#NetFirewallRuleType)                | Yes      | Rule type.                                                                       |
+| isEnabled      | boolean                                                    | Yes      | Whether the rule is enabled.                                                     |
+| id             | number                                                     | No       | Rule id: When a rule is added to the system, the system generates a rule ID.     |
+| description    | string                                                     | No       | Rule description.                                                                |
+| appUid         | number                                                     | No       | Application or service UID.                                                      |
+| localIps       | Array\<[NetFirewallIpParams](#NetFirewallIpParams)>        | No       | Local IP address: valid when ruleType = RULE_IP, otherwise it will be ignored.   |
+| remoteIps      | Array\<[NetFirewallIpParams](#NetFirewallIpParams)>        | No       | Remote IP address: valid when ruleType = RULE_IP, otherwise it will be ignored.  |
+| protocol       | number                                                     | No       | Protocol, 1: ICMPv4, 6: TCP, 17: UDP, 58: ICMPv6. Valid when ruleType = RULE_IP, otherwise it will be ignored.  |
+| localPorts     | Array\<[NetFirewallPortParams](#NetFirewallPortParams)>    | No       | Local ports: valid when ruleType = RULE_IP, otherwise it will be ignored.        |
+| remotePorts    | Array\<[NetFirewallPortParams](#NetFirewallPortParams)>    | No       | Remote ports: valid when ruleType = RULE_IP, otherwise it will be ignored.       |
+| domains        | Array\<[NetFirewallDomainParams](#NetFirewallDomainParams)>| No       | Domain name list: valid when ruleType = RULE_DOMAIN, otherwise it will be ignored.                              |
+| dns            | [NetFirewallDnsParams](#NetFirewallDnsParams)              | No       | DNS: valid when ruleType = RULE_DNS, otherwise it will be ignored.               |
 
-## InterceptRecord
+## InterceptedRecord
 
-Intercept the structure of recorded information.
+Intercepted record.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name | Type   | Required | Explanation                |
-| -------------- | ------ | -------- | -------------------------- |
-| time           | number | Yes      | Time stamp                 |
-| localIp        | string | No       | Local IP                   |
-| remoteIp       | string | No       | Remote IP                  |
-| localPort      | number | No       | Local Port                 |
-| remotePort     | number | No       | Remote Port                |
-| protocol       | number | No       | Transport Layer Protocol   |
-| appUid         | number | No       | Application or Service UID |
-| domain         | string | No       | Domain name                |
+| Parameter Name | Type   | Required | Explanation                      |
+| -------------- | ------ | -------- | -------------------------------- |
+| time           | number | Yes      | Time stamp.                      |
+| localIp        | string | No       | Local IP.                        |
+| remoteIp       | string | No       | Remote IP.                       |
+| localPort      | number | No       | Local port.                      |
+| remotePort     | number | No       | Remote port.                     |
+| protocol       | number | No       | Transport layerpProtocol.        |
+| appUid         | number | No       | Application or service UID.      |
+| domain         | string | No       | Blocked domain name information. |
 
 ## RequestParam
 
-Query input information structure.
+Pagination query input parameters.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name | Type                                              | Required | Explanation                         |
-| -------------- | ------------------------------------------------- | -------- | ----------------------------------- |
-| page           | number                                            | Yes      | Current page, value range: [1,1000] |
-| pageSize       | number                                            | Yes      | Page size, value range: [1,50]      |
-| orderField     |  [NetFirewallOrderField](#NetFirewallOrderField)  | Yes      | Search Rules                        |
-| orderType      |  [NetFirewallOrderType](#NetFirewallOrderType)    | Yes      | Sort order                          |
+| Parameter Name | Type                                            | Required | Explanation                                                                 |
+| -------------- | ----------------------------------------------- | -------- | --------------------------------------------------------------------------- |
+| page           | number                                          | Yes      | Page number: indicates the page number to be queried. The start value is 1. |
+| pageSize       | number                                          | Yes      | Page size: indicates the number of data records to be queried at a time. The maximum value is 50.  |
+| orderField     |  [NetFirewallOrderField](#NetFirewallOrderField)| Yes      | Sort field.                                                                 |
+| orderType      |  [NetFirewallOrderType](#NetFirewallOrderType)  | Yes      | Sort Type: ascending or descending.                                         |
 
 ## FirewallRulePage
 
-Firewall rule page information structure.
+Rule page information.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name | Type                                        | Required | Explanation     |
-| -------------- | ------------------------------------------- | -------- |---------------- |
-| page           | number                                      | Yes      | Current page    |
-| pageSize       | number                                      | Yes      | Page size       |
-| totalPage      | number                                      | Yes      | PageCount       |
-| data           | Array\<[NetFirewallRule](#NetFirewallRule)> | Yes      | Page data       |
+| Parameter Name | Type                                        | Required | Explanation                                                   |
+| -------------- | ------------------------------------------- | -------- |-------------------------------------------------------------- |
+| page           | number                                      | Yes      | Current page number: indicates the page number of this query. |
+| pageSize       | number                                      | Yes      | Page size: maximum number of records on a page for this query.|
+| totalPage      | number                                      | Yes      | Total pages: total number of pages.                           |
+| data           | Array\<[NetFirewallRule](#NetFirewallRule)> | Yes      | Page data: all records displayed on this page.                |
 
-## InterceptRecordPage
+## InterceptedRecordPage
 
-Intercept the structure of paginated information in the record.
+Intercepted record page information.
 
 **System interface**: This interface is a system interface.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name | Type                                         | Required | Explanation         |
-| -------------- | -------------------------------------------- | -------- | ------------------- |
-| page           | number                                       | Yes      | Current page number |
-| pageSize       | number                                       | Yes      | Page size           |
-| totalPage      | number                                       | Yes      | PageCount           |
-| data           | Array\<[InterceptRecord](#InterceptRecord)>  | Yes      | Page data           |
+| Parameter Name | Type                                           | Required | Explanation                                                   |
+| -------------- | ---------------------------------------------- | -------- | ------------------------------------------------------------- |
+| page           | number                                         | Yes      | Current page number: indicates the page number of this query. |
+| pageSize       | number                                         | Yes      | Page size: maximum number of records on a page for this query.|
+| totalPage      | number                                         | Yes      | Total pages: total number of pages.                           |
+| data           | Array\<[InterceptedRecord](#InterceptedRecord)>| Yes      | Page data: all records displayed on this page.                |
