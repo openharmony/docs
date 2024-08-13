@@ -2942,7 +2942,7 @@ struct Index {
                 console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
               });
             } catch (exception) {
-              console.error(`Failed to start move window. Cause code: ${exception.code}, message: ${exception.message}`);
+              console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
             }
           }
         }
