@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)
+# EditableTitleBar
 
 
 编辑型标题栏，适用于多选界面或者内容的编辑界面，一般采取左叉右勾的形式。

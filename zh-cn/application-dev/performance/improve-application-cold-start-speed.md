@@ -105,7 +105,7 @@ import * from './SecondPage';
 export const  One: number = 1;
 
 // Index.ets
-import * from './Numbers';
+import { One } from './Numbers';
 ```
 由于依赖模块解析采用深度优先遍历的方式来遍历模块依赖关系图中每一个模块记录，会先从入口文件的第一个导入语句开始一层层往更深层查找，直到最后一个没有导入语句的模块为止，连接好这个模块的导出变量之后会回到上一级的模块继续这个步骤，因此多层export *的使用会导致依赖模块解析、文件执行阶段耗时增长。  
 针对上述示例代码关注该阶段耗时差异，对优化前后启动性能进行对比分析。分析阶段的起点为开始加载abc文件（即`H:JSPandaFileExecutor::ExecuteFromAbcFile`），阶段终点为`abc文件`加载完成。
@@ -255,6 +255,7 @@ export struct MainPage {
     }.onClick(() => {
       this.pathStack.pushPath({ name: 'SecondPage' });
     })
+  }
 }
 
 // entry/src/main/ets/pages/SecondPage.ets
@@ -741,6 +742,10 @@ struct Index {
 // entry/src/main/ets/pages/Index.ets
 import { httpRequest } from '../utils/NetRequest';
 import { number } from '../utils/Calculator';
+
+AppStorage.link('netData');
+PersistentStorage.persistProp('netData', undefined);
+
 @Entry
 @Component
 struct Index {
@@ -924,153 +929,5 @@ struct Index {
 因此，可以通过提前网络请求的方式减少应用冷启动耗时。
 
 ### 使用本地缓存首页数据
-在应用启动流程中，大部分应用的首页数据信息需要等待网络请求返回的数据解析结果，因此可以将首页数据通过[Preferences](../reference/apis-arkdata/js-apis-data-preferences.md)、[数据库](../reference/apis-arkdata/js-apis-data-rdb.md)、[文件](../reference/apis-core-file-kit/js-apis-file-fs.md)、[AppStorage](../quick-start/arkts-appstorage.md)等方式进行缓存，再次冷启动时优先展示缓存数据，网络请求后再次刷新首页数据。
 
-使用本地缓存首页数据的流程图如下图所示
-![](./figures/application_coldstart19.png)  
-
-使用本地缓存优先展示，可以减少首帧展示完成时延，减少用户可见白屏或白块时间，提升用户的冷启动体验。
-
->**说明：**
->
-> **应用需根据自身对于数据的时效性要求，来决定是否使用缓存数据。**  
-> 例如时效性要求为一天时，一天前保存的缓存数据就不适合进行展示，需从网络获取新数据进行展示，并更新本地缓存数据。
-
-**场景示例：**
-应用首页需展示一张从网站获取的图片信息，在aboutToAppear()中发起网络请求，待数据返回解析后展示在首页上。之后我们将图片信息缓存至本地应用沙箱内，再次冷启时首先从沙箱内获取图片信息，若存在即可解析并展示，在网络请求返回时再次更新图片信息。
-
-以下为关键部分示例代码：
-```ts
-// Index.ets
-import { http } from '@kit.NetworkKit';
-import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
-
-const PERMISSIONS: Array<Permissions> = [
-  'ohos.permission.READ_MEDIA',
-  'ohos.permission.WRITE_MEDIA'
-];
-AppStorage.link('net_picture');
-PersistentStorage.persistProp('net_picture', '');
-
-@Entry
-@Component
-struct Index {
-  @State image: PixelMap | undefined = undefined;
-  @State imageBuffer: ArrayBuffer | undefined = undefined; // 图片ArrayBuffer
-
-  /**
-   * 通过http的request方法从网络下载图片资源
-   */
-  async getPicture() {
-    http.createHttp()
-      .request('https://www.example1.com/POST?e=f&g=h',
-        (error: BusinessError, data: http.HttpResponse) => {
-          if (error) {
-            return;
-          }
-          // 判断网络获取到的资源是否为ArrayBuffer类型
-          if (data.result instanceof ArrayBuffer) {
-            this.imageBuffer = data.result as ArrayBuffer;
-          }
-          this.transcodePixelMap(data);
-        }
-      )
-  }
-
-  /**
-   * 使用createPixelMap将ArrayBuffer类型的图片装换为PixelMap类型
-   * @param data：网络获取到的资源
-   */
-  transcodePixelMap(data: http.HttpResponse) {
-    if (http.ResponseCode.OK === data.responseCode) {
-      const imageData: ArrayBuffer = data.result as ArrayBuffer;
-      // 通过ArrayBuffer创建图片源实例。
-      const imageSource: image.ImageSource = image.createImageSource(imageData);
-      const options: image.InitializationOptions = {
-        'alphaType': 0, // 透明度
-        'editable': false, // 是否可编辑
-        'pixelFormat': 3, // 像素格式
-        'scaleMode': 1, // 缩略值
-        'size': { height: 100, width: 100 }
-      }; // 创建图片大小
-
-      // 通过属性创建PixelMap
-      imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-        this.image = pixelMap;
-        setTimeout(() => {
-          if (this.imageBuffer !== undefined) {
-            this.saveImage(this.imageBuffer);
-          }
-        }, 0)
-      });
-    }
-  }
-
-  /**
-   * 保存ArrayBuffer到沙箱路径
-   * @param buffer：图片ArrayBuffer
-   * @returns
-   */
-  async saveImage(buffer: ArrayBuffer | string): Promise<void> {
-    const context = getContext(this) as common.UIAbilityContext;
-    const filePath: string = context.cacheDir + '/test.jpg';
-    AppStorage.set('net_picture', filePath);
-    const file = await fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    await fs.write(file.fd, buffer);
-    await fs.close(file.fd);
-  }
-
-  async useCachePic(): Promise<void> {
-    if (AppStorage.get('net_picture') !== '') {
-      // 获取图片的ArrayBuffer
-      const imageSource: image.ImageSource = image.createImageSource(AppStorage.get('net_picture'));
-      const options: image.InitializationOptions = {
-        'alphaType': 0, // 透明度
-        'editable': false, // 是否可编辑
-        'pixelFormat': 3, // 像素格式
-        'scaleMode': 1, // 缩略值
-        'size': { height: 100, width: 100 }
-      };
-      imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-        this.image = pixelMap;
-      });
-    }
-  }
-
-  async aboutToAppear(): Promise<void> {
-    const context = getContext(this) as common.UIAbilityContext;
-    const atManager = abilityAccessCtrl.createAtManager();
-    await atManager.requestPermissionsFromUser(context, PERMISSIONS);
-    this.useCachePic(); // 从本地缓存获取数据
-    this.getPicture(); // 从网络端获取数据
-  }
-
-  build() {
-    Column() {
-      Image(this.image)
-        .objectFit(ImageFit.Contain)
-        .width('50%')
-        .height('50%')
-    }
-  }
-}
-```
-下面对优化前后启动性能进行对比分析。分析阶段的起点为启动Ability（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility`的开始点），阶段终点为应用首次解析Pixelmap（即`H:Napi execute, name:CreatePixelMap, traceid:0x0`）后的首帧。
-
-【优化前】未使用本地缓存
-![](./figures/application_coldstart20.png)
-
-【优化后】使用本地缓存
-![](./figures/application_coldstart21.png)
-
-对比数据如下：
-
-| 方案           |  阶段时长(毫秒)  |
-|--------------|:----------:|
-| （优化前）未使用本地缓存 |   641.8    |
-| （优化后）使用本地缓存  |    68.9    |
-
-因此在使用本地缓存后，可以提升应用冷启动速度。
+使用本地缓存首页数据是优化应用性能的关键一环。它能有效缩短冷启动时的白屏或白块时间，显著提升用户体验。该策略通过预先存储并优先展示缓存中的首页数据，减少了对外部资源（如网络）的依赖，从而加快数据加载速度。当数据更新时，应用则智能地从网络等渠道获取最新内容，确保信息的时效性与准确性。使用本地缓存首页数据，不仅让应用响应更迅速，还显著优化了整体运行流畅度，为用户带来更加顺畅的体验。更多实现细节与性能提升分析，请参见[合理使用缓存提升性能](./reasonable_using_cache_improve_performance.md)。

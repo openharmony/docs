@@ -31,6 +31,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 [width](ts-universal-attributes-size.md#width)属性设置"auto"时表示自适应宽度，宽度会随索引项最大宽度变化。
 
+[padding](ts-universal-attributes-size.md#padding)属性默认为4vp。
+
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### color
@@ -555,6 +557,7 @@ struct AlphabetIndexerSample {
         .height('100%')
 
         AlphabetIndexer({ arrayValue: this.value, selected: 0 })
+          .autoCollapse(false)
           .selectedColor(0xFFFFFF) // 选中项文本颜色
           .popupColor(0xFFFAF0) // 弹出框文本颜色
           .selectedBackgroundColor(0xCCCCCC) // 选中项背景颜色

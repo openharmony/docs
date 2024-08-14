@@ -35,7 +35,6 @@
     - [Flex布局性能提升使用指导](flex-development-performance-boost.md)
     - [优化布局性能](reduce-view-nesting-levels.md)
     - [合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md)
-    - [合理使用IPC通信](reasonable-using-ipc.md)
     - [文件上传下载性能提升指导](improve-file-upload-and-download-performance.md)
     - [减少首帧绘制时的冗余操作](reduce-redundant-operations-when-render-first-frame.md)
     - [列表场景性能提升实践](list-perf-improvment.md)
@@ -49,6 +48,7 @@
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
     - [使用ArkUI的FrameNode扩展实现动态布局类框架](imperative_dynamic_layouts.md)
     - [在线短视频流畅切换](performance-quick-switch-short-video.md)
+    - [合理使用缓存提升性能](reasonable_using_cache_improve_performance.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)

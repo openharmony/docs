@@ -10,6 +10,6 @@ The **NotificationUserInput** module provides APIs for defining the notification
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name    | Type  | Mandatory| Description                         |
-| -------- | ------ | ---- | ----------------------------- |
-| inputKey | string | Yes | Key to identify the user input.|
+| Name    | Type   | Read Only | Optional | Description                         |
+| -------- | ------ |----- | ---- | ----------------------------- |
+| inputKey | string | No  |  No | Key to identify the user input. |

@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.InnerFullScreenLaunchComponent (非显式全屏启动原子化服务组件)(系统接口)
+# InnerFullScreenLaunchComponent (系统接口)
 
 
 非显式全屏启动原子化服务组件，拉起方可以选择拉起原子化服务的时机。当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。

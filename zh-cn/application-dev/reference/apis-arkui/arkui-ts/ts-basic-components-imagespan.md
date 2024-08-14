@@ -51,7 +51,7 @@ alt(value:&nbsp;PixelMap)
 
 verticalAlign(value: ImageSpanAlignment)
 
-设置图片基于文本的对齐方式。
+设置图片基于行高的对齐方式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -61,7 +61,7 @@ verticalAlign(value: ImageSpanAlignment)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment枚举说明) | 是   | 图片基于文本的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
+| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment枚举说明) | 是   | 图片基于行高的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
 
 ### objectFit
 
@@ -79,13 +79,13 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的缩放类型。<br/>默认值：ImageFit.Cover |
 
-### colorFilter<sup>12+</sup>
+### colorFilter<sup>13+</sup>
 
 colorFilter(value: ColorFilter | DrawingColorFilter)
 
 为图像设置颜色滤镜效果。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
