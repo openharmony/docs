@@ -882,7 +882,7 @@ Describes the preset vibration.
 | type     | "preset" |  Yes | The value **preset** means vibration with the specified effect.|
 | effectId | string   |  Yes | Preset vibration effect ID.            |
 | count    | number   |  No | Number of repeated vibrations. The default value is **1**. This parameter is optional.|
-| intensity | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional.|
+| intensity<sup>12+</sup> | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional.|
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -922,15 +922,15 @@ Describes the vibration attribute.
 
 ## Usage<sup>9+</sup>
 
-type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'media'|'physicalFeedback'|'simulateReality'
+type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | 'touch' | 'media' | 'physicalFeedback' | 'simulateReality'
 
 Enumerates the vibration scenarios.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
-
-| Name            | Type  | Mandatory| Description                          |
+<!--RP1-->
+| Name           | Type  | Mandatory| Description                          |
 | ---------------- | ------ | ------------------------------ | ------------------------------ |
 | unknown          | string | Yes| Unknown scenario, with the lowest priority.|
 | alarm            | string | Yes| Vibration for alarms.          |
@@ -941,6 +941,7 @@ Enumerates the vibration scenarios.
 | media            | string | Yes| Multimedia vibration scenario.        |
 | physicalFeedback | string | Yes| Physical feedback vibration scenario.      |
 | simulateReality  | string | Yes| Simulated reality vibration scenario.      |
+<!--RP1End-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 
