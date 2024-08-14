@@ -1,4 +1,4 @@
-# MultimodalAwareness Kit
+# Multimodal Awareness Kit
 
-- [Introduction to MultimodalAwareness Kit](multimodalawareness-kit-intro.md)
+- [Introduction to Multimodal Awareness Kit](multimodalawareness-kit-intro.md)
 - [Stationary Development](stationary-guidelines.md)
