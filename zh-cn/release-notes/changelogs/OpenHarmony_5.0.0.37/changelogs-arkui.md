@@ -30,7 +30,7 @@ API 12
 
 **变更发生版本**
 
-从OpenHarmony 5.0.0.36 版本开始。
+从OpenHarmony 5.0.0.37 版本开始。
 
 **变更的接口/组件**
 
@@ -55,9 +55,9 @@ WaterFlow组件布局模式WaterFlowLayoutMode.SLIDING_WINDOW。
 
 该变更为不兼容变更。
 
-变更前：滚动类组件默认最大抛划限速为4200vp/s
+变更前：滚动类组件最大抛划限速默认为4200vp/s
 
-变更后：滚动类组件默认最大抛划限速为12000vp/s
+变更后：滚动类组件最大抛划限速默认为12000vp/s
 
 下表变更前后快速抛划效果对比：
 |变更前 | 变更后 |
@@ -71,15 +71,15 @@ API 11
 
 **变更发生版本**
 
-从OpenHarmony 5.0.0.36 版本开始。
+从OpenHarmony 5.0.0.37 版本开始。
 
 **变更的接口/组件**
 
-滚动类组件flingSpeedLimit属性。
+滚动类组件[flingSpeedLimit](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#flingspeedlimit11)属性。
 
 **适配指导**
 
-无需适配，如果滚动速度过快导致性能问题，可以flingSpeedLimit接口设置最大抛划限速。
+无需适配，如果滚动速度过快导致性能问题，可以使用[flingSpeedLimit](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#flingspeedlimit11)接口设置最大抛划限速。
 
 ```ts
 @Entry
@@ -104,7 +104,7 @@ struct ListItemExample {
           }
         }, (item: string) => item)
       }.width('90%')
-      .flingSpeedLimit(4200)
+      .flingSpeedLimit(4200) // 设置抛划限速
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }
