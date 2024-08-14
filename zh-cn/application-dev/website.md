@@ -2072,23 +2072,23 @@
           - [MediaCachedImage (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-mediacachedimage-sys.md)
           <!--DelEnd-->
         - 信息展示
-          - [DataPanel](reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md)
-          - [Gauge](reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md)
           - [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)
-          - [PatternLock](reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md)
+          - [Badge](reference/apis-arkui/arkui-ts/ts-container-badge.md)
+          - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
+          - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
+          - [Counter](reference/apis-arkui/arkui-ts/ts-container-counter.md)
+          - [advanced.Counter](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Counter.md)
+          - [DataPanel](reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md)
+          - [ExceptionPrompt](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
+          - [Gauge](reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md)
           - [LoadingProgress](reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md)
           - [Marquee](reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md)
+          - [PatternLock](reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md)
           - [Progress](reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)
+          - [Popup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md)
           - [QRCode](reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md)
           - [TextClock](reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)
           - [TextTimer](reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md)
-          - [Badge](reference/apis-arkui/arkui-ts/ts-container-badge.md)
-          - [Counter](reference/apis-arkui/arkui-ts/ts-container-counter.md)
-          - [advanced.Counter](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Counter.md)
-          - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
-          - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
-          - [ExceptionPrompt](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
-          - [Popup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md)
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
         - 空白与分隔
           - [Blank](reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)
@@ -2197,11 +2197,11 @@
           <!--DelEnd-->
         <!--Del-->
         - 其他类别
-          - [RemoteWindow (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md)
           - [EffectComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
-          - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
           - [IsolatedComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md)
+          - [RemoteWindow (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md)
           - [PluginComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md)
+          - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
         <!--DelEnd-->
         - 已停止维护的组件与接口
           - [AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
