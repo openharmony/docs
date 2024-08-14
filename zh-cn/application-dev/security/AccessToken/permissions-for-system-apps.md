@@ -3675,7 +3675,7 @@
 
 ### ohos.permission.MANAGE_ACCESSORY
 
-允许应用获取配件信息、向配件发送数据及获取配件回复的数据。
+允许应用获取配件（键盘、鼠标等）信息、向配件发送数据及获取配件回复的数据。
 
 **权限级别**：system_basic
 
@@ -3687,7 +3687,7 @@
 
 ### ohos.permission.COLLECT_ACCESSORY_LOG
 
-允许应用获取配件日志。
+允许应用获取配件（键盘、鼠标等）日志。
 
 **权限级别**：system_basic
 
