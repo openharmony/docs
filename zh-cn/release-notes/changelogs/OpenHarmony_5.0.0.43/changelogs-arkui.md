@@ -1,3 +1,5 @@
+# ArkUI子系统Changelog
+
 ## component3d获取资源的路径格式由Resource类型兼容性变更到ResourceStr类型
 
 **访问级别**
