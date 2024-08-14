@@ -1,6 +1,6 @@
 # @ohos.graphics.text (Text)
 
-The Text module allows you to create complex text paragraphs, with various text styles, paragraph styles, and line break rules. It then converts the information into layout data that can be efficiently rendered on the screen.
+The Text module allows you to create complex text paragraphs, with various text styles, paragraph styles, and line break rules. It then converts the information into layout data that can be efficiently rendered on the screen. This module uses the physical pixel unit, px.
 
 This module provides the following classes:
 
@@ -34,8 +34,8 @@ Enumerates the text alignment modes.
 | RIGHT     | 1    | Right-aligned.                                 |
 | CENTER    | 2    | Center-aligned.                                 |
 | JUSTIFY   | 3    | Justified, which means that each line (except the last line) is stretched so that every line has equal width, and the left and right margins are straight.                   |
-| START     | 4    | Aligned with the start position, which depends on [TextDirection](#textdirection).|
-| END       | 5    | Aligned with the end position, which depends on [TextDirection](#textdirection).|
+| START     | 4    | Aligned with the start position, which depends on [TextDirection](#textdirection). |
+| END       | 5    | Aligned with the end position, which depends on [TextDirection](#textdirection). |
 
 ## TextDirection
 
@@ -45,8 +45,8 @@ Enumerates the text directions.
 
 | Name    | Value  | Description             |
 | -------- | ---- | ---------------- |
-| RTL      | 0    | Right to left (RTL).|
-| LTR      | 1    | Left to right (LTR).|
+| RTL      | 0    | Right to left (RTL). |
+| LTR      | 1    | Left to right (LTR). |
 
 ## BreakStrategy
 
@@ -78,7 +78,7 @@ Describes a text decoration.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name                     | Type                                                 | Read Only| Mandatory| Description                                        |
+| Name                     | Type                                                 | Read Only | Mandatory | Description                                        |
 | ------------------------- | --------------------------------------------------- | ---- | ---- | -------------------------------------------- |
 | textDecoration            | [TextDecorationType](#textdecorationtype)           | Yes  | No  | Type of the decoration. The default value is **NONE**.                      |
 | color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| Yes  | No  | Color of the decoration. The default value is transparent.                      |
@@ -91,7 +91,7 @@ Enumerates the text decoration types.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name          | Value| Description       |
+| Name          | Value | Description       |
 | -------------- | - | ----------- |
 | NONE           | 0 | No decoration is used.|
 | UNDERLINE      | 1 | An underline is used for decoration.     |
@@ -104,7 +104,7 @@ Enumerates the text decoration styles.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name  | Value| Description  |
+| Name  | Value | Description  |
 | ------ | - | ------ |
 | SOLID  | 0 | Solid style. |
 | DOUBLE | 1 | Double style.|
@@ -118,7 +118,7 @@ Enumerates the font weights.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name | Value| Description  |
+| Name | Value | Description  |
 | ----- | - | ------- |
 | W100  | 0 | Font weight W100.|
 | W200  | 1 | Font weight W200.|
@@ -136,7 +136,7 @@ Enumerates the font styles.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name   | Value| Description                                                |
+| Name   | Value | Description                                                |
 | ------- | - | ---------------------------------------------------- |
 | NORMAL  | 0 | Normal.                                           |
 | ITALIC  | 1 | Italic. If no italic version is available for the current font, the oblique version will be used instead. |
@@ -148,7 +148,7 @@ Enumerates the text baseline types.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name       | Value| Description|
+| Name       | Value | Description |
 | ----------- | - | ---- |
 | ALPHABETIC  | 0 | Alphabetic baseline, where the letters in Latin alphabets sit on.|
 | IDEOGRAPHIC | 1 | Ideographic baseline, where the baseline is at the bottom of the text area. It is usually used for CJK text.|
@@ -159,7 +159,7 @@ Enumerates the ellipsis styles.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name  | Value| Description     |
+| Name  | Value | Description     |
 | ------ | - | --------- |
 | START  | 0 | Places the ellipsis in the text header.|
 | MIDDLE | 1 | Places the ellipsis in the middle of the text.|
@@ -171,23 +171,23 @@ Describes a text style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name                     | Type                                    | Read Only| Mandatory| Description                                                  |
+| Name                     | Type                                    | Read Only | Mandatory | Description                                                  |
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
-| decoration    | [Decoration](#decoration)                            | Yes| No| Text decoration. The default value is the initial decoration.            |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes| No| Font color. The default color is white.                        |
-| fontWeight    | [FontWeight](#fontweight)                            | Yes| No| Font weight. The default value is **W400**.                         |
-| fontStyle     | [FontStyle](#fontstyle)                              | Yes| No| Font style. The default value is **NORMAL**.                         |
-| baseline      | [TextBaseline](#textbaseline)                        | Yes| No| Text baseline type. The default value is **ALPHABETIC**.              |
-| fontFamilies  | Array\<string>                                       | Yes| No| Font families. The default value is the system fonts.                   |
-| fontSize      | number                                               | Yes| No| Font size, in units of logical pixels. The value is a floating point number. The default value is **14.0**.  |
-| letterSpacing | number                                               | Yes| No| Letter spacing, in units of logical pixels. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
-| wordSpacing   | number                                               | Yes| No| Word spacing, in units of logical pixels. The value is a floating point number. The default value is **0.0**.                |
-| heightScale   | number                                               | Yes| No| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.             |
-| halfLeading   | boolean                                              | Yes| No| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
-| heightOnly    | boolean                                              | Yes| No| How the height of the text box is calculated. The value **true** means that the height of the text box is calculated based on the font size, and **false** means that the height is calculated based on the line height and line spacing. The default value is **false**.|
-| ellipsis      | string                                               | Yes| No| Ellipsis content, which will be used to replace the extra content.      |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| No| Ellipsis type. The default value is **END**.                       |
-| locale        | string                                               | Yes| No| Locale, for example, **'en'**. For details, see the ISO 639-1 specifications. The default value is a null string.|
+| decoration    | [Decoration](#decoration)                            | Yes | No | Text decoration. The default value is the initial decoration.            |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes | No | Font color. The default color is white.                        |
+| fontWeight    | [FontWeight](#fontweight)                            | Yes | No | Font weight. The default value is **W400**.                         |
+| fontStyle     | [FontStyle](#fontstyle)                              | Yes | No | Font style. The default value is **NORMAL**.                         |
+| baseline      | [TextBaseline](#textbaseline)                        | Yes | No | Text baseline type. The default value is **ALPHABETIC**.              |
+| fontFamilies  | Array\<string>                                       | Yes | No | Font families. The default value is the system fonts.                   |
+| fontSize      | number                                               | Yes | No | Font size, in units of logical pixels. The value is a floating point number. The default value is **14.0**.  |
+| letterSpacing | number                                               | Yes | No | Letter spacing, in units of logical pixels. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
+| wordSpacing   | number                                               | Yes | No | Word spacing, in units of logical pixels. The value is a floating point number. The default value is **0.0**.                |
+| heightScale   | number                                               | Yes | No | Scale factor of the line height. The value is a floating point number. The default value is **1.0**.             |
+| halfLeading   | boolean                                              | Yes | No | Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
+| heightOnly    | boolean                                              | Yes | No | How the height of the text box is calculated. The value **true** means that the height of the text box is calculated based on the font size, and **false** means that the height is calculated based on the line height and line spacing. The default value is **false**.|
+| ellipsis      | string                                               | Yes | No | Ellipsis content, which will be used to replace the extra content.      |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes | No | Ellipsis type. The default value is **END**.                       |
+| locale        | string                                               | Yes | No | Locale, for example, **'en'**. For details, see the ISO 639-1 specifications. The default value is a null string.|
 
 ## FontCollection
 
@@ -241,10 +241,10 @@ Loads a font. This API returns the result synchronously.
 
 **Parameters**
 
-| Name| Type              | Mandatory| Description                             |
+| Name | Type              | Mandatory | Description                             |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
 | name  | string             | Yes  | Name of the font.                                               |
-| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes  | Path of the font file to import. The value must be **File://***absolute path of the font file* or **rawfile/***directory or file name*.|
+| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes  | Path of the font file to import. The value must be **File://***absolute path of the font file* or **rawfile/***directory or file name*. |
 
 **Example**
 
@@ -276,7 +276,7 @@ Describes a paragraph style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name                | Type                                       | Read Only| Mandatory| Description                                         |
+| Name                | Type                                       | Read Only | Mandatory | Description                                         |
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
 | textStyle            | [TextStyle](#textstyle)                    | Yes  | No  | Text style applied to the paragraph. The default value is the initial text style.|
 | textDirection        | [TextDirection](#textdirection)            | Yes  | No  | Text direction. The default value is **LTR**.                         |
@@ -291,7 +291,7 @@ Enumerates the vertical alignment modes of a placeholder relative to the surroun
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name               | Value| Description                  |
+| Name               | Value | Description                  |
 | ------------------- | - | ---------------------- |
 | OFFSET_AT_BASELINE  | 0 | Aligns the baseline of the placeholder to the baseline of the text.    |
 | ABOVE_BASELINE      | 1 | Aligns the bottom edge of the placeholder to the baseline of the text.  |
@@ -314,7 +314,7 @@ Describes the carrier of a placeholder style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name          | Type                                          | Read Only| Mandatory| Description                        |
+| Name          | Type                                          | Read Only | Mandatory | Description                        |
 | -------------- | --------------------------------------------- | ---- | --- | --------------------------- |
 | width          | number                                        | Yes  | Yes  | Width of the placeholder, in units of logical pixels. The value is a floating point number.|
 | height         | number                                        | Yes  | Yes  | Height of the placeholder, in units of logical pixels. The value is a floating point number.|
@@ -328,7 +328,7 @@ Describes a left-closed and right-open interval.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name  | Type  | Read Only| Mandatory| Description           |
+| Name  | Type  | Read Only | Mandatory | Description           |
 | ----- | ------ | ---- | --- | --------------- |
 | start | number | Yes  | Yes  | Index of the leftmost point of the interval. The value is an integer.|
 | end   | number | Yes  | Yes  | Index of the rightmost point of the interval. The value is an integer.|
@@ -349,7 +349,7 @@ Performs typography and calculates the positions of all glyphs.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
+| Name | Type  | Mandatory | Description          |
 | ----- | ------ | ---- | -------------- |
 | width | number | Yes  | Maximum width of a single line, in units of logical pixels. The value is a floating point number.|
 
@@ -386,7 +386,7 @@ Paints the text on the canvas with the coordinate point (x, y) as the upper left
 
 **Parameters**
 
-| Name| Type                                                 | Mandatory| Description                   |
+| Name | Type                                                 | Mandatory | Description                   |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
 | canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | Yes  | Target canvas.        |
 |    x   | number                                               | Yes  | X coordinate of the upper left corner. The value is a floating point number.|
@@ -691,7 +691,7 @@ Obtains the rectangles occupied by the characters in the range of the text under
 
 **Parameters**
 
-| Name     | Type                                | Mandatory| Description                    |
+| Name     | Type                                | Mandatory | Description                    |
 | ----------- | ----------------------------------- | ---- | ------------------------ |
 | range       | [Range](#range)                     | Yes  | Range of the text. |
 | widthStyle  | [RectWidthStyle](#rectwidthstyle)   | Yes  | Width of the rectangle.|
@@ -774,7 +774,7 @@ Obtains the position of a glyph close to a given coordinate.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description  |
+| Name | Type  | Mandatory | Description  |
 | ----- | ------ | ---- | ------ |
 | x     | number | Yes  | X coordinate. The value is a floating point number.|
 | y     | number | Yes  | Y coordinate. The value is a floating point number.|
@@ -818,7 +818,7 @@ Obtains the range of the word where the glyph with a given offset is located.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description       |
+| Name | Type   | Mandatory | Description       |
 | ------ | ------ | ---- | ----------- |
 | offset | number | Yes  | Offset of the glyph. The value is an integer.|
 
@@ -898,7 +898,7 @@ Obtains the height of a given line.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description     |
+| Name | Type  | Mandatory | Description     |
 | ----- | ------ | ---- | --------- |
 | line  | number | Yes  | Index of the line. The value is an integer.|
 
@@ -941,7 +941,7 @@ Obtains the width of a given line.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description     |
+| Name | Type  | Mandatory | Description     |
 | ----- | ------ | ---- | --------- |
 | line  | number | Yes  | Index of the line. The value is an integer.|
 
@@ -986,7 +986,7 @@ Checks whether the number of lines in the paragraph exceeds the maximum.
 
 | Type   | Description                                                     |
 | ------- | -------------------------------------------------------- |
-| boolean | **true**: The number of lines exceeds the maximum.<br>**false**: The number of lines does not exceed the maximum.|
+| boolean | **true**: The number of lines exceeds the maximum.<br>**false**: The number of lines does not exceed the maximum. |
 
 **Example**
 
@@ -1054,7 +1054,7 @@ Describes the rectangle that holds the text.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name     | Type                                               | Read Only| Mandatory| Description       |
+| Name     | Type                                               | Read Only | Mandatory | Description       |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
 | rect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Yes  | Information about the rectangle.|
 | direction | [TextDirection](#textdirection)                    | Yes  | Yes  | Text direction.   |
@@ -1065,7 +1065,7 @@ Describes the position and affinity of a glyph.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name     | Type                  | Read Only| Mandatory| Description                     |
+| Name     | Type                  | Read Only | Mandatory | Description                     |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
 | position  | number                | Yes  | Yes  | Index of the glyph relative to the paragraph. The value is an integer. |
 | affinity  | [Affinity](#affinity) | Yes  | Yes  | Affinity of the position.              |
@@ -1076,7 +1076,7 @@ Enumerates the rectangle width styles.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name | Value| Description                                  |
+| Name | Value | Description                                  |
 | ----- | - | -------------------------------------- |
 | TIGHT | 0 | Tight style.                           |
 | MAX   | 1 | Extends the width to match the widest rectangle in all lines.  |
@@ -1087,7 +1087,7 @@ Enumerates the rectangle height styles.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name                     | Value| Description                                          |
+| Name                     | Value | Description                                          |
 | ------------------------- | - | ---------------------------------------------- |
 | TIGHT                     | 0 | Tight style.                                   |
 | MAX                       | 1 | Extends the height to match the highest rectangle in all lines.          |
@@ -1102,10 +1102,10 @@ Enumerates the affinity modes.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name      | Value| Description                         |
+| Name      | Value | Description                         |
 | ---------- | - | ----------------------------- |
-| UPSTREAM   | 0 | The position has affinity for the upstream side of the text position.|
-| DOWNSTREAM | 1 | The position has affinity for the downstream side of the text position.|
+| UPSTREAM   | 0 | The position has affinity for the upstream side of the text position. |
+| DOWNSTREAM | 1 | The position has affinity for the downstream side of the text position. |
 
 ## ParagraphBuilder
 
@@ -1121,10 +1121,10 @@ A constructor used to create a **ParagraphBuilder** object.
 
 **Parameters**
 
-| Name        | Type                              | Mandatory| Description       |
+| Name        | Type                              | Mandatory | Description       |
 | -------------- | --------------------------------- | ---- | ----------- |
 | paragraphStyle | [ParagraphStyle](#paragraphstyle) | Yes  | Paragraph style.  |
-| fontCollection | [FontCollection](#fontcollection) | Yes  | Font manager.|
+| fontCollection | [FontCollection](#fontcollection) | Yes  | Font manager. |
 
 **Example**
 
@@ -1172,9 +1172,9 @@ Pushes a text style.
 
 **Parameters**
 
-| Name   | Type      | Mandatory| Description                                                                                                  |
+| Name   | Type      | Mandatory | Description                                                                                                  |
 | --------- | --------- | ---- | ------------------------------------------------------------------------------------------------------ |
-| textStyle | [TextStyle](#textstyle) | Yes  | Text style, which describes various visual attributes of text, such as font, font size, color, font weight, word spacing, line spacing, decoration (such as underline and strikethrough), and text shadow.|
+| textStyle | [TextStyle](#textstyle) | Yes  | Text style, which describes various visual attributes of text, such as font, font size, color, font weight, word spacing, line spacing, decoration (such as underline and strikethrough), and text shadow. |
 
 **Example**
 
@@ -1267,9 +1267,9 @@ Inserts a text string into the paragraph being built.
 
 **Parameters**
 
-| Name  | Type   | Mandatory| Description                      |
+| Name  | Type   | Mandatory | Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| text    | string  | Yes  | Text string to insert.|
+| text    | string  | Yes  | Text string to insert. |
 
 **Example**
 
@@ -1317,7 +1317,7 @@ Inserts a placeholder into the paragraph being built.
 
 **Parameters**
 
-| Name         | Type                                | Mandatory| Description                                               |
+| Name         | Type                                | Mandatory | Description                                               |
 | --------------- | ----------------------------------- | ---- | --------------------------------------------------- |
 | placeholderSpan | [PlaceholderSpan](#placeholderspan) | Yes  | Placeholder span, which describes the size, alignment, baseline type, and baseline offset of the placeholder. |
 
@@ -1422,7 +1422,7 @@ Obtains the number of glyphs in this text line.
 
 | Type   | Description              |
 | ------- | ------------------ |
-| number  | Number of glyphs. The value is an integer.|
+| number  | Number of glyphs. The value is an integer. |
 
 **Example**
 
@@ -1531,7 +1531,7 @@ Paints this text line on the canvas with the coordinate point (x, y) as the uppe
 
 **Parameters**
 
-| Name| Type                                                 | Mandatory| Description                   |
+| Name | Type                                                 | Mandatory | Description                   |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
 | canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | Yes  | Target canvas.     |
 |    x   | number                                               | Yes  | X coordinate of the upper left corner. The value is a floating point number.|
@@ -1585,7 +1585,7 @@ Obtains the number of glyphs in this glyph run.
 
 | Type    | Description               |
 | ------- | -------------------- |
-| number  | Number of glyphs. The value is an integer.|
+| number  | Number of glyphs. The value is an integer. |
 
 **Example**
 
@@ -1659,7 +1659,7 @@ Obtains the index of each glyph relative to the respective line in this glyph ru
 
 | Type                  | Description                                  |
 | ---------------------- | ------------------------------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the index of each glyph relative to the respective line in this glyph run.|
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the index of each glyph relative to the respective line in this glyph run. |
 
 **Example**
 
@@ -1769,7 +1769,7 @@ Paints this glyph run on the canvas with the coordinate point (x, y) as the uppe
 
 **Parameters**
 
-| Name| Type                                                 | Mandatory| Description                   |
+| Name | Type                                                 | Mandatory | Description                   |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
 | canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | Yes  | Target canvas.     |
 |    x   | number                                               | Yes  | X coordinate of the upper left corner. The value is a floating point number.|
