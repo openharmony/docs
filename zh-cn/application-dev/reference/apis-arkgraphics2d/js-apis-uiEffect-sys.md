@@ -87,7 +87,7 @@ waterRipple(progress: \<number\>, waveCount: \<number\>, x: \<number\>, y: \<num
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
 | progress  | \<number\>         | 是   | 表示水波纹的进度，取值范围为[0, 1]。<br/>水波纹进度越趋向于1,水波纹展示越完全。|
-| waveCount      | \<number\> | 是   | 水波纹波动时波纹的个数，取值范围为[0, 1]。 |
+| waveCount      | \<number\> | 是   | 水波纹波动时波纹的个数，取值范围为[1, 3]。 |
 | x      | \<number\> | 是   | 水波纹在屏幕中第一次出现的x轴位置。 |
 | y      | \<number\> | 是   | 水波纹在屏幕中第一次出现的y轴位置。 |
 | rippleMode      | [WaterRippleMode](#waterripplemode) | 是   | 水波纹的场景模式。<br/>0表示手机碰PC（接收端）场景<br/>1表示手机碰PC（发送端）场景<br/>2表示手机碰手机场景 |
@@ -97,7 +97,7 @@ waterRipple(progress: \<number\>, waveCount: \<number\>, x: \<number\>, y: \<num
 
 | 类型              | 说明                               |
 | ----------------- | --------------------------------- |
-| [Filter](#filter) | 返回挂载了边缘像素扩展效果的Filter。 |
+| [Filter](#filter) | 返回挂载了水波纹效果的Filter。 |
 
 **示例：**
 
@@ -125,7 +125,7 @@ flyInFlyOutEffect(degree: \<number\>, flyMode: FlyMode): Filter
 
 | 类型              | 说明                               |
 | ----------------- | --------------------------------- |
-| [Filter](#filter) | 返回挂载了边缘像素扩展效果的Filter。 |
+| [Filter](#filter) | 返回挂载了飞入飞出形变效果的Filter。 |
 
 **示例：**
 
