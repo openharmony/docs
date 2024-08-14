@@ -25,6 +25,18 @@ Allows a window to be displayed with animation for an atomic service without the
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_BBOX_DIR
+
+Allows a system application to access the bbox directory.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.CONTROL_LOCATION_SWITCH
 
 Allows an application to turn on and off the location service.
@@ -3628,6 +3640,18 @@ Allows a system ability to obtain file thumbnails.
 ### ohos.permission.ALLOW_CONNECT_CAR
 
 Allows an application to connect to an automobile head unit.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
+### ohos.permission.ACCESS_IDM_WIDGET
+
+Allows a system application to access the widget for credential enrollment.
 
 **Permission level**：system_basic
 

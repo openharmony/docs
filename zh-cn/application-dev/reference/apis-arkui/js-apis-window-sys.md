@@ -644,6 +644,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -682,6 +683,7 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -2465,6 +2467,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The display device is abnormal.           |
@@ -2511,6 +2514,7 @@ setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The display device is abnormal.           |
@@ -2945,6 +2949,127 @@ export default class EntryAbility extends UIAbility {
         });
     }
 };
+```
+
+### startMoving<sup>13+</sup>
+
+startMoving(): Promise&lt;void&gt;
+
+开始移动窗口，使用Promise异步回调。
+
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+
+仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**系统接口：** 此接口为系统接口。
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.   |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+// ets/pages/Index.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  build() {
+    row() {
+      Column() {
+        // 设置最小宽度为160
+        Blank('160').onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            try {
+              windowClass.startMoving().then(() => {
+                console.info('Succeeded in starting moving window.')
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### enableDrag<sup>13+</sup>
+
+enableDrag(enable: boolean): Promise&lt;void&gt;
+
+使能/禁止拖拽窗口。使用Promise异步回调。
+
+使能后，将允许通过鼠标对窗口进行拉伸操作。
+
+仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ---------------------------- | -- | --------- |
+| enable| boolean | 是 | 是否允许拖拽。<br>true表示允许，false表示不允许。</br> |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.   |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  windowClass.enableDrag(true).then(() => { 
+    console.info('succeeded in setting window draggable');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setResizeByDragEnabled<sup>10+</sup>
