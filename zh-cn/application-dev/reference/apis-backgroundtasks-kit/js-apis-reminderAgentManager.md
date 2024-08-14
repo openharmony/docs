@@ -45,7 +45,6 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 | 1700002    | The number of reminders exceeds the limit. |
 
 **示例**：
-
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -140,6 +139,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
