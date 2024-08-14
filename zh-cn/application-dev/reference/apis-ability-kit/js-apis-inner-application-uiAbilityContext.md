@@ -55,6 +55,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -136,7 +137,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -227,7 +230,9 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -318,6 +323,7 @@ Ability被启动后，有如下情况:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -405,9 +411,9 @@ Ability被启动后，有如下情况:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
@@ -501,6 +507,7 @@ Ability被启动后，有如下情况:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -862,6 +869,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -1074,6 +1082,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -1451,6 +1460,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -1533,6 +1543,7 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -1788,6 +1799,7 @@ showAbility(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 801 | Capability not support. |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
 
@@ -1884,6 +1896,7 @@ hideAbility(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 801 | Capability not support. |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
 
@@ -2144,6 +2157,7 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -2159,7 +2173,6 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 | 16000019 | Can not match any component. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000054 | Installation-free service is busy.Try again later. |
 
 **示例：**
 
