@@ -1111,7 +1111,6 @@ export default class EntryAbility extends UIAbility {
 
 ## SpecificSystemBar<sup>11+</sup>
 
-
 Enumerates the types of system bars that can be displayed or hidden.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -1290,7 +1289,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
-This operation is not supported in a window in full-screen mode.
+<!--RP4-->In full-screen mode, this API takes effect only on 2-in-1 devices.<!--RP4End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1339,7 +1338,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
 
-This operation is not supported in a window in full-screen mode.
+<!--RP4-->In full-screen mode, this API takes effect only on 2-in-1 devices.<!--RP4End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1740,7 +1739,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to display the status bar and navigation bar when the main window is in full-screen mode. This API uses an asynchronous callback to return the result.
+Sets whether to show the navigation bar, status bar, and bottom navigation bar of the main window. This API uses an asynchronous callback to return the result. The display of the status bar and bottom navigation bar is controlled by **status**, and that of the navigation bar is controlled by **navigation**. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1750,7 +1751,7 @@ Sets whether to display the status bar and navigation bar when the main window i
 
 | Name | Type | Mandatory | Description |
 | -------- | ---------------------------- | -- | --------- |
-| names    | Array<'status'\|'navigation'> | Yes | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| names    | Array<'status'\|'navigation'> | Yes | Whether to show the navigation bar, status bar, and bottom navigation bar of the window in full-screen mode.<br>For example, to show all of them, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
 | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Error codes**
@@ -1766,7 +1767,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// In this example, the status bar and navigation bar are not displayed.
+// In this example, the navigation bar, status bar, and bottom navigation bar are not displayed.
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1805,7 +1806,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-Sets whether to display the status bar and navigation bar when the main window is in full-screen mode. This API uses a promise to return the result.
+Sets whether to show the navigation bar, status bar, and bottom navigation bar of the main window. This API uses a promise to return the result. The display of the status bar and bottom navigation bar is controlled by **status**, and that of the navigation bar is controlled by **navigation**. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1815,7 +1818,7 @@ Sets whether to display the status bar and navigation bar when the main window i
 
 | Name | Type | Mandatory | Description |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| names | Array<'status'\|'navigation'> | Yes | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| names | Array<'status'\|'navigation'> | Yes | Whether to show the navigation bar, status bar, and bottom navigation bar of the window in full-screen mode.<br>For example, to show all of them, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
 
 **Return value**
 
@@ -1836,7 +1839,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// In this example, the status bar and navigation bar are not displayed.
+// In this example, the navigation bar, status bar, and bottom navigation bar are not displayed.
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1873,7 +1876,7 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-Sets whether to show the navigation bar, status bar, or bottom navigation bar of the main window in full-screen mode. This API uses a promise to return the result.
+Sets whether to show the navigation bar, status bar, and bottom navigation bar of the main window in full-screen mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -1884,8 +1887,8 @@ Sets whether to show the navigation bar, status bar, or bottom navigation bar of
 | Name | Type | Mandatory | Description |
 | ----- | ---------------------------- | -- | --------------------------------- |
 | name  | [SpecificSystemBar](#specificsystembar11) | Yes | Type of the system bar to be shown or hidden. |
-| enable  | boolean | Yes | Whether to show the status bar, navigation bar, or bottom navigation bar. The value **true** means to show them, and **false** means to hide them.|
-| enableAnimation<sup>12+</sup>  | boolean | No | Whether to enable animation when the status bar, navigation bar, or bottom navigation bar status changes. The value **true** means to enable animation, and **false** means the opposite. The default value is **false**.|
+| enable  | boolean | Yes | Whether to show the status bar, navigation bar, and bottom navigation bar. The value **true** means to show them, and **false** means to hide them.|
+| enableAnimation<sup>12+</sup>  | boolean | No | Whether to enable animation when the status bar, navigation bar, and bottom navigation bar status changes. The value **true** means to enable animation, and **false** means the opposite. The default value is **false**.|
 
 **Return value**
 
@@ -3318,7 +3321,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-Subscribes to click or touch events in a window covered by a modal window.
+Subscribes to click or touch events in a window covered by a modal window. This API takes effect only when it is called by a modal window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4437,6 +4440,8 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 
 Sets whether to keep the screen always on. This API uses an asynchronous callback to return the result.
 
+Set **isKeepScreenOn** to **true** only in necessary scenarios (such as navigation, video playback, drawing, and gaming scenarios). After exiting these scenarios, set the parameter to **false**. Do not use this API in other scenarios (such as no screen interaction or audio playback). When the system detects that the API is used in a non-standard manner, automatic screen-off may be invoked.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -4483,6 +4488,8 @@ try {
 setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 Sets whether to keep the screen always on. This API uses a promise to return the result.
+
+Set **isKeepScreenOn** to **true** only in necessary scenarios (such as navigation, video playback, drawing, and gaming scenarios). After exiting these scenarios, set the parameter to **false**. Do not use this API in other scenarios (such as no screen interaction or audio playback). When the system detects that the API is used in a non-standard manner, automatic screen-off may be invoked.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4841,8 +4848,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 1300002 | This window state is abnormal.               |
-| 1300004 | Unauthorized operation.                      |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -4901,8 +4908,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 1300002 | This window state is abnormal.               |
-| 1300004 | Unauthorized operation.                      |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -4962,8 +4969,8 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal.               |
-| 1300004 | Unauthorized operation.                      |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -5019,8 +5026,8 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal.               |
-| 1300004 | Unauthorized operation.                      |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -5083,8 +5090,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -5130,8 +5137,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -5169,10 +5176,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+| 1300004 | Unauthorized operation.                                      |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -5227,8 +5234,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300001 | Repeated operation. |
-| 1300002 | This window state is abnormal. |
+| 1300001 | Repeated operation.                                          |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
@@ -5282,8 +5289,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | :------ | :----------------------------------------------------------- |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
@@ -5323,11 +5330,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | :------ | :----------------------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -5383,10 +5390,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | :------ | :----------------------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -5434,8 +5441,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.           |
-| 1300004 | Unauthorized operation.                  |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -5469,10 +5476,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
-| 1300004  | Unauthorized operation.        |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -5547,10 +5554,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
-| 1300004  | Unauthorized operation.        |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -5609,9 +5616,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
@@ -5665,8 +5672,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
@@ -5719,8 +5726,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
@@ -5776,7 +5783,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.               |
+| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -5816,7 +5823,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.               |
+| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -6308,7 +6315,6 @@ export default class EntryAbility extends UIAbility {
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether the main window is in full-screen mode. This API uses an asynchronous callback to return the result.
-
 - In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
 - In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
@@ -6331,7 +6337,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6371,7 +6377,6 @@ export default class EntryAbility extends UIAbility {
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 Sets whether the main window is in full-screen mode. This API uses a promise to return the result.
-
 - In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
 - In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
@@ -6399,7 +6404,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6459,7 +6464,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6526,7 +6531,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6563,7 +6568,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to display the status bar and navigation bar when the main window is in full-screen mode. This API uses an asynchronous callback to return the result.
+Sets whether to show the navigation bar, status bar, and bottom navigation bar of the main window. This API uses an asynchronous callback to return the result. The display of the status bar and bottom navigation bar is controlled by **status**, and that of the navigation bar is controlled by **navigation**. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 > **NOTE**
 >
@@ -6575,7 +6582,7 @@ Sets whether to display the status bar and navigation bar when the main window i
 
 | Name     | Type                          | Mandatory | Description                                                  |
 | -------- | ----------------------------- | --------- | ------------------------------------------------------------ |
-| names    | Array<'status'\|'navigation'> | Yes       | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| names    | Array<'status'\|'navigation'> | Yes       | Whether to show the navigation bar, status bar, and bottom navigation bar of the window in full-screen mode.<br>For example, to show all of them, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
 | callback | AsyncCallback&lt;void&gt;     | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -6584,12 +6591,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-// In this example, the status bar and navigation bar are not displayed.
+// In this example, the navigation bar, status bar, and bottom navigation bar are not displayed.
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6624,7 +6631,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-Sets whether to display the status bar and navigation bar when the main window is in full-screen mode. This API uses a promise to return the result.
+Sets whether to show the navigation bar, status bar, and bottom navigation bar of the main window. This API uses a promise to return the result. The display of the status bar and bottom navigation bar is controlled by **status**, and that of the navigation bar is controlled by **navigation**. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 > **NOTE**
 >
@@ -6636,7 +6645,7 @@ Sets whether to display the status bar and navigation bar when the main window i
 
 | Name  | Type                          | Mandatory | Description                                                  |
 | ----- | ----------------------------- | --------- | ------------------------------------------------------------ |
-| names | Array<'status'\|'navigation'> | Yes       | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| names | Array<'status'\|'navigation'> | Yes       | Whether to show the navigation bar, status bar, and bottom navigation bar of the window in full-screen mode.<br>For example, to show all of them, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
 
 **Return value**
 
@@ -6650,12 +6659,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-// In this example, the status bar and navigation bar are not displayed.
+// In this example, the navigation bar, status bar, and bottom navigation bar are not displayed.
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6709,7 +6718,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6780,7 +6789,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6979,7 +6988,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -7033,7 +7042,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401  | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **Example**
 
@@ -7155,7 +7164,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -7202,7 +7211,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -7306,7 +7315,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7354,7 +7363,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7397,7 +7406,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7447,7 +7456,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7559,7 +7568,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7607,7 +7616,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7648,7 +7657,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7696,7 +7705,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7814,7 +7823,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7864,7 +7873,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7905,7 +7914,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7953,7 +7962,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID   | Error Message                                                |
 | ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401  | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7985,8 +7994,8 @@ Describes the lifecycle of a window stage.
 | ACTIVE                | 2     | The window stage gains focus.                                |
 | INACTIVE              | 3     | The window stage loses focus.                                |
 | HIDDEN                | 4     | The window stage is running in the background.               |
-| RESUMED<sup>11+</sup> | 5     | The window stage is interactive in the foreground. If the user opens the Recents screen when an application is running in the foreground, the application becomes non-interactive. When the user switches back to the application, the application becomes interactive. |
-| PAUSED<sup>11+</sup>  | 6     | The window stage is non-interactive in the foreground. If the user opens the Recents screen when an application is running in the foreground, the application becomes non-interactive. When the user switches back to the application, the application becomes interactive. |
+| RESUMED<sup>11+</sup> | 5     | The window stage is interactive in the foreground, for example, when the user touches the application icon on the recent tasks screen to open the application again. |
+| PAUSED<sup>11+</sup>  | 6     | The window stage is non-interactive in the foreground, for example, when the user swipes up from the bottom of the screen and hold to access the recent tasks screen. |
 
 ## SubWindowOptions<sup>11+</sup>
 
@@ -7994,11 +8003,11 @@ Describes the parameters used for creating a subwindow.
 
 **System capability**: SystemCapability.Window.SessionManager
 
-| Name                  | Type    | Read Only | Mandatory | Description                                                  |
-| --------------------- | ------- | --------- | --------- | ------------------------------------------------------------ |
-| title                 | string  | No        | Yes       | Title of the subwindow.                                      |
-| decorEnabled          | boolean | No        | Yes       | Whether decorations are displayed in the subwindow. The value **true** means that decorations are displayed, and **false** means the opposite. |
-| isModal<sup>12+</sup> | boolean | No        | No        | Whether the modal property is enabled for the subwindow. The value **true** means that modal property is enabled, and **false** means the opposite. When the modal property is enabled, the parent window cannot respond to user operations. The default value is **false**. |
+| Name                  | Type    | Read Only | Optional | Description                                                  |
+| --------------------- | ------- | --------- | -------- | ------------------------------------------------------------ |
+| title                 | string  | No        | No       | Title of the subwindow.                                      |
+| decorEnabled          | boolean | No        | No       | Whether decorations are displayed in the subwindow. The value **true** means that decorations are displayed, and **false** means the opposite. |
+| isModal<sup>12+</sup> | boolean | No        | Yes      | Whether the modal property is enabled for the subwindow. The value **true** means that modal property is enabled, and **false** means the opposite. When the modal property is enabled, the parent window cannot respond to user operations. The default value is **false**. |
 
 ## WindowStage<sup>9+</sup>
 
@@ -8124,8 +8133,8 @@ Obtains the main window of this window stage.
 
 **Return value**
 
-| Type              | Description             |
-| ----------------- | ----------------------- |
+| Type              | Description  |
+| ----------------- | ------------ |
 | [Window](#window) | Main window. |
 
 **Error codes**
@@ -8183,8 +8192,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                               |
 | ------- | ----------------------------------------------------------- |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                              |
+| 1300005 | This window stage is abnormal.                              |
 
 **Example**
 
@@ -8253,8 +8262,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                               |
 | ------- | ----------------------------------------------------------- |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                              |
+| 1300005 | This window stage is abnormal.                              |
 
 **Example**
 
@@ -8314,8 +8323,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                               |
 | ------- | ----------------------------------------------------------- |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                              |
+| 1300005 | This window stage is abnormal.                              |
 
 **Example**
 
@@ -8478,8 +8487,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -8544,8 +8553,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -8603,8 +8612,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -8660,9 +8669,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -8743,9 +8752,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -8823,9 +8832,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -8905,8 +8914,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -8957,8 +8966,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -9016,8 +9025,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
