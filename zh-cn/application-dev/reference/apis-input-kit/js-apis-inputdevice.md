@@ -32,7 +32,7 @@ getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -97,7 +97,7 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -142,7 +142,7 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -183,7 +183,7 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -218,7 +218,7 @@ on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -265,7 +265,7 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -430,7 +430,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -472,7 +472,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -514,7 +514,7 @@ supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -549,7 +549,7 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -594,7 +594,7 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -635,7 +635,7 @@ getKeyboardTypeSync(deviceId: number): KeyboardType
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |

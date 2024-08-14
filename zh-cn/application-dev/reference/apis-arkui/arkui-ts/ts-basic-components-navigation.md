@@ -3149,7 +3149,7 @@ struct Index {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new param('push pageOne in homePage')
+          param: new param('push pageOne in homePage when stack size: ' + this.derivedStack.size())
         });
       })
     }.navDestination(this.pageMap)
@@ -3180,13 +3180,14 @@ struct PageOne {
           .fontSize(20)
           .textAlign(TextAlign.Start)
       }.backgroundColor(Color.Pink)
-      Button('push Page One').margin(20).onClick(() => {
+      Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
           param: new param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
         });
       })
-    }.onReady((context: NavDestinationContext) => {
+    }.title('Page One')
+    .onReady((context: NavDestinationContext) => {
       console.log('[derive-test] reached PageOne\'s onReady');
       // get derived stack from navdestinationContext
       this.derivedStack = context.pathStack as DerivedNavPathStack;
