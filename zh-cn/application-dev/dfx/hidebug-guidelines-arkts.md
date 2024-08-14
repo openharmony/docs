@@ -50,7 +50,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    }
    ```
 
-   给文本Text添加一个点击事件，示例代码如下：
+   给文本Text组件添加一个点击事件，示例代码如下：
 
    ```ts
    @Entry
