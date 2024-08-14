@@ -43,6 +43,9 @@ import { request } from '@kit.BasicServicesKit';
 | ERROR_OFFLINE<sup>9+</sup> | number |   9   | 网络未连接。 |
 | ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | 网络类型不匹配。 |
 
+> **说明：**
+>
+> API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能握手超时造成ERROR_UNKNOWN错误。
 
 ### 下载任务暂停原因
 下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的pausedReason字段取值。
@@ -2508,6 +2511,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | SSL<sup>12+</sup> | 0x70 |表示SSL连接错误，例如证书错误、证书校验失败错误等。 |
 | REDIRECT<sup>12+</sup> | 0x80 |表示重定向错误。 |
 
+> **说明：**
+>
+> API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能握手超时造成TIMEOUT错误。
 
 ## Filter<sup>10+</sup>
 过滤条件。
