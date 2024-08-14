@@ -36,7 +36,7 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -82,7 +82,7 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -118,7 +118,7 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -159,7 +159,7 @@ getKeyboardRepeatDelay(): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -197,7 +197,7 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -244,7 +244,7 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -281,7 +281,7 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -322,7 +322,7 @@ getKeyboardRepeatRate(): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
