@@ -1291,6 +1291,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
+在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1341,6 +1342,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
+在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1393,6 +1395,7 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
 全屏模式窗口不支持该操作。
+在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5286,6 +5289,7 @@ try {
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 设置当前应用窗口的尺寸限制，使用Promise异步回调。
+系统自带一个默认的尺寸限制。不同设备、不同类型窗口的默认尺寸限制不同（可在未调用setWindowLimits前使用[getWindowLimits](#getwindowlimits11)获取）。setWindowLimits最终生效结果为用户入参与系统默认尺寸限制取交集。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
