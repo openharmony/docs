@@ -140,7 +140,6 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
-
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
