@@ -21,9 +21,9 @@ The following capabilities are restrictedly opened to third-party applications:
 > To read contacts, you need to declare the **ohos.permission.READ_CONTACTS** permission. This permission is of the **system_basic** level. To add, delete, or update contacts, you need to declare the **ohos.permission.WRITE_CONTACTS** permission. This permission is of the **system_basic** level.
 <!--RP1End-->
 
-- [Contact Management](#contact-management)
+- [Contact Management](#contact-management-restricted-permission)
 
-- [Contact Selection] (#contact-selection)
+- [Contact Selection](#contact-selection-restricted-permission)
 
 
 ## Contact Selection
@@ -83,7 +83,7 @@ When you select a contact, the contact list is displayed in Picker mode to facil
   ```
 
 
-## Contact Management (Restricted)
+## Contact Management (Restricted Permission)
 
 To implement contact management for an application, use the **permissions** API to request for the contact editing permission.
 
