@@ -451,4 +451,4 @@ API 12
 
 **适配指导**
 
-参考：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md#tipsdialog
+参考文档：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md#tipsdialog
