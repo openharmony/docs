@@ -3077,7 +3077,7 @@ path、points任意一个为NULL或者count等于0时返回OH_DRAWING_ERROR_INVA
 | path | 指向当前路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
 | points | 表示多边形的顶点坐标数组。 | 
 | count | 表示多边形顶点坐标数组的大小。 | 
-| isClosed | 指示是否添加连接起始点和终止点的线。 | 
+| isClosed | 是否添加连接起始点和终止点的线，true表示添加，false表示不添加。 | 
 
 
 ### OH_Drawing_PathAddCircle()
