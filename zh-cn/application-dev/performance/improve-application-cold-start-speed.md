@@ -105,7 +105,7 @@ import * from './SecondPage';
 export const  One: number = 1;
 
 // Index.ets
-import * from './Numbers';
+import { One } from './Numbers';
 ```
 由于依赖模块解析采用深度优先遍历的方式来遍历模块依赖关系图中每一个模块记录，会先从入口文件的第一个导入语句开始一层层往更深层查找，直到最后一个没有导入语句的模块为止，连接好这个模块的导出变量之后会回到上一级的模块继续这个步骤，因此多层export *的使用会导致依赖模块解析、文件执行阶段耗时增长。  
 针对上述示例代码关注该阶段耗时差异，对优化前后启动性能进行对比分析。分析阶段的起点为开始加载abc文件（即`H:JSPandaFileExecutor::ExecuteFromAbcFile`），阶段终点为`abc文件`加载完成。
@@ -255,6 +255,7 @@ export struct MainPage {
     }.onClick(() => {
       this.pathStack.pushPath({ name: 'SecondPage' });
     })
+  }
 }
 
 // entry/src/main/ets/pages/SecondPage.ets
@@ -741,6 +742,10 @@ struct Index {
 // entry/src/main/ets/pages/Index.ets
 import { httpRequest } from '../utils/NetRequest';
 import { number } from '../utils/Calculator';
+
+AppStorage.link('netData');
+PersistentStorage.persistProp('netData', undefined);
+
 @Entry
 @Component
 struct Index {

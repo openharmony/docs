@@ -1107,11 +1107,11 @@ struct Page {
     Column() {
       Button('点击打印日志')
         .onClick(() => {
-          hiTraceMeter.startTrace('print',1);
+          hiTraceMeter.startTrace('print', 1);
           for (let i = 0; i < 10; i++) {
             console.info(this.message);
           }
-          hiTraceMeter.finishTrace('print',1);
+          hiTraceMeter.finishTrace('print', 1);
         })
     }
   }
@@ -1134,12 +1134,12 @@ struct Page {
     Column() {
       Button('点击打印日志')
         .onClick(() => {
-          hiTraceMeter.startTrace('print',1);
+          hiTraceMeter.startTrace('print', 1);
           let logMessage: string = this.message;
           for (let i = 0; i < 10; i++) {
             console.info(logMessage);
           }
-          hiTraceMeter.finishTrace('print',1);
+          hiTraceMeter.finishTrace('print', 1);
         })
     }
   }
