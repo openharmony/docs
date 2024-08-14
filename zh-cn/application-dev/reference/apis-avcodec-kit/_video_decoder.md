@@ -409,18 +409,19 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
+AV_ERR_OK：执行成功。
 
-当输入的解码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。
+AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
 
-当输入的codec指针非解码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。
+AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
 
-未知错误会返回AV_ERR_UNKNOWN。
+AV_ERR_UNKNOWN：未知错误。
 
-当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。
+AV_ERR_SERVICE_DIED：服务状态已经消亡。
 
-本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
+AV_ERR_INVALID_STATE：本接口必须在Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
 
 ### OH_VideoDecoder_RenderOutputBuffer()
