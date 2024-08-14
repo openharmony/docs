@@ -27,7 +27,11 @@ API 12
 
 **变更的接口/组件**
 
-Component3D获取资源的方式由Resource变更为ResourceStr。
+1、 Component3D初始化资源接口SceneOptions中sence变量数据类型由Resource变更为ResourceStr；
+2、 Scene中uri变量数据类型由Resource变更为ResourceStr；
+3、 SceneResources中uri变量数据类型由Resource变更为ResourceStr；
+4、 component3d中environment、customRender、shader和shaderImageTexture接口的入参由Resource类型变更为ResourceStr类型；
+5、 Scene中load接口的入参由Resource类型变更为ResourceStr类型；
 
 **适配指导**
 
@@ -36,7 +40,7 @@ import scene3d from `@ohos.graphics.scene`
 
 const params1: scene3d.SceneResourceParameters = { name: "name1", uri: $rawfile("default_path") }
 // 变更前
-const test_uri: Resource = params1.uri;
+// const test_uri: Resource = params1.uri;
 // 变更后适配为
 const test_uri: ResourceStr = params1.uri;
 
@@ -44,7 +48,7 @@ const test_uri: ResourceStr = params1.uri;
 @Component
 struct node_geometry {
     scene: scene3d.Scene | null = null;
-    @State sceneOpt: SceneOptions | null = null;
+    @State sceneOpt: SceneOptions | null = null; 
     envImg: scene3d.Image | null = null;
 
     onPageShow(): void {
