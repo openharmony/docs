@@ -524,6 +524,10 @@ blur(radius: number): Filter
 
 Adds the blur effect to the filter linked list, and returns the head node of the linked list.
 
+>  **NOTE**
+>
+>  This API provides the blur effect for static images. To provide the real-time blur effect for components, use [dynamic blur](../../ui/arkts-blur-effect.md).
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**

@@ -19,8 +19,8 @@ The **OH_Drawing_PlaceholderSpan** struct describes a placeholder that acts as a
 | -------- | -------- |
 | double [width](#width) | Describes the width of a placeholder.|
 | double [height](#height) | Describes the height of a placeholder.|
-| [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment)[alignment](#alignment) | Describes the alignment mode of a placeholder.|
-| [OH_Drawing_TextBaseline](_drawing.md#oh_drawing_textbaseline)[baseline](#baseline) | Describes the baseline of a placeholder.|
+| [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment) [alignment](#alignment) | Describes the alignment mode of a placeholder.|
+| [OH_Drawing_TextBaseline](_drawing.md#oh_drawing_textbaseline) [baseline](#baseline) | Describes the baseline of a placeholder.|
 | double [baselineOffset](#baselineoffset) | Describes the baseline offset of a placeholder.|
 
 
