@@ -53,7 +53,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 隐私模式Webview加载在线网页。
  
-   ```ts
+  ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
 
@@ -1515,6 +1515,7 @@ mediaOptions(options: WebMediaOptions)
 > - 该媒体播放策略将同时管控有声视频。
 > - 属性参数更新后需重新播放音频方可生效。
 > - 建议为所有Web组件设置相同的audioExclusive值。
+> - 音视频互相打断在应用内和应用间生效，续播只在应用间生效。
 
 **参数：**
 
@@ -5481,7 +5482,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称        | 值 | 描述                                 |
 | ---------- | -- | ---------------------------------- |
-| All        | undefined | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| All        | 0 | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
 | Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 不允许加载HTTP和HTTPS混合内容。               |
 
@@ -6469,7 +6470,7 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-定义Embed标签生命周期。
+定义Embed标签生命周期，当加载页面中有同层渲染标签会触发CREATE，同层渲染标签移动或者放大会出发UPDATE，退出页面会触发DESTROY。
 
 | 名称                           | 值 | 描述           |
 | ----------------------------- | -- | ------------ |
