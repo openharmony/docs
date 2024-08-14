@@ -669,14 +669,6 @@ URLSearchParams的构造函数。
 | -------- | -------- | -------- | -------- |
 | init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象<br/>- 默认值：null。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
