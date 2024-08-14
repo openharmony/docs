@@ -179,10 +179,10 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-mem-smaps.png)
 
-14. 运行  **hidumper --mem-jsheap pid [-T tid] [--gc]**  pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出。(仅限debug版本使用)
+14. 运行  **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]**  pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出;如果指定--leakobj，则获取泄露对象的列表。(仅限debug版本使用)
 
     ```
-    hidumper --mem-jsheap pid [-T tid] [--gc]
+    hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]
     ```
 
     > **注意**
