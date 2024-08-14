@@ -533,7 +533,7 @@ throw new Error("exception triggered")
 )JS";
 
 static void RunScriptWithOption(JSVM_Env env, string& src,
-								const uint8_t** dataPtr = nullptr,
+								uint8_t** dataPtr = nullptr,
 								size_t* lengthPtr = nullptr) {
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
@@ -541,20 +541,20 @@ static void RunScriptWithOption(JSVM_Env env, string& src,
     JSVM_Value jsSrc;
     OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
 
-    const uint8_t* data = dataPtr ? *dataPtr : nullptr;
+    uint8_t* data = dataPtr ? *dataPtr : nullptr;
     auto compilMode = data ? JSVM_COMPILE_MODE_CONSUME_CODE_CACHE :  JSVM_COMPILE_MODE_DEFAULT;
     size_t length = lengthPtr ? *lengthPtr : 0;
     JSVM_Script script;
     // 编译js代码
 	JSVM_ScriptOrigin origin {
 	    // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
-	    .sourceMapurl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
+	    .sourceMapUrl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
 	    // 源文件名字
 	    .resourceName = "index.js",
 	    // scirpt 在源文件中的起始行列号
 	    .resourceLineOffset = 0,
 	    .resourceColumnOffset = 0,
-	}
+	};
 	JSVM_CompileOptions option[3];
 	option[0] = {
 		.id = JSVM_COMPILE_MODE,
@@ -573,8 +573,7 @@ static void RunScriptWithOption(JSVM_Env env, string& src,
 		.id = JSVM_COMPILE_ENABLE_SOURCE_MAP,
 		.content = { .boolean = true }
 	};
-	OH_JSVM_CompileScriptWithOptions(env, jsSrc, &origin, &script);
-    printf("Code cache is %s\n", cacheRejected ? "rejected" : "used");
+	OH_JSVM_CompileScriptWithOptions(env, jsSrc, 3, option, &script);
 
     JSVM_Value result;
     // 执行js代码
@@ -586,7 +585,7 @@ static void RunScriptWithOption(JSVM_Env env, string& src,
     printf("%s\n", resultStr);
     if (dataPtr && lengthPtr && *dataPtr == nullptr) {
         // 将js源码编译出的脚本保存到cache，可以避免重复编译，带来性能提升
-        OH_JSVM_CreateCodeCache(env, script, dataPtr, lengthPtr);
+        OH_JSVM_CreateCodeCache(env, script, (const uint8_t**)dataPtr, lengthPtr);
         printf("Code cache created with length = %ld\n", *lengthPtr);
     }
 
@@ -595,7 +594,7 @@ static void RunScriptWithOption(JSVM_Env env, string& src,
 
 static void RunScript(JSVM_Env env, string& src,
                        bool withOrigin = false,
-                       const uint8_t** dataPtr = nullptr,
+                       uint8_t** dataPtr = nullptr,
                        size_t* lengthPtr = nullptr) {
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
@@ -603,21 +602,21 @@ static void RunScript(JSVM_Env env, string& src,
     JSVM_Value jsSrc;
     OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
 
-    const uint8_t* data = dataPtr ? *dataPtr : nullptr;
+    uint8_t* data = dataPtr ? *dataPtr : nullptr;
     size_t length = lengthPtr ? *lengthPtr : 0;
     bool cacheRejected = true;
     JSVM_Script script;
     // 编译js代码
-    if (withOrgin) {
+    if (withOrigin) {
 	    JSVM_ScriptOrigin origin {
 	        // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
-		    .sourceMapurl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
+		    .sourceMapUrl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
 		    // 源文件名字
 		    .resourceName = "index.js",
 		    // scirpt 在源文件中的起始行列号
 		    .resourceLineOffset = 0,
 		    .resourceColumnOffset = 0,
-	    }
+	    };
 		OH_JSVM_CompileScriptWithOrigin(env, jsSrc, data, length, true, &cacheRejected, &origin, &script);
     } else {
 	    OH_JSVM_CompileScript(env, jsSrc, data, length, true, &cacheRejected, &script);
@@ -634,7 +633,7 @@ static void RunScript(JSVM_Env env, string& src,
     printf("%s\n", resultStr);
     if (dataPtr && lengthPtr && *dataPtr == nullptr) {
         // 将js源码编译出的脚本保存到cache，可以避免重复编译，带来性能提升
-        OH_JSVM_CreateCodeCache(env, script, dataPtr, lengthPtr);
+        OH_JSVM_CreateCodeCache(env, script, (const uint8_t**)dataPtr, lengthPtr);
         printf("Code cache created with length = %ld\n", *lengthPtr);
     }
 
@@ -681,7 +680,7 @@ static void CreateSnapshot() {
     OH_JSVM_DestroyVM(vm);
 }
 
-void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
+void RunWithoutSnapshot(uint8_t** dataPtr, size_t* lengthPtr) {
     // 创建虚拟机实例
     JSVM_VM vm;
     OH_JSVM_CreateVM(nullptr, &vm);
@@ -708,7 +707,7 @@ void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
     OH_JSVM_DestroyVM(vm);
 }
 
-void RunWithSnapshot(const uint8_t **dataPtr, size_t *lengthPtr) {
+void RunWithSnapshot(uint8_t **dataPtr, size_t *lengthPtr) {
     // The lifetime of blobData must not be shorter than that of the vm.
     // 如果从文件中读取snapshot，需要考虑应用中的文件读写权限
     vector<char> blobData;
@@ -780,7 +779,7 @@ int main(int argc, char *argv[]) {
     // snapshot可以记录下某个时间的js执行环境，可以跨进程通过snapshot快速还原出js执行上下文环境，前提是保证snapshot数据的生命周期。
     const auto useSnapshot = argv[1] == string("use-snapshot");
     const auto run = useSnapshot ? RunWithSnapshot : RunWithoutSnapshot;
-    const uint8_t* data = nullptr;
+    uint8_t* data = nullptr;
     size_t length = 0;
     run(&data, &length);
     run(&data, &length);
@@ -934,7 +933,7 @@ std::string src(R"JS(
 let a = 37;
 a = a * 9;
 )JS");
-OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc)
+OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
 OH_JSVM_CompileScriptWithOptions(env, jsSrc, 0, nullptr, &script);
 OH_JSVM_RetainScript(env, script);
 OH_JSVM_CloseHandleScope(env, scope);
