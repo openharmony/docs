@@ -1119,7 +1119,7 @@ OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback (OH_AVPlayer *player, Pla
 
 AV_ERR_OK：设置成功。
 
-AV_ERR_INVALID_VAL：输入player为空指针、callback为空指针、player SetDrmSystemInfoCallback，SetDrmSystemInfoCallback或SetDrmSystemInfoCallback执行失败。
+AV_ERR_INVALID_VAL：输入player为空、callback为空、player SetDrmSystemInfoCallback执行失败。
 
 
 ### OH_AVPlayer_SetPlaybackSpeed()
