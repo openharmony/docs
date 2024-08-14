@@ -112,7 +112,7 @@ Notification deletion disabled.
 
 **处理步骤**
 
-参考[NotificationRequest](./js-apis-notificationManager.md#notificationrequest)通知禁止删除属性。
+参考[NotificationRequest](./js-apis-inner-notification-notificationRequest.md)通知禁止删除属性。
 
 ## 1600007 通知不存在
 
