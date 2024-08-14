@@ -197,29 +197,8 @@ typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, cons
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针 | 
-| errorCode | 错误码 | 
+| errorCode | 错误码。 AV_ERR_NO_MEMORY：无内存，取值为1<br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2<br>AV_ERR_INVALID_VAL：无效值，取值为3<br>AV_ERR_IO：IO错误，取值为4<br>AV_ERR_TIMEOUT：超时错误，取值为5<br>AV_ERR_UNKNOWN：未知错误，取值为6<br>AV_ERR_SERVICE_DIED：服务死亡，取值为7<br>AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8<br>AV_ERR_UNSUPPORT：未支持的接口，取值为9<br>AV_ERR_EXTEND_START：扩展错误码初始值，取值为100 | 
 | errorMsg | 错误消息 | 
-**返回：**
-
-AV_ERR_NO_MEMORY：无内存，取值为1
-
-AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2
-
-AV_ERR_INVALID_VAL：无效值，取值为3
-
-AV_ERR_IO：IO错误，取值为4
-
-AV_ERR_TIMEOUT：超时错误，取值为5
-
-AV_ERR_UNKNOWN：未知错误，取值为6
-
-AV_ERR_SERVICE_DIED：服务死亡，取值为7
-
-AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8
-
-AV_ERR_UNSUPPORT：未支持的接口，取值为9
-
-AV_ERR_EXTEND_START：扩展错误码初始值，取值为100
 
 
 ### OH_AVPlayerOnInfo
