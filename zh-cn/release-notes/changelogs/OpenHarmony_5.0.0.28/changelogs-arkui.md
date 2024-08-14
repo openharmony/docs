@@ -417,7 +417,7 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 
 默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.11 TipsDialog中 imageRes、imageSize、title 变更
+## cl.arkui.11 TipsDialog的 imageRes/imageSize/title变更
 
 **访问级别**
 
@@ -425,7 +425,7 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 
 **变更原因**
 
-扩展 TipsDialog 参数 imageRes 支持 pixelMap 和 string 类型的图片，修改参数 imageSize，title 由必填改为非必填，提升用户使用体验。
+TipsDialog 原来只支持 Resource 类型的图片，现扩展 TipsDialog 支持 pixelMap 和 string 类型的图片，方便用户根据使用场景选用图片类型，提升用户使用体验。同时变更 TipsDialog 图片大小和中间标题由必填改非必填，方便用户根据使用场景决定是否选用默认样式。
 
 **变更影响**
 
@@ -434,7 +434,7 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 变更前：
 1. TipsDialog不支持pixelMap和string类型的图片
 2. TipsDialog的图片大小为必填
-3. TipsDialog中间标题必须有
+3. TipsDialog必须有中间标题
 
 变更后：
 1. TipsDialog支持pixelMap和string类型的图片
@@ -451,4 +451,4 @@ API 12
 
 **适配指导**
 
-默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期，具体实现方法参考：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md#tipsdialog
