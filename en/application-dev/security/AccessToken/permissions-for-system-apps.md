@@ -3661,30 +3661,6 @@ Allows a system application to access the widget for credential enrollment.
 
 **Valid since**：12
 
-### ohos.permission.MANAGE_ACCESSORY
-
-Allows a system ability to obtain accessories information and send data to accessories.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
-### ohos.permission.COLLECT_ACCESSORY_LOG
-
-Allows a system ability to obtain accessories logs.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
