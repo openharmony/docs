@@ -74,6 +74,65 @@ pixelStretch(stretchSizes: Array\<number\>, tileMode: TileMode): Filter
 filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
 ```
 
+### waterRipple
+waterRipple(progress: \<number\>, waveCount: \<number\>, x: \<number\>, y: \<number\>, rippleMode: WaterRippleMode): Filter
+
+将水波纹效果添加至组件上。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| progress  | \<number\>         | 是   | 表示水波纹的进度，取值范围为[0, 1]。<br/>水波纹进度越趋向于1,水波纹展示越完全。|
+| waveCount      | \<number\> | 是   | 水波纹波动时波纹的个数，取值范围为[0, 1]。 |
+| x      | \<number\> | 是   | 水波纹在屏幕中第一次出现的x轴位置。 |
+| y      | \<number\> | 是   | 水波纹在屏幕中第一次出现的y轴位置。 |
+| rippleMode      | [WaterRippleMode](#waterripplemode) | 是   | 水波纹的场景模式。<br/>0表示手机碰PC（接收端）场景<br/>1表示手机碰PC（发送端）场景<br/>2表示手机碰手机场景 |
+
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了边缘像素扩展效果的Filter。 |
+
+**示例：**
+
+```ts
+filter.waterRipple(0.5, 2, 0.5, 0.5, uiEffect.WaterRippleMode.SMALL2SMALL)
+```
+
+### flyInFlyOutEffect
+flyInFlyOutEffect(degree: \<number\>, flyMode: FlyMode): Filter
+
+将飞入飞出形变效果添加至组件上。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| degree  | \<number\>         | 是   | 表示控制飞入飞出形变的程度。|
+| flyMode      | [FlyMode](#flymode) | 是   | 飞入飞出的场景模式。<br/>BOTTOM表示从设备底部飞入形变场景<br/>TOP表示从设备顶部飞入形变场景 |
+
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了边缘像素扩展效果的Filter。 |
+
+**示例：**
+
+```ts
+filter.flyInFlyOutEffect(0.5, uiEffect.FlyMode.TOP)
+```
+
 ## TileMode
 像素填充模式枚举。
 
@@ -87,6 +146,31 @@ filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
 | REPEAT | 1 | 重复。 |
 | MIRROR | 2 | 镜像。 |
 | DECAL  | 3 | 透明。 |
+
+## WaterRippleMode
+水波纹场景模式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+| 名称   | 值 | 说明 |
+| ------ | - | ---- |
+| SMALL2MEDIUM_RECV  | 0 | 手机碰PC（接收端）。 |
+| SMALL2MEDIUM_SEND  | 1 | 手机碰PC（发送端）。 |
+| SMALL2SMALL | 2 | 手机碰手机。 |
+
+## FlyMode
+飞入飞出形变场景模式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+| 名称   | 值 | 说明 |
+| ------ | - | ---- |
+| BOTTOM  | 0 | 从底部飞入形变。 |
+| TOP  | 1 | 从顶部飞入形变。 |
 
 ## VisualEffect
 VisualEffect效果类，用于将相应的效果添加到指定的组件上。在调用VisualEffect的方法前，需要先通过[createEffect](js-apis-uiEffect.md#uieffectcreateeffect)创建一个VisualEffect实例。
