@@ -1343,7 +1343,6 @@
       - [Flex Layout Performance Improvement](performance/flex-development-performance-boost.md)
       - [Reducing Nesting](performance/reduce-view-nesting-levels.md)
       - [Properly Choosing Between if/else and Visibility](performance/proper-choice-between-if-and-visibility.md)
-      - [Proper IPC Usage](performance/reasonable-using-ipc.md)
       - [Improving File Upload and Download Performance](performance/improve-file-upload-and-download-performance.md)
       - [Reducing Redundant Operations on First Frame Drawing](performance/reduce-redundant-operations-when-render-first-frame.md)
       - [Best Practices for List Performance Optimization](performance/list-perf-improvment.md)
