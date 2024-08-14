@@ -162,11 +162,11 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针，或输入format参数不支持。
 
@@ -243,11 +243,11 @@ OH_AVErrCode OH_VideoEncoder_Destroy (OH_AVCodec *codec)
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 编码器实例已经销毁。
+AV_ERR_NO_MEMORY：编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -278,11 +278,11 @@ OH_AVErrCode OH_VideoEncoder_Flush (OH_AVCodec *codec)
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -314,11 +314,11 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针，或输入format参数不支持。
 
@@ -398,11 +398,11 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow ** wi
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -434,11 +434,11 @@ OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec *codec, bool *isValid )
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -467,11 +467,11 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream (OH_AVCodec *codec)
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -502,11 +502,11 @@ OH_AVErrCode OH_VideoEncoder_Prepare (OH_AVCodec *codec)
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -538,11 +538,11 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer (OH_AVCodec *codec, uint32_t index 
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针，或输入format参数不支持。
 
@@ -574,11 +574,11 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter (OH_AVCodec *codec, uint32_t ind
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -611,11 +611,11 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -650,11 +650,11 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback (OH_AVCodec *codec, OH_Vi
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -685,11 +685,11 @@ OH_AVErrCode OH_VideoEncoder_Reset (OH_AVCodec *codec)
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -721,11 +721,11 @@ OH_AVErrCode OH_VideoEncoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *forma
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针，或输入format参数不支持。
 
@@ -756,11 +756,11 @@ OH_AVErrCode OH_VideoEncoder_Start (OH_AVCodec *codec)
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -791,11 +791,11 @@ OH_AVErrCode OH_VideoEncoder_Stop (OH_AVCodec *codec)
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -835,11 +835,11 @@ OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -876,11 +876,11 @@ OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
@@ -916,11 +916,11 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputData (OH_AVCodec *codec, uint32_t index )
 
 **返回：**
 
-特定错误代码。请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
 
-AV_ERR_OK: 执行成功。
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY: 输入的编码器实例已经销毁。
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
