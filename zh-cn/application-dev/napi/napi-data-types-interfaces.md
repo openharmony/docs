@@ -52,7 +52,7 @@ typedef struct {
 
 ### napi_value
 
-在C++代码中，表示一个JavaScript值。
+napi_value是一个C的结构体指针，表示一个JavaScript对象的引用。napi_value持有了JS对象，同时，napi_value受handle_scope管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的JS对象。
 
 ### napi_env
 
