@@ -64,7 +64,7 @@ const scene: ResourceStr = item.scene;
 2. SceneResourceParameters修改适配
 ```ts
 // SDK
-export interface SceneResourceParameters修改适配 {
+export interface SceneResourceParameters {
     name: string;
     uri?: ResourceStr;  // 新版本由Resource变更为ResourceStr类型
 }
