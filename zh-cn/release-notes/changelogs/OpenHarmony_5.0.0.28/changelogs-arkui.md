@@ -417,7 +417,7 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 
 默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.11 TipsDialog的 imageRes/imageSize/title变更
+## cl.arkui.11 TipsDialog的imageRes/imageSize/title变更
 
 **访问级别**
 
@@ -425,7 +425,7 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 
 **变更原因**
 
-TipsDialog 原来只支持 Resource 类型的图片，现扩展 TipsDialog 支持 pixelMap 和 string 类型的图片，方便用户根据使用场景选用图片类型，提升用户使用体验。同时变更 TipsDialog 图片大小和中间标题由必填改非必填，方便用户根据使用场景决定是否选用默认样式。
+TipsDialog 原来只支持 resource 类型的图片，现扩展 TipsDialog 支持 pixelMap 和 string 类型的图片，方便用户根据使用场景选用图片类型，提升用户使用体验。同时变更 TipsDialog 图片大小和中间标题由必填改非必填，方便用户根据使用场景决定是否选用默认样式。
 
 **变更影响**
 
