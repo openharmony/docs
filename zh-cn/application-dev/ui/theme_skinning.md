@@ -260,6 +260,18 @@
 
 ![resources_dark](figures/resources_dark.png)
 
+dark.json数据示例：
+  ```ts
+    {
+      "color": [
+        {
+          "name": "start_window_background",
+          "value": "#FFFFFF"
+        }
+      ]
+    }
+  ```
+
   ```ts
     @Entry
     @Component
