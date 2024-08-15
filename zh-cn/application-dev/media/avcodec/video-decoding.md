@@ -81,6 +81,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 ```
 
+> **说明：**
+>
+> sample仅为示例，具体以实际工程目录为准。
+>
+
 ### Surface模式
 
 参考以下示例代码，开发者可以完成Surface模式下视频解码的全流程。此处以H.264码流文件输入，解码送显输出为例。
