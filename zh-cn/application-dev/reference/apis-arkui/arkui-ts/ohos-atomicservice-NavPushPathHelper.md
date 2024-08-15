@@ -38,7 +38,7 @@ NavPushPathHelper的构造函数。
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
-| navPathStack | NavPathStack | 是    | [Navigation](ts-basic-components-navigation.md)路由栈。 |
+| navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是    | [Navigation](ts-basic-components-navigation.md)路由栈。 |
 
 ### pushPath<sup>12+</sup>
 
@@ -204,7 +204,7 @@ pushDestination(moduleName: string, info: NavPathInfo, animated?: boolean): Prom
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
-| 100006    | [NavDestination](ts-basic-components-navdestination.md) not found.|
+| 100006    | NavDestination not found.|
 | 300001    | hsp silent install fail.|
 
 ### pushDestination<sup>12+</sup>
@@ -240,7 +240,7 @@ pushDestination(moduleName: string, info: NavPathInfo, options?: NavigationOptio
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
-| 100006    | [NavDestination](ts-basic-components-navdestination.md) not found.|
+| 100006    | NavDestination not found.|
 | 300001    | hsp silent install fail.|
 
 ### pushDestinationByName<sup>12+</sup>
@@ -277,7 +277,7 @@ pushDestinationByName(moduleName: string, name: string, param: Object, animated?
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
-| 100006    | [NavDestination](ts-basic-components-navdestination.md) not found.|
+| 100006    | NavDestination not found.|
 | 300001    | hsp silent install fail.|
 
 ### pushDestinationByName<sup>12+</sup>
@@ -315,7 +315,7 @@ pushDestinationByName(moduleName: string, name: string, param: Object, onPop: Ca
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
-| 100006    | [NavDestination](ts-basic-components-navdestination.md) not found.|
+| 100006    | NavDestination not found.|
 | 300001    | hsp silent install fail.|
 
 ### replacePath<sup>12+</sup>
