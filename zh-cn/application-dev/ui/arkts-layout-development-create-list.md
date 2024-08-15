@@ -1009,7 +1009,7 @@ List() {
       .onTouch((event) => {
         if (event.type === TouchType.Up) {
           if (itemGroup.children.length) {
-            animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
+            this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
               this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
             })
           }

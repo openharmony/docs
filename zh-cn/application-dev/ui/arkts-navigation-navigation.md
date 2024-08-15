@@ -634,7 +634,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
         .height(40)
         .margin(20)
         .onClick(() => {
-            animateTo({ duration: 1000 }, () => {
+            this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             this.pageStack.pushPath({ name: 'ToPage' }, false)
             })
         })
