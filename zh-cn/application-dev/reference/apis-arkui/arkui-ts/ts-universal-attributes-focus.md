@@ -374,6 +374,10 @@ struct FocusableExample {
 
 ### 示例2
 
+> **说明：**
+> 
+> 直接使用focusControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12)获取绑定实例的focusControl。
+
 focusControl.requestFocus示例代码：
 
 使用focusControl.requestFocus接口使指定组件获取焦点。
@@ -429,6 +433,7 @@ struct RequestFocusExample {
         Button("RequestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
+            // 建议使用this.getUIContext().getFocusController().requestFocus()
             let res = focusControl.requestFocus(this.selectId)      // 使选中的this.selectId的组件获焦
             if (res) {
               promptAction.showToast({message: 'Request success'})
