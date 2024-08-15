@@ -214,7 +214,7 @@ try {
 ```
 
 
-## connection.getRemoteProfileUuids
+## connection.getRemoteProfileUuids<sup>12+</sup>
 
 getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
@@ -259,7 +259,7 @@ try {
 ```
 
 
-## connection.getRemoteProfileUuids
+## connection.getRemoteProfileUuids<sup>12+</sup>
 
 getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
@@ -692,7 +692,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 
 | 参数名      | 类型                    | 必填   | 说明                           |
 | -------- | --------------------- | ---- | ---------------------------- |
-| mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。                      |
+| mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。当扫描模式为SCAN_MODE_GENERAL_DISCOVERABLE时，如果超出duration持续时间（不为0），扫描模式会重新设置为SCAN_MODE_CONNECTABLE。               |
 | duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒；设置为0则持续可发现。 |
 
 **错误码**：
