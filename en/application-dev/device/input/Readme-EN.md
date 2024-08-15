@@ -7,4 +7,6 @@
 - [Event Injection Development](inputeventclient-guidelines.md)
 - [Input Consumer Development](inputconsumer-guidelines.md)
 - [Shortcut Key Development](shortkey-guidelines.md)
+- [Event Listening Development (C/C++)](monitor-guidelines.md)
+- [Event Interception Development (C/C++)](interceptor-guidelines.md)
 <!--DelEnd-->
