@@ -2090,6 +2090,8 @@ off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void
 
 取消监听音视频缓存更新事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2182,6 +2184,8 @@ off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void
 
 取消监听视频播放宽高变化事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2229,6 +2233,8 @@ avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
 off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 
 取消监听音频焦点变化事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
