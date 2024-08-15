@@ -145,7 +145,6 @@ ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -341,6 +340,8 @@ WLAN热点信息。
 wifi 设备地址（mac/bssid）类型。
 
 **系统能力：** SystemCapability.Communication.WiFi.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
@@ -1223,13 +1224,12 @@ Ipv6信息。
 | linkIpv6Address | string | 是 | 否 | 链路Ipv6地址。 |
 | globalIpv6Address | string | 是 | 否 | 全局Ipv6地址。 |
 | randomGlobalIpv6Address | string | 是 | 否 | 随机全局Ipv6地址。 预留字段，暂不支持。|
-| uniqueIpv6Address | string | 是 | 否 | 唯一本地Ipv6地址。 |
-| randomUniqueIpv6Address | string | 是 | 否 | 随机唯一本地Ipv6地址。 |
+| uniqueIpv6Address<sup>12+</sup> | string | 是 | 否 | 唯一本地Ipv6地址。 |
+| randomUniqueIpv6Address<sup>12+</sup> | string | 是 | 否 | 随机唯一本地Ipv6地址。 |
 | gateway | string | 是 | 否 | 网关。 |
 | netmask | string | 是 | 否 | 网络掩码。 |
 | primaryDNS | string | 是 | 否 | 主DNS服务器Ipv6地址。 |
 | secondDNS | string | 是 | 否 | 备DNS服务器Ipv6地址。 |
-
 
 ## wifiManager.getCountryCode<sup>9+</sup>
 
