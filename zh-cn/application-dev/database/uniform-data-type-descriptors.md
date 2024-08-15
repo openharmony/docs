@@ -23,7 +23,7 @@
 
 ### 标准化数据类型的分类原则
 
-UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为两类。OpenHarmony中预制了常用的标准化数据类型，详见[UTD预置列表](./uniform-data-type-list.md)。
+UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为两类。OpenHarmony中预置了常用的标准化数据类型，详见[UTD预置列表](./uniform-data-type-list.md)。
 
 - **按物理分类**的根节点为general.entity，用于描述类型的物理属性，比如文件、目录等，具体可见图1。
 
