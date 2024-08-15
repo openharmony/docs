@@ -84,14 +84,14 @@ if (ret != AV_ERR_OK) {
 int64_t newPts = info.pts;
 ```
 
-并且从API12开始，支持获取轨道起始时间信息，用户也可通过变更后 `pts`，结合轨道起始时间，转换为变更前 `pts`，代码如下：
+并且从API12开始，支持获取轨道起始时间信息 `OH_MD_KEY_TRACK_START_TIME`，用户也可通过变更后 `pts`，结合轨道起始时间，转换为变更前 `pts`，代码如下：
 ```c++
 OH_AVFormat *trackFormat = OH_AVSource_GetTrackFormat(source, trackIndex);
 if (trackFormat == nullptr) {
     // 处理异常
 }
 int64_t startTime = 0;
-if (!OH_AVFormat_GetLongValue(trackFormat, OH_MD_KEY_START_TIME, &startTime)) {
+if (!OH_AVFormat_GetLongValue(trackFormat, OH_MD_KEY_TRACK_START_TIME, &startTime)) {
     // 处理异常
 }
 int64_t oldPts = newPts - startTime;
