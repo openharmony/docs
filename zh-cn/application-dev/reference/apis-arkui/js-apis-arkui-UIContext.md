@@ -395,7 +395,7 @@ struct Index {
 
 getFrameNodeById(id: string): FrameNode | null
 
-提供getFrameNodeById接口通过组件的id获取组件树的实体节点。
+通过组件的id获取组件树的实体节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -405,7 +405,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)                          |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。       |
 
 **返回值：**
 
@@ -415,12 +415,44 @@ getFrameNodeById(id: string): FrameNode | null
 
 > **说明：**
 >
-> getFrameNodeById通过遍历节点树查询接口，性能较差。
+> getFrameNodeById通过遍历查询对应id的节点，性能较差。推荐使用[getAttachedFrameNodeById](#getattachedframenodebyid12)。
 
 **示例：**
 
 ```ts
 uiContext.getFrameNodeById("TestNode")
+```
+
+### getAttachedFrameNodeById<sup>12+</sup>
+
+getAttachedFrameNodeById(id: string): FrameNode | null
+
+通过组件的id获取当前窗口上的实体节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
+
+> **说明：**
+>
+> getAttachedFrameNodeById仅能查询上屏节点。
+
+**示例：**
+
+```ts
+uiContext.getAttachedFrameNodeById("TestNode")
 ```
 
 ### getFrameNodeByUniqueId<sup>12+</sup>
