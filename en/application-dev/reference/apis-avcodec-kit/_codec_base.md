@@ -49,7 +49,7 @@ Common key-value pairs of audio and video:
 | [OH_MD_KEY_BITRATE](#oh_md_key_bitrate)                      | Bit rate. The value type is int64_t. This key is used in audio and video encoding scenarios. It is optional in video encoding scenarios.|
 | [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size)        | Maximum size of an input stream to decode. The value type is int32_t. This key is optional.          |
 | [OH_MD_KEY_PROFILE](#oh_md_key_profile)                      | Encoding grading. The value type is int32_t. For details, see [OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), and [OH_AACProfile](#oh_aacprofile). This key is optional.|
-| [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config)            | Codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. This key is optional. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd-->|
+| [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config)            | Codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. This key is optional. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd--> |
 | [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | Maximum number of input buffers. The value type is int32_t. This key is optional.     |
 | [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | Maximum number of output buffers. The value type is int32_t. This key is optional.       |
 
@@ -57,7 +57,7 @@ The table below lists the video-dedicated key-value pairs.
 
 | Name                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp)                | Surface buffer timestamp. The value is of the int64 type. This key is optional. <!--Del-->(This key is not supported yet.)<!--DelEnd-->|
+| [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp)                | Surface buffer timestamp. The value is of the int64 type. This key is optional. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
 | [OH_ED_KEY_EOS](#oh_ed_key_eos)                              | End of stream for the surface buffer. The value type is Boolean. This key is optional. <!--Del-->(This key is not supported yet.)<!--DelEnd-->|
 | [OH_MD_KEY_WIDTH](#oh_md_key_width)                          | Video width. The value type is int32_t.                            |
 | [OH_MD_KEY_HEIGHT](#oh_md_key_height)                        | Video height. The value type is int32_t.                              |
@@ -84,7 +84,7 @@ The table below lists the video-dedicated key-value pairs.
 | [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height)    | Height of the video frame. The value type is int32_t. This key is optional.       |
 | [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width)       | Width of the video frame. The value type is int32_t. This key is optional.       |
 | [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height)    | Height of the video frame. The value type is int32_t. This key is optional.       |
-| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | Enabled status of low-latency video codec. The value type is int32_t. The value **1** means that low-latency video codec is enabled, and **0** means the opposite. This key is optional and used only in the configuration phase of video encoding.|
+| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | Enabled status of low-latency video codec. The value type is int32_t. The value **1** means that low-latency video codec is enabled, and **0** means the opposite. This key is optional and used only in the configuration phase.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max)       | Maximum Quantization Parameter (QP) allowed by the video encoder. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | Minimum QP allowed by the video encoder. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | Number of LTR frames. The value type is int32_t. The value must be within the supported value range.|
@@ -196,7 +196,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | Enumerates the AAC profiles.| 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.| 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.| 
-| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6,<br>AV_OUTPUT_FORMAT_AMR = 8,<br>AV_OUTPUT_FORMAT_MP3 = 9<br>} | Enumerates the output file formats of a muxer.|
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6<br>} | Enumerates the output file formats of a muxer.|
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br>SEEK_MODE_NEXT_SYNC = 0,<br>SEEK_MODE_PREVIOUS_SYNC,<br>SEEK_MODE_CLOSEST_SYNC<br>} | Enumerates the seek modes.| 
 | [OH_ScalingMode](#oh_scalingmode-1) {<br>SCALING_MODE_SCALE_TO_WINDOW = 1,<br>SCALING_MODE_SCALE_CROP = 2<br>} | Enumerates the scaling modes.| 
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br>INVALID_WIDTH = -1<br>} | Enumerates the number of audio bits for each coded sample.| 
@@ -227,8 +227,8 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | Pointer to the key that describes the MIME type of the AMR-WB audio decoder.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | Pointer to the key that describes the MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | Pointer to the key that describes the MIME type of the G.711 mu-law audio codec.|
-| const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64 type. <!--Del-->(This key is not supported yet.)<!--DelEnd-->|
-| const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | Pointer to the key that describes the end of stream for the surface buffer. The value type is Boolean. <!--Del-->(This key is not supported yet.)<!--DelEnd-->|
+| const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64 type. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
+| const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | Pointer to the key that describes the end of stream for the surface buffer. The value type is Boolean. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | Pointer to the key that describes the track type. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype).|
 | const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | Pointer to the key that describes the MIME type of the codec. The value type is string.|
 | const char \* [OH_MD_KEY_DURATION](#oh_md_key_duration) | Pointer to the key that describes the duration. The value type is int64_t.|
@@ -251,7 +251,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | Pointer to the key that describes the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient). The video matrix coefficient complies with Table 4 in the H.273 standard.|
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | Pointer to the key that describes the request for immediate encoding of I-frames. The value type is Boolean.|
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | Pointer to the key that describes the required encoding quality. The value type is int32_t. This key applies only to encoders configured in constant quality mode.|
-| const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | Pointer to the key that describes the codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd-->|
+| const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | Pointer to the key that describes the codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | Pointer to the key that describes the title of the input media. The value type is string.|
 | const char \* [OH_MD_KEY_ARTIST](#oh_md_key_artist) | Pointer to the key that describes the artist of the input media. The value type is string.|
 | const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | Pointer to the key that describes the album of the input media. The value type is string.|
@@ -339,7 +339,7 @@ typedef struct OH_AVCodec OH_AVCodec
 ```
 **Description**
 
-Defines a struct that describes a native object for the audio and video codec interface.
+Defines a struct for a native object for the audio and video codec interface.
 
 **Since**: 9
 
@@ -1092,7 +1092,6 @@ Enumerates the primary colors.
 | COLOR_PRIMARY_SMPTE_ST428  | SMPTE ST 428 color gamut.  | 
 | COLOR_PRIMARY_P3DCI  | DCI-P3 color gamut.  | 
 | COLOR_PRIMARY_P3D65  | P3-D65 color gamut.  | 
-
 
 ### OH_HEVCLevel
 
@@ -2285,7 +2284,7 @@ Pointer to the key that describes the enabled status of low-latency video codec.
 
 If enabled, the input and output data held by the video encoder or decoder does not exceed the amount required by the codec standard.
 
-This key is optional and used only in the configuration phase of video encoding.
+This key is optional and used only in the configuration phase.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
