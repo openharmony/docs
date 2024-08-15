@@ -144,6 +144,71 @@ promise.then((data : PiPWindow.PiPController) => {
 });
 ```
 
+## PiPWindow.create<sup>12+</sup>
+
+create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;PiPController&gt;
+
+创建画中画控制器，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+ 
+| 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                     |
+|--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。该参数不能为空，并且构造该参数的context不能为空。构造该参数时，如果指定了templateType，需保证templateType是[PiPTemplateType](#piptemplatetype)类型；如果指定了controlGroups，需保证controlGroups与templateType匹配，详见[PiPControlGroup](#pipcontrolgroup12)。 |
+| contentNode       | [typeNode.XComponent](js-apis-arkui-frameNode.md)    | 是         | 创建画中画控制器的参数。该参数不能为空。|
+
+**返回值：**
+
+| 类型                                                         | 说明                       |
+|------------------------------------------------------------|--------------------------|
+| Promise&lt;[PiPController](#pipcontroller)&gt;  | Promise对象。返回当前创建的画中画控制器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                                                         |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 401   | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { typeNode, UIContext } from '@kit.ArkUI';
+
+let pipController: PiPWindow.PiPController | undefined = undefined;
+let xComponentController: XComponentController = new XComponentController();
+let xComponent = typeNode.createNode(this.getUIContext(),"XComponent");
+xComponent.initialize({
+  id:'xcomponent',
+  type:XComponentType.SURFACE,
+  controller:xComponentController
+});
+let contentWidth: number = 800; // 假设当前内容宽度800px。
+let contentHeight: number = 600; // 假设当前内容高度600px。
+let config: PiPWindow.PiPConfiguration = {
+  context: getContext(this),
+  componentController: xComponentController,
+  templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
+  contentWidth: contentWidth,
+  contentHeight: contentHeight
+};
+
+let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
+promise.then((data : PiPWindow.PiPController) => {
+  pipController = data;
+  console.info(`Succeeded in creating pip controller. Data:${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
+});
+```
+
 ## PiPConfiguration
 
 创建画中画控制器时的参数。
