@@ -928,7 +928,7 @@ int main(int narg, char** argv)
     (void)ffrt_queue_attr_init(&queue_attr);
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
 
-    std::function<void>()>&& queueFunc = [] () {pritf("Task done.\n");};
+    std::function<void()>&& queueFunc = [] () {printf("Task done.\n");};
     ffrt_function_header_t* queueFunc_t = create_function_wrapper((queueFunc), ffrt_function_kind_queue);
     ffrt_queue_submit(queue_handle, queueFunc_t, nullptr);
 
@@ -1902,7 +1902,7 @@ int main(int narg, char** argv)
     auto loop = ffrt_loop_create(queue_handle);
 
     if (loop != NULL) {
-        printf("loop is not null.\n")
+        printf("loop is not null.\n");
     }
 
     int ret = ffrt_loop_destroy(loop);
@@ -2166,7 +2166,7 @@ void testCallBack(void *data, unsigned int events) {}
 struct TestData {
     int fd;
     uint64_t expected;
-}
+};
 
 int main(int narg, char** argv)
 {
@@ -2365,7 +2365,7 @@ libffrt.z.so
     void DestroyFunctionWrapper(void* t)
     {
         auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
-        f->closure = nullptr;
+        f = nullptr;
     }
 
     template<class T>
