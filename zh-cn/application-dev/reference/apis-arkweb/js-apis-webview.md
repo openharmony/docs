@@ -678,6 +678,11 @@ static initializeWebEngine(): void
 
 在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
 
+> **说明：**
+>
+> - initializeWebEngine不支持在异步线程中调用，否则会造成崩溃。
+> - initializeWebEngine全局生效，在整个APP生命周期中调用一次即可，不需要重复调用。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
@@ -905,7 +910,7 @@ struct WebComponent {
 }
 ```
 
-2.resources协议。
+2.resources协议，适用Webview加载带有"#"路由的链接。
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -968,7 +973,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 >
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
-> 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
+> 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
 
 **错误码：**
 
@@ -14159,7 +14164,7 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 didFinish(): void
 
-通知Web组件被拦截的请求已经完成，并且没有更多的数据可用。
+通知Web组件被拦截的请求已经完成，并且没有更多的数据可用，调用前需要优先调用[didReceiveResponse](#didreceiveresponse12)将构造的响应头传递给被拦截的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14179,7 +14184,7 @@ didFinish(): void
 
 didFail(code: WebNetErrorList): void
 
-通知ArkWeb内核被拦截请求应该返回失败。
+通知ArkWeb内核被拦截请求应该返回失败，调用前需要优先调用[didReceiveResponse](#didreceiveresponse12)将构造的响应头传递给被拦截的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14292,10 +14297,13 @@ struct WebComponent {
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
 
+              // 调用 didFinish/didFail 前需要优先调用 didReceiveResponse 将构造的响应头传递给被拦截的请求。
               let buf = buffer.from(this.htmlData)
               try {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
+                  resourceHandler.didReceiveResponse(response);
+                  resourceHandler.didReceiveResponseBody(buf.buffer);
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");
