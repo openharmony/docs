@@ -41,8 +41,8 @@
 
 **变更原因**
 
-针对视频轨获取的 OH_AVCodecBufferAttr中 `pts` 属性，会在文件实际封装信息的基础上减去轨道起始时间，使其从0开始，
-导致部分音视频轨道 `pts` 处理不一致，调用方依赖 `pts` 实现音画同步出错。
+针对视频轨获取的 OH_AVCodecBufferAttr 中 `pts` 属性，会在文件实际封装信息的基础上减去轨道起始时间，使其从0开始，
+导致音视频轨道 `pts` 处理不一致，调用方依赖 `pts` 实现音画同步时，部分视频效果异常。
 
 **变更影响**
 
@@ -64,5 +64,35 @@ API10
 
 **适配指导**
 
-开发者需要通过轨道信息获取轨道起始时间属性，根据应用实际场景的需求，对获取到的pts进行处理，pts - start_time 相当于变更前 pts。
-具体获取轨道信息可参考 [获取轨道信息](../../../application-dev/media/avcodec/audio-video-demuxer.md#轨道级别属性支持范围)。
+变更后 `pts` 为文件实际封装的时间戳信息，内部不再进行额外处理，获取方式不变，调用方可使用变更后 `pts`，结合业务逻辑进行处理，
+获取方式如下所示：
+```c++
+OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
+if (buffer == nullptr) {
+    // 处理异常
+}
+int32_t ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, trackIndex, buffer);
+if (ret != AV_ERR_OK) {
+    // 处理异常
+}
+
+OH_AVCodecBufferAttr info;
+ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+if (ret != AV_ERR_OK) {
+    // 处理异常
+}
+int64_t newPts = info.pts;
+```
+
+并且从API12开始，支持获取轨道起始时间信息，用户也可通过变更后 `pts`，结合轨道起始时间，转换为变更前 `pts`，代码如下：
+```c++
+OH_AVFormat *trackFormat = OH_AVSource_GetTrackFormat(source, trackIndex);
+if (trackFormat == nullptr) {
+    // 处理异常
+}
+int64_t startTime = 0;
+if (!OH_AVFormat_GetLongValue(trackFormat, OH_MD_KEY_START_TIME, &startTime)) {
+    // 处理异常
+}
+int64_t oldPts = newPts - startTime;
+```
