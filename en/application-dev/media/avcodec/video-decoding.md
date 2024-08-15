@@ -18,6 +18,7 @@ Through the VideoDecoder module, your application can implement the following ke
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | Variable resolution        | Configured in the callback function, which is set by calling **OH_VideoDecoder_RegisterCallback()**. For details, see step 3 in buffer mode.  |
 | Dynamic surface switching | Configured by calling **OH_VideoDecoder_SetSurface()**. For details, see step 7 in surface mode.    |
+| Low-latency decoding | Configured by calling **OH_VideoDecoder_Configure()**. For details, see step 6 in surface mode.    |
 
 
 ## Restrictions
@@ -98,7 +99,6 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     #include <multimedia/player_framework/native_avbuffer.h>
     #include <fstream>
     ```
-    
 2. Configure global variables.
 
     ```c++
@@ -106,7 +106,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     int32_t width = 320; 
     // (Mandatory) Configure the video frame height.
     int32_t height = 240;
-    // (Mandatory) Configure the video color format.
+    // (Mandatory) Configure the video pixel format.
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     int32_t widthStride = 0;
     int32_t heightStride = 0;
@@ -239,16 +239,16 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 6. Call **OH_VideoDecoder_Configure()** to configure the decoder.
 
     For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
-
+    
     For details about the parameter verification rules, see [OH_VideoDecoder_Configure()](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure).
 
     The parameter value ranges can be obtained through the capability query interface. For details, see [Obtaining Supported Codecs](obtain-supported-codecs.md).
-
-    Currently, the following options must be configured for all supported formats: video frame width and height. In the code snippet below, the following variables are used:
+    
+    Currently, the following options must be configured for all supported formats: video frame width, video frame height, and video pixel format. In the code snippet below, the following variables are used:
 
     - **DEFAULT_WIDTH**: 320 pixels
     - **DEFAULT_HEIGHT**: 240 pixels
-    - **DEFAULT_PIXELFORMAT**: **AV_PIXEL_FORMAT_NV12** (the color format of the YUV file is NV12)
+    - **DEFAULT_PIXELFORMAT**: **AV_PIXEL_FORMAT_NV12** (the pixel format of the YUV file is NV12)
 
     ```c++
 
@@ -257,6 +257,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    // (Optional) Configure low-latency decoding.
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // Configure the decoder.
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {
@@ -289,7 +291,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
-    
+    ```
 
 9. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
 
@@ -328,197 +330,212 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
     ```
 
-     In the code snippet below, the following variable is used:
-     - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
-     ```c++
-     uint32_t keyIdLen = DRM_KEY_ID_SIZE;
-     uint8_t keyId[] = {
-         0xd4, 0xb2, 0x01, 0xe4, 0x61, 0xc8, 0x98, 0x96,
-         0xcf, 0x05, 0x22, 0x39, 0x8d, 0x09, 0xe6, 0x28};
-     uint32_t ivLen = DRM_KEY_IV_SIZE;
-     uint8_t iv[] = {
-         0xbf, 0x77, 0xed, 0x51, 0x81, 0xde, 0x36, 0x3e,
-         0x52, 0xf7, 0x20, 0x4f, 0x72, 0x14, 0xa3, 0x95};
-     uint32_t encryptedBlockCount = 0;
-     uint32_t skippedBlockCount = 0;
-     uint32_t firstEncryptedOffset = 0;
-     uint32_t subsampleCount = 1;
-     DrmSubsample subsamples[1] = { {0x10, 0x16} };
-     OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
-     if (cencInfo == nullptr) {
-         // Exception handling.
-     }
-     OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
-     if (errNo != AV_ERR_OK) {
-         // Exception handling.
-     }
-     errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
-     if (errNo != AV_ERR_OK) {
-         // Exception handling.
-     }
-     errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
-         subsampleCount, subsamples);
-     if (errNo != AV_ERR_OK) {
-         // Exception handling.
-     }
-     errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
-     if (errNo != AV_ERR_OK) {
-         // Exception handling.
-     }
-     errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
-     if (errNo != AV_ERR_OK) {
-         // Exception handling.
-     }
-     errNo = OH_AVCencInfo_Destroy(cencInfo);
-     if (errNo != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    In the code snippet below, the following variable is used:
+    - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+    ```c++
+    uint32_t keyIdLen = DRM_KEY_ID_SIZE;
+    uint8_t keyId[] = {
+        0xd4, 0xb2, 0x01, 0xe4, 0x61, 0xc8, 0x98, 0x96,
+        0xcf, 0x05, 0x22, 0x39, 0x8d, 0x09, 0xe6, 0x28};
+    uint32_t ivLen = DRM_KEY_IV_SIZE;
+    uint8_t iv[] = {
+        0xbf, 0x77, 0xed, 0x51, 0x81, 0xde, 0x36, 0x3e,
+        0x52, 0xf7, 0x20, 0x4f, 0x72, 0x14, 0xa3, 0x95};
+    uint32_t encryptedBlockCount = 0;
+    uint32_t skippedBlockCount = 0;
+    uint32_t firstEncryptedOffset = 0;
+    uint32_t subsampleCount = 1;
+    DrmSubsample subsamples[1] = { {0x10, 0x16} };
+    OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
+    if (cencInfo == nullptr) {
+        // Exception handling.
+    }
+    OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
+    if (errNo != AV_ERR_OK) {
+        // Exception handling.
+    }
+    errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
+    if (errNo != AV_ERR_OK) {
+        // Exception handling.
+    }
+    errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
+        subsampleCount, subsamples);
+    if (errNo != AV_ERR_OK) {
+        // Exception handling.
+    }
+    errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
+    if (errNo != AV_ERR_OK) {
+        // Exception handling.
+    }
+    errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
+    if (errNo != AV_ERR_OK) {
+        // Exception handling.
+    }
+    errNo = OH_AVCencInfo_Destroy(cencInfo);
+    if (errNo != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 12. Call **OH_VideoDecoder_PushInputBuffer()** to push the stream to the input buffer for decoding.
 
-     In the code snippet below, the following variables are used:
+    In the code snippet below, the following variables are used:
 
-     - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
-     - **index**: index of the data queue, which is passed in by the callback function **OnNeedInputBuffer**.
-     - **size**, **offset**, and **pts**: size, offset, and timestamp. For details about how to obtain the information, see [Audio and Video Demuxing](./audio-video-demuxer.md).
-     - **flags**: type of the buffer flag. For details, see [OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags).
+    - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+    - **index**: index of the data queue, which is passed in by the callback function **OnNeedInputBuffer**.
+    - **size**, **offset**, and **pts**: size, offset, and timestamp. For details about how to obtain the information, see [Audio and Video Demuxing](./audio-video-demuxer.md).
+    - **flags**: type of the buffer flag. For details, see [OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags).
 
-     ```c++
-     // Configure the size, offset, and timestamp of the frame data.
-     OH_AVCodecBufferAttr info;
-     info.size = size;
-     info.offset = offset;
-     info.pts = pts;
-     info.flags = flags;
-     // Write the information to the buffer.
-     int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Send the data to the input buffer for decoding. index is the index of the buffer.
-     ret = OH_VideoDecoder_PushInputBuffer(videoDec, index);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    // Configure the size, offset, and timestamp of the frame data.
+    OH_AVCodecBufferAttr info;
+    info.size = size;
+    info.offset = offset;
+    info.pts = pts;
+    info.flags = flags;
+    // Write the information to the buffer.
+    int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Send the data to the input buffer for decoding. index is the index of the buffer.
+    ret = OH_VideoDecoder_PushInputBuffer(videoDec, index);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
-13. Call **OH_VideoDecoder_RenderOutputBuffer()** to render the data and free the output buffer, or call **OH_VideoDecoder_FreeOutputBuffer()** to directly free the output buffer.
+13. Call **OH_VideoDecoder_RenderOutputBuffer()** or **OH_VideoDecoder_RenderOutputBufferAtTime()** to render the data and free the output buffer, or call **OH_VideoDecoder_FreeOutputBuffer()** to directly free the output buffer.
 
-     In the code snippet below, the following variables are used:
+    In the code snippet below, the following variables are used:
 
-     - **index**: index of the data queue, which is passed in by the callback function **OnNewOutputBuffer**.
-     - **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+    - **index**: index of the data queue, which is passed in by the callback function **OnNewOutputBuffer**.
+    - **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
 
-     ```c++
-     // Obtain the decoded information.
-     OH_AVCodecBufferAttr info;
-     int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // The value is determined by the caller.
-     bool isRender;
-     if (isRender) {
-         // Render the data and free the output buffer. index is the index of the buffer.
-         ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
-     } else {
-         // Free the output buffer.
-         ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
-     }
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    Add the header files.
+
+    ```c++
+    #include <chrono>
+    ```
+
+    ```c++
+    // Obtain the decoded information.
+    OH_AVCodecBufferAttr info;
+    int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // The value is determined by the caller.
+    bool isRender;
+    bool isNeedRenderAtTime;
+    if (isRender) {
+        // Render the data and free the output buffer. index is the index of the buffer.
+        if (isNeedRenderAtTime){
+            // Obtain the system absolute time, and call renderTimestamp to display the time based on service requirements.
+            int64_t renderTimestamp =
+                chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+            ret = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, index, renderTimestamp);
+        } else {
+           ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        }
+
+    } else {
+        // Free the output buffer.
+        ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
+    }
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 14. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
 
-     After **OH_VideoDecoder_Flush()** is called, the decoder remains in the Running state, but the current queue is cleared and the buffer storing the decoded data is freed.
+    After **OH_VideoDecoder_Flush()** is called, the decoder remains in the Running state, but the current queue is cleared and the buffer storing the decoded data is freed.
 
-     To continue decoding, you must call **OH_VideoDecoder_Start()** again.
+    To continue decoding, you must call **OH_VideoDecoder_Start()** again.
 
-     ```c++
-     // Refresh the decoder.
-     int32_t ret = OH_VideoDecoder_Flush(videoDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Start decoding again.
-     ret = OH_VideoDecoder_Start(videoDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
-     > **NOTE**
-     >
-     > After **flush()** is called, the XPS must be transferred again in the **start()** call.
-     >
-     > Example of XPS retransfer:
+    ```c++
+    // Refresh the decoder.
+    int32_t ret = OH_VideoDecoder_Flush(videoDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Start decoding again.
+    ret = OH_VideoDecoder_Start(videoDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
+    > **NOTE**
+    >
+    > After **flush()** is called, the XPS must be transferred again in the **start()** call.
+    >
+    Example of XPS retransfer:
 
-     ```c++
-     // Configure the frame XPS information.
-     OH_AVCodecBufferAttr info;
-     info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
-     // Write the information to the buffer.
-     int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Push the frame data to the decoder. index is the index of the corresponding queue.
-     ret = OH_VideoDecoder_PushInputBuffer(videoDec, index);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    // Configure the frame XPS information.
+    OH_AVCodecBufferAttr info;
+    info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
+    // Write the information to the buffer.
+    int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Push the frame data to the decoder. index is the index of the corresponding queue.
+    ret = OH_VideoDecoder_PushInputBuffer(videoDec, index);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 15. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
 
-     After **OH_VideoDecoder_Reset()** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_SetSurface()**.
+    After **OH_VideoDecoder_Reset()** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_SetSurface()**.
 
-     ```c++
-     // Reset the decoder.
-     int32_t ret = OH_VideoDecoder_Reset(videoDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Reconfigure the decoder.
-     ret = OH_VideoDecoder_Configure(videoDec, format);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Reconfigure the surface in surface mode. This is not required in buffer mode.
-     ret = OH_VideoDecoder_SetSurface(videoDec, window);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    // Reset the decoder.
+    int32_t ret = OH_VideoDecoder_Reset(videoDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Reconfigure the decoder.
+    ret = OH_VideoDecoder_Configure(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Reconfigure the surface in surface mode. This is not required in buffer mode.
+    ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 16. (Optional) Call **OH_VideoDecoder_Stop()** to stop the decoder.
 
-     ```c++
-     // Stop the decoder.
-     int32_t ret = OH_VideoDecoder_Stop(videoDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    // Stop the decoder.
+    int32_t ret = OH_VideoDecoder_Stop(videoDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 17. Call **OH_VideoDecoder_Destroy()** to destroy the decoder instance and release resources.
 
-     > **NOTE**
-     >
-     > This API cannot be called in the callback function.
-     > After the call, you must set a null pointer to the decoder to prevent program errors caused by wild pointers.
-     >
+    > **NOTE**
+    >
+    > This API cannot be called in the callback function.
+    > After the call, you must set a null pointer to the decoder to prevent program errors caused by wild pointers.
+    >
 
-     ```c++
-     // Call OH_VideoDecoder_Destroy to destroy the decoder.
-     int32_t ret = OH_VideoDecoder_Destroy(videoDec);
-     videoDec = nullptr;
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    // Call OH_VideoDecoder_Destroy to destroy the decoder.
+    int32_t ret = OH_VideoDecoder_Destroy(videoDec);
+    videoDec = nullptr;
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 ### Buffer Output
 
@@ -881,6 +898,5 @@ int32_t ret = OH_VideoDecoder_Prepare(videoDec);
     ```
 
     When processing buffer data (before releasing data) during hardware decoding, the output callback AVBuffer receives the image data after width and height alignment. Generally, copy the image width, height, stride, and pixel format to ensure correct processing of the decoded data. For details, see step 3 in [Buffer Output](#buffer-output).
-    
 
 The subsequent processes (including refreshing, resetting, stopping, and destroying the decoder) are basically the same as those in surface mode. For details, see steps 14-17 in [Surface Output](#surface-output).
