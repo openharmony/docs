@@ -681,6 +681,11 @@ static initializeWebEngine(): void
 
 在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
 
+> **说明：**
+>
+> - initializeWebEngine不支持在异步线程中调用，否则会造成崩溃。
+> - initializeWebEngine全局生效，在整个APP生命周期中调用一次即可，不需要重复调用。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
@@ -901,7 +906,7 @@ struct WebComponent {
 }
 ```
 
-2.resources协议。
+2.resources协议，适用Webview加载带有"#"路由的链接。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
@@ -965,7 +970,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 > 
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
-> 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
+> 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
 
 **错误码：**
 
@@ -4841,12 +4846,15 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-设置自定义用户代理，会覆盖系统的用户代理，推荐设置的位置是onControllerAttached回调事件，不建议放在onLoadIntercept。
+设置自定义用户代理，会覆盖系统的用户代理。
+
+当Web组件src设置了url时，建议在onControllerAttached回调事件中设置UserAgent，设置方式请参考示例。不建议将UserAgent设置在onLoadIntercept回调事件中，会概率性出现设置失败。
+
+当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 
 > **说明：**
 >
->setCustomUserAgent设置后与web页面的跳转时序是web跳转后才设置UserAgent，这就导致页面跳转了但新agent关联的页面堆栈数仍只有一个,webviewController.accessBackward()总是返回false。
->若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的web组件的src可以设置一个空字符串。
+>当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
