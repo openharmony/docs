@@ -15,9 +15,10 @@ Device operation failed.
 当调用vibrator模块startVibration接口时，若hdi服务异常或者设备被占用，会报此错误码。
 
 **可能原因**
-
+<!--RP1-->
 1. 访问hdi服务状态异常。
 2. 当前设备被占用。
+<!--RP1End-->
 
 **处理步骤**
 
