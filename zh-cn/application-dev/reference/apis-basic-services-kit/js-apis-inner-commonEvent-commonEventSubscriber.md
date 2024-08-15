@@ -22,7 +22,7 @@ let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
 
 // 创建订阅者回调
 function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber success");
@@ -55,7 +55,7 @@ getCode(callback: AsyncCallback\<number>): void
 ```ts
 //获取有序公共事件代码回调
 function getCodeCallback(err: BusinessError, code:number) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getCode " + JSON.stringify(code));
@@ -135,7 +135,7 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 ```ts
 //设置有序公共事件的代码回调
 function setCodeCallback(err: BusinessError) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setCode success");
@@ -233,7 +233,7 @@ getData(callback: AsyncCallback\<string>): void
 ```ts
 //获取有序公共事件代码数据回调
 function getDataCallback(err: BusinessError, data:string) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getData " + JSON.stringify(data));
@@ -313,7 +313,7 @@ setData(data: string, callback: AsyncCallback\<void>): void
 ```ts
 //设置有序公共事件的结果数据回调
 function setDataCallback(err: BusinessError) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`setData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setData success");
@@ -412,7 +412,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 ```ts
 //设置有序公共事件的代码和数据回调
 function setCodeAndDataCallback(err: BusinessError) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setCodeAndData success");
@@ -512,7 +512,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 ```ts
 //获取当前公共事件是否为有序事件的回调
 function isOrderedCommonEventCallback(err: BusinessError, isOrdered:boolean) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
@@ -591,7 +591,7 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 ```ts
 //获取当前公共事件是否为粘性事件的回调
 function isStickyCommonEventCallback(err: BusinessError, isSticky:boolean) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
@@ -653,7 +653,7 @@ console.info("isStickyCommonEventSync " + JSON.stringify(isSticky));
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
 
-取消当前的有序公共事件，取消后，有序公共事件不再向下一个订阅者传递。使用callback异步回调。
+该接口与[finishCommonEvent](#finishcommonevent9)配合使用，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -666,22 +666,30 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-//取消当前有序公共事件的回调
+//中止当前的有序公共事件的回调
 function abortCommonEventCallback(err: BusinessError) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
 		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("abortCommonEvent success");
     }
 }
+function finishCommonEventCallback(err: BusinessError) {
+  if (err != null) {
+    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("finishCommonEvent success");
+  }
+}
 subscriber.abortCommonEvent(abortCommonEventCallback);
+subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
 
 ## abortCommonEvent
 
 abortCommonEvent(): Promise\<void>
 
-取消当前的有序公共事件，取消后，公共事件不再向下一个订阅者传递。使用Promise异步回调。
+该接口与[finishCommonEvent](#finishcommonevent9)配合使用，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -699,13 +707,18 @@ subscriber.abortCommonEvent().then(() => {
 }).catch((err: BusinessError) => {
     console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
+subscriber.finishCommonEvent().then(() => {
+    console.info("finishCommonEvent success");
+}).catch((err: BusinessError) => {
+    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+});
 ```
 
 ## abortCommonEventSync<sup>10+</sup>
 
 abortCommonEventSync(): void
 
-取消当前的有序公共事件，取消后，公共事件不再向下一个订阅者传递。
+该接口与[finishCommonEvent](#finishcommonevent9)配合使用，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -713,13 +726,18 @@ abortCommonEventSync(): void
 
 ```ts
 subscriber.abortCommonEventSync();
+subscriber.finishCommonEvent().then(() => {
+    console.info("finishCommonEvent success");
+}).catch((err: BusinessError) => {
+    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+});
 ```
 
 ## clearAbortCommonEvent
 
 clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
-清除当前有序公共事件。使用callback异步回调。
+该接口与[finishCommonEvent](#finishcommonevent9)配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续向下一个订阅者传递。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -732,22 +750,30 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-//清除当前公共事件取消状态的回调
+//取消当前有序公共事件的中止状态的回调
 function clearAbortCommonEventCallback(err: BusinessError) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("clearAbortCommonEvent success");
     }
 }
+function finishCommonEventCallback(err: BusinessError) {
+  if (err != null) {
+    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("finishCommonEvent success");
+  }
+}
 subscriber.clearAbortCommonEvent(clearAbortCommonEventCallback);
+subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
 
 ## clearAbortCommonEvent
 
 clearAbortCommonEvent(): Promise\<void>
 
-清除当前有序公共事件。使用Promise异步回调。
+该接口与[finishCommonEvent](#finishcommonevent9)配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续向下一个订阅者传递。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -765,13 +791,18 @@ subscriber.clearAbortCommonEvent().then(() => {
 }).catch((err: BusinessError) => {
     console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
+subscriber.finishCommonEvent().then(() => {
+    console.info("finishCommonEvent success");
+}).catch((err: BusinessError) => {
+    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+});
 ```
 
 ## clearAbortCommonEventSync<sup>10+</sup>
 
 clearAbortCommonEventSync(): void
 
-清除当前有序公共事件。
+该接口与[finishCommonEvent](#finishcommonevent9)配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续向下一个订阅者传递。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -779,13 +810,18 @@ clearAbortCommonEventSync(): void
 
 ```ts
 subscriber.clearAbortCommonEventSync();
+subscriber.finishCommonEvent().then(() => {
+    console.info("finishCommonEvent success");
+}).catch((err: BusinessError) => {
+    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+});
 ```
 
 ## getAbortCommonEvent
 
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
-获取当前有序公共事件是否取消的状态。使用callback异步回调。
+获取当前有序公共事件是否处于中止状态。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -798,9 +834,9 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
-//获取当前有序公共事件是否取消的回调
+//获取当前有序公共事件是否处于中止状态回调
 function getAbortCommonEventCallback(err: BusinessError, abortEvent:boolean) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getAbortCommonEvent " + JSON.stringify(abortEvent));
@@ -813,7 +849,7 @@ subscriber.getAbortCommonEvent(getAbortCommonEventCallback);
 
 getAbortCommonEvent(): Promise\<boolean>
 
-获取当前有序公共事件是否取消的状态。使用Promise异步回调。
+获取当前有序公共事件是否处于中止状态。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -837,7 +873,7 @@ subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
 
 getAbortCommonEventSync(): boolean
 
-获取当前有序公共事件是否取消的状态。
+获取当前有序公共事件是否处于中止状态。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -875,7 +911,7 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 ```ts
 //获取订阅者信息回调
 function getSubscribeInfoCallback(err: BusinessError, subscribeInfo:commonEventManager.CommonEventSubscribeInfo) {
-    if (err.code !== undefined && err.code != null) {
+    if (err != null) {
         console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSubscribeInfo " + JSON.stringify(subscribeInfo));
@@ -937,7 +973,7 @@ console.info("getSubscribeInfoSync " + JSON.stringify(subscribeInfo));
 
 finishCommonEvent(callback: AsyncCallback\<void>): void
 
-结束当前有序公共事件。使用callback异步回调。
+用于订阅者结束对当前有序公共事件的处理。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -950,9 +986,9 @@ finishCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-//结束当前有序公共事件的回调
+//结束订阅者对当前有序公共事件处理的回调
 function finishCommonEventCallback(err: BusinessError) {
-  if (err.code !== undefined && err.code != null) {
+  if (err != null) {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
   } else {
     console.info("finishCommonEvent success");
@@ -965,7 +1001,7 @@ subscriber.finishCommonEvent(finishCommonEventCallback);
 
 finishCommonEvent(): Promise\<void>
 
-结束当前有序公共事件。使用Promise异步回调。
+用于订阅者结束对当前有序公共事件的处理。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 

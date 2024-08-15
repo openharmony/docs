@@ -1,4 +1,4 @@
-# Encryption and Decryption with an AES Symmetric Key (ECB Mode)
+# Encryption and Decryption with an AES Symmetric Key (ECB Mode) (ArkTS)
 
 
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
@@ -15,15 +15,14 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 3. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption), **key** to **SymKey** (the key for encryption), and **params** to **IvParamsSpec** corresponding to the ECB mode.
 
-4. If the data to be encrypted is short, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to obtain the encrypted data.
-
+4. If a small amount of data is to be encrypted, use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to generate the ciphertext.
 
 **Decryption**
 
 
 1. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption), **key** to **SymKey** (the key for decryption), and **params** to **IvParamsSpec** corresponding to the ECB mode.
 
-2. If the data to be decrypted is short, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to obtain the decrypted data.
+2. If a small amount of data is to be decrypted, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to generate the plaintext.
 
 
 - Example (using asynchronous APIs):

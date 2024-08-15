@@ -233,3 +233,29 @@ struct Index {
   }
 }
 ```
+
+状态管理V2装饰器会为装饰的变量生成getter和setter方法，同时为原有变量名添加"\_\_ob\_"的前缀。出于性能考虑，getTarget接口不会对V2装饰器生成的前缀进行处理，因此向getTarget接口传入\@ObservedV2装饰的类对象实例时，返回的对象依旧为对象本身，且被\@Trace装饰的属性名仍有"\_\_ob\_"前缀。
+
+该前缀会导致某些NAPI接口无法按预期处理对象的属性，以下面的对象为例，目前已知影响的NAPI接口如下：
+
+```ts
+// ObservedV2装饰的类
+@ObservedV2
+class Info {
+  @Trace name: string = "Tom";
+  @Trace age: number = 24;
+}
+let info: Info = new Info(); // NAPI接口传入info实例
+```
+
+| 影响接口名              | 影响结果                                       |
+| ----------------------- | ---------------------------------------------- |
+| napi_get_property_names | 返回值为"\_\_ob\_name"，"\_\_ob\_age"。        |
+| napi_set_property       | 使用"name"，"\_\_ob\_name"均能赋值成功。       |
+| napi_get_property       | 使用"name"，"\_\_ob\_name"均能获取到值。       |
+| napi_has_property       | 使用"name"，"\_\_ob\_name"均返回true。         |
+| napi_delete_property    | 删除属性时需要加上"\_\_ob\_"前缀才能删除成功。 |
+| napi_has_own_property   | 使用"name"，"\_\_ob\_name"均返回true。         |
+| napi_set_named_property | 使用"name"，"\_\_ob\_name"均能赋值成功。       |
+| napi_get_named_property | 使用"name"，"\_\_ob\_name"均能获取到值。       |
+| napi_has_named_property | 使用"name"，"\_\_ob\_name"均返回true。         |

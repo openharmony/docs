@@ -1,4 +1,4 @@
-# hiTraceChain Guidelines
+# Using HiTraceChain (ArkTS/JS)
 
 ## Overview
 
@@ -26,10 +26,8 @@ The following example walks you through on how to implement distributed call cha
 1. Create an ets application project. In the **entry/src/main/ets/pages/index.ets** file, add a button to trigger system event logging. The sample code is as follows:
 
     ```ts
-    import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
-    import hilog from '@ohos.hilog'
-    import hiTraceChain from '@ohos.hiTraceChain'
-    import { BusinessError } from '@ohos.base'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hiAppEvent, hilog, hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
     @Entry
     @Component

@@ -895,9 +895,17 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 
 ## GcStats<sup>12+</sup>
 
-用于存储GC统计信息的键值对类型`Record<string,number>`。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+type GcStats = Record&lt;string, number&gt;
+
+用于存储GC统计信息的键值对。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 类型      | 说明                          |
+| -----------| ---------------------------- |
+| Record&lt;string, number&gt;     | 表示值类型为Record键值对。     |
+
+其中GcStats中可包含的键值信息如下：
 
 | 参数名                     | 类型   | 说明                      |
 |-------------------------| ------ |------------------------- |
@@ -906,3 +914,25 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 | ark.gc.gc-bytes-allocated | number | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
 | ark.gc.gc-bytes-freed   | number | 当前线程GC成功回收的内存，以B为单位。|
 | ark.gc.fullgc-longtime-count | number |  当前线程超长fullGC次数。 |
+
+## hidebug.isDebugState<sup>13+</sup>
+
+isDebugState(): boolean
+
+获取应用进程被调试状态，如果应用进程的ark层或者native层处于被调试状态，则返回true，否则返回false。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型  | 说明                      |
+| ------ | -------------------------- |
+| boolean | 应用进程被调试状态|
+
+**示例**
+
+```ts
+import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
+
+hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
+```

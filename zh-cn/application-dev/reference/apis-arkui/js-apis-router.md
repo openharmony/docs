@@ -1,6 +1,8 @@
-# @ohos.router (页面路由)
+# @ohos.router (页面路由)(不推荐)
 
 本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、同应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
+
+推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)作为应用路由框架。
 
 > **说明**
 >
@@ -11,8 +13,6 @@
 > - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
->
-> - 为了实现更好的转场效果，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)和[模态转场](../../ui/arkts-modal-transition.md)。
 >
 > - 如果使用传入callback形式的pushUrl，pushNamedRoute接口，则在callback中使用getLength等接口获取的栈信息是中间态的栈信息，可能和最终状态不一致。
 
@@ -413,7 +413,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100001    | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
@@ -884,7 +884,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100001    | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
 **示例：**

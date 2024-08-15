@@ -413,6 +413,10 @@ getFrameNodeById(id: string): FrameNode | null
 | ---------------------------------------- | ------------- |
 | [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
 
+> **说明：**
+>
+> getFrameNodeById通过遍历节点树查询接口，性能较差。
+
 **示例：**
 
 ```ts
@@ -1664,7 +1668,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120002 | The bindSheetContent already exists. |
-| 120004 | The targetld does not exist. |
+| 120004 | The targetId does not exist. |
 | 120005 | The node of targetId is not in the component tree. |
 | 120006 | The node of targetId is not a child of the page node or NavDestination node. |
 
@@ -1759,7 +1763,7 @@ struct UIContextBindSheet {
 
 ### updateBindSheet<sup>12+</sup>
 
-updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOptions: SheetOptions，partialUpdate?: boolean ): Promise&lt;void&gt;
+updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOptions: SheetOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
 更新bindSheetContent对应的半模态页面的样式，使用Promise异步回调。
 
@@ -3019,7 +3023,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。 |
 | callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。  |
 
 **示例：**
@@ -3732,7 +3736,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -3787,7 +3791,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if can not get the delegate, only throw in standard system. |
+| 100001 | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
@@ -4235,7 +4239,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if can not get the delegate, only throw in standard system. |
+| 100001 | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.       |
 
 **示例：**
@@ -4655,11 +4659,11 @@ try {
 };
 ```
 
-### openToast<sup>12+</sup>
+### openToast<sup>13+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4729,11 +4733,11 @@ struct toastExample {
 }
 ```
 
-### closeToast<sup>12+</sup>
+### closeToast<sup>13+</sup>
 
 closeToast(toastId: number): void
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4754,7 +4758,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-示例请看[openToaset12](#opentoast12)的示例。
+示例请看[openToaset13](#opentoast13)的示例。
 
 ### showDialog
 
@@ -6271,11 +6275,11 @@ requestFocus(key: string): void
 
 以下错误码的详细介绍请参见[焦点错误码](errorcode-focus.md)。
 
-| 错误码ID  | 错误信息                                     |
-| ------ | ---------------------------------------- |
-| 150001 | This component is not focusable. |
-| 150002 | This component has an unfocusable ancestor.      |
-| 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
+| 错误码ID | 错误信息                                        |
+| -------- | ----------------------------------------------- |
+| 150001   | the component cannot be focused.                |
+| 150002   | This component has an unfocusable ancestor.     |
+| 150003   | the component is not on tree or does not exist. |
 
 **示例：**
 
@@ -6614,9 +6618,18 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
-**示例：**
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
+
+**示例：** 
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -6670,7 +6683,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
@@ -6678,7 +6691,16 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
-**示例：**
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
+
+**示例：** 
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -6738,9 +6760,18 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否    | 截图相关的自定义参数。 |
 
-**示例：**
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+
+**示例：** 
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -6826,7 +6857,16 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
-**示例：**
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+
+**示例：** 
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -6876,6 +6916,77 @@ struct ComponentSnapshotExample {
         .width(200)
         .border({ color: Color.Black, width: 2 })
     }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```
+
+### getSync<sup>12+</sup>
+
+getSync(id: string, options?: SnapshotOptions): image.PixelMap
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| options       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ----------------------------- | -------- |
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
+| 160002 | Timeout. |
+
+**示例：**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          try {
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
+            this.pixmap = pixelmap
+          } catch (error) {
+            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```

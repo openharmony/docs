@@ -78,7 +78,7 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 | 文字          | 表示设备使用的文字类型，由1个大写字母（首字母）和3个小写字母组成。例如：Hans表示简体中文，Hant表示繁体中文。<br/>详细取值范围，请查阅[**ISO&nbsp;15924**](https://www.iso.org/standard/81905.html)（ISO制定的文字编码标准）。 |
 | 国家或地区       | 表示用户所在的国家或地区，由2~3个大写字母或者3个数字组成。例如：CN表示中国，GB表示英国。<br/>详细取值范围，请查阅[**ISO&nbsp;3166-1**](https://www.iso.org/iso-3166-country-codes.html)（ISO制定的国家和地区编码标准）。 |
 | 横竖屏         | 表示设备的屏幕方向，取值如下：<br/>-&nbsp;vertical：竖屏<br/>-&nbsp;horizontal：横屏 |
-| 设备类型        | 表示设备的类型，取值如下：<br/>-&nbsp;car：车机<br/>-&nbsp;tablet：平板<br/>-&nbsp;tv：智慧屏<br/>-&nbsp;wearable：智能穿戴 |
+| 设备类型        | <!--RP1-->表示设备的类型，取值如下：<br/>-&nbsp;car：车机<br/>-&nbsp;tablet：平板<br/>-&nbsp;tv：智慧屏<br/>-&nbsp;wearable：智能穿戴<!--RP1End--> |
 | 颜色模式        | 表示设备的颜色模式，取值如下：<br/>-&nbsp;dark：深色模式<br/>-&nbsp;light：浅色模式 |
 | 屏幕密度        | 表示设备的屏幕密度（单位为dpi），取值如下：<br/>-&nbsp;sdpi：表示小规模的屏幕密度（Small-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(0,&nbsp;120]的设备。<br/>-&nbsp;mdpi：表示中规模的屏幕密度（Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(120,&nbsp;160]的设备。<br/>-&nbsp;ldpi：表示大规模的屏幕密度（Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(160,&nbsp;240]的设备。<br/>-&nbsp;xldpi：表示特大规模的屏幕密度（Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(240,&nbsp;320]的设备。<br/>-&nbsp;xxldpi：表示超大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(320,&nbsp;480]的设备。<br/>-&nbsp;xxxldpi：表示超特大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(480,&nbsp;640]的设备。 |
 
@@ -230,7 +230,9 @@ plural.json文件的内容如下：
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
 ## 资源可翻译特性
+
 ### 功能介绍
+
 资源需要翻译时，可使用attr属性标记字符串翻译范围和翻译状态。attr属性不参与资源编译，只标记字符串是否翻译。
 
 未配置attr属性，默认需要翻译。
@@ -296,19 +298,19 @@ string资源配置attr属性示例如下：
 
   ```ts
     Text('Hello')
-    .fontColor($r('sys.color.ohos_id_color_emphasize'))
-    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
-    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+    .fontColor($r('app.color.ohos_id_color_emphasize'))
+    .fontSize($r('app.float.ohos_id_text_size_headline1'))
+    .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
+    .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
 
-    Image($r('sys.media.ohos_app_icon'))
+    Image($r('app.media.ohos_app_icon'))
     .border({
-      color: $r('sys.color.ohos_id_color_palette_aux1'),
-      radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+      color: $r('app.color.ohos_id_color_palette_aux1'),
+      radius: $r('app.float.ohos_id_corner_radius_button'), width: 2
     })
     .margin({
-      top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
-      bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+      top: $r('app.float.ohos_id_elements_margin_horizontal_m'),
+      bottom: $r('app.float.ohos_id_elements_margin_horizontal_l')
     })
     .height(200)
     .width(300)

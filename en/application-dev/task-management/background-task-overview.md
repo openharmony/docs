@@ -30,7 +30,8 @@ You can select a proper background task type to ensure that your application can
 
 - **Agent-powered reminders**: After an application is switched to the background or an application process is terminated, the system sends a reminder on behalf of the application. You can create scheduled reminders for countdown timers, calendar events, and alarm clocks.
 
-<!--Del-->For system applications that provide basic capabilities, the system provides an API for [requesting energy resources](efficiency-resource-request.md). After an application calls the API, the system exempts the application from management.<!--DelEnd-->
+<!--Del-->
+For system applications that provide basic capabilities, the system provides an API for [requesting energy resources](efficiency-resource-request.md). After an application calls the API, the system exempts the application from management.<!--DelEnd-->
 
 **Figure 1** Selecting a type of background task
 

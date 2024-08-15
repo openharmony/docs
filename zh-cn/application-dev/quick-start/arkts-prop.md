@@ -311,7 +311,7 @@ struct Index {
           (item: number) => {
             Child({ value: item })
           },
-          (item: string) => item.toString()
+          (item: number) => item.toString()
         )
         Text('replace entire arr')
           .fontSize(50)

@@ -465,6 +465,8 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -472,7 +474,7 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 | 参数名                | 类型                                        | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。                             |
+| options<sup>12+</sup> | [KeyboardOptions](ts-basic-components-richeditor.md#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。                             |
 
 ### enableAutoFill<sup>11+</sup>
 
@@ -512,7 +514,7 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 设置右侧清除按钮样式。不支持内联模式。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -559,7 +561,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 | 参数名                | 类型                                                  | 必填 | 说明             |
 | --------------------- | ----------------------------------------------------- | ---- | ---------------- |
 | value                 | boolean                                               | 是   | 是否显示计数器。 |
-| options<sup>11+</sup> | [InputCounterOptions](#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
+| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
 
 ### lineHeight<sup>12+</sup>
 
@@ -591,7 +593,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| value  | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -837,18 +839,6 @@ enablePreviewText(enable: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
 
-## TextDecorationOptions<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线类型。 |
-| color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
-
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -863,7 +853,7 @@ enablePreviewText(enable: boolean)
 | USER_NAME<sup>11+</sup>       | 用户名输入模式。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NEW_PASSWORD<sup>11+</sup>    | 新密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | URL<sup>12+</sup>  | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
@@ -920,29 +910,6 @@ enablePreviewText(enable: boolean)
 | onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
 | offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
-## InsertValue<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| insertOffset  | number | 是   | 插入的值的位置信息。 |
-| insertValue  | string | 是   | 插入的值。 |
-
-## DeleteValue<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deleteOffset  | number | 是   | 删除的值的位置信息。 |
-| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | 是   | 删除值的方向。 |
-| deleteValue  | string | 是   | 删除的值。 |
-
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -969,11 +936,11 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| callback  | [EditableTextOnChangeCallback](ts-universal-attributes-text-style.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
+| callback  | [EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
 
 ### onSubmit
 
-onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void))
+onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void)
 
 按下输入法回车键触发该回调。
 
@@ -986,7 +953,7 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEve
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
-| event<sup>11+</sup> | [SubmitEvent](ts-types.md#submitevent11)         | 是   | 提交事件。                                                   |
+| event<sup>11+</sup> | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
 
 ### onEditChanged<sup>(deprecated)</sup>
 
@@ -1052,7 +1019,7 @@ onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 | --------- | ------- | ---- | ---------------- |
 | value | string | 是   | 剪切的文本内容。 |
 
-### onPaste
+### onPaste<sup>8+</sup>
 
 onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
@@ -1073,7 +1040,7 @@ onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&n
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-文本选择的位置发生变化时，触发该回调。
+文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1133,7 +1100,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -1149,7 +1116,7 @@ onDidInsert(callback: Callback\<InsertValue>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
 ### onWillDelete<sup>12+</sup>
 
@@ -1165,7 +1132,7 @@ onWillDelete(callback: Callback\<DeleteValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。<br/>在预上屏删除操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。<br/>在预上屏删除操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidDelete<sup>12+</sup>
 
@@ -1181,7 +1148,7 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
 ## TextInputController<sup>8+</sup>
 
@@ -1195,6 +1162,17 @@ TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#text
 ```
 controller: TextInputController = new TextInputController()
 ```
+
+### constructor<sup>8+</sup>
+
+constructor()
+
+TextInputController的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### caretPosition<sup>8+</sup>
 
 caretPosition(value:&nbsp;number): void
@@ -1226,7 +1204,7 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 | -------------- | ------ | ---- | ------------------------- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number | 是    | 文本选择区域结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
+| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -1246,41 +1224,6 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## CaretOffset<sup>11+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名   | 类型     | 描述             |
-| ----- | ------ | -------------- |
-| index | number | 光标所在位置的索引值。    |
-| x     | number | 光标相对输入框的x坐标位值，单位px。 |
-| y     | number | 光标相对输入框的y坐标位值，单位px。 |
-
-## InputCounterOptions<sup>11+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名              | 类型    | 描述                                                         |
-| ------------------- | ------- | ------------------------------------------------------------ |
-| thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
-| highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
-
-## SelectionOptions<sup>12+</sup>
-
-setTextSelection选中文字时的配置。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称       | 类型                                            | 必填 | 说明             |
-| ---------- | ----------------------------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
-
 ## UnderlineColor<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1294,15 +1237,18 @@ setTextSelection选中文字时的配置。
 | error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
 | disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
-## KeyboardOptions<sup>12+</sup>
+## SubmitEvent<sup>11+</sup>对象说明
 
-设置自定义键盘是否支持避让功能。
+定义用户提交事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型              | 必填   | 描述                               |
-| --------------- | ---------------  |---- | ------------------------------------  |
-| supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
+| 名称              | 类型       | 必填 | 描述                                               |
+| ----------------- | ---------- | ---- | -------------------------------------------------- |
+| keepEditableState | () => void | 是   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
+| text              | string     | 是   | 输入框文本内容。                                   |
 
 ## 示例
 

@@ -34,7 +34,7 @@ Emitter的开发步骤如下：
    // 订阅eventId为1的事件
    emitter.on(event, callback);
    promptAction.showToast({
-     message: $r('app.string.emitter_subscribe_success_toast')
+     message: JSON.stringify('emitter subscribe success')
    });
    ```
 

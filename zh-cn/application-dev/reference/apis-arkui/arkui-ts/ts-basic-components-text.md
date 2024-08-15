@@ -423,7 +423,11 @@ fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.
 
 当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体。
 
-当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本功能。
+触摸点击和鼠标右键点击实体，会根据实体类型弹出对应的实体操作菜单，鼠标左键点击实体会直接响应菜单的第一个选项。
+
+当overflow设置为TextOverflow.MARQUEE时，该功能不会生效。
+
+当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但没有选择文本功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -457,7 +461,7 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [TextDataDetectorConfig](#textdatadetectorconfig11对象说明) | 是   | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} |
+| config | [TextDataDetectorConfig](ts-text-common.md#textdatadetectorconfig11对象说明) | 是   | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} |
 
 ### bindSelectionMenu<sup>11+</sup>
 
@@ -478,9 +482,9 @@ bindSelectionMenu长按响应时长为600ms，bindContextMenu长按响应时长�
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| spantype     | [TextSpanType](ts-appendix-enums.md#textspantype11)          | 是   | 选择菜单的类型。<br/>默认值：TextSpanType.TEXT               |
+| spanType     | [TextSpanType](#textspantype11枚举说明)          | 是   | 选择菜单的类型。<br/>默认值：TextSpanType.TEXT               |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 选择菜单的内容。                                             |
-| responseType | [TextResponseType](ts-appendix-enums.md#textresponsetype11)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
+| responseType | [TextResponseType](#textresponsetype11枚举说明)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
 | options      | [SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11) | 否   | 选择菜单的选项。                                             |
 
 ### fontFeature<sup>12+</sup>
@@ -535,7 +539,7 @@ lineSpacing(value: LengthMetrics)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
 
 ### privacySensitive<sup>12+</sup>
 
@@ -573,7 +577,7 @@ lineBreakStrategy(strategy: LineBreakStrategy)
 
 ### textSelectable<sup>12+</sup>
 
-textSelectable(value: TextSelectableMode)
+textSelectable(mode: TextSelectableMode)
 
 设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。
 
@@ -585,7 +589,7 @@ textSelectable(value: TextSelectableMode)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
+| mode  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
 
 ### editMenuOptions<sup>12+</sup>
 
@@ -635,14 +639,49 @@ maxFontScale(scale: number | Resource)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
-## TextDataDetectorConfig<sup>11+</sup>对象说明
+### halfLeading<sup>12+</sup>
+
+halfLeading(halfLeading: boolean)
+
+设置文本是否将行间距平分至行的顶部与底部。
+
+组件侧设置halfLeading优先级高于module.json5配置文件中的halfLeading配置项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 类型  | 必填 | 说明  |
-| ------ | -------- | ---- | ------------------------------------------- |
-| types   | [TextDataDetectorType[]](ts-appendix-enums.md#textdatadetectortype11) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
-| onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+
+## TextSpanType<sup>11+</sup>枚举说明
+
+[Span](ts-basic-components-span.md)类型信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 说明 |
+| -------- | -------- |
+| TEXT | Span为文字类型。 |
+| IMAGE | Span为图像类型。|
+| MIXED | Span为图文混合类型。|
+
+## TextResponseType<sup>11+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
+| LONG_PRESS  | 通过长按触发菜单弹出。   |
+| SELECT | 通过鼠标选中触发菜单弹出。 |
 
 ## 事件
 
@@ -685,6 +724,10 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 Text初始化参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | controller | [TextController](#textcontroller11)  | 是 | 文本控制器。 |
@@ -694,6 +737,8 @@ Text初始化参数。
 Text组件的控制器。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 
@@ -709,6 +754,8 @@ closeSelectionMenu(): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### setStyledString<sup>12+</sup>
 
 setStyledString(value: StyledString): void
@@ -716,6 +763,8 @@ setStyledString(value: StyledString): void
 触发绑定或更新属性字符串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -730,6 +779,8 @@ getLayoutManager(): LayoutManager
 获取布局管理器对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -891,7 +942,7 @@ struct TextExample2 {
 
 ### 示例3
 
-textShadow，heightAdaptivePolicy，TextOverflow.MARQUEE使用示例：
+textShadow、heightAdaptivePolicy、TextOverflow.MARQUEE使用示例
 
 ```ts
 @Extend(Text)
@@ -910,7 +961,7 @@ function style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {
 @Component
 struct TextExample3 {
   build() {
-    Column({ space: 8 }) {
+    Column() {
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       // 设置文字阴影效果
       Text('textShadow')
@@ -1441,3 +1492,33 @@ struct TextExample11 {
 ```
 
 ![textEditMenuOptions](figures/textEditMenuOptions.gif)
+
+### 示例12
+
+halfLeading使用示例。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample12 {
+  build() {
+    Column({ space: 10 }) {
+      // 设置文本是否居中对齐
+      Text('halfLeading').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Text("This is the text with the halfLeading set.")
+        .lineHeight(60)
+        .halfLeading(true)
+        .borderWidth(1)
+        .width('80%')
+      Text("This is the text without the halfLeading set.")
+        .lineHeight(60)
+        .halfLeading(false)
+        .borderWidth(1)
+        .width('80%')
+    }
+  }
+}
+```
+
+![textHalfLeading](figures/textHalfLeading.PNG)

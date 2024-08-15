@@ -108,9 +108,8 @@ Menu中MenuItem全部设置margin后，左右边距不对称，变更后左右�
 struct Index {
   build() {
     Column() {
-      Text('click for menu')
+      Text('click for Menu')
         .fontSize(20)
-        .position({ x: 100, y: 270 })
         .margin({ top: 20 })
         .bindMenu(this.TestMenuItemMarginLeftAndRight)
     }
@@ -125,6 +124,7 @@ struct Index {
     }
     .borderWidth(2)
     .borderColor(Color.Red)
+    .width(200)
   }
 }
 ```
@@ -486,7 +486,7 @@ struct Index {
 
 1.RichEditor设置占位文本的接口placeholder，其占位文本样式属性PlaceHolderStyle为异常值"{}"时，组件未将占位文本样式属性设置为默认效果。
 
-2.当占位文本样式属性中各个属性为默认值undefined/null时，对应默认效果未生效。
+2.当占位文本样式属性中各个属性为默认值undefined时，对应默认效果未生效。
 
 占位文本样式属性：
 
@@ -551,11 +551,6 @@ struct Index {
         .onClick(() => {
           this.style = { fontColor: undefined };
         })
-      Button('change style.fontColor to null')
-        .fontSize(10)
-        .onClick(() => {
-          this.style = { fontColor: null };
-        })
       Button('change style.fontColor to normal value')
         .fontSize(10)
         .onClick(() => {
@@ -602,8 +597,6 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-默认行为变更，无需适配。
-
 ## cl.arkui.12 RichEditor收起键盘后，选中区状态变更
 
 **访问级别**
@@ -618,13 +611,17 @@ UX规格变更
 
 该变更为不兼容性变更。
 
-变更前：RichEditor收起键盘时，复位选中区。
+变更前：RichEditor非用户手动点击收起键盘按钮收起键盘时，触发组件失焦，关闭菜单，复位选中区。
 
-变更后：RichEditor收起键盘时，不复位选中区。
+![变更前](figures/richeditor_selection_change_before.gif)
+
+变更后：RichEditor非用户手动点击收起键盘按钮收起键盘时，仅小窗模式下触发组件失焦，其他场景不触发组件失焦，不关闭菜单，不复位选中区。
+
+![变更后](figures/richeditor_selection_change_after.gif)
 
 **起始API Level**
 
-不涉及API变更
+10
 
 **变更发生版本**
 
@@ -632,11 +629,11 @@ UX规格变更
 
 **变更的接口/组件**
 
-富文本组件。
+RichEditor组件。
 
 **适配指导**
 
-收起键盘时选中区状态变更，应用无需适配。
+非用户手动点击收起键盘按钮收起键盘时收起键盘时焦点状态变更，应用无需适配。
 
 ## cl.arkui.13 dragInteraction接口增加系统接口校验
 
@@ -808,3 +805,83 @@ UX规范变更
 **适配指导**
 
 按压显示效果变化，无需适配。
+
+## cl.arkui.18 Contextmenu组件hoverScale接口过渡动效默认行为变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格变更。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+1. 需长按800ms后，组件截图做600ms缩放动效，然后切换自定义预览图, 切换时使用弹簧动效。
+2. hoverScale与scale接口组合使用时，整个动效流程生效的缩放动效的参数为 hoverScale From -> scaleFrom -> scaleTo。
+3. hoverScale动效过程中不支持打断动效。
+4. hoverScale动效过程中，组件截图与预览图切换时，组件截图和预览图做相反的透明度动效。
+
+变更后：
+1. 需长按250ms后，组件截图做200ms缩放动效，然后切换自定义预览图, 切换时弹簧动效速度较之前版本变快。
+2. hoverScale与scale接口组合使用时，整个动效流程生效的缩放动效的参数为 hoverScaleFrom -> hoverScaleTo -> scaleTo。
+3. hoverScale动效过程中，在组件截图缩放动效的200ms可以点击空白处取消动效，并以弹簧动效返回原始状态。
+4. hoverScale动效过程中，组件截图切换预览图时，组件截图不做透明度变化动效，仅预览图做透明度动效。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/hoverScale_Before.gif)  |  ![](figures/hoverScale_After.gif)  |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+contextmenu的hoverScale接口
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.19 删除systemapi的atomicService标签
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+systemapi不支持在元服务中使用。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：支持在元服务应用中使用，使用该接口IDE正确编译。
+
+变更后：不支持在元服务应用中使用，使用该接口会导致IDE编译报错。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+clearResourceCache、TransitionHierarchyStrategy、TransitionHierarchyStrategy枚举的NONE类型、
+TransitionHierarchyStrategy枚举的ADAPTIVE类型、GeometryTransitionOptions接口的hierarchyStrategy属性
+
+**适配指导**
+
+默认行为变更，无需适配。

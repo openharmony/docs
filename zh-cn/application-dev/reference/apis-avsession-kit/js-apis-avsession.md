@@ -325,7 +325,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-    let imageSource= await image.createImageSource(value.buffer);
+    let imageSource = await image.createImageSource(value.buffer);
     let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
     let calldata: avSession.CallMetadata = {
       name: "xiaoming",
@@ -373,7 +373,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setCallMetadata() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource= await image.createImageSource(value.buffer);
+  let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let calldata: avSession.CallMetadata = {
     name: "xiaoming",
@@ -626,7 +626,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       action: "action1",
       entities: ["entity1"],
       type: "MIMETYPE",
-      uri: "key={true,true,false}",
+      uri: "key = {true,true,false}",
       parameters:
         {
           mykey0: 2222,
@@ -694,7 +694,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       action: "action1",
       entities: ["entity1"],
       type: "MIMETYPE",
-      uri: "key={true,true,false}",
+      uri: "key = {true,true,false}",
       parameters:
         {
           mykey0: 2222,
@@ -882,7 +882,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource= await image.createImageSource(value.buffer);
+  let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
     assetId: '001',
@@ -951,7 +951,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource= await image.createImageSource(value.buffer);
+  let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
     assetId: '001',
@@ -2174,7 +2174,7 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 ```ts
 import { KeyEvent } from '@kit.InputKit';
 
-currentAVSession.on('handleKeyEvent', (event: keyEvent.KeyEvent) => {
+currentAVSession.on('handleKeyEvent', (event: KeyEvent) => {
   console.info(`on handleKeyEvent event : ${event}`);
 });
 
@@ -3190,13 +3190,11 @@ getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let castDisplay: avSession.CastDisplayInfo;
-currentAVSession.getAllCastDisplays()
-  .then((data: Array< avSession.CastDisplayInfo >) => {
+currentAVSession.getAllCastDisplays().then((data: Array< avSession.CastDisplayInfo >) => {
     if (data.length >= 1) {
        castDisplay = data[0];
      }
-   })
-   .catch((err: BusinessError) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to getAllCastDisplay. Code: ${err.code}, message: ${err.message}`);
    });
 ```
@@ -4605,6 +4603,8 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 投播显示设备状态的枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
 | 名称                        | 值   | 说明         |
@@ -5432,11 +5432,12 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 **示例：**
 
 ```ts
-import { KeyEvent } from '@kit.InputKit';
+import { Key, KeyEvent } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
-let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+let keyItem: Key = {code:0x49, pressedTime:2, deviceId:0};
+let event:KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+
 
 avsessionController.sendAVKeyEvent(event).then(() => {
   console.info('SendAVKeyEvent Successfully');
@@ -5476,12 +5477,11 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { KeyEvent } from '@kit.InputKit';
+import { Key, KeyEvent } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
-let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
-
+let keyItem: Key = {code:0x49, pressedTime:2, deviceId:0};
+let event:KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 avsessionController.sendAVKeyEvent(event, (err: BusinessError) => {
   if (err) {
     console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -6026,7 +6026,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.|
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -6151,7 +6151,7 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |

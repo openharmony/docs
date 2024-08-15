@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.Popup (气泡组件)
+# Popup
 
 Popup是用于显示特定样式气泡。
 

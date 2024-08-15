@@ -96,7 +96,7 @@ textFont(value?: Font)
 | ------ | ------------------------ | ---- | ---------------------- |
 | value  | [Font](ts-types.md#font) | 否   | 搜索框内输入文本样式。 |
 
-### textAlign
+### textAlign<sup>9+</sup>
 
 textAlign(value: TextAlign)
 
@@ -160,7 +160,7 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {&nbsp;style:?&nbsp;[CancelButtonStyle](#cancelbuttonstyle10枚举说明),&nbsp;icon:?&nbsp;[IconOptions](#iconoptions10对象说明)&nbsp;} | 是   | 右侧清除按钮样式。<br />style：右侧图标显示状态。<br/>icon：右侧图标。<br>默认值：<br />{<br/>style：CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
+| value  | {&nbsp;style:?&nbsp;[CancelButtonStyle](#cancelbuttonstyle10枚举说明),&nbsp;icon:?&nbsp;[IconOptions](#iconoptions10对象说明)&nbsp;} | 是   | 右侧清除按钮样式。<br />style：右侧图标显示状态。<br/>icon：右侧图标。<br>默认值：<br />{<br/>style: CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
 
 ### fontColor<sup>10+</sup>
 
@@ -258,7 +258,7 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 | 参数名                | 类型                                        | 必填 | 说明                             |
 | --------------------- | ------------------------------------------- | ---- | -------------------------------- |
 | value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
+| options<sup>12+</sup> | [KeyboardOptions](ts-basic-components-richeditor.md#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
 
 ### type<sup>11+</sup>
 
@@ -338,7 +338,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| value  | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -528,35 +528,6 @@ enablePreviewText(enable: boolean)
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
 
-## TextDecorationOptions<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
-| color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
-
-## InsertValue<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| insertOffset  | number | 是   | 插入的值的位置信息。 |
-| insertValue  | string | 是   | 插入的值。 |
-
-## DeleteValue<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deleteOffset  | number | 是   | 删除的值的位置信息。 |
-| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | 是   | 删除值的方向。 |
-| deleteValue  | string | 是   | 删除的值。 | 
-
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -577,16 +548,6 @@ enablePreviewText(enable: boolean)
 | EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-
-## SelectionOptions<sup>12+</sup>
-
-setTextSelection的选中文字时的配置。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称       | 类型                                            | 必填 | 说明             |
-| ---------- | ----------------------------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
 
 ## 事件
 
@@ -622,7 +583,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| callback  | [EditableTextOnChangeCallback](ts-universal-attributes-text-style.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
+| callback  | [EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
 
 ### onCopy
 
@@ -677,7 +638,7 @@ onPaste(callback: (value: string, event: PasteEvent) => void)
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-文本选择的位置发生变化时，触发该回调。
+文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -737,7 +698,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -753,7 +714,7 @@ onDidInsert(callback: Callback\<InsertValue>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
 ### onWillDelete<sup>12+</sup>
 
@@ -769,7 +730,7 @@ onWillDelete(callback: Callback\<DeleteValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。<br/>在预上屏删除操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。<br/>在预上屏删除操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidDelete<sup>12+</sup>
 
@@ -785,7 +746,7 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
 ## SearchController
 
@@ -795,7 +756,18 @@ Search组件的控制器继承自[TextContentControllerBase](ts-types.md#textcon
 ```
 controller: SearchController = new SearchController()
 ```
-### caretPosition
+
+### constructor<sup>8+</sup>
+
+constructor()
+
+SearchController的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### caretPosition<sup>8+</sup>
 
 caretPosition(value: number): void
 
@@ -833,7 +805,8 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 | -------------- | -------- | ---- | ------------------------------------------------------------ |
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/> |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/> |
-| options | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+| options | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
@@ -841,14 +814,6 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
 >
 >  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
-
-## KeyboardOptions<sup>12+</sup>
-
-设置自定义键盘是否支持避让功能。
-
-| 名称             | 类型    | 必填 | 描述                                                         |
-| ---------------- | ------- | ---- | ------------------------------------------------------------ |
-| supportAvoidance | boolean | 否   | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 ##  示例
 

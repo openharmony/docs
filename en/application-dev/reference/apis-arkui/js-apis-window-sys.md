@@ -165,6 +165,21 @@ Describes the translation parameters.
 | y    | number   | No  | No | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px. |
 | z    | number   | No  | No | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px. |
 
+## WindowInfo<sup>12+</sup>
+
+Describes the window information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name  | Type  | Read Only | Optional | Description                                      |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| rect  | [Rect](js-apis-window.md#rect7)   | Yes  | No  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window. |
+| bundleName  | string   | Yes  | No  | Bundle name.         |
+| abilityName | string   | Yes  | No  | Ability name.              |
+| windowId | number | Yes  | No  | Window ID.  |
+| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | Yes  | No  | Window mode.  |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -188,7 +203,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -198,23 +215,19 @@ import { display } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  try {
-    window.minimizeAll(displayClass.id, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in minimizing all windows.');
-    });
-  } catch (exception) {
-    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
-  }
+try {
+  window.minimizeAll(displayClass.id, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in minimizing all windows.');
+  });
 } catch (exception) {
-  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -245,7 +258,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -255,21 +270,17 @@ import { display } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  try {
-    let promise = window.minimizeAll(displayClass.id);
-    promise.then(() => {
-      console.info('Succeeded in minimizing all windows.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
-    });
-  } catch (exception) {
-    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
-  }
+try {
+  let promise = window.minimizeAll(displayClass.id);
+  promise.then(() => {
+    console.info('Succeeded in minimizing all windows.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+  });
 } catch (exception) {
-  console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -294,6 +305,8 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -332,6 +345,8 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -369,6 +384,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300003 | This window manager service works abnormally. |
 
@@ -418,6 +434,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300003 | This window manager service works abnormally. |
 
@@ -461,6 +478,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 
 **Example**
@@ -498,6 +516,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.              |
 
 **Example**
@@ -508,15 +527,12 @@ const callback = (systemBarTintState: window.SystemBarTintState) => {
 }
 try {
   window.on('systemBarTintChange', callback);
-} catch (exception) {
-  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+
   window.off('systemBarTintChange', callback);
   // Unregister all the callbacks that have been registered through on().
   window.off('systemBarTintChange');
 } catch (exception) {
-  console.error(`Failed to disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable or disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -543,6 +559,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
@@ -582,6 +599,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
@@ -708,6 +726,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | --------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
@@ -760,6 +779,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
@@ -955,6 +975,56 @@ try {
 }
 ```
 
+## window.getVisibleWindowInfo<sup>12+</sup>
+
+window.getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
+
+Obtains information about visible windows on the current screen. Visible windows are windows that are not returned to the background.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+
+**Return value**
+
+| Type | Description |
+| ------------------- | ----------------------- |
+| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise used to return the information about visible windows. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID | Error Message |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed, non-system application uses system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise = window.getVisibleWindowInfo();
+promise.then((data) => {
+  data.forEach(windowInfo=>{
+    console.info(`left:${windowInfo.rect.left}`);
+    console.info(`top:${windowInfo.rect.top}`);
+    console.info(`width:${windowInfo.rect.width}`);
+    console.info(`height:${windowInfo.rect.height}`);
+    console.info(`windowId:${windowInfo.windowId}`);
+    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
+    console.info(`abilityName:${windowInfo.abilityName}`);
+    console.info(`bundleName:${windowInfo.bundleName}`);
+  })
+}).catch((err: BusinessError) => {
+  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
+});
+```
+
 ## Window
 
 Represents a window instance, which is the basic unit managed by the window manager.
@@ -965,7 +1035,7 @@ In the following API examples, you must use [getLastWindow()](js-apis-window.md#
 
 hide (callback: AsyncCallback&lt;void&gt;): void
 
-Hides this window. This API uses an asynchronous callback to return the result.
+Hides this window. This API uses an asynchronous callback to return the result. This API takes effect only for a system window or an application subwindow.
 
 **System API**: This is a system API.
 
@@ -983,6 +1053,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 
 **Example**
@@ -1004,7 +1075,7 @@ windowClass.hide((err: BusinessError) => {
 
 hide(): Promise&lt;void&gt;
 
-Hides this window. This API uses a promise to return the result.
+Hides this window. This API uses a promise to return the result. This API takes effect only for a system window or an application subwindow.
 
 **System API**: This is a system API.
 
@@ -1022,6 +1093,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 
 **Example**
@@ -1041,7 +1113,7 @@ promise.then(() => {
 
 hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
-Hides this window and plays an animation during the process. This API uses an asynchronous callback to return the result.
+Hides this window and plays an animation during the process. This API uses an asynchronous callback to return the result. This API takes effect only for a system window.
 
 **System API**: This is a system API.
 
@@ -1059,6 +1131,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -1082,7 +1155,7 @@ windowClass.hideWithAnimation((err: BusinessError) => {
 
 hideWithAnimation(): Promise&lt;void&gt;
 
-Hides this window and plays an animation during the process. This API uses a promise to return the result.
+Hides this window and plays an animation during the process. This API uses a promise to return the result. This API takes effect only for a system window.
 
 **System API**: This is a system API.
 
@@ -1100,6 +1173,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -1121,7 +1195,7 @@ promise.then(() => {
 
 showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
-Shows this window and plays an animation during the process. This API uses an asynchronous callback to return the result.
+Shows this window and plays an animation during the process. This API uses an asynchronous callback to return the result. This API takes effect only for a system window.
 
 **System API**: This is a system API.
 
@@ -1139,6 +1213,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -1162,7 +1237,7 @@ windowClass.showWithAnimation((err: BusinessError) => {
 
 showWithAnimation(): Promise&lt;void&gt;
 
-Shows this window and plays an animation during the process. This API uses a promise to return the result.
+Shows this window and plays an animation during the process. This API uses a promise to return the result. This API takes effect only for a system window.
 
 **System API**: This is a system API.
 
@@ -1180,6 +1255,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -1220,6 +1296,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1289,6 +1366,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1352,6 +1430,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1442,6 +1521,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1529,6 +1609,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1602,6 +1683,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1666,6 +1748,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1702,6 +1785,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 
@@ -1737,6 +1821,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1806,6 +1891,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1867,6 +1953,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -1903,6 +1990,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -1945,6 +2033,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -1988,6 +2077,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -2029,6 +2119,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -2060,6 +2151,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -2096,6 +2188,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -2132,6 +2225,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -2171,6 +2265,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -2199,7 +2294,7 @@ Sets the radius of the rounded corners for this window.
 
 | Name     | Type   | Mandatory | Description                                                |
 | ----------- | ------- | ---- |----------------------------------------------------|
-| radius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the window does not use rounded corners. |
+| cornerRadius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the window does not use rounded corners. |
 
 **Error codes**
 
@@ -2207,6 +2302,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
@@ -2283,6 +2379,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message |
 | ------- | ------------------------------ |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2326,6 +2423,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message |
 | ------- | ------------------------------ |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2372,6 +2470,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ---------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
@@ -2418,6 +2517,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ---------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
@@ -3274,14 +3374,6 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 | type     | [WindowType](#windowtype7) | Yes  | Window type. |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-
 **Example**
 
 ```ts
@@ -3323,14 +3415,6 @@ Sets the type of this window. This API uses a promise to return the result.
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -3380,6 +3464,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -3423,6 +3508,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -3485,6 +3571,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
 
 **Example**
@@ -3566,6 +3653,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
 
 **Example**
@@ -3648,6 +3736,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
 
 **Example**
@@ -3707,3 +3796,50 @@ try {
   console.error(`HideWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}` );
 }
 ```
+
+## ExtensionWindowAttribute<sup>12+</sup>
+
+Enumerates the attributes of a window for a UI ServiceExtensionAbility.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name     | Value | Description        |
+| ---------- | ----- | ----------- |
+| SYSTEM_WINDOW  | 0 | System window|
+| SUB_WINDOW  | 1 | Subwindow.|
+
+## SystemWindowOptions<sup>12+</sup>
+
+Describes the parameters for creating a system window.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name | Type                     | Read Only |Optional | Description      |
+| ------ | ------------------------- | ---- | ---- |---------- |
+| windowType   | [WindowType](#windowtype7) | No  | No  | Window type. There is no default value. If null is passed in, the window fails to be created. |
+
+## ExtensionWindowConfig<sup>12+</sup>
+
+Describes the parameters for creating a window for a UI ServiceExtensionAbility.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name | Type                     | Read Only |Optional | Description      |
+| ------ | ------------------------- | ---- | ---- |---------- |
+| windowName   | string | No | No | Window name. |
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | No | No  | Window attribute. It specifies whether the created window is a subwindow or a system window. When **windowAttribute** is set to **SUB_WINDOW**, **subWindowOptions** is mandatory. When **windowAttribute** is set to **SYSTEM_WINDOW**, **systemWindowOptions** is mandatory. Otherwise, the window fails to be created.|
+| windowRect   | [Rect](js-apis-window.md#rect7) | No | No  | Rectangular area of the window. |
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | No | Yes | Parameters used for creating a subwindow. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SUB_WINDOW**. Otherwise, the window fails to be created. |
+| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | No | Yes | Parameters for creating a system window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SYSTEM_WINDOW**. Otherwise, the window fails to be created. |

@@ -1,4 +1,4 @@
-# Encryption and Decryption with an AES Symmetric Key (GCM Mode)
+# Encryption and Decryption with an AES Symmetric Key (GCM Mode) (ArkTS)
 
 
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
@@ -17,7 +17,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 4. Use [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be encrypted (plaintext).
    
-   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
+   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
 
    - If the data to be encrypted is short, you can use **doFinal** immediately after **init**.
    - If the data to be encrypted is considerably long, you can call **update()** multiple times to [pass in the data by segment](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).

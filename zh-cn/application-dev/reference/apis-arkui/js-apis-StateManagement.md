@@ -139,7 +139,7 @@ static&nbsp;keys():&nbsp;Array\<string\>;
 
 | 类型                                   | 描述                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| Array<string> | 所有AppStorageV2中的key。 |
+| Array\<string\> | 所有AppStorageV2中的key。 |
 
 >**说明：**
 >
@@ -304,7 +304,7 @@ static&nbsp;keys():&nbsp;Array\<string\>;
 
 | 类型                                   | 描述                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| Array<string> | 所有PersistenceV2中的key。 |
+| Array\<string\> | 所有PersistenceV2中的key。 |
 
 >**说明：**
 >
@@ -405,6 +405,57 @@ struct Index {
       Text(`this.someClass === nonObservedClass: ${this.someClass === nonObservedClass}`) // false
       Text(`UIUtils.getTarget(this.someClass) === nonObservedClass: ${UIUtils.getTarget(this.someClass) ===
         nonObservedClass}`) // true
+    }
+  }
+}
+```
+### makeObserved<sup>12+</sup>
+
+static makeObserved\<T extends object\>(source: T): T;
+
+将普通不可观察数据变为可观察数据。详见[makeObserved接口：将非观察数据变为可观察数据](../../quick-start/arkts-new-makeObserved.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 参数描述     |
+| ------ | ---- | ---- | ------------ |
+| source | T    | 是   | 数据源对象。支持非@Observed和@ObserveV2修饰的class，JSON.parse返回的Object和@Sendable修饰的class。</br>支持Array、Map、Set和Date。</br>支持collection.Array, collection.Set和collection.Map。</br>具体使用规则，详见[makeObserved接口：将非观察数据变为可观察数据](../../quick-start/arkts-new-makeObserved.md)。 |
+
+**返回值：**
+
+| 类型 | 描述                                             |
+| ---- | ------------------------------------------------ |
+| T    | 将数据源变为可观察的数据。 |
+
+**示例：**
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+class NonObservedClass {
+  name: string = 'Tom';
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  observedClass: NonObservedClass = UIUtils.makeObserved(new NonObservedClass());
+  nonObservedClass: NonObservedClass = new NonObservedClass();
+  build() {
+    Column() {
+      // 刷新
+      Text(`observedClass: ${this.observedClass.name}`)
+        .onClick(() => {
+          this.observedClass.name = 'Jane';
+        })
+      // 不刷新
+      Text(`observedClass: ${this.nonObservedClass.name}`)
+        .onClick(() => {
+          this.nonObservedClass.name = 'Jane';
+        })
     }
   }
 }

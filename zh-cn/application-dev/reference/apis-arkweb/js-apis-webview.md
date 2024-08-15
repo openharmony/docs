@@ -5397,7 +5397,7 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。<!--RP1End-->
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

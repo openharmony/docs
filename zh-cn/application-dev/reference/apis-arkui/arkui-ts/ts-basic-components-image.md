@@ -484,7 +484,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 | 参数名   | 类型                                    | 说明                                       |
 | ----- | ------------------------------------- | ---------------------------------------- |
 | slice | [EdgeWidths](#edgewidths参数说明) | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。 |
-| lattice<sup>12+</sup> | [DrawingLattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。 |
+| lattice<sup>12+</sup> | [DrawingLattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。<br>该参数对[backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12)接口不生效。 |
 
 ## EdgeWidths参数说明
 

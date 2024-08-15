@@ -218,7 +218,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     @Entry
     @Component
     struct Index {
-    @State _pixelMap: image.PixelMap = undefined;
+    @State _PixelMap : image.PixelMap | undefined = undefined;
 
     build() {
         Row() {

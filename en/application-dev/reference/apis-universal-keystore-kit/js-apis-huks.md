@@ -97,7 +97,7 @@ Generates a key. This API uses an asynchronous callback to return the result.
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key.                                        |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory. |
-| callback | AsyncCallback\<void>        | Yes  | Callback used to return the result. <br/>If the operation is successful, the API does not return the key content because the key is always protected in a TEE. <br/>If an exception occurs in the generation process, an error is captured. |
+| callback | AsyncCallback\<void>        | Yes  | Callback used to return the result. <br/>If the operation is successful, this API does not return the key content because the key is always protected in a TEE. <br/>If an exception occurs in the generation process, an error is captured. |
 
 **Error codes**
 
@@ -550,7 +550,7 @@ try {
 
 attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
-Attests a key. This API uses an asynchronous callback to return the result.
+Obtains the certificate used to attest a key. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ATTEST_KEY (available only for system applications)
 
@@ -561,7 +561,7 @@ Attests a key. This API uses an asynchronous callback to return the result.
 | Name  | Type                                                | Mandatory | Description                                         |
 | -------- | ---------------------------------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                                               | Yes  | Alias of the key. The certificate to be obtained stores the key.         |
-| options  | [HuksOptions](#huksoptions)                          | Yes  | Parameters and data required for attesting the key.           |
+| options  | [HuksOptions](#huksoptions)                          | Yes  | Parameters and data required for obtaining the certificate.           |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback used to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned. |
 
 **Error codes**
@@ -686,7 +686,7 @@ async function generateKeyThenattestKey(alias: string) {
 
 attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
 
-Attests a key. This API uses a promise to return the result.
+Obtains the certificate used to attest a key. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ATTEST_KEY (available only for system applications)
 
@@ -697,7 +697,7 @@ Attests a key. This API uses a promise to return the result.
 | Name  | Type                       | Mandatory | Description                                |
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key. |
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters and data required for attesting the key. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters and data required for obtaining the certificate.  |
 
 **Return value**
 
@@ -830,9 +830,9 @@ async function attestKey() {
 
 anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
-Performs anonymous attestation of a key. This API uses an asynchronous callback to return the result.
+Obtains the certificate for anonymous attestation. This API uses an asynchronous callback to return the result.
 
-This operation requires Internet access and takes time.
+This operation requires Internet access and takes time. If error code 12000012 is returned, the network is abnormal. If the device is not connected to the network, display a message, indicating that the network is not connected. If the network is connected, the failure may be caused by network jitter. Tray again later.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -843,7 +843,7 @@ This operation requires Internet access and takes time.
 | Name  | Type                                                | Mandatory | Description                                         |
 | -------- | ---------------------------------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                                               | Yes  | Alias of the key. The certificate to be obtained stores the key.         |
-| options  | [HuksOptions](#huksoptions)                          | Yes  | Parameters and data required for the anonymous attestation. |
+| options  | [HuksOptions](#huksoptions)                          | Yes  | Parameters and data required for obtaining the certificate.           |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback used to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned. |
 
 **Error codes**
@@ -967,9 +967,9 @@ async function generateKeyThenAttestKey(alias: string): Promise<void> {
 
 anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
 
-Performs anonymous attestation of a key. This API uses a promise to return the result.
+Obtains the certificate for anonymous attestation. This API uses a promise to return the result.
 
-This operation requires Internet access and takes time.
+This operation requires Internet access and takes time. If error code 12000012 is returned, the network is abnormal. If the device is not connected to the network, display a message, indicating that the network is not connected. If the network is connected, the failure may be caused by network jitter. Tray again later.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -980,7 +980,7 @@ This operation requires Internet access and takes time.
 | Name  | Type                       | Mandatory | Description                                |
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key. |
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters and data required for the anonymous attestation. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters and data required for obtaining the certificate.  |
 
 **Return value**
 
@@ -2811,7 +2811,7 @@ Enumerates the user authentication types.
 
 | Name                           | Value  | Description                     |
 | ------------------------------- | ---- | ------------------------- |
-| HUKS_USER_AUTH_TYPE_FINGERPRINT | 1 << 0 | Fingerprint authentication. |
+| both. | 1 << 0 | Fingerprint authentication. |
 | HUKS_USER_AUTH_TYPE_FACE        | 1 << 1 | Facial authentication. |
 | HUKS_USER_AUTH_TYPE_PIN         | 1 << 2  | PIN authentication. |
 

@@ -34,10 +34,10 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequestdeprecated) | Yes| Reminder to be published.|
-  | callback | AsyncCallback\<number> | Yes| Callback used to return the published reminder's ID.|
+  | reminderReq | [ReminderRequest](#reminderrequestdeprecated) | Yes | Reminder to be published. |
+  | callback | AsyncCallback\<number> | Yes | Callback used to return the published reminder's ID. |
 
 **Example**
 ```ts
@@ -69,14 +69,14 @@ Publishes a reminder through the reminder agent. This API uses a promise to retu
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequestdeprecated) | Yes| Reminder to be published.|
+  | reminderReq | [ReminderRequest](#reminderrequestdeprecated) | Yes | Reminder to be published. |
 
 **Return value**
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | Promise\<number> | Promise used to return the published reminder's ID.|
+  | Promise\<number> | Promise used to return the published reminder's ID. |
 
 **Example**
 ```ts
@@ -105,10 +105,10 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | Yes| ID of the reminder.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| reminderId | number | Yes | ID of the reminder. |
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -135,15 +135,15 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | Yes| ID of the reminder.|
+| reminderId | number | Yes | ID of the reminder. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -167,9 +167,9 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequestdeprecated)>> | Yes| Callback used to return an array of all valid reminders set by the current application.|
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequestdeprecated)>> | Yes | Callback used to return an array of all valid reminders set by the current application. |
 
 **Example**
 
@@ -218,9 +218,9 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequestdeprecated)>> | Promise used to return an array of all valid reminders set by the current application.|
+| Promise\<Array\<[ReminderRequest](#reminderrequestdeprecated)>> | Promise used to return an array of all valid reminders set by the current application. |
 
 **Example**
 
@@ -268,9 +268,9 @@ Cancels all reminders set by the current application. This API uses an asynchron
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -297,9 +297,9 @@ Cancels all reminders set by the current application. This API uses a promise to
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -323,10 +323,10 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-notification.md#notificationslot) | Yes | Notification slot, whose type can be set. |
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -357,15 +357,15 @@ Adds a notification slot. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis-notification-kit/js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-notification.md#notificationslot) | Yes | Notification slot, whose type can be set. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -395,10 +395,10 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes | Type of the reminder notification slot to remove. |
+| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -426,15 +426,15 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes | Type of the reminder notification slot to remove. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -457,10 +457,10 @@ Enumerates button types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -------- | -------- | -------- |
-| ACTION_BUTTON_TYPE_CLOSE | 0 | Button for closing the reminder.|
-| ACTION_BUTTON_TYPE_SNOOZE | 1 | Button for snoozing the reminder.|
+| ACTION_BUTTON_TYPE_CLOSE | 0 | Button for closing the reminder. |
+| ACTION_BUTTON_TYPE_SNOOZE | 1 | Button for snoozing the reminder. |
 
 
 ## ReminderType<sup>(deprecated)</sup>
@@ -473,11 +473,11 @@ Enumerates reminder types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -------- | -------- | -------- |
-| REMINDER_TYPE_TIMER | 0 | Countdown reminder.|
-| REMINDER_TYPE_CALENDAR | 1 | Calendar reminder.|
-| REMINDER_TYPE_ALARM | 2 | Alarm reminder.|
+| REMINDER_TYPE_TIMER | 0 | Countdown reminder. |
+| REMINDER_TYPE_CALENDAR | 1 | Calendar reminder. |
+| REMINDER_TYPE_ALARM | 2 | Alarm reminder. |
 
 
 ## ActionButton<sup>(deprecated)</sup>
@@ -490,10 +490,10 @@ Defines a button displayed in the reminder notification.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| title | string | Yes| Text on the button.|
-| type | [ActionButtonType](#actionbuttontypedeprecated) | Yes| Button type.|
+| title | string | Yes | Text on the button. |
+| type | [ActionButtonType](#actionbuttontypedeprecated) | Yes | Button type. |
 
 
 ## WantAgent<sup>(deprecated)</sup>
@@ -506,10 +506,10 @@ Sets the package and ability that are redirected to when the reminder notificati
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the HAP that is redirected to when the reminder notification is clicked.|
-| abilityName | string | Yes| Name of the ability that is redirected to when the reminder notification is clicked.|
+| pkgName | string | Yes | Name of the HAP that is redirected to when the reminder notification is clicked. |
+| abilityName | string | Yes | Name of the ability that is redirected to when the reminder notification is clicked. |
 
 
 ## MaxScreenWantAgent<sup>(deprecated)</sup>
@@ -522,10 +522,10 @@ Provides the information about the target package and ability to start automatic
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the HAP that is automatically started when the reminder arrives and the device is not in use.|
-| abilityName | string | Yes| Name of the ability that is automatically started when the reminder arrives and the device is not in use.|
+| pkgName | string | Yes | Name of the HAP that is automatically started when the reminder arrives and the device is not in use. |
+| abilityName | string | Yes | Name of the ability that is automatically started when the reminder arrives and the device is not in use. |
 
 
 ## ReminderRequest<sup>(deprecated)</sup>
@@ -538,21 +538,21 @@ Defines the reminder to publish.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| reminderType | [ReminderType](#remindertypedeprecated) | Yes| Type of the reminder.|
-| actionButton | [ActionButton](#actionbuttondeprecated) | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
-| wantAgent | WantAgent | No| Information about the ability that is redirected to when the notification is clicked.|
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagentdeprecated) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
-| ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
-| snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**.|
-| timeInterval | number | No| Reminder snooze interval, in seconds. The default value is **0**.|
-| title | string | No| Reminder title.|
-| content | string | No| Reminder content.|
-| expiredContent | string | No| Content to be displayed after the reminder expires.|
-| snoozeContent | string | No| Content to be displayed when the reminder is snoozing.|
-| notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | No| Type of the slot used by the reminder.|
+| reminderType | [ReminderType](#remindertypedeprecated) | Yes | Type of the reminder. |
+| actionButton | [[ActionButton?, ActionButton?]](#actionbuttondeprecated) | No | Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.) |
+| wantAgent | WantAgent | No | Information about the ability that is redirected to when the notification is clicked. |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagentdeprecated) | No | Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed. |
+| ringDuration | number | No | Ringing duration, in seconds. The default value is **1**. |
+| snoozeTimes | number | No | Number of reminder snooze times. The default value is **0**. |
+| timeInterval | number | No | Reminder snooze interval, in seconds. The default value is **0**. |
+| title | string | No | Reminder title. |
+| content | string | No | Reminder content. |
+| expiredContent | string | No | Content to be displayed after the reminder expires. |
+| snoozeContent | string | No | Content to be displayed when the reminder is snoozing. |
+| notificationId | number | No | Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one. |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | No | Type of the slot used by the reminder. |
 
 
 ## ReminderRequestCalendar<sup>(deprecated)</sup>
@@ -566,11 +566,11 @@ Defines a reminder for a calendar event.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| dateTime | [LocalDateTime](#localdatetimedeprecated) | Yes| Reminder time.|
-| repeatMonths | Array\<number> | No| Month in which the reminder repeats.|
-| repeatDays | Array\<number> | No| Date on which the reminder repeats.|
+| dateTime | [LocalDateTime](#localdatetimedeprecated) | Yes | Reminder time. |
+| repeatMonths | Array\<number> | No | Month in which the reminder repeats. |
+| repeatDays | Array\<number> | No | Date on which the reminder repeats. |
 
 
 ## ReminderRequestAlarm<sup>(deprecated)</sup>
@@ -584,11 +584,11 @@ Defines a reminder for an alarm.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| hour | number | Yes| Hour portion of the reminder time.|
-| minute | number | Yes| Minute portion of the reminder time.|
-| daysOfWeek | Array\<number> | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
+| hour | number | Yes | Hour portion of the reminder time. |
+| minute | number | Yes | Minute portion of the reminder time. |
+| daysOfWeek | Array\<number> | No | Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday. |
 
 
 ## ReminderRequestTimer<sup>(deprecated)</sup>
@@ -601,9 +601,9 @@ Defines a reminder for a scheduled timer.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| triggerTimeInSeconds | number | Yes| Number of seconds in the countdown timer.|
+| triggerTimeInSeconds | number | Yes | Number of seconds in the countdown timer. |
 
 
 ## LocalDateTime<sup>(deprecated)</sup>
@@ -616,11 +616,11 @@ Sets the time information for a calendar reminder.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| year | number | Yes| Year.|
-| month | number | Yes| Month.|
-| day | number | Yes| Date.|
-| hour | number | Yes| Hour.|
-| minute | number | Yes| Minute.|
-| second | number | No| Second.|
+| year | number | Yes | Year. |
+| month | number | Yes | Month. |
+| day | number | Yes | Date. |
+| hour | number | Yes | Hour. |
+| minute | number | Yes | Minute. |
+| second | number | No | Second. |

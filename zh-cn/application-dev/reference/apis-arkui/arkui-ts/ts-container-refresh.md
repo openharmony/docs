@@ -20,6 +20,8 @@ Refresh(value: RefreshOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -27,6 +29,8 @@ Refresh(value: RefreshOptions)
 | value |  [RefreshOptions](#refreshoptions对象说明)| 是 | 刷新组件参数。 |
 
 ## RefreshOptions对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数         | 参数名                                      | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -55,7 +59,8 @@ refreshOffset(value: number)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| value  | number |  是 | 下拉偏移量，单位vp。<br/>默认值：未设置[promptText](#refreshoptions对象说明)参数时为64vp，设置了[promptText](#refreshoptions对象说明)参数时为96vp。 <br/>如果取值为0或负数的时候此接口采用默认值。
+| value  | number |  是 | 下拉偏移量，单位vp。<br/>默认值：未设置[promptText](#refreshoptions对象说明)参数时为64vp，设置了[promptText](#refreshoptions对象说明)参数时为96vp。 <br/>如果取值为0或负数的时候此接口采用默认值。|
+
 ### pullToRefresh<sup>12+</sup>
 
 pullToRefresh(value: boolean)
@@ -138,6 +143,8 @@ onOffsetChange(callback: Callback\<number>)
 ## RefreshStatus枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 值       | 描述                   |
 | -------- | -------- | -------------------- |
@@ -227,8 +234,10 @@ struct RefreshExample {
       }
       .alignItems(VerticalAlign.Center)
     }
-    .width("100%").align(Alignment.Center)
+    .align(Alignment.Center)
+    .clip(true)
     .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+    .width("100%")
   }
 
   build() {
@@ -251,6 +260,9 @@ struct RefreshExample {
         .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
       }
+      .backgroundColor(0x89CFF0)
+      .pullToRefresh(true)
+      .refreshOffset(64)
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
@@ -260,9 +272,6 @@ struct RefreshExample {
         }, 2000)
         console.log('onRefreshing test')
       })
-      .backgroundColor(0x89CFF0)
-      .refreshOffset(64)
-      .pullToRefresh(true)
     }
   }
 }
@@ -297,7 +306,10 @@ struct ListRefreshLoad {
           .style({ status: this.refreshing ? ProgressStatus.LOADING : ProgressStatus.PROGRESSING })
           .margin(10)
       }
-    }.height("100%").width("100%")
+    }
+    .clip(true)
+    .height("100%")
+    .width("100%")
   }
 
   @Builder
@@ -409,6 +421,9 @@ struct RefreshExample {
         .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
       }
+      .backgroundColor(0x89CFF0)
+      .pullToRefresh(true)
+      .refreshOffset(96)
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
@@ -421,9 +436,6 @@ struct RefreshExample {
         }, 2000)
         console.log('onRefreshing test')
       })
-      .backgroundColor(0x89CFF0)
-      .refreshOffset(96)
-      .pullToRefresh(true)
     }
   }
 }
@@ -455,8 +467,10 @@ function customRefreshingContent(params:Params) {
     }
     .alignItems(VerticalAlign.Center)
   }
-  .width("100%").align(Alignment.Center)
+  .align(Alignment.Center)
+  .clip(true)
   .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  .width("100%")
 }
 
 @Entry
@@ -492,6 +506,9 @@ struct RefreshExample {
         .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
       }
+      .backgroundColor(0x89CFF0)
+      .pullToRefresh(true)
+      .refreshOffset(96)
       .onStateChange((refreshStatus: RefreshStatus) => {
         this.refreshStatus = refreshStatus
         this.contentNode?.update(new Params(this.refreshStatus)) // 更新自定义组件内容
@@ -503,9 +520,6 @@ struct RefreshExample {
         }, 2000)
         console.log('onRefreshing test')
       })
-      .backgroundColor(0x89CFF0)
-      .refreshOffset(96)
-      .pullToRefresh(true)
     }
   }
 }
@@ -527,8 +541,10 @@ function customRefreshingContent() {
     }
     .alignItems(VerticalAlign.Center)
   }
-  .width("100%").align(Alignment.Center)
+  .align(Alignment.Center)
+  .clip(true)
   .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  .width("100%")
 }
 
 @Entry
@@ -565,6 +581,10 @@ struct RefreshExample {
         .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
       }
+      .backgroundColor(0x89CFF0)
+      .pullDownRatio(this.ratio)
+      .pullToRefresh(true)
+      .refreshOffset(64)
       .onOffsetChange((offset: number)=>{
           this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3) // 越接近最大距离，下拉跟手系数越小
       })
@@ -577,10 +597,6 @@ struct RefreshExample {
         }, 2000)
         console.log('onRefreshing test')
       })
-      .pullDownRatio(this.ratio)
-      .backgroundColor(0x89CFF0)
-      .refreshOffset(64)
-      .pullToRefresh(true)
     }
   }
 }

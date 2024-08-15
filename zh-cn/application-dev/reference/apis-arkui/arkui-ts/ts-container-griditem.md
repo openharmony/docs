@@ -19,6 +19,8 @@ GridItem(value?: GridItemOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
 | 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
@@ -169,6 +171,8 @@ selected(value: boolean)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值: GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
@@ -176,6 +180,8 @@ selected(value: boolean)
 ## GridItemStyle<sup>11+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  |枚举值| 描述                     |
 | ----- |----| ------------------------ |

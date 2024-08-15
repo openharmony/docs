@@ -555,6 +555,9 @@ setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 | --------------------------------- | -------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵变换后的对象。 |
 
+> **说明：**
+> 需要配合scale({centerX:0,centerY:0,x:1})保证变换的中心点是组件左上角。
+
 **示例：**
 
 ```ts

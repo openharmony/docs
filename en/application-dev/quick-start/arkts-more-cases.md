@@ -353,8 +353,8 @@ Use the **Record** type to access object attributes.
 **Before adaptation**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params: Object = myRouter.getParams();
+import { router } from '@kit.ArkUI';
+let params: Object = router.getParams();
 let funNum: number = params['funNum'];
 let target: string = params['target'];
 ```
@@ -362,8 +362,8 @@ let target: string = params['target'];
 **After adaptation**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params = myRouter.getParams() as Record<string, string | number>;
+import { router } from '@kit.ArkUI';
+let params = router.getParams() as Record<string, string | number>;
 let funNum: number = params.funNum as number;
 let target: string = params.target as string;
 ```
@@ -438,7 +438,7 @@ const area = {
 **After adaptation**
 
 ```typescript
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 const area: image.PositionArea = {
   pixels: new ArrayBuffer(8),
@@ -955,25 +955,25 @@ for (let arr of map) {
 **Before adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (e: BusinessError) {
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
@@ -1040,7 +1040,7 @@ type OptionsFlags = Record<keyof C, string>
 **Before adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error;
@@ -1050,7 +1050,7 @@ function ThrowError(error: BusinessError) {
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error as Error;
@@ -1158,29 +1158,47 @@ class Test {
 **Before adaptation**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest(): notification.NotificationRequest {
-  // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = {
-  ...buildNotifyLongRequest(),
-  deliveryTime: new Date().getTime()
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = {
+  ...test.foo(),
+  type: 0
 }
 ```
 
 **After adaptation**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest():notification.NotificationRequest {
-    // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = buildNotifyLongRequest();
-notificationRequest.deliveryTime = new Date().getTime();
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = test.foo();
+t.type = 0;
 ```
 
 **Reason for change**
@@ -1740,7 +1758,7 @@ try {
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   

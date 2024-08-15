@@ -53,6 +53,7 @@
 - 错误码
   - [HTTP错误码](errorcode-net-http.md)
   - [Socket错误码](errorcode-net-socket.md)
+  - [webSocket错误码](errorcode-net-webSocket.md)
   - [网络连接管理错误码](errorcode-net-connection.md)
   - [以太网连接错误码](errorcode-net-ethernet.md)
   - [网络共享错误码](errorcode-net-sharing.md)

@@ -22,6 +22,7 @@ Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按�
 - 允许Repeat包含在if/else条件渲染语句中，也允许Repeat中出现if/else条件渲染语句。
 - Repeat内部使用键值作为标识，因此键值生成器必须针对每个数据生成唯一的值，如果多个数据同一时刻生成的键值相同，会导致UI组件渲染出现问题。
 - 未开启virtualScroll目前暂时不支持template模板，复用会有问题。
+- 当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递RepeatItem.item或RepeatItem.index，将会出现UI渲染异常。
 
 ## 键值生成规则
 
@@ -75,11 +76,11 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ![Repeat-Update1](./figures/Repeat-Update1.PNG)
 
-此时Repeat会通知父组件重新布局，首先会一一对比key值，若和原节点key值相同且templateId相同，则复用该节点，更新index和data，若key值不同，则复用相同的templateId缓存池中的节点，并更新key、index和data。
+此时Repeat会通知父组件重新布局，逐一对比templateId值，若和原节点templateId值相同，则复用该节点，更新key、index和data，若templateId值发生变化，则复用相应的templateId缓存池中的节点，并更新key、index和data。
 
 ![Repeat-Update2](./figures/Repeat-Update2.PNG)
 
-上图显示node13节点更新了数据data和index，node14更新了templateId，node15由于key值发生变化，于是从缓存池中取走一个复用，并同步更新key、index、data，node16和node17均只更新index。index=17的节点是新的，从缓存池中复用。
+上图显示node13节点更新了数据data和index；node14更新了templateId和index，于是从缓存池中取走一个复用；node15由于key值发生变化并且templateId不变，复用自身节点并同步更新key、index、data；node16和node17均只更新index。index=17的节点是新的，从缓存池中复用。
 
 ![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 
@@ -336,11 +337,11 @@ onUpdateNode [Hello 10] -> [3_new item]
 
 ```
 // 当前屏幕两次修改
-onUpdateNode [Hello 14] -> [2_new item]
-onUpdateNode [1_new item] -> [3_new item]
+onUpdateNode [1_new item] -> [2_new item]
+onUpdateNode [2_new item] -> [3_new item]
 ```
 
-由于屏幕上方/下方的数据不存在渲染节点，所以不会发生节点复用。在当前屏幕修改节点时，由于节点key值改变，进而重新渲染，将从缓存池中寻找缓存节点进行复用。
+由于屏幕上方/下方的数据不存在渲染节点，所以不会发生节点复用。在当前屏幕修改节点时，由于节点templateId值没有改变，所以复用自身节点，节点id不变。
 
 **交换数据**
 

@@ -64,45 +64,6 @@ UIExtensionComponent组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.3 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-onItemDrag接口无法与其他应用产生交互，但生成的拖拽窗口能拖拽出当前应用。
-
-现在限制其能拖出当前应用的行为，与使用范围保持一致。
-
-**变更影响**
-
-该变更为兼容性变更。
-
-API version 12之前，onItemDrag拖起的拖拽窗口可以拖出当前应用窗口外。
-![](figures/OnItemDragBefore.gif)
-
-API version 12及以后，onItemDrag拖起的拖拽窗口不可以拖出当前应用窗口外。
-![](figures/OnItemDragNow.gif)
-
-**起始API Level**
-
-8
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.32开始。
-
-**变更的接口/组件**
-
-Grid组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
-
-List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
-
-**适配指导**
-
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
-
 ## cl.arkui.4 List的constraintSize设置生效
 
 **访问级别**
@@ -679,7 +640,7 @@ promptAction.showToast
 
 默认效果变更，无需适配。
 
-## cl.arkui.16 高级组件ComposeListItem右边按钮在没有配置action的时候，没有点击效果，显示全局的按压效果
+## cl.arkui.16 高级组件ComposeListItem右边按钮OperateItem类型为arrow或者arrow+text时，在没有配置action的时候，不需要单独响应点击效果，应显示全局的按压效果
 
 **访问级别**
 
@@ -687,7 +648,7 @@ promptAction.showToast
 
 **变更原因**
 
-高级组件ComposeListItem整个组件分为左右两部分，左边是内容区，右边是按钮操作区。现在问题是右边操作区按钮在没有提供action的时候，会显示点击效果，不应该显示的。需要修改为在没有提供action的时候，右侧操作区不应该响应点击效果，而是整个组件响应按压效果。
+高级组件ComposeListItem整个组件分为左右两部分，左边是内容区，右边是按钮操作区。现在问题是右边操作区按钮的OperateItem类型为arrow或者arrow+text时，在没有提供action的时候，会单独响应点击效果，预期不应该显示的；需要修改为在没有提供action的时候，右侧操作区不应该响应单独点击效果，而是整个组件响应按压效果。
 
 **变更影响**
 
@@ -695,7 +656,7 @@ promptAction.showToast
 
 | 变更前 | 变更后 |
 |---------|---------|
-| 右侧操作区没有提供action，右侧操作区单独响应了点击效果 | 右侧操作区没有提供action，整个组件响应了点击效果 |
+| 右侧操作区OperateItem类型为arrow或者arrow+text时，没有提供action，右侧操作区单独响应了阴影效果。 | 右侧操作区OperateItem类型为arrow或者arrow+text时，没有提供action，整个组件响应了阴影效果。 |
 | ![ComposeListItem_before](figures/ComposeListItem_Before.png) | ![ComposeListItem_after](figures/ComposeListItem_After.png) |
 
 **起始API Level**

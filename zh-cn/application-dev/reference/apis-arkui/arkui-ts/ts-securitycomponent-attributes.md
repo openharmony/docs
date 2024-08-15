@@ -376,6 +376,9 @@ constraintSize(value: ConstraintSizeOptions)
 
 ## 示例
 
+> **说明：**
+> 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
+
 ```ts
 // xxx.ets
 @Entry

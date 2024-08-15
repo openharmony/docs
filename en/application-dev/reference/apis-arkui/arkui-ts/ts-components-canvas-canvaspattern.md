@@ -18,11 +18,13 @@ Uses a **Matrix2D** object as a parameter to perform matrix transformation on th
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name     | Type                                                 | Mandatory| Default Value| Description      |
-| --------- | ----------------------------------------------------- | ---- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No  | null   | Transformation matrix.|
+| Name     | Type | Mandatory | Description  |
+| --------- | -------------- | ------ | ---------- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No | Transformation matrix. |
 
 **Example**
 

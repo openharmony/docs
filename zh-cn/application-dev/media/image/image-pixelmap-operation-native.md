@@ -218,7 +218,7 @@ EXTERN_C_END
     @Entry
     @Component
     struct Index {
-    @State _pixelMap: image.PixelMap = undefined;
+    @State _PixelMap : image.PixelMap | undefined = undefined;
 
     build() {
         Row() {

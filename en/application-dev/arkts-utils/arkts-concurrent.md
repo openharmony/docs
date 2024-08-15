@@ -9,13 +9,13 @@ To pass function verification, the concurrent functions executed in a [TaskPool]
 
 
 ## Decorator Description
-| \@Concurrent Decorator| Description                                                                                      |
+| \@Concurrent Decorator | Description                                                                                      |
 | --------------------- | ------------------------------------------------------------------------------------------ |
 | Decorator parameters            | None.                                                                                      |
 | Application scenarios              | This decorator can be used only in projects of the stage model. It can be used only in .ets files.                                       |
 | Decorated function types        | This decorator can be used for asynchronous functions and common functions. It cannot be used for generators, arrow functions, or methods. It does not support class member functions or anonymous functions. |
 | Variable types in decorated functions | Local variables, input parameters, and variables imported through **import** are supported. Closure variables are not allowed.                              |
-| Return value types in decorated functions | For details about the supported return value types, see [Serialization Types Supported by TaskPool and Worker](serialization-support-types.md).  |
+| Return value types in decorated functions | For details about the supported return value types, see [Serialization Types Supported by TaskPool and Worker](serialization-support-types.md).   |
 
 > **NOTE**
 >
@@ -24,7 +24,7 @@ To pass function verification, the concurrent functions executed in a [TaskPool]
 **Example**
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function testPromise(args1: number, args2: number): Promise<number> {
@@ -184,7 +184,7 @@ task3 catch e: testPromiseError2 Error msg
 
 ## Example
   ```ts
-  import taskpool from '@ohos.taskpool';
+  import { taskpool } from '@kit.ArkTS';
   
   @Concurrent
   function add(num1: number, num2: number): number {
