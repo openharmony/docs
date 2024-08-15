@@ -144,6 +144,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
+    <!--RP2--><!--RP2End-->
+
     ```c++
     // 解码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -565,6 +567,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
+
+    <!--RP2--><!--RP2End-->
 
     ```c++
     int32_t cropTop = 0;
