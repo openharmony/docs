@@ -451,4 +451,73 @@ API 12
 
 **适配指导**
 
-参考文档：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md#tipsdialog
+TipsDialg组件创建函数变更：无需适配，但应注意变更后的属性范围扩展是否符合开发者预期，如不符合可具体参考：
+```ts
+import { TipsDialog } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+
+@Entry
+@Component
+struct Index {
+  @State pixelMap: PixelMap | undefined = undefined;
+  isChecked = false;
+  dialogControllerImage: CustomDialogController = new CustomDialogController({
+    builder: TipsDialog({
+      imageRes: $r('sys.media.ohos_ic_public_voice'),
+      content: '想要卸载这个APP嘛?',
+      primaryButton: {
+        value: '取消',
+        action: () => {
+          console.info('Callback when the first button is clicked')
+        },
+      },
+      secondaryButton: {
+        value: '删除',
+        role: ButtonRole.ERROR,
+        action: () => {
+          console.info('Callback when the second button is clicked')
+        }
+      },
+      onCheckedChange: () => {
+        console.info('Callback when the checkbox is clicked')
+      }
+    }),
+  })
+
+  build() {
+    Row() {
+      Stack() {
+        Column(){
+          Button("上图下文弹出框")
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogControllerImage.open()
+            })
+        }.margin({bottom: 300})
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+  
+  aboutToAppear(): void {
+    this.getPixmapFromMedia($r('app.media.app_icon'));    
+  }
+  
+  async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    this.pixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return this.pixelMap;
+  }
+}
+```
