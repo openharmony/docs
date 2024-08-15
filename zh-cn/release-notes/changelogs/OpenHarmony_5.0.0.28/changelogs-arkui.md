@@ -454,12 +454,10 @@ API 12
 TipsDialg组件创建函数变更：无需适配，但应注意变更后的属性范围扩展是否符合开发者预期，如不符合可具体参考：
 ```ts
 import { TipsDialog } from '@kit.ArkUI';
-import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct Index {
-  @State pixelMap: PixelMap | undefined = undefined;
   isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
@@ -500,24 +498,6 @@ struct Index {
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
-  }
-  
-  aboutToAppear(): void {
-    this.getPixmapFromMedia($r('app.media.app_icon'));    
-  }
-  
-  async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
-    this.pixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return this.pixelMap;
   }
 }
 ```
