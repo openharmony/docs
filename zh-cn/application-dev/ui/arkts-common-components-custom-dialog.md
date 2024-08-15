@@ -139,8 +139,6 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
 
    ```ts
    // Index.ets
-   import { router } from '@kit.ArkUI';
-
    @CustomDialog
    struct CustomDialogExample {
      @Link textValue: string
@@ -172,7 +170,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
                if (this.controller != undefined && this.textValue != '') {
                  this.controller.close()
                } else if (this.controller != undefined) {
-                 router.pushUrl({
+                 this.getUIContext().getRouter().pushUrl({
                    url: 'pages/Index2'
                  })
                  this.controller.close()
@@ -205,7 +203,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      }
 
      onPageShow() {
-       const params = router.getParams() as Record<string, string>; // 获取传递过来的参数对象
+       const params = this.getUIContext().getRouter().getParams() as Record<string, string>; // 获取传递过来的参数对象
        if (params) {
          this.dialogController?.open()
          this.textValue = params.info as string; // 获取info属性的值
@@ -239,8 +237,6 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
 
    ```ts
    // Index2.ets
-   import { router } from '@kit.ArkUI';
-
    @Entry
    @Component
    struct Index2 {
@@ -250,7 +246,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
          Button(this.message)
            .fontSize(50)
            .fontWeight(FontWeight.Bold).onClick(() => {
-           router.back({
+           this.getUIContext().getRouter().back({
              url: 'pages/Index',
              params: {
                info: 'Hello World'
