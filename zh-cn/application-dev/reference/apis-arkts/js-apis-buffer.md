@@ -797,7 +797,7 @@ keys(): IterableIterator&lt;number&gt;
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-let numbers = Array.from(buf.values());
+let numbers = Array.from(buf.keys());
 for (const key of numbers) {
   console.log(key.toString());
 }
@@ -1990,7 +1990,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回写入的字节数。 |
+| number | 写入的字节数。 |
 
 **错误码：**
 
@@ -2034,7 +2034,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2073,7 +2073,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2112,7 +2112,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2151,7 +2151,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2190,7 +2190,7 @@ writeDoubleBE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2222,14 +2222,14 @@ writeDoubleLE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2268,7 +2268,7 @@ writeFloatBE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2308,7 +2308,7 @@ writeFloatLE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2347,7 +2347,7 @@ writeInt8(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2388,7 +2388,7 @@ writeInt16BE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2428,7 +2428,7 @@ writeInt16LE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2467,7 +2467,7 @@ writeInt32BE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2507,7 +2507,7 @@ writeInt32LE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2547,7 +2547,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2588,7 +2588,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2627,7 +2627,7 @@ writeUInt8(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2669,7 +2669,7 @@ writeUInt16BE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2709,7 +2709,7 @@ writeUInt16LE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2749,7 +2749,7 @@ writeUInt32BE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2788,7 +2788,7 @@ writeUInt32LE(value: number, offset?: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2828,7 +2828,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
@@ -2868,7 +2868,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 写入的字节数。 |
+| number | 偏移量offset加上写入的字节数。 |
 
 **错误码：**
 
