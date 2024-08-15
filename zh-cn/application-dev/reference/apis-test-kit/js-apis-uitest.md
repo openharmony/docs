@@ -4709,8 +4709,9 @@ assertComponentExist(by: By): Promise\<void>
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 17000002 | The async function is not called with await. |
-| 17000003 | Assertion failed.                      |
+| 401      | if the input parameters are invalid.             |
+| 17000002 | if the async function was not called with await. |
+| 17000003 | if the assertion failed.                         |
 
 **示例：**
 
