@@ -19,8 +19,6 @@ import { request } from '@kit.BasicServicesKit';
 ## Filter<sup>10+</sup>
 Defines the filter criteria.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Type| Mandatory| Description|
@@ -30,8 +28,6 @@ Defines the filter criteria.
 
 ## TaskInfo<sup>10+</sup> 
 Defines the data structure of the task information for query. The fields available vary depending on the query type.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
