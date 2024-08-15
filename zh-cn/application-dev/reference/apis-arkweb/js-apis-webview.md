@@ -4880,6 +4880,10 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。
 
+> **说明：**
+>
+> 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -5393,7 +5397,7 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。<!--RP1End-->
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7524,11 +7528,13 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   resumePlayer() {
-    // 重新创建本地播放器。
+    // 重新创建应用内播放器。
+    // 恢复应用内播放器的状态信息。
   }
 
   suspendPlayer(type: SuspendType) {
-    // 销毁本地播放器。
+    // 记录应用内播放器的状态信息。
+    // 销毁应用内播放器。
   }
 }
 
@@ -7863,7 +7869,7 @@ static setHostIP(hostName: string, address: string, aliveTime: number): void
 
 **参数：**
 
-| 参数名    | 类型 | 必填 | 参数描述                             |
+| 参数名    | 类型 | 必填 | 说明                             |
 | --------- | -------- | ---- | ------------------------------------ |
 | hostName  | string   | 是   | 要添加DNS记录的主机域名。            |
 | address   | string   | 是   | 主机域名解析地址（支持IPv4，IPv6）。 |
@@ -7891,7 +7897,7 @@ static clearHostIP(hostName: string): void
 
 **参数：**
 
-| 参数名   | 类型 | 必填 | 参数描述                  |
+| 参数名   | 类型 | 必填 | 说明                  |
 | -------- | -------- | ---- | ------------------------- |
 | hostName | string   | 是   | 要清除DNS记录的主机域名。 |
 
@@ -8108,7 +8114,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
 **参数：**
 
-| 参数名   | 类型 | 必填 | 参数描述                  |
+| 参数名   | 类型 | 必填 | 说明                  |
 | -------- | -------- | ---- | ------------------------- |
 | pathList | Array\<string\>   | 是   | 路径列表 |
 
@@ -13094,7 +13100,7 @@ struct WebComponent {
 
 static resumeDownload(webDownloadItem: WebDownloadItem): void
 
-设置用于接收从WebDownloadManager触发的下载进度的委托。
+恢复一个失败的下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14855,7 +14861,7 @@ exitFullscreen(): void
 
 resumePlayer?(): void
 
-通知应用重建应用内播放器。
+通知应用重建应用内播放器，并恢复应用内播放器的状态信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14867,7 +14873,7 @@ resumePlayer?(): void
 
 suspendPlayer?(type: SuspendType): void
 
-通知应用销毁应用内播放器。
+通知应用销毁应用内播放器，并保存应用内播放器的状态信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14909,11 +14915,11 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-| type | [SourceType](#sourcetype12) | 否 | 是 | 媒体源的类型。 |
-| source | string | 否 | 是 | 媒体源地址。 |
-| format | string | 否 | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| type | [SourceType](#sourcetype12) | 是 | 媒体源的类型。 |
+| source | string | 是 | 媒体源地址。 |
+| format | string | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -14921,10 +14927,10 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-| id | string | 否 | 是 | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | [RectEvent](#rectevent12) | 否 | 是 | surface 的位置信息。 |
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | string | 是 | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | [RectEvent](#rectevent12) | 是 | surface 的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -14945,19 +14951,19 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-| embedID | string | 否 | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](#mediatype12) | 否 | 是 | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 否 | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 否 | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
-| controlList | string[] | 否 | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 否 | 是 | 是否要求静音播放。 |
-| posterUrl | string | 否 | 是 | 海报的地址。 |
-| preload | [Preload](#preload12) | 否 | 是 | 是否需要预加载。 |
-| headers | Record\<string, string\> | 否 | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 否 | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| embedID | string | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](#mediatype12) | 是 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 是 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 是 | 是否要求静音播放。 |
+| posterUrl | string | 是 | 海报的地址。 |
+| preload | [Preload](#preload12) | 是 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
@@ -15053,6 +15059,122 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
 | width  | number   | 是   | 是   | 矩形的宽度。    |
 | height  | number   | 是   | 是   | 矩形的高度。    |
+
+## BackForwardCacheSupportedFeatures<sup>12+<sup>
+
+选择性允许使用以下特性的页面进入前进后退缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| nativeEmbed | bool | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
+| mediaTakeOver | bool | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+
+## BackForwardCacheOptions<sup>12+<sup>
+
+前进后退缓存相关设置对象，用来控制web组件前进后退缓存相关选项。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| size | number | 是 | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。设置为0或负数时，前进后退缓存功能不生效。Web会根据内存压力对缓存进行回收。 |
+| timeToLive | number | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。设置为0或负数时，前进后退缓存功能不生效。|
+
+### enableBackForwardCache<sup>12+</sup>
+
+static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
+
+开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定特定的页面进入前进后退缓存。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| features     |  BackForwardCacheSupportedFeatures | 是   | 允许使用特定特性的页面进入前进后退缓存中。|
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let features = new webview.BackForwardCacheSupportedFeatures();
+        features.nativeEmbed = true;
+        features.mediaTakeOver = true;
+        // 如果一个页面同时使用了同层渲染和视频托管的能力，需要 nativeEmbed 和
+        // mediaTakeOver 同时设置为 true，该页面才可以进入前进后退缓存中。
+        webview.WebviewController.enableBackForwardCache(features);
+        webview.WebviewController.initializeWebEngine();
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
+### setBackForwardCacheOptions<sup>12+</sup>
+
+setBackForwardCacheOptions(options: BackForwardCacheOptions): void
+
+可以设置Web组件中前进后退缓存的相关选项。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| options     |  BackForwardCacheOptions | 是   | 用来控制web组件前进后退缓存相关选项。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Row() {
+        Button("Add options").onClick((event: ClickEvent) => {
+          let options = new webview.BackForwardCacheOptions();
+          options.size = 3;
+          options.timeToLive = 10;
+          this.controller.setBackForwardCacheOptions(options);
+        })
+        Button("Backward").onClick((event: ClickEvent) => {
+          this.controller.backward();
+        })
+        Button("Forward").onClick((event: ClickEvent) => {
+          this.controller.forward();
+        })
+      }
+      Web({ src: "https://www.example.com", controller: this.controller })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## AdsBlockManager<sup>12+</sup>
 

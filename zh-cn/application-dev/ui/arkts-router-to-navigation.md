@@ -1,6 +1,7 @@
 # Router切换Navigation
 
 ## 架构差异
+
 从ArkUI组件树层级上来看，原先由Router管理的page在页面栈管理节点stage的下面。Navigation作为导航容器组件，可以挂载在单个page节点下，也可以叠加、嵌套。Navigation管理了标题栏、内容区和工具栏，内容区用于显示用户自定义页面的内容，并支持页面的路由能力。Navigation的这种设计上有如下优势：
 
 ![image](figures/Navigation和Router架构图.png)
@@ -43,7 +44,7 @@
 | geometryTransition共享元素动画                | 支持（NavDestination之间共享）        | 不支持                                 |
 | 页面生命周期监听                              | UIObserver.on('navDestinationUpdate') | UIObserver.on('routerPageUpdate')      |
 | 获取页面栈对象                                | 支持                                  | 不支持                                 |
-| 路由拦截                                      | 支持通过setInercption做路由拦截       | 不支持                                 |
+| 路由拦截                                      | 支持通过setInterception做路由拦截       | 不支持                                 |
 | 路由栈信息查询                                | 支持                                  | getState() & getLength()               |
 | 路由栈move操作                                | moveToTop & moveIndexToTop            | 不支持                                 |
 | 沉浸式页面                                    | 支持                                  | 不支持，需通过window配置               |
@@ -614,7 +615,7 @@ Router可以通过observer实现注册监听，接口定义请参考：[Router�
 import { uiObserver } from '@kit.ArkUI';
 
 function callBackFunc(info: uiObserver.RouterPageInfo) {
-    console.info("RouterPageInfo is : " + JSON.stringify(RouterPageInfo))
+    console.info("RouterPageInfo is : " + JSON.stringify(info))
 }
 
 // used in ability context.

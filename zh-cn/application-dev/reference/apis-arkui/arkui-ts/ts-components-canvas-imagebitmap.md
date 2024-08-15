@@ -8,7 +8,28 @@ ImageBitmap对象可以存储canvas渲染的像素数据。
 
 ## 接口
 
+### ImageBitmap<sup>12+</sup>
+
+ImageBitmap(data: PixelMap, unit?: LengthMetricsUnit)
+
+通过PixelMap创建ImageBitmap对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型   | 必填  | 说明                                    |
+| ---- | ------ | ---- | ---------------------------------------- |
+| data  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片的数据源支持PixelMap对象。 |
+| unit  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否 |  用来配置ImageBitmap对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。 |
+
+### ImageBitmap
+
 ImageBitmap(src: string, unit?: LengthMetricsUnit)
+
+通过ImageSrc创建ImageBitmap对象。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -37,7 +58,25 @@ ImageBitmap(src: string, unit?: LengthMetricsUnit)
 | width | number | 是 | 否 | ImageBitmap的像素宽度。<br>默认单位为vp。 |
 | height | number | 是 | 否 | ImageBitmap的像素高度。<br>默认单位为vp。 |
 
-**示例：**
+## close
+
+close(): void
+
+释放ImageBitmap对象相关联的所有图形资源，并将ImageBitmap对象的宽高置为0。close示例代码同创建ImageBitmap代码。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## ImageBitmap支持并发线程绘制
+
+从API version 11开始，当应用创建[Worker线程](../../../arkts-utils/worker-introduction.md)，支持使用postMessage将ImageBitmap实例传到Worker中进行绘制，并使用onmessage接收Worker线程发送的绘制结果进行显示。
+
+## 示例
+
+### 示例1
 
   ```ts
   // xxx.ets
@@ -67,18 +106,86 @@ ImageBitmap(src: string, unit?: LengthMetricsUnit)
 
   ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352442.png)
 
+### 示例2
+
+  ```ts
+// xxx.ets
+@Entry
+@Component
+struct Demo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ d irection: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('50%')
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.context.fillStyle = "#00ff00"
+          this.context.fillRect(0, 0, 100, 100)
+          let pixel = this.context.getPixelMap(0, 0, 100, 100)
+          let image = new ImageBitmap(pixel)
+          this.context.drawImage(image, 100, 100)
+        })
+
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352444.png)
 
 
-## 方法
+### 示例3
+```ts
+import worker from '@ohos.worker';
 
-### close
+@Entry
+@Component
+struct imageBitmapExamplePage {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
+  private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
-close(): void
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.myWorker.postMessage({ myImage: this.img });
+          this.myWorker.onmessage = (e): void => {
+            if (e.data.myImage) {
+              let image: ImageBitmap = e.data.myImage
+              this.context.transferFromImageBitmap(image)
+            }
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+Worker线程在onmessage中接收到主线程postMessage发送的ImageBitmap，并进行绘制。
 
-释放ImageBitmap对象相关联的所有图形资源，并将ImageBitmap对象的宽高置为0。close示例代码同创建ImageBitmap代码。
+```ts
+workerPort.onmessage = function (e: MessageEvents) {
+  if (e.data.myImage) {
+    let img = e.data.myImage
+    let offCanvas = new OffscreenCanvas(600, 600)
+    let offContext = offCanvas.getContext("2d")
+    offContext.drawImage(img, 0, 0, 500, 500, 0, 0, 400, 200)
+    let image = offCanvas.transferToImageBitmap()
+    workerPort.postMessage({ myImage: image });
+  }
+}
+```
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+  ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352442.png)

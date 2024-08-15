@@ -89,12 +89,12 @@ import { cloudExtension } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称       | 类型            | 必填 | 说明                                       |
-| ---------- | --------------- | ---- | ------------------------------------------ |
-| id         | string          | 是   | 执行插入操作时生成，只读数据不可手动更改。 |
-| createTime | number          | 是   | 创建行数据的时间。只读数据不可手动更改。   |
-| modifyTime | number          | 是   | 修改行数据的时间。只读数据不可手动更改。   |
-| operation  | [Flag](#flag) | 是   | 对行数据所作的操作。                         |
+| 名称       | 类型            | 只读 | 可选 | 说明                 |
+| ---------- | --------------- | ---- | ---- | ------------------ |
+| id         | string          | 是   | 否   | 执行插入操作时生成。 |
+| createTime | number          | 是   | 否   | 创建行数据的时间。   |
+| modifyTime | number          | 是   | 否   | 修改行数据的时间。   |
+| operation  | [Flag](#flag)   | 是   | 否   | 对行数据所作的操作。 |
 
 ## CloudType
 

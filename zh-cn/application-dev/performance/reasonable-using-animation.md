@@ -1,6 +1,6 @@
 # 合理使用动画
 
-本文协助开发者解决构建页面动画时遇到的丢帧与动画时延较长的问题。
+本文列举了部分用于优化动画时延的正反案例，帮助开发者在遇到相似场景时进行优化，解决构建页面动画时遇到动画时延较长的问题。
 
 ## 减少动画丢帧
 
@@ -163,7 +163,7 @@ struct AnimateToExample2 {
 
 ## 合理设置隐式动画
 
-Tabs组件在切换页面时默认加载300ms的隐式动画，如果开发场景不需要该动画效果，会因默认加载导致页面跳转完成时延变长，此时可手动设置`animationDuration`减少动画完成时延。下述正反示例分别为100ms和1000ms的动画时延：
+Tabs组件在不为BottomTabBarStyle样式时，切换页面时默认加载300ms的隐式动画，如果开发场景不需要该动画效果，会因默认加载导致页面跳转完成时延变长，此时可手动设置`animationDuration`减少动画完成时延。下述正反示例分别为100ms和1000ms的动画时延：
 
 ### 反例：
 
@@ -171,22 +171,22 @@ Tabs组件在切换页面时默认加载300ms的隐式动画，如果开发场�
 @Entry
 @Component
 struct TabsExample {
-    ...
-    private controller: TabsController = new TabsController();
+  ...
+  private controller: TabsController = new TabsController();
 
-    build() {
-        Column() {
-            Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
-                TabContent()
-                TabContent()
-                ...
-            }
-            ...
-            // 设置Tabs页面跳转的动画时长为1000ms
-            .animationDuration(1000)
-        }
-        .width('100%')
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+        TabContent()
+        TabContent()
+        // ...
+      }
+      // ...
+      // 设置Tabs页面跳转的动画时长为1000ms
+      .animationDuration(1000)
     }
+    .width('100%')
+  }
 }
 ```
 
@@ -198,22 +198,22 @@ struct TabsExample {
 @Entry
 @Component
 struct TabsExample {
-    ...
-    private controller: TabsController = new TabsController();
+  ...
+  private controller: TabsController = new TabsController();
 
-    build() {
-        Column() {
-            Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
-                TabContent()
-                TabContent()
-                ...
-            }
-            ...
-            // 设置Tabs页面跳转的动画时长为100ms
-            .animationDuration(100)
-        }
-        .width('100%')
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+        TabContent()
+        TabContent()
+        // ...
+      }
+      // ...
+      // 设置Tabs页面跳转的动画时长为100ms
+      .animationDuration(100)
     }
+    .width('100%')
+  }
 }
 ```
 
@@ -225,8 +225,9 @@ struct TabsExample {
 |----------------------------------------------------|----------------------------------------------------|
 | ![img](./figures/reasonable-using-animation-6.gif) | ![img](./figures/reasonable-using-animation-7.gif) |
 
-上述示例通过减少`animationDuration`数值，减少Tabs切换完成时延。开发者可根据实际场景适当减少隐式动画时延，提高应用性能。
+上述示例通过减少`animationDuration`数值，减少Tabs切换完成时延。当数值设置为0且TabBar不为BottomTabBarStyle样式时，隐式动效延时为默认的300ms。开发者可根据实际场景适当减少隐式动效时延，如果应用没有特殊的动效要求时，建议设置数值为1，减少阻塞主线程，提高应用性能。
 
+更详细的API文档请参考：[Tabs-animationduration](../reference/apis-arkui/arkui-ts/ts-container-tabs.md#animationduration)。
 
 ## 合理设置动效时长
 
@@ -238,20 +239,20 @@ struct TabsExample {
 @Entry
 @Component
 struct ListExample {
-    scrollerForList: Scroller = new Scroller();
+  scrollerForList: Scroller = new Scroller();
 
-    build() {
-        Column() {
-            Button('Fling100')
-                .onClick(() => {
-                    // 设置当前滚动初始速度为100vp/s
-                    this.scrollerForList.fling(100);
-                })
-            List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-                ...
-            }
-        }
+  build() {
+    Column() {
+      Button('Fling100')
+        .onClick(() => {
+          // 设置当前滚动初始速度为100vp/s
+          this.scrollerForList.fling(100);
+        })
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        // ...
+      }
     }
+  }
 }
 ```
 
@@ -261,20 +262,20 @@ struct ListExample {
 @Entry
 @Component
 struct ListExample {
-    scrollerForList: Scroller = new Scroller();
+  scrollerForList: Scroller = new Scroller();
 
-    build() {
-        Column() {
-            Button('Fling100')
-                .onClick(() => {
-                    // 设置当前滚动初始速度为10000vp/s
-                    this.scrollerForList.fling(10000);
-                })
-            List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-                ...
-            }
-        }
+  build() {
+    Column() {
+      Button('Fling100')
+        .onClick(() => {
+          // 设置当前滚动初始速度为10000vp/s
+          this.scrollerForList.fling(10000);
+        })
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        // ...
+      }
     }
+  }
 }
 ```
 

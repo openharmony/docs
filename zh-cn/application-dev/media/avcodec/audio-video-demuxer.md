@@ -185,7 +185,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
 
    DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
-   int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+   Drm_ErrCode ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
    ```
 
    使用示例二：
@@ -197,10 +197,10 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
 
    Demuxer_MediaKeySystemInfoCallback callback = &OnDrmInfoChangedWithObj;
-   int32_t ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback)
+   Drm_ErrCode ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback);
 
    ```
-   在监听到DRM信息后，也可主动调用获取DRM信息接口。
+   在监听到DRM信息后，也可主动调用获取DRM信息(uuid及对应pssh)接口。
    ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);

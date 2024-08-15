@@ -1,4 +1,4 @@
-# 属性动画接口说明
+# 实现属性动画
 
 
 通过可动画属性改变引起UI上产生的连续视觉效果，即为属性动画。属性动画是最基础易懂的动画，ArkUI提供两种属性动画接口[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)和[animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)驱动组件属性按照动画曲线等动画参数进行连续的变化，产生属性动画。

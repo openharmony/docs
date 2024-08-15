@@ -80,6 +80,8 @@ contentModifier(modifier: ContentModifier\<TextTimerConfiguration>)
 
 定制TextTimer内容区的方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -162,6 +164,8 @@ reset()
 ## TextTimerConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -249,8 +253,8 @@ class MyTextTimerModifier implements ContentModifier<TextTimerConfiguration> {
          Text(config.isCountDown ? "倒计时" : "正计时").fontColor(Color.White)
          Text(
            (config.isCountDown ? "剩余" : "已经过去了") + (config.isCountDown?
-             (Math.max((config.count - config.elapsedTime) / 1000,0)).toFixed(1) + "/" + (config.count / 1000).toFixed(0)
-             :((config.elapsedTime / 1000).toFixed(0))
+             (Math.max(config.count / 1000 - config.elapsedTime / 100,0)).toFixed(1) + "/" + (config.count / 1000).toFixed(0)
+             :((config.elapsedTime / 100).toFixed(0))
            ) + "秒"
          ).fontColor(Color.White)
        }

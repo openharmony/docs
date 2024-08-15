@@ -136,15 +136,13 @@ properties.getDelayData = ((type: string) => {
 
 表示UDMF统一数据对象，提供封装一组数据记录的方法。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 ### 属性
 
-| 名称 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| properties<sup>12+</sup> | [UnifiedDataProperties](#unifieddataproperties12) | 否 | 否 | 当前统一数据对象中所有数据记录的属性，包含时间戳、标签、粘贴范围以及一些附加数据等。 |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                              |
+| -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------|
+| properties<sup>12+</sup> | [UnifiedDataProperties](#unifieddataproperties12) | 否 | 否 | 当前统一数据对象中所有数据记录的属性，包含时间戳、标签、粘贴范围以及一些附加数据等。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ### constructor<sup>12+</sup>
 
@@ -349,7 +347,7 @@ let types = unifiedData.getTypes();
 
 ## Summary
 
-描述某一统一数据对象的数据摘要，包括所含数据类型及大小，当前暂不支持。
+描述某一统一数据对象的数据摘要，包括所含数据类型及大小。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -869,10 +867,10 @@ UDMF提供的数据操作接口可选项，包含intention和key两个可选参�
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 
-| 名称       | 类型                      | 可读 | 可写 | 可选 | 说明                                                                                                                                                                                                                                |
-|-----------|-------------------------|----|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| intention | [Intention](#intention) | 是  | 是  | 是  | 表示数据操作相关的数据通路类型。                                                                                                                                                                                                                  |
-| key       | string                  | 是  | 是  | 是  | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
+| 名称       | 类型                    | 只读 | 可选 | 说明                                                                                                                                                                                                                                |
+|-----------|-------------------------|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| intention | [Intention](#intention) | 否  | 是  | 表示数据操作相关的数据通路类型。                                                                                                                                                                                                                  |
+| key       | string                  | 否  | 是  | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
 
 
 
@@ -900,7 +898,6 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -960,7 +957,6 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1012,7 +1008,6 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1072,7 +1067,6 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1124,7 +1118,6 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1189,7 +1182,6 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1247,7 +1239,6 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1312,7 +1303,6 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**

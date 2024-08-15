@@ -8,6 +8,7 @@
   - [Using ImagePacker to Encode Images](image-encoding.md)
   - [Editing EXIF Data](image-tool.md)
 - Image Development (C/C++)
+  - [Introduction to the Image_NativeModule Structs](image-structure-c.md)
   - [Using Image_NativeModule to Decode Images](image-source-c.md)
   - [Using Image_NativeModule to Receive Images](image-receiver-c.md)
   - [Using Image_NativeModule for PixelMap Operations](pixelmap-c.md)

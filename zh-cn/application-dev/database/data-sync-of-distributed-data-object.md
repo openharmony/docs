@@ -76,7 +76,7 @@
 
 关于分布式数据对象的数据同步，值得注意的是，同步的最小单位是“属性”。比如，下图中对象1包含三个属性：name、age和parents。当其中一个属性变更时，则数据同步时只需同步此变更的属性。
 
-对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、Object类型）。针对复杂类型的数据修改，目前仅支持对根属性的修改，暂不支持对下级属性的修改。
+对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套）。针对复杂类型的数据修改，目前仅支持对根属性的修改，暂不支持对下级属性的修改。
 
 ```ts
 dataObject['parents'] = {mom: "amy"}; // 支持的修改
@@ -170,7 +170,8 @@ dataObject['parents']['mon'] = "amy"; // 不支持的修改
 >
 > - 跨端迁移时，在迁移发起端调用setsessionId接口设置同步的sessionId后，必须再调用save接口保存数据到接收端。
 >
-> - 跨端迁移需要配置`continuable`标签，<!--RP1-->详见[跨端迁移开发步骤](../application-models/hop-cross-device-migration.md#开发步骤)。<!--RP1End-->
+<!--RP1-->
+> - 跨端迁移需要配置`continuable`标签，详见[跨端迁移开发步骤](../application-models/hop-cross-device-migration.md#开发步骤)。<!--RP1End-->
 >
 > - wantParam中的"sessionId"字段可能被其他服务占用，建议自定义一个key存取sessionId。
 >

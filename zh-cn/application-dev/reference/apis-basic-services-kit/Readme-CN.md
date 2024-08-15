@@ -6,8 +6,8 @@
     - [@ohos.account.distributedAccount (分布式账号管理)](js-apis-distributed-account.md)
     - [@ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)
     <!--Del-->
-    - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](js-apis-distributed-account-sys.md)
-    - [@ohos.account.osAccount (系统账号管理)(系统接口)](js-apis-osAccount-sys.md)
+    - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
+    - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
     <!--DelEnd-->
   - 设备管理
     - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -41,6 +41,10 @@
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
     <!--DelEnd-->
   - 进程线程通信
+    - [系统定义的公共事件](common_event/commonEventManager-definitions.md)
+    <!--Del-->
+    - [系统定义的公共事件定义 (系统接口)](common_event/commonEventManager-definitions-sys.md)
+    <!--DelEnd-->
     - [@ohos.commonEventManager (公共事件模块)](js-apis-commonEventManager.md)
     - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
     <!--Del-->
@@ -53,31 +57,10 @@
       - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
       - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
       - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-    - 公共事件定义
-      - [系统公共事件定义](common_event/commonEventManager-definitions.md)
-      - [元能力子系统公共事件定义](common_event/commonEvent-ability.md)
-      - [包管理子系统公共事件定义](common_event/commonEvent-bundleManager.md)
-      - [通知服务公共事件定义](common_event/commonEvent-ans.md)
-      - [资源调度子系统公共事件定义](common_event/commonEvent-resourceschedule.md)
-      - [窗口管理子系统公共事件定义](common_event/commonEvent-window.md)
-      - [网络管理子系统公共事件定义](common_event/commonEvent-netmanager.md)
-      - [短信应用公共事件定义](common_event/commonEvent-mms.md)
-      - [电话服务子系统公共事件定义](common_event/commonEvent-telephony.md)
-      - [电源管理子系统公共事件定义](common_event/commonEvent-powermgr.md)
-      - [NFC子系统公共事件定义](common_event/commonEvent-nfc.md)
-      - [Wifi子系统公共事件定义](common_event/commonEvent-wifi.md)
-      - [USB子系统公共事件定义](common_event/commonEvent-usb.md)
-      - [文件管理子系统公共事件定义](common_event/commonEvent-filemanagement.md)
-      - [主题框架子系统-锁屏管理公共事件定义](common_event/commonEvent-screenlock.md)
-      - [时间时区子系统公共事件定义](common_event/commonEvent-time.md)
-      - [账号子系统公共事件定义](common_event/commonEvent-account.md)
-      - [语言子系统公共事件定义](common_event/commonEvent-locale.md)
-      - [Account Kit公共事件定义](common_event/commonEvent-accountkit.md)
-      - [Store Kit公共事件定义](common_event/commonEvent-storekit.md)
-      <!--Del-->
-      - [系统公共事件定义 (系统接口)](common_event/commonEventManager-definitions-sys.md)
-      <!--DelEnd-->
   - 其他
+    <!--Del-->
+    - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](js-apis-intelligentVoice-sys.md)
+    <!--DelEnd-->
     - [@ohos.base (公共回调信息)](js-apis-base.md)
     - [@ohos.customization.customConfig (定制配置)](js-apis-customization-customConfig.md)
     - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
@@ -135,4 +118,5 @@
   - [升级错误码](errorcode-update.md)
   <!--Del--> 
   - [锁屏服务错误码](errorcode-screenlock.md)
+  - [智能语音错误码](errorcode-intelligentVoice.md)
   <!--DelEnd-->

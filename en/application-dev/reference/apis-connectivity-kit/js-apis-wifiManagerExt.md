@@ -30,11 +30,11 @@ Enables the WLAN hotspot.
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
-| **ID**| **Error Message**|
-| -------- | -------- |
+| **ID** | **Error Message** |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
@@ -65,11 +65,11 @@ Disables the WLAN hotspot.
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
-| **ID**| **Error Message**|
-| -------- | -------- |
+| **ID** | **Error Message** |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
@@ -95,30 +95,30 @@ Obtains the supported power modes. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Promise used to return the power modes obtained.|
+  | Type | Description |
+  | -------- | -------- |
+  | Promise&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Promise used to return the power modes obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
-| **ID**| **Error Message**|
-| -------- | -------- |
+| **ID** | **Error Message** |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 ## PowerMode<sup>9+</sup>
 
 Enumerates the power modes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -------- | -------- | -------- |
-| SLEEPING | 0 | Sleeping|
-| GENERAL | 1 | General|
-| THROUGH_WALL | 2 | Through_wall|
+| SLEEPING | 0 | Sleeping |
+| GENERAL | 1 | General |
+| THROUGH_WALL | 2 | Through_wall |
 
 
 ## wifiManagerExt.getSupportedPowerMode<sup>9+</sup>
@@ -133,20 +133,20 @@ Obtains the supported power modes. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If the operation fails, **err** is not **0**.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If the operation fails, **err** is not **0**. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
-| **ID**| **Error Message**|
-| -------- | -------- |
+| **ID** | **Error Message** |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
@@ -183,19 +183,19 @@ Obtains the power mode. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[PowerMode](#powermode9)&gt; | Promise used to return the power modes obtained.|
+  | Type | Description |
+  | -------- | -------- |
+  | Promise&lt;[PowerMode](#powermode9)&gt; | Promise used to return the power modes obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
-| **ID**| **Error Message**|
-| -------- | -------- |
+| **ID** | **Error Message** |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
@@ -222,20 +222,20 @@ Obtains the power mode. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[PowerMode](#powermode9)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If the operation fails, **err** is not **0**.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[PowerMode](#powermode9)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If the operation fails, **err** is not **0**. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
-| **ID**| **Error Message**|
-| -------- | -------- |
+| **ID** | **Error Message** |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
@@ -269,20 +269,20 @@ setPowerMode(mode: PowerMode) : void;
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| mode | [PowerMode](#powermode9) | Yes| Power mode to set.|
+| mode | [PowerMode](#powermode9) | Yes | Power mode to set. |
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
-| **ID**| **Error Message**|
-| -------- | -------- |
+| **ID** | **Error Message** |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 

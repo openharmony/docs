@@ -3,7 +3,11 @@
 
 ## Overview
 
-Declares the functions related to an audio capturer.
+The **native_audiocapturer.h** declares the functions related to an audio capturer.
+
+**Library**: libohaudio.so
+
+**File to include**: &lt;ohaudio/native_audiocapturer.h&gt;
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -17,7 +21,7 @@ Declares the functions related to an audio capturer.
 
 ### Functions
 
-| Name       | Description| 
+| Name       | Description | 
 |--------------| -------- |
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Release](_o_h_audio.md#oh_audiocapturer_release)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                               | Releases an audio capturer. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Start](_o_h_audio.md#oh_audiocapturer_start)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                   | Starts an audio capturer. | 

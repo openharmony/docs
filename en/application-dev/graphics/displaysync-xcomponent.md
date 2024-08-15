@@ -1,14 +1,14 @@
 # Requesting Frame Rates for Custom Content
 
-When you use native APIs to develop an application based on the [\<XComponent>](../ui/arkts-common-components-xcomponent.md), you can request an independent frame rate for custom content in scenarios such as gaming and custom UI framework interconnection.
+When you use native APIs to develop an application based on the [XComponent](../ui/arkts-common-components-xcomponent.md), you can request an independent frame rate for custom content in scenarios such as gaming and custom UI framework interconnection.
 
 ## Available APIs
 
 | Name | Description    |
 |-----|--------|
-| OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent *component, OH_NativeXComponent_ExpectedRateRange *range) |Sets the expected frame rate range.
-| OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | Registers the display update callback and enables the callback for each frame.|
-| OH_NativeXComponent_UnRegisterOnFrameCallback (OH_NativeXComponent *component) | Deregisters the display update callback and disables the callback for each frame.|
+| OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent *component, OH_NativeXComponent_ExpectedRateRange *range) |Sets the expected frame rate range. 
+| OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | Registers the display update callback and enables the callback for each frame. |
+| OH_NativeXComponent_UnRegisterOnFrameCallback (OH_NativeXComponent *component) | Deregisters the display update callback and disables the callback for each frame. |
 
 ## How to Develop
 
@@ -24,27 +24,34 @@ When you use native APIs to develop an application based on the [\<XComponent>](
    };
    ```
 
-2. Define a demo page, which contains two **\<XComponents>**.
+2. Define a demo page, which contains two **XComponents**.
 
    ```ts
+   import XComponentContext from "../interface/XComponentContext";
+
    @Entry
    @Component
    struct Index {
      private xComponentContext1: XComponentContext | undefined = undefined;
      private xComponentContext2: XComponentContext | undefined = undefined;
-      Row() {
-        XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext1 = xComponentContext as XComponentContext;
-          }).width('832px')
-      }.height('40%')
+     
+    build() {
+      Column() {
+        Row() {
+          XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
+            .onLoad((xComponentContext) => {
+              this.xComponentContext1 = xComponentContext as XComponentContext;
+            }).width('832px')
+        }.height('40%')
 
-      Row() {
-        XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext2 = xComponentContext as XComponentContext;
-          }).width('832px')// Multiples of 64
-      }.height('40%')
+        Row() {
+          XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
+            .onLoad((xComponentContext) => {
+              this.xComponentContext2 = xComponentContext as XComponentContext;
+            }).width('832px') // Multiples of 64
+        }.height('40%')
+      }
+    }
    }
    ```
 
@@ -75,7 +82,7 @@ When you use native APIs to develop an application based on the [\<XComponent>](
    > **NOTE**
    >
    > - The callback function runs in the UI main thread. To avoid adverse impact on the performance, time-consuming operations related to the UI thread should not run in the callback function.
-   > - After the instance calls NapiRegister, it must call NapiUnregister when it no longer needs to control the frame rate, so as to avoid memory leakage.
+   > - After the instance calls **NapiRegister**, it must call **NapiUnregister** when it no longer needs to control the frame rate, so as to avoid memory leakage.
 
    ```ts
    void SampleXComponent::RegisterOnFrameCallback(OH_NativeXComponent *nativeXComponent) 

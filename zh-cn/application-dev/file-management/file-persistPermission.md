@@ -144,7 +144,7 @@ async function activatePermissionExample() {
                     console.error("error code : " + JSON.stringify(err.data[i].code));
                     console.error("error uri : " + JSON.stringify(err.data[i].uri));
                     console.error("error reason : " + JSON.stringify(err.data[i].message));
-                    if (err.data[i].code == fileshare.PolicyErrorCode.PERMISSION_NOT_PERSISTED) {
+                    if (err.data[i].code == fileShare.PolicyErrorCode.PERMISSION_NOT_PERSISTED) {
                         //可以选择进行持久化后再激活。
                     }
                 }

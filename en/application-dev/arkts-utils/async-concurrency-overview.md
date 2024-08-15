@@ -35,7 +35,7 @@ After the Promise object is created, you can use the **then** and **catch** meth
 
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 promise.then((result: number) => {
  console.info(`Random number is ${result}`);
@@ -57,16 +57,36 @@ The code snippet below uses async/await to simulate an asynchronous operation th
 
 
 ```ts
-async function myAsyncFunction(): Promise<void> {
+async function myAsyncFunction(): Promise<string> {
   const result: string = await new Promise((resolve: Function) => {
     setTimeout(() => {
       resolve('Hello, world!');
     }, 3000);
   });
   console.info(result); // Output: Hello, world!
+  return result
 }
 
-myAsyncFunction();
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(async () => {
+            let res = await myAsyncFunction();
+            console.info("res is: " + res);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 In the preceding code, the await keyword is used to wait for the parsing of the Promise object and store its parsed value in the **result** variable.

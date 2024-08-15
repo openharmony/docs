@@ -1,4 +1,4 @@
-# Form Kit API Reference
+# Form Kit
 
 - ArkTS APIs
   - [@ohos.app.form.formBindingData (formBindingData)](js-apis-app-form-formBindingData.md)

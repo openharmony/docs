@@ -44,7 +44,7 @@ Check the format of the string.
 
 **Error Message**
 
-Worker initialization failure.
+Worker initialization failed.
 
 **Description**
 
@@ -64,7 +64,7 @@ The **Worker** instance fails to be initialized when the API is called.
 
 **Error Message**
 
-Worker instance is not running.
+The Worker instance is not running.
 
 **Description**
 
@@ -82,7 +82,7 @@ Ensure that the **Worker** instance is running properly.
 
 **Error Message**
 
-The invoked API is not supported in workers.
+The called API is not supported in the worker thread.
 
 **Description**
 
@@ -136,7 +136,7 @@ Ensure that the worker file path complies with the specifications for creating *
 
 **Error Message**
 
-Buffer size must be a multiple of ${size}.
+The buffer size must be a multiple of ${size}.
 
 **Description**
 
@@ -149,7 +149,7 @@ The buffer size is not an integer multiple of **size**, which can be 16-bit, 32-
 **Solution**
 
 Use a buffer the size of which meets the requirements.
-
+  
 
 ## 10200010 Empty Container
 
@@ -210,7 +210,7 @@ Use the keyword **new** to create an instance.
 
 **Error Message**
 
-Cannot set property ${propertyName} of Buffer which has only a getter.
+${propertyName} cannot be set for the buffer that has only a getter.
 
 **Description**
 
@@ -228,7 +228,7 @@ Do not set the read-only attribute for the buffer.
 
 **Error Message**
 
-The function is not mark as concurrent.
+The function is not marked as concurrent.
 
 **Description**
 
@@ -246,7 +246,7 @@ Check the functions required by the tasks executed by the task pool and add the 
 
 **Error Message**
 
-The task does not exist when it is canceled.
+The task to cancel does not exist.
 
 **Description**
 
@@ -264,7 +264,7 @@ Before canceling a task, ensure that the task has been placed in the task pool b
 
 **Error Message**
 
-The task is executing when it is canceled.
+The task to cancel is being executed.
 
 **Description**
 
@@ -300,7 +300,7 @@ Before deleting an element, ensure that the element exists in this container.
 
 **Error Message**
 
-The task group does not exist when it is canceled.
+The task group to cancel does not exist.
 
 **Description**
 
@@ -354,7 +354,7 @@ Ensure that the attribute contained in the method is callable and that the metho
 
 **Error Message**
 
-The global call exceeds the timeout.
+Waiting for a global call timed out.
 
 **Description**
 
@@ -372,7 +372,7 @@ Do not call APIs that take a long time to process data, such as complex computin
 
 **Error Message**
 
-The function is not called in the taskpool thread.
+The function is not called in the TaskPool thread.
 
 **Description**
 
@@ -426,7 +426,7 @@ Ensure that the callback has been registered in the host thread before this func
 
 **Error Message**
 
-Add dependent task to SequenceRunner.
+A dependent task cannot be added to SequenceRunner.
 
 **Description**
 
@@ -466,7 +466,7 @@ The dependency does not exist.
 
 **Description**
 
-[removeDependency()](../apis/js-apis-taskpool.md#removedependency11) is called to remove a dependent task, but the task does not exist.
+[removeDependency()](js-apis-taskpool.md#removedependency11) is called to remove a dependent task, but the task does not exist.
 
 **Possible Causes**
 
@@ -484,7 +484,7 @@ The delayTime is less than zero.
 
 **Description**
 
-This error code is reported when the value of [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
+This error code is reported when the value of [delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
 
 **Possible Causes**
 
@@ -498,7 +498,7 @@ Ensure that [delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11) is set to 
 
 **Error Message**
 
-Can not set an arraybuffer to both transferList and cloneList.
+An ArrayBuffer cannot be set as both a transfer list and a clone list.
 
 **Description**
 
@@ -516,7 +516,7 @@ Ensure that an ArrayBuffer is set as either a transfer list or clone list. If yo
 
 **Error Message**
 
-No such lock.
+The lock does not exist.
 
 **Description**
 
@@ -722,7 +722,7 @@ A periodic task cannot have dependencies.
 
 **Possible Causes**
 
-[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11) or [addDependency](../../reference/apis-arkts/js-apis-taskpool.md#adddependency11) is called to remove or add dependencies for a periodic task.
+[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11) or [addDependency](js-apis-taskpool.md#adddependency11) is called to remove or add dependencies for a periodic task.
 
 **Solution**
 
@@ -767,5 +767,3 @@ When [crypto](js-apis-arkts-decimal.md#decimalconfig) of **Decimal** is set or t
 Use [Decimal.set](js-apis-arkts-decimal.md#set) to cancel the encryption algorithm.
 
 Example: Decimal.set({crypto: false})
-
- <!--no_check--> 

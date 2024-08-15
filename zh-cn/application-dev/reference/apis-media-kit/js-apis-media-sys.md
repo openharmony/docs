@@ -1005,3 +1005,15 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
+
+## SeekMode<sup>8+</sup>
+
+视频播放的Seek模式枚举，可通过seek方法作为参数传递下去。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**系统接口：** 该接口为系统接口
+
+| 名称           | 值   | 说明                                                         |
+| -------------- | ---- | ------------------------------------------------------------ |
+| SEEK_CONTINUOUS<sup>12+</sup> | 3    | 表示拖动预览的Seek模式。有序、批量调用该模式Seek，实现视频的拖动预览功能。<br>该模式下Seek成功不上报SeekDone事件。 |

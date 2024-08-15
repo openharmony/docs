@@ -47,6 +47,8 @@ getUniqueId(): number
 
 获取当前Component的UniqueId。UniqueId为系统为每个组件分配的Id，可保证唯一性。若在组件未构建时获取，返回无效UniqueId：-1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -123,6 +125,8 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 查询自定义组件所属的Navigation信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -176,6 +180,8 @@ export struct PageOne {
 queryRouterPageInfo(): RouterPageInfo | undefined;
 
 获取RouterPageInfo实例对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -21,10 +21,10 @@ Text(content?: string | Resource , value?: TextOptions)
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | No| Text content. This parameter does not take effect if the component contains a **\<Span>** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '**|
-| value<sup>11+</sup> | [TextOptions](#textoptions11) | No| Initialization options of the component.|
+| content | string \| [Resource](ts-types.md#resource) | No | Text content. This parameter does not take effect if the component contains a **\<Span>** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '** |
+| value<sup>11+</sup> | [TextOptions](#textoptions11) | No | Initialization options of the component.|
 
 ## Attributes
 
@@ -48,11 +48,11 @@ When **textAlign** is set to **TextAlign.JUSTIFY**, you must set the [wordBreak]
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                       | Mandatory| Description                                                      |
+| Name | Type                                       | Mandatory | Description                                                      |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| value  | [TextAlign](ts-appendix-enums.md#textalign) | Yes  | Horizontal alignment of the text.<br>Default value: **TextAlign.Start**|
+| value  | [TextAlign](ts-appendix-enums.md#textalign) | Yes  | Horizontal alignment of the text.<br>Default value: **TextAlign.Start** |
 
 ### textOverflow
 
@@ -74,11 +74,11 @@ Since API version 12, **TextOverflow.MARQUEE** is available for the **\<ImageSpa
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description                                                        |
+| Name | Type                                                        | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Yes  | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**|
+| value  | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Yes  | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}** |
 
 ### maxLines
 
@@ -92,11 +92,11 @@ Sets the maximum number of lines in the text. By default, text is automatically 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | Yes  | Maximum number of lines in the text.|
+| value  | number | Yes  | Maximum number of lines in the text. |
 
 ### lineHeight
 
@@ -110,11 +110,11 @@ Sets the text line height. If the value is less than or equal to **0**, the line
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description            |
+| Name | Type                                                        | Mandatory | Description            |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Text line height.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Text line height. |
 
 ### decoration
 
@@ -128,11 +128,11 @@ Sets the color, type, and style of the text decorative line.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description                                                        |
+| Name | Type                                                        | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | Yes  | Style of the text decorative line.<br>Default value:<br>{<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>} |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface)  | Yes  | Style of the text decorative line.<br>Default value:<br>{<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>}<br>**NOTE**<br>The **style** parameter cannot be used in widgets. |
 
 ### baselineOffset
 
@@ -146,11 +146,11 @@ Sets the offset of the text baseline. If the value specified is a percentage, th
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                      | Mandatory| Description                            |
+| Name | Type                      | Mandatory | Description                            |
 | ------ | -------------------------- | ---- | -------------------------------- |
-| value  | number \| string | Yes  | Offset of the text baseline.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the text baseline.<br>Default value: **0** |
 
 ### letterSpacing
 
@@ -166,11 +166,11 @@ If the value specified is a negative value, the text is compressed. A negative v
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                      | Mandatory| Description          |
+| Name | Type                      | Mandatory | Description          |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number \| string | Yes  | Letter spacing.|
+| value  | number \| string | Yes  | Letter spacing. |
 
 ### minFontSize
 
@@ -190,11 +190,11 @@ If the value of **minFontSize** is less than or equal to 0, the adaptive font si
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description              |
+| Name | Type                                                        | Mandatory | Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size. |
 
 ### maxFontSize
 
@@ -212,11 +212,11 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description              |
+| Name | Type                                                        | Mandatory | Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size. |
 
 ### textCase
 
@@ -230,11 +230,11 @@ Sets the text case.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                     | Mandatory| Description                                     |
+| Name | Type                                     | Mandatory | Description                                     |
 | ------ | ----------------------------------------- | ---- | ----------------------------------------- |
-| value  | [TextCase](ts-appendix-enums.md#textcase) | Yes  | Text case.<br>Default value: **TextCase.Normal**|
+| value  | [TextCase](ts-appendix-enums.md#textcase) | Yes  | Text case.<br>Default value: **TextCase.Normal** |
 
 ### copyOption<sup>9+</sup>
 
@@ -242,17 +242,19 @@ copyOption(value: CopyOptions)
 
 Sets whether copy and paste is allowed. If this attribute is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, a long press on the text will display a context menu that offers the copy and select-all options.
 
+Because widgets do not have the long press event, the context menu will not be displayed when users long press text.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                            | Mandatory| Description                                                      |
+| Name | Type                                            | Mandatory | Description                                                      |
 | ------ | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
-| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Yes  | Whether copy and paste is allowed.<br>Default value: **CopyOptions.None**|
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Yes  | Whether copy and paste is allowed.<br>Default value: **CopyOptions.None** |
 
 ### draggable<sup>9+</sup>
 
@@ -268,11 +270,11 @@ It must be used together with [CopyOptions](ts-appendix-enums.md#copyoptions9). 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                |
+| Name | Type   | Mandatory | Description                                |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | Yes  | Drag effect of the selected text.<br>Default value: **false**|
+| value  | boolean | Yes  | Drag effect of the selected text.<br>Default value: **false** |
 
 ### font<sup>10+</sup>
 
@@ -284,11 +286,11 @@ Sets the text style, covering the font size, font width, font family, and font s
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description      |
+| Name | Type   | Mandatory | Description      |
 | ------ | ------- | ---- | ---------- |
-| value  | [Font](ts-types.md#font) | Yes  | Text style.|
+| value  | [Font](ts-types.md#font) | Yes  | Text style. |
 
 ### textShadow<sup>10+</sup>
 
@@ -306,11 +308,11 @@ Since API version 11, this API supports input parameters in an array to implemen
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description          |
+| Name | Type                                                        | Mandatory | Description          |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \|  Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)&gt;<sup>11+</sup> | Yes  | Text shadow.|
+| value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \|  Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)&gt;<sup>11+</sup>  | Yes  | Text shadow. |
 
 ### heightAdaptivePolicy<sup>10+</sup>
 
@@ -328,11 +330,11 @@ If this attribute is set to **TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST**
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description                                                        |
+| Name | Type                                                        | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | Yes  | How the adaptive height is determined for the text.<br>Default value: **TextHeightAdaptivePolicy.MAX_LINES_FIRST**|
+| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | Yes  | How the adaptive height is determined for the text.<br>Default value: **TextHeightAdaptivePolicy.MAX_LINES_FIRST** |
 
 ### textIndent<sup>10+</sup>
 
@@ -344,11 +346,11 @@ Sets the indent of the first line text.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                        | Mandatory| Description                        |
+| Name | Type                        | Mandatory | Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Indent of the first line text.<br>Default value: **0**|
+| value  | [Length](ts-types.md#length) | Yes  | Indent of the first line text.<br>Default value: **0** |
 
 ### wordBreak<sup>11+</sup>
 
@@ -360,11 +362,11 @@ Sets the word break rule. When used with **{overflow: TextOverflow.Ellipsis}** a
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                         | Mandatory| Description                                         |
+| Name | Type                                         | Mandatory | Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | Yes  | Word break rule.<br>Default value: **WordBreak.BREAK_WORD**|
+| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | Yes  | Word break rule.<br>Default value: **WordBreak.BREAK_WORD** |
 
 ### selection<sup>11+</sup>
 
@@ -384,12 +386,12 @@ If the value of **selectionStart** or **selectionEnd** falls within the invisibl
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name        | Type  | Mandatory| Description                                |
+| Name        | Type  | Mandatory | Description                                |
 | -------------- | ------ | ---- | ------------------------------------ |
-| selectionStart | number | Yes  | Start position of the selected text.<br>Default value: **-1**|
-| selectionEnd   | number | Yes  | End position of the selected text.<br>Default value: **-1**|
+| selectionStart | number | Yes  | Start position of the selected text.<br>Default value: **-1** |
+| selectionEnd   | number | Yes  | End position of the selected text.<br>Default value: **-1** |
 
 ### ellipsisMode<sup>11+</sup>
 
@@ -403,11 +405,11 @@ Sets the ellipsis position. For the settings to work, **overflow** must be set t
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                               | Mandatory| Description                                     |
+| Name | Type                                               | Mandatory | Description                                     |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | Yes  | Ellipsis position.<br>Default value: **EllipsisMode.END**|
+| value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | Yes  | Ellipsis position.<br>Default value: **EllipsisMode.END** |
 
 ### enableDataDetector<sup>11+</sup>
 
@@ -421,17 +423,17 @@ This API only works on devices that provide text recognition.
 
 When **enableDataDetector** is set to **true** and **dataDetectorConfig** is not set, all types of entities are recognized.
 
-This API does not work when **copyOption** is set to **CopyOptions.None**.
+When **copyOption** is set to **CopyOptions.None**, the menu displayed after an entity is clicked does not provide text selection.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                             |
+| Name | Type   | Mandatory | Description                             |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | Yes  | Whether to enable text recognition.<br>Default value: **false**|
+| enable  | boolean | Yes  | Whether to enable text recognition.<br>Default value: **false** |
 
 ### dataDetectorConfig<sup>11+</sup>
 
@@ -451,11 +453,11 @@ When entities A and B overlap, the following rules are followed:
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                       | Mandatory| Description                                                        |
+| Name | Type                                                       | Mandatory | Description                                                        |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [TextDataDetectorConfig](#textdatadetectorconfig11) | Yes  | Text recognition configuration.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} |
+| config | [TextDataDetectorConfig](#textdatadetectorconfig11)  | Yes  | Text recognition configuration.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} |
 
 ### bindSelectionMenu<sup>11+</sup>
 
@@ -472,13 +474,13 @@ If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) co
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name      | Type                                                        | Mandatory| Description                                                        |
+| Name      | Type                                                        | Mandatory | Description                                                        |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | spantype     | [TextSpanType](ts-appendix-enums.md#textspantype11)          | Yes  | Span type of the menu.<br>Default value: **TextSpanType.TEXT**              |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | Yes  | Content of the menu.                                            |
-| responseType | [TextResponseType](ts-appendix-enums.md#textresponsetype11)  | Yes  | Response type of the menu.<br>Default value: **TextResponseType.LONG_PRESS**|
+| responseType | [TextResponseType](ts-appendix-enums.md#textresponsetype11)  | Yes  | Response type of the menu.<br>Default value: **TextResponseType.LONG_PRESS** |
 | options      | [SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11) | No  | Options of the menu.                                            |
 
 ### fontFeature<sup>12+</sup>
@@ -497,11 +499,11 @@ For example, the input format for monospaced clock fonts is "ss01" on.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description          |
+| Name | Type  | Mandatory | Description          |
 | ------ | ------ | ---- | -------------- |
-| value  | string | Yes  | Font feature.|
+| value  | string | Yes  | Font feature. |
 
 Font feature list<br>
 ![alt text](figures/arkts-fontfeature.png)
@@ -525,17 +527,17 @@ Sets the line spacing of the text. If the value specified is less than or equal 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description            |
+| Name | Type                                                        | Mandatory | Description            |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | [LengthMetrics](ts-types.md#lengthmetrics12) | Yes  | Line spacing. Default value: **0**|
+| value  | [LengthMetrics](ts-types.md#lengthmetrics12) | Yes  | Line spacing. Default value: **0** |
 
 ### privacySensitive<sup>12+</sup>
 
 privacySensitive(supported: boolean)
 
-Sets whether to secure sensitive information on widgets.
+Sets whether to enable privacy mode on widgets.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -543,9 +545,9 @@ Sets whether to secure sensitive information on widgets.
 
 **Parameters**
 
-| Name   | Type   | Mandatory| Description                                                        |
+| Name   | Type   | Mandatory | Description                                                        |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| supported | boolean | Yes  | Whether to secure sensitive information on widgets.<br>The value **true** means to secure sensitive information on widgets, in which case sensitive text is obscured as hyphens (-) in privacy mode.<br>Default value: **false**<br>**NOTE**<br>If this parameter is set to **null**, sensitive information is not secured.<br>Obscuring requires [widget framework support](./ts-universal-attributes-obscured.md).|
+| supported | boolean | Yes  | Whether to enable privacy mode on widgets.<br>The value **true** means to enable privacy mode, in which case text is obscured as hyphens (-).<br>Default value: **false**<br>**NOTE**<br>If this parameter is set to **null**, privacy mode is disabled.<br>Enabling privacy mode requires [widget framework support](./ts-universal-attributes-obscured.md). |
 
 ### lineBreakStrategy<sup>12+</sup>
 
@@ -557,11 +559,11 @@ Sets the line break rule. This attribute takes effect when **wordBreak** is not 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name  | Type                                                        | Mandatory| Description                                                   |
+| Name  | Type                                                        | Mandatory | Description                                                   |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
-| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | Yes  | Line break rule.<br>Default value: **LineBreakStrategy.GREEDY**|
+| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | Yes  | Line break rule.<br>Default value: **LineBreakStrategy.GREEDY** |
 
 ### textSelectable<sup>12+</sup>
 
@@ -573,11 +575,11 @@ Sets whether the text is selectable and focusable.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                         | Mandatory| Description                                         |
+| Name | Type                                         | Mandatory | Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | Yes  | Whether the text is selectable and focusable.<br>Default value: **TextSelectableMode.SELECTABLE_UNFOCUSABLE**|
+| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | Yes  | Whether the text is selectable and focusable.<br>Default value: **TextSelectableMode.SELECTABLE_UNFOCUSABLE** |
 
 ### editMenuOptions<sup>12+</sup>
 
@@ -589,20 +591,20 @@ Sets the extended options of the custom context menu on selection, including the
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                         | Mandatory| Description                                         |
+| Name | Type                                         | Mandatory | Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | Yes  | Extended options of the custom context menu on selection.|
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions)  | Yes  | Extended options of the custom context menu on selection. |
 
 ## TextDataDetectorConfig<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name| Type | Mandatory| Description |
+| Name | Type | Mandatory | Description |
 | ------ | -------- | ---- | ------------------------------------------- |
-| types   | [TextDataDetectorType[]](ts-appendix-enums.md#textdatadetectortype11) | Yes  | Entity types for text recognition. Values **null** and **[]** indicate that all types of entities can be recognized.|
-| onDetectResultUpdate   | (result: string) => void | No  | Callback invoked when text recognition succeeds.<br>- **result**: text recognition result, in JSON format.|
+| types   | [TextDataDetectorType[]](ts-appendix-enums.md#textdatadetectortype11) | Yes  | Entity types for text recognition. Values **null** and **[]** indicate that all types of entities can be recognized. |
+| onDetectResultUpdate   | (result: string) => void | No  | Callback invoked when text recognition succeeds.<br>- **result**: text recognition result, in JSON format. |
 
 ## Events
 
@@ -618,11 +620,11 @@ Called when data is copied to the pasteboard, which is displayed when the text b
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| value  | string | Yes  | Text that is copied.|
+| value  | string | Yes  | Text that is copied. |
 
 ### onTextSelectionChange<sup>11+</sup>
 
@@ -634,20 +636,20 @@ Called when the text selection position changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name        | Type  | Mandatory| Description                |
+| Name        | Type  | Mandatory | Description                |
 | -------------- | ------ | ---- | -------------------- |
-| selectionStart | number | Yes  | Start position of the selected text.|
-| selectionEnd   | number | Yes  | End position of the selected text.|
+| selectionStart | number | Yes  | Start position of the selected text. |
+| selectionEnd   | number | Yes  | End position of the selected text. |
 
 ## TextOptions<sup>11+</sup>
 
 Describes the initialization options of the **\<Text>** component.
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| controller | [TextController](#textcontroller11)  | Yes| Text controller.|
+| controller | [TextController](#textcontroller11)  | Yes | Text controller. |
 
 ## TextController<sup>11+</sup>
 
@@ -679,7 +681,7 @@ Binds to or updates the specified styled string.
 
 | Name  | Type  | Mandatory  | Description               |
 | ----- | ------ | ---- | ------------------- |
-| value | [StyledString](ts-universal-styled-string.md#styledstring) | Yes   | Styled string.<br>**NOTE**<br>The child class [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) of **StyledString** can also serve as the argument.|
+| value | [StyledString](ts-universal-styled-string.md#styledstring) | Yes   | Styled string.<br>**NOTE**<br>The child class [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) of **StyledString** can also serve as the argument. |
 
 ### getLayoutManager<sup>12+</sup>
 
@@ -693,7 +695,7 @@ Obtains the **LayoutManager** object.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#layoutmanager12) | **LayoutManager** object.|
+| [LayoutManager](ts-text-common.md#LayoutManager) | **LayoutManager** object. |
 
 ## Example
 
@@ -1019,7 +1021,7 @@ struct TextExample5 {
   }
 }
 ```
-![](figures/textExample5.jpeg)
+![](figures/textExample5.png)
 
 ### Example 6
 This example shows how to use **enableDataDetector** and **dataDetectorConfig**.
@@ -1061,6 +1063,8 @@ struct TextExample6 {
   }
 }
 ```
+
+![](figures/text7.png)
 
 ### Example 7
 
@@ -1177,7 +1181,8 @@ function MenuStyles() {
 This example shows how to use **fontFeature**, **lineSpacing**, and **lineBreakStrategy**.
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
+
 @Extend(Text) function lineSpacingValue(LineSpacing: LengthMetrics|undefined) {
   .lineSpacing(LineSpacing)
   .fontSize(12)
@@ -1208,7 +1213,7 @@ struct TextExample8 {
       Text('This is the context with lineSpacing set to 100%.')
         .lineSpacingValue(LengthMetrics.percent(1))
       Text('fontFeature').fontSize(9).fontColor(0xCCCCCC)
-      Text('This is ss01 on: 0123456789')
+      Text('This is ss01 on : 0123456789')
         .fontSize(20)
         .fontFeature("\"ss01\" on")
       Text('This is ss01 off: 0123456789')

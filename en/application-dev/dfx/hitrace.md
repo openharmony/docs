@@ -40,21 +40,17 @@ Run the following commands in the hdc shell:
 
    ![](figures/hitrace-finish.png)
 
-4. Run the **hitrace -b 10240 -t 10 -o /data/local/tmp/test1.htrace app ability** command to capture trace data with the following settings:
+4. Run the **hitrace -b 10240 -t 10 -o /data/local/tmp/test1.htrace app ability** command to capture trace data with the following settings: 
+
 
    - Buffer size: 10240 KB
-
    - Trace uptime: 10s
-
    - Output path: **/data/local/tmp/test1.htrace**
-
    - Tags: app and ability
 
    ![](figures/hitrace-b.png)
-
 5. Run the **hitrace --trace_dump** or **hitrace --trace_dump -o /data/local/tmp/test2.htrace** command to dump trace data. The former dumps trace data to the command-line window, and the latter dumps trace data to the specified file.
 
    ![](figures/hitrace-dump.png)
 
    You can also run the **hitrace --trace_dump |grep \*\*\*** command to dump trace data based on keywords.
-

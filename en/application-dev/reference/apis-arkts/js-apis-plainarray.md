@@ -27,11 +27,13 @@ import { PlainArray } from '@kit.ArkTS';
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a plain array (called container later).|
+| length | number | Yes | No | Number of elements in a plain array (called container later). |
 
 
 ### constructor
@@ -40,13 +42,15 @@ constructor()
 
 A constructor used to create a **PlainArray** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200012 | The PlainArray's constructor cannot be directly invoked. |
 
@@ -63,19 +67,21 @@ isEmpty(): boolean
 
 Checks whether this container is empty.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Returns **true** if the container is empty; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -93,25 +99,27 @@ has(key: number): boolean
 
 Checks whether this container contains the specified key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Target key.|
+| key | number | Yes | Target key. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified key is contained; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The has method cannot be bound. |
@@ -131,25 +139,27 @@ get(key: number): T
 
 Obtains the value of the specified key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Target key.|
+| key | number | Yes | Target key. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Value of the key.|
+| T | Value of the key. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
@@ -170,25 +180,27 @@ getIndexOfKey(key: number): number
 
 Obtains the index of the element with the specified key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Target key.|
+| key | number | Yes | Target key. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Returns the position index if obtained; returns **-1** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The getIndexOfKey method cannot be bound. |
@@ -209,25 +221,27 @@ getIndexOfValue(value: T): number
 
 Obtains the index of the first occurrence of an element with the specified value in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the target element.|
+| value | T | Yes | Value of the target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Returns the position index if obtained; returns **-1** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The getIndexOfValue method cannot be bound. |
 
@@ -247,25 +261,27 @@ getKeyAt(index: number): number
 
 Obtains the key of the element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes | Position index of the target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Returns the key of the element if obtained; returns **-1** otherwise.|
+| number | Returns the key of the element if obtained; returns **-1** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The getKeyAt method cannot be bound. |
@@ -285,25 +301,27 @@ getValueAt(index: number): T
 
 Obtains the value of an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-  | Name| Type | Mandatory| Description|
+  | Name | Type  | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | index | number | Yes| Position index of the target element.|
+  | index | number | Yes | Position index of the target element. |
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | T | Returns the value of the element if obtained; returns **undefined** otherwise.|
+  | T | Returns the value of the element if obtained; returns **undefined** otherwise. |
 
   **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
@@ -324,19 +342,21 @@ clone(): PlainArray&lt;T&gt;
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| PlainArray&lt;T&gt; | New **PlainArray** instance obtained.|
+| PlainArray&lt;T&gt; | New **PlainArray** instance obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The clone method cannot be bound. |
 
@@ -356,20 +376,22 @@ add(key: number, value: T): void
 
 Adds an element to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Key of the target element.|
-| value | T | Yes| Value of the target element.|
+| key | number | Yes | Key of the target element. |
+| value | T | Yes | Value of the target element. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The add method cannot be bound. |
@@ -388,25 +410,27 @@ remove(key: number): T
 
 Removes a key-value pair with the specified key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Target key.|
+| key | number | Yes | Target key. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Value in the key-value pair removed.|
+| T | Value in the key-value pair removed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The remove method cannot be bound. |
@@ -427,25 +451,27 @@ removeAt(index: number): T
 
 Removes an element at the specified position from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes | Position index of the target element. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The removeAt method cannot be bound. |
@@ -466,26 +492,28 @@ removeRangeFrom(index: number, size: number): number
 
 Removes elements in a specified range from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Start position of the elements to remove.|
-| size | number | Yes| Number of elements to remove.|
+| index | number | Yes | Start position of the elements to remove. |
+| size | number | Yes | Number of elements to remove. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| number | Number of elements removed.|
+| number | Number of elements removed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
@@ -507,20 +535,22 @@ setValueAt(index: number, value: T): void
 
 Sets a value for an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
-| value | T | Yes| Value of the target element.|
+| index | number | Yes | Position index of the target element. |
+| value | T | Yes | Value of the target element. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
@@ -542,19 +572,21 @@ toString(): String
 
 Obtains a string that contains all elements in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| String | String obtained.|
+| String | String obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The toString method cannot be bound. |
 
@@ -574,13 +606,15 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -600,27 +634,29 @@ forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;)
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
+| callbackFn | function | Yes | Callback invoked to traverse the elements in the container. |
+| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
 
 callbackFn
-| Name| Type | Mandatory| Description|
+| Name | Type  | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
-| PlainArray | PlainArray&lt;T&gt;| No| Instance that calls the **forEach** API. The default value is this instance.|
+| value | T | Yes | Value of the element that is currently traversed. |
+| index | number | No | Position index of the element that is currently traversed. The default value is **0**. |
+| PlainArray | PlainArray&lt;T&gt;| No | Instance that calls the **forEach** API. The default value is this instance. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
@@ -635,7 +671,17 @@ plainArray.forEach((value: string, index?: number) => {
   console.log("value:" + value, "index:" + index);
 });
 ```
+```ts
+// You are not advised to use the add, remove, or removeAt APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let plainArray: PlainArray<string> = new PlainArray();
+for(let i = 0;i < 10;i++) {
+  plainArray.add(i,"123");
+}
 
+for(let i = 0;i < 10;i++) {
+  plainArray.remove(i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -647,19 +693,21 @@ Obtains an iterator object that contains key-value pairs, where the key is of th
 >
 > This API cannot be used in .ets files.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator&lt;[number, T]&gt; | Iterator obtained.|
+| IterableIterator&lt;[number, T]&gt; | Iterator obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 
@@ -676,5 +724,16 @@ while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
   temp = iter.next();
+}
+```
+```ts
+// You are not advised to use the add, remove, or removeAt APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let plainArray: PlainArray<string> = new PlainArray();
+for(let i = 0;i < 10;i++) {
+  plainArray.add(i,"123");
+}
+
+for(let i = 0;i < 10;i++) {
+  plainArray.remove(i);
 }
 ```

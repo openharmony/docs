@@ -58,7 +58,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
      }
      // AVRecorderProfile
      let aVRecorderProfile: media.AVRecorderProfile = {
-       fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
+       fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
        videoBitrate: 100000, // Video bit rate.
        videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
        videoFrameWidth: 640, // Video frame width.

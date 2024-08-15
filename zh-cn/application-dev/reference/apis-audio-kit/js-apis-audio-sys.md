@@ -281,6 +281,50 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | BYPASS | 0 |BYPASS AEC|
 | STANDARD | 1 |STANDARD AEC|
 
+## AsrWhisperDetectionMode<sup>12+</sup>
+
+枚举，ASR（Automatic Speech Recognition，自动语音识别）耳语检测模式。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称  | 值 | 说明       |
+|-----|---|----------|
+| BYPASS  | 0 | 不启用检测模型。 |
+| STANDARD | 1 | 耳语检测模型。  |
+
+## AsrVoiceControlMode<sup>12+</sup>
+
+枚举，ASR音频通路模式。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称                      | 值 | 说明                                    |
+|-------------------------|---|---------------------------------------|
+| AUDIO_2_VOICE_TX        | 0 | 仅媒体音频流生效。                            |
+| AUDIO_MIX_2_VOICE_TX    | 1 | 媒体音频流和MIC音频流均生效。                      |
+| AUDIO_2_VOICE_TX_EX     | 2 | 仅媒体音频流生效，将媒体流上报给通话录音。     |
+| AUDIO_MIX_2_VOICE_TX_EX | 3 | 媒体音频流和MIC音频流均生效，将媒体流上报给通话录音。 |
+
+## AsrVoiceMuteMode<sup>12+</sup>
+
+枚举，ASR静音模式。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称             | 值 | 说明                  |
+|----------------|---|---------------------|
+| OUTPUT_MUTE    | 0 | 本地输出静音。            |
+| INPUT_MUTE     | 1 | 本地的MIC输入静音。        |
+| TTS_MUTE       | 2 | 应用下发的媒体音频本地静音。     |
+| CALL_MUTE      | 3 | 通话语音流静音。          |
+| OUTPUT_MUTE_EX | 4 | 本地输出静音，媒体音频流送给通话录音。 |
+
 ## InterruptResult<sup>9+</sup>
 
 音频中断结果。
@@ -3030,4 +3074,156 @@ isWhispering(): boolean;
 
 ```ts
 let flag = asrProcessingController.isWhispering();
+```
+
+### setAsrWhisperDetectionMode<sup>12+</sup>
+
+setAsrWhisperDetectionMode(mode: AsrWhisperDetectionMode): boolean
+
+设置耳语检测模式。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明     |
+|------|---------------------|-------|--------|
+| mode | [AsrWhisperDetectionMode](#asrwhisperdetectionmode12) | 是 | 耳语检测模式 |
+
+**返回值：**
+
+| 类型 | 说明                                     |
+|-------|----------------------------------------|
+| boolean | 返回设置耳语检测模式结果，true为设置成功，false为设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202     | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters unspecified; 2.Incorrect parameter types.                 |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed.                 |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.setAsrWhisperDetectionMode(audio.AsrWhisperDetectionMode.BYPASS);
+```
+
+
+### getAsrWhisperDetectionMode<sup>12+</sup>
+
+getAsrWhisperDetectionMode(): AsrWhisperDetectionMode
+
+获取耳语检测模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型 | 说明     |
+|-------|--------|
+| [AsrWhisperDetectionMode](#asrwhisperdetectionmode12) | 耳语检测模式 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202     | Caller is not a system application. |
+| 6800104 | Operation not allowed.                 |
+
+**示例：**
+
+```ts
+let mode = asrProcessingController.getAsrWhisperDetectionMode();
+```
+
+
+### setAsrVoiceControlMode<sup>12+</sup>
+
+setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
+
+设置在系统通话中上报modem及通话录音的上行通路的ASR音频通路选择。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明     |
+|------|---------------------|-------|--------|
+| mode | [AsrVoiceControlMode](#asrvoicecontrolmode12) | 是 | 音频通路模式 |
+| enable   | boolean             | 是 | 开关状态   |
+
+**返回值：**
+
+| 类型 | 说明                                                             |
+|-------|----------------------------------------------------------------|
+| boolean | 返回设置在系统通话中上报modem及通话录音的上行通路的ASR音频通路选择的结果，true为设置成功，false为设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202     | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters unspecified; 2.Incorrect parameter types.                 |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed.                 |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.setAsrVoiceControlMode(audio.AsrVoiceControlMode.AUDIO_2_VOICE_TX, true);
+```
+
+### setAsrVoiceMuteMode<sup>12+</sup>
+
+setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean
+
+在系统通话中，对ASR音频通路进行静音控制。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明       |
+|------|---------------------------------------|-------|----------|
+| mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | 是 | 静音控制模式 |
+| enable   | boolean                               | 是 | 开关状态     |
+
+**返回值：**
+
+| 类型 | 说明                                               |
+|-------|--------------------------------------------------|
+| boolean | 返回在系统通话中，对ASR音频通路进行静音控制的结果，true为设置成功，false为设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202     | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters unspecified; 2.Incorrect parameter types.                 |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed.                 |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.setAsrVoiceMuteMode(audio.AsrVoiceMuteMode.OUTPUT_MUTE, true);
 ```

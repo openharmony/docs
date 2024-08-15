@@ -86,7 +86,7 @@ The identity authentication consists of the User_auth framework and basic authen
 
 - HDI
 
-  The hardware device interface (HDI) is located between the basic system service layer and the device driver layer. It provides APIs for abstracting hardware device functions, which shields underlying hardware device differences for system services. For details, see [HDI Specifications](../../design/hdi-design-specifications.md).
+  The hardware device interface (HDI) is located between the basic system service layer and the device driver layer. It provides APIs for abstracting hardware device functions, which shield underlying hardware device differences for system services. For details, see [HDI Specifications](../../design/hdi-design-specifications.md).
 
 ### Working Principles
 
@@ -121,7 +121,7 @@ The following table describes the C++ APIs generated from the Interface Definiti
 | DeleteExecutor(uint64_t index)            | Deletes an executor.      |
 | OpenSession(int32_t userId, std::vector<uint8_t> &challenge) | Opens a session for authentication credential management.     |
 | CloseSession(int32_t userId)        | Closes a session for authentication credential management.           |
-| BeginEnrollment(const std::vector<uint8_t> &authToken, const HdiEnrollParam &param, HdiScheduleInfo &info) | Enrolls the user authentication credential. If a user has enrolled a PIN, the old PIN will be overwritten.|
+| BeginEnrollment(const std::vector<uint8_t> &authToken, const HdiEnrollParam &param, HdiScheduleInfo &info) | Enrolls the user authentication credential. If a user has enrolled a PIN, the old PIN will be overwritten. |
 | UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t> & scheduleResult, EnrollResultInfo &info)| Updates the data to complete this enrollment.  |
 | CancelEnrollment(int32_t userId)     | Cancels an enrollment.         |
 | DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector<uint8_t> &authToken, CredentialInfo &info) | Deletes credential information based on the specified **credentialId**.                              |
@@ -136,15 +136,15 @@ The following table describes the C++ APIs generated from the Interface Definiti
 | CancelIdentification(uint64_t contextId)             | Cancels an identification.             |
 | GetAuthTrustLevel(int32_t userId, int32_t authType, uint32_t &authTrustLevel) | Obtains the authentication trust level of the specified authentication type.    |
 | GetValidSolution(int32_t userId, const std::vector<int32_t> &authTypes, uint32_t authTrustLevel, std::vector<int32_t> &validTypes) | Obtains the valid authentication scheme based on the authentication trust level for a user.                  |
-| GetAllUserInfo(std::vector<UserInfo> &userInfos) | Queries all user information (excluding **userId**).|
-| GetUserInfo(int32_t userId, uint64_t &secureUid, int32_t &pinSubType, std::vector<EnrolledInfo> &infos) | Queries user information.|
-| GetAllExtUserInfo(std::vector<ExtUserInfo> &userInfos) | Queries all user information (including **userId**).|
-| GetEnrolledState(int32_t userId, int32_t authType, HdiEnrolledState &enrolledState) | Queries enrollment information.|
-| CheckReuseUnlockResult(const ReuseUnlockParam& param, ReuseUnlockInfo& info) | Checks whether the device unlocking result is reused.|
-| SendMessage(uint64_t scheduleId, int32_t srcRole, const std::vector<uint8_t>& msg) | Sends messages to the executor.|
+| GetAllUserInfo(std::vector<UserInfo> &userInfos) | Obtains all user information (excluding **userId**). |
+| GetUserInfo(int32_t userId, uint64_t &secureUid, int32_t &pinSubType, std::vector<EnrolledInfo> &infos) | Obtains user information. |
+| GetAllExtUserInfo(std::vector<ExtUserInfo> &userInfos) | Obtains all user information (including **userId**). |
+| GetEnrolledState(int32_t userId, int32_t authType, HdiEnrolledState &enrolledState) | Obtains enrollment information. |
+| CheckReuseUnlockResult(const ReuseUnlockParam& param, ReuseUnlockInfo& info) | Checks whether the device unlocking result is reused. |
+| SendMessage(uint64_t scheduleId, int32_t srcRole, const std::vector<uint8_t>& msg) | Sends messages to the executor. |
 | RegisterMessageCallback(const sptr<IMessageCallback>& messageCallback) | Registers a callback for executor messages.|
-| GetLocalScheduleFromMessage(const std::vector<uint8_t>& remoteDeviceId, const std::vector<uint8_t>& message, HdiScheduleInfo& scheduleInfo) | Obtains scheduling information of the local executor.|
-| GetSignedExecutorInfo(const std::vector<int32_t>& authTypes, int32_t executorRole, const std::vector<uint8_t>& remoteDeviceId, std::vector<uint8_t>& signedExecutorInfo) | Obtains information about the signed executor.|
+| GetLocalScheduleFromMessage(const std::vector<uint8_t>& remoteDeviceId, const std::vector<uint8_t>& message, HdiScheduleInfo& scheduleInfo) | Obtains scheduling information of the local executor. |
+| GetSignedExecutorInfo(const std::vector<int32_t>& authTypes, int32_t executorRole, const std::vector<uint8_t>& remoteDeviceId, std::vector<uint8_t>& signedExecutorInfo) | Obtains information about the signed executor. |
 
 ### How to Develop
 
@@ -310,7 +310,7 @@ The development procedure is as follows:
        return ret;
    }
 
-   // Start an authentication to generate enrollment and scheduling information.
+   // Start enrollment to generate enrollment and scheduling information.
    int32_t UserAuthInterfaceService::BeginEnrollment(
     const std::vector<uint8_t> &authToken, const HdiEnrollParam &param, HdiScheduleInfo &info)
    {
@@ -554,7 +554,7 @@ Use the [User Authentication APIs](../../application-dev/reference/apis-user-aut
   }
 ```
 
-2. Cancel the authentication.
+2. Cancel an authentication.
 
 ```ts
   // API version 10

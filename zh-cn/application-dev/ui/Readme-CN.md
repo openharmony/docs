@@ -23,6 +23,7 @@
       - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
       - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
       - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
+      - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
       - [显示图片 (Image)](arkts-graphics-display.md)
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
@@ -36,7 +37,7 @@
       - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 设置组件导航和页面路由
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
-    - [页面路由 (@ohos.router)](arkts-routing.md)
+    - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
@@ -45,14 +46,14 @@
     - [动画概述](arkts-animation.md)
     - 属性动画
       - [属性动画概述](arkts-attribute-animation-overview.md)
-      - [属性动画接口说明](arkts-attribute-animation-apis.md)
+      - [实现属性动画](arkts-attribute-animation-apis.md)
       - [自定义属性动画](arkts-custom-attribute-animation.md)
     - 转场动画
       - [转场动画概述](arkts-transition-overview.md)
       - [出现/消失转场](arkts-enter-exit-transition.md)
       - [导航转场](arkts-navigation-transition.md)
       - [模态转场](arkts-modal-transition.md)
-      - [共享元素转场](arkts-shared-element-transition.md)
+      - [共享元素转场 (一镜到底)](arkts-shared-element-transition.md)
       - [旋转屏动画增强](arkts-rotation-transition-animation.md)    
       - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
     - [粒子动画](arkts-particle-animation.md)
@@ -66,6 +67,7 @@
       - [模糊](arkts-blur-effect.md)
       - [阴影](arkts-shadow-effect.md)
       - [色彩](arkts-color-effect.md)
+    - [帧动画](arkts-animator.md)
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件
@@ -87,6 +89,10 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+    - 自定义扩展
+      - [自定义扩展概述](arkts-user-defined-modifier.md)
+      - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)
+      - [AttributeUpdater](arkts-user-defined-extension-attributeUpdater.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置
@@ -102,7 +108,9 @@
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
+  <!--Del-->
   - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
+  <!--DelEnd-->
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明

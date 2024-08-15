@@ -239,11 +239,11 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 6. Call **OH_VideoDecoder_Configure()** to configure the decoder.
 
     For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
-    
+
     For details about the parameter verification rules, see [OH_VideoDecoder_Configure()](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure).
 
     The parameter value ranges can be obtained through the capability query interface. For details, see [Obtaining Supported Codecs](obtain-supported-codecs.md).
-    
+
     Currently, the following options must be configured for all supported formats: video frame width and height. In the code snippet below, the following variables are used:
 
     - **DEFAULT_WIDTH**: 320 pixels
@@ -278,9 +278,9 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     ```
 
 8. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the surface parameters of the decoder.
-    
-For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
-    
+
+    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // Configure the display rotation angle.
@@ -289,9 +289,9 @@ For details about the configurable options, see [Video Dedicated Key-Value Paris
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
-```
     
-9. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.  
+
+9. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
 
     ```c++
     ret = OH_VideoDecoder_Prepare(videoDec);
@@ -315,18 +315,18 @@ For details about the configurable options, see [Video Dedicated Key-Value Paris
 
 11. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the Common Encryption Scheme (CENC) information.
 
-     If the content being played is DRM encrypted and demuxing is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
+    If the content being played is DRM encrypted and demuxing is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
 
-     Add the header files.
+    Add the header files.
 
-     ```c++
-     #include <multimedia/player_framework/native_cencinfo.h>
-     ```
-     Link the dynamic library in the cmake script.
+    ```c++
+    #include <multimedia/player_framework/native_cencinfo.h>
+    ```
+    Link the dynamic library in the cmake script.
 
-     ``` cmake
-     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
-     ```
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
+    ```
 
      In the code snippet below, the following variable is used:
      - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.

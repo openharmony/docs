@@ -14,7 +14,7 @@ To use this feature, the application must request the **ohos.permission.MANAGE_S
 Before using **AudioSpatializationManager** APIs, you must use **getSpatializationManager()** to obtain an **AudioSpatializationManager** instance.
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
+  import { audio } from '@kit.AudioKit';
 
   let audioManager = audio.getAudioManager();
   let audioSpatializationManager = audioManager.getSpatializationManager();
@@ -25,7 +25,7 @@ Before using **AudioSpatializationManager** APIs, you must use **getSpatializati
 Call [isSpatializationSupported](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationsupported11) to check whether the system supports spatial audio rendering.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
@@ -41,8 +41,8 @@ Call [isSpatializationSupported](../../reference/apis-audio-kit/js-apis-audio-sy
 Call [isSpatializationSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationsupportedfordevice11) to check whether a device (specified by **AudioDeviceDescriptor**) supports spatial audio rendering. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor).
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let deviceDescriptor: audio.AudioDeviceDescriptor = {
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -72,7 +72,7 @@ Call [isSpatializationSupportedForDevice](../../reference/apis-audio-kit/js-apis
 Call [isHeadTrackingSupported](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupported11) to check whether the system supports head tracking.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
@@ -88,8 +88,8 @@ Call [isHeadTrackingSupported](../../reference/apis-audio-kit/js-apis-audio-sys.
 Call [isHeadTrackingSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupportedfordevice11) to check whether a device (specified by **AudioDeviceDescriptor**) supports head tracking. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor).
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let deviceDescriptor: audio.AudioDeviceDescriptor = {
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -123,7 +123,7 @@ To use this feature, the application must request the **ohos.permission.MANAGE_S
 Before enabling spatial audio rendering, ensure that both the system and the current audio device support spatial audio rendering.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let enable: boolean = true
   audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
@@ -140,7 +140,7 @@ Before enabling spatial audio rendering, ensure that both the system and the cur
 Call [isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationenabled11) to check whether spatial audio rendering is enabled. If **true** is returned, spatial audio rendering is enabled. If **false** is returned, it is disabled. This API returns the value passed in **setSpatializationEnabled()**. The default value is **true**. Note that spatial audio rendering takes effect only when the system and the current audio device support spatial audio rendering.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
@@ -156,7 +156,7 @@ Call [isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.
 Call [on('spatializationEnabledChange')](../../reference/apis-audio-kit/js-apis-audio-sys.md#onspatializationenabledchange11) to subscribe to spatial audio rendering status changes. In the callback, the value **true** means that spatial audio rendering is enabled, and **false** means the opposite. The callback is triggered when spatial audio rendering is enabled or disabled through **setSpatializationEnabled()**.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEnabled: boolean) => {
     console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -168,7 +168,7 @@ Call [on('spatializationEnabledChange')](../../reference/apis-audio-kit/js-apis-
 Call [off('spatializationEnabledChange')](../../reference/apis-audio-kit/js-apis-audio-sys.md#offspatializationenabledchange11) to unsubscribe from spatial audio rendering status changes.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioSpatializationManager.off('spatializationEnabledChange');
   ```
@@ -182,7 +182,7 @@ To use this feature, the application must request the **ohos.permission.MANAGE_S
 Before enabling head tracking, ensure that both the system and the current audio device support head tracking and when spatial audio rendering is enabled.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let enable: boolean = true;
   audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
@@ -199,7 +199,7 @@ Before enabling head tracking, ensure that both the system and the current audio
 Call [isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingenabled11) to check whether head tracking is enabled. If **true** is returned, head tracking is enabled. If **false** is returned, it is disabled. This API returns the value passed in **setHeadTrackingEnabled()**. The default value is **false**. Note that head tracking takes effect only when the system and the current audio device support head tracking and spatial audio rendering is enabled.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
@@ -237,8 +237,8 @@ To use this feature, the application must request the **ohos.permission.MANAGE_S
 For details about the state information, see [AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate11).
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let spatialDeviceState: audio.AudioSpatialDeviceState = {
     address: "123",
@@ -264,8 +264,8 @@ To use this feature, the application must request the **ohos.permission.MANAGE_S
 For details about the spatial audio rendering scene type, see [AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12).
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
     audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
     console.info(`AudioSpatializationManager setSpatializationSceneType success`);
@@ -282,8 +282,8 @@ Call [getSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-s
 For details about the spatial audio rendering scene type, see [AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12).
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
     let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
     console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);

@@ -12,7 +12,7 @@ The **uiAppearance** module provides basic capabilities for managing the system 
 ## Modules to Import
 
 ```ts
-import uiAppearance from '@ohos.uiAppearance'
+import { uiAppearance } from '@kit.ArkUI'
 ```
 
 
@@ -23,10 +23,10 @@ Enumerates the color modes.
 
 **System capability**: SystemCapability.ArkUI.UiAppearance
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -- | -- | -- |
 | ALWAYS_DARK | 0 | The system is always in dark mode. |
-| ALWAYS_LIGHT | 1 | The system is always in light mode.|
+| ALWAYS_LIGHT | 1 | The system is always in light mode. |
 
 
 ## uiAppearance.setDarkMode
@@ -39,26 +39,28 @@ Sets the system color mode. This API uses an asynchronous callback to return the
 
 **System capability**: SystemCapability.ArkUI.UiAppearance
 
-**Parameters**
+**Parameters** 
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -- | -- | -- | -- |
-| mode | [DarkMode](#darkmode) | Yes| Color mode to set.|
-| callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
+| mode | [DarkMode](#darkmode) | Yes | Color mode to set. |
+| callback | AsyncCallback\<void>| Yes | Callback used to return the result. |
 
 **Error codes**
 
-For details about the error codes, see [UI Appearance Error Codes](errorcode-uiappearance.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [UI Appearance Error Codes](errorcode-uiappearance.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -- | -- |
+| 201 | Permission denied. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
-**Example**
+**Example** 
 
   ```ts
-import uiAppearance from '@ohos.uiAppearance'
-import { BusinessError } from '@ohos.base';
+import { uiAppearance } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (error) => {
       if (error) {
@@ -84,11 +86,11 @@ Sets the system color mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.UiAppearance
 
-**Parameters**
+**Parameters** 
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -- | -- | -- | -- |
-| mode | [DarkMode](#darkmode) | Yes| Color mode to set.|
+| mode | [DarkMode](#darkmode) | Yes | Color mode to set. |
 
 **Return value**
 
@@ -98,17 +100,19 @@ Sets the system color mode. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [UI Appearance Error Codes](errorcode-uiappearance.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [UI Appearance Error Codes](errorcode-uiappearance.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -- | -- |
+| 201 | Permission denied. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
-**Example**
+**Example** 
 
   ```ts
-import uiAppearance from '@ohos.uiAppearance'
-import { BusinessError } from '@ohos.base';
+import { uiAppearance } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
       console.info('Set dark-mode successfully.');
@@ -132,25 +136,27 @@ Obtains the system color mode.
 
 **System capability**: SystemCapability.ArkUI.UiAppearance
 
-**Return value**
+**Return value** 
 
-| Type| Description|
+| Type | Description |
 | -- | -- |
-|[DarkMode](#darkmode) | Color mode obtained.|
+|[DarkMode](#darkmode) | Color mode obtained. |
 
 **Error codes**
 
-For details about the error codes, see [UI Appearance Error Codes](errorcode-uiappearance.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [UI Appearance Error Codes](errorcode-uiappearance.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | -- | -- |
+| 201 | Permission denied. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
-**Example**
+**Example** 
 
   ```ts
-import uiAppearance from '@ohos.uiAppearance'
-import { BusinessError } from '@ohos.base';
+import { uiAppearance } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let darkMode = uiAppearance.getDarkMode();
     console.info('Get dark-mode ' + darkMode);

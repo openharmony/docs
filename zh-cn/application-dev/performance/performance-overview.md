@@ -12,7 +12,7 @@
     方舟编译运行时通过采用PGO(Profile-Guided-Optimization，配置文件引导型优化)方式，提前生成高性能机器码，从而提升程序运行速度。
 ## 减少丢帧卡顿
 
-丢帧卡顿是指应用在运行时出现卡顿或者画面不流畅的现象。为了[减少丢帧卡顿](reasonable-using-animation)，可以采取以下措施：
+丢帧卡顿是指应用在运行时出现卡顿或者画面不流畅的现象。为了[合理使用动画](reasonable-using-animation.md)，可以采取以下措施：
 
 - **避免在主线程上执行耗时操作：**
   UI主线程是应用中最重要的线程之一，在主线程上执行耗时操作会阻塞UI渲染，从而导致UI主线程的负载过高。因此，可以将耗时操作放在[TaskPool或者Worker](../arkts-utils/taskpool-vs-worker.md)等后台线程中执行。

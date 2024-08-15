@@ -44,7 +44,7 @@ If you are not familiar with \@Provide and \@Consume in state management V1, ple
 | \@Provider Property Decorator | Description                                                 |
 | ------------------ | ----------------------------------------------------- |
 | Decorator parameters        | **aliasName?: string**: alias. The default value is the attribute name.|
-| Supported type          | Member variables in the custom component. Property types include number, string, boolean, class, Array, Date, Map, and Set. The [arrow function](#decorating-callback-by-using-\@Provider-and-\@Consumer-and-facilitating behavior-abstraction-between-components) can be decorated.  |
+| Supported type          | Member variables in the custom component. Property types include number, string, boolean, class, Array, Date, Map, and Set. The [arrow function](#decorating-callback-by-using-provider-and-consumer-and-facilitating-behavior-abstraction-between-components) can be decorated.  |
 | Initialization from the parent component     | Forbidden. |
 | Local initialization        | Required. |
 | Observation capability        | Be equivalent to \@Trace. Changes will be synchronized to the corresponding \@Consumer. |
