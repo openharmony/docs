@@ -233,7 +233,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragBehavior<sup>10+</sup>
 
-需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
+当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（copy）或剪切（move）。DragBehavior用来向开发者描述数据的处理方式是复制（copy）还是剪切（move），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制还是剪切数据的不同行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -241,8 +241,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 名称 | 描述 |
 | ----- | ----------------- |
-| COPY | 复制模式角标。 |
-| MOVE| 剪贴模式角标。 |
+| COPY | 指定对数据的处理方式为复制。|
+| MOVE| 指定对数据的处理方式为剪切。|
 
 ## PreDragStatus<sup>12+</sup>枚举说明
 
