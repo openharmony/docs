@@ -1,6 +1,6 @@
 # 加解密(ArkTS)
 
-以AES 128、RSA 2048和SM2为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
+以AES 128、RSA 2048和SM2为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-encryption-decryption-overview.md#支持的算法)。
 
 ## 开发步骤
 
@@ -21,7 +21,14 @@
 2. 获取待加密的数据。
 
 3. 获取加密[算法参数配置](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)。
-   在下方示例中，使用算法AES进行加密时，必须要选择其对应分组模式以及填充模式，用例中当选取的分组模式为CBC、填充模式为PKCS7时，必须要填参数IV，当选取的分组模式为GCM时，必须要填参数NONCE，AAD可选。使用算法RSA进行加密时，也必须要选择其对应分组模式以及填充模式，当填充模式为OAEP时，必须指定摘要算法DIGEST。
+
+   文档中提供多个示例，当使用不同算法时，请注意配置对应参数。
+   - 使用AES算法加密，用例中选取的分组模式为CBC、填充模式为PKCS7时，必须要填参数IV，请见[开发案例：AES/CBC/PKCS7](#aescbcpkcs7)。
+   - 使用AES算法加密，用例中选取的分组模式为GCM时，必须要填参数NONCE，AAD可选，请见[开发案例：AES/GCM/NoPadding](#aesgcmnopadding)。
+   - 使用RSA算法加密，也需要选择其对应分组模式以及填充模式，当填充模式为OAEP时，必须指定摘要算法DIGEST，请见[开发案例：RSA/ECB/OAEP/SHA256](#rsaecboaepsha256)。
+   - 使用SM2算法加密，摘要算法DIGEST需要指定为SM3，请见[开发案例：SM2](#sm2)。
+   
+   详细规格请参考[加密/解密介绍及算法规格](huks-encryption-decryption-overview.md)。
 
 4. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
@@ -34,9 +41,12 @@
 2. 获取待解密的密文。
 
 3. 获取解密[算法参数配置](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)。
-   不同的解密算法需写入不同的参数配置，具体请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
-   在下方示例中，使用算法AES进行解密时，必须要选择其对应分组模式以及填充模式，用例中当选取的分组模式为CBC、填充模式为PKCS7时，必须要填参数IV，当选取的分组模式为GCM时，必须要填参数NONCE和AEAD。使用算法RSA进行解密时，也必须要选择其对应分组模式以及填充模式，当填充模式为OAEP时，必须指定摘要算法DIGEST。
+   文档中提供多个示例，当使用不同算法时，请注意配置对应参数。
+   - 使用AES算法解密，用例中选取的分组模式为GCM时，必须要填参数NONCE和参数AEAD，AAD可选，请见[开发案例：AES/GCM/NoPadding](#aesgcmnopadding)。
+   - 其余示例参数与加密要求一致。
+   
+   详细规格请参考[加密/解密介绍及算法规格](huks-encryption-decryption-overview.md)。
 
 4. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
