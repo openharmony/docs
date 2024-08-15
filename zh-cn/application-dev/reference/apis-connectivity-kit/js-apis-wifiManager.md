@@ -2658,6 +2658,7 @@ API 10起：无
 
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
+| 201<sup>10+</sup> | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
@@ -2736,6 +2737,7 @@ API 10起：无
 
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
+| 201<sup>10+</sup> | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |

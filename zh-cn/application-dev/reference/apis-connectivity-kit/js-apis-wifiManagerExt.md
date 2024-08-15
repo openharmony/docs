@@ -262,6 +262,9 @@ setPowerMode(mode: PowerMode) : void;
 
  设置功率模式。
 
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。
+
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
@@ -279,7 +282,6 @@ setPowerMode(mode: PowerMode) : void;
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2701000 | Operation failed. |
 
