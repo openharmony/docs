@@ -12,16 +12,16 @@ BackupExtensionContext模块提供访问特定BackupExtension的资源的能力�
 ## 导入模块
 
 ```ts
-import BackupExtensionContext from '@ohos.file.BackupExtensionContext';
+import  { BackupExtensionContext } from '@kit.CoreFileKit';
 ```
 
 ## 属性
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-| 名称 | 类型 | 只读 | 可写 | 说明 | 
-| -------- | -------- | -------- | -------- | -------- |
-| backupDir<sup>12+</sup> | string | 是 | 否 | 获取备份恢复时的临时路径，该路径只允许在备份恢复过程中作为临时路径使用，不允许应用将该路径作为其他用途来使用。目前只支持el1, el2路径 |
+| 名称 | 类型 | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| backupDir<sup>12+</sup> | string | 是 | 获取备份恢复时的临时路径，该路径只允许在备份恢复过程中作为临时路径使用，不允许应用将该路径作为其他用途来使用。目前只支持el1, el2路径 |
 
 ## 使用场景
 BackupExtensionContext主要用于获取备份恢复过程中的临时路径。
@@ -29,8 +29,8 @@ BackupExtensionContext主要用于获取备份恢复过程中的临时路径。
 **示例：**
 
 ```ts
-import BackupExtensionAbility from '@ohos.application.BackupExtensionAbility';
-import contextConstant from '@ohos.app.ability.contextConstant';
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+import { contextConstant } from '@kit.AbilityKit';
 
 export default class MyBackupExtAbility extends BackupExtensionAbility {
     async onBackup() {

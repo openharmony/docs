@@ -13,6 +13,10 @@ If synchronous tasks are independent of each other, you are advised to use **Tas
 
 **TaskPool** is recommended for scheduling independent tasks. Typical independent tasks are those using static methods. If a unique handle or class object constructed using a singleton points to multiple tasks and these tasks can be used between different worker threads, you can also use **TaskPool**.
 
+> **NOTE**
+>
+> Due to memory isolation between different threads in the [Actor model](actor-model-development-samples.md), common singletons cannot be used across threads. This issue can be solved by exporting a singleton through the sendable module.
+
 1. Define a concurrency function that internally calls the synchronous methods.
 
 2. Create a [task](../reference/apis-arkts/js-apis-taskpool.md#task), call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute-1) to execute the task, and perform operations on the result returned by the task.
@@ -23,10 +27,15 @@ Simulate a singleton class that contains synchronous calls.
 
 
 ```ts
-// handle.ts code
+// Handle.ets code
+"use shared"
+
+@Sendable
 export default class Handle {
-  static getInstance(): void {
+  private static instance: Handle = new Handle;
+  static getInstance(): Handle {
     // Return a singleton object.
+    return Handle.instance;
   }
 
   static syncGet(): void {
@@ -57,15 +66,16 @@ Use **TaskPool** to call the related synchronous methods.
 
 ```ts
 // Index.ets code
-import taskpool from '@ohos.taskpool';
+import { taskpool} from '@kit.ArkTS';
 import Handle from './Handle'; // Return a static handle.
 
 // Step 1: Define a concurrency function that internally calls the synchronous methods.
 @Concurrent
-function func(num: number): number {
+async function func(num: number): Promise<number> {
   // Call the synchronous wait implemented in a static class object.
   // Call syncSet and use its result as an input parameter of syncSet2 to simulate the synchronous call logic.
   let tmpNum: number = Handle.syncSet(num);
+  console.info("this is Child_Thread")
   return Handle.syncSet2(tmpNum);
 }
 
@@ -93,9 +103,11 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(() => {
+          .onClick(async () => {
             // Step 3: Perform concurrent operations.
             asyncGet();
+            let num: number = Handle.syncSet(100);
+            console.info("this is Main_Thread!")
           })
       }
       .width('100%')
@@ -113,7 +125,8 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
 1. Create a **Worker** object in the main thread and receive messages from the worker thread.
 
     ```ts
-    import worker from '@ohos.worker';
+    // Index.ets
+    import { worker } from '@kit.ArkTS';
     
     @Entry
     @Component
@@ -168,7 +181,7 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
     
     ```ts
     // MyWorker.ts code
-    import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
+    import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
     import Handle from './handle'  // Return a handle.
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
@@ -182,9 +195,11 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
       case 0:
        handler.syncSet(e.data.data);
        workerPort.postMessage('success set');
+       break;
       case 1:
        handler.syncGet();
        workerPort.postMessage('success get');
+       break;
      }
     }
     ```

@@ -3,6 +3,9 @@
 
 \@Styles仅仅应用于静态页面的样式复用，stateStyles可以依据组件的内部状态的不同，快速设置不同样式。这就是我们本章要介绍的内容stateStyles（又称为：多态样式）。
 
+> **说明**：
+>
+> 多态样式仅支持通用属性
 
 ## 概述
 
@@ -39,10 +42,10 @@ struct StateStylesSample {
             .backgroundColor('#ffffeef0')
           },
           pressed: {
-            .backgroundColor('ff707070')
+            .backgroundColor('#ff707070')
           },
           normal: {
-            .backgroundColor('ff2787d9')
+            .backgroundColor('#ff2787d9')
           }
         })
         .margin(20)
@@ -52,10 +55,10 @@ struct StateStylesSample {
             .backgroundColor('#ffffeef0')
           },
           pressed: {
-            .backgroundColor('ff707070')
+            .backgroundColor('#ff707070')
           },
           normal: {
-            .backgroundColor('ff2787d9')
+            .backgroundColor('#ff2787d9')
           }
         })
     }.margin('30%')

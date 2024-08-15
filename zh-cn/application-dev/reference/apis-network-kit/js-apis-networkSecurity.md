@@ -107,6 +107,7 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Call invalid.                                        |
 
 > **说明：**
 > 

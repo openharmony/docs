@@ -3,9 +3,11 @@
 
 ## Overview
 
-The **capture_session.h** file declares the session capture concepts.
+The **capture_session.h** file declares the capture session concepts.
 
 **Library**: libohcamera.so
+
+**File to include**: &lt;ohcamera/capture_session.h&gt; 
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -21,27 +23,29 @@ The **capture_session.h** file declares the session capture concepts.
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[CaptureSession_Callbacks](_capture_session___callbacks.md) | Defines the callbacks used for session capture. | 
+| struct&nbsp;&nbsp;[CaptureSession_Callbacks](_capture_session___callbacks.md) | Describes the callbacks used for a capture session. | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [Camera_CaptureSession](_o_h___camera.md#camera_capturesession) [Camera_CaptureSession](_o_h___camera.md#camera_capturesession) | Defines the session capture object. | 
-| typedef void(\* [OH_CaptureSession_OnFocusStateChange](_o_h___camera.md#oh_capturesession_onfocusstatechange)) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_FocusState](_o_h___camera.md#camera_focusstate) focusState) | Defines the pointer to the callback defined in the [CaptureSession_Callbacks](_capture_session___callbacks.md) struct and used to report session capture focus status changes. | 
+| typedef struct [Camera_CaptureSession](_o_h___camera.md#camera_capturesession) [Camera_CaptureSession](_o_h___camera.md#camera_capturesession) | Defines a struct for the capture session object. | 
+| typedef void(\* [OH_CaptureSession_OnFocusStateChange](_o_h___camera.md#oh_capturesession_onfocusstatechange)) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_FocusState](_o_h___camera.md#camera_focusstate) focusState) | Defines the pointer to the callback defined in the [CaptureSession_Callbacks](_capture_session___callbacks.md) struct and used to report focus status changes of a capture session. | 
 | typedef void(\* [OH_CaptureSession_OnError](_o_h___camera.md#oh_capturesession_onerror)) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) errorCode) | Defines the pointer to the callback defined in the [CaptureSession_Callbacks](_capture_session___callbacks.md) struct and used to report capture session errors. | 
-| typedef struct [CaptureSession_Callbacks](_capture_session___callbacks.md) [CaptureSession_Callbacks](_o_h___camera.md#capturesession_callbacks) | Defines the callbacks used for session capture. | 
+| typedef struct [CaptureSession_Callbacks](_capture_session___callbacks.md) [CaptureSession_Callbacks](_o_h___camera.md#capturesession_callbacks) | Defines a struct for the callbacks used for a capture session. | 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_RegisterCallback](_o_h___camera.md#oh_capturesession_registercallback) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | Registers a callback to listen for session capture events. | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_UnregisterCallback](_o_h___camera.md#oh_capturesession_unregistercallback) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | Unregisters the callback used to listen for session capture events. | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_BeginConfig](_o_h___camera.md#oh_capturesession_beginconfig) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Starts the configuration for session capture. | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_CommitConfig](_o_h___camera.md#oh_capturesession_commitconfig) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Commits the configuration for session capture. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_RegisterCallback](_o_h___camera.md#oh_capturesession_registercallback) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | Registers a callback to listen for capture session events. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_UnregisterCallback](_o_h___camera.md#oh_capturesession_unregistercallback) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | Unregisters the callback used to listen for capture session events. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_SetSessionMode](_o_h___camera.md#oh_capturesession_setsessionmode) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_SceneMode](_o_h___camera.md#camera_scenemode) sceneMode) | Sets a scene mode for a session. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_AddSecureOutput](_o_h___camera.md#oh_capturesession_addsecureoutput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, Camera_PreviewOutput \*previewOutput) | Marks a preview output stream as secure output. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_BeginConfig](_o_h___camera.md#oh_capturesession_beginconfig) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Starts the configuration for a capture session. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_CommitConfig](_o_h___camera.md#oh_capturesession_commitconfig) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Commits the configuration for a capture session. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_AddInput](_o_h___camera.md#oh_capturesession_addinput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | Adds a **CameraInput** instance to a session. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_RemoveInput](_o_h___camera.md#oh_capturesession_removeinput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | Removes a **CameraInput** instance from a session. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_AddPreviewOutput](_o_h___camera.md#oh_capturesession_addpreviewoutput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput) | Adds a **PreviewOutput** instance to a session. | 
@@ -52,8 +56,8 @@ The **capture_session.h** file declares the session capture concepts.
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_RemoveVideoOutput](_o_h___camera.md#oh_capturesession_removevideooutput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput) | Removes a **VideoOutput** instance from a session. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_AddMetadataOutput](_o_h___camera.md#oh_capturesession_addmetadataoutput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_MetadataOutput](_o_h___camera.md#camera_metadataoutput) \*metadataOutput) | Adds a **MetadataOutput** instance to a session. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_RemoveMetadataOutput](_o_h___camera.md#oh_capturesession_removemetadataoutput) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_MetadataOutput](_o_h___camera.md#camera_metadataoutput) \*metadataOutput) | Removes a **MetadataOutput** instance from a session. | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_Start](_o_h___camera.md#oh_capturesession_start) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Starts session capture. | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_Stop](_o_h___camera.md#oh_capturesession_stop) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Stops session capture. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_Start](_o_h___camera.md#oh_capturesession_start) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Starts a capture session. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_Stop](_o_h___camera.md#oh_capturesession_stop) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Stops a capture session. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_Release](_o_h___camera.md#oh_capturesession_release) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session) | Releases a **CaptureSession** instance. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_HasFlash](_o_h___camera.md#oh_capturesession_hasflash) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, bool \*hasFlash) | Checks whether the device has flash. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CaptureSession_IsFlashModeSupported](_o_h___camera.md#oh_capturesession_isflashmodesupported) ([Camera_CaptureSession](_o_h___camera.md#camera_capturesession) \*session, [Camera_FlashMode](_o_h___camera.md#camera_flashmode) flashMode, bool \*isSupported) | Checks whether a flash mode is supported. | 

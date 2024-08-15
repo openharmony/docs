@@ -83,7 +83,7 @@ The following figure shows how the producer-consumer problem is resolved by usin
 In the actor model, different roles do not share memory. Both the producer thread and UI thread have their own exclusive memory. After producing the result, the producer sends the result to the UI thread through serialization. After consuming the result, the UI thread sends a new production task to the producer thread.
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 // Cross-thread concurrent tasks
 @Concurrent
 async function produce(): Promise<number>{

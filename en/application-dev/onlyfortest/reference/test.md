@@ -1,16 +1,13 @@
 # api-info--This requirement can be implemented only in the reference folder.
 
-## Use the value of H1 for api-info. The value is 9.
+Use the value of H1 for api-info. The value is 9.
 
-<!--ArkUI-->
-
-<!--etgeryrt-->
 **Topic results are 9**
 The ExtensionAbility module provides the capability of managing the extensionAbility life cycle and context environment, including creating, destroying, and dumping client information.
 
->**Note:**
+> **NOTE:**
 >
->The initial APIs of this module are supported since API version 9.
+> The initial APIs of this module are supported since API version 9.
 > This module interface can be used only in the stage model.
 
 
@@ -58,7 +55,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 Create a system window and use callback asynchronous callback.**Level 3 Title Abandoned Search 7**
 
->**Note:**
+> **NOTE:**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
 
@@ -88,7 +85,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the last window displayed in the current application and uses Promise asynchronous callback.
 
->**Note:**
+> **NOTE:**
 >
 > 1235 hot.
 
@@ -105,7 +102,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the last window displayed in the current application and uses Promise asynchronous callback.**Find 6 from the title**
 
->**Note:**
+> **NOTE:**
 >
 > This API is supported since API version 6 and deprecated since API version 9.
 
@@ -128,8 +125,81 @@ Hide the current window and use Promise asynchronous callback.**Search from the 
 
 | Type | Description |
 | ------------------- | ------------------------- |
-| Promise<void> | Promise object with no return result.|
+| Promise&lt;void&gt; | Promise object with no return result.|
+| Promise\<void\> | Promise object with no return result.|
+| Promise\<void> | Promise object with no return result.|
+|` Promise<void> `| Promise object with no return result.|
 
+## test Angle brackets
+
+* one
+
+    Executing Commands `ps -s <pid> -T`
+
+* two
+
+    <strong>Blod</strong>
+    <b>bold</b>
+    <p>Pp</p>
+    <text>text</text>
+    
+
+    |name|age|
+    |---|---|
+    |Louis|7<sup>+</sup>|
+    |Albee|2024:35  <br>2025:36  <br/>2025:37  |
+
+* three
+```ts
+async function getCurrentAudioRendererInfoArray(): Promise<void> {
+    ...
+}
+```
+
+* four
+    ```ts
+    async function getCurrentAudioRendererInfoArray(): Promise<void> {
+        ...
+    }
+    ```
+
+* five
+
+```ts
+async function getCurrentAudioRendererInfoArray(): Promise<void> {
+    ...
+}
+```
+
+* six
+
+    ```ts
+    async function getCurrentAudioRendererInfoArray(): Promise<void> {
+        ...
+    }
+    ```
+
+* seven
+    1. name 1
+    ```
+    sdgfdhgdfhfgjfgj
+    ```
+
+    2. name 2
+        ```
+        sdgfdhgdfhfgjfgj
+        ```
+
+    3. name 3
+
+    ```
+    sdgfdhgdfhfgjfgj
+    ```
+    4. name 4
+
+        ```
+        sdgfdhgdfhfgjfgj
+        ```
 
 ## Atomic service API-apiUse the value of H1 for api-info. The value is 9.
 
@@ -140,9 +210,9 @@ Hide the current window and use Promise asynchronous callback.**Search from the 
 **Topic results are 9**
 The ExtensionAbility module provides the capability of managing the extensionAbility life cycle and context environment, including creating, destroying, and dumping client information.
 
->**Note:**
+> **NOTE:**
 >
->The initial APIs of this module are supported since API version 9.
+> The initial APIs of this module are supported since API version 9.
 > This module interface can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -190,7 +260,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 Create a system window and use callback asynchronous callback.**Level 3 Title Abandoned Search 7**
 
->**Note:**
+> **NOTE:**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
 
@@ -220,7 +290,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the last window displayed in the current application and uses Promise asynchronous callback.
 
->**Note:**
+> **NOTE:**
 >
 > 1235 hot.
 
@@ -237,7 +307,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the last window displayed in the current application and uses Promise asynchronous callback.**Find 6 from the title**
 
->**Note:**
+> **NOTE:**
 >
 > This API is supported since API version 6 and deprecated since API version 9.
 

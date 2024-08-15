@@ -414,8 +414,8 @@ typedef void(* Rdb_BriefObserver) (void *context, const char *values[], uint32_t
 | 名称 | 描述 | 
 | -------- | -------- |
 | context | 表示数据观察者的上下文。 | 
-| values | 表示更改的端云帐户。 | 
-| count | 表示更改的端云帐户数量。 | 
+| values | 表示更改的端云账号。 | 
+| count | 表示更改的端云账号数量。 | 
 
 
 ### Rdb_ChangeInfo

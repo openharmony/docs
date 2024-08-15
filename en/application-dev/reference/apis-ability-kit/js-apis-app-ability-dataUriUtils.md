@@ -22,23 +22,23 @@ Obtains the ID attached to the end of a given URI.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                       |
+| Name | Type  | Mandatory | Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | Target URI object.|
+| uri  | string | Yes  | Target URI object. |
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | ID obtained.|
+| number | ID obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -65,24 +65,24 @@ Attaches an ID to the end of a given URI.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                       |
+| Name | Type  | Mandatory | Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | Target URI object.|
+| uri  | string | Yes  | Target URI object. |
 | id   | number | Yes  | ID to be attached.           |
 
 **Return value**
 
 | Type  | Description                 |
 | ------ | --------------------- |
-| string | URI object with the ID attached.|
+| string | URI object with the ID attached. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -114,23 +114,23 @@ Deletes the ID from the end of a given URI.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                       |
+| Name | Type  | Mandatory | Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | URI object from which the ID is to be deleted.|
+| uri  | string | Yes  | URI object from which the ID is to be deleted. |
 
 **Return value**
 
 | Type  | Description               |
 | ------ | ------------------- |
-| string | URI object with the ID deleted.|
+| string | URI object with the ID deleted. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -158,24 +158,24 @@ Updates the ID in a given URI.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description               |
+| Name | Type  | Mandatory | Description               |
 | ---- | ------ | ---- | ------------------- |
-| uri  | string | Yes  | Target URI object.|
+| uri  | string | Yes  | Target URI object. |
 | id   | number | Yes  | New ID.           |
 
 **Return value**
 
 | Type  | Description           |
 | ------ | --------------- |
-| string | URI object with the new ID.|
+| string | URI object with the new ID. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

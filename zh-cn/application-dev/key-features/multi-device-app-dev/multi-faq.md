@@ -20,7 +20,7 @@
    - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis-basic-services-kit/js-apis-device-info.md)。
      
       ```ts
-       import deviceInfo from'@ohos.deviceInfo'
+       import { deviceInfo } from'@kit.BasicServicesKit'
       
        @Entry
        @Component
@@ -67,9 +67,8 @@ launchType字段配置为specified时，系统会根据AbilityStage的onAcceptWa
   
 ```ts
 // MyAbilityStage.ts
-import AbilityStage from "@ohos.app.ability.AbilityStage"
-import deviceInfo from'@ohos.deviceInfo'
-import Want from '@ohos.app.ability.Want'
+import { AbilityStage, Want } from "@kit.AbilityKit"
+import { deviceInfo } from'@kit.BasicServicesKit'
 
 export default class MyAbilityStage extends AbilityStage {
     ...

@@ -16,6 +16,8 @@ import { screenshot } from '@kit.ArkUI';
 
 表示截取图像的区域。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 类型   | 必填 | 说明                                                         |
@@ -28,6 +30,8 @@ import { screenshot } from '@kit.ArkUI';
 ## PickInfo
 
 截取图像的信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -42,6 +46,8 @@ import { screenshot } from '@kit.ArkUI';
 pick(): Promise&lt;PickInfo&gt;
 
 获取屏幕截图。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

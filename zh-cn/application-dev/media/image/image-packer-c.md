@@ -22,6 +22,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
 在创建ImagePacker实例，指定打包参数后将ImageSource或Pixelmap图片源打包至文件或者缓冲区。
 
+> **说明：**
+> 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，打包参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
+
    ```c++
 
       #include <linux/kd.h>
@@ -61,6 +64,8 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
           char type[] = "image/jpeg";
           Image_MimeType image_MimeType = {type, strlen(type)};
           OH_PackingOptions_SetMimeType(option, &image_MimeType);
+          // 编码为hdr内容(需要资源本身为hdr，支持jpeg格式)
+          OH_PackingOptions_SetDesiredDynamicRange(option, IMAGE_PACKER_DYNAMIC_RANGE_AUTO);
           errCode = OH_ImagePackerNative_PackToFileFromImageSource(testPacker, option, imageSource, fd);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest OH_ImagePackerNative_PackToFileFromImageSource failed, errCode: %{public}d.", errCode);

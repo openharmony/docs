@@ -954,7 +954,7 @@ abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
   abilityDelegator.doAbilityBackground(ability).then(() => {
     console.info("doAbilityBackground promise");
   });
-
+});
 ```
 
 ### printSync<sup>9+</sup>

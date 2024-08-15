@@ -87,7 +87,7 @@ Four:
 
  **5. Description** 
 
-> * * Description * *
+> **NOTE:**
 >
 > Description First line
 >

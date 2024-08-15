@@ -7,7 +7,7 @@ If a device is connected to multiple audio output devices, you can use **AudioRo
 Before using **AudioRoutingManager** to manage audio devices, import the audio module and create an **AudioManager** instance.
 
 ```ts
-import audio from '@ohos.multimedia.audio'; // Import the audio module.
+import { audio } from '@kit.AudioKit';  // Import the audio module.
 
 let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
 
@@ -18,22 +18,22 @@ let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of Au
 
 The table below lists the supported audio output devices.
 
-| Name| Value| Description| 
+| Name | Value | Description | 
 | -------- | -------- | -------- |
-| EARPIECE | 1 | Earpiece.| 
-| SPEAKER | 2 | Speaker.| 
-| WIRED_HEADSET | 3 | Wired headset with a microphone.| 
-| WIRED_HEADPHONES | 4 | Wired headset without microphone.| 
-| BLUETOOTH_SCO | 7 | Bluetooth device using Synchronous Connection Oriented (SCO) links.| 
-| BLUETOOTH_A2DP | 8 | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.| 
-| USB_HEADSET | 22 | USB Type-C headset.| 
+| EARPIECE | 1 | Earpiece. | 
+| SPEAKER | 2 | Speaker. | 
+| WIRED_HEADSET | 3 | Wired headset with a microphone. | 
+| WIRED_HEADPHONES | 4 | Wired headset without microphone. | 
+| BLUETOOTH_SCO | 7 | Bluetooth device using Synchronous Connection Oriented (SCO) links. | 
+| BLUETOOTH_A2DP | 8 | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links. | 
+| USB_HEADSET | 22 | USB Type-C headset. | 
 
 ## Obtaining Output Device Information
 
 Use **getDevices()** to obtain information about all the output devices.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
@@ -45,7 +45,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 Set a listener to listen for changes of the device connection state. When a device is connected or disconnected, a callback is triggered.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 // Listen for connection state changes of audio devices.
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
@@ -69,8 +69,8 @@ Currently, only one output device can be selected, and the device ID is used as 
 > The user can connect to a group of audio devices (for example, a pair of Bluetooth headsets), but the system treats them as one device (a group of devices that share the same device ID).
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -106,8 +106,8 @@ Call **getPreferOutputDeviceForRendererInfo()** to obtain the output device with
 > The output device with the highest priority is the device that will output audio.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -126,7 +126,7 @@ async function getPreferOutputDeviceForRendererInfo() {
 ## Listening for Changes of the Output Device with the Highest Priority
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,

@@ -20,7 +20,7 @@ MenuItemGroup(value?: MenuItemGroupOptions)
 
 | 参数  | 类型                                                                                   | 必填 | 参数描述                                    |
 | ----- | -------------------------------------------------------------------------------------- | ---- | ------------------------------------------- |
-| value | [MenuItemGroupOptions](ts-basic-components-menuitemgroup.md#menuitemgroupoptions类型说明) | 否   | 包含设置MenuItemGroup的标题和尾部显示信息。 |
+| value | [MenuItemGroupOptions](#menuitemgroupoptions类型说明) | 否   | 包含设置MenuItemGroup的标题和尾部显示信息。 |
 
 ## MenuItemGroupOptions类型说明
 

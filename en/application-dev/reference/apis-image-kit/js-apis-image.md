@@ -4825,7 +4825,7 @@ receiver.release((err: BusinessError) => {
   if (err) {
     console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
   } else {
-    console.info('Succeeded in releaseing the receiver.');
+    console.info('Succeeded in releasing the receiver.');
   }
 })
 ```
@@ -4852,7 +4852,7 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.release().then(() => {
-  console.info('Succeeded in releaseing the receiver.');
+  console.info('Succeeded in releasing the receiver.');
 }).catch((error: BusinessError) => {
   console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
 })

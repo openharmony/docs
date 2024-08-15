@@ -12,7 +12,7 @@ The certificate framework shields the differences between third-party algorithm 
 
 **Scenarios**
 
-Obtain the public key from a client certificate, and use the public key to verify the signature data.
+The application parses the received certificate or the certificate entered by the user, obtains the basic fields or extension fields of the certificate for display or verification, and uses the CA certificate chain and CRL to verify the certificate validity.
 
 ### Working Principles
 

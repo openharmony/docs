@@ -9,50 +9,141 @@
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## onConnect
+
+onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void
+
+Callback invoked when a connection is set up.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-|    Name     | Type      | Mandatory  | Description                       |
-| ------------ | -------- | ---- | ------------------------- |
-| onConnect    | function | Yes   | Callback invoked when a connection is set up.     |
-| onDisconnect | function | Yes   | Callback invoked when a connection is interrupted.          |
-| onFailed     | function | Yes   | Callback invoked when a connection fails.|
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description           |
+| -------- | ---------------------- | ---- | ------------- |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes   | Element name of the ability. |
+| remote | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes   | **IRemoteObject** instance. |
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import bundleManager from '@ohos.bundle.bundleManager';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, common, Want, AbilityConstant } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
-  let connectWant: Want = {
-    bundleName: 'com.example.myapp',
-    abilityName: 'MyAbility'
-  };
+let connectWant: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MyAbility'
+};
 
-  let connectOptions: common.ConnectOptions = {
-    onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
-      console.log(`onConnect elementName: ${elementName}`);
-    },
-    onDisconnect(elementName: bundleManager.ElementName) {
-      console.log(`onDisconnect elementName: ${elementName}`);
-    },
-    onFailed(code: number) {
-      console.error(`onFailed code: ${code}`);
-    }
-  };
-
-
-  class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
-    }
+let connectOptions: common.ConnectOptions = {
+  onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+    console.log(`onConnect elementName: ${elementName}`);
+  },
+  onDisconnect(elementName: bundleManager.ElementName) {
+    console.log(`onDisconnect elementName: ${elementName}`);
+  },
+  onFailed(code: number) {
+    console.error(`onFailed code: ${code}`);
   }
-  ```
+};
+
+class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+  }
+}
+```
+
+## onDisconnect
+
+onDisconnect(elementName: ElementName): void
+
+Callback invoked when a connection is interrupted.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description           |
+| -------- | ---------------------- | ---- | ------------- |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes   | Element name of the ability. |
+
+**Example**
+
+```ts
+import { UIAbility, common, Want, AbilityConstant } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+
+let connectWant: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MyAbility'
+};
+
+let connectOptions: common.ConnectOptions = {
+  onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+    console.log(`onConnect elementName: ${elementName}`);
+  },
+  onDisconnect(elementName: bundleManager.ElementName) {
+    console.log(`onDisconnect elementName: ${elementName}`);
+  },
+  onFailed(code: number) {
+    console.error(`onFailed code: ${code}`);
+  }
+};
+
+class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+  }
+}
+```
+
+## onFailed
+
+onFailed(code: number): void
+
+Callback invoked when a connection fails.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description           |
+| -------- | ---------------------- | ---- | ------------- |
+| code | number | Yes   | Result code.<br>The value **0** means that the connection is successful, **-1** means that a parameter is incorrect, and **-2** means that the ability is not found. |
+
+**Example**
+
+```ts
+import { UIAbility, common, Want, AbilityConstant } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+
+let connectWant: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MyAbility'
+};
+
+let connectOptions: common.ConnectOptions = {
+  onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+    console.log(`onConnect elementName: ${elementName}`);
+  },
+  onDisconnect(elementName: bundleManager.ElementName) {
+    console.log(`onDisconnect elementName: ${elementName}`);
+  },
+  onFailed(code: number) {
+    console.error(`onFailed code: ${code}`);
+  }
+};
+
+class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+  }
+}
+```

@@ -182,4 +182,58 @@ The API is called by an application other than the preconfigured default input m
 
 **Solution**
 
-Make sure the application to call the API is the preconfigured default input method.
+Use [getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11) to query the default input method of the system and determine whether the application uses the default input method. If the application does not use the default input method, this API cannot be called.
+
+## 12800011 Text Preview Not Supported
+
+**Error Message**
+
+Text preview is not supported.
+
+**Description**
+
+Preview of the text input box is not supported.
+
+**Possible Causes**
+
+Preview of the text input box is not supported.
+
+**Solution**
+
+Use [getEditorAttributeSync](js-apis-inputmethodengine.md#geteditorattributesync10) to obtain the value of **isTextPreviewSupported** of [EditorAttribute](js-apis-inputmethodengine.md#editorattribute). If **isTextPreviewSupported** is **false**, this API cannot be called.
+
+## 12800012 Soft Keyboard Panel Not Created
+
+**Error Message**
+
+Input method panel doesn't exist.
+
+**Description**
+
+The input method panel of the soft keyboard type is not created.
+
+**Possible Causes**
+
+The input method panel of the soft keyboard type is not created.
+
+**Solution**
+
+Use [createPanel](js-apis-inputmethodengine.md#createpanel10) to create a [panel](js-apis-inputmethodengine.md#panel10) of the [soft keyboard type](js-apis-inputmethodengine.md#paneltype10).
+
+## 12800013 Window Manager Service Error
+
+**Error Message**
+
+Window manager service error.
+
+**Description**
+
+The window manager service is not running properly.
+
+**Possible Causes**
+
+After the API is called, the system uses the capabilities of the window manager module. This error is thrown due to an error of the window manager service.
+
+**Solution**
+
+Restart the device and try again.

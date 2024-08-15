@@ -18,6 +18,7 @@
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | 变分辨率         | 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数时配置， 具体可参考下文中：Buffer模式的步骤-3   |
 | 动态切换Surface  | 通过调用OH_VideoDecoder_SetSurface()配置，具体可参考下文中：Surface模式的步骤-7     |
+| 低时延解码  | 通过调用OH_VideoDecoder_Configure()配置，具体可参考下文中：Surface模式的步骤-6     |
 
 
 ## 限制约束
@@ -102,7 +103,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t width = 320; 
     // 配置视频帧高度（必须）
     int32_t height = 240;
-    // 配置视频颜色格式（必须）
+    // 配置视频像素格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     int32_t widthStride = 0;
     int32_t heightStride = 0;
@@ -240,11 +241,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     参数取值范围可以通过能力查询接口获取，具体示例请参考[获取支持的编解码能力](obtain-supported-codecs.md)。
     
-    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
+    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
     - DEFAULT_HEIGHT：240像素高度；
-    - DEFAULT_PIXELFORMAT： 颜色格式，因为示例需要保存的YUV文件颜色格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
+    - DEFAULT_PIXELFORMAT： 像素格式，因为示例需要保存的YUV文件像素格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
 
     ```c++
 
@@ -253,6 +254,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    // 可选，配置低时延解码
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // 配置解码器
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {
@@ -400,11 +403,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-13. 调用OH_VideoDecoder_RenderOutputBuffer()显示并释放解码帧，或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+13. 调用OH_VideoDecoder_RenderOutputBuffer()/OH_VideoDecoder_RenderOutputBufferAtTime()显示并释放解码帧，
+    或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，数据队列的索引。
     - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针。
+
+    添加头文件
+
+    ```c++
+    #include <chrono>
+    ```
 
     ```c++
     // 获取解码后信息
@@ -415,9 +425,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 值由调用者决定
     bool isRender;
+    bool isNeedRenderAtTime;
     if (isRender) {
         // 显示并释放已完成处理的信息，index为对应buffer队列下标
-        ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        if (isNeedRenderAtTime){
+            // 获取系统绝对时间，renderTimestamp由调用者结合业务指定显示时间
+            int64_t renderTimestamp =
+                chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+            ret = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, index, renderTimestamp);
+        } else {
+           ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        }
+
     } else {
         // 释放已完成处理的信息
         ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);

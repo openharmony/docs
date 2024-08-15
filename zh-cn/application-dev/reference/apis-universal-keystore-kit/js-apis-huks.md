@@ -832,7 +832,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 获取匿名化密钥证书，使用Callback方式回调异步返回结果。
 
-该操作需要联网进行，且耗时较长。
+该操作需要联网进行，且耗时较长。返回12000012错误码时，可能是由于网络异常导致。此时如果没有联网，需要提示用户网络没有连接，如果已经联网，可能是由于网络抖动导致失败，建议重试。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -969,7 +969,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 
 获取匿名化密钥证书，使用Promise方式异步返回结果。
 
-该操作需要联网进行，且耗时较长。
+该操作需要联网进行，且耗时较长。返回12000012错误码时，可能是由于网络异常导致。此时如果没有联网，需要提示用户网络没有连接，如果已经联网，可能是由于网络抖动导致失败，建议重试。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

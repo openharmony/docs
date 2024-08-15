@@ -80,7 +80,7 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200035 | The doWrite method has not been implemented. |
 | 10200036 | The stream has been ended. |
 | 10200037 | The callback is invoked multiple times consecutively. |
@@ -133,7 +133,7 @@ end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writab
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200035 | The doWrite method has not been implemented. |
 
 **示例：**
@@ -189,7 +189,7 @@ setDefaultEncoding(encoding?: string): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -306,7 +306,7 @@ on(event: string, callback: Callback<emitter.EventData>): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -353,7 +353,7 @@ off(event: string, callback?: Callback<emitter.EventData>): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -404,7 +404,7 @@ doInitialize(callback: Function): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -447,7 +447,7 @@ doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -490,7 +490,7 @@ doWritev(chunks: string[] | Uint8Array[], callback: Function): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -581,6 +581,14 @@ Readable的构造函数。
 | ------ | -------- | -------- | -------- |
 | options   | [ReadableOptions](#readableoptions)   | 是 | Readable构造函数的选项信息。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -618,7 +626,7 @@ read(size?: number): string | null
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200038 | The doRead method has not been implemented. |
 
 **示例：**
@@ -734,7 +742,7 @@ setEncoding(encoding?: string): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -816,7 +824,7 @@ pipe(destination: Writable, options?: Object): Writable
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -876,7 +884,7 @@ unpipe(destination?: Writable): Readable
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -934,7 +942,7 @@ on(event: string, callback: Callback<emitter.EventData>): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -979,7 +987,7 @@ off(event: string, callback?: Callback<emitter.EventData>): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1027,7 +1035,7 @@ doInitialize(callback: Function): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1069,7 +1077,7 @@ doRead(size: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1118,7 +1126,7 @@ push(chunk:  Uint8Array | string | null, encoding?: string): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1205,7 +1213,7 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200036 | The stream has been ended. |
 | 10200037 | The callback is invoked multiple times consecutively. |
 | 10200039 | The doTransform method has not been implemented for a class that inherits from Transform. |
@@ -1262,7 +1270,7 @@ end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writab
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200039 | The doTransform method has not been implemented for a class that inherits from Transform. |
 
 **示例：**
@@ -1316,7 +1324,7 @@ setDefaultEncoding(encoding?: string): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1429,7 +1437,7 @@ doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1475,7 +1483,7 @@ doWritev(chunks: string[] | Uint8Array[], callback: Function): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1550,7 +1558,7 @@ doTransform(chunk: string, encoding: string, callback: Function): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1594,7 +1602,7 @@ doFlush(callback: Function): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

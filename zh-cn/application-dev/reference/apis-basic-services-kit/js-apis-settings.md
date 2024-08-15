@@ -589,12 +589,9 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, value) => {
-  if(err){
-    console.error('Failed to get the setting.${err.message}');
-    return;
-  }
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, () => {
+  let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+  console.log(`Promise:value -> $ {value}`);
 });
 ```
 

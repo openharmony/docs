@@ -1,4 +1,4 @@
-# User Authentication Kit API Reference
+# User Authentication Kit (User Authentication Service)
 
 - ArkTS APIs
   - [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md)

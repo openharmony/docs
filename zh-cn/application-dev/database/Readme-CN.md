@@ -31,3 +31,4 @@
   - 多对多跨应用数据共享 
     - [通过标准化数据通路实现数据共享](unified-data-channels.md)
 - [RelationalStore开发指导 (C/C++)](native-relational-store-guidelines.md)
+- [UDMF开发指导 (C/C++)](native-unified-data-management-framework-guidelines.md)

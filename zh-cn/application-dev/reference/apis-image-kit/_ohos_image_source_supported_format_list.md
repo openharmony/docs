@@ -19,5 +19,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [supportedFormatList](image.md#supportedformatlist) = nullptr | 图像源支持的格式字符串列表头地址 | 
-| [size](image.md#size-67) = 0 | 图像源支持的格式字符串列表大小 | 
+| struct [OhosImageSourceSupportedFormat](_ohos_image_source_supported_format.md) \*\* [supportedFormatList](image.md#supportedformatlist) = nullptr | 图像源支持的格式字符串列表头地址 | 
+| size_t [size](image.md#size-67) = 0 | 图像源支持的格式字符串列表大小 | 

@@ -2405,13 +2405,19 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
+    socketLinger: { on: true, linger: 10 } as SocketLinger,
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -2474,13 +2480,19 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
+    socketLinger: { on: true, linger: 10 } as SocketLinger,
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -3075,11 +3087,16 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
   console.log("listen success");
 })
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -3140,6 +3157,12 @@ let listenAddr: socket.NetAddress = {
   port: 8080,
   family: 1
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
     console.log("listen fail");
@@ -3152,7 +3175,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -3208,7 +3231,7 @@ tcpServer.listen(listenAddr).then(() => {
   tcpServer.getLocalAddress().then((localAddress: socket.NetAddress) => {
     console.info("SUCCESS! Address:" + JSON.stringify(localAddress));
   }).catch((err: BusinessError) => {
-    console.("FerrorAILED! Error:" + JSON.stringify(err));
+    console.error("FerrorAILED! Error:" + JSON.stringify(err));
   })
 }).catch((err: BusinessError) => {
   console.error('listen fail');
@@ -4364,7 +4387,7 @@ client.connect(connectOpt).then(() => {
 
 ### getLocalAddress<sup>12+</sup>
 
-getLocalAddress(): Promise\<String\>
+getLocalAddress(): Promise\<string\>
 
 获取LocalSocket的本地Socket地址。使用Promise方式作为异步方法。
 
@@ -4399,7 +4422,7 @@ let address : socket.LocalAddress = {
 }
 client.bind(address).then(() => {
   console.error('bind success');
-  client.getLocalAddress().then((localPath) => {
+  client.getLocalAddress().then((localPath: string) => {
     console.info("SUCCESS " + JSON.stringify(localPath));
   }).catch((err: BusinessError) => {
     console.error("FAIL " + JSON.stringify(err));
@@ -5004,7 +5027,7 @@ let listenAddr: socket.LocalAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.info("listen success");
-  server.getLocalAddress().then((localPath) => {
+  server.getLocalAddress().then((localPath: string) => {
     console.info("SUCCESS " + JSON.stringify(localPath));
   }).catch((err: BusinessError) => {
     console.error("FAIL " + JSON.stringify(err));
@@ -5301,8 +5324,8 @@ server.listen(localAddr).then(() => {
     timeout: 6000
   }
   client.connect(connectOpt).then(() => {
-    server.getLocalAddress().then((localPath) => {
-      console.info("success, localPath is"JSON.stringify(localPath));
+    server.getLocalAddress().then((localPath: string) => {
+      console.info("success, localPath is" + JSON.stringify(localPath));
     }).catch((err: BusinessError) => {
       console.error("FAIL " + JSON.stringify(err));
     })
@@ -5577,6 +5600,64 @@ import { socket } from '@kit.NetworkKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
 
+## socket.constructTLSSocketInstance<sup>12+</sup>
+
+constructTLSSocketInstance(tcpSocket: TCPSocket): TLSSocket
+
+将TCPSocket升级为TLSSocket，创建并返回一个TLSSocket对象。
+
+> **说明：**
+> 需要确保TCPSocket已连接，并且当前已经没有传输数据，再调用constructTLSSocketInstance升级TLSSocket。当升级成功后，无需对TCPSocket对象调用close方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名       | 类型 | 必填 | 说明                     |
+|-----------|----| ---- |------------------------|
+| tcpSocket | [TCPSocket](#tcpsocket)   | 是   | 需要进行升级的TCPSocket对象。 |
+
+**返回值:**
+
+| 类型                               | 说明                    |
+|  --------------------------------- |  ---------------------- |
+| [TLSSocket](#tlssocket9) | 返回一个TLSSocket对象。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                             |
+|---------|----------------------------------|
+| 401     | Parameter error.  |
+| 2300002 | System internal error.  |
+| 2303601 | Invalid socket FD.     |
+| 2303602 | Socket is not connected.  |
+
+**示例：**
+
+```ts
+import { socket } from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  timeout: 6000
+}
+tcp.connect(tcpconnectoptions, (err: BusinessError) => {
+  if (err) {
+    console.log('connect fail');
+    return;
+  }
+  console.log('connect success');
+
+  // 确保TCPSocket已连接后，再升级TLSSocket
+  let tls: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+})
+```
+
 ## TLSSocket<sup>9+</sup>
 
 TLSSocket连接。在调用TLSSocket的方法前，需要先通过[socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9)创建TLSSocket对象。
@@ -5586,6 +5667,9 @@ TLSSocket连接。在调用TLSSocket的方法前，需要先通过[socket.constr
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口。使用callback方法作为异步方法。
+
+> **说明：**
+> 如果TLSSocket对象是通过TCPSocket对象升级创建的，可以不用执行bind方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -5632,6 +5716,9 @@ tls.bind(bindAddr, (err: BusinessError) => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口。使用Promise方法作为异步方法。
+
+> **说明：**
+> 如果TLSSocket对象是通过TCPSocket对象升级创建的，可以不用执行bind方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -5812,11 +5899,16 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -5878,11 +5970,16 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -7004,10 +7101,11 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
+| skipRemoteValidation  | boolean                         | 否 | 是否对服务端进行证书认证，默认为false。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
-TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参数。当本地证书cert和私钥key不为空时，开启双向验证模式。cert和key其中一项为空时，开启单向验证模式。
+TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双向验证模式。cert和key其中一项为空时，开启单向验证模式。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -7124,7 +7222,8 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
   secureOptions: tlsSecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"]
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
   console.log("listen callback error" + err);
@@ -7194,7 +7293,8 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
   secureOptions: tlsSecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"]
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
@@ -7388,11 +7488,16 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed: " + JSON.stringify(err));
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -7470,11 +7575,16 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed: " + JSON.stringify(err));
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,

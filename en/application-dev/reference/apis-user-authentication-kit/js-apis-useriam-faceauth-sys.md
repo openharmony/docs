@@ -11,7 +11,7 @@ The **userIAM.faceAuth** module provides APIs for face enrollment.
 ## Modules to Import
 
 ```ts
-import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+import { faceAuth } from '@kit.UserAuthenticationKit';
 ```
 
 ## FaceAuthManager
@@ -37,9 +37,9 @@ A constructor used to create a **FaceAuthManager** object.
 **Example**
 
 ```ts
-import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+import { faceAuth } from '@kit.UserAuthenticationKit';
 
-let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
+let faceAuthManager = new faceAuth.FaceAuthManager();
 ```
 
 ### setSurfaceId
@@ -56,28 +56,28 @@ Sets an [XComponent surface ID](../apis-arkui/arkui-ts/ts-basic-components-xcomp
 
 **Parameters**
 
-| Name        | Type                              | Mandatory| Description                      |
+| Name        | Type                              | Mandatory | Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| surfaceId       | string     | Yes  | ID of the surface held by [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
+| surfaceId       | string     | Yes  | ID of the surface held by [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid). |
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 12700001 | The operation is failed. |
+| 12700001 | Operation failed. |
 
 **Example**
 
 ```ts
-import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+import { faceAuth } from '@kit.UserAuthenticationKit';
 
 // The surfaceId is obtained from the XComponent control. The surfaceId here is only an example.
 let surfaceId = '123456';
-let manager = new userIAM_faceAuth.FaceAuthManager();
+let manager = new faceAuth.FaceAuthManager();
 try {
   manager.setSurfaceId(surfaceId);
   console.info('set surface id success');

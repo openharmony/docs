@@ -40,7 +40,7 @@ console.info('' + wrongTypeMapped); // 输出: collections.Uint8Array [11, 21, 3
 
 // 情况三：能完成map功能：callbackFn返回map后的元素值，map函数返回新的collections.Uint8Array
 let normalMapped: collections.Uint8Array = uint8.map((value: number) => value * 2); // 能通过编译
-console.info('' + normalMappedArray); // 输出: collections.Uint8Array [2, 4, 6, 8, 10]
+console.info('' + normalMapped); // 输出: collections.Uint8Array [2, 4, 6, 8, 10]
 ```
 
 **变更后**

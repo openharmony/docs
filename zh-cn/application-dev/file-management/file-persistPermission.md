@@ -26,9 +26,9 @@ if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.fileshare';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function persistPermissionExample() {
     try {
@@ -75,9 +75,9 @@ async function persistPermissionExample() {
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.file.fileshare';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function revokePermissionExample() {
     try {
@@ -123,9 +123,9 @@ async function revokePermissionExample() {
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-import picker from '@ohos.file.picker';
-import fileShare from '@ohos.file.fileshare';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker } from '@kit.CoreFileKit';
+import { fileShare } from '@kit.CoreFileKit';
 
 async function activatePermissionExample() {
     try {
@@ -144,7 +144,7 @@ async function activatePermissionExample() {
                     console.error("error code : " + JSON.stringify(err.data[i].code));
                     console.error("error uri : " + JSON.stringify(err.data[i].uri));
                     console.error("error reason : " + JSON.stringify(err.data[i].message));
-                    if (err.data[i].code == fileshare.PolicyErrorCode.PERMISSION_NOT_PERSISTED) {
+                    if (err.data[i].code == fileShare.PolicyErrorCode.PERMISSION_NOT_PERSISTED) {
                         //可以选择进行持久化后再激活。
                     }
                 }

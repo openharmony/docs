@@ -31,15 +31,17 @@ Obtains distributed information about a system account. This API uses an asynchr
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | localId | number | Yes| ID of the target system account.|
   | callback | AsyncCallback&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
@@ -78,14 +80,16 @@ Obtains distributed information about a system account. This API uses a promise 
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | Promise&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
+  | Promise&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Promise used to return the distributed account information obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
@@ -122,7 +126,7 @@ Sets the distributed information for a system account. This API uses an asynchro
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | localId | number | Yes| ID of the target system account.|
   | accountInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | Yes| Distributed account information to set.|
@@ -130,8 +134,10 @@ Sets the distributed information for a system account. This API uses an asynchro
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid distributedInfo. |
@@ -173,21 +179,23 @@ Sets the distributed information for a system account. This API uses a promise t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | localId | number | Yes| ID of the target system account.|
   | distributedInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | Yes| Distributed account information to set.|
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+  | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid distributedInfo. |

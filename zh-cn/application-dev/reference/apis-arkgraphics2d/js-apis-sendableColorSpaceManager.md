@@ -50,7 +50,7 @@ create(colorSpaceName: colorSpaceManager.ColorSpace): ColorSpaceManager
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -88,7 +88,7 @@ create(primaries: colorSpaceManager.ColorSpacePrimaries, gamma: number): ColorSp
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -135,7 +135,7 @@ getColorSpaceName(): colorSpaceManager.ColorSpace
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -163,7 +163,7 @@ getWhitePoint(): collections.Array\<number\>
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -192,7 +192,7 @@ getGamma(): number
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 

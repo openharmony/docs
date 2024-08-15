@@ -882,7 +882,7 @@ try {
 | type     | "preset" |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
 | count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
-| intensity | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
+| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -922,15 +922,15 @@ try {
 
 ## Usage<sup>9+</sup>
 
-type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'media'|'physicalFeedback'|'simulateReality'
+type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | 'touch' | 'media' | 'physicalFeedback' | 'simulateReality'
 
 振动使用场景。
 
 **原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
-
-| 名称             | 类型   | 必填 | 说明                           |
+<!--RP1-->
+| 参数名            | 类型   | 必填 | 说明                           |
 | ---------------- | ------ | ------------------------------ | ------------------------------ |
 | unknown          | string | 是 | 没有明确使用场景，最低优先级。 |
 | alarm            | string | 是 | 用于警报场景。           |
@@ -941,6 +941,7 @@ type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'me
 | media            | string | 是 | 用于多媒体场景。         |
 | physicalFeedback | string | 是 | 用于物理反馈场景。       |
 | simulateReality  | string | 是 | 用于模拟现实场景。       |
+<!--RP1End-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 

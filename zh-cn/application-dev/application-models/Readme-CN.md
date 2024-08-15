@@ -12,7 +12,7 @@
       - [UIAbility组件启动模式](uiability-launch-type.md)
       - [UIAbility组件基本用法](uiability-usage.md)
       - [UIAbility组件与UI的数据同步](uiability-data-sync-with-ui.md)
-      - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
+      - [启动应用内的UIAbility组件](uiability-intra-device-interaction.md)
     - [ExtensionAbility组件](extensionability-overview.md)
       <!--Del-->
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
@@ -46,6 +46,7 @@
       - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+      - [拉起图片编辑类应用编辑图片](photoEditorExtensionAbility.md)
       - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
     - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)
@@ -134,5 +135,4 @@
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
 <!--DelEnd-->
-- [程序访问控制](../security/AccessToken/Readme-CN.md)
 - [Native子进程开发指导（C/C++)](capi_nativechildprocess_development_guideline.md)

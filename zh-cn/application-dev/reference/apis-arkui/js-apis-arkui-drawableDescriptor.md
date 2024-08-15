@@ -16,6 +16,8 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
 ## DrawableDescriptor
 
+支持传入png，jpg，bmp，svg，gif，webp，astc，sut格式的资源类型。
+
 ### getPixelMap
 
 getPixelMap(): image.PixelMap
@@ -52,6 +54,8 @@ let pixmapNew: object = pixmap.getPixelMap()
 constructor(src?: image.PixelMap)
 
 PixelMapDrawableDescriptor的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -299,6 +303,8 @@ struct Index {
 
 PixelMap 数组通过Image组件显示时用来控制动画的播放。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型    | 必填  | 说明                                    |
@@ -328,6 +334,8 @@ Image组件播放PixelMap数组时传入AnimatedDrawableDescriptor对象。继�
 constructor(pixelMaps: Array\<image.PixelMap>, options?: AnimationOptions)
 
 AnimatedDrawableDescriptor的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -185,21 +185,22 @@ export class VideoRecorderDemo {
 
   // 开始录制对应的流程
   async startRecordingProcess() {
-    if (this.avRecorder != undefined) {
+    if (this.avRecorder === undefined) {
       // 1.创建录制实例；
       this.avRecorder = await media.createAVRecorder();
       this.setAvRecorderCallback();
-      // 2. 获取录制文件fd；获取到的值传递给avConfig里的url，实现略
-      // 3.配置录制参数完成准备工作
-      await this.avRecorder.prepare(this.avConfig);
-      this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
-      // 4.完成相机相关准备工作
-      await this.prepareCamera();
-      // 5.启动相机出流
-      await this.startCameraOutput();
-      // 6. 启动录制
-      await this.avRecorder.start();
     }
+    // 2. 获取录制文件fd；获取到的值传递给avConfig里的url，实现略
+    // 3.配置录制参数完成准备工作
+    await this.avRecorder.prepare(this.avConfig);
+    this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
+    // 4.完成相机相关准备工作
+    await this.prepareCamera();
+    // 5.启动相机出流
+    await this.startCameraOutput();
+    // 6. 启动录制
+    await this.avRecorder.start();
+    
   }
 
   // 暂停录制对应的流程

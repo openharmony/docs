@@ -1,4 +1,4 @@
-# \@Track Decorator: Class Object Property-level Update
+# \@Track Decorator: Updating Class Object Properties
 
 
 \@Track is a decorator used to decorate properties of class objects. When a property decorated by \@Track changes, only the UI associated with the property is updated.

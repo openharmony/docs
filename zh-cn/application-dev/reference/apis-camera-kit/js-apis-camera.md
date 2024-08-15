@@ -65,13 +65,13 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称           | 类型                               | 只读 | 必填 | 说明        |
+| 名称           | 类型                               | 只读 | 可选 | 说明        |
 | -------------- | --------------------------------- | ---- | ---- |---------- |
-| cameraId       | string                            | 是   | 是   | 相机id。|
-| cameraPosition | [CameraPosition](#cameraposition) | 是   | 是   | 相机位置。    |
-| cameraType     | [CameraType](#cameratype)         | 是   | 是   | 相机类型。    |
-| connectionType | [ConnectionType](#connectiontype) | 是   | 是   | 相机连接类型。 |
-| cameraOrientation<sup>12+</sup> | number | 是   | 是   | 相机旋转角度。 |
+| cameraId       | string                            | 是   | 否   | 相机id。|
+| cameraPosition | [CameraPosition](#cameraposition) | 是   | 否   | 相机位置。    |
+| cameraType     | [CameraType](#cameratype)         | 是   | 否   | 相机类型。    |
+| connectionType | [ConnectionType](#connectiontype) | 是   | 否   | 相机连接类型。 |
+| cameraOrientation<sup>12+</sup> | number | 是   | 否   | 相机旋转角度，取值范围为0°-360°。 |
 
 ## CameraPosition
 
@@ -81,12 +81,12 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                         | 值   | 说明            |
-| --------------------------- | ---- | -------------- |
-| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。  |
-| CAMERA_POSITION_BACK        | 1    | 后置相机。       |
-| CAMERA_POSITION_FRONT       | 2    | 前置相机。       |
-| CAMERA_POSITION_FOLD_INNER<sup>11+</sup>  | 3    | 折叠态相机。     |
+| 名称                         | 值   | 说明                                                              |
+| --------------------------- | ---- |-----------------------------------------------------------------|
+| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。                                                        |
+| CAMERA_POSITION_BACK        | 1    | 后置相机。                                                           |
+| CAMERA_POSITION_FRONT       | 2    | 前置相机。                                                           |
+| CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | 折叠态相机。<br/> 从API version 11开始支持，从API version 12开始废弃。 |
 
 ## CameraType
 
@@ -127,16 +127,39 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | CAMERA_STATUS_AVAILABLE   | 2    | 相机可用。       |
 | CAMERA_STATUS_UNAVAILABLE | 3    | 相机不可用。     |
 
+## FoldStatus<sup>12+</sup>
+
+枚举，折叠机折叠状态。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 值   | 说明            |
+| ------------------------- | ---- | ------------    |
+| NON_FOLDABLE      | 0    | 表示当前设备不可折叠。   |
+| EXPANDED   | 1    | 表示当前设备折叠状态为完全展开。 |
+| FOLDED   | 2    | 表示当前设备折叠状态为折叠。       |
+
 ## CameraStatusInfo
 
 相机管理器回调返回的接口实例，表示相机状态信息。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称   | 类型                           |    只读   |     必填     | 说明       |
+| 名称   | 类型                           |    只读   |     可选     | 说明       |
 | ------ | ----------------------------- | --------- |------------ | ---------- |
-| camera | [CameraDevice](#cameradevice) |     否    |       是     | 相机信息。 |
-| status | [CameraStatus](#camerastatus) |     否    |       是     | 相机状态。 |
+| camera | [CameraDevice](#cameradevice) |     否    |       否     | 相机信息。 |
+| status | [CameraStatus](#camerastatus) |     否    |       否     | 相机状态。 |
+
+## FoldStatusInfo<sup>12+</sup>
+
+相机管理器回调返回的接口实例，表示折叠机折叠状态信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称   | 类型                           |    只读   |     可选     | 说明       |
+| ------ | ----------------------------- | --------- |------------ | ---------- |
+| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     否    |       否     | 当前折叠状态所支持的相机信息列表。 |
+| foldStatus | [FoldStatus](#foldstatus12) |     否    |       否     | 折叠屏折叠状态。 |
 
 ## Profile
 
@@ -144,10 +167,10 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                          | 只读 | 必填 | 说明         |
+| 名称      | 类型                          | 只读 | 可选 | 说明         |
 | -------- | ----------------------------- |---- | ---- | ------------- |
-| format   | [CameraFormat](#cameraformat) | 是  |  是  | 输出格式。      |
-| size     | [Size](#size)                 | 是  |  是  | 分辨率。       |
+| format   | [CameraFormat](#cameraformat) | 是  |  否  | 输出格式。      |
+| size     | [Size](#size)                 | 是  |  否  | 分辨率。       |
 
 ## FrameRateRange
 
@@ -166,9 +189,9 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                       | 类型                                      | 只读 | 必填 | 说明        |
+| 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  |  是  | 帧率范围，fps(frames per second)。 |
+| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  |  否  | 帧率范围，fps(frames per second)。 |
 
 ## CameraOutputCapability
 
@@ -177,11 +200,11 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                           | 类型                                                | 只读 | 可选 | 说明                |
-| ----------------------------- | --------------------------------------------------- | ---- | ---- | ------------------- |
-| previewProfiles               | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的预览配置信息。    |
-| photoProfiles                 | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的拍照配置信息。    |
-| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              |  是  | 否 | 支持的录像配置信息。    |
-| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  |  是  | 否 | 支持的metadata流类型信息。|
+| ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
+| previewProfiles               | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的预览配置信息集合。      |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的拍照配置信息集合。        |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              |  是  | 否 | 支持的录像配置信息集合。        |
+| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  |  是  | 否 | 支持的metadata流类型信息集合。 |
 
 ## SceneMode<sup>11+</sup>
 
@@ -189,11 +212,11 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                     | 值        | 说明         |
-| ----------------------- | --------- | ------------ |
-| NORMAL_PHOTO  | 1         | 普通拍照模式。             |
-| NORMAL_VIDEO | 2      | 普通录像模式。      |
-| SECURE_PHOTO<sup>12+</sup> | 12     | 安全相机模式。      |
+| 名称                         | 值       | 说明                                          |
+|----------------------------|---------|---------------------------------------------|
+| NORMAL_PHOTO               | 1       | 普通拍照模式。详情见[PhotoSession](#photosession11)   |
+| NORMAL_VIDEO               | 2       | 普通录像模式。详情见[VideoSession](#videosession11)   |
+| SECURE_PHOTO<sup>12+</sup> | 12      | 安全相机模式。详情见[SecureSession](#securesession12) |
 
 ## CameraErrorCode
 
@@ -869,6 +892,67 @@ function unregisterCameraStatus(cameraManager: camera.CameraManager): void {
 }
 ```
 
+### on('foldStatusChange')<sup>12+</sup>
+
+on(type: 'foldStatusChange', callback: AsyncCallback\<FoldStatusInfo\>): void
+
+开启折叠设备折叠状态变化的监听。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型            | 必填 | 说明       |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | 是   | 监听事件，固定为'foldStatusChange'。表示折叠设备折叠状态发生变化。 |
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | 是   | 回调函数。返回折叠设备折叠信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('foldStatusChange with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`camera length: ${foldStatusInfo.supportedCameras.length}`);
+  console.info(`foldStatus: ${foldStatusInfo.foldStatus}`);
+}
+
+function registerFoldStatusChange(cameraManager: camera.CameraManager): void {
+  cameraManager.on('foldStatusChange', callback);
+}
+```
+
+### off('foldStatusChange')<sup>12+</sup>
+
+off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
+
+关闭折叠设备折叠状态变化的监听。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型            | 必填 | 说明       |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | 是   | 监听事件，固定为'foldStatusChange'。表示折叠设备折叠状态发生变化。 |
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | 否   | 回调函数，返回折叠设备折叠信息。如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterFoldStatusChange(cameraManager: camera.CameraManager): void {
+  cameraManager.off('foldStatusChange');
+}
+```
+
 ### isTorchSupported<sup>11+</sup>
 
 isTorchSupported(): boolean
@@ -1063,11 +1147,11 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称              | 类型       | 只读 | 必填 | 说明        |
+| 名称              | 类型       | 只读 | 可选 | 说明        |
 | ---------------- | ---------- | ---- | ---- | ----------- |
-| isTorchAvailable | boolean    | 是   | 是   | 手电筒是否可用。|
-| isTorchActive    | boolean    | 是   | 是   | 手电筒是否被激活。    |
-| torchLevel       | number     | 是   | 是   | 手电筒亮度等级。取值范围为[0,1]，越靠近1，亮度越大。    |
+| isTorchAvailable | boolean    | 是   | 否   | 手电筒是否可用。|
+| isTorchActive    | boolean    | 是   | 否   | 手电筒是否被激活。    |
+| torchLevel       | number     | 是   | 否   | 手电筒亮度等级。取值范围为[0,1]，越靠近1，亮度越大。    |
 
 ## Size
 
@@ -1086,10 +1170,10 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称    | 类型   | 只读   | 必填   | 说明         |
+| 名称    | 类型   | 只读   | 可选   | 说明         |
 | ------ | ------ | ------ | ------ | ------------ |
-| x      | number | 否     | 是     | 点的x坐标。   |
-| y      | number | 否     | 是     | 点的y坐标。   |
+| x      | number | 否     | 否     | 点的x坐标。   |
+| y      | number | 否     | 否     | 点的y坐标。   |
 
 ## CameraFormat
 
@@ -1184,7 +1268,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open().then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to open the camera, error code: ${err.code}.`);
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
   });
 }
 ```
@@ -1228,8 +1312,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open(true).then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
-    let err = error as BusinessError;
-    console.error(`Failed to open the camera, error code: ${err.code}.`);
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
   });
 }
 ```
@@ -1913,12 +1996,12 @@ function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRa
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                            | 只读 | 必填 | 说明                                                                   |
+| 名称      | 类型                            | 只读 | 可选 | 说明                                                                   |
 | -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
-| quality  | [QualityLevel](#qualitylevel)   | 否   | 否   | 图片质量(默认低)。                                                           |
-| rotation | [ImageRotation](#imagerotation) | 否   | 否   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
-| location | [Location](#location)           | 否   | 否   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
-| mirror   | boolean                         | 否   | 否   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](#ismirrorsupported)进行判断是否支持。 |
+| quality  | [QualityLevel](#qualitylevel)   | 否   | 是   | 图片质量(默认低)。                                                           |
+| rotation | [ImageRotation](#imagerotation) | 否   | 是   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
+| location | [Location](#location)           | 否   | 是   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
+| mirror   | boolean                         | 否   | 是   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](#ismirrorsupported)进行判断是否支持。 |
 
 ## Photo<sup>11+</sup>
 
@@ -2359,7 +2442,7 @@ function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
 
 ### on('photoAssetAvailable')<sup>12+</sup>
 
-on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
+on(type: 'photoAssetAvailable', callback: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 注册监听photoAsset上报。使用callback异步回调。
 
@@ -2374,7 +2457,7 @@ on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 是   | 回调函数，用于监听photoAsset上报。 |
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 是   | 回调函数，用于监听photoAsset上报。 |
 
 **示例：**
 
@@ -2398,7 +2481,7 @@ function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void
 
 ### off('photoAssetAvailable')<sup>12+</sup>
 
-off(type: 'photoAssetAvailable', callback?: AsyncCallback\<PhotoAsset\>): void
+off(type: 'photoAssetAvailable', callback?: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 解注册photoAsset上报。
 
@@ -2409,7 +2492,7 @@ off(type: 'photoAssetAvailable', callback?: AsyncCallback\<PhotoAsset\>): void
 | 参数名     | 类型      | 必填  | 说明                                                                         |
 | -------- | ---------- |-----|----------------------------------------------------------------------------|
 | type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。                         |
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 否   | 需要解监听的回调方法。如果callback不为空且与此对应的监听方法一致，不为匿名方法，则解注册该方法；如果callback为空，则解监听所有回调。 |
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 否   | 需要解监听的回调方法。如果callback不为空且与此对应的监听方法一致，不为匿名方法，则解注册该方法；如果callback为空，则解监听所有回调。 |
 
 **示例：**
 
@@ -2868,10 +2951,10 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称       | 类型   | 只读 | 必填 | 说明        |
+| 名称       | 类型   | 只读 | 可选 | 说明        |
 | --------- | ------ | ---- | ---- | ---------- |
-| captureId | number | 否   | 是   | 拍照的ID。  |
-| timestamp | number | 否   | 是   | 快门时间戳。 |
+| captureId | number | 否   | 否   | 拍照的ID。  |
+| timestamp | number | 否   | 否   | 快门时间戳。 |
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
@@ -2879,9 +2962,9 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型   | 只读 | 必填 | 说明       |
+| 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
-| captureId | number | 否   | 是   | 拍照的ID。 |
+| captureId | number | 否   | 否   | 拍照的ID。 |
 
 ## CaptureStartInfo<sup>11+</sup>
 
@@ -2889,10 +2972,10 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称       | 类型    | 只读 | 必填 | 说明       |
+| 名称       | 类型    | 只读 | 可选 | 说明       |
 | ---------- | ------ | ---- | ---- | --------- |
-| captureId  | number | 否   | 是   | 拍照的ID。 |
-| time       | number | 否   | 是   | 预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。    |
+| captureId  | number | 否   | 否   | 拍照的ID。 |
+| time       | number | 否   | 否   | 预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。    |
 
 ## CaptureEndInfo
 
@@ -2900,10 +2983,10 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称       | 类型    | 只读 | 必填 | 说明       |
+| 名称       | 类型    | 只读 | 可选 | 说明       |
 | ---------- | ------ | ---- | ---- | ---------|
-| captureId  | number | 否   | 是   | 拍照的ID。 |
-| frameCount | number | 否   | 是   | 帧数。    |
+| captureId  | number | 否   | 否   | 拍照的ID。 |
+| frameCount | number | 否   | 否   | 帧数。    |
 
 ## VideoOutput
 
@@ -3589,11 +3672,11 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称         | 类型                                        | 只读 | 必填 |说明                |
+| 名称         | 类型                                        | 只读 | 可选 |说明                |
 | ----------- | ------------------------------------------- | ---- | ---- | ----------------- |
-| type        | [MetadataObjectType](#metadataobjecttype)   |  是  |  是  | metadata 类型。    |
-| timestamp   | number                                      |  是  |  是  | 当前时间戳（毫秒）。|
-| boundingBox | [Rect](#rect)                               |  是  |  是  | metadata 区域框。  |
+| type        | [MetadataObjectType](#metadataobjecttype)   |  是  |  否  | metadata 类型。    |
+| timestamp   | number                                      |  是  |  否  | 当前时间戳（毫秒）。|
+| boundingBox | [Rect](#rect)                               |  是  |  否  | metadata 区域框。  |
 
 ## FlashMode
 
@@ -5014,9 +5097,9 @@ function isFocusModeSupported(photoSession: camera.PhotoSession): boolean {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称     | 类型        |   只读   |   必填   | 说明       |
+| 名称     | 类型        |   只读   |   可选   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
-| duration |   number   |   否     |    是    | 平滑变焦总时长，单位ms。 |
+| duration |   number   |   否     |    否    | 平滑变焦总时长，单位ms。 |
 
 ## Zoom<sup>11+</sup>
 
@@ -7108,6 +7191,27 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
 
+**P3广色域与HDR高动态范围成像**   
+
+应用可以下发不同的色彩空间(ColorSpace)参数来支持P3广色域以及HDR的功能。  
+当应用不主动设置色彩空间时，拍照以及录像模式默认为HDR拍摄效果。  
+在拍照模式下设置HDR高显效果可直接支持P3色域。  
+应用针对不同模式使能HDR效果以及设置的色彩空间可参考下表。  
+
+**录像模式：**
+
+| SDR/HRD拍摄         | CameraFormat             | ColorSpace       |
+|--------------------|--------------------------|------------------|
+| SDR                | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT      |
+| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+
+**拍照模式：**
+
+| SDR/HRD拍摄    | ColorSpace |
+|--------------|------------|
+| SDR          | SRGB       |
+| HDR(Default) | DISPLAY_P3 |
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7191,6 +7295,10 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12)
 
 普通拍照模式会话类，提供了对闪光灯、曝光、对焦、变焦、色彩空间的操作。
+
+> **说明：**
+>
+> 默认的拍照模式，用于拍摄标准照片。支持多种照片格式和分辨率，适合大多数日常拍摄场景。
 
 ### on('error')<sup>11+</sup>
 
@@ -7374,6 +7482,10 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 普通录像模式会话类，提供了对闪光灯、曝光、对焦、变焦、视频防抖、色彩空间的操作。
 
+> **说明：**
+>
+> 默认的视频录制模式，适用于一般场景。支持720P、1080p等多种分辨率的录制，可选择不同帧率（如30fps、60fps）。
+
 ### on('error')<sup>11+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -7555,6 +7667,11 @@ function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
 SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11)
 
 安全模式会话类，提供了对闪光灯、曝光、对焦、变焦的操作。
+
+> **说明：**
+>
+> 通过[createSession](#createsession11)接口传入[SceneMode](#scenemode11)为SECURE_PHOTO模式创建一个安全模式的会话。该模式开放给人脸识别、银行等有安全诉求的应用，需要结合安全TA使用，支持同时出普通预览流和安全流的业务场景。
+> 安全TA：可用于图片处理，它具备验证服务器下发数据的验签能力、图片签名、解析及组装tlv逻辑的能力，还具备密钥读取、创建及操作能力。
 
 ### addSecureOutput<sup>12+</sup>
 

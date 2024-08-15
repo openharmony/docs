@@ -45,6 +45,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_FontMeasureSingleCharacter](_drawing.md#oh_drawing_fontmeasuresinglecharacter) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*font, const char \*str, float \*textWidth) | 用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。  | 
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_FontMeasureText](_drawing.md#oh_drawing_fontmeasuretext) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*font, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) encoding, [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*bounds, float \*textWidth) | 用于获取文本的宽度和边界框。 | 
 | void [OH_Drawing_FontSetBaselineSnap](_drawing.md#oh_drawing_fontsetbaselinesnap) ([OH_Drawing_Font](_drawing.md#oh_drawing_font) \*, bool baselineSnap) | 当前画布矩阵轴对齐时，将字形基线设置为是否与像素对齐。 | 
 | bool [OH_Drawing_FontIsBaselineSnap](_drawing.md#oh_drawing_fontisbaselinesnap) (const [OH_Drawing_Font](_drawing.md#oh_drawing_font) \*) | 当前画布矩阵轴对齐时，获取字形基线是否与像素对齐。 | 

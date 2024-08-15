@@ -17,7 +17,7 @@ import { ability } from '@kit.AbilityKit';
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型 | 只读 | 可选 | 描述       |
+| 名称 | 类型 | 只读 | 可选 | 说明       |
 | ---- | ---- | --- | ---- | --------- |
 | DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)  | 否 | 否 | DataAbilityHelper二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)  | 否 | 否 | PacMap二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |

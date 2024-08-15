@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import CommonEventManager from '@ohos.commonEventManager';
+import { commonEventManager } from '@kit.BasicServicesKit';
 ```
 
 ## Support
@@ -20,7 +20,7 @@ import CommonEventManager from '@ohos.commonEventManager';
 
 全部系统公共事件枚举定义请参见[系统公共事件定义](./common_event/commonEventManager-definitions.md)。
 
-## CommonEventManager.publishAsUser<sup>
+## commonEventManager.publishAsUser<sup>
 
 publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
 
@@ -54,10 +54,10 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //发布公共事件回调
-function publishCB(err:Base.BusinessError) {
+function publishCB(err: BusinessError) {
 	if (err) {
         console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -70,14 +70,14 @@ let userId = 100;
 
 //发布公共事件
 try {
-    CommonEventManager.publishAsUser("event", userId, publishCB);
+    commonEventManager.publishAsUser("event", userId, publishCB);
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.publishAsUser
+## commonEventManager.publishAsUser
 
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
@@ -113,16 +113,16 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //公共事件相关信息
-let options:CommonEventManager.CommonEventPublishData = {
+let options:commonEventManager.CommonEventPublishData = {
 	code: 0,			 //公共事件的初始代码
 	data: "initial data",//公共事件的初始数据
 }
 
 //发布公共事件回调
-function publishCB(err:Base.BusinessError) {
+function publishCB(err: BusinessError) {
 	if (err) {
         console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -135,14 +135,14 @@ let userId = 100;
 
 //发布公共事件
 try {
-    CommonEventManager.publishAsUser("event", userId, options, publishCB);
+    commonEventManager.publishAsUser("event", userId, options, publishCB);
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
+## commonEventManager.removeStickyCommonEvent<sup>10+</sup>
 
 removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
@@ -178,9 +178,9 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
+commonEventManager.removeStickyCommonEvent("sticky_event", (err: BusinessError) => {
     if (err) {
         console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
@@ -189,7 +189,7 @@ CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessErr
 });
 ```
 
-## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
+## commonEventManager.removeStickyCommonEvent<sup>10+</sup>
 
 removeStickyCommonEvent(event: string): Promise\<void>
 
@@ -230,16 +230,16 @@ removeStickyCommonEvent(event: string): Promise\<void>
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
+commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
     console.info(`removeStickyCommonEvent success`);
-}).catch ((err:Base.BusinessError) => {
+}).catch ((err: BusinessError) => {
     console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
-## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
+## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
 setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
@@ -273,9 +273,9 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
+commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
     if (!err) {
         console.info(`setStaticSubscriberState failed, err is null.`);
         return;
@@ -288,7 +288,7 @@ CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
 });
 ```
 
-## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
+## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
@@ -327,16 +327,16 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.setStaticSubscriberState(false).then(() => {
+commonEventManager.setStaticSubscriberState(false).then(() => {
     console.info(`setStaticSubscriberState success`);
-}).catch ((err:Base.BusinessError) => {
+}).catch ((err: BusinessError) => {
     console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
-## CommonEventManager.setStaticSubscriberState<sup>12+</sup>
+## commonEventManager.setStaticSubscriberState<sup>12+</sup>
 
 setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
 
@@ -376,12 +376,11 @@ setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
 
 
 ```ts
-import Base from '@ohos.base'
-import promptAction from '@ohos.promptAction'
-import CommonEventManager from '@ohos.commonEventManager'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
 
 let evenName: string[] = ['usual.event.SEND_DATA'];
-CommonEventManager.setStaticSubscriberState(true, evenName).then(() => {
+commonEventManager.setStaticSubscriberState(true, evenName).then(() => {
   try {
     promptAction.showToast({
       message: 'app.string.static_subscribe_enabled',
@@ -391,7 +390,7 @@ CommonEventManager.setStaticSubscriberState(true, evenName).then(() => {
     console.error(`showToast error code is ${error.code}, message is ${error.message}`);
   }
   console.info(`setStaticSubscriberState success, state is ${true}`);
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

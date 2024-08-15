@@ -9,9 +9,9 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 1. Import the camera module, which provides camera-related attributes and methods.
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. Call [getCameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** object.
@@ -86,11 +86,15 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 During camera application development, you can listen for the camera status, including the appearance of a new camera, removal of a camera, and availability of a camera. The camera ID and camera status are included in the callback function. When a new camera appears, the new camera can be added to the supported camera list.
 
-Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **CameraStatusInfo** parameter. For details about the parameter, see [CameraStatusInfo](../../reference/apis-camera-kit/js-apis-camera.md#camerastatusinfo).
+  Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **CameraStatusInfo** parameter. For details about the parameter, see [CameraStatusInfo](../../reference/apis-camera-kit/js-apis-camera.md#camerastatusinfo).
 
 ```ts
 function onCameraStatus(cameraManager: camera.CameraManager): void {
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error(`Callback Error, errorCode: ${err.code}`);
+      return;
+    }
     console.info(`camera: ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });

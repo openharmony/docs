@@ -24,7 +24,7 @@ In a distributed scenario, cross-device collaboration demands consistent data be
 The data consistency can be classified into the following types:
 
 
-- Strong consistency: When data is inserted, deleted, or modified on a device, other devices in the same network will obtain the latest data immediately. Once data is modified, the devices can read the updated data eventually, but may not read the updated data immediately.
+- Strong consistency: When data is inserted, deleted, or modified on a device, other devices in the same network can immediately obtain the updated data.
 
 - Weak consistency: When data is added, deleted, or modified on a device, other devices in the same network may or may not obtain the updates. The data on these devices may be inconsistent after a certain period of time.
 

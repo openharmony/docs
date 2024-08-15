@@ -38,80 +38,79 @@ The following table describes the related APIs.
 7. (Optional) Subscribe to the data written by the client.
 8. Close the server socket.
 9. Close the client socket.
-
 Example:
 
-```ts
-import socket from '@ohos.bluetooth.socket';
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import { socket } from '@kit.ConnectivityKit';
+    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
-// Create a server listening socket. serverId is returned if the socket is created.
-let serverNumber = -1;
-let sppOption: socket.SppOptions = {
-  uuid: '00001101-0000-1000-8000-00805f9b34fb',
-  secure: true,
-  type: 0
-};
-socket.sppListen('server1', sppOption, (code, serverSocketID) => {
-  if (code != null) {
-    console.error('sppListen error, code is ' + (code as BusinessError).code);
-    return;
-  } else {
-    serverNumber = serverSocketID;
-    console.info('sppListen success, serverNumber = ' + serverNumber);
-  }
-});
+    // Create a server listening socket. serverId is returned if the socket is created.
+    let serverNumber = -1;
+    let sppOption: socket.SppOptions = {
+      uuid: '00001101-0000-1000-8000-00805f9b34fb',
+      secure: true,
+      type: 0
+    };
+    socket.sppListen('server1', sppOption, (code, serverSocketID) => {
+      if (code != null) {
+        console.error('sppListen error, code is ' + (code as BusinessError).code);
+        return;
+      } else {
+        serverNumber = serverSocketID;
+        console.info('sppListen success, serverNumber = ' + serverNumber);
+      }
+    });
 
-// Establish a connection between the server socket and client socket. If the connection is successful, clientId is returned.
-let clientNumber = -1;
-socket.sppAccept(serverNumber, (code, clientSocketID) => {
-  if (code != null) {
-    console.error('sppAccept error, code is ' + (code as BusinessError).code);
-    return;
-  } else {
-    clientNumber = clientSocketID;
-    console.info('accept the client success');
-  }
-})
-console.info('waiting for client connection');
+    // Establish a connection between the server socket and client socket. If the connection is successful, clientId is returned.
+    let clientNumber = -1;
+    socket.sppAccept(serverNumber, (code, clientSocketID) => {
+      if (code != null) {
+        console.error('sppAccept error, code is ' + (code as BusinessError).code);
+        return;
+      } else {
+        clientNumber = clientSocketID;
+        console.info('accept the client success');
+      }
+    })
+    console.info('waiting for client connection');
 
-// Write data to the client.
-let array = new Uint8Array(990);
-array[0] = 'A'.charCodeAt(0);
-array[1] = 'B'.charCodeAt(0);
-array[2] = 'C'.charCodeAt(0);
-array[3] = 'D'.charCodeAt(0);
-socket.sppWrite(clientNumber, array.buffer);
-console.info('sppWrite success');
+    // Write data to the client.
+    let array = new Uint8Array(990);
+    array[0] = 'A'.charCodeAt(0);
+    array[1] = 'B'.charCodeAt(0);
+    array[2] = 'C'.charCodeAt(0);
+    array[3] = 'D'.charCodeAt(0);
+    socket.sppWrite(clientNumber, array.buffer);
+    console.info('sppWrite success');
 
-// Subscribe to the read request event.
-socket.on('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
-  const data = new Uint8Array(dataBuffer);
-  if (data != null) {
-    console.info('sppRead success, data = ' + JSON.stringify(data));
-  } else {
-    console.error('sppRead error, data is null');
-  }
-});
+    // Subscribe to the read request event.
+    socket.on('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
+      const data = new Uint8Array(dataBuffer);
+      if (data != null) {
+        console.info('sppRead success, data = ' + JSON.stringify(data));
+      } else {
+        console.error('sppRead error, data is null');
+      }
+    });
 
-// Unsubscribe from the read request event.
-socket.off('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
-  const data = new Uint8Array(dataBuffer);
-  if (data != null) {
-    console.info('offSppRead success, data = ' + JSON.stringify(data));
-  } else {
-    console.error('offSppRead error, data is null');
-  }
-});
+    // Unsubscribe from the read request event.
+    socket.off('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
+      const data = new Uint8Array(dataBuffer);
+      if (data != null) {
+        console.info('offSppRead success, data = ' + JSON.stringify(data));
+      } else {
+        console.error('offSppRead error, data is null');
+      }
+    });
 
-// Close the server socket.
-socket.sppCloseServerSocket(serverNumber);
-console.info('sppCloseServerSocket success');
+    // Close the server socket.
+    socket.sppCloseServerSocket(serverNumber);
+    console.info('sppCloseServerSocket success');
 
-// Close the client socket.
-socket.sppCloseClientSocket(clientNumber);
-console.info('sppCloseClientSocket success');
-```
+    // Close the client socket.
+    socket.sppCloseClientSocket(clientNumber);
+    console.info('sppCloseClientSocket success');
+    ```
 
 For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
@@ -121,28 +120,27 @@ For details about the error codes, see [Bluetooth Error Codes](../../reference/a
 3. Enable Bluetooth on the device.
 4. Start Bluetooth scanning to obtain the MAC address of the peer device.
 5. Connect to the peer device.
-
 Example:
 
-```ts
-import socket from '@ohos.bluetooth.socket';
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import { socket } from '@kit.ConnectivityKit';
+    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
-// Start Bluetooth scanning to obtain the MAC address of the peer device.
-let deviceId = 'xx:xx:xx:xx:xx:xx';
+    // Start Bluetooth scanning to obtain the MAC address of the peer device.
+    let deviceId = 'xx:xx:xx:xx:xx:xx';
 
-// Connect to the peer device.
-socket.sppConnect(deviceId, {
-  uuid: '00001101-0000-1000-8000-00805f9b34fb',
-  secure: true,
-  type: 0
-}, (code, socketID) => {
-  if (code != null) {
-    console.error('sppConnect error, code = ' + (code as BusinessError).code);
-    return;
-  }
-  console.info('sppConnect success, socketId = ' + socketID);
-})
-```
+    // Connect to the peer device.
+    socket.sppConnect(deviceId, {
+      uuid: '00001101-0000-1000-8000-00805f9b34fb',
+      secure: true,
+      type: 0
+    }, (code, socketID) => {
+      if (code != null) {
+        console.error('sppConnect error, code = ' + (code as BusinessError).code);
+        return;
+      }
+      console.info('sppConnect success, socketId = ' + socketID);
+    })
+    ```
 
 For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

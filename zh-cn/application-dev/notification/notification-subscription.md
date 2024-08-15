@@ -53,9 +53,9 @@
 2. 导入通知订阅模块。
    
    ```ts
-   import notificationSubscribe from '@ohos.notificationSubscribe';
-   import Base from '@ohos.base';
-   import hilog from '@ohos.hilog';
+   import { notificationSubscribe } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = '[SubscribeOperations]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -91,7 +91,7 @@
 4. 发起通知订阅。
    
    ```ts
-   notificationSubscribe.subscribe(subscriber, (err:Base.BusinessError) => { // callback形式调用异步接口
+   notificationSubscribe.subscribe(subscriber, (err: BusinessError) => { // callback形式调用异步接口
      if (err) {
        hilog.error(DOMAIN_NUMBER, TAG, `Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;

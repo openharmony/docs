@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import notificationSubscribe from '@ohos.notificationSubscribe';
+import { notificationSubscribe } from '@kit.NotificationKit';
 ```
 
 ## onConsume
@@ -33,9 +33,9 @@ onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -75,9 +75,9 @@ onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -117,9 +117,9 @@ onUpdate?:(data: [NotificationSortingMap](js-apis-inner-notification-notificatio
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -155,9 +155,9 @@ onConnect?:() => void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -195,16 +195,16 @@ onDisconnect?:() => void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
     console.info("subscribeCallback");
   }
 };
-let unsubscribeCallback = (err: Base.BusinessError) => {
+let unsubscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -249,9 +249,9 @@ onDestroy?:() => void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -288,15 +288,14 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification-sys.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification-sys.md#donotdisturbdate8-deprecated)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import Notification from '@ohos.notification';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -334,10 +333,10 @@ onDoNotDisturbChanged?:(mode: notificationManager.[DoNotDisturbDate](js-apis-not
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import NotificationManager from '@ohos.notificationManager';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationSubscribe, notificationManager } from '@kit.NotificationKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -345,8 +344,8 @@ let subscribeCallback = (err: Base.BusinessError) => {
   }
 };
 
-let onDoNotDisturbChangedCallback = (mode: NotificationManager.DoNotDisturbDate) => {
-  console.info('===> onDoNotDisturbChanged:' + mode);
+let onDoNotDisturbChangedCallback = (mode: notificationManager.DoNotDisturbDate) => {
+  console.info('===> onDoNotDisturbChanged:' + JSON.stringify(mode));
 }
 
 let subscriber: notificationSubscribe.NotificationSubscriber = {
@@ -375,9 +374,9 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -417,9 +416,9 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -457,9 +456,9 @@ onBadgeEnabledChanged?: [BadgeEnabledChangedCallback](#badgeenabledchangedcallba
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -497,9 +496,9 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {

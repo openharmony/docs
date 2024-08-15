@@ -35,11 +35,12 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start. |
 | callback  | AsyncCallback\<number>                   | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **0**; otherwise, **err** is a non-zero value.     |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -88,16 +89,17 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start. |
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<number> | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, a non-zero value is returned.|
+| Promise\<number> | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, a non-zero value is returned. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -141,16 +143,17 @@ Obtains a **dataAbilityHelper** object.
 
 | Name  | Type    | Mandatory  | Description          |
 | ---- | ------ | ---- | ------------ |
-| uri  | string | Yes   | URI of the file to open.|
+| uri  | string | Yes   | URI of the file to open. |
 
 **Return value**
 
 | Type               | Description                             |
 | ----------------- | ------------------------------- |
-| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | A utility class used to help other abilities access the Data ability.|
+| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | A utility class used to help other abilities access the Data ability. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -181,11 +184,12 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start. |
 | callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is an **AbilityResult** object; otherwise, err is an error object.     |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -234,16 +238,17 @@ Starts an ability. This API uses a promise to return the result when the ability
 
 | Name       | Type                                      | Mandatory  | Description           |
 | --------- | ---------------------------------------- | ---- | ------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start. |
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise used to return the result.|
+| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise used to return the result. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -292,11 +297,12 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | Name       | Type                             | Mandatory  | Description            |
 | --------- | ------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated. |
 | callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.     |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -346,16 +352,17 @@ Terminates this ability. This API uses a promise to return the result. If the ab
 
 | Name       | Type                             | Mandatory  | Description           |
 | --------- | ------------------------------- | ---- | ------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated. |
 
 **Return value**
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -404,10 +411,11 @@ Checks whether the main window of this ability has the focus. This API uses an a
 
 | Name      | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes   |Callback used to return the result.<br>If the main window has the focus, **true** is returned. Otherwise, **false** is returned.|
+| callback | AsyncCallback\<boolean> | Yes   |Callback used to return the result.<br>If the main window has the focus, **true** is returned. Otherwise, **false** is returned. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -432,10 +440,11 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 
 | Type               | Description                                   |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. If the main window has the focus, **true** is returned. Otherwise, **false** is returned.|
+| Promise\<boolean> | Promise used to return the result. If the main window has the focus, **true** is returned. Otherwise, **false** is returned. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -458,10 +467,11 @@ Obtains the Want corresponding to the ability to start. This API uses an asynchr
 
 | Name      | Type                           | Mandatory  | Description       |
 | -------- | ----------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[Want](js-apis-application-want.md)> | Yes   | Callback used to return the Want.|
+| callback | AsyncCallback\<[Want](js-apis-application-want.md)> | Yes   | Callback used to return the Want. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -488,10 +498,11 @@ Obtains the Want corresponding to the ability to start. This API uses a promise 
 
 | Type                     | Description              |
 | ----------------------- | ---------------- |
-| Promise\<[Want](js-apis-application-want.md)> | Promise used to return the Want.|
+| Promise\<[Want](js-apis-application-want.md)> | Promise used to return the Want. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -514,10 +525,11 @@ Obtains the application context.
 
 | Type     | Description        |
 | ------- | ---------- |
-| Context | Application context.|
+| Context | Application context. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -545,10 +557,11 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | Name      | Type                  | Mandatory  | Description      |
 | -------- | -------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the ability is terminated, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the ability is terminated, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -573,10 +586,11 @@ Terminates this ability. This API uses a promise to return the result.
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -605,17 +619,18 @@ Connects this ability to a ServiceAbility.
 
 | Name     | Type            | Mandatory  | Description                   |
 | ------- | -------------- | ---- | --------------------- |
-| request | [Want](js-apis-application-want.md)  | Yes   | ServiceAbility to connect.|
+| request | [Want](js-apis-application-want.md)  | Yes   | ServiceAbility to connect. |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes   | Connection options.            |
 
 **Return value**
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | ID of the connected ServiceAbility. The ID starts from 0 and is incremented by 1 each time a connection is set up.|
+| number | ID of the connected ServiceAbility. The ID starts from 0 and is incremented by 1 each time a connection is set up. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -654,11 +669,12 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 
 | Name        | Type                  | Mandatory  | Description                     |
 | ---------- | -------------------- | ---- | ----------------------- |
-| connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
+| connection | number               | Yes   | ID of the ServiceAbility to disconnect. |
 | callback   | AsyncCallback\<void> | Yes   | Callback used to return the result. If the disconnection is successful, **err** is **undefined**. Otherwise, **err** is an error object.     |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -704,16 +720,17 @@ Disconnects this ability from a specific a ServiceAbility. This API uses a promi
 
 | Name        | Type    | Mandatory  | Description                     |
 | ---------- | ------ | ---- | ----------------------- |
-| connection | number | Yes   | ID of the ServiceAbility to disconnect.|
+| connection | number | Yes   | ID of the ServiceAbility to disconnect. |
 
 **Return value**
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -757,12 +774,13 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 
 **Parameters**
 
-| Name    | Type                         | Mandatory| Description                         |
+| Name    | Type                         | Mandatory | Description                         |
 | -------- | ----------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Yes  | Callback used to return the window.|
+| callback | AsyncCallback\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Yes  | Callback used to return the window. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
@@ -791,10 +809,11 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 
 | Type                   | Description                         |
 | ----------------------- | ----------------------------- |
-| Promise\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Promise used to return the window.|
+| Promise\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Promise used to return the window. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
@@ -821,11 +840,11 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 | Name                                    | Value  | Description                                      |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| WINDOW_MODE_UNDEFINED       | 0    | The PageAbility is in an undefined window display mode.|
+| WINDOW_MODE_UNDEFINED       | 0    | The PageAbility is in an undefined window display mode. |
 | WINDOW_MODE_FULLSCREEN      | 1    | The PageAbility is in full screen mode.   |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100  | The left screen in horizontal direction or the upper screen in vertical direction is the primary window.|
-| WINDOW_MODE_SPLIT_SECONDARY | 101  | The right screen in horizontal direction or the lower screen in vertical direction is the secondary window.|
-| WINDOW_MODE_FLOATING        | 102  | The PageAbility is displayed in floating window mode.|
+| WINDOW_MODE_SPLIT_PRIMARY   | 100  | The left screen in horizontal direction or the upper screen in vertical direction is the primary window. |
+| WINDOW_MODE_SPLIT_SECONDARY | 101  | The right screen in horizontal direction or the lower screen in vertical direction is the secondary window. |
+| WINDOW_MODE_FLOATING        | 102  | The PageAbility is displayed in floating window mode. |
 
 
 ## AbilityStartSetting<sup>7+</sup>
@@ -844,9 +863,9 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | Name                          | Value             | Description                                      |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY      | 'abilityBounds' | Ability window size.|
+| BOUNDS_KEY      | 'abilityBounds' | Ability window size. |
 | WINDOW_MODE_KEY | 'windowMode'    | Ability window display mode.|
-| DISPLAY_ID_KEY  | 'displayId'     | Display device ID.|
+| DISPLAY_ID_KEY  | 'displayId'     | Display device ID. |
 
 ## ErrorCode<sup>7+</sup>
 
@@ -857,8 +876,8 @@ Enumerates the error codes that may be returned when an ability is started.
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR         | 0    | No error.  |
-| INVALID_PARAMETER | -1   | Invalid parameter.|
-| ABILITY_NOT_FOUND | -2   | The ability is not found.|
+| INVALID_PARAMETER | -1   | Invalid parameter. |
+| ABILITY_NOT_FOUND | -2   | The ability is not found. |
 | PERMISSION_DENY   | -3   | Permission denied.  |
 
 ## DataAbilityOperationType<sup>7+</sup>
@@ -869,7 +888,7 @@ Enumerates the operation types of a DataAbility. The DataAbility can use an enum
 
 | Name                      | Value   | Description                                      |
 | ------------------------ | ---- | ---------------------------------------- |
-| TYPE_INSERT | 1    | Insert operation.|
-| TYPE_UPDATE | 2    | Update operation.|
-| TYPE_DELETE | 3    | Deletion operation.|
-| TYPE_ASSERT | 4    | Assert operation.|
+| TYPE_INSERT | 1    | Insert operation. |
+| TYPE_UPDATE | 2    | Update operation. |
+| TYPE_DELETE | 3    | Deletion operation. |
+| TYPE_ASSERT | 4    | Assert operation. |

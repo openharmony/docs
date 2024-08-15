@@ -9,13 +9,17 @@ The bundle name is specified by the **bundleName** field in the [app.json5 file]
 ## Configuring Icons and Labels
 Icons and labels are usually configured together. There is the application icon, application label, entry icon, and entry label, which correspond to the **icon** and **label** fields in the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md).
 
+If an entry icon and entry label are configured for an application, they will overwrite the application icon and application label and be the ones displayed.
+
+If no entry icon or entry label is configured for an application, the application icon and application label are displayed.
+
 The application icon and application label are used to identify an application, and they are usually displayed on a screen for identifying the application. Example scenarios are as follows:
 * Application list in Settings
 * Applications with permissions granted in the privacy management screen
 * Notification messages displayed in the status bar
 
 
-The entry icon and entry label are displayed on the device's home screen after an application is installed, as shown below. The entry icon maps to a [UIAbility](uiability-overview.md) component. Therefore, an application can have multiple entry icons and entry labels. When you touch one of them, the corresponding UIAbility page is displayed. Example scenarios are as follows:
+The entry icon and entry label are displayed on the device's home screen after an application is installed, as shown below. The entry icon is specific to a [UIAbility](uiability-overview.md). Only one entry icon and entry label can be configured for an application. If there are multiple entry abilities, only the entry icon and entry label configured for the mainElement in the entry HAP take effect. After you touch the entry icon, the corresponding UIAbility page is displayed. Example scenarios are as follows:
 * Applications displayed on the device's home screen
 * Applications displayed in Recents
 
@@ -43,7 +47,7 @@ The application label is specified by the **label** field in the [app.json5 file
 #### Configuration Methods
 On the stage model, you can configure an entry icon and entry label for each application component. The entry icon and entry label are displayed on the home screen.
 
-The entry icon is configured by specifying **icon** under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md). For example, if you want to display the icon of the UIAbility component on the home screen, add **entity.system.home** to **entities** and **ohos.want.action.home** to **actions** under **skills**. If this field is configured for multiple UIAbility components of an application, multiple icons are displayed on the home screen, corresponding to their respective UIAbility components.
+The entry icon is configured by specifying **icon** under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md). For example, if you want to display the icon of the UIAbility component on the home screen, add **entity.system.home** to **entities** and **ohos.want.action.home** to **actions** under **skills**. An application can have only one entry icon and entry label. If there are multiple entry abilities, only the entry icon and entry label configured for the mainElement in the entry HAP takes effect.
 
 ```json
 {

@@ -13,6 +13,17 @@ The **settings** module provides APIs for setting data items.
 import settings from '@ohos.settings';
 ```
 
+## domainName
+
+Describes the domain name.
+
+### Attributes
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+| Name               | Type  | Readable| Writable| Description                                                        |
+| ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| USER_SECURITY<sup>11+</sup>      | string | Yes  | Yes  | User security attribute domain.                                         |
 
 ## settings.setValue<sup>(deprecated)</sup>
 

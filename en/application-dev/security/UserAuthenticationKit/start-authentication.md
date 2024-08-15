@@ -26,7 +26,9 @@ The system provides a unified user authentication widget, which stands out with 
 
 The following figure shows the style of the user authentication widget, which can be set via the [WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10) parameter.
 
+<!--RP1-->
 ![](figures/user-authentication-widget.png)
+<!--RP1End-->
 
 - ①: Title (**WidgetParam.title**) of the user authentication page, which cannot exceed 500 characters. You can set the title based on actual requirements.
 
@@ -34,6 +36,7 @@ The following figure shows the style of the user authentication widget, which ca
    
   If biometric authentication fails, the authentication widget button is displayed. You can click this button to apply custom authentication.
 
+<!--Del-->
 - The following shows the display modes (**WidgetParam.windowMode**) of the user authentication widget.
   
   The user authentication widget provides two display modes: dialog box (default mode, as shown in figure on the left) and full screen (as shown in the figure on the right).
@@ -41,6 +44,7 @@ The following figure shows the style of the user authentication widget, which ca
   Currently, the full screen mode is available only for system applications.
 
   ![](figures/widget_display_modes.png)
+<!--DelEnd-->
 
 The user authentication widget supports the following types of authentication:
 
@@ -77,8 +81,8 @@ The user authentication widget supports the following types of authentication:
 
 ```ts
 // API version 10
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // Set authentication parameters.
 const authParam: userAuth.AuthParam = {
@@ -116,8 +120,8 @@ Initiate facial authentication with the authentication trust level greater than 
 
 ```ts
 // API version 10
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // Set authentication parameters.
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {

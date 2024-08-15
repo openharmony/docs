@@ -1,4 +1,4 @@
-# Converting Binary Data into a Symmetric Key
+# Converting Binary Data into a Symmetric Key (ArkTS)
 
 
 This topic uses 3DES and HMAC as an example to describe how to convert binary data into a symmetric key. That is, convert a piece of external or internal binary data into a key object for subsequent operations, such as encryption and decryption.
@@ -77,7 +77,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-key-genera
     let encodedKey = key.getEncoded(); // Obtain the binary data of the symmetric key and output the data as a byte array. The length is 24 bytes.
     console.info('key getEncoded hex' + encodedKey.data);
   }
-
+  ```
 
 ## Converting Binary Data into an HMAC Key
 

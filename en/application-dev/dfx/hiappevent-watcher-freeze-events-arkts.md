@@ -8,14 +8,14 @@ For details about how to use the APIs (such as parameter usage constraints and v
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt; | Sets custom event parameters.|
+| setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt; | Sets custom event parameters. |
 
 **Subscription APIs**
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events.|
-| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events.|
+| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events. |
+| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events. |
 
 ## How to Develop
 
@@ -24,9 +24,8 @@ The following describes how to subscribe to the freeze event triggered by a butt
 1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, import the dependent modules.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
-   import hilog from '@ohos.hilog';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
 2. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, set the custom parameters in **onCreate()**. The sample code is as follows:

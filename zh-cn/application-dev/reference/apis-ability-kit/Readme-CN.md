@@ -23,6 +23,7 @@
     - [@ohos.app.ability.insightIntent (insightIntent)](js-apis-app-ability-insightIntent.md)
     - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](js-apis-app-ability-insightIntentContext.md)
     - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](js-apis-app-ability-insightIntentExecutor.md)
+    - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](js-apis-app-ability-photoEditorExtensionAbility.md)
     - [@ohos.app.ability.OpenLinkOptions (OpenLinkOptions)](js-apis-app-ability-openLinkOptions.md)
     - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
@@ -53,6 +54,7 @@
     - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
   - 通用能力的接口(推荐)
     - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
+    - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](js-apis-screenLockFileManager.md)
     - [@ohos.app.ability.appManager (appManager)](js-apis-app-ability-appManager.md)
     - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
@@ -66,6 +68,7 @@
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
     <!--Del-->
     - [@ohos.abilityAccessCtrl (程序访问控制管理)(系统接口)](js-apis-abilityAccessCtrl-sys.md)
+    - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](js-apis-screenLockFileManager-sys.md)
     - [@ohos.app.ability.abilityManager (AbilityManager)(系统接口)](js-apis-app-ability-abilityManager-sys.md)
     - [@ohos.app.ability.appManager (appManager)(系统接口)](js-apis-app-ability-appManager-sys.md)
     - [@ohos.app.ability.missionManager (missionManager)(系统接口)](js-apis-app-ability-missionManager-sys.md)
@@ -89,6 +92,7 @@
     - [@ohos.bundle.installer (installer模块)(系统接口)](js-apis-installer-sys.md)
     - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)(系统接口)](js-apis-launcherBundleManager-sys.md)
     - [@ohos.bundle.overlay (overlay模块)(系统接口)](js-apis-overlay-sys.md)
+    - [@ohos.bundle.shortcutManager (shortcutManager模块)(系统接口)](js-apis-shortcutManager-sys.md)
     - [@ohos.distributedMissionManager (分布式任务管理)(系统接口)](js-apis-distributedMissionManager-sys.md)
     - [@ohos.privacyManager (隐私管理)(系统接口)](js-apis-privacyManager-sys.md)
     <!--DelEnd-->
@@ -122,6 +126,7 @@
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
+      - [PhotoEditorExtensionContext](js-apis-app-ability-photoEditorExtensionContext.md)
       - [SendableContext](js-apis-inner-application-sendableContext.md)
       <!--Del-->
       - [AbilityFirstFrameStateData(系统接口)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
@@ -171,7 +176,9 @@
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
       - [Skill](js-apis-bundleManager-skill.md)
       <!--Del-->
+      - [ApplicationInfo (系统接口)](js-apis-bundleManager-ApplicationInfo-sys.md)
       - [AppProvisionInfo (系统接口)](js-apis-bundleManager-AppProvisionInfo-sys.md)
+      - [BundleInfo (系统接口)](js-apis-bundleManager-BundleInfo-sys.md)
       - [BundlePackInfo (系统接口)](js-apis-bundleManager-BundlePackInfo-sys.md)
       - [BundleResourceInfo (系统接口)](js-apis-bundleManager-BundleResourceInfo-sys.md)
       - [BusinessAbilityInfo (系统接口)](js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -245,3 +252,4 @@
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
   - [包管理子系统通用错误码](errorcode-bundle.md)
   - [访问控制错误码](errorcode-access-token.md)
+  - [锁屏敏感数据管理错误码](errorcode-screenLockFileManager.md)

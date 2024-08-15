@@ -102,7 +102,9 @@ heap中会生成两个Semi Space供copying使用。
 
 ![image](./figures/gc-process.png)
 
-### HPPGC
+### HPP GC
+
+HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾回收，其中“High Performance”主要三方面，包含分代模型、混合算法和GC流程优化，以下主要是对HPP GC的流程中的一些具体策略的介绍。
 
 #### Young GC
 
@@ -323,7 +325,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 - 接口类型：js接口
 - 作用：调用后由VM主动触发判断当前是否适合进行一次full GC。后台场景、内存预期存活率低于设定值，则会触发，判断为敏感状态则不会触发。
 - 使用场景：开发者提示系统进行GC
-- 典型日志：无直接日志，仅可区分外部触发（`GCReason::EXTERNAL_TRIGGER`）
+- 典型日志：无直接日志，仅可区分外部触发（`GCReason::TRIGGER_BY_JS`）
 
 
 使用参考

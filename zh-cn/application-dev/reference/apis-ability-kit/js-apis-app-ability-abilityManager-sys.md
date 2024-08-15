@@ -551,7 +551,7 @@ try {
 
 notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void
 
-该接口仅供[DLP](../apis-data-loss-prevention-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
+该接口仅供[DLP](../apis-data-protection-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -613,7 +613,7 @@ try {
 
 notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>
 
-该接口仅供[DLP](../apis-data-loss-prevention-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
+该接口仅供[DLP](../apis-data-protection-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

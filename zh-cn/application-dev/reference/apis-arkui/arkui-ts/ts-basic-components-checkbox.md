@@ -32,13 +32,11 @@ Checkbox(options?: CheckboxOptions)
 
 ## CheckboxOptions对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 名称  | 类型 | 必填  | 描述 |
 | --------| --------| ------ | -------- |
-| name    | string | 否 | 用于指定多选框名称。 |
-| group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
-| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。|
+| name    | string | 否 | 用于指定多选框名称。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -112,7 +110,7 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                              | 必填 | 描述                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。|
+| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。|
 
 ### shape<sup>11+</sup>
 
@@ -137,6 +135,8 @@ shape(value: CheckBoxShape)
 contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
 定制CheckBox内容区的方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -168,16 +168,6 @@ onChange(callback: (value: boolean) => void)
 | ------ | ------- | ---- | ------------------------------------------------- |
 | value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
 
-## MarkStyle<sup>10+</sup>对象说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
-| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
-| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-
 ## CheckBoxShape<sup>11+</sup>枚举类型说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -190,6 +180,8 @@ onChange(callback: (value: boolean) => void)
 ## CheckBoxConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名  | 类型    |    默认值      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |

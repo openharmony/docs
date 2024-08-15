@@ -34,8 +34,8 @@ The figure below shows the recommended API call process.
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import common from '@ohos.app.ability.common';
+import { camera } from '@kit.CameraKit';
+import { common } from '@kit.AbilityKit';
 
 async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -84,10 +84,10 @@ The figure below shows the recommended API call process.
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 ```ts
-import camera from '@ohos.multimedia.camera';
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
-import common from '@ohos.app.ability.common';
+import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
 
 async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -127,7 +127,8 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 Generally, the startup of the camera application is triggered when the user touches the camera icon on the home screen. The home screen senses the touch event and instructs the application manager to start the camera application. This takes a relatively long time. After the camera application is started, the camera startup process starts. A typical camera startup process includes starting the camera device, configuring a data stream, and starting the data stream, which is also time-consuming.
 
-​The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen, the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
+​The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen,
+the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
 
 ![prelaunch-scene](figures/prelaunch-scene.png)
 
@@ -152,9 +153,9 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
 - **Home screen**
 
   ```ts
-  import camera from '@ohos.multimedia.camera';
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { camera } from '@kit.CameraKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
   function preLaunch(baseContext: common.BaseContext): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -174,9 +175,9 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
   For details about how to request and verify the permissions, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
   ```ts
-  import camera from '@ohos.multimedia.camera';
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { camera } from '@kit.CameraKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
   function setPreLaunchConfig(baseContext: common.BaseContext): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);

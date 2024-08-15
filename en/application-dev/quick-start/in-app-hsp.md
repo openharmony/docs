@@ -1,34 +1,44 @@
 # HSP
 
-A Harmony Shared Package (HSP) is a dynamic shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles) and allows for code and resource sharing within an application (called the host application). An HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
+A Harmony Shared Package (HSP) is a dynamic shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles) and allows for code and resource sharing. An HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
 > **NOTE**
 > 
-> As the inter-application HSP is not supported yet, unless otherwise specified, the HSP refers to the intra-application HSP.
+> In-app HSP: a type of HSP that is closely coupled with an application bundle name (**bundleName**) during compilation and can be used only by the specified application.
+> 
+> Integrated HSP: a type of HSP that is not coupled with any specific application bundle name during the build and release processes and whose bundle name can be automatically replaced by the toolchain with the host application bundle name.
 
 ## When to Use
 - By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
 
 - The HSP is loaded on demand during application running, which helps improve application performance.
 
+- The integrated HSP allows for code and resource sharing across applications in the same organization.
+
 ## Constraints
 
 - An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The version of an HSP must be the same as that of the HAP.
 - No [UIAbility](../application-models/uiability-overview.md) or [ExtensionAbility](../application-models/extensionability-overview.md) can be declared in the configuration file of an HSP.
 - An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
+- The integrated HSP is only available for the [stage model](application-package-structure-stage.md).
+- The integrated HSP only works with API version 12 or later and uses the normalized OHMUrl format.
 
 
 ## Creating an HSP
-Create an HSP module in DevEco Studio. In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
+Create an HSP module in DevEco Studio. For details, see <!--RP1-->[Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section7717162312546)<!--RP1End-->. In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
 ```
-library
-├── src
-│   └── main
-│       ├── ets
-│       │   ├── pages
-│       │   └── index.ets
-│       ├── resources
-│       └── module.json5
-└── oh-package.json5
+MyApplication
+├── library
+│   ├── src
+│   │   └── main
+│   │       ├── ets
+│   │       │   └── pages
+│   │       │       └── index.ets
+│   │       ├── resources
+│   │       └── module.json5
+│   ├── oh-package.json5
+│   ├── index.ets
+│   └── build-profile.json5 // Module-level configuration file
+└── build-profile.json5     // Project-level configuration file
 ```
 
 ## Developing an HSP
@@ -57,8 +67,8 @@ export struct MyTitleBar {
 ```
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { MyTitleBar } from './components/MyTitleBar';
+// library/index.ets
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ```
 
 
@@ -82,8 +92,8 @@ export function minus(a: number, b: number): number {
 ```
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test';
+// library/index.ets
+export { Log, add, minus } from './src/main/ets/utils/test';
 ```
 ### Exporting Native Methods
 The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **liblibrary.so** file is exported.
@@ -99,8 +109,8 @@ export function nativeMulti(a: number, b: number): number {
 
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { nativeMulti } from './utils/nativeTest';
+// library/index.ets
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 
 ### Accessing Resources in an HSP Through $r
@@ -145,8 +155,8 @@ export class ResManager{
 
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { ResManager } from './ResManager';
+// library/index.ets
+export { ResManager } from './src/main/ets/ResManager';
 ```
 
 
@@ -156,15 +166,15 @@ export { ResManager } from './ResManager';
 You can reference APIs in an HSP and and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
-To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module).
+To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module). For details, see <!--RP2-->[Referencing an HSP](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section6161154819195)<!--RP2End-->.
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test';
-export { MyTitleBar } from './components/MyTitleBar';
-export { ResManager } from './ResManager';
-export { nativeMulti } from './utils/nativeTest';
+// library/index.ets
+export { Log, add, minus } from './src/main/ets/utils/test';
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
+export { ResManager } from './src/main/ets/ResManager';
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 The APIs can be used as follows in the code of the invoking module:
 ```ts
@@ -436,3 +446,40 @@ The **url** parameter in the **router.back** method is described as follows:
     ```ets
     '@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
     ```
+
+## Integrated HSP
+
+### Configuring an HSP as an Integrated HSP
+To specify the HSP to be built as an integrated HSP, open the module-level **build-profile.json5** file and set **integratedHsp** to **true**.
+
+```
+{
+  "apiType": "stageMode",
+  "buildOption": {
+    "arkOptions": {
+      "integratedHsp": true
+    }
+  }
+}
+```
+
+### Using the Normalized OHMUrl Format
+To configure the project to use the normalized OHMUrl format, open the project-level **build-profile.json5** file and set **useNormalizedOHMUrl** to **true**.
+
+```
+{
+  "app": {
+    "products": {
+      "name": "default",
+      "signingConfig": "default",
+      "compatibleSdkVersion": "5.0.0(12)",
+      "runtimeOS": "HarmonyOS",
+      "buildOption": {
+        "strictMode": {
+          "useNormalizedOHMUrl": true
+        }
+      }
+    }
+  }
+}
+```

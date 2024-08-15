@@ -10,7 +10,7 @@
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| unsubscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback?:&nbsp;AsyncCallback) | 取消订阅公共事件 |
+| unsubscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md#commoneventsubscriber),&nbsp;callback?:&nbsp;AsyncCallback) | 取消订阅公共事件 |
 
 
 ## 开发步骤
@@ -18,10 +18,8 @@
 1. 导入模块。
    
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
-   import promptAction from '@ohos.promptAction';
-   import hilog from '@ohos.hilog';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -34,20 +32,13 @@
    ```ts
    // subscriber为订阅事件时创建的订阅者对象
    if (this.subscriber !== null) {
-     commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
+     commonEventManager.unsubscribe(this.subscriber, (err: BusinessError) => {
        if (err) {
          hilog.error(DOMAIN_NUMBER, TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
        } else {
-         promptAction.showToast({
-           message: $r('app.string.unsubscribe_success_toast')
-         });
          hilog.info(DOMAIN_NUMBER, TAG, `Unsubscribe success`);
          this.subscriber = null;
        }
      })
-   } else {
-     promptAction.showToast({
-       message: $r('app.string.unsubscribe_failed_toast')
-     });
    }
    ```

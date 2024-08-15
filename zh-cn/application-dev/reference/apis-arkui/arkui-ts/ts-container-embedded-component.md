@@ -22,6 +22,8 @@ EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensio
 
 EmbeddedComponent(loader: Want, type: EmbeddedType)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名                | 参数类型                                                   | 必填 | 参数描述                             |
@@ -49,6 +51,8 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 被拉起的EmbeddedUIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时，触发本回调函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名   | 类型   | 说明                                                                                     |
@@ -65,6 +69,8 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 onError(callback: ErrorCallback)
 
 被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -84,6 +90,8 @@ onError(callback: ErrorCallback)
 ## TerminationInfo
 
 用于表示被拉起的EmbeddedUIExtensionAbility的返回结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 属性名  | 类型   | 说明                                                 |
 | ------- | ------ | ---------------------------------------------------  |

@@ -44,7 +44,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -97,7 +97,7 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -152,7 +152,7 @@ getRemoteDeviceName(deviceId: string): string
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -199,7 +199,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -241,7 +241,7 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 |401 | Invalid parameter.    |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -291,7 +291,7 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 |401 | Invalid parameter.    |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -376,7 +376,7 @@ getPairedDevices(): Array&lt;string&gt;
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -425,7 +425,7 @@ getPairState(deviceId: string): BondState
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -473,8 +473,8 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 |401 | Invalid parameter. Possible causes: 1. Incorrect parameter types.        |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -517,7 +517,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -565,7 +565,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -616,7 +616,7 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -663,7 +663,7 @@ setLocalName(name: string): void
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -705,7 +705,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -746,7 +746,7 @@ getBluetoothScanMode(): ScanMode
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -782,7 +782,7 @@ startBluetoothDiscovery(): void
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -822,7 +822,7 @@ stopBluetoothDiscovery(): void
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -862,7 +862,7 @@ isBluetoothDiscovering(): boolean
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -911,7 +911,7 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.            |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 
 **示例：**
 
@@ -962,7 +962,7 @@ getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.            |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 
 **示例：**
 

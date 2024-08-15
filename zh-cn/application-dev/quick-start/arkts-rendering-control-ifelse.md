@@ -19,7 +19,7 @@ ArkTS提供了渲染控制的能力。条件渲染可根据应用的不同状态
 
 - 每个分支内部的构建函数必须遵循构建函数的规则，并创建一个或多个组件。无法创建组件的空构建函数会产生语法错误。
 
-- 某些容器组件限制子组件的类型或数量，将条件渲染语句用于这些组件内时，这些限制将同样应用于条件渲染语句内创建的组件。例如，Grid容器组件的子组件仅支持GridItem组件，在Grid内使用条件渲染语句时，条件渲染语句内仅允许使用GridItem组件。
+- 某些容器组件限制子组件的类型或数量，将条件渲染语句用于这些组件内时，这些限制将同样应用于条件渲染语句内创建的组件。例如，[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件的子组件仅支持[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)组件，在Grid内使用条件渲染语句时，条件渲染语句内仅允许使用GridItem组件。
 
 
 ## 更新机制
@@ -93,13 +93,16 @@ struct CounterView {
   label: string = 'unknown';
 
   build() {
-    Row() {
+    Column({ space: 20 }) {
       Text(`${this.label}`)
       Button(`counter ${this.counter} +1`)
         .onClick(() => {
           this.counter += 1;
         })
     }
+    .margin(10)
+    .padding(10)
+    .border({ width: 1 })
   }
 }
 
@@ -120,6 +123,8 @@ struct MainView {
           this.toggle = !this.toggle;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -133,20 +138,24 @@ CounterView（label为 'CounterView \#positive'）子组件在初次渲染时创
 以下示例展示了条件更改时，若需要保留counter值所做的修改。
 
 
-```
+```ts
 @Component
 struct CounterView {
   @Link counter: number;
   label: string = 'unknown';
 
   build() {
-    Row() {
+    Column({ space: 20 }) {
       Text(`${this.label}`)
+        .fontSize(20)
       Button(`counter ${this.counter} +1`)
         .onClick(() => {
           this.counter += 1;
         })
     }
+    .margin(10)
+    .padding(10)
+    .border({ width: 1 })
   }
 }
 
@@ -168,6 +177,8 @@ struct MainView {
           this.toggle = !this.toggle;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -188,7 +199,7 @@ struct CompA {
   @State toggleColor: boolean = false;
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       Text('Before')
         .fontSize(15)
       if (this.toggle) {
@@ -224,6 +235,8 @@ struct CompA {
           this.toggleColor = !this.toggleColor;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```

@@ -19,7 +19,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 1. Set audio recording parameters and create an **AudioCapturer** instance. For details about the parameters, see [AudioCapturerOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiocaptureroptions8).
      
    ```ts
-    import audio from '@ohos.multimedia.audio';
+    import { audio } from '@kit.AudioKit';
     
     let audioStreamInfo: audio.AudioStreamInfo = {
       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
@@ -51,8 +51,8 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 2. Call **on('readData')** to subscribe to the audio data read callback.
      
    ```ts
-    import { BusinessError } from '@ohos.base';
-    import fs from '@ohos.file.fs';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { fileIo } from '@kit.CoreFileKit';
 
     let bufferSize: number = 0;
     class Options {
@@ -62,14 +62,14 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    
     let path = getContext().cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
    
     let readDataCallback = (buffer: ArrayBuffer) => {
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
       }
-      fs.writeSync(file.fd, buffer, options);
+      fileIo.writeSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
     }
     audioCapturer.on('readData', readDataCallback);
@@ -78,7 +78,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 3. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
      
    ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     audioCapturer.start((err: BusinessError) => {
       if (err) {
@@ -92,7 +92,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 4. Call **stop()** to stop recording.
      
    ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     audioCapturer.stop((err: BusinessError) => {
       if (err) {
@@ -106,7 +106,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 5. Call **release()** to release the instance.
      
    ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     audioCapturer.release((err: BusinessError) => {
       if (err) {
@@ -123,9 +123,9 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 Refer to the sample code below to record audio using AudioCapturer.
   
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -154,14 +154,14 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
 
 let path = getContext().cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
 
 let readDataCallback = (buffer: ArrayBuffer) => {
    let options: Options = {
       offset: bufferSize,
       length: buffer.byteLength
    }
-   fs.writeSync(file.fd, buffer, options);
+   fileIo.writeSync(file.fd, buffer, options);
    bufferSize += buffer.byteLength;
 }
 
@@ -214,7 +214,7 @@ function stop() {
       if (err) {
         console.error('Capturer stop failed.');
       } else {
-        fs.close(file);
+        fileIo.close(file);
         console.info('Capturer stop success.');
       }
     });

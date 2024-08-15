@@ -14,6 +14,7 @@
 
 Component3D((sceneOptions?: SceneOptions))
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -26,12 +27,16 @@ Component3D((sceneOptions?: SceneOptions))
 
 Component3D组件配置选项。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称        | 类型                               | 必填   | 说明                                       |
 | --------- | -------------------------------- | ---- | ---------------------------------------- |
 | scene     | [Resource](ts-types.md#resource)\|[Scene](../../apis-arkgraphics3d/js-apis-inner-scene.md#scene-1)<sup>12+</sup> | 否    | 3D模型资源文件或场景对象，默认值为undefined。<br/>**说明：** <br/>目前仅支持GLTF格式资源。 |
 | modelType | [ModelType](#modeltype枚举说明) | 否    | 3D场景显示合成方式。<br/>默认值：ModelType.SURFACE<br/>**说明：** <br/>设置为ModelType.TEXTURE时通过GPU合成显示。<br/>设置为ModelType.SURFACE时通过专有硬件合成显示。<br/>一般开发者可以使用默认值而无需关心此项设置。 |
 
 ## ModelType枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称      | 描述             |
 | ------- | -------------- |
@@ -49,6 +54,8 @@ environment(uri: Resource)
 
 设置3D环境资源。目前仅支持GLTF格式资源，模型资源在控件创建后不支持动态修改。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
@@ -62,6 +69,8 @@ environment(uri: Resource)
 customRender(uri: Resource, selfRenderUpdate: boolean)
 
 设置三维场景渲染的渲染管道。管线配置及自渲染属性在控件创建后不支持动态修改。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -78,6 +87,8 @@ shader(uri: Resource)
 
 设置自定义渲染的shader文件资源。自定义渲染的shader文件资源在控件创建后不支持动态修改。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
@@ -92,6 +103,8 @@ shaderImageTexture(uri: Resource)
 
 设置自定义渲染用到的纹理资源。若自定义渲染用到多个纹理资源则调用多次，绑定点与调用顺序一致，不支持纹理更换。纹理资源在控件创建后不支持动态修改。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
@@ -105,6 +118,8 @@ shaderImageTexture(uri: Resource)
 shaderInputBuffer(buffer: Array&lt;number&gt;)
 
 设置自定义渲染用到的动效参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -124,6 +139,8 @@ renderWidth(value: Dimension)
 
 渲染分辨率在控件创建后不支持动态修改。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
@@ -141,6 +158,8 @@ renderHeight(value: Dimension)
 不调用此属性时默认渲染分辨率。
 
 渲染分辨率在控件创建后不支持动态修改。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -179,7 +198,8 @@ struct Index {
 自定义渲染示例。 <br/>
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
 class EngineTime {
   totalTimeUs = 0;
   deltaTimeUs = 0;

@@ -81,6 +81,8 @@ Injects key events (for both single keys and combination keys).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
 **Parameters**
 
 | Name      | Type                   | Mandatory  | Description       |
@@ -138,6 +140,8 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 Injects a mouse/touchpad event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+Permission required: ohos.permission.INJECT_INPUT_EVENT
 
 **Parameters**
 
@@ -239,6 +243,8 @@ Injects a touchscreen event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
 **Parameters**
 
 | Name      | Type                   | Mandatory  | Description       |
@@ -257,10 +263,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { TouchEvent } from '@kit.InputKit';
+import { Touch, TouchEvent } from '@kit.InputKit';
+import { inputEventClient } from '@kit.InputKit';
 
 try {
-  let touchEvent: touchEvent.Touch = {
+  let touchEvent: Touch = {
     id: 1,
     pressedTime: 1,
     screenX: 0,
@@ -281,7 +288,7 @@ try {
     toolType: 0,
   }
 
-  let touchEventUpData: touchEvent.TouchEvent = {
+  let touchEventUpData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,
@@ -298,7 +305,7 @@ try {
   }
   inputEventClient.injectTouchEvent(touchEventUp);
 
-  let touchEventDownData: touchEvent.TouchEvent = {
+  let touchEventDownData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,
@@ -326,6 +333,8 @@ permitInjection(result: boolean): void
 Specifies whether to authorize event injection.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+Permission required: ohos.permission.INJECT_INPUT_EVENT
 
 **Parameters**
 
