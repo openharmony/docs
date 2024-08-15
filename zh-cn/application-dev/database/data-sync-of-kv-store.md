@@ -177,7 +177,7 @@
      schema.root.appendChild(child1);
      schema.root.appendChild(child2);
      schema.indexes = ['$.id', '$.name'];
-     // 0表示STRICT模式，1表示COMPATIBLE模式。
+     // 0表示COMPATIBLE模式，1表示STRICT模式。
      schema.mode = 1;
      // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
      schema.skip = 0;
