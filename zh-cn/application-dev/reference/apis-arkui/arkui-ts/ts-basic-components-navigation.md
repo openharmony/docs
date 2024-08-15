@@ -23,6 +23,10 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 
 Navigation()
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### Navigation<sup>10+</sup>
 
 Navigation(pathInfos: NavPathStack)
@@ -30,6 +34,8 @@ Navigation(pathInfos: NavPathStack)
 绑定路由栈到Navigation组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -55,8 +61,8 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
-| options | [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | 否   | 标题栏选项。                                                   |
+| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
+| options | [NavigationTitleOptions](#navigationtitleoptions11)<sup>11+</sup> | 否   | 标题栏选项。                                                   |
 
 ### subTitle<sup>(deprecated)</sup>
 
@@ -83,7 +89,7 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 > 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
 
 
-设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +99,7 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+| value  | Array<[NavigationMenuItem](#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
 
 ### titleMode
 
@@ -156,8 +162,8 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem类型说明)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
-| options | [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 否   | 工具栏选项。                                                 |
+| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup> | 否   | 工具栏选项。                                                 |
 
 ### hideToolBar
 
@@ -360,6 +366,8 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 
 控制组件的布局，使其扩展到非安全区域
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -514,7 +522,7 @@ pushPath(info: NavPathInfo, options?: NavigationOptions): void
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 ### pushPathByName<sup>10+</sup>
 
@@ -602,7 +610,7 @@ pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 **返回值：**
 
@@ -724,7 +732,7 @@ replacePath(info: NavPathInfo, options?: NavigationOptions): void
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
-| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 ### replacePathByName<sup>11+</sup>
 
@@ -1215,19 +1223,23 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 自定义转场动画代理对象。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称 | 类型  | 必填 | 描述  |
+| 名称 | 类型  | 必填 | 说明  |
 |------|-------|-----|-------|
 | from | [NavContentInfo](#navcontentinfo11) | 是 | 退场页面信息。|
 | to | [NavContentInfo](#navcontentinfo11) | 是 | 进场页面信息。|
 | isInteractive<sup>12+</sup> | boolean | 否 | 是否为可交互转场动画。|
 
 ### finishTransition
+
+finishTransition(): void;
 
 结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
 
@@ -1237,6 +1249,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 ### cancelTransition<sup>12+</sup>
 
+cancelTransition?(): void;
+
 取消本次交互转场，恢复到页面跳转前的页面栈(不支持取消不可交互转场动画)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1244,6 +1258,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### updateTransition<sup>12+</sup>
+
+updateTransition?(progress: number): void;
 
 更新交互转场动画进度(不可交互动画不支持动画进度设置)。
 
@@ -1277,10 +1293,14 @@ type InterceptionShowCallback = (from: NavDestinationContext|NavBar, to: NavDest
 
 navigation页面跳转前和页面跳转后的拦截回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
-| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
+| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
+| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
 | operation | [NavigationOperation](#navigationoperation11枚举说明) | 是 | 当前页面跳转类型。 |
 | isAnimated | boolean | 是 | 页面跳转是否有动画。 |
 
@@ -1290,17 +1310,29 @@ type InterceptionModeCallback = (mode: NavigationMode) => void
 
 navigation单双栏显示状态发生变更时的拦截回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
 | mode | [NavigationMode](#navigationmode9枚举说明) | 是 |  导航栏的显示模式。 |
 
 ### NavBar<sup>12+</sup>
 
-| 名称       | 描述                                       |
+type NavBar = 'navBar'
+
+Navigation首页名字。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型       | 说明                                       |
 | -------- | ---------------------------------------- |
 | "navBar"   | Navigation首页。 |
 
-## NavigationMenuItem类型说明
+## NavigationMenuItem
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -1310,7 +1342,7 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
 
-## ToolbarItem<sup>10+</sup>类型说明
+## ToolbarItem<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1350,7 +1382,7 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | Mini | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。                                |
 | Full | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。                                |
 
-## NavigationCommonTitle<sup>9+</sup>类型说明
+## NavigationCommonTitle<sup>9+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1361,7 +1393,7 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | main | string | 是    | 设置主标题。 |
 | sub  | string | 是    | 设置副标题。 |
 
-## NavigationCustomTitle<sup>9+</sup>类型说明
+## NavigationCustomTitle<sup>9+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1429,7 +1461,7 @@ navigation单双栏显示状态发生变更时的拦截回调。
 |STANDARD | 标题栏与内容区采用上下布局。|
 |STACK | 标题栏与内容区采用层叠布局，标题栏布局在内容区上层。|
 
-## NavigationTitleOptions<sup>11+</sup>类型说明
+## NavigationTitleOptions<sup>11+</sup>
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -1439,7 +1471,7 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景:<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## NavigationToolbarOptions<sup>11+</sup>类型说明
+## NavigationToolbarOptions<sup>11+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1463,7 +1495,7 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
 | NEW_INSTANCE | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
 
-## NavigationOptions<sup>12+</sup>类型说明
+## NavigationOptions<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
