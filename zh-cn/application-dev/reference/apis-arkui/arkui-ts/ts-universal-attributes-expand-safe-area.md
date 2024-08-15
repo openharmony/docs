@@ -47,6 +47,8 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 >  2.设置其他type，组件的边界与安全区域重合时组件能够延伸到安全区域下。例如：设备顶部状态栏高度100，那么组件在屏幕中的绝对位置需要为0 <= y <= 100。  
 >   
 >  组件延伸到安全区域下，在安全区域处的事件，如点击事件等可能会被系统拦截，优先给状态栏等系统组件响应。
+>  
+> 滚动类容器内的组件不建议设置expandSafeArea属性，如果设置，需要按照组件嵌套关系，将当前节点到滚动类祖先容器间所有直接节点设置expandSafeArea属性，否则expandSafeArea属性在滚动后可能会失效，写法参考[示例5](#示例5)。
 
 ## setKeyboardAvoidMode<sup>11+</sup>
 
@@ -225,3 +227,66 @@ struct KeyboardAvoidExample {
 ```
 
 ![keyboardAvoidMode1](figures/keyboardAvoidMode2.jpg)
+
+### 示例5
+滚动类容器内部组件设置expandSafeArea的示例代码。
+```ts
+class SwiperDataSource implements IDataSource {
+  private list: Array<Color> = []
+  constructor(list: Array<Color>) {
+    this.list = list
+  }
+  totalCount(): number {
+    return this.list.length
+  }
+  getData(index: number): Color {
+    return this.list[index]
+  }
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+@Entry
+@Component
+struct ExpandSafeAreaTest {
+  private swiperController: SwiperController = new SwiperController()
+  private swiperData: SwiperDataSource = new SwiperDataSource([])
+  private list: Array<Color> = [
+    Color.Pink,
+    Color.Blue,
+    Color.Green
+  ]
+  aboutToAppear(): void {
+    this.swiperData = new SwiperDataSource(this.list)
+  }
+  build() {
+    Scroll() {
+      Column() {
+        Swiper(this.swiperController) {
+          LazyForEach(this.swiperData, (item: Color, index: number) => {
+            Column() {
+              Text('banner' + index).fontSize(50).fontColor(Color.White)
+            }
+            .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+            .width('100%')
+            .height(400)
+            .backgroundColor(item)
+          })
+        }
+        .loop(true)
+        .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+        .clip(false)
+        Column(){
+          Text("Tab页Content").fontSize(50)
+        }.width("100%").height(1000)
+        .backgroundColor(Color.Grey)
+      }.expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+    }
+    .clip(false)
+    .edgeEffect(EdgeEffect.None)
+    .width("100%").height("100%")
+  }
+}
+```
+![expandSafeArea3](figures/expandSafeArea3.jpg)
