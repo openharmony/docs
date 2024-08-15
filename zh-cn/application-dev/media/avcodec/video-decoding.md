@@ -80,6 +80,10 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 ```
+> **说明：**
+>
+> sample仅为示例，具体以实际工程目录为准。
+>
 
 ### Surface模式
 

@@ -56,6 +56,11 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 ```
 
+> **说明：**
+>
+> sample仅为示例，具体以实际工程目录为准。
+>
+
 ### 开发步骤
 
 1. 添加头文件。

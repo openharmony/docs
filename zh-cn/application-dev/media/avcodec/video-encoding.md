@@ -81,6 +81,10 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_venc.so)
 ```
+> **说明：**
+>
+> sample仅为示例，具体以实际工程目录为准。
+>
 
 ### Surface模式
 
@@ -184,7 +188,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
         OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
         OH_AVFormat_Destroy(format);
-        // 数据处理，请参考:
+        // 数据处理
         // 释放编码帧
     }
 
@@ -207,7 +211,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     {
         // 输入帧parameter对应的index，送入InParameterIndexQueue队列
         // 输入帧的数据parameter送入InParameterQueue队列
-        // 数据处理，请参考:
+        // 数据处理
         // 随帧参数写入
         // 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
         OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
