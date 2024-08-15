@@ -50,6 +50,10 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
@@ -67,6 +71,7 @@ struct SnapshotExample {
       }
       Button("click to generate UI snapshot")
         .onClick(() => {
+          // 建议使用this.getUIContext().getComponentSnapshot().get()
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
               console.log("error: " + JSON.stringify(error))
@@ -123,6 +128,10 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
@@ -140,6 +149,7 @@ struct SnapshotExample {
       }
       Button("click to generate UI snapshot")
         .onClick(() => {
+          // 建议使用this.getUIContext().getComponentSnapshot().get()
           componentSnapshot.get("root", {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
@@ -194,8 +204,12 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
-import { componentSnapshot, componentUtils } from '@kit.ArkUI';
+import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 @Entry
@@ -226,6 +240,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
+          // 建议使用this.getUIContext().getComponentSnapshot().createFromBuilder()
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
               if(error){
@@ -236,7 +251,7 @@ struct OffscreenSnapshotExample {
               // save pixmap to file
               // ....
               // get component size and location
-              let info = componentUtils.getRectangleById("builder")
+              let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }, 320, true, {scale : 2, waitUntilRenderFinished : true})
         })
@@ -293,8 +308,12 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
-import { componentSnapshot, componentUtils } from '@kit.ArkUI'
+import { componentSnapshot } from '@kit.ArkUI'
 import { image } from '@kit.ImageKit'
 
 @Entry
@@ -325,13 +344,14 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
+          // 建议使用this.getUIContext().getComponentSnapshot().createFromBuilder()
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()}, 320, true, {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
               // get component size and location
-              let info = componentUtils.getRectangleById("builder")
+              let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }).catch((err:Error) => {
             console.log("error: " + err)
@@ -388,6 +408,10 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
@@ -406,6 +430,7 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           try {
+          // 建议使用this.getUIContext().getComponentSnapshot().getSync()
             let pixelmap = componentSnapshot.getSync("root", {scale : 2, waitUntilRenderFinished : true})
             this.pixmap = pixelmap
           } catch (error) {
