@@ -426,6 +426,11 @@ struct Index {
 
 可见阶段时长已缩短，因此可以通过拆分HAR包导出的Index.ets文件或导入冷启动文件时路径全展开的方案，减少应用冷启动中.ets文件执行耗时，从而提升应用冷启动速度。
 
+### 使用延迟加载Lazy-Import减少冷启动冗余文件执行
+
+可以通过延迟加载 [lazy-import](../quick-start/arkts-lazy-import) 延缓对冷启动时暂不执行的冗余文件的加载，而在后续导出变量被真正使用时再同步加载执行文件，节省资源以提高应用冷启动性能。  
+详细使用指导请参考[延迟加载lazy-import使用指导](Lazy-Import-Instructions.md)
+
 ### 减少多个HSP/HAP对于相同HAR的引用
 
 在应用开发的过程中，可以使用[HSP](../quick-start/in-app-hsp.md)或[HAR](../quick-start/har-package.md)的共享包方式将同类的模块进行整合，用于实现多个模块或多个工程间共享ArkUI组件、资源等相关代码。    
