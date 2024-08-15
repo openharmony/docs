@@ -2220,3 +2220,150 @@ struct Index {
   }
 }
 ```
+
+## UIAbilityContext.backToCallerAbilityWithResult<sup>12+<sup>
+
+backToCallerAbilityWithResult(abilityResult: AbilityResult, requestCode: string): Promise&lt;void&gt;
+
+当通过[startAbilityForResult](#uiabilitycontextstartabilityforresult)或[openLink](#uiabilitycontextopenlink12)拉起目标方Ability，且需要目标方返回结果时，目标方可以通过该接口将结果返回并拉起调用方。与[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)不同的是，本接口在返回时不会销毁当前Ability。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| abilityResult | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 指示目标方返回给拉起方的结果。 |
+| requestCode  |  string | 是 | 通过[startAbilityForResult](#uiabilitycontextstartabilityforresult)或[openLink](#uiabilitycontextopenlink12)拉起目标方Ability且需要目标方返回结果时，系统生成的用于标识本次调用的requestCode。该值可以通过want中的[CALLER_REQUEST_CODE](js-apis-app-ability-wantConstant.md)字段获取。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201  | The application does not have permission to call the interface. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011  | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000074 | The caller does not exist. |
+| 16000075 | Not support back to caller. |
+
+**示例：**
+调用方通过startAbilityForResult接口拉起目标方, 目标方再调用backToCallerAbilityWithResult接口返回到调用方。
+
+```ts
+// 调用方
+// index.ets
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+
+        Button("Call StartAbilityForResult")
+          .onClick(() => {
+            let context: common.UIAbilityContext = getContext() as common.UIAbilityContext;
+            let want: Want = {
+              bundleName: 'com.example.demo2',
+              abilityName: 'EntryAbility'
+            };
+
+            try {
+              // 通过startAbilityForResult拉起目标应用
+              context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
+                if (err.code) {
+                  // 处理业务逻辑错误
+                  hilog.error(0x0000, 'testTag', `startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+                  this.message = `startAbilityForResult failed: code is ${err.code}, message is ${err.message}`
+                  return;
+                }
+                // 执行正常业务
+                hilog.info(0x0000, 'testTag', `startAbilityForResult succeed`);
+                hilog.info(0x0000, 'testTag', `AbilityResult is ${JSON.stringify(result)}`);
+                this.message = `AbilityResult.resultCode: ${JSON.stringify(result.resultCode)}`
+              });
+            } catch (err) {
+              // 处理入参错误异常
+              let code = (err as BusinessError).code;
+              let message = (err as BusinessError).message;
+              hilog.error(0x0000, 'testTag', `startAbilityForResult failed, code is ${code}, message is ${message}`);
+              this.message = `startAbilityForResult failed, code is ${code}, message is ${message}`;
+            }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// 目标方
+// EntryAbility.ets
+import { AbilityConstant, common, UIAbility, Want, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // 从want中获取调用方的CALLER_REQUEST_CODE，并保存
+    let callerRequestCode: string = want?.parameters?.[wantConstant.Params.CALLER_REQUEST_CODE] as string;
+    AppStorage.setOrCreate<string>("callerRequestCode", callerRequestCode)
+  }
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let callerRequestCode: string = want?.parameters?.[wantConstant.Params.CALLER_REQUEST_CODE] as string;
+    AppStorage.setOrCreate<string>("callerRequestCode", callerRequestCode)
+  }
+
+  onForeground(): void {
+    // 获取保存的CALLER_REQUEST_CODE
+    let callerRequestCode: string = AppStorage.get<string>("callerRequestCode") as string;
+    hilog.info(0x0000, 'testTag', `callerRequestCode is ${callerRequestCode}`);
+    let want: Want = {};
+    let resultCode = 100;
+    let abilityResult: common.AbilityResult = {
+      want,
+      resultCode
+    };
+    try {
+      // 将结果信息返回给调用方
+      this.context.backToCallerAbilityWithResult(abilityResult, callerRequestCode)
+        .then(() => {
+          // 执行正常业务
+          hilog.info(0x0000, 'testTag', 'backToCallerAbilityWithResult succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          hilog.error(0x0000, 'testTag', `backToCallerAbilityWithResult failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 捕获同步的参数错误
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(0x0000, 'testTag', `backToCallerAbilityWithResult failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
