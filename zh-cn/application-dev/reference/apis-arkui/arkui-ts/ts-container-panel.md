@@ -49,32 +49,39 @@ Panel(show: boolean)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| Minibar | 提供minibar和类全屏展示切换效果。 |
-| Foldable | 内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。 |
-| Temporary | 内容临时展示区，提供大（类全屏）、中（类半屏）两种尺寸展示切换效果。 |
-| CUSTOM<sup>10+</sup> | 配置自适应内容高度，不支持尺寸切换效果。 |
+| Minibar | 提供minibar和类全屏展示切换效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| Foldable | 内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| Temporary | 内容临时展示区，提供大（类全屏）、中（类半屏）两种尺寸展示切换效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CUSTOM<sup>10+</sup> | 配置自适应内容高度，不支持尺寸切换效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PanelMode枚举说明
 
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
-| Mini |0| 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。|
-| Half | 1 | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。 |
-| Full |2  | 类全屏状态。 |
+| Mini |0| 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| Half | 1 | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| Full |2  | 类全屏状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PanelHeight<sup>10+</sup>枚举说明
 
 | 名称 | 描述 |
 | -------- | -------- | 
-| WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。 |
+| WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | 当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 |
-| onHeightChange(callback: (value: number) => void)<sup>9+</sup> |当可滑动面板发生高度变化时触发，返回的height值为内容区高度值，默认返回值单位为px。当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。 |
+### onChange
+
+onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void)
+
+当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。
+
+### onHeightChange
+
+onHeightChange(callback: (value: number) => void)<sup>9+</sup>
+
+当可滑动面板发生高度变化时触发，返回的height值为内容区高度值，默认返回值单位为px。当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。
 
 ## 示例
 
