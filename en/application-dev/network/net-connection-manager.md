@@ -125,8 +125,6 @@ conn.unregister((err: BusinessError, data: void) => {
 
 ## Obtaining the List of All Registered Networks
 
-### How to Develop
-
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
 This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
@@ -172,8 +170,6 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 ```
 
 ## Querying Network Capability Information and Connection Information of Specified Data Network
-
-### How to Develop
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
 This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
@@ -293,8 +289,6 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 ```
 
 ## Resolving the domain name of a network to obtain all IP addresses
-
-### How to Develop
 
 1. Declare the required permission: **ohos.permission.INTERNET**.
 This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).

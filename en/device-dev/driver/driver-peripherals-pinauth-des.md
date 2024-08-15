@@ -88,23 +88,23 @@ The following table describes the C++ APIs generated from the Interface Definiti
 
 |    API   |   Description  |
 | ------------------------------- | ------------------------------------------- |
-| GetExecutorInfo(ExecutorInfo& executorInfo)  | Obtains information about an executor. |
-| GetExecutorList(std::vector<sptr<V2_0::IAllInOneExecutor>>& allInOneExecutors, <br>std::vector<sptr<V2_0::IVerifier>>& verifiers, <br>std::vector<sptr<V2_0::ICollector>>& collectors)  | Obtains the V2_0 executor list. |
-| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br>const std::vector<uint8_t>& frameworkPublicKey,<br>const std::vector<uint8_t>&  extraInfo) | Obtains the public key and template ID list from User_auth after the executor is registered successfully. |
+| GetExecutorInfo(ExecutorInfo& executorInfo)  | Obtains information about an executor.|
+| GetExecutorList(std::vector<sptr<V2_0::IAllInOneExecutor>>& allInOneExecutors, <br>std::vector<sptr<V2_0::IVerifier>>& verifiers, <br>std::vector<sptr<V2_0::ICollector>>& collectors)  | Obtains the V2_0 executor list.|
+| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br>const std::vector<uint8_t>& frameworkPublicKey,<br>const std::vector<uint8_t>&  extraInfo) | Obtains the public key and template ID list from User_auth after the executor is registered successfully.|
 | Cancel(uint64_t scheduleId) | Cancels an operation.      |
 | SetData(uint64_t scheduleId, uint64_t authSubType, <br>const std::vector<uint8_t> &data, int32_t resultCode) | Called to return the subtype of the PIN enrolled by the user and the anonymization PIN data.      |
 | Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo, <br>const sptr<IExecutorCallback>& callbackObj) | Enrolls a PIN.     |
 | Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | Starts PIN authentication.     |
 | Delete(uint64_t templateId)       | Deletes a PIN template.      |
-| GetProperty(const std::vector<uint64_t>& templateIdList, <br>const std::vector<GetPropertyType>& propertyTypes, Property& property) | Obtains executor property information. |
+| GetProperty(const std::vector<uint64_t>& templateIdList, <br>const std::vector<GetPropertyType>& propertyTypes, Property& property) | Obtains executor property information.|
 
 
 **Table 2** Callbacks
 
 | API                                                      | Description            |
 | ------------------------------------------------------------ | -------------------- |
-| IExecutorCallback::OnResult(int32_t result, const std::vector<uint8_t>& extraInfo) | Called to return the operation result. |
-| IExecutorCallback::OnTip(int32_t tip, const std::vector<uint8_t>& extraInfo) | Called to return the prompt information about the operation process. |
+| IExecutorCallback::OnResult(int32_t result, const std::vector<uint8_t>& extraInfo) | Called to return the operation result.|
+| IExecutorCallback::OnTip(int32_t tip, const std::vector<uint8_t>& extraInfo) | Called to return the prompt information about the operation process.|
 | IExecutorCallback::OnGetData(const std::vector<uint8_t>& algoParameter, uint64_t authSubType, uint32_t algoVersion, const std::vector<uint8_t>& challenge)| Called to return the PIN information obtained. |
 | IExecutorCallback::OnMessage(int32_t destRole, const std::vector<uint8_t>& msg)| Called to return the interaction information about the operation process. |
 
@@ -126,10 +126,14 @@ The following uses the RK3568 platform as an example to demonstrate how to devel
     └── service # Entry for implementing the Pin_auth driver
         ├── inc # Header files
         └── src         # Source files
-            ├── executor_impl_common.cpp          # Implementation of authentication and enrollment APIs
-            ├── pin_auth_interface_driver.cpp     # Pin_auth driver entry
-            └── pin_auth_interface_service.cpp    # Implementation of the APIs for obtaining the executor list
+            ├── all_in_one_impl.cpp             # Implementation of authentication and enrollment APIs for the all-in-one executor
+            ├── verifier_impl.cpp               # Implementation of authentication and enrollment APIs for the verifier
+            ├── collector_impl.cpp              # Implementation of authentication and enrollment APIs for the collector
+            ├── executor_impl_common.cpp        # Utilities
+            ├── pin_auth_interface_driver.cpp # Pin_auth driver entry
+            └── pin_auth_interface_service.cpp # Implementation of the APIs for obtaining the executor list
 ```
+
 
 The development procedure is as follows:
 
@@ -173,7 +177,7 @@ The development procedure is as follows:
            OHOS::UserIAM::Common::MakeShared<OHOS::UserIAM::PinAuth::PinAuth>();
        constexpr uint32_t SUCCESS = 0;
        if (pinHdi == nullptr || pinHdi->Init() != SUCCESS) {
-           IAM_LOGE("PIN HAL initialization failed");
+           IAM_LOGE("Pin hal init failed");
            return HDF_FAILURE;
        }
        return HDF_SUCCESS;
@@ -195,14 +199,14 @@ The development procedure is as follows:
 
        auto serviceImpl = IPinAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
-           IAM_LOGE("%{public}s: Failed to implement the service", __func__);
+           IAM_LOGE("%{public}s: failed to get of implement service", __func__);
            return HDF_FAILURE;
        }
 
        hdfPinAuthInterfaceHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
            IPinAuthInterface::GetDescriptor());
        if (hdfPinAuthInterfaceHost->stub == nullptr) {
-           IAM_LOGE("%{public}s: Failed to get stub object", __func__);
+           IAM_LOGE("%{public}s: failed to get stub object", __func__);
            return HDF_FAILURE;
        }
 
@@ -235,7 +239,7 @@ The development procedure is as follows:
 
 
 
-1. Obtain the executor list. For details about the code, see [pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp).
+2. Obtain the executor list. For details about the code, see [pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp).
 
    ```c++
    // Executor implementation class
@@ -305,12 +309,12 @@ The development procedure is as follows:
        std::shared_ptr<OHOS::UserIam::PinAuth::PinAuth> pinHdi =
            OHOS::UserIam::Common::MakeShared<OHOS::UserIam::PinAuth::PinAuth>();
        if (pinHdi == nullptr) {
-           IAM_LOGE("Failed to generate pinHdi");
+           IAM_LOGE("Generate pinHdi failed");
            return HDF_FAILURE;
        }
        sptr<HdiIExecutor> executor = new (std::nothrow) ExecutorImpl(pinHdi);
        if (executor == nullptr) {
-           IAM_LOGE("Failed to generate executor");
+           IAM_LOGE("Generate executor failed");
            return HDF_FAILURE;
        }
        allInOneExecutors.push_back(executor);
@@ -321,7 +325,7 @@ The development procedure is as follows:
 
 
 
-1. Implement each function of the executor. For details about the code, see [executor_impl_common.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/executor_impl_common.cpp).
+3. Implement each function of the executor. For details about the code, see [all_in_one_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/all_in_one_impl.cpp).
 
    ```c++
    // Obtain executor information (example only).
@@ -340,7 +344,7 @@ The development procedure is as follows:
        uint32_t eslRet = 0;
        int32_t result = pinHdi_->GetExecutorInfo(info.publicKey, eslRet);
        if (result != SUCCESS) {
-           IAM_LOGE("Failed to get ExecutorInfo, error code : %{public}d", result);
+           IAM_LOGE("Get ExecutorInfo failed, fail code : %{public}d", result);
            return result;
        }
        info.esl = static_cast<HdiExecutorSecureLevel>(eslRet);
@@ -361,7 +365,7 @@ The development procedure is as follows:
        }
        int32_t result = pinHdi_->VerifyTemplateData(templateIdList);
        if (result != SUCCESS) {
-           IAM_LOGE("Failed to verify templateData");
+           IAM_LOGE("Verify templateData failed");
            return result;
        }
 
@@ -393,11 +397,11 @@ The development procedure is as follows:
        std::vector<uint8_t> challenge;
        result = callbackObj->OnGetData(algoParameter, 0, algoVersion, challenge);
        if (result != SUCCESS) {
-           IAM_LOGE("Failed to enroll PIN , error code : %{public}d", result);
+           IAM_LOGE("Enroll Pin failed, fail code : %{public}d", result);
            CallError(callbackObj, GENERAL_ERROR);
            // If the enrollment fails, delete scheduleId of scheduleMap.
            if (scheduleMap_.DeleteScheduleId(scheduleId) != HDF_SUCCESS) {
-               IAM_LOGI("Failed to delete scheduleId");
+               IAM_LOGI("delete scheduleId failed");
            }
        }
 
@@ -421,7 +425,7 @@ The development procedure is as follows:
        uint64_t templateId = 0;
        std::vector<uint8_t> algoParameter(0, 0);
        if (scheduleMap_.GetScheduleInfo(scheduleId, commandId, callback, templateId, algoParameter) != HDF_SUCCESS) {
-           IAM_LOGE("Failed to get ScheduleInfo, error code : %{public}d", result);
+           IAM_LOGE("Get ScheduleInfo failed, fail code : %{public}d", result);
            return HDF_FAILURE;
        }
        if (resultCode != SUCCESS && callback != nullptr) {
@@ -433,13 +437,13 @@ The development procedure is as follows:
            case ENROLL_PIN:
                result = pinHdi_->EnrollPin(scheduleId, authSubType, algoParameter, data, resultTlv);
                if (result != SUCCESS) {
-                   IAM_LOGE("Failed to enroll PIN, error code : %{public}d", result);
+                   IAM_LOGE("Enroll Pin failed, fail code : %{public}d", result);
                }
                break;
            case AUTH_PIN:
                result = AuthPin(scheduleId, templateId, data, resultTlv);
                if (result != SUCCESS) {
-                   IAM_LOGE("Failed to authenticate PIN, error code : %{public}d", result);
+                   IAM_LOGE("Auth Pin failed, fail code : %{public}d", result);
                }
                break;
            default:
@@ -451,7 +455,7 @@ The development procedure is as follows:
        }
        // Delete scheduleId from scheduleMap when the enrollment and authentication are successful.
        if (scheduleMap_.DeleteScheduleId(scheduleId) != HDF_SUCCESS) {
-           IAM_LOGI("Failed to delete scheduleId");
+           IAM_LOGI("delete scheduleId failed");
        }
 
        return HDF_SUCCESS;
@@ -490,11 +494,11 @@ The development procedure is as follows:
        std::vector<uint8_t> challenge;
        result = callbackObj->OnGetData(algoParameter, 0, algoVersion, challenge);
        if (result != SUCCESS) {
-           IAM_LOGE("Failed to authenticate PIN, error code : %{public}d", result);
+           IAM_LOGE("Authenticate Pin failed, fail code : %{public}d", result);
            CallError(callbackObj, GENERAL_ERROR);
            // If the authentication fails, delete scheduleId of scheduleMap.
            if (scheduleMap_.DeleteScheduleId(scheduleId) != HDF_SUCCESS) {
-               IAM_LOGI("Failed to delete scheduleId");
+               IAM_LOGI("delete scheduleId failed");
            }
        }
 
@@ -511,7 +515,7 @@ The development procedure is as follows:
        }
        int32_t result = pinHdi_->DeleteTemplate(templateId);
        if (result != SUCCESS) {
-           IAM_LOGE("Failed to verify templateData, error code : %{public}d", result);
+           IAM_LOGE("Verify templateData failed, fail code : %{public}d", result);
            return result;
        }
 
@@ -548,7 +552,7 @@ The development procedure is as follows:
        OHOS::UserIam::PinAuth::PinCredentialInfo infoRet = {};
        int32_t result = pinHdi_->QueryPinInfo(templateId, infoRet);
        if (result != SUCCESS) {
-           IAM_LOGE("Failed to get TemplateInfo, error code : %{public}d", result);
+           IAM_LOGE("Get TemplateInfo failed, fail code : %{public}d", result);
            return HDF_FAILURE;
        }
 

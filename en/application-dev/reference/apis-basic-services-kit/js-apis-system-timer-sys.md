@@ -20,12 +20,12 @@ Provides the constants that define the supported timer types.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-| Name               | Type  | Value  | Description                        |
-| ------------------- | ------ | ---- | ---------------------------- |
-| TIMER_TYPE_REALTIME | number | 1    | CPU time type. (The start time of the timer cannot be later than the current system time.)        |
-| TIMER_TYPE_WAKEUP   | number | 2    | Wakeup type.                |
-| TIMER_TYPE_EXACT    | number | 4    | Exact type.                |
-| TIMER_TYPE_IDLE     | number | 8    | Idle type (not supported currently).|
+| Name               | Type  | Value  | Description                            |
+| ------------------- | ------ | ---- |--------------------------------|
+| TIMER_TYPE_REALTIME | number | 1    | CPU time type. (The start time of the timer cannot be later than the current system time.)|
+| TIMER_TYPE_WAKEUP   | number | 2    | Wakeup type.                        |
+| TIMER_TYPE_EXACT    | number | 4    | Exact type.                        |
+| TIMER_TYPE_IDLE     | number | 8    | Idle timer type (supported only for system services, but not applications) |
 
  ## TimerOptions
 
@@ -33,13 +33,13 @@ Defines the initialization options for **createTimer**.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-| Name     | Type                                         | Mandatory| Description                                                        |
-| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | number                                        | Yes  | Timer type.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type.<br>**8**: idle type (not supported currently).|
-| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                       |
-| interval  | number                                        | No  | Repeat interval.<br>For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.|
-| wantAgent | WantAgent | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)|
-| callback  | void                                          | No | Callback to be executed by the user.                           |
+| Name     | Type                                         | Mandatory| Description                                                                                                                             |
+| --------- | --------------------------------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------|
+| type      | number                                        | Yes  | Timer type.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type.<br>**8**: idle timer type (supported only for system services, but not applications).|
+| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                                                                                           |
+| interval  | number                                        | No  | Repeat interval.<br>For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.                                                                      |
+| wantAgent | WantAgent | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)                                                               |
+| callback  | void                                          | No | Callback to be executed by the user.                                                                                                                    |
 
 
 ## systemTimer.createTimer

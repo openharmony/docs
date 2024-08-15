@@ -91,11 +91,15 @@ This error code is reported if the query during reverse geocoding has failed.
 
 **Possible Cause**
 
-Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
+- Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
+
+- The x86 emulator does not support the reverse geocoding function. A reverse geocoding query fails if the x86 emulator is used for debugging.
 
 **Procedure**
 
-Perform a query again.
+- For the network problem, try the reverse geocoding query again after the network is resumed.
+
+- For the x86 emulator problem, try the reverse geocoding query again on a real device.
 
 ## 3301400 Query Failed During Geocoding
 
