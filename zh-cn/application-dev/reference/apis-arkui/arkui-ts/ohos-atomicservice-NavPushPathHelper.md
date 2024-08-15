@@ -26,7 +26,7 @@ import { NavPushPathHelper } from '@kit.ArkUI'
 
 ### constructor
 
-constructor(navPathStack: NavPathStack): void;
+constructor(navPathStack: NavPathStack): void
 
 NavPushPathHelper的构造函数。
 
@@ -42,7 +42,7 @@ NavPushPathHelper的构造函数。
 
 ### pushPath<sup>12+</sup>
 
-pushPath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\<void\>;
+pushPath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\<void\>
 
 先判断分包是否存在，若不存在，则通过moduleName下载分包，再将info指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈，使用Promise异步回调返回接口调用结果。
 
