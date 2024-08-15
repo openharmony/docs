@@ -47,26 +47,32 @@ Panel(show: boolean)
 
 ## PanelType枚举说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
-| Minibar | 提供minibar和类全屏展示切换效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| Foldable | 内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| Temporary | 内容临时展示区，提供大（类全屏）、中（类半屏）两种尺寸展示切换效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| CUSTOM<sup>10+</sup> | 配置自适应内容高度，不支持尺寸切换效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| Minibar | 提供minibar和类全屏展示切换效果。 |
+| Foldable | 内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。 |
+| Temporary | 内容临时展示区，提供大（类全屏）、中（类半屏）两种尺寸展示切换效果。 |
+| CUSTOM<sup>10+</sup> | 配置自适应内容高度，不支持尺寸切换效果。 |
 
 ## PanelMode枚举说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
-| Mini |0| 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| Half | 1 | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| Full |2  | 类全屏状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| Mini |0| 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。|
+| Half | 1 | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。 |
+| Full |2  | 类全屏状态。 |
 
 ## PanelHeight<sup>10+</sup>枚举说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- | 
-| WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。 |
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
