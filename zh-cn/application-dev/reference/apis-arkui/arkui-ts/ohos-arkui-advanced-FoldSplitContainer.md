@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.FoldSplitContainer (分栏布局)
+# FoldSplitContainer
 
 
 FoldSplitContainer分栏布局，实现折叠屏二分栏、三分栏在展开态、悬停态以及折叠态的区域控制。

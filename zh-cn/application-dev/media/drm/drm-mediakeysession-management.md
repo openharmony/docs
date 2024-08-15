@@ -118,11 +118,11 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
 6. （可选）生成离线媒体密钥释放请求和处理离线媒体密钥释放响应。
 
    ```ts
-   mediaKeySession.generateOfflineReleaseRequest(offlinemediaKeyId).then((OfflineReleaseRequest: Uint8Array) => {
+   mediaKeySession.generateOfflineReleaseRequest(offlineMediaKeyId).then((OfflineReleaseRequest: Uint8Array) => {
      console.info("generateOfflineReleaseRequest success", OfflineReleaseRequest);
      // 将媒体密钥释放请求返回的OfflineReleaseRequest通过网络请求发送给DRM服务获取媒体密钥释放请求响应，设置媒体密钥释放请求响应
      let OfflineReleaseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-     mediaKeySession.processOfflineReleaseResponse(offlinemediaKeyId, OfflineReleaseResponse).then(() => {
+     mediaKeySession.processOfflineReleaseResponse(offlineMediaKeyId, OfflineReleaseResponse).then(() => {
        console.info("processOfflineReleaseResponse success");
      }).catch((err:BusinessError) =>{
        console.info("processOfflineReleaseResponse err end", err.code);
@@ -136,7 +136,7 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
 
    ```ts
    // 恢复指定媒体密钥信息到当前会话
-   mediaKeySession.restoreOfflineMediaKeys(offlinemediaKeyId).then(() => {
+   mediaKeySession.restoreOfflineMediaKeys(offlineMediaKeyId).then(() => {
      console.log("restoreOfflineMediaKeys success.");
    }).catch((err: BusinessError) => {
      console.error(`restoreOfflineMediaKeys: ERROR: ${err}`);

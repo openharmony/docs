@@ -51,8 +51,6 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
 
-自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。
-
 自定义键盘无法获取焦点，但是会拦截手势事件。
 
 默认在输入控件失去焦点时，关闭自定义键盘。
@@ -371,7 +369,7 @@ onDeleteComplete(callback:Callback\<void\>)
 
 onPaste(callback: [PasteEventCallback](#pasteeventcallback12) )
 
-完成粘贴前，触发回调。系统的默认粘贴，只支持纯文本的粘贴。开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。
+完成粘贴前，触发回调。开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
