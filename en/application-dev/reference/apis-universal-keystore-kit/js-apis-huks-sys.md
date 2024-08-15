@@ -24,17 +24,17 @@ Generates a key for the specified user. This API uses a promise to return the re
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                    |
+| Name  | Type                       | Mandatory | Description                    |
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias | string                      | Yes  | Alias of the key to generate.              |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory.|
+| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory. |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -59,7 +59,6 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -94,14 +93,14 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Generated a key with alias of: " + keyAlias + "")
-  }).catch((err: BusinessError) => {
-    console.info("Failed to generate a key. Error code: " + err.code + " Error message: " + err.message)
+  }).catch((err: Error) => {
+    console.error("Failed to generate the key. Error: "+ JSON.stringify(err))
   })
 }
 
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   GenerateKey(aesKeyAlias, GetAesGenerateProperties())
 }
 ```
@@ -118,17 +117,17 @@ Deletes a key for the specified user. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                               |
+| Name  | Type                       | Mandatory | Description                               |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.|
+| keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated. |
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for deleting the key. For example, you can pass in [HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11) to specify the storage security level of the key to delete. If **HuksAuthStorageLevel** is left empty, **HUKS_AUTH_STORAGE_LEVEL_DE** is used by default.           |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -146,8 +145,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -182,7 +180,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
   }).catch((err: BusinessError) => {
-    console.info("Failed to generate a key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -196,7 +194,7 @@ async function DeleteKey(keyAlias: string) {
   await huks.deleteKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Deleted the key with alias of: " + keyAlias + ".")
   }).catch((err: BusinessError) => {
-    console.info("Failed to delete the key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to delete the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -206,7 +204,7 @@ async function TestHuksDelete() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksDelete()
 }
 ```
@@ -223,17 +221,17 @@ Imports a plaintext key for the specified user. This API uses a promise to retur
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                               |
+| Name  | Type                       | Mandatory | Description                               |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias | string                      | Yes  | Alias of the key to import.                         |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for importing the key. The algorithm, key purpose, and key length are mandatory.|
+| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for importing the key. The algorithm, key purpose, and key length are mandatory. |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -257,8 +255,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -298,12 +295,12 @@ async function ImportPlainKey(keyAlias: string, importProperties: Array<huks.Huk
   await huks.importKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Imported the key with the alias of: " + keyAlias + ".")
   }).catch((err: BusinessError) => {
-    console.info("Failed to import the key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to import the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   ImportPlainKey(aesKeyAlias, GetAesGenerateProperties(), plainAesKey128)
 }
 ```
@@ -321,23 +318,23 @@ Attests a key for the specified user. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                |
+| Name  | Type                       | Mandatory | Description                                |
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key.|
+| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key. |
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for attesting the key.  |
 
 **Return value**
 
 | Type                                          | Description                                         |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained.|
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained. |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -359,8 +356,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -411,7 +407,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    console.info("Failed to generate a key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -438,16 +434,16 @@ async function LetKeyAttest(keyAlias: string, keyOptions: Array<huks.HuksParam>)
   let attestOptions: huks.HuksOptions = {
     properties: keyOptions,
   }
-  console.log ('start attestation')
+  console.info ('start attestation')
   await huks.attestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
-    console.log('attestation ok!')
-    console.log(`The obtained certificate chain is ${JSON.stringify(data)}`) // Debugging information. The certificate chain does not need to be printed during the service function development.
+    console.info('attestation ok!')
+    console.debug(`The obtained certificate chain is ${JSON.stringify(data)}`) // Debugging information. The certificate chain does not need to be printed during the service function development.
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
-      console.log (`Certificate ${i} is ${data.certChains[i]}`) // Debugging information. The certificate chain does not need to be printed during the service function development.
+      console.debug(`Certificate ${i} is ${data.certChains[i]}`) // Debugging information. The certificate chain does not need to be printed during the service function development.
     }
     console.info ("attest successful")
   }).catch((err: BusinessError) => {
-    console.info("attest failed. Error code: " + err.code +" Error message: "+ err.message)
+    console.error("Attestation failed. Error code: " + err.code +" Error message: "+ err.message)
   })
 }
 
@@ -457,7 +453,7 @@ async function TestHuksAttest() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksAttest()
 }
 ```
@@ -476,23 +472,23 @@ This operation requires Internet access and takes time.
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                |
+| Name  | Type                       | Mandatory | Description                                |
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key.|
+| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key. |
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for attesting the key.  |
 
 **Return value**
 
 | Type                                          | Description                                         |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained.|
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained. |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -514,8 +510,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -566,7 +561,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    console.info("Failed to generate a key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -593,16 +588,16 @@ async function LetKeyAnonAttest(keyAlias: string, keyOptions: Array<huks.HuksPar
   let attestOptions: huks.HuksOptions = {
     properties: keyOptions,
   }
-  console.log ('Start anonymous attestation')
+  console.info('Start anonymous attestation')
   await huks.anonAttestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
-    console.log ('Anonymous attestation ok!')
-    console.log(`The obtained certificate chain is ${JSON.stringify(data)}`)
+    console.info('Anonymous attestation ok!')
+    console.debug(`The obtained certificate chain is ${JSON.stringify(data)}`)
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
-      console.log (`Certificate ${i} is ${data.certChains[i]}`)
+      console.info(`Certificate ${i} is ${data.certChains[i]}`)
     }
     console.info ("Anonymous attest successful")
   }).catch((err: BusinessError) => {
-    console.info("Anonymous attest failed. Error code: "+ err.code +" Error message: "+ err.message)
+    console.error("Anonymous attestation failed. Error code: "+ err.code +" Error message: "+ err.message)
   })
 }
 
@@ -613,7 +608,7 @@ async function TestHuksAnonAttest() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksAnonAttest()
 }
 ```
@@ -630,18 +625,18 @@ Imports a wrapped (encrypted) key for the specified user. This API uses a promis
 
 **Parameters**
 
-| Name          | Type                       | Mandatory| Description                                         |
+| Name          | Type                       | Mandatory | Description                                         |
 | ---------------- | --------------------------- | ---- | --------------------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias         | string                      | Yes  | Alias of the wrapped key to import.             |
 | wrappingKeyAlias | string                      | Yes  | Alias of the key used to decrypt the wrapped key.   |
-| options          | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for importing the wrapped key. The algorithm, key purpose, and key length are mandatory.|
+| options          | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for importing the wrapped key. The algorithm, key purpose, and key length are mandatory. |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -666,7 +661,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 const initializationVector = '0000000000000000';
@@ -973,7 +968,7 @@ async function PublicImportWrappedKeyFunc(
   userId: number,
   keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter callback importWrappedKeyItemAsUser`);
-  console.error(`publicImportWrappedKeyFunc huksOptions = ${JSON.stringify(huksOptions)}`);
+  console.info(`publicImportWrappedKeyFunc huksOptions = ${JSON.stringify(huksOptions)}`);
   try {
     await huks.importWrappedKeyItemAsUser(userId, keyAlias, wrappingKeyAlias, huksOptions)
       .then((data) => {
@@ -1024,17 +1019,17 @@ async function PublicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
     if (inDataSegPosition + maxUpdateSize > lastInDataPosition) {
       isFinished = true;
       inDataSegSize = lastInDataPosition - inDataSegPosition + 1;
-      console.error(`enter promise doUpdate`);
+      console.info(`enter promise doUpdate`);
       break;
     }
     huksOptions.inData = new Uint8Array(
       Array.from(inData).slice(inDataSegPosition, inDataSegPosition + inDataSegSize)
     );
-    console.error(`enter promise doUpdate`);
+    console.info(`enter promise doUpdate`);
     try {
       await huks.updateSession(handle, huksOptions)
         .then((data) => {
-          console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+          console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
           if (data.outData == undefined) {
             console.error('data.outData is undefined');
             return;
@@ -1048,9 +1043,9 @@ async function PublicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
       console.error(`promise: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
     }
     if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
-      console.log(`update size invalid isFinished = ${isFinished}`);
-      console.log(`inDataSegPosition = ${inDataSegPosition}`);
-      console.log(`lastInDataPosition = ${lastInDataPosition}`);
+      console.error(`update size invalid isFinished = ${isFinished}`);
+      console.error(`inDataSegPosition = ${inDataSegPosition}`);
+      console.error(`lastInDataPosition = ${lastInDataPosition}`);
       return [];
     }
     inDataSegPosition += maxUpdateSize;
@@ -1095,11 +1090,11 @@ async function AgreeFunction(
   const handle = await PublicInitFunc(userId, keyAlias, huksOptions);
   let outSharedKey: Uint8Array = new Uint8Array;
   huksOptions.inData = huksPublicKey;
-  console.error(`enter promise doUpdate`);
+  console.info(`enter promise doUpdate`);
   try {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
       })
       .catch((err: BusinessError) => {
         console.error(`promise: doUpdate failed, code: ${err.code}, msg: ${err.message}`);
@@ -1267,7 +1262,7 @@ export async function HuksSecurityImportTest(userId: number) {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
 
   const userId = 100;
   HuksSecurityImportTest(userId)
@@ -1286,23 +1281,23 @@ Exports the public key for the specified user. This API uses a promise to return
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                        |
+| Name  | Type                       | Mandatory | Description                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Key alias, which must be the same as the alias used when the key was generated.|
+| keyAlias | string                      | Yes  | Key alias, which must be the same as the alias used when the key was generated. |
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Empty object (leave this parameter empty).                    |
 
 **Return value**
 
 | Type                                          | Description                                                        |
 | ---------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **outData** in **HuksReturnResult** is the public key exported.|
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **outData** in **HuksReturnResult** is the public key exported. |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -1324,8 +1319,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const rsaKeyAlias = 'test_rsaKeyAlias';
 const userId = 100;
@@ -1364,7 +1358,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    console.info("Failed to generate a key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1378,7 +1372,7 @@ async function ExportPublicKey(keyAlias: string) {
   await huks.exportKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Exported the public key with the alias of: " + keyAlias + ". The data length is" + data?.outData?.length)
   }).catch((err: BusinessError) => {
-    console.info("Failed to export the key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to export the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1388,7 +1382,7 @@ async function ExportHuksTest() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   ExportHuksTest()
 }
 ```
@@ -1405,10 +1399,10 @@ Obtains key properties for the specified user. This API uses a promise to return
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                        |
+| Name  | Type                       | Mandatory | Description                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Key alias, which must be the same as the alias used when the key was generated.|
+| keyAlias | string                      | Yes  | Key alias, which must be the same as the alias used when the key was generated. |
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Empty object (leave this parameter empty).                    |
 
 **Return value**
@@ -1421,7 +1415,7 @@ Obtains key properties for the specified user. This API uses a promise to return
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -1443,8 +1437,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -1480,7 +1473,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    console.info("Failed to generate a key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1494,7 +1487,7 @@ async function GetKeyProperties(keyAlias: string) {
   await huks.getKeyItemPropertiesAsUser(userId, keyAlias, options).then((data) => {
     console.info("Obtained key properties: " + JSON.stringify(data))
   }).catch((err: BusinessError) => {
-    console.info("Failed to obtain key properties. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to obtain key properties. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1504,7 +1497,7 @@ async function TestHuksGet() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksGet()
 }
 ```
@@ -1521,7 +1514,7 @@ Checks whether a key exists for the specified user. This API uses a promise to r
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                    |
+| Name  | Type                       | Mandatory | Description                    |
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias | string                      | Yes  | Alias of the key to check.  |
@@ -1531,13 +1524,13 @@ Checks whether a key exists for the specified user. This API uses a promise to r
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. If the key exists, **true** is returned. Otherwise, **false** is returned.|
+| Promise\<boolean> | Promise used to return the result. If the key exists, **true** is returned. Otherwise, **false** is returned. |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -1557,8 +1550,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
@@ -1593,7 +1585,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    console.info("Failed to generate a key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1605,9 +1597,9 @@ async function HasKey(keyAlias: string) {
     }]
   }
   await huks.hasKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    console.log ("Check result of the key with the alias of "+ keyAlias +" " + JSON.stringify(data))
+    console.info("Check result of the key with the alias of "+ keyAlias +" " + JSON.stringify(data))
   }).catch((err: BusinessError) => {
-    console.info("Failed to delete the key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to delete the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1617,7 +1609,7 @@ async function TestHuksHasKey() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksHasKey()
 }
 ```
@@ -1634,7 +1626,7 @@ Initialize a key session for the specified user. This API uses a promise to retu
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description                                            |
+| Name  | Type                                             | Mandatory | Description                                            |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------ |
 | userId   | number                                            | Yes  | User ID.                |
 | keyAlias | string                                            | Yes  | Alias of the key for the **initSessionAsUser** operation.                            |
@@ -1644,13 +1636,13 @@ Initialize a key session for the specified user. This API uses a promise to retu
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksSessionHandle](js-apis-huks.md#hukssessionhandle9)> | Promise used to return a session handle for subsequent operations.|
+| Promise\<[HuksSessionHandle](js-apis-huks.md#hukssessionhandle9)> | Promise used to return a session handle for subsequent operations. |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID| Error Message     |
+| ID | Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -1674,8 +1666,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -1779,7 +1770,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    console.info("Failed to generate a key. Error code: " + err.code + " Error message: " + err.message)
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1793,16 +1784,16 @@ async function EncryptData(keyAlias: string, encryptProperties: Array<huks.HuksP
   await huks.initSessionAsUser(userId, keyAlias, options).then((data) => {
     handle = data.handle;
   }).catch((err: BusinessError) => {
-    console.info("Failed to initialize the key session. Error code: "+ err.code +" Error message: "+ err.message)
+    console.error("Failed to initialize the key session. Error code: "+ err.code +" Error message: "+ err.message)
   })
   await huks.finishSession(handle, options).then((data) => {
     console.info("Data is encrypted. Ciphertext: " + Uint8ArrayToString(data.outData))
     if (data.outData != undefined) {
       cipherData = data.outData
     }
-    console.log("running time result success!")
+    console.info("running time result success!")
   }).catch((err: BusinessError) => {
-    console.info("An exception is captured in the encryption process. Error code: " + err.code +" Error message: "+ err.message)
+    console.error("An exception is captured in the encryption process. Error code: " + err.code +" Error message: "+ err.message)
   })
   return cipherData
 }
@@ -1816,12 +1807,12 @@ async function DecryptData(keyAlias: string, decryptProperties: Array<huks.HuksP
   await huks.initSessionAsUser(userId, keyAlias, options).then((data) => {
     handle = data.handle;
   }).catch((err: BusinessError) => {
-    console.info("Failed to initialize the key session. Error code: "+ err.code +" Error message: "+ err.message)
+    console.error("Failed to initialize the key session. Error code: "+ err.code +" Error message: "+ err.message)
   })
   await huks.finishSession(handle, options).then((data) => {
     console.info("Data is decrypted. Plaintext: " + Uint8ArrayToString(data.outData))
   }).catch((err: BusinessError) => {
-    console.info("An exception is captured in the decryption process. Error code: " + err.code +" Error message: "+ err.message)
+    console.error("An exception is captured in the decryption process. Error code: " + err.code +" Error message: "+ err.message)
   })
 }
 
@@ -1832,7 +1823,7 @@ async function TestHuksInit() {
 }
 
 export default function HuksAsUserTest() {
-  console.log('begin huks as user test')
+  console.info('begin huks as user test')
   TestHuksInit()
 }
 ```

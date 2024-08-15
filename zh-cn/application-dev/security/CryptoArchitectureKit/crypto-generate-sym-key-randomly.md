@@ -1,4 +1,4 @@
-# 随机生成对称密钥
+# 随机生成对称密钥(ArkTS)
 
 
 以AES和SM4为例，随机生成对称密钥（SymKey），并获得二进制数据。
@@ -84,7 +84,7 @@
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-  function testSyncGenerateAesKey() {
+  function testSyncGenerateSm4Key() {
     // 创建SymKeyGenerator实例
     let symKeyGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
     // 使用密钥生成器随机生成对称密钥

@@ -1,4 +1,4 @@
-# Encryption and Decryption with an SM4 Symmetric Key (CBC Mode)
+# Encryption and Decryption with an SM4 Symmetric Key (CBC Mode) (ArkTS)
 
 
 For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).

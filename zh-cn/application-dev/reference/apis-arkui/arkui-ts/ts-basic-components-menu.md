@@ -33,6 +33,8 @@ Menu()
 
 Menu子菜单展开样式枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称           | 描述                                |
 |--------------|-----------------------------------|
 | SIDE_EXPAND  | 默认展开样式, 子菜单位于同一平面侧边展开。            |
@@ -131,6 +133,8 @@ menuItemDivider(options: DividerStyleOptions | undefined)
 
 startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -145,6 +149,8 @@ menuItemGroupDivider(options: DividerStyleOptions | undefined)
 
 设置menuItemGroup上下分割线的样式, 不设置该属性则默认展示分割线。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -158,6 +164,8 @@ menuItemGroupDivider(options: DividerStyleOptions | undefined)
 subMenuExpandingMode(mode: SubMenuExpandingMode)
 
 设置Menu子菜单展开样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -243,7 +251,7 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component

@@ -49,11 +49,11 @@ static bool filterFunc(Input_KeyEvent *event) {
   // return keyCode == Input_KeyCode::KEYCODE_ESCAPE;
 
   // case2: 过滤数字键的按下，抬起不过滤
-  // return keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_0
+  // return keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
   //  && action == Input_KeyEventAction::KEY_ACTION_DOWN;
   
   // 过滤escape和数字键的按下(case1 || case2)
-  return (keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_0
+  return (keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
      && action == Input_KeyEventAction::KEY_ACTION_DOWN) || (keyCode == Input_KeyCode::KEYCODE_ESCAPE);
 }
 

@@ -10,7 +10,7 @@ The **privacyManager** module provides APIs for privacy management, such as mana
 ## Modules to Import
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
+import { privacyManager } from '@kit.AbilityKit';
 ```
 
 
@@ -29,7 +29,7 @@ The permission usage record includes the application identity (token ID) of the 
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID of the caller, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
+| tokenID   |  number   | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Name of the permission.|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
@@ -47,32 +47,35 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
   console.log('addPermissionUsedRecord success');
 }).catch((err: BusinessError) => {
-  console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
 });
 // with options param
-let optons: privacyManager.AddPermissionUsedRecordOptions = {
-  .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
+let options: privacyManager.AddPermissionUsedRecordOptions = {
+  usedType: privacyManager.PermissionUsedType.PICKER_TYPE
 };
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
   console.log('addPermissionUsedRecord success');
 }).catch((err: BusinessError) => {
-  console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -91,7 +94,7 @@ The permission usage record includes the application identity (token ID) of the 
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID of the caller, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
+| tokenID   |  number   | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Permission name. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
@@ -103,22 +106,25 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
   if (err) {
-    console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+    console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
   } else {
     console.log('addPermissionUsedRecord success');
   }
@@ -153,17 +159,20 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The value of flag in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
@@ -179,7 +188,7 @@ let request: privacyManager.PermissionUsedRequest = {
 privacyManager.getPermissionUsedRecord(request).then((data) => {
   console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -206,17 +215,20 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The value of flag in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
@@ -231,7 +243,7 @@ let request: privacyManager.PermissionUsedRequest = {
 
 privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
   if (err) {
-    console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+    console.error(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
   } else {
     console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
   }
@@ -252,7 +264,7 @@ Starts to use a permission and flushes the permission usage record. This API is 
 
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
-| tokenID        | number | Yes  | Application token ID of the caller, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| tokenID        | number | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Permission to use. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
@@ -267,24 +279,27 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
-| 12100007 | Service is abnormal. |
+| 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
   console.log('startUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -302,7 +317,7 @@ Starts to use a permission and flushes the permission usage record. This API is 
 
 | Name         | Type                 | Mandatory| Description                                 |
 | -------------- | --------------------- | ---- | ------------------------------------ |
-| tokenID        | number                | Yes  | Application token ID of the caller, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| tokenID        | number                | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions                | Yes  | Permission to use. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -312,23 +327,26 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
-| 12100007 | Service is abnormal. |
+| 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
   if (err) {
-    console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+    console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
   } else {
     console.log('startUsingPermission success');
   }
@@ -349,7 +367,7 @@ Stops using a permission. This API is called by a system application and uses a 
 
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
-| tokenID        | number | Yes  | Application token ID of the caller, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| tokenID        | number | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Permission to use. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
@@ -364,24 +382,27 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100004 | The interface is not used with |
-| 12100007 | Service is abnormal. |
+| 12100004 | The API is not used in pair with 'startUsingPermission'. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
   console.log('stopUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -399,7 +420,7 @@ Stops using a permission. This API is called by a system application and uses a 
 
 | Name         | Type                 | Mandatory| Description                                 |
 | -------------- | --------------------- | ---- | ------------------------------------ |
-| tokenID        | number                | Yes  | Application token ID of the caller, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| tokenID        | number                | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions                | Yes  | Permission to use. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -409,23 +430,26 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100004 | The interface is not used with |
-| 12100007 | Service is abnormal. |
+| 12100004 | The API is not used in pair with 'startUsingPermission'. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
   if (err) {
-    console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+    console.error(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
   } else {
     console.log('stopUsingPermission success');
   }
@@ -460,17 +484,20 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
-| 12100004 | The interface is called repeatedly with the same input. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+| 12100004 | The API is used repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let permissionList: Array<Permissions> = [];
 try {
@@ -478,7 +505,7 @@ try {
         console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
+    console.error(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
@@ -508,21 +535,24 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
-| 12100004 | The interface is not used together with 'on'|
-| 12100007 | Service is abnormal. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
+| 12100004 | The API is not used in pair with 'on'. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
 
 let permissionList: Array<Permissions> = [];
 try {
     privacyManager.off('activeStateChange', permissionList);
-}catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
+} catch(err) {
+    console.error(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
@@ -555,15 +585,18 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. PermissionName exceeds 256 characters. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 12100001 | Invalid parameter. PermissionName exceeds 256 characters. |
 | 12100002 | The input tokenId does not exist. |
 | 12100003 | The input permissionName does not exist. |
 
 **Example**
 
 ```ts
-import privacyManager, { Permissions } from '@ohos.privacyManager';
-import { BusinessError } from '@ohos.base';
+import { privacyManager, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tokenId: number = 0; // You can use bundleManager.getApplicationInfo to obtain accessTokenId.
 let permissionName: Permissions = 'ohos.permission.CAMERA';
@@ -571,25 +604,25 @@ let permissionName: Permissions = 'ohos.permission.CAMERA';
 privacyManager.getPermissionUsedTypeInfos().then(() => {
   console.log('getPermissionUsedTypeInfos success');
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
 });
 // Pass in tokenId only.
 privacyManager.getPermissionUsedTypeInfos(tokenId).then(() => {
   console.log('getPermissionUsedTypeInfos success');
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
 });
 // Pass in permissionName only.
 privacyManager.getPermissionUsedTypeInfos(null, permissionName).then(() => {
   console.log('getPermissionUsedTypeInfos success');
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
 });
 // Pass in tokenId and permissionName.
 privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
   console.log('getPermissionUsedTypeInfos success');
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
 });
 ```
 

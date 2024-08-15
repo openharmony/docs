@@ -16,14 +16,18 @@ Not supported
 
 AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| arrayValue | Array&lt;string&gt; | Yes| Array of strings to be displayed in the alphabetic index bar. The value cannot be null.|
-| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| arrayValue | Array&lt;string&gt; | Yes | Array of strings to be displayed in the alphabetic index bar. The value cannot be null. |
+| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). |
 
 ## Attributes
+
+When the [width](ts-universal-attributes-size.md#width) attribute is set to **"auto"**, the width is adaptive. This means that the width will adjust according to the maximum width of the index items.
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
@@ -33,13 +37,15 @@ color(value: ResourceColor)
 
 Sets the font color.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                               |
+| Name | Type                                      | Mandatory | Description                               |
 | ------ | ------------------------------------------ | ---- | ----------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color.<br>Default value: **0x99182431**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color.<br>Default value: **0x99182431** |
 
 ### selectedColor
 
@@ -47,13 +53,15 @@ selectedColor(value: ResourceColor)
 
 Sets the font color of the selected item.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                     |
+| Name | Type                                      | Mandatory | Description                                     |
 | ------ | ------------------------------------------ | ---- | ----------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the selected item.<br>Default value: **0xFF007DFF**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the selected item.<br>Default value: **0xFF007DFF** |
 
 ### popupColor
 
@@ -61,13 +69,15 @@ popupColor(value: ResourceColor)
 
 Sets the font color of the pop-up text.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                       |
+| Name | Type                                      | Mandatory | Description                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the pop-up text.<br>Default value: **0xFF007DFF**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the pop-up text.<br>Default value: **0xFF007DFF** |
 
 ### selectedBackgroundColor
 
@@ -75,13 +85,15 @@ selectedBackgroundColor(value: ResourceColor)
 
 Sets the background color of the selected item.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                     |
+| Name | Type                                      | Mandatory | Description                                     |
 | ------ | ------------------------------------------ | ---- | ----------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the selected item.<br>Default value: **0x1A007DFF**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the selected item.<br>Default value: **0x1A007DFF** |
 
 ### popupBackground
 
@@ -89,13 +101,15 @@ popupBackground(value: ResourceColor)
 
 Sets the background color of the pop-up text.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                                        |
+| Name | Type                                      | Mandatory | Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the pop-up text.<br>Default value:<br>API version 11 and earlier: **0xFFFFFFFF**<br>API version 12 and later: **#66808080**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the pop-up text.<br>Default value:<br>API version 11 and earlier: **0xFFFFFFFF**<br>API version 12 and later: **#66808080** |
 
 ### usingPopup
 
@@ -103,13 +117,15 @@ usingPopup(value: boolean)
 
 Sets whether to use pop-up text.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                  |
+| Name | Type   | Mandatory | Description                                  |
 | ------ | ------- | ---- | -------------------------------------- |
-| value  | boolean | Yes  | Whether to use pop-up text.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to use pop-up text.<br>Default value: **false** |
 
 ### selectedFont
 
@@ -117,11 +133,13 @@ selectedFont(value: Font)
 
 Sets the font style of the selected item.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                    | Mandatory| Description                                                        |
+| Name | Type                    | Mandatory | Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Font](ts-types.md#font) | Yes  | Font style of the selected item.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
 
@@ -131,11 +149,13 @@ popupFont(value: Font)
 
 Sets the font style of the pop-up text.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                    | Mandatory| Description                                                        |
+| Name | Type                    | Mandatory | Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Font](ts-types.md#font) | Yes  | Font style of the pop-up text.<br>Default value:<br>{<br>size:'24.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>} |
 
@@ -145,11 +165,13 @@ font(value: Font)
 
 Sets the default font style of the alphabetic index bar.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                    | Mandatory| Description                                                        |
+| Name | Type                    | Mandatory | Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Font](ts-types.md#font) | Yes  | Default font style of the alphabetic index bar.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
 
@@ -159,13 +181,15 @@ itemSize(value: string | number)
 
 Sets the size for the item in the alphabetic index bar.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                      | Mandatory| Description                                                        |
+| Name | Type                      | Mandatory | Description                                                        |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string \| number | Yes  | Size of the item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set in percentage.<br>Default value: **16.0**<br>Unit: vp|
+| value  | string \| number | Yes  | Size of the item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set in percentage.<br>Default value: **16.0**<br>Unit: vp |
 
 ### alignStyle
 
@@ -173,14 +197,16 @@ alignStyle(value: IndexerAlign, offset?: Length)
 
 Sets the alignment style of the alphabetic index bar.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name              | Type                                 | Mandatory| Description                                                        |
+| Name              | Type                                 | Mandatory | Description                                                        |
 | -------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                | [IndexerAlign](#indexeralign) | Yes  | Alignment style of the alphabetic index bar. The pop-up window can be displayed on the right or left of the alphabetic index bar.<br>Default value: **IndexerAlign.Right**|
-| offset<sup>10+</sup> | [Length](ts-types.md#length)          | No  | Spacing between the pop-up window and the alphabetic index bar. A value greater than or equal to **0** is valid. If this parameter is set to a value less than **0** or is not set, the spacing is the same as **popupPosition**. If this parameter and **popupPosition** are set at the same time, **offset** takes effect in the horizontal direction and **popupPosition.y** takes effect in the vertical direction.|
+| value                | [IndexerAlign](#indexeralign)  | Yes  | Alignment style of the alphabetic index bar. The pop-up window can be displayed on the right or left of the alphabetic index bar.<br>Default value: **IndexerAlign.END** |
+| offset<sup>10+</sup> | [Length](ts-types.md#length)          | No  | Spacing between the pop-up window and the alphabetic index bar. A value greater than or equal to **0** is valid. If this parameter is set to a value less than **0** or is not set, the spacing is the same as **popupPosition**. If this parameter and **popupPosition** are set at the same time, **offset** takes effect in the horizontal direction and **popupPosition.y** takes effect in the vertical direction. |
 
 ### selected<sup>8+</sup>
 
@@ -190,13 +216,15 @@ Sets the index of the selected item.
 
 Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description                        |
+| Name | Type  | Mandatory | Description                        |
 | ------ | ------ | ---- | ---------------------------- |
-| index  | number | Yes  | Index of the selected item.<br>Default value: **0**|
+| index  | number | Yes  | Index of the selected item.<br>Default value: **0** |
 
 ### popupPosition<sup>8+</sup>
 
@@ -204,13 +232,15 @@ popupPosition(value: Position)
 
 Sets the position of the pop-up window relative to the center of the indexer bar's top border.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                             | Mandatory| Description                                                        |
+| Name | Type                             | Mandatory | Description                                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position) | Yes  | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:60.0, y:48.0}**|
+| value  | [Position](ts-types.md#position) | Yes  | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:60.0, y:48.0}** |
 
 ### popupSelectedColor<sup>10+</sup>
 
@@ -218,13 +248,15 @@ popupSelectedColor(value: ResourceColor)
 
 Sets the color of the selected text in the non-alphabetic part in the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                                 |
+| Name | Type                                      | Mandatory | Description                                                 |
 | ------ | ------------------------------------------ | ---- | ----------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the selected text in the non-alphabetic part in the pop-up window.<br>Default value: **#FF182431**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the selected text in the non-alphabetic part in the pop-up window.<br>Default value: **#FF182431** |
 
 ### popupUnselectedColor<sup>10+</sup>
 
@@ -232,13 +264,15 @@ popupUnselectedColor(value: ResourceColor)
 
 Sets the color of the unselected text in the non-alphabetic part in the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                                   |
+| Name | Type                                      | Mandatory | Description                                                   |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the unselected text in the non-alphabetic part in the pop-up window.<br>Default value: **#FF182431**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the unselected text in the non-alphabetic part in the pop-up window.<br>Default value: **#FF182431** |
 
 ### popupItemFont<sup>10+</sup>
 
@@ -246,11 +280,13 @@ popupItemFont(value: Font)
 
 Sets the font style of the non-alphabetic part in the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                    | Mandatory| Description                                                        |
+| Name | Type                    | Mandatory | Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Font](ts-types.md#font) | Yes  | Font style of the non-alphabetic part in the pop-up window.<br>Default value:<br>{<br>size:24,<br>weight:FontWeight.Medium<br>} |
 
@@ -258,15 +294,17 @@ Sets the font style of the non-alphabetic part in the pop-up window.
 
 popupItemBackgroundColor(value: ResourceColor)
 
-Sets the background color of the non-alphabetic part in the pop-up window.
+Sets the background color of the non-alphabetic part in the pop-up window. 
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                    | Mandatory| Description                                           |
+| Name | Type                    | Mandatory | Description                                           |
 | ------ | ------------------------ | ---- | ----------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the non-alphabetic part in the pop-up window.<br>Default value:<br>API version 11 and earlier: **#FFFFFFFF**<br>API version 12 and later: **#00000000**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the non-alphabetic part in the pop-up window.<br>Default value:<br>API version 11 and earlier: **#FFFFFFFF**<br>API version 12 and later: **#00000000** |
 
 ### autoCollapse<sup>11+</sup>   
 
@@ -278,13 +316,15 @@ If the initial character is **#**, it is excluded. Number of remaining character
 
 If the initial character is not **#**: Number of all characters $\leq$ 9: The index bar is expanded. 9 < Number of all characters $\leq$ 13: The index bar is expanded or partially collapsed, depending on its height. Number of all characters > 13: The index bar is fully or partially collapsed, depending on its height.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                      |
+| Name | Type   | Mandatory | Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | Yes  | Whether to auto-collapse or expand the indexer bar.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to auto-collapse or expand the indexer bar.<br>Default value:<br>In versions earlier than API version 12: **false**<br>API version 12 and later: **true** |
 
 ### popupItemBorderRadius<sup>12+</sup>   
 
@@ -292,13 +332,15 @@ popupItemBorderRadius(value: number)
 
 Sets the radius of the index border corners in the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Radius of the index background border corners in the pop-up window.<br>Default value: **24vp**<br>This parameter cannot be set in percentage. If the value specified is less than **0**, **0** is used.<br>The radius of the index background border corners in the pop-up window is automatically adaptive (radius of the index rounded corners + 4 vp).|
+| value  | number | Yes  | Radius of the index background border corners in the pop-up window.<br>Default value: **24vp**<br>This parameter cannot be set in percentage. If the value specified is less than **0**, **0** is used.<br>The radius of the index background border corners in the pop-up window is automatically adaptive (radius of the index rounded corners + 4 vp). |
 
 ### itemBorderRadius<sup>12+</sup>   
 
@@ -306,13 +348,15 @@ itemBorderRadius(value: number)
 
 Sets the radius of the index background border corners in the alphabetic index bar.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Radius of the index background border corners in the alphabetic index bar.<br>Default value: **8vp**<br>This parameter cannot be set in percentage. If the value specified is less than **0**, **0** is used.<br>The radius of the index background border corners in the alphabetic index bar is automatically adaptive (radius of the index rounded corners + 4 vp).|
+| value  | number | Yes  | Radius of the index background border corners in the alphabetic index bar.<br>Default value: **8vp**<br>This parameter cannot be set in percentage. If the value specified is less than **0**, **0** is used.<br>The radius of the index background border corners in the alphabetic index bar is automatically adaptive (radius of the index rounded corners + 4 vp). |
 
 ### popupBackgroundBlurStyle<sup>12+</sup>   
 
@@ -320,13 +364,15 @@ popupBackgroundBlurStyle(value: BlurStyle)
 
 Sets the background blur style of the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                        | Mandatory| Description                                                        |
+| Name | Type                                        | Mandatory | Description                                                        |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | Yes  | Background blur style of the pop-up window.<br>Default value: **COMPONENT_REGULAR**|
+| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | Yes  | Background blur style of the pop-up window.<br>Default value: **COMPONENT_REGULAR** |
 
 ### popupTitleBackground<sup>12+</sup>   
 
@@ -334,20 +380,34 @@ popupTitleBackground(value: ResourceColor)
 
 Sets the background color of the first index in the pop-up window.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                                    |
-| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the first index in the pop-up window.<br>Default value: **#0c182431**|
+| Name | Type                                      | Mandatory | Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the first index in the pop-up window.<br>Default value:<br>If the pop-up window has only one index: **#00FFFFFF**.<br>If the pop-up window has multiple indexes: **#0c182431**. |
+
+### enableHapticFeedback<sup>12+</sup>
+
+enableHapticFeedback(enable: boolean)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name        | Type                                                 | Mandatory | Description                        |
+|-------------|-----------------------------------------------------|----|----------------------------|
+| enable | boolean | No | Whether haptic feedback is enabled.<br>Default value: **true**<br> |
 
 ## IndexerAlign
 
-| Name| Description|
+| Name | Description |
 | -------- | -------- |
-| Left | The pop-up window is displayed on the right of the alphabetic indexer bar.|
-| Right | The pop-up window is displayed on the left of the alphabetic indexer bar.|
+| Left | The pop-up window is displayed on the right of the alphabetic indexer bar.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Right | The pop-up window is displayed on the left of the alphabetic indexer bar.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| START<sup>12+</sup> | The pop-up window is displayed on the right of the alphabetic indexer bar for left-to-right scripts, and on the left of the alphabetic indexer bar for right-to-left scripts.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| END<sup>12+</sup> | The pop-up window is displayed on the left of the alphabetic indexer bar for left-to-right scripts, and on the right of the alphabetic indexer bar for right-to-left scripts.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Events
 
@@ -357,17 +417,17 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 onSelected(callback: (index: number) =&gt; void)
 
-Invoked when an item in the alphabetic indexer bar is selected. The return value is the index of the selected item.
+Invoked when an item in the alphabetic indexer bar is selected. The return value is the index of the selected item. 
 
 This API is deprecated since API version 8. You are advised to use [onSelect](#onselect8) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| index  | number | Yes  | Index of the selected item.|
+| index  | number | Yes  | Index of the selected item. |
 
 ### onSelect<sup>8+</sup>
 
@@ -375,13 +435,15 @@ onSelect(callback: (index: number) =&gt; void)
 
 Invoked when an item in the alphabetic indexer bar is selected. The return value is the index of the selected item.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| index  | number | Yes  | Index of the selected item.|
+| index  | number | Yes  | Index of the selected item. |
 
 ### onRequestPopupData<sup>8+</sup>
 
@@ -389,13 +451,21 @@ onRequestPopupData(callback: (index: number) =&gt; Array&lt;string&gt;)
 
 Invoked when a request for displaying content in the index pop-up window is sent after an item in the alphabetic indexer bar is selected.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description                                                        |
+| Name | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | Yes  | String array corresponding to the selected index. The string array is displayed vertically in the pop-up window. It can display up to five strings at once and allows scrolling.|
+| index  | number | Yes  | Index of the selected item. |
+
+**Return value** 
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| Array&lt;string&gt; | String array corresponding to the selected index. The string array is displayed vertically in the pop-up window. It can display up to five strings at once and allows scrolling. |
 
 ### onPopupSelect<sup>8+</sup>
 
@@ -403,13 +473,15 @@ onPopupSelect(callback: (index: number) =&gt; void)
 
 Invoked when an item in the index pop-up window is selected.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| index  | number | Yes  | Index of the selected item.|
+| index  | number | Yes  | Index of the selected item. |
 
 
 ## Example
@@ -600,7 +672,7 @@ struct AlphabetIndexerSample {
               .selectedFont({size: 16, weight: FontWeight.Bolder})// Font style of the selected item.
               .popupFont({ size: 30, weight: FontWeight.Bolder})// Font style of the pop-up text.
               .itemSize(28)// Size of an item in the alphabetic index bar.
-              .alignStyle(IndexerAlign.Right)// The pop-up window is displayed on the right of the alphabetic index bar.
+              .alignStyle(IndexerAlign.Right)// The pop-up window is displayed on the left of the alphabetic index bar.
               .popupTitleBackground("#D2B48C") // Background color of the first index in the pop-up window.
               .popupSelectedColor(0x00FF00)
               .popupUnselectedColor(0x0000FF)

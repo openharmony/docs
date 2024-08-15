@@ -459,11 +459,12 @@ PROCESS NAME:com.xxx.xxx
 | -------- |--------|--------|
 |前台应用：6s <br> 后台应用 ：3s * 5 + 6s = 21s | 5s | Load：10s <br> Active：5s <br> Inactive：0.5s <br> Terminate：10s <br> Connect：3s <br> Disconnect：0.5s <br> Restart：5s <br> Foreground：5s <br> Background：3s |
 
-<small> 注：  1、THREAD_BLOCK_3S / LIFECYCLE_HALF_TIMEOUT 的检测时长是相应THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT的一半，warning 级别，不会单独上报日志；THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT 是 error 级别，整合了本身和其一半检测时长故障的日志一同上报。
+**说明：**
+1、THREAD_BLOCK_3S / LIFECYCLE_HALF_TIMEOUT 的检测时长是相应THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT的一半，warning 级别，不会单独上报日志；THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT 是 error 级别，整合了本身和其一半检测时长故障的日志一同上报。
 2、前台应用发生THREAD_BLOCK_3S后即可触发后续THREAD_BLOCK_6S事件
 3、后台应用存在计数器 backgroundReportCount_ = 0，发生THREAD_BLOCK_3S后 +1 累计到 5 次后才会上报 （即连续发生5次 THREAD_BLOCK_3S 事件，计数不清零，才会上报THREAD_BLOCK_6S 事件，可知后台应用THREAD_BLOCK_3S 与THREAD_BLOCK_6S 检测时长依次为 18s 与 21s</samll>
 
-通过故障上报时间点往前推检测时长可得到故障发生的具体时间
+通过故障上报时间点往前推检测时长可得到故障发生的具体时间。
 
 ### 查看 eventHandler 信息
 
@@ -1005,7 +1006,7 @@ int xxx()
 
 ### APP_INPUT_BLOCK 类典型案例——组件全量刷新
 
-#### 背景/原理
+#### 背景
 
 用户在切换主题时突然卡死，有 sceneboard 的 appfreeze 问题上报
 
@@ -1024,7 +1025,7 @@ private getForeachKey(item: xxx): string {
 }
 ```
 
-#### 影响/报错
+#### 影响
 
 用户在合一桌面切换主题时页面高概率卡死，点击无响应，而后闪退到锁屏界面。
 
@@ -1032,7 +1033,7 @@ private getForeachKey(item: xxx): string {
 
 #### 定位思路
 
-提取故障关键信息
+提取故障关键信息。
 
 ```
 appfreeze: com.ohos.sceneboard APP_INPUT_BLOCK at 20240319022527

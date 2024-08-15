@@ -13,14 +13,14 @@
 ## Modules to Import
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import { WindowExtensionAbility } from '@kit.ArkUI';
 ```
 
 ## Attributes
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type| Readable| Writable| Description                     |
+| Name     | Type | Readable | Writable | Description                     |
 | --------- | -------- | ---- | ---- | ------------------------- |
 | context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | Yes  | No  | Context of an Extension ability.     |
 
@@ -34,15 +34,15 @@ Called when this Window Extension ability is connected to an ability for the fir
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Information related to this Window Extension ability, including the ability name and bundle name. |
 
 **Example**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { WindowExtensionAbility } from '@kit.ArkUI';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onConnect(want: Want) {
@@ -61,16 +61,16 @@ Called when this Window Extension ability is disconnected from all connected abi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Information related to this Window Extension ability, including the ability name and bundle name. |
 
 
 **Example**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { WindowExtensionAbility } from '@kit.ArkUI';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onDisconnect(want: Want) {
@@ -89,17 +89,16 @@ Called when a window is ready.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| window | [window.Window](js-apis-window.md#window) | Yes| Current **Window** instance.|
+| window | [window.Window](js-apis-window.md#window) | Yes | Current **Window** instance. |
 
 
 **Example**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import window from '@ohos.window';
-import {BusinessError} from '@ohos.base';
+import { WindowExtensionAbility, window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onWindowReady(window: window.Window) {

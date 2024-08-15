@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **错误描述**
 
-当应用受到企业设备管理[Enterprise Device Manager](../../enterprise-device-management/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+当应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)管控时，方法将返回该错误码。
 
 **可能原因**
 
@@ -398,7 +398,7 @@ Installation-free service is busy, please wait and try again later.
 
 **可能原因**
 
-已有相同免安装任务在执行。
+已有相同原子化服务的下载安装任务在执行。
 
 **处理步骤**
 
@@ -870,24 +870,6 @@ wangAgent object has been canceled.
 
 检查触发的wantAgent对象是否已取消。
 
-## 16000200 应用缓存后快速启动支持状态设置超过1次
-
-**错误信息**
-
-The supported process cache state cannot be set more than once.
-
-**错误描述**
-
-在单个进程实例的生命周期中，应用缓存后快速启动支持状态设置成功1次后，再次设置方法将返回错误码。
-
-**可能原因**
-
-应用缓存后快速启动支持状态设置超过1次。
-
-**处理步骤**
-
-检查应用缓存后快速启动支持状态是否设置超过1次。
-
 ## 16100001 指定Uri的Ability不存在
 
 **错误信息**
@@ -1293,3 +1275,76 @@ The target bundle does not exist.
 **处理步骤**
 
 检查传入的bundleName、userId和appIndex参数是否正确。
+
+## 29600001 图片编辑内部错误。
+
+**错误信息**
+
+Internal error.
+
+**错误描述**
+
+当图片保存时发生内存申请、多线程处理异常等内部错误时，方法将返回该错误码。
+
+**可能原因**
+
+内存申请、多线程处理等内核通用错误。具体原因可能包括：内部对象为空、处理超时等等。
+
+**处理步骤**
+
+1. 确认系统内存是否足够，设备使用的系统版本是否存在异常。
+2. 尝试重启设备。
+
+## 29600002 图片编辑内部错误。
+
+**错误信息**
+
+Image input error.
+
+**错误描述**
+
+当图片uri不存在或无法解析图片时，方法将返回该错误码。
+
+**可能原因**
+
+uri不存在或uri非图片类型文件。
+
+**处理步骤**
+
+检查文件是否存在以及文件类型是否为图片。
+
+## 29600002 图片大小过大。
+
+**错误信息**
+
+Image too big.
+
+**错误描述**
+
+入参所传入的图片大小过大。
+
+**可能原因**
+
+当入参图片大小超过50M时，方法将返回该错误码。
+
+**处理步骤**
+
+1. 尝试将图片编辑后大小控制在50M以内。
+2. 对图片大小进行校验。
+## 16300007 指定的原子化服务的下载安装任务信息不存在。
+
+**错误信息**
+
+The target free install task does not exist.
+
+**错误描述**
+
+为原子化服务窗口打开窗口时，指定的原子化服务的下载安装任务不存在时，方法将返回该错误码。
+
+**可能原因**
+
+传入的bundleName、moduleName、abilityName或startTime错误，导致查询不到相关原子化服务原子化服务的下载安装任务信息。
+
+**处理步骤**
+
+检查传入的bundleName、moduleName、abilityName或startTime参数是否正确。

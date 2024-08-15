@@ -449,7 +449,7 @@ function foo(a: number, b: number): void {}
 |  0x94	|  IMM16_ID16	|  stthisbyname RRRR, @AAAA	|  默认入参：acc：值<br>R：方舟运行时内部使用的16位保留数字<br>A：string id	|  将acc中的值存放到`this`的键值为索引A对应的字符串的属性上。   |
 |  0x95	|  IMM16	|  ldthisbyvalue RRRR	|  默认入参：acc：属性键值<br>R：方舟运行时内部使用的16位保留数字	|  加载`this`的键值为acc的属性，并将结果存放到acc中。   |
 |  0x96	|  IMM16_V8	|  stthisbyvalue RRRR, vAA	|  默认入参：acc：值<br>R：方舟运行时内部使用的16位保留数字<br>A：属性键值	|  将acc中的值存放到`this`的键值为A的属性上。   |
-|  0x97	|  V8	|  asyncgeneratorreject vAA	 |  默认入参：acc：异常<br>A：生成器	|  使用 *[genarator](https://262.ecma-international.org/12.0/#sec-generator-objects)* A和acc中存放的异常，执行[AsyncGeneratorReject](https://262.ecma-international.org/12.0/#sec-asyncgeneratorreject)，并将结果存放到acc中。   |
+|  0x97	|  V8	|  asyncgeneratorreject vAA	 |  默认入参：acc：异常<br>A：生成器	|  使用 *[generator](https://262.ecma-international.org/12.0/#sec-generator-objects)* A和acc中存放的异常，执行[AsyncGeneratorReject](https://262.ecma-international.org/12.0/#sec-asyncgeneratorreject)，并将结果存放到acc中。   |
 |  0x98	|  IMM32	|  jmp +AAAAAAAA	|  A：有符号的分支偏移量	|  无条件跳转到分支A。   |
 |  0x99	|  IMM8_V8_V8	|  stownbyvaluewithnameset RR, vAA, vBB	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：对象<br>B：属性键值	|  将acc中的值存放到对象A的键值为B的属性上，并将函数的名称设置为B。   |
 |  0x9a	|  IMM32	|  jeqz +AAAAAAAA	|  默认入参：acc：值<br>A：有符号的分支偏移量	|  计算`acc == 0`，如果为真，则跳转到分支A。   |
@@ -481,7 +481,7 @@ function foo(a: number, b: number): void {}
 |  0xb4	|  IMM8_V8	|  newobjapply RR, vAA	|  默认入参：acc：参数列表<br>R：方舟运行时内部使用的8位保留数字<br>A：类对象	|  使用acc中存放的参数列表，创建一个A类的实例，并将其存放到acc中。   |
 |  0xb5	|  IMM16_V8	|  newobjapply RRRR, vAA	|  默认入参：acc：参数列表<br>R：方舟运行时内部使用的16位保留数字<br>A：类对象	|  使用acc中存放的参数列表，创建一个A类的实例，并将其存放到acc中。   |
 |  0xb6	|  IMM8_ID16	|  newlexenvwithname +AA, @BBBB	|  A：词法环境中的槽位数量<br>B：literal id	|  使用索引B对应的字面量数组中所存放的词法变量名称，创建一个具有A个槽位的词法环境，将这个词法环境存放到acc中，并进入该词法环境。   |
-|  0xb7	|  V8	|  createasyncgeneratorobj vAA	|  A：函数对象	|  基于函数对象A，创建一个异步的*genarator*，并将其存放到acc中。   |
+|  0xb7	|  V8	|  createasyncgeneratorobj vAA	|  A：函数对象	|  基于函数对象A，创建一个异步的*generator*，并将其存放到acc中。   |
 |  0xb8	|  V8_V8_V8	|  asyncgeneratorresolve vAA, vBB, vCC	|  A：生成器<br>B：对象<br>C：布尔值	|  以 *generator* A, *value* B和 *done* C作为参数，执行[AsyncGeneratorResolve](https://262.ecma-international.org/12.0/#sec-asyncgeneratorresolve)，并将结果存放到acc中。   |
 |  0xb9	|  IMM8_V8	|  supercallspread RR, vAA	|  默认入参：acc：类对象<br>R：方舟运行时内部使用的8位保留数字<br>A：参数列表	|  以参数列表A作为参数，调用acc中所存类的父类构造函数，并将结果存放到acc中。   |
 |  0xba	|  IMM8_V8_V8	|  apply RR, vAA, vBB	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：对象<br>B：参数列表	|  将`this`设置为A，以参数列表B作为参数，调用acc中存放的函数对象，并将返回值存放到acc中。   |
@@ -489,11 +489,11 @@ function foo(a: number, b: number): void {}
 |  0xbc	|  V8_V8_V8_V8	|  definegettersetterbyvalue vAA, vBB, vCC, vDD	|  默认入参：acc：是否需要为访问器设置名称，是一个布尔值<br>A：对象<br>B：属性键值<br>C：getter函数对象<br>D：setter函数对象	|  以getter方法 C和setter方法 D作为参数，定义对象A的键值为B的属性的访问器，并将结果对象存放到acc中。<br>如果C是**undefined**，则不会设置getter，如果D是**undefined**，则不会设置setter。   |
 |  0xbd	|  NONE	|  dynamicimport	|  默认入参：acc：值	|  使用acc中的值作为参数，执行[ImportCalls](https://262.ecma-international.org/12.0/#sec-import-calls)，并把结果存放到acc中。   |
 |  0xbe	|  IMM16_ID16_IMM8	|  definemethod RRRR, @AAAA, +BB	|  默认入参：acc：类对象或类对象的对象原型，方法为静态方法时，acc中是类对象<br>R：方舟运行时内部使用的16位保留数字<br>A：method id<br>B：方法A的形参数量	|  创建方法A的函数对象，将acc中的对象设置为该函数对象的[[[HomeObject]]](https://262.ecma-international.org/12.0/#sec-ecmascript-function-objects)属性，并将该函数对象存放到acc中。   |
-|  0xbf	|  NONE	|  resumegenerator	|  默认入参：acc：生成器	|  基于acc中存放的genarator，执行[GeneratorResume](https://262.ecma-international.org/12.0/#sec-generatorresume)，并将结果存放到acc中。   |
-|  0xc0	|  NONE	|  getresumemode	|  默认入参：acc：生成器	|  获取acc中所存放的genarator的执行完成后恢复值的类型，并将其存放到acc中。   |
+|  0xbf	|  NONE	|  resumegenerator	|  默认入参：acc：生成器	|  基于acc中存放的generator，执行[GeneratorResume](https://262.ecma-international.org/12.0/#sec-generatorresume)，并将结果存放到acc中。   |
+|  0xc0	|  NONE	|  getresumemode	|  默认入参：acc：生成器	|  获取acc中所存放的generator的执行完成后恢复值的类型，并将其存放到acc中。   |
 |  0xc1	|  IMM16	|  gettemplateobject RRRR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的16位保留数字	|  执行[GetTemplateObject](https://262.ecma-international.org/12.0/#sec-gettemplateobject)(acc)，并将结果存放到acc中。   |
 |  0xc2	|  V8	|  delobjprop vAA	|  默认入参：acc：属性键值<br>A：对象	|  删除对象A的键值为acc的属性。   |
-|  0xc3	|  V8	|  suspendgenerator vAA	|  默认入参：acc：值<br>A：生成器	|  使用acc中所存放的值，挂起*genarator* A，并将结果存放到acc中。   |
+|  0xc3	|  V8	|  suspendgenerator vAA	|  默认入参：acc：值<br>A：生成器	|  使用acc中所存放的值，挂起*generator* A，并将结果存放到acc中。   |
 |  0xc4	|  V8	|  asyncfunctionawaituncaught vAA	|  默认入参：acc：值<br>A：函数对象	|  使用函数对象A和acc的值，执行[AwaitExpression](https://262.ecma-international.org/12.0/#prod-AwaitExpression)，并将结果存放到acc中。   |
 |  0xc5	|  V8	|  copydataproperties vAA	|  默认入参：acc：对象<br>A：目标对象	|  将acc中所存放的对象的所有属性拷贝到A中，并将A存放到acc中。   |
 |  0xc6	|  V8_V8	|  starrayspread vAA, vBB	|  默认入参：acc：值<br>A：数组<br>B：数组索引	|  将acc中的值按照[SpreadElement](https://262.ecma-international.org/12.0/#prod-SpreadElement)的形式存放到数组A的以索引B起始的位置上，并将结果数组的长度存放到acc中。   |
@@ -512,7 +512,7 @@ function foo(a: number, b: number): void {}
 |  0xd3	|  ID16	|  ldbigint @AAAA	|  A：string id	|  基于索引A对应的字符串，创建**BigInt**类型的值，并将其存放到acc中。   |
 |  0xd4	|  IMM16_ID16_V8	|  stownbynamewithnameset RRRR, @AAAA, vBB	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的16位保留数字<br>A：string id<br>B：对象	|  将acc中的函数对象存放到对象B的键值为索引A对应的字符串的属性上，并将函数的名称设置为索引A对应的字符串。   |
 |  0xd5	|  NONE	|  nop	 |  	|  无操作。   |
-|  0xd6	|  IMM8	|  setgeneratorstate +AA	|  默认入参：acc：生成器对象<br>A：生成器状态	|  将acc中存放的genarator的状态设置为A (参考：[GeneratorState](https://262.ecma-international.org/12.0/#sec-properties-of-generator-instances)和[AsyncGeneratorState](https://262.ecma-international.org/12.0/#sec-properties-of-asyncgenerator-intances))<br>A可能的值有以下几项：undefined(0x0)、suspendedStart(0x1)、suspendedYield(0x2)、executing(0x3)、completed(0x4)和awaitingReturn(0x5)。   |
+|  0xd6	|  IMM8	|  setgeneratorstate +AA	|  默认入参：acc：生成器对象<br>A：生成器状态	|  将acc中存放的generator的状态设置为A (参考：[GeneratorState](https://262.ecma-international.org/12.0/#sec-properties-of-generator-instances)和[AsyncGeneratorState](https://262.ecma-international.org/12.0/#sec-properties-of-asyncgenerator-intances))<br>A可能的值有以下几项：undefined(0x0)、suspendedStart(0x1)、suspendedYield(0x2)、executing(0x3)、completed(0x4)和awaitingReturn(0x5)。   |
 |  0xd7	|  IMM8	|  getasynciterator RR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字	|  执行[GetIterator](https://262.ecma-international.org/12.0/#sec-getiterator)(acc, async)，并将结果存放到acc上。   |
 |  0xd8	|  IMM8_IMM16_IMM16	|  ldprivateproperty RR, +AAAA, +BBBB	|  默认入参：acc：对象<br>A：词法环境层级<br>B：槽位号	|  加载A个层次外的词法环境的B号槽位上的值，作为属性键值，将acc中所存放对象的该键值对应的值存放到acc中。   |
 |  0xd9	|  IMM8_IMM16_IMM16_V8	|  stprivateproperty RR, +AAAA, +BBBB, vCC	|  A：词法环境层级<br>B：槽位号<br>C：对象	|  加载A个层次外的词法环境的B号槽位上的值，作为属性键值，将acc中的值存放到C中所存放对象的该键值上。   |

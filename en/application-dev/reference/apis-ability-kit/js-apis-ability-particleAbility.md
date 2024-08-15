@@ -32,13 +32,14 @@ Starts a ParticleAbility. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name     | Type                                           | Mandatory| Description             |
+| Name     | Type                                           | Mandatory | Description             |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes  | Ability to start.|
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes  | Ability to start. |
 | callback  | AsyncCallback\<void>                            | Yes  | Callback used to return the result. If the ParticleAbility is started, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -80,18 +81,19 @@ Starts a ParticleAbility. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name     | Type                                           | Mandatory| Description             |
+| Name     | Type                                           | Mandatory | Description             |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes  | Ability to start.|
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes  | Ability to start. |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. Promise that returns no value.|
+| Promise\<void> | Promise used to return the result. Promise that returns no value. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -124,12 +126,13 @@ Terminates this ParticleAbility. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                |
+| Name    | Type                | Mandatory | Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ParticleAbility is terminated, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ParticleAbility is terminated, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -154,10 +157,11 @@ Terminates this ParticleAbility. This API uses a promise to return the result.
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. Promise that returns no value.|
+| Promise\<void> | Promise used to return the result. Promise that returns no value. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -183,18 +187,19 @@ Obtains a **dataAbilityHelper** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
+| Name | Type  | Mandatory | Description                    |
 | :--- | ------ | ---- | ------------------------ |
-| uri  | string | Yes  | URI of the file to open.|
+| uri  | string | Yes  | URI of the file to open. |
 
 **Return value**
 
 | Type             | Description                                        |
 | ----------------- | -------------------------------------------- |
-| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | A utility class used to help other abilities access a DataAbility.|
+| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | A utility class used to help other abilities access a DataAbility. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -219,14 +224,15 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | id | number | Yes| Notification ID of the continuous task.|
-  | request | [NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest) | Yes| Notification parameter, which is used to display information in the notification bar.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the continuous task is requested, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | id | number | Yes | Notification ID of the continuous task. |
+  | request | [NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest) | Yes | Notification parameter, which is used to display information in the notification bar. |
+  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the continuous task is requested, **err** is **undefined**. Otherwise, **err** is an error object. |
 
  **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -285,19 +291,20 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| id | number | Yes| Notification ID of the continuous task.|
-| request | [NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest) | Yes| Notification parameter, which is used to display information in the notification bar.|
+| id | number | Yes | Notification ID of the continuous task. |
+| request | [NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest) | Yes | Notification parameter, which is used to display information in the notification bar. |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. Promise that returns no value.|
+| Promise\<void> | Promise used to return the result. Promise that returns no value. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -350,12 +357,13 @@ Requests to cancel a continuous task from the system. This API uses an asynchron
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the continuous task is canceled, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the continuous task is canceled, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -387,10 +395,11 @@ Requests to cancel a continuous task from the system. This API uses a promise to
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. Promise that returns no value.|
+| Promise\<void> | Promise used to return the result. Promise that returns no value. |
 
  **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -418,19 +427,20 @@ Connects this ability to a ServiceAbility.
 
 **Parameters**
 
-| Name   | Type          | Mandatory| Description                        |
+| Name   | Type          | Mandatory | Description                        |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](js-apis-application-want.md)           | Yes  | ServiceAbility to connect.|
+| request | [Want](js-apis-application-want.md)           | Yes  | ServiceAbility to connect. |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes  | Connection options.          |
 
 **Return value**
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | ID of the connected ServiceAbility. The ID starts from 0 and is incremented by 1 each time a connection is set up.|
+| number | ID of the connected ServiceAbility. The ID starts from 0 and is incremented by 1 each time a connection is set up. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -471,13 +481,14 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the disconnection is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | connection | number               | Yes   | ID of the ServiceAbility to disconnect. |
+  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the disconnection is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -516,18 +527,19 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
+| connection | number               | Yes   | ID of the ServiceAbility to disconnect. |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. Promise that returns no value.|
+| Promise\<void> | Promise used to return the result. Promise that returns no value. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -565,4 +577,4 @@ Enumerates the error codes that may be returned when an ability is started.
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
-| INVALID_PARAMETER | -1   | Invalid parameter.|
+| INVALID_PARAMETER | -1   | Invalid parameter. |

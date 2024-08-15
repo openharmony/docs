@@ -2479,6 +2479,52 @@ radio.factoryReset(slotId).then(() => {
 ```
 
 
+## radio.getIMEISV<sup>12+</sup>
+
+getIMEISV\(slotId: number\): string
+
+Obtains the software version number of a specified card slot of the device.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type   | Description                                                                         |
+| ------ |-------------------------------------------------------------------------------------|
+| string | Software version number. If the IMEISV does not exist, an empty string is returned. |
+
+**Error codes**
+
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+let slotId: number = 0;
+let data: string = radio.getIMEISV(slotId);
+console.log(`IMEISV is:` + data);
+```
+
 ## PreferredNetworkMode<sup>8+</sup>
 
 Enumerates preferred network modes.

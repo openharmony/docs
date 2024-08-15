@@ -1,4 +1,4 @@
-# 使用SM4对称密钥（CBC模式）加解密
+# 使用SM4对称密钥（CBC模式）加解密(ArkTS)
 
 
 对应的算法规格请查看[对称密钥加解密算法规格：SM4](crypto-sym-encrypt-decrypt-spec.md#sm4)。

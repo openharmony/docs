@@ -7,6 +7,7 @@
     - [选择申请权限的方式](determine-application-mode.md)
     - [声明权限](declare-permissions.md)
     - [向用户申请授权](request-user-authorization.md)
+    - [二次向用户申请授权](request-user-authorization-second.md)
     - [向用户申请单次授权](one-time-authorization.md)
     <!--Del-->
     - [申请使用受控权限](declare-permissions-in-acl.md)

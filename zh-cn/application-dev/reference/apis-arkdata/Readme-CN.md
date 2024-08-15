@@ -9,6 +9,7 @@
   - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
   - [@ohos.data.sendablePreferences (共享用户首选项)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
+  - [@ohos.data.sendableRelationalStore (共享关系型数据库)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)](js-apis-data-unifiedDataChannel.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](js-apis-data-unifiedDataChannel-sys.md)
   - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)
@@ -38,6 +39,7 @@
   - 模块
     - [Data](_data.md)
     - [RDB](_r_d_b.md)
+    - [UDMF](_u_d_m_f.md)
   - 头文件
     - [data_asset.h](data__asset_8h.md)
     - [oh_cursor.h](oh__cursor_8h.md)
@@ -46,6 +48,11 @@
     - [oh_values_bucket.h](oh__values__bucket_8h.md)
     - [relational_store_error_code.h](relational__store__error__code_8h.md)
     - [relational_store.h](relational__store_8h.md)
+    - [udmf.h](udmf_8h.md)
+    - [udmf_err_code.h](udmf__err__code_8h.md)
+    - [udmf_meta.h](udmf__meta_8h.md)
+    - [uds.h](uds_8h.md)
+    - [utd.h](utd_8h.md)
   - 结构体
     - [OH_Cursor](_o_h___cursor.md)
     - [OH_Predicates](_o_h___predicates.md)

@@ -10,7 +10,7 @@
 
 clip(value: boolean)
 
-是否对当前组件进行裁剪。
+是否对子组件超出当前组件范围外的区域进行裁剪。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -90,7 +90,7 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 
 ## maskShape<sup>12+</sup>
 
-mask(value: CircleShape | EllipseShape | PathShape | RectShape)
+maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 为组件上添加指定形状的遮罩。
 
@@ -163,6 +163,8 @@ updateColor(value: ResourceColor): void
 enableBreathingAnimation(value: boolean): void
 
 进度满时的呼吸光晕动画开关。默认关闭呼吸光晕动画。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

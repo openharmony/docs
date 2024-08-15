@@ -35,9 +35,9 @@
 1. 获取文件在应用沙箱中的路径，并转换为文件URI。
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import fileUri from '@ohos.file.fileuri';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { fileUri } from '@kit.CoreFileKit';
+   import { window } from '@kit.ArkUI';
    
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -45,7 +45,7 @@
        let pathInSandbox = this.context.filesDir + "/test1.txt";
        // 将沙箱路径转换为uri
        let uri = fileUri.getUriFromPath(pathInSandbox);
-       // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test.txt"
+       // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test1.txt"
      }
    }
    ```
@@ -58,12 +58,12 @@
    > 写权限分享时，同时授予读权限。
 
    ```ts
-   import fileUri from '@ohos.file.fileuri';
-   import window from '@ohos.window';
-   import wantConstant from '@ohos.app.ability.wantConstant';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import Want from '@ohos.app.ability.Want';
-   import { BusinessError } from '@ohos.base';
+   import { fileUri } from '@kit.CoreFileKit';
+   import { window } from '@kit.ArkUI';
+   import { wantConstant } from '@kit.AbilityKit';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { Want } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -130,9 +130,9 @@
 
 ```ts
 // xxx.ets
-import fs from '@ohos.file.fs';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getShareFile() {
   try {

@@ -20,23 +20,23 @@
 
 应用框架为容器类组件的数据加载和渲染提供了2种方式：
 
-方式1，提供ForEach实现一次性加载全量数据并循环渲染。
+方式1，提供ForEach实现一次性加载全量数据并循环渲染。需要说明，对于List中使用ForEach的场景，系统对ListItem里的内部组件节点进行了优化处理。ForEach虽然还是会构建所有的ListItem节点，但系统仅会构建并渲染当前屏幕可视区域内的ListItem及其内部组件节点。对于超出屏幕可视范围的ListItem，其内部组件节点则不会被构建。
 
 ```ts
-ForEach(  
-  arr: any[], // 需要进行数据迭代的列表数组  
-  itemGenerator: (item: any, index?: number) => void, // 子组件生成函数  
-  keyGenerator?: (item: any, index?: number) => string // （可选）键值生成函数  
+ForEach(
+  arr: Array, // 需要进行数据迭代的列表数组
+  itemGenerator: (item: Object, index: number) => void, // 子组件生成函数
+  keyGenerator?: (item: Object, index: number) => string // （可选）键值生成函数
 )
 ```
 
 方式2，提供LazyForEach实现延迟加载数据并按需渲染。
 
 ```ts
-LazyForEach(  
-  dataSource: IDataSource, // 需要进行数据迭代的数据源   
-  itemGenerator: (item: any) => void, // 子组件生成函数  
-  keyGenerator?: (item: any) => string // (可选) 键值生成函数  
+LazyForEach(
+  dataSource: IDataSource, // 需要进行数据迭代的数据源
+  itemGenerator: (item: Object, index: number) => void, // 子组件生成函数
+  keyGenerator?: (item: Object, index: number) => string // (可选)键值生成函数
 )
 ```
 
@@ -284,36 +284,37 @@ class ChatListData extends BasicDataSource {
 }
 ```
 
-接下来，需要创建示例数据。在自定义组件ChatListDisplayView中，创建一个ChatListData类型的局部变量chatList_Lazy，并在aboutToAppear()方法中创建示例数据，详细代码请参考[文件ChatListPage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/IM/Chat/features/chatlist/src/main/ets/pages/ChatListPage.ets)。
+接下来，需要创建示例数据。在自定义组件ChatListDisplayView中，创建一个ChatListData类型的局部变量chatListLazy，并在aboutToAppear()方法中创建示例数据，详细代码请参考[文件ChatListPage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/IM/Chat/features/chatlist/src/main/ets/pages/ChatListPage.ets)。
 
 ```ts
-@Component  
-export struct ChatListDisplayView {  
-    private chatList_Lazy: ChatListData = new ChatListData()  
-    ......  
-    async aboutToAppear(): Promise<void> {  
-    await makeDataLocal(this.chatList_Lazy)  
-    ......  
-   }
+@Component
+export struct ChatListDisplayView {
+  private chatListLazy = new ChatListData();
+  // ...
+  async aboutToAppear(): Promise<void> {
+    // ...
+    await makeDataLocal(this.chatListLazy, ChatListJsonData.CHAT_LIST_JSON_DATA[i]);
+    // ...
+  }
 }
 ```
 
-最后，在List组件容器中，使用LazyForEach接口遍历数据源this.chatList_Lazy循环生成ListItem列表项。其中，chatViewBuilder()方法用于布局页面列表项；代码行(msg: ChatModel) => msg.user.userId使用用户的编码作为列表项唯一的键值编码，用于区分不同的列表项。至此，使用懒加载代码实现完成，可以访问[Chat聊天示例程序](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)获取详细代码。
+最后，在List组件容器中，使用LazyForEach接口遍历数据源this.chatListLazy循环生成ListItem列表项。其中，chatViewBuilder()方法用于布局页面列表项；代码行(msg: ChatModel) => msg.user.userId使用用户的编码作为列表项唯一的键值编码，用于区分不同的列表项。至此，使用懒加载代码实现完成，可以访问[Chat聊天示例程序](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)获取详细代码。
 
 ```ts
-build() {  
-    Column() {  
-        List() {  
-        ......  
-        LazyForEach(this.chatList_Lazy, (msg: ChatModel) => {  
-        ListItem() {  
-        ......  
-        this.chatViewBuilder(msg)  
-        ......  
+build() {
+  Column() {
+    List() {
+      // ...
+      LazyForEach(this.chatListLazy, (msg: ChatModel) => {
+        ListItem() {
+          // ...
+          this.chatViewBuilder(msg)
+          // ...
         }
-       }, (msg: ChatModel) => msg.user.userId)  
-       ......  
-    }  
+      }, (msg: ChatModel) => msg.user.userId)
+      // ...
+    }
   }
 }
 ```
@@ -362,8 +363,7 @@ List/Grid容器组件的cachedCount属性用于为LazyForEach懒加载设置列�
 build() {
   Column() {
     List() {
-      ...
-      ...
+      // ...
       LazyForEach(this.chatListData, (msg: ChatModel) => {
         ListItem() {
           ChatView({ chatItem: msg })
@@ -372,9 +372,7 @@ build() {
     }
     .backgroundColor(Color.White)
     .listDirection(Axis.Vertical)
-
-    ...
-    ...
+    // ...
     .cachedCount(this.list_cachedCount ? Constants.CACHED_COUNT : 0) // 缓存列表数量  
   }
 }
@@ -522,10 +520,10 @@ build() {
     Column() {
       Stack({ alignContent: Alignment.TopEnd }) {
         Image(this.chatItem.user.userImage) // 用户头像  
-        ...
+        // ...
         if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点  
           Text(`${this.chatItem.unreadMsgCount}`) // 消息数  
-          ...
+        // ...
         }
       }
     }
@@ -560,7 +558,7 @@ build() {
     .layoutWeight(1)
   }
 
-  ...
+  // ...
 }
 ```
 
@@ -570,7 +568,7 @@ build() {
 build() {
   RelativeContainer() { // 相对布局  
     Image(this.chatItem.user.userImage) // 用户头像  
-    ...
+    // ...
     .alignRules({
       top: { anchor: '__container__', align: VerticalAlign.Top },
       left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -580,7 +578,7 @@ build() {
 
     if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点  
       Text(`${this.chatItem.unreadMsgCount}`) // 消息数  
-      ...
+      // ...
       .alignRules({
         top: { anchor: '__container__', align: VerticalAlign.Top },
         left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -590,7 +588,7 @@ build() {
     }
 
     Text(this.chatItem.user.userName) // 昵称  
-    ...
+    // ...
     .alignRules({
       top: { anchor: '__container__', align: VerticalAlign.Top },
       left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -598,21 +596,21 @@ build() {
       .id("user")
 
     Text(this.chatItem.lastTime) // 时间  
-    ...
+    // ...
     .alignRules({
       top: { anchor: '__container__', align: VerticalAlign.Top },
       right: { anchor: '__container__', align: HorizontalAlign.End }
     })
       .id("time")
     Text(this.chatItem.lastMsg) // 聊天信息  
-    ...
+    // ...
     .alignRules({
       top: { anchor: '__container__', align: VerticalAlign.Top },
       left: { anchor: '__container__', align: HorizontalAlign.Start }
     })
       .id("msg")
   }
-  ...
+  // ...
 }
 ```
 
@@ -637,4 +635,4 @@ build() {
 
 可参考以下实例：
 
-- [Sample聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+- [Sample聊天实例应用（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)

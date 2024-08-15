@@ -34,7 +34,6 @@
 import taskpool from '@ohos.taskpool';
 
 aboutToAppear() {
-  ...
   // 在生命周期中，使用TaskPool加载和解析网络数据
   this.requestByTaskPool();
 }
@@ -51,9 +50,9 @@ requestByTaskPool(): void {
   try {
     // 执行网络加载函数
     taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
-    });
+  });
   } catch (err) {
-     logger.error(TAG, "failed, " + (err as BusinessError).toString());
+    logger.error(TAG, "failed, " + (err as BusinessError).toString());
   }
 }
 ```
@@ -71,7 +70,6 @@ requestByTaskPool(): void {
 
 ```typescript
 aboutToAppear() {
-  ...
   // 在生命周期中，使用异步处理数据，延时大小视情况确定
   setTimeout(() => {
     this.workoutResult();
@@ -105,9 +103,8 @@ preload() {
   // Web组件引擎初始化
   webview.WebviewController.initializeWebEngine();
   // 启动预连接，连接地址为即将打开的网址
-  webview.WebviewController.prepareForPageLoad('https://gitee.com/harmonyos-cases/cases', true, 2);
+  webview.WebviewController.prepareForPageLoad('https://www.example.com', true, 2);
 }
-...
 ```
 
 #### 使用cachedCount属性实现预加载
@@ -124,7 +121,7 @@ preload() {
           Text("Hello" + item)
             .fontSize(50)
             .onAppear(() => {
-              console.log("appear:" + item)
+              console.info("appear:" + item)
             })
         }
       })
@@ -164,7 +161,7 @@ build() {
 
 #### 组件复用
 
-HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
+应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
 
 若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用组件复用，具体指导在[组件复用实践](component-recycle.md)、[列表场景性能提升实践](list-perf-improvment.md)、[组件复用总览](component-reuse-overview.md)：
 
@@ -179,7 +176,7 @@ HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树�
 class MyDataSource implements IDataSource {
   private dataArray: string[] = [];
   private listener: DataChangeListener | undefined;
-  ...
+  // ...
 }
 
 @Entry
@@ -241,7 +238,7 @@ import { IconItem } from './IconItem';
 class IconItemSource {
   image: string | Resource = ''
   text: string | Resource = ''
-  ...
+  // ...
 }
 
 @Entry
@@ -254,22 +251,21 @@ struct Index {
     this.iconItemSourceList.push(
       new IconItemSource($r('app.media.img1'), `label1`),
       new IconItemSource($r('app.media.img2'), `label2`),
-      new IconItemSource($r('app.media.img3'), `label3`),
+      new IconItemSource($r('app.media.img3'), `label3`)
     );
   }
 
   build() {
     Column() {
       // IconItem放置在grid内
-      GridRow({}) {
+      GridRow() {
         ForEach(this.iconItemSourceList, (item: IconItemSource) => {
           GridCol() {
             IconItem({ image: item.image, text: item.text })
-              .transition(
-                TransitionEffect.scale({})
-                  .animation({})
-                  .combine(TransitionEffect.rotate({})
-                  .animation({ }))
+              .transition(TransitionEffect.scale({ x: 0, y: 0 })
+                  .animation({ delay: 1000, duration: 1000 })
+                  .combine(TransitionEffect.rotate({ z: 1, angle: 180 })
+                  .animation({ duration: 1000 }))
               )
           }
         })
@@ -281,7 +277,6 @@ struct Index {
 // IconItem.ets
 @Component
 export struct IconItem {
-  ...
   build()  {
     Flex()  {
       Image(this.image)
@@ -306,7 +301,7 @@ export struct IconItem {
 build() {
   Column() {
     Button("Switch visible and hidden").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
     })
     Stack() {
       Scroll() {
@@ -530,7 +525,7 @@ struct StackExample {
   build() {
     Column() {
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
@@ -566,7 +561,7 @@ struct StackExample2 {
   build() {
     Column() { // 父容器
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
@@ -603,7 +598,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
@@ -617,7 +612,7 @@ struct componentSon{
   build() {
     Column() {
       Text(data.text)
-      componentGrandSon({data: this.data})
+      componentGrandSon({ data: this.data })
     }
   }
 }
@@ -650,7 +645,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
@@ -664,7 +659,7 @@ struct componentSon{
   build() {
     Column() {
       Text(data.text)
-      componentGrandSon({data: this.data})
+      componentGrandSon({ data: this.data })
     }
   }
 }
@@ -735,7 +730,7 @@ struct componentParent{
 
   build() {
     Column() {
-      componentSon({data: this.data})
+      componentSon({ data: this.data })
     }
   }
 }
@@ -1022,39 +1017,88 @@ struct Page {
 
 状态变量的管理有一定的开销，应在合理场景使用，普通的变量用状态变量标记可能会导致性能劣化
 
-反例代码如下：
-
+反例1
 ```typescript
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+
+@Entry
 @Component
-struct component {
-  @State bgcolor: string | Color = '#ffffff';
-  @State selectColor: string | Color = '#007DFF';
+struct UnnecessaryState1 {
+  @State translateObj: Translate = new Translate(); // 变量translateObj没有关联任何UI组件，不应该定义为状态变量
+  @State buttonMsg: string = 'I am button'; // 变量buttonMsg没有关联任何UI组件，不应该定义为状态变量
 
   build() {
   }
 }
 ```
+以上示例中变量translateObj、buttonMsg没有关联任何UI组件，不应该定义为状态变量，否则读写状态变量都会影响性能。
+
+反例2
+```typescript
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+
+@Entry
+@Component
+struct UnnecessaryState2 {
+  @State buttonMsg: string = 'I am button';
+
+  build() {
+    Column() {
+      Button(this.buttonMsg) // 这里只是读取变量buttonMsg的值，没有任何写的操作
+    }
+  }
+}
+```
+以上示例中变量buttonMsg仅有读取操作，没有修改过，没有修改过的状态变量不应该定义为状态变量，否则读状态变量会影响性能。
 
 正例代码如下：
-
 ```typescript
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+
+@Entry
 @Component
-struct component {
-  bgcolor: string | Color = '#ffffff';
-  selectColor: string | Color = '#007DFF';
+struct NecessaryState {
+  @State translateObj: Translate = new Translate(); // 同时存在读写操作，并关联了Button组件，推荐使用状态变量
+  buttonMsg: string = 'I am button'; // 仅读取变量buttonMsg的值，没有任何写的操作，直接使用一般变量即可
 
   build() {
+    Column() {
+      Button(this.buttonMsg)
+        .onClick(() => {
+          animateTo(
+            {
+              duration: 50
+            }, () => {
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150; // 点击时给变量translateObj重新赋值
+          })
+        })
+    }.translate({
+      x:this.translateObj.translateX // 读取translateObj中的值
+    })
   }
 }
 ```
+没有关联任何UI组件的状态变量和没有修改过的状态变量不应该定义为状态变量，直接使用一般变量即可，否则会影响性能。
 
 #### 避免在For/while等循环函数中重复读取状态变量
 
 状态变量的读取耗时远大于普通变量的读取耗时，因此要避免重复读取状态变量，而是应该放在循环外面读取，例如在打印For/while循环中打印状态变量的日志信息
 
-反例代码如下：
+反例代码：
 
 ```typescript
+import hiTraceMeter from '@ohos.hiTraceMeter';
+
+@Entry
 @Component
 struct Page {
   @State message: string = '';
@@ -1063,18 +1107,25 @@ struct Page {
     Column() {
       Button('点击打印日志')
         .onClick(() => {
+          hiTraceMeter.startTrace('print', 1);
           for (let i = 0; i < 10; i++) {
-            console.debug(this.message);
+            console.info(this.message);
           }
+          hiTraceMeter.finishTrace('print', 1);
         })
     }
   }
 }
 ```
+抓取Trace图如下：    
+![](./figures/unnecessarystate.png)  
 
-正例代码如下：
+正例代码：
 
 ```typescript
+import hiTraceMeter from '@ohos.hiTraceMeter';
+
+@Entry
 @Component
 struct Page {
   @State message: string = '';
@@ -1083,16 +1134,21 @@ struct Page {
     Column() {
       Button('点击打印日志')
         .onClick(() => {
+          hiTraceMeter.startTrace('print', 1); 
           let logMessage: string = this.message;
           for (let i = 0; i < 10; i++) {
-            console.debug(logMessage);
+            console.info(logMessage);
           }
+          hiTraceMeter.finishTrace('print', 1);
         })
     }
   }
 }
 ```
+抓取Trace图如下：  
+![](./figures/necessarystate.png)
 
+由此可见，使用普通变量代替状态变量在For/while循环中读取，可以减少耗时，因此在For/while循环中频繁读取变量时，可使用普通变量代替状态变量。
 ## 第四要素：合理使用系统接口，避免冗余操作
 
 应该合理使用系统的高频回调接口，删除不必要的Trace和日志打印，避免冗余操作，减少系统开销，[避免开发过程中的冗余操作](avoiding-redundant-operations.md)。
@@ -1233,6 +1289,7 @@ struct NegativeOfTrace {
   }
   build() {
     // 业务代码
+    // ...
   }
 }
 ```
@@ -1246,8 +1303,9 @@ struct PositiveOfTrace {
     // 业务代码
     // ...
   }
-   build() {
+  build() {
     // 业务代码
+    // ...
   }
 }
 ```
@@ -1314,7 +1372,7 @@ struct NegativeOfOnClick {
       .onAreaChange((oldValue: Area, newValue: Area) => {
         // 无任何代码
       })
-   }
+  }
 }
 ```
 
@@ -1328,8 +1386,8 @@ struct PositiveOfOnClick {
       .onClick(() => {
         // 业务代码
         // ...
-    })
-}
+      })
+  }
 ```
 
 ## 使用性能工具分析和定位问题

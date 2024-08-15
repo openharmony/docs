@@ -84,7 +84,7 @@ struct Index {
 
 | 变更前 | 变更后 |
 | --- | --- |
-|![symbolmixed_before](figures/symbol_mixedBefore.PNG) |![symbolmixed_after](figures/symbol_mixed.png)  |
+|![symbolmixed_before](figures/symbolmixed_old.png) |![symbolmixed_after](figures/symbolmixed_new.png)  |
 
 **起始API Level**
 

@@ -32,7 +32,7 @@
 
 @Sendable
 export default class Handle {
-  private static instance: Handle = new Handle;
+  private static instance: Handle = new Handle();
   static getInstance(): Handle {
     // 返回单例对象
     return Handle.instance;

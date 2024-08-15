@@ -4,9 +4,9 @@
 
 > **说明：**
 >
->本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-
+> **建议使用[Remote Communication Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/remote-communication-kit-guide-V5)进行HTTP请求，Remote Communication Kit将持续演进。**
 ## 导入模块
 
 ```ts
@@ -28,14 +28,6 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 
-class Header {
-  public contentType: string;
-
-  constructor(contentType: string) {
-    this.contentType = contentType;
-  }
-}
-
 httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
   "EXAMPLE_URL",
   {
@@ -46,7 +38,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
     // 开发者根据自身业务需要添加header字段
-    header: new Header('application/json'),
+    header: { 'Accept' : 'application/json' },
     readTimeout: 60000, // 可选，默认为60000ms
     connectTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
@@ -66,7 +58,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
         publicKeyHash: 'Pin2', // 由应用传入的证书PIN码，自API 12开始支持该属性
         hashAlgorithm: 'SHA-256' // 加密算法，当前仅支持SHA-256，自API 12开始支持该属性
       }
-    ]
+    ],
     multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
       {
         name: "Part1", // 数据名，自API 11开始支持该属性
@@ -149,6 +141,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+> 若url包含中文或其他语言，需先调用encodeURL(url)编码，再发起请求。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -197,6 +190,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -279,6 +273,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -389,6 +384,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -498,6 +494,7 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -572,6 +569,7 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -673,6 +671,7 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -859,9 +858,6 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
 
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -919,9 +915,6 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
 
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -978,9 +971,6 @@ httpRequest.off("dataEnd");
 on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
-
-> **说明：**
-> 暂不支持订阅HTTP流式数据上传的相关事件。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

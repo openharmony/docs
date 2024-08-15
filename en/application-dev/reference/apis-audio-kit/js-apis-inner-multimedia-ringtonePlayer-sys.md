@@ -12,7 +12,7 @@ This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemS
 ## Modules to Import
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## RingtoneOptions
@@ -25,8 +25,8 @@ Enumerates the ringtone parameters.
 
 | Name     | Type           |Mandatory  | Description                             |
 | --------- | -------------- | ---- | --------------------------------- |
-| volume    | number         | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1.00** indicates the maximum volume (100%).|
-| loop      | boolean        | Yes  | Whether to enable loop playback. The value **true** means to enable loop playback, and **false** means the opposite.|
+| volume    | number         | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1.00** indicates the maximum volume (100%). |
+| loop      | boolean        | Yes  | Whether to enable loop playback. The value **true** means to enable loop playback, and **false** means the opposite. |
 
 ## RingtonePlayer
 
@@ -38,14 +38,14 @@ Provides APIs for setting and obtaining system ringtone parameters as well as pl
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
-| Name | Type                       | Readable| Writable| Description              |
+| Name | Type                       | Readable | Writable | Description              |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
-| state | [media.AVPlayerState](../apis-media-kit/js-apis-media.md#avplayerstate9) | Yes  | No  | Audio renderer state.|
+| state | [media.AVPlayerState](../apis-media-kit/js-apis-media.md#avplayerstate9) | Yes  | No  | Audio renderer state. |
 
 **Example**
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 let state: media.AVPlayerState = systemRingtonePlayer.state;
 ```
 
@@ -61,14 +61,14 @@ Obtains the title of a system ringtone. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
 | callback | AsyncCallback&lt;string&gt;              | Yes  | Callback used to return the ringtone title obtained.    |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.getTitle((err: BusinessError, value: string) => {
   if (err) {
@@ -93,12 +93,12 @@ Obtains the title of a system ringtone. This API uses a promise to return the re
 
 | Type                 | Description                             |
 | --------------------- | -------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the ringtone title obtained.|
+| Promise&lt;string&gt; | Promise used to return the ringtone title obtained. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.getTitle().then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system ringtone title is obtained ${value}.`);
@@ -119,15 +119,15 @@ Obtains the information about the audio renderer used by the ringtone. This API 
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Yes| Callback used to return the audio renderer information obtained.|
+| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Yes | Callback used to return the audio renderer information obtained. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
@@ -155,13 +155,13 @@ Obtains the information about the audio renderer used by the ringtone. This API 
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise used to return the audio renderer information obtained.|
+| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise used to return the audio renderer information obtained. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
@@ -185,15 +185,15 @@ Sets ringtone parameters. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
 | options  | [RingtoneOptions](#ringtoneoptions)      | Yes  | Ringtone parameters.            |
-| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RingtoneOptions {
   volume: number = 0;
@@ -222,7 +222,7 @@ Sets ringtone parameters. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
 | options  | [RingtoneOptions](#ringtoneoptions)      | Yes  | Ringtone parameters.             |
 
@@ -230,12 +230,12 @@ Sets ringtone parameters. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RingtoneOptions {
   volume: number = 0;
@@ -262,14 +262,14 @@ Starts playing the ringtone. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.start((err: BusinessError) => {
   if (err) {
@@ -294,12 +294,12 @@ Starts playing the ringtone. This API uses a promise to return the result.
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.start().then(() => {
   console.info(`Promise returned to indicate a successful starting of ringtone.`);
@@ -320,14 +320,14 @@ Stops playing the ringtone. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.stop((err: BusinessError) => {
   if (err) {
@@ -352,12 +352,12 @@ Stops playing the ringtone. This API uses a promise to return the result.
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.stop().then(() => {
   console.info(`Promise returned to indicate a successful stopping of ringtone.`);
@@ -378,14 +378,14 @@ Releases the ringtone player. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
 | callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.    |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.release((err: BusinessError) => {
   if (err) {
@@ -415,7 +415,7 @@ Releases the ringtone player. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.release().then(() => {
   console.info(`Promise returned to indicate a successful releasing of ringtone player.`);
@@ -436,16 +436,16 @@ Subscribes to audio interruption events. This API uses a callback to obtain inte
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                                                                      |
+| Name  | Type                    | Mandatory | Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio rendering is interrupted.|
+| type     | string                  | Yes  | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio rendering is interrupted. |
 | callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback used to return the audio interruption event.   |
 
 **Error codes**
 
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
@@ -453,7 +453,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
 let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
@@ -512,15 +512,15 @@ Unsubscribes from audio interruption events.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                             |
+| Name | Type  | Mandatory | Description                                             |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | Yes  | Event type. The value is fixed at **'audioInterrupt'**.|
+| type   | string | Yes  | Event type. The value is fixed at **'audioInterrupt'**. |
 
 **Error codes**
 
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | --------------------------------------------|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |

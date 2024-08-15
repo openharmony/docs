@@ -14,6 +14,10 @@ Path2D(unit?: LengthMetricsUnit)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
@@ -26,26 +30,34 @@ Path2D(description: string, unit?: LengthMetricsUnit)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| ------ | -------- | ---- | ------ | ----- |
-| description | string | 是 | - | 符合 SVG 路径描述规范的路径字符串 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | DEFAULT | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。|
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| ------ | -------- | ---- | ----- |
+| description | string | 是 | 符合 SVG 路径描述规范的路径字符串 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。|
 
 ## addPath
 
-addPath(path: path2D, transform?:Matrix2D): void
+addPath(path: Path2D, transform?: Matrix2D): void
 
 将另一个路径添加到当前的路径对象中。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数        | 类型       | 必填   | 默认值  | 描述              |
 | --------- | -------- | ---- | ---- | --------------- |
-| path      | [path2D](ts-components-canvas-path2d.md)   | 是    | -    | 需要添加到当前路径的路径对象，路径单位：px。 |
+| path      | [Path2D](ts-components-canvas-path2d.md)   | 是    | -    | 需要添加到当前路径的路径对象，路径单位：px。 |
 | transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否    | null | 新增路径的变换矩阵对象。    |
 
 
@@ -90,6 +102,10 @@ closePath(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **示例：**
 
   ```ts
@@ -132,12 +148,16 @@ moveTo(x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述       |
 | ---- | ------ | ---- | ---- | -------- |
-| x    | number | 是    | 0    | 目标点X轴坐标，默认单位：vp。 |
-| y    | number | 是    | 0    | 目标点Y轴坐标，默认单位：vp。 |
+| x    | number | 是    | 0    | 目标点X轴坐标。<br>默认单位：vp。 |
+| y    | number | 是    | 0    | 目标点Y轴坐标。<br>默认单位：vp。 |
 
 **示例：**
 
@@ -181,12 +201,16 @@ lineTo(x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述       |
 | ---- | ------ | ---- | ---- | -------- |
-| x    | number | 是    | 0    | 目标点X轴坐标，默认单位：vp。 |
-| y    | number | 是    | 0    | 目标点Y轴坐标，默认单位：vp。 |
+| x    | number | 是    | 0    | 目标点X轴坐标。<br>默认单位：vp。 |
+| y    | number | 是    | 0    | 目标点Y轴坐标。<br>默认单位：vp。 |
 
 **示例：**
 
@@ -231,16 +255,20 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述             |
 | ---- | ------ | ---- | ---- | -------------- |
-| cp1x | number | 是    | 0    | 第一个贝塞尔参数的x坐标值，默认单位：vp。 |
-| cp1y | number | 是    | 0    | 第一个贝塞尔参数的y坐标值，默认单位：vp。 |
-| cp2x | number | 是    | 0    | 第二个贝塞尔参数的x坐标值，默认单位：vp。 |
-| cp2y | number | 是    | 0    | 第二个贝塞尔参数的y坐标值，默认单位：vp。 |
-| x    | number | 是    | 0    | 路径结束时的x坐标值，默认单位：vp。    |
-| y    | number | 是    | 0    | 路径结束时的y坐标值，默认单位：vp。    |
+| cp1x | number | 是    | 0    | 第一个贝塞尔参数的x坐标值。<br>默认单位：vp。 |
+| cp1y | number | 是    | 0    | 第一个贝塞尔参数的y坐标值。<br>默认单位：vp。 |
+| cp2x | number | 是    | 0    | 第二个贝塞尔参数的x坐标值。<br>默认单位：vp。 |
+| cp2y | number | 是    | 0    | 第二个贝塞尔参数的y坐标值。<br>默认单位：vp。 |
+| x    | number | 是    | 0    | 路径结束时的x坐标值。<br>默认单位：vp。    |
+| y    | number | 是    | 0    | 路径结束时的y坐标值。<br>默认单位：vp。    |
 
 **示例：**
 
@@ -276,20 +304,24 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 ## quadraticCurveTo
 
-quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
+quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 创建二次贝赛尔曲线的路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述          |
 | ---- | ------ | ---- | ---- | ----------- |
-| cpx  | number | 是    | 0    | 贝塞尔参数的x坐标值，默认单位：vp。 |
-| cpy  | number | 是    | 0    | 贝塞尔参数的y坐标值，默认单位：vp。 |
-| x    | number | 是    | 0    | 路径结束时的x坐标值，默认单位：vp。 |
-| y    | number | 是    | 0    | 路径结束时的y坐标值，默认单位：vp。 |
+| cpx  | number | 是    | 0    | 贝塞尔参数的x坐标值。<br>默认单位：vp。 |
+| cpy  | number | 是    | 0    | 贝塞尔参数的y坐标值。<br>默认单位：vp。 |
+| x    | number | 是    | 0    | 路径结束时的x坐标值。<br>默认单位：vp。 |
+| y    | number | 是    | 0    | 路径结束时的y坐标值。<br>默认单位：vp。 |
 
 **示例：**
 
@@ -331,13 +363,17 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数               | 类型      | 必填   | 默认值   | 描述         |
 | ---------------- | ------- | ---- | ----- | ---------- |
-| x                | number  | 是    | 0     | 弧线圆心的x坐标值，默认单位：vp。 |
-| y                | number  | 是    | 0     | 弧线圆心的y坐标值，默认单位：vp。 |
-| radius           | number  | 是    | 0     | 弧线的圆半径，默认单位：vp。    |
+| x                | number  | 是    | 0     | 弧线圆心的x坐标值。<br>默认单位：vp。 |
+| y                | number  | 是    | 0     | 弧线圆心的y坐标值。<br>默认单位：vp。 |
+| radius           | number  | 是    | 0     | 弧线的圆半径。<br>默认单位：vp。    |
 | startAngle       | number  | 是    | 0     | 弧线的起始弧度。   |
 | endAngle         | number  | 是    | 0     | 弧线的终止弧度。   |
 | counterclockwise | boolean | 否    | false | 是否逆时针绘制圆弧。 |
@@ -381,15 +417,19 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数     | 类型     | 必填   | 默认值  | 描述              |
 | ------ | ------ | ---- | ---- | --------------- |
-| x1     | number | 是    | 0    | 圆弧经过的第一个点的x坐标值，默认单位：vp。 |
-| y1     | number | 是    | 0    | 圆弧经过的第一个点的y坐标值，默认单位：vp。 |
-| x2     | number | 是    | 0    | 圆弧经过的第二个点的x坐标值，默认单位：vp。 |
-| y2     | number | 是    | 0    | 圆弧经过的第二个点的y坐标值，默认单位：vp。 |
-| radius | number | 是    | 0    | 圆弧的圆半径值，默认单位：vp。 |
+| x1     | number | 是    | 0    | 圆弧经过的第一个点的x坐标值。<br>默认单位：vp。 |
+| y1     | number | 是    | 0    | 圆弧经过的第一个点的y坐标值。<br>默认单位：vp。 |
+| x2     | number | 是    | 0    | 圆弧经过的第二个点的x坐标值。<br>默认单位：vp。 |
+| y2     | number | 是    | 0    | 圆弧经过的第二个点的y坐标值。<br>默认单位：vp。 |
+| radius | number | 是    | 0    | 圆弧的圆半径值。<br>默认单位：vp。 |
 
 **示例：**
 
@@ -430,15 +470,19 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数               | 类型      | 必填   | 默认值   | 描述                                       |
 | ---------------- | ------- | ---- | ----- | ---------------------------------------- |
-| x                | number  | 是    | 0     | 椭圆圆心的x轴坐标，默认单位：vp。|
-| y                | number  | 是    | 0     | 椭圆圆心的y轴坐标，默认单位：vp。|
-| radiusX          | number  | 是    | 0     | 椭圆x轴的半径长度，默认单位：vp。|
-| radiusY          | number  | 是    | 0     | 椭圆y轴的半径长度，默认单位：vp。|
-| rotation         | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。                           |
+| x                | number  | 是    | 0     | 椭圆圆心的x轴坐标。<br>默认单位：vp。|
+| y                | number  | 是    | 0     | 椭圆圆心的y轴坐标。<br>默认单位：vp。|
+| radiusX          | number  | 是    | 0     | 椭圆x轴的半径长度。<br>默认单位：vp。|
+| radiusY          | number  | 是    | 0     | 椭圆y轴的半径长度。<br>默认单位：vp。|
+| rotation         | number  | 是    | 0     | 椭圆的旋转角度。<br>单位为弧度。                           |
 | startAngle       | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。                        |
 | endAngle         | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。                        |
 | counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。 |
@@ -482,14 +526,18 @@ rect(x: number, y: number, w: number, h: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述            |
 | ---- | ------ | ---- | ---- | ------------- |
-| x    | number | 是    | 0    | 指定矩形的左上角x坐标值，默认单位：vp。 |
-| y    | number | 是    | 0    | 指定矩形的左上角y坐标值，默认单位：vp。 |
-| w    | number | 是    | 0    | 指定矩形的宽度，默认单位：vp。 |
-| h    | number | 是    | 0    | 指定矩形的高度，默认单位：vp。 |
+| x    | number | 是    | 0    | 指定矩形的左上角x坐标值。<br>默认单位：vp。 |
+| y    | number | 是    | 0    | 指定矩形的左上角y坐标值。<br>默认单位：vp。 |
+| w    | number | 是    | 0    | 指定矩形的宽度。<br>默认单位：vp。 |
+| h    | number | 是    | 0    | 指定矩形的高度。<br>默认单位：vp。 |
 
 **示例：**
 

@@ -61,7 +61,7 @@ RemoteWindow需要接收由[windowAnimationManager](../js-apis-windowAnimationMa
 
 ```ts
 // WindowAnimationControllerImpl.ets 文件
-import windowAnimationManager from '@ohos.animation.windowAnimationManager';
+import { windowAnimationManager } from '@kit.ArkUI';
 
 export default class WindowAnimationControllerImpl implements windowAnimationManager.WindowAnimationController {
   onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget,
@@ -117,7 +117,7 @@ export default class WindowAnimationControllerImpl implements windowAnimationMan
 
 ```ts
 // RemoteWindowExample.ets 文件
-import windowAnimationManager from '@ohos.animation.windowAnimationManager';
+import { windowAnimationManager } from '@kit.ArkUI';
 import WindowAnimationControllerImpl from './WindowAnimationControllerImpl';
 
 @Entry

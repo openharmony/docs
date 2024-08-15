@@ -9,7 +9,7 @@ The **tagSession** module provides common APIs for establishing connections and 
 ## **Modules to Import**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 ```
 
 ## tagSession
@@ -35,20 +35,20 @@ Obtains the **tagInfo** object provided by the NFC service when the tag is dispa
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| TagInfo  | **Taginfo** object obtained.|
+| TagInfo  | **Taginfo** object obtained. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 let tagInfo : TagInfo = tag.getIsoDep(tagInfo).getTagInfo();
-console.log("tag tagInfo: " + tagInfo);
+console.info("tag tagInfo: " + tagInfo);
 ```
 
 ### tagSession.connectTag<sup>(deprecated)</sup>
@@ -66,20 +66,20 @@ Connects to this tag. Call this API to set up a connection before reading data f
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| boolean  | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean  | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 let connectStatus : boolean = tag.getIsoDep(tagInfo).connectTag();
-console.log("connectStatus: " + connectStatus);
+console.info("connectStatus: " + connectStatus);
 ```
 
 ### tagSession.connect<sup>9+</sup>
@@ -98,23 +98,25 @@ Connects to this tag. Call this API to set up a connection before reading data f
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 try {
     tag.getIsoDep(tagInfo).connect(); 
-    console.log("tag connect success");
-} catch (busiError) {
-    console.log("tag connect busiError: " + busiError);
+    console.info("tag connect success");
+} catch (businessError) {
+    console.error("tag connect businessError: " + businessError);
 }
 ```
 
@@ -134,7 +136,7 @@ Resets the connection to this tag.
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
@@ -158,23 +160,25 @@ Resets the connection to this tag.
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 try {
     tag.getIsoDep(tagInfo).resetConnection(); 
-    console.log("tag resetConnection success");
-} catch (busiError) {
-    console.log("tag resetConnection busiError: " + busiError);
+    console.info("tag resetConnection success");
+} catch (businessError) {
+    console.error("tag resetConnection businessError: " + businessError);
 }
 ```
 
@@ -191,20 +195,20 @@ Checks whether the tag is connected.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| boolean  | Returns **true** if the tag is connected; returns **false** otherwise.|
+| boolean  | Returns **true** if the tag is connected; returns **false** otherwise. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 let isTagConnected = tag.getIsoDep(tagInfo).isTagConnected(); 
-console.log("isTagConnected: " + isTagConnected);
+console.info("isTagConnected: " + isTagConnected);
 ```
 
 ### tagSession.isConnected<sup>9+</sup>
@@ -219,23 +223,32 @@ Checks whether the tag is connected.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| boolean  | Returns **true** if the tag is connected; returns **false** otherwise.|
+| boolean  | Returns **true** if the tag is connected; returns **false** otherwise. |
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID | Error Message|
+| ------- | -------|
+|801 | Capability not supported.          |
+
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 try {
     let isConnected = tag.getIsoDep(tagInfo).isConnected(); 
-    console.log("tag isConnected = " + isConnected);
-} catch (busiError) {
-    console.log("tag isConnected busiError: " + busiError);
+    console.info("tag isConnected = " + isConnected);
+} catch (businessError) {
+    console.error("tag isConnected businessError: " + businessError);
 }
 ```
 
@@ -254,19 +267,19 @@ Obtains the maximum length of the data that can be sent to this tag.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number  | Maximum data length obtained. The value cannot be a negative number.|
+| number  | Maximum data length obtained. The value cannot be a negative number. |
 
 **Example**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 let maxSendLen = tag.getIsoDep(tagInfo).getMaxSendLength(); 
-console.log("tag maxSendLen: " + maxSendLen);
+console.info("tag maxSendLen: " + maxSendLen);
 ```
 
 ### tagSession.getMaxTransmitSize<sup>9+</sup>
@@ -279,32 +292,36 @@ Obtains the maximum length of the data that can be sent to this tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number  | Maximum data length obtained. The value cannot be a negative number.|
+| number  | Maximum data length obtained. The value cannot be a negative number. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **Example**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 try {
     let maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
-    console.log("tag maxTransmitSize = " + maxTransmitSize);
-} catch (busiError) {
-    console.log("tag getMaxTransmitSize busiError: " + busiError);
+    console.info("tag maxTransmitSize = " + maxTransmitSize);
+} catch (businessError) {
+    console.error("tag getMaxTransmitSize businessError: " + businessError);
 }
 ```
 
@@ -323,20 +340,20 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number  | Timeout period obtained, in milliseconds. The value cannot be a negative number.|
+| number  | Timeout period obtained, in milliseconds. The value cannot be a negative number. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 let sendDataTimeout = tag.getIsoDep(tagInfo).getSendDataTimeout(); 
-console.log("tag sendDataTimeout: " + sendDataTimeout);
+console.info("tag sendDataTimeout: " + sendDataTimeout);
 ```
 
 ### tagSession.getTimeout<sup>9+</sup>
@@ -353,31 +370,33 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| number  | Timeout period obtained, in milliseconds. The value cannot be a negative number.|
+| number  | Timeout period obtained, in milliseconds. The value cannot be a negative number. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 try {
     let timeout = tag.getIsoDep(tagInfo).getTimeout(); 
-    console.log("tag timeout = " + timeout);
-} catch (busiError) {
-    console.log("tag getTimeout busiError: " + busiError);
+    console.info("tag timeout = " + timeout);
+} catch (businessError) {
+    console.error("tag getTimeout businessError: " + businessError);
 }
 ```
 
@@ -396,27 +415,27 @@ Sets the maximum time allowed for sending data to this tag, in ms.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| timeout | number | Yes| Timeout period to set, in milliseconds. The value cannot be a negative number.|
+| timeout | number | Yes | Timeout period to set, in milliseconds. The value cannot be a negative number. |
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
-| boolean  | Returns **true** if the timeout period is set successfully; returns **false** otherwise.|
+| boolean  | Returns **true** if the timeout period is set successfully; returns **false** otherwise. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
 let timeoutMs = 700;  // Change it as required.
 let setStatus = tag.getIsoDep(tagInfo).setSendDataTimeout(timeoutMs); 
-console.log("tag setSendDataTimeout setStatus: " + setStatus);
+console.info("tag setSendDataTimeout setStatus: " + setStatus);
 ```
 
 ### tagSession.setTimeout<sup>9+</sup>
@@ -433,22 +452,25 @@ Sets the maximum time allowed for sending data to this tag, in ms.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| timeout | number | Yes| Timeout period to set, in milliseconds. The value cannot be a negative number.|
+| timeout | number | Yes | Timeout period to set, in milliseconds. The value cannot be a negative number. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
@@ -456,9 +478,9 @@ import tag from '@ohos.nfc.tag';
 let timeoutMs = 700;  // Change it as required.
 try {
     tag.getIsoDep(tagInfo).setTimeout(timeoutMs); 
-    console.log("tag setTimeout success");
-} catch (busiError) {
-    console.log("tag setTimeout busiError: " + busiError);
+    console.info("tag setTimeout success");
+} catch (businessError) {
+    console.error("tag setTimeout businessError: " + businessError);
 }
 ```
 
@@ -477,20 +499,20 @@ Sends data to this tag. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| data | number[] | Yes | Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | Promise<number[]> | Promise used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import tag from '@kit.ConnectivityKit';
 import { BusinessError } from '@ohos.base';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
@@ -500,16 +522,16 @@ function tagSessionDemo() {
     // Connect to the tag if it is not connected.
     if (!tag.getIsoDep(tagInfo).isTagConnected()) {
         if (!tag.getIsoDep(tagInfo).connectTag()) {
-            console.log("tagSession connectTag failed.");
+            console.error("tagSession connectTag failed.");
             return;
         }
     }  
 
     let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
     tag.getIsoDep(tagInfo).sendData(cmdData).then((response) => {
-    console.log("tagSession sendData Promise response: " + response);
+    console.info("tagSession sendData Promise response: " + response);
     }).catch((err : BusinessError)=> {
-    console.log("tagSession sendData Promise err: " + err);
+    console.error("tagSession sendData Promise err: " + err);
     });
 }
 ```
@@ -529,15 +551,15 @@ Sends data to this tag. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| callback | AsyncCallback<number[]> | Yes| Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| data | number[] | Yes | Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
+| callback | AsyncCallback<number[]> | Yes | Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
@@ -546,7 +568,7 @@ function tagSessionDemo() {
     // Connect to the tag if it is not connected.
     if (!tag.getIsoDep(tagInfo).isTagConnected()) {
         if (!tag.getIsoDep(tagInfo).connectTag()) {
-            console.log("tagSession connectTag failed.");
+            console.error("tagSession connectTag failed.");
             return;
         }
     }
@@ -554,9 +576,9 @@ function tagSessionDemo() {
     let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
     tag.getIsoDep(tagInfo).sendData(cmdData, (err, response)=> {
         if (err) {
-            console.log("tagSession sendData AsyncCallback err: " + err);
+            console.error("tagSession sendData AsyncCallback err: " + err);
         } else {
-            console.log("tagSession sendData AsyncCallback response: " + response);
+            console.info("tagSession sendData AsyncCallback response: " + response);
         }
     });
 }
@@ -576,13 +598,13 @@ Transmits data to this tag. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
+| data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Return value**
 
-| **Type**| **Description**                            |
+| **Type** | **Description**                            |
 | ------------------ | --------------------------|
 | Promise<number[]> | Promise used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
@@ -590,16 +612,19 @@ Transmits data to this tag. This API uses a promise to return the result.
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
@@ -610,20 +635,20 @@ function tagSessionDemo() {
         if (!tag.getIsoDep(tagInfo).isConnected()) {
             tag.getIsoDep(tagInfo).connect();
         }
-    } catch (busiError) {
-        console.log("tag connect busiError: " + busiError);
+    } catch (businessError) {
+        console.error("tag connect businessError: " + businessError);
         return;
     }
 
     let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
     try {
     tag.getIsoDep(tagInfo).transmit(cmdData).then((response) => {
-        console.log("tagSession transmit Promise response: " + response);
+        console.info("tagSession transmit Promise response: " + response);
     }).catch((err : BusinessError)=> {
-        console.log("tagSession transmit Promise err: " + err);
+        console.error("tagSession transmit Promise err: " + err);
     });
-    } catch (busiError) {
-        console.log("tag transmit busiError: " + busiError);
+    } catch (businessError) {
+        console.error("tag transmit businessError: " + businessError);
         return;
     }
 }
@@ -643,24 +668,27 @@ Transmits data to this tag. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
+| Name  | Type                   | Mandatory | Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
-| callback | AsyncCallback<number[]> | Yes| Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| callback | AsyncCallback<number[]> | Yes | Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID| Error Message|
+| ID | Error Message|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **Example**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
@@ -671,8 +699,8 @@ function tagSessionDemo() {
         if (!tag.getIsoDep(tagInfo).isConnected()) {
             tag.getIsoDep(tagInfo).connect();
         }
-    } catch (busiError) {
-        console.log("tag connect busiError: " + busiError);
+    } catch (businessError) {
+        console.error("tag connect businessError: " + businessError);
         return;
     }
 
@@ -680,13 +708,13 @@ function tagSessionDemo() {
     try {
         tag.getIsoDep(tagInfo).transmit(cmdData, (err, response)=> {
             if (err) {
-                console.log("tagSession transmit AsyncCallback err: " + err);
+                console.error("tagSession transmit AsyncCallback err: " + err);
             } else {
-                console.log("tagSession transmit AsyncCallback response: " + response);
+                console.info("tagSession transmit AsyncCallback response: " + response);
             }
         });
-    } catch (busiError) {
-        console.log("tag transmit busiError: " + busiError);
+    } catch (businessError) {
+        console.error("tag transmit businessError: " + businessError);
         return;
     }
 }

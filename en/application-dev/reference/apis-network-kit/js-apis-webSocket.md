@@ -951,16 +951,17 @@ Represents the result obtained from the **close** event reported when the WebSoc
 | reason | string | Yes  | Error cause for closing the connection.|
 
 ## ResponseHeaders<sup>12+</sup>
+type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 
 Enumerates the response headers sent by the server.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Type  | Mandatory| Description                                                        |
-| ------ | ---- | ------------------------------------------------------------ |
-| [k:string]:string | No  | The header data type is key-value pair.|
-| string[] | No  | The header data type is string.|
-| undefined | No  | The header data type is **undefined**.|
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [k:string]:string | The header data type is key-value pair.|
+| string[]  | The header data type is string.|
+| undefined | The header data type is **undefined**.|
 
 ## Result Codes for Connection Closing
 

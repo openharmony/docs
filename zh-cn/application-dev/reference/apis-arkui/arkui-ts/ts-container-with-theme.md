@@ -42,7 +42,9 @@ WithTheme(options: WithThemeOptions)
 
 ## 示例
 
-设置局部深浅色时，需要在resources文件夹下添加dark目录，dark目录添加dark.json资源文件，深浅色模式才会生效。
+设置局部深浅色时，需要添加dark.json资源文件，深浅色模式才会生效。
+
+![resources_dark](figures/resources_dark.png)
 
 ```ts
 // 指定局部深浅色模式

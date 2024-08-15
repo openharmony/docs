@@ -30,7 +30,7 @@
 以下分别采用纯H5、非同层渲染和同层渲染的三种方式，加载相同的商城组件到相同的H5页面上，并抓取trace对比三者之间的区别，其中商城页面大致如图二所示：
 
 **图二：商城页面场景**  
-<img src="./figures/webview-render-app-components_2.jpeg" width="300px"></img>
+![Webview](./figures/webview-render-app-components_2.jpeg)
 
 场景实例源码的核心部分如下：
 

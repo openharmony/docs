@@ -146,7 +146,7 @@ Sets the data associated with the specified key. If there is no data associated 
 
 | Type     | Description                       |
 | ------- | ------------------------ |
-| boolean | Operation result. The value **true** means that the operation is successful, and **false** means otherwise.|
+| boolean | Operation result. The value **true** means that the operation is successful, and **false** means the opposite.|
 
 **Example**
 
@@ -211,7 +211,7 @@ If the key is null, all data will be deleted.
 
 | Type     | Description                       |
 | ------- | ------------------------ |
-| boolean | Operation result. The value **true** means that the operation is successful, and **false** means otherwise.|
+| boolean | Operation result. The value **true** means that the operation is successful, and **false** means the opposite.|
 
 **Example**
 
@@ -238,7 +238,7 @@ Sets a custom drag image.
 
 | Type  | Description                       |
 | ---- | ------------------------ |
-| boolean | Operation result. The value **true** means that the operation is successful, and **false** means otherwise.|
+| boolean | Operation result. The value **true** means that the operation is successful, and **false** means the opposite.|
 
 **Example**
 

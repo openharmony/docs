@@ -25,10 +25,10 @@ API详细介绍请参见[ohos.file.securityLabel](../reference/apis-core-file-ki
 
   
 ```ts
-import securityLabel from '@ohos.file.securityLabel';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
+import { securityLabel } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 // 获取需要设备数据等级的文件沙箱路径
 let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息

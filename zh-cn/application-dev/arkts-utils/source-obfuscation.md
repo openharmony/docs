@@ -3,7 +3,8 @@
 ## 代码混淆简介
 
 针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。  
-DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本的Stage模型、[编译模式为release](#说明)时自动进行代码混淆。  
+DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本的Stage模型、[编译模式为release](#说明)时自动进行代码混淆，其仅对参数名和局部变量名进行混淆。  
+**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能，如果在模块配置文件build-profile.json5开启代码混淆，混淆规则配置文件obfuscation-rules.txt中默认开启-enable-property-obfuscation、-enable-toplevel-obfuscation、-enable-filename-obfuscation、-enable-export-obfuscation四项推荐选项，开发者可进一步在obfuscation-rules.txt文件中更改配置。**
 
 ### 使用约束
 
@@ -21,15 +22,17 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 
 ## 开启代码混淆
 
-代码混淆已经被集成了到SDK中，可以在DevEco Studio中很方便地使用。
+代码混淆能力已在系统中集成，可通过以下方式在DevEco Studio开启使用。
 
 代码混淆目前只提供名称混淆的能力(因为其它混淆能力会劣化性能)。 开启代码混淆可以混淆以下名称:
 
 * 参数名和局部变量名  
 * 顶层作用域的名称  
-* 属性名称  
+* 属性名称
+* 导出名称
+* 文件名称
 
-代码混淆默认使能对参数名和局部变量名的混淆。顶层作用域名称和属性名称的混淆是默认关闭的，因为默认打开可能会导致运行时错误。这些混淆功能通过混淆选项来开启它们。
+混淆开启后，默认使能对参数名和局部变量名的混淆，无需选项配置。顶层作用域名称混淆、属性名称的混淆、导出名称混淆、文件名混淆打开可能会导致运行时错误，这些混淆功能通过混淆配置选项来开启/关闭它们。
 
 创建一个新工程的时候，配置文件build-profile.json5中会自动生成以下内容:
 
@@ -58,7 +61,7 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 }
 ```
 
-混淆功能默认开启，若被关闭希望重新开启混淆需要满足条件: 属性ruleOptions.enable的值为true。
+混淆功能被关闭希望重新开启混淆需要满足条件: 属性ruleOptions.enable的值为true。
 
 属性ruleOptions.files中指定的混淆配置文件会在构建HAP、HSP或HAR的时候生效。  
 属性consumerFiles中指定的混淆配置文件会在构建依赖这个library的模块时生效。 这些混淆配置文件的内容还会被合并到HAR包中的obfuscation.txt文件。
@@ -66,11 +69,13 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 当构建HAP、HSP和HAR的时候，最终的混淆规则是当前构建模块的ruleOptions.files属性，依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。  
 如果构建的是HAR，HAR包中的obfuscation.txt是自身的consumerFiles属性， 依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。构建HAP、HSP不会生成obfuscation.txt。详细合并的策略可以查看[混淆规则合并策略](#混淆规则合并策略)。
 
+**规则变更提醒**
+
+从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能，即`"enable": false`；混淆规则配置文件obfuscation-rules.txt中默认开启enable-property-obfuscation、-enable-toplevel-obfuscation、-enable-filename-obfuscation、-enable-export-obfuscation四项推荐的选项。这四项规则开启可能会引发应用运行时崩溃，建议阅读[排查指南](#如何排查功能异常)来修正应用功能。
+
 ### 混淆规则配置文件
 
-在创建工程或library的时候，DevEco Studio会自动生成`obfuscation-rules.txt`和`consumer-rules.txt`文件，
-但是它们默认不会包含任何混淆规则。混淆规则可以写到这些文件中，或者其它自定义文件，
-然后将文件路径放到`ruleOptions.files`和`consumerFiles`中，如下面的例子所示。
+在创建工程或library的时候，DevEco Studio会自动生成`obfuscation-rules.txt`和`consumer-rules.txt`文件。混淆规则可以写到这些文件中，或者其它自定义文件，然后将文件路径放到`ruleOptions.files`和`consumerFiles`中，如下面的例子所示。
 
 ```
 "buildOption": {
@@ -123,7 +128,7 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
     ```
 
 * 被[保留选项](#保留选项)指定的属性名不会被混淆。
-* SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/cache/{...}/release/obfuscation中
+* SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中
 * 字符串字面量属性名不会被混淆。例如下面例子中的`"name"`和`"age"`不会被混淆。
 
     ```
@@ -169,7 +174,7 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 
 * oh-package.json5文件中'main'、'types'字段配置的文件/文件夹名称不会被混淆。
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
-* 被[`-keep-file-name`](#保留选项)指定的文件/文件夹名称不会被混淆。
+* 被[-keep-file-name](#保留选项)指定的文件/文件夹名称不会被混淆。
 * 非ECMAScript模块引用方式（ECMAScript模块示例：`import {foo} from './filename'`）
 * 非路径引用方式，例如例子中的json5不会被混淆 `import module from 'json5'`  
 
@@ -180,6 +185,10 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 
 * 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
 * 当模块中包含Worker多线程服务时，用户需要将`build-profiles.json5`中，'buildOption'-'sourceOption'-'workers'字段下所有的路径配置到白名单中。
+
+**提醒**：
+
+编译入口、Ability组件、Worker多线程，这三种不能混淆的文件名在DevEco Studio 5.0.3.500版本已被自动收集进白名单中，无需再手动配置，其它不能混淆文件名的场景仍需开发者手动配置
 
 #### -enable-export-obfuscation
 
@@ -201,7 +210,7 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 
     // 保留接口名称配置示例：
     // HSP以及依赖此HSP的模块中obfuscation-rules.txt文件配置： 
-    keep-global-name
+    -keep-global-name
     add
     customApiName
     ```
@@ -237,16 +246,16 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 该选项应该在增量编译场景中被使用。
 
 默认情况下，DevEco Studio会在临时的缓存目录中保存缓存文件，并且在增量编译场景中自动应用该缓存文件。  
-缓存目录：build/cache/{...}/release/obfuscation
+缓存目录：build/default/cache/{...}/release/obfuscation
 
 #### -remove-comments
 
-删除文件中的所有注释，包括单行、多行，及JsDoc注释。以下场景除外：
-声明文件中，在`-keep-comments`中配置的类、方法、struct、枚举等名称上方的JsDoc注释。  
+删除编译生成的声明文件中的JsDoc注释。  
 
 **注意**：  
 
-编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。
+编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。  
+可通过`keep-comments`配置来保留编译生成的声明文件中的JsDoc注释。
 
 ### 保留选项
 
@@ -306,7 +315,7 @@ so库的API（例如示例中的foo），如果要在ArkTS/TS/JS文件中使用�
 
 ```
 import testNapi from 'library.so'
-testNapi.foo()
+testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
 ```
 
 使用到的json文件中的字段，需要手动保留。
@@ -324,6 +333,7 @@ const dataToInsert = {
   value1: 'example1',   // value1 需要保留
 };
 ```
+
 #### `-keep-global-name` [,identifiers,...]
 
 指定要保留的顶层作用域的名称，支持使用名称类通配符。例如，
@@ -377,7 +387,7 @@ const module2 = import(moduleName)    // 动态引用方式无法识别moduleNam
 
 #### `-keep-comments` [,identifiers,...]
 
-保留声明文件中元素上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
+保留编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 
 ```
 -keep-comments
@@ -387,7 +397,7 @@ Human
 **注意**：
 
 1. 该选项在开启`-remove-comments`时生效
-2. 当声明文件中某个元素名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如当在`-keep-comments`中配置了exportClass时，如果下面的类名被混淆，其JsDoc注释无法被保留：
+2. 当编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性的名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如当在`-keep-comments`中配置了exportClass时，如果exportClass类名被混淆，其JsDoc注释无法被保留：
 
 ```
 /*
@@ -398,12 +408,11 @@ export class exportClass {}
 
 #### `-keep-dts` filepath
 
-保留指定路径的`.d.ts`文件中的名称。这里的文件路径可以是一个目录，这种情况下目录中所有`.d.ts`文件中的名称都会被保留。
-如果在构建HAR时使用了这个选项，那么文件中的名称会被合并到最后的`obfuscation.txt`文件中。
+保留指定绝对路径的`.d.ts`文件中的名称。这里的文件路径也可以是一个目录，这种情况下目录中所有`.d.ts`文件中的名称都会被保留。
 
-#### `-keep` path
+#### `-keep` filepath
 
-保留指定路径中的所有名称(例如变量名、类名、属性名等)不被混淆。这个路径可以是文件与文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
+保留指定相对路径中的所有名称(例如变量名、类名、属性名等)不被混淆。这个路径可以是文件与文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
 路径仅支持相对路径，`./`与`../`为相对于混淆配置文件所在目录，支持使用路径类通配符。
 
 ```
@@ -485,18 +494,21 @@ a*
 ```
 
 表示路径../a/中的所有文件（不包含子文件夹）不会被混淆：
+
 ```
 -keep
 ../a/*
 ```
 
 表示路径../a/下的所有文件夹（包含子文件夹）中的所有文件不会被混淆：
+
 ```
 -keep
 ../a/**
 ```
 
 表示模块内的所有文件不会被混淆：
+
 ```
 -keep
 ./**
@@ -544,7 +556,7 @@ age
 
 * 主工程的`ruleOptions.files` (这里主工程指的是正在构建的工程)
 * 本地依赖的library中的`consumerFiles`选项中指定的文件
-* 远程依赖的HAR包中的`obfuscate.txt`文件
+* 远程依赖的HAR包中的`obfuscation.txt`文件
 
 当构建主工程的时候，这些文件中的混淆规则会按照下面的合并策略(伪代码)进行合并:
 
@@ -602,15 +614,17 @@ end-for
 
 最后使用的混淆规则来自于对象`finalRule`。
 
-如果构建的是HAR，那么最终的`obfuscate.txt`文件内容来自于主工程和本地依赖的library的`consumerFiles`选项，
-以及依赖的HAR的`obfuscate.txt`文件的合并。合并策略和上面一样，除了以下的不同:
+如果构建的是HAR，那么最终的`obfuscation.txt`文件内容来自于主工程和本地依赖的library的`consumerFiles`选项，
+以及依赖的HAR的`obfuscation.txt`文件的合并。合并策略和上面一样，除了以下的不同:
 
 * `-keep-dts`选项会被转换成`-keep-global-name`和`-keep-property-name`。
-* `-print-namecache`和`apply-namecache`选项会被忽略，不会出现在最后的`obfuscate.txt`文件中。
+* `-print-namecache`和`apply-namecache`选项会被忽略，不会出现在最后的`obfuscation.txt`文件中。
 
 ## 报错栈还原
 
-经过混淆的应用程序中代码名称会发生更改，crash时打印的报错栈更难以理解，因为报错栈与源码不完全一致。开发人员可使用DevEco Studio命令工具Command Line Tools中的hstack插件来还原源码堆栈。
+经过混淆的应用程序中代码名称会发生更改，crash时打印的报错栈更难以理解，因为报错栈与源码不完全一致。开发人员可使用DevEco Studio命令工具Command Line Tools中的hstack插件来还原源码堆栈，进而分析问题。反混淆工具需要使用应用编译过程中生成的sourceMap.json文件以及混淆名称映射文件nameCache.json文件，因此请本地备份它们。
+
+![obfuscation-product](figures/obfuscation-product.png)
 
 ## 说明
 
@@ -640,7 +654,7 @@ end-for
 | -keep-global-name            | 保留顶层作用域的名称 | 4.0.9.2 |
 | -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 4.1.5.3 <br> 5.0.0.19 |
 | -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 4.0.9.2 |
-| -keep-comments               | 保留声明文件中元素上方的JsDoc注释 | 4.1.5.3 |
+| -keep-comments               | 保留编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性上方的JsDoc注释 | 4.1.5.3 |
 | -keep                        | 保留指定路径中的所有名称 | 5.0.0.18 |
 | 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
 
@@ -648,18 +662,26 @@ end-for
 
 开发人员可以在编译产物build目录中找到混淆后的文件，以及混淆生成的名称映射表及系统API白名单文件。
 
-- 混淆后的文件目录：`build/[...]/release/模块名`
-- 混淆名称映射表及系统API白名单目录：`build/[...]/release/obfuscation`
-  - 名称映射表文件：nameCache.json，该文件记录了源码名称混淆的映射关系。
-  - 系统API白名单文件：systemApiCache.json，该文件记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
+* 混淆后的文件目录：`build/default/[...]/release/模块名`
+* 混淆名称映射表及系统API白名单目录：`build/default/[...]/release/obfuscation`
+  * 名称映射表文件：nameCache.json，该文件记录了源码名称混淆的映射关系。
+  * 系统API白名单文件：systemApiCache.json，该文件记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
 
   ![build-product](figures/build-product.png)
 
 ### 如何排查功能异常
 
 1. 先在obfuscation-rules.txt配置-disable-obfuscation选项关闭混淆，确认问题是否由混淆引起。
-2. 若确认是开启混淆后功能出现异常，建议查看混淆构建产物分析代码逻辑，寻找代码异常原因。
-3. 若是白名单未配置导致的错误，请在配置文件中使用[保留选项](#保留选项)来配置白名单。
+2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](#混淆选项)、[-enable-toplevel-obfuscation](#混淆选项)、[-enable-filename-obfuscation](#混淆选项)、[-enable-export-obfuscation](#混淆选项)等混淆规则的能力以及哪些语法场景需要[配置白名单](#保留选项)来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。
+    1. [-enable-toplevel-obfuscation](#混淆选项)为顶层作用域名称混淆开关。
+    2. [-enable-property-obfuscation](#混淆选项)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](#保留选项)来保留指定的属性名称。
+    3. [-enable-export-obfuscation](#混淆选项)为导出名称混淆，一般与1、2选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](#保留选项)来指定保留导出/导入名称。
+    4. [-enable-filename-obfuscation](#混淆选项)为文件名混淆，配置白名单的主要场景为动态import或运行时直接加载的文件路径，需要使用[-keep-file-name](#保留选项)来保留这些文件路径及名称。
+3. 参考FAQ中的[常见报错案例](#常见报错案例)，若是相似场景可参考对应的解决方法快速解决。
+4. 若常见案例中未找到相似案例，建议依据各项配置功能正向定位（若不需要相应功能，可删除对应配置项）。
+5. 应用运行时崩溃分析方法：
+    1. 打开应用运行日志或者点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
+    2. 应用运行时崩溃栈中的行号为[编译产物](#如何查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据崩溃栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置进白名单中。
 
 ### 常见报错案例
 
@@ -702,7 +724,6 @@ let jsonObj = jsonStr.i
 | HAP/HSP | 三方库  | 三方库中导出的名称及其属性会被收集到白名单，因此导入和导出时都不会被混淆 |
 
 HSP需要将给其他模块用的方法配置到白名单中。因为主模块里也需要配置相同的白名单，所以推荐将HSP配置了白名单的混淆文件(假设名称为hsp-white-list.txt)添加到依赖它的模块的混淆配置项里，即下图files字段里。
-
 
 ![obfuscation-config](figures/obfuscation-config.png)
 

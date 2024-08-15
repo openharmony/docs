@@ -28,7 +28,7 @@ reloadInModal(customData: CustomData): Promise\<void>
 
 拉起模态页面。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
@@ -48,16 +48,16 @@ reloadInModal(customData: CustomData): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 202      | Permission denied, non-system app called system api.         |
-| 401      | Parameter error. Possible causes: If the input parameter is not valid parameter. |
+| 202      | Not System App. Interface caller is not a system app.        |
+| 401      | If the input parameter is not valid parameter.               |
 | 16000011 | The context does not exist.                                  |
 | 16000050 | Internal error.                                              |
 
 **示例：**
 
-通过点击账号密码输入框触发自动填充服务时，在[AutoFillExtensionAbility](js-apis-app-ability-autoFillExtensionAbility-sys.md)的OnFillRequest生命周期中拉起账号选择界面。
+通过点击账号密码输入框触发自动填充服务时，在[AutoFillExtensionAbility](js-apis-app-ability-autoFillExtensionAbility-sys.md)的onFillRequest生命周期中拉起账号选择界面。
 
-当点击账号选择界面选择任意账号时，调用ReloadInModal接口再次触发自动填充服务时，在AutoFillExtensionAbility的OnFillRequest生命周期中拉起模态页面。
+当点击账号选择界面选择任意账号时，调用reloadInModal接口再次触发自动填充服务时，在AutoFillExtensionAbility的onFillRequest生命周期中拉起模态页面。
 
 ```ts
 // AutoFillAbility.ts
@@ -94,7 +94,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
 }
 ```
 
-当点击账号选择界面选择任意账号时，调用ReloadInModal接口。
+当点击账号选择界面选择任意账号时，调用reloadInModal接口。
 
 ```ts
 // AccountPage.ets

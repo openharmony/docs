@@ -8,21 +8,21 @@ To develop the moving photo feature, perform the following steps:
 - Enable the capability of taking moving photos (if supported).
 - Listen for the photo callback function and save the photo to the media library.
 
-> **NOTE**
-> 
-> Before enabling the capability of taking moving photos, you must enable deferred delivery of photo capture.
-
 ## How to Develop
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
+> **NOTE**
+>
+> - Before enabling the capability of taking moving photos, you must enable [deferred photo delivery](camera-deferred-capture.md).
+> - The permission **ohos.permission.MICROPHONE** is required for taking moving photos. For details about how to apply for and verify the permission, see [Camera Development Preparations](camera-preparation.md). Otherwise, there is no sound when a photo is being taken.
+
 1. Import dependencies. Specifically, import the camera, image, and mediaLibrary modules.
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import image from '@ohos.multimedia.image';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Determine the photo output stream.
@@ -79,11 +79,27 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 5. Trigger photographing. This procedure is the same as that in the common photographing mode. For details, see [Camera Photographing](camera-shooting.md).
 
+
+
 ## Status Listening
 
 Register a callback function to listen for **'photoAssetAvailable'** events.
 
    ```ts
+   let context = getContext(this);
+   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+     try {
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest  (photoAsset);
+       assetChangeRequest.saveCameraPhoto();
+       await phAccessHelper.applyChanges(assetChangeRequest);
+       console.info('apply saveCameraPhoto successfully');
+     } catch (err) {
+       console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+     }
+   }
+
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
      photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
        if (err) {
@@ -91,8 +107,8 @@ Register a callback function to listen for **'photoAssetAvailable'** events.
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
-       // Save or use the photo. You need to implement this API.
-       photoAsset.saveCameraPhoto();
+       // Call the mediaLibrary flush API to save the first-phase images and moving photos.
+       mediaLibSavePhoto(photoAsset);
      });
    }
    ```

@@ -1,4 +1,4 @@
-# @ohos.bytrace (Performance Tracing)
+# @ohos.bytrace (ByTrace)
 
 The **bytrace** module implements performance tracing for processes.
 

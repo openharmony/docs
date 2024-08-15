@@ -25,20 +25,22 @@ Sendable容器TypedArray提供map方法。该方法对TypedArray中的每个元�
 - 情况三： map函数中的callbackFn有返回值，且返回类型是number，能通过编译，能实现map功能
 
 ```
+let arr = [1, 2, 3, 4, 5];
+
 // 创建一个Uint8Array
-let uint8: collections.Uint8Array = new collections.Uint8Array([1, 2, 3, 4, 5]);
+let uint8: collections.Uint8Array = new collections.Uint8Array(arr);
 
 // 情况一：不能完成map功能：callbackFn无返回值，map函数返回新的collections.Uint8Array
 let zeroMappedArray: collections.Uint8Array = uint8.map((value: number) => {}); // 能通过编译
-console.info(zeroMappedArray); // 输出: collections.Uint8Array [0, 0, 0, 0, 0]
+console.info('' + zeroMappedArray); // 输出: collections.Uint8Array [0, 0, 0, 0, 0]
 
 // 情况二：能完成map功能：callbackFn返回map后的元素值，但类型为string，map函数返回新的collections.Uint8Array
 let wrongTypeMapped: collections.Uint8Array = uint8.map((value: number) => value + "1"); // 能通过编译
-console.info(wrongTypeMapped); // 输出: collections.Uint8Array [11, 21, 31, 41, 51]
+console.info('' + wrongTypeMapped); // 输出: collections.Uint8Array [11, 21, 31, 41, 51]
 
 // 情况三：能完成map功能：callbackFn返回map后的元素值，map函数返回新的collections.Uint8Array
 let normalMapped: collections.Uint8Array = uint8.map((value: number) => value * 2); // 能通过编译
-console.info(normalMappedArray); // 输出: collections.Uint8Array [2, 4, 6, 8, 10]
+console.info('' + normalMapped); // 输出: collections.Uint8Array [2, 4, 6, 8, 10]
 ```
 
 **变更后**
@@ -49,8 +51,10 @@ console.info(normalMappedArray); // 输出: collections.Uint8Array [2, 4, 6, 8, 
 
 
 ```
+let arr = [1, 2, 3, 4, 5];
+
 // 创建一个Uint8Array
-let uint8: collections.Uint8Array = new collections.Uint8Array([1, 2, 3, 4, 5]);
+let uint8: collections.Uint8Array = new collections.Uint8Array(arr);
 
 // 情况一：不能完成map功能：callbackFn无返回值，map函数返回新的collections.Uint8Array
 let zeroMappedArray: collections.Uint8Array = uint8.map((value: number) => {}); // 不兼容变更：不能通过编译
@@ -60,7 +64,7 @@ let wrongTypeMapped: collections.Uint8Array = uint8.map((value: number) => value
 
 // 情况三：能完成map功能：callbackFn返回map后的元素值，map函数返回新的collections.Uint8Array
 let normalMapped: collections.Uint8Array = uint8.map((value: number) => value * 2); // 能通过编译
-console.info(normalMappedArray); // 输出: collections.Uint8Array [2, 4, 6, 8, 10]
+console.info('' + normalMapped); // 输出: collections.Uint8Array [2, 4, 6, 8, 10]
 ```
 
 **起始API Level**

@@ -10,9 +10,9 @@ Emitter的开发步骤如下：
 1. 订阅事件
 
    ```ts
-   import emitter from '@ohos.events.emitter';
-   import promptAction from '@ohos.promptAction';
-   import hilog from '@ohos.hilog';
+   import { emitter } from '@kit.BasicServicesKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ThreadModel';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -34,14 +34,14 @@ Emitter的开发步骤如下：
    // 订阅eventId为1的事件
    emitter.on(event, callback);
    promptAction.showToast({
-     message: $r('app.string.emitter_subscribe_success_toast')
+     message: JSON.stringify('emitter subscribe success')
    });
    ```
 
 2. 发送事件
 
    ```ts
-   import emitter from '@ohos.events.emitter';
+   import { emitter } from '@kit.BasicServicesKit';
    ```
    ```ts
    // 定义一个eventId为1的事件，事件优先级为Low

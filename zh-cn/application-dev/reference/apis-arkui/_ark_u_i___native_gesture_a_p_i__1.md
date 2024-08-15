@@ -19,6 +19,7 @@
 | -------- | -------- |
 | int32_t [version](#version) | 结构版本号 = 1。  | 
 | ArkUI_GestureRecognizer \*(\* [createTapGesture](#createtapgesture) )(int32_t countNum, int32_t fingersNum) | 创建敲击手势。  | 
+| ArkUI_GestureRecognizer \*(\* [createTapGestureWithDistance](#createtapgesturewithdistance) )(int32_t countNum, int32_t fingersNum, int32_t distance) | 创建带移动范围限制的敲击手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createLongPressGesture](#createlongpressgesture) )(int32_t fingersNum, bool repeatResult, int32_t durationNum) | 创建长按手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createPanGesture](#createpangesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double distanceNum) | 创建拖动手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createPinchGesture](#createpinchgesture) )(int32_t fingersNum, double distanceNum) | 创建捏合手势。  | 
@@ -226,6 +227,28 @@ ArkUI_GestureRecognizer*(* ArkUI_NativeGestureAPI_1::createTapGesture) (int32_t 
 | -------- | -------- |
 | countNum | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值 1。  | 
 | fingersNum | 触发点击的手指数，最小为1指， 最大为10指。当设置小于1的值或不设置时，会被转化为默认值 1。  | 
+
+**返回：**
+
+返回创建的敲击手势指针。
+
+
+### createTapGestureWithDistance
+
+```
+ArkUI_GestureRecognizer*(* ArkUI_NativeGestureAPI_1::createTapGestureWithDistance) (int32_t countNum, int32_t fingersNum, int32_t distance)
+```
+**描述：**
+
+创建带移动范围限制的敲击手势。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| countNum | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值 1。  | 
+| fingersNum | 触发点击的手指数，最小为1指， 最大为10指。当设置小于1的值或不设置时，会被转化为默认值 1。  | 
+| distance | 手指允许的移动距离范围。当设置的值小于0或者不设置时，会被转化为默认值无穷大。  | 
 
 **返回：**
 

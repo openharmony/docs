@@ -4,12 +4,12 @@ The **ErrorObserver** module defines an observer to listen for application error
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
 ## Modules to Import
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 ```
 
 ## ErrorObserver.onUnhandledException
@@ -24,14 +24,15 @@ Called when an unhandled exception occurs in the JS runtime.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| errMsg | string | Yes| Message and error stack trace about the exception.|
+| errMsg | string | Yes | Message and error stack trace about the exception. |
 
 **Example**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -40,9 +41,9 @@ let observer: errorManager.ErrorObserver = {
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (error) {
-    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
+  console.error(`registerErrorObserver failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -58,14 +59,15 @@ Called when an exception occurs during the application running.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| errObject | Error | Yes| Event name, message, and error stack of the exception.|
+| errObject | Error | Yes | Event name, message, and error stack of the exception. |
 
 **Example**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -74,15 +76,15 @@ let observer: errorManager.ErrorObserver = {
   onException(errorObj) {
     console.log('onException, name: ', errorObj.name);
     console.log('onException, message: ', errorObj.message);
-    if (typeof(errorObj.stack) === 'string') {
-        console.log('onException, stack: ', errorObj.stack);
+    if (typeof (errorObj.stack) === 'string') {
+      console.log('onException, stack: ', errorObj.stack);
     }
   }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (error) {
-    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
+  console.error(`registerErrorObserver failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
 }
 ```

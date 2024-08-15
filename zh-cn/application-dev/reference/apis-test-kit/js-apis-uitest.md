@@ -265,6 +265,10 @@ type(tp: string): On
 
 指定目标控件的控件类型属性，返回On对象自身。
 
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -273,7 +277,7 @@ type(tp: string): On
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| tp     | string | 是   | 指定控件类型。 |
+| tp     | string | 是   | 指定控件类型。|
 
 **返回值：**
 

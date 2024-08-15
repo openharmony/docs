@@ -83,11 +83,11 @@ HiSysEvent is a built-in tool that helps you subscribe to real-time system event
   > **NOTE**<br>
   > The timestamp format is YYYY-MM-DD hh:mm:ss.
 
-  Example: Query all system events  reported between  2024-02-22 20:22:21 and 2024-02-22 20:22:38.
+  Example: Query all system events reported between 2024-02-22 20:22:21 and 2024-02-22 20:22:38.
 
   ![](figures/hisysevent-l-S-E-format.png)
 
-- To query system events by event domain and event name, use the **-o**, **-n**, and **-c** options. **-o** specifies the event domain, **-n** specifies the event name, and **-c** specifies the rule for matching the specified event domain and name. 
+- To query system events by event domain and event name, use the **-o**, **-n**, and **-c** options. **-o** specifies the event domain, **-n** specifies the event name, and **-c** specifies the rule for matching the specified event domain and name.
 
   > **NOTE**<br>
   > The **-c** option for querying historical system events must be **WHOLE_WORD**.
@@ -123,4 +123,3 @@ If system event validity check is enabled, invalid content contained in system e
 Example: For the system event named **INTERACTION_APP_JANK** of the **ACE** domain, the <!--RP1-->[system event configuration](../../device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)<!--RP1End--> does not contain the custom parameters **DURITION** and **DISPLAY_ANIMATOR**. If these parameters are contained in the event saved, they will be highlighted in red when system event validity check is enabled.
 
 ![](figures/hisysevent-v.png)
-<!--no_check-->

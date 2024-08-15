@@ -655,7 +655,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -698,7 +698,7 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -4097,8 +4097,8 @@ try {
 
 | 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| type   	| number   | 是   | 是   | 面板的类型。 |
-| flag	    | number   | 是   | 是   | 面板的状态类型。 |
+| type   	| [PanelType](#paneltype10)   | 是   | 是   | 面板的类型。 |
+| flag	    | [PanelFlag](#panelflag10)   | 是   | 是   | 面板的状态类型。 |
 
 ## PanelRect<sup>12+</sup>
 

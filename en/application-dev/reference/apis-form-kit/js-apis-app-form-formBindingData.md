@@ -23,10 +23,10 @@ Defines the subscription information about the widget update by proxy.
 
 **System capability**: SystemCapability.Ability.Form
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| key<sup>10+</sup> | string | Yes| Subscriber ID of the widget update by proxy. The value is the same as that of the data publisher.|
-| subscriberId<sup>10+</sup> | string | No| Subscription condition of the widget update by proxy. The default value is the current widget ID (specified by **formId**).|
+| key<sup>10+</sup> | string | Yes | Subscriber ID of the widget update by proxy. The value is the same as that of the data publisher.|
+| subscriberId<sup>10+</sup> | string | No | Subscription condition of the widget update by proxy. The default value is the current widget ID (specified by **formId**).|
 
 
 ## FormBindingData
@@ -37,10 +37,10 @@ Describes a **FormBindingData** object.
 
 **System capability**: SystemCapability.Ability.Form
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| data | Object | Yes| Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
-| proxies<sup>10+</sup> | Array<[proxyData](#proxydata10)> | No| Subscription information of the widget update by proxy. The default value is an empty array.<br>**Model restriction**: This API can be used only in the stage model.<br>|
+| data | Object | Yes | Data to be displayed on the widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
+| proxies<sup>10+</sup> | Array<[ProxyData](#proxydata10)> | No | Subscription information of the widget update by proxy. The default value is an empty array.<br>**Model restriction**: This API can be used only in the stage model.<br>|
 
 ## createFormBindingData
 
@@ -54,20 +54,20 @@ Creates a **FormBindingData** object.
 
 **Parameters**
 
-| Name| Type          | Mandatory| Description                                                        |
+| Name | Type          | Mandatory | Description                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object\|string | No  | Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by **'formImages'**, and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {'formImages': {'key1': fd1, 'key2': fd2}}.|
+| obj    | Object\|string | No  | Data to be displayed on the widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by **'formImages'**, and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {'formImages': {'key1': fd1, 'key2': fd2}}.|
 
 
 **Return value**
 
 | Type                               | Description                                   |
 | ----------------------------------- | --------------------------------------- |
-| [FormBindingData](#formbindingdata) | **FormBindingData** object created based on the passed data.|
+| [FormBindingData](#formbindingdata) | **FormBindingData** object created based on the passed data. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed |
 
@@ -82,12 +82,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 
 try {
-  let fd = fileIo.openSync('/path/to/form.png');
-  let formImagesParam: Record<string, object> = {
-    'image': fd
+  let file = fileIo.openSync('/path/to/form.png');
+  let formImagesParam: Record<string, number> = {
+    'image': file.fd
   };
   let createFormBindingDataParam: Record<string, string | Object> = {
     'name': '21°',
+    'imgSrc': 'image',
     'formImages': formImagesParam
   };
 

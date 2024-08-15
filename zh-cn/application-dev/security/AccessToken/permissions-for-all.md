@@ -313,7 +313,7 @@
 
 ### ohos.permission.READ_ACCOUNT_LOGIN_STATE
 
-允许应用读取用户帐号的登录状态。
+允许应用读取用户账号的登录状态。
 
 **权限级别**：normal
 
@@ -336,6 +336,26 @@
 允许应用在锁屏后保护本应用敏感数据不被访问。
 
 应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。没有调用接口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：12
+
+### ohos.permission.FILE_ACCESS_PERSIST
+
+允许应用支持持久化访问文件Uri。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：system_grant
+
+**起始版本**：11
+
+### ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
+
+允许应用访问出行分布式业务引擎。
 
 **权限级别**：normal
 
@@ -504,6 +524,30 @@
 **授权方式**：user_grant
 
 **起始版本**：12
+
+### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+允许应用访问公共目录下Download目录及子目录。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：user_grant
+
+**起始版本**：11
+
+### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+允许应用访问公共目录下的Documents目录及子目录。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：user_grant
+
+**起始版本**：11
 
 ### ohos.permission.READ_MEDIA
 

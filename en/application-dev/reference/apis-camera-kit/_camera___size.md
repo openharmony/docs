@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_Size** struct defines the parameters that describe the size.
+The Camera_Size struct describes the parameters related to the size.
 
 **Since**: 11
 

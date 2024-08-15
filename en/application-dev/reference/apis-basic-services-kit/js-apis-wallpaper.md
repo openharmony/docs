@@ -11,7 +11,7 @@ The **wallpaper** module provides APIs for switching between wallpapers. Since A
 
 
 ```ts
-import wallpaper from '@ohos.wallpaper';
+import { wallpaper } from '@kit.BasicServicesKit';
 ```
 
 ## WallpaperType<sup>7+</sup>
@@ -48,7 +48,7 @@ Defines the RGBA color space for the wallpaper.
 
 on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
-Subscribes to the wallpaper color change event.
+Subscribes to the wallpaper color change event. Multi-thread concurrent calls are not supported.
 
 > **NOTE**
 > 
@@ -80,7 +80,7 @@ try {
 
 off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
-Unsubscribes from the wallpaper color change event.
+Unsubscribes from the wallpaper color change event. Multi-thread concurrent calls are not supported.
 
 > **NOTE**
 > 
@@ -126,7 +126,7 @@ try {
 
 getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;RgbaColor&gt;&gt;): void
 
-Obtains the main color information of the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
+Obtains the main color information of the wallpaper of the specified type.
 
 > **NOTE**
 > 
@@ -144,7 +144,7 @@ Obtains the main color information of the wallpaper of the specified type. This 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: Array<wallpaper.RgbaColor>) => {
     if (error) {
@@ -159,7 +159,7 @@ wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessEr
 
 getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
-Obtains the main color information of the wallpaper of the specified type. This API uses a promise to return the result.
+Obtains the main color information of the wallpaper of the specified type.
 
 > **NOTE**
 > 
@@ -182,7 +182,7 @@ Obtains the main color information of the wallpaper of the specified type. This 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Array<wallpaper.RgbaColor>) => {
     console.log(`success to getColors: ${JSON.stringify(data)}`);
@@ -195,7 +195,7 @@ wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Array<
 
 getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the ID of the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
+Obtains the ID of the wallpaper of the specified type.
 
 > **NOTE**
 > 
@@ -213,7 +213,7 @@ Obtains the ID of the wallpaper of the specified type. This API uses an asynchro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: Number) => {
     if (error) {
@@ -228,7 +228,7 @@ wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError,
 
 getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
-Obtains the ID of the wallpaper of the specified type. This API uses a promise to return the result.
+Obtains the ID of the wallpaper of the specified type.
 
 > **NOTE**
 > 
@@ -251,7 +251,7 @@ Obtains the ID of the wallpaper of the specified type. This API uses a promise t
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Number) => {
     console.log(`success to getId: ${JSON.stringify(data)}`);
@@ -264,7 +264,7 @@ wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Number) =>
 
 getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the minimum height of this wallpaper. This API uses an asynchronous callback to return the result.
+Obtains the minimum height of this wallpaper.
 
 > **NOTE**
 > 
@@ -281,7 +281,7 @@ Obtains the minimum height of this wallpaper. This API uses an asynchronous call
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getMinHeight((error: BusinessError, data: Number) => {
     if (error) {
@@ -296,7 +296,7 @@ wallpaper.getMinHeight((error: BusinessError, data: Number) => {
 
 getMinHeight(): Promise&lt;number&gt;
 
-Obtains the minimum height of this wallpaper. This API uses a promise to return the result.
+Obtains the minimum height of this wallpaper.
 
 > **NOTE**
 > 
@@ -313,7 +313,7 @@ Obtains the minimum height of this wallpaper. This API uses a promise to return 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getMinHeight().then((data: Number) => {
     console.log(`success to getMinHeight: ${JSON.stringify(data)}`);
@@ -326,7 +326,7 @@ wallpaper.getMinHeight().then((data: Number) => {
 
 getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the minimum width of this wallpaper. This API uses an asynchronous callback to return the result.
+Obtains the minimum width of this wallpaper.
 
 > **NOTE**
 > 
@@ -343,7 +343,7 @@ Obtains the minimum width of this wallpaper. This API uses an asynchronous callb
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getMinWidth((error: BusinessError, data: Number) => {
     if (error) {
@@ -358,7 +358,7 @@ wallpaper.getMinWidth((error: BusinessError, data: Number) => {
 
 getMinWidth(): Promise&lt;number&gt;
 
-Obtains the minimum width of this wallpaper. This API uses a promise to return the result.
+Obtains the minimum width of this wallpaper.
 
 > **NOTE**
 > 
@@ -375,7 +375,7 @@ Obtains the minimum width of this wallpaper. This API uses a promise to return t
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getMinWidth().then((data: Number) => {
     console.log(`success to getMinWidth: ${JSON.stringify(data)}`);
@@ -384,11 +384,84 @@ wallpaper.getMinWidth().then((data: Number) => {
 });
 ```
 
+## wallpaper.getFile<sup>(deprecated)</sup>
+
+getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the wallpaper of the specified type.
+
+> **NOTE**
+> 
+> This API is supported since API version 8 and deprecated since API version 9.
+
+**Required permissions**: ohos.permission.GET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: number) => {
+    if (error) {
+        console.error(`failed to getFile because: ${JSON.stringify(error)}`);
+        return;
+    }
+    console.log(`success to getFile: ${JSON.stringify(data)}`);
+});
+```
+
+## wallpaper.getFile<sup>(deprecated)</sup>
+
+getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
+
+Obtains the wallpaper of the specified type.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9.
+
+**Required permissions**: ohos.permission.GET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: number) => {
+    console.log(`success to getFile: ${JSON.stringify(data)}`);
+  }).catch((error: BusinessError) => {
+    console.error(`failed to getFile because: ${JSON.stringify(error)}`);
+});
+```
+
 ## wallpaper.isChangePermitted<sup>(deprecated)</sup>
 
 isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether to allow the application to change the wallpaper for the current user. This API uses an asynchronous callback to return the result.
+Checks whether to allow the application to change the wallpaper for the current user.
 
 > **NOTE**
 > 
@@ -405,7 +478,7 @@ Checks whether to allow the application to change the wallpaper for the current 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.isChangePermitted((error: BusinessError, data: Boolean) => {
     if (error) {
@@ -420,7 +493,7 @@ wallpaper.isChangePermitted((error: BusinessError, data: Boolean) => {
 
 isChangePermitted(): Promise&lt;boolean&gt;
 
-Checks whether to allow the application to change the wallpaper for the current user. This API uses a promise to return the result.
+Checks whether to allow the application to change the wallpaper for the current user.
 
 > **NOTE**
 > 
@@ -437,7 +510,7 @@ Checks whether to allow the application to change the wallpaper for the current 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.isChangePermitted().then((data: Boolean) => {
     console.log(`success to isChangePermitted: ${JSON.stringify(data)}`);
@@ -450,7 +523,7 @@ wallpaper.isChangePermitted().then((data: Boolean) => {
 
 isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the user is allowed to set wallpapers. This API uses an asynchronous callback to return the result.
+Checks whether the user is allowed to set wallpapers.
 
 > **NOTE**
 > 
@@ -467,7 +540,7 @@ Checks whether the user is allowed to set wallpapers. This API uses an asynchron
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.isOperationAllowed((error: BusinessError, data: Boolean) => {
     if (error) {
@@ -482,7 +555,7 @@ wallpaper.isOperationAllowed((error: BusinessError, data: Boolean) => {
 
 isOperationAllowed(): Promise&lt;boolean&gt;
 
-Checks whether the user is allowed to set wallpapers. This API uses a promise to return the result.
+Checks whether the user is allowed to set wallpapers.
 
 > **NOTE**
 > 
@@ -499,7 +572,7 @@ Checks whether the user is allowed to set wallpapers. This API uses a promise to
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.isOperationAllowed().then((data: Boolean) => {
     console.log(`success to isOperationAllowed: ${JSON.stringify(data)}`);
@@ -512,7 +585,7 @@ wallpaper.isOperationAllowed().then((data: Boolean) => {
 
 reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-Resets the wallpaper of the specified type to the default wallpaper. This API uses an asynchronous callback to return the result.
+Resets the wallpaper of the specified type to the default wallpaper.
 
 > **NOTE**
 > 
@@ -532,7 +605,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
@@ -547,7 +620,7 @@ wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError)
 
 reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-Resets the wallpaper of the specified type to the default wallpaper. This API uses a promise to return the result.
+Resets the wallpaper of the specified type to the default wallpaper.
 
 > **NOTE**
 >
@@ -572,7 +645,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to reset.`);
@@ -585,7 +658,7 @@ wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
 
 setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a specified source as the wallpaper of a specified type. This API uses an asynchronous callback to return the result.
+Sets a specified source as the wallpaper of a specified type.
 
 > **NOTE**
 > 
@@ -606,8 +679,8 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // The source type is string.
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -644,7 +717,7 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
 
 setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-Sets a specified source as the wallpaper of a specified type. This API uses a promise to return the result.
+Sets a specified source as the wallpaper of a specified type.
 
 > **NOTE**
 > 
@@ -670,8 +743,8 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // The source type is string.
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -697,79 +770,5 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
     });
   }).catch((error: BusinessError) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
-});
-```
-
-
-## wallpaper.getFile<sup>(deprecated)</sup>
-
-getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
-
-Obtains the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is supported since API version 8 and deprecated since API version 9.
-
-**Required permissions**: ohos.permission.GET_WALLPAPER
-
-**System capability**: SystemCapability.MiscServices.Wallpaper
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: number) => {
-    if (error) {
-        console.error(`failed to getFile because: ${JSON.stringify(error)}`);
-        return;
-    }
-    console.log(`success to getFile: ${JSON.stringify(data)}`);
-});
-```
-
-## wallpaper.getFile<sup>(deprecated)</sup>
-
-getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
-
-Obtains the wallpaper of the specified type. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 8 and deprecated since API version 9.
-
-**Required permissions**: ohos.permission.GET_WALLPAPER
-
-**System capability**: SystemCapability.MiscServices.Wallpaper
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: number) => {
-    console.log(`success to getFile: ${JSON.stringify(data)}`);
-  }).catch((error: BusinessError) => {
-    console.error(`failed to getFile because: ${JSON.stringify(error)}`);
 });
 ```

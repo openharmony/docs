@@ -1018,7 +1018,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Account.OsAccount
 
-系统帐号
+系统账号
 
 | Default | Tablet | LiteWearable |
 |---------|--------|--------------|
@@ -1026,7 +1026,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Account.AppAccount
 
-应用帐号
+应用账号
 
 | Default | Tablet | LiteWearable |
 |---------|--------|--------------|

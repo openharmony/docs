@@ -16,6 +16,7 @@
     - [ExtensionAbility Component](extensionability-overview.md)
       <!--Del-->
       - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
+      - [UIExtensionAbility (for System Applications Only)](uiextensionability.md)
       <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
@@ -24,10 +25,8 @@
       - [Want Overview](want-overview.md)
       - [Matching Rules of Explicit Want and Implicit Want](explicit-implicit-want-mappings.md)
       - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
-      - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
-      - [Using Want to Share Data Between Applications](data-share-via-want.md)
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
-    - [AppStartup Development](app-startup.md)
+    - [AppStartup Framework](app-startup.md)
     <!--Del-->
     - Inter-Device Application Component Interaction (Hopping)
       - [Hopping Overview](inter-device-interaction-hop-overview.md)
@@ -36,8 +35,18 @@
     <!--DelEnd-->
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
   - Inter-Application Redirection
+    - [Overview of Application Redirection](link-between-apps-overview.md)
+    - Directional Redirection
+      - [(Optional) Using canOpenLink to Check Application Accessibility](canopenlink.md)
+      - [Using Deep Linking for Application Redirection](deep-linking-startup.md)
+      <!--Del-->
+      - [Using App Linking for Application Redirection](app-linking-startup.md)
+      <!--DelEnd-->
+      - [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md)
     - Common Intent Redirection
       - [Using startAbilityByType to Start Vertical Applications](start-intent-panel.md)
+      - [Using startAbility to Start a File Application](file-processing-apps-startup.md)
+    - [Starting a System Application](system-app-startup.md)
   - [Process Model (Stage Model)](process-model-stage.md)
   - [Thread Model (Stage Model)](thread-model-stage.md)
   <!--Del-->

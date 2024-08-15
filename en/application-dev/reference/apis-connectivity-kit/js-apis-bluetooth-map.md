@@ -1,6 +1,6 @@
 # @ohos.bluetooth.map (Bluetooth MAP Module)
 
-The **map** module provides APIs for exchanging messages between devices using the Bluetooth Message Access Profile (MAP).
+The **bluetooth.map** module provides APIs for exchanging messages between devices using the Bluetooth Message Access Profile (MAP).
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ The **map** module provides APIs for exchanging messages between devices using t
 ## Modules to Import
 
 ```js
-import map from '@ohos.bluetooth.map';
+import { map } from '@kit.ConnectivityKit';
 ```
 
 
@@ -32,7 +32,7 @@ Creates a **MapMseProfile** instance.
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let mapMseProfile = map.createMapMseProfile();
     console.info('MapMse success');
@@ -41,6 +41,14 @@ try {
 }
 ```
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 ## mapMseProfile
 

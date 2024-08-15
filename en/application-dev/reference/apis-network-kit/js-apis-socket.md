@@ -1,6 +1,6 @@
 # @ohos.net.socket (Socket Connection)
 
-The **socket** module implements data transfer over TCP, UDP, Web, and TLS socket connections.
+The **socket** module implements data transfer over **TCPSocket**, **UDPSocket**, **WebSocket**, and**TLSSocket** connections.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ import { socket } from '@kit.NetworkKit';
 
 constructUDPSocketInstance(): UDPSocket
 
-Creates a **UDPSocket** object.
+Creates a **UDPSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -24,7 +24,7 @@ Creates a **UDPSocket** object.
 
 | Type                              | Description                   |
 |  --------------------------------- |  ---------------------- |
-| [UDPSocket](#udpsocket) | **UDPSocket** object.|
+| [UDPSocket](#udpsocket) | **UDPSocket** connection.|
 
 **Example**
 
@@ -35,7 +35,7 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
 ## UDPSocket
 
-Defines a UDP socket connection. Before calling UDPSocket APIs, you need to call [socket.constructUDPSocketInstance](#socketconstructudpsocketinstance) to create a **UDPSocket** object.
+Defines a **UDPSocket** connection. Before calling **UDPSocket** APIs, you need to call [socket.constructUDPSocketInstance](#socketconstructudpsocketinstance) to create a **UDPSocket** connection.
 
 ### bind
 
@@ -132,7 +132,7 @@ udp.bind(bindAddr).then(() => {
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
-Sends data over a UDP socket connection. This API uses an asynchronous callback to return the result.
+Sends data from a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and port.
 
@@ -144,7 +144,7 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a **UDPSocket** connection. For details, see [UDPSendOptions](#udpsendoptions).|
 | callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.                                                 |
 
 **Error codes**
@@ -182,7 +182,7 @@ udp.send(sendOptions, (err: BusinessError) => {
 
 send(options: UDPSendOptions): Promise\<void\>
 
-Sends data over a UDP socket connection. This API uses a promise to return the result.
+Sends data from a **UDPSocket** connection. This API uses a promise to return the result.
 
 Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and port.
 
@@ -194,7 +194,7 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 
 | Name | Type                                    | Mandatory| Description                                                        |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a **UDPSocket** connection. For details, see [UDPSendOptions](#udpsendoptions).|
 
 **Error codes**
 
@@ -235,7 +235,7 @@ udp.send(sendOptions).then(() => {
 
 close(callback: AsyncCallback\<void\>): void
 
-Closes a UDP socket connection. This API uses an asynchronous callback to return the result.
+Closes a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -273,7 +273,7 @@ udp.close((err: BusinessError) => {
 
 close(): Promise\<void\>
 
-Closes a UDP socket connection. This API uses a promise to return the result.
+Closes a **UDPSocket** connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -309,7 +309,7 @@ udp.close().then(() => {
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
-Obtains the status of the UDP socket connection. This API uses an asynchronous callback to return the result.
+Obtains the status of the **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
@@ -322,7 +322,7 @@ Obtains the status of the UDP socket connection. This API uses an asynchronous c
 
 | Name  | Type                                                  | Mandatory| Description      |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the **UDPSocket** object is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -361,7 +361,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the status of the UDP socket connection. This API uses a promise to return the result.
+Obtains the status of the **UDPSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
@@ -411,7 +411,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the UDP socket connection. This API uses an asynchronous callback to return the result.
+Sets other properties of the **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
@@ -424,7 +424,7 @@ Sets other properties of the UDP socket connection. This API uses an asynchronou
 
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [UDPExtraOptions](#udpextraoptions) | Yes  | Other properties of the UDP socket connection. For details, see [UDPExtraOptions](#udpextraoptions).|
+| options  | [UDPExtraOptions](#udpextraoptions) | Yes  | Other properties of the **UDPSocket** connection. For details, see [UDPExtraOptions](#udpextraoptions).|
 | callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.                   |
 
 **Error codes**
@@ -473,7 +473,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
-Sets other properties of the UDP socket connection. This API uses a promise to return the result.
+Sets other properties of the **UDPSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
@@ -486,7 +486,7 @@ Sets other properties of the UDP socket connection. This API uses a promise to r
 
 | Name | Type                                    | Mandatory| Description                                                        |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [UDPExtraOptions](#udpextraoptions) | Yes  | Other properties of the UDP socket connection. For details, see [UDPExtraOptions](#udpextraoptions).|
+| options | [UDPExtraOptions](#udpextraoptions) | Yes  | Other properties of the **UDPSocket** connection. For details, see [UDPExtraOptions](#udpextraoptions).|
 
 **Return value**
 
@@ -534,11 +534,62 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+Obtains the local socket address of a **UDPSocket** connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.info('bind success');
+  udp.getLocalAddress().then((localAddress: socket.NetAddress) => {
+        console.info("UDP_Socket get SUCCESS! Address: " + JSON.stringify(localAddress));
+      }).catch((err: BusinessError) => {
+        console.error("UDP_Socket get FAILED! Error: " + JSON.stringify(err));
+      })
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+});
+```
+
 ### on('message')
 
 on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
-Subscribes to **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **message** events of a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -574,7 +625,7 @@ udp.on('message', (value: socket.SocketMessageInfo) => {
 
 off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
-Unsubscribes from **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **message** events of a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -613,7 +664,7 @@ udp.off('message');
 
 on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
-Subscribes to **listening** events or **close** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **listening** events or **close** events of a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -643,7 +694,7 @@ udp.on('close', () => {
 
 off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
-Unsubscribes from **listening** events or **close** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **listening** events or **close** events of a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -681,7 +732,7 @@ udp.off('close');
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **error** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **error** events of a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -708,7 +759,7 @@ udp.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **error** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **error** events of a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -748,7 +799,7 @@ Defines the destination address.
 | family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**. For an IPv6 address, this field must be explicitly set to **2**.|
 ## UDPSendOptions
 
-Defines the parameters for sending data over a UDP socket connection.
+Defines the parameters for sending data over a **UDPSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -759,7 +810,7 @@ Defines the parameters for sending data over a UDP socket connection.
 
 ## UDPExtraOptions
 
-Defines other properties of the UDP socket connection.
+Defines other properties of the **UDPSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -769,22 +820,22 @@ Defines other properties of the UDP socket connection.
 | receiveBufferSize | number  | No  | Size of the receive buffer, in bytes. The default value is **0**.  |
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.  |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.     |
-| socketTimeout     | number  | No  | Timeout duration of the UDP socket connection, in ms. The default value is **0**.|
+| socketTimeout     | number  | No  | Timeout duration of the **UDPSocket** connection, in ms. The default value is **0**.|
 
 ## SocketMessageInfo<sup>11+</sup>
 
-Defines the socket connection information.
+Defines the message of a **Socket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name       | Type  | Mandatory| Description                                 |
 | ---------- | ------ | ---- | ------------------------------------- |
-| message    | ArrayBuffer | Yes  | Received **message** event.|
-| remoteInfo | [SocketRemoteInfo](#socketremoteinfo) | Yes  | Socket connection information.|
+| message    | ArrayBuffer | Yes  | Received message.|
+| remoteInfo | [SocketRemoteInfo](#socketremoteinfo) | Yes  | **Socket** connection information.|
 
 ## SocketStateBase
 
-Defines the status of the socket connection.
+Defines the status of a **Socket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -796,7 +847,7 @@ Defines the status of the socket connection.
 
 ## SocketRemoteInfo
 
-Defines information about the socket connection.
+Defines the remote end of a **Socket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -835,7 +886,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 ```
 ## MulticastSocket<sup>11+</sup>
 
-Defines a **MulticastSocket** connection. Before calling MulticastSocket APIs, you need to call [socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance11) to create a **MulticastSocket** object.
+Defines a **MulticastSocket** connection. Before calling **MulticastSocket** APIs, you need to call [socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance11) to create a **MulticastSocket** object.
 
 ### addMembership<sup>11+</sup>
 
@@ -1381,6 +1432,54 @@ multicast.getLoopbackMode().then((value: Boolean) => {
 });
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+Obtains the local socket address for multicast communication. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.0',
+  port: 8080
+}
+multicast.bind(addr).then(() => {
+  console.info('bind success');
+  multicast.getLocalAddress().then((localAddress: socket.NetAddress) => {
+    console.info("Multicast_Socket get SUCCESS! Address:" + JSON.stringify(localAddress));
+  }).catch((err: BusinessError) => {
+    console.error("Multicast_Socket get FAILED! Error:" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+});
+```
 
 ### send<sup>7+</sup>
 
@@ -1398,7 +1497,7 @@ Before sending data, call [addMembership](#addmembership11) to add a member to t
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a **UDPSocket** connection. For details, see [UDPSendOptions](#udpsendoptions).|
 | callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -1447,7 +1546,7 @@ Before sending data, call [addMembership](#addmembership11) to add a member to t
 
 | Name | Type                                    | Mandatory| Description                                                        |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a **UDPSocket** connection. For details, see [UDPSendOptions](#udpsendoptions).|
 
 **Error codes**
 
@@ -1553,7 +1652,7 @@ multicast.off('message')
 
 constructTCPSocketInstance(): TCPSocket
 
-Creates a **TCPSocket** object.
+Creates a **TCPSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1561,7 +1660,7 @@ Creates a **TCPSocket** object.
 
 | Type                              | Description                   |
 | --------------------------------- | ---------------------- |
-| [TCPSocket](#tcpsocket) | **TCPSocket** object.|
+| [TCPSocket](#tcpsocket) | **TCPSocket** connection.|
 
 **Example**
 
@@ -1572,7 +1671,7 @@ let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 ## TCPSocket
 
-Defines a TCP socket connection. Before calling TCPSocket APIs, you need to call [socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance7) to create a **TCPSocket** object.
+Defines a **TCPSocket** connection. Before calling **TCPSocket** APIs, you need to call [socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance7) to create a **TCPSocket** connection.
 
 ### bind
 
@@ -1692,7 +1791,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPConnectOptions](#tcpconnectoptions) | Yes  | TCP socket connection parameters. For details, see [TCPConnectOptions](#tcpconnectoptions).|
+| options  | [TCPConnectOptions](#tcpconnectoptions) | Yes  | parameters of a **TCPSocket** connection. For details, see [TCPConnectOptions](#tcpconnectoptions).|
 | callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                     |
 
 **Error codes**
@@ -1743,7 +1842,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 
 | Name | Type                                    | Mandatory| Description                                                        |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPConnectOptions](#tcpconnectoptions) | Yes  | TCP socket connection parameters. For details, see [TCPConnectOptions](#tcpconnectoptions).|
+| options | [TCPConnectOptions](#tcpconnectoptions) | Yes  | parameters of a **TCPSocket** connection. For details, see [TCPConnectOptions](#tcpconnectoptions).|
 
 **Return value**
 
@@ -1784,7 +1883,7 @@ tcp.connect(tcpconnectoptions).then(() => {
 
 send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
-Sends data over a TCP socket connection. This API uses an asynchronous callback to return the result.
+Sends data from a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **connect** is successfully called.
@@ -1797,7 +1896,7 @@ Sends data over a TCP socket connection. This API uses an asynchronous callback 
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
+| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a **TCPSocket** connection. For details, see [TCPSendOptions](#tcpsendoptions).|
 | callback | AsyncCallback\<void\>                   | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                          |
 
 **Error codes**
@@ -1841,7 +1940,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 send(options: TCPSendOptions): Promise\<void\>
 
-Sends data over a TCP socket connection. This API uses a promise to return the result.
+Sends data from a **TCPSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **connect** is successfully called.
@@ -1854,7 +1953,7 @@ Sends data over a TCP socket connection. This API uses a promise to return the r
 
 | Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
+| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a **TCPSocket** connection. For details, see [TCPSendOptions](#tcpsendoptions).|
 
 **Return value**
 
@@ -1901,7 +2000,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 close(callback: AsyncCallback\<void\>): void
 
-Closes a TCP socket connection. This API uses an asynchronous callback to return the result.
+Closes a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1940,7 +2039,7 @@ tcp.close((err: BusinessError) => {
 
 close(): Promise\<void\>
 
-Closes a TCP socket connection. This API uses a promise to return the result.
+Closes a **TCPSocket** connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1976,7 +2075,7 @@ tcp.close().then(() => {
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
-Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
+Obtains the remote address of a **Socket** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **connect** is successfully called.
@@ -2028,7 +2127,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 getRemoteAddress(): Promise\<NetAddress\>
 
-Obtains the remote address of a socket connection. This API uses a promise to return the result.
+Obtains the remote address of a **Socket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **connect** is successfully called.
@@ -2041,7 +2140,7 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 
 | Type                                       | Description                                       |
 | ------------------------------------------ | ------------------------------------------ |
-| Promise<[NetAddress](#netaddress)> | Promise used to return the result.|
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -2080,7 +2179,7 @@ tcp.connect(tcpconnectoptions).then(() => {
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
-Obtains the status of the TCP socket connection. This API uses an asynchronous callback to return the result.
+Obtains the status of a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
@@ -2132,7 +2231,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the status of the TCP socket connection. This API uses a promise to return the result.
+Obtains the status of a **TCPSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
@@ -2145,7 +2244,7 @@ Obtains the status of the TCP socket connection. This API uses a promise to retu
 
 | Type                                            | Description                                      |
 | ----------------------------------------------- | ----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
+| Promise\<[SocketStateBase](#socketstatebase)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -2268,7 +2367,7 @@ tcp.getSocketFd().then((data: number) => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TCP socket connection. This API uses an asynchronous callback to return the result.
+Sets other properties of a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
@@ -2281,7 +2380,7 @@ Sets other properties of the TCP socket connection. This API uses an asynchronou
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCP socket connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a **TCPSocket** connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
 | callback | AsyncCallback\<void\>                     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.              |
 
 **Error codes**
@@ -2332,7 +2431,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TCP socket connection. This API uses a promise to return the result.
+Sets other properties of a **TCPSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
@@ -2345,7 +2444,7 @@ Sets other properties of the TCP socket connection. This API uses a promise to r
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCP socket connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a **TCPSocket** connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
 
 **Return value**
 
@@ -2395,11 +2494,61 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+Obtains the local socket address of a **TCPSocket** connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  family: 1,
+  port: 8080
+}
+tcp.bind(bindAddr).then(() => {
+  tcp.getLocalAddress().then((localAddress: socket.NetAddress) => {
+    console.info("SUCCESS! Address:" + JSON.stringify(localAddress));
+  }).catch((err: BusinessError) => {
+    console.error("FAILED! Error:" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+});
+```
+
 ### on('message')
 
 on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 
-Subscribes to **message** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **message** events of a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2434,7 +2583,7 @@ tcp.on('message', (value: socket.SocketMessageInfo) => {
 
 off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
-Unsubscribes from **message** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **message** events of a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2473,7 +2622,7 @@ tcp.off('message');
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
-Subscribes to connection or close events of the TCP socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **connect** or **close** events of a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2503,7 +2652,7 @@ tcp.on('close', () => {
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
-Unsubscribes from connection or close events of the TCP socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **connect** or **close** events of a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2541,7 +2690,7 @@ tcp.off('close');
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **error** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **error** events of a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2568,7 +2717,7 @@ tcp.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **error** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **error** events of a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2597,18 +2746,18 @@ tcp.off('error');
 
 ## TCPConnectOptions
 
-Defines TCP socket connection parameters.
+Defines parameters of a **TCPSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name | Type                              | Mandatory| Description                      |
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | Yes  | Bound IP address and port number.      |
-| timeout | number                             | No  | Timeout duration of the TCP socket connection, in ms.|
+| timeout | number                             | No  | Timeout duration of a **TCPSocket** connection, in ms.|
 
 ## TCPSendOptions
 
-Defines the parameters for sending data over a TCP socket connection.
+Defines the parameters for sending data over a **TCPSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2619,7 +2768,7 @@ Defines the parameters for sending data over a TCP socket connection.
 
 ## TCPExtraOptions
 
-Defines other properties of the TCP socket connection.
+Defines other properties of a **TCPSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2627,18 +2776,18 @@ Defines other properties of the TCP socket connection.
 | ----------------- | ------- | ---- | ------------------------------------------------------------ |
 | keepAlive         | boolean | No  | Whether to keep the connection alive. The default value is **false**.                                 |
 | OOBInline         | boolean | No  | Whether to enable OOBInline. The default value is **false**.                                |
-| TCPNoDelay        | boolean | No  | Whether to enable no-delay on the TCP socket connection. The default value is **false**.                      |
+| TCPNoDelay        | boolean | No  | Whether to enable no-delay on the **TCPSocket** connection. The default value is **false**.                      |
 | socketLinger      | \{on:boolean, linger:number\}  | No  | Socket linger.<br>- **on**: whether to enable socket linger. The value true means to enable socket linger and false means the opposite.<br>- **linger**: linger time, in ms. The value ranges from **0** to **65535**.<br>Specify this parameter only when **on** is set to **true**.|
 | receiveBufferSize | number  | No  | Size of the receive buffer, in bytes. The default value is **0**.                              |
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.                              |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.                                 |
-| socketTimeout     | number  | No  | Timeout duration of the UDP socket connection, in ms. The default value is **0**.                            |
+| socketTimeout     | number  | No  | Timeout duration of the **UDPSocket** connection, in ms. The default value is **0**.                            |
 
 ## socket.constructTCPSocketServerInstance<sup>10+</sup>
 
 constructTCPSocketServerInstance(): TCPSocketServer
 
-Creates a **TCPSocketServer** object.
+Creates a **TCPSocketServer** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2646,7 +2795,7 @@ Creates a **TCPSocketServer** object.
 
 | Type                               | Description                         |
 |  ---------------------------------- |  ---------------------------- |
-| [TCPSocketServer](#tcpsocketserver10) | **TCPSocketServer** object.|
+| [TCPSocketServer](#tcpsocketserver10) | **TCPSocketServer** connection.|
 
 **Example**
 
@@ -2657,13 +2806,13 @@ let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance(
 
 ## TCPSocketServer<sup>10+</sup>
 
-Defines a TCP socket server connection. Before calling TCPSocketServer APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
+Defines a **TCPSocketServer** connection. Before calling **TCPSocketServer** APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
 
 ### listen<sup>10+</sup>
 
 listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses an asynchronous callback to return the result.
+Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts **TCPSocket** connections established over the socket. Multiple threads are used to process client data concurrently. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
@@ -2716,7 +2865,7 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
 
 listen(address: NetAddress): Promise\<void\>
 
-Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
+Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts **TCPSocket** connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
 
 > **NOTE**<br>
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
@@ -2772,7 +2921,7 @@ tcpServer.listen(listenAddr).then(() => {
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
-Obtains the status of a TCP socket server connection. This API uses an asynchronous callback to return the result.
+Obtains the status of a **TCPSocketServer** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2828,7 +2977,7 @@ tcpServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the status of a TCP socket server connection. This API uses a promise to return the result.
+Obtains the status of a **TCPSocketServer** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2841,7 +2990,7 @@ Obtains the status of a TCP socket server connection. This API uses a promise to
 
 | Type                                        | Description                                      |
 |  ------------------------------------------- |  ----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
+| Promise\<[SocketStateBase](#socketstatebase)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -2881,7 +3030,7 @@ tcpServer.getState().then((data: socket.SocketStateBase) => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of a TCP socket server connection. This API uses an asynchronous callback to return the result.
+Sets other properties of a **TCPSocketServer** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2894,7 +3043,7 @@ Sets other properties of a TCP socket server connection. This API uses an asynch
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a TCP socket server connection.|
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a **TCPSocketServer** connection.|
 | callback | AsyncCallback\<void\>               | Yes  | Callback used to return the result. If the operation fails, an error message is returned.               |
 
 **Error codes**
@@ -2949,7 +3098,7 @@ tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of a TCP socket server connection. This API uses a promise to return the result.
+Sets other properties of a **TCPSocketServer** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2962,7 +3111,7 @@ Sets other properties of a TCP socket server connection. This API uses a promise
 
 | Name | Type                               | Mandatory| Description                                                        |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a TCP socket server connection.|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a **TCPSocketServer** connection.|
 
 **Return value**
 
@@ -3013,6 +3162,56 @@ tcpServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
   console.log('setExtraOptions fail');
+});
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+Obtains the local socket address of a **TCPSocketServer** connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr).then(() => {
+  tcpServer.getLocalAddress().then((localAddress: socket.NetAddress) => {
+    console.info("SUCCESS! Address:" + JSON.stringify(localAddress));
+  }).catch((err: BusinessError) => {
+    console.("FerrorAILED! Error:" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error('listen fail');
 });
 ```
 
@@ -3162,10 +3361,10 @@ tcpServer.off('error');
 
 ## TCPSocketConnection<sup>10+</sup>
 
-Defines a **TCPSocketConnection** object, that is, the connection between the TCPSocket client and the server. Before calling TCPSocketConnection APIs, you need to obtain a **TCPSocketConnection** object.
+Defines a **TCPSocketConnection** object, that is, the connection between the **TCPSocket** client and the server. Before calling **TCPSocketConnection** APIs, you need to obtain a **TCPSocketConnection** object.
 
 > **NOTE**
-> The TCPSocket client can call related APIs through the **TCPSocketConnection** object only after a connection is successfully established between the TCPSocket client and the server.
+> The client can call related APIs through the **TCPSocketConnection** object only after a connection is successfully established between the client and the server.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3173,7 +3372,7 @@ Defines a **TCPSocketConnection** object, that is, the connection between the TC
 
 | Name    | Type  | Mandatory| Description                                     |
 | -------- | ------ | ---- | ----------------------------------------- |
-| clientId | number | Yes  | ID of the connection between the client and TCPSocketServer.|
+| clientId | number | Yes  | ID of the connection between the **TCPSocket** client and the server.|
 
 ### send<sup>10+</sup>
 
@@ -3192,7 +3391,7 @@ Sends data over a **TCPSocketConnection** object. This API uses an asynchronous 
 
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a TCP socket connection.|
+| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a **TCPSocket** connection.|
 | callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result. If the operation fails, an error message is returned.            |
 
 **Error codes**
@@ -3237,7 +3436,7 @@ Sends data over a **TCPSocketConnection** object. This API uses a promise to ret
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a TCP socket connection.|
+| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a **TCPSocket** connection.|
 
 **Return value**
 
@@ -3277,7 +3476,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 close(callback: AsyncCallback\<void\>): void
 
-Closes a TCP socket connection. This API uses an asynchronous callback to return the result.
+Closes a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -3320,7 +3519,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 close(): Promise\<void\>
 
-Closes a TCP socket connection. This API uses a promise to return the result.
+Closes a **TCPSocket** connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -3358,7 +3557,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
-Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
+Obtains the remote address of a **Socket** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after a connection with the client is set up.
@@ -3404,7 +3603,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 getRemoteAddress(): Promise\<NetAddress\>
 
-Obtains the remote address of a socket connection. This API uses a promise to return the result.
+Obtains the remote address of a **Socket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after a connection with the client is set up.
@@ -3417,7 +3616,7 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 
 | Type                              | Description                                       |
 |  --------------------------------- |  ------------------------------------------ |
-| Promise<[NetAddress](#netaddress)> | Promise used to return the result.|
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -3441,6 +3640,69 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
     console.log('getRemoteAddress fail');
   });
 });
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+Obtains the local socket address of a **TCPSocketConnection** connection. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address: "192.168.xx.xx",
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+  let netAddress: socket.NetAddress = {
+    address: "192.168.xx.xx",
+    port: 8080
+  }
+  let options: socket.TCPConnectOptions = {
+    address: netAddress,
+    timeout: 6000
+  }
+  tcp.connect(options, (err: BusinessError) => {
+    if (err) {
+      console.error('connect fail');
+      return;
+    }
+    console.info('connect success!');
+  })
+  tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+    client.getLocalAddress().then((localAddress: socket.NetAddress) => {
+      console.info("Family IP Port: " + JSON.stringify(localAddress));
+    }).catch((err: BusinessError) => {
+      console.error('Error:' + JSON.stringify(err));
+    });
+  })
+})
 ```
 
 ### on('message')<sup>10+</sup>
@@ -3710,7 +3972,7 @@ let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 
 ## LocalSocket<sup>11+</sup>
 
-Defines a **LocalSocket** object. Before calling LocalSocket APIs, you need to call [socket.constructLocalSocketInstance](#socketconstructlocalsocketinstance11) to create a **LocalSocket** object.
+Defines a **LocalSocket** object. Before calling **LocalSocket** APIs, you need to call [socket.constructLocalSocketInstance](#socketconstructlocalsocketinstance11) to create a **LocalSocket** object.
 
 ### bind<sup>11+</sup>
 
@@ -3771,7 +4033,7 @@ Connects to the specified socket file. This API uses a promise to return the res
 
 | Name | Type                                    | Mandatory| Description                                                        |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [LocalConnectOptions](#localconnectoptions11) | Yes  | Local socket connection parameters. For details, see [LocalConnectOptions](#localconnectoptions11).|
+| options | [LocalConnectOptions](#localconnectoptions11) | Yes  | **LocalSocket** connection parameters. For details, see [LocalConnectOptions](#localconnectoptions11).|
 
 **Return value**
 
@@ -3814,7 +4076,7 @@ client.connect(connectOpt).then(() => {
 
 send(options: LocalSendOptions): Promise\<void\>
 
-Sends data over a local socket connection. This API uses a promise to return the result.
+Sends data over a **LocalSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **connect** is successfully called.
@@ -3825,7 +4087,7 @@ Sends data over a local socket connection. This API uses a promise to return the
 
 | Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [LocalSendOptions](#localsendoptions11) | Yes  | Parameters for sending data over a local socket connection. For details, see [LocalSendOptions](#localsendoptions11).|
+| options | [LocalSendOptions](#localsendoptions11) | Yes  | Parameters for sending data over a **LocalSocket** connection. For details, see [LocalSendOptions](#localsendoptions11).|
 
 **Return value**
 
@@ -3873,7 +4135,7 @@ client.send(sendOpt).then(() => {
 
 close(): Promise\<void\>
 
-Closes a local socket connection. This API uses a promise to return the result.
+Closes a **LocalSocket** connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3907,7 +4169,7 @@ client.close().then(() => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the local socket connection status. This API uses a promise to return the result.
+Obtains the **LocalSocket** connection status. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
@@ -3918,7 +4180,7 @@ Obtains the local socket connection status. This API uses a promise to return th
 
 | Type                                         | Description                                    |
 | :------------------------------------------- | :--------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
+| Promise\<[SocketStateBase](#socketstatebase)\> | Promise used to return the result.|
 
 **Example**
 
@@ -3994,7 +4256,7 @@ client.getSocketFd().then((data: number) => {
 
 setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
-Sets other properties of the local socket connection. This API uses a promise to return the result.
+Sets other properties of the **LocalSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
@@ -4005,7 +4267,7 @@ Sets other properties of the local socket connection. This API uses a promise to
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase7) | Yes  | Other properties of the local socket connection. For details, see [ExtraOptionsBase](#extraoptionsbase7).|
+| options | [ExtraOptionsBase](#extraoptionsbase7) | Yes  | Other properties of the **LocalSocket** connection. For details, see [ExtraOptionsBase](#extraoptionsbase7).|
 
 **Return value**
 
@@ -4055,7 +4317,7 @@ client.connect(connectOpt).then(() => {
 
 getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
-Obtains other properties of the local socket connection. This API uses a promise to return the result.
+Obtains other properties of the **LocalSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
@@ -4098,6 +4360,53 @@ client.connect(connectOpt).then(() => {
 }).catch((err: Object) => {
   console.error('connect fail: ' + JSON.stringify(err));
 });
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<String\>
+
+Obtains the local socket address of a **LocalSocket** connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext().filesDir + '/testSocket';
+let address : socket.LocalAddress = {
+  address: sandboxPath
+}
+client.bind(address).then(() => {
+  console.error('bind success');
+  client.getLocalAddress().then((localPath) => {
+    console.info("SUCCESS " + JSON.stringify(localPath));
+  }).catch((err: BusinessError) => {
+    console.error("FAIL " + JSON.stringify(err));
+  })
+}).catch((err: Object) => {
+  console.info('failed to bind: ' + JSON.stringify(err));
+})
 ```
 
 ### on('message')<sup>11+</sup>
@@ -4386,14 +4695,14 @@ client.off('error');
 
 ## LocalSocketMessageInfo<sup>11+</sup>
 
-Defines the data received by the client over a local socket connection.
+Defines the data received by the client over a **LocalSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name    | Type           | Mandatory| Description              |
 | ------- | --------------- | --- | ------------------ |
 | message | ArrayBuffer     | Yes  | Data received.    |
-| address | string          | Yes  | Local socket connection address.|
+| address | string          | Yes  | **LocalSocket** connection address.|
 | size    | number          | Yes  | Data length.         |
 
 ## LocalAddress<sup>11+</sup>
@@ -4408,18 +4717,18 @@ Defines the address of a local socket file. When the address is passed for bindi
 
 ## LocalConnectOptions<sup>11+</sup>
 
-Defines local socket connection parameters.
+Defines **LocalSocket** connection parameters.
 
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name    | Type      | Mandatory| Description                           |
 | ------- | ---------- | --- | ------------------------------ |
 | address | [LocalAddress](#localaddress11)    | Yes  | Address of the local socket file.           |
-| timeout | number     | No  | Timeout duration of the local socket connection, in ms. |
+| timeout | number     | No  | Timeout duration of the **LocalSocket** connection, in ms. |
 
 ## LocalSendOptions<sup>11+</sup>
 
-Defines the parameters for sending data over a local socket connection.
+Defines the parameters for sending data over a **LocalSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4430,7 +4739,7 @@ Defines the parameters for sending data over a local socket connection.
 
 ## ExtraOptionsBase<sup>7+</sup>
 
-Defines other properties of the local socket connection.
+Defines other properties of the **LocalSocket** connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4439,7 +4748,7 @@ Defines other properties of the local socket connection.
 | receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.    |
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes.    |
 | reuseAddress      | boolean | No  | Whether to reuse addresses.                  |
-| socketTimeout     | number  | No  | Timeout duration of the local socket connection, in ms.   |
+| socketTimeout     | number  | No  | Timeout duration of the **LocalSocket** connection, in ms.   |
 
 ## socket.constructLocalSocketServerInstance<sup>11+</sup>
 
@@ -4464,13 +4773,13 @@ let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance
 
 ## LocalSocketServer<sup>11+</sup>
 
-Defines a local socket server connection. Before calling LocalSocketServer APIs, you need to call [socket.constructLocalSocketServerInstance](#socketconstructlocalsocketserverinstance11) to create a **LocalSocketServer** object. 
+Defines a **LocalSocketServer** connection. Before calling **LocalSocketServer** APIs, you need to call [socket.constructLocalSocketServerInstance](#socketconstructlocalsocketserverinstance11) to create a **LocalSocketServer** connection. 
 
 ### listen<sup>11+</sup>
 
 listen(address: LocalAddress): Promise\<void\>
 
-Binds the address of the local socket file. The server listens to and accepts local socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
+Binds the address of the local socket file. The server listens to and accepts **LocalSocket** connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
 
 > **NOTE**
 > The server uses this API to complete the **bind**, **listen**, and **accept** operations. If the address of the local socket file is passed for binding, a socket file is automatically created when this API is called.
@@ -4520,7 +4829,7 @@ server.listen(addr).then(() => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the status of a local socket server connection. This API uses a promise to return the result.
+Obtains the status of a **LocalSocketServer** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -4559,7 +4868,7 @@ server.getState().then((data: socket.SocketStateBase) => {
 
 setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
-Sets other properties of the local socket server connection. This API uses a promise to return the result.
+Sets other properties of the **LocalSocketServer** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -4570,7 +4879,7 @@ Sets other properties of the local socket server connection. This API uses a pro
 
 | Name | Type                                     | Mandatory| Description                           |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase7) | Yes  | Other properties of a local socket server connection.|
+| options | [ExtraOptionsBase](#extraoptionsbase7) | Yes  | Other properties of a **LocalSocketServer** connection.|
 
 **Return value**
 
@@ -4617,7 +4926,7 @@ server.setExtraOptions(options).then(() => {
 
 getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
-Obtains other properties of a local socket server connection. This API uses a promise to return the result.
+Obtains other properties of a **LocalSocketServer** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -4656,6 +4965,54 @@ server.getExtraOptions().then((options: socket.ExtraOptionsBase) => {
 }).catch((err: Object) => {
   console.error('getExtraOptions fail: ' + JSON.stringify(err));
 });
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<string\>
+
+Obtains the local socket address of a **LocalSocketServer** connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext().filesDir + '/testSocket';
+let listenAddr: socket.LocalAddress = {
+  address: sandboxPath
+}
+server.listen(listenAddr).then(() => {
+  console.info("listen success");
+  server.getLocalAddress().then((localPath) => {
+    console.info("SUCCESS " + JSON.stringify(localPath));
+  }).catch((err: BusinessError) => {
+    console.error("FAIL " + JSON.stringify(err));
+  })
+}).catch((err: Object) => {
+  console.error("listen fail: " + JSON.stringify(err));
+})
+
 ```
 
 ### on('connect')<sup>11+</sup>
@@ -4807,10 +5164,10 @@ server.off('error');
 
 ## LocalSocketConnection<sup>11+</sup>
 
-Defines a local socket connection, that is, the session between the local socket client and the server. Before calling LocalSocketConnection APIs, you need to obtain a **LocalSocketConnection** object.
+Defines a **LocalSocket** connection, that is, the session between the local socket client and the server. Before calling **LocalSocketConnection** APIs, you need to obtain a **LocalSocketConnection** object.
 
 > **NOTE**
-> The LocalSocketConnection client can call related APIs through the **LocalSocketConnection** object only after a connection is successfully established between the local socket client and the server.
+> The client can call related APIs through the **LocalSocketConnection** object only after a connection is successfully established between the client and the server.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4824,7 +5181,7 @@ Defines a local socket connection, that is, the session between the local socket
 
 send(options: LocalSendOptions): Promise\<void\>
 
-Sends data through a local socket connection. This API uses a promise to return the result.
+Sends data over a **LocalSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be used only after the server obtains a **LocalSocketConnection** object through the **callback** of the **connect** event.
@@ -4835,7 +5192,7 @@ Sends data through a local socket connection. This API uses a promise to return 
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | -------------------------------------- |
-| options | [LocalSendOptions](#localsendoptions11) | Yes  | Defines the parameters for sending data over a local socket connection.|
+| options | [LocalSendOptions](#localsendoptions11) | Yes  | Defines the parameters for sending data over a **LocalSocket** connection.|
 
 **Return value**
 
@@ -4873,7 +5230,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 close(): Promise\<void\>
 
-Closes a local socket connection. This API uses a promise to return the result.
+Closes a **LocalSocket** connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4900,6 +5257,57 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
     console.log('close success');
   }).catch((err: Object) => {
     console.error('close fail: ' + JSON.stringify(err));
+  });
+});
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<string\>
+
+Obtains the local socket address of a **LocalSocketConnection** connection. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext().filesDir + '/testSocket';
+let localAddr: socket.LocalAddress = {
+  address: sandboxPath
+}
+server.listen(localAddr).then(() => {
+  console.info('listen success');
+  let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+  let connectOpt: socket.LocalConnectOptions = {
+    address: localAddr,
+    timeout: 6000
+  }
+  client.connect(connectOpt).then(() => {
+    server.getLocalAddress().then((localPath) => {
+      console.info("success, localPath is"JSON.stringify(localPath));
+    }).catch((err: BusinessError) => {
+      console.error("FAIL " + JSON.stringify(err));
+    })
+  }).catch((err: Object) => {
+    console.error('connect fail: ' + JSON.stringify(err));
   });
 });
 ```
@@ -5159,7 +5567,7 @@ Creates a **TLSSocket** object.
 
 | Type                              | Description                   |
 |  --------------------------------- |  ---------------------- |
-| [TLSSocket](#tlssocket9) | **TLSSocket** object.|
+| [TLSSocket](#tlssocket9) | **TLSSocket** connection.|
 
 **Example**
 
@@ -5171,7 +5579,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 
 ## TLSSocket<sup>9+</sup>
 
-Defines a TLS socket connection. Before calling TLSSocket APIs, you need to call [socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9) to create a **TLSSocket** object.
+Defines a **TLSSocket** connection. Before calling **TLSSocket** APIs, you need to call [socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9) to create a **TLSSocket** connection.
 
 ### bind<sup>9+</sup>
 
@@ -5272,7 +5680,7 @@ tls.bind(bindAddr).then(() => {
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
-Obtains the status of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Obtains the status of the **TLSSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5280,7 +5688,7 @@ Obtains the status of the TLS socket connection. This API uses an asynchronous c
 
 | Name  | Type                                                  | Mandatory| Description      |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket connection is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the **TLSSocket** connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -5320,7 +5728,7 @@ tls.getState((err: BusinessError, data: socket.SocketStateBase) => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the status of the TLS socket connection. This API uses a promise to return the result.
+Obtains the status of the **TLSSocket** connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5328,7 +5736,7 @@ Obtains the status of the TLS socket connection. This API uses a promise to retu
 
 | Type                                            | Description                                      |
 |  ----------------------------------------------- |  ----------------------------------------- |
-| Promise\<[SocketStateBase](#socketstatebase)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[SocketStateBase](#socketstatebase)\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -5366,7 +5774,7 @@ tls.getState().then(() => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TCP socket connection after **bind** is successfully called. This API uses an asynchronous callback to return the result.
+Sets other properties of a **TCPSocket** connection after **bind** is successfully called. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5374,8 +5782,8 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCP socket connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
-| callback | AsyncCallback\<void\>                     | Yes  | Callback used to return the result. If the operation is successful, the result of setting other properties of the TCP socket connection is returned. If the operation fails, an error message is returned.|
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a **TCPSocket** connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
+| callback | AsyncCallback\<void\>                     | Yes  | Callback used to return the result. If the operation is successful, the result of setting other properties of a **TCPSocket** connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -5427,7 +5835,7 @@ tls.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TCP socket connection after **bind** is successfully called. This API uses a promise to return the result.
+Sets other properties of a **TCPSocket** connection after **bind** is successfully called. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5435,7 +5843,7 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCP socket connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a **TCPSocket** connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
 
 **Return value**
 
@@ -5491,7 +5899,7 @@ tls.setExtraOptions(tcpExtraOptions).then(() => {
 
 on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 
-Subscribes to **message** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **message** events of a **TLSSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5575,7 +5983,7 @@ tls.off('message', callback);
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
-Subscribes to **connect** or **close** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **connect** or **close** events of a **TLSSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5654,7 +6062,7 @@ tls.off('close', callback2);
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **error** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Subscribes to **error** events of a **TLSSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5718,12 +6126,11 @@ tls.on('error', callback);
 // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tls.off('error', callback);
 ```
-
 ### connect<sup>9+</sup>
 
 connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
+Sets up a **TLSSocket** connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5731,7 +6138,7 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 
 | Name  | Type                                  | Mandatory| Description|
 | -------- | ---------------------------------------| ----| --------------- |
-| options  | [TLSConnectOptions](#tlsconnectoptions9) | Yes  | Parameters required for the TLS socket connection.|
+| options  | [TLSConnectOptions](#tlsconnectoptions9) | Yes  | Parameters required for the **TLSSocket** connection.|
 | callback | AsyncCallback\<void\>                  | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -5824,7 +6231,7 @@ tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
 
 connect(options: TLSConnectOptions): Promise\<void\>
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
+Sets up a **TLSSocket** connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5934,7 +6341,7 @@ tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
-Obtains the remote address of a TLS socket connection. This API uses an asynchronous callback to return the result.
+Obtains the remote address of a **TLSSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5971,7 +6378,7 @@ tls.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
 
 getRemoteAddress(): Promise\<NetAddress\>
 
-Obtains the remote address of a TLS socket connection. This API uses a promise to return the result.
+Obtains the remote address of a **TLSSocket** connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5979,7 +6386,7 @@ Obtains the remote address of a TLS socket connection. This API uses a promise t
 
 | Type                                       | Description                                       |
 |  ------------------------------------------ |  ------------------------------------------ |
-| Promise\<[NetAddress](#netaddress)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -6006,7 +6413,7 @@ tls.getRemoteAddress().then(() => {
 
 getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
 
-Obtains the local digital certificate after a TLS socket connection is established. This API is applicable to two-way authentication. It uses an asynchronous callback to return the result.
+Obtains the local digital certificate after a **TLSSocket** connection is established. This API is applicable to two-way authentication. It uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6044,7 +6451,7 @@ tls.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
 
 getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
-Obtains the local digital certificate after a TLS socket connection is established. This API is applicable to two-way authentication. It uses a promise to return the result.
+Obtains the local digital certificate after a **TLSSocket** connection is established. This API is applicable to two-way authentication. It uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6083,7 +6490,7 @@ tls.getCertificate().then((data: socket.X509CertRawData) => {
 
 getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
 
-Obtains the digital certificate of the server after a TLS socket connection is established. This API uses an asynchronous callback to return the result.
+Obtains the digital certificate of the server after a **TLSSocket** connection is established. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6123,7 +6530,7 @@ tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
 
 getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
-Obtains the digital certificate of the server after a TLS socket connection is established. This API uses a promise to return the result.
+Obtains the digital certificate of the server after a **TLSSocket** connection is established. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6161,7 +6568,7 @@ tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
 
 getProtocol(callback: AsyncCallback\<string\>): void
 
-Obtains the communication protocol version after a TLS socket connection is established. This API uses an asynchronous callback to return the result.
+Obtains the communication protocol version after a **TLSSocket** connection is established. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6199,7 +6606,7 @@ tls.getProtocol((err: BusinessError, data: string) => {
 
 getProtocol():Promise\<string\>
 
-Obtains the communication protocol version after a TLS socket connection is established. This API uses a promise to return the result.
+Obtains the communication protocol version after a **TLSSocket** connection is established. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6235,7 +6642,7 @@ tls.getProtocol().then((data: string) => {
 
 getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the cipher suite negotiated by both communication parties after a TLS socket connection is established. This API uses an asynchronous callback to return the result.
+Obtains the cipher suite negotiated by both communication parties after a **TLSSocket** connection is established. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6274,7 +6681,7 @@ tls.getCipherSuite((err: BusinessError, data: Array<string>) => {
 
 getCipherSuite(): Promise\<Array\<string\>\>
 
-Obtains the cipher suite negotiated by both communication parties after a TLS socket connection is established. This API uses a promise to return the result.
+Obtains the cipher suite negotiated by both communication parties after a **TLSSocket** connection is established. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6311,7 +6718,7 @@ tls.getCipherSuite().then((data: Array<string>) => {
 
 getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the signing algorithm negotiated by both communication parties after a TLS socket connection is established. This API is applicable to two-way authentication. It uses an asynchronous callback to return the result.
+Obtains the signing algorithm negotiated by both communication parties after a **TLSSocket** connection is established. This API is applicable to two-way authentication. It uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6348,7 +6755,7 @@ tls.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
 
 getSignatureAlgorithms(): Promise\<Array\<string\>\>
 
-Obtains the signing algorithm negotiated by both communication parties after a TLS socket connection is established. This API is applicable to two-way authentication. It uses a promise to return the result.
+Obtains the signing algorithm negotiated by both communication parties after a **TLSSocket** connection is established. This API is applicable to two-way authentication. It uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6379,11 +6786,52 @@ tls.getSignatureAlgorithms().then((data: Array<string>) => {
 });
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+Obtains the local socket address of a **TLSSocket** connection. This API uses a promise to return the result.
+
+> **NOTE**
+> Call this API only after the **TLSSocketServer** connection is successfully established.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
+  console.info("Get success: " + JSON.stringify(localAddress));
+}).catch((err: BusinessError) => {
+  console.error("Get failed, error: " + JSON.stringify(err));
+})
+```
+
 ### send<sup>9+</sup>
 
 send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 
-Sends a message to the server after a TLS socket connection is established. This API uses an asynchronous callback to return the result.
+Sends a message to the server after a **TLSSocket** connection is established. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6425,7 +6873,7 @@ tls.send("xxxx", (err: BusinessError) => {
 
 send(data: string \| ArrayBuffer): Promise\<void\>
 
-Sends a message to the server after a TLS socket connection is established. This API uses a promise to return the result.
+Sends a message to the server after a **TLSSocket** connection is established. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6470,7 +6918,7 @@ tls.send("xxxx").then(() => {
 
 close(callback: AsyncCallback\<void\>): void
 
-Closes a TLS socket connection. This API uses an asynchronous callback to return the result.
+Closes a **TLSSocket** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6510,7 +6958,7 @@ tls.close((err: BusinessError) => {
 
 close(): Promise\<void\>
 
-Closes a TLS socket connection. This API uses a promise to return the result.
+Closes a **TLSSocket** connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6602,7 +7050,7 @@ Creates a **TLSSocketServer** object.
 
 | Type                                 | Description                         |
 |  ------------------------------------ |  ---------------------------- |
-| [TLSSocketServer](#tlssocketserver10) | **TLSSocketServer** object.|
+| [TLSSocketServer](#tlssocketserver10) | **TLSSocketServer** connection.|
 
 **Example**
 
@@ -6615,7 +7063,7 @@ let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance(
 
 ## TLSSocketServer<sup>10+</sup>
 
-Defines a TLS socket server connection. Before calling TLSSocketServer APIs, you need to call [socket.constructTLSSocketServerInstance](#socketconstructtlssocketserverinstance10) to create a **TLSSocketServer** object.
+Defines a **TLSSocketServer** connection. Before calling **TLSSocketServer** APIs, you need to call [socket.constructTLSSocketServerInstance](#socketconstructtlssocketserverinstance10) to create a **TLSSocketServer** object.
 
 ### listen<sup>10+</sup>
 
@@ -6758,7 +7206,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
-Obtains the status of the TLS socket server connection upon successful listening. This API uses an asynchronous callback to return the result.
+Obtains the status of the **TLSSocketServer** connection upon successful listening. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -6769,7 +7217,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the **TLSSocketServer** connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -6823,7 +7271,7 @@ tlsServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the status of the TLS socket server connection upon successful listening. This API uses a promise to return the result.
+Obtains the status of the **TLSSocketServer** connection upon successful listening. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -6834,7 +7282,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 | Type                                          | Description                                                        |
 |  --------------------------------------------- |  ----------------------------------------------------------- |
-| Promise\<[SocketStateBase](#socketstatebase)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[SocketStateBase](#socketstatebase)\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -6885,7 +7333,7 @@ tlsServer.getState().then(() => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TLS socket server connection upon successful listening. This API uses an asynchronous callback to return the result.
+Sets other properties of the **TLSSocketServer** connection upon successful listening. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -6896,7 +7344,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 
 | Name  | Type                                | Mandatory| Description                                            |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TLS socket server connection.                 |
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the **TLSSocketServer** connection.                 |
 | callback | AsyncCallback\<void\>                | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -6962,7 +7410,7 @@ tlsServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TLS socket server connection upon successful listening. This API uses a promise to return the result.
+Sets other properties of the **TLSSocketServer** connection upon successful listening. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -6973,7 +7421,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 
 | Name | Type                                | Mandatory| Description                           |
 | ------- | ------------------------------------ | ---- | ------------------------------- |
-| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TLS socket server connection.|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the **TLSSocketServer** connection.|
 
 **Return value**
 
@@ -7042,7 +7490,7 @@ tlsServer.setExtraOptions(tcpExtraOptions).then(() => {
 
 getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
 
-Obtains the local digital certificate after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
+Obtains the local digital certificate after a **TLSSocketServer** connection is established. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -7111,7 +7559,7 @@ tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
 
 getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
-Obtains the local digital certificate after a TLS socket server connection is established. This API uses a promise to return the result.
+Obtains the local digital certificate after a **TLSSocketServer** connection is established. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -7177,7 +7625,7 @@ tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
 
 getProtocol(callback: AsyncCallback\<string\>): void
 
-Obtains the communication protocol version after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
+Obtains the communication protocol version after a **TLSSocketServer** connection is established. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -7243,7 +7691,7 @@ tlsServer.getProtocol((err: BusinessError, data: string) => {
 
 getProtocol():Promise\<string\>
 
-Obtains the communication protocol version after a TLS socket server connection is established. This API uses a promise to return the result.
+Obtains the communication protocol version after a **TLSSocketServer** connection is established. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -7302,11 +7750,52 @@ tlsServer.getProtocol().then((data: string) => {
 });
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+Obtains the local socket address of a **TLSSocketServer** connection. This API uses a promise to return the result.
+
+> **NOTE**
+> Call this API only after the **TLSSocketServer** connection is successfully established.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tlsServer: socket.TLSSocket = socket.constructTLSSocketServerInstance();
+tlsServer.getLocalAddress().then((localAddress: socket.NetAddress) => {
+  console.info("Get success: " + JSON.stringify(localAddress));
+}).catch((err: BusinessError) => {
+  console.error("Get failed, error: " + JSON.stringify(err));
+})
+```
+
 ### on('connect')<sup>10+</sup>
 
 on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 
-Subscribes to TLS socket server connection events. This API uses an asynchronous callback to return the result.
+Subscribes to **TLSSocketServer** connection events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -7556,10 +8045,10 @@ tlsServer.off('error');
 
 ## TLSSocketConnection<sup>10+</sup>
 
-Defines a **TLSSocketConnection** object, that is, the connection between the TLSSocket client and the server. Before calling TLSSocketConnection APIs, you need to obtain a **TLSSocketConnection** object.
+Defines a **TLSSocketConnection** object, that is, the connection between the **TLSSocket** client and the server. Before calling **TLSSocketConnection** APIs, you need to obtain a **TLSSocketConnection** object.
 
 > **NOTE**
-> The TLSSocket client can call related APIs through the **TLSSocketConnection** object only after a connection is successfully established between the TLSSocket client and the server.
+> The client can call related APIs through the **TLSSocketConnection** object only after a connection is successfully established between the client and the server.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7573,7 +8062,7 @@ Defines a **TLSSocketConnection** object, that is, the connection between the TL
 
 send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 
-Sends a message to the client after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
+Sends a message to the client after a **TLSSocketServer** connection is established. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7581,7 +8070,7 @@ Sends a message to the client after a TLS socket server connection is establishe
 
 | Name  | Type                 | Mandatory| Description                                            |
 | -------- | --------------------- | ---- | ------------------------------------------------ |
-| data     | string \| ArrayBuffer                | Yes  | Parameters for sending data over a TLS socket server connection.           |
+| data     | string \| ArrayBuffer                | Yes  | Parameters for sending data over a **TLSSocketServer** connection.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -7642,7 +8131,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 send(data: string \| ArrayBuffer): Promise\<void\>
 
-Sends a message to the server after a TLS socket server connection is established. This API uses a promise to return the result.
+Sends a message to the server after a **TLSSocketServer** connection is established. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7650,7 +8139,7 @@ Sends a message to the server after a TLS socket server connection is establishe
 
 | Name| Type  | Mandatory| Description                                 |
 | ------ | ------ | ---- | ------------------------------------- |
-| data   | string \| ArrayBuffer | Yes  | Parameters for sending data over a TLS socket server connection.|
+| data   | string \| ArrayBuffer | Yes  | Parameters for sending data over a **TLSSocketServer** connection.|
 
 **Return value**
 
@@ -7714,7 +8203,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 close(callback: AsyncCallback\<void\>): void
 
-Closes a TLS socket server connection. This API uses an asynchronous callback to return the result.
+Closes a **TLSSocketServer** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7781,7 +8270,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 close(): Promise\<void\>
 
-Closes a TLS socket server connection. This API uses a promise to return the result.
+Closes a **TLSSocketServer** connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7844,7 +8333,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
-Obtains the remote address of a TLS socket server connection. This API uses an asynchronous callback to return the result.
+Obtains the remote address of a **TLSSocketServer** connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7908,7 +8397,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getRemoteAddress(): Promise\<NetAddress\>
 
-Obtains the remote address of a TLS socket server connection. This API uses a promise to return the result.
+Obtains the remote address of a **TLSSocketServer** connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7916,7 +8405,7 @@ Obtains the remote address of a TLS socket server connection. This API uses a pr
 
 | Type                                | Description                                                        |
 |  ----------------------------------- |  ----------------------------------------------------------- |
-| Promise\<[NetAddress](#netaddress)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -7969,7 +8458,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
 
-Obtains the digital certificate of the peer end after a TLS socket server connection is established. This API uses an asynchronous callback to return the result. It applies only to the scenario where the client sends a certificate to the server. 
+Obtains the digital certificate of the peer end after a **TLSSocketServer** connection is established. This API uses an asynchronous callback to return the result. It applies only to the scenario where the client sends a certificate to the server. 
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8036,7 +8525,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
-Obtains the digital certificate of the peer end after a TLS socket server connection is established. This API uses a promise to return the result. It applies only to the scenario where the client sends a certificate to the server. 
+Obtains the digital certificate of the peer end after a **TLSSocketServer** connection is established. This API uses a promise to return the result. It applies only to the scenario where the client sends a certificate to the server. 
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8100,7 +8589,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the cipher suite negotiated by both communication parties after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
+Obtains the cipher suite negotiated by both communication parties after a **TLSSocketServer** connection is established. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8166,7 +8655,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getCipherSuite(): Promise\<Array\<string\>\>
 
-Obtains the cipher suite negotiated by both communication parties after a TLS socket server connection is established. This API uses a promise to return the result.
+Obtains the cipher suite negotiated by both communication parties after a **TLSSocketServer** connection is established. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8229,7 +8718,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the signing algorithm negotiated by both communication parties after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
+Obtains the signing algorithm negotiated by both communication parties after a **TLSSocketServer** connection is established. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8293,7 +8782,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getSignatureAlgorithms(): Promise\<Array\<string\>\>
 
-Obtains the signing algorithm negotiated by both communication parties after a TLS socket server connection is established. This API uses a promise to return the result.
+Obtains the signing algorithm negotiated by both communication parties after a **TLSSocketServer** connection is established. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8350,6 +8839,74 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 });
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+Obtains the local socket address of a **TLSSocketConnection** connection. This API uses a promise to return the result.
+
+> **NOTE**
+> Call this API only after the **TLSSocketServer** connection is successfully established.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.info("listen callback success");
+}).catch((err: BusinessError) => {
+  console.error("failed" + err);
+});
+
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
+    console.info("Family IP Port: " + JSON.stringify(localAddress));
+  }).catch((err: BusinessError) => {
+    console.error("TLS Client Get Family IP Port failed, error: " + JSON.stringify(err));
+  })
+});
+```
+
 ### on('message')<sup>10+</sup>
 
 on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
@@ -8363,7 +8920,7 @@ Subscribes to **message** events of a **TLSSocketConnection** object. This API u
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result. If the operation is successful, the TLS socket connection information is returned. If the operation fails, an error message is returned.                              |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result. If the operation is successful, the **TLSSocket** connection information is returned. If the operation fails, an error message is returned.                              |
 
 **Error codes**
 
@@ -8431,7 +8988,7 @@ Unsubscribes from **message** events of a **TLSSocketConnection** object. This A
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result. If the operation is successful, the TLS socket connection information is returned. If the operation fails, an error message is returned. |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result. If the operation is successful, the **TLSSocket** connection information is returned. If the operation fails, an error message is returned. |
 
 **Error codes**
 

@@ -26,7 +26,7 @@ The **native_avmuxer.h** file declares the native APIs used for audio and video 
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) \* [OH_AVMuxer_Create](_a_v_muxer.md#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | Creates an **OH_AVMuxer** instance by using the file descriptor and encapsulation format. | 
+| [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) \* [OH_AVMuxer_Create](_a_v_muxer.md#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | Creates an **OH_AVMuxer** instance by using the file descriptor and container format. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_SetRotation](_a_v_muxer.md#oh_avmuxer_setrotation) ([OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) \*muxer, int32_t rotation) | Sets the rotation angle (clockwise) of an output video.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_AddTrack](_a_v_muxer.md#oh_avmuxer_addtrack) ([OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) \*muxer, int32_t \*trackIndex, [OH_AVFormat](_core.md#oh_avformat) \*trackFormat) | Adds a media track to the muxer.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Start](_a_v_muxer.md#oh_avmuxer_start) ([OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) \*muxer) | Starts the muxer.| 

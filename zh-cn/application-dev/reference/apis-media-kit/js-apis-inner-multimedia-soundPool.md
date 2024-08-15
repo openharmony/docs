@@ -33,7 +33,14 @@ import { audio } from '@kit.AudioKit';
 
 ## SoundPool
 
-音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例
+音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例。
+
+> **说明：**
+>
+> 在使用SoundPool实例的方法时，建议开发者注册相关回调，主动获取当前状态变化。
+> - [on('loadComplete')](#onloadcomplete)：监听资源加载完成。
+> - [on('playFinished')](#onplayfinished)：监听播放完成。
+> - [on('error')](#onerror)：监听错误事件。
 
 ### load
 
@@ -232,7 +239,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`)
     let file: fileIo.File;
     let soundID: number = 0;
-    let fileSize: number = 1; //通过fs.stat()获取size值
+    let fileSize: number = 1; //通过fileIo.stat()获取size值
     let uri: string = "";
     //获取fd的描述信息
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
@@ -311,7 +318,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`)
     let file: fileIo.File;
     let soundID: number = 0;
-    let fileSize: number = 1; //通过fs.stat()获取size值
+    let fileSize: number = 1; //通过fileIo.stat()获取size值
     let uri: string = "";
     //获取fd的描述信息
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
@@ -888,10 +895,6 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
 设置音频流播放速率。使用callback方式异步获取返回值。
-<!--RP1-->
-> **说明：**
-> 该接口在4.0版本开放，功能实现受设备影响有所区别(当前RK3568开发板支持倍速，其他设备暂不支持)。
-<!--RP1End-->
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -951,11 +954,6 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 设置音频流的播放速率。使用Promise方式异步获取返回值。
-
-<!--RP1-->
-> **说明：**
-> 该接口在4.0版本开放，功能实现受设备影响有所区别(当前RK3568开发板支持倍速，其他设备暂不支持)。
-<!--RP1End-->
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 

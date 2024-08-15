@@ -16,7 +16,7 @@ The application icon and application label are used to identify an application, 
 * Notification messages displayed in the status bar
 
 
-The entry icon and entry label are displayed on the device's home screen after an application is installed. The entry icon maps to a PageAbility. Therefore, an application can have multiple entry icons and entry labels. When you touch one of them, the corresponding page is displayed. Example scenarios are as follows:
+The entry icon and entry label are displayed on the device's home screen after an application is installed. The entry icon is specific to a PageAbility. Only one entry icon and entry label can be configured for an application. If there are multiple entry abilities, only the entry icon and entry label configured for the mainAbility in the entry HAP take effect. After you touch the entry icon, the corresponding PageAbility page is displayed. Example scenarios are as follows:
 * Applications displayed on the device's home screen
 * Applications displayed in Recents
 

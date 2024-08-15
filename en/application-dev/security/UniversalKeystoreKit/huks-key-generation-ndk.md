@@ -3,6 +3,9 @@
 
 This topic walks you through on how to randomly generate an ECC key. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
+> **NOTE**<br>
+> Key aliases must not contain sensitive information, such as personal data.
+
 ## Add the dynamic library in the CMake script.
 ```txt
    target_link_libraries(entry PUBLIC libhuks_ndk.z.so)

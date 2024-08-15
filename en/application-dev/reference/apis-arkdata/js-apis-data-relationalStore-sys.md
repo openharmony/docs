@@ -27,10 +27,10 @@ Defines the RDB store configuration.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name       | Type         | Mandatory| Description                                                     |
+| Name       | Type         | Mandatory | Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
-| vector<sup>12+</sup> | boolean | No| Whether the RDB store is a vector database. The value **true** means the RDB store is a vector database, and the value **false** means the opposite.<br>The vector database is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. Currently, the [execute](js-apis-data-relationalStore.md#execute12-1), [querySql](js-apis-data-relationalStore.md#querysql-1), [beginTrans](js-apis-data-relationalStore.md#begintrans12), [commit](js-apis-data-relationalStore.md#commit12), [rollback](js-apis-data-relationalStore.md#rollback12), and [ResultSet](js-apis-data-relationalStore.md#resultset) APIs support vector databases.|
+| isSearchable<sup>11+</sup> | boolean | No | Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11. |
+| vector<sup>12+</sup> | boolean | No | Whether the RDB store is a vector database. The value **true** means the RDB store is a vector database, and the value **false** means the opposite.<br>The vector database is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. Currently, the [execute](js-apis-data-relationalStore.md#execute12-1), [querySql](js-apis-data-relationalStore.md#querysql-1), [beginTrans](js-apis-data-relationalStore.md#begintrans12), [commit](js-apis-data-relationalStore.md#commit12), [rollback](js-apis-data-relationalStore.md#rollback12), and [ResultSet](js-apis-data-relationalStore.md#resultset) APIs support vector databases.|
 
 ## Reference<sup>11+</sup>
 
@@ -40,7 +40,7 @@ Represents the reference between tables by field. If table **b** references tabl
 
 **System API**: This is a system API.
 
-| Name      | Type  | Mandatory| Description                                    |
+| Name      | Type  | Mandatory | Description                                    |
 | ---------- | ------ | ---- | ---------------------------------------- |
 | sourceTable | string | Yes  | Name of the table referenced.  |
 | targetTable | string | Yes  | Name of the table that references the source table.  |
@@ -52,7 +52,7 @@ Defines the configuration of the distributed mode of tables.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name    | Type   | Mandatory| Description                                                        |
+| Name    | Type   | Mandatory | Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | references<sup>11+</sup> | Array&lt;[Reference](#reference11)&gt; | No  | References between tables. You can reference multiple fields, and their values must be the same in the source and target tables. By default, database tables are not referenced with each other.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
 
@@ -75,10 +75,10 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                                        |
+| Name    | Type                                                        | Mandatory | Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | Yes  | Name of the target table.                                            |
-| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Update conditions specified by the **DataSharePredicates** object.               |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of rows updated.                  |
 
@@ -86,7 +86,7 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -168,23 +168,23 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                                        |
+| Name    | Type                                                        | Mandatory | Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | Yes  | Name of the target table.                                            |
-| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table. |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Update conditions specified by the **DataSharePredicates** object.               |
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; | Promise used to return the number of rows updated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -265,17 +265,17 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                         |
+| Name    | Type                                                        | Mandatory | Description                                         |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
 | table      | string                                                       | Yes  | Name of the target table.                             |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data. |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of rows deleted.     |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
+| **ID** | **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -331,22 +331,22 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                         |
+| Name    | Type                                                        | Mandatory | Description                                         |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
 | table      | string                                                       | Yes  | Name of the target table.                             |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data. |
 
 **Return value**
 
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows deleted.|
+| Promise&lt;number&gt; | Promise used to return the number of rows deleted. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**     |
+| **ID** | **Error Message**     |
 |-----------| --------------------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -401,17 +401,17 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                                       |
+| Name    | Type                                                        | Mandatory | Description                                                       |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | table      | string                                                       | Yes  | Name of the target table.                                           |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**          |
+| **ID** | **Error Message**          |
 |-----------| ------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -461,18 +461,18 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                                       |
+| Name    | Type                                                        | Mandatory | Description                                                       |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | table      | string                                                       | Yes  | Name of the target table.                                           |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**     |
+| **ID** | **Error Message**     |
 |-----------| --------------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -522,23 +522,23 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                            |
+| Name    | Type                                                        | Mandatory | Description                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | table      | string                                                       | Yes  | Name of the target table.                                |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.   |
-| columns    | Array&lt;string&gt;                                          | No  | Columns to query. If this parameter is not specified, the query applies to all columns.|
+| columns    | Array&lt;string&gt;                                          | No  | Columns to query. If this parameter is not specified, the query applies to all columns. |
 
 **Return value**
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**        |
+| **ID** | **Error Message**        |
 |-----------| ----------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -585,21 +585,21 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 
 **Parameters**
 
-| Name        | Type                            | Mandatory| Description                           |
+| Name        | Type                            | Mandatory | Description                           |
 |-------------|--------------------------------| ---- |-------------------------------|
 | mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | Yes  | Sync mode of the database.                  |
 | predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | Yes  | Conditions for data sync.                 |
 | progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.          |
-| callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the sync result to the caller.|
+| callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the sync result to the caller. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**    |
+| **ID** | **Error Message**    |
 |-----------|--------------|
 | 202       | if permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
+| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.  |
 | 14800014  | Already closed.      |
 
@@ -634,7 +634,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 
 **Parameters**
 
-| Name       | Type                             | Mandatory| Description                 |
+| Name       | Type                             | Mandatory | Description                 |
 |------------|---------------------------------| ---- |---------------------|
 | mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | Yes  | Sync mode of the database.        |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | Yes  | Conditions for data sync.               |
@@ -644,13 +644,13 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the sync result.|
+| Promise&lt;void&gt; | Promise used to return the sync result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**           |
+| **ID** | **Error Message**           |
 |-----------|---------------------------|
 | 202       | if permission verification failed, application which is not a system application uses system API.  |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
@@ -688,10 +688,10 @@ Queries the shared resource of the data matching the specified conditions. This 
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                              |
+| Name  | Type                                                 | Mandatory | Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Query conditions.   |
-| columns    | Array&lt;string&gt;      | No  | Columns to be searched for. If this parameter is not specified, the returned result set contains only the shared resource ID.|
+| columns    | Array&lt;string&gt;      | No  | Columns to be searched for. If this parameter is not specified, the returned result set contains only the shared resource ID. |
 
 **Return value**
 
@@ -703,7 +703,7 @@ Queries the shared resource of the data matching the specified conditions. This 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**          |
+| **ID** | **Error Message**          |
 |-----------|-------------|
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.       |
@@ -762,16 +762,16 @@ Queries the shared resource of the data matching the specified conditions. This 
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                              |
+| Name  | Type                                                 | Mandatory | Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)              | Yes  | Query conditions.          |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result set.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result set. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**     |
+| **ID** | **Error Message**     |
 |-----------|------|
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.                 |
@@ -831,17 +831,17 @@ Queries the shared resource of the data matching the specified conditions. This 
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                              |
+| Name  | Type                                                 | Mandatory | Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Query conditions.          |
 | columns    | Array&lt;string&gt;              | Yes  | Columns to be searched for.          |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | Yes  | Callback used to return the result set.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | Yes  | Callback used to return the result set. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**      |
+| **ID** | **Error Message**      |
 |-----------|--------------|
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.       |
@@ -903,21 +903,21 @@ Obtains the value from the specified column in the current row and outputs it in
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                   |
+| Name     | Type  | Mandatory | Description                   |
 | ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+| columnIndex | number | Yes  | Index of the target column, starting from 0. |
 
 **Return value**
 
 | Type      | Description                            |
 | ---------- | -------------------------------- |
-| Float32Array | Value obtained, in a Float32Array.|
+| Float32Array | Value obtained, in a Float32Array. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**         |
+| **ID** | **Error Message**         |
 |-----------| ------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | The capability is not supported because the database is not a vector DB. |

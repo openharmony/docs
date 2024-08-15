@@ -143,7 +143,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 @Entry
 @Component
 struct Index {
-  mycontroller: web_webview.WebviewController = new web_webview.WebviewController("scheme-handler");
+  mycontroller: webview.WebviewController = new webview.WebviewController("scheme-handler");
 
   build() {
     Row() {

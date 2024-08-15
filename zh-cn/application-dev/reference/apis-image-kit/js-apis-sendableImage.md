@@ -332,8 +332,8 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isStrideAlignment | boolean | 是   | 否   | 设定图像内存是否为DMA内存，DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
+| isEditable        | boolean | 是   | 否   | 图像像素是否可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isStrideAlignment | boolean | 是   | 否   | 图像内存是否为DMA内存，DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
 
 ### readPixelsToBuffer
 
@@ -751,7 +751,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function Demo() {
     if (pixelMap != undefined) {
         let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
-        return imageInfo;
     }
 }
 ```
@@ -922,7 +921,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+        pixelMap.createAlphaPixelmap().then((alphaPixelMap: sendableImage.PixelMap) => {
             console.info('Succeeded in creating alpha pixelmap.');
         }).catch((error: BusinessError) => {
             console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -962,8 +961,8 @@ createAlphaPixelmapSync(): PixelMap
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let pixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
-    return pixelMap;
+    let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
+    return resPixelMap;
 }
 ```
 
@@ -1479,7 +1478,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace).then(() => {
+    pixelMap.applyColorSpace(targetColorSpace).then(() => {
         console.info('Succeeded in applying color space for pixelmap object.');
     }).catch((error: BusinessError) => {
         console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`); 
@@ -1897,7 +1896,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
     console.info('Succeeded in creating pixelMap object through image decoding parameters.');
 }).catch((error: BusinessError) => {
-    console.error('Failed to create pixelMap object through image decoding parameters.');
+    console.error(`Failed to create pixelMap object through image decoding parameters. code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -1927,7 +1926,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 sendableImageSourceApi.release().then(() => {
     console.info('Succeeded in releasing the image source instance.');
 }).catch((error: BusinessError) => {
-    console.error('Failed to release the image source instance.');
+    console.error(`Failed to release the image source instance. code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -1983,7 +1982,7 @@ async function Demo() {
   img.getComponent(4).then((component: image.Component) => {
     console.info('getComponent succeeded.');
   }).catch((error: BusinessError) => {
-    console.error('getComponent failed');
+    console.error(`getComponent failed code ${error.code}, message is ${error.message}`);
   })
 }
 ```
@@ -2020,7 +2019,7 @@ async function Demo() {
   img.release().then(() => {
     console.info('release succeeded.');
   }).catch((error: BusinessError) => {
-    console.error('release failed.');
+    console.error(`release failed. code ${error.code}, message is ${error.message}`);
   })
 }
 ```
@@ -2065,10 +2064,10 @@ let size: image.Size = {
     width: 8
 }
 let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.getReceivingSurfaceId().then((id: string) => { 
-    console.info('getReceivingSurfaceId succeeded.');
+receiver.getReceivingSurfaceId().then((id: string) => {
+    console.info('Succeeded in getting the ReceivingSurfaceId.');
 }).catch((error: BusinessError) => {
-    console.error('getReceivingSurfaceId failed.');
+    console.error(`Failed to get the ReceivingSurfaceId.code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -2099,7 +2098,7 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 receiver.readLatestImage().then((img: image.Image) => {
     console.info('readLatestImage succeeded.');
 }).catch((error: BusinessError) => {
-    console.error('readLatestImage failed.');
+    console.error(`readLatestImage failed. code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -2130,7 +2129,7 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 receiver.readNextImage().then((img: image.Image) => {
     console.info('readNextImage succeeded.');
 }).catch((error: BusinessError) => {
-    console.error('readNextImage failed.');
+    console.error(`readNextImage failed. code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -2192,6 +2191,6 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 receiver.release().then(() => {
     console.info('release succeeded.');
 }).catch((error: BusinessError) => {
-    console.error('release failed.');
+    console.error(`release failed. code ${error.code}, message is ${error.message}`);
 })
 ```

@@ -25,29 +25,3 @@ The type of the **data** field in the **RouterItem** struct provided by the bund
 **Adaptation Guide**
 
 Manually parse the JSON string in **data**.
-
-## cl.bundlemanager.2 Third-Party Applications Cannot Be Installed on Illegally Activated Devices
-
-**Access Level**
-
-Other
-
-**Change Reason**
-
-For security purposes, application installation on devices that are activated through illegal channels should be restricted.
-
-**Change Impact**
-
-This change is a non-compatible change. Third-party applications can no longer be installed on illegally activated devices.
-
-**Change Since**
-
-OpenHarmony SDK 5.0.0.24
-
-**Key API/Component Changes**
-
-No API or component change is involved.
-
-**Adaptation Guide**
-
-No adaptation is required. Just notice that third-party applications can no longer be installed on illegally activated devices.

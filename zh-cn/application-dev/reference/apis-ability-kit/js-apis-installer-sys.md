@@ -211,7 +211,6 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
@@ -299,7 +298,6 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
@@ -391,7 +389,6 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
@@ -457,6 +454,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
@@ -522,6 +520,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
@@ -588,6 +587,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
@@ -1102,7 +1102,6 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
@@ -1180,7 +1179,6 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
@@ -1260,7 +1258,6 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
