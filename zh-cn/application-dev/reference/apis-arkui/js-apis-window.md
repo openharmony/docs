@@ -5495,7 +5495,7 @@ try {
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 设置当前应用窗口的尺寸限制，使用Promise异步回调。
-系统自带一个默认的尺寸限制。不同设备、不同类型窗口的默认尺寸限制不同（可在未调用setWindowLimits前使用[getWindowLimits](#getwindowlimits11)获取）。setWindowLimits最终生效结果为用户入参与系统默认尺寸限制取交集。
+窗口尺寸受系统限制。未调用setWindowLimits配置过WindowLimits时，使用[getWindowLimits](#getwindowlimits11)可获取系统限制。setWindowLimits最终生效结果为用户入参与系统限制取交集。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
