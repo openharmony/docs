@@ -44,7 +44,7 @@ NavRouter(value: RouteInfo)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-### mode
+### mode<sup>10+</sup>
 
 mode(mode: NavRouteMode)
 
