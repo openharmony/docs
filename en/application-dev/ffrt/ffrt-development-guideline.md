@@ -1911,7 +1911,7 @@ int main(int narg, char** argv)
     auto loop = ffrt_loop_create(queue_handle);
 
     if (loop != NULL) {
-        printf("loop is not null.\n")
+        printf("loop is not null.\n");
     }
 
     int ret = ffrt_loop_destroy(loop);
