@@ -2175,7 +2175,7 @@ void testCallBack(void *data, unsigned int events) {}
 struct TestData {
     int fd;
     uint64_t expected;
-}
+};
 
 int main(int narg, char** argv)
 {
