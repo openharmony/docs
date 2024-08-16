@@ -196,8 +196,8 @@ type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
 
 | 类型                | 说明            |
 | ----------------- | ---------------- |
-| string | 表示页面内容刷新，值固定为'pageContentUpdate'字符串。 |
-| string | 表示页面内容刷新，值固定为'pageStateUpdate'字符串。 |
+| 'pageContentUpdate' | 表示页面内容刷新。 |
+| 'pageStateUpdate' | 表示页面内容刷新。 |
 
 ## TouchGuideType
 
@@ -209,8 +209,8 @@ TouchGuideType = 'touchBegin' | 'touchEnd'
 
 | 类型                | 说明                  |
 | ---------- | ------------------- |
-| string | 表示触摸浏览时开始触摸，值固定为'touchBegin'字符串。 |
-| string | 表示触摸浏览时结束触摸，值固定为'touchEnd'字符串。 |
+| 'touchBegin' | 表示触摸浏览时开始触摸。 |
+| 'touchEnd' | 表示触摸浏览时结束触摸。 |
 
 ## AccessibilityExtensionAbility.onConnect<sup>(deprecated)</sup>
 
