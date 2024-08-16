@@ -894,11 +894,11 @@ if(store != undefined) {
 
 lockCloudContainer(): Promise&lt;number&gt;
 
-手动对云端表加锁，使用Promise异步处理。
+手动对云数据库加锁，使用Promise异步处理。
 
 > **说明：**
 >
-> 若需要手动对云端表加锁，端云不支持自动同步，[autoSync](js-apis-data-relationalStore.md#distributedconfig10)为false。
+> 若手动加锁成功，则其他同账户设备的同应用本地数据禁止同步到云端表。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -934,7 +934,7 @@ if(store != undefined) {
 
 unlockCloudContainer(): Promise&lt;void&gt;
 
-手动对云端表解锁，使用Promise异步处理。
+手动对云数据库解锁，使用Promise异步处理。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
