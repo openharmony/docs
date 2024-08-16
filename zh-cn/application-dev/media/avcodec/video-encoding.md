@@ -33,7 +33,7 @@
 
 1. 两者的数据来源不同。
 
-2. 两者的适用场景不同。
+2. 两者的适用场景不同
 - Surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
 - Buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
 
@@ -50,15 +50,15 @@
 
 
 1. 有两种方式可以使编码器进入Initialized状态：
-   - 初始创建编码器实例时，编码器处于Initialized状态
-   - 任何状态下调用OH_VideoEncoder_Reset()方法，编码器将会移回Initialized状态
+   - 初始创建编码器实例时，编码器处于Initialized状态。
+   - 任何状态下调用OH_VideoEncoder_Reset()方法，编码器将会移回Initialized状态。
 
 2. Initialized状态下，调用OH_VideoEncoder_Configure()方法配置编码器，配置成功后编码器进入Configured状态。
 3. Configured状态下调用OH_VideoEncoder_Prepare()进入Prepared状态。
-4. Prepared状态调用OH_VideoEncoder_Start()方法使编码器进入Executing状态。
-   - 处于Executing状态时，调用OH_VideoEncoder_Stop()方法可以使编码器返回到Prepared状态
+4. Prepared状态调用OH_VideoEncoder_Start()方法使编码器进入Executing状态
+   - 处于Executing状态时，调用OH_VideoEncoder_Stop()方法可以使编码器返回到Prepared状态。
 
-5. 在极少数情况下，编码器可能会遇到错误并进入Error状态。编码器的错误传递，可以通过队列操作返回无效值或者抛出异常。
+5. 在极少数情况下，编码器可能会遇到错误并进入Error状态。编码器的错误传递，可以通过队列操作返回无效值或者抛出异常
    - Error状态下可以调用OH_VideoEncoder_Reset()方法将编码器移到Initialized状态；或者调用OH_VideoEncoder_Destroy()方法移动到最后的Released状态
 
 6. Executing 状态具有三个子状态：Flushed、Running和End-of-Stream：
@@ -81,7 +81,6 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_venc.so)
 ```
-
 > **说明：**
 >
 > sample仅为示例，具体以实际工程目录为准。
@@ -186,8 +185,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 完成帧的数据buffer送入outBufferQueue队列
         // 获取视频帧的平均量化参数,平方误差
         OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
-        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, &qpAverage);
+        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, &mseValue);
         OH_AVFormat_Destroy(format);
         // 数据处理
         // 释放编码帧
@@ -221,7 +220,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     // 5.2 注册随帧参数回调
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr); // NULL:用户特定数据userData为空 
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr); // NULL:用户特定数据userData为空 
     ```
 
 6. 调用OH_VideoEncoder_Configure()配置编码器。
@@ -364,7 +363,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - index：回调函数OnNeedInputParameter传入的参数，数据队列的索引。
 
     ```c++
-    int32_t ret = OH_VideoEncoder_PushInputParameter(codec, index);
+    int32_t ret = OH_VideoEncoder_PushInputParameter(videoEnc, index);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -540,8 +539,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 获取视频宽高跨距
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
             OH_AVFormat_Destroy(format);
             isFirstFrame = false;
         }
@@ -557,8 +556,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 完成帧的数据buffer送入outBufferQueue队列
         // 获取视频帧的平均量化参数,平方误差
         OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
-        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, &qpAverage);
+        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, &mseValue);
         OH_AVFormat_Destroy(format);
         // 数据处理
         // 释放编码帧
@@ -703,11 +702,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t wStride;
         int32_t hStride;
     };
-    struct Rect rect;
-    struct DstRect dstRect;
-    struct SrcRect srcRect;
-    uint8_t *dst; // 目标内存区域的指针
-    uint8_t *src; // 源内存区域的指针
+
+    Rect rect = {320, 240};
+    DstRect dstRect = {320, 250};
+    SrcRect srcRect = {320, 250};
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
+    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
@@ -728,6 +728,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         dst += dstRect.wStride;
         src += srcRect.wStride;
     }
+
+    delete[] dst;
+    dst = nullptr;
+    delete[] src;
+    src = nullptr;
     ```
     硬件编码在处理buffer数据时（推送数据前），需要用户拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
     一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
