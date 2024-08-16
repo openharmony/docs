@@ -384,7 +384,7 @@ struct WebComponent {
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPageEnd(() => {
-          console.log("In ArkTS side message onPageEnd init mesaage channel");
+          console.log("In ArkTS side message onPageEnd init message channel");
           // 1. 创建消息端口
           this.ports = this.controller.createWebMessagePorts(true);
           // 2. 发送端口1到HTML5

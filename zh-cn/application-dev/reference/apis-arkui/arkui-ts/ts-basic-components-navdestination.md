@@ -165,7 +165,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 > **说明：**
 >
-> 1. 必须配合Navigaiton使用，作为其Navigation目的页面的根节点时才能生效。
+> 1. 必须配合Navigation使用，作为其Navigation目的页面的根节点时才能生效。
 > 2. 其他使用限制请参考Navigation对应的[systemBarStyle](ts-basic-components-navigation.md#systembarstyle12)属性说明。
 
 ## NavDestinationMode枚举说明 <sup>11+</sup>
