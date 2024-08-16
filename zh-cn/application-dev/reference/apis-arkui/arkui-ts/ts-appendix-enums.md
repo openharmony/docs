@@ -928,7 +928,7 @@ Nullable\<T> {
 | SCROLLER  |  6  | Scroller的不带动效方法。 |
 | SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
 
-## ImageSpanAlignment枚举说明
+## ImageSpanAlignment<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
