@@ -398,7 +398,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number]) => {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
@@ -652,7 +652,7 @@ export class Model {
 
 In the preceding example, the state variable is changed through a method of the class. After the button is clicked, the page content changes from "failed" to "success."
 
-### A state variable causes a re-render of merely the bound UI component.
+### A State Variable Causes a Re-render of Merely the Bound UI Component
 
 Example 1
 
