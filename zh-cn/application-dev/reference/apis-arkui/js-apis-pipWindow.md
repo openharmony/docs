@@ -398,6 +398,8 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 
 描述画中画控制面板控件动作事件回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
