@@ -33,7 +33,7 @@
 
 1. 两者的数据来源不同。
 
-2. 两者的适用场景不同。
+2. 两者的适用场景不同
 - Surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
 - Buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
 
@@ -55,10 +55,10 @@
 
 2. Initialized状态下，调用OH_VideoEncoder_Configure()方法配置编码器，配置成功后编码器进入Configured状态。
 3. Configured状态下调用OH_VideoEncoder_Prepare()进入Prepared状态。
-4. Prepared状态调用OH_VideoEncoder_Start()方法使编码器进入Executing状态。
+4. Prepared状态调用OH_VideoEncoder_Start()方法使编码器进入Executing状态
    - 处于Executing状态时，调用OH_VideoEncoder_Stop()方法可以使编码器返回到Prepared状态。
 
-5. 在极少数情况下，编码器可能会遇到错误并进入Error状态。编码器的错误传递，可以通过队列操作返回无效值或者抛出异常。
+5. 在极少数情况下，编码器可能会遇到错误并进入Error状态。编码器的错误传递，可以通过队列操作返回无效值或者抛出异常
    - Error状态下可以调用OH_VideoEncoder_Reset()方法将编码器移到Initialized状态；或者调用OH_VideoEncoder_Destroy()方法移动到最后的Released状态
 
 6. Executing 状态具有三个子状态：Flushed、Running和End-of-Stream：
@@ -703,9 +703,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t hStride;
     };
 
-    struct Rect rect = {320, 240};
-    struct DstRect dstRect = {320, 250};
-    struct SrcRect srcRect = {320, 250};
+    Rect rect = {320, 240};
+    DstRect dstRect = {320, 250};
+    SrcRect srcRect = {320, 250};
     uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
 
@@ -729,9 +729,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         src += srcRect.wStride;
     }
 
-    delete dst;
+    delete[] dst;
     dst = nullptr;
-    delete src;
+    delete[] src;
     src = nullptr;
     ```
     硬件编码在处理buffer数据时（推送数据前），需要用户拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。

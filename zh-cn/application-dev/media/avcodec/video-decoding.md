@@ -31,7 +31,7 @@
 ## Surface输出与Buffer输出
 
 1. 两者数据的输出方式不同。
-2. 两者的适用场景不同。
+2. 两者的适用场景不同
 - Surface输出是指用OHNativeWindow来传递输出数据，可以与其他模块对接，例如XComponent。
 - Buffer输出是指经过解码的数据会以共享内存的方式输出。
 
@@ -54,10 +54,10 @@
 
 2. Initialized状态下，调用OH_VideoDecoder_Configure()方法配置解码器，配置成功后解码器进入Configured状态。
 3. Configured状态下调用OH_VideoDecoder_Prepare()进入Prepared状态。
-4. Prepared状态调用OH_VideoDecoder_Start()方法使解码器进入Executing状态。
+4. Prepared状态调用OH_VideoDecoder_Start()方法使解码器进入Executing状态
    - 处于Executing状态时，调用OH_VideoDecoder_Stop()方法可以使解码器返回到Prepared状态。
 
-5. 在极少数情况下，解码器可能会遇到错误并进入Error状态。解码器的错误传递，可以通过队列操作返回无效值或者抛出异常。
+5. 在极少数情况下，解码器可能会遇到错误并进入Error状态。解码器的错误传递，可以通过队列操作返回无效值或者抛出异常
    - Error状态下可以调用解码器OH_VideoDecoder_Reset()方法将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy()方法移动到最后的Released状态。
 
 6. Executing状态具有三个子状态：Flushed、Running和End-of-Stream：
@@ -874,9 +874,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         int32_t hStride;
     };
 
-    struct Rect rect = {320, 240};
-    struct DstRect dstRect = {320, 250};
-    struct SrcRect srcRect = {320, 250};
+    Rect rect = {320, 240};
+    DstRect dstRect = {320, 250};
+    SrcRect srcRect = {320, 250};
     uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
 
@@ -900,9 +900,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         src += srcRect.wStride;
     }
 
-    delete dst;
+    delete[] dst;
     dst = nullptr;
-    delete src;
+    delete[] src;
     src = nullptr;
     ```
 
