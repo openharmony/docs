@@ -17,6 +17,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 | -ls | 列出系统能力。 |
 | -c | 获取系统信息集群详细信息。 |
 | -s | 获取所有系统能力详细信息。 |
+| -s [SA] -a ["option"] | 执行单个系统能力的特定选项。SA表示系统能力名称，option表示该系统能力支持的选项。可通过 -s [SA] -a ["-h"] 获取单个系统能力支持的所有选项。|
 | -e | 获取崩溃历史记录的故障日志。 |
 | --net [pid] | 获取网络信息。如果指定了进程的pid，则只输出该进程的网络流量使用信息。 |
 | --storage [pid] | 获取存储信息。如果指定了进程的pid，则只输出该进程的io信息。 |
@@ -83,17 +84,27 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-cpuusage-pid.png)
 
-6. 获取id为3301的元能力的帮助，命令格式如下：
-
+6. 列出系统能力
    ```
-   hidumper -s 3301 -a "-h" 
+   hidumper -ls
    ```
 
    **使用样例：**
 
-   ![](figures/hidumper-s-3301.png)
+   ![](figures/hidumper-ls.PNG)
 
-7. 获取RenderService的使用帮助，命令格式如下：
+7. 获取所有系统能力详细信息，命令格式如下：
+
+   ```
+   hidumper -s
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-s.png)
+
+
+   获取RenderService的使用帮助，命令格式如下：
 
    ```
    hidumper -s RenderService -a "h" 
