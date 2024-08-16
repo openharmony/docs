@@ -35,6 +35,9 @@ scheme://host[:port]/path/
 |缓存清理|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|
 |扫码|ScanCode|指示扫码功能|
 |打开本地文件|FileOpen|指示打开处理文件的功能|
+|导航|Navigation|指示导航功能|
+|路线规划|RoutePlan|指示路线规划功能|
+|地点搜索|PlaceSerach|指示地点搜索功能|
 
 ## 配置示例
 
@@ -52,6 +55,3 @@ scheme://host[:port]/path/
     }
 ]
 ```
-|导航|Navigation|指示导航功能|
-|路线规划|RoutePlan|指示路线规划功能|
-|地点搜索|PlaceSerach|指示地点搜索功能|
