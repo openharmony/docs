@@ -2093,7 +2093,7 @@ int32_t OH_ArkWebResponse_SetHeaderByName (ArkWeb_Response * response, const cha
 | response | ArkWeb_Response。  | 
 | name | header的名称。  | 
 | value | header的值。  | 
-| overwirte | 如果为true，将覆盖现有的header，否则不覆盖。  | 
+| overwrite | 如果为true，将覆盖现有的header，否则不覆盖。  | 
 
 **返回：**
 

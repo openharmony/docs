@@ -117,7 +117,7 @@ struct Demo {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
   build() {
-    Flex({ d irection: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Canvas(this.context)
         .width('100%')
         .height('50%')

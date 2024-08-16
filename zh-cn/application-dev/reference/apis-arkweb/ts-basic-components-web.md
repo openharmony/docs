@@ -2199,7 +2199,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
 
-该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，aciton信息中会显示乱码。
+该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
 
 **参数：**
 
@@ -5690,7 +5690,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
             return option;
           }
 
-          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handelr控制输入、删除、软键盘关闭等行为
+          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handler控制输入、删除、软键盘关闭等行为
           this.webKeyboardController = KeyboardCallbackInfo.controller
           let attributes: Record<string, string> = KeyboardCallbackInfo.attributes
           // 遍历attributes
