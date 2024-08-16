@@ -81,13 +81,27 @@ Panel(show: boolean)
 
 onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void)
 
-当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。
+当可滑动面板发生状态变化时触发。
+
+**参数：** 
+
+| 参数名    | 类型        | 必填 | 说明                                                                            |
+| --------- | ---------  | ---- | ----------------------------------------------------------------------------- |
+| width     | number     | 是   | 内容区的宽度值                                                                  |
+| height    | number     | 是   | 内容区的高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度 |
+| mode      | PanelMode  | 是   | 面板的状态                                                                      |
 
 ### onHeightChange<sup>9+</sup>
 
 onHeightChange(callback: (value: number) => void)
 
-当可滑动面板发生高度变化时触发，返回的height值为内容区高度值，默认返回值单位为px。当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。
+当可滑动面板发生高度变化时触发。
+
+**参数：** 
+
+| 参数名    | 类型                                                | 必填 | 说明       |
+| --------- | --------------------------------------------------- | ---- | ---------- |
+| value     | number  | 是   | 内容区的高度值，默认返回值单位为px。当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。 |
 
 ## 示例
 
