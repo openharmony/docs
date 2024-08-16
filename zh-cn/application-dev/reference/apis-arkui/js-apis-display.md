@@ -159,7 +159,7 @@ getDisplayByIdSync(displayId: number): Display
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| displayId     | number                    | 是   | 显示设备的id，该参数仅支持整数输入。该参数大于等于0。 |
+| displayId     | number                    | 是   | 屏幕id，该参数仅支持整数输入，该参数大于等于0。需要确保displayId准确才能成功获取到对应结果。可以通过[WindowProperties](js-aspi-window.md#windowproperties)的displayId属性获取到准确的displayId作为入参。 |
 
 **返回值：**
 
@@ -184,10 +184,11 @@ import { display } from '@kit.ArkUI';
 let displayClass: display.Display | null = null;
 
 try {
+  // 可以通过WindowProperties的displayId属性获取到准确的displayId作为入参
   let displayId = 0; 
   displayClass = display.getDisplayByIdSync(displayId);
 } catch (exception) {
-  console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to get display. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
