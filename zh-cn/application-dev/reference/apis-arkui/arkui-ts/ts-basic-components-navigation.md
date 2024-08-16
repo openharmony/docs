@@ -1601,7 +1601,7 @@ export struct PageOne {
             let tmp = new TmpClass()
             this.pageInfos.pushPathByName('pageTwo', tmp) //将name指定的NavDestination页面信息入栈，传递的数据为param
           })
-        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+        Button('singletonLaunchMode', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
