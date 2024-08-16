@@ -1,5 +1,6 @@
 # LazyForEach：数据懒加载
 
+API参数说明见：[LazyForEach API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
 
 LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
 
