@@ -640,7 +640,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | 是   | 设置监听类型，固定取值为'privateCommand'。 |
-| callback | Callback<Record<string, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
+| callback | Callback<Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
 
 **错误码：**
 
@@ -672,7 +672,7 @@ try {
 
 ### off('privateCommand')<sup>12+</sup>
 
-off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
+off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>): void
 
 取消订阅输入法私有数据事件。使用callback异步回调。
 
@@ -683,7 +683,7 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'privateCommand'。                   |
-| callback | Callback\<[SecurityMode](#securitymode11))> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | Callback<Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)>> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **错误码：**
 
