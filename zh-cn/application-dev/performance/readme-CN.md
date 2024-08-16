@@ -9,6 +9,7 @@
     - [利用native的方式实现跨线程调用](native-threads-call-js.md)
     - [避免开发过程中的冗余操作](avoiding-redundant-operations.md)
     - [使用AOT进行性能优化](performance-optimization-using-aot.md)
+    - [延迟加载Lazy-Import使用指导](Lazy-Import-Instructions.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
