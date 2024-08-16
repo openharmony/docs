@@ -14,7 +14,11 @@
 
 SymbolGlyph(value?: Resource)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -36,6 +40,8 @@ fontColor(value: Array&lt;ResourceColor&gt;)
 
 设置SymbolGlyph组件颜色。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -53,6 +59,8 @@ fontSize(value: number | string | Resource)
 设置SymbolGlyph组件大小。
 
 组件的图标显示大小由fontSize控制，设置width或height后，其他通用属性仅对组件的占位大小生效。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -72,6 +80,8 @@ fontWeight(value: number | FontWeight | string)
 
 sys.symbol.ohos_lungs图标不支持设置fontWeight。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -87,6 +97,8 @@ sys.symbol.ohos_lungs图标不支持设置fontWeight。
 renderingStrategy(value: SymbolRenderingStrategy)
 
 设置SymbolGlyph组件渲染策略。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -108,6 +120,8 @@ effectStrategy(value: SymbolEffectStrategy)
 
 设置SymbolGlyph组件动效策略。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -124,6 +138,8 @@ symbolEffect(symbolEffect: SymbolEffect, isActive?: boolean)
 
 设置SymbolGlyph组件动效策略及播放状态。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -133,13 +149,15 @@ symbolEffect(symbolEffect: SymbolEffect, isActive?: boolean)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | symbolEffect  | [SymbolEffect](#symboleffect12对象说明) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12对象说明) |
-| isActive  |boolean | 否   | SymbolGlyph组件动效播放状态。<br/>默认值：false |
+| isActive  | boolean | 否   | SymbolGlyph组件动效播放状态。<br/>默认值：false |
 
 ### symbolEffect<sup>12+</sup>
 
 symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 
 设置SymbolGlyph组件动效策略及播放触发器。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -171,6 +189,12 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 constructor()
 
 SymbolEffect的构造函数，无动效。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ScaleSymbolEffect<sup>12+</sup>对象说明
 
@@ -388,6 +412,12 @@ constructor()
 
 PulseSymbolEffect的构造函数，脉冲动效。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## EffectDirection<sup>12+</sup>枚举说明
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
@@ -430,6 +460,8 @@ PulseSymbolEffect的构造函数，脉冲动效。
 ## SymbolEffectStrategy<sup>11+</sup>枚举说明
 
 动效类型的枚举值。设置动效后启动即生效，无需触发。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

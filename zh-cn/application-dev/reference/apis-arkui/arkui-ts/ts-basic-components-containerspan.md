@@ -36,9 +36,9 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 | 参数名 | 类型                                                | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style  | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle对象说明) | 是   | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| style  | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 是   | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
-### attributeModifier
+### attributeModifier<sup>12+</sup>
 
 attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
 
@@ -52,7 +52,7 @@ attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| modifier  | [AttributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifiert)\<ContainerSpanAttribute> | 是   | 动态设置组件的属性。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| modifier  | [AttributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifiert)\<ContainerSpanAttribute> | 是   | 动态设置组件的属性。 |
 
 ## 事件
 
