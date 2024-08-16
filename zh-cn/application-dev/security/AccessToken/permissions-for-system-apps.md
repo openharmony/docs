@@ -3959,7 +3959,7 @@
 
 允许应用查询以太网当前MAC地址。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
