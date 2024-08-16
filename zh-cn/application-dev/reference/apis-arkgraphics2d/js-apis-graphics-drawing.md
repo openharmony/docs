@@ -1569,7 +1569,9 @@ import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const path = new drawing.Path();
+    path.addCircle(300, 600, 100, drawing.PathDirection.CLOCKWISE);
     let point1 : common2D.Point3d = {x: 100, y: 80, z:80};
     let point2 : common2D.Point3d = {x: 200, y: 10, z:40};
     let shadowFlag : drawing.ShadowFlag = drawing.ShadowFlag.ALL;
