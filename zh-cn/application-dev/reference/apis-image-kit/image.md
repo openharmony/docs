@@ -1601,7 +1601,7 @@ int32_t OH_ImageSource_CreateFromUri (napi_env env, char * uri, size_t size, str
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | 表明JNI环境的指针。  | 
-| uri | 表明图像源资源标识符，接受文件资源或者base64资源。  | 
+| uri | 表明图像源资源标识符，接受文件资源或者base64资源。当前文件资源只支持绝对路径。  |
 | size | 表明图像源资源URI的长度。  | 
 | ops | 表明创建一个图像源的选项。查看[OhosImageSourceOps](_ohos_image_source_ops.md)。  | 
 | res | 表明JavaScript native层**ImageSource**对象的指针。  | 
