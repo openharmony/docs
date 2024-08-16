@@ -83,7 +83,7 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -409,6 +409,8 @@ privacySensitive(supported: boolean)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -568,6 +570,8 @@ type ImageErrorCallback = (error: ImageError) => void
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
 | error  | [ImageError](#imageerror9) | 是   | 图片加载异常时触发回调的返回对象。 |
@@ -584,7 +588,7 @@ type ImageErrorCallback = (error: ImageError) => void
 | --------------- | ------ | ---- | ------------------------- |
 | componentWidth  | number | 是   | 组件的宽。<br/>单位：像素 |
 | componentHeight | number | 是   | 组件的高。<br/>单位：像素 |
-| message         | string | 是   | 报错信息。                |
+| message<sup>10+</sup>         | string | 是   | 报错信息。                |
 
 ## 示例
 
