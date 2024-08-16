@@ -61,7 +61,7 @@
 
 **适配指导**
 
-下面是使用新的 OH_AVPlayerOnErrorCallback 的Sample代码.
+可参考以下OH_AVPlayerOnErrorCallback的示例进行适配。
 ```
 struct MyPlayer 
 {
@@ -130,7 +130,7 @@ int main()
 **适配指导**
 
 使用新的 OH_AVPlayerOnInfoCallback和OH_AVPlayer_SetOnInfoCallback代替原来的信息回调。
-Sample代码参见前面 OH_AVPlayerOnErrorCallback 的Sample代码。
+示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia2-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
 
 ## cl.multimedia.4 AVPlayerCallback 废弃AVPlayer NDK AVPlayerCallback回调接口
 
@@ -160,8 +160,8 @@ AVPlayerCallback 结果的两个成员OH_AVPlayerOnInfo、OH_AVPlayerOnError废�
 
 **适配指导**
 
-使用新的 OH_AVPlayerOnInfoCallback，OH_AVPlayerOnErrorCallback和OH_AVPlayer_SetOnInfoCallback,OH_AVPlayer_SetOnErrorCallback代替原来的信息和错误回调。
-Sample代码参见前面 OH_AVPlayerOnErrorCallback 的Sample代码。
+使用新的 OH_AVPlayerOnInfoCallback和OH_AVPlayer_SetOnInfoCallback代替原来的信息回调。
+示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia2-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
 
 ## cl.multimedia.5 OH_AVPlayer_SetPlayerCallback 废弃AVPlayer NDK OH_AVPlayer_SetPlayerCallback接口
 
@@ -192,5 +192,5 @@ Sample代码参见前面 OH_AVPlayerOnErrorCallback 的Sample代码。
 
 **适配指导**
 
-使用新的 OH_AVPlayerOnInfoCallback，OH_AVPlayerOnErrorCallback和OH_AVPlayer_SetOnInfoCallback,OH_AVPlayer_SetOnErrorCallback代替原来的信息和错误回调。
-Sample代码参见前面 OH_AVPlayerOnErrorCallback 的Sample代码。
+使用新的 OH_AVPlayerOnInfoCallback和OH_AVPlayer_SetOnInfoCallback代替原来的信息回调。
+示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia2-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
