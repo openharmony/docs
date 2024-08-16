@@ -143,6 +143,8 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16000055 | Installation-free timed out.                            |
 | 16000061 | Can not start component belongs to other bundle.        |
 | 16200001 | The caller has been released.                           |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service.                 |
 
 **示例：**
 
