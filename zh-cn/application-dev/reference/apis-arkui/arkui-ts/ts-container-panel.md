@@ -47,7 +47,7 @@ Panel(show: boolean)
 
 ## PanelType枚举说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -58,7 +58,7 @@ Panel(show: boolean)
 
 ## PanelMode枚举说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
@@ -68,7 +68,7 @@ Panel(show: boolean)
 
 ## PanelHeight<sup>10+</sup>枚举说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- | 
