@@ -87,7 +87,11 @@ API 11
 struct ListItemExample {
   private arr: number[] = []
 
-  about
+  aboutToAppear(): void {
+    for (let i = 0; i < 50; i++) {
+      this.arr.push(i)
+    }
+  }
 
   build() {
     Column() {
