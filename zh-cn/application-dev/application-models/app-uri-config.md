@@ -15,8 +15,6 @@ scheme://host[:port]/path/
 
 > **说明：**
 > 
-> 系统应用预留scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的scheme不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。 
-> 
 > 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接`https://www.example.com/path1`拉起目标应用1，链接`https://www.example.com/path2`拉起目标应用2。
 
 ## linkFeature标签说明
@@ -26,23 +24,6 @@ scheme://host[:port]/path/
 1. 应用间跳转确认弹框体验增强：应用申明linkFeature，系统将认证申明的linkFeature与实际拉起的功能是否一致，认证通过后其他应用通过此链接拉起应用时，应用间跳转确认弹框将变为可信跳转确认样式，例如：默认选中x天不再提醒等。
 
 2. 系统入口呈现：用户在访问系统入口（各系统垂域面板、设置等）时，系统将展示认证通过的应用功能入口；用户点击后，系统可向应用发起功能调用，例如缓存清理、导航、路线规划等
-
-## 配置示例
-
-参考应用链接（[Deep Linking](deep-linking-startup.md)、[App Linking](app-linking-startup.md)）的配置要求进行URI配置。
-
-下面以授权登录场景举例说明：
-
-```json
-"uris": [
-    {
-        "scheme": "xxx",
-        "host": "xxx.xxx.xxx",
-        "path": "xxx/xxxx",
-        "linkFeature": "Login" 
-    }
-]
-```
 
 **linkFeature**的枚举定义。
 
@@ -54,6 +35,23 @@ scheme://host[:port]/path/
 |缓存清理|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|
 |扫码|ScanCode|指示扫码功能|
 |打开本地文件|FileOpen|指示打开处理文件的功能|
+
+## 配置示例
+
+参考应用链接（[Deep Linking](deep-linking-startup.md)、[App Linking](app-linking-startup.md)）的配置要求进行URI配置。
+
+下面以授权登录场景举例说明：
+
+```json
+"uris": [
+    {
+        "scheme": "xxx",    // 标识URI的协议名部分，常见的有http、https、file、ftp等。
+        "host": "xxx.xxx.xxx",    // 标识URI的主机地址部分，该字段在scheme存在时才有意义。常见的方式域名方式和IP地址方式。
+        "path": "xxx/xxxx",    // 标识URI的路径部分，该字段在scheme存在时才有意义。
+        "linkFeature": "Login"  
+    }
+]
+```
 |导航|Navigation|指示导航功能|
 |路线规划|RoutePlan|指示路线规划功能|
 |地点搜索|PlaceSerach|指示地点搜索功能|
