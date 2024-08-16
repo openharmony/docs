@@ -322,14 +322,6 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
 | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引，需要调用getDevices获取设备信息并通过id确定唯一接口。|
 
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
-
 **返回值：**
 
 | 类型 | 说明 |
