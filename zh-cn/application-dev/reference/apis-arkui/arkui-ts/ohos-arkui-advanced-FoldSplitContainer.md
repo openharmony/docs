@@ -17,7 +17,7 @@ FoldSplitContainer分栏布局，实现折叠屏二分栏、三分栏在展开�
 
 FoldSplitContainer({
   primary: Callback&lt;void&gt;,
-  secondmary: Callback&lt;void&gt;,
+  secondary: Callback&lt;void&gt;,
   extra?: Callback&lt;void&gt;,
   expandedLayoutOptions?: ExpandedRegionLayoutOptions,
   hoverModeLayoutOptions?: HoverModeRegionLayoutOptions,
@@ -37,7 +37,7 @@ FoldSplitContainer({
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | primary | ()=>void | 否 | @BuilderParam | 主要区域回调函数。 |
-| secondmary | ()=>void | 否 | @BuilderParam | 次要区域回调函数。 |
+| secondary | ()=>void | 否 | @BuilderParam | 次要区域回调函数。 |
 | extra | ()=>void | 否 | @BuilderParam | 扩展区域回调函数，不传入的情况，没有对应区域。 |
 | expandedLayoutOptions | [ExpandedRegionLayoutOptions](#expandedregionlayoutoptions) | 否 | @Prop | 展开态布局信息。 |
 | hoverModeLayoutOptions | [HoverModeRegionLayoutOptions](#hovermoderegionlayoutoptions) | 否 | @Prop | 悬停态布局信息。 |

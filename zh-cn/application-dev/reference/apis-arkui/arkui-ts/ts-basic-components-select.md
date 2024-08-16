@@ -438,10 +438,10 @@ struct SelectExample {
   @State arrowPosition: ArrowPosition = ArrowPosition.END
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: $r("app.media.selecticon") },
-        { value: 'bbb', icon: $r("app.media.selecticon") },
-        { value: 'ccc', icon: $r("app.media.selecticon") },
-        { value: 'ddd', icon: $r("app.media.selecticon") }])
+      Select([{ value: 'aaa', icon: $r("app.media.selection") },
+        { value: 'bbb', icon: $r("app.media.selection") },
+        { value: 'ccc', icon: $r("app.media.selection") },
+        { value: 'ddd', icon: $r("app.media.selection") }])
         .selected(this.index)
         .value(this.text)
         .font({ size: 16, weight: 500 })
