@@ -1572,16 +1572,6 @@ class DrawingRenderNode extends RenderNode {
     const canvas = context.canvas;
     const path = new drawing.Path();
     path.addCircle(100, 200, 100, drawing.PathDirection.CLOCKWISE);
-    let pen = new drawing.Pen();
-    pen.setAntiAlias(true);
-    let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 };
-    pen.setColor(pen_color);
-    pen.setStrokeWidth(10.0);
-    canvas.attachPen(pen);
-    let brush = new drawing.Brush();
-    let brush_color : common2D.Color = { alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00 };
-    brush.setColor(brush_color);
-    canvas.attachBrush(brush);
     let point1 : common2D.Point3d = {x: 100, y: 80, z:80};
     let point2 : common2D.Point3d = {x: 200, y: 10, z:40};
     let color1 : number = 0xff0000ff;
@@ -2025,7 +2015,7 @@ clear(number): void
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
-import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -5565,7 +5555,7 @@ let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let pen = new drawing.Pen();
 pen.setColor(color);
 let hex_color: number = pen.getHexColor();
-console.log('getHexColor: ', hex_color.toString(16));
+console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setStrokeWidth
@@ -6337,7 +6327,7 @@ let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let brush = new drawing.Brush();
 brush.setColor(color);
 let hex_color: number = brush.getHexColor();
-console.log('getHexColor: ', hex_color.toString(16));
+console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setAntiAlias
