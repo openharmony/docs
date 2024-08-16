@@ -898,7 +898,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 若手动加锁成功，则其他同账户设备的同应用本地数据禁止同步到云端表。
+> 若手动加锁成功，则其他同账户设备的同应用本地数据禁止同步到云端。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
