@@ -20,14 +20,6 @@ Obtains the list of USB devices connected to the host. If no device is connected
 
 **System capability**: SystemCapability.USB.USBManager
 
-**Error codes**
-
-For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
-
-| ID| Error Message                                    |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. No parameters are required. |
-
 **Return value**
 
 | Type                                                  | Description     |
@@ -105,8 +97,8 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| device | [USBDevice](#usbdevice) | Yes| USB device information.|
+| -------- | -------- | -------- | ---------------- |
+| device | [USBDevice](#usbdevice) | Yes| USB device information. **busNum** and **devAddress** obtained by **getDevices** are used to determine the device. Other parameters are passed transparently.|
 
 **Return value**
 
@@ -120,7 +112,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400001 | Permission denied. Call requestRight to get the permission first. |
 
 **Example**
@@ -151,7 +143,7 @@ Checks whether the user, for example, the application or system, has the device 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| Device name.|
+| deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
 **Error codes**
 
@@ -159,7 +151,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -170,8 +162,14 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 **Example**
 
 ```ts
-let devicesName: string = "1-1";
-let right: boolean = usbManager.hasRight(devicesName);
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let right: boolean = usbManager.hasRight(device.name);
 console.log(`${right}`);
 ```
 
@@ -187,7 +185,7 @@ Requests the temporary device access permission for the application. This API us
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| Device name.|
+| deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
 **Error codes**
 
@@ -195,7 +193,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -206,8 +204,13 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 **Example**
 
 ```ts
-let devicesName: string = "1-1";
-usbManager.requestRight(devicesName).then(ret => {
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name).then(ret => {
   console.log(`requestRight = ${ret}`);
 });
 ```
@@ -224,7 +227,7 @@ Removes the device access permission for the application. System applications ar
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| Device name.|
+| deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
 **Error codes**
 
@@ -232,7 +235,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -243,8 +246,13 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 **Example**
 
 ```ts
-let devicesName: string = "1-1";
-if (usbManager.removeRight(devicesName)) {
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+if (usbManager.removeRight(device.name)) {
   console.log(`Succeed in removing right`);
 }
 ```
@@ -263,9 +271,9 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-| iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to claim.|
-| force | boolean | No| Whether to forcibly claim the USB interface. The default value is **false**, indicating not to forcibly claim the USB interface.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
+| force | boolean | No| Whether to forcibly claim the USB interface. Whether to forcibly claim a USB interface. The default value is **false**, which means not to forcibly claim a USB interface. You can set the value as required.|
 
 **Error codes**
 
@@ -273,7 +281,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -311,8 +319,8 @@ Before you do this, ensure that you have claimed the interface by calling [usbMa
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-| iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to release.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
 
 **Error codes**
 
@@ -320,7 +328,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
 
 **Return value**
 
@@ -359,8 +367,8 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-| config | [USBConfiguration](#usbconfiguration) | Yes| USB configuration to set.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+| config | [USBConfiguration](#usbconfiguration) | Yes| USB configuration. You can use **getDevices** to obtain device information and identify the USB configuration based on the ID.|
 
 **Error codes**
 
@@ -368,7 +376,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -404,10 +412,10 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 **Parameters**
 
-| Name  | Type                             | Mandatory | Description           |
-| ----- | ------------------------------- | --- | ------------- |
-| pipe  | [USBDevicePipe](#usbdevicepipe) | Yes  | Device pipe, which is used to determine the bus number and device address.|
-| iface | [USBInterface](#usbinterface)   | Yes  | USB interface to set. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+| iface | [USBInterface](#usbinterface)   | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
 
 **Error codes**
 
@@ -415,7 +423,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -454,7 +462,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 
 **Error codes**
 
@@ -462,7 +470,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -497,7 +505,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 
 **Error codes**
 
@@ -505,7 +513,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -540,9 +548,9 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-| controlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
-| timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe. You need to call **connectDevice** to obtain its value.|
+| controlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters. Set the parameters as required.|
+| timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
 
 **Error codes**
 
@@ -550,7 +558,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -605,10 +613,10 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-| endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe. You need to call **connectDevice** to obtain its value.|
+| endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer. You need to call getDevices to obtain the device information list and endpoint.|
 | buffer | Uint8Array | Yes| Buffer used to write or read data.|
-| timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
+| timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
 
 **Error codes**
 
@@ -616,7 +624,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -662,7 +670,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the message control channel. You need to call **connectDevice** to obtain its value.|
 
 **Error codes**
 
@@ -670,7 +678,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 

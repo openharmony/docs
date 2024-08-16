@@ -1,6 +1,6 @@
 # Creating an ArkTs Runtime Environment Using Node-API
 
-## **Scenario**
+## When to Use
 
 After creating a thread using **pthread_create**, you can use **napi_create_ark_runtime** to create an ArkTS runtime environment and load the ArkTS modules through the created runtime environment. Currently, the ArkTS modules support only the **console** interface and the **timer** feature. To destroy an ArkTS runtime environment that is not required, use **napi_destroy_ark_runtime**.
 
@@ -81,7 +81,7 @@ After creating a thread using **pthread_create**, you can use **napi_create_ark_
    
        // 2. Load custom modules.
        napi_value objUtils;
-       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
+       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry", &objUtils);
        if (ret != napi_ok) {
            return nullptr;
        }

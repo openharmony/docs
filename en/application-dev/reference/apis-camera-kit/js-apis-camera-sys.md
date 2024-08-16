@@ -3681,7 +3681,6 @@ Defines the PiP status data.
 | status        | number   | No  | Yes  | Status of PiP. The options are 0 (stopped), 1 (started), 2 (stopping), and 3 (starting).|
 | sketchRatio   | number   | No  | Yes  | Zoom ratio of PiP.|
 
-
 ## SlowMotionVideoSession<sup>12+</sup>
 
 SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
@@ -3691,7 +3690,6 @@ Implements a slow-motion video session, which sets the parameters of the slow-mo
 > **NOTE**
 >
 > In slow-motion video mode, only preview streams and video streams can be added.
-
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -4470,7 +4468,7 @@ Sets the manual focus distance.
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0,1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.<br> |
+| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0, 1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.<br> |
 
 **Error codes**
 

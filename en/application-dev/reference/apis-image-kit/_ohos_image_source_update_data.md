@@ -19,8 +19,8 @@ The **OhosImageSourceUpdateData** struct defines the update data option of the i
 
 | Name| Description| 
 | -------- | -------- |
-| [buffer](image.md#buffer-22) = nullptr | Defines a pointer to the buffer for storing the update data.| 
-| [bufferSize](image.md#buffersize-22) = 0 | Defines the size of the buffer.| 
-| [offset](image.md#offset) = 0 | Defines the offset of the update data in the buffer.| 
-| [updateLength](image.md#updatelength) = 0 | Defines the length of the update data in the buffer.| 
-| [isCompleted](image.md#iscompleted) = 0 | Defines whether the image source data update is completed.| 
+| uint8_t \* [buffer](image.md#buffer-22) = nullptr | Defines a pointer to the buffer for storing the update data.| 
+| size_t [bufferSize](image.md#buffersize-22) = 0 | Defines the size of the buffer.| 
+| uint32_t [offset](image.md#offset) = 0 | Defines the offset of the update data in the buffer.| 
+| uint32_t [updateLength](image.md#updatelength) = 0 | Defines the length of the update data in the buffer.| 
+| int8_t [isCompleted](image.md#iscompleted) = 0 | Defines whether the image source data update is completed.| 

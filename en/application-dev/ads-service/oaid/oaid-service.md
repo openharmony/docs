@@ -19,8 +19,8 @@ The OAID changes in the following scenarios:
 
 | API| Description|
 | -------- | -------- |
-| [getOAID](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid)(): Promise&lt;string&gt; | Obtains an OAID. This API uses a promise to return the result.|
-| [getOAID](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1)(callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp; void | Obtains an OAID. This API uses an asynchronous callback to return the result.|
+| <!--Del-->[<!--DelEnd-->getOAID<!--Del-->](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid)<!--DelEnd-->(): Promise&lt;string&gt; | Obtains an OAID. This API uses a promise to return the result.|
+| <!--Del-->[<!--DelEnd-->getOAID<!--Del-->](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1)<!--DelEnd-->(callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp; void | Obtains an OAID. This API uses an asynchronous callback to return the result.|
 
 > **NOTE**
 > To call **getOAID()**, the application must request the permission **ohos.permission.APP_TRACKING_CONSENT** and user authorization. Three situations are possible:

@@ -14,7 +14,7 @@ In the following example, when a user clicks the **runJavaScript** button on the
   <html>
   <body>
   <button type="button" onclick="callArkTS()">Click Me!</button>
-  <h1 id="text">This is a piece of test information. The font color is black by default. It turns green after runJavaScript is called and red after runJavaScriptCodePassed is called.</h1>
+  <h1 id="text">This is a piece of test information. The font color is black by default. It turns green after runJavaScript() is called and red after runJavaScriptCodePassed() is called.</h1>
   <script>
       // Implement this function when a parameter is required.
       var param = "param: JavaScript Hello World!";
@@ -26,7 +26,7 @@ In the following example, when a user clicks the **runJavaScript** button on the
       function htmlTest() {
           document.getElementById('text').style.color = 'green';
       }
-      // The Click Me! button triggers the callArkTS() function on the frontend page to execute the code passed in by JavaScript.
+      // The Click Me! button triggers callArkTS() on the frontend page to execute the code passed in by JavaScript.
       function callArkTS() {
           changeColor();
       }
@@ -40,16 +40,16 @@ In the following example, when a user clicks the **runJavaScript** button on the
   
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    webviewController: webview.WebviewController = new webview.WebviewController();
+
     aboutToAppear() {
       // Enable web frontend page debugging.
-      web_webview.WebviewController.setWebDebuggingAccess(true);
+      webview.WebviewController.setWebDebuggingAccess(true);
     }
 
     build() {
@@ -64,8 +64,14 @@ In the following example, when a user clicks the **runJavaScript** button on the
             // Pass in code for runJavaScript.
             this.webviewController.runJavaScript(`function changeColor(){document.getElementById('text').style.color = 'red'}`);
           })
-        Web({ src: $rawfile('index.html'), controller: this.webviewController})
+        Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
   }
   ```
+
+## Samples
+
+The following samples are provided to help you better understand how to develop the **Web** component:
+
+- [JS Injection and Execution (ArkTS) (Full SDK) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/RunJsInWeb)

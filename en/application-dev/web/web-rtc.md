@@ -1,4 +1,4 @@
-# Starting a Camera and Microphone with WebRTC
+# Holding a Video Conference with WebRTC
 
 The **\<Web>** component can start a camera and microphone by calling **navigator.mediaDevices.getUserMedia()**, a standard W3C API, in JavaScript. To call this API, you need to declare the **ohos.permission.CAMERA** and **ohos.permission.MICROPHONE** permissions.
 
@@ -10,17 +10,17 @@ In the following example, when a user clicks the button for enabling the camera 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import abilityAccessCtrl, { PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
+  import { webview } from '@kit.ArkWeb';
+  import { abilityAccessCtrl } from '@kit.AbilityKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController()
 
     aboutToAppear() {
       // Enable web frontend page debugging.
-      web_webview.WebviewController.setWebDebuggingAccess(true);
+      webview.WebviewController.setWebDebuggingAccess(true);
       let atManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
         .then(data => {
@@ -32,9 +32,9 @@ In the following example, when a user clicks the button for enabling the camera 
             }
           })
           if (hasPermissions1) {
-            console.info("hasPermissions1")
+            console.info("hasPermissions1");
           } else {
-            console.info(" not hasPermissions1")
+            console.info(" not hasPermissions1");
           }
         }).catch(() => {
         return;
@@ -52,17 +52,17 @@ In the following example, when a user clicks the button for enabling the camera 
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    event.request.deny()
+                    event.request.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    event.request.grant(event.request.getAccessibleResource())
+                    event.request.grant(event.request.getAccessibleResource());
                   }
                 },
                 cancel: () => {
-                  event.request.deny()
+                  event.request.deny();
                 }
               })
             }

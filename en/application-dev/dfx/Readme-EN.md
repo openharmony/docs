@@ -42,8 +42,10 @@
   - [Using HiTraceChain (ArkTS/JS)](hitracechain-guidelines-arkts.md)
   - [Using HiTraceChain (C/C++)](hitracechain-guidelines-ndk.md)
 - HiChecker
-  
   - [Using HiChecker (ArkTS/JS)](hichecker-guidelines-arkts.md)
+- HiDebug
+  - [Using Hidebug (ArkTS)](hidebug-guidelines-arkts.md)
+  - [Using Hidebug (C/C++)](hidebug-guidelines-ndk.md)
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
@@ -53,19 +55,11 @@
   - [Analyzing AppFreeze](appfreeze-guidelines.md)
 - Command Line Tools
   - [hdc](hdc.md)
-  
   - [hilog](hilog.md)
-  
   - [hidumper](hidumper.md)
-  
   - [hitrace](hitrace.md)
-  
   - [hiperf](hiperf.md)
-  
   - [hisysevent](hisysevent.md)
-    <!--Del-->
-  
+  <!--Del-->
   - [uinput](uinput.md)
-    <!--DelEnd-->
-  
-    <!--no_check-->
+  <!--DelEnd-->
