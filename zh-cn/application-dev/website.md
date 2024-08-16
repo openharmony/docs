@@ -3510,11 +3510,6 @@
         <!--Del-->
         - [@ohos.file.photoAccessHelper (相册管理模块)(系统接口)](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
         <!--DelEnd-->
-        - 已停止维护的接口<!--media-arkts-dep-->
-          - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis-media-library-kit/js-apis-medialibrary.md)
-          <!--Del-->
-          - [@ohos.multimedia.medialibrary (媒体库管理)(系统接口)](reference/apis-media-library-kit/js-apis-medialibrary-sys.md)
-          <!--DelEnd-->
       - ArkTS组件<!--media-library-comp-->
         - [@ohos.file.AlbumPickerComponent (Album Picker组件)](reference/apis-media-library-kit/ohos-file-AlbumPickerComponent.md)
         - [@ohos.file.PhotoPickerComponent (Photo Picker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
