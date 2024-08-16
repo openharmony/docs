@@ -39,4 +39,4 @@ type ValuesBucket = Record<string, ValueType | Uint8Array | null>
 
 | 类型          | 说明                                      |
 | ------------- | --------------------------------------------- |
-| Record<string, [ValueType](#valuetype)\| Uint8Array \| null> | 表示键值对类型。其中string表示键类型，ValueType表示值类型。 |
+| Record<string, [ValueType](#valuetype) \| Uint8Array \| null> | 表示键值对类型。其中string表示键类型，ValueType表示值类型。 |
