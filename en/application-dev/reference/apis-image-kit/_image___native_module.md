@@ -145,6 +145,8 @@ The APIs of this module do not need to be imported through the JS interface. You
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetHeight](#oh_pixelmapinitializationoptions_setheight) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t height) | Sets the image height.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetPixelFormat](#oh_pixelmapinitializationoptions_getpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*pixelFormat) | Obtains the pixel format.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetPixelFormat](#oh_pixelmapinitializationoptions_setpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t pixelFormat) | Sets the pixel format.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetSrcPixelFormat](#oh_pixelmapinitializationoptions_getsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*srcpixelFormat) | Obtains the source pixel format.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t srcpixelFormat) | Sets the source pixel format.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | Obtains the alpha type.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | Sets the alpha type.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | Releases the pointer to an **OH_Pixelmap_InitializationOptions** object.| 
@@ -167,6 +169,8 @@ The APIs of this module do not need to be imported through the JS interface. You
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | Flips an image based on a given angle.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | Crops an image based on a given size.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Releases the pointer to an **OH_PixelmapNative** object.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](_image___native_module.md#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | Converts pixel data of a pixel map from premultiplied alpha to non-premultiplied alpha, or vice versa.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](_image___native_module.md#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](_image___native_module.md#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | Creates an empty pixel map using **OH_Pixelmap_InitializationOptions**. The memory data is 0.| 
 
 
 ### Variables
@@ -381,6 +385,8 @@ typedef struct OH_DecodingOptions OH_DecodingOptions
 
 Defines a struct for decoding parameters, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap).
 
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_DecodingOptions Struct](../../media/image/image-structure-c.md#oh_decodingoptions-struct).
+
 **Since**: 12
 
 
@@ -394,6 +400,8 @@ typedef struct OH_ImageNative OH_ImageNative
 
 Defines the alias for an image object at the native layer.
 
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageNative Struct](../../media/image/image-structure-c.md#oh_imagenative-struct).
+
 **Since**: 12
 
 
@@ -406,6 +414,8 @@ typedef struct OH_ImagePackerNative OH_ImagePackerNative
 **Description**
 
 Defines the **ImagePacker** struct, which is used to perform operations related to an image packer.
+
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImagePackerNative Struct](../../media/image/image-structure-c.md#oh_imagepackernative-struct).
 
 **Since**: 12
 
@@ -433,6 +443,8 @@ typedef struct OH_ImageReceiverNative OH_ImageReceiverNative
 
 Defines the data type name of the image receiver at the native layer.
 
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageReceiverNative Struct](../../media/image/image-structure-c.md#oh_imagereceivernative-struct).
+
 **Since**: 12
 
 
@@ -445,6 +457,8 @@ typedef struct OH_ImageReceiverOptions OH_ImageReceiverOptions
 **Description**
 
 Defines the data type name of the image receiver options.
+
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageReceiverOptions Struct](../../media/image/image-structure-c.md#oh_imagereceiveroptions-struct).
 
 **Since**: 12
 
@@ -459,6 +473,8 @@ typedef struct OH_ImageSource_Info OH_ImageSource_Info
 
 Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).
 
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageSource_Info Struct](../../media/image/image-structure-c.md#oh_imagesource_info-struct).
+
 **Since**: 12
 
 
@@ -471,6 +487,8 @@ typedef struct OH_ImageSourceNative OH_ImageSourceNative
 **Description**
 
 Defines the **ImageSource** struct, which is used to perform operations related to an image source.
+
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageSourceNative Struct](../../media/image/image-structure-c.md#oh_imagesourcenative-struct).
 
 **Since**: 12
 
@@ -485,6 +503,8 @@ typedef struct OH_PackingOptions OH_PackingOptions
 
 Defines a struct for image encoding parameters.
 
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_PackingOptions Struct](../../media/image/image-structure-c.md#oh_packingoptions-struct).
+
 **Since**: 12
 
 
@@ -497,6 +517,8 @@ typedef struct OH_Pixelmap_ImageInfo OH_Pixelmap_ImageInfo
 **Description**
 
 Defines a struct for the image information.
+
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_Pixelmap_ImageInfo Struct](../../media/image/image-structure-c.md#oh_pixelmap_imageinfo-struct).
 
 **Since**: 12
 
@@ -511,6 +533,8 @@ typedef struct OH_Pixelmap_InitializationOptions OH_Pixelmap_InitializationOptio
 
 Defines a struct for the initialization parameters.
 
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_Pixelmap_InitializationOptions Struct](../../media/image/image-structure-c.md#oh_pixelmap_initializationoptions-struct).
+
 **Since**: 12
 
 
@@ -523,6 +547,8 @@ typedef struct OH_PixelmapNative OH_PixelmapNative
 **Description**
 
 Defines the **Pixelmap** struct, which is used to perform operations related to a pixel map.
+
+The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_PixelmapNative Struct](../../media/image/image-structure-c.md#oh_pixelmapnative-struct).
 
 **Since**: 12
 
@@ -1275,7 +1301,7 @@ Encodes a pixel map into a file.
 | imagePacker | Pointer to an **OH_ImagePackerNative** object.| 
 | options | Pointer to an [OH_PackingOptions](#oh_packingoptions) object.| 
 | pixelmap | Pointer to the pixel map to encode.| 
-| fd | File descriptor to write.| 
+| fd | File descriptor, which is writable.| 
 
 **Returns**
 
@@ -2732,6 +2758,51 @@ Sets the image width.
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
+### OH_PixelmapInitializationOptions_SetSrcPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t srcpixelFormat)
+```
+
+**Description**
+
+Sets the source pixel format.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** object.| 
+| srcpixelFormat | Source pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).| 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
+
+### OH_PixelmapInitializationOptions_GetSrcPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_InitializationOptions *ops, int32_t *srcpixelFormat)
+```
+
+**Description**
+
+Obtains the source pixel format.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** object.| 
+| srcpixelFormat | Pointer to the source pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).| 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
 ### OH_PixelmapNative_CreatePixelmap()
 
@@ -2742,6 +2813,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap (uint8_t * data, size_t dataLen
 **Description**
 
 Creates a **PixelMap** object based on properties. By default, the BGRA_8888 format is used for data processing.
+
+After the API is called, the data pointed to by **data** can be released.
 
 **Since**: 12
 
@@ -3002,6 +3075,52 @@ Reads the image pixel data in the buffer and writes the data to a pixel map.
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_OPERATION** if the operation is not supported; returns **IMAGE_UNKNOWN_ERROR** if an unknown error occurs. For details, see [Image_ErrorCode](#image_errorcode).
 
+### OH_PixelmapNative_ConvertAlphaFormat()
+
+```
+Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap, OH_PixelmapNative* dstpixelmap, const bool isPremul);
+```
+
+**Description**
+
+Converts pixel data of a pixel map from premultiplied alpha to non-premultiplied alpha, or vice versa.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| srcpixelmap | Pointer to the source pixel map, which is an **OH_PixelmapNative** object.| 
+| dstpixelmap | Pointer to the destination pixel map, which is an **OH_PixelmapNative** object.| 
+| isPremul | Conversion mode. The value **true** means a conversion from premultiplied alpha to non-premultiplied alpha, and **false** means a conversion from non-premultiplied alpha to premultiplied alpha.| 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_OPERATION** if the operation is not supported; returns **IMAGE_UNKNOWN_ERROR** if an unknown error occurs. For details, see [Image_ErrorCode](#image_errorcode).
+
+### OH_PixelmapNative_CreateEmptyPixelmap()
+
+```
+Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
+```
+
+**Description**
+
+Creates an empty pixel map using **OH_Pixelmap_InitializationOptions**. The memory data is 0.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| options | Pointer to the properties.| 
+| pixelmap | Double pointer to the **OH_PixelmapNative** object created.|  
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_OPERATION** if the operation is not supported; returns **IMAGE_UNKNOWN_ERROR** if an unknown error occurs. For details, see [Image_ErrorCode](#image_errorcode).
 
 ## Variable Description
 
