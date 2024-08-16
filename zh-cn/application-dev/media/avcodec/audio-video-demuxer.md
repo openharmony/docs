@@ -104,7 +104,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
    ```
 
-   AVSourceReadAt接口函数，需要放在创建资源管理实例对象前实现：:
+   AVSourceReadAt接口函数，需要放在创建资源管理实例对象前实现：
 
    ```c++
    // 添加头文件
