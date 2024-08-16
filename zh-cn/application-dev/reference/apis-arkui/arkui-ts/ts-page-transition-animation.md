@@ -125,7 +125,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
   pageTransition() {
     PageTransitionExit({ duration: 1200, curve: Curve.Linear })
       // 转场动画时出场动画 type 为路由类型 ，progress为从0到1逐渐变大
-      .onEnter((type: RouteType, progress: number) => {
+      .onExit((type: RouteType, progress: number) => {
         // 业务逻辑代码
       })
   }
