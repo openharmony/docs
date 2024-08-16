@@ -906,7 +906,7 @@ template<class T>
 void DestroyFunctionWrapper(void* t)
 {
     auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
-   f = nullptr;
+    f = nullptr;
 }
 
 template<class T>
@@ -927,8 +927,7 @@ int main(int narg, char** argv)
     ffrt_queue_attr_t queue_attr;
     (void)ffrt_queue_attr_init(&queue_attr);
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
-
-    std::function<void>()>&& queueFunc = [] () {pritf("Task done.\n");};
+    std::function<void()>&& queueFunc = [] () {printf("Task done.\n");};
     ffrt_function_header_t* queueFunc_t = create_function_wrapper((queueFunc), ffrt_function_kind_queue);
     ffrt_queue_submit(queue_handle, queueFunc_t, nullptr);
 
@@ -1051,7 +1050,6 @@ int main(int narg, char** argv)
     return 0;
 }
 ```
-
 
 
 ### 并行队列
@@ -1688,6 +1686,7 @@ int main(int narg, char** argv)
     return 0;
 }
 ```
+
 一种输出情况为：
 
 ```
@@ -1902,7 +1901,7 @@ int main(int narg, char** argv)
     auto loop = ffrt_loop_create(queue_handle);
 
     if (loop != NULL) {
-        printf("loop is not null.\n")
+        printf("loop is not null.\n");
     }
 
     int ret = ffrt_loop_destroy(loop);
@@ -2166,7 +2165,7 @@ void testCallBack(void *data, unsigned int events) {}
 struct TestData {
     int fd;
     uint64_t expected;
-}
+};
 
 int main(int narg, char** argv)
 {
@@ -2178,7 +2177,7 @@ int main(int narg, char** argv)
     int result1 = 0;
     std::function<void()> &&basicFunc1 = [&result1]() {result1 += 10;};
     ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
-
+    
     pthread_t thread;
     pthread_create(&thread, 0, ThreadFunc, loop);
     
