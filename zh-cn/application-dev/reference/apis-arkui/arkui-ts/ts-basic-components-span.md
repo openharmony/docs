@@ -165,7 +165,7 @@ textBackgroundStyle(style: TextBackgroundStyle): T
 
 | 参数名 | 类型                                                         | 必填 | 描述                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [TextBackgroundStyle](#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| style  | [TextBackgroundStyle](#textbackgroundstyle11对象说明) | 是   | 背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
 **返回值：**
 
@@ -195,7 +195,7 @@ baselineOffset(value: LengthMetrics): T
 | ---------------------------------------- | ------- |
 | T | 返回当前Span的属性。 |
 
-## TextBackgroundStyle对象说明
+## TextBackgroundStyle<sup>11+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
