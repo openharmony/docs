@@ -86,27 +86,27 @@ struct FilterEffectExample {
     Column({ space: 15 }) {
 
       Text('foregroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('前景滤镜')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
-     .foregroundFilter(this.filterTest.blur(10)) // 通过 foregroundFilter 进行像素扩展
+        .backgroundImage($r("app.media.app_icon"))
+     .foregroundFilter(this.filterTest.blur(10)) // 通过 foregroundFilter 设置模糊效果
 
       Text('backgroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('背景滤镜')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
+        .backgroundImage($r("app.media.app_icon"))
         .backgroundFilter(this.filterTest.blur(10)) // 通过 backgroundFilter 设置模糊效果
 
       Text('compositingFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('合成滤镜')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
+        .backgroundImage($r("app.media.app_icon"))
         .compositingFilter(this.filterTest.blur(10)) // 通过 compositingFilter 设置模糊效果
     }
     .height('100%')
@@ -115,4 +115,4 @@ struct FilterEffectExample {
 }
 ```
 
-![compositingFilter](figures/filterEffect.jpg)
+![filterEffect](figures/filterEffect.png)

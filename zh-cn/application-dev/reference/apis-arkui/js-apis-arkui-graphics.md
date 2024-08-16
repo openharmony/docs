@@ -214,7 +214,7 @@ get size(): Size
 | ------------- | ---------------- |
 | [Size](#size) | 画布的宽度和高度。 |
 
-### sizeInPixel
+### sizeInPixel<sup>12+</sup>
 
 get sizeInPixel(): Size
 

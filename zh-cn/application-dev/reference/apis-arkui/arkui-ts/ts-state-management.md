@@ -290,7 +290,7 @@ static set&lt;T&gt;(propName: string, newValue: T): boolean
 在[AppStorage](../../../quick-start/arkts-appstorage.md)中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值，从API version 12开始，newValue可以为null或undefined。
 
 > **说明：**<br/>
-> 从API version 12开始，AppStorage支持[Map](../../../quick-start/arkts-appstorage.md#装饰map类型变量)、[Set](../../../quick-start/arkts-appstorage.md#装饰set类型变量)、[Date类型](../../../quick-start/arkts-appstorage.md#装饰date类型变量)，支持null、understand以及[联合类型](../../../quick-start/arkts-appstorage.md#appstorage支持联合类型)。
+> 从API version 12开始，AppStorage支持[Map](../../../quick-start/arkts-appstorage.md#装饰map类型变量)、[Set](../../../quick-start/arkts-appstorage.md#装饰set类型变量)、[Date类型](../../../quick-start/arkts-appstorage.md#装饰date类型变量)，支持null、undefined以及[联合类型](../../../quick-start/arkts-appstorage.md#appstorage支持联合类型)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

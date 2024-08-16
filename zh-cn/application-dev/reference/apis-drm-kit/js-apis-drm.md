@@ -297,7 +297,7 @@ isMediaKeySystemSupported(name: string): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed, the param name's length is zero or too big(exceeds 4096 Bytes).               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -390,7 +390,7 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed.  Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed, the param name's length is zero or too big(exceeds 4096 Bytes)               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -805,7 +805,7 @@ processKeySystemResponse(response: Uint8Array): Promise<void\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  he parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 

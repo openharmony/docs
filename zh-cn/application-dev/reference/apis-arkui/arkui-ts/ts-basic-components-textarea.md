@@ -192,7 +192,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 | 参数名                | 类型                                                         | 必填 | 说明             |
 | --------------------- | ------------------------------------------------------------ | ---- | ---------------- |
 | value                 | boolean                                                      | 是   | 是否显示计数器。 |
-| options<sup>11+</sup> | [InputCounterOptions](ts-basic-components-textinput.md#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
+| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
 
 ### style<sup>10+</sup>
 
@@ -757,7 +757,7 @@ onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&n
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-文本选择的位置发生变化时，触发该回调。
+文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -873,6 +873,8 @@ TextArea组件的控制器继承自[TextContentControllerBase](ts-types.md#textc
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### 导入对象
 
 ```
@@ -897,6 +899,8 @@ caretPosition(value: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述                               |
@@ -908,6 +912,10 @@ caretPosition(value: number): void
 setTextSelection(selectionStart: number, selectionEnd: number, options?: SelectionOptions): void
 
 组件在获焦状态下，调用该接口设置文本选择区域并高亮显示，且只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -947,6 +955,10 @@ stopEditing(): void
 ## ContentType<sup>12+</sup>枚举说明
 
 自动填充类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                       | 值   | 描述                                                         |
 | -------------------------- | ---- | ------------------------------------------------------------ |

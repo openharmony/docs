@@ -265,7 +265,7 @@ typedef void(* OH_AVScreenCapture_OnBufferAvailable) (OH_AVScreenCapture *captur
 | capture | 指向OH_AVScreenCapture实例的指针。  | 
 | buffer | 指向OH_AVBuffer缓存区实例的指针，该回调方法执行结束返回后，数据缓存区不再有效。  | 
 | bufferType | 可用缓冲区的数据类型。  | 
-| timestamp | 时间戳。  | 
+| timestamp | 时间戳, 单位纳秒。  | 
 | userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 | 
 
 

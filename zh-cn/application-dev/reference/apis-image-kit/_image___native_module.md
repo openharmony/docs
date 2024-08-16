@@ -2678,7 +2678,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat (OH_PixelmapNative * srcpix
 | 名称 | 描述 | 
 | -------- | -------- |
 | srcpixelmap | 被操作的OH_PixelmapNative指针, 源pixelmap对象指针。  | 
-| dstpixelmap | 被操作的OH_PixelmapNative指针, 目标pixelmap对象指针。  | 
+| dstpixelmap | 被操作的OH_PixelmapNative指针, 目标pixelmap对象指针。目标指针和源指针不能是同一个。  | 
 | isPremul | 转换方式，true为非预乘转预乘，false为预乘转非预乘。  | 
 
 **返回：**

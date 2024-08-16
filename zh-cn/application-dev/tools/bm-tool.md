@@ -81,7 +81,7 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 | -h | 否，默认输出帮助信息 | 显示uninstall支持的命令信息 |
 | -n | 是 | 指定Bundle名称卸载应用 |
 | -m | 否，默认卸载所有模块 | 指定卸载应用的一个模块 |
-| -u | 否，默认卸载当前所有用户下该应用 | 指定用户卸载应用 |
+| -u | 否，默认卸载当前活跃用户下该应用 | 指定用户卸载应用 |
 | -k | 否，默认卸载应用时不保存应用数据 | 卸载应用时保存应用数据 |
 | -v | 否，默认卸载同包名的所有共享包 | 指示共享包的版本号 |
 
@@ -540,10 +540,10 @@ Error: signature verification failed due to not trusted app source.
 
 1. 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
 2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
-```
-//UDID获取命令
-hdc shell bm get -u
-```
+	```
+	//UDID获取命令
+	hdc shell bm get -u
+	```
 
 
 ### 9568289 权限请求失败导致安装失败
@@ -626,3 +626,275 @@ hdc install不能安装release签名的企业应用。
 **处理步骤**
 
 1. 请使用hdc install指令安装调试debug签名的企业应用。
+
+
+### 9568337 安装解析失败
+**错误信息**
+
+Error: install parse unexpected.
+
+**错误描述**
+
+应用推送到设备安装时，报错包管理打开hap文件失败。
+
+**可能原因**
+
+* 场景一：设备system分区存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
+
+* 场景二：推送hap包到设备过程hap包损坏。
+
+**处理步骤**
+
+* 场景一：查看设备system分许存储空间，若已满，清理存储满足安装所需空间。
+  ```
+  hdc shell param get const.ohos.apiversion
+  ```
+
+* 场景二：查看本地hap与推送到设备上hap的md5值，若不一致则表示推送过程hap损毁，请尝试重传。
+
+
+### 9568316 数据代理中apl权限字段描述权限低
+**错误信息**
+
+Error: apl of required permission in proxy data is too low.
+
+**错误描述**
+
+proxyData标签requiredReadPermission和requiredWritePermission属性验证失败。
+
+**可能原因**
+
+用户工程module.json中，proxyData标签requiredReadPermission和requiredWritePermission属性验证失败，这两个属性要求system_basic或system_core权限等级。
+
+**处理步骤**
+
+1. 检查应用定义的proxyData内容是否符合要求，参考<!--RP6-->[proxyData标签](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md#proxydata%E6%A0%87%E7%AD%BE)<!--RP6End-->。
+
+
+### 9568315 数据代理URI错误
+**错误信息**
+
+Error: uri in proxy data is wrong.
+
+**错误描述**
+
+proxyData标签uri属性验证失败。
+
+**可能原因**
+
+用户工程module.json中，proxyData标签uri属性验证失败，不满足uri格式要求。
+
+**处理步骤**
+
+1. 检查应用定义的proxyData内容是否符合要求，参考<!--RP7-->[proxyData标签](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md#proxydata%E6%A0%87%E7%AD%BE)<!--RP7End-->。
+
+
+### 9568336 应用调试类型与已安装应用不一致
+**错误信息**
+
+Error: install debug type not same.
+
+**错误描述**
+
+应用调试类型（app.json的debug字段）与已安装应用不一致。
+
+**可能原因**
+
+开发者使用IDE的debug按钮安装了应用，后面打包之后又通过hdc install方式安装。
+
+**处理步骤**
+
+1. 卸载已安装的应用，重新安装新应用。
+   
+
+### 9568296 包类型错误
+**错误信息**
+
+Error: install failed due to error bundle type.
+
+**错误描述**    
+
+bundleType错误导致应用安装失败。
+
+**可能原因**
+
+新安装应用的的bundleType与已安装的有相同bundleName应用不一致。
+       
+**处理步骤**
+
+* 方法一：卸载已安装的应用，重新安装新应用。
+
+* 方法二：修改应用的bundleType,与已安装应用保持一致。
+
+
+### 9568292 UserID为0的用户只能安装singleton应用
+**错误信息**
+
+Error: install failed due to zero user can only install singleton app.
+
+**错误描述**
+
+UserID 0用户只允许安装singleton权限应用，singleton权限应用只允许被UserID 0用户安装。
+
+**可能原因**
+
+singleton权限应用安装未指定UserID 0。
+
+**处理步骤**
+
+1. 应用是singleton权限，安装时指定UserID 0。
+	```
+	//指定userId安装命令
+	hdc install -p hap名.hap -u 0
+	```
+
+
+### 9568263 无法降级安装
+**错误信息**
+
+Error: install version downgrade.
+
+**错误描述**
+
+正在安装应用的VersionCode小于系统中已安装应用的VersionCode，安装失败。
+
+**可能原因**
+
+正在安装应用的VersionCode小于系统中已安装应用的VersionCode。
+
+**处理步骤**
+
+1. 卸载已安装的应用，重新安装新应用。
+
+
+### 9568304 应用不支持当前设备类型
+**错误信息**
+
+Error: device type is not supported.
+
+**错误描述**
+
+正在安装的应用不支持当前设备类型，安装失败。
+
+**可能原因**
+
+正在安装的应用不支持当前设备类型。
+
+**处理步骤**
+
+1. 如需要适配当前设备，请在应用设备类型配置中增加当前设备类型。应用deviceTypes配置包含phone（手机）、tablet（平板）、2in1（2合1设备）、tv（智慧屏）、wearable（智能手表）和car（车机）。
+
+
+### 9568317 应用的多进程配置与系统配置不匹配
+**错误信息**
+
+Error: isolationMode does not match the system.
+
+**错误描述**
+
+安装应用时，设置的isolationMode与系统配置项允许的系统配置不匹配。
+
+**可能原因**
+
+* 场景一：设备支持隔离模式，即persist.bms.supportIsolationMode为true时，HAP配置的isolationMode为nonisolationOnly。
+
+* 场景二：设备不支持隔离模式，即persist.bms.supportIsolationMode为false时，HAP配置的isolationMode为isolationOnly。
+
+**处理步骤**
+
+1. 按照设备的隔离模式配置HAP配置文件isolationMode属性。  
+	```
+	//查询设备persist.bms.supportIsolationMode值，若返回errNum is:106说明没配置
+	hdc shell
+	param get persist.bms.supportIsolationMode
+	//配置设备persist.bms.supportIsolationMode值
+	hdc shell
+	param set persist.bms.supportIsolationMode [true|false]
+	```
+
+
+### 9568315 数据代理的uri属性错误
+**错误信息**
+
+Error: uri in proxy data is wrong.
+
+**错误描述**
+
+应用module.json文件中proxyData标签的uri属性验证失败。
+
+**可能原因**
+
+uri不满足格式规范。
+
+**处理步骤**
+
+1. 确认uri满足格式规范。
+	```
+	//uri格式规范
+	不同数据代理的uri不可重复，且需要满足datashareproxy://当前应用包名/xxx的格式
+	```
+
+
+### 9568310 兼容策略不同      
+**错误信息**
+
+Error: compatible policy not same.
+
+**错误描述**
+
+新包与已安装包兼容策略不同。
+
+**可能原因**
+
+设备中已安装相同包名的hap包。
+
+**处理步骤**
+
+1. 卸载已安装相同包名hap包，再安装新包。
+
+
+### 9568391 包管理服务已停止      
+**错误信息**
+
+Error: bundle manager service is died.
+
+**错误描述**
+
+包管理服务已停止。
+
+**可能原因**
+
+使用bm install -p ***.hap方式安装预置应用会杀掉正在运行的应用，导致异常（例如foundation进程重启）。
+
+**处理步骤**
+
+1. 预置应用请参考OTA升级。
+
+
+### 9568393 验证代码签名失败      
+**错误信息**
+
+Error: verify code signature failed.
+
+**错误描述**
+
+验证代码签名失败。
+
+**可能原因**
+
+* 场景一：包没有代码签名信息。
+
+* 场景二：签名证书问题。
+
+
+**处理步骤**
+
+* 场景一：使用SDK签名工具验证包是否签名。
+	```
+	//验证签名指令
+	java -jar SDK安装路径（DevEco工具安装目录中sdk）\toolchains\lib\hap-sign-tool.jar verify-app -outCertChain out.cer -outProfile out.p7b -inFile 包路径\**.hap
+	// 执行结果1：can not find codesign block。说明包没有签名
+	// 执行结果2：verify codesign success。说明包已签名
+	```
+
+* 场景二：检查签名流程和签名证书，参考<!--RP8-->[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)<!--RP8End-->。
