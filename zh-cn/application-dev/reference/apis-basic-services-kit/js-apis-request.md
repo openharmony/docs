@@ -1052,10 +1052,10 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
   回调函数的参数：
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| receivedSize | number | 是 | 当前下载的进度，单位为B。 |
-| totalSize | number | 是 | 下载文件的总大小，单位为B。 |
+| 参数名 | 类型 | 必填 | 说明                                                                      |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| receivedSize | number | 是 | 当前下载的进度，单位为B。                                                           |
+| totalSize | number | 是 | 下载文件的总大小，单位为B。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
 
 **错误码：**
 
@@ -2481,13 +2481,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| state | [State](#state10) | 是 | 任务当前的状态。 |
-| index | number | 是 | 任务中当前正在处理的文件索引。 |
-| processed | number | 是 | 任务中当前文件的已处理数据大小，单位为B。|
-| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为B。 |
-| extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。 |
+| 名称 | 类型 | 必填 | 说明                                                                  |
+| -------- | -------- | -------- |---------------------------------------------------------------------|
+| state | [State](#state10) | 是 | 任务当前的状态。                                                            |
+| index | number | 是 | 任务中当前正在处理的文件索引。                                                     |
+| processed | number | 是 | 任务中当前文件的已处理数据大小，单位为B。                                               |
+| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为B。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，sizes 为 -1。 |
+| extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。                                     |
 
 
 ## Faults<sup>10+</sup>  
@@ -2498,18 +2498,18 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
-| 名称 | 值 |说明 |
-| -------- | -------- |-------- |
-| OTHERS | 0xFF |表示其他故障。 |
-| DISCONNECTED | 0x00 |表示网络断开连接。 |
-| TIMEOUT | 0x10 |表示任务超时。 |
-| PROTOCOL | 0x20 |表示协议错误，例如:服务器内部错误（500）、无法处理的数据区间（416）等。 |
-| PARAM<sup>12+</sup> | 0x30 |表示参数错误，例如url格式错误等。 |
-| FSIO | 0x40 |表示文件系统io错误，例如打开/查找/读取/写入/关闭。 |
-| DNS<sup>12+</sup> | 0x50 |表示DNS解析错误。 |
-| TCP/UDP<sup>12+</sup> | 0x60 |表示TCP/UDP连接错误。 |
-| SSL<sup>12+</sup> | 0x70 |表示SSL连接错误，例如证书错误、证书校验失败错误等。 |
-| REDIRECT<sup>12+</sup> | 0x80 |表示重定向错误。 |
+| 名称 | 值 | 说明                                                                             |
+| -------- | -------- |--------------------------------------------------------------------------------|
+| OTHERS | 0xFF | 表示其他故障。                                                                        |
+| DISCONNECTED | 0x00 | 表示网络断开连接。                                                                      |
+| TIMEOUT | 0x10 | 表示任务超时。                                                                        |
+| PROTOCOL | 0x20 | 表示协议错误，例如:服务器内部错误（500）、无法处理的数据区间（416）等。                                        |
+| PARAM<sup>12+</sup> | 0x30 | 表示参数错误，例如url格式错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
+| FSIO | 0x40 | 表示文件系统io错误，例如打开/查找/读取/写入/关闭。                                                   |
+| DNS<sup>12+</sup> | 0x50 | 表示DNS解析错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| TCP<sup>12+</sup> | 0x60 | 表示TCP连接错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
+| SSL<sup>12+</sup> | 0x70 | 表示SSL连接错误，例如证书错误、证书校验失败错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REDIRECT<sup>12+</sup> | 0x80 | 表示重定向错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
 
 > **说明：**
 >
@@ -2551,7 +2551,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | mtime | number | 是 | 任务状态改变时的Unix时间戳（毫秒），由当前设备的系统生成。|
 | retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。 |
 | tries | number | 是 | 任务的尝试次数。 |
-| faults | [Faults](#faults10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
+| faults | [Faults](#faults10) | 是 | 任务的失败原因。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
 | extras | object | 否 | 任务的额外部分。|
 
@@ -2610,7 +2610,6 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -2662,7 +2661,6 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('completed')<sup>10+</sup>
 
@@ -2688,7 +2686,6 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -2740,7 +2737,6 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('failed')<sup>10+</sup>
 
@@ -2766,7 +2762,6 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -2818,7 +2813,6 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('pause')<sup>11+</sup>
 
@@ -3142,7 +3136,6 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -3202,7 +3195,6 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('completed')<sup>10+</sup>
 
@@ -3228,7 +3220,6 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -3288,7 +3279,6 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('failed')<sup>10+</sup>
 
@@ -3314,7 +3304,6 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -3374,7 +3363,6 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('pause')<sup>11+</sup>
 
@@ -3858,7 +3846,7 @@ start(): Promise&lt;void&gt;
 
 pause(callback: AsyncCallback&lt;void&gt;): void
 
-暂停任务，可以暂停正在等待/正在运行/正在重试的后台任务。使用callback异步回调。
+暂停任务，可以暂停正在等待/正在运行/正在重试的任务。使用callback异步回调。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3875,7 +3863,6 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **示例：**
@@ -3921,15 +3908,11 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-> **说明：**
->
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
-
 ### pause<sup>10+</sup>
 
 pause(): Promise&lt;void&gt;
 
-暂停任务，可以暂停正在等待/正在运行/正在重试的后台任务。使用Promise异步回调。
+暂停任务，可以暂停正在等待/正在运行/正在重试的任务。使用Promise异步回调。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3946,7 +3929,6 @@ pause(): Promise&lt;void&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **示例：**
@@ -3990,15 +3972,11 @@ pause(): Promise&lt;void&gt;
   });
   ```
 
-> **说明：**
->
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
-
 ### resume<sup>10+</sup>
 
 resume(callback: AsyncCallback&lt;void&gt;): void
 
-重新启动任务，可以恢复暂停的后台任务。使用callback异步回调。
+重新启动任务，可以恢复暂停的任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -4018,7 +3996,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   | -------- | -------- |
   | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **示例：**
@@ -4066,16 +4043,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-> **说明：**
->
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
-
-
 ### resume<sup>10+</sup>
 
 resume(): Promise&lt;void&gt;
 
-重新启动任务，可以恢复暂停的后台任务。使用Promise异步回调。
+重新启动任务，可以恢复暂停的任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -4095,7 +4067,6 @@ resume(): Promise&lt;void&gt;
   | -------- | -------- |
   | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **示例：**
@@ -4140,11 +4111,6 @@ resume(): Promise&lt;void&gt;
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **说明：**
->
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
-
 
 ### stop<sup>10+</sup>
 
