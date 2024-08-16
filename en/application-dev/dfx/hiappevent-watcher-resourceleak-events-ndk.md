@@ -207,14 +207,10 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    }
    ```
 
-7. Run **hdc shell param set hiview.memleak.test enable** to enable the memory leak detection test. The original memory leak detection period is 200s. After the memory leak detection test is enabled, the period is 5s.
+7. In DevEco Studio, click the **Run** button to run the project. If the check detects that the memory usage of an application exceeds the maximum limit for three consecutive times, a memory leak event is reported.
+   For the same application, the memory leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
 
-   Run **hdc shell killall hiview** to restart HiView. Then, the memory detection test is enabled.
-
-8. In DevEco Studio, click the **Run** button to run the project. If HiView detects that the application memory exceeds the baseline (**RSS** exceeds 1228800 KB) for five consecutive times, a memory leak event is reported.
-   For the same application, the memory leak event can be reported at most once within 5 hours. If the memory leak needs to be reported again within a shorter time, restart HiView.
-
-9. After the memory leak event is reported, you can view the following event information in the **Log** window.
+8. After the memory leak event is reported, you can view the following event information in the **Log** window.
 
    ```text
    08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
@@ -228,8 +224,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936}
    ```
-   
-10. Remove the application event watcher.
+
+9. Remove the application event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -239,7 +235,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     }
     ```
 
-11. Destroy the application event watcher.
+10. Destroy the application event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

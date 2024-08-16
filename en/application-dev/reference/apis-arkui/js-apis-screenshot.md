@@ -16,6 +16,8 @@ import { screenshot } from '@kit.ArkUI';
 
 Describes the region of the screen to capture.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name | Type  | Mandatory | Description                                                        |
@@ -28,6 +30,8 @@ Describes the region of the screen to capture.
 ## PickInfo
 
 Describes the screenshot options.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -42,6 +46,8 @@ Describes the screenshot options.
 pick(): Promise&lt;PickInfo&gt;
 
 Takes a screenshot.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 

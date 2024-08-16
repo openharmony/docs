@@ -40,7 +40,7 @@ libnative_window.so
 1. Obtain an **OHNativeWindow** instance.
 
     You can call the APIs provided by [OH_NativeXComponent_Callback](../reference/apis-arkui/_o_h___native_x_component___callback.md) to obtain an **OHNativeWindow** instance. An example code snippet is provided below. For details about how to use the **\<XComponent>**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
-    1. Add an **\<XComponent>** to the .ets file.
+    1. Add an **XComponent** to the .ets file.
         ```ts
         XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry'})
             .width(360)
@@ -161,4 +161,3 @@ libnative_window.so
     }
     ```
 
- <!--no_check--> 
