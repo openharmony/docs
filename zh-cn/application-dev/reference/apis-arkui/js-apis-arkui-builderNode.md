@@ -650,7 +650,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到BuiderNode中的自定义组件。
+传递reuse事件到BuilderNode中的自定义组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

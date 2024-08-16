@@ -162,7 +162,7 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct Index1 {
-  @State ButtomText: string = ''
+  @State ButtonText: string = ''
   @State MAP_HEIGHT: string = '30%'
   @State duration: number = 2500
   @State tips: string = ''

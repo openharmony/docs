@@ -301,9 +301,9 @@
 | [ArkUI_DragStatus](#arkui_dragstatus) [OH_ArkUI_DragAndDropInfo_GetDragStatus](#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo) | 获取dragaction发起拖拽的状态,获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN  | 
 | [ArkUI_DragEvent](#arkui_dragevent) \* [OH_ArkUI_DragAndDropInfo_GetDragEvent](#oh_arkui_draganddropinfo_getdragevent) ([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo) | 通过dragAndDropInfo获取到DragEvent，可通过DragEvent获取释放结果等  | 
 | int32_t [OH_ArkUI_StartDrag](#oh_arkui_startdrag) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction) | 通过构造的DragAction对象发起拖拽  | 
-| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromPixelMap](#oh_arkui_drawabledescriptor_createfrompixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) pixelMap) | 使用 PixelMap 创建 DrawbleDescriptor 对象。  | 
-| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap](#oh_arkui_drawabledescriptor_createfromanimatedpixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \*array, int32_t size) | 使用 PixelMap 图片数组创建DrawbleDescriptor 对象。  | 
-| void [OH_ArkUI_DrawableDescriptor_Dispose](#oh_arkui_drawabledescriptor_dispose) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 销毁 DrawbleDescriptor 对象指针。  | 
+| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromPixelMap](#oh_arkui_drawabledescriptor_createfrompixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) pixelMap) | 使用 PixelMap 创建 DrawableDescriptor 对象。  | 
+| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap](#oh_arkui_drawabledescriptor_createfromanimatedpixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \*array, int32_t size) | 使用 PixelMap 图片数组创建DrawableDescriptor 对象。  | 
+| void [OH_ArkUI_DrawableDescriptor_Dispose](#oh_arkui_drawabledescriptor_dispose) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 销毁 DrawableDescriptor 对象指针。  | 
 | [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) [OH_ArkUI_DrawableDescriptor_GetStaticPixelMap](#oh_arkui_drawabledescriptor_getstaticpixelmap) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取 PixelMap 图片对象指针。  | 
 | [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \* [OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray](#oh_arkui_drawabledescriptor_getanimatedpixelmaparray) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取用于播放动画的 PixelMap 图片数组数据。  | 
 | int32_t [OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize](#oh_arkui_drawabledescriptor_getanimatedpixelmaparraysize) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取用于播放动画的 PixelMap 图片数组数据。  | 
@@ -2583,7 +2583,7 @@ enum ArkUI_NodeAttributeType
 | NODE_WIDTH  | 宽度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：宽度数值，单位为vp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：宽度数值，单位为vp； | 
 | NODE_HEIGHT  | 高度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：高度数值，单位为vp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：高度数值，单位为vp； | 
 | NODE_BACKGROUND_COLOR  | 背景色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景色数值，0xargb格式，形如 0xFFFF0000 表示红色；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景色数值，0xargb格式，形如 0xFFFF0000 表示红色； | 
-| NODE_BACKGROUND_IMAGE  | 背景色图片属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 图片地址；<br/>.value[0]?.i32：可选值，repeat参数，参数类型[ArkUI_ImageRepeat](#arkui_imagerepeat)，默认值为ARKUI_IMAGE_REPEAT_NONE；<br/>.object：PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 图片地址；<br/>.value[0].i32：repeat参数，参数类型[ArkUI_ImageRepeat](#arkui_imagerepeat)；<br/>.object：PixelMap 图片数据， 参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。 | 
+| NODE_BACKGROUND_IMAGE  | 背景色图片属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 图片地址；<br/>.value[0]?.i32：可选值，repeat参数，参数类型[ArkUI_ImageRepeat](#arkui_imagerepeat)，默认值为ARKUI_IMAGE_REPEAT_NONE；<br/>.object：PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 图片地址；<br/>.value[0].i32：repeat参数，参数类型[ArkUI_ImageRepeat](#arkui_imagerepeat)；<br/>.object：PixelMap 图片数据， 参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。 | 
 | NODE_PADDING  | 内间距属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式有两种：<br/>1：上下左右四个位置的内间距值相等。<br/>.value[0].f32：内间距数值，单位为vp；<br/>2：分别指定上下左右四个位置的内间距值。<br/>.value[0].f32：上内间距数值，单位为vp；<br/>.value[1].f32：右内间距数值，单位为vp；<br/>.value[2].f32：下内间距数值，单位为vp；<br/>.value[3].f32：左内间距数值，单位为vp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：上内间距数值，单位为vp；<br/>.value[1].f32：右内间距数值，单位为vp；<br/>.value[2].f32：下内间距数值，单位为vp；<br/>.value[3].f32：左内间距数值，单位为vp； | 
 | NODE_ID  | 组件ID属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容； | 
 | NODE_ENABLED  | 设置组件是否可交互，支持属性设置，属性重置和属性获取。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false表示不可交互，true表示可交互；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：0表示不可交互，1表示可交互； | 
@@ -2707,16 +2707,16 @@ enum ArkUI_NodeAttributeType
 | NODE_SPAN_CONTENT  | 文本内容属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示span的文本内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示span的文本内容。 | 
 | NODE_SPAN_TEXT_BACKGROUND_STYLE  | 文本背景色属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32 表示文本背景颜色，0xargb格式，形如0xFFFF0000 表示红色。<br/>第二个参数为文本背景圆角设置，支持如下两种设置方式：<br/>1：.value[1].f32：四个方向的圆角半径统一设置，单位为vp。<br/>2: .value[1].f32：设置左上角圆角半径，单位为vp。<br/>.value[2].f32：设置右上角圆角半径，单位为vp。<br/>.value[3].f32：设置左下角圆角半径，单位为vp。<br/>.value[4].f32：设置右下角圆角半径，单位为vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：文本背景颜色，0xargb格式。<br/>.value[1].f32：左上角圆角半径，单位为vp。<br/>.value[2].f32：右上角圆角半径，单位为vp。<br/>.value[3].f32：左下角圆角半径，单位为vp。<br/>.value[4].f32：右下角圆角半径，单位为vp。 | 
 | NODE_SPAN_BASELINE_OFFSET  | 文本基线的偏移量属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：偏移量数值，单位为fp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：偏移量数值，单位为fp。 | 
-| NODE_IMAGE_SPAN_SRC  | imageSpan组件图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。 | 
+| NODE_IMAGE_SPAN_SRC  | imageSpan组件图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。 | 
 | NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT  | 图片基于文本的对齐方式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片基于文本的对齐方式，取[ArkUI_ImageSpanAlignment](#arkui_imagespanalignment)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片基于文本的对齐方式，取[ArkUI_ImageSpanAlignment](#arkui_imagespanalignment)枚举值。 | 
-| NODE_IMAGE_SPAN_ALT  | imageSpan组件占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。 | 
-| NODE_IMAGE_SRC  | image组件设置图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。 | 
+| NODE_IMAGE_SPAN_ALT  | imageSpan组件占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。 | 
+| NODE_IMAGE_SRC  | image组件设置图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。 | 
 | NODE_IMAGE_OBJECT_FIT  | 图片填充效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片填充效果，取[ArkUI_ObjectFit](#arkui_objectfit)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片填充效果，取[ArkUI_ObjectFit](#arkui_objectfit)枚举值。 | 
 | NODE_IMAGE_INTERPOLATION  | 图片插值效果效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示插值效果效果，取[ArkUI_ImageInterpolation](#arkui_imageinterpolation)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示插值效果效果，取[ArkUI_ImageInterpolation](#arkui_imageinterpolation)枚举值。 | 
 | NODE_IMAGE_OBJECT_REPEAT  | 图片重复样式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片重复样式，取[ArkUI_ImageRepeat](#arkui_imagerepeat)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片重复样式，取[ArkUI_ImageRepeat](#arkui_imagerepeat)枚举值。 | 
 | NODE_IMAGE_COLOR_FILTER  | 图片滤镜效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 ~ .value[19].f32 表示滤镜矩阵数组。<br/>.size 表示滤镜数组大小 5\*4。<br/>.object 颜色滤波器指针，参数类型为**OH_Drawing_ColorFilter**，.object和.size参数只能二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 ~ .value[19].f32 表示滤镜矩阵数组。<br/>.size 表示滤镜数组大小 5\*4。<br/>.object 颜色滤波器指针，参数类型为**OH_Drawing_ColorFilter**。 | 
 | NODE_IMAGE_AUTO_RESIZE  | 图源自动缩放属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否缩放布尔值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否缩放布尔值。 | 
-| NODE_IMAGE_ALT  | 占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。 | 
+| NODE_IMAGE_ALT  | 占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。 | 
 | NODE_IMAGE_DRAGGABLE  | 图片拖拽效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否支持拖拽，设置为true表示支持。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否支持拖拽。 | 
 | NODE_IMAGE_RENDER_MODE  | 图片渲染模式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 参数类型[ArkUI_ImageRenderMode](#arkui_imagerendermode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 参数类型[ArkUI_ImageRenderMode](#arkui_imagerendermode)。 | 
 | NODE_IMAGE_FIT_ORIGINAL_SIZE  | 设置图片的显示尺寸是否跟随图源尺寸，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32，设置图片的显示尺寸是否跟随图源尺寸，1表示跟随，0表示不跟随，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32，1表示图片的显示尺寸跟随图源尺寸，0表示图片的显示尺寸不跟随图源尺寸。 | 
@@ -7575,7 +7575,7 @@ ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap
 ```
 **描述：**
 
-使用 PixelMap 图片数组创建DrawbleDescriptor 对象。
+使用 PixelMap 图片数组创建DrawableDescriptor 对象。
 
 **起始版本：** 12
 
@@ -7598,7 +7598,7 @@ ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromPixelMap (OH_Pix
 ```
 **描述：**
 
-使用 PixelMap 创建 DrawbleDescriptor 对象。
+使用 PixelMap 创建 DrawableDescriptor 对象。
 
 **起始版本：** 12
 
@@ -7620,7 +7620,7 @@ void OH_ArkUI_DrawableDescriptor_Dispose (ArkUI_DrawableDescriptor * drawableDes
 ```
 **描述：**
 
-销毁 DrawbleDescriptor 对象指针。
+销毁 DrawableDescriptor 对象指针。
 
 **起始版本：** 12
 
@@ -7628,7 +7628,7 @@ void OH_ArkUI_DrawableDescriptor_Dispose (ArkUI_DrawableDescriptor * drawableDes
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 
 ### OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray()
@@ -7646,7 +7646,7 @@ OH_PixelmapNativeHandle* OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray (A
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -7668,7 +7668,7 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize (ArkUI_Drawable
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -7690,7 +7690,7 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationDuration (ArkUI_DrawableDescript
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -7712,7 +7712,7 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationIteration (ArkUI_DrawableDescrip
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -7734,7 +7734,7 @@ OH_PixelmapNativeHandle OH_ArkUI_DrawableDescriptor_GetStaticPixelMap (ArkUI_Dra
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -7756,7 +7756,7 @@ void OH_ArkUI_DrawableDescriptor_SetAnimationDuration (ArkUI_DrawableDescriptor 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 | duration | 播放总时长，单位毫秒。  | 
 
 
@@ -7775,7 +7775,7 @@ void OH_ArkUI_DrawableDescriptor_SetAnimationIteration (ArkUI_DrawableDescriptor
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 | iterations | 播放次数。  | 
 
 
