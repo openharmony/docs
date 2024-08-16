@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-The @ohos.app.appstartup.startupManager module enables the AppStartup framework to manage component initialization. It can be called only in the main thread.
+The startupManager module provides APIs for the AppStartup framework to manage startup tasks. It can be called only in the main thread.
 
 > **NOTE**
 >
@@ -23,22 +23,22 @@ Runs the AppStartup framework.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | startupTasks | Array\<string\> | Yes| Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the components to be initialized.|
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No| Startup configuration, including the timeout for starting the framework and listener for component initialization.|
+  | startupTasks | Array\<string\> | Yes | Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup tasks to be executed. |
+  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No | Timeout for starting the framework and startup task listener. |
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
+  | ID | Error Message |
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 16000050 | Internal error. |
@@ -51,26 +51,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startParams = 'Sample_001';
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let startParams = ['StartupTask_001'];
     try {
-      startupManager.run([startParams]).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ')
+      // Manually call the run method.
+      startupManager.run(startParams).then(() => {
+        console.log('StartupTest startupManager run then, startParams = ');
       }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
         console.info("StartupTest promise catch error, startParams = "
           + JSON.stringify(startParams));
       })
     } catch (error) {
-      let errMsg = JSON.stringify((error as BusinessError).message);
-      let errCode = (error as BusinessError).code;
+      let errMsg = JSON.stringify(error);
+      let errCode: number = error.code;
       console.log('Startup catch error , errCode= ' + errCode);
       console.log('Startup catch error ,error= ' + errMsg);
     }
   }
+  // ...
 }
 ```
 
@@ -78,7 +82,7 @@ export default class EntryAbility extends UIAbility {
 
 removeAllStartupTaskResults(): void
 
-Removes the initialization results of all components.
+Removes all startup task results.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -92,14 +96,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    startupManager.removeAllStartupTaskResults();
+    startupManager.removeAllStartupTaskResults(); // Remove all startup task results.
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -117,27 +121,27 @@ export default class EntryAbility extends UIAbility {
 
 getStartupTaskResult(startupTask: string): Object
 
-Obtains the initialization result of a component.
+Obtains the result of a startup task.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes| Class name of the [StartupTask](./js-apis-app-appstartup-startupTask.md) API implemented by the component to be initialized. All components to be initialized must implement the [StartupTask](./js-apis-app-appstartup-startupTask.md) API.|
+  | startupTask | string | Yes | Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task. All the startup tasks must implement the [StartupTask](js-apis-app-appstartup-startupTask.md) API. |
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | Object | Initialization result of the component.|
+  | Object | Result of the startup task. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
+  | ID | Error Message |
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -151,14 +155,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.getStartupTaskResult('Sample_001');
+    let result = startupManager.getStartupTaskResult('StartupTask_001'); // Manually obtain the startup task result.
     console.info("getStartupTaskResult result = " + result);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -176,27 +180,27 @@ export default class EntryAbility extends UIAbility {
 
 isStartupTaskInitialized(startupTask: string): boolean
 
-Checks whether a component has been initialized.
+Checks whether a startup task is initialized.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the component to be initialized.|
+  | startupTask | string | Yes | Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task.  |
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | boolean | **true**: The component has been initialized.<br>**false**: The component has not been initialized.|
+  | boolean | **true**: The startup task is initialized.<br>**false**: The startup task is not initialized. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
+  | ID | Error Message |
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -210,18 +214,18 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.isStartupTaskInitialized('Sample_001');
+    let result = startupManager.isStartupTaskInitialized('StartupTask_001');
     if (result) {
-      console.info("Sample_001 init successful");
+      console.info("StartupTask_001 init successful");
     } else {
-      console.info("Sample_001 uninitialized");
+      console.info("StartupTask_001 uninitialized");
     }
 
     windowStage.loadContent('pages/Index', (err, data) => {
@@ -239,21 +243,21 @@ export default class EntryAbility extends UIAbility {
 
 removeStartupTaskResult(startupTask: string): void
 
-Removes the initialization result of a component.
+Removes the initialization result of a startup task.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the component to be initialized.|
+  | startupTask | string | Yes | Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task. |
   
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
+  | ID | Error Message |
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -267,14 +271,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    startupManager.removeStartupTaskResult('Sample_001');
+    startupManager.removeStartupTaskResult('StartupTask_001');
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {

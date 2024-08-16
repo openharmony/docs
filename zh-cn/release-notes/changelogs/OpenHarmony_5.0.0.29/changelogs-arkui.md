@@ -78,11 +78,21 @@ API version 12及以后：Badge组件前后状态相同时不缩放，显隐时�
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更，只影响TimePickerDialog、DatePickerDialog组件的默认样式。
 
-1. 根据开发者的配置动态控制TimePickerDialog中的TimePicker小时选项是否需要前导零：当且仅当TimePickerDialog 是12小时制的且开发者设置需要前导零，TimePickerDialog 的小时选项中小于10的选项数值前才需要补零，否则不补零。24小时制小于10的选项数值默认有前导零，可以单独设置没有前导零。
+- 变更前： TimePickerDialog、DatePickerDialog组件12小时制小时默认有前置零。
+  
+- 变更后： TimePickerDialog、DatePickerDialog组件12小时制小时默认没有前置零。
 
-2. 根据开发者的配置动态控制DatePickerDialog中的TimePicker小时选项是否需要前导零：当且仅当DatePickerDialog中的TimePicker是12小时制的且开发者设置需要前导零，DatePickerDialog中的TimePicker的小时选项中小于10的选项数值前才需要补零，否则不补零。24小时制小于10的选项数值默认有前导零，可以单独设置没有前导零。
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/TimePickerDialog_Before.png)  |  ![](figures/TimePickerDialog_After.png)  |
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/DatePickerDialog_Before.png)  |  ![](figures/DatePickerDialog_After.png)  |
 
 **起始API Level**
 
@@ -104,9 +114,9 @@ API version 12及以后：Badge组件前后状态相同时不缩放，显隐时�
 
 **变更原因**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-在@ComponentV2修饰的自定义组件中使用常规变量(没有任何装饰器修饰的，不涉及更新的普通变量)，在构造的时候传参赋值，进行校验并输出错误信息。
+在@ComponentV2修饰的自定义组件中使用@Local、@Provider()、@Consumer()、常规变量(没有任何装饰器修饰的，不涉及更新的普通变量)，在构造的时候传参赋值，进行校验并输出错误信息。
 
 **变更影响**
 
@@ -119,7 +129,10 @@ struct v2DecoratorInitFromParent {
   build() {
     Column() {
       testChild({
-        regular_value: "hello"
+        regular_value: "hello",
+        local_value: "hello",
+        provider_value: "hello",
+        consumer_value: "hello"
       })
     }
   }
@@ -128,6 +141,9 @@ struct v2DecoratorInitFromParent {
 @ComponentV2
 struct testChild {
   regular_value: string = "hello";
+  @Local local_value: string = "hello";
+  @Provider() provider_value: string = "hello";
+  @Consumer() consumer_value: string = "hello";
   build() {}
 }
 ```
@@ -137,6 +153,9 @@ struct testChild {
 变更后报错信息为：
 
 Property 'regular_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'local_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'provider_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'consumer_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
 
 **起始API Level**
 
@@ -179,3 +198,69 @@ Property 'regular_value' in the custom component 'testChild' cannot initialize h
 **适配指导**
 
 如果应用中使用了Video组件中的previewUri属性，且存在视频源切换行为，开发者需按照预览图是否展示的最新逻辑进行适配。
+
+## cl.arkui.6 BindSheet半模态组件横屏支持设置档位与高度
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+手机横屏时，BindSheet支持开发者设置挡位和高度
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+API version 11及以前：bindSheet在手机横屏时不支持设置挡位和高度，默认高度距离横屏窗口顶部8vp。
+
+API version 12及以后：bindSheet在手机横屏时支持开发者设置挡位和高度，最大高度距离横屏窗口顶部8vp。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+默认行为变更，需应用适配。横竖屏设置挡位规则保持一致，参考detents属性的设置请查阅[半模态组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。
+
+## cl.arkui.7 RichEditor/TextInput/TextArea/Search组件编辑态长按时显示单光标
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+RichEditor/TextInput/TextArea/Search组件在编辑态下，若检测到手指长按后进行move操作，则在当前手指触摸位置显示光标。
+
+**变更影响**
+
+该变更为不兼容变更，只影响RichEditor/TextInput/TextArea/Search组件编辑态长按逻辑。
+
+- 变更前： RichEditor/TextInput/TextArea/Search组件编辑态长按时选中触摸内容，并出现双手柄。
+
+- 变更后： RichEditor/TextInput/TextArea/Search组件编辑态长按时显示单光标（涉及光标动效），而不会选中触摸内容。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/text_select.jpg)  |  ![](figures/text_single.jpg)  |
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+UX统一文本编辑交互规范，开发者无需适配。

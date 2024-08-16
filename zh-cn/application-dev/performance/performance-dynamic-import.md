@@ -7,9 +7,7 @@
 
 ## 场景示例
 
-| 主页                                       | 子页面                                        |
-|------------------------------------------|--------------------------------------------|
-| ![主页](./figures/dynamic-import-home.png) | ![子页面](./figures/dynamic-import-pages.png) |
+![主页](./figures/dynamic-import-home.png)
 
 下面示例应用通过Navigation组件常规加载与动态加载的对比，介绍如何在跳转时触发加载方法，实现按需加载子模块。
 

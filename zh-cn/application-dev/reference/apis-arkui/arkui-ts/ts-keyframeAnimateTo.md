@@ -47,7 +47,8 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 ```ts
 // xxx.ets
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIContext } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct KeyframeDemo {

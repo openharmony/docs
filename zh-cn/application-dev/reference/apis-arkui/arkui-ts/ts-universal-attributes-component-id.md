@@ -32,7 +32,7 @@ key(value: string): T
 
 组件的唯一标识，唯一性由使用者保证。
 
-此接口仅用于对应用的测试。
+此接口仅用于对应用的测试。与id同时使用时，后赋值的属性会覆盖先赋值的属性，建议仅设置id。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -178,7 +178,7 @@ sendMouseEvent(event: MouseEvent): boolean
 
 ```ts
 // xxx.ets
-import { IntentionCode } from '@ohos.multimodalInput.intentionCode'
+import { IntentionCode } from '@kit.InputKit'
 
 class Utils {
   static rect_left: number

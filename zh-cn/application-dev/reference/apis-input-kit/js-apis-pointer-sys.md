@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## pointer.setPointerSpeed

@@ -23,6 +23,10 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 
 Navigation()
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### Navigation<sup>10+</sup>
 
 Navigation(pathInfos: NavPathStack)
@@ -30,6 +34,8 @@ Navigation(pathInfos: NavPathStack)
 绑定路由栈到Navigation组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -55,8 +61,8 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
-| options | [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | 否   | 标题栏选项。                                                   |
+| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
+| options | [NavigationTitleOptions](#navigationtitleoptions11)<sup>11+</sup> | 否   | 标题栏选项。                                                   |
 
 ### subTitle<sup>(deprecated)</sup>
 
@@ -83,7 +89,7 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 > 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
 
 
-设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +99,7 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+| value  | Array<[NavigationMenuItem](#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
 
 ### titleMode
 
@@ -156,8 +162,8 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem类型说明)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
-| options | [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 否   | 工具栏选项。                                                 |
+| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup> | 否   | 工具栏选项。                                                 |
 
 ### hideToolBar
 
@@ -360,6 +366,8 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 
 控制组件的布局，使其扩展到非安全区域
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -381,6 +389,8 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 当Navigation中显示Navigation首页时，设置对应系统状态栏的样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -488,6 +498,8 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -501,12 +513,16 @@ pushPath(info: NavPathInfo, options?: NavigationOptions): void
 
 将info指定的NavDestination页面信息入栈，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 ### pushPathByName<sup>10+</sup>
 
@@ -515,6 +531,8 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 将name指定的NavDestination页面信息入栈，传递的数据为param。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -532,6 +550,8 @@ pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -548,6 +568,8 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -579,12 +601,16 @@ pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 **返回值：**
 
@@ -610,6 +636,8 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 将name指定的NavDestination页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -643,6 +671,8 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -678,6 +708,8 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -691,12 +723,16 @@ replacePath(info: NavPathInfo, options?: NavigationOptions): void
 
 替换页面栈操作，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
-| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 ### replacePathByName<sup>11+</sup>
 
@@ -705,6 +741,8 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 将当前页面栈栈顶退出，将name指定的页面入栈。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -721,6 +759,8 @@ removeByIndexes(indexes: Array<number\>): number
 将页面栈内索引值在indexes中的NavDestination页面删除。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -742,6 +782,8 @@ removeByName(name: string): number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -754,6 +796,28 @@ removeByName(name: string): number
 | ----------- | ------------------------ |
 | number | 返回删除的NavDestination页面数量。 |
 
+### removeByNavDestinationId<sup>12+</sup>
+
+removeByNavDestinationId(navDestinationId: string): boolean
+
+将页面栈内指定navDestinationId的NavDestination页面删除。navDestinationId可以在NavDestination的[onReady](ts-basic-components-navdestination.md#onready11)回调中获取，也可以在[NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo)中获取。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| navDestinationId  | string  | 是    | 删除的NavDestination页面的唯一标识符navDestinationId。   |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| boolean | 返回是否成功删除该页面，true为删除成功。 |
+
 ### pop<sup>10+</sup>
 
 pop(animated?: boolean): NavPathInfo | undefined
@@ -761,6 +825,8 @@ pop(animated?: boolean): NavPathInfo | undefined
 弹出路由栈栈顶元素。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -782,6 +848,8 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 弹出路由栈栈顶元素，并触发onPop回调传入页面处理结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -805,6 +873,8 @@ popToName(name: string, animated?: boolean): number
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型     | 必填   | 描述                  |
@@ -825,6 +895,8 @@ popToName(name: string, result: Object, animated?: boolean): number
 回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -848,6 +920,8 @@ popToIndex(index: number, animated?: boolean): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -862,6 +936,8 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 回退路由栈到index指定的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -878,6 +954,8 @@ moveToTop(name: string, animated?: boolean): number
 将由栈底开始第一个名为name的NavDestination页面移到栈顶。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -900,6 +978,8 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -915,6 +995,8 @@ clear(animated?: boolean): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -929,6 +1011,8 @@ getAllPathName(): Array<string\>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型             | 说明                         |
@@ -942,6 +1026,8 @@ getParamByIndex(index: number): unknown | undefined
 获取index指定的NavDestination页面的参数信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -964,6 +1050,8 @@ getParamByName(name: string): Array<unknown\>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称   | 类型     | 必填   | 描述                  |
@@ -983,6 +1071,8 @@ getIndexByName(name: string): Array<number\>
 获取全部名为name的NavDestination页面的位置索引。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1004,6 +1094,8 @@ size(): number
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明     |
@@ -1017,6 +1109,8 @@ disableAnimation(value: boolean): void
 关闭（true）或打开（false）当前Navigation中所有转场动画。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1032,6 +1126,8 @@ getParent(): NavPathStack | null
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明     |
@@ -1045,6 +1141,8 @@ setInterception(interception: NavigationInterception): void
 设置Navigation页面跳转拦截回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -1062,6 +1160,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -1076,6 +1176,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -1089,6 +1191,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称  | 类型  | 必填  | 描述  |
@@ -1096,6 +1200,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 | name | string | 否 | NavDestination名称，如果为根视图(NavBar)，则返回值为undefined。|
 | index | number | 是 | NavDestination在NavPathStack中的序号， 如果为根视图(NavBar)，则返回值为 -1。|
 | mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
+| param<sup>12+</sup> | Object | 否 | NavDestination页面加载的参数。|
+| navDestinationId<sup>12+</sup> | string | 否 | NavDestination的唯一标识符。|
 
 ## NavigationAnimatedTransition<sup>11+</sup>
 
@@ -1103,37 +1209,77 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|------|
-| timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：1000ms。|
+| timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：可交互动画无默认值，不可交互动画默认超时时间为1000ms。|
 | transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
 | onTransitionEnd | (success: boolean):void | 否 | 转场完成回调。<br> success: 转场是否成功。 |
+| isInteractive<sup>12+</sup> | boolean | 否 | 本次转场动画是否为可交互转场。<br> 默认值：false。|
 
 ## NavigationTransitionProxy <sup>11+</sup>
 
 自定义转场动画代理对象。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填 | 描述  |
+| 名称 | 类型  | 必填 | 说明  |
 |------|-------|-----|-------|
 | from | [NavContentInfo](#navcontentinfo11) | 是 | 退场页面信息。|
 | to | [NavContentInfo](#navcontentinfo11) | 是 | 进场页面信息。|
+| isInteractive<sup>12+</sup> | boolean | 否 | 是否为可交互转场动画。|
 
 ### finishTransition
+
+finishTransition(): void;
 
 结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### cancelTransition<sup>12+</sup>
+
+cancelTransition?(): void;
+
+取消本次交互转场，恢复到页面跳转前的页面栈(不支持取消不可交互转场动画)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### updateTransition<sup>12+</sup>
+
+updateTransition?(progress: number): void;
+
+更新交互转场动画进度(不可交互动画不支持动画进度设置)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+|------|------|------|-----|
+| progress | number | 是 | 设置交互转场动画进度百分比。取值范围 0-1。|
 
 ## NavigationInterception<sup>12+</sup>
 
 Navigation跳转拦截对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型     | 必填 | 描述    |
 | ---- | ----- | ----- | ----   |
@@ -1147,10 +1293,14 @@ type InterceptionShowCallback = (from: NavDestinationContext|NavBar, to: NavDest
 
 navigation页面跳转前和页面跳转后的拦截回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
-| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
+| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
+| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
 | operation | [NavigationOperation](#navigationoperation11枚举说明) | 是 | 当前页面跳转类型。 |
 | isAnimated | boolean | 是 | 页面跳转是否有动画。 |
 
@@ -1160,17 +1310,29 @@ type InterceptionModeCallback = (mode: NavigationMode) => void
 
 navigation单双栏显示状态发生变更时的拦截回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
 | mode | [NavigationMode](#navigationmode9枚举说明) | 是 |  导航栏的显示模式。 |
 
 ### NavBar<sup>12+</sup>
 
-| 名称       | 描述                                       |
+type NavBar = 'navBar'
+
+Navigation首页名字。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型       | 说明                                       |
 | -------- | ---------------------------------------- |
 | "navBar"   | Navigation首页。 |
 
-## NavigationMenuItem类型说明
+## NavigationMenuItem
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -1180,9 +1342,11 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
 
-## ToolbarItem<sup>10+</sup>类型说明
+## ToolbarItem<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                       | 必填   | 描述                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -1198,6 +1362,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称       | 描述                                       |
 | -------- | ---------------------------------------- |
 | NORMAL   | 设置工具栏单个选项为NORMAL态，该选项显示默认样式，可以触发Hover，Press，Focus事件并显示对应的多态样式。 |
@@ -1208,24 +1374,30 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
 | Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口将options参数设置为true。未滚动状态，标题栏高度与Full模式一致；滚动时，标题栏的最小高度与Mini模式一致。 |
 | Mini | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。                                |
 | Full | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。                                |
 
-## NavigationCommonTitle<sup>9+</sup>类型说明
+## NavigationCommonTitle<sup>9+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型     | 必填   | 描述     |
 | ---- | ------ | ---- | ------ |
 | main | string | 是    | 设置主标题。 |
 | sub  | string | 是    | 设置副标题。 |
 
-## NavigationCustomTitle<sup>9+</sup>类型说明
+## NavigationCustomTitle<sup>9+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                       | 必填   | 描述       |
 | ------- | ---------------------------------------- | ---- | -------- |
@@ -1236,6 +1408,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称    | 描述               |
 | ----- | ---------------- |
 | Start | 双栏显示时，主列在主轴方向首部。 |
@@ -1244,6 +1418,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## NavigationMode<sup>9+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
@@ -1255,6 +1431,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 描述                         |
 | ----------- | -------------------------- |
 | MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
@@ -1263,6 +1441,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## NavigationOperation<sup>11+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 描述  |
 |---------|------|
@@ -1274,39 +1454,52 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称    | 描述  |
 |---------|------|
 |STANDARD | 标题栏与内容区采用上下布局。|
 |STACK | 标题栏与内容区采用层叠布局，标题栏布局在内容区上层。|
 
-## NavigationTitleOptions<sup>11+</sup>类型说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+## NavigationTitleOptions<sup>11+</sup>
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景:<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## NavigationToolbarOptions<sup>11+</sup>类型说明
+## NavigationToolbarOptions<sup>11+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。 |
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
+| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
 
 ## LaunchMode<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 描述  |
 | --------- | ------ |
 | STANDARD | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
 | MOVE_TO_TOP_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
-| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。|
+| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
+| NEW_INSTANCE | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
 
-## NavigationOptions<sup>12+</sup>类型说明
+## NavigationOptions<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -1316,6 +1509,8 @@ navigation单双栏显示状态发生变更时的拦截回调。
 ## 示例
 
 ### 示例1
+
+该示例主要演示Navigation页面的布局。
 
 ```ts
 // xxx.ets
@@ -1421,6 +1616,9 @@ struct NavigationExample {
 
 
 ### 示例2
+
+该示例主要演示NavPathStack中方法的使用及路由拦截。
+
 ```ts
 // Index.ets
 
@@ -1668,7 +1866,7 @@ export struct PageTwo {
 
 ### 示例3
 
-该示例主要演示设置每个NavDestination子页面的自定义转场动画。
+该示例主要演示设置每个NavDestination子页面的自定义转场动画及可交互转场动画。
 
 ```ts
 // Index.ets
@@ -1677,62 +1875,90 @@ import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
 @Entry
 @Component
 struct NavigationExample {
-  pageInfos: NavPathStack = new NavPathStack()
+  pageInfos: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     if (this.pageInfos === undefined) {
       this.pageInfos = new NavPathStack();
     }
-    this.pageInfos.pushPath({name: 'pageOne'}, false)
+    this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() });
   }
 
   build() {
     Navigation(this.pageInfos) {
-    }.title('NavIndex')
+    }
+    .title('NavIndex')
     .hideNavBar(true)
     .customNavContentTransition((from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => {
       if (from.mode == NavDestinationMode.DIALOG || to.mode == NavDestinationMode.DIALOG) {
         return undefined;
       }
-      console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
-      console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
-      console.log(`operation: ${operation}`)
+
+      // 首页不进行自定义动画
       if (from.index === -1 || to.index === -1) {
         return undefined;
       }
+
+      CustomTransition.getInstance().operation = operation;
+      if (CustomTransition.getInstance().interactive) {
+        let customAnimation: NavigationAnimatedTransition = {
+          onTransitionEnd: (isSuccess: boolean) => {
+            console.log("===== current transition is " + isSuccess);
+            CustomTransition.getInstance().recoverState();
+            CustomTransition.getInstance().proxy = undefined;
+          },
+          transition: (transitionProxy: NavigationTransitionProxy) => {
+            CustomTransition.getInstance().proxy = transitionProxy;
+            let targetIndex: string | undefined = operation == NavigationOperation.PUSH ?
+              (to.navDestinationId) : (from.navDestinationId);
+            if (targetIndex) {
+              CustomTransition.getInstance().fireInteractiveAnimation(targetIndex, operation);
+            }
+          },
+          isInteractive: CustomTransition.getInstance().interactive
+        }
+        return customAnimation;
+      }
       let customAnimation: NavigationAnimatedTransition = {
         onTransitionEnd: (isSuccess: boolean)=>{
-          console.log(`current transition result is ${isSuccess}`);
+          console.log(`current transition result is ${isSuccess}`)
         },
-        timeout: 700,
+        timeout: 7000,
         // 转场开始时系统调用该方法，并传入转场上下文代理对象
-        transition: (transitionProxy: NavigationTransitionProxy)=>{
-          console.log("trigger transition callback");
+        transition: (transitionProxy: NavigationTransitionProxy) => {
+          if (!from.navDestinationId || !to.navDestinationId) {
+            return;
+          }
           // 从封装类CustomTransition中根据子页面的序列获取对应的转场动画回调
-          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.index);
-          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.index);
-          if (fromParam.start != undefined) {
-            fromParam.start(operation == NavigationOperation.PUSH, true);
+          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.navDestinationId);
+          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.navDestinationId);
+          if (operation == NavigationOperation.PUSH) {
+            if (toParam.start) {
+              toParam.start(true, false);
+            }
+            animateTo({
+              duration: 500, onFinish: () => {
+                transitionProxy.finishTransition();
+              }
+            }, () => {
+              if (toParam.finish) {
+                toParam.finish(true, false);
+              }
+            })
+          } else {
+            if (fromParam.start) {
+              fromParam.start(true, true);
+            }
+            animateTo({
+              duration: 500, onFinish: () => {
+                transitionProxy.finishTransition();
+              }
+            }, () => {
+              if (fromParam.finish) {
+                fromParam.finish(true, true);
+              }
+            })
           }
-          if (toParam.start != undefined) {
-            toParam.start(operation == NavigationOperation.PUSH, false);
-          }
-          animateTo({duration: 400, onFinish: ()=>{
-            if (fromParam.onFinish != undefined) {
-              fromParam.onFinish(operation === NavigationOperation.PUSH, true);
-            }
-            if (toParam.onFinish != undefined) {
-              toParam.onFinish(operation === NavigationOperation.PUSH, true);
-            }
-            transitionProxy.finishTransition();
-          }}, ()=>{
-            if (fromParam.finish != undefined) {
-              fromParam.finish(operation === NavigationOperation.PUSH, true);
-            }
-            if (toParam.finish != undefined) {
-              toParam.finish(operation === NavigationOperation.PUSH, false);
-            }
-          })
         }
       };
       return customAnimation;
@@ -1743,7 +1969,7 @@ struct NavigationExample {
 
 ```ts
 // PageOne.ets
-import {CustomTransition} from './CustomNavigationUtils'
+import {CustomTransition} from './CustomNavigationUtils';
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
@@ -1752,48 +1978,102 @@ export function PageOneBuilder(name: string, param: Object) {
 
 @Component
 export struct PageOne {
-  pageInfos: NavPathStack = new NavPathStack()
-  @State x: number = 0
-  @State scaleVal: number = 1
-  pageId: number = 0;
+  pageInfos: NavPathStack = new NavPathStack();
+  @State translateX: string = '0';
+  pageId: string = '';
+  rectWidth: number = 0;
+  interactive: boolean = false;
 
-  aboutToAppear() {
-    this.pageId = this.pageInfos.getAllPathName().length - 1;
+  registerCallback() {
     CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean) => {
-      this.x = isExit ? 0 : 300;
-    }, (isPush: boolean, isExit: boolean)=> {
-      this.x = isExit ? -300 : 0;
+      if (isPush) {
+        this.translateX = '100%';
+      } else {
+        this.translateX = '0';
+      }
     }, (isPush: boolean, isExit: boolean) => {
-      this.x = 0;
+      if (isPush) {
+        this.translateX = '0';
+      } else {
+        this.translateX = '100%';
+      }
+    }, (isPush: boolean, isExit: boolean) => {
+      this.translateX = '0';
+    }, (operation: NavigationOperation) => {
+      if (operation == NavigationOperation.PUSH) {
+        this.translateX = '100%';
+        animateTo({
+          duration: 1000,
+          onFinish: () => {
+            this.translateX = '0';
+          }
+        }, () => {
+          this.translateX = '0';
+        })
+      } else {
+        this.translateX = '0';
+        animateTo({
+          duration: 1000,
+          onFinish: () => {
+            this.translateX = '0';
+          }
+        }, () => {
+          this.translateX = '100%';
+        })
+      }
     }, 200);
   }
 
   build() {
     NavDestination() {
       Column() {
+        Button(`setInteractive`)
+          .onClick(() => {
+            CustomTransition.getInstance().interactive = !CustomTransition.getInstance().interactive;
+            this.interactive = CustomTransition.getInstance().interactive;
+          })
+
         Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPathByName('pageTwo', null) //将name指定的NavDestination页面信息入栈，传递的数据为param
+            //将name指定的NavDestination页面信息入栈，传递的数据为param
+            this.pageInfos.pushDestinationByName('pageTwo', CustomTransition.getInstance().getAnimationId());
           })
-      }.width('100%').height('100%')
-    }.title('pageOne')
-    .mode(NavDestinationMode.STANDARD)
-    .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
-      return true
-    })
-    .onDisAppear(()=>{
-      CustomTransition.getInstance().unRegisterNavParam(this.pageId)
+      }
+      .size({ width: '100%', height: '100%' })
+    }
+    .title('pageOne')
+    .onDisAppear(() => {
+      CustomTransition.getInstance().unRegisterNavParam(this.pageId);
     })
     .onReady((context: NavDestinationContext) => {
-      this.pageInfos = context.pathStack
+      this.pageInfos = context.pathStack;
+      if (context.navDestinationId) {
+        this.pageId = context.navDestinationId;
+        this.registerCallback();
+      }
     })
-    .translate({x: this.x, y: 0, z: 0})
-    .backgroundColor(Color.White)
+    .translate({ x: this.translateX })
+    .backgroundColor('#F1F3F5')
+    .gesture(PanGesture()
+      .onActionStart((event: GestureEvent) => {
+        this.rectWidth = event.target.area.width as number;
+        if (event.offsetX < 0) {
+          this.pageInfos.pushPath({ name: 'pageTwo', param: CustomTransition.getInstance().getAnimationId() });
+        } else {
+          this.pageInfos.pop();
+        }
+      })
+      .onActionUpdate((event: GestureEvent) => {
+        let rate = event.fingerList[0].localX / this.rectWidth;
+        CustomTransition.getInstance().updateProgress(rate);
+      })
+      .onActionEnd((event: GestureEvent) => {
+        let rate: number = event.fingerList[0].localX / this.rectWidth;
+        CustomTransition.getInstance().finishInteractiveAnimation(rate);
+      }))
   }
 }
 ```
@@ -1803,24 +2083,48 @@ import {CustomTransition} from './CustomNavigationUtils'
 
 @Builder
 export function PageTwoBuilder(name: string, param: Object) {
-  PageTwo()
+  PageTwo({param: param as number})
 }
 
 @Component
 export struct PageTwo {
-  pageInfos: NavPathStack = new NavPathStack()
-  @State x: number = 300
-  pageId: number = 0
+  pageInfos: NavPathStack = new NavPathStack();
+  @State translateX: string = '0';
+  pageId: string = '';
+  rectWidth: number = 0;
+  param: number = 0;
 
-  aboutToAppear() {
-    this.pageId = this.pageInfos.getAllPathName().length - 1;
+  registerCallback() {
     CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean)=>{
-      console.log("current page is pageOne")
-      this.x = isExit ? 0 : isPush ? 300 : -300;
+      if (isPush) {
+        this.translateX =  '100%'
+      } else {
+        this.translateX = '0';
+      }
     }, (isPush: boolean, isExit: boolean)=>{
-      this.x = isExit ? isPush ? -300 : 300 : 0;
+      if (isPush) {
+        this.translateX = '0';
+      } else {
+        this.translateX = '100%'
+      }
     }, (isPush: boolean, isExit: boolean) => {
-      this.x = 0;
+      this.translateX = '0';
+    }, (operation: NavigationOperation)=>{
+      if (operation == NavigationOperation.PUSH) {
+        this.translateX = '100%';
+        animateTo({duration: 500, onFinish: ()=>{
+          this.translateX = '0';
+        }}, ()=>{
+          this.translateX = '0'
+        })
+      } else {
+        this.translateX = '0';
+        animateTo({duration: 500, onFinish: ()=>{
+          this.translateX = "0"
+        }}, ()=>{
+          this.translateX = '100%';
+        })
+      }
     }, 2000)
   }
 
@@ -1832,24 +2136,45 @@ export struct PageTwo {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPathByName('pageOne', null) //将name指定的NavDestination页面信息入栈，传递的数据为param
+            //将name指定的NavDestination页面信息入栈，传递的数据为param
+            this.pageInfos.pushPath({name:'pageOne', param: CustomTransition.getInstance().getAnimationId()})
           })
-      }.width('100%').height('100%')
-    }.title('pageTwo')
-    .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
-      return true
+      }
+      .size({ width: '100%', height: '100%' })
+    }
+    .title('pageTwo')
+    .gesture(PanGesture()
+      .onActionStart((event: GestureEvent)=> {
+        this.rectWidth = event.target.area.width as number;
+        if (event.offsetX < 0) {
+          this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() });
+        } else {
+          this.pageInfos.pop();
+        }
+      })
+      .onActionUpdate((event: GestureEvent) => {
+        let rate = event.fingerList[0].localX / this.rectWidth;
+        CustomTransition.getInstance().updateProgress(rate);
+      })
+      .onActionEnd((event: GestureEvent)=> {
+        let rate = event.fingerList[0].localX / this.rectWidth;
+        CustomTransition.getInstance().finishInteractiveAnimation(rate);
+      }))
+    .onAppear(() => {
+      this.registerCallback();
     })
     .onDisAppear(()=>{
-      CustomTransition.getInstance().unRegisterNavParam(this.pageId)
+      CustomTransition.getInstance().unRegisterNavParam(this.pageId);
     })
     .onReady((context: NavDestinationContext) => {
       this.pageInfos = context.pathStack;
+      if (context.navDestinationId) {
+        this.pageId = context.navDestinationId;
+        this.registerCallback();
+      }
     })
-    .opacity(0.5)
-    .translate({x: this.x})
-    .backgroundColor(Color.White)
+    .translate({x: this.translateX})
+    .backgroundColor(Color.Yellow)
   }
 }
 ```
@@ -1860,29 +2185,35 @@ export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   onFinish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
+  interactive: ((operation: NavigationOperation) => void | undefined) | undefined;
   timeout: (number | undefined) | undefined;
 }
-const customTransitionMap: Map<number, AnimateCallback> = new Map()
+const customTransitionMap: Map<string, AnimateCallback> = new Map();
+
 export class CustomTransition {
-  private constructor() {
-
-  }
-
   static delegate = new CustomTransition();
+  interactive: boolean = false;
+  proxy: NavigationTransitionProxy| undefined = undefined;
+  private animationId: number = 0;
+  operation: NavigationOperation = NavigationOperation.PUSH
 
   static getInstance() {
     return CustomTransition.delegate;
   }
 
-  // 注册某个页面的动画回调
-  // startCallback：用来设置动画开始时页面的状态
-  // endCallback：用来设置动画结束时页面的状态
-  // onFinish：用来执行动画结束后页面的其他操作
-  // timeout：转场结束的超时时间
-  registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void,
-                   onFinish: (operation: boolean, isExit: boolean) => void, timeout: number): void {
-
+  /* 注册某个页面的动画回调
+   * name: 注册页面的唯一id
+   * startCallback：用来设置动画开始时页面的状态
+   * endCallback：用来设置动画结束时页面的状态
+   * onFinish：用来执行动画结束后页面的其他操作
+   * interactiveCallback: 注册的可交互转场的动效
+   * timeout：转场结束的超时时间
+   */
+  registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
+    endCallback:(operation: boolean, isExit: boolean) => void,
+    onFinish: (operation: boolean, isExit: boolean) => void,
+    interactiveCallback: (operation: NavigationOperation) =>void,
+    timeout: number): void {
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
       if (param != undefined) {
@@ -1890,23 +2221,90 @@ export class CustomTransition {
         param.finish = endCallback;
         param.timeout = timeout;
         param.onFinish = onFinish;
+        param.interactive = interactiveCallback;
         return;
       }
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
+    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish,
+      interactive: interactiveCallback};
     customTransitionMap.set(name, params);
   }
 
-  unRegisterNavParam(name: number): void {
+  getAnimationId() {
+    return Date.now();
+  }
+
+  unRegisterNavParam(name: string): void {
     customTransitionMap.delete(name);
   }
 
-  getAnimateParam(name: number): AnimateCallback {
+  fireInteractiveAnimation(id: string, operation: NavigationOperation) {
+    let animation = customTransitionMap.get(id)?.interactive;
+    if (!animation) {
+      return;
+    }
+    animation(operation);
+  }
+
+  updateProgress(progress: number) {
+    if (!this.proxy?.updateTransition) {
+      return;
+    }
+    progress = this.operation == NavigationOperation.PUSH ? 1 - progress : progress;
+    this.proxy?.updateTransition(progress);
+  }
+
+  cancelTransition() {
+    if (this.proxy?.cancelTransition) {
+      this.proxy.cancelTransition();
+    }
+  }
+
+  recoverState() {
+    if (!this.proxy?.from.navDestinationId || !this.proxy?.to.navDestinationId) {
+      return;
+    }
+    let fromParam = customTransitionMap.get(this.proxy.from.navDestinationId);
+    if (fromParam?.onFinish) {
+      fromParam.onFinish(false, false);
+    }
+    let toParam = customTransitionMap.get(this.proxy?.to.navDestinationId);
+    if (toParam?.onFinish) {
+      toParam.onFinish(true, true);
+    }
+  }
+
+  finishTransition() {
+    this.proxy?.finishTransition();
+  }
+
+  finishInteractiveAnimation(rate: number) {
+    if (this.operation == NavigationOperation.PUSH) {
+      if (rate > 0.5) {
+        if (this.proxy?.cancelTransition) {
+          this.proxy.cancelTransition();
+        }
+      } else {
+        this.proxy?.finishTransition();
+      }
+    } else {
+      if (rate > 0.5) {
+        this.proxy?.finishTransition();
+      } else {
+        if (this.proxy?.cancelTransition) {
+          this.proxy.cancelTransition();
+        }
+      }
+    }
+  }
+
+  getAnimateParam(name: string): AnimateCallback {
     let result: AnimateCallback = {
       start: customTransitionMap.get(name)?.start,
       finish: customTransitionMap.get(name)?.finish,
       timeout: customTransitionMap.get(name)?.timeout,
-      onFinish: customTransitionMap.get(name)?.onFinish
+      onFinish: customTransitionMap.get(name)?.onFinish,
+      interactive: customTransitionMap.get(name)?.interactive,
     };
     return result;
   }
@@ -1933,10 +2331,12 @@ export class CustomTransition {
   ]
 }
 ```
-
-![customNavigation.gif](figures/customNavigation.gif)
+![navigation_interactive_transition](figures/navigation_interactive_transition.gif)
 
 ### 示例4
+
+该示例主要演示Navigation带参返回。
+
 ```ts
 // Index.ets
 
@@ -1962,7 +2362,7 @@ struct NavigationExample {
 ```
 ```ts
 // PageOne.ets
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass{
   count:number = 10
@@ -2214,9 +2614,9 @@ export struct PageTwo {
 
 ### 示例5
 
+该示例主要演示设置Navigation主页的标题栏、工具栏和NavDestination页面的标题栏的背景颜色和背景模糊效果。
+
 ```ts
-// 该示例主要演示设置Navigation主页的标题栏、工具栏和
-// NavDestination页面的标题栏的背景颜色和背景模糊效果。
 let COLOR1: string = "#80004AAF";
 let COLOR2: string = "#802787D9";
 let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
@@ -2363,8 +2763,9 @@ struct Index {
 
 ### 示例6
 
+该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
+
 ```ts
-// 该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
 @Entry
 @Component
 struct NavigationExample1 {
@@ -2430,10 +2831,13 @@ struct NavigationExample1 {
 
 ### 示例7
 
+该示例主要演示如下两点功能：
+
+1. NavPathStack无需声明为状态变量，也可以实现页面栈操作功能。
+
+2. NavDestination通过onReady事件能够拿到对应的NavPathInfo和所属的NavPathStack。
+
 ```ts
-// 该示例主要演示如下两点功能：
-// 1. NavPathStack无需声明为状态变量，也可以实现页面栈操作功能；
-// 2. NavDestination通过onReady事件能够拿到对应的NavPathInfo和所属的NavPathStack。
 class PageParam {
   constructor(num_: number) {
     this.num = num_;
@@ -2537,8 +2941,9 @@ struct NavigationExample2 {
 
 ### 示例8
 
+该示例演示NavDestination的生命周期时序。
+
 ```ts
-// 该示例演示NavDestination的生命周期时序。
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
   PageOneComponent()
@@ -2640,8 +3045,9 @@ struct NavigationExample3 {
 
 ### 示例9
 
+该示例演示Navigation标题栏STACK布局效果。
+
 ```ts
-// 该示例演示Navigation标题栏STACK布局效果。
 @Entry
 @Component
 struct NavigationExample {
@@ -2711,10 +3117,9 @@ struct NavigationExample {
 
 ### 示例10
 
+该示例主要演示如何定义NavPathStack的派生类和派生类在Navigation中的基本用法。
+
 ```ts
-// 该示例主要演示如下两点功能
-// 1. 如何定义NavPathStack的派生类
-// 2. 派生类在Navigation中的基本用法
 class DerivedNavPathStack extends NavPathStack {
   // usr defined property 'id'
   id: string = "__default__"
@@ -2730,9 +3135,15 @@ class DerivedNavPathStack extends NavPathStack {
   }
 
   // overwrite function of NavPathStack
-  pushPath(info: NavPathInfo, animated?: boolean): void {
+  pushPath(info: NavPathInfo, animated?: boolean): void
+  pushPath(info: NavPathInfo, options?: NavigationOptions): void
+  pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
     console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
-    super.pushPath(info, animated);
+    if (typeof secArg === 'boolean') {
+      super.pushPath(info, secArg);
+    } else {
+      super.pushPath(info, secArg);
+    }
   }
 
   // overwrite and overload function of NavPathStack
@@ -2770,7 +3181,7 @@ struct Index {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new param('push pageOne in homePage')
+          param: new param('push pageOne in homePage when stack size: ' + this.derivedStack.size())
         });
       })
     }.navDestination(this.pageMap)
@@ -2801,13 +3212,14 @@ struct PageOne {
           .fontSize(20)
           .textAlign(TextAlign.Start)
       }.backgroundColor(Color.Pink)
-      Button('push Page One').margin(20).onClick(() => {
+      Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
           param: new param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
         });
       })
-    }.onReady((context: NavDestinationContext) => {
+    }.title('Page One')
+    .onReady((context: NavDestinationContext) => {
       console.log('[derive-test] reached PageOne\'s onReady');
       // get derived stack from navdestinationContext
       this.derivedStack = context.pathStack as DerivedNavPathStack;
@@ -2821,8 +3233,10 @@ struct PageOne {
 ![derive_stack.gif](figures/derive_stack.gif)
 
 ### 示例11
+
+该示例主要演示Navigation和NavDestination如何使用Symbol组件。
+
 ```ts
-// 该示例主要演示Navigation和NavDestination如何使用Symbol组件
 import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
@@ -2933,3 +3347,117 @@ export struct NavigationMenu{
 }
 ```
 ![navigation_symbol.gif](figures/navigation_symbol.gif)
+
+### 示例12
+
+该示例主要演示Navigation和NavDestination如何自定义设置标题栏边距。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  // 初始化标题栏起始端内间距
+  @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
+  // 初始化标题栏结束端内间距
+  @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
+  @State menuItems: Array<NavigationMenuItem> = [
+    {
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      action: () => {
+      }
+    }
+  ]
+
+  @Builder
+  myRouter(name: string, param?: Object) {
+    if (name === 'NavDestinationExample') {
+      NavDestinationExample();
+    }
+  }
+
+  build() {
+    Navigation(this.navPathStack) {
+      Column() {
+        // 标题栏内间距切换
+        Button('切换标题栏内间距为16vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(16);
+            this.paddingEnd = LengthMetrics.vp(16);
+          })
+          .margin({ top: 5 })
+
+        Button('切换标题栏内间距为24vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(24);
+            this.paddingEnd = LengthMetrics.vp(24);
+          })
+          .margin({ top: 5 })
+
+        Button('跳转')
+          .onClick(() => {
+            this.navPathStack.pushPathByName('NavDestinationExample', null);
+          })
+          .margin({ top: 5 })
+      }
+    }
+    .titleMode(NavigationTitleMode.Mini)
+    .title('一级页面', {
+      paddingStart: this.paddingStart,
+      paddingEnd: this.paddingEnd,
+    })
+    .menus(this.menuItems)
+    .navDestination(this.myRouter)
+  }
+}
+
+@Component
+export struct NavDestinationExample {
+  @Consume('navPathStack') navPathStack: NavPathStack;
+  @State menuItems: Array<NavigationMenuItem> = [
+    {
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      action: () => {
+      }
+    }
+  ]
+  @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
+  @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
+
+  build() {
+    NavDestination() {
+      Row() {
+        Column() {
+          // 标题栏内间距切换
+          Button('切换标题栏内间距为32vp')
+            .onClick(() => {
+              this.paddingStart = LengthMetrics.vp(32);
+              this.paddingEnd = LengthMetrics.vp(32);
+            })
+            .margin({ top: 5 })
+
+          Button('切换标题栏内间距为20vp')
+            .onClick(() => {
+              this.paddingStart = LengthMetrics.vp(20);
+              this.paddingEnd = LengthMetrics.vp(20);
+            })
+            .margin({ top: 5 })
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+    .hideTitleBar(false)
+    .title('NavDestination title', {
+      paddingStart: this.paddingStart,
+      paddingEnd: this.paddingEnd,
+    })
+    .menus(this.menuItems)
+  }
+}
+```
+![titlebarPaddingDemo.gif](figures/titlebarPaddingDemo.gif)

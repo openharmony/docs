@@ -40,10 +40,10 @@ Depending on different use cases, this Kit provides the following capabilities:
   - [Power management](../reference/apis-basic-services-kit/js-apis-power.md): provides system power management capabilities, such as querying the screen status.
   - [Running lock](../reference/apis-basic-services-kit/js-apis-runninglock.md): provides APIs for creating, querying, holding, and releasing running locks.
   - [Thermal management](../reference/apis-basic-services-kit/js-apis-thermal.md): provides thermal management capabilities, such as thermal level query.
-  - [USB management](../reference/apis-basic-services-kit/js-apis-usbManager.md): provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control. For details about the development guide, see [USB Service Development Overview](../../application-dev/basic-services/usb/usb-overview.md).
+  - [USB management](../reference/apis-basic-services-kit/js-apis-usbManager.md): provides USB device management capabilities, including USB device list query, bulk data transfer, control transfer, and permission control. For details about the development guide, see [USB Service Development Overview](usb/usb-overview.md).
 
 - Others:
-  - [App account management](../reference/apis-basic-services-kit/js-apis-appAccount.md): provides application account period management and data management capabilities. For details, see [Managing App Accounts](account/manage-application-account.md).
+  - [App account management](../reference/apis-basic-services-kit/js-apis-appAccount.md): provides application account management and data management capabilities. For details, see [Managing App Accounts](account/manage-application-account.md).
   - [Public callback information](../reference/apis-basic-services-kit/js-apis-base.md): defines the public callback types of ArkTS APIs, including the common and error callbacks.
   - [Time and time zone](../reference/apis-basic-services-kit/js-apis-date-time.md): provides APIs for obtaining the system time and time zone.
 
@@ -54,5 +54,3 @@ Depending on different use cases, this Kit provides the following capabilities:
 - [Ability Kit](../application-models/abilitykit-overview.md): Common events in this Kit are required for inter-process communication in Ability Kit.
 
 - [Core File Kit](../file-management/core-file-kit-intro.md): Core File Kit provides file access and management capabilities. You use Core File Kit for application file access, file sharing, and data backup and restore, and use this Kit to implement file compression, file upload and download, and file printing.
-
-<!--no_check-->

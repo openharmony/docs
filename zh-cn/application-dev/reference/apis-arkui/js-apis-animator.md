@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorOptions,AnimatorResult } from '@kit.ArkUI';
 ```
 ## create<sup>9+</sup>
 
@@ -52,7 +52,8 @@ create(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
   ```ts
-import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let options: AnimatorOptions = {
    duration: 1500,
    easing: "friction",
@@ -99,8 +100,8 @@ reset(options: AnimatorOptions): void
 **示例：**
 
 ```ts
-import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
-import { BusinessError } from '@ohos.base';
+import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let options: AnimatorOptions = {
   duration: 1500,
   easing: "friction",
@@ -217,6 +218,8 @@ onFrame: (progress: number) => void
 
 接收到帧时回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -228,9 +231,9 @@ onFrame: (progress: number) => void
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import {Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onFrame = (value)=> {
+animatorResult.onFrame = (value:number)=> {
   console.info("onFrame callback")
 }
 ```
@@ -241,12 +244,14 @@ onFinish: () => void
 
 动画完成时回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import {Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onFinish = ()=> {
   console.info("onFinish callback")
@@ -259,12 +264,14 @@ onCancel: () => void
 
 动画被取消时回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onCancel = ()=> {
   console.info("onCancel callback")
@@ -277,12 +284,14 @@ onRepeat: () => void
 
 动画重复时回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import {Animator as animator, AnimatorResult} from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onRepeat = ()=> {
   console.info("onRepeat callback")
@@ -299,6 +308,8 @@ onframe: (progress: number) => void
 
 接收到帧时回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -310,7 +321,7 @@ onframe: (progress: number) => void
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import  { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onframe = (value)=> {
   console.info("onframe callback")
@@ -327,12 +338,14 @@ onfinish: () => void
 
 动画完成时回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onfinish = ()=> {
   console.info("onfinish callback")
@@ -350,12 +363,14 @@ oncancel: () => void
 
 动画被取消时回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.oncancel = ()=> {
   console.info("oncancel callback")
@@ -372,12 +387,14 @@ onrepeat: () => void
 
 动画重复时回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onrepeat = ()=> {
   console.info("onrepeat callback")
@@ -390,6 +407,8 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
 
 设置期望的帧率范围。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -401,7 +420,7 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult: AnimatorResult | undefined = animator.create({
   duration: 2000,
   easing: "ease",
@@ -452,9 +471,9 @@ animatorResult.setExpectedFrameRateRange(expectedFrameRate);
 ```
 
 ```ts
-import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
-import { BusinessError } from '@ohos.base';
-let DataTmp:Record<string,animator> = {
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+let DataTmp:Record<string,Animator> = {
   'divWidth': 200,
   'divHeight': 200,
   'animator': animator
@@ -530,7 +549,8 @@ class DateT{
 ### 基于ArkTS扩展的声明式开发范式
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
 
 @Entry
 @Component
@@ -738,7 +758,8 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
 ```ts
-import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
 let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
   duration: 1500,
   easing: "friction",

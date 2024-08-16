@@ -12,6 +12,8 @@ visualEffect(effect: VisualEffect): T
 
 设置非滤镜视觉效果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -25,6 +27,8 @@ visualEffect(effect: VisualEffect): T
 backgroundFilter(filter: Filter): T
 
 设置背景滤镜视觉效果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,6 +44,8 @@ foregroundFilter(filter: Filter): T
 
 设置前景滤镜（内容）视觉效果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -54,6 +60,8 @@ compositingFilter(filter: Filter): T
 
 设置合成滤镜视觉效果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -66,54 +74,45 @@ compositingFilter(filter: Filter): T
 ## 示例
 ```ts
 // xxx.ets
-import uiEffect from '@ohos.graphics.uiEffect'
+import { uiEffect } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component
 struct FilterEffectExample {
-    @State visualEffectTest: uiEffect.VisualEffect = uiEffect.createEffect()
-    @State filterTest: uiEffect.Filter = uiEffect.createFilter()
 
-    build() {
-        Column({ space: 15 }) {
-            Text('visualEffect').fontSize(20).width('75%').fontColor('#DCDCDC')
-            Text()
-                .width(100)
-                .height(100)
-                .backgroundColor('#ADD8E6')
-                .backgroundImage($r("app.media.sky"))
-                .visualEffect(this.visualEffectTest.backgroundColorBlender(uiEffect.createBrightnessBlender(
-                    100, 100, 100, 100, 100, [100, 100, 100], [100, 100, 100], 10
-                ))) // 通过 visualEffect 设置背景颜色提亮效果
-            
-            Text('foregroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-            Text()
-                .width(100)
-                .height(100)
-                .backgroundColor('#ADD8E6')
-                .backgroundImage($r("app.media.sky"))
-                .foregroundFilter(this.filterTest.pixelStretch([0.3, 0.1, 0.1, 0.1], uiEffect.TileMode.REPEAT)) // 通过 foregroundFilter 进行像素扩展
+  @State filterTest: uiEffect.Filter = uiEffect.createFilter()
 
-            Text('backgroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-            Text()
-                .width(100)
-                .height(100)
-                .backgroundColor('#ADD8E6')
-                .backgroundImage($r("app.media.sky"))
-                .backgroundFilter(this.filterTest.blur(10)) // 通过 backgroundFilter 设置模糊效果
-            
-            Text('compositingFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-            Text()
-                .width(100)
-                .height(100)
-                .backgroundColor('#ADD8E6')
-                .backgroundImage($r("app.media.sky"))
-                .compositingFilter(this.filterTest.blur(10)) // 通过 compositingFilter 设置模糊效果
-        }
-        .height('100%')
-        .width('100%')
+  build() {
+    Column({ space: 15 }) {
+
+      Text('foregroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
+      Text('前景滤镜')
+        .width(100)
+        .height(100)
+        .backgroundColor('#ADD8E6')
+        .backgroundImage($r("app.media.app_icon"))
+     .foregroundFilter(this.filterTest.blur(10)) // 通过 foregroundFilter 设置模糊效果
+
+      Text('backgroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
+      Text('背景滤镜')
+        .width(100)
+        .height(100)
+        .backgroundColor('#ADD8E6')
+        .backgroundImage($r("app.media.app_icon"))
+        .backgroundFilter(this.filterTest.blur(10)) // 通过 backgroundFilter 设置模糊效果
+
+      Text('compositingFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
+      Text('合成滤镜')
+        .width(100)
+        .height(100)
+        .backgroundColor('#ADD8E6')
+        .backgroundImage($r("app.media.app_icon"))
+        .compositingFilter(this.filterTest.blur(10)) // 通过 compositingFilter 设置模糊效果
     }
+    .height('100%')
+    .width('100%')
+  }
 }
 ```
 
-![compositingFilter](figures/filterEffect.jpg)
+![filterEffect](figures/filterEffect.png)

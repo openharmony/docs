@@ -116,7 +116,7 @@ class SocketInfo {
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 // Create a TCP socket connection. A TCPSocket object is returned.
-let tcp = socket.constructTCPSocketInstance();
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('message', (value: SocketInfo) => {
   console.log("on message");
   let buffer = value.message;
@@ -153,29 +153,27 @@ tcp.bind(ipAddress, (err: BusinessError) => {
   tcpConnect.address = ipAddress;
   tcpConnect.timeout = 6000;
 
-  tcp.connect(tcpConnect, (err: BusinessError) => {
-    if (err) {
-      console.log('connect fail');
-      return;
-    }
+  tcp.connect(tcpConnect).then(() => {
     console.log('connect success');
-    // Send data over the connection.
-    let tcpSendOptions : socket.TCPSendOptions = {} as socket.TCPSendOptions;
-    tcpSendOptions.data = 'Hello, server!';
-    tcp.send(tcpSendOptions, (err: BusinessError) => {
-      if (err) {
-        console.log('send fail');
-        return;
-      }
+    let tcpSendOptions: socket.TCPSendOptions = {
+      data: 'Hello, server!'
+    }
+    tcp.send(tcpSendOptions).then(() => {
       console.log('send success');
-    })
+    }).catch((err: BusinessError) => {
+      console.log('send fail');
+    });
+  }).catch((err: BusinessError) => {
+    console.log('connect fail');
   });
 });
 
 // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
 setTimeout(() => {
-  tcp.close((err: BusinessError) => {
-    console.log('close socket.');
+  tcp.close().then(() => {
+    console.log('close success');
+  }).catch((err: BusinessError) => {
+    console.log('close fail');
   });
   tcp.off('message');
   tcp.off('connect');
@@ -184,8 +182,6 @@ setTimeout(() => {
 ```
 
 ## Transmitting Data over TCP Socket Server Connections
-
-### How to Develop
 
 The TCP socket server connection process is described as follows:
 
@@ -203,18 +199,16 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Create a TCP socket server connection. A TCPSocketServer object is returned.
-let tcpServer = socket.constructTCPSocketServerInstance();
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 // Bind the local IP address and port number for listening.
 
 let ipAddress : socket.NetAddress = {} as socket.NetAddress;
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 4651;
-tcpServer.listen(ipAddress, (err: BusinessError) => {
-  if (err) {
-    console.log("listen fail");
-    return;
-  }
-  console.log("listen success");
+tcpServer.listen(ipAddress).then(() => {
+  console.log('listen success');
+}).catch((err: BusinessError) => {
+  console.log('listen fail');
 });
 
 class SocketInfo {
@@ -244,21 +238,17 @@ tcpServer.on("connect", (client: socket.TCPSocketConnection) => {
   // Send data to the client.
   let tcpSendOptions : socket.TCPSendOptions = {} as socket.TCPSendOptions;
   tcpSendOptions.data = 'Hello, client!';
-  client.send(tcpSendOptions, (err: BusinessError) => {
-    if (err) {
-      console.log("send fail");
-      return;
-    }
-    console.log("send success");
+  client.send(tcpSendOptions).then(() => {
+    console.log('send success');
+  }).catch((err: Object) => {
+    console.error('send fail: ' + JSON.stringify(err));
   });
 
   // Close the connection between the client and the server.
-  client.close((err: BusinessError) => {
-    if (err) {
-      console.log("close fail");
-      return;
-    }
-    console.log("close success");
+  client.close().then(() => {
+    console.log('close success');
+  }).catch((err: BusinessError) => {
+    console.log('close fail');
   });
 
   // Unsubscribe from events of the TCPSocketConnection object.
@@ -275,8 +265,6 @@ setTimeout(() => {
 ```
 
 ## Transmitting Data over Multicast Socket Connections
-
-### How to Develop
 
 1. Import the required **socket** module.
 
@@ -296,7 +284,7 @@ setTimeout(() => {
 import { socket } from '@kit.NetworkKit';
 
 // Create a MulticastSocket object.
-let multicast = socket.constructMulticastSocketInstance();
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 
 let addr : socket.NetAddress = {
   address: '239.255.0.1',
@@ -305,13 +293,11 @@ let addr : socket.NetAddress = {
 }
 
 // Add the MulticastSocket object to a multicast group.
-multicast.addMembership(addr, (err: Object) => {
-  if (err) {
-    console.info('add err: ' + JSON.stringify(err));
-    return;
-  }
-  console.info('add ok');
-})
+multicast.addMembership(addr).then(() => {
+  console.log('addMembership success');
+}).catch((err: Object) => {
+  console.log('addMembership fail');
+});
 
 // Subscribe to message events and convert the received data of the ArrayBuffer type to strings.
 class SocketInfo {
@@ -329,30 +315,24 @@ multicast.on('message', (data: SocketInfo) => {
 })
 
 // Send data over the connection.
-multicast.send({ data:'Hello12345', address: addr }, (err: Object) => {
-  if (err) {
-    console.info ('Sending failed:' + JSON.stringify (err));
-    return;
-  }
-  console.info('Sending success');
-})
+multicast.send({ data:'Hello12345', address: addr }).then(() => {
+  console.log('send success');
+}).catch((err: Object) => {
+  console.log('send fail, ' + JSON.stringify(err));
+});
 
 // Unsubscribe from message events.
 multicast.off('message')
 
 // Drop the MulticastSocket object from the multicast group.
-multicast.dropMembership(addr, (err: Object) => {
-  if (err) {
-    console.info('drop err ' + JSON.stringify(err));
-    return;
-  }
-  console.info('drop ok');
-})
+multicast.dropMembership(addr).then(() => {
+  console.log('drop membership success');
+}).catch((err: Object) => {
+  console.log('drop membership fail');
+});
 ```
 
 ## Transmitting Data over Local Socket Connections
-
-### How to Develop
 
 1. Import the required **socket** module.
 
@@ -370,7 +350,7 @@ multicast.dropMembership(addr, (err: Object) => {
 import { socket } from '@kit.NetworkKit';
 
 // Create a local socket connection. A LocalSocket object is returned.
-let client = socket.constructLocalSocketInstance();
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
@@ -389,10 +369,11 @@ client.on('close', () => {
 
 // Specify the address of local socket file to connect to the server.
 let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 let sendOpt: socket.LocalSendOptions = {
@@ -422,8 +403,6 @@ client.close().then(() => {
 
 ## Transmitting Data over Local Socket Server Connections
 
-### How to Develop
-
 The local socket connection process on the server is described as follows:
 
 1. Import the required **socket** module.
@@ -448,7 +427,7 @@ The local socket connection process on the server is described as follows:
 import { socket } from '@kit.NetworkKit';
 
 // Create a local socket server connection. A LocalSocketServer object is returned.
-let server = socket.constructLocalSocketServerInstance();
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 // Create and bind the local socket file testSocket for listening.
 let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
@@ -461,9 +440,9 @@ server.listen(listenAddr).then(() => {
 });
 
 // Subscribe to connect events of the LocalSocketServer object.
-server.on("connect", (connection: socket.LocalSocketConnection) => {
+server.on('connect', (connection: socket.LocalSocketConnection) => {
   // Subscribe to events of the LocalSocketConnection object.
-  connection.on("error", (err) => {
+  connection.on('error', (err: Object) => {
     console.log("on error success");
   });
   connection.on('message', (value: socket.LocalSocketMessageInfo) => {
@@ -476,7 +455,7 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
     console.log('message information: ' + messageView);
   });
 
-  connection.on('error', (err) => {
+  connection.on('error', (err: Object) => {
     console.log("err:" + JSON.stringify(err));
   })
 
@@ -509,8 +488,6 @@ server.off('error');
 
 ## Implementing Encrypted Data Transmission over TLS Socket Connections
 
-### How to Develop
-
 The TLS socket connection process on the client is described as follows:
 
 1. Import the required **socket** module.
@@ -536,7 +513,7 @@ class SocketInfo {
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 // Create a TLS socket connection (for two-way authentication). A TLSSocketConnection object is returned.
-let tlsTwoWay = socket.constructTLSSocketInstance();
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();
 // Subscribe to events of the TLSSocketConnection object.
 tlsTwoWay.on('message', (value: SocketInfo) => {
   console.log("on message");
@@ -587,8 +564,10 @@ tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
 tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
 
 // Set up a connection.
-tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
-  console.error("connect function");
+tlsTwoWay.connect(tlsTwoWayConnectOption).then(() => {
+  console.log("connect successfully");
+}).catch((err: BusinessError) => {
+  console.log("connect failed " + JSON.stringify(err));
 });
 
 // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
@@ -604,7 +583,7 @@ tlsTwoWay.close((err: BusinessError) => {
 });
 
 // Create a TLS socket connection (for one-way authentication). A TLSSocketConnection object is returned.
-let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 
 // Subscribe to events of the TLSSocketConnection object.
 tlsTwoWay.on('message', (value: SocketInfo) => {
@@ -646,8 +625,10 @@ tlsOneWayConnectOptions.address = ipAddress;
 tlsOneWayConnectOptions.secureOptions = tlsOneWaySecureOption;
 
 // Set up a connection.
-tlsOneWay.connect(tlsOneWayConnectOptions, () => {
-  console.error("connect function");
+tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
+  console.log("connect successfully");
+}).catch((err: BusinessError) => {
+  console.log("connect failed " + JSON.stringify(err));
 });
 
 // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
@@ -663,9 +644,135 @@ tlsTwoWay.close((err: BusinessError) => {
 });
 ```
 
-## Implementing Encrypted Data Transmission over TLS Socket Server Connections
+## Implementing Encrypted Data Transmission by Upgrading a TCP Socket Connection to a TLS Socket Connection
 
-### How to Develop
+The process of upgrading a TCP socket connection to a TLS socket connection is as follows:
+
+1. Import the required **socket** module.
+
+2. Create a TCP socket connection. For details, see [Transmitting Data over TCP Socket or UDP Socket Connections](#transmitting-data-over-tcp-socket-or-udp-socket-connections).
+
+3. After the TCP socket connection is established, use the **TCPSocket** object to create a TLS socket connection. A **TLSSocket** object is returned.
+
+4. For two-way authentication, upload the client CA certificate and digital certificate. For one-way authentication, upload the client CA certificate.
+
+5. (Optional) Subscribe to events of the **TLSSocketConnection** object.
+
+6. Send data over the connection.
+
+7. Enable the TLS socket connection to be automatically closed after use.
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+
+// Create a TCP socket connection. A TCPSocket object is returned.
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+tcp.on('message', (value: SocketInfo) => {
+  console.log("on message");
+  let buffer = value.message;
+  let dataView = new DataView(buffer);
+  let str = "";
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i));
+  }
+  console.log("on connect received:" + str);
+});
+tcp.on('connect', () => {
+  console.log("on connect");
+});
+
+// Bind the local IP address and port number.
+let ipAddress : socket.NetAddress = {} as socket.NetAddress;
+ipAddress.address = "192.168.xxx.xxx";
+ipAddress.port = 1234;
+tcp.bind(ipAddress, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+
+  // Set up a connection to the specified IP address and port number.
+  ipAddress.address = "192.168.xxx.xxx";
+  ipAddress.port = 443;
+
+  let tcpConnect : socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
+  tcpConnect.address = ipAddress;
+  tcpConnect.timeout = 6000;
+
+  tcp.connect(tcpConnect, (err: BusinessError) => {
+  if (err) {
+    console.log('connect fail');
+    return;
+  }
+  console.log('connect success');
+
+  // After TCP socket connection is established, upgrade it to a TLS socket connection.
+  let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+  // Subscribe to events of the TLSSocket object.
+  tlsTwoWay.on('message', (value: SocketInfo) => {
+    console.log("tls on message");
+    let buffer = value.message;
+    let dataView = new DataView(buffer);
+    let str = "";
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i));
+    }
+    console.log("tls on connect received:" + str);
+  });
+  tlsTwoWay.on('connect', () => {
+    console.log("tls on connect");
+  });
+  tlsTwoWay.on('close', () => {
+    console.log("tls on close");
+  });
+
+  // Configure the destination address and certificate of the TLSSocket object.
+  ipAddress.address = "192.168.xxx.xxx";
+  ipAddress.port = 1234;
+
+  let tlsSecureOption : socket.TLSSecureOptions = {} as socket.TLSSecureOptions;
+  tlsSecureOption.key = "xxxx";
+  tlsSecureOption.cert = "xxxx";
+  tlsSecureOption.ca = ["xxxx"];
+  tlsSecureOption.password = "xxxx";
+  tlsSecureOption.protocols = [socket.Protocol.TLSv12];
+  tlsSecureOption.useRemoteCipherPrefer = true;
+  tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
+  tlsSecureOption.cipherSuite = "AES256-SHA256";
+
+  let tlsTwoWayConnectOption : socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
+  tlsSecureOption.key = "xxxx";
+  tlsTwoWayConnectOption.address = ipAddress;
+  tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
+  tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
+
+  // Establish a TLS socket connection.
+  tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
+    console.log("tls connect success");
+
+    // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
+    tlsTwoWay.close((err: BusinessError) => {
+      if (err) {
+        console.log("tls close callback error = " + err);
+      } else {
+        console.log("tls close success");
+      }
+      tlsTwoWay.off('message');
+      tlsTwoWay.off('connect');
+      tlsTwoWay.off('close');
+    });
+  });
+});
+```
+
+## Implementing Encrypted Data Transmission over TLS Socket Server Connections
 
 The TLS socket connection process on the server is described as follows:
 
@@ -690,23 +797,29 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
+
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
+
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
@@ -753,3 +866,4 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 // Unsubscribe from events of the TLSSocketServer object.
 tlsServer.off('connect');
 ```
+

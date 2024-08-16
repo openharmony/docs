@@ -36,11 +36,10 @@ To implement an embedded application, manually create a WindowExtensionAbility i
 3. Open the **WindowExtAbility.ts** file and import the dependency package of **WindowExtensionAbility**. Customize a class that inherits from **WindowExtensionAbility** and implement the **onWindowReady()**, **onConnect()**, and **onDisconnect()** lifecycle callbacks.
 
    ```ts
-    import Extension from '@ohos.application.WindowExtensionAbility'
-    import Want from '@ohos.app.ability.Want';
-    import window from '@ohos.window';
+    import { WindowExtensionAbility, window } from '@kit.ArkUI';
+    import { Want } from '@kit.AbilityKit';
 
-    export default class WindowExtAbility extends Extension {
+    export default class WindowExtAbility extends WindowExtensionAbility {
         onWindowReady(window: window.Window) {
             window.loadContent('WindowExtAbility/pages/index1').then(() => {
                 window.getProperties().then((pro) => {
@@ -113,8 +112,3 @@ struct Index {
 }
 ```
 
-## Samples
-
-The following sample is provided to help you better understand how to develop WindowExtensionAbilities:
-
-- [Window Extension Application (ArkTS, API version 9, Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)

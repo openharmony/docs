@@ -4185,6 +4185,54 @@ call.isImsSwitchEnabled(0).then((data: boolean) => {
 });
 ```
 
+## call.isImsSwitchEnabledSync<sup>12+</sup>
+
+isImsSwitchEnabledSync\(slotId: number\): boolean
+
+Checks whether the IMS service is enabled. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| boolean | Whether the IMS service is enabled. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Non-system applications use system APIs.                     |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
+| 8300001  | Invalid parameter value.                                     |
+| 8300002  | Operation failed. Cannot connect to service.                 |
+| 8300003  | System internal error.                                       |
+| 8300999  | Unknown error code.                                          |
+
+**Example**
+
+<!--code_no_check-->
+
+```ts
+let slotId: number = 0;
+try {
+    let isEnabled: boolean = call.isImsSwitchEnabledSync(slotId);
+    console.log(`isImsSwitchEnabledSync success : ${isEnabled}`);
+} catch (error) {
+    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(error)}`);  
+}
+```
 
 ## call.closeUnfinishedUssd<sup>10+</sup>
 
@@ -4609,7 +4657,7 @@ Performs a secret code broadcast. This API uses an asynchronous callback to retu
 
 | Name     | Type                        | Mandatory| Description                                      |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | Yes  | Secret code, for example, **2846579** (project menu).|
+| inputCode   | string                       | Yes  | Secret code, for example, *#*#2846579#*#* (project menu).|
 | callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.             |
 
 **Error codes**
@@ -4630,7 +4678,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
+call.inputDialerSpecialCode('*#*#2846579#*#*', (err: BusinessError) => {
     if (err) {
         console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(err)}`);
     } else {
@@ -4655,7 +4703,7 @@ Performs a secret code broadcast. This API uses a promise to return the result.
 
 | Name     | Type                        | Mandatory| Description                                      |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | Yes  | Secret code, for example, **2846579** (project menu).|
+| inputCode   | string                       | Yes  | Secret code, for example, *#*#2846579#*#* (project menu).|
 
 **Return value**
 
@@ -4682,7 +4730,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    call.inputDialerSpecialCode('2846579');
+    call.inputDialerSpecialCode('*#*#2846579#*#*');
     console.log(`inputDialerSpecialCode success`);
 } catch (error) {
     console.error(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
@@ -5042,6 +5090,8 @@ Defines the VoIP call information.
 | abilityName      | string     | Yes  |  Ability name of the third-party application. |
 | voipBundleName    | string     | Yes  |  Bundle name of the third-party application. |
 | showBannerForIncomingCall<sup>12+</sup>    | boolean     | No  |  Whether to display the incoming call banner. |
+| isConferenceCall<sup>12+</sup>    | boolean     | No  |  Whether the call is a conference call. |
+| isVoiceAnswerSupported<sup>12+</sup>    | boolean     | No  |  Whether call answering with voice commands is supported. |
 
 ## ConferenceState<sup>7+</sup>
 

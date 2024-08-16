@@ -9,12 +9,14 @@
 ## 导入模块
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
 ## 常量
 
 表示复用设备解锁结果最大有效时长。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -26,6 +28,8 @@ import userAuth from '@ohos.userIAM.userAuth';
 
 表示用户注册凭据的状态。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称         | 类型    | 可读 | 可写 | 说明                 |
@@ -36,6 +40,8 @@ import userAuth from '@ohos.userIAM.userAuth';
 ## ReuseMode<sup>12+</sup>
 
 表示复用设备解锁结果的模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -52,6 +58,7 @@ import userAuth from '@ohos.userIAM.userAuth';
 > 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果
 > 时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -67,6 +74,8 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 查询凭据注册的状态，用于感知用户注册凭据变化。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -97,7 +106,7 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
@@ -110,6 +119,8 @@ try {
 ## AuthParam<sup>10+</sup>
 
 用户认证相关参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -124,6 +135,8 @@ try {
 
 用户认证界面配置相关参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                 | 类型                                | 必填 | 说明                                                         |
@@ -134,6 +147,8 @@ try {
 ## UserAuthResult<sup>10+</sup>
 
 用户认证结果。当认证结果为成功时，返回认证类型和认证通过的令牌信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -154,6 +169,8 @@ onResult(result: UserAuthResult): void
 
 回调函数，返回认证结果。如果认证成功，可以通过UserAuthResult获取到认证通过的令牌信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
@@ -165,7 +182,7 @@ onResult(result: UserAuthResult): void
 **示例1：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -193,7 +210,7 @@ try {
 **示例2：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
@@ -234,6 +251,8 @@ on(type: 'result', callback: IAuthCallback): void
 
 订阅用户身份认证结果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
@@ -255,7 +274,7 @@ on(type: 'result', callback: IAuthCallback): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -290,6 +309,8 @@ off(type: 'result', callback?: IAuthCallback): void
 > 
 > 需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
@@ -311,7 +332,7 @@ off(type: 'result', callback?: IAuthCallback): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -346,6 +367,8 @@ start(): void
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **错误码：**
@@ -371,7 +394,7 @@ start(): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -403,6 +426,8 @@ cancel(): void
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **错误码：**
@@ -416,7 +441,7 @@ cancel(): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -445,6 +470,8 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 > **说明：**
 > 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -475,7 +502,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -586,7 +613,7 @@ callback(result : EventInfo) : void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -669,7 +696,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -734,7 +761,7 @@ off : (name : AuthEventKey) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -794,7 +821,7 @@ start : () => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -837,7 +864,7 @@ cancel : () => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -894,7 +921,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -915,6 +942,8 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 查询指定类型和等级的认证能力是否支持。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -949,7 +978,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
@@ -962,6 +991,8 @@ try {
 ## UserAuthResultCode<sup>9+</sup>
 
 表示返回码的枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -998,7 +1029,7 @@ constructor()
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 ```
@@ -1025,7 +1056,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let version = auth.getVersion();
@@ -1061,7 +1092,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let checkCode = auth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
@@ -1103,7 +1134,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1152,7 +1183,7 @@ cancelAuth(contextID : Uint8Array) : number
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // contextId可通过auth接口获取，此处直接定义
 let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
@@ -1193,7 +1224,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1236,7 +1267,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1351,6 +1382,8 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 表示身份认证的凭据类型枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称        | 值   | 说明       |
@@ -1362,6 +1395,8 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 ## AuthTrustLevel<sup>8+</sup>
 
 表示认证结果的信任等级枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1391,7 +1426,7 @@ getAuthenticator(): Authenticator
 
 **示例：**
   ```ts
-  import userAuth from '@ohos.userIAM.userAuth';
+  import { userAuth } from '@kit.UserAuthenticationKit';
   
   let authenticator = userAuth.getAuthenticator();
   ```
@@ -1427,7 +1462,7 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let authenticator = userAuth.getAuthenticator();
 authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
@@ -1469,7 +1504,7 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let authenticator = userAuth.getAuthenticator();

@@ -12,14 +12,12 @@ The **request** module provides applications with basic upload, download, and ba
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 
 ## Filter<sup>10+</sup>
 Defines the filter criteria.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -30,8 +28,6 @@ Defines the filter criteria.
 
 ## TaskInfo<sup>10+</sup> 
 Defines the data structure of the task information for query. The fields available vary depending on the query type.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -75,6 +71,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -123,6 +121,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {

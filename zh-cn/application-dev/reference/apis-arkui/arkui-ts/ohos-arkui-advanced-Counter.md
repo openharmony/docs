@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.Counter (计数器组件)
+# advanced.Counter
 
 Counter是用于精确调节数值的组件。
 
@@ -9,7 +9,7 @@ Counter是用于精确调节数值的组件。
 ## 导入模块
 
 ```
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent, CounterOptions, DateData } from '@kit.ArkUI';
 ```
 
 ##  子组件
@@ -194,7 +194,7 @@ toString(): string
 ### 示例1
 
 ```ts
-import { CounterType, CounterComponent } from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -221,7 +221,7 @@ struct ListCounterExample {
 ![listcounter](figures/listcounter.gif)
 ### 示例2
 ```ts
-import { CounterType, CounterComponent } from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -248,7 +248,7 @@ struct CompactCounterExample {
 ![compactcounter](figures/compactcounter.gif)
 ### 示例3
 ```ts
-import { CounterType, CounterComponent } from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -278,7 +278,7 @@ struct NumberStyleExample {
 ![numberstyle](figures/numberstyle.gif)
 ### 示例4
 ```ts
-import { CounterType, CounterComponent, DateData } from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
 
 @Entry
 @Component

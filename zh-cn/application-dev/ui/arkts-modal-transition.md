@@ -60,7 +60,7 @@
 
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 interface PersonList {
   name: string,
@@ -441,6 +441,7 @@ struct BindContextMenuDemo {
           Row(){
             Image(item)
               .width('100%')
+              .draggable(false)
           }
           .padding({ top: 20, bottom: 20, left: 10, right: 10 })
           .bindContextMenu(this.myMenu, ResponseType.LongPress)

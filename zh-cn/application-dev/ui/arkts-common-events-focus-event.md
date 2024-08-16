@@ -54,7 +54,7 @@
 
 ### 走焦规范
 
-根据走焦的触发方式，可以分为主动走焦和线性走焦。
+根据走焦的触发方式，可以分为主动走焦和被动走焦。
 
 
 
@@ -133,10 +133,7 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 
 由组件自定义的走焦算法，规格由组件定义。
 
-
-## 焦点接口使用方法
-
-### 焦点事件
+## 获焦/失焦事件
 
 ```ts
 onFocus(event: () => void)
@@ -221,7 +218,7 @@ struct FocusEventExample {
 - 按下TAB键，触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦、onBlur回调响应，背景色变回灰色。
 - 按下TAB键，触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦、onBlur回调响应，背景色变回灰色。
 
-### 设置组件是否可获焦
+## 设置组件是否可获焦
 
 ```ts
 focusable(value: boolean)
@@ -233,7 +230,7 @@ focusable(value: boolean)
 
 - 默认可获焦的组件，通常是有交互行为的组件，例如Button、Checkbox，TextInput组件，此类组件无需设置任何属性，默认即可获焦。
 
-- 有获焦能力，但默认不可获焦的组件，典型的是Text、Image组件，此类组件缺省情况下无法获焦，若需要使其获焦，可使用通用属性focusable(true)使能。
+- 有获焦能力，但默认不可获焦的组件，典型的是Text、Image组件，此类组件缺省情况下无法获焦，若需要使其获焦，可使用通用属性focusable(true)使能。对于没有配置focusable属性，有获焦能力但默认不可获焦的组件，为其配置onClick或是单指单击的Tap手势，该组件会隐式地成为可获焦组件。如果其focusable属性被设置为false，即使配置了上述事件，该组件依然不可获焦。
 
 - 无获焦能力的组件，通常是无任何交互行为的展示类组件，例如Blank、Circle组件，此类组件即使使用focusable属性也无法使其可获焦。
 
@@ -244,7 +241,14 @@ focusable(value: boolean)
 enabled(value: boolean)
 ```
 
-设置组件是否可交互。若设置为false，则组件无交互能力，自然无法获焦。
+设置组件可交互性属性[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)为`false`，则组件不可交互，无法获焦。
+
+
+```ts
+visibility(value: Visibility)
+```
+
+设置组件可见性属性[visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)为`Visibility.None`或`Visibility.Hidden`，则组件不可见，无法获焦。
 
 
 ```ts
@@ -358,7 +362,9 @@ struct FocusableExample {
 - 点击第二个Text组件，由于设置了focusOnTouch(true)，第二个组件获焦。按下TAB键，触发走焦，仍然是第二个Text组件获焦。按键盘F键，触发onKeyEvent，focusable置为false，第二个Text组件变成不可获焦，焦点自动转移，会自动从Text组件寻找下一个可获焦组件，焦点转移到第三个Text组件上。
 - 按键盘G键，触发onKeyEvent，enabled置为false，第三个Text组件变成不可获焦，焦点自动转移，使焦点转移到Row容器上，容器中使用的是默认配置，会转移到Button1上。
 
-### 默认焦点
+## 默认焦点
+
+### 页面的默认焦点
 
 ```ts
 defaultFocus(value: boolean)
@@ -434,7 +440,57 @@ struct morenjiaodian {
 - 在第三个Button组件上设置了defaultFocus(true)，进入页面后第三个Button默认获焦，显示为绿色
 - 按下TAB键，触发走焦，第三个Button正处于获焦状态，会出现焦点框
 
-### 焦点样式
+### 容器的默认焦点
+
+容器的默认焦点受到[获焦优先级](#焦点组与获焦优先级)的影响。
+
+**defaultFcous与FocusPriority的区别**
+
+[defaultFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)是用于指定页面首次展示时的默认获焦节点，[FocusPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focuspriority12)是用于指定某个容器首次获焦时其子节点的获焦优先级。上述两个属性在某些场景同时配置时行为未定义，例如下面的场景，页面首次展示无法同时满足defaultFocus获焦和高优先级组件获焦。
+
+示例
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('Button1')
+        .defaultFocus(true)
+      Button('Button2')
+        .focusScopePriority('RowScope', FocusPriority.PREVIOUS)
+    }.focusScopeId('RowScope')
+  }
+}
+```
+
+### 页面/容器整体获焦时的焦点链
+
+**整体获焦与非整体获焦**
+
+- 整体获焦是页面/容器自身作为焦点链的叶节点获焦，获焦后再把焦点链叶节点转移到子孙组件。例如，页面切换、Navigation组件中的路由切换、焦点组走焦、容器组件主动调用requestFocusById等。
+
+- 非整体获焦是某个组件作为焦点链叶节点获焦，导致其祖先节点跟着获焦。例如TextInput组件主动获取焦点、Tab键在非焦点组场景下走焦等。
+
+**整体获焦的焦点链形成**
+
+1.页面首次获焦
+
+- 焦点链叶节点为配置了defaultFocus的节点。
+
+- 未配置defaultFocus时，焦点停留在页面的根容器上。
+
+2.页面非首次获焦：由上次获焦的节点获焦。
+
+3.获焦链上存在配置了获焦优先级的组件和容器
+
+- 容器内存在优先级大于PREVIOUS的组件，由优先级最高的组件获焦。
+
+- 容器内不存在优先级大于PREVIOUS的组件，由上次获焦的节点获焦。例如，窗口失焦后重新获焦。
+
+
+## 焦点样式
 
 
 ```ts
@@ -444,7 +500,7 @@ focusBox(style: FocusBoxStyle)
 设置当前组件系统焦点框样式。
 
 ```ts
-import { ColorMetrics, LengthMetrics } from '@ohos.arkui.node'
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -477,19 +533,16 @@ struct RequestFocusExample {
 - 进入页面，按下TAB触发走焦，第一个Button获焦，焦点框样式为紧贴边缘的蓝色细框
 - 按下TAB键，走焦到第二个Button，焦点框样式为远离边缘的红色粗框
 
-### 主动获焦/失焦
-
-- 使用focusControl中的方法
-  ```ts
-  requestFocus(value: string): boolean
-  ```
-
-  调用此接口可以主动让焦点转移至参数指定的组件上，焦点转移生效时间为下一个帧信号。
-
+## 主动获焦/失焦
 
 - 使用FocusController中的方法
 
-  需先使用UIContext中的[getFocusController()](https://gitee.com/yihao-lin/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
+  更推荐使用FocusController中的requestFocus主动获取焦点。优势如下：
+  - 当前帧生效，避免被下一帧组件树变化影响。
+  - 有异常值返回，便于排查主动获取焦点失败的原因。
+  - 避免多实例场景中取到错误实例。
+
+  需先使用UIContext中的[getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
 
   ```ts
   requestFocus(key: string): void
@@ -501,13 +554,21 @@ struct RequestFocusExample {
   ```
   清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
 
+- 使用focusControl中的方法
+  ```ts
+  requestFocus(value: string): boolean
+  ```
+
+  调用此接口可以主动让焦点转移至参数指定的组件上，焦点转移生效时间为下一个帧信号。
+
 
 ```ts
 // focusTest.ets
 @Entry
 @Component
 struct RequestExample {
-  @State btColor: Color = Color.Blue
+  @State btColor: string = '#ff2787d9'
+  @State btColor2: string = '#ff2787d9'
 
   build() {
     Column({ space: 20 }) {
@@ -519,10 +580,10 @@ struct RequestExample {
           .focusOnTouch(true)
           .backgroundColor(this.btColor)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor = '#ffd5d5d5'
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor = '#ff2787d9'
           })
           .id("testButton")
 
@@ -531,19 +592,19 @@ struct RequestExample {
           .height(70)
           .fontColor(Color.White)
           .focusOnTouch(true)
-          .backgroundColor(this.btColor)
+          .backgroundColor(this.btColor2)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor2 = '#ffd5d5d5'
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor2 = '#ff2787d9'
           })
           .id("testButton2")
 
         Divider()
           .vertical(false)
           .width("80%")
-          .backgroundColor(Color.Black)
+          .backgroundColor('#ff707070')
           .height(10)
 
         Button('FocusController.requestFocus')
@@ -551,18 +612,21 @@ struct RequestExample {
           .onClick(() => {
             this.getUIContext().getFocusController().requestFocus("testButton")
           })
+          .backgroundColor('#ff2787d9')
 
         Button("focusControl.requestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
             focusControl.requestFocus("testButton2")
           })
+          .backgroundColor('#ff2787d9')
 
         Button("clearFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
             this.getUIContext().getFocusController().clearFocus()
           })
+          .backgroundColor('#ff2787d9')
       }
     }
     .width('100%')
@@ -570,13 +634,16 @@ struct RequestExample {
   }
 }
 ```
+
+![focus-2](figures/focus-2.gif)
+
 上述示例包含以下3步：
 
 - 点击FocusController.requestFocus按钮，第一个Button获焦
 - 点击focusControl.requestFocus按钮，第二个Button获焦
 - 点击clearFocus按钮，第二个Button失焦
 
-### 焦点组
+## 焦点组与获焦优先级
 
 ```ts
 focusScopePriority(scopeId: string, priority?: FocusPriority)
@@ -589,7 +656,7 @@ focusScopePriority(scopeId: string, priority?: FocusPriority)
 focusScopeId(id: string, isGroup?: boolean)
 ```
 
-设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
+设置当前容器组件的id标识，设置当前容器组件是否为焦点组。焦点组与tabIndex不能混用。
 
 ```ts
 // focusTest.ets

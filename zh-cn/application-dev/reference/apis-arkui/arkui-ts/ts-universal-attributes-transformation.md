@@ -22,7 +22,7 @@ rotate(value: RotateOptions)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [RotateOptions](#rotateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0,<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。 |
+| value  | [RotateOptions](#rotateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0,<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。 |
 
 ## translate
 
@@ -62,7 +62,7 @@ scale(value: ScaleOptions)
 
 ## transform
 
-transform(value: Matrix4Transit)
+transform(value: object)
 
 设置组件的变换矩阵。
 
@@ -74,7 +74,7 @@ transform(value: Matrix4Transit)
 
 | 参数名 | 类型                                    | 必填 | 说明                     |
 | ------ | --------------------------------------- | ---- | ------------------------ |
-| value  | [Matrix4Transit](../js-apis-matrix4.md) | 是   | 设置当前组件的变换矩阵。 |
+| value  | object | 是   | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。 |
 
 ## RotateOptions对象说明
 
@@ -127,7 +127,7 @@ transform(value: Matrix4Transit)
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component

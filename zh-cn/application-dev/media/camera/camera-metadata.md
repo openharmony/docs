@@ -10,8 +10,8 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 
 1. 导入相关接口，导入方法如下。
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 调用[CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)类中的supportedMetadataObjectTypes属性，获取当前设备支持的元数据类型，并通过[createMetadataOutput](../../reference/apis-camera-kit/js-apis-camera.md#createmetadataoutput)方法创建元数据输出流。
@@ -87,6 +87,9 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
   ```ts
   function onMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
     metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('metadata output metadataObjectsAvailable');
     });
   }

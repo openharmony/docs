@@ -38,7 +38,7 @@
 1. 通过AVSessionManager的方法创建并激活媒体会话。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    // 开始创建并激活媒体会话
    // 创建session
@@ -58,8 +58,8 @@
    音视频应用设置的媒体会话信息，会被媒体会话控制方通过AVSessionController相关方法获取后进行显示或处理。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function setSessionInfo() {
@@ -135,12 +135,12 @@
    设置UIAbility时通过WantAgent接口实现，更多关于WantAgent的信息请参考[WantAgent](../../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)。
  
    ```ts
-   import wantAgent from "@ohos.app.ability.wantAgent";
+   import { wantAgent } from '@kit.AbilityKit';
    ```
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import wantAgent from '@ohos.app.ability.wantAgent';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { wantAgent } from '@kit.AbilityKit';
 
    let context: Context = getContext(this);
    async function getWantAgent() {
@@ -171,8 +171,8 @@
 
    ```ts
 
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function dispatchSessionEvent() {
@@ -195,8 +195,8 @@
    > 通过setExtras方法设置的数据包会被存储在AVSession服务中，数据的生命周期与会话一致；会话对应的Controller可以使用getExtras来获取该数据。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function setExtras() {
@@ -224,7 +224,7 @@
    Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md)
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function setListenerForMesFromController() {
@@ -301,7 +301,7 @@
    - commonCommand: 自定义控制命令变化的事件。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function setListenerForMesFromController() {
@@ -332,7 +332,7 @@
 7. 获取当前媒体会话自身的控制器，与媒体会话对应进行通信交互。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function createControllerFromSession() {
@@ -361,7 +361,7 @@
    取消播控命令监听的示例代码如下所示 ：
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function unregisterSessionListener() {
@@ -385,7 +385,7 @@
      销毁媒体会话示例代码如下所示：
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function destroySession() {

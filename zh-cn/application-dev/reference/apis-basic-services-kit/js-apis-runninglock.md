@@ -38,7 +38,7 @@ isSupported(type: RunningLockType): boolean;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 
 **示例：**
@@ -77,16 +77,15 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.|
 
 **示例：**
 
 ```js
-static recordLock = null;
 
 runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
-        recordLock = lock;
     } else {
         console.error('create running lock failed, err: ' + err);
     }
@@ -123,16 +122,15 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.|
 
 **示例：**
 
 ```js
-static recordLock = null;
 
 runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
-        recordLock = lock;
     } else {
         console.error('create running lock failed, err: ' + err);
     }
@@ -297,8 +295,9 @@ hold(timeout: number): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | If connecting to the service failed. |
-| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
+| 201     | If the permission is denied.|
 
 **示例：**
 
@@ -322,7 +321,7 @@ if (recordLock) {
         } else {
             console.error('create running lock failed, err: ' + err);
         }
-    }); 
+    });
 }
 ```
 
@@ -342,7 +341,9 @@ unhold(): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 201     | If the permission is denied.|
+
 
 **示例：**
 
@@ -366,7 +367,7 @@ if (recordLock) {
         } else {
             console.error('create running lock failed, err: ' + err);
         }
-    }); 
+    });
 }
 ```
 
@@ -390,7 +391,7 @@ isHolding(): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **示例：**
 

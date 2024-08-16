@@ -6,7 +6,7 @@
 - 环境（Environment）： 环境是3D场景背景的一种描述，可以基于图片进行创建。通过将一张图片进行正方体或者球体的映射处理，将图片贴在正方体或者球体上，在3D场景中模拟真实的环境。ArkGraphics 3D支持用户创建环境资源，定义3D场景的背景。
 - 动画（Animation）： 3D中的动画资源用于创建三维场景可以运动的虚拟对象，例如人物、动物、车辆等。它们是构成3D场景的基本元素之一，为动画片、游戏、虚拟现实等领域提供了丰富的内容。
 
-## 材质的创建以及使用
+## 材质的创建及使用
 
 材质的关键属性包括名字和类型，以此为输入可以创建材质。示例代码如下：
 ```ts
@@ -26,7 +26,7 @@ function createMaterialPromise() : Promise<Material> {
   });
 }
 ```
-## 着色器资源的创建以及使用
+## 着色器资源的创建及使用
 着色器主要用于控制GPU计算，给开发者提供自定义渲染的能力，提高了3D渲染控制的灵活性。着色器资源的创建需要着色器资源的名字以及着色器在文件沙箱中的路径。着色器资源主要的使用场景是替换材质的着色器属性，给材质自定义渲染算法，达到灵活控制渲染过程的目的，示例代码如下：
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
@@ -57,7 +57,7 @@ function createShaderPromise() : Promise<Shader> {
 }
 ```
 
-## 图片资源的创建以及使用
+## 图片资源的创建及使用
 3D场景中的图片资源是指GPU可以直接使用的图片资源。创建图片资源的关键参数包括图片资源的名字以及图片资源的路径。将图片资源应用到材质中作为材质属性，是常见的图片资源使用方式之一，示例代码如下：
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
@@ -113,6 +113,8 @@ function createEnvironmentPromise() : Promise<Environment> {
   });
 }
 ```
+## 相关实例
 
-
+对于3D资源更加综合的使用可以参考以下实例：
+- [3D引擎接口示例（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/Graphics3d)
 

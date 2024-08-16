@@ -258,9 +258,6 @@
 
      
    ```ts
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   // 如果未定义Schema则Value可以传其他符合要求的值。
-   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {

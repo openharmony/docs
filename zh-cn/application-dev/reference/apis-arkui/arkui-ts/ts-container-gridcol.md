@@ -31,14 +31,6 @@ GridCol(option?: GridColOptions)
 
 `span`、`offset`、`order`属性按照`xs`、`sm`、`md`、`lg`、`xl`、`xxl`的顺序具有“继承性”，未设置值的断点将会从前一个断点取值。
 
-在不同宽度设备类型上的默认值为：
-
-|参数\断点 |xs|sm|md|lg|xl|xxl|
-|---|---|---|---|---|---|---|
-|span   |2  |2  |3  |3  |4  |4  |
-|offset |2  |2  |3  |5  |5  |5  |
-|order  |20 |20 |20 |3  |3  |3  |
-
 ## 属性
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 

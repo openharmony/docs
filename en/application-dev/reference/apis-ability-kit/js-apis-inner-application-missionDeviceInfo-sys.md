@@ -11,7 +11,7 @@ The MissionDeviceInfo module defines the parameters required for registering a l
 ## Modules to Import
 
 ```ts
-import distributedMissionManager from '@ohos.distributedMissionManager';
+import { distributedMissionManager } from '@kit.AbilityKit';
 ```
 
 ## Attributes
@@ -22,4 +22,4 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
-| deviceId | string | Yes   | Yes   | Device ID.|
+| deviceId | string | Yes   | Yes   | Device ID. |

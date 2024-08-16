@@ -380,7 +380,7 @@ errorManager.off("unhandledRejection", observer);
 
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
 
-将在js运行时应用中用户未捕获到的rejection。
+定义异常监听，用于捕获Promise异步操作失败的原因。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

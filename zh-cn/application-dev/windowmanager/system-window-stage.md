@@ -58,12 +58,11 @@
    当不再需要音量条窗口时，可根据具体实现逻辑，使用`hide`接口或`destroyWindow`接口对其进行隐藏或销毁。
 
 ```ts
-import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class ServiceExtensionAbility1 extends ExtensionContext {
+export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // 1.创建音量条窗口。
     let windowClass: window.Window | null = null;
@@ -155,7 +154,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
 
 ```ts
 // xxx.ts 实现使用ts文件引入showWithAnimation，hideWithAnimation方法
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 
 export class AnimationConfig {
   private animationForShownCallFunc_: Function = undefined;
@@ -201,13 +200,9 @@ export class AnimationConfig {
 
 ```ts
 // xxx.ets 实现主窗口创建相关操作
-import window from '@ohos.window';
-import Want from '@ohos.app.ability.Want';
-import hilog from '@ohos.hilog';
-import common from '@ohos.app.ability.common';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { window } from '@kit.ArkUI';
+import { UIAbility, Want, AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want,launchParam:AbilityConstant.LaunchParam) {
@@ -249,9 +244,8 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // xxx.ets 实现子窗口的属性设置
-import window from '@ohos.window';
-import router from '@ohos.router';
-import common from '@ohos.app.ability.common';
+import { window, router } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -282,12 +276,10 @@ struct transferCtrlSubWindow {
 
 ```ts
 // xxx.ets 实现子窗口的创建以及显示、隐藏窗口时的动效操作
-import window from '@ohos.window';
-import router from '@ohos.router';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { window, router } from '@kit.ArkUI';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { AnimationConfig } from '../entryability/AnimationConfig';
-import Want from '@ohos.app.ability.Want';
 
 @Entry
 @Component

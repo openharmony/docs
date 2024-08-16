@@ -121,13 +121,15 @@ The database operation failed.
 
 **Possible Cause**
 
-The access to the database fails.
+1. The asset store, from which data is being queried, has not been created yet.
+2. The access to the database fails.
 
 **Solution**
 
-Locate the cause of the database access failure based on error information.
+1. Use **add()** to create an asset store first.
+2. Locate the cause of the database access failure based on error information.
 
-## 24000009 Cryptographic Operation Failed
+## 24000009 Cryptographic Operation Failed 
 
 **Error Message**
 

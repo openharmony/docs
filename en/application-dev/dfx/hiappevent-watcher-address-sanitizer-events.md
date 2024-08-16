@@ -34,7 +34,7 @@ The **params** parameter in the event information is described as follows:
 | heap-buffer-overflow | The heap buffer overflows.|
 | heap-use-after-free | The released heap memory is used.|
 | invalid-allocation-alignment | The alignment mode specified in memory allocation is invalid.|
-| memcpy-param-overlap | **memcpy()** does not support overlapping memory regions. |
+| memcpy-param-overlap | **memcpy()** does not support overlapping memory regions.|
 | new-delete-type-mismatch | The released memory size does not match the allocated memory size.|
 | stack-buffer-overflow | The stack buffer overflows.|
 | stack-buffer-underflow | The stack buffer underflows.|

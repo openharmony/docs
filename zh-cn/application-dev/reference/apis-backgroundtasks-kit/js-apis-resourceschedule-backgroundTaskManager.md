@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 ```
 
 ## backgroundTaskManager.requestSuspendDelay
@@ -55,7 +55,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let myReason = 'test requestSuspendDelay';
 try {
@@ -105,7 +105,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
@@ -155,7 +155,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
@@ -197,7 +197,7 @@ cancelSuspendDelay(requestId: number): void
 **示例**：
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let id = 1;
   try {
@@ -214,6 +214,8 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 申请长时任务，使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -246,12 +248,10 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -304,6 +304,8 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
@@ -340,12 +342,10 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -392,6 +392,8 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 取消长时任务，使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
@@ -420,11 +422,9 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -450,6 +450,8 @@ export default class EntryAbility extends UIAbility {
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 取消长时任务，使用promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -484,11 +486,9 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -512,6 +512,8 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 申请长时任务，使用promise异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -548,12 +550,11 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { notificationManager } from '@kit.NotificationKit';
 
 export default class EntryAbility extends UIAbility {
@@ -642,6 +643,8 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
@@ -676,12 +679,9 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -724,16 +724,18 @@ export default class EntryAbility extends UIAbility {
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
-| AUDIO_PLAYBACK          | 2    | 音频播放。                  |
+| AUDIO_PLAYBACK          | 2    | 音频播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | AUDIO_RECORDING         | 3    | 录音。                    |
 | LOCATION                | 4    | 定位导航。                  |
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
-| MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
+| MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 | TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
 
 ## ContinuousTaskNotification<sup>12+</sup>
 
 长时任务通知信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 

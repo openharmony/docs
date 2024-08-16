@@ -43,8 +43,8 @@
 1. 导入模块。
    
    ```ts
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-   import { BusinessError } from '@ohos.base';
+   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 申请短时任务并实现回调。

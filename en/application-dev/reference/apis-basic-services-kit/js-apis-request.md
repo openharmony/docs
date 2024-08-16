@@ -6,18 +6,15 @@ The **request** module provides applications with basic upload, download, and ba
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 ## Modules to Import
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 ## Constants
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -107,6 +104,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
@@ -162,6 +161,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
@@ -215,6 +216,14 @@ Uploads files. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -257,6 +266,14 @@ Uploads files. This API uses an asynchronous callback to return the result.
   | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -293,8 +310,6 @@ Subscribes to upload progress events. This API uses a callback to return the res
 >
 > To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
@@ -321,6 +336,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
@@ -334,8 +350,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 Subscribes to HTTP response events for the upload task. This API uses a callback to return the result asynchronously.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -362,6 +376,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let headerCallback = (headers: object) => {
     console.info("upOnHeader headers:" + JSON.stringify(headers));
@@ -375,8 +390,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
  on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
 Subscribes to upload completion or failure events. This API uses a callback to return the result asynchronously.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -403,6 +416,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
     for (let i = 0; i < taskStates.length; i++) {
@@ -426,8 +440,6 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 Unsubscribes from upload progress events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
@@ -447,6 +459,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback1 = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
@@ -469,8 +482,6 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 Unsubscribes from HTTP response events for the upload task.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
@@ -490,6 +501,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let headerCallback1 = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
@@ -511,8 +523,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 Unsubscribes from upload completion or failure events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
@@ -532,6 +542,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback1 = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
@@ -597,6 +608,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete().then((result: boolean) => {
     console.info('Succeeded in deleting the upload task.');
@@ -636,6 +648,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
@@ -671,6 +684,14 @@ Removes this upload task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -702,6 +723,14 @@ Removes this upload task. This API uses an asynchronous callback to return the r
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -721,13 +750,11 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 ## UploadConfig<sup>6+</sup>
 Describes the configuration of an upload task.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL.|
+| url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
 | header | Object | Yes| HTTP or HTTPS header added to an upload request.|
 | method | string | Yes|  HTTP request method. The value can be **POST** or **PUT**. The default value is **POST**. Use the **PUT** method to modify resources and the **POST** method to add resources.|
 | index<sup>11+</sup> | number | No| Path index of the task. The default value is **0**.|
@@ -738,8 +765,6 @@ Describes the configuration of an upload task.
 
 ## TaskState<sup>9+</sup>
 Implements a **TaskState** object, which is the callback parameter of the [on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9) and [off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9) APIs.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -770,8 +795,6 @@ The following table describes the enum values of **responseCode**.
 ## File
 Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 | Name| Type| Mandatory| Description|
@@ -785,8 +808,6 @@ Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 ## RequestData
 Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 | Name| Type| Mandatory| Description|
@@ -799,7 +820,6 @@ Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 Downloads files. This API uses a promise to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
-
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -833,7 +853,7 @@ For details about the following error codes, see [Upload and Download Error Code
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // Replace the URL with the HTTP address of the real server.
@@ -857,7 +877,6 @@ import { BusinessError } from '@ohos.base';
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
 Downloads files. This API uses an asynchronous callback to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
-
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -886,7 +905,7 @@ For details about the following error codes, see [Upload and Download Error Code
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // Replace the URL with the HTTP address of the real server.
@@ -937,6 +956,14 @@ Downloads files. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -973,6 +1000,14 @@ Downloads files. This API uses an asynchronous callback to return the result.
   | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+  | -------- | -------- |
+| 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -1003,8 +1038,6 @@ Subscribes to download progress events. This API uses a callback to return the r
 >
 > To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
@@ -1032,7 +1065,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // Replace the URL with the HTTP address of the real server.
@@ -1057,8 +1090,6 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 Unsubscribes from download progress events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
@@ -1079,7 +1110,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1112,8 +1143,6 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 Subscribes to download events. This API uses a callback to return the result asynchronously.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
@@ -1134,7 +1163,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1169,8 +1198,6 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
 Unsubscribes from download events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
@@ -1191,7 +1218,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1251,8 +1278,6 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 Subscribes to download failure events. This API uses a callback to return the result asynchronously.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
@@ -1279,7 +1304,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1304,8 +1329,6 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 Unsubscribes from download failure events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
@@ -1326,7 +1349,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1379,7 +1402,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1430,7 +1453,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1483,7 +1506,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1534,7 +1557,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1587,7 +1610,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1638,7 +1661,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1691,7 +1714,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1742,7 +1765,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1795,7 +1818,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1846,7 +1869,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1892,6 +1915,14 @@ Removes this download task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -1922,6 +1953,14 @@ Removes this download task. This API uses an asynchronous callback to return the
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **Example**
 
@@ -1956,6 +1995,14 @@ Queries this download task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -1986,6 +2033,14 @@ Queries this download task. This API uses an asynchronous callback to return the
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **Example**
 
@@ -2020,6 +2075,14 @@ Queries the **MimeType** of this download task. This API uses a promise to retur
   | -------- | -------- |
   | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -2050,6 +2113,14 @@ Queries the **MimeType** of this download task. This API uses an asynchronous ca
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **Example**
 
@@ -2084,6 +2155,14 @@ Pauses this download task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -2114,6 +2193,14 @@ Pauses this download task. This API uses an asynchronous callback to return the 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **Example**
 
@@ -2148,6 +2235,14 @@ Resumes this download task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -2179,6 +2274,14 @@ Resumes this download task. This API uses an asynchronous callback to return the
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -2195,13 +2298,11 @@ Resumes this download task. This API uses an asynchronous callback to return the
 ## DownloadConfig
 Defines the download task configuration.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL.|
+| url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
 | header | Object | No| HTTPS flag header to be included in the download request.<br>The **X-TLS-Version** parameter in **header** specifies the TLS version to be used. If this parameter is not set, the CURL_SSLVERSION_TLSv1_2 version is used. Available options are as follows:<br>CURL_SSLVERSION_TLSv1_0<br>CURL_SSLVERSION_TLSv1_1<br>CURL_SSLVERSION_TLSv1_2<br>CURL_SSLVERSION_TLSv1_3<br>The **X-Cipher-List** parameter in **header** specifies the cipher suite list to be used. If this parameter is not specified, the secure cipher suite list is used. Available options are as follows:<br>- The TLS 1.2 cipher suite list includes the following ciphers:<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br>- The TLS 1.3 cipher suite list includes the following ciphers:<br>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br>- The TLS 1.3 cipher suite list adds the Chinese national cryptographic algorithm:<br>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
 | enableMetered | boolean | No| Whether download is allowed on a metered connection. The default value is **false**. In general cases, a mobile data connection is metered, while a Wi-Fi connection is not.<br>- **true**: allowed<br>- **false**: not allowed|
 | enableRoaming | boolean | No| Whether download is allowed on a roaming network. The default value is **false**.<br>- **true**: allowed<br>- **false**: not allowed|
@@ -2214,8 +2315,6 @@ Defines the download task configuration.
 
 ## DownloadInfo<sup>7+</sup>
 Defines the download task information, which is the callback parameter of the [getTaskInfo<sup>9+</sup>](#gettaskinfo9) API.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -2282,7 +2381,8 @@ The upload and download SA has the **ohos.permission.SEND_TASK_COMPLETE_EVENT** 
 
 You can use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
 
-<!--Del-->For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).<!--DelEnd-->
+<!--Del-->
+For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).<!--DelEnd-->
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2401,7 +2501,12 @@ Defines the cause of a task failure.
 | DISCONNECTED | 0x00 |Network disconnection.|
 | TIMEOUT | 0x10 |Timeout.|
 | PROTOCOL | 0x20 |Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).|
+| PARAM<sup>12+</sup> | 0x30 |Parameter error, for example, incorrect URL format.|
 | FSIO | 0x40 |File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.|
+| DNS<sup>12+</sup> | 0x50 |DNS resolution error.|
+| TCP/UDP<sup>12+</sup> | 0x60 |TCP/UDP connection error.|
+| SSL<sup>12+</sup> | 0x70 |SSL connection error, for example, a certificate error or certificate verification failure.|
+| REDIRECT<sup>12+</sup> | 0x80 |Redirection error.|
 
 
 ## Filter<sup>10+</sup>
@@ -2448,6 +2553,8 @@ Defines the data structure of the task information for query. The fields availab
 ## HttpResponse<sup>12+</sup> 
 Data structure of the task response header.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Type| Mandatory| Description|
@@ -2462,6 +2569,8 @@ Implements an upload or download task. Before using this API, you must obtain a 
 
 ### Attributes
 Task attributes include the task ID and task configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2494,12 +2603,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2570,12 +2681,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2646,12 +2759,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2720,11 +2835,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2792,11 +2909,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2864,11 +2983,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2921,6 +3042,8 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 Subscribes to task response headers. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
@@ -2936,11 +3059,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -3010,12 +3135,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3094,12 +3221,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3178,12 +3307,14 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3260,11 +3391,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3340,11 +3473,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3420,11 +3555,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3485,6 +3622,8 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 Unsubscribes from task response headers.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
@@ -3500,11 +3639,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3592,6 +3733,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3665,6 +3808,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3730,6 +3875,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3799,6 +3946,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3869,6 +4018,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -3944,6 +4095,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -4015,6 +4168,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -4082,6 +4237,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
@@ -4145,7 +4302,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | permission denied. |
   | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
@@ -4155,6 +4312,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -4231,7 +4390,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   | ID| Error Message|
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | permission denied. |
   | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
@@ -4241,6 +4400,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -4274,7 +4435,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
     task.start();
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -4318,7 +4479,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
-  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
     console.info(`Succeeded in querying a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4355,6 +4518,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
       console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
@@ -4400,6 +4565,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456").then(() => {
     console.info(`Succeeded in removing a download task. `);
   }).catch((err: BusinessError) => {
@@ -4435,6 +4602,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4477,6 +4646,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in showing a upload task.`);
   }).catch((err: BusinessError) => {
@@ -4513,6 +4684,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4556,6 +4729,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
@@ -4588,6 +4763,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.search((err: BusinessError, data: Array<string>) => {
     if (err) {
       console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
@@ -4623,8 +4800,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
@@ -4669,8 +4847,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }

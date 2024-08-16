@@ -1,6 +1,6 @@
 # 应用触发数据备份/恢复（仅对系统应用开放）
 
-备份恢复是为设备上应用数据、公共数据和系统服务提供的完整的数据备份和恢复解决方案。系统应用开发者可以根据需求，按下述指导开发应用，以触发备份/恢复数据。
+备份恢复框架是为设备上的应用、服务提供自身数据备份和恢复的解决方案。系统应用开发者可以根据需求，按下述指导开发应用，以触发备份/恢复数据。
 
 - [获取能力文件](#获取能力文件)：获取当前系统用户内所有应用与备份恢复相关基础信息的能力文件。能力文件在应用备份/恢复数据时不可缺少。
 
@@ -14,7 +14,7 @@
 
 在使用备份恢复接口之前，需要：
 
-1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)：`ohos.permission.BACKUP`
+1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)：`ohos.permission.BACKUP`
 
 2. 导入依赖模块：`@ohos.file.backup`
 

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import uiExtension from '@ohos.arkui.uiExtension'
+import { uiExtension } from '@kit.ArkUI'
 ```
 
 ## WindowProxy
@@ -24,7 +24,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
 > **说明：**
 >
-> 不安全窗口是指可能遮挡EmbeddedComponent（或UIExtensionComponent）组件的窗口，如非系统全局悬浮窗、宿主子窗口。当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时需要让不安全窗口重新显示。
+> 不安全窗口是指可能遮挡EmbeddedComponent（或UIExtensionComponent）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时需要让不安全窗口重新显示。使用CreateModalUIExtension接口创建的UIExtensionComponent会默认隐藏不安全窗口，且无法自行更改。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,10 +53,8 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 ```ts
 // ExtensionProvider.ts
 
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -117,10 +115,8 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 ```ts
 // ExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {

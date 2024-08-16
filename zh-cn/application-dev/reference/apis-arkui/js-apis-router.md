@@ -1,6 +1,8 @@
-# @ohos.router (页面路由)
+# @ohos.router (页面路由)(不推荐)
 
 本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、同应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
+
+推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)作为应用路由框架。
 
 > **说明**
 >
@@ -12,12 +14,12 @@
 >
 > - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
 >
-> - 为了实现更好的转场效果，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)和[模态转场](../../ui/arkts-modal-transition.md)。
+> - 如果使用传入callback形式的pushUrl，pushNamedRoute接口，则在callback中使用getLength等接口获取的栈信息是中间态的栈信息，可能和最终状态不一致。
 
 ## 导入模块
 
 ```
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -56,7 +58,7 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -183,7 +185,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -310,7 +312,7 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -411,13 +413,13 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if can not get the delegate, only throw in standard system. |
+| 100001    | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -525,7 +527,7 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -654,7 +656,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -781,7 +783,7 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -882,13 +884,13 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if can not get the delegate, only throw in standard system. |
+| 100001    | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -988,6 +990,8 @@ back(index: number, params?: Object): void;
 
 返回指定的页面。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1049,7 +1053,7 @@ console.log('pages stack size = ' + size);
 
 getState(): RouterState
 
-获取当前页面的状态信息。
+获取栈顶页面的状态信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1075,6 +1079,8 @@ console.log('current path = ' + page.path);
 getStateByIndex(index: number): RouterState | undefined
 
 通过索引值获取对应页面的状态信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1106,6 +1112,8 @@ if (options != undefined) {
 getStateByUrl(url: string): Array&lt;RouterState&gt;
 
 通过url获取对应页面的状态信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1144,7 +1152,7 @@ for (let i: number = 0; i < options.length; i++) {
 | index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | name  | string | 是  | 表示当前页面的名称，即对应文件名。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | path  | string | 是   | 表示当前页面的路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| params<sup>12+</sup>  | Object |  是  | 表示当前页面携带的参数。                                         |
+| params<sup>12+</sup>  | Object |  是  | 表示当前页面携带的参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                         |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
 
@@ -1174,7 +1182,7 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   router.showAlertBeforeBackPage({
@@ -1244,7 +1252,7 @@ router.getParams();
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页。 |
+| url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页，首页默认为页面跳转配置项src数组的第一个数据项。 |
 | params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
 
 
@@ -1313,8 +1321,8 @@ export default {
 
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
-import router from '@ohos.router'
-import { BusinessError } from '@ohos.base'
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 // 定义传递参数的类
 class innerParams {
@@ -1374,7 +1382,7 @@ struct Index {
 
 ```ts
 // 在second页面中接收传递过来的参数
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 class innerParams {
   array:number[]

@@ -27,7 +27,7 @@
 | <!--DelRow-->VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
 | TASK_KEEPING | <!--RP1-->计算任务（仅对特定设备开放）<!--RP1End--> | taskKeeping  | 杀毒软件。 |
 
-- 使用了[网络管理](../network/net-mgmt-overview.md)服务的应用，才能通过申请DATA_TRANSFER长时任务实现后台上传下载，不被挂起。如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。
+- 使用了[网络管理](../network/net-mgmt-overview.md)服务的应用，才能通过申请DATA_TRANSFER长时任务实现后台上传下载，不被挂起。如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。使用下载类型的长时任务，应用需要更新下载进度。如果进度长时间（超过10分钟）不更新，下载类型的长时任务会被取消。推荐使用API 12申请下载类型的长时任务，并更新通知进度。
 - 使用了[媒体会话](../media/avsession/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
 
 
@@ -45,6 +45,8 @@
 > **说明：**
 >
 > 应用按需求申请长时任务，当应用无需在后台运行（任务结束）时，要及时主动取消长时任务，否则系统会强行取消。例如用户点击音乐暂停播放时，应用需及时取消对应的长时任务；用户再次点击音乐播放时，需重新申请长时任务。
+>
+> 若音频在后台播放时被[打断](../media/audio/audio-playback-concurrency.md)，系统会自行检测和停止长时任务，音频重启播放时，需要再次申请长时任务。
 >
 > 播放音频的应用在后台停止长时任务的同时，需要暂停或停止音频流，否则应用会被系统强制终止。
 
@@ -71,7 +73,7 @@
 
 2. 声明后台模式类型，以及添加uris等配置。
    - 声明后台模式类型（必填项）：在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
-   - 添加uris等配置（可选项）：长时任务通过第一个元素获取通知标题，若使用隐式跳转等功能，具体格式请参考如下示例。其中，uris在配置项中的位置请严格遵循示例。
+   - 添加uris等配置（可选项）：长时任务通过第一个元素获取通知标题，若使用隐式跳转等功能，具体格式请参考如下示例。其中，uris在配置项中的位置请严格遵循示例，"scheme"应根据实际业务场景进行修改。
    
    ```json
     "module": {
@@ -92,8 +94,10 @@
                         ]    
                     },
                     {
-                        uris: [
-                            "scheme": "test"
+                        "uris": [
+                            {
+                                "scheme": "test"
+                            }
                         ]
                     }
                 ]
@@ -108,14 +112,12 @@
    长时任务相关的模块为@ohos.resourceschedule.backgroundTaskManager和@ohos.app.ability.wantAgent，其余模块按实际需要导入。
 
    ```ts
-    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import window from '@ohos.window';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import Want from '@ohos.app.ability.Want';
-    import rpc from '@ohos.rpc';
-    import { BusinessError } from '@ohos.base';
-    import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { rpc } from '@kit.IPCKit'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
 
 4. 申请和取消长时任务。
@@ -149,17 +151,18 @@
           // 使用者自定义的一个私有值
           requestCode: 0,
           // 点击通知后，动作执行属性
-          wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+          actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
    
         // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
         wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-           backgroundTaskManager.startBackgroundRunning(this.context,
-             backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-             console.info(`Succeeded in operationing startBackgroundRunning.`);
-           }).catch((err: BusinessError) => {
-             console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-           });
+          backgroundTaskManager.startBackgroundRunning(this.context,
+            backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+            // 此处执行具体的长时任务逻辑，如放音等。
+            console.info(`Succeeded in operationing startBackgroundRunning.`);
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+          });
         });
       }
    
@@ -189,8 +192,6 @@
             .onClick(() => {
               // 通过按钮申请长时任务
               this.startContinuousTask();
-   
-              // 此处执行具体的长时任务逻辑，如放音等。
             })
    
             Button() {
@@ -236,7 +237,7 @@
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       };
 
       // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
@@ -374,12 +375,12 @@
 3. 导入模块。
    
    ```js
-    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-    import featureAbility from '@ohos.ability.featureAbility';
-    import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-    import rpc from "@ohos.rpc";
-    import { BusinessError } from '@ohos.base';
-    import Want from '@ohos.app.ability.Want';
+    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { rpc } from '@kit.IPCKit'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
 
 4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 stopBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
@@ -399,7 +400,7 @@
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       };
 
       // 通过wantAgent模块的getWantAgent方法获取WantAgent对象

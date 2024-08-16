@@ -24,7 +24,7 @@
 拉伸能力是指容器组件尺寸发生变化时，增加或减小的空间全部分配给容器组件内指定区域。
 
 
-拉伸能力通常通过[Flex布局](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)中的flexGrow和flexShrink属性实现，flexGrow和flexShink属性常与flexBasis属性搭配使用，故将这三个属性放在一起介绍。
+拉伸能力通常通过[Flex布局](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)中的flexGrow和flexShrink属性实现，flexGrow和flexShrink属性常与flexBasis属性搭配使用，故将这三个属性放在一起介绍。
 
 
   | 属性 | 类型 | 默认值 | 描述 | 
@@ -673,40 +673,35 @@ struct HiddenCapabilitySample {
 
   build() {
     Column() {
-      Row() {
+      Row({ space:24 }) {
         Image($r("app.media.favorite"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(1)  // 布局优先级
 
         Image($r("app.media.down"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(2)  // 布局优先级
 
         Image($r("app.media.pause"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(3)  // 布局优先级
 
         Image($r("app.media.next"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(2)  // 布局优先级
 
         Image($r("app.media.list"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(1)  // 布局优先级
       }
       .width(this.rate * 100 + '%')

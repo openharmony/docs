@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import performanceMonitor from '@ohos.arkui.performanceMonitor';
+import { performanceMonitor } from '@kit.ArkUI';
 ```
 
 

@@ -331,6 +331,38 @@ Allows an application to access the navigation service.
 
 **Valid since**: 12
 
+### ohos.permission.PROTECT_SCREEN_LOCK_DATA
+
+Allows an application to protect its sensitive data from being accessed after the screen is locked.
+
+After the application obtains this permission, a directory in **/el5** will be automatically created. Access to the data in this directory is denied after the screen is locked. There is no API for this permission.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 12
+
+### ohos.permission.FILE_ACCESS_PERSIST
+
+Allows an application to support persistent access to file URIs.
+
+**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+
+**Authorization mode**: system_grant
+
+**Valid since**: 11
+
+### ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
+
+Allows an application to access the car distributed engine.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 12
+
 ## user_grant Permissions
 
 The [user_grant permissions](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).
@@ -463,26 +495,6 @@ Allows an application to read Calendar data.
 
 **Valid since**: 8
 
-### ohos.permission.READ_HEALTH_DATA
-
-Allows an application to read the health data of the user.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-### ohos.permission.READ_MEDIA
-
-Allows an application to read media files from the user's external storage.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
 ### ohos.permission.WRITE_CALENDAR
 
 Allows an application to add, remove, and modify Calendar events.
@@ -493,9 +505,9 @@ Allows an application to add, remove, and modify Calendar events.
 
 **Valid since**: 8
 
-### ohos.permission.WRITE_MEDIA
+### ohos.permission.READ_HEALTH_DATA
 
-Allows an application to read media files from and write media files into the user's external storage.
+Allows an application to read the health data of the user.
 
 **Permission level**: normal
 
@@ -512,3 +524,55 @@ Allows an application to use NearLink, such as device pairing and connecting to 
 **Authorization mode**: user_grant
 
 **Valid since**: 12
+
+### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+Allows an application to access the **Download** directory and its subdirectories in the user directory.
+
+**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+
+**Authorization mode**: user_grant
+
+**Valid since**: 11
+
+### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+Allows an application to access the **Documents** directory and its subdirectories in the user directory.
+
+**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+
+**Authorization mode**: user_grant
+
+**Valid since**: 11
+
+### ohos.permission.READ_MEDIA
+
+Allows an application to read media files from the user's external storage.
+
+**Permission level**: normal
+
+**Authorization mode**: user_grant
+
+**Valid since**: 7
+
+**Deprecated from**: 12
+
+**Substitute**:
+
+See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
+
+### ohos.permission.WRITE_MEDIA
+
+Allows an application to read media files from and write media files into the user's external storage.
+
+**Permission level**: normal
+
+**Authorization mode**: user_grant
+
+**Valid since**: 7
+
+**Deprecated from**: 12
+
+**Substitute**:
+
+See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).

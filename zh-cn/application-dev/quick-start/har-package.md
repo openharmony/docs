@@ -94,9 +94,9 @@ export { func2 } from './src/main/ts/test';
 ```
 
 ### 导出native方法
-在HAR中也可以包含C++编写的so。对于so中的native方法，HAR通过以下方式导出，以导出libnative.so的加法接口add为例：
+在HAR中也可以包含C++编写的so。对于so中的native方法，HAR通过以下方式导出，以导出liblibrary.so的加法接口add为例：
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeAdd(a: number, b: number): number {
@@ -294,11 +294,11 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 
 > **说明：**
 > 
+> 编译HAR时，如果没有开启混淆能力，编译后的产物是源码文件。<br/>
 > 仅Stage模型的ArkTS工程支持混淆。  
 > HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 
-
-对于API 10及以上版本，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：
+HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-build-obfuscation-0000001731754312-V5)，配置如下所示：
 
   ```json
   {
@@ -335,9 +335,13 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 
 > **场景说明**
 >
->在har中使用Sendable class时，开启该配置。
+>在HAR中使用Sendable class时，开启该配置。
 
-har模块中arkts文件编译后，默认产物为js文件，想要将产物修改为ts文件，可以在har模块src/main目录下的module.json5文件中的"metadata"字段下的"UseTsHar"进行设置，配置如下所示：
+> **使用限制**
+>
+>在依赖TS HAR时，禁止引用TS HAR中的ArkUI组件。
+
+HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修改为ts文件，可以在HAR模块src/main目录下的module.json5文件中的"metadata"字段下的"UseTsHar"进行设置，配置如下所示：
 
   ```json
   {

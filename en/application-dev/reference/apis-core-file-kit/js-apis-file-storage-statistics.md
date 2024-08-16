@@ -32,7 +32,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -59,7 +59,7 @@ Obtains the storage space of this application, in bytes. This API uses an asynch
 
   | Name   | Type                                                      | Mandatory | Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the application space obtained.       |
+  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback used to return the application space obtained.       |
 
 **Error codes**
 
@@ -67,7 +67,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -89,7 +89,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-| Name     | Type  | Readable| Writable| Description          |
+| Name     | Type  | Read-Only| Writable| Description          |
 | --------- | ------ | --- | ---- | -------------- |
 | appSize   | number | Yes| No| Size of the application (excluding empty folders), in bytes.   |
 | cacheSize | number | Yes| No| Size of the cache data, in bytes.  |

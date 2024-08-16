@@ -9,7 +9,7 @@ NodeContent是ArkUI提供的ContentSlot的管理器。
 ## 导入模块
 
 ```ts
-import { NodeContent } from "@ohos.arkui.node";
+import {NodeContent } from '@kit.ArkUI'
 ```
 
 ## NodeContent
@@ -20,13 +20,17 @@ constructor()
 
 节点内容的实体封装。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
-import { NodeContent } from '@ohos.arkui.node'
+import {NodeContent } from '@kit.ArkUI'
 
 @Component
 struct Parent {
@@ -52,6 +56,8 @@ addFrameNode(node: FrameNode): void
 
 根据参数将FrameNode添加到NodeContent中。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -66,6 +72,8 @@ removeFrameNode(node: FrameNode): void
 
 根据参数将FrameNode从NodeContent中删除。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -77,7 +85,7 @@ removeFrameNode(node: FrameNode): void
 **示例：**
 
 ```ts
-import { NodeContent, typeNode } from '@ohos.arkui.node';
+import {NodeContent, typeNode } from '@kit.ArkUI';
 
 class NodeContentCtrl {
   content: NodeContent

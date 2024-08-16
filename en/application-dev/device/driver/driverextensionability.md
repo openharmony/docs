@@ -6,10 +6,6 @@
 You can bind a [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) object to an application through **DriverExtensionManager** so that related transactions can be processed in the background based on the application request information.
 Each type of **ExtensionAbility** has its own context. The **DriverExtensionAbility** provides related capabilities through the [DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md).
          
-This topic describes how to use DriverExtensionAbility in the following scenarios:
-
-- [DriverExtensionAbility](#driverextensionability)
-  - [How to Develop](#how-to-develop)
 
 ## How to Develop
 

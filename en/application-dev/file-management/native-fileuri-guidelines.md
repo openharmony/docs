@@ -1,6 +1,6 @@
 # FileUri Development (C/C++)
 
-## **Scenario**
+## When to Use
 
 You can use the APIs provided by the **fileUri** module to perform basic URI operations.
 
@@ -23,7 +23,7 @@ For details about the APIs, see [File URI](../reference/apis-core-file-kit/fileu
 | FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int length, char **result)| Obtains the URI from a path.|
 | FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int length, char **result) | Obtains the sandbox path from a URI.|
 | FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri(const char *uri, unsigned int length, char **result) | Obtains the URI of the directory, in which a URI is located.|
-| bool OH_FileUri_IsValidUri(const char *uri, unsigned int length) | Checks whether a URI is valid. |
+| bool OH_FileUri_IsValidUri(const char *uri, unsigned int length) | Checks whether a URI is valid.|
 
 ## How to Develop
 
@@ -38,12 +38,14 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 **Adding the Header File**
 
 ```c++
-#include <filemanagement/file_uri/include/oh_file_uri.h>
+#include <filemanagement/file_uri/oh_file_uri.h>
 ```
 
 1. Use **OH_FileUri_GetUriFromPath** to obtain the URI from a path. The memory allocated must be released using **free()**. <br>Example:
 
    ```c
+    #include <cstring>
+
     void OH_FileUri_GetUriFromPathExample() {
         char *path = "/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(path);
@@ -61,6 +63,8 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 2. Use **OH_FileUri_GetPathFromUri** to convert a URI into a path. The memory allocated must be released using **free()**. <br>Example:
 
    ```c
+    #include <cstring>
+
     void OH_FileUri_GetPathFromUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
@@ -75,9 +79,11 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
     }
    ```
 
-3. Use **OH_FileUri_GetFullDirectoryUri** to obtain the URI of the directory where the specified URI is located. The memory allocated must be released using **free()**.<br>Example:
+3. Use **OH_FileUri_GetFullDirectoryUri** to obtain the URI of the directory where the specified URI is located. The memory allocated must be released using **free()**. <br>Example:
 
    ```c
+    #include <cstring>
+    
     void OH_FileUri_GetFullDirectoryUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
@@ -95,6 +101,8 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 4. Use **OH_FileUri_IsValidUri** to check whether a URI is valid. <br>Example:
 
    ```c
+    #include <cstring>
+    
     void OH_FileUri_IsValidUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);

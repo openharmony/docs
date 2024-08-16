@@ -14,11 +14,11 @@ Misc devices refer to LED lights and vibrators on devices. LED lights are mainly
 ## Modules to Import
 
 
-```
-import vibrator from '@system.vibrator';
+```ts
+import { Vibrator } from '@kit.SensorServiceKit';
 ```
 
-## vibrator.vibrate
+## Vibrator.vibrate
 
  vibrate(options?: VibrateOptions): void
 
@@ -37,8 +37,7 @@ Triggers device vibration.
 **Example**
 
 ```ts
-import vibrator from '@system.vibrator';
-import { VibrateOptions } from '@system.vibrator';
+import { Vibrator, VibrateOptions } from '@kit.SensorServiceKit';
 
 let vibrateOptions: VibrateOptions = {
   mode: 'short',
@@ -52,7 +51,7 @@ let vibrateOptions: VibrateOptions = {
     console.info('completed in vibrating');
   }
 };
-vibrator.vibrate(vibrateOptions);
+Vibrator.vibrate(vibrateOptions);
 ```
 
 ## VibrateOptions

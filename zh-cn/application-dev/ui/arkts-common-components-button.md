@@ -169,7 +169,8 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ```ts
   // xxx.ets
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
+  
   @Entry
   @Component
   struct ButtonCase1 {

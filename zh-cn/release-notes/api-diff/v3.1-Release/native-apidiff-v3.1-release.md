@@ -21,7 +21,7 @@ OpenHarmony 3.1 Release相较于OpenHarmony 3.0 LTS版本的API变更如下:
   | 图形-drawing  | void OH_Drawing_SetTextStyleBaseLine(OH_Drawing_TextStyle*, int /* OH_Drawing_TextBaseline */) | 新增     | 设置字体基线位置                                |
   | 图形-drawing  | void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle*, int /* OH_Drawing_TextDecoration */) | 新增     | 设置装饰                                        |
   | 图形-drawing  | void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle*, uint32_t /* color */) | 新增     | 设置装饰颜色                                    |
-  | 图形-drawing  | void OH_Drawing_SetTextStyleFontHeight(OH_Drawing_TextStyle*, double /* fontHeight */) | 新增     | 设置字体高度                                    |
+  | 图形-drawing  | void OH_Drawing_SetTextStyleFontHeight(OH_Drawing_TextStyle*, double /* fontHeight */) | 新增     | 设置行高，按当前字体大小的倍数进行设置                                    |
   | 图形-drawing  | void OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle*,int /* fontFamiliesNumber \*/, const char* fontFamilies[]); | 新增     | 设置字体类型                                    |
   | 图形-drawing  | void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle*, int /* OH_Drawing_FontStyle */) | 新增     | 设置字体风格                                    |
   | 图形-drawing  | void OH_Drawing_SetTextStyleLocale(OH_Drawing_TextStyle*, const char*) | 新增     | 设置语言区域                                    |

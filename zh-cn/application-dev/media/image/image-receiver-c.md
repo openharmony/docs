@@ -19,9 +19,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 在hello.cpp中实现C Native API接口调用逻辑，示例代码如下：
 
 ```c++
-#include "hilog/log.h"
-#include "image/image_native.h"
-#include "image/image_receiver_native.h"
+#include <hilog/log.h>
+#include <multimedia/image_framework/image/image_native.h>
+#include <multimedia/image_framework/image/image_receiver_native.h>
 
 #undef LOG_DOMAIN
 #define LOG_DOMAIN 0x3200

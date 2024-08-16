@@ -21,6 +21,8 @@ static getLocale(): LocaleResponse
 
 获取应用当前的语言和地区。默认与系统的语言和地区同步。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **返回值：**
@@ -42,6 +44,8 @@ static getLocale(): LocaleResponse
 ## LocaleResponse
 
 表示应用当前Locale的属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite
 

@@ -9,12 +9,14 @@
 ## 导入模块
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 ```
 
 ## PluginComponentTemplate
 
 Plugin组件模板参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -32,6 +34,8 @@ Plugin组件模板参数。
 type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 以键值对形式存储信息，符合json格式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,6 +56,8 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **模型约束：** 此接口仅适用于FA模型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                                  | 必填   | 说明                                       |
@@ -68,6 +74,8 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **模型约束：** 此接口仅适用于FA模型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 类型                                  | 必填   | 说明                                       |
@@ -81,6 +89,8 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 PluginManager.Request方法时候接收到的回调结果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                | 类型                                       | 必填   | 说明    |
@@ -92,6 +102,8 @@ PluginManager.Request方法时候接收到的回调结果。
 ### RequestEventResult
 
 注册Request监听方法后，接受到的请求事件时候回应请求的数据类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -108,6 +120,8 @@ type OnPushEventCallback = (source: Want, template: PluginComponentTemplate, dat
 
 对应Push事件的监听回调函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数        | 类型                                       | 必填   | 说明                     |
@@ -120,9 +134,8 @@ type OnPushEventCallback = (source: Want, template: PluginComponentTemplate, dat
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
-import Want from '@ohos.app.ability.Want';
-import { PluginComponentTemplate } from '@ohos.pluginComponent'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
@@ -140,6 +153,8 @@ type OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Re
 
 对应request事件的监听回调函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数        | 类型                                  | 必填   | 说明                |
@@ -151,8 +166,8 @@ type OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Re
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
-import Want from '@ohos.app.ability.Want';
+import { pluginComponentManager } from '@kit.ArkUI'
+import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
   console.error("onRequestListener");
@@ -175,6 +190,8 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
 **模型约束：** 此接口仅适用于FA模型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -186,7 +203,7 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 pluginComponentManager.push(
   {
     want: {
@@ -217,6 +234,8 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 
 **模型约束：** 此接口仅适用于FA模型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
@@ -230,7 +249,7 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 pluginComponentManager.request(
   {
     want: {
@@ -259,6 +278,8 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 
 提供者监听"request"类型的事件，给使用者返回通过request接口主动请求的数据；使用者监听"push"类型的事件，接收提供者通过push接口主动推送的数据。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -271,9 +292,8 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
-import Want from '@ohos.app.ability.Want';
-import {PluginComponentTemplate} from '@ohos.pluginComponent'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
   console.log("onPushListener source=" + JSON.stringify(source))

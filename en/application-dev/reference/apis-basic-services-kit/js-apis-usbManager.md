@@ -9,10 +9,10 @@ The **usbManager** module provides USB device management functions, including US
 ## Modules to Import
 
 ```ts
-import usb from "@ohos.usbManager";
+import { usbManager } from '@kit.BasicServicesKit';
 ```
 
-## usb.getDevices
+## usbManager.getDevices
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
@@ -29,7 +29,7 @@ Obtains the list of USB devices connected to the host. If no device is connected
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 console.log(`devicesList = ${devicesList}`);
 /*
 The following is a simple example of the data structure for devicesList:
@@ -84,21 +84,21 @@ The following is a simple example of the data structure for devicesList:
 */
 ```
 
-## usb.connectDevice
+## usbManager.connectDevice
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 Connects to the USB device based on the device information returned by **getDevices()**.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and device information, and then call [usb.requestRight](#usbrequestright) to request the device access permission.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device information, and then call [usbManager.getDevices](#usbmanagergetdevices) to request the device access permission.
 
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| device | [USBDevice](#usbdevice) | Yes| USB device information.|
+| -------- | -------- | -------- | ---------------- |
+| device | [USBDevice](#usbdevice) | Yes| USB device information. **busNum** and **devAddress** obtained by **getDevices** are used to determine the device. Other parameters are passed transparently.|
 
 **Return value**
 
@@ -110,25 +110,26 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 14400001 |Permission denied. Need call requestRight to get permission. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400001 | Permission denied. Call requestRight to get the permission first. |
 
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
 console.log(`devicepipe = ${devicepipe}`);
 ```
 
-## usb.hasRight
+## usbManager.hasRight
 
 hasRight(deviceName: string): boolean
 
@@ -142,7 +143,15 @@ Checks whether the user, for example, the application or system, has the device 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| Device name.|
+| deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -153,12 +162,18 @@ Checks whether the user, for example, the application or system, has the device 
 **Example**
 
 ```ts
-let devicesName: string = "1-1";
-let right: boolean = usb.hasRight(devicesName);
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let right: boolean = usbManager.hasRight(device.name);
 console.log(`${right}`);
 ```
 
-## usb.requestRight
+## usbManager.requestRight
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
@@ -170,7 +185,15 @@ Requests the temporary device access permission for the application. This API us
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| Device name.|
+| deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -181,13 +204,18 @@ Requests the temporary device access permission for the application. This API us
 **Example**
 
 ```ts
-let devicesName: string = "1-1";
-usb.requestRight(devicesName).then(ret => {
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name).then(ret => {
   console.log(`requestRight = ${ret}`);
 });
 ```
 
-## usb.removeRight
+## usbManager.removeRight
 
 removeRight(deviceName: string): boolean
 
@@ -199,7 +227,15 @@ Removes the device access permission for the application. System applications ar
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| Device name.|
+| deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -210,19 +246,24 @@ Removes the device access permission for the application. System applications ar
 **Example**
 
 ```ts
-let devicesName: string = "1-1";
-if (usb.removeRight(devicesName)) {
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+if (usbManager.removeRight(device.name)) {
   console.log(`Succeed in removing right`);
 }
 ```
 
-## usb.claimInterface
+## usbManager.claimInterface
 
 claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
 Claims a USB interface.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and USB interfaces, call [usb.requestRight](#usbrequestright) to request the device access permission, and call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and USB interfaces, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -230,9 +271,17 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-| iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to claim.|
-| force | boolean | No| Whether to forcibly claim the USB interface. The default value is **false**, indicating not to forcibly claim the USB interface.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
+| force | boolean | No| Whether to forcibly claim the USB interface. Whether to forcibly claim a USB interface. The default value is **false**, which means not to forcibly claim a USB interface. You can set the value as required.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -243,26 +292,26 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number= usb.claimInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number= usbManager.claimInterface(devicepipe, interfaces);
 console.log(`claimInterface = ${ret}`);
 ```
 
-## usb.releaseInterface
+## usbManager.releaseInterface
 
 releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 Releases a USB interface.
 
-Before you do this, ensure that you have claimed the interface by calling [usb.claimInterface](#usbclaiminterface).
+Before you do this, ensure that you have claimed the interface by calling [usbManager.claimInterface](#usbmanagerclaiminterface).
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -270,8 +319,16 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-| iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to release.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
 
 **Return value**
 
@@ -282,27 +339,27 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
-ret = usb.releaseInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+ret = usbManager.releaseInterface(devicepipe, interfaces);
 console.log(`releaseInterface = ${ret}`);
 ```
 
-## usb.setConfiguration
+## usbManager.setConfiguration
 
 setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 Sets the device configuration.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and device configuration, call [usb.requestRight](#usbrequestright) to request the device access permission, and call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device configuration, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -310,8 +367,16 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-| config | [USBConfiguration](#usbconfiguration) | Yes| USB configuration to set.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+| config | [USBConfiguration](#usbconfiguration) | Yes| USB configuration. You can use **getDevices** to obtain device information and identify the USB configuration based on the ID.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -322,35 +387,43 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let config: usb.USBConfiguration = device.configs[0];
-let ret: number= usb.setConfiguration(devicepipe, config);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let config: usbManager.USBConfiguration = device.configs[0];
+let ret: number= usbManager.setConfiguration(devicepipe, config);
 console.log(`setConfiguration = ${ret}`);
 ```
 
-## usb.setInterface
+## usbManager.setInterface
 
 setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 Sets a USB interface.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and interfaces, call [usb.requestRight](#usbrequestright) to request the device access permission, call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter, and call [usb.claimInterface](#usbclaiminterface) to claim the USB interface.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and interfaces, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to claim a USB interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
 
-| Name  | Type                             | Mandatory | Description           |
-| ----- | ------------------------------- | --- | ------------- |
-| pipe  | [USBDevicePipe](#usbdevicepipe) | Yes  | Device pipe, which is used to determine the bus number and device address.|
-| iface | [USBInterface](#usbinterface)   | Yes  | USB interface to set. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+| iface | [USBInterface](#usbinterface)   | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -361,27 +434,27 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
-ret = usb.setInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+ret = usbManager.setInterface(devicepipe, interfaces);
 console.log(`setInterface = ${ret}`);
 ```
 
-## usb.getRawDescriptor
+## usbManager.getRawDescriptor
 
 getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 Obtains the raw USB descriptor.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list, call [usb.requestRight](#usbrequestright) to request the device access permission, and call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -389,7 +462,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -400,23 +481,23 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: Uint8Array = usb.getRawDescriptor(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: Uint8Array = usbManager.getRawDescriptor(devicepipe);
 ```
 
-## usb.getFileDescriptor
+## usbManager.getFileDescriptor
 
 getFileDescriptor(pipe: USBDevicePipe): number
 
 Obtains the file descriptor.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list, call [usb.requestRight](#usbrequestright) to request the device access permission, and call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -424,7 +505,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -435,23 +524,27 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: number = usb.getFileDescriptor(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: number = usbManager.getFileDescriptor(devicepipe);
 ```
 
-## usb.controlTransfer
+## usbManager.controlTransfer<sup>(deprecated)</sup>
 
 controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt;
 
 Performs control transfer.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list, call [usb.requestRight](#usbrequestright) to request the device access permission, and call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
+
+**NOTE**
+
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [usbControlTransfer](#usbmanagerusbcontroltransfer12).
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -459,9 +552,17 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-| controlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
-| timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe. You need to call **connectDevice** to obtain its value.|
+| controlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters. Set the parameters as required.|
+| timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -474,8 +575,8 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 ```ts
 class PARA {
   request: number = 0
-  reqType: usb.USBControlRequestType = 0
-  target: usb.USBRequestTargetType = 0
+  reqType: usbManager.USBControlRequestType = 0
+  target: usbManager.USBRequestTargetType = 0
   value: number = 0
   index: number = 0
   data: Uint8Array = new Uint8Array()
@@ -490,25 +591,25 @@ let param: PARA = {
   data: new Uint8Array()
 };
 
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-usb.controlTransfer(devicepipe, param).then((ret: number) => {
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+usbManager.controlTransfer(devicepipe, param).then((ret: number) => {
  console.log(`controlTransfer = ${ret}`);
 })
 ```
 
-## usb.bulkTransfer
+## usbManager.usbControlTransfer<sup>12+</sup>
 
-bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;
+usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout ?: number): Promise&lt;number&gt;
 
-Performs bulk transfer.
+Performs control transfer.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and endpoints, call [usb.requestRight](#usbrequestright) to request the device access permission, call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter, and call [usb.claimInterface](#usbclaiminterface) to claim the USB interface.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -517,9 +618,16 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-| endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer.|
-| buffer | Uint8Array | Yes| Buffer used to write or read data.|
+| requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | Yes| Control transfer parameters.|
 | timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **Return value**
 
@@ -530,34 +638,43 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-// Call usb.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
-// Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
-// Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+class PARA {
+  bmRequestType: number = 0
+  bRequest: number = 0
+  wValue: number = 0
+  wIndex: number = 0
+  wLength: number = 0
+  data: Uint8Array = new Uint8Array()
+}
+
+let param: PARA = {
+  bmRequestType: 0,
+  bRequest: 0,
+  wValue:0,
+  wIndex: 0,
+  wLength: 0,
+  data: new Uint8Array()
+};
+
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let endpoint: usb.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
-let buffer =  new Uint8Array(128);
-usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
-  console.log(`bulkTransfer = ${ret}`);
-});
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+usbManager.usbControlTransfer(devicepipe, param).then((ret: number) => {
+ console.log(`usbControlTransfer = ${ret}`);
+})
 ```
 
-## usb.closePipe
+## usbManager.bulkTransfer
 
-closePipe(pipe: USBDevicePipe): number
+bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;
 
-Closes a USB device pipe.
+Performs bulk transfer.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list, call [usb.requestRight](#usbrequestright) to request the device access permission, and call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call [usbManager.claimInterface](#usbmanagerclaiminterface) to claim a USB interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -565,7 +682,72 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe. You need to call **connectDevice** to obtain its value.|
+| endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer. You need to call getDevices to obtain the device information list and endpoint.|
+| buffer | Uint8Array | Yes| Buffer used to write or read data.|
+| timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transmitted or received data block if the transfer is successful, or **-1** if an exception has occurred.|
+
+**Example**
+
+```ts
+// Call usbManager.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
+// Pass the obtained USB device as a parameter to usbManager.connectDevice. Then, call usbManager.connectDevice to connect the USB device.
+// Call usbManager.claimInterface to claim a USB interface. After that, call usbManager.bulkTransfer to start bulk transfer.
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let endpoint: usbManager.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+let buffer =  new Uint8Array(128);
+usbManager.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
+  console.log(`bulkTransfer = ${ret}`);
+});
+```
+
+## usbManager.closePipe
+
+closePipe(pipe: USBDevicePipe): number
+
+Closes a USB device pipe.
+
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the message control channel. You need to call **connectDevice** to obtain its value.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -576,14 +758,14 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: number = usb.closePipe(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: number = usbManager.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
 
@@ -682,6 +864,21 @@ Represents control transfer parameters.
 | reqType | [USBControlRequestType](#usbcontrolrequesttype) | Yes  |Control request type.         |
 | value   | number                                          | Yes  |Request parameter value.           |
 | index   | number                                          | Yes  |Index of the request parameter value.|
+| data    | Uint8Array                                      | Yes  |Buffer for writing or reading data.    |
+
+## USBDeviceRequestParams<sup>12+</sup>
+
+Represents control transfer parameters.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name     | Type                                           | Mandatory              |Description              |
+| ------- | ----------------------------------------------- | ---------------- |---------------- |
+| bmRequestType | number                                    | Yes  |Control request type.           |
+| bRequest  | number                                        | Yes  |Request type.         |
+| wValue | number                                           | Yes  |Request parameter value.         |
+| wIndex   | number                                         | Yes  |Index of the request parameter value.           |
+| wLength   | number                                        | Yes  |Length of the requested data.|
 | data    | Uint8Array                                      | Yes  |Buffer for writing or reading data.    |
 
 ## USBRequestTargetType

@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape";
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 ```
 
 ## CircleShape
@@ -28,6 +28,8 @@ import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.sha
 constructor(options?: ShapeSize)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,6 +53,8 @@ constructor(options?: ShapeSize)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -71,6 +75,10 @@ constructor(options?: ShapeSize)
 
 constructor(options?: PathShapeOptions)
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -86,6 +94,8 @@ commands(commands: string): PathShape
 设置路径的绘制指令。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -107,6 +117,8 @@ constructor(options?: RectShapeOptions | RoundRectShapeOptions)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -123,6 +135,8 @@ radiusWidth(rWidth: number | string): RectShape
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -136,6 +150,8 @@ radiusHeight(rHeight: number | string): RectShape
 设置矩形形状圆角半径的高度。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -151,6 +167,8 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -164,12 +182,14 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| width | number &nbsp;\|&nbsp; string | 形状的宽度。 |
-| height | number &nbsp;\|&nbsp; string | 形状的高度。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| width | number &nbsp;\|&nbsp; string | 否 | 形状的宽度。 |
+| height | number &nbsp;\|&nbsp; string | 否 | 形状的高度。 |
 
 ## PathShapeOptions
 
@@ -177,11 +197,13 @@ PathShape 的构造函数参数。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| commands | string | 绘制路径的指令。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| commands | string | 否 | 绘制路径的指令。更多说明请参考commands支持的[绘制命令](./arkui-ts/ts-drawing-components-path.md#commands-1)。 |
 
 ## RectShapeOptions
 
@@ -189,13 +211,15 @@ RectShape 的构造函数参数。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 继承自[ShapeSize](#shapesize)。
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 矩形形状的圆角半径。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 否 | 矩形形状的圆角半径。 |
 
 ## RoundRectShapeOptions
 
@@ -203,14 +227,16 @@ RectShape 带有半径的构造函数参数。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 继承自[ShapeSize](#shapesize)。
 
-| 名称         | 类型                                               | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- |
-| radiusWidth | number &nbsp;\|&nbsp; string | 矩形形状圆角半径的宽度。 |
-| radiusHeight | number &nbsp;\|&nbsp; string | 矩形形状圆角半径的高度。 |
+| 名称         | 类型                                               | 必填                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| radiusWidth | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的宽度。 |
+| radiusHeight | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的高度。 |
 
 ## BaseShape
 
@@ -228,6 +254,8 @@ width(width: Length): T
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -242,6 +270,8 @@ height(height: Length): T
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -255,6 +285,8 @@ size(size: SizeOptions): T
 设置形状的大小。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -276,6 +308,8 @@ offset(offset: Position): T
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -289,6 +323,8 @@ fill(color: ResourceColor): T
 设置形状的填充颜色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -304,6 +340,8 @@ position(position: Position): T
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
@@ -313,7 +351,7 @@ position(position: Position): T
 ## **示例**
 
 ```ts
-import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape"
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 
 @Entry
 @Component

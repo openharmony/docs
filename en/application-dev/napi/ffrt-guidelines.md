@@ -366,9 +366,6 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-#define ffrt_deps_define(name, dep1, ...) const void* __v_##name[] = {dep1, ##__VA_ARGS__}; \
-    ffrt_deps_t name = {sizeof(__v_##name) / sizeof(void*), __v_##name}
-
 void fib_ffrt(void* arg)
 {
     fib_ffrt_s* p = (fib_ffrt_s*)arg;
@@ -381,10 +378,14 @@ void fib_ffrt(void* arg)
         int y1, y2;
         fib_ffrt_s s1 = {x - 1, &y1};
         fib_ffrt_s s2 = {x - 2, &y2};
-        ffrt_deps_define(dx, &x);
-        ffrt_deps_define(dy1, &y1);
-        ffrt_deps_define(dy2, &y2);
-        ffrt_deps_define(dy12, &y1, &y2);
+        const std::vector<ffrt_dependence_t> dx_deps = {{ffrt_dependence_data, &x}};
+        ffrt_deps_t dx{static_cast<uint32_t>(dx_deps.size()), dx_deps.data()};
+        const std::vector<ffrt_dependence_t> dy1_deps = {{ffrt_dependence_data, &y1}};
+        ffrt_deps_t dy1{static_cast<uint32_t>(dy1_deps.size()), dy1_deps.data()};
+        const std::vector<ffrt_dependence_t> dy2_deps = {{ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy2{static_cast<uint32_t>(dy2_deps.size()), dy2_deps.data()};
+        const std::vector<ffrt_dependence_t> dy12_deps = {{ffrt_dependence_data, &y1}, {ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy12{static_cast<uint32_t>(dy12_deps.size()), dy12_deps.data()};
         ffrt_submit_c(fib_ffrt, NULL, &s1, &dx, &dy1, NULL);
         ffrt_submit_c(fib_ffrt, NULL, &s2, &dx, &dy2, NULL);
         ffrt_wait_deps(&dy12);
@@ -396,7 +397,8 @@ int main(int narg, char** argv)
 {
     int r;
     fib_ffrt_s s = {10, &r};
-    ffrt_deps_define(dr, &r);
+    const std::vector<ffrt_dependence_t> dr_deps = {{ffrt_dependence_data, &r}};
+    ffrt_deps_t dr{static_cast<uint32_t>(dr_deps.size()), dr_deps.data()};
     ffrt_submit_c(fib_ffrt, NULL, &s, NULL, &dr, NULL);
     ffrt_wait_deps(&dr);
     printf("fibonacci 10: %d\n", r);
@@ -774,9 +776,10 @@ int main(int narg, char** argv)
 Expected output:
 
 ```
-hello world, x = 2
+hello 
 handle wait
-x = 3
+x = 2
+world, x = 3
 ```
 
 
@@ -915,8 +918,6 @@ using namespace std;
 
 template<class T>
 struct Function {
-    template<class CT>
-    Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
     ffrt_function_header_t header;
     T closure;
 };
@@ -932,7 +933,7 @@ template<class T>
 void DestroyFunctionWrapper(void* t)
 {
     auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
-    f->closure = nullptr;
+    f = nullptr;
 }
 
 template<class T>
@@ -941,8 +942,10 @@ static inline ffrt_function_header_t* create_function_wrapper(T&& func,
 {
     using function_type = Function<std::decay_t<T>>;
     auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
-    auto f =
-        new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+    auto f = new (p)function_type;
+    f->header.exec = ExecFunctionWrapper<T>;
+    f->header.destroy = DestroyFunctionWrapper<T>;
+    f->closure = std::forward<T>(func);
     return reinterpret_cast<ffrt_function_header_t*>(f);
 }
 
@@ -951,8 +954,9 @@ int main(int narg, char** argv)
     ffrt_queue_attr_t queue_attr;
     (void)ffrt_queue_attr_init(&queue_attr);
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
-
-    ffrt_queue_submit(queue_handle, create_function_wrapper([]() {printf("Task done.\n");}, ffrt_function_kind_queue), nullptr);
+    std::function<void()>&& queueFunc = [] () {printf("Task done.\n");};
+    ffrt_function_header_t* queueFunc_t = create_function_wrapper((queueFunc), ffrt_function_kind_queue);
+    ffrt_queue_submit(queue_handle, queueFunc_t, nullptr);
 
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
@@ -1077,7 +1081,7 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-void ffrt_mutex_task()
+void ffrt_mutex_task(void *)
 {
     int sum = 0;
     ffrt_mutex_t mtx;
@@ -1091,7 +1095,7 @@ void ffrt_mutex_task()
     }
     ffrt_mutex_destroy(&mtx);
     ffrt_wait();
-    printf("sum = %d", sum);
+    printf("sum = %d\n", sum);
 }
 
 int main(int narg, char** argv)
@@ -1197,7 +1201,7 @@ void func1(void* arg)
     if (ret != ffrt_success) {
         printf("error\n");
     }
-    printf("a = %d", *(t->a));
+    printf("a = %d\n", *(t->a));
 }
 
 void func2(void* arg)
@@ -1262,7 +1266,7 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-void ffrt_cv_task()
+void ffrt_cv_task(void *)
 {
     ffrt_cond_t cond;
     int ret = ffrt_cond_init(&cond, NULL);
@@ -1334,9 +1338,11 @@ N/A
 
 void func(void* arg)
 {
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
-    ffrt_usleep(2000000); // Suspend for 2 seconds
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
+    time_t current_time = time(NULL);
+    printf("Time: %s", ctime(&current_time));
+    ffrt_usleep(2000000);
+    current_time = time(NULL);
+    printf("Time: %s", ctime(&current_time));
 }
 
 typedef struct {
@@ -1389,6 +1395,13 @@ int main(int narg, char** argv)
     ffrt_wait();
     return 0;
 }
+```
+
+An output case：
+
+```
+Time: Tue Aug 13 15:45:30 2024
+Time: Tue Aug 13 15:45:32 2024
 ```
 
 #### ffrt_yield
@@ -1444,8 +1457,6 @@ libffrt.z.so
     // Method 1: Use the template. C++ is supported.
     template<class T>
     struct Function {
-        template<class CT>
-        Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
         ffrt_function_header_t header;
         T closure;
     };
@@ -1470,8 +1481,10 @@ libffrt.z.so
     {
         using function_type = Function<std::decay_t<T>>;
         auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
-        auto f =
-            new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+        auto f = new (p)function_type;
+        f->header.exec = ExecFunctionWrapper<T>;
+        f->header.destroy = DestroyFunctionWrapper<T>;
+        f->closure = std::forward<T>(func);
         return reinterpret_cast<ffrt_function_header_t*>(f);
     }
 

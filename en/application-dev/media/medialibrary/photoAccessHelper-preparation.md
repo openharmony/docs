@@ -13,7 +13,7 @@ The application needs to call [getPhotoAccessHelper](../../reference/apis-media-
 3. Obtain a **PhotoAccessHelper** instance.
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 // The photoAccessHelper instance obtained here is a global object. Unless otherwise specified, the object obtained here is used in subsequent operations in this document. If an undefined error is reported, add the code snippet here.
 const context = getContext(this);
@@ -33,9 +33,13 @@ The required permissions must be authorized by the user. After adding the permis
 
 **How to Develop**
 
-1. [Declare the required permissions in the **module.json5** file](../../security/AccessToken/declare-permissions.md).
-2. [Request user authorization](../../security/AccessToken/request-user-authorization.md).
+<!--RP1-->
+
+1. Request the required permissions via the ACL. For details, see [Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md).<!--RP1End-->
+2. [Declare the required permissions in the **module.json5** file](../../security/AccessToken/declare-permissions.md).
+3. [Request user authorization](../../security/AccessToken/request-user-authorization.md).
 
 > **NOTE**
 >
-> Even if the user has granted the permission, the permission will still be checked before an API protected by the permission is called. The permission granted status should not be persisted, because the user can revoke the permission through the system application **Settings**.
+> Even if the user has granted the permission, the permission will still be checked before an API protected by the permission is called. The permission-granted status should not be persisted, because the user can revoke the permission through the system application **Settings**.
+

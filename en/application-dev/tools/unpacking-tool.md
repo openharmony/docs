@@ -229,7 +229,7 @@ The package parsing APIs are used by the application market to parse an HAP, APP
 | uiSyntax             | String                                        | Syntax type of a JS component.        | This field is newly added to the stage model.      |
 | pages                | List\<String>                                 | Information about each page in a JS component.      | This field is newly added to the stage model.      |
 | extensionAbilityInfos| List\<ExtensionAbilityInfo>                   | Information about the ExtensionAbility.      | This field is newly added to the stage model.       |
-| moduleAtomicService  | ModuleAtomicService struct (see **ModuleAtomicService Struct** below)| Atomic service information of the HAP.         | NA              |
+| moduleAtomicService  | ModuleAtomicService struct (see **ModuleAtomicService Struct** below)| Information about the atomic service in the HAP.         | NA              |
 | formInfos            | List\<AbilityFormInfo>                        | Widget information.                      | NA              |
 | descriptions         | HashMap\<String, String>                      | Description of the HAP.                   | NA             |
 

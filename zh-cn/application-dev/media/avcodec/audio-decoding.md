@@ -6,15 +6,15 @@
 
 | 容器规格 | 音频解码类型                 |
 | -------- | :--------------------------- |
-| mp4      | AAC、MPEG(MP3)、Flac、Vorbis |
+| mp4      | AAC、MPEG(MP3)、Flac、Vorbis<!--RP1--><!--RP1End--> |
 | m4a      | AAC                          |
 | flac     | Flac                         |
-| ogg      | Vorbis                       |
+| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
 | aac      | AAC                          |
 | mp3      | MPEG(MP3)                    |
 | amr      | AMR(amrnb、amrwb)            |
 | raw      | G711mu                       |
-<!--RP1--><!--RP1End-->
+| ape      | APE                          |
 
 **适用场景**
 
@@ -143,7 +143,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 将对应输出buffer的 index 送入outQueue_队列
         // 将对应解码完成的数据data送入outBufferQueue_队列
     }
-    signal_ = new ADecSignal();
+    signal_ = new ADecBufferSignal();
     OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
     int32_t ret = OH_AudioCodec_RegisterCallback(audioDec_, cb_, signal_);
     if (ret != AVCS_ERR_OK) {
@@ -194,23 +194,23 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 5. 调用OH_AudioCodec_Configure()配置解码器。
    配置选项key值说明：
 
-   |                              |                             描述                             |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         |
-   | ---------------------------- | :----------------------------------------------------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            采样率                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            声道数                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |
-   | OH_MD_KEY_MAX_INPUT_SIZE     |                         最大输入长度                         |                可选                | 可选 |                可选                 | 可选 |        可选           |               可选                |
-   | OH_MD_KEY_AAC_IS_ADTS        |                           是否adts                           |        可选,默认1 latm类型         |  -   |                 -                  |  -   |         -             |               -                  |
-   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        输出音频流格式                        | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |   -   | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |  -   | 可选（默认SAMPLE_S16LE）| 可选（SAMPLE_S16LE，SAMPLE_F32LE）|
-   | MD_KEY_BITRATE               |                             可选                             |                可选                | 可选 |                可选                | 可选 |         可选           |              可选                 |
-   | MD_KEY_IDENTIFICATION_HEADER |                          ID Header                           |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                  |
-   | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                 |
-   | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header 拼接 |                 -                  |      |   必须（和上述ID和Setup二选一）    |  -   |           -            |                -                 |
+   |                              |                             描述                             |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         |          APE                      |
+   | ---------------------------- | :----------------------------------------------------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: | :-------------------------------: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            采样率                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |                必须                |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            声道数                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |                必须                |
+   | OH_MD_KEY_MAX_INPUT_SIZE     |                         最大输入长度                         |                可选                | 可选 |                可选                 | 可选 |        可选           |               可选                |                可选                |
+   | OH_MD_KEY_AAC_IS_ADTS        |                           是否adts                           |        可选,默认1 latm类型         |  -   |                 -                  |  -   |         -             |               -                  |                 -                  |
+   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        输出音频流格式                        | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |   -   | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |  可选 | 可选（默认SAMPLE_S16LE）| 可选（SAMPLE_S16LE，SAMPLE_F32LE）|               可选                |
+   | MD_KEY_BITRATE               |                             可选                             |                可选                | 可选 |                可选                | 可选 |         可选           |              可选                 |               可选                |
+   | MD_KEY_IDENTIFICATION_HEADER |                          ID Header                           |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                  |                -                  |
+   | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                 |                -                  |
+   | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header 拼接 |                 -                  |      |   必须（和上述ID和Setup二选一）    |  -   |           -            |                -                 |                -                  |
    
    ```cpp
    // 设置解码分辨率
    int32_t ret;
    // 配置音频采样率（必须）
-   constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
+   constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
    // 配置音频码率（必须）
    constexpr uint32_t DEFAULT_BITRATE = 32000;
    // 配置音频声道数（必须）
@@ -221,7 +221,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    constexpr uint32_t DEFAULT_AAC_TYPE = 1;
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SMAPLERATE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MAX_INPUT_SIZE, DEFAULT_MAX_INPUT_SIZE);
@@ -334,9 +334,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     auto buffer = signal_->inBufferQueue_.front();
     int64_t size;
     int64_t pts;
+    // size是待解码数据的每帧帧长度。pts是每帧的时间戳，用于指示音频应该何时被播放。
+    // size和pts的获取来源：音视频资源文件或者待解码的数据流
+    // 若是解码音视频资源文件，则需从解封装OH_AVDemuxer_ReadSampleBuffer的buffer中获取
+    // 若是解码数据流，则需要从数据流的提供者获取。
+    // 此处为了介绍解码功能以测试文件中保存的size和pts为示例
     inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
     inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
-    inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
+    inputFile_.read((char *)OH_AVBuffer_GetAddr(buffer), size);
     OH_AVCodecBufferAttr attr = {0};
     if (inputFile_->eof()) {
         attr.size = 0;
@@ -345,6 +350,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         attr.size = size;
         attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
     }
+    attr.pts = pts;
     OH_AVBuffer_SetBufferAttr(buffer, &attr);
     int32_t ret = OH_AudioCodec_PushInputBuffer(audioDec_, index);
     if (ret != AV_ERR_OK) {
@@ -354,7 +360,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    
 10. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
 
-    <!--RP2-->
+    <!--RP3-->
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *data = signal_->outBufferQueue_.front();
@@ -374,7 +380,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 结束
     }
     ```
-    <!--RP2End-->
+    <!--RP3End-->
 
 11. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。

@@ -21,7 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OhosImageSize](_ohos_image_size.md) | 定义图像大小。 | 
+| struct  [OhosImageSize](_ohos_image_size.md) | 定义图像大小。  | 
+
 
 ### 宏定义
 

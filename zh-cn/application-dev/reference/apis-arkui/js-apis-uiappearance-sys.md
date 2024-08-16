@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import uiAppearance from '@ohos.uiAppearance'
+import { uiAppearance } from '@kit.ArkUI'
 ```
 
 
@@ -59,8 +59,8 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 **示例：** 
 
   ```ts
-import uiAppearance from '@ohos.uiAppearance'
-import { BusinessError } from '@ohos.base';
+import { uiAppearance } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (error) => {
       if (error) {
@@ -111,8 +111,8 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 **示例：** 
 
   ```ts
-import uiAppearance from '@ohos.uiAppearance'
-import { BusinessError } from '@ohos.base';
+import { uiAppearance } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
       console.info('Set dark-mode successfully.');
@@ -155,8 +155,8 @@ getDarkMode(): DarkMode;
 **示例：** 
 
   ```ts
-import uiAppearance from '@ohos.uiAppearance'
-import { BusinessError } from '@ohos.base';
+import { uiAppearance } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let darkMode = uiAppearance.getDarkMode();
     console.info('Get dark-mode ' + darkMode);

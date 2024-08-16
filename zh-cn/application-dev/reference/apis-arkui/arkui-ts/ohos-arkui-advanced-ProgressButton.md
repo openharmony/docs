@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ProgressButton (下载按钮)
+# ProgressButton
 
 
 文本下载按钮，可显示具体下载进度。
@@ -45,6 +45,7 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 ```ts
 import { ProgressButton } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

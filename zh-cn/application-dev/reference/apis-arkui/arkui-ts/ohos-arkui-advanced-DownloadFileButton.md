@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.DownloadFileButton（下载文件按钮）
+# DownloadFileButton
 
 下载文件按钮，通过点击该下载按钮，可以获取到当前应用在Download公共目录中所属的存储路径。
 
@@ -10,7 +10,7 @@
 ##  导入模块
 
 ```
-import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton'
+import { DownloadFileButton } from '@kit.ArkUI'
 ```
 
 ## 子组件
@@ -129,9 +129,9 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 ##  示例
 
 ```
-import picker from '@ohos.file.picker';
+import { picker } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton';
+import { DownloadFileButton, DownloadLayoutDirection } from '@kit.ArkUI';
 
 @Entry
 @Component

@@ -17,15 +17,15 @@ import { ability } from '@kit.AbilityKit';
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称         | 类型                 | 描述                                                         |
-| ----------- | -------------------- | ------------------------------------------------------------ |
-| DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)               | DataAbilityHelper二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | PacMap二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)               | DataAbilityOperation二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | DataAbilityResult二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
-| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| StartAbilityParameter   | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)               | StartAbilityParameter二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| 名称 | 类型 | 只读 | 可选 | 说明       |
+| ---- | ---- | --- | ---- | --------- |
+| DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)  | 否 | 否 | DataAbilityHelper二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)  | 否 | 否 | PacMap二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)  | 否 | 否 | DataAbilityOperation二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)  | 否 | 否 | DataAbilityResult二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)  | 否 | 否 | AbilityResult二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
+| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)  | 否 | 否 | ConnectOptions二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| StartAbilityParameter   | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)  | 否 | 否 | StartAbilityParameter二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 
 **示例：**
 ```ts

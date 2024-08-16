@@ -22,6 +22,8 @@ EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensio
 
 EmbeddedComponent(loader: Want, type: EmbeddedType)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名                | 参数类型                                                   | 必填 | 参数描述                             |
@@ -49,6 +51,8 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 被拉起的EmbeddedUIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时，触发本回调函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名   | 类型   | 说明                                                                                     |
@@ -65,6 +69,8 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 onError(callback: ErrorCallback)
 
 被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -85,6 +91,8 @@ onError(callback: ErrorCallback)
 
 用于表示被拉起的EmbeddedUIExtensionAbility的返回结果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 属性名  | 类型   | 说明                                                 |
 | ------- | ------ | ---------------------------------------------------  |
 | code    | number | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
@@ -98,7 +106,7 @@ onError(callback: ErrorCallback)
 
   ```ts
   // pages/Index.ets -- UIAbility启动时加载此页面
-  import Want from '@ohos.app.ability.Want'
+  import { Want } from '@kit.AbilityKit';
 
   @Entry
   @Component
@@ -133,9 +141,7 @@ onError(callback: ErrorCallback)
 - EmbeddedComponent拉起的EmbeddedUIExtensionAbility在`ets/extensionAbility/ExampleEmbeddedAbility`文件中实现，内容如下：
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-  import Want from '@ohos.app.ability.Want';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleEmbeddedAbility]'
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
@@ -174,7 +180,7 @@ onError(callback: ErrorCallback)
 - EmbeddedUIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
 
   ```ts
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
 
   let storage = LocalStorage.getShared()
 

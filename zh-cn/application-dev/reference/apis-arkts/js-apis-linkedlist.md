@@ -26,6 +26,8 @@ import { LinkedList } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -38,6 +40,8 @@ import { LinkedList } from '@kit.ArkTS';
 constructor()
 
 LinkedList的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -62,6 +66,8 @@ let linkedList: LinkedList<string | number | boolean | object> = new LinkedList(
 add(element: T): boolean
 
 在LinkedList尾部插入元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -108,6 +114,8 @@ addFirst(element: T): void
 
 在LinkedList头部插入元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -147,6 +155,8 @@ insert(index: number, element: T): void
 
 在长度范围内任意插入指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -180,6 +190,8 @@ linkedList.insert(2, true);
 has(element: T): boolean
 
 判断此LinkedList中是否含有该指定元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -216,6 +228,8 @@ let result = linkedList.has("squirrel");
 get(index: number): T
 
 根据下标获取LinkedList中的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -260,6 +274,8 @@ getLastIndexOf(element: T): number
 
 返回指定元素最后一次出现时的下标值，查找失败返回-1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -301,6 +317,8 @@ let result = linkedList.getLastIndexOf(2);
 getIndexOf(element: T): number
 
 返回指定元素第一次出现时的下标值，查找失败返回-1。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -344,6 +362,8 @@ removeByIndex(index: number): T
 
 根据元素的下标值查找元素，并将其删除。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -386,6 +406,8 @@ removeFirst(): T
 
 删除并返回LinkedList的第一个元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -421,6 +443,8 @@ removeLast(): T
 
 删除并返回LinkedList的最后一个元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -455,6 +479,8 @@ let result = linkedList.removeLast();
 remove(element: T): boolean
 
 删除查找到的第一个指定的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -494,6 +520,8 @@ let result = linkedList.remove(2);
 removeFirstFound(element: T): boolean
 
 删除第一次出现的指定元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -536,6 +564,8 @@ removeLastFound(element: T): boolean
 
 删除最后一次出现的指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -577,6 +607,8 @@ clone(): LinkedList&lt;T&gt;
 
 克隆一个与LinkedList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -610,6 +642,8 @@ forEach(callbackFn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;)
 thisArg?: Object): void
 
 通过回调函数来遍历LinkedList实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -656,6 +690,8 @@ clear(): void
 
 清除LinkedList中的所有元素，并把length置为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -682,6 +718,8 @@ linkedList.clear();
 set(index: number, element: T): T
 
 将此LinkedList中指定位置的元素替换为指定元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -725,6 +763,8 @@ convertToArray(): Array&lt;T&gt;
 
 把当前LinkedList实例转换成数组，并返回转换后的数组。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -756,6 +796,8 @@ let result = linkedList.convertToArray();
 getFirst(): T
 
 获取LinkedList实例中的第一个元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -789,6 +831,8 @@ let result = linkedList.getFirst();
 getLast(): T
 
 获取LinkedList实例中的最后一个元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -826,6 +870,8 @@ let result = linkedList.getLast();
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

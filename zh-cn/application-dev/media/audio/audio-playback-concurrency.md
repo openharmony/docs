@@ -1,4 +1,4 @@
-# 多音频播放的并发策略
+# 处理音频焦点事件
 
 ## 音频打断策略
 
@@ -25,6 +25,8 @@
 - 若[使用AVPlayer开发音频播放功能](../media/using-avplayer-for-playback.md)，则可以通过修改AVPlayer的[audioInterruptMode](../../reference/apis-media-kit/js-apis-media.md#avplayer9)属性进行设置。
 
 - 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[setInterruptMode](../../reference/apis-audio-kit/js-apis-audio.md#setinterruptmode9)函数进行设置。
+
+- 若[使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)，则可以调用[OH_AudioStreamBuilder_SetRendererInterruptMode](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrendererinterruptmode)函数进行设置。
 
 
 ### 打断类型
@@ -53,8 +55,10 @@
 
 - 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[on('audioInterrupt')](../../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
 
-为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
-  
+- 若[使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)，则可以调用[OH_AudioStreamBuilder_SetRendererCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrenderercallback)接口注册监听焦点回调事件，当收到音频打断事件（OH_AudioRenderer_OnInterruptEvent）时，应用需根据其内容，做出相应的调整。
+
+为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能或者使用OHAudio接口开发音频播放器功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
+
 ```ts
 import { audio } from '@kit.AudioKit';  // 导入audio模块
 import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError
@@ -121,3 +125,13 @@ async function onAudioInterrupt(): Promise<void> {
   });
 }
 ```
+
+## 典型场景
+
+以下列举一些典型的焦点适配场景。
+
+| 先播应用类型 | 推荐流类型         | 后播应用类型 | 推荐流类型            | 推荐体验                                                     | 适配方案                                                     |
+| ------------ | ------------------ | ------------ | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 视频         | STREAM_USAGE_MOVIE | 闹铃         | STREAM_USAGE_ALARM    | 闹铃响起后，视频暂停播放；闹钟结束后，视频继续播放。         | 注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停视频播放，并更新UI界面。当闹铃结束后，视频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
+| 音乐         | STREAM_USAGE_MUSIC | 电话铃声     | STREAM_USAGE_RINGTONE | 电话响铃后，音乐暂停播放；不接通或者接通再挂断后，音乐恢复播放。 | 注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。当电话结束后，视频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
+| 音乐         | STREAM_USAGE_MUSIC | 音乐         | STREAM_USAGE_MUSIC    | 后播音乐正常播放，先播音乐应用停止播放，UI变成停止播放状态。 | 先播应用注册焦点事件监听，接收到`INTERRUPT_HINT_STOP`事件时，停止音乐播放，并更新UI界面。 |

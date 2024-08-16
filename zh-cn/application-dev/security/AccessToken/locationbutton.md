@@ -13,6 +13,8 @@
 
 ## 约束与限制
 
+- 当用户首次点击应用中的位置控件，系统将弹窗请求用户授权。如果用户点击“取消”，弹窗消失，应用无授权，用户再次点击位置控件时，将会重新弹窗；如果用户点击“允许”，弹窗消失，应用将被授予临时位置权限，此后点击该应用的位置控件将不会弹窗。
+
 - 精准定位的临时授权会持续到灭屏、应用切后台、应用退出等任一情况发生，然后恢复到临时授权之前的授权状态（授予/未授予/未申请）
 
 - 应用在授权期间没有调用次数限制。
@@ -36,7 +38,7 @@
    
    安全控件是由图标、文本、背景组成的类似Button的按钮，其中图标、文本两者至少有其一，背景是可选的。图标和文本不支持自定义，仅支持在已有的选项中选择。应用申明安全控件的接口时，分为传参和不传参两种，不传参默认创建图标+文字+背景的按钮，传参根据传入的参数创建，不包含没有配置的元素。
 
-   当前示例使用默认参数，具体请参[LocationButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
+   当前示例使用默认参数，具体请参见[LocationButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
 
    在LocationButton的onClick()回调中通过调用[geoLocationManager](../../reference/apis-location-kit/js-apis-geoLocationManager.md)模块提供的方法获取当前位置信息。
 

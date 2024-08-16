@@ -19,8 +19,6 @@ import { request } from '@kit.BasicServicesKit';
 ## Filter<sup>10+</sup>
 过滤条件。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -30,8 +28,6 @@ import { request } from '@kit.BasicServicesKit';
 
 ## TaskInfo<sup>10+</sup> 
 查询结果的任务信息数据结构，提供普通查询和系统查询，两种字段的可见范围不同。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -75,6 +71,8 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -123,6 +121,8 @@ query(id: string): Promise&lt;TaskInfo&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {

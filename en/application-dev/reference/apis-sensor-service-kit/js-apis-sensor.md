@@ -1931,7 +1931,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -1985,7 +1984,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2036,7 +2034,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2087,7 +2084,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2138,7 +2134,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2189,7 +2184,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2246,7 +2240,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2300,7 +2293,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2351,7 +2343,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2405,7 +2396,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2456,7 +2446,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2510,7 +2499,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2561,7 +2549,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2612,7 +2599,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2665,7 +2651,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2717,9 +2702,8 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denie.                                            |
+| 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2771,9 +2755,8 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denie.                                            |
+| 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2824,7 +2807,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2875,7 +2857,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2926,7 +2907,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -2977,7 +2957,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -3029,7 +3008,6 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -4631,17 +4609,19 @@ Describes the sensor data reporting frequency.
 
 ## SensorFrequency<sup>11+</sup>
 
+type SensorFrequency = 'game' | 'ui' | 'normal'
+
 Defines the reporting frequency mode of the sensor.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name  | Type  | Readable| Writable| Description                                                        |
-| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| game   | string | Yes  | No  | The sensor reports data every 20,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
-| ui     | string | Yes  | No  | The sensor reports data every 60,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
-| normal | string | Yes  | No  | The sensor reports data every 200,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| game   | string | No  | The sensor reports data every 20,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
+| ui     | string | No  | The sensor reports data every 60,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
+| normal | string | No  | The sensor reports data every 200,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
 
 ## RotationMatrixResponse
 
@@ -4682,6 +4662,7 @@ Describes a geomagnetic response object.
 | deflectionAngle | number | Yes  | Yes  | Magnetic declination, which is the angle between true north (geographic north) and the magnetic north (the horizontal component of the field).|
 | levelIntensity  | number | Yes  | Yes  | Horizontal intensity of the magnetic field vector field.                                |
 | totalIntensity  | number | Yes  | Yes  | Total intensity of the magnetic field vector.                                  |
+
 
 ## LocationOptions
 
@@ -6454,10 +6435,10 @@ Unsubscribes from sensor data changes.
 
 **Parameters**
 
-| Name          | Type                                                        | Mandatory| Description                                                        |
-| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type             | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**. |
-| callbackcallback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**. |
+| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 

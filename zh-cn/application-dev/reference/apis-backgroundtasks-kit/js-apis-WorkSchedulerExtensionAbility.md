@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 ```
 
 ## 属性
@@ -39,7 +39,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
 **示例：** 
 
   ```ts
-  import workScheduler from '@ohos.resourceschedule.workScheduler';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStart(workInfo: workScheduler.WorkInfo) {
@@ -66,7 +66,7 @@ onWorkStop(work: workScheduler.WorkInfo): void
 **示例：** 
 
   ```ts
-  import workScheduler from '@ohos.resourceschedule.workScheduler';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStop(workInfo: workScheduler.WorkInfo) {

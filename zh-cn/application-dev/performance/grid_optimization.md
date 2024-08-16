@@ -6,7 +6,7 @@
 
 ## 使用懒加载等方式提升Grid性能
 
-关于懒加载、cachedCount、组件复用的原理机制的介绍请参考[应用列表场景性能提升实践](./list-perf-improvment.md)。
+关于懒加载、cachedCount、组件复用的原理机制的介绍请参考[列表场景性能提升实践](./list-perf-improvment.md)。
 
 ### 使用场景
 
@@ -324,7 +324,7 @@ struct GridExample {
 
 ### 效果对比
 
-正反例相同的操作步骤：通过点击按钮，在调用scrollToIndex之前使用startTrace开始性能打点跟踪。当Grid查找到指定GridItem位置，准备渲染GridItem节点前，会进入GridItem自定义组件的生命周期回调aboutToAppear，在aboutToAppear里使用finishTrace停止性能打点跟踪。通过性能打点方式，使用startTrace标记调用scrollToIndex作为开始打点的位置，使用finishTrace标记查找到指定位置后准备渲染首个GridItem节点作为结束打点位置，来对比正反例场景下的耗时数据。关于本例中使用性能打点的介绍，请参考[性能打点](../reference/apis/js-apis-hitracemeter.md)。
+正反例相同的操作步骤：通过点击按钮，在调用scrollToIndex之前使用startTrace开始性能打点跟踪。当Grid查找到指定GridItem位置，准备渲染GridItem节点前，会进入GridItem自定义组件的生命周期回调aboutToAppear，在aboutToAppear里使用finishTrace停止性能打点跟踪。通过性能打点方式，使用startTrace标记调用scrollToIndex作为开始打点的位置，使用finishTrace标记查找到指定位置后准备渲染首个GridItem节点作为结束打点位置，来对比正反例场景下的耗时数据。关于本例中使用性能打点的介绍，请参考[性能打点](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)。
 
 下面将通过以上方式使用SmartPerf工具抓取 trace来分析正反例场景的性能差异。
 

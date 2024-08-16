@@ -11,7 +11,7 @@ AtomicServiceOptions可以作为[openAtomicService()](js-apis-inner-application-
 ## 导入模块
 
 ```ts
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import { AtomicServiceOptions } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -20,27 +20,25 @@ import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | 否 |  否 | 系统处理该次启动的方式。<br />例如通过wantConstant.Flags.FLAG_INSTALL_ON_DEMAND表示使用免安装能力。 |
-| parameters | Record\<string, Object> | 否 |  否 | 表示额外参数描述。具体描述参考[Want](js-apis-app-ability-want.md)中parameters字段描述。 |
+| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | 否 |  是 | 系统处理该次启动的方式。<br />例如通过wantConstant.Flags.FLAG_INSTALL_ON_DEMAND表示使用免安装能力。 |
+| parameters | Record\<string, Object> | 否 |  是 | 表示额外参数描述。具体描述参考[Want](js-apis-app-ability-want.md)中parameters字段描述。 |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { UIAbility, AtomicServiceOptions, common, wantConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
       flags: wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
-      parameters: { "demo.result": 123456 }
+      parameters: {
+        "demo.result": 123456
+      }
     };
 
     try {

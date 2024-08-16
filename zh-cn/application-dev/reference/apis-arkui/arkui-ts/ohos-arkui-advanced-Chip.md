@@ -1,4 +1,4 @@
-#  @ohos.arkui.advanced.Chip (操作块组件)
+# Chip
 
 操作块，用于搜索框历史记录或者邮件发送列表等场景。
 
@@ -30,25 +30,27 @@ Chip({options:ChipOptions})
 
 ChipOptions定义chip的样式及具体式样参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。 |
+| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true |
 | activated<sup>12+</sup>       | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false                      |
-| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| prefixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 前缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| suffixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 后缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。 |
+| prefixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 前缀图标属性，symbol类型。 |
+| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。   |
+| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。 |
+| suffixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 后缀图标属性，symbol类型。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal') |
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。 |
-| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button') |
+| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true |
+| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。 |
 | onClicked<sup>12+</sup>       | ()=>void                                       | 否   | 操作块点击事件。                                       |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto |
 
 > **说明：**
 >
@@ -79,13 +81,15 @@ ChipSize是chip可指定的尺寸类型，如普通型Chip。
 
 IconCommonOptions定义图标的共通属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src       | [ResourceStr](ts-types.md#resourcestr)     | 是   | 图标图片或图片地址引用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16,height: 16}<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标填充颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| src       | [ResourceStr](ts-types.md#resourcestr)     | 是   | 图标图片或图片地址引用。 |
+| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16,height: 16} |
+| fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标填充颜色。 |
 | activatedFillColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时图标填充颜色。                            |
 
 > **说明：**
@@ -139,17 +143,19 @@ ChipSymbolGlyphOptions定义前缀图标和后缀图标的属性。
 
 LabelOptions定义文本的属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                                       | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| text        | string                                     | 是   | 文本文字内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| text        | string                                     | 是   | 文本文字内容。 |
+| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2') |
+| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary') |
 | activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
-| fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans" |
+| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。 |
+| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>默认值：{<br/>start:  LengthMetrics.vp(6), end: LengthMetrics.vp(6)<br/>} |
 
 ## LabelMarginOptions
 
@@ -159,10 +165,10 @@ LabelMarginOptions定义文本与左右侧图标之间间距。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                                 | 必填 | 说明                                                     |
-| ----- | ------------------------------------ | ---- | -------------------------------------------------------- |
-| left  | [Dimension](ts-types.md#dimension10) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
-| right | [Dimension](ts-types.md#dimension10) | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
+| 名称  | 类型                                 | 必填 | 说明                                   |
+| ----- | ------------------------------------ | ---- | -------------------------------------- |
+| left  | [Dimension](ts-types.md#dimension10) | 否   | 文本与左侧图标之间间距，不支持百分比。 |
+| right | [Dimension](ts-types.md#dimension10) | 否   | 文本与右侧图标之间间距，不支持百分比。 |
 
 ## LocalizedLabelMarginOptions<sup>12+</sup>
 
@@ -172,19 +178,19 @@ LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                                                         | 必填 | 说明                                                     |
-| ----- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
-| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
+| 名称  | 类型                                                         | 必填 | 说明                                   |
+| ----- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与左侧图标之间间距，不支持百分比。 |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与右侧图标之间间距，不支持百分比。 |
 
 ## 示例
 
 ### 示例1
 
-自定义删除图标的操作快。
+自定义删除图标的操作块。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -225,10 +231,10 @@ struct Index {
 
 ### 示例2
 
-使用默认删除图标的操作快。
+使用默认删除图标的操作块。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -264,10 +270,10 @@ struct Index {
 
 ### 示例3
 
-不显示删除图标的操作快。
+不显示删除图标的操作块。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -306,10 +312,10 @@ struct Index {
 
 ### 示例4
 
-激活态操作快。
+激活态操作块。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -364,8 +370,7 @@ struct Index {
 Chip组件的前缀、后缀图标使用symbol类型资源展示。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { Chip, ChipSize, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -434,7 +439,7 @@ struct ChipPage {
   build() {
     Column() {
       Chip({
-        direction: Direction.Auto,
+        direction: Direction.Rtl,
         prefixIcon: {
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },

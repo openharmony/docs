@@ -76,9 +76,11 @@ For details about the following error codes, see [Ads Service Framework Error Co
 
 | ID| Error Message| 
 | -------- | -------- |
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+| 801      | Device not supported.  |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
-| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+
 
 **Example**
 
@@ -94,7 +96,7 @@ function requestAd(context: common.Context): void {
     // Ad type.
     adType: 3,
     // Ad ID.
-    adId: "testy63txaom8",
+    adId: "testy63txaom86"
   };
   const adOptions: advertising.AdOptions = {
     // Optional custom parameter, which specifies whether the ad can be downloaded while mobile data is in use. The value 1 means that the ad can be downloaded while mobile data is in use, and 0 means the opposite.
@@ -104,8 +106,8 @@ function requestAd(context: common.Context): void {
     // Specify whether you want your ad content to be treated as COPPA-compliant. The following values are available: -1 (default value): uncertain; 0: no; 1: yes.
     tagForChildProtection: -1,
     // Specify whether you want the ad request to be processed in a way that meets the GDPR for users in the EEA under the age of consent. The following values are available: -1 (default value): uncertain; 0: no; 1: yes.
-    tagForUnderAgeOfPromise: -1,
-  };
+    tagForUnderAgeOfPromise: -1
+  }
   // Listener for the ad loading status.
   const adLoaderListener: advertising.AdLoadListener = {
     // Called when the ad request fails.
@@ -153,9 +155,10 @@ For details about the following error codes, see [Ads Service Framework Error Co
 
 | ID| Error Message| 
 | -------- | -------- |
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+| 801      | Device not supported.  |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
-| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **Example**
 
@@ -171,13 +174,13 @@ function requestMultiAd(context: common.Context): void {
     // Ad type.
     adType: 3,
     // Ad ID.
-    adId: "testy63txaom8",
+    adId: "testy63txaom86"
   } as advertising.AdRequestParams,
     {
       // Ad type.
       adType: 3,
       // Ad ID.
-      adId: "testy63txaom8",
+      adId: "testy63txaom86"
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
@@ -188,7 +191,7 @@ function requestMultiAd(context: common.Context): void {
     // Specify whether you want your ad content to be treated as COPPA-compliant. The following values are available: -1 (default value): uncertain; 0: no; 1: yes.
     tagForChildProtection: -1,
     // Specify whether you want the ad request to be processed in a way that meets the GDPR for users in the EEA under the age of consent. The following values are available: -1 (default value): uncertain; 0: no; 1: yes.
-    tagForUnderAgeOfPromise: -1,
+    tagForUnderAgeOfPromise: -1
   };
   // Listener for the ad loading status.
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
@@ -263,7 +266,7 @@ export struct ShowAd {
   // Ad display parameters.
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // Whether to mute the ad. By default, the ad is not muted.
-    mute: false,
+    mute: false
   }
 
   build() {
@@ -318,7 +321,7 @@ Defines the ad request parameters.
 | adCount | number | No| Number of ads requested. If this parameter is left blank, the service logic prevails.| 
 | adWidth | number | No| Ad width. The value must be greater than 0. If this parameter is left blank, the service logic prevails.| 
 | adHeight | number | No| Ad height. The value must be greater than 0. If this parameter is left blank, the service logic prevails.| 
-| adSearchKeyword | string | No| Ad keyword.| 
+| adSearchKeyword | string | No| Ad keyword. If this parameter is left blank, "" is used by default.| 
 | [key: string] | number \| boolean \| string \| undefined | No| Custom parameters.| 
 
 
@@ -464,9 +467,9 @@ Defines the ad display parameters.
 | -------- | -------- | -------- | -------- |
 | customData | string | No| Custom media data. It is used by the server to notify the media server that a user should be rewarded for interacting with the ad, so as to avoid spoofing. If this parameter is left blank, no notification is sent.| 
 | userId | string | No| User ID. It is used by the server to notify the media server that a user should be rewarded for interacting with the ad, so as to avoid spoofing. If this parameter is left blank, no notification is sent.| 
-| useMobileDataReminder | boolean | No| Whether to display a dialog box to notify users when they use mobile data to play videos or download applications.<br>- **true**: A dialog box is displayed.<br>- **false**: No dialog box is displayed.| 
+| useMobileDataReminder | boolean | No| Whether to display a dialog box to notify users when they use mobile data to play videos or download applications.<br>- **true**: A dialog box is displayed.<br>- **false**: No dialog box is displayed. This parameter depends on the mobile data dialog box function. Currently, the complete function is not supported, and therefore the default value is not determined.| 
 | mute | boolean | No| Whether to mute the ad video.<br>- **true**: The ad video is muted.<br>- **false**: The ad video is not muted. If this parameter is left blank, the default value **true** is used.| 
-| audioFocusType | number | No| Type of the scenario where the audio focus is obtained during video playback.<br>- **0**: The focus is obtained when the video is played in mute or non-mute mode.<br>- **1**: The focus is not obtained when the video is played in mute mode.<br>- **2**: The focus is not obtained when the video is played in mute or non-mute mode.| 
+| audioFocusType | number | No| Type of the scenario where the audio focus is obtained during video playback.<br>- **0**: The focus is obtained when the video is played in mute or non-mute mode.<br>- **1**: The focus is not obtained when the video is played in mute mode.<br>- **2**: The focus is not obtained when the video is played in mute or non-mute mode. Currently, the function on which this API depends is not supported, and therefore the default value is not determined.| 
 | [key: string] | number \| boolean \| string \| undefined | No| Custom parameters.<br>- **refreshTime**: The value is of the number type, in ms. The value is in the range [30000, 120000]. This parameter is optional for the AutoAdComponent module and specifies the interval at which the ads rotate. If this parameter is set, ads are rotated at the interval specified by this parameter. Otherwise, ads are not rotated and only the first ad in the ad response is displayed.|
 
 
@@ -508,25 +511,23 @@ let adInteractionListener: advertising.AdInteractionListener = {
 ```
 
 ## getAdRequestBody<sup>12+</sup>  
-getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise<string>
+getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;string&gt;
 
-Obtains the body of an ad request.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+Obtains the body of an ad request. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Advertising.Ads
+
+**Parameters**
+| Name| Type| Mandatory| Description| 
+| -------- | -------- | -------- | -------- |
+| adParam | [AdRequestParams[]](#adrequestparams) | Yes| Ad request parameters.| 
+| adOptions | [AdOptions](#adoptions) | Yes| Ad configuration.| 
 
 **Return value**
 
 | Type| Description| 
 | -------- | -------- |
 | Promise&lt;string&gt; | Promise used to return the ad data of the string type.| 
-
-**Parameters**
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| adParam | [AdRequestParams](#adrequestparams) | Yes| Ad request parameters.| 
-| adOptions | [AdOptions](#adoptions) | Yes| Ad configuration.| 
 
 **Error codes**
 
@@ -535,6 +536,7 @@ For details about the following error codes, see [Ads Service Framework Error Co
 | ID| Error Message                        |
 | -------- | -------------------------------- |
 | 401      | Invalid input parameter.         |
+| 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 
 **Example** 
@@ -552,7 +554,7 @@ function getAdRequestBody(): void {
     'adType': 3,
     'adCount': 2,
     'adWidth': 100,
-    'adHeight': 100,
+    'adHeight': 100
   };
 
   adReqParamsListForRequest.push(adReqParams as advertising.AdRequestParams);
@@ -564,20 +566,20 @@ function getAdRequestBody(): void {
     // Specify whether you want your ad content to be treated as COPPA-compliant. The following values are available: -1 (default value): uncertain; 0: no; 1: yes.
     'tagForChildProtection': 1,
     // Specify whether you want the ad request to be processed in a way that meets the GDPR for users in the EEA under the age of consent. The following values are available: -1 (default value): uncertain; 0: no; 1: yes.
-    'tagForUnderAgeOfPromise': -1,
+    'tagForUnderAgeOfPromise': -1
   };
   advertising.getAdRequestBody(adReqParamsListForRequest, adOption as advertising.AdOptions).then((data) => {
     hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting AdRequestBody by promise: ${data}`);
     Prompt.showToast({
       message: data,
-      duration: 1000,
+      duration: 1000
     });
   }).catch((error: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s',
       `getAdRequestBody failed, code: ${error.code}, message: ${error.message}`);
     Prompt.showToast({
       message: error.code.toString() + ',' + error.message,
-      duration: 1000,
+      duration: 1000
     });
   })
 }
@@ -588,8 +590,6 @@ function getAdRequestBody(): void {
 parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context: common.UIAbilityContext): void
 
 Parses the body of an ad response.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Advertising.Ads
 
@@ -608,19 +608,20 @@ For details about the following error codes, see [Ads Service Framework Error Co
 | ID| Error Message                        |
 | -------- | -------------------------------- |
 | 401      | Invalid input parameter. Possible causes: parameter is null.|
+| 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 | 21800005 | Failed to parse the ad response. |
 
 **Example**
 
-For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md#overview).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).
 
 ```ts
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function parseAdResponse(adResponse: string, context: common.Context): void {
+function parseAdResponse(adResponse: string, context: common.UIAbilityContext): void {
   // Listen for the ad parsing callback.
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
     // Called when ad parsing fails.

@@ -1685,7 +1685,7 @@ Represents the network connection handle.
 > **NOTE**
 > When a device changes to the network connected state, the **netAvailable**, **netCapabilitiesChange**, and **netConnectionPropertiesChange** events will be triggered.
 > When a device changes to the network disconnected state, the **netLost** event will be triggered.
-> When a device switches from a Wi-Fi network to a cellular network, the **netLost** event will be first triggered to indicate that the Wi-Fi network is lost and then the **netAvaliable** event will be triggered to indicate that the cellular network is available.
+> When a device switches from a Wi-Fi network to a cellular network, the **netLost** event will be first triggered to indicate that the Wi-Fi network is lost and then the **netAvailable** event will be triggered to indicate that the cellular network is available.
 
 ### register
 
@@ -1734,7 +1734,7 @@ unregister(callback: AsyncCallback\<void>): void
 
 Unregisters the listener for network status changes.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

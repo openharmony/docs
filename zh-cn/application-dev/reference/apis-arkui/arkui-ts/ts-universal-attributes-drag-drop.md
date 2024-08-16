@@ -10,7 +10,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 - 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)
 
-- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Video](ts-media-components-video.md)
+- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Video](ts-media-components-video.md)、[RichEditor](ts-basic-components-richeditor.md)
 
 开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
@@ -70,6 +70,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 设置拖拽过程中背板图处理模式及数量角标的显示。不支持onItemDragStart拖拽方式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -81,11 +83,13 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragPreviewOptions<sup>11+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| mode | [DragPreviewMode](#dragpreviewmode11枚举说明) &nbsp;\|&nbsp; Array<[DragPreviewMode](#dragpreviewmode11枚举说明)><sup>12+</sup> | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/>当组件同时设置DragPreviewMode.AUTO和其它枚举值时，以DragPreviewMode.AUTO为准，其它枚举值设置无效。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。当设置数量角标时取值范围为[0，2<sup>31</sup>-1]，当设置为浮点数时，只显示整数部分。<br/>注：在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true |
-| modifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md)| 否 | 用于配置拖拽背板图的样式Modifier对象，可使用图片组件所支持的属性和样式来配置背板图样式(参考示例6)，当前支持透明度，阴影，背景模糊度，圆角。文本拖拽只支持默认效果，不支持通过modifier进行自定义。<br/>1.透明度<br/>通过[opacity](ts-universal-attributes-opacity.md#opacity)设置透明度，不透明度的取值范围为大于0并且小于等于1，1表示完全不透明，其它场合采用默认值0.95。<br/>2.阴影<br/>通过[shadow](ts-universal-attributes-image-effect.md#shadow)设置阴影。<br/>3.背景模糊度<br/>通过[backgroundEffect](ts-appendix-enums.md#backgroundeffectoptions)或[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle)设置背景模糊度，如果两者同时设置，以backgroundEffect为准。<br/>4.圆角<br/>通过[border](ts-universal-attributes-border.md#border)或[borderRadius](ts-universal-attributes-border.md#borderRadius)设置圆角，当同时在mode和modifier中设置圆角，mode设置的圆角显示优先级低于modifier设置。<br/>默认值：空，无法修改属性|
+| mode | [DragPreviewMode](#dragpreviewmode11枚举说明) &nbsp;\|&nbsp; Array<[DragPreviewMode](#dragpreviewmode11枚举说明)><sup>12+</sup> | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/>当组件同时设置DragPreviewMode.AUTO和其它枚举值时，以DragPreviewMode.AUTO为准，其它枚举值设置无效。|
+| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。当设置数量角标时取值范围为[0，2<sup>31</sup>-1]，当设置为浮点数时，只显示整数部分。<br/>**说明：** <br>在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true |
+| modifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md)| 否 | 用于配置拖拽背板图的样式Modifier对象，可使用图片组件所支持的属性和样式来配置背板图样式(参考示例6)，当前支持透明度，阴影，背景模糊度，圆角。文本拖拽只支持默认效果，不支持通过modifier进行自定义。<br/>1.透明度<br/>通过[opacity](ts-universal-attributes-opacity.md#opacity)设置透明度，不透明度的取值范围为0-1。设置0或不设置时采用默认值0.95，设置1或异常值时不透明。<br/>2.阴影<br/>通过[shadow](ts-universal-attributes-image-effect.md#shadow)设置阴影。<br/>3.背景模糊度<br/>通过[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)或[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle)设置背景模糊度，如果两者同时设置，以backgroundEffect为准。<br/>4.圆角<br/>通过[border](ts-universal-attributes-border.md#border)或[borderRadius](ts-universal-attributes-border.md#borderRadius)设置圆角，当同时在mode和modifier中设置圆角，mode设置的圆角显示优先级低于modifier设置。<br/>默认值：空，无法修改属性|
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
 
@@ -100,6 +104,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragInteractionOptions<sup>12+</sup>
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/> |
@@ -111,8 +117,7 @@ allowDrop与draggable属性用法示例
 
 ```ts
 // xxx.ets
-import UDC from '@ohos.data.unifiedDataChannel';
-import UTD from '@ohos.data.uniformTypeDescriptor';
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -164,7 +169,7 @@ struct ImageExample {
           }
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.TEXT])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.TEXT])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             this.uri = JSON.parse(extraParams as string).extraInfo;
             this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
@@ -194,14 +199,14 @@ struct ImageExample {
           .border({width: 1})
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.IMAGE])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             console.log("enter onDrop")
             let dragData:UnifiedData = (event as DragEvent).getData() as UnifiedData;
             if(dragData != undefined) {
-              let arr:Array<UDC.UnifiedRecord> = dragData.getRecords();
+              let arr:Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
               if(arr.length > 0) {
-                let image = arr[0] as UDC.Image;
+                let image = arr[0] as unifiedDataChannel.Image;
                 this.uri = image.imageUri;
                 this.BblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
               } else {
@@ -401,7 +406,7 @@ struct Example {
 dragPreviewOptions属性中ImageModifier参数使用方法用例。
 ```ts
 // xxx.ets
-import { ImageModifier } from '@ohos.arkui.modifier'
+import { ImageModifier } from '@kit.ArkUI'
 
 @Entry
 @Component

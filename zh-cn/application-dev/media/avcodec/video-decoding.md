@@ -13,23 +13,25 @@
 <!--RP1--><!--RP1End-->
 
 通过视频解码，应用可以实现以下重点能力，包括：
-1. 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数，实现改变分辨率。
 
-   具体可参考下文中：Surface模式或Buffer模式的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数。
-2. 在Surface模式下，实现动态切换Surface。
+|          支持的能力                       |             使用简述                                                                     |
+| --------------------------------------- | ---------------------------------------------------------------------------------- |
+| 变分辨率         | 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数时配置， 具体可参考下文中：Buffer模式的步骤-3   |
+| 动态切换Surface  | 通过调用OH_VideoDecoder_SetSurface()配置，具体可参考下文中：Surface模式的步骤-7     |
+| 低时延解码  | 通过调用OH_VideoDecoder_Configure()配置，具体可参考下文中：Surface模式的步骤-6     |
 
-   具体可参考下文中：Surface模式的步骤6-设置Surface。
 
 ## 限制约束
 1. buffer模式不支持10bit的图像数据。
 2. Flush，Reset，Stop之后，重新Start时，需要重新传XPS。具体示例请参考[Surface模式](#surface模式)步骤14调用OH_VideoDecoder_Flush()。
 3. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy()函数来销毁实例并释放资源。
 4. 视频解码输入码流仅支持AnnexB格式，且支持的AnnexB格式不支持多层次切片。
+5. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 
 ## Surface输出与Buffer输出
 
 1. 两者数据的输出方式不同。
-2. 两者的适用场景不同
+2. 两者的适用场景不同。
 - Surface输出是指用OHNativeWindow来传递输出数据，可以与其他模块对接，例如XComponent。
 - Buffer输出是指经过解码的数据会以共享内存的方式输出。
 
@@ -94,14 +96,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/player_framework/native_avbuffer.h>
     #include <fstream>
     ```
-2. 全局变量
+2. 全局变量。
 
     ```c++
     // 配置视频帧宽度（必须）
     int32_t width = 320; 
     // 配置视频帧高度（必须）
     int32_t height = 240;
-    // 配置视频颜色格式（必须）
+    // 配置视频像素格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     int32_t widthStride = 0;
     int32_t heightStride = 0;
@@ -133,21 +135,16 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. 调用OH_VideoDecoder_RegisterCallback()设置回调函数。
 
-    > **说明：**
-    >
-    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
-    >
-
     注册回调函数指针集合OH_AVCodecCallback，包括：
 
     - OH_AVCodecOnError 解码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)；
-
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。(注：Surface模式buffer参数为空)。 
-    数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成(注：Surface模式buffer参数为空)。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
+
+    <!--RP2--><!--RP2End-->
 
     ```c++
     // 解码异常回调OH_AVCodecOnError实现
@@ -174,7 +171,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 输入帧buffer对应的index，送入InIndexQueue队列
         // 输入帧的数据buffer送入InBufferQueue队列
         // 数据处理
-        // - 写入解码码流
+        // 写入解码码流
     }
 
     // 解码输出回调OH_AVCodecOnNewOutputBuffer实现
@@ -183,13 +180,20 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
         // 数据处理
-        // - 显示并释放解码帧
+        // 显示并释放解码帧
     }
     // 配置异步回调，调用 OH_VideoDecoder_RegisterCallback 接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // 配置异步回调
     int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, NULL); // NULL:用户特定数据userData为空 
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     ```
+    > **说明：**
+    >
+    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    >
 
 5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 
@@ -239,11 +243,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     参数取值范围可以通过能力查询接口获取，具体示例请参考[获取支持的编解码能力](obtain-supported-codecs.md)。
     
-    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
+    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
     - DEFAULT_HEIGHT：240像素高度；
-    - DEFAULT_PIXELFORMAT： 颜色格式，因为示例需要保存的YUV文件颜色格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
+    - DEFAULT_PIXELFORMAT： 像素格式，因为示例需要保存的YUV文件像素格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
 
     ```c++
 
@@ -252,6 +256,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    // 可选，配置低时延解码
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // 配置解码器
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {
@@ -261,13 +267,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 7. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
-   具体示例请参考： [OnSurfaceCreatedCB](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/render/plugin_render.cpp/#onSurfaceCreatedCB)
 
     Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
 
     ```c++
     // 配置送显窗口参数
     int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     ```
 
 8. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
@@ -397,11 +405,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-13. 调用OH_VideoDecoder_RenderOutputBuffer()显示并释放解码帧，或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+13. 调用OH_VideoDecoder_RenderOutputBuffer()/OH_VideoDecoder_RenderOutputBufferAtTime()显示并释放解码帧，
+    或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，数据队列的索引。
     - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针。
+
+    添加头文件
+
+    ```c++
+    #include <chrono>
+    ```
 
     ```c++
     // 获取解码后信息
@@ -412,9 +427,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 值由调用者决定
     bool isRender;
+    bool isNeedRenderAtTime;
     if (isRender) {
         // 显示并释放已完成处理的信息，index为对应buffer队列下标
-        ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        if (isNeedRenderAtTime){
+            // 获取系统绝对时间，renderTimestamp由调用者结合业务指定显示时间
+            int64_t renderTimestamp =
+                chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+            ret = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, index, renderTimestamp);
+        } else {
+           ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        }
+
     } else {
         // 释放已完成处理的信息
         ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
@@ -445,6 +469,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > **注意：**
     > Flush之后，重新Start时，需要重新传XPS。
     >
+    重传XPS示例：
 
     ```c++
     // 配置帧数据XPS信息
@@ -550,19 +575,16 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 3. 调用OH_VideoDecoder_RegisterCallback()设置回调函数。
 
-    > **说明：**
-    >
-    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
-    >
-
     注册回调函数指针集合OH_AVCodecCallback，包括：
 
     - OH_AVCodecOnError 解码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
+
+    <!--RP2--><!--RP2End-->
 
     ```c++
     int32_t cropTop = 0;
@@ -603,7 +625,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 输入帧buffer对应的index，送入InIndexQueue队列
         // 输入帧的数据buffer送入InBufferQueue队列
         // 数据处理
-        // - 写入解码码流
+        // 写入解码码流
     }
     
     // 解码输出回调OH_AVCodecOnNewOutputBuffer实现
@@ -628,13 +650,20 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
             isFirstFrame = false;
         }
         // 数据处理
-        // - 释放解码帧
+        // 释放解码帧
     }
     // 配置异步回调，调用OH_VideoDecoder_RegisterCallback接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // 配置异步回调
     int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, NULL); // NULL:用户特定数据userData为空 
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     ```
+    > **说明：**
+    >
+    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    >
 
 4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 
@@ -831,32 +860,29 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     {
         int32_t width;
         int32_t height;
-    }
+    };
 
     struct DstRect // 目标内存区域的宽，高跨距
     {
         int32_t wStride;
         int32_t hStride;
-    }
+    };
 
     struct SrcRect // 源内存区域的宽，高跨距
     {
         int32_t wStride;
         int32_t hStride;
-    }
+    };
 
-    unit8_t *dst; // 目标内存区域的指针
-    unit8_t *src; // 源内存区域的指针
+    uint8_t *dst; // 目标内存区域的指针
+    uint8_t *src; // 源内存区域的指针
     struct Rect rect;
     struct DstRect dstRect;
     struct SrcRect srcRect;
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
         //将源数据的一行数据复制到目标数据的一行中
-        int32_t ret = memcpy_s(dst, dstRect.wStride, src, rect.width);
-        if (ret != AV_ERR_OK) {
-            // 复制数据失败
-        }
+        memcpy_s(dst, src, rect.width);
         // 更新源数据和目标数据的指针，进行下一行的复制。每更新一次源数据和目标数据的指针都向下移动一个wStride
         dst += dstRect.wStride;
         src += srcRect.wStride;
@@ -868,10 +894,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     rect.height >>= 1;
     // UV 将UV区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
-        int32_t ret = memcpy_s(dst, dstRect.wStride, src, rect.width);
-        if (ret != AV_ERR_OK) {
-            // 复制数据失败
-        }
+        memcpy_s(dst, src, rect.width);
         dst += dstRect.wStride;
         src += srcRect.wStride;
     }

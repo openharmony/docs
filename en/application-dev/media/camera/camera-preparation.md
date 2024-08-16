@@ -34,6 +34,8 @@ You can use either ArkTS or C++ APIs for camera development.
 | Preview | [Camera Preview (ArkTS)](camera-preview.md)| [Camera Preview (C/C++)](native-camera-preview.md)|
 | Secondary processing of preview streams| -  | [Secondary Processing of Preview Streams (C/C++)](native-camera-preview-imageReceiver.md)|
 | Photographing| [Camera Photographing (ArkTS)](camera-shooting.md)| [Camera Photographing (C/C++)](native-camera-shooting.md)|
+| Deferred photo delivery| [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)| -  |
+| Moving photos| [Moving Photos (ArkTS)](camera-moving-photo.md)| - |
 | Recording| [Camera Recording (ArkTS)](camera-recording.md)| [Camera Recording (C/C++)](native-camera-recording.md)|
 | Secondary processing of video streams| - | [Secondary Processing of Video Streams (C/C++)](native-camera-recording-imageReceiver.md)|
 | Metadata| [Camera Metadata (ArkTS)](camera-metadata.md)| [Camera Metadata (C/C++)](native-camera-metadata.md)|

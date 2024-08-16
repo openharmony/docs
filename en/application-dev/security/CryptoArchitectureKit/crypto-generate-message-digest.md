@@ -1,4 +1,4 @@
-# MD Operation
+# MD Operation (ArkTS)
 
 
 The message digest (MD) algorithm allows a fixed-length digest to be generated from data of arbitrary size by using the hash algorithm. The MD algorithm is also referred to as a hash algorithm or a one-way hash algorithm.
@@ -18,7 +18,7 @@ When the same digest algorithm is used, the generated digest (hash value) has th
 
 The **Supported Type** column in the following table lists the algorithm to be used when a **Md** instance is created.
 
-| MD Algorithm| Supported Type| API Version| 
+| MD Algorithm | Supported Type | API Version | 
 | -------- | -------- | -------- |
 | HASH | SHA1 | 9+ | 
 | HASH | SHA224 | 9+ | 
@@ -40,7 +40,7 @@ The following provides examples of MD operations with different data passing met
 
 1. Use [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
 
-2. Use [Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-6) to pass in the full data. The data to be passed in by a single **update()** operation is not size bound.
+2. Use [Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-6) to pass in the full data. The amount of data to be passed in by a single **update()** operation is not limited.
 
 3. Use [Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest) to generate an MD.
 
@@ -56,7 +56,7 @@ The following provides examples of MD operations with different data passing met
     let mdAlgName = "SHA256"; // Algorithm to use.
     let message = "mdTestMessgae"; // Message to be digested.
     let md = cryptoFramework.createMd(mdAlgName);
-    // If the data to be processed is short, use update() to pass in the full data at a time. The data to be passed in by a single **update()** operation is not size bound.
+    // If the data to be processed is short, use update() to pass in the full data at a time. The amount of data to be passed in by a single **update()** operation is not limited.
     await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let mdResult = await md.digest();
     console.info('Md result:' + mdResult.data);
@@ -75,7 +75,7 @@ The following provides examples of MD operations with different data passing met
     let mdAlgName = "SHA256"; // Algorithm to use.
     let message = "mdTestMessgae"; // Message to be digested.
     let md = cryptoFramework.createMd(mdAlgName);
-    // If the data to be processed is short, use update() to pass in the full data at a time. The data to be passed in by a single **update()** operation is not size bound.
+    // If the data to be processed is short, use update() to pass in the full data at a time. The amount of data to be passed in by a single **update()** operation is not limited.
     md.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let mdResult = md.digestSync();
     console.info('[Sync]:Md result:' + mdResult.data);

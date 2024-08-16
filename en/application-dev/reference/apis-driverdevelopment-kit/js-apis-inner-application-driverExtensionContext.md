@@ -12,7 +12,7 @@ The **DriverExtensionContext** module provides the operations that need to be ac
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## How to Use
@@ -20,7 +20,7 @@ import common from '@ohos.app.ability.common';
 Before using **DriverExtensionContext**, you need to obtain it through a **DriverExtensionAbility** child class instance.
 
 ```ts
-  import DriverExtensionAbility, { DriverExtensionContext } from '@ohos.app.ability.DriverExtensionAbility';
+  import { DriverExtensionAbility, DriverExtensionContext } from '@kit.DriverDevelopmentKit';
 
   let context : DriverExtensionContext | undefined;
   class EntryAbility extends DriverExtensionAbility {

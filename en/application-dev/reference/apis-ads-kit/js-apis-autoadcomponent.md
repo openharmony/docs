@@ -50,11 +50,11 @@ export struct ShowCarouselAd {
     // Ad type.
     adType: 8,
     // Ad ID.
-    adId: "test1",
+    adId: "test1"
   };
   private adOptions: advertising.AdOptions = {
     // Set the maximum ad content rating.
-    adContentClassification: 'A',
+    adContentClassification: 'A'
   };
   // Ad display parameters.
   private adDisplayOptions: advertising.AdDisplayOptions = {

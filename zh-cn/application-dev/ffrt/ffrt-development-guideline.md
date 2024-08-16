@@ -297,9 +297,6 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-#define ffrt_deps_define(name, dep1, ...) const void* __v_##name[] = {dep1, ##__VA_ARGS__}; \
-    ffrt_deps_t name = {sizeof(__v_##name) / sizeof(void*), __v_##name}
-
 void fib_ffrt(void* arg)
 {
     fib_ffrt_s* p = (fib_ffrt_s*)arg;
@@ -312,10 +309,14 @@ void fib_ffrt(void* arg)
         int y1, y2;
         fib_ffrt_s s1 = {x - 1, &y1};
         fib_ffrt_s s2 = {x - 2, &y2};
-        ffrt_deps_define(dx, &x);
-        ffrt_deps_define(dy1, &y1);
-        ffrt_deps_define(dy2, &y2);
-        ffrt_deps_define(dy12, &y1, &y2);
+        const std::vector<ffrt_dependence_t> dx_deps = {{ffrt_dependence_data, &x}};
+        ffrt_deps_t dx{static_cast<uint32_t>(dx_deps.size()), dx_deps.data()};
+        const std::vector<ffrt_dependence_t> dy1_deps = {{ffrt_dependence_data, &y1}};
+        ffrt_deps_t dy1{static_cast<uint32_t>(dy1_deps.size()), dy1_deps.data()};
+        const std::vector<ffrt_dependence_t> dy2_deps = {{ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy2{static_cast<uint32_t>(dy2_deps.size()), dy2_deps.data()};
+        const std::vector<ffrt_dependence_t> dy12_deps = {{ffrt_dependence_data, &y1}, {ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy12{static_cast<uint32_t>(dy12_deps.size()), dy12_deps.data()};
         ffrt_submit_c(fib_ffrt, NULL, &s1, &dx, &dy1, NULL);
         ffrt_submit_c(fib_ffrt, NULL, &s2, &dx, &dy2, NULL);
         ffrt_wait_deps(&dy12);
@@ -327,7 +328,8 @@ int main(int narg, char** argv)
 {
     int r;
     fib_ffrt_s s = {10, &r};
-    ffrt_deps_define(dr, &r);
+    const std::vector<ffrt_dependence_t> dr_deps = {{ffrt_dependence_data, &r}};
+    ffrt_deps_t dr{static_cast<uint32_t>(dr_deps.size()), dr_deps.data()};
     ffrt_submit_c(fib_ffrt, NULL, &s, NULL, &dr, NULL);
     ffrt_wait_deps(&dr);
     printf("fibonacci 10: %d\n", r);
@@ -701,9 +703,10 @@ int main(int narg, char** argv)
 * 预期的输出为：
 
 ```
-hello world, x = 2
+hello
 handle wait
-x = 3
+x = 2
+world, x = 3
 ```
 
 
@@ -737,7 +740,7 @@ uint64_t ffrt_this_task_get_id();
 ##### 样例
 
 ```{.c}
-#include "timer.h"
+#include "ffrt.h"
 
 int main(int narg, char** argv)
 {
@@ -748,8 +751,9 @@ int main(int narg, char** argv)
 
     ffrt::submit([=]() {
     ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_cb cb;
     ffrt_timer_start(taskQos, timeout1, data, cb, false);
-    usleep(200);
+    ffrt_usleep(200);
     }, {}, {});
     ffrt::wait();
     return 0;
@@ -887,8 +891,6 @@ using namespace std;
 
 template<class T>
 struct Function {
-    template<class CT>
-    Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
     ffrt_function_header_t header;
     T closure;
 };
@@ -904,7 +906,7 @@ template<class T>
 void DestroyFunctionWrapper(void* t)
 {
     auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
-    f->closure = nullptr;
+    f = nullptr;
 }
 
 template<class T>
@@ -913,8 +915,10 @@ static inline ffrt_function_header_t* create_function_wrapper(T&& func,
 {
     using function_type = Function<std::decay_t<T>>;
     auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
-    auto f =
-        new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+    auto f = new (p)function_type;
+    f->header.exec = ExecFunctionWrapper<T>;
+    f->header.destroy = DestroyFunctionWrapper<T>;
+    f->closure = std::forward<T>(func);
     return reinterpret_cast<ffrt_function_header_t*>(f);
 }
 
@@ -923,8 +927,9 @@ int main(int narg, char** argv)
     ffrt_queue_attr_t queue_attr;
     (void)ffrt_queue_attr_init(&queue_attr);
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
-
-    ffrt_queue_submit(queue_handle, create_function_wrapper([]() {printf("Task done.\n");}, ffrt_function_kind_queue), nullptr);
+    std::function<void()>&& queueFunc = [] () {printf("Task done.\n");};
+    ffrt_function_header_t* queueFunc_t = create_function_wrapper((queueFunc), ffrt_function_kind_queue);
+    ffrt_queue_submit(queue_handle, queueFunc_t, nullptr);
 
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
@@ -953,7 +958,13 @@ NA
 
 ##### 样例
 ```{.c}
-#include "queue.h"
+本用例需要在鸿蒙系统中执行
+#include "ffrt.h"
+
+inline void OnePlusForTest(void* data)
+{
+    *(int*)data += 1;
+}
 
 int main(int narg, char** argv)
 {
@@ -966,8 +977,7 @@ int main(int narg, char** argv)
     std::function<void()>&& basicFunc = [&result]() {
         OnePlusForTest(static_cast<void*>(&result));
         OnePlusForTest(static_cast<void*>(&result));
-        EXPECT_EQ(result, 2);
-        usleep(3000);
+        ffrt_usleep(3000);
     };
     
     ffrt::task_handle handle = serialQueue->submit_h(
@@ -983,11 +993,6 @@ int main(int narg, char** argv)
 }
 ```
 
-预期输出为：
-
-```
-result=1
-```
 
 #### ffrt_get_current_queue
 <hr/>
@@ -1011,7 +1016,13 @@ ArkTs Worker线程任务队列。
 
 ##### 样例
 ```{.c}
-#include "queue.h"
+//本用例需要在鸿蒙系统中执行
+#include "ffrt.h"
+
+inline void OnePlusForTest(void* data)
+{
+    *(int*)data += 1;
+}
 
 int main(int narg, char** argv)
 {
@@ -1024,8 +1035,7 @@ int main(int narg, char** argv)
     std::function<void()>&& basicFunc = [&result]() {
         OnePlusForTest(static_cast<void*>(&result));
         OnePlusForTest(static_cast<void*>(&result));
-        EXPECT_EQ(result, 3);
-        usleep(3000);
+        ffrt_usleep(3000);
     };
     
     ffrt::task_handle handle = serialQueue->submit_h(
@@ -1039,12 +1049,6 @@ int main(int narg, char** argv)
     serialQueue->wait(handle);
     return 0;
 }
-```
-
-预期输出为：
-
-```
-result=1
 ```
 
 
@@ -1080,6 +1084,8 @@ FFRT并行队列设置最大并发度，需要注意的是，当设置很大的�
 
 ##### 样例
 ```{.c}
+#include "ffrt.h"
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -1088,6 +1094,7 @@ int main(int narg, char** argv)
     ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
     concurrency = ffrt_queue_attr_get_max_concurrency(&queue_attr);
     ffrt_queue_attr_destroy(&queue_attr);
+    printf("concurrency=%lu\n", concurrency);
     return 0;
 }
 ```
@@ -1122,6 +1129,8 @@ int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
 
 ##### 样例
 ```{.c}
+#include "ffrt.h"
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -1130,6 +1139,7 @@ int main(int narg, char** argv)
     ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
     concurrency = ffrt_queue_attr_get_max_concurrency(&queue_attr);
     ffrt_queue_attr_destroy(&queue_attr);
+    printf("concurrency=%lu\n", concurrency);
     return 0;
 }
 ```
@@ -1176,14 +1186,17 @@ NA
 
 ##### 样例
 ```{.c}
+#include "ffrt.h"
+
 int main(int narg, char** argv)
 {
     ffrt_task_attr_t task_attr;
     (void)ffrt_task_attr_init(&task_attr);
-    uint64_t priority = 3;
+    ffrt_queue_priority_t priority = ffrt_queue_priority_idle;
     ffrt_task_attr_set_queue_priority(&task_attr, priority);
     priority = ffrt_task_attr_get_queue_priority(&task_attr);
     ffrt_task_attr_destroy(&task_attr);
+    printf("priority=%d\n", priority);
     return 0;
 }
 ```
@@ -1218,14 +1231,17 @@ ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_task_attr_t* 
 
 ##### 样例
 ```{.c}
+#include "ffrt.h"
+
 int main(int narg, char** argv)
 {
     ffrt_task_attr_t task_attr;
     (void)ffrt_task_attr_init(&task_attr);
-    uint64_t priority = 3;
+    ffrt_queue_priority_t priority = ffrt_queue_priority_idle;
     ffrt_task_attr_set_queue_priority(&task_attr, priority);
     priority = ffrt_task_attr_get_queue_priority(&task_attr);
     ffrt_task_attr_destroy(&task_attr);
+    printf("priority=%d\n", priority);
     return 0;
 }
 ```
@@ -1355,7 +1371,7 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-void ffrt_mutex_task()
+void ffrt_mutex_task(void *)
 {
     int sum = 0;
     ffrt_mutex_t mtx;
@@ -1369,7 +1385,7 @@ void ffrt_mutex_task()
     }
     ffrt_mutex_destroy(&mtx);
     ffrt_wait();
-    printf("sum = %d", sum);
+    printf("sum = %d\n", sum);
 }
 
 int main(int narg, char** argv)
@@ -1476,7 +1492,7 @@ void func1(void* arg)
     if (ret != ffrt_success) {
         printf("error\n");
     }
-    printf("a = %d", *(t->a));
+    printf("a = %d\n", *(t->a));
 }
 
 void func2(void* arg)
@@ -1541,7 +1557,7 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-void ffrt_cv_task()
+void ffrt_cv_task(void *)
 {
     ffrt_cond_t cond;
     int ret = ffrt_cond_init(&cond, NULL);
@@ -1612,9 +1628,11 @@ int ffrt_usleep(uint64_t usec);
 
 void func(void* arg)
 {
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
+    time_t current_time = time(NULL);
+    printf("Time: %s", ctime(&current_time));
     ffrt_usleep(2000000); // 睡眠 2 秒
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
+    current_time = time(NULL);
+    printf("Time: %s", ctime(&current_time));
 }
 
 typedef struct {
@@ -1667,6 +1685,13 @@ int main(int narg, char** argv)
     ffrt_wait();
     return 0;
 }
+```
+
+一种输出情况为：
+
+```
+Time: Tue Aug 13 15:45:30 2024
+Time: Tue Aug 13 15:45:32 2024
 ```
 
 #### ffrt_yield
@@ -1731,7 +1756,7 @@ ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt
 
 `repeat`
 
-* 是否重复执行该定时器（该功能暂未支持）。
+* 是否重复执行该定时器。
 
 ##### 返回值
 
@@ -1742,6 +1767,9 @@ ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt
 
 ##### 样例
 ```{.c}
+#include <stdint.h>
+#include <unistd.h>
+#include "ffrt.h"
 
 static void testfun(void *data)
 {
@@ -1759,6 +1787,7 @@ int main(int narg, char** argv)
     int handle = ffrt_timer_start(ffrt_qos_default, timeout, data, cb, false);
     usleep(300000);
     ffrt_timer_stop(ffrt_qos_default, handle);
+    printf("data: %d\n", x);
     return 0;
 }
 ```
@@ -1766,7 +1795,7 @@ int main(int narg, char** argv)
 预期输出为：
 
 ```
-回调函数testfun中的 data=1
+data: 1
 ```
 
 #### ffrt_timer_stop
@@ -1797,6 +1826,9 @@ int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
 
 ##### 样例
 ```{.c}
+#include <stdint.h>
+#include <unistd.h>
+#include "ffrt.h"
 
 static void testfun(void *data)
 {
@@ -1814,6 +1846,7 @@ int main(int narg, char** argv)
     int handle = ffrt_timer_start(ffrt_qos_default, timeout, data, cb, false);
     usleep(300000);
     ffrt_timer_stop(ffrt_qos_default, handle);
+    printf("data: %d\n", x);
     return 0;
 }
 ```
@@ -1821,7 +1854,7 @@ int main(int narg, char** argv)
 预期输出为：
 
 ```
-回调函数testfun中的 data=1
+data: 1
 ```
 
 ### ffrt looper
@@ -1854,6 +1887,11 @@ loop对象。
 
 ##### 样例
 ```{.c}
+#include <stdint.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "c/loop.h"
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -1861,6 +1899,10 @@ int main(int narg, char** argv)
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
 
     auto loop = ffrt_loop_create(queue_handle);
+
+    if (loop != NULL) {
+        printf("loop is not null.\n");
+    }
 
     int ret = ffrt_loop_destroy(loop);
 
@@ -1873,7 +1915,7 @@ int main(int narg, char** argv)
 预期输出为：
 
 ```
-创建的loop对象不为空。
+loop is not null.
 ```
 
 #### ffrt_loop_destory
@@ -1900,6 +1942,11 @@ int ffrt_loop_destroy(ffrt_loop_t loop);
 
 ##### 样例
 ```{.c}
+#include <stdint.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "c/loop.h"
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -1910,6 +1957,10 @@ int main(int narg, char** argv)
 
     int ret = ffrt_loop_destroy(loop);
 
+    if (ret == 0) {
+        printf("loop normal destruction.");
+    }
+
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
     return 0;
@@ -1919,7 +1970,7 @@ int main(int narg, char** argv)
 预期输出为：
 
 ```
-正常销毁loop对象，返回值是0。
+loop normal destruction.
 ```
 
 #### ffrt_loop_run
@@ -1946,9 +1997,17 @@ int ffrt_loop_run(ffrt_loop_t loop);
 
 ##### 样例
 ```{.c}
+#include <pthread.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "c/loop.h"
+
 void* ThreadFunc(void* p)
 {
     int ret = ffrt_loop_run(p);
+    if (ret == 0) {
+        printf("loop normal operation.");
+    }
     return nullptr;
 }
 int main(int narg, char** argv)
@@ -1973,7 +2032,7 @@ int main(int narg, char** argv)
 预期输出为：
 
 ```
-正常启动loop对象，返回值是0。
+loop normal operation.
 ```
 
 #### ffrt_loop_stop
@@ -2000,6 +2059,11 @@ NA。
 
 ##### 样例
 ```{.c}
+#include <pthread.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "c/loop.h"
+
 void* ThreadFunc(void* p)
 {
     int ret = ffrt_loop_run(p);
@@ -2074,6 +2138,15 @@ int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void 
 
 ##### 样例
 ```{.c}
+#include <pthread.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <functional>
+#include <sys/epoll.h>
+#include <sys/eventfd.h>
+#include "c/loop.h"
+#include "ffrt.h"
+
 void* ThreadFunc(void* p)
 {
     int ret = ffrt_loop_run(p);
@@ -2087,6 +2160,13 @@ static void testfun(void* data)
 
 static void (*cb)(void*) = testfun;
 
+void testCallBack(void *data, unsigned int events) {}
+
+struct TestData {
+    int fd;
+    uint64_t expected;
+};
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -2095,8 +2175,8 @@ int main(int narg, char** argv)
 
     auto loop = ffrt_loop_create(queue_handle);
     int result1 = 0;
-    std::function<void()> &&basicFunc1 = [&result1]() {result += 10;};
-    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
+    std::function<void()> &&basicFunc1 = [&result1]() {result1 += 10;};
+    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
     
     pthread_t thread;
     pthread_create(&thread, 0, ThreadFunc, loop);
@@ -2108,11 +2188,14 @@ int main(int narg, char** argv)
     uint64_t timeout2 = 10;
     uint64_t expected = 0xabacadae;
     
-    int testFd = evetfd(0, EFD_NONBLOCK | EFD_CLOEXEC)；
+    int testFd = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
     struct TestData testData {.fd = testFd, .expected = expected};
     ffrt_timer_t timeHandle = ffrt_loop_timer_start(loop, timeout1, data, cb, false);
     
-    ffrt_loop_epoll_ctl(loop, EPOLL_CTL_ADD, testFd, EPOLLIN, (void*)(&testData), testCallBack);
+    int ret = ffrt_loop_epoll_ctl(loop, EPOLL_CTL_ADD, testFd, EPOLLIN, (void*)(&testData), testCallBack);
+    if (ret == 0) {
+        printf("ffrt_loop_epoll_ctl执行成功。\n");
+    }
     ssize_t n = write(testFd, &expected, sizeof(uint64_t));
     usleep(25000);
     ffrt_loop_epoll_ctl(loop, EPOLL_CTL_DEL, testFd, 0, nullptr, nullptr);
@@ -2120,7 +2203,7 @@ int main(int narg, char** argv)
     ffrt_loop_stop(loop);
     pthread_join(thread, nullptr);
     ffrt_loop_timer_stop(loop, timeHandle);
-    int ret = ffrt_loop_destroy(loop);
+    ret = ffrt_loop_destroy(loop);
 
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
@@ -2163,7 +2246,7 @@ ffrt_timer_t ffrt_loop_timer_start(ffrt_loop_t loop, uint64_t timeout, void* dat
 
 `repeat`
 
-* 是否重复执行该定时器（该功能暂未支持）。
+* 是否重复执行该定时器。
 
 ##### 返回值
 
@@ -2266,8 +2349,6 @@ libffrt.z.so
     // 第一种使用模板，支持C++
     template<class T>
     struct Function {
-        template<class CT>
-        Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
         ffrt_function_header_t header;
         T closure;
     };
@@ -2292,8 +2373,10 @@ libffrt.z.so
     {
         using function_type = Function<std::decay_t<T>>;
         auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
-        auto f =
-            new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+        auto f = new (p)function_type;
+        f->header.exec = ExecFunctionWrapper<T>;
+        f->header.destroy = DestroyFunctionWrapper<T>;
+        f->closure = std::forward<T>(func);
         return reinterpret_cast<ffrt_function_header_t*>(f);
     }
 

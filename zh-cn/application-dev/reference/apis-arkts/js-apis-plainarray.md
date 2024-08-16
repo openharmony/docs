@@ -27,6 +27,8 @@ import { PlainArray } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -39,6 +41,8 @@ import { PlainArray } from '@kit.ArkTS';
 constructor()
 
 PlainArray的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -62,6 +66,8 @@ let plainArray: PlainArray<string> = new PlainArray();
 isEmpty(): boolean
 
 判断该容器是否为空。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -92,6 +98,8 @@ let result = plainArray.isEmpty();
 has(key: number): boolean
 
 判断此容器中是否含有该指定key。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -130,6 +138,8 @@ let result = plainArray.has(1);
 get(key: number): T
 
 获取指定key所对应的value。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -170,6 +180,8 @@ getIndexOfKey(key: number): number
 
 查找指定key对应的下标值，如果没有找到该key返回-1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -209,6 +221,8 @@ getIndexOfValue(value: T): number
 
 查找指定value元素第一次出现的下标值，如果没有找到该value元素返回-1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -247,6 +261,8 @@ getKeyAt(index: number): number
 
 查找指定下标元素键值对中的key值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -284,6 +300,8 @@ let result = plainArray.getKeyAt(1);
 getValueAt(index: number): T
 
 查找指定下标元素键值对中的Value值，失败返回undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -324,6 +342,8 @@ clone(): PlainArray&lt;T&gt;
 
 克隆一个实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -356,6 +376,8 @@ add(key: number, value: T): void
 
 向容器中添加一组数据。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -387,6 +409,8 @@ plainArray.add(1, "squirrel");
 remove(key: number): T
 
 删除指定key对应的键值对。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -427,6 +451,8 @@ removeAt(index: number): T
 
 删除指定下标对应的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -465,6 +491,8 @@ let result = plainArray.removeAt(1);
 removeRangeFrom(index: number, size: number): number
 
 删除一定范围内的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -507,6 +535,8 @@ setValueAt(index: number, value: T): void
 
 替换容器中指定下标对应键值对中的键值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -542,6 +572,8 @@ toString(): String
 
 获取包含容器中所有键和值的字符串。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -574,6 +606,8 @@ clear(): void
 
 清除容器中的所有元素，并把length置为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -599,6 +633,8 @@ plainArray.clear();
 forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -635,7 +671,17 @@ plainArray.forEach((value: string, index?: number) => {
   console.log("value:" + value, "index:" + index);
 });
 ```
+```ts
+// 不建议在forEach中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let plainArray: PlainArray<string> = new PlainArray();
+for(let i = 0;i < 10;i++) {
+  plainArray.add(i,"123");
+}
 
+for(let i = 0;i < 10;i++) {
+  plainArray.remove(i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -646,6 +692,8 @@ plainArray.forEach((value: string, index?: number) => {
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -676,5 +724,16 @@ while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
   temp = iter.next();
+}
+```
+```ts
+// 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let plainArray: PlainArray<string> = new PlainArray();
+for(let i = 0;i < 10;i++) {
+  plainArray.add(i,"123");
+}
+
+for(let i = 0;i < 10;i++) {
+  plainArray.remove(i);
 }
 ```

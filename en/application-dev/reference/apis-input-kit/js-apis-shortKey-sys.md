@@ -11,7 +11,7 @@ The **shortKey** module provides APIs to set the delay for starting an ability u
 ##  Modules to Import
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 ```
 
 ##  shortKey.setKeyDownDuration
@@ -26,7 +26,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses an asy
 
 | Name    | Type               | Mandatory| Description                                                        |
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
-| businessKey| string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
+| businessKey| string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file. You need to query this parameter on your own before calling the API.|
 | delay      | number              | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |                                               
 
@@ -42,9 +42,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
-  shortKey.setKeyDownDuration("screenshot", 500, (error) => {
+  shortKey.setKeyDownDuration("businessId", 500, (error) => {
     if (error) {
       console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -68,7 +68,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses a prom
 
 | Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| businessKey| string | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
+| businessKey| string | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file. You need to query this parameter on your own before calling the API.|
 | delay      | number | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
 
 **Return value**
@@ -89,9 +89,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
-  shortKey.setKeyDownDuration("screenshot", 500).then(() => {
+  shortKey.setKeyDownDuration("businessId", 500).then(() => {
     console.log(`Set key down duration success`);
   });
 } catch (error) {

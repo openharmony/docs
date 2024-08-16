@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import observer from '@ohos.arkui.observer'
+import { uiObserver as observer } from '@kit.ArkUI';
 ```
 
 ## NavDestinationState
@@ -61,6 +61,19 @@ routerPage生命周期触发时对应的状态。
 | ON_PAGE_SHOW          | 2   | page显示。                |
 | ON_PAGE_HIDE          | 3   | page隐藏。                |
 | ON_BACK_PRESS         | 4   | page返回时。              |
+
+## TabContentState<sup>12+</sup>
+
+TabContent组件的状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称              | 值  | 说明                    |
+| ----------------- | --- | ----------------------- |
+| ON_SHOW           | 0   | TabContent组件显示。    |
+| ON_HIDE           | 1   | TabContent组件隐藏。    |
 
 ## NavDestinationInfo
 
@@ -176,6 +189,22 @@ Navigation组件页面切换事件的监听选项。
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 指定需要监听的Navigation的ID |
 
+## TabContentInfo<sup>12+</sup>
+
+TabContent页面的切换信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                                               | 必填 | 说明                                          |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| tabContentId | string                                             | 是   | TabContent组件的id。                          |
+| tabContentUniqueId | number                                       | 是   | TabContent组件的uniqueId。                    |
+| state        | [TabContentState](#tabcontentstate12)              | 是   | TabContent组件的状态。                        |
+| id           | string                                             | 是   | Tabs组件的id。                                |
+| uniqueId     | number                                             | 是   | Tabs组件的uniqueId。                          |
+
 ## observer.on('navDestinationUpdate')
 
 on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
@@ -197,7 +226,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 
 ```ts
 observer.on('navDestinationUpdate', (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
+  console.info('NavDestination state update', JSON.stringify(info));
 });
 ```
 
@@ -322,6 +351,8 @@ on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEven
 
 监听滚动事件的开始和结束。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -357,13 +388,13 @@ off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEv
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver as observer } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  options: uiObserver.ObserverOptions = { id:"testId" };
+  options: observer.ObserverOptions = { id:"testId" };
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
@@ -391,26 +422,26 @@ struct Index {
       Row() {
         Button('UIObserver on')
           .onClick(() => {
-            uiObserver.on('scrollEvent', (info) => {
+            observer.on('scrollEvent', (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserver off')
           .onClick(() => {
-            uiObserver.off('scrollEvent');
+            observer.off('scrollEvent');
           })
       }
 
       Row() {
         Button('UIObserverWithId on')
           .onClick(() => {
-            uiObserver.on('scrollEvent', this.options, (info) => {
+            observer.on('scrollEvent', this.options, (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            uiObserver.off('scrollEvent', this.options);
+            observer.off('scrollEvent', this.options);
           })
       }
     }
@@ -442,11 +473,8 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { UIContext } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import { window } from '@kit.ArkUI';
-
-import observer from '@ohos.arkui.observer';
+import { UIContext, window, uiObserver as observer } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   private uiContext: UIContext | null = null;
@@ -454,7 +482,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 注册监听，范围是abilityContext内的page
     observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
-      console.info('[observer][abilityContext] got info: ' + JSON.stringify(info))
+      console.info('[uiObserver][abilityContext] got info: ' + JSON.stringify(info))
     })
   }
 
@@ -466,13 +494,13 @@ export default class EntryAbility extends UIAbility {
         this.uiContext = windowInfo.getUIContext();
         // 注册监听，范围是uiContext内的page
         observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
-          console.info('[observer][uiContext] got info: ' + JSON.stringify(info))
+          console.info('[uiObserver][uiContext] got info: ' + JSON.stringify(info))
         })
       })
     });
   }
 
-// ... other function in EntryAbility
+  // ... other function in EntryAbility
 }
 ```
 
@@ -499,9 +527,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { UIContext } from '@ohos.arkui.UIContext';
-import { window } from '@kit.ArkUI';
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer, UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // 实际使用前uiContext需要被赋值。参见示例observer.on('routerPageUpdate')
@@ -519,7 +545,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
-// ... other function in EntryAbility
+  // ... other function in EntryAbility
 }
 ```
 
@@ -544,7 +570,7 @@ on(type: 'densityUpdate', context: UIContext, callback: Callback\<DensityInfo\>)
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -591,7 +617,7 @@ off(type: 'densityUpdate', context: UIContext, callback?: Callback\<DensityInfo\
 | callback | Callback\<[DensityInfo](#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销指定UIContext下所有densityUpdate事件监听。 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer, UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -645,7 +671,7 @@ on(type: 'willDraw', context: UIContext, callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -683,7 +709,7 @@ off(type: 'willDraw', context: UIContext, callback?: Callback\<void\>): void
 | callback | Callback\<void\>   | 否   | 需要被注销的回调函数。                                |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -728,7 +754,7 @@ on(type: 'didLayout', context: UIContext, callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -766,7 +792,7 @@ off(type: 'didLayout', context: UIContext, callback?: Callback\<void\>): void
 | callback | Callback\<void\>   | 否   | 需要被注销的回调函数。                                |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -814,12 +840,9 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 // EntryAbility.ets
 // 演示 observer.on('navDestinationSwitch', UIAbilityContext, callback)
 // observer.off('navDestinationSwitch', UIAbilityContext, callback)
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import observer from '@ohos.arkui.observer';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { uiObserver as observer, window } from '@kit.ArkUI';
+import { hilog } from "@kit.PerformanceAnalysisKit"
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
@@ -870,7 +893,7 @@ export default class EntryAbility extends UIAbility {
 // Index.ets
 // 演示 observer.on('navDestinationSwitch', UIContext, callback)
 // observer.off('navDestinationSwitch', UIContext, callback)
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -966,12 +989,9 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observer
 // EntryAbility.ets
 // 演示 observer.on('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
 // observer.off('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import observer from '@ohos.arkui.observer';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { uiObserver as observer, window } from '@kit.ArkUI';
+import { hilog } from "@kit.PerformanceAnalysisKit"
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
@@ -1022,7 +1042,7 @@ export default class EntryAbility extends UIAbility {
 // Index.ets
 // 演示 observer.on('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
 // observer.off('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -1094,3 +1114,179 @@ off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observe
 **示例：**
 
 参考[observer.on('navDestinationSwitch')](#observeronnavdestinationswitch12-1)接口示例。
+
+## observer.on('tabContentUpdate')<sup>12+</sup>
+
+on(type: 'tabContentUpdate', callback: Callback\<TabContentInfo\>): void
+
+监听TabContent页面的切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即TabContent页面的切换事件。 |
+| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | 是   | 回调函数。携带TabContentInfo，返回TabContent页面切换事件的信息。 |
+
+**示例：**
+
+```ts
+import { uiObserver as observer } from '@kit.ArkUI';
+
+function callbackFunc(info: observer.TabContentInfo) {
+  console.info('tabContentUpdate', JSON.stringify(info));
+}
+
+@Entry
+@Component
+struct TabsExample {
+
+  aboutToAppear(): void {
+    observer.on('tabContentUpdate', callbackFunc);
+  }
+
+  aboutToDisappear(): void {
+    observer.off('tabContentUpdate', callbackFunc);
+  }
+
+  build() {
+    Column() {
+      Tabs() {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar('green').id('tabContentId0')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }.tabBar('blue').id('tabContentId1')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar('yellow').id('tabContentId2')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar('pink').id('tabContentId3')
+      }
+      .width(360)
+      .height(296)
+      .backgroundColor('#F1F3F5')
+      .id('tabsId')
+    }.width('100%')
+  }
+}
+```
+
+## observer.off('tabContentUpdate')<sup>12+</sup>
+
+off(type: 'tabContentUpdate', callback?: Callback\<TabContentInfo\>): void
+
+取消监听TabContent页面的切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即TabContent页面的切换事件。 |
+| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | 否   | 需要被注销的回调函数。 |
+
+**示例：**
+
+参考[observer.on('tabContentUpdate')](#observerontabcontentupdate12)接口示例。
+
+## observer.on('tabContentUpdate')<sup>12+</sup>
+
+on(type: 'tabContentUpdate', options: ObserverOptions, callback: Callback\<TabContentInfo\>): void
+
+监听TabContent页面的切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即TabContent页面的切换事件。 |
+| options  | [ObserverOptions](#observeroptions12)                        | 是   | 指定监听的Tabs组件的id。 |
+| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | 是   | 回调函数。携带TabContentInfo，返回TabContent页面切换事件的信息。 |
+
+**示例：**
+
+```ts
+import { uiObserver as observer } from '@kit.ArkUI';
+
+function callbackFunc(info: observer.TabContentInfo) {
+  console.info('tabContentUpdate', JSON.stringify(info));
+}
+
+@Entry
+@Component
+struct TabsExample {
+
+  aboutToAppear(): void {
+    observer.on('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
+  }
+
+  aboutToDisappear(): void {
+    observer.off('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
+  }
+
+  build() {
+    Column() {
+      Tabs() {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar('green').id('tabContentId0')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }.tabBar('blue').id('tabContentId1')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar('yellow').id('tabContentId2')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar('pink').id('tabContentId3')
+      }
+      .width(360)
+      .height(296)
+      .backgroundColor('#F1F3F5')
+      .id('tabsId')
+    }.width('100%')
+  }
+}
+```
+
+## observer.off('tabContentUpdate')<sup>12+</sup>
+
+off(type: 'tabContentUpdate', options: ObserverOptions, callback?: Callback\<TabContentInfo\>): void
+
+取消监听TabContent页面的切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即TabContent页面的切换事件。 |
+| options  | [ObserverOptions](#observeroptions12)                        | 是   | 指定监听的Tabs组件的id。 |
+| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | 否   | 需要被注销的回调函数。 |
+
+**示例：**
+
+参考[observer.on('tabContentUpdate')](#observerontabcontentupdate12-1)接口示例。

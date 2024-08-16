@@ -1,4 +1,4 @@
-# 使用RSA密钥对（PKCS1模式）签名及签名恢复
+# 使用RSA密钥对（PKCS1模式）签名及签名恢复(ArkTS)
 
 
 对应的算法规格请查看[签名验签算法规格：RSA](crypto-sign-sig-verify-overview.md#rsa)。

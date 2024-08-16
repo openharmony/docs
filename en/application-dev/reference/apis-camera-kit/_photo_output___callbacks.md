@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **PhotoOutput_Callbacks** struct defines the callbacks used for photo output.
+The PhotoOutput_Callbacks struct describes the callbacks related to photo output.
 
 For details, see [OH_PhotoOutput_RegisterCallback](_o_h___camera.md#oh_photooutput_registercallback).
 

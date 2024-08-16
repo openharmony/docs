@@ -1,4 +1,4 @@
-# ForEach: Rendering of Repeated Content
+# ForEach: Rendering Repeated Content
 
 
 **ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) component.

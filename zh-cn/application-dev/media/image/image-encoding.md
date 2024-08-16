@@ -12,18 +12,26 @@
 
    ```ts
    // 导入相关模块包
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
    
    const imagePackerApi = image.createImagePacker();
    ```
 
 2. 设置编码输出流和编码参数。
 
-   format为图像的编码格式；quality为图像质量，范围从0-100，100为最佳质量。
+    - format为图像的编码格式；quality为图像质量，范围从0-100，100为最佳质量
 
-   ```ts
-   let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
-   ```
+      > **说明：**
+      > 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，PackingOption.format设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
+
+      ```ts
+      let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
+      ```
+
+    - 编码为hdr内容(需要资源本身为hdr，支持jpeg格式)
+      ```ts
+      packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
+      ```
 
 3. [创建PixelMap对象或创建ImageSource对象](image-decoding.md)。
 
@@ -32,7 +40,7 @@
    方法一：通过PixelMap进行编码。
 
    ```ts
-   import {BusinessError} from '@ohos.base'
+   import { BusinessError } from '@kit.BasicServicesKit';
    imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
      // data 为打包获取到的文件流，写入文件保存即可得到一张图片
    }).catch((error : BusinessError) => { 
@@ -43,7 +51,7 @@
    方法二：通过imageSource进行编码。
 
    ```ts
-   import {BusinessError} from '@ohos.base'
+   import { BusinessError } from '@kit.BasicServicesKit';
    imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
        // data 为打包获取到的文件流，写入文件保存即可得到一张图片
    }).catch((error : BusinessError) => { 
@@ -58,11 +66,11 @@
    方法一：通过PixelMap编码进文件。
 
    ```ts
-   import {BusinessError} from '@ohos.base'
-   import fs from '@ohos.file.fs'
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo } from '@kit.CoreFileKit';
    const context : Context = getContext(this);
    const path : string = context.cacheDir + "/pixel_map.jpg";
-   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+   let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
        // 直接打包进文件
    }).catch((error : BusinessError) => { 
@@ -73,11 +81,11 @@
    方法二：通过imageSource编码进文件。
 
    ```ts
-   import {BusinessError} from '@ohos.base'
-   import fs from '@ohos.file.fs'
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo } from '@kit.CoreFileKit';
    const context : Context = getContext(this);
    const filePath : string = context.cacheDir + "/image_source.jpg";
-   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+   let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
        // 直接打包进文件
    }).catch((error : BusinessError) => { 

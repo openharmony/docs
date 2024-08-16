@@ -20,10 +20,10 @@ The following table describes the APIs for implementing HCE.
 
 | API                            | Description                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
-| start(elementName: ElementName, aidList: string[]): void                   | Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.  |
+| start(elementName: ElementName, aidList: string[]): void                   | Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.                                                              |
 | stop(elementName: ElementName): void  | Stops HCE, including canceling the subscription of APDU data, exiting this application from the foreground, and releasing the dynamically registered AID list.| 
 | on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void                | Registers a callback to receive APDUs from the peer card reader.|
-| transmit(response: number[]): Promise\<void>                  | Transmits APDU data to the peer card reader.|                                                     
+| transmit(response: number[]): Promise\<void>                  | Transmits APDU data to the peer card reader.|
 
 ## How to Develop
 
@@ -72,14 +72,16 @@ The following table describes the APIs for implementing HCE.
 ```
 
 ```ts
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName: bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
 
-async function hceCommandCb(error : BusinessError, hceCommand : number[]) {
+const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
     if (hceCommand == null || hceCommand == undefined) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
@@ -113,8 +115,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
@@ -206,14 +208,16 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ```ts
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName : bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
 
-async function hceCommandCb(error : BusinessError, hceCommand : number[]) {
+const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
     if (hceCommand == null || hceCommand == undefined) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
@@ -248,8 +252,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName = '',
-      abilityName: want.abilityName = '',
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();

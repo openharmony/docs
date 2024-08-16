@@ -10,11 +10,12 @@ To develop the Emitter mode, perform the following steps:
 1. Subscribe to an event.
 
    ```ts
-   import emitter from '@ohos.events.emitter';
-   import promptAction from '@ohos.promptAction';
-   import Logger from '../utils/Logger';
+   import { emitter } from '@kit.BasicServicesKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ThreadModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
    ```ts
    // Define an event with eventId 1.
@@ -27,20 +28,20 @@ To develop the Emitter mode, perform the following steps:
      promptAction.showToast({
        message: JSON.stringify(eventData)
      });
-     Logger.info(TAG, 'event callback:' + JSON.stringify(eventData));
+     hilog.info(DOMAIN_NUMBER, TAG, 'event callback:' + JSON.stringify(eventData));
    };
    
    // Subscribe to the event with eventId 1.
    emitter.on(event, callback);
    promptAction.showToast({
-     message: $r('app.string.emitter_subscribe_success_toast')
+     message: JSON.stringify('emitter subscribe success')
    });
    ```
 
 2. Emit the event.
 
    ```ts
-   import emitter from '@ohos.events.emitter';
+   import { emitter } from '@kit.BasicServicesKit';
    ```
    ```ts
    // Define an event with eventId 1 and priority Low.
@@ -60,5 +61,3 @@ To develop the Emitter mode, perform the following steps:
    // Emit the event with eventId 1 and event content eventData.
    emitter.emit(event, eventData);
    ```
-
- <!--no_check--> 

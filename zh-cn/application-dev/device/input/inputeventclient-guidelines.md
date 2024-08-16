@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## 接口说明

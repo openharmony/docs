@@ -34,11 +34,11 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 |
+| type | "classic" \| "module" | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
+| shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## ThreadWorker<sup>9+</sup>
 
@@ -68,8 +68,8 @@ ThreadWorker构造函数。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure. |
-| 10200007 | The worker file patch is invalid path. |
+| 10200003 | Worker initialization failed. |
+| 10200007 | The worker file path is invalid. |
 
 **示例：**
 
@@ -112,7 +112,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -148,7 +148,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -187,11 +187,12 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // index.ets
 // 新建SendableObject实例并通过宿主线程传递至worker线程
@@ -214,6 +215,7 @@ export class SendableObject {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // worker文件路径为：entry/src/main/ets/workers/Worker.ets
 // Worker.ets
@@ -235,6 +237,8 @@ workerPort.onmessage = (e: MessageEvents) => {
 on(type: string, listener: WorkerEventListener): void
 
 向Worker添加一个事件监听，该接口与[addEventListener<sup>9+</sup>](#addeventlistener9)接口功能一致。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -271,6 +275,8 @@ once(type: string, listener: WorkerEventListener): void
 
 向Worker添加一个事件监听，事件监听只执行一次便自动删除。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -306,6 +312,8 @@ off(type: string, listener?: WorkerEventListener): void
 
 删除类型为type的事件监听，该接口与[removeEventListener<sup>9+</sup>](#removeeventlistener9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -338,6 +346,8 @@ workerInstance.off("alert");
 registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 在宿主线程的ThreadWorker实例上注册一个对象，该对象上的方法可以在Worker线程中被调用，详细介绍请参见[callGlobalCallObjectMethod](#callglobalcallobjectmethod11)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -380,6 +390,8 @@ workerInstance.postMessage("start worker")
 unregisterGlobalCallObject(instanceName?: string): void
 
 取消在宿主线程ThreadWorker实例上注册的对象，该方法会释放ThreadWorker实例中与该键相匹配对象的强引用，没有匹配对象时不会报错。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -435,7 +447,7 @@ terminate(): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -462,8 +474,8 @@ onexit?: (code: number) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -499,8 +511,8 @@ onerror?: (err: ErrorEvent) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -531,8 +543,8 @@ onmessage?: (event: MessageEvents) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -565,8 +577,8 @@ onmessageerror?: (event: MessageEvents) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -584,6 +596,8 @@ workerInstance.onmessageerror = (err: MessageEvents) => {
 addEventListener(type: string, listener: WorkerEventListener): void
 
 向Worker添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -620,6 +634,8 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 删除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -654,6 +670,8 @@ workerInstance.removeEventListener("alert");
 dispatchEvent(event: Event): boolean
 
 分发定义在Worker的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -737,6 +755,8 @@ removeAllListener(): void
 
 删除Worker所有的事件监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -767,6 +787,8 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 向Worker添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -783,8 +805,8 @@ addEventListener(type: string, listener: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -802,6 +824,8 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 删除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -818,7 +842,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -836,6 +860,8 @@ workerInstance.removeEventListener("alert");
 dispatchEvent(event: Event): boolean
 
 分发定义在Worker的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -858,7 +884,7 @@ dispatchEvent(event: Event): boolean
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -919,6 +945,8 @@ removeAllListener(): void
 
 删除Worker所有的事件监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -927,7 +955,7 @@ removeAllListener(): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -968,7 +996,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -1019,7 +1047,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -1070,11 +1098,12 @@ Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // worker文件路径为：entry/src/main/ets/workers/Worker.ets
 // Worker.ets
@@ -1100,6 +1129,7 @@ export class SendableObject {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 // 接收worker线程传递至宿主线程的数据并访问其属性
@@ -1121,6 +1151,8 @@ workerInstance.onmessage = (e: MessageEvents) => {
 callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: number, ...args: Object[]): Object
 
 Worker线程调用注册在宿主线程上某个对象的指定方法，调用对于Worker线程是同步的，对于宿主线程是异步的，返回值通过序列化传递。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1194,7 +1226,7 @@ close(): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -1233,8 +1265,8 @@ onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -1274,8 +1306,8 @@ onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -1303,6 +1335,8 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 
 事件监听类。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1324,8 +1358,8 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -1341,9 +1375,9 @@ workerInstance.addEventListener("alert", (e)=>{
 
 Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
-
 ### 属性
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1358,6 +1392,8 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 onerror?: (ev: ErrorEvent) =&gt; void
 
 回调函数。GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1402,6 +1438,8 @@ RestrictedWorker主要作用是提供受限的Worker线程运行环境，该线�
 constructor(scriptURL: string, options?: WorkerOptions)
 
 RestrictedWorker构造函数。使用以下方法前，均需先构造RestrictedWorker实例。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1996,25 +2034,24 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 **示例：**
 
+<!--no_check-->
 ```ts
 // main thread
 import { worker } from '@kit.ArkTS';
 
-const workerInstance = new worker.Worker("workers/worker.ets");
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (e): void => {
-    // let data = e.data;
+workerInstance.onmessage = (): void => {
     console.log("receive data from worker.ets");
 }
 ```
 ```ts
 // worker.ets
-import { worker } from '@kit.ArkTS';
+import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e): void => {
-    // let data = e.data;
-    parentPort.postMessage("receive data from main thread");
+parentPort.onmessage = (e: MessageEvents) => {
+  parentPort.postMessage("receive data from main thread");
 }
 ```
 
@@ -2126,6 +2163,8 @@ parentPort.onmessageerror = (e) => {
 
 事件类。
 
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                         |
@@ -2187,6 +2226,8 @@ workerInstance.addEventListener("alert", (e)=>{
 ## MessageEvent\<T\>
 
 消息类，持有Worker线程间传递的数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

@@ -53,9 +53,9 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 是 | 否 | true：地名信息来自于逆地理编码模拟功能<br/>false：地名信息不是来自于逆地理编码模拟功能<br/>**系统API**：此接口为系统接口。 |
+| isFromMock | Boolean | 否 | 是 | true：地名信息来自于逆地理编码模拟功能<br/>false：地名信息不是来自于逆地理编码模拟功能<br/>**系统API**：此接口为系统接口。 |
 
 
 ## Location
@@ -64,9 +64,9 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 是 | 否 | true：位置信息来自于位置模拟功能<br/>false：位置信息不是来自于位置模拟功能<br/>**系统API**：此接口为系统接口。 |
+| isFromMock | Boolean | 否 | 是 | true：位置信息来自于位置模拟功能<br/>false：位置信息不是来自于位置模拟功能<br/>**系统API**：此接口为系统接口。 |
 
 
 ## ReverseGeocodingMockInfo
@@ -77,10 +77,10 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | 是 | 是 | 表示经纬度信息。 |
-| geoAddress |  [GeoAddress](#geoaddress) | 是 | 是 |表示地名信息。 |
+| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | 否 | 否 | 表示经纬度信息。 |
+| geoAddress |  [GeoAddress](#geoaddress) | 否 | 否 |表示地名信息。 |
 
 
 ## LocationMockConfig
@@ -91,10 +91,10 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| timeInterval | number | 是 | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
-| locations | Array&lt;[Location](#location)&gt; | 是 | 是 | 表示模拟位置数组。 |
+| timeInterval | number | 否 | 否 | 表示模拟位置上报的时间间隔，单位是秒。 |
+| locations | Array&lt;[Location](#location)&gt; | 否 | 否 | 表示模拟位置数组。 |
 
 ## LocatingRequiredDataConfig<sup>10+</sup>
 
@@ -104,12 +104,12 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 是 | 是 | 表示请求获取数据的类型。 |
-| needStartScan |  boolean | 是 | 是 | true：需要发起扫描<br/>false：不需要发起扫描 |
-| scanInterval |  number | 是 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
-| scanTimeout |  number | 是 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
+| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 否 | 否 | 表示请求获取数据的类型。 |
+| needStartScan |  boolean | 否 | 否 | true：需要发起扫描<br/>false：不需要发起扫描 |
+| scanInterval |  number | 否 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
+| scanTimeout |  number | 否 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
 
 
 ## LocatingRequiredData<sup>10+</sup>
@@ -120,10 +120,10 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| wifiData | [WifiScanInfo](#wifiscaninfo10) | 是 | 否 | 表示WiFi扫描结果。 |
-| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | 是 | 否 | 表示蓝牙扫描结果。 |
+| wifiData | [WifiScanInfo](#wifiscaninfo10) | 否 | 是 | 表示WiFi扫描结果。 |
+| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | 否 | 是 | 表示蓝牙扫描结果。 |
 
 
 ## WifiScanInfo<sup>10+</sup>
@@ -134,13 +134,13 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | WiFi热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | WiFi热点的BSSID。 |
-| rssi | number | 是 | 否 | WiFi热点的信号强度(dBm)。 |
-| frequency | number | 是 | 否 | WiFi热点的频率。 |
-| timestamp | number | 是 | 否 | 时间戳。 |
+| ssid | string | 否 | 否 | WiFi热点的SSID，编码格式为UTF-8。 |
+| bssid | string | 否 | 否 | WiFi热点的BSSID。 |
+| rssi | number | 否 | 否 | WiFi热点的信号强度(dBm)。 |
+| frequency | number | 否 | 否 | WiFi热点的频率。 |
+| timestamp | number | 否 | 否 | 时间戳。 |
 
 
 ## BluetoothScanInfo<sup>10+</sup>
@@ -151,12 +151,12 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceName | string | 是 | 否 | 蓝牙设备名称。 |
-| macAddress | string | 是 | 否 | 蓝牙设备的MAC地址。 |
-| rssi | number | 是 | 否 | 蓝牙设备的信号强度(dBm)。 |
-| timestamp | number | 是 | 否 | 时间戳。 |
+| deviceName | string | 否 | 否 | 蓝牙设备名称。 |
+| macAddress | string | 否 | 否 | 蓝牙设备的MAC地址。 |
+| rssi | number | 否 | 否 | 蓝牙设备的信号强度(dBm)。 |
+| timestamp | number | 否 | 否 | 时间戳。 |
 
 ## LocationPrivacyType
 
@@ -228,6 +228,7 @@ on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callb
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locatingRequiredDataChange')} due to limited device capabilities.          |
 |3301800 | Failed to start WiFi or Bluetooth scanning.                            |
@@ -266,7 +267,7 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locatingRequiredDataChange”，表示取消订阅定位业务所需数据的变化。 |
-  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -275,6 +276,7 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locatingRequiredDataChange')} due to limited device capabilities.          |
 
@@ -512,6 +514,7 @@ setMockedLocations(config: LocationMockConfig): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -770,6 +773,7 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.getLocatingRequiredData} due to limited device capabilities.          |
 |3301800  | Failed to start WiFi or Bluetooth scanning.                    |
@@ -816,6 +820,7 @@ on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                        |
@@ -850,7 +855,7 @@ off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationIconStatusChange”，表示取消订阅定位图标状态变化。 |
-  | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt;  | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt;  | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -858,6 +863,7 @@ off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.        |
@@ -900,6 +906,7 @@ getLocationIconStatus(): LocationIconStatus;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.getLocationIconStatus} due to limited device capabilities.          |
 |3301000  | The location service is unavailable.                  |
 

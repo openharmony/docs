@@ -34,7 +34,7 @@
 
 - 数据源/同步源：状态变量的原始来源，可以同步给不同的状态数据。通常意义为父组件传给子组件的数据。以下示例中数据源为count: 1。
 
-- 命名参数机制：父组件通过指定参数传递给子组件的状态变量，为父子传递同步参数的主要手段。示例：CompA: ({ aProp: this.aProp })。
+- 命名参数机制：父组件通过指定参数传递给子组件的状态变量，为父子传递同步参数的主要手段。示例：CompA({ aProp: this.aProp })。
 
 - 从父组件初始化：父组件使用命名参数机制，将指定参数传递给子组件。子组件初始化的默认值在有父组件传值的情况下，会被覆盖。示例：
 
@@ -203,6 +203,8 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 - 将V1版本装饰器\@State、\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp、\@Watch等在\@ComponentV2装饰的自定义组件中使用。
 - 将V2版本装饰器\@Local、\@Param、\@Once、\@Event、\@Monitor、\@Provider、\@Consumer在\@Component装饰的自定义组件中使用。
 - 将\@Component与\@ComponentV2同时使用。
+- 在\@Component装饰的自定义组件中通过\@State、\@Prop、\@Link、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp装饰的变量并且该变量的类型为\@ObservedV2装饰的类。
+- 在\@ComponentV2装饰的自定义组件中通过\@Param、\@Local、\@Event、\@Provider()、\@Consumer()装饰的变量并且该变量的类型为\@Observed装饰的类。
 
 将V2装饰器与V1装饰器混合使用，会出现未定义行为，表现为冗余刷新、失去深度观测能力、失去自身属性观测能力、失去属性级更新能力等。因此，不能将状态管理V2与状态管理V1在以上提到的场景混合使用。
 

@@ -9,7 +9,7 @@ The **resourceManager** module provides APIs to obtain information about applica
 ## Modules to Import
 
 ```js
-import resourceManager from '@ohos.resourceManager';
+import { resourceManager } from '@kit.LocalizationKit'
 ```
 
 ## How to Use
@@ -19,8 +19,8 @@ For the FA model, you need to import the required bundle and then call the [getR
 For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.abilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -107,8 +107,8 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 **Example**
   <!--code_no_check_fa-->
   ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
     mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
@@ -148,8 +148,8 @@ Obtains the **ResourceManager** object of the specified application. This API us
 **Example**
   <!--code_no_check_fa-->
   ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
   }).catch((error: BusinessError) => {
@@ -178,12 +178,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001009  | Failed to access the system resource.                       |
+| 9001009  | Failed to access the system resource.which is not mapped to application sandbox, This error code will be thrown. |
 
 **Example**
   ```js
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let systemResourceManager = resourceManager.getSystemResourceManager();
@@ -267,21 +267,19 @@ Defines the color mode of the current device.
 
 Defines the device configuration.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
 | Name                       | Type                           | Readable| Writable| Description              |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
-| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation.        |
-| locale                      | string                          | Yes  | Yes  | Country or region.|
-| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | Yes  | Yes  | Device type.        |
-| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density.        |
-| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | Yes  | Yes  | Color mode.        |
-| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code.      |
-| mnc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile network code (MNC).      |
+| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
+| locale                      | string                          | Yes  | Yes  | Country or region.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | Yes  | Yes  | Device type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | Yes  | Yes  | Color mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| mnc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 
 
 
@@ -348,6 +346,8 @@ Defines the capability of accessing application resources.
 > - Use the resource object for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources. Therefore, it takes a longer time than using the resource ID or resource name.
 >
 > - For details about intra-HAP and cross-HAP/HSP resource access modes, see [Resource Access](../../quick-start/resource-categories-and-access.md#resource-access).
+>
+> - For details about the content of the test files used in the sample code, see [Appendix](#appendix).
 
 ### getStringSync<sup>9+</sup>
 
@@ -384,7 +384,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
@@ -431,7 +431,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
@@ -479,8 +479,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -534,8 +534,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -586,7 +586,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByNameSync("test");
@@ -634,7 +634,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
@@ -675,7 +675,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example (stage)**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
@@ -727,7 +727,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
@@ -774,8 +774,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -834,8 +834,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -884,7 +884,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
@@ -936,7 +936,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByName("test").then((value: string) => {
@@ -986,7 +986,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
@@ -1034,8 +1034,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1124,7 +1124,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
@@ -1175,7 +1175,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then((value: Array<string>) => {
@@ -1222,8 +1222,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1282,8 +1282,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1333,7 +1333,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
@@ -1385,7 +1385,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayByName("test").then((value: Array<string>) => {
@@ -1440,7 +1440,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
@@ -1493,8 +1493,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1550,7 +1550,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringByNameSync("test", 1);
@@ -1596,7 +1596,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
@@ -1653,7 +1653,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
@@ -1705,8 +1705,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1770,8 +1770,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1826,7 +1826,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
@@ -1883,7 +1883,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
@@ -1933,7 +1933,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // Default screen density
@@ -1989,8 +1989,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2049,7 +2049,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByNameSync("test"); // Default screen density
@@ -2097,7 +2097,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
@@ -2144,7 +2144,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
@@ -2195,7 +2195,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id).then((value: Uint8Array) => {
@@ -2245,7 +2245,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then((value: Uint8Array) => {
@@ -2291,8 +2291,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2346,8 +2346,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2405,8 +2405,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2463,8 +2463,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2512,7 +2512,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
@@ -2559,7 +2559,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
@@ -2610,7 +2610,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test").then((value: Uint8Array) => {
@@ -2660,7 +2660,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", 120).then((value: Uint8Array) => {
@@ -2710,7 +2710,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // Default screen density
@@ -2766,8 +2766,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2826,7 +2826,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByNameSync("test"); // Default screen density
@@ -2874,7 +2874,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error: BusinessError, value: string) => {
@@ -2921,7 +2921,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
@@ -2972,7 +2972,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then((value: string) => {
@@ -3022,7 +3022,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then((value: string) => {
@@ -3068,8 +3068,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3123,8 +3123,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3182,8 +3182,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3240,8 +3240,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3290,7 +3290,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", (error: BusinessError, value: string) => {
@@ -3337,7 +3337,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120, (error: BusinessError, value: string) => {
@@ -3388,7 +3388,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test").then((value: string) => {
@@ -3438,7 +3438,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120).then((value: string) => {
@@ -3489,7 +3489,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
@@ -3552,8 +3552,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3619,7 +3619,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon');
@@ -3679,7 +3679,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
@@ -3726,8 +3726,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3778,7 +3778,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getBooleanByName("boolean_test");
@@ -3809,7 +3809,7 @@ Obtains an integer or float value based on the specified resource ID. This API r
 
 | Type    | Description        |
 | ------ | ---------- | 
-| number | Integer or float value corresponding to the specified resource ID. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
+| number | Integer or float value corresponding to the specified resource ID. An integer indicates the original value, and a float number indicates the actual pixel value. For details, see the sample code.|
 
 **Error codes**
 
@@ -3824,7 +3824,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer refers to the original value.
@@ -3849,6 +3849,10 @@ getNumber(resource: Resource): number
 
 Obtains an integer or float value based on the specified resource object. This API returns the result synchronously.
 
+> **NOTE**
+>
+> If this API is used to obtain the float value whose unit is vp, the value obtained through **resId** is different from that obtained through **resource**. In this case, the value obtained through **resId** is correct. This issue will be rectified in future versions.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
@@ -3865,7 +3869,7 @@ Obtains an integer or float value based on the specified resource object. This A
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float value corresponding to the specified resource name.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
@@ -3880,8 +3884,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3917,7 +3921,7 @@ Obtains an integer or float value based on the specified resource name. This API
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float value corresponding to the specified resource name.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
@@ -3932,7 +3936,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getNumberByName("integer_test");
@@ -3986,7 +3990,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorSync($r('app.color.test').id);
@@ -4034,8 +4038,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4086,7 +4090,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByNameSync("test");
@@ -4127,7 +4131,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example (stage)**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
@@ -4179,7 +4183,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColor($r('app.color.test').id).then((value: number) => {
@@ -4226,8 +4230,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4286,8 +4290,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4337,7 +4341,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
@@ -4389,7 +4393,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByName("test").then((value: number) => {
@@ -4437,7 +4441,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContentSync("test.txt");
@@ -4475,7 +4479,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
@@ -4525,7 +4529,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContent("test.txt").then((value: Uint8Array) => {
@@ -4577,7 +4581,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileListSync("")
@@ -4620,7 +4624,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
@@ -4674,7 +4678,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileList("").then((value: Array<string>) => {
@@ -4722,7 +4726,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFdSync("test.txt");
@@ -4761,8 +4765,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
@@ -4814,8 +4818,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -4859,7 +4863,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFdSync("test.txt");
@@ -4898,7 +4902,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
@@ -4946,7 +4950,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFd("test.txt");
@@ -5002,7 +5006,7 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
@@ -5036,8 +5040,8 @@ Obtains the device configuration. This API uses a promise to return the result.
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -5096,7 +5100,7 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
@@ -5130,8 +5134,8 @@ Obtains the device capability. This API uses a promise to return the result.
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
@@ -5142,25 +5146,6 @@ Obtains the device capability. This API uses a promise to return the result.
     });
   } catch (error) {
     console.error("getDeviceCapability promise error is " + error);
-  }
-  ```
-
-### release<sup>7+</sup>
-
-release()
-
-Releases a **ResourceManager** object. This API is not supported currently.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Example**
-  ```ts
-  try {
-    this.context.resourceManager.release();
-  } catch (error) {
-    console.error("release error is " + error);
   }
   ```
 
@@ -5191,7 +5176,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
@@ -5230,7 +5215,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
@@ -5266,8 +5251,8 @@ Obtains the language list of an application.
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getLocales(); // Obtain only the language list of application resources.
@@ -5329,7 +5314,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getSymbol($r('app.symbol.test').id);
@@ -5376,8 +5361,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -5428,7 +5413,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getSymbolByName("test");
@@ -5472,7 +5457,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.isRawDir("test.txt");
@@ -5518,7 +5503,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { resourceManager } from '@kit.LocalizationKit'
 
   try {
@@ -5552,7 +5537,7 @@ Obtains the configuration of differentiated resources. This API returns the resu
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { resourceManager } from '@kit.LocalizationKit'
 
   let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
@@ -5585,7 +5570,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { resourceManager } from '@kit.LocalizationKit'
 
   try {
@@ -5597,6 +5582,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`updateOverrideConfiguration failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### release<sup>(deprecated)</sup>
+
+release()
+
+Releases a **ResourceManager** object. This API is not supported currently.
+
+This API is supported since API version 7 and is deprecated since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.release();
+  } catch (error) {
+    console.error("release error is " + error);
   }
   ```
 
@@ -5655,7 +5661,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id).then((value: string) => {
@@ -5722,7 +5728,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
        mgr.getStringArray($r('app.strarray.test').id).then((value: Array<string>) => {
@@ -5788,7 +5794,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id).then((value: Uint8Array) => {
@@ -5855,7 +5861,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id).then((value: string) => {
@@ -5896,7 +5902,7 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1).then((value: string) => {
@@ -5999,7 +6005,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.txt").then((value: Uint8Array) => {
@@ -6030,7 +6036,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
@@ -6069,7 +6075,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -6140,3 +6146,106 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
       mgr.closeRawFileDescriptor("test.txt");
   });
   ```
+
+### Appendix
+
+- Content of the **app.string.test** file:
+
+    ```json
+    {
+    "string": [
+        {
+        "name": "test",
+        "value": "10"
+        }
+    ]
+    }
+    ```
+
+    ```json
+    {
+    "string": [
+     {
+        "name": "test",
+        "value": "%s %d %f"
+        }
+    ]
+    }
+    ```
+
+- Content of the **app.strarray.test** file:
+
+    ```json
+    {
+    "strarray": [
+        {
+        "name": "test",
+        "value": [
+    ```  
+
+- Content of the **app.plural.test** file:
+    ```json
+    {
+      "plural": [
+        {
+        "name": "test",
+        "value": [
+            {
+            "quantity": "one",
+            "value": "%d apple"
+            },
+            {
+            "quantity": "other",
+            "value": "%d apples"
+            }
+        ]
+        }
+    ]
+    }
+    ``` 
+
+- Content of the **app.boolean.boolean_test** file:
+    ```json
+    {
+    "boolean": [
+        {
+        "name": "boolean_test",
+        "value": true
+        }
+    
+    }
+    ``` 
+
+- Content of the **integer_test** and **float_test** files:
+    ```json
+    {
+      "integer": [
+        {
+          "name": "integer_test",
+          "value": 100
+        }
+      ]
+    }
+    ``` 
+
+    ```json
+    {
+      "float": [
+        {
+          "name": "float_test",
+          "value": "30.6"
+        }
+      ]
+    }
+    ``` 
+- Content of the **app.color.test** file:
+    ```json
+    {
+      "color": [
+        {
+          "name": "test",
+          "value": "#FFFFFF"
+       }
+      ]
+    }
+    ``` 

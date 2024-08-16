@@ -12,11 +12,12 @@
       - [UIAbility组件启动模式](uiability-launch-type.md)
       - [UIAbility组件基本用法](uiability-usage.md)
       - [UIAbility组件与UI的数据同步](uiability-data-sync-with-ui.md)
-      - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
+      - [启动应用内的UIAbility组件](uiability-intra-device-interaction.md)
     - [ExtensionAbility组件](extensionability-overview.md)
       <!--Del-->
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
+      - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
       <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
@@ -25,8 +26,6 @@
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
-      - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
-      - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
     - [应用启动框架AppStartup](app-startup.md)
     <!--Del-->
@@ -44,9 +43,10 @@
       <!--Del-->
       - [使用App Linking实现应用间跳转](app-linking-startup.md)
       <!--DelEnd-->
-      - [应用间显式跳转切换link跳转适配指导](uiability-startup-adjust.md)
+      - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+      - [拉起图片编辑类应用编辑图片](photoEditorExtensionAbility.md)
       - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
     - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)
@@ -135,5 +135,4 @@
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
 <!--DelEnd-->
-- [程序访问控制](../security/AccessToken/Readme-CN.md)
 - [Native子进程开发指导（C/C++)](capi_nativechildprocess_development_guideline.md)

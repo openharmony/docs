@@ -27,6 +27,7 @@ import { inputMethodEngine } from '@kit.IMEKit';
 | ENTER_KEY_TYPE_NEXT | number | 5 | “下一个”功能键。 |
 | ENTER_KEY_TYPE_DONE | number | 6 | “回车”功能键。 |
 | ENTER_KEY_TYPE_PREVIOUS | number | 7 | “前一个”功能键。 |
+| ENTER_KEY_TYPE_NEWLINE | number | 8 | “换行”功能键。 |
 | PATTERN_NULL | number | -1 | 无特殊性编辑框。 |
 | PATTERN_TEXT | number | 0 | 文本编辑框。 |
 | PATTERN_NUMBER | number | 2 | 数字编辑框。 |
@@ -600,7 +601,7 @@ try {
 
 off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
 
-取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+取消订阅输入法安全模式改变类型事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -639,7 +640,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | 是   | 设置监听类型，固定取值为'privateCommand'。 |
-| callback | Callback<Record<string, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
+| callback | Callback<Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
 
 **错误码：**
 
@@ -655,7 +656,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -671,7 +672,7 @@ try {
 
 ### off('privateCommand')<sup>12+</sup>
 
-off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
+off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>): void
 
 取消订阅输入法私有数据事件。使用callback异步回调。
 
@@ -682,7 +683,7 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'privateCommand'。                   |
-| callback | Callback\<[SecurityMode](#securitymode11))> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | Callback<Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)>> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **错误码：**
 
@@ -698,7 +699,7 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -763,7 +764,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -813,7 +814,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -1479,7 +1480,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2').then(() => {
+  panel.setUiContent('pages/page2/page2', storage).then(() => {
     console.log('Succeeded in setting the content.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
@@ -1800,7 +1801,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800013 | window manager service error. |
 
 **示例：**
@@ -3826,7 +3827,7 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
       "valueString3": 500,
     }
     textInputClient.sendPrivateCommand(record).then(() => {
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
       if (err !== undefined) {
         let error = err as BusinessError;
         console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
@@ -4097,8 +4098,8 @@ try {
 
 | 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| type   	| number   | 是   | 是   | 面板的类型。 |
-| flag	    | number   | 是   | 是   | 面板的状态类型。 |
+| type   	| [PanelType](#paneltype10)   | 是   | 是   | 面板的类型。 |
+| flag	    | [PanelFlag](#panelflag10)   | 是   | 是   | 面板的状态类型。 |
 
 ## PanelRect<sup>12+</sup>
 

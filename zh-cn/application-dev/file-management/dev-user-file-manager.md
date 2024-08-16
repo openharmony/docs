@@ -6,7 +6,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 开发用户文件管理器的相关API详细介绍请参见[API参考](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)。
 
 1. 权限配置和导入模块。
-   申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+   申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
    > **说明：**
    >
@@ -17,8 +17,8 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 2. 导入依赖模块。
 
    ```ts
-   import fileAccess from '@ohos.file.fileAccess';
-   import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
+   import { fileAccess } from '@kit.CoreFileKit';
+   import { fileExtensionInfo } from '@kit.CoreFileKit';
    ```
 
    其中fileAccess提供了文件基础操作的API，fileExtensionInfo提供了应用开发的关键结构体。
@@ -29,9 +29,9 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    在文件访问框架中，使用RootInfo用于表示设备的属性信息。以下示例可以获取所有设备的RootInfo。
 
    ```ts
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import { Filter } from '@ohos.file.fs';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { Filter } from '@kit.CoreFileKit';
 
    // 获取应用上下文
    let context = getContext(this) as common.UIAbilityContext;
@@ -79,8 +79,8 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
     listfile和scanfile接口当前支持RootInfo对象调用，可用于支撑遍历下一级文件或过滤整个目录树。同时，接口也支持FileInfo对象调用，用于支撑遍历下一级文件或过滤指定目录。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import { Filter } from '@ohos.file.fs';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { Filter } from '@kit.CoreFileKit';
 
    // 从根目录开始
    let rootInfo: Array<fileAccess.RootInfo> = rootInfos[0];
@@ -133,7 +133,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    开发者可以集成文件访问框架的接口，完成一些用户行为，比如删除文件（目录）、重命名文件（目录）、新建文件（目录）、移动文件（目录）等。以下示例展示了如何创建一个文件，其他接口请参见[API参考](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    // 以本地设备为例
    // 创建文件
@@ -177,8 +177,8 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
 2. 导入依赖模块。
 
    ```ts
-   import fileAccess from '@ohos.file.fileAccess';
-   import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
+   import { fileAccess } from '@kit.CoreFileKit';
+   import { fileExtensionInfo } from '@kit.CoreFileKit';
    ```
 
  其中fileAccess提供了文件基础操作的API，fileExtensionInfo提供了应用开发的关键结构体。
@@ -200,7 +200,7 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
   开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量),传入方法中，就能监听设备上线，下线状态。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    async function UnregisterObserver03() {
      try {
        // 监听设备的上下线
@@ -216,7 +216,7 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
   开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量),传入方法中，就能取消设备上线，下线状态。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
      try {
        // 取消监听设备的上下线
        fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI, callbackDir1);

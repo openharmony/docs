@@ -135,7 +135,7 @@ console.log(result);
 | trim              | boolean  | 是   | 是否修剪位于文本前后的空白字符。                 |
 | ignoreDeclaration | boolean  | 否   | 是否忽略xml写入声明指示，默认false。                        |
 | ignoreInstruction | boolean  | 否   | 是否忽略xml的写入处理指令，默认false。                      |
-| ignoreAttributes  | boolean  | 否   | 是否跨多行打印属性并缩进属性，默认false。                   |
+| ignoreAttributes  | boolean  | 否   | 是否忽略元素的属性信息，默认false。                   |
 | ignoreComment     | boolean  | 否   | 是否忽略元素的注释信息，默认false。                         |
 | ignoreCDATA       | boolean  | 否   | 是否忽略元素的CDATA信息，默认false。                        |
 | ignoreDoctype     | boolean  | 否   | 是否忽略元素的Doctype信息，默认false。                      |

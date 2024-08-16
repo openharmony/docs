@@ -9,7 +9,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 ## 导入模块
 
 ```ts
-import hichecker from '@ohos.hichecker';
+import { hichecker } from '@kit.PerformanceAnalysisKit';
 ```
 
 
@@ -49,7 +49,7 @@ addCheckRule(rule: bigint): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // 添加一条规则
@@ -85,7 +85,7 @@ removeCheckRule(rule: bigint): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // 删除一条规则
@@ -127,7 +127,7 @@ containsCheckRule(rule: bigint): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // 添加一条规则

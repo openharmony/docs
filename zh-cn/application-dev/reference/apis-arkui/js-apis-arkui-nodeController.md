@@ -11,7 +11,7 @@ NodeController用于实现自定义节点的创建、显示、更新等操作的
 ## 导入模块
 
 ```ts
-import { NodeController } from "@ohos.arkui.node";
+import {  NodeController  } from '@kit.ArkUI';
 ```
 
 ## NodeController
@@ -49,7 +49,11 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 aboutToAppear?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载显示时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载显示后触发此回调。
+
+> **说明：**
+>
+> 回调时机参考[onAppear](arkui-ts/ts-universal-events-show-hide.md#onappear)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -60,6 +64,10 @@ aboutToAppear?(): void
 aboutToDisappear?(): void
 
 当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)卸载消失时触发此回调。
+
+> **说明：**
+>
+> 回调时机参考[onDisAppear](arkui-ts/ts-universal-events-show-hide.md#ondisappear)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -110,8 +118,7 @@ rebuild(): void
 ### 示例
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, Size, FrameNode } from '@ohos.arkui.node';
+import {  NodeController, BuilderNode, Size, FrameNode ,UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"

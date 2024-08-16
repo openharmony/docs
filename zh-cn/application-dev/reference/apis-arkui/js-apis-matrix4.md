@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 ```
 
 
@@ -60,7 +60,7 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 **示例**
 
 ```ts
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 // 创建一个四阶矩阵
 let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
                           0.0, 1.0, 0.0, 0.0,
@@ -101,7 +101,7 @@ Matrix的初始化函数，可以返回一个单位矩阵对象。
 
 ```ts
 // matrix1 和 matrix2 效果一致
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 let matrix1 = matrix4.init([1.0, 0.0, 0.0, 0.0,
                           0.0, 1.0, 0.0, 0.0,
                           0.0, 0.0, 1.0, 0.0,
@@ -155,7 +155,7 @@ Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -211,7 +211,7 @@ Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个�
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -259,7 +259,7 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 **示例：**
 
 ```ts
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
 let matrix1 = matrix4.identity().scale({ x: 2 })
 let matrix2 = matrix1.copy().invert()
@@ -311,7 +311,7 @@ Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -357,7 +357,7 @@ Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -384,6 +384,8 @@ skew(x: number, y: number): Matrix4Transit
 
 Matrix的倾斜函数，可以为当前矩阵增加x轴/y轴倾斜效果。会改变调用该函数的原始矩阵。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -403,7 +405,7 @@ Matrix的倾斜函数，可以为当前矩阵增加x轴/y轴倾斜效果。会�
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
@@ -452,7 +454,7 @@ Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -498,7 +500,7 @@ Matrix的坐标点转换函数，可以将当前的变换效果作用到一个�
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -537,6 +539,8 @@ setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 
 将一个多边形的顶点坐标映射到另外一个多边形的顶点坐标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -551,24 +555,31 @@ setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 | --------------------------------- | -------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵变换后的对象。 |
 
+> **说明：**
+> 需要配合scale({centerX:0,centerY:0,x:1})保证变换的中心点是组件左上角。
+
 **示例：**
 
 ```ts
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:200, y:0}, {x:0, y:200}, {x:200, y:200} ],
-    dst:[{x:10, y:0}, {x:250, y:0}, {x:0, y:200}, {x:200, y:200} ], pointCount:4})
+  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:500, y:500} ],
+    dst:[{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:750, y:1000} ], pointCount:4})
 
   build() {
     Stack() {
-      Image($r("app.media.transition_image1"))
+      Column().backgroundColor(Color.Blue)
+        .width('500px')
+        .height('500px')
+      Image($r('app.media.transition_image1'))
+        .scale({centerX:0,centerY:0,x:1})
         .transform(this.matrix1)
-        .width(200)
-        .height(200)
-    }.width("100%").height("100%")
+        .width('500px')
+        .height('500px')
+    }.width("100%").height("100%").opacity(0.5)
   }
 }
 ```
@@ -663,7 +674,7 @@ Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component

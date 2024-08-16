@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## EventType
@@ -74,8 +74,8 @@ write(info: SysEventInfo, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let customizedParams: Record<string, string | number> = {
@@ -139,8 +139,8 @@ write(info: SysEventInfo): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let customizedParams: Record<string, string | number> = {
@@ -238,8 +238,8 @@ addWatcher(watcher: Watcher): void
 **示例：**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let watchRules: hiSysEvent.WatchRule[] = [{
     domain: "RELIABILITY",
@@ -293,8 +293,8 @@ removeWatcher(watcher: Watcher): void
 **示例：**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let watchRules: hiSysEvent.WatchRule[] = [{
     domain: "RELIABILITY",
@@ -391,8 +391,8 @@ query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): void
 **示例：**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let customizedParams: Record<string, string | number> = {
@@ -474,9 +474,9 @@ exportSysEvents(queryArg: QueryArg, rules: QueryRule[]): number
 **示例：**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let customizedParams: Record<string, string | number> = {
@@ -511,10 +511,10 @@ try {
   // 延迟读取本次导出的事件
   setTimeout(() => {
     let eventDir = '/data/storage/el2/base/cache/hiview/event';
-    let filenames = fs.listFileSync(eventDir);
+    let filenames = fileIo.listFileSync(eventDir);
     for (let i = 0; i < filenames.length; i++) {
       if (filenames[i].indexOf(time.toString()) != -1) {
-        let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+        let res = fileIo.readTextSync(eventDir + '/' + filenames[i]);
         let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
         console.log("read file end, events is :" + JSON.stringify(events));
       }
@@ -562,9 +562,9 @@ subscribe(rules: QueryRule[]): number
 **示例：**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rules: hiSysEvent.QueryRule[] = [{
@@ -597,9 +597,9 @@ try {
   // 延迟读取订阅的事件
   setTimeout(() => {
     let eventDir = '/data/storage/el2/base/cache/hiview/event';
-    let filenames = fs.listFileSync(eventDir);
+    let filenames = fileIo.listFileSync(eventDir);
     for (let i = 0; i < filenames.length; i++) {
-      let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+      let res = fileIo.readTextSync(eventDir + '/' + filenames[i]);
       let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
       console.log("read file end, events is :" + JSON.stringify(events));
     }
@@ -633,8 +633,8 @@ unsubscribe(): void
 **示例：**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rules: hiSysEvent.QueryRule[] = [{

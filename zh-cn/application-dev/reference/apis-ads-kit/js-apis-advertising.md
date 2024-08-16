@@ -17,7 +17,7 @@ import { advertising } from '@kit.AdsKit';
 
 提供加载广告的功能
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -27,7 +27,7 @@ constructor(context: common.Context);
 
 构造函数。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -57,7 +57,7 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 请求单广告位广告。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -95,7 +95,7 @@ function requestAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom86",
+    adId: "testy63txaom86"
   };
   const adOptions: advertising.AdOptions = {
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
@@ -105,8 +105,8 @@ function requestAd(context: common.Context): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求: -1默认值,不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
-  };
+    tagForUnderAgeOfPromise: -1
+  }
   // 广告请求回调监听
   const adLoaderListener: advertising.AdLoadListener = {
     // 广告请求失败回调
@@ -136,7 +136,7 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 请求多广告位广告。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -173,13 +173,13 @@ function requestMultiAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom86",
+    adId: "testy63txaom86"
   } as advertising.AdRequestParams,
     {
       // 广告类型
       adType: 3,
       // 测试广告位ID
-      adId: "testy63txaom86",
+      adId: "testy63txaom86"
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
@@ -190,7 +190,7 @@ function requestMultiAd(context: common.Context): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
+    tagForUnderAgeOfPromise: -1
   };
   // 广告请求回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
@@ -222,7 +222,7 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 
 展示全屏广告。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -265,7 +265,7 @@ export struct ShowAd {
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // 是否静音，默认不静音
-    mute: false,
+    mute: false
   }
 
   build() {
@@ -291,7 +291,7 @@ export struct ShowAd {
 
 广告配置参数。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -308,7 +308,7 @@ export struct ShowAd {
 
 广告请求参数。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -328,7 +328,7 @@ export struct ShowAd {
 
 单广告位广告请求回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -338,7 +338,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 广告请求失败回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -354,7 +354,7 @@ onAdLoadSuccess(ads: Array&lt;advertising.Advertisement&gt;): void
 
 广告请求成功后回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -382,7 +382,7 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 多广告位广告请求回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -392,7 +392,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 多广告位广告请求失败回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -408,7 +408,7 @@ onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt
 
 多广告位广告请求成功后回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -436,12 +436,12 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 请求的广告内容。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | adType | number | 是 | 广告类型。 | 
 | uniqueId | string | 是 | 广告唯一标识。 | 
@@ -449,7 +449,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 | shown | boolean | 是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
 | clicked | boolean | 是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
 | rewardVerifyConfig | Map&lt;string, string&gt; | 是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
-| [key: string] | number \| boolean \| string \| undefined  | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
+| [key: string] | Object | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
 
 
 ## AdDisplayOptions
@@ -457,7 +457,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告展示参数。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -477,7 +477,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告状态变化回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -487,7 +487,7 @@ onStatusChanged(status: string, ad: advertising.[Advertisement](#advertisement),
 
 广告状态回调。
 
-**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -553,7 +553,7 @@ function getAdRequestBody(): void {
     'adType': 3,
     'adCount': 2,
     'adWidth': 100,
-    'adHeight': 100,
+    'adHeight': 100
   };
 
   adReqParamsListForRequest.push(adReqParams as advertising.AdRequestParams);
@@ -565,20 +565,20 @@ function getAdRequestBody(): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
     'tagForChildProtection': 1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
-    'tagForUnderAgeOfPromise': -1,
+    'tagForUnderAgeOfPromise': -1
   };
   advertising.getAdRequestBody(adReqParamsListForRequest, adOption as advertising.AdOptions).then((data) => {
     hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting AdRequestBody by promise: ${data}`);
     Prompt.showToast({
       message: data,
-      duration: 1000,
+      duration: 1000
     });
   }).catch((error: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s',
       `getAdRequestBody failed, code: ${error.code}, message: ${error.message}`);
     Prompt.showToast({
       message: error.code.toString() + ',' + error.message,
-      duration: 1000,
+      duration: 1000
     });
   })
 }

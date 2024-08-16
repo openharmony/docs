@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ChipGroup (操作块组组件)
+# ChipGroup
 
 ChipGroup高级组件，提供操作块群组，用于对文件或者资源内容进行分类等场景。
 
@@ -18,13 +18,16 @@ ChipGroup({
   itemStyle?: ChipItemStyle,
   selectedIndexes?: Array<number>,
   multiple?: boolean,
-  chipGroupSpaceSize?: ChipGroupSpaceOptions,
+  chipGroupSpace?: ChipGroupSpaceOptions,
+  chipGroupPadding?: ChipGroupPaddingOptions,
   onChange?: (selectedIndexes: Array<number>) => void,
   suffix?: Callback<void>
 })
 ```
 
 **装饰器类型：**@Component
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,10 +49,14 @@ ChipGroup({
 > 1. 针对selectedIndexes和multiple接口，multiple等于false的时候，当没有传入selectedIndexes时候，默认是第一个chip被选中，当传入的selectedIndexes有一个以上的元素时候，默认第一个索引的chip被选中。
 >
 > 2. 针对suffix接口，使用时候需要引入IconGroupSuffix接口，不传入的情况，没有suffix。
+>
+> 3. 关于图标填充色（fillColor以及activedFillColor）的设置，跟随字体颜色（fontColor）保持一致。若想两者颜色不同，则需要在传入[ChipGroupSpaceOptions](#chipgroupspaceoptions)时，使用prefixSymbol。
 
 ## ChipGroupItemOptions
 
 ChipGroupItemOptions定义每个chip的非共通属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称         | 类型                           | 必填 | 描述                                |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
@@ -67,6 +74,8 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 ## ChipItemStyle
 
 ChipItemStyle定义了chip的共通属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                    | 类型                                                              | 必填 | 描述                                                  |
 | ----------------------- | ----------------------                                           | ---- | -------------------------------                       |
@@ -86,24 +95,30 @@ ChipItemStyle定义了chip的共通属性。
 
 ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直接的间距。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称       | 类型            | 必填 | 描述                                               |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string\|number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
-| startSpace | Length         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace走默认值。                |
-| endSpace   | Length         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，endSpace走默认值。 |
+| itemSpace | string \| number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
+| startSpace | [Length](ts-types.md#length)         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace走默认值。                |
+| endSpace   | [Length](ts-types.md#length)         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，endSpace走默认值。 |
 
 ## ChipGroupPaddingOptions
 
 ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGroup的整体高度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称   | 类型            | 必填 | 描述                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------            |
-| top    | Length         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top走默认值。        |
-| bottom | Length         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom走默认值。         |
+| top    | [Length](ts-types.md#length)         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top走默认值。        |
+| bottom | [Length](ts-types.md#length)         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom走默认值。         |
 
 ## IconGroupSuffix
 
 **装饰器类型：**@Component
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,14 +137,18 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 
 尾部builder接口定义，针对背板大小及颜色设置限制。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     | 类型                            | 必填 | 描述                                      |
 | -------- | --------------                 | ---- | ------------------------------           |
 | icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon                        |
-| action   | ()=>void                       | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。            |
+| action   | Callback\<void>        | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。            |
 
 ## IconOptions
 
 IconOptions定义图标的共通属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型                                   | 必填 | 说明                                                         |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -140,6 +159,8 @@ IconOptions定义图标的共通属性。
 
 Label定义图标的共通属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型   | 必填  | 说明     |
 | ---- | ------ | ---- | -------- |
 | text | string | 是   | 文本属性  |
@@ -149,8 +170,7 @@ Label定义图标的共通属性。
 ### 示例1-无suffix
 
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize, ChipGroup } from '@kit.ArkUI'
 
 @Entry
 @Preview
@@ -165,32 +185,32 @@ struct Index {
             prefixIcon: { src: $r('app.media.icon') },
             label: { text: "操作块1" },
             suffixIcon: { src: $r('sys.media.ohos_ic_public_cut') },
-            allowClose: false,
+            allowClose: false
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_copy') },
             label: { text: "操作块2" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
             label: { text: "操作块3" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
             label: { text: "操作块4" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
             label: { text: "操作块5" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
             label: { text: "操作块6" },
-            allowClose: true,
+            allowClose: true
           },
         ],
         itemStyle: {
@@ -218,8 +238,7 @@ struct Index {
 ### 示例2-有suffix
 
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI'
 
 @Entry
 @Preview
@@ -228,7 +247,7 @@ struct Index {
   @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6]
   @State selected_state: boolean = true;
 
-  @Builder
+  @LocalBuilder
   ChipGroupSuffix(): void {
     IconGroupSuffix({
       items: [{
@@ -255,32 +274,32 @@ struct Index {
             prefixIcon: { src: $r('app.media.icon') },
             label: { text: "操作块1" },
             suffixIcon: { src: $r('sys.media.ohos_ic_public_cut') },
-            allowClose: false,
+            allowClose: false
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_copy') },
             label: { text: "操作块2" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
             label: { text: "操作块3" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
             label: { text: "操作块4" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
             label: { text: "操作块5" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
             label: { text: "操作块6" },
-            allowClose: true,
+            allowClose: true
           },
         ],
         itemStyle: {
@@ -297,7 +316,7 @@ struct Index {
         onChange: (activatedChipsIndex: Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
-        suffix: this.ChipGroupSuffix.bind(this)
+        suffix: this.ChipGroupSuffix
       })
     }
   }
@@ -309,9 +328,7 @@ struct Index {
 ### 示例3
 该示例实现了IconGroupSuffix及ChipGroup传入SymbolGlyph资源。
 ```typescript
-import { ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup, IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Preview
@@ -324,7 +341,7 @@ struct Index {
   @State suffixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
   @State suffixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Red]);
 
-  @Builder
+  @LocalBuilder
   ChipGroupSuffix(): void {
     IconGroupSuffix({
       items: [
@@ -392,7 +409,7 @@ struct Index {
         onChange: (activatedChipsIndex: Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
-        suffix: this.ChipGroupSuffix.bind(this)
+        suffix: this.ChipGroupSuffix
       })
     }
   }

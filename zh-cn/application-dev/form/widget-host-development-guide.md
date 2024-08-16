@@ -25,7 +25,7 @@
 
 ## 卡片组件
 
-提供卡片组件，实现卡片的显示功能。详情见[FormComponent](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)。
+提供卡片组件，实现卡片的显示功能。详情见[FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)。
 
 > **说明：**
 >
@@ -37,7 +37,7 @@
 >
 > - 本模块为系统接口。
 
-通过卡片组件成功添加卡片时，会调用到卡片提供方FormExtensionAbility中的[onAddForm](../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)方法。
+通过卡片组件成功添加卡片时，会调用到卡片提供方FormExtensionAbility中的[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)方法。
 
 ### 临时卡片和常态卡片
 
@@ -51,7 +51,7 @@
 
 ## formHost接口
 
-formHost提供一系列的卡片使用方接口，来操作卡片的更新、删除等行为，具体的API介绍详见[接口文档](../../application-dev/reference/apis-form-kit/js-apis-app-form-formHost-sys.md)。
+formHost提供一系列的卡片使用方接口，来操作卡片的更新、删除等行为，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md)。
 
 ## 卡片使用方示例
 

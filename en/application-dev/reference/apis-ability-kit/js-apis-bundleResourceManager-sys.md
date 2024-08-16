@@ -18,10 +18,10 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 
 | Permission                                      | APL    | Description           |
 | ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_RESOURCES| system_basic | Allows an application to obtain resource information of another application.|
-| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Allows an application to read the list of installed applications.|
+| ohos.permission.GET_BUNDLE_RESOURCES| system_basic | Allows an application to obtain resource information of another application. |
+| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Allows an application to read the list of installed applications. |
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## Enums
 
@@ -36,10 +36,10 @@ Enumerates the resource information flags, which indicate the type of resource i
 | Name                                     | Value        | Description                                                        |
 | ----------------------------------------- | ---------- | ------------------------------------------------------------ |
 | GET_RESOURCE_INFO_ALL                   | 0x00000001 | Both the application icon and label are obtained.|
-| GET_RESOURCE_INFO_WITH_LABEL          | 0x00000002 | Only the application label is obtained.|
-| GET_RESOURCE_INFO_WITH_ICON           | 0x00000004 | Only the application icon is obtained.|
-| GET_RESOURCE_INFO_WITH_SORTED_BY_LABEL| 0x00000008 | The obtained information is sorted by label. It must be used together with **GET_RESOURCE_INFO_ALL** or **GET_RESOURCE_INFO_WITH_LABEL**.|
-| GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR<sup>12+</sup>| 0x00000010 | The [drawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md) object of the application icon is obtained.|
+| GET_RESOURCE_INFO_WITH_LABEL          | 0x00000002 | Only the application label is obtained. |
+| GET_RESOURCE_INFO_WITH_ICON           | 0x00000004 | Only the application icon is obtained. |
+| GET_RESOURCE_INFO_WITH_SORTED_BY_LABEL| 0x00000008 | The obtained information is sorted by label. It must be used together with **GET_RESOURCE_INFO_ALL** or **GET_RESOURCE_INFO_WITH_LABEL**. |
+| GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR<sup>12+</sup>| 0x00000010 | The [drawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md) object of the application icon is obtained. |
 
 
 ## APIs
@@ -58,10 +58,10 @@ Obtains the resource information of an application based on the given bundle nam
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description               |
+| Name    | Type  | Mandatory | Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
-| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain.|
+| bundleName | string | Yes  | Bundle name of the application. |
+| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain. |
 
 **Return value**
 
@@ -74,7 +74,7 @@ Obtains the resource information of an application based on the given bundle nam
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -113,10 +113,10 @@ Obtains the bundle information of the entry ability of an application based on t
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description               |
+| Name    | Type  | Mandatory | Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
-| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain.|
+| bundleName | string | Yes  | Bundle name of the application. |
+| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain. |
 
 **Return value**
 
@@ -128,7 +128,7 @@ Obtains the bundle information of the entry ability of an application based on t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -167,16 +167,16 @@ Obtains resource information of all applications based on the given resource fla
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description               |
+| Name    | Type  | Mandatory | Description               |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
-| callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the application obtained. Otherwise, **err** is an error object.|
+| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain. |
+| callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the application obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -217,21 +217,21 @@ Obtains resource information of all applications based on the given resource fla
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description               |
+| Name    | Type  | Mandatory | Description               |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
+| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain. |
 
 **Return value**
 
 | Type                                                        | Description                            |
 | ------------------------------------------------------------ | -------------------------------- |
-| Promise\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Promise used to return the resource information of the application obtained.|
+| Promise\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Promise used to return the resource information of the application obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -270,16 +270,16 @@ Obtains resource information of the entry abilities of all applications based on
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description               |
+| Name    | Type  | Mandatory | Description               |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
-| callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the entry abilities obtained. Otherwise, **err** is an error object.|
+| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain. |
+| callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the entry abilities obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -320,21 +320,21 @@ Obtains resource information of the entry abilities of all applications based on
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description               |
+| Name    | Type  | Mandatory | Description               |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
+| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain. |
 
 **Return value**
 
 | Type                                                        | Description                            |
 | ------------------------------------------------------------ | -------------------------------- |
-| Promise\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Promise used to return the resource information of the entry abilities obtained.|
+| Promise\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Promise used to return the resource information of the entry abilities obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -372,11 +372,11 @@ Obtains the resource information of an application based on the given bundle nam
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description               |
+| Name    | Type  | Mandatory | Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
-| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain.|
-| appIndex | number | No  | Index of the application clone.|
+| bundleName | string | Yes  | Bundle name of the application. |
+| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain. |
+| appIndex | number | No  | Index of the application clone. |
 
 **Return value**
 
@@ -389,7 +389,7 @@ Obtains the resource information of an application based on the given bundle nam
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -430,11 +430,11 @@ Obtains the launcher ability resource information of an application based on the
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description               |
+| Name    | Type  | Mandatory | Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
-| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain.|
-| appIndex | number | No  | Index of the application clone.|
+| bundleName | string | Yes  | Bundle name of the application. |
+| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain. |
+| appIndex | number | No  | Index of the application clone. |
 
 **Return value**
 
@@ -446,7 +446,7 @@ Obtains the launcher ability resource information of an application based on the
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                             |
+| ID | Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |

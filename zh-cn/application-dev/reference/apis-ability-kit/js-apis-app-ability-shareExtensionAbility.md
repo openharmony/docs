@@ -175,7 +175,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
   }
   ```
 
-4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“share”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“shared”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
    ```json
    {
@@ -186,7 +186,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
            "name": "ShareExtAbility",
            "icon": "$media:icon",
            "description": "share",
-           "type": "share",
+           "type": "shared",
            "exported": true,
            "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ets"
          }

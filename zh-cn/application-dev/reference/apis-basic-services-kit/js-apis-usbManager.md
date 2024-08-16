@@ -9,24 +9,16 @@
 ## 导入模块
 
 ```ts
-import usb from "@ohos.usbManager";
+import { usbManager } from '@kit.BasicServicesKit';
 ```
 
-## usb.getDevices
+## usbManager.getDevices
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。
 
 **系统能力：**  SystemCapability.USB.USBManager
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. No parameters are required. |
 
 **返回值：**
 
@@ -37,7 +29,7 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 console.log(`devicesList = ${devicesList}`);
 /*
 devicesList 返回的数据结构,此处提供一个简单的示例，如下
@@ -92,21 +84,21 @@ devicesList 返回的数据结构,此处提供一个简单的示例，如下
 */
 ```
 
-## usb.connectDevice
+## usbManager.connectDevice
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 根据getDevices()返回的设备信息打开USB设备。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device，再调用[usb.requestRight](#usbrequestright)请求使用该设备的权限。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device，再调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | [USBDevice](#usbdevice) | 是 | USB设备信息。 |
+| -------- | -------- | -------- | ---------------- |
+| device | [USBDevice](#usbdevice) | 是 | USB设备信息，用getDevices获取的busNum和devAddress确定设备，当前其他属性不做处理。 |
 
 **返回值：**
 
@@ -120,24 +112,24 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400001 | Permission denied. Call requestRight to get the permission first. |
 
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
 console.log(`devicepipe = ${devicepipe}`);
 ```
 
-## usb.hasRight
+## usbManager.hasRight
 
 hasRight(deviceName: string): boolean
 
@@ -151,7 +143,7 @@ hasRight(deviceName: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceName | string | 是 | 设备名称。 |
+| deviceName | string | 是 | 设备名称，来自getDevices获取的设备列表。 |
 
 **错误码：**
 
@@ -159,7 +151,7 @@ hasRight(deviceName: string): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -170,12 +162,18 @@ hasRight(deviceName: string): boolean
 **示例：**
 
 ```ts
-let devicesName: string = "1-1";
-let right: boolean = usb.hasRight(devicesName);
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let right: boolean = usbManager.hasRight(device.name);
 console.log(`${right}`);
 ```
 
-## usb.requestRight
+## usbManager.requestRight
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
@@ -187,7 +185,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceName | string | 是 | 设备名称。 |
+| deviceName | string | 是 | 设备名称，来自getDevices获取的设备列表。|
 
 **错误码：**
 
@@ -195,7 +193,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -206,13 +204,18 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-let devicesName: string = "1-1";
-usb.requestRight(devicesName).then(ret => {
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name).then(ret => {
   console.log(`requestRight = ${ret}`);
 });
 ```
 
-## usb.removeRight
+## usbManager.removeRight
 
 removeRight(deviceName: string): boolean
 
@@ -224,7 +227,7 @@ removeRight(deviceName: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceName | string | 是 | 设备名称。 |
+| deviceName | string | 是 | 设备名称，来自getDevices获取的设备列表。|
 
 **错误码：**
 
@@ -232,7 +235,7 @@ removeRight(deviceName: string): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -243,19 +246,24 @@ removeRight(deviceName: string): boolean
 **示例：**
 
 ```ts
-let devicesName: string = "1-1";
-if (usb.removeRight(devicesName)) {
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device: usbManager.USBDevice = devicesList[0];
+if (usbManager.removeRight(device.name)) {
   console.log(`Succeed in removing right`);
 }
 ```
 
-## usb.claimInterface
+## usbManager.claimInterface
 
 claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
 注册通信接口。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -263,9 +271,9 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引。 |
-| force | boolean | 否 | 可选参数，是否强制获取。默认值为false&nbsp;，表示不强制获取。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引，需要调用getDevices获取设备信息并通过id确定唯一接口。|
+| force | boolean | 否 | 可选参数，是否强制获取。默认值为false&nbsp;，表示不强制获取，用户按需选择。|
 
 **错误码：**
 
@@ -273,7 +281,7 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -284,26 +292,26 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number= usb.claimInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number= usbManager.claimInterface(devicepipe, interfaces);
 console.log(`claimInterface = ${ret}`);
 ```
 
-## usb.releaseInterface
+## usbManager.releaseInterface
 
 releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 释放注册过的通信接口。
 
-需要调用[usb.claimInterface](#usbclaiminterface)先获取接口，才能使用此方法释放接口。
+需要调用[usbManager.claimInterface](#usbmanagerclaiminterface)先获取接口，才能使用此方法释放接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -311,8 +319,8 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引，需要调用getDevices获取设备信息并通过id确定唯一接口。|
 
 **错误码：**
 
@@ -320,7 +328,7 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
 
 **返回值：**
 
@@ -331,27 +339,27 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
-ret = usb.releaseInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+ret = usbManager.releaseInterface(devicepipe, interfaces);
 console.log(`releaseInterface = ${ret}`);
 ```
 
-## usb.setConfiguration
+## usbManager.setConfiguration
 
 setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 设置设备配置。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及config；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -359,8 +367,8 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-| config | [USBConfiguration](#usbconfiguration) | 是 | 用于确定需要设置的配置。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+| config | [USBConfiguration](#usbconfiguration) | 是 | 用于确定需要设置的配置，需要调用getDevices获取设备信息并通过id用于确定唯一设置。|
 
 **错误码：**
 
@@ -368,7 +376,7 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -379,35 +387,35 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let config: usb.USBConfiguration = device.configs[0];
-let ret: number= usb.setConfiguration(devicepipe, config);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let config: usbManager.USBConfiguration = device.configs[0];
+let ret: number= usbManager.setConfiguration(devicepipe, config);
 console.log(`setConfiguration = ${ret}`);
 ```
 
-## usb.setInterface
+## usbManager.setInterface
 
 setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数；调用[usb.claimInterface](#usbclaiminterface)注册通信接口。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数；调用[usbManager.claimInterface](#usbmanagerclaiminterface)注册通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
-| 参数名   | 类型                              | 必填  | 说明            |
-| ----- | ------------------------------- | --- | ------------- |
-| pipe  | [USBDevicePipe](#usbdevicepipe) | 是   | 用于确定总线号和设备地址。 |
-| iface | [USBInterface](#usbinterface)   | 是   | 用于确定需要设置的接口。  |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+| iface | [USBInterface](#usbinterface)   | 是 | 用于确定需要设置的接口，需要调用getDevices获取设备信息并通过id确定唯一接口。|
 
 **错误码：**
 
@@ -415,7 +423,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -426,27 +434,27 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
-ret = usb.setInterface(devicepipe, interfaces);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+ret = usbManager.setInterface(devicepipe, interfaces);
 console.log(`setInterface = ${ret}`);
 ```
 
-## usb.getRawDescriptor
+## usbManager.getRawDescriptor
 
 getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 获取原始的USB描述符。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -454,7 +462,7 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
 
 **错误码：**
 
@@ -462,7 +470,7 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -473,23 +481,23 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: Uint8Array = usb.getRawDescriptor(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: Uint8Array = usbManager.getRawDescriptor(devicepipe);
 ```
 
-## usb.getFileDescriptor
+## usbManager.getFileDescriptor
 
 getFileDescriptor(pipe: USBDevicePipe): number
 
 获取文件描述符。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -497,7 +505,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
 
 **错误码：**
 
@@ -505,7 +513,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -516,23 +524,92 @@ getFileDescriptor(pipe: USBDevicePipe): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: number = usb.getFileDescriptor(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: number = usbManager.getFileDescriptor(devicepipe);
 ```
 
-## usb.controlTransfer
+## usbManager.controlTransfer<sup>(deprecated)</sup>
 
 controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt;
 
 控制传输。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+
+**说明：**
+
+> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [usbControlTransfer](#usbmanagerusbcontroltransfer12) 替代。
+
+**系统能力：**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
+| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数，按需设置参数。|
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
+
+**示例：**
+
+```ts
+class PARA {
+  request: number = 0
+  reqType: usbManager.USBControlRequestType = 0
+  target: usbManager.USBRequestTargetType = 0
+  value: number = 0
+  index: number = 0
+  data: Uint8Array = new Uint8Array()
+}
+
+let param: PARA = {
+  request: 0,
+  reqType: 0,
+  target:0,
+  value: 0,
+  index: 0,
+  data: new Uint8Array()
+};
+
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+usbManager.controlTransfer(devicepipe, param).then((ret: number) => {
+ console.log(`controlTransfer = ${ret}`);
+})
+```
+
+## usbManager.usbControlTransfer<sup>12+</sup>
+
+usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout ?: number): Promise&lt;number&gt;
+
+控制传输。
+
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -541,7 +618,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
+| requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | 是 | 控制传输参数。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
 
 **错误码：**
@@ -562,42 +639,42 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 ```ts
 class PARA {
-  request: number = 0
-  reqType: usb.USBControlRequestType = 0
-  target: usb.USBRequestTargetType = 0
-  value: number = 0
-  index: number = 0
+  bmRequestType: number = 0
+  bRequest: number = 0
+  wValue: number = 0
+  wIndex: number = 0
+  wLength: number = 0
   data: Uint8Array = new Uint8Array()
 }
 
 let param: PARA = {
-  request: 0,
-  reqType: 0,
-  target:0,
-  value: 0,
-  index: 0,
+  bmRequestType: 0,
+  bRequest: 0,
+  wValue:0,
+  wIndex: 0,
+  wLength: 0,
   data: new Uint8Array()
 };
 
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-usb.controlTransfer(devicepipe, param).then((ret: number) => {
- console.log(`controlTransfer = ${ret}`);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+usbManager.usbControlTransfer(devicepipe, param).then((ret: number) => {
+ console.log(`usbControlTransfer = ${ret}`);
 })
 ```
 
-## usb.bulkTransfer
+## usbManager.bulkTransfer
 
 bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;
 
 批量传输。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息列表以及endpoint；再调用[usb.requestRight](#usbrequestright)获取设备请求权限；然后调用[usb.connectDevice](#usbconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usb.claimInterface](#usbclaiminterface)；再调用usb.bulkTransfer接口。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -605,10 +682,10 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
+| endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口，需要调用getDevices获取设备信息列表以及endpoint，address用于确定端点地址，direction用于确定端点的方向，interfaceId用于确定所属接口，当前其他属性不做处理。|
 | buffer | Uint8Array | 是 | 用于写入或读取数据的缓冲区。 |
-| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。|
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
 
 **错误码：**
 
@@ -616,7 +693,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -627,34 +704,34 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 **示例：**
 
 ```ts
-//usb.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
-//把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
-//才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
+//才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: usb.USBDevice = devicesList[0];
-usb.requestRight(device.name);
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
 
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
-let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
-let endpoint: usb.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
-let ret: number = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
+let endpoint: usbManager.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
+let ret: number = usbManager.claimInterface(devicepipe, interfaces);
 let buffer =  new Uint8Array(128);
-usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
+usbManager.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
   console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
-## usb.closePipe
+## usbManager.closePipe
 
 closePipe(pipe: USBDevicePipe): number
 
 关闭设备消息控制通道。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -662,7 +739,7 @@ closePipe(pipe: USBDevicePipe): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定USB设备消息控制通道。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定USB设备消息控制通道，需要调用connectDevice获取。|
 
 **错误码：**
 
@@ -670,7 +747,7 @@ closePipe(pipe: USBDevicePipe): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **返回值：**
 
@@ -681,14 +758,14 @@ closePipe(pipe: USBDevicePipe): number
 **示例：**
 
 ```ts
-let devicesList: Array<usb.USBDevice> = usb.getDevices();
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-usb.requestRight(devicesList[0].name);
-let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: number = usb.closePipe(devicepipe);
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: number = usbManager.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
 
@@ -787,6 +864,21 @@ USB设备消息传输通道，用于确定设备。
 | reqType | [USBControlRequestType](#usbcontrolrequesttype) | 是   |请求控制类型。          |
 | value   | number                                          | 是   |请求参数。            |
 | index   | number                                          | 是   |请求参数value对应的索引值。 |
+| data    | Uint8Array                                      | 是   |用于写入或读取的缓冲区。     |
+
+## USBDeviceRequestParams<sup>12+</sup>
+
+控制传输参数。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称      | 类型                                            | 必填               |说明               |
+| ------- | ----------------------------------------------- | ---------------- |---------------- |
+| bmRequestType | number                                    | 是   |请求控制类型。            |
+| bRequest  | number                                        | 是   |请求类型。          |
+| wValue | number                                           | 是   |请求参数。          |
+| wIndex   | number                                         | 是   |请求参数value对应的索引值。            |
+| wLength   | number                                        | 是   |请求数据的长度 |
 | data    | Uint8Array                                      | 是   |用于写入或读取的缓冲区。     |
 
 ## USBRequestTargetType

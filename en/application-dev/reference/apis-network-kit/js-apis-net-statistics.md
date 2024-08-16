@@ -387,7 +387,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 ```js
 import { statistics } from '@kit.NetworkKit';
 
-statistics.getCellularRxBytes().then((stats: number) => {
+statistics.getAllRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 ```

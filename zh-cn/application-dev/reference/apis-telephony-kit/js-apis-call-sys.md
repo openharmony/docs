@@ -4185,6 +4185,54 @@ call.isImsSwitchEnabled(0).then((data: boolean) => {
 });
 ```
 
+## call.isImsSwitchEnabledSync<sup>12+</sup>
+
+isImsSwitchEnabledSync\(slotId: number\): boolean
+
+判断Ims开关是否启用。调用此API返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| boolean | 用来返回结果，true表示Ims开关启用，false表示未启用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Non-system applications use system APIs.                     |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
+| 8300001  | Invalid parameter value.                                     |
+| 8300002  | Operation failed. Cannot connect to service.                 |
+| 8300003  | System internal error.                                       |
+| 8300999  | Unknown error code.                                          |
+
+**示例：**
+
+<!--code_no_check-->
+
+```ts
+let slotId: number = 0;
+try {
+    let isEnabled: boolean = call.isImsSwitchEnabledSync(slotId);
+    console.log(`isImsSwitchEnabledSync success : ${isEnabled}`);
+} catch (error) {
+    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(error)}`);  
+}
+```
 
 ## call.closeUnfinishedUssd<sup>10+</sup>
 
@@ -4609,7 +4657,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 
 | 参数名      | 类型                         | 必填 | 说明                                       |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
+| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：*#*#2846579#*#*(工程菜单)。 |
 | callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回暗码广播的结果。              |
 
 **错误码：**
@@ -4630,7 +4678,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
+call.inputDialerSpecialCode('*#*#2846579#*#*', (err: BusinessError) => {
     if (err) {
         console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(err)}`);
     } else {
@@ -4655,7 +4703,7 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 
 | 参数名      | 类型                         | 必填 | 说明                                       |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
+| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：*#*#2846579#*#*(工程菜单)。 |
 
 **返回值：**
 
@@ -4682,7 +4730,7 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    call.inputDialerSpecialCode('2846579');
+    call.inputDialerSpecialCode('*#*#2846579#*#*');
     console.log(`inputDialerSpecialCode success`);
 } catch (error) {
     console.error(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
@@ -5042,6 +5090,8 @@ VoIP通话信息。
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
 | voipBundleName    | string     | 是   |  三方应用包名  |
 | showBannerForIncomingCall<sup>12+</sup>    | boolean     | 否   |  上报来电时是否显示来电横幅  |
+| isConferenceCall<sup>12+</sup>    | boolean     | 否   |  上报是否是电话会议  |
+| isVoiceAnswerSupported<sup>12+</sup>    | boolean     | 否   |  上报来电时是否支持语音接听  |
 
 ## ConferenceState<sup>7+</sup>
 

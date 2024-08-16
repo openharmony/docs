@@ -13,15 +13,15 @@ The key management service specifications include mandatory specifications and o
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
 <!--DelEnd-->
 
-| Algorithm/MD Algorithm/Padding Mode| Description| API Level| <!--DelCol4-->Mandatory| 
+| Algorithm/MD Algorithm/Padding Mode| Description| API Level| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | <!--DelRow-->RSA/MD5/PKCS1_V1_5<br>RSA/SHA1/PKCS1_V1_5<br>RSA/SHA224/PKCS1_V1_5<br>RSA/SHA224/PSS | - | 8+ | No|
 | RSA/SHA256/PKCS1_V1_5<br>RSA/SHA384/PKCS1_V1_5<br>RSA/SHA512/PKCS1_V1_5<br>RSA/SHA256/PSS<br>RSA/SHA384/PSS<br>RSA/SHA512/PSS | - | 8+ | Yes|
-| <!--DelRow-->RSA/NoDigest/PKCS1_V1_5 | **TAG HuksKeyDigest.HUSK_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
+| <!--DelRow-->RSA/NoDigest/PKCS1_V1_5 | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
 | <!--DelRow-->DSA/SHA1<br>DSA/SHA224<br>DSA/SHA256<br>DSA/SHA384<br>DSA/SHA512 | - | 8+ | No|
-| <!--DelRow-->DSA/NoDigest | **TAG HuksKeyDigest.HUSK_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
+| <!--DelRow-->DSA/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
 | <!--DelRow-->ECC/SHA1<br>ECC/SHA224 | - | 8+ | No|
 | ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512 | - | 8+ | Yes|
-| <!--DelRow-->ECC/NoDigest | **TAG HuksKeyDigest.HUSK_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
-| ED22519/NoDigest | **TAG HuksKeyDigest.HUSK_DIGEST_NONE** must be specified with **NoDigest**.| 8+ | Yes|
+| <!--DelRow-->ECC/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
+| ED25519/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 8+ | Yes|
 | SM2/SM3 | - | 9+ | Yes|

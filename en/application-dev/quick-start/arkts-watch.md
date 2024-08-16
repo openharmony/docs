@@ -50,7 +50,7 @@ An application can request to be notified whenever the value of the \@Watch deco
 - Calling **async await** from an \@Watch function is not recommended, because asynchronous behavior may cause performance issues of re-rendering.
 
 
-## Application Scenarios
+## Use Scenarios
 
 ### \@Watch and Custom Component Update
 

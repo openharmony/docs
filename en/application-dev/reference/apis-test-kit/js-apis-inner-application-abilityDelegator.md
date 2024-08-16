@@ -6,19 +6,19 @@ The **AbilityDelegator** module provides APIs for managing [AbilityMonitor](../a
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
-> The APIs of this module can be used only in [automated test scripts](../../application-test/arkxtest-guidelines.md).
+> The APIs of this module can be used only in <!--RP1-->[arkxtest](../../application-test/arkxtest-guidelines.md)<!--RP1End-->.
 
 ## Modules to Import
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## Usage
 
-An **AbilityDelegator** object is obtained by calling **getAbilityDelegator** in **AbilityDelegatorRegistry**.
+An **AbilityDelegator** object is obtained by calling **getAbilityDelegator** in **abilityDelegatorRegistry**.
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## AbilityDelegator
@@ -42,7 +42,7 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -52,23 +52,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
+};
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
+  console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
-};
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
+  console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -96,7 +96,7 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -106,22 +106,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
+  console.info('onAbilityCreateCallback');
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+
 abilityDelegator.addAbilityMonitor(monitor).then(() => {
-    console.info('addAbilityMonitor promise');
+  console.info('addAbilityMonitor promise');
 });
 ```
 
@@ -143,7 +142,7 @@ Adds an **AbilityMonitor** instance. This API returns the result synchronously. 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -153,20 +152,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
+  console.info('onAbilityCreateCallback');
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitorSync(monitor);
 ```
 
@@ -189,7 +189,7 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -199,22 +199,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
     console.error(`removeAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
@@ -244,7 +244,7 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -254,23 +254,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 - Example
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor).then(() => {
-    console.info('removeAbilityMonitor promise');
+  console.info('removeAbilityMonitor promise');
 });
 ```
 
@@ -292,7 +291,7 @@ Removes an **AbilityMonitor** instance. This API returns the result synchronousl
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -302,21 +301,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitorSync(monitor);
 ```
 
@@ -339,7 +337,7 @@ Waits for the **Ability** instance that matches the **AbilityMonitor** instance 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -349,28 +347,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAbility) => {
-    if (error) {
-        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
-    }
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityMonitor(monitor, (error: BusinessError, data: UIAbility) => {
+  if (error) {
+    console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -394,7 +391,7 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -404,29 +401,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, data : UIAbility) => {
-    if (error && error.code !== 0) {
-        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
-    }
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (error: BusinessError, data: UIAbility) => {
+  if (error && error.code !== 0) {
+    console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -457,7 +453,7 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -467,23 +463,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-
-function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    onAbilityCreate: onAbilityCreateCallback
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  onAbilityCreate: onAbilityCreateCallback
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor).then((data : UIAbility) => {
-    console.info('waitAbilityMonitor promise');
+function onAbilityCreateCallback(data: UIAbility) {
+  console.info('onAbilityCreateCallback');
+}
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityMonitor(monitor).then((data: UIAbility) => {
+  console.info('waitAbilityMonitor promise');
 });
 ```
 
@@ -506,11 +501,12 @@ Obtains the application context.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+
 let context = abilityDelegator.getAppContext();
 ```
 
@@ -539,19 +535,19 @@ Obtains the lifecycle state of an ability.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    let state = abilityDelegator.getAbilityState(ability);
-    console.info('getAbilityState ${state}');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  let state = abilityDelegator.getAbilityState(ability);
+  console.info('getAbilityState ${state}');
 });
 ```
 
@@ -573,7 +569,7 @@ Obtains the top ability of this application. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -583,17 +579,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
 });
 ```
 
@@ -615,7 +611,7 @@ Obtains the top ability of this application. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -625,16 +621,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility().then((data : UIAbility) => {
-    console.info('getCurrentTopAbility promise');
-    ability = data;
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility().then((data: UIAbility) => {
+  console.info('getCurrentTopAbility promise');
+  ability = data;
 });
 ```
 
@@ -657,7 +653,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -681,19 +677,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let want: Want = {
-    bundleName: 'bundleName',
-    abilityName: 'abilityName'
+  bundleName: 'bundleName',
+  abilityName: 'abilityName'
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want, (err : BusinessError, data : void) => {
-    console.info('startAbility callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.startAbility(want, (err: BusinessError, data: void) => {
+  console.info('startAbility callback');
 });
 ```
 
@@ -721,7 +717,7 @@ Starts an ability. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -745,19 +741,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let want: Want = {
-    bundleName: 'bundleName',
-    abilityName: 'abilityName'
+  bundleName: 'bundleName',
+  abilityName: 'abilityName'
 };
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.startAbility(want).then((data: void) => {
-    console.info('startAbility promise');
+  console.info('startAbility promise');
 });
 ```
 
@@ -780,7 +775,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -790,20 +785,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err : BusinessError) => {
-        console.info("doAbilityForeground callback");
-    });
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  abilityDelegator.doAbilityForeground(ability, (err: BusinessError) => {
+    console.info("doAbilityForeground callback");
+  });
 });
 ```
 
@@ -831,7 +826,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -841,20 +836,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    abilityDelegator.doAbilityForeground(ability).then(() => {
-        console.info("doAbilityForeground promise");
-    });
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  abilityDelegator.doAbilityForeground(ability).then(() => {
+    console.info("doAbilityForeground promise");
+  });
 });
 ```
 
@@ -877,7 +872,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -887,20 +882,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err : BusinessError) => {
-        console.info("doAbilityBackground callback");
-    });
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  abilityDelegator.doAbilityBackground(ability, (err: BusinessError) => {
+    console.info("doAbilityBackground callback");
+  });
 });
 ```
 
@@ -928,7 +923,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses a p
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -938,21 +933,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let ability: UIAbility;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
-    console.info('getCurrentTopAbility callback');
-    ability = data;
-    abilityDelegator.doAbilityBackground(ability).then(() => {
-        console.info("doAbilityBackground promise");
-    });
-});
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
+  console.info('getCurrentTopAbility callback');
+  ability = data;
+  abilityDelegator.doAbilityBackground(ability).then(() => {
+    console.info("doAbilityBackground promise");
+  });
+
 ```
 
 ### printSync<sup>9+</sup>
@@ -974,12 +969,12 @@ Prints log information to the unit test console.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.printSync(msg);
 ```
 
@@ -1003,15 +998,15 @@ Prints log information to the unit test console. This API uses an asynchronous c
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.print(msg, (err : BusinessError) => {
-    console.info('print callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.print(msg, (err: BusinessError) => {
+  console.info('print callback');
 });
 ```
 
@@ -1040,14 +1035,14 @@ Prints log information to the unit test console. This API uses a promise to retu
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.print(msg).then(() => {
-    console.info('print promise');
+  console.info('print promise');
 });
 ```
 
@@ -1073,15 +1068,15 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err : BusinessError, data: AbilityDelegatorRegistry.ShellCmdResult) => {
-    console.info('executeShellCommand callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.executeShellCommand(cmd, (err: BusinessError, data: abilityDelegatorRegistry.ShellCmdResult) => {
+  console.info('executeShellCommand callback');
 });
 ```
 
@@ -1108,16 +1103,16 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout, (err : BusinessError, data: AbilityDelegatorRegistry.ShellCmdResult) => {
-    console.info('executeShellCommand callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.executeShellCommand(cmd, timeout, (err: BusinessError, data: abilityDelegatorRegistry.ShellCmdResult) => {
+  console.info('executeShellCommand callback');
 });
 ```
 
@@ -1149,15 +1144,15 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
-    console.info('executeShellCommand promise');
+  console.info('executeShellCommand promise');
 });
 ```
 
@@ -1181,7 +1176,7 @@ Finishes the test and prints log information to the unit test console. This API 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1191,15 +1186,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.finishTest(msg, 0, (err : BusinessError) => {
-    console.info('finishTest callback');
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.finishTest(msg, 0, (err: BusinessError) => {
+  console.info('finishTest callback');
 });
 ```
 
@@ -1228,7 +1223,7 @@ Finishes the test and prints log information to the unit test console. This API 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1238,14 +1233,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.finishTest(msg, 0).then(() => {
-    console.info('finishTest promise');
+  console.info('finishTest promise');
 });
 ```
 
@@ -1268,7 +1263,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1278,17 +1273,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}, (err : BusinessError) => {
-    console.info('addAbilityStageMonitor callback');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}, (err: BusinessError) => {
+  console.info('addAbilityStageMonitor callback');
 });
 ```
 
@@ -1316,7 +1311,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1326,16 +1321,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
 }).then(() => {
-    console.info('addAbilityStageMonitor promise');
+  console.info('addAbilityStageMonitor promise');
 });
 ```
 
@@ -1357,7 +1352,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1367,14 +1362,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityStageMonitorSync({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
 });
 ```
 
@@ -1397,7 +1392,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1407,17 +1402,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}, (err : BusinessError) => {
-    console.info('removeAbilityStageMonitor callback');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}, (err: BusinessError) => {
+  console.info('removeAbilityStageMonitor callback');
 });
 ```
 
@@ -1445,7 +1440,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1455,16 +1450,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
 }).then(() => {
-    console.info('removeAbilityStageMonitor promise');
+  console.info('removeAbilityStageMonitor promise');
 });
 ```
 
@@ -1486,7 +1481,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1497,14 +1492,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityStageMonitorSync({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
 });
 ```
 
@@ -1527,7 +1522,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1537,18 +1532,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}, (err : BusinessError, data : AbilityStage) => {
-    console.info('waitAbilityStageMonitor callback');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}, (err: BusinessError, data: AbilityStage) => {
+  console.info('waitAbilityStageMonitor callback');
 });
 ```
 
@@ -1577,7 +1572,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1587,17 +1582,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { AbilityStage } from '@kit.AbilityKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}).then((data : AbilityStage) => {
-    console.info('waitAbilityStageMonitor promise');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}).then((data: AbilityStage) => {
+  console.info('waitAbilityStageMonitor promise');
 });
 ```
 
@@ -1621,7 +1616,7 @@ Waits a period of time for an **AbilityStage** instance that matches the conditi
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -1631,19 +1626,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor({
-    moduleName: 'moduleName',
-    srcEntrance: 'srcEntrance',
-}, timeout, (err : BusinessError, data : AbilityStage) => {
-    console.info('waitAbilityStageMonitor callback');
+  moduleName: 'moduleName',
+  srcEntrance: 'srcEntrance',
+}, timeout, (err: BusinessError, data: AbilityStage) => {
+  console.info('waitAbilityStageMonitor callback');
 });
 ```
 
@@ -1665,7 +1660,7 @@ Sets a list of mock data.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 | ID| Error Message       |
 | -------- | --------------- |
@@ -1675,13 +1670,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 let mockList: Record<string, string> = {
-    '@ohos.router': 'src/main/mock/ohos/router.mock',
-    'common.time': 'src/main/mock/common/time.mock',
+  '@ohos.router': 'src/main/mock/ohos/router.mock',
+  'common.time': 'src/main/mock/common/time.mock',
 };
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.setMockList(mockList);
 ```

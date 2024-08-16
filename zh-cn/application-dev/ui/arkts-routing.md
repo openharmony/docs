@@ -1,9 +1,11 @@
-# 页面路由 (@ohos.router)
+# 页面路由 (@ohos.router)(不推荐)
 
 
 页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
 
-Router适用于[模块](../quick-start/application-package-structure-stage.md)间与模块内页面切换，通过每个页面的url实现模块间解耦。模块内页面跳转时，为了实现更好的转场动效场景不建议使用该模块，推荐使用[Navigation](./arkts-navigation-navigation.md)。
+>**说明：**
+>
+>[Navigation](./arkts-navigation-navigation.md)具有更强的功能和自定义能力，推荐使用该组件作为应用的路由框架。Navigation和Router的差异可参考[Router切换Navigation指导](./arkts-router-to-navigation.md)。
 
 ## 页面跳转
 
@@ -20,7 +22,7 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl()](../referen
 
 >**说明：** 
 >
->- 创建新页面时，请参考[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)配置第二个页面的路由。
+>- 创建新页面时，请参考<!--RP1-->[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)<!--RP1End-->配置第二个页面的路由。
 >
 >
 >- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear()](../reference/apis-arkui/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
@@ -35,16 +37,15 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl()](../referen
 
 
 ```ts
-import router from '@ohos.router';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
+import { promptAction, router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 ```
 
 - 场景一：有一个主页（Home）和一个详情页（Detail），希望从主页点击一个商品，跳转到详情页。同时，需要保留主页在页面栈中，以便返回时恢复状态。这种场景下，可以使用pushUrl()方法，并且使用Standard实例模式（或者省略）。
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   // 在Home页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -67,7 +68,7 @@ import promptAction from '@ohos.promptAction';
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   // 在Login页面中
   function onJumpClick(): void {
     router.replaceUrl({
@@ -90,7 +91,7 @@ import promptAction from '@ohos.promptAction';
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   // 在Setting页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -109,7 +110,7 @@ import promptAction from '@ohos.promptAction';
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
 
   // 在SearchResult页面中
   function onJumpClick(): void {
@@ -131,7 +132,7 @@ import promptAction from '@ohos.promptAction';
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 class DataModelInfo {
   age: number = 0;
 }
@@ -167,7 +168,7 @@ function onJumpClick(): void {
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 class InfoTmp {
   age: number = 0
@@ -197,7 +198,7 @@ const age: number = params.info.age // 获取age属性的值
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 ```
 
 可以使用以下几种方式返回页面：
@@ -206,7 +207,7 @@ import router from '@ohos.router';
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back();
   ```
 
@@ -218,7 +219,7 @@ import router from '@ohos.router';
   返回普通页面。
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back({
     url: 'pages/Home'
   });
@@ -227,7 +228,7 @@ import router from '@ohos.router';
   返回命名路由页面。
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back({
     url: 'myPage' //myPage为返回的命名路由页面别名
   });
@@ -241,7 +242,7 @@ import router from '@ohos.router';
   返回到普通页面。
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back({
     url: 'pages/Home',
     params: {
@@ -253,7 +254,7 @@ import router from '@ohos.router';
   返回命名路由页面。
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back({
     url: 'myPage', //myPage为返回的命名路由页面别名
     params: {
@@ -268,7 +269,7 @@ import router from '@ohos.router';
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -311,15 +312,15 @@ struct Home {
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 ```
 
 如果想要在目标界面开启页面返回询问框，需要在调用[router.back()](../reference/apis-arkui/js-apis-router.md#routerback)方法之前，通过调用[router.showAlertBeforeBackPage()](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
 
 
 ```ts
-import router from '@ohos.router';
-import { BusinessError } from '@ohos.base';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义一个返回按钮的点击事件处理函数
 function onBackClick(): void {
@@ -354,16 +355,15 @@ message：string类型，表示询问框的内容。
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 ```
 
 在事件回调中，调用弹窗的[promptAction.showDialog()](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)方法：
 
 
 ```ts
-import router from '@ohos.router';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction, router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBackClick() {
   // 弹出自定义的询问框
@@ -411,7 +411,7 @@ function onBackClick() {
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 ```
 
 在想要跳转到的共享包[Har](../quick-start/har-package.md)或者[Hsp](../quick-start/in-app-hsp.md)页面里，给[@Entry修饰的自定义组件](../quick-start/arkts-create-custom-components.md#entryoptions10)命名：
@@ -439,9 +439,9 @@ export struct MyComponent {
 配置成功后需要在跳转的页面中引入命名路由的页面：
 
 ```ts
-import router from '@ohos.router';
-import { BusinessError } from '@ohos.base';
-import('@ohos/library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import '@ohos/library/src/main/ets/pages/Index';  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {

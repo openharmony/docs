@@ -104,7 +104,7 @@ The custom vibration configuration file is in JSON format. An example file is as
 ```
 
 This JSON file contains two attributes: **MetaData** and **Channels**.
-- **MetaData** contains information about the file header. You can add the following attributes under **MetaData**.
+1. **MetaData** contains information about the file header. You can add the following attributes under **MetaData**.
 
      | Name         | Mandatory| Description                                         |
      | ------------- | ------ | --------------------------------------------- |
@@ -113,7 +113,9 @@ This JSON file contains two attributes: **MetaData** and **Channels**.
      | Create        | No    | Time when the file was created.                         |
      | Description   | No    | Additional information such as the vibration effect and creation information.         |
 
-- **Channels** provides information about the vibration channel. It is a JSON array that holds information about each channel. It contains two attributes: **Parameters** and **Pattern**.
+2. **Channels** provides information about the vibration channel.
+
+     It is a JSON array that holds information about each channel. It contains two attributes: **Parameters** and **Pattern**.
 
      | Name      | Mandatory| Description                                                        |
      | ---------- | ------ | ------------------------------------------------------------ |
@@ -135,7 +137,7 @@ This JSON file contains two attributes: **MetaData** and **Channels**.
      | StartTime | Yes    | Vibration start time. The value range is [0, 1800000], in ms.           |
      | Duration  | Yes    | Vibration duration. This parameter is valid only when **Type** is set to **continuous**. The value range is [0, 5000], in ms.|
 
-     **Parameters** provides the following parameters related to the vibration event and is mandatory.
+3. **Parameters** provides the following parameters related to the vibration event and is mandatory.
 
      | Name     | Mandatory| Description                                                        |
      | --------- | ------ | ------------------------------------------------------------ |
@@ -157,11 +159,11 @@ The following requirements must be met:
 
 2. Start vibration with the specified effect and attribute.
 
-- Scenario 1: Trigger vibration with the specified duration.
+   Scenario 1: Trigger vibration with the specified duration.
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
      // Start vibration.
@@ -184,15 +186,15 @@ The following requirements must be met:
    }
    ```
 
-- Scenario 2: Trigger vibration with a preset effect. You can check whether the preset effect is supported before calling **startVibration()**.
+   Scenario 2: Trigger vibration with a preset effect. You can check whether the preset effect is supported before calling **startVibration()**.
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
-     // Check whether 'haptic.clock.timer' is supported.
-     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+     // Check whether 'haptic.effect.soft' is supported.
+     vibrator.isSupportEffect('haptic.effect.soft', (err: BusinessError, state: boolean) => {
        if (err) {
          console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
          return;
@@ -203,8 +205,9 @@ The following requirements must be met:
            // Start vibration.
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.effect.soft',
              count: 1,
+             intensity: 50,
            }, {
              usage: 'unknown'
            }, (error: BusinessError) => {
@@ -226,12 +229,12 @@ The following requirements must be met:
    }
    ```
 
-- Scenario 3: Trigger vibration according to a custom vibration configuration file.
+   Scenario 3: Trigger vibration according to a custom vibration configuration file.
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import resourceManager from '@ohos.resourceManager';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { resourceManager } from '@kit.LocalizationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    const fileName: string = 'xxx.json';
    
@@ -264,55 +267,55 @@ The following requirements must be met:
 
 3. Stop vibration.
 
-- Method 1: Stop vibration in the specified mode. This method is invalid for custom vibration.
+   Method 1: Stop vibration in the specified mode. This method is invalid for custom vibration.
 
-   - Stop fixed-duration vibration.
-
-     ```ts
-     import vibrator from '@ohos.vibrator';
-     import { BusinessError } from '@ohos.base';
-     
-     try {
-       // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
-       vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
-         if (error) {
-           console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-           return;
-         }
-         console.info('Succeed in stopping vibration');
-       })
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-     }
-     ```
-
-   - Stop preset vibration.
-
-     ```ts
-     import vibrator from '@ohos.vibrator';
-     import { BusinessError } from '@ohos.base';
-     
-     try {
-       // Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
-       vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
-         if (error) {
-           console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-           return;
-         }
-         console.info('Succeed in stopping vibration');
-       })
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-     }
-     ```
-
-- Method 2: Stop vibration in all modes, including custom vibration.
+   ​	Stop fixed-duration vibration.
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   
+   try {
+     // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
+     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+   ​	Stop preset vibration.
+
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   
+   try {
+     // Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
+     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+   Method 2: Stop vibration in all modes, including custom vibration.
+
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
      // Stop vibration in all modes.
@@ -329,3 +332,11 @@ The following requirements must be met:
    }
    ```
 
+
+## Samples
+
+The following sample is provided to help you better understand how to develop vibrators:
+
+- [Vibrator (ArkTS, API version 9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
+
+- [CustomHaptic (ArkTS, Full SDK, API version 10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)

@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
+import { avSession } from '@kit.AVSessionKit';
 ```
 
 ## 使用说明
@@ -25,7 +25,7 @@ import avSession from '@ohos.multimedia.avsession';
 
 getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 
-获取所有会话的相关描述。结果通过Promise异步回调方式返回。
+获取所有设置过媒体信息且注册控制回调的会话的相关描述。结果通过Promise异步回调方式返回。
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
 
@@ -51,7 +51,7 @@ getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor[]) => {
   console.info(`getAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
@@ -69,7 +69,7 @@ avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescr
 
 getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void
 
-获取所有会话的相关描述。结果通过callback异步回调方式返回。
+获取所有设置过媒体信息且注册控制回调的会话的相关描述。结果通过callback异步回调方式返回。
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
 
@@ -95,7 +95,7 @@ getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDesc
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.AVSessionDescriptor[]) => {
   if (err) {
@@ -147,7 +147,7 @@ getHistoricalSessionDescriptors(maxSize?: number): Promise\<Array\<Readonly\<AVS
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor[]) => {
   console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
@@ -194,7 +194,7 @@ getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.getHistoricalSessionDescriptors(1, (err: BusinessError, descriptors: avSession.AVSessionDescriptor[]) => {
   if (err) {
@@ -249,7 +249,7 @@ getHistoricalAVQueueInfos(maxSize: number, maxAppSize: number) : Promise\<Array\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.getHistoricalAVQueueInfos(3, 5).then((avQueueInfos: avSession.AVQueueInfo[]) => {
   console.info(`getHistoricalAVQueueInfos : SUCCESS : avQueueInfos.length : ${avQueueInfos.length}`);
@@ -292,7 +292,7 @@ getHistoricalAVQueueInfos(maxSize: number, maxAppSize: number, callback: AsyncCa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.getHistoricalAVQueueInfos(3, 5, (err: BusinessError, avQueueInfos: avSession.AVQueueInfo[]) => {
   if (err) {
@@ -341,7 +341,7 @@ createController(sessionId: string): Promise\<AVSessionController>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVcontroller: avSession.AVSessionController | undefined = undefined;
 currentAvSession.createController(sessionId).then((avcontroller: avSession.AVSessionController) => {
@@ -385,7 +385,7 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVcontroller: avSession.AVSessionController | undefined = undefined;
 currentAvSession.createController(sessionId, (err: BusinessError, avcontroller: avSession.AVSessionController) => {
@@ -440,22 +440,22 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
   audioDevices = data;
-  console.info(`Promise returned to indicate that the device list is obtained.`);
+  console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err: BusinessError) => {
   console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
 if (audioDevices !== undefined) {
   avSession.castAudio('all', audioDevices as audio.AudioDeviceDescriptors).then(() => {
-    console.info(`CreateController : SUCCESS`);
+    console.info('CreateController : SUCCESS');
   }).catch((err: BusinessError) => {
     console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
   });
@@ -499,15 +499,15 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
   audioDevices = data;
-  console.info(`Promise returned to indicate that the device list is obtained.`);
+  console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err: BusinessError) => {
   console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -517,7 +517,7 @@ if (audioDevices !== undefined) {
     if (err) {
       console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`CastAudio : SUCCESS `);
+      console.info('CastAudio : SUCCESS ');
     }
   });
 }
@@ -562,11 +562,11 @@ startAVPlayback(bundleName: string, assetId: string): Promise\<void>
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.startAVPlayback("com.example.myapplication", "121278").then(() => {
-  console.info(`startAVPlayback : SUCCESS`);
+  console.info('startAVPlayback : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`startAVPlayback BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -842,7 +842,7 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 ```ts
 avSession.on('sessionServiceDie', () => {
-  console.info(`on sessionServiceDie  : session is  Died `);
+  console.info('on sessionServiceDie  : session is  Died ');
 });
 ```
 
@@ -912,8 +912,8 @@ sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import keyEvent from '@ohos.multimodalInput.keyEvent';
-import { BusinessError } from '@ohos.base';
+import { KeyEvent } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
 let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
@@ -922,7 +922,7 @@ avSession.sendSystemAVKeyEvent(event, (err: BusinessError) => {
   if (err) {
     console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SendSystemAVKeyEvent : SUCCESS `);
+    console.info('SendSystemAVKeyEvent : SUCCESS ');
   }
 });
 ```
@@ -965,14 +965,14 @@ sendSystemAVKeyEvent(event: KeyEvent): Promise\<void>
 **示例：**
 
 ```ts
-import keyEvent from '@ohos.multimodalInput.keyEvent';
-import { BusinessError } from '@ohos.base';
+import { KeyEvent } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
 let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 
 avSession.sendSystemAVKeyEvent(event).then(() => {
-  console.info(`SendSystemAVKeyEvent Successfully`);
+  console.info('SendSystemAVKeyEvent Successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1032,7 +1032,7 @@ avSession.sendSystemControlCommand(avcommand, (err) => {
   if (err) {
     console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`sendSystemControlCommand successfully`);
+    console.info('sendSystemControlCommand successfully');
   }
 });
 ```
@@ -1076,7 +1076,7 @@ sendSystemControlCommand(command: AVControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let cmd : avSession.AVControlCommandType = 'play';
 // let cmd : avSession.AVControlCommandType = 'pause';
@@ -1095,7 +1095,7 @@ let avcommand: avSession.AVControlCommand = {command:cmd};
 // let cmd : avSession.AVControlCommandType = 'toggleFavorite';
 // let avcommand = {command:cmd, parameter:"false"};
 avSession.sendSystemControlCommand(avcommand).then(() => {
-  console.info(`SendSystemControlCommand successfully`);
+  console.info('SendSystemControlCommand successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1131,13 +1131,13 @@ startCastDeviceDiscovery(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.startCastDeviceDiscovery((err: BusinessError) => {
   if (err) {
     console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`startCastDeviceDiscovery successfully`);
+    console.info('startCastDeviceDiscovery successfully');
   }
 });
 ```
@@ -1170,14 +1170,14 @@ startCastDeviceDiscovery(filter: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let filter = 2;
 avSession.startCastDeviceDiscovery(filter, (err: BusinessError) => {
   if (err) {
     console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`startCastDeviceDiscovery successfully`);
+    console.info('startCastDeviceDiscovery successfully');
   }
 });
 ```
@@ -1217,12 +1217,12 @@ startCastDeviceDiscovery(filter?: number, drmSchemes?: Array\<string>): Promise\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let filter = 2;
 let drmSchemes = ['3d5e6d35-9b9a-41e8-b843-dd3c6e72c42c'];
 avSession.startCastDeviceDiscovery(filter, drmSchemes).then(() => {
-  console.info(`startCastDeviceDiscovery successfully`);
+  console.info('startCastDeviceDiscovery successfully');
 }).catch((err: BusinessError) => {
   console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1248,13 +1248,13 @@ stopCastDeviceDiscovery(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.stopCastDeviceDiscovery((err: BusinessError) => {
   if (err) {
     console.error(`stopCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`stopCastDeviceDiscovery successfully`);
+    console.info('stopCastDeviceDiscovery successfully');
   }
 });
 ```
@@ -1278,10 +1278,10 @@ stopCastDeviceDiscovery(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.stopCastDeviceDiscovery().then(() => {
-  console.info(`stopCastDeviceDiscovery successfully`);
+  console.info('stopCastDeviceDiscovery successfully');
 }).catch((err: BusinessError) => {
   console.error(`stopCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1315,13 +1315,13 @@ setDiscoverable(enable: boolean, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.setDiscoverable(true, (err: BusinessError) => {
   if (err) {
     console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`setDiscoverable successfully`);
+    console.info('setDiscoverable successfully');
   }
 });
 ```
@@ -1359,10 +1359,10 @@ setDiscoverable(enable: boolean): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avSession.setDiscoverable(true).then(() => {
-  console.info(`setDiscoverable successfully`);
+  console.info('setDiscoverable successfully');
 }).catch((err: BusinessError) => {
   console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1542,12 +1542,12 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string = "";  //供后续函数入参使用
+let sessionId: string = "";  // 供后续函数入参使用
 
 let aVCastController: avSession.AVCastController;
 avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
@@ -1600,12 +1600,12 @@ getAVCastController(sessionId: string): Promise\<AVCastController>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string = "";  //供后续函数入参使用
+let sessionId: string = "";  // 供后续函数入参使用
 
 let aVCastController: avSession.AVCastController;
 avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
@@ -1650,7 +1650,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1665,7 +1665,7 @@ if (castDevice !== undefined) {
     if (err) {
       console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`startCasting successfully`);
+      console.info('startCasting successfully');
     }
   });
 }
@@ -1711,7 +1711,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1723,7 +1723,7 @@ avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
 });
 if (castDevice !== undefined) {
   avSession.startCasting(myToken, castDevice).then(() => {
-    console.info(`startCasting successfully`);
+    console.info('startCasting successfully');
   }).catch((err: BusinessError) => {
     console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
   });
@@ -1759,7 +1759,7 @@ stopCasting(session: SessionToken, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1768,7 +1768,7 @@ avSession.stopCasting(myToken, (err: BusinessError) => {
   if (err) {
     console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`stopCasting successfully`);
+    console.info('stopCasting successfully');
   }
 });
 ```
@@ -1807,13 +1807,13 @@ stopCasting(session: SessionToken): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
 }
 avSession.stopCasting(myToken).then(() => {
-  console.info(`stopCasting successfully`);
+  console.info('stopCasting successfully');
 }).catch((err: BusinessError) => {
   console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1851,7 +1851,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 let surfaceID: string = '';
 media.createAVRecorder().then((avRecorder) => {
   avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
@@ -1864,7 +1864,7 @@ media.createAVRecorder().then((avRecorder) => {
   });
 })
 aVCastController.setDisplaySurface(surfaceID).then(() => {
-  console.info(`setDisplaySurface : SUCCESS`);
+  console.info('setDisplaySurface : SUCCESS');
 });
 ```
 
@@ -1898,8 +1898,8 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 let surfaceID: string = '';
 media.createAVRecorder().then((avRecorder) => {
   avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
@@ -1915,7 +1915,7 @@ aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
   if (err) {
     console.error(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`setDisplaySurface : SUCCESS`);
+    console.info('setDisplaySurface : SUCCESS');
   }
 });
 ```

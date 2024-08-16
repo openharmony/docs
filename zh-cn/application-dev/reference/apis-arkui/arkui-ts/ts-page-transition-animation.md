@@ -125,7 +125,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
   pageTransition() {
     PageTransitionExit({ duration: 1200, curve: Curve.Linear })
       // 转场动画时出场动画 type 为路由类型 ，progress为从0到1逐渐变大
-      .onEnter((type: RouteType, progress: number) => {
+      .onExit((type: RouteType, progress: number) => {
         // 业务逻辑代码
       })
   }
@@ -163,7 +163,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 
 ```ts
 // index.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -205,7 +205,7 @@ struct Index {
 
 ```ts
 // page1.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -327,9 +327,11 @@ struct PageTransitionExample {
         .width(200)
         .height(60)
         .fontSize(36)
+      Text("START")
+        .fontSize(36)
+        .textAlign(TextAlign.Center)  
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
-}
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
   pageTransition() {
@@ -341,7 +343,9 @@ struct PageTransitionExample {
       .slide(SlideEffect.START) //Left
   }
 }
+```
 
+```ts
 // page1.ets
 import { router } from '@kit.ArkUI'
 
@@ -361,9 +365,11 @@ struct PageTransitionExample {
         .width(200)
         .height(60)
         .fontSize(36)
+      Text("END")
+        .fontSize(36)
+        .textAlign(TextAlign.Center)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
-}
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
   pageTransition() {
@@ -403,7 +409,9 @@ struct PageTransitionExample {
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
+```
 
+```ts
 // page1.ets
 import { router } from '@kit.ArkUI'
 
@@ -426,7 +434,6 @@ struct PageTransitionExample {
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
-
 ```
 
 ![pageTransition1](figures/pageRTL2.gif)

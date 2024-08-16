@@ -16,10 +16,10 @@ The sensors are classified into the following categories based on their function
 
 
 ```
-import sensor from '@system.sensor';
+import { Sensor } from '@kit.SensorServiceKit';
 ```
 
-## sensor.subscribeAccelerometer
+## Sensor.subscribeAccelerometer
 
  subscribeAccelerometer(options: subscribeAccelerometerOptions): void
 
@@ -38,8 +38,7 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { AccelerometerResponse, subscribeAccelerometerOptions } from '@system.sensor';
+import { Sensor, AccelerometerResponse, subscribeAccelerometerOptions } from '@kit.SensorServiceKit';
 
 let accelerometerOptions: subscribeAccelerometerOptions = {
   interval: 'normal',
@@ -52,13 +51,13 @@ let accelerometerOptions: subscribeAccelerometerOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeAccelerometer(accelerometerOptions);
+Sensor.subscribeAccelerometer(accelerometerOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
-## sensor.unsubscribeAccelerometer
+## Sensor.unsubscribeAccelerometer
 
 unsubscribeAccelerometer(): void
 
@@ -71,10 +70,10 @@ Unsubscribes from data changes of the acceleration sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeAccelerometer();
+Sensor.unsubscribeAccelerometer();
 ```
 
-## sensor.subscribeCompass
+## Sensor.subscribeCompass
 
  subscribeCompass(options: SubscribeCompassOptions): void
 
@@ -91,8 +90,7 @@ Subscribes to data changes of the compass sensor. If this API is called multiple
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { CompassResponse, SubscribeCompassOptions } from '@system.sensor';
+import { Sensor, CompassResponse, SubscribeCompassOptions } from '@kit.SensorServiceKit';
 
 let subscribeCompassOptions: SubscribeCompassOptions = {
   success: (ret: CompassResponse) => {
@@ -102,13 +100,13 @@ let subscribeCompassOptions: SubscribeCompassOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeCompass(subscribeCompassOptions);
+Sensor.subscribeCompass(subscribeCompassOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
-## sensor.unsubscribeCompass
+## Sensor.unsubscribeCompass
 
 unsubscribeCompass(): void
 
@@ -119,10 +117,10 @@ Unsubscribes from data changes of the compass sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeCompass();
+Sensor.unsubscribeCompass();
 ```
 
-## sensor.subscribeProximity
+## Sensor.subscribeProximity
 
  subscribeProximity(options: SubscribeProximityOptions): void
 
@@ -139,8 +137,7 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { ProximityResponse, SubscribeProximityOptions } from '@system.sensor';
+import { Sensor, ProximityResponse, SubscribeProximityOptions } from '@kit.SensorServiceKit';
 
 let subscribeProximityOptions: SubscribeProximityOptions = {
   success: (ret: ProximityResponse) => {
@@ -150,13 +147,13 @@ let subscribeProximityOptions: SubscribeProximityOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeProximity(subscribeProximityOptions);
+Sensor.subscribeProximity(subscribeProximityOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
-## sensor.unsubscribeProximity
+## Sensor.unsubscribeProximity
 
 unsubscribeProximity(): void
 
@@ -167,10 +164,10 @@ Unsubscribes from data changes of the proximity sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeProximity();
+Sensor.unsubscribeProximity();
 ```
 
-## sensor.subscribeLight
+## Sensor.subscribeLight
 
  subscribeLight(options: SubscribeLightOptions): void
 
@@ -187,8 +184,7 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { LightResponse, SubscribeLightOptions } from '@system.sensor';
+import { Sensor, LightResponse, SubscribeLightOptions } from '@kit.SensorServiceKit';
 
 let subscribeLightOptions: SubscribeLightOptions = {
   success: (ret: LightResponse) => {
@@ -198,13 +194,13 @@ let subscribeLightOptions: SubscribeLightOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeLight(subscribeLightOptions);
+Sensor.subscribeLight(subscribeLightOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
-## sensor.unsubscribeLight
+## Sensor.unsubscribeLight
 
 unsubscribeLight(): void
 
@@ -215,10 +211,10 @@ Unsubscribes from data changes of the ambient light sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeLight();
+Sensor.unsubscribeLight();
 ```
 
-## sensor.subscribeStepCounter
+## Sensor.subscribeStepCounter
 
  subscribeStepCounter(options: SubscribeStepCounterOptions): void
 
@@ -237,8 +233,7 @@ Subscribes to data changes of the step counter sensor. If this API is called mul
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { StepCounterResponse, SubscribeStepCounterOptions } from '@system.sensor';
+import { Sensor, StepCounterResponse, SubscribeStepCounterOptions } from '@kit.SensorServiceKit';
 
 let subscribeStepCounterOptions: SubscribeStepCounterOptions = {
   success: (ret: StepCounterResponse) => {
@@ -248,13 +243,13 @@ let subscribeStepCounterOptions: SubscribeStepCounterOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeStepCounter(subscribeStepCounterOptions);
+Sensor.subscribeStepCounter(subscribeStepCounterOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
-## sensor.unsubscribeStepCounter
+## Sensor.unsubscribeStepCounter
 
 unsubscribeStepCounter(): void
 
@@ -267,11 +262,11 @@ Unsubscribes from data changes of the step counter sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeStepCounter();
+Sensor.unsubscribeStepCounter();
 ```
 
 
-## sensor.subscribeBarometer
+## Sensor.subscribeBarometer
 
 subscribeBarometer(options: SubscribeBarometerOptions): void
 
@@ -288,8 +283,7 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { BarometerResponse, SubscribeBarometerOptions } from '@system.sensor';
+import { Sensor, BarometerResponse, SubscribeBarometerOptions } from '@kit.SensorServiceKit';
 
 let subscribeBarometerOptions: SubscribeBarometerOptions = {
   success: (ret: BarometerResponse) => {
@@ -299,14 +293,14 @@ let subscribeBarometerOptions: SubscribeBarometerOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeBarometer(subscribeBarometerOptions);
+Sensor.subscribeBarometer(subscribeBarometerOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 
-## sensor.unsubscribeBarometer
+## Sensor.unsubscribeBarometer
 
 unsubscribeBarometer(): void
 
@@ -317,11 +311,11 @@ Unsubscribes from data changes of the barometer sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeBarometer();
+Sensor.unsubscribeBarometer();
 ```
 
 
-## sensor.subscribeHeartRate
+## Sensor.subscribeHeartRate
 
  subscribeHeartRate(options: SubscribeHeartRateOptions): void
 
@@ -340,8 +334,7 @@ Subscribes to data changes of the heart rate sensor. If this API is called multi
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { HeartRateResponse, SubscribeHeartRateOptions } from '@system.sensor';
+import { Sensor, HeartRateResponse, SubscribeHeartRateOptions } from '@kit.SensorServiceKit';
 
 let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
   success: (ret: HeartRateResponse) => {
@@ -351,14 +344,14 @@ let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeHeartRate(subscribeHeartRateOptions);
+Sensor.subscribeHeartRate(subscribeHeartRateOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 
-## sensor.unsubscribeHeartRate
+## Sensor.unsubscribeHeartRate
 
 unsubscribeHeartRate(): void
 
@@ -371,10 +364,10 @@ Unsubscribes from data changes of the heart rate sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeHeartRate();
+Sensor.unsubscribeHeartRate();
 ```
 
-## sensor.subscribeOnBodyState
+## Sensor.subscribeOnBodyState
 
  subscribeOnBodyState(options: SubscribeOnBodyStateOptions): void
 
@@ -391,8 +384,7 @@ Subscribes to changes of the wearing state of a wearable device. If this API is 
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { OnBodyStateResponse, SubscribeOnBodyStateOptions } from '@system.sensor';
+import { Sensor, OnBodyStateResponse, SubscribeOnBodyStateOptions } from '@kit.SensorServiceKit';
 
 let subscribeOnBodyStateOptions: SubscribeOnBodyStateOptions = {
   success: (ret: OnBodyStateResponse) => {
@@ -402,13 +394,13 @@ let subscribeOnBodyStateOptions: SubscribeOnBodyStateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
+Sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
-## sensor.unsubscribeOnBodyState
+## Sensor.unsubscribeOnBodyState
 
 unsubscribeOnBodyState(): void
 
@@ -419,10 +411,10 @@ Unsubscribes from changes of the wearing state of a wearable device.
 **Example**
 
 ```ts
-sensor.unsubscribeOnBodyState();
+Sensor.unsubscribeOnBodyState();
 ```
 
-## sensor.getOnBodyState
+## Sensor.getOnBodyState
 
  getOnBodyState(options: GetOnBodyStateOptions): void
 
@@ -439,8 +431,7 @@ Obtains the wearing state of a wearable device.
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { OnBodyStateResponse, GetOnBodyStateOptions } from '@system.sensor';
+import { Sensor, OnBodyStateResponse, GetOnBodyStateOptions } from '@kit.SensorServiceKit';
 
 let getOnBodyStateOptions: GetOnBodyStateOptions = {
   success: (ret: OnBodyStateResponse) => {
@@ -450,10 +441,10 @@ let getOnBodyStateOptions: GetOnBodyStateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.getOnBodyState(getOnBodyStateOptions);
+Sensor.getOnBodyState(getOnBodyStateOptions);
 ```
 
-## sensor.subscribeDeviceOrientation<sup>6+</sup>
+## Sensor.subscribeDeviceOrientation<sup>6+</sup>
 
  subscribeDeviceOrientation(options: SubscribeDeviceOrientationOptions): void
 
@@ -472,8 +463,7 @@ If this API is called multiple times for the same application, the last call tak
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { DeviceOrientationResponse, SubscribeDeviceOrientationOptions } from '@system.sensor';
+import { Sensor, DeviceOrientationResponse, SubscribeDeviceOrientationOptions } from '@kit.SensorServiceKit';
 
 let subscribeDeviceOrientationOptions: SubscribeDeviceOrientationOptions = {
   interval: 'normal',
@@ -486,13 +476,13 @@ let subscribeDeviceOrientationOptions: SubscribeDeviceOrientationOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
 };
-sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
+Sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
-## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
+## Sensor.unsubscribeDeviceOrientation<sup>6+</sup>
 
 unsubscribeDeviceOrientation(): void
 
@@ -503,10 +493,10 @@ Unsubscribes from data changes of the device orientation sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeDeviceOrientation();
+Sensor.unsubscribeDeviceOrientation();
 ```
 
-## sensor.subscribeGyroscope<sup>6+</sup>
+## Sensor.subscribeGyroscope<sup>6+</sup>
 
  subscribeGyroscope(options: SubscribeGyroscopeOptions): void
 
@@ -527,8 +517,7 @@ If this API is called multiple times for the same application, the last call tak
 **Example**
 
 ```ts
-import sensor from '@system.sensor';
-import { GyroscopeResponse, SubscribeGyroscopeOptions } from '@system.sensor';
+import { Sensor, GyroscopeResponse, SubscribeGyroscopeOptions } from '@kit.SensorServiceKit';
 
 let subscribeGyroscopeOptions: SubscribeGyroscopeOptions = {
   interval: 'normal',
@@ -541,13 +530,13 @@ let subscribeGyroscopeOptions: SubscribeGyroscopeOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
 };
-sensor.subscribeGyroscope(subscribeGyroscopeOptions);
+Sensor.subscribeGyroscope(subscribeGyroscopeOptions);
 ```
 
 > **NOTE**
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
-## sensor.unsubscribeGyroscope<sup>6+</sup>
+## Sensor.unsubscribeGyroscope<sup>6+</sup>
 
 unsubscribeGyroscope(): void
 
@@ -560,7 +549,7 @@ Unsubscribes from data changes of the gyroscope sensor.
 **Example**
 
 ```ts
-sensor.unsubscribeGyroscope();
+Sensor.unsubscribeGyroscope();
 ```
 
 ## subscribeAccelerometerOptions
@@ -579,7 +568,7 @@ Defines the type of data to return for a subscription to the acceleration sensor
 
 ## AccelerometerResponse 
 
-Defines the type of data to include in an **AccelerometerResponse** object. 
+Defines the type of data to include in an **AccelerometerResponse** object.  
 
 **Required permissions**: ohos.permission.ACCELEROMETER
 
@@ -620,12 +609,12 @@ Defines the type of data to return for a subscription to the proximity sensor da
 
 | Name   | Type                                   | Mandatory| Description                              |
 | ------- | --------------------------------------- | ---- | ---------------------------------- |
-| success | [ProximityResponse](#proximityresponse) | Yes  | Called when the proximity sensor data changes.|
+| success | [ProximityResponse](#proximityresponse) | Yes  | Defines the type of data to include in a **ProximityResponse** object.|
 | fail    | Function                                | No  | Callback upon an API call failure.          |
 
 ## ProximityResponse 
 
-Defines the type of data to include in a **ProximityResponse** object.
+Called when the proximity sensor data changes.
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
@@ -664,12 +653,12 @@ Defines the type of data to return for a subscription to the step counter sensor
 
 | Name   | Type                                       | Mandatory| Description                            |
 | ------- | ------------------------------------------- | ---- | -------------------------------- |
-| success | [StepCounterResponse](#stepcounterresponse) | Yes  | Called when the step counter sensor data changes.|
+| success | [StepCounterResponse](#stepcounterresponse) | Yes  | Defines the type of data to include in a **StepCounterResponse** object.|
 | fail    | Function                                    | No  | Callback upon an API call failure.        |
 
 ## StepCounterResponse 
 
-Defines the type of data to include in a **StepCounterResponse** object.
+Called when the step counter sensor data changes.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 

@@ -20,7 +20,7 @@
 
 - **数量限制**：一个应用同一时刻最多申请10个延迟任务。
 
-- **执行频率限制**：系统会根据<!--RP1-->[应用的活跃分组](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->，对延迟任务做分级管控，限制延迟任务调度的执行频率。通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。
+- **执行频率限制**：系统会根据<!--RP1-->[应用的活跃分组](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->，对延迟任务做分级管控，限制延迟任务调度的执行频率。<!--Del-->通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。<!--DelEnd-->
 
   **表1** 应用活跃程度分组   
   | 应用活跃分组 | 延迟任务执行频率 |
@@ -30,10 +30,10 @@
   | 常用使用 | 最小间隔24小时 |
   | 极少使用分组 | 最小间隔48小时 |
   | 受限使用分组 | 禁止 |
-  | 从未使用分组 | 禁止 |
-  | 能效资源豁免分组 | 不受限制 |
+  | 从未使用分组 | 禁止 |<!--Del-->
+  | 能效资源豁免分组 | 不受限制 |<!--DelEnd-->
   
-- **超时**：WorkSchedulerExtensionAbility单次回调最长运行2分钟。如果超时不取消，系统会终止对应的Extension进程。对于系统特权应用，可以通过能效资源接口申请WORK_SCHEDULER资源，扩展单次回调运行时长，扩展后在充电状态下为20分钟，非充电状态下为10分钟。
+- **超时**：WorkSchedulerExtensionAbility单次回调最长运行2分钟。如果超时不取消，系统会终止对应的Extension进程。<!--Del-->对于系统特权应用，可以通过能效资源接口申请WORK_SCHEDULER资源，扩展单次回调运行时长，扩展后在充电状态下为20分钟，非充电状态下为10分钟。<!--DelEnd-->
 
 - **调度延迟**：系统会根据内存、功耗、设备温度、用户使用习惯等统一调度，如当系统内存资源不足或温度达到一定挡位时，系统将延迟调度该任务。
 
@@ -123,8 +123,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 2. 导入模块。
    
    ```ts
-   import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-   import workScheduler from '@ohos.resourceschedule.workScheduler';
+   import { WorkSchedulerExtensionAbility, workScheduler } from '@kit.BackgroundTasksKit';
    ```
 
 3. 实现WorkSchedulerExtension生命周期接口。
@@ -173,8 +172,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 1. 导入模块。
    
    ```ts
-   import workScheduler from '@ohos.resourceschedule.workScheduler';
-   import { BusinessError } from '@ohos.base';
+   import { workScheduler } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 申请延迟任务。

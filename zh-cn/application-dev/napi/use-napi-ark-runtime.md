@@ -62,7 +62,7 @@
    }
    ```
 
-2. 新建线程并创建基ArkTs础运行时环境
+2. 新建线程并创建ArkTS基础运行时环境
 
    ```cpp
    // create_ark_runtime.cpp
@@ -81,7 +81,7 @@
    
        // 2. 加载自定义模块
        napi_value objUtils;
-       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
+       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry", &objUtils);
        if (ret != napi_ok) {
            return nullptr;
        }

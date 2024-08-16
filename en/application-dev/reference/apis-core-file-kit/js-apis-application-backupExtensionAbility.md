@@ -33,9 +33,9 @@ Implements backup and restore for application access data. You can use [onBackup
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
-| Name                 | Type                                                             | Readable| Writable| Description                                               |
+| Name                 | Type                                                             | Read-Only| Writable| Description                                               |
 | --------------------- | ----------------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context<sup>11+</sup> | [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | Yes  | No  | BackupExtensionAbility context, which inherits from **Context**.|
+| context<sup>11+</sup> | [BackupExtensionContext](js-apis-file-backupextensioncontext.md) | Yes  | No  | Context of the BackupExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).|
 
 ### onBackup
 
@@ -74,10 +74,69 @@ Called when data is being restored. You need to implement extended data restore 
 
   ```ts
   import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
-  
+
   class BackupExt extends BackupExtension {
     async onRestore(bundleVersion : BundleVersion) {
       console.log(`onRestore ok ${JSON.stringify(bundleVersion)}`);
+    }
+  }
+  ```
+  ### onRestoreEx
+
+onRestoreEx(bundleVersion: BundleVersion, bundleInfo: string): string | Promise<string>;
+
+Called when data is being restored. You need to implement the extended data restore operation.
+**onRestoreEx** and **onRestore** are mutually exclusive. Call **onRestoreEx** preferentially if it is overridden.
+The return value of **onRestoreEx** cannot be an empty string. If an empty string is returned, the system will attempt to call **onRestore**.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                          |
+| ------------- | ------------------------------- | ---- | ------------------------------ |
+| bundleVersion | [BundleVersion](#bundleversion) | Yes  | Version information of the application data to be restored.|
+| bundleInfo |string | No  | Other information about the application.|
+
+**Example**
+
+  ```ts
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+
+  class BackupExt extends BackupExtension {
+    // Asynchronous implementation
+    async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): Promise<string> {
+      console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+      let info = "app diy info";
+      return info;
+    }
+
+    // Synchronous implementation
+    onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string {
+      console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+      let info = "app diy info";
+      return info;
+    }
+  }
+  ```
+
+  ### getBackupInfo
+
+getBackupInfo(): string;
+
+Obtains backup information. This API is called when the caller queries application data. You need to implement the operation for querying application data.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Example**
+
+  ```ts
+
+  class BackupExt extends BackupExtension {
+    async getBackupInfo(): Promise<string> {
+      console.log(`getBackupInfo ok`);
+      let info = "app diy info";
+      return info;
     }
   }
   ```

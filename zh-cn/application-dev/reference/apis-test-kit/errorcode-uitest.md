@@ -8,7 +8,7 @@
 
 **错误信息**
 
-If the test framework failed to initialize.
+Initialization failed.
 
 **错误描述**
 
@@ -25,7 +25,7 @@ If the test framework failed to initialize.
 ## 17000002 当前无法调用
 **错误信息**
 
-If the async function was not called with await.
+The async function is not called with await.
 
 **错误描述**
 
@@ -42,7 +42,7 @@ API没有使用await进行异步调用，造成堵塞。
 ## 17000003 断言失败
 **错误信息**
 
-If the assertion failed.
+Assertion failed.
 
 **错误描述**
 
@@ -59,7 +59,7 @@ If the assertion failed.
 ## 17000004 目标控件/窗口丢失
 **错误信息**
 
-If the window or component is invisible or destroyed.
+The window or component is invisible or destroyed.
 
 **错误描述**
 

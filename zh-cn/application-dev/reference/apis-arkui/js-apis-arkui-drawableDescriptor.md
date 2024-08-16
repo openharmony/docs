@@ -11,10 +11,12 @@
 ## 导入模块
 
 ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor';
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 ```
 
 ## DrawableDescriptor
+
+支持传入png，jpg，bmp，svg，gif，webp，astc，sut格式的资源类型。
 
 ### getPixelMap
 
@@ -34,7 +36,7 @@ getPixelMap(): image.PixelMap
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
 let resManager = getContext().resourceManager
 let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
     .id)) as DrawableDescriptor;
@@ -52,6 +54,8 @@ let pixmapNew: object = pixmap.getPixelMap()
 constructor(src?: image.PixelMap)
 
 PixelMapDrawableDescriptor的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,7 +88,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
 
     ```ts
     // xxx.ets
-    import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+    import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
 
     @Entry
     @Component
@@ -103,10 +107,10 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
     }
     ```
 2. 通过PixelMapDrawableDescriptor创建LayeredDrawableDescriptor。
-    
+   
     ```ts
-    import { DrawableDescriptor, LayeredDrawableDescriptor, PixelMapDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-    import image from '@ohos.multimedia.image'
+    import { DrawableDescriptor, LayeredDrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
+    import { image } from '@kit.ImageKit'
 
     @Entry
     @Component
@@ -162,6 +166,8 @@ getPixelMap(): image.PixelMap
 
 获取前景、背景和蒙版融合裁剪后的pixelMap。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -172,7 +178,7 @@ getPixelMap(): image.PixelMap
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
 let resManager = getContext().resourceManager
 let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
@@ -196,7 +202,7 @@ getForeground(): DrawableDescriptor;
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
 let resManager = getContext().resourceManager
 let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
@@ -221,7 +227,7 @@ getBackground(): DrawableDescriptor;
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
 let resManager = getContext().resourceManager
 let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
@@ -246,7 +252,7 @@ getMask(): DrawableDescriptor
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
 let resManager = getContext().resourceManager
 let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
@@ -272,7 +278,7 @@ LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参�
 
   ```ts
 // xxx.ets
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -297,9 +303,11 @@ struct Index {
 
 PixelMap 数组通过Image组件显示时用来控制动画的播放。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名      | 类型    | 必填  | 说明                                    |
+| 名称      | 类型    | 必填  | 说明                                    |
 | ---------- | ------ | -----| --------------------------------------- |
 | duration   | number | 否   | 设置图片数组播放总时间。默认每张图片1秒。      |
 | iterations | number | 否   | 设置图片数组播放次数。默认为1，为-1时无限播放。 |
@@ -307,11 +315,11 @@ PixelMap 数组通过Image组件显示时用来控制动画的播放。
 **示例：**
 
 ```ts
-import { AnimationOptions } from '@ohos.arkui.drawableDescriptor'
+import { AnimationOptions } from '@kit.ArkUI'
 @Entry
 @Component
 struct Example {
-  options: AnimationOptions = {duration: 2000, iterations: 1}
+  options: AnimationOptions = { duration: 2000, iterations: 1 }
   build() {
   }
 }
@@ -327,6 +335,8 @@ constructor(pixelMaps: Array\<image.PixelMap>, options?: AnimationOptions)
 
 AnimatedDrawableDescriptor的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -339,8 +349,8 @@ AnimatedDrawableDescriptor的构造函数。
 **示例：**
 
 ```ts
-import {AnimationOptions, AnimatedDrawableDescriptor} from '@ohos.arkui.drawableDescriptor'
-import image from '@ohos.multimedia.image'
+import { AnimationOptions, AnimatedDrawableDescriptor } from '@kit.ArkUI'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component

@@ -882,7 +882,7 @@ try {
 | type     | "preset" |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
 | count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
-| intensity | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
+| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -922,25 +922,26 @@ try {
 
 ## Usage<sup>9+</sup>
 
-type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'media'|'physicalFeedback'|'simulateReality'
+type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | 'touch' | 'media' | 'physicalFeedback' | 'simulateReality'
 
 振动使用场景。
 
 **原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
-
-| 名称             | 类型   | 必填 | 说明                           |
-| ---------------- | ------ | ------------------------------ | ------------------------------ |
-| unknown          | string | 是 | 没有明确使用场景，最低优先级。 |
-| alarm            | string | 是 | 用于警报场景。           |
-| ring             | string | 是 | 用于铃声场景。           |
-| notification     | string | 是 | 用于通知场景。           |
-| communication    | string | 是 | 用于通信场景。           |
-| touch            | string | 是 | 用于触摸场景。           |
-| media            | string | 是 | 用于多媒体场景。         |
-| physicalFeedback | string | 是 | 用于物理反馈场景。       |
-| simulateReality  | string | 是 | 用于模拟现实场景。       |
+<!--RP1-->
+| 类型     | 说明                           |
+| ---------------- | ------------------------------ |
+| 'unknown'     | 没有明确使用场景，最低优先级，值固定为'unknown'字符串。 |
+| 'alarm'      | 用于警报场景，值固定为'alarm'字符串。 |
+| 'ring'         | 用于铃声场景，值固定为'ring'字符串。 |
+| 'notification' | 用于通知场景，值固定为'notification'字符串。 |
+| 'communication' | 用于通信场景，值固定为'communication'字符串。 |
+| 'touch'        | 用于触摸场景，值固定为'touch'字符串。 |
+| 'media'        | 用于多媒体场景，值固定为'media'字符串。 |
+| 'physicalFeedback' | 用于物理反馈场景，值固定为'physicalFeedback'字符串。 |
+| 'simulateReality' | 用于模拟现实场景，值固定为'simulateReality'字符串。 |
+<!--RP1End-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 

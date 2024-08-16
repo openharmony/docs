@@ -11,7 +11,7 @@ Defines standard endpoint descriptors, which correspond to **Standard Endpoint D
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
 
 
 ## Summary

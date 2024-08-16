@@ -33,7 +33,7 @@
 实际上，AVSessionManager与AVSession、AVSessionController对象不同，并不是一个具体的对象，它是媒体会话的根命名域。在实际编程过程中，可以通过如下方式引入：
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 ```
 
 根命名域中的所有方法都可以作为AVSessionManager的方法。

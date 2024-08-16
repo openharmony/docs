@@ -25,6 +25,8 @@ import { TreeSet } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -37,6 +39,8 @@ import { TreeSet } from '@kit.ArkTS';
 constructor(comparator?: (firstValue: T, secondValue: T) => boolean)
 
 TreeSet的构造函数，支持通过比较函数对元素进行升序或降序排序。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -52,7 +56,7 @@ TreeSet的构造函数，支持通过比较函数对元素进行升序或降序�
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 | 10200012 | The TreeSet's constructor cannot be directly invoked. |
 
 **示例：**
@@ -99,6 +103,8 @@ isEmpty(): boolean
 
 判断该容器是否为空。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -128,6 +134,8 @@ let result = treeSet.isEmpty();
 has(value: T): boolean
 
 判断此容器中是否含有该指定元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -165,6 +173,8 @@ getFirstValue(): T
 
 获取容器中排序第一的数据，为空时返回undefined。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -197,6 +207,8 @@ getLastValue(): T
 
 获取容器中排序最后的数据，为空时返回undefined。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -228,6 +240,8 @@ let result = treeSet.getLastValue();
 add(value: T): boolean
 
 向容器中添加一组数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -266,6 +280,8 @@ remove(value: T): boolean
 
 删除指定的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -303,6 +319,8 @@ let result = treeSet.remove("sparrow");
 getLowerValue(key: T): T
 
 获取容器中比传入元素排序靠前一位的元素，为空时返回undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -344,6 +362,8 @@ getHigherValue(key: T): T
 
 获取容器中比传入元素排序靠后一位的元素，为空时返回undefined。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -384,6 +404,8 @@ popFirst(): T
 
 删除容器中排序最前的数据，为空时返回undefined。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -415,6 +437,8 @@ let result = treeSet.popFirst();
 popLast(): T
 
 删除容器中排序最后的数据，为空时返回undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -448,6 +472,8 @@ clear(): void
 
 清除容器中的所有元素，并把length置为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -473,6 +499,8 @@ treeSet.clear();
 values(): IterableIterator&lt;T&gt;
 
 返回包含此映射中键值的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -511,6 +539,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -546,13 +576,24 @@ treeSet.forEach((value ?: string, key ?: string) :void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
+}
+```
 
 ### entries
 
 entries(): IterableIterator<[T, T]>
 
 返回包含此映射中键值对的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -583,7 +624,16 @@ while(!t.done) {
   t = it.next()
 }
 ```
-
+```ts
+// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -594,6 +644,8 @@ while(!t.done) {
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -628,5 +680,15 @@ let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+```
+```ts
+// 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let treeSet : TreeSet<string> = new TreeSet();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
 }
 ```

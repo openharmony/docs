@@ -18,7 +18,7 @@ TaskPool与Worker的运作机制、通信手段和使用方法可以参考[TaskP
 
 > **说明：**
 >
-> - TaskPool自行管理线程数量，其生命周期由TaskPool统一管理。Worker线程最多创建8个，其生命周期由开发者自行维护。
+> - TaskPool自行管理线程数量，其生命周期由TaskPool统一管理。[Worker](../arkts-utils/worker-introduction.md)线程的生命周期由开发者自行维护。
 > - 同一线程中存在多个组件，例如UIAbility组件和UI组件都存在于主线程中。在Stage模型中目前主要使用[EventHub](#使用eventhub进行线程内通信)进行数据通信。
 > - 执行`hdc shell`命令，进入设备的shell命令行。在shell命令行中，执行`ps -p <pid> -T`命令，可以查看指定应用进程的线程信息。其中，`<pid>`为需要指定的应用进程的[进程ID](process-model-stage.md)。
 

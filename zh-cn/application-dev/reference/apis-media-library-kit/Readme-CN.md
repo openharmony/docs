@@ -5,14 +5,10 @@
   <!--Del-->
   - [@ohos.file.photoAccessHelper (相册管理模块)(系统接口)](js-apis-photoAccessHelper-sys.md)
   <!--DelEnd-->
-  - 已停止维护的接口
-    - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
-    <!--Del-->
-    - [@ohos.multimedia.medialibrary (媒体库管理)(系统接口)](js-apis-medialibrary-sys.md)
-    <!--DelEnd-->
 - ArkTS组件
+  - [@ohos.file.AlbumPickerComponent (Album Picker组件)](ohos-file-AlbumPickerComponent.md)
+  - [@ohos.file.PhotoPickerComponent (Photo Picker组件)](ohos-file-PhotoPickerComponent.md)
   - [@ohos.multimedia.movingphotoview (动态照片)](ohos-multimedia-movingphotoview.md)
-  - [@ohos.file.PhotoPickerComponent (photo picker组件)](ohos-file-PhotoPickerComponent.md)
 - C API
   - 模块
     - [MediaAssetManager](_media_asset_manager.md)

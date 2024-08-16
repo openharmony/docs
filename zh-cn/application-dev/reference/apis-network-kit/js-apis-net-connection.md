@@ -1617,12 +1617,13 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 2100001 | Invalid parameter value.                |
+| 错误码ID| 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **示例：**
 
@@ -1685,7 +1686,7 @@ connection.clearCustomDnsRules().then(() => {
 > **说明：**
 > 设备从无网络到有网络会触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
 > 设备从有网络到无网络状态会触发netLost事件；
-> 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvaliable事件（蜂窝可用）；
+> 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvailable事件（蜂窝可用）；
 
 ### register
 
@@ -1734,7 +1735,7 @@ unregister(callback: AsyncCallback\<void>): void
 
 取消订阅默认网络状态变化的通知。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2533,10 +2534,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 网络地址。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| ------- | ------ | -- |------------------------------ |
-| address | string | 是 |地址。 |
-| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 |
-| port    | number | 否 |端口，取值范围\[0, 65535]。 |
+|  名称   | 类型   |必填|                                        说明                                                 |
+| ------- | ------ | -- |------------------------------------------------------------------------------------------- |
+| address | string | 是 |地址。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
+| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| port    | number | 否 |端口，取值范围\[0, 65535]。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |

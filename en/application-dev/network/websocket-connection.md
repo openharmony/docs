@@ -38,8 +38,8 @@ The WebSocket connection function is mainly implemented by the WebSocket module.
 5. Close the WebSocket connection if it is no longer needed.
 
 ```js
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
@@ -81,4 +81,3 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   }
 });
 ```
-

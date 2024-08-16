@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import font from '@ohos.font'
+import { font } from '@kit.ArkUI'
 ```
 
 ## font.registerFont
@@ -47,7 +47,7 @@ registerFont(options: FontOptions): void
 
 ```ts
 // xxx.ets
-import font from '@ohos.font';
+import { font } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -126,11 +126,15 @@ getSystemFontList(): Array\<string>
 | -------------------- | ----------------- |
 | Array\<string>       | 系统的字体名列表。  |
 
+>  **说明：**
+>
+>  该接口仅在2in1设备上生效。
+
 **示例：**
 
 ```ts
 // xxx.ets
-import font from '@ohos.font';
+import { font } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -194,7 +198,7 @@ getFontByName(fontName: string): FontInfo
 
 ```ts
 // xxx.ets
-import font from '@ohos.font';
+import { font } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -302,7 +306,8 @@ getUIFontConfig() : UIFontConfig
 
 ```ts
 // xxx.ets
-import font from '@ohos.font';
+import { font } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct FontExample {

@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.TabTitleBar (页签型标题栏)
+# TabTitleBar
 
 
 页签型标题栏，用于页面之间的切换。仅一级页面适用。
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
+import { TabTitleBar } from '@kit.ArkUI'
 ```
 
 
@@ -49,6 +49,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 |
+| label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。 |
 | isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 |
 
@@ -68,8 +69,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 ## 示例
 
 ```ts
-import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
-import promptAction from '@ohos.promptAction'
+import { TabTitleBar, promptAction } from '@kit.ArkUI'
 
 class tabItem {
   title: ResourceStr;

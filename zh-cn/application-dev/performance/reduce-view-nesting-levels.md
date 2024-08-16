@@ -6,7 +6,7 @@
 
 ## 常用布局
 
-布局是UI的必要元素，它定义了组件在界面中的位置。ArkUI框架提供了多种布局方式，除了基础的[线性布局](../ui/arkts-layout-development-linear.md)（[Row](../reference/arkui-ts/ts-container-row.md)/[Column](../reference/arkui-ts/ts-container-column.md)）、[层叠布局](../ui/arkts-layout-development-stack-layout.md)（[Stack](../reference/arkui-ts/ts-container-stack.md)）、[弹性布局](../ui/arkts-layout-development-flex-layout.md)（[Flex](../reference/arkui-ts/ts-container-flex.md)）、[相对布局](../ui/arkts-layout-development-relative-layout.md)（[RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md)）、[栅格布局](../ui/arkts-layout-development-grid-layout.md)（[GridCol](../reference/arkui-ts/ts-container-gridcol.md)）外，也提供了相对复杂的[列表](../ui/arkts-layout-development-create-list.md)（[List](../reference/arkui-ts/ts-container-list.md)）、[网格](../ui/arkts-layout-development-create-grid.md)（[Grid](../reference/arkui-ts/ts-container-grid.md)/[GridItem](../reference/arkui-ts/ts-container-griditem.md)）、[轮播](../ui/arkts-layout-development-create-looping.md)（[Swiper](../reference/arkui-ts/ts-container-swiper.md)）。
+布局是UI的必要元素，它定义了组件在界面中的位置。ArkUI框架提供了多种布局方式，除了基础的[线性布局](../ui/arkts-layout-development-linear.md)（[Row](../reference/apis-arkui/arkui-ts/ts-container-row.md)/[Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)）、[层叠布局](../ui/arkts-layout-development-stack-layout.md)（[Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md)）、[弹性布局](../ui/arkts-layout-development-flex-layout.md)（[Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md)）、[相对布局](../ui/arkts-layout-development-relative-layout.md)（[RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md)）、[栅格布局](../ui/arkts-layout-development-grid-layout.md)（[GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md)）外，也提供了相对复杂的[列表](../ui/arkts-layout-development-create-list.md)（[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)）、[网格](../ui/arkts-layout-development-create-grid.md)（[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)/[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)）、[轮播](../ui/arkts-layout-development-create-looping.md)（[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)）。
 
 ## 优化布局结构
 
@@ -287,7 +287,7 @@ struct MyComponent {
 
 ![输入图片说明](figures/layout-relative-introduce.png)
 
-使用扁平化布局推荐使用[RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md)、[绝对定位](../reference/arkui-ts/ts-universal-attributes-location.md)、[自定义布局](../reference/arkui-ts/ts-custom-component-lifecycle.md)、[Grid组件](../reference/arkui-ts/ts-container-grid.md)等
+使用扁平化布局推荐使用[RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md)、[绝对定位](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)、[Grid组件](../reference/apis-arkui/arkui-ts/ts-container-grid.md)等
 
 ### 使用高性能布局组件
 
@@ -581,6 +581,349 @@ struct RelativePerformance {
 
 ```
 
+## 应用节点数优化
+
+### 自定义组件引起新增节点
+
+自定义组件自身为非渲染节点，仅是组件树和状态数据的组合。因此常规使用自定义组件时并不会产生多余的节点。但是当自定义组件自身设置通用属性后，会作为一个整体节点进行处理。此时，在自定义组件内部会创建一个\__Common__节点，用于对内部的组件树进行操作，如背景色绘制、圆角绘制等指令，都会作用在该节点上，此时会出现多一个节点的问题。
+
+**反例**
+
+创建自定义组件NormalCustom，在页面中调用时添加全局属性height、width、backgroundColor。
+
+```ts
+@Entry
+@Component
+struct CustomComponentNormal {
+  build() {
+    Column() {
+      NormalCustom()
+        .height(100)
+        .width(100)
+        .backgroundColor(Color.Blue)
+    }
+  }
+}
+
+@Component
+struct NormalCustom {
+  build() {
+    Column() {
+      Text('Hello Word')
+    }
+  }
+}
+```
+
+通过DevEco Studio内置ArkUI Inspector工具，查看组件树结构，会发现在自定义组件的外部，会多出一层\__Common__节点。如图1所示。通常情况下，可以通过将属性设置内移的方式减少这一层节点。但是在应用开发中，会遇到需要给整个自定义组件设置统一属性的需求，如果将所有的属性设置都内移，就会出现传递参数过多的问题，同时也会创建更多状态变量，并且增加参数的传递耗时。虽然降低了节点数量，但是却牺牲了性能。
+
+图1 常规设置自定义组件全局属性
+
+![image-20240624191206151](figures/custom_component_node_1.png)
+
+**正例**
+
+ArkUI提供了[动态属性设置（Modifier）](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)的接口，支持使用自定义Modifier构建组件并配置属性。
+
+```ts
+@Entry
+@Component
+struct CustomComponentModifier {
+  modifier: ColumnModifier = new ColumnModifier();
+
+  aboutToAppear(): void {
+    this.modifier.width = 100;
+    this.modifier.height = 100;
+    this.modifier.backgroundColor = Color.Red;
+  }
+
+  build() {
+    Column() {   
+      ModifierCustom({ modifier: this.modifier })
+    }
+  }
+}
+
+@Component
+struct ModifierCustom {
+  @Require @Prop modifier: AttributeModifier<ColumnAttribute>;
+
+  build() {
+    Column() {
+      Text('Hello Word')
+    }.attributeModifier(this.modifier)
+  }
+}
+// 使用动态属性设置时，需要继承AttributeModifier，自行实现一个Modifier，然后设置到需要的组件上
+class ColumnModifier implements AttributeModifier<ColumnAttribute> {
+  width: number = 0;
+  height: number = 0;
+  backgroundColor: ResourceColor | undefined = undefined;
+
+  applyNormalAttribute(instance: ColumnAttribute): void {
+    instance.width(this.width);
+    instance.height(this.height);
+    instance.backgroundColor(this.backgroundColor);
+  }
+}
+```
+
+通过DevEco Studio内置ArkUI Inspector工具，查看组件树结构，会发现在自定义组件的外部并没有多出\__Common__节点。如图2所示。
+
+图2 使用Modifier设置自定义组件全局属性
+
+![image-20240624192653146](figures/custom_component_node_2.png)
+
+
+
+### 布局嵌套场景
+
+在应用代码中，由于业务需求，经常会出现布局嵌套的情况。
+
+**反例**
+
+通常情况下，会使用Stack布局，将一个组件覆盖到另一个组件上。
+
+```ts
+@Entry
+@Component
+struct ComponentStackNormal {
+  build() {   
+    Column() {
+      Stack() {
+        Image($r('app.media.image_1'))
+          .objectFit(ImageFit.Contain)
+        Text("This is overlayNode")
+          .fontSize(20)
+          .fontColor(Color.Black)
+      }
+    }
+  }
+}
+```
+
+通过DevEco Studio内置ArkUI Inspector工具，查看组件树结构，如图3所示。
+
+图3 使用Stack实现遮罩效果
+
+![image-20240624195032415](figures/stack_normal.png)
+
+**正例**
+
+ArkUI提供了overlay接口，可以直接给组件添加一个无交互、无动画场景的浮层，实现堆叠的效果。
+
+```
+@Entry
+@Component
+struct ComponentStackOverlay {
+  @Builder
+  OverlayNode() {
+    Text("This is overlayNode").fontSize(20).fontColor(Color.Black)
+  }
+
+  build() {  
+    Column() {      
+      Image($r('app.media.image_1'))
+        .overlay(this.OverlayNode(), { align: Alignment.Center })
+        .objectFit(ImageFit.Contain)
+    }
+  }
+}
+```
+
+通过DevEco Studio内置ArkUI Inspector工具，查看组件树结构，如图4所示。和反例中的代码相比，虽然组件树层数相同，但是减少了Stack组件的创建，优化了性能。
+
+![image-20240624195635402](figures/stack_overlay.png)
+
+### 按压态效果
+
+**反例**
+
+应用为了实现按压遮罩效果，通常需要使用Stack，在组件上方增加遮罩层。
+
+```ts
+@Entry
+@Component
+struct MaskNormal {
+  build() {
+    Column() {
+      GrayScaleNormalCustom({ isGrayIcon: true })
+    }
+  }
+}
+
+@Component
+struct GrayScaleNormalCustom {
+  @State isGrayIcon: boolean = true;
+
+  build() {
+    Stack() {
+      Column()
+        .width('90%')
+        .height(150)
+        .backgroundImage($r('app.media.image_1'))
+
+      Column()
+        .width('90%')
+        .height(150)
+        .backgroundColor(Color.Grey)
+        .opacity(this.isGrayIcon ? 0.5 : 0)
+    }
+  }
+}
+```
+
+通过DevEco Studio内置ArkUI Inspector工具，查看组件树结构，如图5所示。
+
+图5 常规遮罩实现
+
+![image-20240624204921380](figures/mask_normal.png)
+
+**正例**
+
+可以通过组件效果实现遮罩，而非直接通过组件实现。
+
+```ts
+@Entry
+@Component
+struct MaskGrayScale {
+  build() {
+    Column() {
+      GrayScaleCustom({ isGrayIcon: true })
+    }
+  }
+}
+
+@Component
+struct GrayScaleCustom {
+  @State isGrayIcon: boolean = true;
+
+  build() {
+    Column()
+      .width('90%')
+      .height(150)
+      .backgroundImage($r('app.media.image_1'))
+      .grayscale(this.isGrayIcon ? 0.5 : 0)
+  }
+}
+```
+
+通过DevEco Studio内置ArkUI Inspector工具，查看组件树结构，如图6所示，可以减少一层Stack组件的创建。
+
+图6 通过组件效果实现遮罩
+
+![image-20240624205531083](figures/mask_grayscale.png)
+
+### 颜色叠加效果
+
+在应用开发中，有使用到颜色叠加显示的需求。通常情况下，会通过将2个组件放在Stack中叠加的方式实现，这样不仅会多出一层布局节点，还会因为绘制了两个除颜色外其他属性都相同的组件导致了重复绘制。
+
+**反例**
+
+```
+@Component
+struct ColorNormal {
+  @Prop isSelected: boolean = false;
+
+  build() {
+    Stack() {
+      Column()
+        .width('100%')
+        .height(100)
+        .backgroundColor(this.isSelected ? Color.Blue : Color.Grey)
+        .borderRadius(12)
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
+      Column()
+        .width('100%')
+        .height(100)
+        .backgroundColor(this.isSelected ? "#99000000" : Color.Grey)
+        .borderRadius(12)
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State isSelected: boolean = false;
+
+  build() {
+    Scroll() {
+      Column() {
+        ColorNormal({ isSelected: this.isSelected })
+          .onClick(() => {
+            this.isSelected = !this.isSelected;
+          })
+      }
+    }
+  }
+}
+```
+
+通过DevEco Studio内置ArkUI Inspector工具，查看组件树结构，如图7所示。
+
+图7 
+
+![image-20240628153525200](figures/color_normal.png)
+
+**正例**
+
+系统中提供了颜色计算的API，可以通过计算的方式，将两个颜色合并为一个，省去Stack层的布局节点，并且可以少绘制一个组件，减少重复绘制的情况发生。
+
+```
+@Component
+struct ColorMeasure {
+  @Prop isSelected: boolean = false;
+
+  build() {
+    Column()
+      .width('100%')
+      .height(100)
+      .backgroundColor(this.isSelected ? this.getBlendColor(Color.Blue, "#99000000").color : Color.Grey)
+      .borderRadius(12)
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+  }
+
+  getBlendColor(baseColor: ResourceColor, addColor: ResourceColor): ColorMetrics {
+    let sourceColor: ColorMetrics;
+    try {
+      sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor(addColor));
+    } catch (error) {
+      console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+      (error as BusinessError).message);
+      sourceColor = ColorMetrics.resourceColor(addColor);
+    }
+    return sourceColor;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State isSelected: boolean = false;
+
+  build() {
+    Scroll() {
+      Column() {
+        ColorMeasure({ isSelected: this.isSelected })
+          .onClick(() => {
+            this.isSelected = !this.isSelected;
+          })
+      }
+    }
+  }
+}
+```
+
+通过DevEco Studio内置ArkUI Inspector工具，查看组件树结构，如图8所示。
+
+图8
+
+![image-20240628154436228](figures/color_measure.png)
 
 ## 优化布局工具介绍
 

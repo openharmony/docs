@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import mediaquery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI';
 ```
 
 
@@ -47,7 +47,8 @@ matchMediaSync(condition: string): MediaQueryListener
 **示例：** 
 
 ```ts
-import mediaquery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI';
+
 let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
 
@@ -70,6 +71,10 @@ let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orienta
 on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 通过句柄向对应的查询条件注册回调，当媒体属性发生变更时会触发该回调。
+
+> **说明：** 
+>
+> 注册的回调中不允许进一步调用on或off。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -111,7 +116,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 **示例：** 
 
   ```ts
-import mediaquery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI';
 
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
@@ -147,7 +152,7 @@ listener.off('change', onPortrait) // 去取消注册回调
 ### 示例
 
 ```ts
-import mediaquery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI';
 
 @Entry
 @Component

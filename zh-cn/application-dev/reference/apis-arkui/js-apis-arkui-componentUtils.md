@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentUtils } from '@kit.ArkUI';
 ```
 ## componentUtils.getRectangleById
 
@@ -40,7 +40,7 @@ getRectangleById(id: string): ComponentInfo
 **示例：**
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils';
+import { componentUtils } from '@kit.ArkUI';
 let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
 ```
 
@@ -132,7 +132,7 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 取值范围   | 说明                               |
+| 类型 | 说明                               |
 | --------| -----------------------------------|
 | [number,number,number,number,<br />number,number,number,number,<br />number,number,number,number,<br />number,number,number,number] | 取值范围为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明,单位: px  |
 
@@ -160,8 +160,7 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 **示例：**
 
   ```ts
-import matrix4 from '@ohos.matrix4';
-import componentUtils from '@ohos.arkui.componentUtils';
+import { matrix4, componentUtils } from '@kit.ArkUI';
 
 @Entry
 @Component

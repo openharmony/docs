@@ -6,6 +6,8 @@
 >
 > 本模块首批接口从API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> 本模块从API version 12 开始支持查询被禁用应用和设备上已安装应用(不区用户)的图标和名称资源。
+>
 > 本模块为系统接口。
 
 ## 导入模块
@@ -21,7 +23,7 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 | ohos.permission.GET_BUNDLE_RESOURCES| system_basic | 允许查询应用的资源信息。 |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## 枚举
 

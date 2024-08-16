@@ -534,6 +534,57 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+获取UDP连接的本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.info('bind success');
+  udp.getLocalAddress().then((localAddress: socket.NetAddress) => {
+        console.info("UDP_Socket get SUCCESS! Address：" + JSON.stringify(localAddress));
+      }).catch((err: BusinessError) => {
+        console.error("UDP_Socket get FAILED! Error: " + JSON.stringify(err));
+      })
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+});
+```
+
 ### on('message')
 
 on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
@@ -1381,6 +1432,54 @@ multicast.getLoopbackMode().then((value: Boolean) => {
 });
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+获取多播通信中的本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.0',
+  port: 8080
+}
+multicast.bind(addr).then(() => {
+  console.info('bind success');
+  multicast.getLocalAddress().then((localAddress: socket.NetAddress) => {
+    console.info("Multicast_Socket get SUCCESS! Address:" + JSON.stringify(localAddress));
+  }).catch((err: BusinessError) => {
+    console.error("Multicast_Socket get FAILED! Error:" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+});
+```
 
 ### send<sup>7+</sup>
 
@@ -2041,7 +2140,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 类型                                        | 说明                                        |
 | ------------------------------------------ | ------------------------------------------ |
-| Promise<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。 |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取对端socket地址的结果。 |
 
 **错误码：**
 
@@ -2145,7 +2244,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                             | 说明                                       |
 | ----------------------------------------------- | ----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TCPSocket状态的结果。 |
+| Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取TCPSocket状态的结果。 |
 
 **错误码：**
 
@@ -2306,13 +2405,19 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
+    socketLinger: { on: true, linger: 10 } as SocketLinger,
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -2375,13 +2480,19 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
+    socketLinger: { on: true, linger: 10 } as SocketLinger,
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -2392,6 +2503,56 @@ tcp.connect(tcpconnectoptions, () => {
   }).catch((err: BusinessError) => {
     console.log('setExtraOptions fail');
   });
+});
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+获取TCPSocket的本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  family: 1,
+  port: 8080
+}
+tcp.bind(bindAddr).then(() => {
+  tcp.getLocalAddress().then((localAddress: socket.NetAddress) => {
+    console.info("SUCCESS! Address:" + JSON.stringify(localAddress));
+  }).catch((err: BusinessError) => {
+    console.error("FAILED! Error:" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
 });
 ```
 
@@ -2686,7 +2847,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file number.                            |
+| 2301009  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -2744,7 +2905,7 @@ listen(address: NetAddress): Promise\<void\>
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file number.                            |
+| 2301009  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -2841,7 +3002,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                         | 说明                                       |
 |  ------------------------------------------- |  ----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TCPSocket状态的结果。 |
+| Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取TCPSocket状态的结果。 |
 
 **错误码：**
 
@@ -2926,11 +3087,16 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
   console.log("listen success");
 })
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -2991,6 +3157,12 @@ let listenAddr: socket.NetAddress = {
   port: 8080,
   family: 1
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
     console.log("listen fail");
@@ -3003,7 +3175,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -3013,6 +3185,56 @@ tcpServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
   console.log('setExtraOptions fail');
+});
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+获取TCPSocketServer的本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr).then(() => {
+  tcpServer.getLocalAddress().then((localAddress: socket.NetAddress) => {
+    console.info("SUCCESS! Address:" + JSON.stringify(localAddress));
+  }).catch((err: BusinessError) => {
+    console.error("FerrorAILED! Error:" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error('listen fail');
 });
 ```
 
@@ -3417,7 +3639,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 类型                               | 说明                                        |
 |  --------------------------------- |  ------------------------------------------ |
-| Promise<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。 |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取对端socket地址的结果。 |
 
 **错误码：**
 
@@ -3441,6 +3663,69 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
     console.log('getRemoteAddress fail');
   });
 });
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+获取TCPSocketConnection连接的本地Socket地址。使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address: "192.168.xx.xx",
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+  let netAddress: socket.NetAddress = {
+    address: "192.168.xx.xx",
+    port: 8080
+  }
+  let options: socket.TCPConnectOptions = {
+    address: netAddress,
+    timeout: 6000
+  }
+  tcp.connect(options, (err: BusinessError) => {
+    if (err) {
+      console.error('connect fail');
+      return;
+    }
+    console.info('connect success!');
+  })
+  tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+    client.getLocalAddress().then((localAddress: socket.NetAddress) => {
+      console.info("Family IP Port: " + JSON.stringify(localAddress));
+    }).catch((err: BusinessError) => {
+      console.error('Error:' + JSON.stringify(err));
+    });
+  })
+})
 ```
 
 ### on('message')<sup>10+</sup>
@@ -3918,7 +4203,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                          | 说明                                     |
 | :------------------------------------------- | :--------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取LocalSocket状态的结果。 |
+| Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取LocalSocket状态的结果。 |
 
 **示例：**
 
@@ -4098,6 +4383,53 @@ client.connect(connectOpt).then(() => {
 }).catch((err: Object) => {
   console.error('connect fail: ' + JSON.stringify(err));
 });
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<string\>
+
+获取LocalSocket的本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<string\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext().filesDir + '/testSocket';
+let address : socket.LocalAddress = {
+  address: sandboxPath
+}
+client.bind(address).then(() => {
+  console.error('bind success');
+  client.getLocalAddress().then((localPath: string) => {
+    console.info("SUCCESS " + JSON.stringify(localPath));
+  }).catch((err: BusinessError) => {
+    console.error("FAIL " + JSON.stringify(err));
+  })
+}).catch((err: Object) => {
+  console.info('failed to bind: ' + JSON.stringify(err));
+})
 ```
 
 ### on('message')<sup>11+</sup>
@@ -4494,7 +4826,7 @@ listen(address: LocalAddress): Promise\<void\>
 | 错误码ID | 错误信息                      |
 | -------- | --------------------------- |
 | 401      | Parameter error.            |
-| 2303109  | Bad file number.            |
+| 2301009  | Bad file number.            |
 | 2301013  | Insufficient permissions.   |
 | 2301022  | Invalid argument.           |
 | 2301098  | Address already in use.     |
@@ -4656,6 +4988,54 @@ server.getExtraOptions().then((options: socket.ExtraOptionsBase) => {
 }).catch((err: Object) => {
   console.error('getExtraOptions fail: ' + JSON.stringify(err));
 });
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<string\>
+
+获取LocalSocketServer中本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<string\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext().filesDir + '/testSocket';
+let listenAddr: socket.LocalAddress = {
+  address: sandboxPath
+}
+server.listen(listenAddr).then(() => {
+  console.info("listen success");
+  server.getLocalAddress().then((localPath: string) => {
+    console.info("SUCCESS " + JSON.stringify(localPath));
+  }).catch((err: BusinessError) => {
+    console.error("FAIL " + JSON.stringify(err));
+  })
+}).catch((err: Object) => {
+  console.error("listen fail: " + JSON.stringify(err));
+})
+
 ```
 
 ### on('connect')<sup>11+</sup>
@@ -4900,6 +5280,57 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
     console.log('close success');
   }).catch((err: Object) => {
     console.error('close fail: ' + JSON.stringify(err));
+  });
+});
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<string\>
+
+获取LocalSocketConnection连接中的本地Socket地址。使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<string\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext().filesDir + '/testSocket';
+let localAddr: socket.LocalAddress = {
+  address: sandboxPath
+}
+server.listen(localAddr).then(() => {
+  console.info('listen success');
+  let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+  let connectOpt: socket.LocalConnectOptions = {
+    address: localAddr,
+    timeout: 6000
+  }
+  client.connect(connectOpt).then(() => {
+    server.getLocalAddress().then((localPath: string) => {
+      console.info("success, localPath is" + JSON.stringify(localPath));
+    }).catch((err: BusinessError) => {
+      console.error("FAIL " + JSON.stringify(err));
+    })
+  }).catch((err: Object) => {
+    console.error('connect fail: ' + JSON.stringify(err));
   });
 });
 ```
@@ -5169,6 +5600,64 @@ import { socket } from '@kit.NetworkKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
 
+## socket.constructTLSSocketInstance<sup>12+</sup>
+
+constructTLSSocketInstance(tcpSocket: TCPSocket): TLSSocket
+
+将TCPSocket升级为TLSSocket，创建并返回一个TLSSocket对象。
+
+> **说明：**
+> 需要确保TCPSocket已连接，并且当前已经没有传输数据，再调用constructTLSSocketInstance升级TLSSocket。当升级成功后，无需对TCPSocket对象调用close方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名       | 类型 | 必填 | 说明                     |
+|-----------|----| ---- |------------------------|
+| tcpSocket | [TCPSocket](#tcpsocket)   | 是   | 需要进行升级的TCPSocket对象。 |
+
+**返回值:**
+
+| 类型                               | 说明                    |
+|  --------------------------------- |  ---------------------- |
+| [TLSSocket](#tlssocket9) | 返回一个TLSSocket对象。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                             |
+|---------|----------------------------------|
+| 401     | Parameter error.  |
+| 2300002 | System internal error.  |
+| 2303601 | Invalid socket FD.     |
+| 2303602 | Socket is not connected.  |
+
+**示例：**
+
+```ts
+import { socket } from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  timeout: 6000
+}
+tcp.connect(tcpconnectoptions, (err: BusinessError) => {
+  if (err) {
+    console.log('connect fail');
+    return;
+  }
+  console.log('connect success');
+
+  // 确保TCPSocket已连接后，再升级TLSSocket
+  let tls: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+})
+```
+
 ## TLSSocket<sup>9+</sup>
 
 TLSSocket连接。在调用TLSSocket的方法前，需要先通过[socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9)创建TLSSocket对象。
@@ -5178,6 +5667,9 @@ TLSSocket连接。在调用TLSSocket的方法前，需要先通过[socket.constr
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口。使用callback方法作为异步方法。
+
+> **说明：**
+> 如果TLSSocket对象是通过TCPSocket对象升级创建的，可以不用执行bind方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -5224,6 +5716,9 @@ tls.bind(bindAddr, (err: BusinessError) => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口。使用Promise方法作为异步方法。
+
+> **说明：**
+> 如果TLSSocket对象是通过TCPSocket对象升级创建的，可以不用执行bind方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -5328,7 +5823,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                             | 说明                                       |
 |  ----------------------------------------------- |  ----------------------------------------- |
-| Promise\<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TLSSocket状态的结果。失败返回错误码，错误信息。|
+| Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取TLSSocket状态的结果。失败返回错误码，错误信息。|
 
 **错误码：**
 
@@ -5404,11 +5899,16 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -5470,11 +5970,16 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -5740,7 +6245,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
-| 2303109 | Bad file number.                             |
+| 2301009 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Incorrect socket protocol type.              |
@@ -5846,7 +6351,7 @@ connect(options: TLSConnectOptions): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
-| 2303109 | Bad file number.                             |
+| 2301009 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Incorrect socket protocol type.              |
@@ -5979,7 +6484,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 类型                                        | 说明                                        |
 |  ------------------------------------------ |  ------------------------------------------ |
-| Promise\<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
 
@@ -6379,6 +6884,47 @@ tls.getSignatureAlgorithms().then((data: Array<string>) => {
 });
 ```
 
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+获取TLSSocket的本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> 在TLSSocketServer通信连接成功之后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
+  console.info("Get success: " + JSON.stringify(localAddress));
+}).catch((err: BusinessError) => {
+  console.error("Get failed, error: " + JSON.stringify(err));
+})
+```
+
 ### send<sup>9+</sup>
 
 send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
@@ -6555,10 +7101,11 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
+| skipRemoteValidation  | boolean                         | 否 | 是否对服务端进行证书认证，默认为false。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
-TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参数。当本地证书cert和私钥key不为空时，开启双向验证模式。cert和key其中一项为空时，开启单向验证模式。
+TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双向验证模式。cert和key其中一项为空时，开启单向验证模式。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -6641,7 +7188,7 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file number.                            |
+| 2301009  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -6675,7 +7222,8 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
   secureOptions: tlsSecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"]
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
   console.log("listen callback error" + err);
@@ -6711,7 +7259,7 @@ listen(options: TLSConnectOptions): Promise\<void\>
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file number.                            |
+| 2301009  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -6745,7 +7293,8 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
   secureOptions: tlsSecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"]
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
@@ -6834,7 +7383,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                           | 说明                                                         |
 |  --------------------------------------------- |  ----------------------------------------------------------- |
-| Promise\<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TLSSocketServer状态的结果。失败返回错误码，错误信息。 |
+| Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取TLSSocketServer状态的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
 
@@ -6939,11 +7488,16 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed: " + JSON.stringify(err));
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -7021,11 +7575,16 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed: " + JSON.stringify(err));
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -7300,6 +7859,47 @@ tlsServer.getProtocol().then((data: string) => {
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+获取TLSSocketServer的本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> 在TLSSocketServer通信连接成功之后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tlsServer: socket.TLSSocket = socket.constructTLSSocketServerInstance();
+tlsServer.getLocalAddress().then((localAddress: socket.NetAddress) => {
+  console.info("Get success: " + JSON.stringify(localAddress));
+}).catch((err: BusinessError) => {
+  console.error("Get failed, error: " + JSON.stringify(err));
+})
 ```
 
 ### on('connect')<sup>10+</sup>
@@ -7916,7 +8516,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 类型                                 | 说明                                                         |
 |  ----------------------------------- |  ----------------------------------------------------------- |
-| Promise\<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
 
@@ -8347,6 +8947,74 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   }).catch((err: BusinessError) => {
     console.error("failed" + err);
   });
+});
+```
+
+### getLocalAddress<sup>12+</sup>
+
+getLocalAddress(): Promise\<NetAddress\>
+
+获取TLSSocketConnection连接的本地Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> 在TLSSocketServer通信连接成功之后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+|  -------------- |  --------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 2300002  | System internal error.                      |
+| 2301009  | Bad file descriptor.                            |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.info("listen callback success");
+}).catch((err: BusinessError) => {
+  console.error("failed" + err);
+});
+
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
+    console.info("Family IP Port: " + JSON.stringify(localAddress));
+  }).catch((err: BusinessError) => {
+    console.error("TLS Client Get Family IP Port failed, error: " + JSON.stringify(err));
+  })
 });
 ```
 

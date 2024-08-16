@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SelectionMenu (文本选择菜单)
+# SelectionMenu
 
 
 文本选择菜单，适用于富文本组件通过[bindSelectionMenu](./ts-basic-components-richeditor.md#属性)绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@ohos.arkui.advanced.SelectionMenu'
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
 ```
 
 ## 子组件
@@ -107,7 +107,7 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 ## 示例
 
 ```ts
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@ohos.arkui.advanced.SelectionMenu'
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
 
 @Entry
 @Component

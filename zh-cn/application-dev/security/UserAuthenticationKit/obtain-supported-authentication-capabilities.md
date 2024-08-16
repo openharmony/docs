@@ -22,8 +22,8 @@
 以查询设备是否支持认证可信等级≥ATL1的人脸认证功能为例：
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // 查询认证能力是否支持
 try {    

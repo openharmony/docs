@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_FrameRateRange** struct defines the frame rate range.
+The Camera_FrameRateRange struct describes the frame rate range.
 
 **Since**: 11
 

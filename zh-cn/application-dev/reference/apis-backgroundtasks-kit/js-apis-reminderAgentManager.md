@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import reminderAgentManager from '@ohos.reminderAgentManager';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 ```
 
 ## reminderAgentManager.publishReminder
@@ -40,12 +40,13 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
 **示例**：
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let timer: reminderAgentManager.ReminderRequestTimer = {
   reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
@@ -91,12 +92,13 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
 **示例**：
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let timer: reminderAgentManager.ReminderRequestTimer = {
   reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
@@ -132,13 +134,14 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700003    | The reminder does not exist. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId, (err: BusinessError) => {
@@ -176,13 +179,14 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700003    | The reminder does not exist. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId).then(() => {
@@ -218,12 +222,13 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<reminderAgentManager.ReminderRequest>) => {
   if (err.code) {
@@ -282,12 +287,13 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentManager.ReminderRequest>) => {
   console.log("promise, getValidReminders length = " + reminders.length);
@@ -338,12 +344,13 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.cancelAllReminders((err: BusinessError) =>{
   if (err.code) {
@@ -374,12 +381,13 @@ cancelAllReminders(): Promise\<void>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.cancelAllReminders().then(() => {
   console.log("cancelAllReminders promise")
@@ -404,11 +412,19 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 | slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
+
 **示例**：
 
 ```ts
-import notificationManager from '@ohos.notificationManager'
-import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mySlot: notificationManager.NotificationSlot = {
   notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
@@ -444,11 +460,19 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 | -------- | -------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
+
 **示例**：
 
 ```ts
-import notificationManager from '@ohos.notificationManager'
-import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mySlot: notificationManager.NotificationSlot = {
   notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
@@ -476,13 +500,21 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当删除成功时，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
+
 **示例**：
 
 ```ts
-import notification from '@ohos.notificationManager'
-import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION,
+reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT_INFORMATION,
   (err: BusinessError) => {
   if (err.code) {
     console.error("callback err code:" + err.code + " message:" + err.message);
@@ -513,13 +545,21 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 | -------- | -------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
+
 **示例**：
 
 ```ts
-import notification from '@ohos.notificationManager'
-import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
+reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT_INFORMATION).then(() => {
   console.log("removeNotificationSlot promise");
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
@@ -557,7 +597,7 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgentManager.ReminderInfo>) => {
   console.log("promise, getAllValidReminders length = " + reminders.length);
@@ -615,14 +655,14 @@ addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 201      | Permission verification failed.                |
+| 201      | Permission denied.                             |
 | 401      | If the input parameter is not valid parameter. |
 | 1700003  | The reminder does not exist.                   |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 let date = new Date();
@@ -657,15 +697,15 @@ deleteExcludeDates(reminderId: number): Promise\<void>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
-| 201      | Permission verification failed. |
-| 1700003  | The reminder does not exist.    |
+| 错误码ID | 错误信息                     |
+| -------- | ---------------------------- |
+| 201      | Permission denied.           |
+| 1700003  | The reminder does not exist. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
@@ -699,15 +739,15 @@ getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
-| 201      | Permission verification failed. |
-| 1700003  | The reminder does not exist.    |
+| 错误码ID | 错误信息                     |
+| -------- | ---------------------------- |
+| 201      | Permission denied.           |
+| 1700003  | The reminder does not exist. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let reminderId: number = 1;
 reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
@@ -877,8 +917,8 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称        | 类型                                | 必填 | 说明                  |
-| ----------- | ----------------------------------- | ---- | --------------------- |
-| reminderId  | number                              | N/A  | 发布提醒后返回的 Id。 |
-| reminderReq | [ReminderRequest](#reminderrequest) | N/A  | 代理提醒对象。        |
+| 名称        | 类型                                | 只读 | 可选 | 说明                  |
+| ----------- | ----------------------------------- | ---- | ---- | --------------------- |
+| reminderId  | number                              | 否   | 否   | 发布提醒后返回的 Id。 |
+| reminderReq | [ReminderRequest](#reminderrequest) | 否   | 否   | 代理提醒对象。        |
 

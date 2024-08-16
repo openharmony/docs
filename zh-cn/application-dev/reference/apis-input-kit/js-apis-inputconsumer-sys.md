@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import inputConsumer from '@ohos.multimodalInput.inputConsumer';
+import { inputConsumer } from '@kit.InputKit';
 ```
 
 ## inputConsumer.on

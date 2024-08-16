@@ -17,9 +17,9 @@ The OH_Drawing_FontStyleStruct struct describes a font style.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight)[weight](#weight) | Font weight. | 
-| [OH_Drawing_FontWidth](_drawing.md#oh_drawing_fontwidth)[width](#width) | Font width. | 
-| [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle)[slant](#slant) | Font slant. | 
+| [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight) [weight](#weight) | Font weight. | 
+| [OH_Drawing_FontWidth](_drawing.md#oh_drawing_fontwidth) [width](#width) | Font width. | 
+| [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle) [slant](#slant) | Font slant. | 
 
 
 ## Member Variable Description

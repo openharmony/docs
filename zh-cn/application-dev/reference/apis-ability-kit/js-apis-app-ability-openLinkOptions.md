@@ -11,7 +11,7 @@ OpenLinkOptions可以作为[openLink()](js-apis-inner-application-uiAbilityConte
 ## 导入模块
 
 ```ts
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { OpenLinkOptions } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -20,18 +20,17 @@ import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| appLinkingOnly | boolean | 否 | 否 | 表示是否必须以AppLinking的方式启动UIAbility。<br />- 取值为true时，如果不存在与AppLinking相匹配的UIAbility，直接返回。<br />- 取值为false时，如果不存在与AppLinking相匹配的UIAbility，AppLinking会退化为DeepLink。默认值为false。<br />aa命令隐式拉起Ability时可以通过设置"--pb appLinkingOnly true/false"以AppLinking的方式进行启动。 |
-| parameters | Record\<string, Object> | 否 | 否 | 表示WantParams参数。 |
+| appLinkingOnly | boolean | 否 | 是 | 表示是否必须以AppLinking的方式启动UIAbility。<br />- 取值为true时，如果不存在与AppLinking相匹配的UIAbility，直接返回。<br />- 取值为false时，如果不存在与AppLinking相匹配的UIAbility，AppLinking会退化为DeepLink。默认值为false。<br />aa命令隐式拉起Ability时可以通过设置"--pb appLinkingOnly true/false"以AppLinking的方式进行启动。 |
+| parameters | Record\<string, Object> | 否 | 是 | 表示WantParams参数。 |
 
 **示例：**
 
   ```ts
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-  import { BusinessError } from '@ohos.base';
+  import { common, OpenLinkOptions } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   const DOMAIN = 0xeeee;
   const TAG: string = '[openLinkDemo]';

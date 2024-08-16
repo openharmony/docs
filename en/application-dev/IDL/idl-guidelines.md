@@ -150,6 +150,12 @@ The value of <*formal_param_attr*> can be **in**, **out**, or **inout**, indicat
 ## How to Develop
 
 ### Obtaining IDL
+#### Method 1 (Recommended)
+1. On Linux, download two OpenHarmony repositories: ability_idl_tool and third_party_bounds_checking_function.
+2. Go to the ability_idl_tool repository, and run the **make** command in the directory where **Makefile** is located. (Modify the relative position of **bounds_checking_function** in **MakefileLinux**.)
+3. Find the idl-gen executable file generated in the current directory to debug local IDL files.
+
+#### Method 2
 On DevEco Studio, choose **Tools > SDK Manager** to view the local installation path of the OpenHarmony SDK. The following figure uses DevEco Studio 3.0.0.993 as an example.
 
 ![SDKpath](./figures/SDKpath.png)
@@ -174,7 +180,7 @@ After obtaining the executable file, perform subsequent development steps based 
 
 You can use TS to create IDL files.
 
- For example, create a file named **IIdlTestService.idl** with the following content: 
+For example, create a file named **IIdlTestService.idl** with the following content:
 
 ```cpp
   interface OHOS.IIdlTestService {
@@ -484,6 +490,123 @@ interface OHOS.AAFwk.IQuickFixManager {
 ```
 
 #### Modifying the BUILD.gn File
+Two methods are available for modification.
+
+##### Method 1 (Recommended. IDL Files Can Be Processed in Batches and Compiled into .so Files)
+
+1. Import the IDL tool template to the current **BUILD.gn** file.
+
+   ```bash
+   # Copy the line below to the .gn file.
+   import("//foundation/ability/idl_tool/idl_config.gni")
+   ```
+
+2. Invoke the IDL tool to generate a C++ template file.
+
+   ```bash
+   
+   # Use idl_gen_interface to generate a template file. The value passed in will be used in deps.
+   idl_gen_interface("EEEFFFGGG") {
+     # Name of your .idl file, which must be in the same path as the .gn file.
+     sources = [
+      "IAxxBxxCxx.idl",
+      "IAxxBxxCxx2.idl",
+     ]
+
+     # Based on the usage of user-defined objects in the IDL file, you must add the compilation of the corresponding .cpp file when compiling the .so file. The default value is null.
+     sources_cpp = []
+
+     # Add configs during .so file compilation.
+     configs = []
+
+     # Add public_deps during .so file compilation.
+     sequenceable_pub_deps = []
+
+     # Add external_deps during .so file compilation.
+     sequeceable_ext_deps = []
+
+     # Add innerapi_tags during .so file compilation.
+     innerapi_tags = ""
+
+     # Add sanitize during .so file compilation.
+     sanitize = ""
+   
+     # Enable hitrace. The value is the uint64_t type identifier defined in the hitrace_meter.h file. You need to enter the variable name of the constant.
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+        
+     # Enable hilog. The domain ID is a hexadecimal integer.
+     log_domainid = "0xD003900"
+     # Enable hilog. The tag name is a string, which is generally a subsystem name.
+     log_tag = "QuickFixManagerService"
+       
+     # (Mandatory) Add subsystem_name during .so file compilation. The value must be the same as the actual subsystem name. For example, use the following in quick_fix:
+     subsystem_name = "ability"
+     # (Mandatory) Add part_name during .so file compilation. The value must be the same as the actual part name. For example, use the following in quick_fix:
+     part_name = "ability_runtime"
+   }
+   ```
+   
+   Configure hilog. The log_domainid and log_tag parameters must appear in pairs; otherwise, a compilation error occurs. For example, use the following in quick_fix:
+   
+   ```bash
+      idl_gen_interface("quickfix_manager_interface") {
+        sources = [
+         "IQuickFixManager.idl"
+        ]
+        hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+        log_domainid = "0xD003900"
+        log_tag = "QuickFixManagerService" # An error occurs during compilation if only log_tag or log_domainid is included.
+      }
+   ```
+   
+3. Add the dependency **EEEFFFGGG** to **BUILD.gn**.
+
+   ```bash
+   deps = [
+      # Use the value passed in idl_gen_interface, prefixed with lib and suffixed with _proxy or _stub to obtain the generated .so file name.
+      ":libEEEFFFGGG_proxy", # Add this dependency if the proxy .so file is required.
+      ":libEEEFFFGGG_stub", # Add this dependency if the stub .so file is required.
+     ]
+   ```
+
+   The name of the dependency added to **deps** must be the same as the value passed in **idl_gen_interface**. For example, use the following in quick_fix:
+
+   ```bash
+   idl_gen_interface("quickfix_manager_interface") {
+     sources = [
+      "IQuickFixManager.idl"
+     ]
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService"
+   }
+   deps = [
+    "${ability_runtime_innerkits_path}/app_manager:app_manager",
+    ":libquickfix_manager_interface_proxy", # Value passed in idl_gen_interface, prefixed with lib and suffixed with _proxy.
+    ":libquickfix_manager_interface_stub", # Value passed in idl_gen_interface, prefixed with lib and suffixed with _stub.
+   ]
+   ```
+
+4. Add external dependencies of the template file to **BUILD.gn**.
+
+   Add the external dependencies of the template file to **external_deps**.
+
+   If a dependency already exists, you do not need to add it again; otherwise, compilation errors may occur.
+
+   ```bash
+     external_deps = [
+     # Mandatory dependency of the template file
+     "c_utils:utils",
+     # Mandatory dependency of the hilog output
+     "hilog:libhilog",
+     # Mandatory dependency of hitrace output (not required if hitrace is not configured in idl_gen_interface.)
+     "hitrace:hitrace_meter",
+     # Mandatory dependency of the template file
+     "ipc:ipc_core",
+   ]
+   ```
+
+##### Method 2
 
 1. Import the IDL tool template to the current **BUILD.gn** file.
 

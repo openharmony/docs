@@ -18,7 +18,8 @@
 /*
  * 以下以anonAttestKey的Promise接口操作验证为例
  */
-import { huks } from "@kit.UniversalKeystoreKit";
+import { huks } from '@kit.UniversalKeystoreKit';
+
 /* 1.确定密钥别名 */
 let keyAliasString = "key anon attest";
 let aliasString = keyAliasString;
@@ -27,12 +28,13 @@ let securityLevel = StringToUint8Array('sec_level');
 let challenge = StringToUint8Array('challenge_data');
 let versionInfo = StringToUint8Array('version_info');
 let anonAttestCertChain: Array<string>;
+
 class throwObject {
   isThrow: boolean = false;
 }
 
 /* 封装生成时的密钥参数集 */
-let genKeyProperties:Array<huks.HuksParam> = [
+let genKeyProperties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -88,6 +90,7 @@ let anonAttestKeyProperties: Array<huks.HuksParam> = [
 let huksOptions: huks.HuksOptions = {
   properties: anonAttestKeyProperties
 };
+
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
@@ -95,6 +98,7 @@ function StringToUint8Array(str: string) {
   }
   return new Uint8Array(arr);
 }
+
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
   return new Promise<void>((resolve, reject) => {
     try {
@@ -107,14 +111,15 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwO
       });
     } catch (error) {
       throwObject.isThrow = true;
-      throw(error as Error);
+      throw (error as Error);
     }
   });
 }
+
 /* 3.生成密钥 */
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise generateKeyItem`);
-  let throwObject: throwObject = {isThrow: false};
+  let throwObject: throwObject = { isThrow: false };
   try {
     await generateKeyItem(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -122,7 +127,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
       })
       .catch((error: Error) => {
         if (throwObject.isThrow) {
-          throw(error as Error);
+          throw (error as Error);
         } else {
           console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
         }
@@ -131,6 +136,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
     console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
+
 /* 4.证明密钥 */
 function anonAttestKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
@@ -144,16 +150,17 @@ function anonAttestKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, thro
       });
     } catch (error) {
       throwObject.isThrow = true;
-      throw(error as Error);
+      throw (error as Error);
     }
   });
 }
+
 async function publicAnonAttestKey(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise anonAttestKeyItem`);
-  let throwObject: throwObject = {isThrow: false};
+  let throwObject: throwObject = { isThrow: false };
   try {
     await anonAttestKeyItem(keyAlias, huksOptions, throwObject)
-      .then ((data) => {
+      .then((data) => {
         console.info(`promise: anonAttestKeyItem success, data = ${JSON.stringify(data)}`);
         if (data !== null && data.certChains !== null) {
           anonAttestCertChain = data.certChains as string[];
@@ -161,7 +168,7 @@ async function publicAnonAttestKey(keyAlias: string, huksOptions: huks.HuksOptio
       })
       .catch((error: Error) => {
         if (throwObject.isThrow) {
-          throw(error as Error);
+          throw (error as Error);
         } else {
           console.error(`promise: anonAttestKeyItem failed, ${JSON.stringify(error)}`);
         }
@@ -170,6 +177,7 @@ async function publicAnonAttestKey(keyAlias: string, huksOptions: huks.HuksOptio
     console.error(`promise: anonAttestKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
+
 async function AnonAttestKeyTest() {
   await publicGenKeyFunc(aliasString, genOptions);
   await publicAnonAttestKey(aliasString, huksOptions);

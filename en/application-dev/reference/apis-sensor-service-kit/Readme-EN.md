@@ -3,7 +3,9 @@
 - ArkTS APIs
   - [@ohos.sensor (Sensor)](js-apis-sensor.md)
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
+  <!--Del-->
   - [@ohos.sensor (Sensor) (System API)](js-apis-sensor-sys.md)
+  <!--DelEnd-->
   - [@ohos.sensor (Sensor) (Deprecated API)](js-apis-system-sensor.md)
   - [@ohos.vibrator (Vibrator) (Deprecated API)](js-apis-system-vibrate.md)
 - C APIs

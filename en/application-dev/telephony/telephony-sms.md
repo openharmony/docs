@@ -1,6 +1,6 @@
 # SMS Service Development
 
-## Scenario Description
+## When to Use
 
 The Short Messaging Service (SMS) module provides basic SMS management functions. You can create and send SMS messages, and obtain the ID of the default SIM card used to send and receive SMS messages. Besides, you can obtain and set the SMSC address, and check whether the current device can send and receive SMS messages.
 
@@ -138,3 +138,4 @@ struct JumpMessage {
 }
 
 ```
+

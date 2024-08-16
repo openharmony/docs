@@ -80,13 +80,13 @@
 
 ```ts
 // Index.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
-  @State btnColor:string = "#FF007DFF"
+  @State btnColor:string = "#FF007DFF";
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageShow() {
@@ -100,7 +100,7 @@ struct MyComponent {
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onBackPress() {
     console.info('Index onBackPress');
-    this.btnColor ="#FFEE0606"
+    this.btnColor ="#FFEE0606";
     return true // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
   }
 
@@ -161,9 +161,12 @@ struct Child {
   }
 
   build() {
-    Text(this.title).fontSize(50).margin(20).onClick(() => {
-      this.title = 'Hello ArkUI';
-    })
+    Text(this.title)
+      .fontSize(50)
+      .margin(20)
+      .onClick(() => {
+        this.title = 'Hello ArkUI';
+      })
   }
 }
 ```
@@ -173,10 +176,10 @@ struct Child {
 @Component
 struct page {
   @State textColor: Color = Color.Black;
-  @State num: number = 0
+  @State num: number = 0;
 
   onPageShow() {
-    this.num = 5
+    this.num = 5;
   }
 
   onPageHide() {
@@ -184,12 +187,12 @@ struct page {
   }
 
   onBackPress() { // 不设置返回值按照false处理
-    this.textColor = Color.Grey
-    this.num = 0
+    this.textColor = Color.Grey;
+    this.num = 0;
   }
 
   aboutToAppear() {
-    this.textColor = Color.Blue
+    this.textColor = Color.Blue;
   }
 
   build() {
@@ -200,7 +203,7 @@ struct page {
         .fontColor(this.textColor)
         .margin(20)
         .onClick(() => {
-          this.num += 5
+          this.num += 5;
         })
     }
     .width('100%')
@@ -233,19 +236,17 @@ struct page {
 
 ```ts
 // Index.ets
-import observer from '@ohos.arkui.observer';
-import router from '@ohos.router';
-import { UIObserver } from '@ohos.arkui.UIContext';
+import { uiObserver, router, UIObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  listener: (info: observer.RouterPageInfo) => void = (info: observer.RouterPageInfo) => {
-    let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+  listener: (info: uiObserver.RouterPageInfo) => void = (info: uiObserver.RouterPageInfo) => {
+    let routerInfo: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
     if (info.pageId == routerInfo?.pageId) {
-      if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
+      if (info.state == uiObserver.RouterPageState.ON_PAGE_SHOW) {
         console.log(`Index onPageShow`);
-      } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
+      } else if (info.state == uiObserver.RouterPageState.ON_PAGE_HIDE) {
         console.log(`Index onPageHide`);
       }
     }
@@ -276,12 +277,12 @@ struct Index {
 }
 @Component
 struct SubComponent {
-  listener: (info: observer.RouterPageInfo) => void = (info: observer.RouterPageInfo) => {
-    let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+  listener: (info: uiObserver.RouterPageInfo) => void = (info: uiObserver.RouterPageInfo) => {
+    let routerInfo: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
     if (info.pageId == routerInfo?.pageId) {
-      if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
+      if (info.state == uiObserver.RouterPageState.ON_PAGE_SHOW) {
         console.log(`SubComponent onPageShow`);
-      } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
+      } else if (info.state == uiObserver.RouterPageState.ON_PAGE_HIDE) {
         console.log(`SubComponent onPageHide`);
       }
     }

@@ -53,20 +53,40 @@ async/await是一种用于处理异步操作的Promise语法糖，使得编写�
 
 async函数是一个返回Promise对象的函数，用于表示一个异步操作。在async函数内部，可以使用await关键字等待一个Promise对象的解析，并返回其解析值。如果一个async函数抛出异常，那么该函数返回的Promise对象将被拒绝，并且异常信息会被传递给Promise对象的onRejected()方法。
 
-下面是一个使用async/await的例子，其中模拟了一个异步操作，该操作会在3秒钟后返回一个字符串。
+下面是一个使用async/await的例子，其中模拟了一个以同步方式执行异步操作的场景，该操作会在3秒钟后返回一个字符串。
 
 
 ```ts
-async function myAsyncFunction(): Promise<void> {
+async function myAsyncFunction(): Promise<string> {
   const result: string = await new Promise((resolve: Function) => {
     setTimeout(() => {
       resolve('Hello, world!');
     }, 3000);
   });
   console.info(result); // 输出： Hello, world!
+  return result
 }
 
-myAsyncFunction();
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(async () => {
+            let res = await myAsyncFunction();
+            console.info("res is: " + res);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 在上述示例代码中，使用了await关键字来等待Promise对象的解析，并将其解析值存储在result变量中。

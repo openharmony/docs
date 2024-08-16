@@ -18,9 +18,8 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
 1. Obtain an **AudioHapticManager** instance, and register the audio and haptic sources. For details about the sources supported, see [AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager).
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import audioHaptic from '@ohos.multimedia.audioHaptic';
-   import { BusinessError } from '@ohos.base';
+   import { audio, audioHaptic } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.getAudioHapticManager();
 
@@ -100,9 +99,3 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
      console.error(`Failed to unregistere source ${err}`);
    });
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop audio-haptic effect:
-
-- [Audio-Haptic (ArkTS, API version 11)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AudioHaptic)

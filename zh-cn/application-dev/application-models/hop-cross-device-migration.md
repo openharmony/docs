@@ -45,19 +45,19 @@
 
 1. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的abilities标签中配置跨端迁移标签`continuable`。
 
-   ```json
-   {
-     "module": {
-       // ...
-       "abilities": [
-         {
-           // ...
-           "continuable": true, // 配置UIAbility支持迁移
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        // ...
+        "abilities": [
+          {
+            // ...
+            "continuable": true, // 配置UIAbility支持迁移
+          }
+        ]
+      }
+    }
+    ```
 
    > **说明：**
    >
@@ -65,12 +65,12 @@
 
 2. 在源端`UIAbility`中实现[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调。
 
-   当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
+    当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
-   - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-   - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。
+    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
+    - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。
 
-   - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调的返回值决定是否支持此次迁移，接口返回值详见[`AbilityConstant.OnContinueResult`](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)。
+    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调的返回值决定是否支持此次迁移，接口返回值详见[`AbilityConstant.OnContinueResult`](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)。
 
     &nbsp;
     `onContinue()`接口传入的`wantParam`参数中，有部分字段由系统预置，开发者可以使用这些字段用于业务处理。同时，应用在保存自己的`wantParam`参数时，也应注意不要使用同样的key值，避免被系统覆盖导致数据获取异常。详见下表：
@@ -79,77 +79,64 @@
     | version | 对端应用的版本号 |
     | targetDevice | 对端设备的networkId |
 
-   ```ts
-   import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
+    ```ts
+    import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
-   const TAG: string = '[MigrationAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[MigrationAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-   export default class MigrationAbility extends UIAbility {
-     // 在onContinue中准备迁移数据
-     onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-       let targetVersion = wantParam.version;
-       let targetDevice = wantParam.targetDevice;
-       hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
+    export default class MigrationAbility extends UIAbility {
+      // 在onContinue中准备迁移数据
+      onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+        let targetVersion = wantParam.version;
+        let targetDevice = wantParam.targetDevice;
+        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
 
-       // 获取本端应用的版本号
-       let versionSrc: number = -1; // 请填充具体获取版本号的代码
+        // 获取本端应用的版本号
+        let versionSrc: number = -1; // 请填充具体获取版本号的代码
 
-       // 兼容性校验
-       if (targetVersion !== versionSrc) {
-         // 在兼容性校验不通过时返回MISMATCH
-         return AbilityConstant.OnContinueResult.MISMATCH;
-       }
+        // 兼容性校验
+        if (targetVersion !== versionSrc) {
+          // 在兼容性校验不通过时返回MISMATCH
+          return AbilityConstant.OnContinueResult.MISMATCH;
+        }
 
-       // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
-       const continueInput = '迁移的数据';
-       wantParam['data'] = continueInput;
+        // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
+        const continueInput = '迁移的数据';
+        wantParam['data'] = continueInput;
 
-       return AbilityConstant.OnContinueResult.AGREE;
-     }
-   }
-   ```
+        return AbilityConstant.OnContinueResult.AGREE;
+      }
+    }
+    ```
 
 3. 对端设备的UIAbility通过实现[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口，来恢复迁移数据和加载UI。
-  不同的启动方式下会调用不同的接口，详见下图。
 
-   ![hop-cross-device-migration](figures/hop-cross-device-migration5.png)
+    不同的启动方式下会调用不同的接口，详见下图。
+
+    ![hop-cross-device-migration](figures/hop-cross-device-migration5.png)
 
     > **说明：**
     > 1. 在应用迁移启动时，无论是冷启动还是热启动，都会在执行完`onCreate()`/`onNewWant()`后，触发`onWindowStageRestore()`生命周期函数，不执行`onWindowStageCreate()`生命周期函数。
     > 2. 开发者如果在`onWindowStageCreate()`中进行了一些应用启动时必要的初始化，那么迁移后需要在`onWindowStageRestore()`中执行同样的初始化操作，避免应用异常。
 
-   - 通过在[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中检查`launchReason`，可以判断此次启动是否由迁移触发。
-   - 开发者可以从`want`中获取之前保存的迁移数据。
-   - 若开发者使用系统页面栈恢复功能，则需要在`onCreate()`/`onNewWant()`执行完成前，同步调用`restoreWindowStage()`，来触发带有页面栈的页面恢复，详见[按需迁移页面栈](./hop-cross-device-migration.md#按需迁移页面栈)。
+    - 通过在[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中检查`launchReason`，可以判断此次启动是否由迁移触发。
+    - 开发者可以从`want`中获取之前保存的迁移数据。
+    - 若开发者使用系统页面栈恢复功能，则需要在`onCreate()`/`onNewWant()`执行完成前，同步调用`restoreWindowStage()`，来触发带有页面栈的页面恢复，详见[按需迁移页面栈](./hop-cross-device-migration.md#按需迁移页面栈)。
 
-   ```ts
-   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
+    ```ts
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
-   const TAG: string = '[MigrationAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[MigrationAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-   export default class MigrationAbility extends UIAbility {
-     storage : LocalStorage = new LocalStorage();
+    export default class MigrationAbility extends UIAbility {
+      storage : LocalStorage = new LocalStorage();
 
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-       if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-         // 将上述保存的数据从want.parameters中取出恢复
-         let continueInput = '';
-         if (want.parameters !== undefined) {
-           continueInput = JSON.stringify(want.parameters.data);
-           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-         }
-         // 触发页面恢复
-         this.context.restoreWindowStage(this.storage);
-       }
-     }
-
-     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
           // 将上述保存的数据从want.parameters中取出恢复
           let continueInput = '';
@@ -161,8 +148,22 @@
           this.context.restoreWindowStage(this.storage);
         }
       }
-   }
-   ```
+
+      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+          hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+          if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+            // 将上述保存的数据从want.parameters中取出恢复
+            let continueInput = '';
+            if (want.parameters !== undefined) {
+              continueInput = JSON.stringify(want.parameters.data);
+              hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+            }
+            // 触发页面恢复
+            this.context.restoreWindowStage(this.storage);
+          }
+        }
+    }
+    ```
 
 ## 可选配置迁移能力
 
@@ -277,18 +278,18 @@
 以`onCreate()`为例：
 
 ```ts
-   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
-   export default class MigrationAbility extends UIAbility {
-     storage : LocalStorage = new LocalStorage();
+export default class MigrationAbility extends UIAbility {
+  storage : LocalStorage = new LocalStorage();
 
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-         // ...
-         // 同步执行结束前触发页面恢复
-         this.context.restoreWindowStage(this.storage);
-     }
-   }
-   ```
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      // ...
+      // 同步执行结束前触发页面恢复
+      this.context.restoreWindowStage(this.storage);
+  }
+}
+```
 
 如果应用不想通过系统自动恢复页面栈，可以通过配置[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)参数为`false`关闭该功能。开发者需要在`onWindowStageRestore()`中，指定迁移后进入的页面。
 
@@ -350,18 +351,75 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
+### 支持同应用中不同Ability跨端迁移
+一般情况下，跨端迁移的双端是同Ability之间，但有些应用在不同设备类型下的同一个业务Ability名称不同（即异Ability），为了支持该场景下的两个Ability之间能够完成迁移，可以通过在module.json5文件的abilities标签中配置迁移类型continueType进行关联。
+需要迁移的两个Ability的continueType字段取值必须保持一致，示例如下：
+   > **说明：**
+   >
+   > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
+   > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
+
+```json
+   // 设备A
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "Ability-deviceA",
+           "continueType": ['continueType1'], // continueType标签配置
+         }
+       ]
+     }
+   }
+
+   // 设备B
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "Ability-deviceB",
+           "continueType": ['continueType1'], // 与设备A相同的continueType标签
+         }
+       ]
+     }
+   }
+   ```
+
+### 支持快速拉起目标应用
+默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
+
+   ```json
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "EntryAbility"
+           "continueType": ['EntryAbility_ContinueQuickStart'], // 如果已经配置了continueType标签，可以在该标签值后添加'_ContinueQuickStart'后缀；如果没有配置continueType标签，可以使用AbilityName + '_ContinueQuickStart'作为continueType标签实现快速拉起目标应用
+         }
+       ]
+     }
+   }
+   ```
+
 ## 跨端迁移中的数据迁移
 
 当前推荐两种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
   > **说明：**
   >
-  > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)。
+  > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)。
   >
   > 如果涉及分布式数据对象迁移时应注意：
   >
-  > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+  > API 11及以前版本涉及分布式数据对象迁移前，需要执行如下操作。
+  > 1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
   >
-  > 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
+  > 2. 在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 ### 使用wantParam迁移数据
 
@@ -415,21 +473,21 @@ export default class MigrationAbility extends UIAbility {
 
 ### 使用分布式数据对象迁移数据
 
-当需要迁移的数据较大（100KB以上）或需要迁移文件时，可以使用[分布式数据对象](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)。原理与接口说明详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
+当需要迁移的数据较大（100KB以上）或需要迁移文件时，可以使用[分布式数据对象](../reference/apis-arkdata/js-apis-data-distributedobject.md)。原理与接口说明详见[分布式数据对象跨设备数据同步](../database/data-sync-of-distributed-data-object.md)。
 
   > **说明：**
   >
-  > 自API 12起，由于直接使用[跨设备文件访问](../../application-dev/file-management/file-access-across-devices.md)实现文件的迁移难以获取文件同步完成的时间，为了保证更高的成功率，文件数据的迁移不建议继续通过该方式实现，推荐使用分布式数据对象携带资产的方式进行。开发者此前通过跨设备文件访问实现的文件迁移依然生效。
+  > 自API 12起，由于直接使用[跨设备文件访问](../file-management/file-access-across-devices.md)实现文件的迁移难以获取文件同步完成的时间，为了保证更高的成功率，文件数据的迁移不建议继续通过该方式实现，推荐使用分布式数据对象携带资产的方式进行。开发者此前通过跨设备文件访问实现的文件迁移依然生效。
 
 #### 基础数据的迁移
 
 使用分布式数据对象，需要在源端`onContinue()`接口中进行数据保存，并在对端的`onCreate()`/`onNewWant()`接口中进行数据恢复。
 
-在源端，将需要迁移的数据保存到分布式数据对象[`DataObject`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)中。
+在源端，将需要迁移的数据保存到分布式数据对象[`DataObject`](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)中。
 
-- 在`onContinue()`接口中使用[`create()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectcreate9)接口创建分布式数据对象，将所要迁移的数据填充到分布式数据对象数据中。
-- 调用[`genSessionId()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)接口生成数据对象组网id，并使用该id调用[`setSessionId()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#setsessionid9)加入组网，激活分布式数据对象。
-- 使用[`save()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#save9)接口将已激活的分布式数据对象持久化，确保源端退出后对端依然可以获取到数据。
+- 在`onContinue()`接口中使用[`create()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectcreate9)接口创建分布式数据对象，将所要迁移的数据填充到分布式数据对象数据中。
+- 调用[`genSessionId()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)接口生成数据对象组网id，并使用该id调用[`setSessionId()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#setsessionid9)加入组网，激活分布式数据对象。
+- 使用[`save()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#save9)接口将已激活的分布式数据对象持久化，确保源端退出后对端依然可以获取到数据。
 - 将生成的`sessionId`通过`want`传递到对端，供对端激活同步使用。
 
 > **注意**
@@ -513,7 +571,7 @@ export default class MigrationAbility extends UIAbility {
 
 - 创建空的分布式数据对象，用于接收恢复的数据。
 - 从want中读取分布式数据对象组网id。
-- 注册[`on()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9)接口监听数据变更。在收到`status`为`restore`的事件的回调中，实现数据恢复完毕时需要进行的业务操作。
+- 注册[`on()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9)接口监听数据变更。在收到`status`为`restore`的事件的回调中，实现数据恢复完毕时需要进行的业务操作。
 - 调用`setSessionId()`加入组网，激活分布式数据对象。
 
 > **注意**
@@ -585,11 +643,11 @@ export default class MigrationAbility extends UIAbility {
 
 #### 文件资产的迁移
 
-对于图片、文档等文件类数据，需要先将其转换为[资产`commonType.Asset`](../../application-dev/reference/apis-arkdata/js-apis-data-commonType.md#asset)类型，再封装到分布式数据对象中进行迁移。迁移实现方式与普通的分布式数据对象类似，下例中仅针对区别部分进行说明。
+对于图片、文档等文件类数据，需要先将其转换为[资产`commonType.Asset`](../reference/apis-arkdata/js-apis-data-commonType.md#asset)类型，再封装到分布式数据对象中进行迁移。迁移实现方式与普通的分布式数据对象类似，下例中仅针对区别部分进行说明。
 
 在源端，将需要迁移的文件资产保存到分布式数据对象`DataObject`中。
 
-- 将文件资产拷贝到[分布式文件目录](../../application-dev/application-models/application-context-stage.md#获取应用文件路径)下，相关接口与用法详见[基础文件接口](../../application-dev/file-management/app-file-access.md)。
+- 将文件资产拷贝到[分布式文件目录](application-context-stage.md#获取应用文件路径)下，相关接口与用法详见[基础文件接口](../file-management/app-file-access.md)。
 - 使用分布式文件目录下的文件创建`Asset`资产对象。
 - 将`Asset`资产对象作为分布式数据对象的根属性保存。
 
@@ -667,7 +725,7 @@ export default class MigrationAbility extends UIAbility {
     let ctime: string = '';
     let mtime: string = '';
     let size: string = '';
-    await fileIo.stat(distributedUri).then((stat: fileIo.Stat) => {
+    await fileIo.stat(filePath).then((stat: fileIo.Stat) => {
       ctime = stat.ctime.toString(); // 创建时间
       mtime = stat.mtime.toString(); // 修改时间
       size = stat.size.toString(); // 文件大小
@@ -700,7 +758,7 @@ export default class MigrationAbility extends UIAbility {
 
 > **注意**
 >
-> 对端创建分布式数据对象时，`SourceObject`对象中的资产不能直接使用`undefined`初始化，需要创建一个各属性为`undefined`的`Asset`资产对象，否则会导致资产同步失败。
+> 对端创建分布式数据对象时，`SourceObject`对象中的资产不能直接使用`undefined`初始化，需要创建一个所有属性初始值为空的Asset资产对象，使分布式对象可以识别出资产类型。
 
 ```ts
 import { UIAbility, Want } from '@kit.AbilityKit';
@@ -717,12 +775,12 @@ export default class MigrationAbility extends UIAbility {
     // ...
     // 创建一个各属性为空的资产对象
     let attachment: commonType.Asset = {
-      name: undefined,
-      uri: undefined,
-      path: undefined,
-      createTime: undefined,
-      modifyTime: undefined,
-      size: undefined,
+      name: '',
+      uri: '',
+      path: '',
+      createTime: '',
+      modifyTime: '',
+      size: '',
     }
 
     // 使用该空资产对象创建分布式数据对象，其余基础属性可以直接使用undefined
@@ -815,45 +873,43 @@ export default class MigrationAbility extends UIAbility {
 
 1. 编译安装全局任务中心
 
-   1. 为了正确编译安装全局任务中心，开发者需要替换Full-SDK，具体操作可参见[替换指南](../../application-dev/faqs/full-sdk-switch-guide.md)。
+    1. 为了正确编译安装全局任务中心，开发者需要替换Full-SDK，具体操作可参见[替换指南](../faqs/full-sdk-switch-guide.md)。
 
-   2. 下载[MissionCenter_Demo](https://gitee.com/openharmony/ability_dmsfwk/tree/master/services/dtbschedmgr/test/missionCenterDemo/dmsDemo/entry/src/main)示例代码
+    2. 下载[MissionCenter_Demo](https://gitee.com/openharmony/ability_dmsfwk/tree/master/services/dtbschedmgr/test/missionCenterDemo/dmsDemo/entry/src/main)示例代码
 
-   3. 编译工程文件
+    3. 编译工程文件
 
-      1. 新建一个工程，找到对应的文件夹替换下载文件
+        1. 新建一个工程，找到对应的文件夹替换下载文件
 
-         ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
+            ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 
-      2. 自动签名，编译安装。
-      ​DevEco的自动签名模板默认签名权限为`normal`级。而本应用所需`ohos.permission.MANAGE_MISSIONS`权限为`system_core`级别。自动生成的签名无法获得足够的权限，所以需要将权限升级为`system_core`级别，然后签名。
-          1. 将Sdk目录下的`openharmony\api版本 (如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json`文件中的`"apl":"normal"`改为`"apl":"system_core"`。
+        2. 自动签名，编译安装。
+        ​DevEco的自动签名模板默认签名权限为`normal`级。而本应用所需`ohos.permission.MANAGE_MISSIONS`权限为`system_core`级别。自动生成的签名无法获得足够的权限，所以需要将权限升级为`system_core`级别，然后签名。
+            1. 将Sdk目录下的`openharmony\api版本 (如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json`文件中的`"apl":"normal"`改为`"apl":"system_core"`。
 
-          2. 点击 **file->Project Structure**。
+            2. 点击 **file->Project Structure**。
 
-             ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
+                ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
 
-          3. 点击 **Signing Configs**  点击 **OK**。
+            3. 点击 **Signing Configs**  点击 **OK**。
 
-             ![hop-cross-device-migration](figures/hop-cross-device-migration3.png)
+                ![hop-cross-device-migration](figures/hop-cross-device-migration3.png)
 
-      3. 连接开发板运行生成demo。
+        3. 连接开发板运行生成demo。
 
 2. 设备组网
 
-   1. 打开A，B两设备的计算器。
-   2. 点击右上角箭头选择B设备。
-   3. 在B设备选择信任设备，弹出PIN码。
-   4. 在A设备输入PIN码。
-   5. 已组网成功，验证方法：在A设备输入数字，B设备同步出现则证明组网成功。
+    1. 打开A，B两设备的计算器。
+    2. 点击右上角箭头选择B设备。
+    3. 在B设备选择信任设备，弹出PIN码。
+    4. 在A设备输入PIN码。
+    5. 已组网成功，验证方法：在A设备输入数字，B设备同步出现则证明组网成功。
 
 3. 发起迁移
 
-   1. 在B设备打开多设备协同权限的应用，A设备打开全局任务中心demo，demo显示A设备名称和B设备名称。
-
-   2. 点击B设备名称，列表显示B设备的应用卡片列表。
-
-   3. 将要接续的应用卡片拖拽到A设备名称处，A设备应用被拉起。
+    1. 在B设备打开多设备协同权限的应用，A设备打开全局任务中心demo，demo显示A设备名称和B设备名称。
+    2. 点击B设备名称，列表显示B设备的应用卡片列表。
+    3. 将要接续的应用卡片拖拽到A设备名称处，A设备应用被拉起。
 
 ## 常见问题
 

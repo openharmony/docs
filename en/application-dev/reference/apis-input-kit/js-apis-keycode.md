@@ -9,7 +9,7 @@ The **keyCode** module provides keycode values for key devices, such as the keyb
 ## Modules to Import
 
 ```js
-import {KeyCode} from '@kit.InputKit';
+import { KeyCode } from '@kit.InputKit';
 ```
 
 ## KeyCode
@@ -24,12 +24,12 @@ Keycode value.
 | KEYCODE_UNKNOWN                  |  -1 |  Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
-| KEYCODE_MEDIA_PLAY_PAUSE         |  10 | Play/Pause key                 |
-| KEYCODE_MEDIA_STOP               |  11 | Stop key                    |
-| KEYCODE_MEDIA_NEXT               |  12 | Next key                   |
-| KEYCODE_MEDIA_PREVIOUS           |  13 | Previous key                   |
-| KEYCODE_MEDIA_REWIND             |  14 | Rewind key                    |
-| KEYCODE_MEDIA_FAST_FORWARD       |  15 | Fast Forward key                    |
+| KEYCODE_MEDIA_PLAY_PAUSE         |  10 | Play/Pause key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| KEYCODE_MEDIA_STOP               |  11 | Stop key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_NEXT               |  12 | Next key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
+| KEYCODE_MEDIA_PREVIOUS           |  13 | Previous key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
+| KEYCODE_MEDIA_REWIND             |  14 | Rewind key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_FAST_FORWARD       |  15 | Fast Forward key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_VOLUME_UP                |  16 | Volume Up key                      |
 | KEYCODE_VOLUME_DOWN              |  17 | Volume Down key                      |
 | KEYCODE_POWER                    |  18 | Power key                        |
@@ -123,8 +123,8 @@ Keycode value.
 | KEYCODE_MOVE_END                 |  2082 | Move to End key                   |
 | KEYCODE_INSERT                   |  2083 | Insert key                        |
 | KEYCODE_FORWARD                  |  2084 | Forward key                        |
-| KEYCODE_MEDIA_PLAY               |  2085 | Play key                    |
-| KEYCODE_MEDIA_PAUSE              |  2086 | Pause key                    |
+| KEYCODE_MEDIA_PLAY               |  2085 | Play key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_PAUSE              |  2086 | Pause key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_MEDIA_CLOSE              |  2087 | Close key                    |
 | KEYCODE_MEDIA_EJECT              |  2088 | Eject key                    |
 | KEYCODE_MEDIA_RECORD             |  2089 | Record key                    |

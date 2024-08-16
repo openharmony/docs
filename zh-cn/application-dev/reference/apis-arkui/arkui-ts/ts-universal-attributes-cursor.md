@@ -38,7 +38,7 @@ restoreDefault(): void
 
 ```ts
 // xxx.ets
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 
 @Entry
 @Component

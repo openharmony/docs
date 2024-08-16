@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-本模块提供应用启动框架管理待初始化组件的能力，只能在主线程调用。
+本模块提供应用启动框架管理启动任务的能力，只能在主线程调用。
 
 > **说明：**
 >
@@ -25,8 +25,8 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTasks | Array\<string\> | 是 | 表明准备执行的待初始化组件所实现的[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称数组。 |
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 启动框架超时时间与组件初始化监听器配置。 |
+  | startupTasks | Array\<string\> | 是 | 表明准备执行的启动任务所实现的[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称数组。 |
+  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 启动框架超时时间与启动任务监听器配置。 |
 
 **返回值：**
 
@@ -74,7 +74,7 @@ export default class EntryAbility extends UIAbility {
       console.log('Startup catch error ,error= ' + errMsg);
     }
   }
-  ...
+  // ...
 }
 ```
 
@@ -82,7 +82,7 @@ export default class EntryAbility extends UIAbility {
 
 removeAllStartupTaskResults(): void
 
-删除所有组件的初始化结果。
+删除所有启动任务结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
@@ -121,7 +121,7 @@ export default class EntryAbility extends UIAbility {
 
 getStartupTaskResult(startupTask: string): Object
 
-获得特定的组件初始化结果。
+获得指定的启动任务结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
@@ -129,13 +129,13 @@ getStartupTaskResult(startupTask: string): Object
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 待初始化组件实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名，所有待初始化组件都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
+  | startupTask | string | 是 | 启动任务实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名，所有启动任务都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Object | 特定组件初始化的结果。 |
+  | Object | 指定启动任务的结果。 |
 
 **错误码：**
 
@@ -180,7 +180,7 @@ export default class EntryAbility extends UIAbility {
 
 isStartupTaskInitialized(startupTask: string): boolean
 
-获取特定组件是否已初始化。
+获取指定启动任务是否已初始化。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
@@ -188,13 +188,13 @@ isStartupTaskInitialized(startupTask: string): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 待初始化组件实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
+  | startupTask | string | 是 | 启动任务实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 返回布尔值，true表示该组件已完成初始化，false表示该组件未完成初始化。 |
+  | boolean | 返回布尔值，true表示该启动任务已执行完成，false表示该启动任务尚未执行完成。 |
 
 **错误码：**
 
@@ -251,7 +251,7 @@ removeStartupTaskResult(startupTask: string): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 待初始化组件所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
+  | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
   
 **错误码：**
 

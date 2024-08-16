@@ -46,11 +46,8 @@
 
 ## 开发示例
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import errorManager from '@ohos.app.ability.errorManager';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
@@ -66,19 +63,12 @@ let callback: errorManager.ErrorObserver = {
     }
 }
 
-let observer: errorManager.LoopObserver = {
-    onLoopTimeOut(timeout: number) {
-        console.log('Duration timeout: ' + timeout);
-    }
-};
-
 let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("[Demo] EntryAbility onCreate");
         registerId = errorManager.on("error", callback);
-        errorManager.on("loopObserver", 1, observer);
         abilityWant = want;
     }
 
@@ -87,7 +77,6 @@ export default class EntryAbility extends UIAbility {
         errorManager.off("error", registerId, (result) => {
             console.log("[Demo] result " + result.code + ";" + result.message);
         });
-        errorManager.off("loopObserver");
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {

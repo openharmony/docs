@@ -10,7 +10,7 @@ ArkTS widgets have full capabilities of JS widgets, with added animation and cus
 
 ## Page Capabilities Supported by ArkTS Widgets
 
-For details about the capabilities supported by ArkTS widgets, see [Learning ArkTS](../quick-start/arkts-create-custom-components.md) and [ArkTS-based Declarative Development Paradigm](../ui/arkts-ui-development-overview.md).
+For details about the capabilities supported by ArkTS widgets, see <!--RP1-->[Learning ArkTS](../quick-start/arkts-get-started.md)<!--RP1End--> and [ArkTS-based Declarative Development Paradigm](../ui/arkts-ui-development-overview.md).
 
 Only the components and APIs marked with "supported in ArkTS widgets" can be used for ArkTS widgets. Pay special attention to the differences from applications.
 

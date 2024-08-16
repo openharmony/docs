@@ -13,6 +13,78 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.PRE_START_ATOMIC_SERVICE
+
+允许应用市场跳过loading弹框并为原子化服务提前打开窗口，并在窗口内部显示加载动效。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_BBOX_DIR
+
+允许系统应用读取bbox路径下的日志文件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CONTROL_LOCATION_SWITCH
+
+允许应用打开和关闭位置信息开关。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SUBSCRIBE_SWING_ABILITY
+
+允许应用使用智慧感知订阅能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGER_SWING_MOTION
+
+允许应用使用隔空手势自适配能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MOCK_LOCATION
+
+允许应用使用模拟位置功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -149,7 +221,7 @@
 
 允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD 和字体等。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -171,7 +243,7 @@
 
 ### ohos.permission.GET_DOMAIN_ACCOUNTS
 
-允许应用查询域帐号信息。
+允许应用查询域账号信息。
 
 **权限级别**：system_basic
 
@@ -241,9 +313,33 @@
 
 **起始版本**：12
 
+### ohos.permission.RECEIVE_UPDATE_MESSAGE
+
+允许应用、服务监听系统升级流程中的关键事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_ALL_PROCESSES
+
+允许系统服务或系统应用查看/proc下全部文件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-允许应用管理系统本地帐号。
+允许应用管理系统本地账号。
 
 **权限级别**：system_basic
 
@@ -279,7 +375,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许应用跨系统本地帐号交互。
+允许应用跨系统本地账号交互。
 
 **权限级别**：system_basic
 
@@ -291,7 +387,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-允许应用跨系统本地帐号交互。
+允许应用跨系统本地账号交互。
 
 **权限级别**：system_core
 
@@ -865,6 +961,18 @@
 
 **起始版本**：10
 
+### ohos.permission.PERCEIVE_SMART_POWER_SCENARIO
+
+允许应用感知智慧功耗场景。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_CAMERA_CONFIG
 
 允许应用进行全局相机开关等操作。
@@ -888,6 +996,18 @@
 **ACL使能**：true
 
 **起始版本**：9
+
+### ohos.permission.MICROPHONE_CONTROL
+
+允许应用进行持久化全局麦克风静音等操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.START_DLP_CRED
 
@@ -937,6 +1057,18 @@
 
 **起始版本**：9
 
+### ohos.permission.GET_DISPOSED_APP_STATUS
+
+允许查询应用的处置状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
@@ -975,15 +1107,17 @@
 
 ### ohos.permission.INPUT_MONITORING
 
-允许应用监听输入事件,仅系统签名应用可申请此权限。
+允许应用监听输入事件。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：7
+
+**变更信息**：API version 7-11为system_core；从API version 12开始为system_basic。
 
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -1193,7 +1327,7 @@
 
 ### ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
-允许应用查询系统分布式帐号信息。
+允许应用查询系统分布式账号信息。
 
 **权限级别**：system_basic
 
@@ -1205,7 +1339,7 @@
 
 ### ohos.permission.GET_LOCAL_ACCOUNTS
 
-允许应用查询系统本地帐号信息。
+允许应用查询系统本地账号信息。
 
 **权限级别**：system_basic
 
@@ -1313,7 +1447,7 @@
 
 ### ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
-允许应用管理系统分布式帐号信息。
+允许应用管理系统分布式账号信息。
 
 **权限级别**：system_basic
 
@@ -1819,7 +1953,7 @@
 
 ### ohos.permission.ACCESS_MCP_AUTHORIZATION
 
-允许MCP宿主应用代理其子应用进行用户帐号授权登录。
+允许MCP宿主应用代理其子应用进行用户账号授权登录。
 
 **权限级别**：system_basic
 
@@ -1952,18 +2086,6 @@
 ### ohos.permission.USE_TRUSTED_RING
 
 允许应用或服务使用关键资产信任环加环能力。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：11
-
-### ohos.permission.FILE_ACCESS_PERSIST
-
-允许应用支持持久化访问文件Uri。
 
 **权限级别**：system_basic
 
@@ -2479,15 +2601,17 @@
 
 ### ohos.permission.INTERCEPT_INPUT_EVENT
 
-允许系统应用拦截输入事件。
+允许应用拦截输入事件。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：11
+
+**变更信息**：API version 11为system_core；从API version 12开始为system_basic。
 
 ### ohos.permission.RECORD_VOICE_CALL
 
@@ -2645,6 +2769,34 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_UWB
+
+允许系统应用管理UWB功能。
+
+例如开关UWB、查询芯片类型、查询UWB支持能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.USE_UWB_RANGING
+
+允许系统应用使用UWB测距功能。
+
+例如打开测距会话、启动测距、停止测距、关闭测距会话等。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_FINDNETWORK
 
 允许应用管理“查找”网络开关，并可以对物品进行配对、解配对。
@@ -2729,6 +2881,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ALLOW_TIPS_ACCESS
+
+允许系统应用拉起其他系统应用的对外暴露组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_AI_ABILITY
 
 允许应用和系统SA调用语音视觉服务的接口。
@@ -2803,7 +2967,7 @@
 
 ### ohos.permission.QUERY_PASSWORD_VAULT_DATA
 
-允许应用获取密码保险箱帐号数据。
+允许应用获取密码保险箱账号数据。
 
 **权限级别**：system_basic
 
@@ -2815,7 +2979,7 @@
 
 ### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
 
-允许用户帐号往数据管理服务写入自己的登录状态。
+允许用户账号往数据管理服务写入自己的登录状态。
 
 **权限级别**：system_basic
 
@@ -3055,7 +3219,7 @@
 
 ### ohos.permission.GET_ACCOUNT_MINORS_INFO
 
-允许系统应用获取用户帐号的未成年使用者信息。
+允许系统应用获取用户账号的未成年使用者信息。
 
 **权限级别**：system_basic
 
@@ -3209,6 +3373,330 @@
 
 **起始版本**：12
 
+### ohos.permission.QUERY_SECURITY_EVENT
+
+允许应用获取风险详细数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.REPORT_SECURITY_EVENT
+
+允许应用上报风险数据至设备风险管理平台。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_SECURITY_MODEL_RESULT
+
+允许应用查询安全模型执行结果。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_SECURITY_GUARD_CONFIG
+
+允许应用管理设备风险管理部件的配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.COLLECT_SECURITY_EVENT
+
+允许应用采集安全事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_SECURITY_POLICY_FROM_CLOUD
+
+允许应用从云侧查询安全策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.REPORT_SECURITY_EVENT_TO_CLOUD
+
+允许应用上报安全事件到云侧。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SCAN_SERVICE
+
+允许系统应用调用扫码直达服务提供的码值分发能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_FACTORY_OTA_DIR
+
+允许系统应用访问无线升级目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_MOUSE_CURSOR
+
+允许系统应用设置鼠标光标相关状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.FILTER_INPUT_EVENT
+
+允许系统应用过滤输入事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACTIVATE_DEVICE_PSI
+
+允许系统应用或系统服务上报设备激活状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.DUMP_AUDIO
+
+允许应用启动音频框架dump能力，将音频数据落盘到本地。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.RECEIVE_FUSION_MESSAGES
+
+允许系统服务或系统应用接收融合服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_LOCATION_EVENT
+
+允许应用发布位置管理相关的公共事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_MULTICORE_HYBRID_ABILITY
+
+允许应用访问智能手表系统服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DEVICE_COLLABORATION_SERVICE
+
+允许应用使用多屏服务的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_APP_DOMAIN_BUNDLE_INFO
+
+允许应用访问应用和域名的映射关系。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.OPEN_FILE
+
+允许系统应用拉起文件管理应用，并打开文件/文件夹。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PROCESS_FILE_COPY_PASTE
+
+允许系统应用拉起文件管理应用，并复制、剪切、粘贴文件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CLEAR_RECYCLEBIN
+
+允许系统应用拉起文件管理应用，并清空回收站。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_FILE_THUMBNAIL
+
+允许系统服务获取文件缩略图。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.NETWORK_DHCP
+
+允许系统应用从DHCP申请IP地址以及分配IP地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ALLOW_CONNECT_CAR
+
+允许应用连接车机。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_IDM_WIDGET
+
+允许系统应用拉起用户凭据录入控件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_ACCESSORY
+
+允许应用获取配件（键盘、鼠标等）信息、向配件发送数据及获取配件回复的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.COLLECT_ACCESSORY_LOG
+
+允许应用获取配件（键盘、鼠标等）日志。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -3253,7 +3741,7 @@
 
 ### ohos.permission.GET_ALL_APP_ACCOUNTS
 
-允许应用查询所有的应用帐号信息。
+允许应用查询所有的应用账号信息。
 
 **权限级别**：system_core
 
@@ -3265,7 +3753,7 @@
 
 ### ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
-允许应用调用设备认证华为帐号凭据管理应用接口。
+允许应用调用设备认证华为账号凭据管理应用接口。
 
 **权限级别**：system_basic
 
@@ -3430,6 +3918,42 @@
 **ACL使能**：false
 
 **起始版本**：11
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+允许应用安装开发者内测构建应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
+
+允许SA向应用或者系统服务发送屏幕旋转状态信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
+
+允许SA向应用或者系统服务发送投屏线缆插入拔出状态信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 
@@ -3713,33 +4237,11 @@
 
 **起始版本**：11
 
-### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
-
-允许应用访问公共目录下的Download目录。
-
-**权限级别**：system_basic
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：11
-
-### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
-
-允许应用访问公共目录下的Documents目录。
-
-**权限级别**：system_basic
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：11
-
 ### ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
-允许应用访问公共目录下的Desktop目录。
+允许应用访问公共目录下Desktop目录及子目录。
+
+当前仅2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 

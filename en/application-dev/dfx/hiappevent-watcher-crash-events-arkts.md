@@ -24,9 +24,8 @@ The following describes how to subscribe to a crash event triggered by a button 
 1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, import the dependent modules.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
-   import hilog from '@ohos.hilog';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
 2. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, set the custom parameters in **onCreate()**. The sample code is as follows:

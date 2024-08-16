@@ -1,4 +1,4 @@
-# 指定二进制数据转换对称密钥
+# 指定二进制数据转换对称密钥(ArkTS)
 
 
 以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成密钥（SymKey）。即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
@@ -77,7 +77,7 @@
     let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节
     console.info('key getEncoded hex' + encodedKey.data);
   }
-
+  ```
 
 ## 指定二进制数据转换HMAC密钥
 

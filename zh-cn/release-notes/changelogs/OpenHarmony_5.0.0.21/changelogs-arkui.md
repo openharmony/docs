@@ -742,7 +742,7 @@ UX样式变更
 
 **起始 API Level**
 
-API 12
+API 9
 
 **变更发生版本**
 
@@ -857,3 +857,194 @@ EditableTitleBar
 **适配指导**
 
 默认效果变更，无需适配。但应注意变更后的默认效果是否符合预期。
+
+## cl.arkui.17 TimePicker时分秒前置零默认样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更，只影响TimePicker组件的默认样式。
+
+- 变更前
+  TimePicker组件12小时制小时默认有前置零。
+  
+- 变更后
+  TimePicker组件12小时制小时默认没有前置零。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/TimePicker_Before.png)  |  ![](figures/TimePicker_After.png)  |
+
+**起始 API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+TimePicker组件。
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.18 RichEditor组件symbol动效变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+依照UX规范
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：
+RichEditor组件在编辑态支持播放symbol动效。
+
+变更后：
+RichEditor组件在编辑态不支持播放symbol动效。
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.19 allowDrop校验变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+allowDrop用于接受方组件指定自己支持的拖拽数据类型，并将该值应用到拖拽方组件的角标显示上。但没有严格执行不匹配时的禁止落入逻辑，仍然会回调开发者的onDrop并传递数据。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+当allowDrop声明的数据类型与拖拽组件的数据类型完全不匹配时，仍然会回调开发者设置的onDrop并传递数据。
+
+变更后：
+当allowDrop声明的数据类型与拖拽组件的数据类型完全不匹配时，不会回调开发者设置的onDrop。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+allowDrop
+
+**适配指导**
+
+1.  以下两种情况无影响，无需适配：
+
+    （1）未配置allowDrop属性，系统默认其可处理所有类型数据。
+
+    （2）配置了数据类型，且onDrop中也可处理配置的数据类型。
+
+2.  以下情况会受到影响，需适配：
+
+    配置了allowDrop属性，并声明了一些数据类型。但是，onDrop会对未声明过的数据类型进行处理，可在allowdrop中增加onDrop需要处理的数据类型声明。
+
+    **示例：**
+
+    ```
+    // xxx.ets
+
+    @Entry
+    @Component
+    struct ImageExample {
+      @State uri: string = ""
+      @State AblockArr: string[] = []
+      @State BblockArr: string[] = []
+      @State AVisible: Visibility = Visibility.Visible
+      @State dragSuccess :Boolean = false
+      @State dragDataTypes: UniformDataType[] | null = [ null ]
+
+      build() {
+        Column() {
+          Text('Image拖拽')
+            .fontSize('30dp')
+          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+            Image($r('app.media.icon'))
+              .width(100)
+              .height(100)
+              .border({ width: 1 })
+              .visibility(this.AVisible)
+              .draggable(true)
+              .onDragEnd((event: DragEvent) => {
+                let ret = event.getResult();
+                if(ret == 0) {
+                  console.log("enter ret == 0")
+                  this.AVisible = Visibility.Hidden;
+                } else {
+                  console.log("enter ret != 0")
+                  this.AVisible = Visibility.Visible;
+                }
+              })
+          }
+          .margin({ bottom: 20 })
+          Row() {
+            Column(){
+              List(){
+                ForEach(this.AblockArr, (item:string, index) => {
+                  ListItem() {
+                    Image(item)
+                      .width(100)
+                      .height(100)
+                      .border({width: 1})
+                  }
+                  .margin({ left: 30 , top : 30})
+                }, (item:string) => item)
+              }
+              .height('90%')
+              .width('100%')
+              .allowDrop(this.dragDataTypes)
+              .onDrop((event?: DragEvent, extraParams?: string) => {
+                this.uri = JSON.parse(extraParams as string).extraInfo;
+                this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                console.log("ondrop not udmf data");
+              })
+              .border({width: 1})
+            }
+            .height("50%")
+            .width("45%")     
+          }
+        }.width('100%')
+      }
+    }
+    ```

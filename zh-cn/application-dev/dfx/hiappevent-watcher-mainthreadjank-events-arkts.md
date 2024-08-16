@@ -52,9 +52,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
             // 开发者可以获取到主线程超时应用的pid、uid
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
-            // 开发者可以主线程处理开始和结束时间
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['begin_time']}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['end_time']}`);
+            // 开发者可以获取主线程处理开始和结束时间
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.begin_time=${eventInfo.params['begin_time']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.end_time=${eventInfo.params['end_time']}`);
             // 开发者可以获取到主线程超时事件发生时的故障日志文件
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
@@ -67,12 +67,12 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 3. 编辑工程中的“entry > src > main > ets  > pages> Index.ets”文件，添加一个Button控件onClick中实现主线程超时代码，示例代码如下：
    ```ts
-     Button("timeOut500")
+     Button("timeOut350")
      .fontSize(50)
      .fontWeight(FontWeight.Bold)
      .onClick(() => {
          let t = Date.now();
-         while (Date.now() - t <= 500){
+         while (Date.now() - t <= 350){
          
          }
      })
@@ -80,11 +80,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 4. **开发者使用nolog版本，开发者模式处于关闭状态**，可以使能主线程超时检测抓取trace的功能。
 
-5. 点击IDE界面中的运行按钮，运行应用工程，连续点击两次timeOut500按钮，会触发主线程超时事件。
+5. 点击IDE界面中的运行按钮，运行应用工程，连续点击两次timeOut350按钮，会触发主线程超时事件。
 
 6. 主线程超时事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
 
-   主线程超时事件采样trace示例：
+   主线程超时事件采样栈示例：
 
     ```text
      HiAppEvent eventInfo.domain=OS
@@ -95,13 +95,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      HiAppEvent eventInfo.params.bundle_name=com.example.main_thread_jank
      HiAppEvent eventInfo.params.pid=40986
      HiAppEvent eventInfo.params.uid=20020150
-     HiAppEvent eventInfo.params.crash_type=1717593620016
-     HiAppEvent eventInfo.params.foreground=1717593620518
+     HiAppEvent eventInfo.params.begin_time=1717593620016
+     HiAppEvent eventInfo.params.end_time=1717593620518
      HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613211739_40986.txt"]
      HiAppEvent eventInfo.params.log_over_limit=false
     ```
 
-   主线程超时事件采样栈，与trace的结果大致相同，不同的地方：
+   主线程超时事件采样trace，与采样栈的结果大致相同，不同的地方：
    
    栈：
    external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_yyyyMMDDHHmmss_xxxx.txt"]。xxxx：代表进程pid

@@ -1,6 +1,6 @@
 # Serialization Types Supported by TaskPool and Worker
 
-Both TaskPool and Worker are developed on the actor model. Due to the memory isolation feature of the actor model, cross-thread serialization is required for the execution of multithreaded tasks and the transmission of results. Data objects that can be transferred are classified into the following types: [common objects](#common-objects), [transferable objects](#transferable-objects), [shared objects](#shared-objects), and [native binding objects](#native-binding-objects).
+Both TaskPool and Worker are developed on the actor model. Due to the memory isolation feature of the actor model, cross-thread serialization is required for the execution of multithreaded tasks and the transmission of results. Data objects that can be transferred are classified into the following types: [common objects](#common-objects), [transferable objects](#transferable-objects), [shared objects](#shared-objects), [native binding objects](#native-binding-objects), and [sendable objects](#sendable-objects).
 
 
 ## Common Objects
@@ -53,7 +53,7 @@ If multiple operations are simultaneously performed to modify data stored in an 
 
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function transferAtomics(arg1: Int32Array) {
@@ -91,7 +91,7 @@ The **PixelMap** object can read or write image data and obtain image informatio
 
 ## Sendable Objects
 
-Sendable objects, decorated by the ArkTS decorator [@Sendable](../arkts-utils/arkts-sendable.md), can be transferred between threads. Sendable objects support two transfer modes: reference transfer and serialized transfer. For details about the supported Sendable types, see [Sendable Data Types](../arkts-utils/arkts-sendable.md#sendable-data-types).
+Sendable objects, decorated by the ArkTS decorator [@Sendable](arkts-sendable.md), can be transferred between threads. Sendable objects support two transfer modes: reference transfer and serialized transfer. For details about the supported Sendable types, see [Sendable Data Types](arkts-sendable.md#sendable-data-types).
 
 
 ```ts

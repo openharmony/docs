@@ -7,7 +7,7 @@ The **inputMonitor** module provides capabilities such as listening for key even
 ## Modules to Import
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { inputMonitor } from '@kit.InputKit';
 ```
 
 ## Available APIs
@@ -36,7 +36,7 @@ The following table lists the common APIs provided by the **inputMonitor** modul
 This example assumes that the application needs to change the style based on the mouse button pressing status. Specifically, listen for mouse button events by calling [on](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoronmouse9), and cancel listening for mouse button events by calling [off](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoroffmouse9).
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { MouseEvent } from '@kit.InputKit';
 
 let BUTTON_DOWN = 2;
 let callback = (mouseEvent: MouseEvent) => {

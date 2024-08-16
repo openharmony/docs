@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SplitLayout (上下结构布局)
+# SplitLayout
 
 
 上下结构布局介绍了常用的页面布局样式。主要分为上下文本和上下图文两种类型。
@@ -51,6 +51,7 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 ```ts
 import { SplitLayout } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

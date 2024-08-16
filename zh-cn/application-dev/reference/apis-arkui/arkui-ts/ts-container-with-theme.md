@@ -42,6 +42,22 @@ WithTheme(options: WithThemeOptions)
 
 ## 示例
 
+设置局部深浅色时，需要添加dark.json资源文件，深浅色模式才会生效。
+
+![resources_dark](figures/resources_dark.png)
+
+dark.json数据示例：
+  ```ts
+    {
+      "color": [
+        {
+          "name": "start_window_background",
+          "value": "#FFFFFF"
+        }
+      ]
+    }
+  ```
+
 ```ts
 // 指定局部深浅色模式
 @Entry
@@ -74,7 +90,7 @@ struct Index {
         .height('33%')
         .backgroundColor($r('sys.color.background_primary'))
       }
-      // 设置组件为深色模式
+      // 设置组件为浅色模式
       WithTheme({ colorMode: ThemeColorMode.LIGHT }) {
         Column() {
           Text('WithTheme')

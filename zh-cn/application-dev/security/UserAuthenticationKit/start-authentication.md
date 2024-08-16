@@ -81,8 +81,8 @@
 
 ```ts
 // API version 10
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // 设置认证参数
 const authParam: userAuth.AuthParam = {
@@ -120,8 +120,8 @@ try {
 
 ```ts
 // API version 10
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // 设置认证参数
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {
