@@ -47,6 +47,8 @@ Panel(show: boolean)
 
 ## PanelType枚举说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Minibar | 提供minibar和类全屏展示切换效果。 |
@@ -56,6 +58,8 @@ Panel(show: boolean)
 
 ## PanelMode枚举说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
 | Mini |0| 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。|
@@ -64,6 +68,8 @@ Panel(show: boolean)
 
 ## PanelHeight<sup>10+</sup>枚举说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- | 
 | WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。 |
@@ -71,10 +77,31 @@ Panel(show: boolean)
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | 当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 |
-| onHeightChange(callback: (value: number) => void)<sup>9+</sup> |当可滑动面板发生高度变化时触发，返回的height值为内容区高度值，默认返回值单位为px。当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。 |
+### onChange
+
+onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void)
+
+当可滑动面板发生状态变化时触发。
+
+**参数：** 
+
+| 参数名    | 类型        | 必填 | 说明                                                                                  |
+| --------- | ---------  | ---- | ------------------------------------------------------------------------------------ |
+| width     | number     | 是   | 内容区的宽度值。                                                                       |
+| height    | number     | 是   | 内容区的高度值。<br/>当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 |
+| mode      | PanelMode  | 是   | 面板的状态。                                                                           |
+
+### onHeightChange<sup>9+</sup>
+
+onHeightChange(callback: (value: number) => void)
+
+当可滑动面板发生高度变化时触发。
+
+**参数：** 
+
+| 参数名    | 类型                                                | 必填 | 说明       |
+| --------- | --------------------------------------------------- | ---- | ---------- |
+| value     | number  | 是   | 内容区的高度值，默认返回值单位为px。<br/>当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。<br/>因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。 |
 
 ## 示例
 
