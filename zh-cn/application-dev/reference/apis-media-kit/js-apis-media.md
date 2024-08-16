@@ -589,7 +589,7 @@ on(type: 'stateChange', callback: OnAVPlayerStateChangeHandle): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | OnAVPlayerStateChangeHandle | 是   | 状态机切换事件回调方法：<br/>state: [AVPlayerState](#avplayerstate9)，表示当前播放状态；<br/>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
+| callback | [OnAVPlayerStateChangeHandle](#onavplayerstatechangehandle12) | 是   | 状态机切换事件回调方法。 |
 
 **示例：**
 
@@ -645,7 +645,7 @@ off(type: 'stateChange', callback?: OnAVPlayerStateChangeHandle): void
 | 参数名 | 类型   | 必填 | 说明                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
 | type   | string | 是   | 状态机切换事件回调类型，取消注册的事件：'stateChange' |
-| callback   | OnAVPlayerStateChangeHandle | 否   | 状态机切换事件回调方法：<br/>state: [AVPlayerState](#avplayerstate9)，表示当前播放状态；<br/>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
+| callback   | [OnAVPlayerStateChangeHandle](#onavplayerstatechangehandle12) | 否   | 状态机切换事件回调方法。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -712,7 +712,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
 | type   | string | 是   | 错误事件回调类型，取消注册的事件：'error' |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 错误事件回调方法，使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 错误事件回调方法，使用播放器的过程中发生错误，会提供错误码ID和错误信息。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1600,7 +1600,7 @@ off(type: 'seekDone', callback?: Callback\<void>): void
 | 参数名 | 类型   | 必填 | 说明                                                 |
 | ------ | ------ | ---- | ---------------------------------------------------- |
 | type   | string | 是   | seek生效的事件回调类型，取消注册的事件：'seekDone'。 |
-| callback | Callback\<number> | 否   | 回调函数。seek生效的事件回调方法，只会上报用户请求的time位置。<br/>**视频播放：**[SeekMode](#seekmode8)会造成实际跳转位置与用户设置产生偏差，精准位置需要通过currentTime获取，事件回调的time仅代表完成用户某一次请求。 |
+| callback | Callback\<number> | 否   | 回调函数。seek生效的事件回调方法，只会上报用户请求的time位置。<br/>**视频播放：**[SeekMode](#seekmode8)会造成实际跳转位置与用户设置产生偏差，精准位置需要通过currentTime获取，事件回调的time仅代表完成用户某一次请求。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1669,7 +1669,7 @@ off(type: 'speedDone', callback?: Callback\<number>): void
 | 参数名 | 类型   | 必填 | 说明                                                      |
 | ------ | ------ | ---- | --------------------------------------------------------- |
 | type   | string | 是   | setSpeed生效的事件回调类型，取消注册的事件：'speedDone'。 |
-| callback | Callback\<number> | 否   | 回调函数。当setSpeed成功，上报生效的倍速模式，具体见[PlaybackSpeed](#playbackspeed8)。 |
+| callback | Callback\<number> | 否   | 回调函数。当setSpeed成功，上报生效的倍速模式，具体见[PlaybackSpeed](#playbackspeed8)。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1738,7 +1738,7 @@ off(type: 'bitrateDone', callback?: Callback\<number>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | setBitrate生效的事件回调类型，取消注册的事件：'bitrateDone'。 |
-| callback | Callback\<number> | 否   | setBitrate生效的事件回调方法，上报生效的比特率。             |
+| callback | Callback\<number> | 否   | setBitrate生效的事件回调方法，上报生效的比特率。<br/>从API version 12开始支持此参数。             |
 
 **示例：**
 
@@ -1784,7 +1784,7 @@ off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | HLS协议可用比特率上报事件回调类型，取消注册的事件：'availableBitrates'。 |
-| callback | Callback\<Array\<number>> | 否   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
+| callback | Callback\<Array\<number>> | 否   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1808,7 +1808,7 @@ on(type: 'mediaKeySystemInfoUpdate', callback: Callback\<Array\<drm.MediaKeySyst
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 版权保护信息更新上报事件回调类型，支持的事件：'mediaKeySystemInfoUpdate'，当播放内容的版权保护信息更新时上报事件。 |
-| callback | Callback\<Array\<drm.MediaKeySystemInfo>> | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组，具体可见[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)。 |
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组。 |
 
 **示例：**
 
@@ -1838,7 +1838,7 @@ off(type: 'mediaKeySystemInfoUpdate', callback?: Callback\<Array\<drm.MediaKeySy
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 版权保护信息更新上报事件回调类型，取消注册的事件：'mediaKeySystemInfoUpdate'。 |
-| callback | Callback\<Array\<drm.MediaKeySystemInfo>> | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组，具体可见[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
 
 **示例：**
 
@@ -1907,7 +1907,7 @@ off(type: 'volumeChange', callback?: Callback<number>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | setVolume生效的事件回调类型，取消注册的事件：'volumeChange'。 |
-| callback | Callback\<number> | 否   | setVolume生效的事件回调方法，上报生效的媒体音量。            |
+| callback | Callback\<number> | 否   | setVolume生效的事件回调方法，上报生效的媒体音量。<br/>从API version 12开始支持此参数。            |
 
 **示例：**
 
@@ -1953,7 +1953,7 @@ off(type: 'endOfStream', callback?: Callback\<void>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 资源播放至结尾的事件回调类型，取消注册的事件：'endOfStream'。 |
-| callback | Callback\<void> | 否   | 资源播放至结尾的事件回调方法。                               |
+| callback | Callback\<void> | 否   | 资源播放至结尾的事件回调方法。<br/>从API version 12开始支持此参数。                               |
 
 **示例：**
 
@@ -2003,7 +2003,7 @@ off(type: 'timeUpdate', callback?: Callback\<number>): void
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- | -------------------------------------------------- |
 | type   | string | 是   | 时间更新的回调类型，取消注册的事件：'timeUpdate'。 |
-| callback | Callback\<number> | 否   | 回调函数。返回当前时间。                                     |
+| callback | Callback\<number> | 否   | 回调函数。返回当前时间。<br/>从API version 12开始支持此参数。             |
 
 **示例：**
 
@@ -2051,7 +2051,7 @@ off(type: 'durationUpdate', callback?: Callback\<number>): void
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | type   | string | 是   | 时长更新的回调类型，取消注册的事件：'durationUpdate'。 |
-| callback | Callback\<number> | 否   | 回调函数。返回资源时长。        |
+| callback | Callback\<number> | 否   | 回调函数。返回资源时长。<br/>从API version 12开始支持此参数。        |
 
 **示例：**
 
@@ -2074,7 +2074,7 @@ on(type: 'bufferingUpdate', callback: OnBufferingUpdateHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 播放缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
-| callback | OnBufferingUpdateHandler | 是   | 播放缓存事件回调方法。<br/>[BufferingInfoType](#bufferinginfotype8)value值固定为0。 |
+| callback | [OnBufferingUpdateHandler](#onbufferingupdatehandler12) | 是   | 播放缓存事件回调方法。 |
 
 **示例：**
 
@@ -2099,7 +2099,7 @@ off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void
 | 参数名 | 类型   | 必填 | 说明                                                      |
 | ------ | ------ | ---- | --------------------------------------------------------- |
 | type   | string | 是   | 播放缓存事件回调类型，取消注册的事件：'bufferingUpdate'。 |
-| callback | OnBufferingUpdateHandler | 否   | 播放缓存事件回调方法。 |
+| callback | [OnBufferingUpdateHandler](#onbufferingupdatehandler12) | 否   | 播放缓存事件回调方法。 |
 
 **示例：**
 
@@ -2145,7 +2145,7 @@ off(type: 'startRenderFrame', callback?: Callback\<void>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 视频播放开始首帧渲染事件回调类型，取消注册的事件：'startRenderFrame'。 |
-| callback | Callback\<void> | 否   | 视频播放开始首帧渲染事件回调方法。                           |
+| callback | Callback\<void> | 否   | 视频播放开始首帧渲染事件回调方法。<br/>从API version 12开始支持此参数。                   |
 
 **示例：**
 
@@ -2168,7 +2168,7 @@ on(type: 'videoSizeChange', callback: OnVideoSizeChangeHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 视频播放宽高变化事件回调类型，支持的事件：'videoSizeChange'。 |
-| callback | OnVideoSizeChangeHandler | 是   | 视频播放宽高变化事件回调方法。    |
+| callback | [OnVideoSizeChangeHandler](#onvideosizechangehandler12) | 是   | 视频播放宽高变化事件回调方法。    |
 
 **示例：**
 
@@ -2193,7 +2193,7 @@ off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 视频播放宽高变化事件回调类型，取消注册的事件：'videoSizeChange'。 |
-| callback | OnVideoSizeChangeHandler | 否   | 视频播放宽高变化事件回调方法。    |
+| callback | [OnVideoSizeChangeHandler](#onvideosizechangehandler12) | 否   | 视频播放宽高变化事件回调方法。<br/>从API version 12开始支持此参数。    |
 
 **示例：**
 
@@ -2216,7 +2216,7 @@ on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                                                       | 是   | 音频焦点变化事件回调类型，支持的事件：'audioInterrupt'。 |
-| callback | Callback\<audio.InterruptEvent> | 是   | 音频焦点变化事件回调方法。                           |
+| callback | Callback\<[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)> | 是   | 音频焦点变化事件回调方法。                           |
 
 **示例：**
 
@@ -2243,7 +2243,7 @@ off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 音频焦点变化事件回调类型，取消注册的事件：'audioInterrupt'。 |
-| callback | Callback\<audio.InterruptEvent> | 否   | 音频焦点变化事件回调方法。             |
+| callback | Callback\<[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)> | 否   | 音频焦点变化事件回调方法。<br/>从API version 12开始支持此参数。             |
 
 **示例：**
 
@@ -2482,10 +2482,10 @@ type OnAVPlayerStateChangeHandle = (state: AVPlayerState, reason: StateChangeRea
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
-| 名称   | 类型   | 说明                                                         |
-| ------ | ------ | ------------------------------------------------------------ |
-| state  | AVPlayerState | 当前播放状态。     |
-| reason | StateChangeReason | 当前播放状态的切换原因。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ---------------------------------------------------------- |
+| state  | [AVPlayerState](#avplayerstate9) | 是 | 当前播放状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 是 | 当前播放状态的切换原因。 |
 
 ## OnBufferingUpdateHandler<sup>12+</sup>
 
@@ -2497,10 +2497,10 @@ type OnBufferingUpdateHandler = (infoType: BufferingInfoType, value: number) => 
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
-| 名称   | 类型   | 说明                                                         |
-| ------ | ------ | ------------------------------------------------------------ |
-| infoType  | BufferingInfoType | 缓存时间类型。     |
-| value | number | value值固定为0。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| infoType  | [BufferingInfoType](#bufferinginfotype8) | 是 | 缓存时间类型。     |
+| value | number | 是 | value值固定为0。 |
 
 ## OnVideoSizeChangeHandler<sup>12+</sup>
 
@@ -2512,10 +2512,10 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
-| 名称   | 类型   | 说明                                                         |
-| ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 视频宽度。     |
-| height | number | 视频高度。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| width  | number | 是 | 视频宽度。     |
+| height | number | 是 | 视频高度。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -3800,7 +3800,7 @@ on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | OnAVRecorderStateChangeHandler | 是   | 状态机切换事件回调方法。 |
+| callback | [OnAVRecorderStateChangeHandler](#onavrecorderstatechangehandler12) | 是   | 状态机切换事件回调方法。 |
 
 **错误码：**
 
@@ -3834,7 +3834,7 @@ off(type: 'stateChange', callback?: OnAVRecorderStateChangeHandler): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | OnAVRecorderStateChangeHandler | 否   | 状态机切换事件回调方法。 |
+| callback | [OnAVRecorderStateChangeHandler](#onavrecorderstatechangehandler12) | 否   | 状态机切换事件回调方法。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -3903,7 +3903,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 录制错误事件回调方法。<br/>从API version 12开始支持此参数。                   |
 
 **示例：**
 
@@ -3958,7 +3958,7 @@ off(type: 'audioCapturerChange', callback?: Callback<audio.AudioCapturerChangeIn
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
-| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | 否 | 变化后的录音配置全量信息。|
+| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | 否 | 变化后的录音配置全量信息。<br/>从API version 12开始支持此参数。|
 
 **示例：**
 
@@ -3996,10 +3996,10 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
-| 名称   | 类型   | 说明                                                         |
-| ------ | ------ | ------------------------------------------------------------ |
-| state  | AVRecorderState | 当前播放状态。     |
-| reason | StateChangeReason | 当前播放状态的切换原因。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前播放状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前播放状态的切换原因。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 
