@@ -346,7 +346,7 @@ printPersonName
 
 **哪些顶层作用域的名称应该被保留?**
 
-在Javascript中全局变量是`globalThis`的属性。如果在代码中使用`globalThis`去访问全局变量，那么该变量名应该被保留。
+在JavaScript中全局变量是`globalThis`的属性。如果在代码中使用`globalThis`去访问全局变量，那么该变量名应该被保留。
 
 示例:
 
