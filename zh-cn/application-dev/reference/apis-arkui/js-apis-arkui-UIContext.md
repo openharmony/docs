@@ -6259,7 +6259,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-通过组件的id将焦点转移到组件树对应的实体节点。
+通过组件的id将焦点转移到组件树对应的实体节点。当前帧生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
