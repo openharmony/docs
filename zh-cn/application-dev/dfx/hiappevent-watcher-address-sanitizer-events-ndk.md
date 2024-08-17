@@ -1,4 +1,4 @@
-# 订阅踩内存事件（C++）
+# 订阅踩内存事件（C/C++）
 
 ## 接口说明
 
@@ -213,7 +213,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-   编辑"index.d.ets"文件，定义ArkTS接口：
+   编辑"index.d.ts"文件，定义ArkTS接口：
 
    ```typescript
    export const registerWatcher: () => void;
@@ -223,13 +223,12 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 7. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
+   // 导入依赖模块
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // 启动时，注册系统事件观察者
-       testNapi.registerWatcher();
-     }
-   }
+
+   // 在onCreate()函数中新增接口调用
+   // 启动时，注册系统事件观察者
+   testNapi.registerWatcher();
    ```
 
 8. 编辑“entry > src > main > ets  > pages > Index.ets”文件，新增按钮触发踩内存事件：
@@ -254,7 +253,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-9. 点击IDE界面中的“entry”，点击“Edit Configurations...”，勾选“Address Sanitizer”，保存设置。点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
+9. 点击IDE界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent eventInfo.domain=OS
@@ -284,9 +283,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
+        // 销毁创建的观察者，并置systemEventWatcher为nullptr。
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```

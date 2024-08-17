@@ -31,7 +31,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -195,7 +195,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const registerWatcher: () => void;
    ```
 
-6. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
+6. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
    import testNapi from 'libentry.so'
@@ -250,9 +250,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
+        // 销毁创建的观察者，并置systemEventWatcher为nullptr。
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```
