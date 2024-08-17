@@ -1,40 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 ToastShowMode.TOP_MOST接口变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-TOP_MOST模式层级高，可以通过Toast形成遮挡劫持，有安全风险。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-变更前：设置ToastShowMode.TOP_MOST时，Toast 显示在应用之上。
-
-变更后：设置ToastShowMode.TOP_MOST时，Toast 显示在应用内, 与ToastShowMode.DEFAULT行为一致。
-
-**起始API Level**
-
-11
-
-**变更发生版本**
-
-从OpenHarmony 5.0.0.38 版本开始。
-
-**变更的接口/组件**
-
-ToastShowMode.TOP_MOST。
-
-**适配指导**
-
-使用ToastShowMode.DEFAULT代替ToastShowMode.TOP_MOST。
-
-## cl.arkui.2 FrameNode的isModifiable值为false时，无法通过addComponentContent挂载节点
+## cl.arkui.1 FrameNode的isModifiable值为false时，无法通过addComponentContent挂载节点
 
 **访问级别**
 
@@ -128,7 +94,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.3 Waterflow组件onScroll接口废弃变更
+## cl.arkui.2 Waterflow组件onScroll接口废弃变更
 
 **废弃原因**
 
@@ -191,7 +157,7 @@ struct Index {
   }
 }
 ```
-## cl.arkui.4  状态管理V2版本组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam,必须声明类型 
+## cl.arkui.3  状态管理V2版本组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam,必须声明类型 
 
 **访问级别**
 
