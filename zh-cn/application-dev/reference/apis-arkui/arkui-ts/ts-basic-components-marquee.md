@@ -53,9 +53,7 @@ allowScale(value: boolean)
 
 marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
 
-跑马灯组件属性更新后，跑马灯的滚动策略。(当跑马灯为播放状态，且文本内容宽度超过跑马灯组件宽度时，该属性生效。)<br>
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+跑马灯组件属性更新后，跑马灯的滚动策略。(当跑马灯为播放状态，且文本内容宽度超过跑马灯组件宽度时，该属性生效。)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

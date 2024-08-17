@@ -658,6 +658,7 @@ Enter键的功能类型。
 | NEXT  | 5 |下一步。 |
 | DONE  | 6 |完成。 |
 | PREVIOUS  | 7 |上一步。 |
+| NEWLINE  | 8 | 换行。|
 
 ## KeyboardStatus<sup>10+</sup>
 

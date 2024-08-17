@@ -691,7 +691,7 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
       .height('100%')
   }
 
-  // 通过 NodeController 来动态创建自定义的播放器组件， 并将组件内容绘制到 srufaceId 指定的 surface 上。
+  // 通过 NodeController 来动态创建自定义的播放器组件， 并将组件内容绘制到 surfaceId 指定的 surface 上。
   class MyNodeController extends NodeController {
     private rootNode: BuilderNode<[Params]> | undefined;
     private isRemove = false;

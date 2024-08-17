@@ -3,7 +3,7 @@
 
 ## When to Use
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs. You can use **Preferences** when you want a unique storage for global data.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs. You can use **Preferences** when you want a unique storage for global data. 
 
 The **Preferences** data is cached in the memory, which allows fast access when the data is required. If you want to persist data, you can use **flush()** to save the data to a file. The **Preferences** data occupies the application's memory space and cannot be encrypted through configuration. Therefore, it is recommended for storing personalized settings (font size and whether to enable the night mode) of applications. 
 
@@ -35,14 +35,14 @@ The following table lists the APIs used for persisting user preference data. For
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided.                   |
-| putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously. An asynchronous API is also provided.<br/>You can use **flush()** to persist the **Preferences** instance data.|
-| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
-| getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
-| deleteSync(key: string): void                                | Deletes a KV pair from the **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
-| flush(callback: AsyncCallback&lt;void&gt;): void             | Flushes the data of this **Preferences** instance to a file for data persistence.|
-| on(type: 'change', callback: Callback&lt;string&gt;): void | Subscribes to data changes. A callback will be invoked after **flush()** is executed for the data changed.|
+| putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously. An asynchronous API is also provided.<br/>You can use **flush()** to persist the **Preferences** instance data. |
+| hasSync(key: string): boolean                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
+| getSync(key: string, defValue: ValueType): ValueType              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
+| deleteSync(key: string): void                                | Deletes a KV pair from the **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided. |
+| flush(callback: AsyncCallback&lt;void&gt;): void             | Flushes the data of this **Preferences** instance to a file for data persistence. |
+| on(type: 'change', callback: Callback&lt;string&gt;): void | Subscribes to data changes. A callback will be invoked after **flush()** is executed for the data changed. |
 | off(type: 'change', callback?: Callback&lt;string&gt;): void | Unsubscribes from data changes.                                          |
-| deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file.|
+| deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file. |
 
 
 ## How to Develop
@@ -72,20 +72,21 @@ The following table lists the APIs used for persisting user preference data. For
         }
       }
       ```
-
+   
    FA model:
    
-   
-      ```ts
-     // Obtain the context.
+   ```ts
+   // Obtain the context.
       import { featureAbility } from '@kit.AbilityKit';
       import { BusinessError } from '@kit.BasicServicesKit';
       
       let context = featureAbility.getContext();
       let options: preferences.Options =  { name: 'myStore' };
       let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
-      ```
+   ```
    
+   
+
 3. Write data.
 
    Use **putSync()** to save data to the cached **Preferences** instance. After data is written, you can use **flush()** to persist the **Preferences** instance data to a file if necessary.
@@ -129,12 +130,12 @@ The following table lists the APIs used for persisting user preference data. For
 5. Delete data.
 
    Use **deleteSync()** to delete a KV pair.<br>Example:
-
-
-   ```ts
-   dataPreferences.deleteSync('startup');
-   ```
-
+   
+   
+      ```ts
+      dataPreferences.deleteSync('startup');
+      ```
+   
 6. Persist data.
 
    You can use **flush()** to persist the data held in a **Preferences** instance to a file.<br>Example:
@@ -188,19 +189,14 @@ The following table lists the APIs used for persisting user preference data. For
    > - The deleted data and files cannot be restored.
 
    Example:
-   
-   ```ts
-    let options: preferences.Options = { name: 'myStore' };
-       preferences.deletePreferences(this.context, options, (err: BusinessError) => {
-         if (err) {
-           console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
-             return;
-         }
-         console.info('Succeeded in deleting preferences.');
-     })
-   ```
-   
-   
 
 
-
+      ```ts
+      preferences.deletePreferences(this.context, options, (err: BusinessError) => {
+        if (err) {
+          console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+            return;
+        }
+        console.info('Succeeded in deleting preferences.');
+      })
+      ```

@@ -387,6 +387,8 @@ onrepeat: () => void
 
 动画重复时回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**

@@ -2522,7 +2522,7 @@ listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000012 | external error. |

@@ -542,7 +542,7 @@ Defines the RDB store configuration.
 | autoCleanDirtyData<sup>11+</sup> | boolean | No | Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
 | allowRebuild<sup>12+</sup> | boolean | No | Whether auto rebuild is allowed when the RDB store is corrupted. The default value is **false**.<br>The value **true** means auto rebuild is allowed.<br>The value **false** means the opposite.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
 | isReadOnly<sup>12+</sup> | boolean | No | Whether the RDB store is read-only. The default value is **false**, which means the RDB store is readable and writeable.<br>If the value is **true** (read-only), writing data to the RDB store will throw error code 801.<br>The value **false** means the RDB store is readable and writeable.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
-| pluginLibs<sup>12+</sup> | Array\<string> | No | Dynamic libraries with capabilities such as Full-Text Search (FTS).<br>**Constraints**: The maximum number of dynamic libraries is 16. An error will be thrown if the number of dynamic libraries exceeds 16 or any dynamic library failed to be loaded.<br>The dynamic library name must be a complete path. For example, **[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]**, where **context.bundleCodeDir** is the application sandbox path, **/libs/arm64/** indicates the subdirectory, and **libtokenizer.so** is the dynamic library name. If this parameter is left blank, dynamic libraries are not loaded by default.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| pluginLibs<sup>12+</sup> | Array\<string> | No | Dynamic libraries with capabilities such as Full-Text Search (FTS).<br>**Constraints**: The maximum number of dynamic libraries is 16. If the number of dynamic library names exceeds 16, the RDB store fails to be opened and an error is returned. The dynamic library must be in the sandbox directory or system directory of the application. If the dynamic library cannot be loaded, the RDB store fails to be opened and an error is returned.<br>The dynamic library name must be a complete path. For example, **[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]**, where **context.bundleCodeDir** is the application sandbox path, **/libs/arm64/** indicates the subdirectory, and **libtokenizer.so** is the dynamic library name. If this parameter is left blank, dynamic libraries are not loaded by default.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -578,7 +578,7 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 ## Asset<sup>10+</sup>
 
-Defines information about an asset (such as a document, image, and video). The asset APIs do not support **Datashare**.
+Defines information about an asset (such as a document, image, and video).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -628,7 +628,7 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 
 type ValuesBucket = Record<string, ValueType>
 
-Defines the types of the key and value in a KV pair. Data of the sendable type cannot be passed across threads.
+Defines the data in the form of a KV pair, which cannot be transferred across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -717,11 +717,9 @@ Enumerates the special fields used in predicates. Use the enum name rather than 
 
 Enumerates the subscription types. Use the enum name rather than the enum value.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
-| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC |
 | SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | Subscribe to cloud data changes.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | Subscribe to cloud data change details.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | Subscribe to details of the local data change.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
@@ -743,8 +741,6 @@ Enumerates the RDB store rebuild types. Use the enum name rather than the enum v
 Enumerates data change types. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 | Name                        | Value  | Description                        |
 | -------------------------- | --- | -------------------------- |
@@ -769,12 +765,10 @@ Represents the detail information about the device-cloud sync process.
 
 Enumerates the distributed table types. Use the enum name rather than the enum value.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 | Name               | Value  | Description                                                                                                |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | 0  | Distributed database table synced between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
-| DISTRIBUTED_CLOUD  | 1   | Distributed database table synced between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| DISTRIBUTED_DEVICE | 0  | Distributed database table synced between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC              |
+| DISTRIBUTED_CLOUD  | 1   | Distributed database table synced between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -803,7 +797,7 @@ Defines the resolution to use when a conflict occurs during data insertion or mo
 
 ## Progress<sup>10+</sup>
 
-Enumerates the device-cloud sync progresses. Use the enum name rather than the enum value.
+Enumerates the stages in the device-cloud sync progress. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2039,10 +2033,10 @@ Before using the APIs of this class, use [executeSql](#executesql) to initialize
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name        | Type           | Read Only      | Mandatory | Description                            |
+| Name        | Type           | Read Only      | Optional | Description                            |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
-| version<sup>10+</sup>  | number | No | Yes  | RDB store version, which is an integer greater than 0.      |
-| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | Yes | Yes | Whether the RDB store has been rebuilt or repaired. |
+| version<sup>10+</sup>  | number | No | No  | RDB store version, which is an integer greater than 0.      |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | Yes | No | Whether the RDB store has been rebuilt or repaired. |
 
 **Error codes**
 
@@ -2521,7 +2515,7 @@ Inserts a row of sendable data into a table. This API returns the result synchro
 | Name  | Type                                                                                          | Mandatory | Description                                                                           |
 | -------- | ---------------------------------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------- |
 | table    | string                                                                                         | Yes  | Name of the target table.                                                               |
-| values   | [sendableRelationalStore.ValuesBucket](../js-apis-data-sendableRelationalStore.md#valuesbucket) | Yes  | Sendable data to Indicates that data to be inserted into a table can be transferred across threads.                                           |
+| values   | [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket) | Yes  | Sendable data to insert.                                           |
 | conflict | [ConflictResolution](#conflictresolution10)                                                    | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**. |
 
 **Return value**
@@ -3534,7 +3528,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   })
 }
@@ -3587,7 +3581,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   })
 }
@@ -3643,7 +3637,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3702,7 +3696,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3777,7 +3771,7 @@ if(store != undefined && deviceId != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
@@ -3857,7 +3851,7 @@ if(store != undefined && deviceId != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
@@ -3909,7 +3903,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   })
 }
@@ -3960,7 +3954,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   })
 }
@@ -4014,7 +4008,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4073,7 +4067,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4267,6 +4261,7 @@ if(store != undefined) {
   })
 }
 ```
+
 
 ### execute<sup>12+</sup>
 
@@ -4653,7 +4648,7 @@ if(store != undefined) {
 beginTransaction():void
 
 Starts the transaction before executing an SQL statement.
-This API cannot be used in multi-process or multi-thread scenarios.
+This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4777,7 +4772,7 @@ if(store != null) {
 commit():void
 
 Commits the executed SQL statements.
-This API cannot be used in multi-process or multi-thread scenarios.
+This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4902,7 +4897,7 @@ if(store != null) {
 rollBack():void
 
 Rolls back the SQL statements that have been executed.
-This API cannot be used in multi-process or multi-thread scenarios.
+This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5765,8 +5760,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 
 Manually starts device-cloud sync for all distributed tables. This API uses an asynchronous callback to return the result. Before using this API, ensure that the cloud service must be available.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
 **Parameters**
@@ -5783,7 +5776,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | **ID** | **Error Message**       |
 |-----------|-------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.     |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. 5. The callback must be a function. |
 | 801       | Capability not supported.       |
 | 14800014  | Already closed.        |
@@ -5810,8 +5802,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 
 Manually starts device-cloud sync for all distributed tables. This API uses a promise to return the result. Before using this API, ensure that the cloud service must be available.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
 **Parameters**
@@ -5833,7 +5823,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | **ID** | **Error Message**   |
 |-----------|------------------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC. |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. |
 | 801       | Capability not supported.   |
 | 14800014  | Already closed.           |
@@ -5860,8 +5849,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 Manually starts device-cloud sync of the specified table. This API uses an asynchronous callback to return the result. Before using this API, ensure that the cloud service must be available.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
 **Parameters**
@@ -5879,7 +5866,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | **ID** | **Error Message**                                                                                                                                                                                                                 |
 |-----------|-------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.  |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.   |
 | 14800014  | Already closed.   |
@@ -5908,8 +5894,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 Manually starts device-cloud sync of the specified table. This API uses a promise to return the result. Before using this API, ensure that the cloud service must be available.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
 **Parameters**
@@ -5932,7 +5916,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | **ID** | **Error Message**    |
 |-----------|---------------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.   |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type |
 | 801       | Capability not supported.    |
 | 14800014  | Already closed.  |
@@ -6020,7 +6003,7 @@ Subscribes to data changes of specified devices. A callback is called when data 
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.         |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Type of data change to observe. |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback used to return the data change.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the details about the device-cloud sync.<br>- If **type** is **SUBSCRIBE_TYPE_LOCAL_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the data change details in the local RDB store. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback used to return the data change.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** holds the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the details about the device-cloud sync.<br>If **type** is **SUBSCRIBE_TYPE_LOCAL_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** holds the data change details in the local RDB store. |
 
 **Error codes**
 
@@ -7195,7 +7178,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // Release the dataset memory.
+    // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -7249,6 +7232,7 @@ Obtain the **resultSet** object first.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -8140,9 +8124,9 @@ Obtains the sendable data from the current row. The data obtained is used for cr
 
 **Return value**
 
-| Type                                                                                          | Description                                          |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [sendableRelationalStore.ValuesBucket](../js-apis-data-sendableRelationalStore.md#valuesbucket) | Sendable data obtained for cross-thread transfer. |
+| Type                                                         | Description                                       |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket) | Sendable data obtained for cross-thread transfer. |
 
 **Error codes**
 
@@ -8267,7 +8251,7 @@ if(resultSet != undefined) {
 
 close(): void
 
-Closes this result set.
+Closes this **resultSet** to release memory. If the **resultSet** is not closed, FD or memory leaks may occur.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8287,5 +8271,3 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800012  | Row out of bounds. |
-
-<!--no_check-->

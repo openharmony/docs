@@ -144,6 +144,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
+    <!--RP2--><!--RP2End-->
+
     ```c++
     // 解码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -403,11 +405,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-13. 调用OH_VideoDecoder_RenderOutputBuffer()显示并释放解码帧，或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+13. 调用OH_VideoDecoder_RenderOutputBuffer()/OH_VideoDecoder_RenderOutputBufferAtTime()显示并释放解码帧，
+    或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，数据队列的索引。
     - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针。
+
+    添加头文件
+
+    ```c++
+    #include <chrono>
+    ```
 
     ```c++
     // 获取解码后信息
@@ -418,9 +427,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 值由调用者决定
     bool isRender;
+    bool isNeedRenderAtTime;
     if (isRender) {
         // 显示并释放已完成处理的信息，index为对应buffer队列下标
-        ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        if (isNeedRenderAtTime){
+            // 获取系统绝对时间，renderTimestamp由调用者结合业务指定显示时间
+            int64_t renderTimestamp =
+                chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+            ret = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, index, renderTimestamp);
+        } else {
+           ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+        }
+
     } else {
         // 释放已完成处理的信息
         ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
@@ -565,6 +583,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
+
+    <!--RP2--><!--RP2End-->
 
     ```c++
     int32_t cropTop = 0;

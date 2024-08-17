@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides **Context** APIs for configuring runtime information.
+Provides context-related APIs for configuring runtime information. These APIs are non-thread-safe.
 
 **Since**
 

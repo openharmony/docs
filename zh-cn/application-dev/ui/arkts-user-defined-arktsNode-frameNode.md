@@ -164,7 +164,7 @@ class MyNodeController extends NodeController {
       result = result + `parent node is ${frameNode.getParent()?.getNodeType()} \n`;
       result = result + `child count is ${frameNode.getChildrenCount()} \n`;
       result = result + `first child node is ${frameNode.getFirstChild()?.getNodeType()} \n`;
-      result = result + `seconde child node is ${frameNode.getChild(1)?.getNodeType()} \n`;
+      result = result + `second child node is ${frameNode.getChild(1)?.getNodeType()} \n`;
       result = result + `previousSibling node is ${frameNode.getPreviousSibling()?.getNodeType()} \n`;
       result = result + `nextSibling node is ${frameNode.getNextSibling()?.getNodeType()} \n`;
     }

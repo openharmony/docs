@@ -55,7 +55,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 隐私模式Webview加载在线网页。
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -70,11 +70,11 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
       }
     }
   }
-   ```
+  ```
 
 Web组件统一渲染模式。
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -89,11 +89,11 @@ Web组件统一渲染模式。
       }
     }
   }
-   ```
+  ```
 
 Web组件指定共享渲染进程。
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -1642,6 +1642,7 @@ mediaOptions(options: WebMediaOptions)
 > - 该媒体播放策略将同时管控有声视频。
 > - 属性参数更新后需重新播放音频方可生效。
 > - 建议为所有Web组件设置相同的audioExclusive值。
+> - 音视频互相打断在应用内和应用间生效，续播只在应用间生效。
 
 **参数：**
 
@@ -2198,7 +2199,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
 
-该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，aciton信息中会显示乱码。
+该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
 
 **参数：**
 
@@ -2935,7 +2936,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-网页document标题更改时触发该回调。
+网页document标题更改时触发该回调，当H5未设置<title\>元素时会返回对应的URL。
 
 **参数：**
 
@@ -3795,7 +3796,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
-通知收到获取权限请求。
+通知收到获取权限请求，需配置"ohos.permission.CAMERA"、"ohos.permission.MICROPHONE"权限。
 
 **参数：**
 
@@ -3808,11 +3809,27 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl } from '@kit.AbilityKit';
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+
+    aboutToAppear() {
+      // 配置Web开启调试模式
+      webview.WebviewController.setWebDebuggingAccess(true);
+      let atManager = abilityAccessCtrl.createAtManager();
+      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+        .then((data) => {
+          console.info('data:' + JSON.stringify(data));
+          console.info('data permissions:' + data.permissions);
+          console.info('data authResults:' + data.authResults);
+        }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })
+    }
 
     build() {
       Column() {
@@ -5673,7 +5690,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
             return option;
           }
 
-          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handelr控制输入、删除、软键盘关闭等行为
+          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handler控制输入、删除、软键盘关闭等行为
           this.webKeyboardController = KeyboardCallbackInfo.controller
           let attributes: Record<string, string> = KeyboardCallbackInfo.attributes
           // 遍历attributes
@@ -6828,7 +6845,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称        | 值 | 描述                                 |
 | ---------- | -- | ---------------------------------- |
-| All        | undefined | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| All        | 0 | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
 | Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 不允许加载HTTP和HTTPS混合内容。               |
 
@@ -7865,7 +7882,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-定义Embed标签生命周期。
+定义Embed标签生命周期，当加载页面中有同层渲染标签会触发CREATE，同层渲染标签移动或者放大会出发UPDATE，退出页面会触发DESTROY。
 
 | 名称                           | 值 | 描述           |
 | ----------------------------- | -- | ------------ |

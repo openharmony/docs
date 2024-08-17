@@ -1171,7 +1171,7 @@ getMatrix(forceClosed: boolean, distance: number, matrix: Matrix, flags: PathMea
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Mandatory parameters are left unspecified. |
+| 401 | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -1212,7 +1212,7 @@ buildFromSvgString(str: string): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Mandatory parameters are left unspecified. |
+| 401 | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -1722,7 +1722,7 @@ pixelMap: image.PixelMap | null = null;
     let pen = new drawing.Pen();
     canvas.attachPen(pen);
     let rect: common2D.Rect = { left: 0, top: 0, right: 200, bottom: 200 };
-    canvas.drawImageRect(pixelMap, rect);
+    canvas.drawImageRect(this.pixelMap, rect);
     canvas.detachPen();
   }
 }
@@ -1768,7 +1768,7 @@ pixelMap: image.PixelMap | null = null;
     canvas.attachPen(pen);
     let srcRect: common2D.Rect = { left: 0, top: 0, right: 100, bottom: 100 };
     let dstRect: common2D.Rect = { left: 100, top: 100, right: 200, bottom: 200 };
-    canvas.drawImageRectWithSrc(pixelMap, srcRect, dstRect);
+    canvas.drawImageRectWithSrc(this.pixelMap, srcRect, dstRect);
     canvas.detachPen();
   }
 }
@@ -2330,6 +2330,8 @@ drawSingleCharacter(text: string, font: Font, x: number, y: number): void
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2668,7 +2670,7 @@ saveLayer(rect?: common2D.Rect | null, brush?: Brush | null): number
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Mandatory parameters are left unspecified. |
+| 401 | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -3076,9 +3078,9 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     if (canvas.isClipEmpty()) {
-      console.info(TAG, "canvas.isClipEmpty() returned true");
+      console.info("canvas.isClipEmpty() returned true");
     } else {
-      console.info(TAG, "canvas.isClipEmpty() returned false");
+      console.info("canvas.isClipEmpty() returned false");
     }
   }
 }
@@ -4121,6 +4123,8 @@ measureSingleCharacter(text: string): number
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;

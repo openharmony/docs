@@ -241,7 +241,14 @@ focusable(value: boolean)
 enabled(value: boolean)
 ```
 
-设置组件是否可交互。若设置为false，则组件无交互能力，自然无法获焦。
+设置组件可交互性属性[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)为`false`，则组件不可交互，无法获焦。
+
+
+```ts
+visibility(value: Visibility)
+```
+
+设置组件可见性属性[visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)为`Visibility.None`或`Visibility.Hidden`，则组件不可见，无法获焦。
 
 
 ```ts
@@ -437,7 +444,7 @@ struct morenjiaodian {
 
 容器的默认焦点受到[获焦优先级](#焦点组与获焦优先级)的影响。
 
-**defaultFcous与FocusPriority的区别**
+**defaultFocus与FocusPriority的区别**
 
 [defaultFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)是用于指定页面首次展示时的默认获焦节点，[FocusPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focuspriority12)是用于指定某个容器首次获焦时其子节点的获焦优先级。上述两个属性在某些场景同时配置时行为未定义，例如下面的场景，页面首次展示无法同时满足defaultFocus获焦和高优先级组件获焦。
 
@@ -649,7 +656,7 @@ focusScopePriority(scopeId: string, priority?: FocusPriority)
 focusScopeId(id: string, isGroup?: boolean)
 ```
 
-设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
+设置当前容器组件的id标识，设置当前容器组件是否为焦点组。焦点组与tabIndex不能混用。
 
 ```ts
 // focusTest.ets

@@ -9,7 +9,7 @@ The **systemload** module allows the system to determine the system load level b
 ## Modules to Import
 
 ```
-import systemLoad from '@ohos.resourceschedule.systemload';
+import { systemLoad } from '@kit.BasicServicesKit';
 ```
 
 ## systemLoad.on('systemLoadChange')
@@ -38,7 +38,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import systemLoad from '@ohos.resourceschedule.systemload';
+import { systemLoad } from '@kit.BasicServicesKit';
 
 function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
     console.log(`system load changed, current level ` + res);
@@ -77,7 +77,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import systemLoad from '@ohos.resourceschedule.systemload';
+import { systemLoad } from '@kit.BasicServicesKit';
 
 function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
     console.log(`system load changed, current level ` + res);
@@ -108,8 +108,8 @@ Obtains the system load level. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import systemLoad from '@ohos.resourceschedule.systemload';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { systemLoad } from '@kit.BasicServicesKit';
 
 systemLoad.getLevel().then((res: systemLoad.SystemLoadLevel) => {
     console.log(`getLevel promise succeeded. result: ` + JSON.stringify(res));

@@ -798,8 +798,8 @@ Nullable\<T> {
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | SPREAD | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例8](ts-container-relativecontainer.md#示例8)。                 |
-| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例9](ts-container-relativecontainer.md#示例9)。                      |
+| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                 |
+| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                      |
 
 ## BarrierDirection<sup>12+</sup>
 
@@ -905,7 +905,7 @@ Nullable\<T> {
 | SCROLLER  |  6  | Scroller的不带动效方法。 |
 | SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
 
-## ImageSpanAlignment枚举说明
+## ImageSpanAlignment<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

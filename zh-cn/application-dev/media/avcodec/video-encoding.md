@@ -143,6 +143,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - OH_AVCodecOnNeedInputBuffer 输入回调无作用，用户通过获取的surface输入数据；
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
 
+    <!--RP2--><!--RP2End-->
+
     示例如下所示
     ```c++
     int32_t qpAverage = 20;
@@ -504,6 +506,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
 
     开发者可以通过处理该回调报告的信息，确保编码器正常运转。
+
+    <!--RP2--><!--RP2End-->
 
     ```c++
     bool isFirstFrame = true;

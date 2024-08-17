@@ -268,7 +268,7 @@ The following walks you through on how to obtain the file name extensions based 
 // 1. Import the module.
 import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
-  // 2. Obtain the uniform data type based on the MIME type **audio/mp3**.
+  // 2. Obtain the uniform data type based on the MIME type audio/mp3.
   let mineType = 'audio/mp3';
   let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
   // 3. Obtain the file name extensions based on the uniform data type.
