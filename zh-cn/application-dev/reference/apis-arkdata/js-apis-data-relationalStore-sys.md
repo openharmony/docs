@@ -919,7 +919,7 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
     console.info('lockCloudContainer succeeded time:' + time);
   }).catch((err: BusinessError) => {
-    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+    console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
   })
 }
 ```
@@ -949,7 +949,7 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).unlockCloudContainer().then(() => {
     console.info('unlockCloudContainer succeeded');
   }).catch((err: BusinessError) => {
-    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+    console.error(`unlockCloudContainer failed, code is ${err.code},message is ${err.message}`);
   })
 }
 ```
