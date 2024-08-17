@@ -908,26 +908,20 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 | 类型                | 说明                                    |
 | ------------------- | ---------------------------------------|
-| Promise&lt;number&gt; | Promise对象，返回对云端表锁的时长，单位：ms。 |
+| Promise&lt;number&gt; | Promise对象，如果加锁成功，返回锁的有效时长，如果加锁失败，返回0，单位：ms。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.in("id", ["id1", "id2"]);
-
 if(store != undefined) {
-  try {
-    let time = await (store as relationalStore.RdbStore).lockCloudContainer();
+  (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
     console.info('lockCloudContainer succeeded time:' + time);
-  } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`lockCloudContainer failed, code is ${code}, message is ${message}`);
-  }
-};
+  }).catch((err: BusinessError) => {
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### unlockCloudContainer<sup>12+</sup>
@@ -940,24 +934,24 @@ unlockCloudContainer(): Promise&lt;void&gt;
 
 **系统接口：** 此接口为系统接口。
 
+**返回值**：
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.in("id", ["id1", "id2"]);
-
 if(store != undefined) {
-  try {
-    await (store as relationalStore.RdbStore).unlockCloudContainer();
+  (store as relationalStore.RdbStore).unlockCloudContainer().then(() => {
     console.info('unlockCloudContainer succeeded');
-  } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`unlockCloudContainer failed, code is ${code}, message is ${message}`);
-  }
-};
+  }).catch((err: BusinessError) => {
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ## ResultSet
