@@ -81,7 +81,7 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 | -h | 否，默认输出帮助信息 | 显示uninstall支持的命令信息 |
 | -n | 是 | 指定Bundle名称卸载应用 |
 | -m | 否，默认卸载所有模块 | 指定卸载应用的一个模块 |
-| -u | 否，默认卸载当前所有用户下该应用 | 指定用户卸载应用 |
+| -u | 否，默认卸载当前活跃用户下该应用 | 指定用户卸载应用 |
 | -k | 否，默认卸载应用时不保存应用数据 | 卸载应用时保存应用数据 |
 | -v | 否，默认卸载同包名的所有共享包 | 指示共享包的版本号 |
 
@@ -889,7 +889,7 @@ Error: verify code signature failed.
 
 **处理步骤**
 
-* 场景一：使用鸿蒙SDK签名工具验证包是否签名。
+* 场景一：使用SDK签名工具验证包是否签名。
 	```
 	//验证签名指令
 	java -jar SDK安装路径（DevEco工具安装目录中sdk）\toolchains\lib\hap-sign-tool.jar verify-app -outCertChain out.cer -outProfile out.p7b -inFile 包路径\**.hap

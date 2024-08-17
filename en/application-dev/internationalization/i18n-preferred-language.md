@@ -18,12 +18,7 @@ The following uses date and time formatting as an example to illustrate how the 
 
 2. Obtain the preferred language of the application.
    ```ts
-   try {  
      let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
-   } catch(error) {
-     let err: BusinessError = error as BusinessError;
-     console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-   }
    ```
    
 3. Set the preferred language of the application. After the preferred language of the application is set to the target language, the application UI is switched to the target language. The setting affects only the application, but not the system language settings.

@@ -1,6 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 ToastShowMode.TOP_MOST接口废弃
+## cl.arkui.1 ToastShowMode.TOP_MOST接口变更
 
 **访问级别**
 

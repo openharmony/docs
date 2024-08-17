@@ -104,6 +104,18 @@ Enumerates the exposure modes.
 | ----------------------------- |-----|---------|
 | EXPOSURE_MODE_MANUAL<sup>12+</sup>          | 3   | Manual exposure mode.|
 
+## PolicyType<sup>12+</sup>
+
+Enumerates the policy types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Value  | Description     |
+| ----------------------------- |-----|---------|
+| PRIVACY<sup>12+</sup>          | 1   | Privacy.|
+
 ## CameraManager
 
 Implements camera management. Before calling any API in **CameraManager**, you must use [getCameraManager](js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** instance.
@@ -139,6 +151,10 @@ muteCamera(mute: boolean): void
 
 Mutes or unmutes the camera device.
 
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [muteCameraPersistent](#mutecamerapersistent12) instead.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -155,6 +171,32 @@ Mutes or unmutes the camera device.
 function muteCamera(cameraManager: camera.CameraManager): void {
   let mute: boolean = true;
   cameraManager.muteCamera(mute);
+}
+```
+
+### muteCameraPersistent<sup>12+</sup>
+
+muteCameraPersistent(mute: boolean, type: PolicyType): void
+
+Disables the camera in a persistent manner.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                         | Mandatory | Description                                        |
+| -------- |-----------------------------| ---- |--------------------------------------------|
+| mute     | boolean                     |  Yes | Whether to mute the camera device. The value **true** means to mute the camera device, and **false** means the opposite.                  |
+| type     | [PolicyType](#policytype12) |  Yes | Policy type. For details about the available options, see [PolicyType](#policytype12).|
+
+**Example**
+
+```ts
+function muteCameraPersistent(cameraManager: camera.CameraManager): void {
+  let mute: boolean = true;
+  cameraManager.muteCameraPersistent(mute, camera.PolicyType.PRIVACY);
 }
 ```
 
@@ -3681,7 +3723,6 @@ Defines the PiP status data.
 | status        | number   | No  | Yes  | Status of PiP. The options are 0 (stopped), 1 (started), 2 (stopping), and 3 (starting).|
 | sketchRatio   | number   | No  | Yes  | Zoom ratio of PiP.|
 
-
 ## SlowMotionVideoSession<sup>12+</sup>
 
 SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
@@ -3691,7 +3732,6 @@ Implements a slow-motion video session, which sets the parameters of the slow-mo
 > **NOTE**
 >
 > In slow-motion video mode, only preview streams and video streams can be added.
-
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -4470,7 +4510,7 @@ Sets the manual focus distance.
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0,1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.<br> |
+| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0, 1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.<br> |
 
 **Error codes**
 

@@ -17,7 +17,7 @@
 | -------- | -------- |
 | publish(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 发布通知。                 |
 | cancel(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消指定的通知。           |
-| cancelAll(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 取消所有该应用发布的通知。 |
+| cancelAll(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消所有该应用发布的通知。 |
 
 
 ## 开发步骤

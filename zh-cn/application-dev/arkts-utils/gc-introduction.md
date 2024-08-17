@@ -85,7 +85,7 @@ heap中会生成两个Semi Space供copying使用。
 | MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数 |
 | MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数 |
 
-注：该线程池主要用于执行GC流程中的并发任务，实际线程池初始化综合参考gcThreadNum以及线程上下限，gcThreadNum为负值时初始化线程池线程数 = cpu核心数/2
+注：该线程池主要用于执行GC流程中的并发任务，实际线程池初始化综合参考gcThreadNum以及线程上下限，gcThreadNum为负值时初始化线程池线程数 = CPU核心数/2
 
 #### 其他参数
 
@@ -259,7 +259,7 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 ### 典型日志
 
 ```
-// GC前对象实际占用大小（region实际占用大小）->GC后对象实际占用大小（region实际占用大小），总耗时（+concurrrentMark耗时），GC触发原因。
+// GC前对象实际占用大小（region实际占用大小）->GC后对象实际占用大小（region实际占用大小），总耗时（+concurrentMark耗时），GC触发原因。
 C03F00/ArkCompiler: [gc]  [ CompressGC ] 26.1164 (35) -> 7.10049 (10.5) MB, 160.626(+0)ms, Switch to background
 // GC运行时的各种状态以及应用名称
 C03F00/ArkCompiler: [gc] IsInBackground: 1; SensitiveStatus: 0; OnStartupEvent: 0; BundleName: com.huawei.hmos.filemanager;
@@ -325,7 +325,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 - 接口类型：js接口
 - 作用：调用后由VM主动触发判断当前是否适合进行一次full GC。后台场景、内存预期存活率低于设定值，则会触发，判断为敏感状态则不会触发。
 - 使用场景：开发者提示系统进行GC
-- 典型日志：无直接日志，仅可区分外部触发（`GCReason::EXTERNAL_TRIGGER`）
+- 典型日志：无直接日志，仅可区分外部触发（`GCReason::TRIGGER_BY_JS`）
 
 
 使用参考

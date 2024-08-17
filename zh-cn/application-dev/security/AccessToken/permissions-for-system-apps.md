@@ -25,6 +25,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_BBOX_DIR
+
+允许系统应用读取bbox路径下的日志文件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.CONTROL_LOCATION_SWITCH
 
 允许应用打开和关闭位置信息开关。
@@ -3661,6 +3673,30 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_ACCESSORY
+
+允许应用获取配件（键盘、鼠标等）信息、向配件发送数据及获取配件回复的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.COLLECT_ACCESSORY_LOG
+
+允许应用获取配件（键盘、鼠标等）日志。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4204,6 +4240,8 @@
 ### ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
 允许应用访问公共目录下Desktop目录及子目录。
+
+当前仅2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 

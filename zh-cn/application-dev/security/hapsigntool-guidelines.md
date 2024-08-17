@@ -63,7 +63,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -keyPwd            # 密钥口令，可选项
          ├── -keyAlg            # 密钥算法，必填项，包括RSA/ECC
          ├── -keySize           # 密钥长度，必填项，RSA算法的长度为2048/3072/4096，ECC算法的长度NIST-P-256/NIST-P-384
-         ├── -keystoreFile      # 密钥库文件，必填项，JKS或P12格式
+         ├── -keystoreFile      # 密钥库文件，必填项
          ├── -keystorePwd       # 密钥库口令，可选项
      ```
 
@@ -74,7 +74,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -keyPwd            # 密钥口令，可选项
          ├── -subject           # 证书主题，必填项
          ├── -signAlg           # 签名算法，必填项，包括SHA256withRSA / SHA384withRSA / SHA256withECDSA / SHA384withECDSA
-         ├── -keystoreFile      # 密钥库文件，必填项，JKS或P12格式
+         ├── -keystoreFile      # 密钥库文件，必填项
          ├── -keystorePwd       # 密钥库口令，可选项
          ├── -outFile           # 输出文件，可选项，如果不填，则直接输出到控制台
      ```
@@ -94,9 +94,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -validity                        # 证书有效期，可选项，默认为3650天
          ├── -signAlg                         # 签名算法，必填项，包括SHA256withRSA / SHA384withRSA / SHA256withECDSA / SHA384withECDSA
          ├── -basicConstraintsPathLen         # 路径长度，可选项，默认为0
-         ├── -keystoreFile                    # 密钥库文件，必填项，JKS或P12格式
+         ├── -keystoreFile                    # 密钥库文件，必填项
          ├── -keystorePwd                     # 密钥库口令，可选项
-         ├── -issuerKeystoreFile              # 签发者密钥库文件，可选项，JKS或P12格式
+         ├── -issuerKeystoreFile              # 签发者密钥库文件，可选项
          ├── -issuerKeystorePwd               # 签发者密钥库口令，可选项
          ├── -outFile                         # 输出文件，可选项，如果不填，则直接输出到控制台
      ```
@@ -115,7 +115,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -signAlg                         # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA；
          ├── -issuerKeystoreFile              # 签发者密钥库文件，可选项，JKS或P12格式
          ├── -issuerKeystorePwd               # 签发者密钥库口令，可选项
-         ├── -keystoreFile                    # 密钥库文件，必填项，JKS或P12格式
+         ├── -keystoreFile                    # 密钥库文件，必填项
          ├── -keystorePwd                     # 密钥库口令，可选项
          ├── -outForm                         # 输出证书文件的格式，包括 cert / certChain，可选项，默认为certChain
          ├── -rootCaCertFile                  #  outForm为certChain时必填，根CA证书文件
@@ -137,7 +137,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -signAlg                         # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA；
          ├── -issuerKeystoreFile              # 签发者密钥库文件，可选项，JKS或P12格式
          ├── -issuerKeystorePwd               # 签发者密钥库口令，可选项
-         ├── -keystoreFile                    # 密钥库文件，必填项，JKS或P12格式
+         ├── -keystoreFile                    # 密钥库文件，必填项
          ├── -keystorePwd                     # 密钥库口令，可选项
          ├── -outForm                         # 输出证书文件的格式，包括 cert / certChain，可选项，默认为certChain
          ├── -rootCaCertFile                  #  outForm为certChain时必填，根CA证书文件
@@ -168,9 +168,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -basicConstraintsCritical          # basicConstraints是否包含为关键项，可选项，默认为否
          ├── -basicConstraintsCa                # 是否为CA，可选项，默认为否
          ├── -basicConstraintsPathLen           # 路径长度，可选项，默认为0
-         ├── -issuerKeystoreFile                # 签发者密钥库文件，可选项，JKS或P12格式
+         ├── -issuerKeystoreFile                # 签发者密钥库文件，可选项
          ├── -issuerKeystorePwd                 # 签发者密钥库口令，可选项
-         ├── -keystoreFile                      # 密钥库文件，必填项，JKS或P12格式
+         ├── -keystoreFile                      # 密钥库文件，必填项
          ├── -keystorePwd                       # 密钥库口令，可选项
          ├── -outFile                           # 输出证书文件，可选项，如果不填，则直接输出到控制台
      ```
@@ -185,7 +185,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -profileCertFile # Profile签名证书（证书链，顺序为最终实体证书-中间CA证书-根证书），必填项
          ├── -inFile          # 输入原始的模板Profile文件，文件为json格式，所在目录为developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json，必填项
          ├── -signAlg         # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA
-         ├── -keystoreFile    # 密钥库文件，localSign模式时为必填项，JKS或P12格式
+         ├── -keystoreFile    # 密钥库文件，localSign模式时为必填项
          ├── -keystorePwd     # 密钥库口令，可选项
          ├── -outFile         # 输出签名后的profile文件，p7b格式，必填项
      ```
@@ -211,7 +211,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -inForm        # 输入的原始文件的格式，枚举值：zip、elf或bin；zip应用包对应zip，二进制工具对应elf，bin应用包为bin，默认zip；可选项
           ├── -inFile        # 输入的原始文件，应用包、elf或bin文件，必填项
           ├── -signAlg       # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA
-          ├── -keystoreFile  # 密钥库文件，localSign模式时为必填项，JKS或P12格式
+          ├── -keystoreFile  # 密钥库文件，localSign模式时为必填项
           ├── -keystorePwd   # 密钥库口令，可选项
           ├── -outFile       # 输出签名后的包文件，必填项
           ├── -signCode      # 是否启用代码签名，1表示开启代码签名，0表示关闭代码签名。可选项。默认对hap、hsp、hqf、elf开启代码签名，通过参数配置为0关闭。
@@ -269,7 +269,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
        ├── -keyAlias         #用于生成应用签名证书的密钥别名，存于OpenHarmony.p12密钥库文件中，该参数必填
        ├── -keyAlg           #密钥算法，推荐使用ECC，该参数必填
        ├── -keySize          #密钥长度，ECC算法的长度NIST-P-256/NIST-P-384，该参数必填
-       ├── -keyStoreFile     #密钥库文件，推荐使用提供的OpenHarmony.p12密钥库文件，该参数必填
+       ├── -keyStoreFile     #密钥库文件，推荐使用提供的OpenHarmony.p12密钥库文件，该参数必填。java版本支持PKCS#12和JKS两种密钥库格式，C++版本仅支持PKCS#12密钥库格式
        ├── -keyStorePwd      #密钥库口令，OpenHarmony.p12口令默认为“123456”，必填项
        ├── -keyPwd           #密钥口令，可选项，该参数不填默认生成的密钥对无口令
    ```
@@ -300,7 +300,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
        ├── -issuerKeyAlias   # 颁发者密钥别名，填写中间CA证书密钥别名，该参数必填且不能修改
        ├── -subject          # 证书主题，请参照命令实例中内容保证顺序不变，该参数必填
        ├── -issuerKeyPwd     # 颁发者密钥口令，填写中间CA证书密钥口令，该参数必填，指定“123456”，不可修改
-       ├── -keystoreFile     # 密钥库文件，指定使用提供的OpenHarmony.p12密钥库文件，该参数必填且不可修改
+       ├── -keystoreFile     # 密钥库文件，指定使用提供的OpenHarmony.p12密钥库文件，该参数必填且不可修改。java版本支持PKCS#12和JKS两种密钥库格式，C++版本仅支持PKCS#12密钥库格式
        ├── -rootCaCertFile   # 根CA证书文件，指定为已提供的根CA证书，该参数必填且不可修改
        ├── -subCaCertFile    # 中间CA证书文件，指定为已提供的中间CA证书，该参数必填且不可修改
        ├── -outForm          # 输出证书文件格式，推荐使用certChain
@@ -335,7 +335,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
        ├── -mode             # 签名模式，目前仅支持localSign，该参数必填
        ├── -profileCertFile  # Profile签名证书，指定已提供的profile证书文件，该参数必填且不可修改
        ├── -inFile           # 输入原始的模板Profile文件，文件为json格式，所在目录为developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json，该参数必填
-       ├── -keystoreFile     # 密钥库文件，指定使用提供的OpenHarmony.p12密钥库文件，该参数必填且不可修改
+       ├── -keystoreFile     # 密钥库文件，指定使用提供的OpenHarmony.p12密钥库文件，该参数必填且不可修改。java版本支持PKCS#12和JKS两种密钥库格式，C++版本仅支持PKCS#12密钥库格式
        ├── -outFile          # 输出签名后的profile文件，p7b格式，该参数必填
        ├── -keyPwd           # 密钥口令，OpenHarmony.p12中的口令默认“123456”
        ├── -keystorePwd      # 密钥库口令，OpenHarmony.p12口令默认为“123456”
@@ -376,7 +376,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
        ├──  -appCertFile      # 应用签名证书（证书链，顺序为最终实体证书-中间CA证书-根证书），填写第二步生成的应用签名证书，该参数必填
        ├──  -profileFile      # 签名后的profile文件，p7b格式，填写第三步中生成的profile文件，必填项
        ├──  -inFile           # 输入原始应用包文件，该参数必填
-       ├──  -keystoreFile     # 密钥库文件，请与步骤一中密钥库文件保持一致，该参数必填且不可修改
+       ├──  -keystoreFile     # 密钥库文件，请与步骤一中密钥库文件保持一致，该参数必填且不可修改。java版本支持PKCS#12和JKS两种密钥库格式，C++版本仅支持PKCS#12密钥库格式
        ├──  -outFile          # 输出签名后的包文件，必填项
        ├──  -keyPwd           # 密钥口令，与第一步生成的密钥对口令保持一致
        ├──  -keystorePwd      # 密钥库口令，与第一步的密钥库口令保持一致

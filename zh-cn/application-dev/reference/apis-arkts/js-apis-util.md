@@ -534,6 +534,17 @@ console.info('result2 is ' + result2);
 | fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
 | ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
 
+## DecodeToStringOptions<sup>12+</sup>
+
+解码是否使用流处理方式。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stream | boolean | 否 | 输入末尾出现的不完整字节序列是否需要追加在下次调用decodeToString的参数中处理。设置为true，则不完整的字节序列会存储在内部缓存区直到下次调用该函数，false则会在当前调用时直接解码。默认为false。 |
 
 ## DecodeWithStreamOptions<sup>11+</sup>
 
@@ -546,7 +557,6 @@ console.info('result2 is ' + result2);
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
-
 
 ## Aspect<sup>11+</sup>
 
@@ -859,15 +869,62 @@ let result = util.TextDecoder.create('utf-8', textDecoderOptions)
 let retStr = result.encoding
 ```
 
-### decodeWithStream<sup>9+</sup>
+### decodeToString<sup>12+</sup>
 
-decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
+decodeToString(input: Uint8Array, options?: DecodeToStringOptions): string
 
 通过输入参数解码后输出对应文本。
 
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
+| options | [DecodeToStringOptions](#decodetostringoptions12) | 否 | 解码相关选项参数。默认undefined。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 解码后的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let textDecoderOptions: util.TextDecoderOptions = {
+  fatal: false,
+  ignoreBOM : true
+}
+let decodeToStringOptions: util.DecodeToStringOptions = {
+  stream: false
+}
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let result = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(result, decodeToStringOptions);
+console.info("retStr = " + retStr);
+```
+
+### decodeWithStream<sup>(deprecated)</sup>
+
+decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
+
+通过输入参数解码后输出对应文本。当input是一个空数组时，返回值为undefined。
+
 > **说明：**
 >
-> 当input是一个空数组时，返回值为undefined。
+> 从API version 9开始支持，从API version 12开始废弃，建议使用[decodeToString<sup>12+</sup>](#decodetostring12)替代。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -957,7 +1014,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeWithStream<sup>9+</sup>](#decodewithstream9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeToString<sup>12+</sup>](#decodetostring12)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 

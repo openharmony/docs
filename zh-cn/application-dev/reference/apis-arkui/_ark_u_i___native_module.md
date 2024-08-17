@@ -304,9 +304,9 @@
 | [ArkUI_DragStatus](#arkui_dragstatus) [OH_ArkUI_DragAndDropInfo_GetDragStatus](#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo) | 获取dragaction发起拖拽的状态,获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN  | 
 | [ArkUI_DragEvent](#arkui_dragevent) \* [OH_ArkUI_DragAndDropInfo_GetDragEvent](#oh_arkui_draganddropinfo_getdragevent) ([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo) | 通过dragAndDropInfo获取到DragEvent，可通过DragEvent获取释放结果等  | 
 | int32_t [OH_ArkUI_StartDrag](#oh_arkui_startdrag) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction) | 通过构造的DragAction对象发起拖拽  | 
-| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromPixelMap](#oh_arkui_drawabledescriptor_createfrompixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) pixelMap) | 使用 PixelMap 创建 DrawbleDescriptor 对象。  | 
-| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap](#oh_arkui_drawabledescriptor_createfromanimatedpixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \*array, int32_t size) | 使用 PixelMap 图片数组创建DrawbleDescriptor 对象。  | 
-| void [OH_ArkUI_DrawableDescriptor_Dispose](#oh_arkui_drawabledescriptor_dispose) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 销毁 DrawbleDescriptor 对象指针。  | 
+| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromPixelMap](#oh_arkui_drawabledescriptor_createfrompixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) pixelMap) | 使用 PixelMap 创建 DrawableDescriptor 对象。  | 
+| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap](#oh_arkui_drawabledescriptor_createfromanimatedpixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \*array, int32_t size) | 使用 PixelMap 图片数组创建DrawableDescriptor 对象。  | 
+| void [OH_ArkUI_DrawableDescriptor_Dispose](#oh_arkui_drawabledescriptor_dispose) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 销毁 DrawableDescriptor 对象指针。  | 
 | [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) [OH_ArkUI_DrawableDescriptor_GetStaticPixelMap](#oh_arkui_drawabledescriptor_getstaticpixelmap) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取 PixelMap 图片对象指针。  | 
 | [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \* [OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray](#oh_arkui_drawabledescriptor_getanimatedpixelmaparray) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取用于播放动画的 PixelMap 图片数组数据。  | 
 | int32_t [OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize](#oh_arkui_drawabledescriptor_getanimatedpixelmaparraysize) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取用于播放动画的 PixelMap 图片数组数据。  | 
@@ -319,15 +319,15 @@
 | uint32_t [OH_ArkUI_AnimateOption_GetDuration](#oh_arkui_animateoption_getduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画持续时间，单位为ms(毫秒)。  | 
 | float [OH_ArkUI_AnimateOption_GetTempo](#oh_arkui_animateoption_gettempo) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放速度。  | 
 | [ArkUI_AnimationCurve](#arkui_animationcurve) [OH_ArkUI_AnimateOption_GetCurve](#oh_arkui_animateoption_getcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画曲线。  | 
-| uint32_t [OH_ArkUI_AnimateOption_GetDelay](#oh_arkui_animateoption_getdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画延迟播放时间，单位为ms(毫秒)。  | 
-| uint32_t [OH_ArkUI_AnimateOption_GetIterations](#oh_arkui_animateoption_getiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放次数。  | 
+| int32_t [OH_ArkUI_AnimateOption_GetDelay](#oh_arkui_animateoption_getdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画延迟播放时间，单位为ms(毫秒)。  | 
+| int32_t [OH_ArkUI_AnimateOption_GetIterations](#oh_arkui_animateoption_getiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放次数。  | 
 | [ArkUI_AnimationPlayMode](#arkui_animationplaymode) [OH_ArkUI_AnimateOption_GetPlayMode](#oh_arkui_animateoption_getplaymode) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放模式。  | 
 | [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \* [OH_ArkUI_AnimateOption_GetExpectedFrameRateRange](#oh_arkui_animateoption_getexpectedframeraterange) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画的期望帧率。  | 
-| void [OH_ArkUI_AnimateOption_SetDuration](#oh_arkui_animateoption_setduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | 设置动画持续时间。  | 
+| void [OH_ArkUI_AnimateOption_SetDuration](#oh_arkui_animateoption_setduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, int32_t value) | 设置动画持续时间。  | 
 | void [OH_ArkUI_AnimateOption_SetTempo](#oh_arkui_animateoption_settempo) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, float value) | 设置动画播放速度。  | 
 | void [OH_ArkUI_AnimateOption_SetCurve](#oh_arkui_animateoption_setcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_AnimationCurve](#arkui_animationcurve) value) | 设置动画曲线。  | 
-| void [OH_ArkUI_AnimateOption_SetDelay](#oh_arkui_animateoption_setdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | 设置动画延迟播放时间。  | 
-| void [OH_ArkUI_AnimateOption_SetIterations](#oh_arkui_animateoption_setiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, uint32_t value) | 设置动画播放次数。  | 
+| void [OH_ArkUI_AnimateOption_SetDelay](#oh_arkui_animateoption_setdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, int32_t value) | 设置动画延迟播放时间。  | 
+| void [OH_ArkUI_AnimateOption_SetIterations](#oh_arkui_animateoption_setiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, int32_t value) | 设置动画播放次数。  | 
 | void [OH_ArkUI_AnimateOption_SetPlayMode](#oh_arkui_animateoption_setplaymode) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_AnimationPlayMode](#arkui_animationplaymode) value) | 设置动画播放模式。  | 
 | void [OH_ArkUI_AnimateOption_SetExpectedFrameRateRange](#oh_arkui_animateoption_setexpectedframeraterange) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \*value) | 设置动画的期望帧率。  | 
 | void [OH_ArkUI_AnimateOption_SetICurve](#oh_arkui_animateoption_seticurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value) | 设置动画的动画曲线。  | 
@@ -2657,7 +2657,7 @@ enum ArkUI_NodeAttributeType
 | NODE_WIDTH  | 宽度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：宽度数值，单位为vp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：宽度数值，单位为vp； | 
 | NODE_HEIGHT  | 高度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：高度数值，单位为vp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：高度数值，单位为vp； | 
 | NODE_BACKGROUND_COLOR  | 背景色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景色数值，0xargb格式，形如 0xFFFF0000 表示红色；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景色数值，0xargb格式，形如 0xFFFF0000 表示红色； | 
-| NODE_BACKGROUND_IMAGE  | 背景色图片属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 图片地址；<br/>.value[0]?.i32：可选值，repeat参数，参数类型[ArkUI_ImageRepeat](#arkui_imagerepeat)，默认值为ARKUI_IMAGE_REPEAT_NONE；<br/>.object：PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 图片地址；<br/>.value[0].i32：repeat参数，参数类型[ArkUI_ImageRepeat](#arkui_imagerepeat)；<br/>.object：PixelMap 图片数据， 参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。 | 
+| NODE_BACKGROUND_IMAGE  | 背景色图片属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 图片地址；<br/>.value[0]?.i32：可选值，repeat参数，参数类型[ArkUI_ImageRepeat](#arkui_imagerepeat)，默认值为ARKUI_IMAGE_REPEAT_NONE；<br/>.object：PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 图片地址；<br/>.value[0].i32：repeat参数，参数类型[ArkUI_ImageRepeat](#arkui_imagerepeat)；<br/>.object：PixelMap 图片数据， 参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。 | 
 | NODE_PADDING  | 内间距属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式有两种：<br/>1：上下左右四个位置的内间距值相等。<br/>.value[0].f32：内间距数值，单位为vp；<br/>2：分别指定上下左右四个位置的内间距值。<br/>.value[0].f32：上内间距数值，单位为vp；<br/>.value[1].f32：右内间距数值，单位为vp；<br/>.value[2].f32：下内间距数值，单位为vp；<br/>.value[3].f32：左内间距数值，单位为vp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：上内间距数值，单位为vp；<br/>.value[1].f32：右内间距数值，单位为vp；<br/>.value[2].f32：下内间距数值，单位为vp；<br/>.value[3].f32：左内间距数值，单位为vp； | 
 | NODE_ID  | 组件ID属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容； | 
 | NODE_ENABLED  | 设置组件是否可交互，支持属性设置，属性重置和属性获取。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false表示不可交互，true表示可交互；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：0表示不可交互，1表示可交互； | 
@@ -2669,7 +2669,7 @@ enum ArkUI_NodeAttributeType
 | NODE_SATURATION  | 设置组件饱和度效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 饱和度值，默认值1.0，推荐取值范围[0,50)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 饱和度值。 | 
 | NODE_BLUR  | 设置组件内容模糊效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 模糊半径，模糊半径越大越模糊，为0时不模糊。单位vp，默认值0.0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 模糊半径，模糊半径越大越模糊，为0时不模糊。单位vp。 | 
 | NODE_LINEAR_GRADIENT  | 设置组件颜色渐变效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 线性渐变的起始角度，当[ArkUI_LinearGradientDirection](#arkui_lineargradientdirection) 为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle属性生效，否则按direction为主要布局方式。 0点方向顺时针旋转为正向角度，默认值：180；<br/>.value[1].i32：线性渐变的方向，设置后angle不生效。数据类型[ArkUI_LinearGradientDirection](#arkui_lineargradientdirection)<br/>.value[2].i32： 为渐变的颜色重复着色，默认值 false。<br/>.object: 参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色颜色。<br/>stops：渐变位置。<br/>size：颜色个数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 线性渐变的起始角度。 当为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle为设置值，其他情况均为默认值。<br/>.value[1].i32：线性渐变的方向。<br/>.value[2].i32： 为渐变的颜色重复着色。<br/>.object: 参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色颜色。<br/>stops：渐变位置。<br/>size：颜色个数。 | 
-| NODE_ALIGNMENT  | 设置组件内容在元素绘制区域内的对齐方式，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)，默认值ARKUI_ALIGNMENT_CENTER。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)。 | 
+| NODE_ALIGNMENT  | 设置组件内容在元素绘制区域内的对齐方式，支持属性设置，属性重置和属性获取接口。在Stack中该属性与NODE_STACK_ALIGN_CONTENT效果一致，只能设置子组件在容器内的对齐方式。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)，默认值ARKUI_ALIGNMENT_CENTER。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)。 | 
 | NODE_OPACITY  | 透明度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：透明度数值，取值范围为0到1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：透明度数值，取值范围为0到1。 | 
 | NODE_BORDER_WIDTH  | 边框宽度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>1: .value[0].f32：统一设置四条边的边框宽度。<br/>2: .value[0].f32：设置上边框的边框宽度。<br/>.value[1].f32：设置右边框的边框宽度。<br/>.value[2].f32：设置下边框的边框宽度。<br/>.value[3].f32：设置左边框的边框宽度。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：设置上边框的边框宽度。<br/>.value[1].f32：设置右边框的边框宽度。<br/>.value[2].f32：设置下边框的边框宽度。<br/>.value[3].f32：设置左边框的边框宽度。 | 
 | NODE_BORDER_RADIUS  | 边框圆角属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>1: .value[0].f32：统一设置四条边的边框圆角。<br/>2: .value[0].f32：设置左上角圆角半径。<br/>.value[1].f32：设置右上角圆角半径。<br/>.value[2].f32：设置左下角圆角半径。<br/>.value[3].f32：设置右下角圆角半径。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：设置左上角圆角半径。<br/>.value[1].f32：设置右上角圆角半径。<br/>.value[2].f32：设置左下角圆角半径。<br/>.value[3].f32：设置右下角圆角半径。 | 
@@ -2700,7 +2700,7 @@ enum ArkUI_NodeAttributeType
 | NODE_SWEEP_GRADIENT  | 角度渐变效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.f32:为角度渐变的中心点，即相对于当前组件左上角的坐标,X轴坐标<br/>.value[1]?.f32:为角度渐变的中心点，即相对于当前组件左上角的坐标,Y轴坐标<br/>.value[2]?.f32:角度渐变的起点，默认值0。<br/>.value[3]?.f32:角度渐变的终点，默认值0。<br/>.value[4]?.f32:角度渐变的旋转角度，默认值0。<br/>.value[5]?.i32:为渐变的颜色重复着色，0表示不重复着色，1表示重复着色<br/>.object: 参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色颜色。<br/>stops：渐变位置。<br/>size：颜色个数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32:为角度渐变的中心点，即相对于当前组件左上角的坐标,X轴坐标<br/>.value[1].f32:为角度渐变的中心点，即相对于当前组件左上角的坐标,Y轴坐标<br/>.value[2].f32:角度渐变的起点，默认值0。<br/>.value[3].f32:角度渐变的终点，默认值0。<br/>.value[4].f32:角度渐变的旋转角度，默认值0。<br/>.value[5].i32:为渐变的颜色重复着色，0表示不重复着色，1表示重复着色<br/>.object: 参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色颜色。<br/>stops：渐变位置。<br/>size：颜色个数。 | 
 | NODE_RADIAL_GRADIENT  | 径向渐变渐变效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.f32:为径向渐变的中心点，即相对于当前组件左上角的坐标,X轴坐标<br/>.value[1]?.f32:为径向渐变的中心点，即相对于当前组件左上角的坐标,Y轴坐标<br/>.value[2]?.f32:径向渐变的半径，默认值0。<br/>.value[3]?.i32:为渐变的颜色重复着色，0表示不重复着色，1表示重复着色<br/>.object: 参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色颜色。<br/>stops：渐变位置。<br/>size：颜色个数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32:为径向渐变的中心点，即相对于当前组件左上角的坐标,X轴坐标<br/>.value[1].f32:为径向渐变的中心点，即相对于当前组件左上角的坐标,Y轴坐标<br/>.value[2].f32:径向渐变的半径，默认值0。<br/>.value[3].i32:为渐变的颜色重复着色，0表示不重复着色，1表示重复着色<br/>.object: 参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色颜色。<br/>stops：渐变位置。<br/>size：颜色个数。 | 
 | NODE_MASK  | 组件上加上指定形状的遮罩，支持属性设置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式,共有5种类型：<br/>1.rect类型：<br/>.value[0].u32：填充颜色，0xargb类型；<br/>.value[1].u32：描边颜色，0xargb类型；<br/>.value[2].f32：描边宽度，单位为vp；<br/>.value[3].i32：遮罩类型，参数类型[ArkUI_MaskType](#arkui_masktype)，ARKUI_MASK_TYPE_RECTANGLE；<br/>.value[4].f32：矩形宽度；<br/>.value[5].f32：矩形高度；<br/>.value[6].f32：矩形圆角宽度；<br/>.value[7].f32：矩形圆角高度；<br/>.value[8]?.f32：矩形形状的左上圆角半径；<br/>.value[9]?.f32：矩形形状的左下圆角半径；<br/>.value[10]?.f32：矩形形状的右上圆角半径；<br/>.value[11]?.f32：矩形形状的右下圆角半径；<br/>2.circle类型：<br/>.value[0].u32：填充颜色，0xargb类型；<br/>.value[1].u32：描边颜色，0xargb类型；<br/>.value[2].f32：描边宽度，单位为vp；<br/>.value[3].i32：遮罩类型，参数类型[ArkUI_MaskType](#arkui_masktype)，ARKUI_MASK_TYPE_CIRCLE；<br/>.value[4].f32：圆形宽度；<br/>.value[5].f32：圆形高度；<br/>3.ellipse类型：<br/>.value[0].u32：填充颜色，0xargb类型；<br/>.value[1].u32：描边颜色，0xargb类型；<br/>.value[2].f32：描边宽度，单位为vp；<br/>.value[3].i32：遮罩类型，参数类型[ArkUI_MaskType](#arkui_masktype)，ARKUI_MASK_TYPE_ELLIPSE；<br/>.value[4].f32：椭圆形宽度；<br/>.value[5].f32：椭圆形高度；<br/>4.path类型：<br/>.value[0].u32：填充颜色，0xargb类型；<br/>.value[1].u32：描边颜色，0xargb类型；<br/>.value[2].f32：描边宽度，单位为vp；<br/>.value[3].i32：遮罩类型，参数类型[ArkUI_MaskType](#arkui_masktype)，ARKUI_MASK_TYPE_PATH；<br/>.value[4].f32：路径宽度；<br/>.value[5].f32：路径高度；<br/>.string：路径绘制的命令字符串；<br/>5.progress类型：<br/>.value[0].i32：遮罩类型，参数类型[ArkUI_MaskType](#arkui_masktype)，ARKUI_MASK_TYPE_PROGRESS；<br/>.value[1].f32：进度遮罩的当前值；<br/>.value[2].f32：进度遮罩的最大值；<br/>.value[3].u32：进度遮罩的颜色；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式,共有5种类型：<br/>1.rect类型：<br/>.value[0].u32：填充颜色，0xargb类型；<br/>.value[1].u32：描边颜色，0xargb类型；<br/>.value[2].f32：描边宽度，单位为vp；<br/>.value[3].i32：遮罩类型；<br/>.value[4].f32：矩形宽度；<br/>.value[5].f32：矩形高度；<br/>.value[6].f32：矩形圆角宽度；<br/>.value[7].f32：矩形圆角高度；<br/>.value[8]?.f32：矩形形状的左上圆角半径；<br/>.value[9]?.f32：矩形形状的左下圆角半径；<br/>.value[10]?.f32：矩形形状的右上圆角半径；<br/>.value[11]?.f32：矩形形状的右下圆角半径；<br/>2.circle类型：<br/>.value[0].u32：填充颜色，0xargb类型；<br/>.value[1].u32：描边颜色，0xargb类型；<br/>.value[2].f32：描边宽度，单位为vp；<br/>.value[3].i32：遮罩类型；<br/>.value[4].f32：圆形宽度；<br/>.value[5].f32：圆形高度；<br/>3.ellipse类型：<br/>.value[0].u32：填充颜色，0xargb类型；<br/>.value[1].u32：描边颜色，0xargb类型；<br/>.value[2].f32：描边宽度，单位为vp；<br/>.value[3].i32：遮罩类型；<br/>.value[4].f32：椭圆形宽度；<br/>.value[5].f32：椭圆形高度；<br/>4.path类型：<br/>.value[0].u32：填充颜色，0xargb类型；<br/>.value[1].u32：描边颜色，0xargb类型；<br/>.value[2].f32：描边宽度，单位为vp；<br/>.value[3].i32：遮罩类型；<br/>.value[4].f32：路径宽度；<br/>.value[5].f32：路径高度；<br/>.string：路径绘制的命令字符串；<br/>5.progress类型：<br/>.value[0].i32：遮罩类型；<br/>.value[1].f32：进度遮罩的当前值；<br/>.value[2].f32：进度遮罩的最大值；<br/>.value[3].u32：进度遮罩的颜色； | 
-| NODE_BLEND_MODE  | 当前控件背景与子节点内容进行混合，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件的混合模式类型，参数类型[ArkUI_BlendMode](#arkui_blendmode)，默认值为ARKUI_BLEND_MODE_NONE。<br/>.value[1].?i32：blendMode实现方式是否离屏，参数类型[ArkUI_BlendApplyType](#arkui_blendapplytype)，默认值为ARKUI_BLEND_APPLY_TYPE_FAST。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件的混合模式类型，参数类型[ArkUI_BlendMode](#arkui_blendmode)，默认值为ARKUI_BLEND_MODE_NONE。<br/>.value[1].i32：blendMode实现方式是否离屏，参数类型[ArkUI_BlendApplyType](#arkui_blendapplytype)，默认值为ARKUI_BLEND_APPLY_TYPE_FAST。 | 
+| NODE_BLEND_MODE  | 当前控件背景与子节点内容进行混合，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件的混合模式类型，参数类型[ArkUI_BlendMode](#arkui_blendmode)，默认值为ARKUI_BLEND_MODE_NONE。<br/>.value[1].?i32：blendMode实现方式是否离屏，参数类型[ArkUI_BlendApplyType](#arkui_blendapplytype)，默认值为BLEND_APPLY_TYPE_FAST。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件的混合模式类型，参数类型[ArkUI_BlendMode](#arkui_blendmode)，默认值为ARKUI_BLEND_MODE_NONE。<br/>.value[1].i32：blendMode实现方式是否离屏，参数类型[ArkUI_BlendApplyType](#arkui_blendapplytype)，默认值为BLEND_APPLY_TYPE_FAST。 | 
 | NODE_DIRECTION  | 设置容器元素内主轴方向上的布局，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置容器元素内主轴方向上的布局类型，<br/>参数类型[ArkUI_Direction](#arkui_direction)，默认值为ARKUI_DIRECTION_AUTO。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置容器元素内主轴方向上的布局类型，<br/>参数类型[ArkUI_Direction](#arkui_direction)，默认值为ARKUI_DIRECTION_AUTO。 | 
 | NODE_CONSTRAINT_SIZE  | 约束尺寸属性，组件布局时，进行尺寸范围限制，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：最小宽度，单位vp；<br/>.value[1].f32：最大宽度，单位vp；<br/>.value[2].f32：最小高度，单位vp；<br/>.value[3].f32：最大高度，单位vp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：最小宽度，单位vp；<br/>.value[1].f32：最大宽度，单位vp；<br/>.value[2].f32：最小高度，单位vp；<br/>.value[3].f32：最大高度，单位vp； | 
 | NODE_GRAY_SCALE  | 灰度效果属性，支持属性设置，属性重置和属性获取接口.<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：灰度转换比例，范围0-1之间，比如0.5指按照50进行灰度处理；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：灰度转换比例，范围0-1之间； | 
@@ -2784,16 +2784,16 @@ enum ArkUI_NodeAttributeType
 | NODE_SPAN_CONTENT  | 文本内容属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示span的文本内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示span的文本内容。 | 
 | NODE_SPAN_TEXT_BACKGROUND_STYLE  | 文本背景色属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32 表示文本背景颜色，0xargb格式，形如0xFFFF0000 表示红色。<br/>第二个参数为文本背景圆角设置，支持如下两种设置方式：<br/>1：.value[1].f32：四个方向的圆角半径统一设置，单位为vp。<br/>2: .value[1].f32：设置左上角圆角半径，单位为vp。<br/>.value[2].f32：设置右上角圆角半径，单位为vp。<br/>.value[3].f32：设置左下角圆角半径，单位为vp。<br/>.value[4].f32：设置右下角圆角半径，单位为vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：文本背景颜色，0xargb格式。<br/>.value[1].f32：左上角圆角半径，单位为vp。<br/>.value[2].f32：右上角圆角半径，单位为vp。<br/>.value[3].f32：左下角圆角半径，单位为vp。<br/>.value[4].f32：右下角圆角半径，单位为vp。 | 
 | NODE_SPAN_BASELINE_OFFSET  | 文本基线的偏移量属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：偏移量数值，单位为fp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：偏移量数值，单位为fp。 | 
-| NODE_IMAGE_SPAN_SRC  | imageSpan组件图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。 | 
+| NODE_IMAGE_SPAN_SRC  | imageSpan组件图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。 | 
 | NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT  | 图片基于文本的对齐方式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片基于文本的对齐方式，取[ArkUI_ImageSpanAlignment](#arkui_imagespanalignment)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片基于文本的对齐方式，取[ArkUI_ImageSpanAlignment](#arkui_imagespanalignment)枚举值。 | 
-| NODE_IMAGE_SPAN_ALT  | imageSpan组件占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址(不支持gif类型图源)。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。 | 
-| NODE_IMAGE_SRC  | image组件设置图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。 | 
+| NODE_IMAGE_SPAN_ALT  | imageSpan组件占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址(不支持gif类型图源)。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。 | 
+| NODE_IMAGE_SRC  | image组件设置图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。 | 
 | NODE_IMAGE_OBJECT_FIT  | 图片填充效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片填充效果，取[ArkUI_ObjectFit](#arkui_objectfit)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片填充效果，取[ArkUI_ObjectFit](#arkui_objectfit)枚举值。 | 
 | NODE_IMAGE_INTERPOLATION  | 图片插值效果效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示插值效果效果，取[ArkUI_ImageInterpolation](#arkui_imageinterpolation)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示插值效果效果，取[ArkUI_ImageInterpolation](#arkui_imageinterpolation)枚举值。 | 
 | NODE_IMAGE_OBJECT_REPEAT  | 图片重复样式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片重复样式，取[ArkUI_ImageRepeat](#arkui_imagerepeat)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片重复样式，取[ArkUI_ImageRepeat](#arkui_imagerepeat)枚举值。 | 
 | NODE_IMAGE_COLOR_FILTER  | 图片滤镜效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 ~ .value[19].f32 表示滤镜矩阵数组。<br/>.size 表示滤镜数组大小 5\*4。<br/>.object 颜色滤波器指针，参数类型为**OH_Drawing_ColorFilter**，.object和.size参数只能二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 ~ .value[19].f32 表示滤镜矩阵数组。<br/>.size 表示滤镜数组大小 5\*4。<br/>.object 颜色滤波器指针，参数类型为**OH_Drawing_ColorFilter**。 | 
 | NODE_IMAGE_AUTO_RESIZE  | 图源自动缩放属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否缩放布尔值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否缩放布尔值。 | 
-| NODE_IMAGE_ALT  | 占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDesciptor**。 | 
+| NODE_IMAGE_ALT  | 占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**；.object参数和.string参数二选一，不可同时设置。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>.object 表示 PixelMap 图片数据，参数类型为**ArkUI_DrawableDescriptor**。 | 
 | NODE_IMAGE_DRAGGABLE  | 图片拖拽效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否支持拖拽，设置为true表示支持。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否支持拖拽。 | 
 | NODE_IMAGE_RENDER_MODE  | 图片渲染模式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 参数类型[ArkUI_ImageRenderMode](#arkui_imagerendermode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 参数类型[ArkUI_ImageRenderMode](#arkui_imagerendermode)。 | 
 | NODE_IMAGE_FIT_ORIGINAL_SIZE  | 设置图片的显示尺寸是否跟随图源尺寸，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32，设置图片的显示尺寸是否跟随图源尺寸，1表示跟随，0表示不跟随，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32，1表示图片的显示尺寸跟随图源尺寸，0表示图片的显示尺寸不跟随图源尺寸。 | 
@@ -2916,7 +2916,7 @@ enum ArkUI_NodeAttributeType
 | NODE_RADIO_STYLE  | 设置单选框选中状态和非选中状态的样式，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0]?.u32：开启状态底板颜色, 类型为0xargb，默认值为0xFF007DFF。<br/>.value[1]?.u32：关闭状态描边颜色, 类型为0xargb，默认值为0xFF182431。<br/>.value[2]?.u32：开启状态内部圆饼颜色, 类型为0xargb，默认值为0xFFFFFFFF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：开启状态底板颜色, 类型为0xargb，默认值为0xFF007DFF。<br/>.value[1].u32：关闭状态描边颜色, 类型为0xargb，默认值为0xFF182431。<br/>.value[2].u32：开启状态内部圆饼颜色, 类型为0xargb，默认值为0xFFFFFFF。 | 
 | NODE_RADIO_VALUE  | 设置当前单选框的值，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 单选框的值.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 单选框的值. | 
 | NODE_RADIO_GROUP  | 设置当前单选框的所属群组名称，相同group的Radio只能有一个被选中，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 当前单选框的所属群组名称.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 当前单选框的所属群组名称. | 
-| NODE_STACK_ALIGN_CONTENT  | 设置子组件在容器内的对齐方式，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)，默认值ARKUI_ALIGNMENT_CENTER。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)。 | 
+| NODE_STACK_ALIGN_CONTENT  | 设置子组件在容器内的对齐方式，支持属性设置，属性重置和属性获取接口。该属性与通用属性NODE_ALIGNMENT同时设置时，后设置的属性生效。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)，默认值ARKUI_ALIGNMENT_CENTER。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)。 | 
 | NODE_SCROLL_BAR_DISPLAY_MODE  | 设置滚动条状态，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 滚动条状态，数据类型[ArkUI_ScrollBarDisplayMode](#arkui_scrollbardisplaymode)，默认值ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 滚动条状态，数据类型[ArkUI_ScrollBarDisplayMode](#arkui_scrollbardisplaymode)。 | 
 | NODE_SCROLL_BAR_WIDTH  | 设置滚动条的宽度，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 滚动条宽度，单位vp，默认值4。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 滚动条宽度，单位vp。 | 
 | NODE_SCROLL_BAR_COLOR  | 设置滚动条的颜色，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.data[0].u32： 滚动条颜色，0xargb类型。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.data[0].u32： 滚动条颜色，0xargb类型。 | 
@@ -5039,7 +5039,7 @@ ArkUI_AnimationCurve OH_ArkUI_AnimateOption_GetCurve (ArkUI_AnimateOption * opti
 ### OH_ArkUI_AnimateOption_GetDelay()
 
 ```
-uint32_t OH_ArkUI_AnimateOption_GetDelay (ArkUI_AnimateOption * option)
+int32_t OH_ArkUI_AnimateOption_GetDelay (ArkUI_AnimateOption * option)
 ```
 **描述：**
 
@@ -5127,7 +5127,7 @@ ArkUI_CurveHandle OH_ArkUI_AnimateOption_GetICurve (ArkUI_AnimateOption * option
 ### OH_ArkUI_AnimateOption_GetIterations()
 
 ```
-uint32_t OH_ArkUI_AnimateOption_GetIterations (ArkUI_AnimateOption * option)
+int32_t OH_ArkUI_AnimateOption_GetIterations (ArkUI_AnimateOption * option)
 ```
 **描述：**
 
@@ -5211,7 +5211,7 @@ void OH_ArkUI_AnimateOption_SetCurve (ArkUI_AnimateOption * option, ArkUI_Animat
 ### OH_ArkUI_AnimateOption_SetDelay()
 
 ```
-void OH_ArkUI_AnimateOption_SetDelay (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetDelay (ArkUI_AnimateOption * option, int32_t value )
 ```
 **描述：**
 
@@ -5230,7 +5230,7 @@ void OH_ArkUI_AnimateOption_SetDelay (ArkUI_AnimateOption * option, uint32_t val
 ### OH_ArkUI_AnimateOption_SetDuration()
 
 ```
-void OH_ArkUI_AnimateOption_SetDuration (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetDuration (ArkUI_AnimateOption * option, int32_t value )
 ```
 **描述：**
 
@@ -5291,7 +5291,7 @@ void OH_ArkUI_AnimateOption_SetICurve (ArkUI_AnimateOption * option, ArkUI_Curve
 ### OH_ArkUI_AnimateOption_SetIterations()
 
 ```
-void OH_ArkUI_AnimateOption_SetIterations (ArkUI_AnimateOption * option, uint32_t value )
+void OH_ArkUI_AnimateOption_SetIterations (ArkUI_AnimateOption * option, int32_t value )
 ```
 **描述：**
 
@@ -7956,7 +7956,7 @@ ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap
 ```
 **描述：**
 
-使用 PixelMap 图片数组创建DrawbleDescriptor 对象。
+使用 PixelMap 图片数组创建DrawableDescriptor 对象。
 
 **起始版本：** 12
 
@@ -7979,7 +7979,7 @@ ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromPixelMap (OH_Pix
 ```
 **描述：**
 
-使用 PixelMap 创建 DrawbleDescriptor 对象。
+使用 PixelMap 创建 DrawableDescriptor 对象。
 
 **起始版本：** 12
 
@@ -8001,7 +8001,7 @@ void OH_ArkUI_DrawableDescriptor_Dispose (ArkUI_DrawableDescriptor * drawableDes
 ```
 **描述：**
 
-销毁 DrawbleDescriptor 对象指针。
+销毁 DrawableDescriptor 对象指针。
 
 **起始版本：** 12
 
@@ -8009,7 +8009,7 @@ void OH_ArkUI_DrawableDescriptor_Dispose (ArkUI_DrawableDescriptor * drawableDes
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 
 ### OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray()
@@ -8027,7 +8027,7 @@ OH_PixelmapNativeHandle* OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray (A
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -8049,7 +8049,7 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize (ArkUI_Drawable
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -8071,7 +8071,7 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationDuration (ArkUI_DrawableDescript
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -8093,7 +8093,7 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationIteration (ArkUI_DrawableDescrip
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -8115,7 +8115,7 @@ OH_PixelmapNativeHandle OH_ArkUI_DrawableDescriptor_GetStaticPixelMap (ArkUI_Dra
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 
 **返回：**
 
@@ -8137,7 +8137,7 @@ void OH_ArkUI_DrawableDescriptor_SetAnimationDuration (ArkUI_DrawableDescriptor 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 | duration | 播放总时长，单位毫秒。  | 
 
 
@@ -8156,7 +8156,7 @@ void OH_ArkUI_DrawableDescriptor_SetAnimationIteration (ArkUI_DrawableDescriptor
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| drawableDescriptor | DrawbleDescriptor 对象指针。  | 
+| drawableDescriptor | DrawableDescriptor 对象指针。  | 
 | iterations | 播放次数。  | 
 
 

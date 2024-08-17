@@ -138,7 +138,7 @@
 | ----- | ----------------------------------------------------- | --- | --- | ----------------- |
 | names | Array\<string\>                                       | 否  |  是 | 按钮名称（最多支持3个）。   |
 | icons | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)\> | 否  |  是 | 按钮图片（最多支持3个）。   |
-| iconsResource | Array\<[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)\> | 否  |  是 | 按钮资源（最多支持3个）。   |
+| iconsResource<sup>12+</sup> | Array\<[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)\> | 否  |  是 | 按钮资源（最多支持3个）。   |
 
 ## NotificationTime<sup>11+</sup>
 
