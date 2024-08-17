@@ -1,4 +1,8 @@
 #Uniform Type Descriptor(UTD)预置列表
+标准化数据类型（Uniform Type Descriptor，简称UTD）用于解决系统中的类型模糊问题，即针对同一种数据类型，存在不同的类型描述方式：MIME Type、文件扩展名等。例如描述jpg/jpeg类型图片时，可以使用image/jpeg、.jpg、.jpeg或image/picture等方式进行描述。
+当相关类型的数据进行跨应用、跨设备传输时，目标端应用/设备需要进行多方面的适配，才能够对数据内容进行相关处理，且存在无法识别的情况。
+为了方便业务使用，系统中预置了一部分常用类型，从通用性、场景以及归属等角度将预置类型分为三类：[基础类型](#基础类型)，[系统关联类型](#系统关联类型)以及[应用定义类型](#应用定义类型)。
+
 ## 基础类型
 基础类型表示通用数据类型，进行跨应用、跨设备设置跨平台交互时，能够被绝大多数应用、设备以及平台识别，标识ID为general.xxx。当前系统中预定义的通用类型列表如下：
 | **UTD-ID**                          | **BelongingTo类型**         | **后缀名**                | **MIMEType类型**                                                                         | **说明**                             |
@@ -200,8 +204,6 @@
 | debian.deb                 | general.archive          | .deb,.udeb                            | application/x-debian-package,application/vnd.debian.binary-package | Debian系统中的软件安装包类型                |
 | com.android.apk            | general.archive          | .apk, .apks, .aab, .xapk, .apkm, .akp | application/vnd.android.package-archive                            | Android安装包文件类型                   |
 | redhat.rpm-archive         | general.archive          | .rpm                                  | application/x-rpm                                                  | RedHat软件安装包类型                    |
-
-
 
 ## 应用定义类型
 应用定义类型表示该类型由具体的应用或者组织进行定义与维护，数据的交互依赖特定的应用进行识别，标识ID为com.company-name.xxx或org.orgnization-name.xxx。当前系统中预定义的应用定义类型列表如下：
