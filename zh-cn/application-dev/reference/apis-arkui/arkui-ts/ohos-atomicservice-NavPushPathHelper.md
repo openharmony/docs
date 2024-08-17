@@ -88,7 +88,7 @@ pushPath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Pr
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
-| options | [NavigationOptions](ts-basic-components-navigation.md#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](ts-basic-components-navigation.md#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 **返回值：**
 
@@ -223,7 +223,7 @@ pushDestination(moduleName: string, info: NavPathInfo, options?: NavigationOptio
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
-| options | [NavigationOptions](ts-basic-components-navigation.md#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](ts-basic-components-navigation.md#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 **返回值：**
 
@@ -366,7 +366,7 @@ replacePath(moduleName: string, info: NavPathInfo, options?: NavigationOptions):
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
-| options | [NavigationOptions](ts-basic-components-navigation.md#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](ts-basic-components-navigation.md#navigationoptions12) | 否    | 页面栈操作选项。 |
 
 **返回值：**
 
