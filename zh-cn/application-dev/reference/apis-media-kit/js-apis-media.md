@@ -1896,7 +1896,7 @@ avPlayer.on('volumeChange', (vol: number) => {
 
 ### off('volumeChange')<sup>9+</sup>
 
-off(type: 'volumeChange', callback?: Callback<number>): void
+off(type: 'volumeChange', callback?: Callback\<number>): void
 
 取消监听setVolume生效的事件。
 
