@@ -31,13 +31,13 @@
 ## Surface输出与Buffer输出
 
 1. 两者数据的输出方式不同。
-2. 两者的适用场景不同。
+2. 两者的适用场景不同：
 - Surface输出是指用OHNativeWindow来传递输出数据，可以与其他模块对接，例如XComponent。
 - Buffer输出是指经过解码的数据会以共享内存的方式输出。
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
 - 在Surface模式下，可选择调用OH_VideoDecoder_FreeOutputBuffer()接口丢弃输出帧（不送显）；在Buffer模式下，应用必须调用OH_VideoDecoder_FreeOutputBuffer()释放数据。
-- Surface模式下，应用在解码器就绪前，必须调用OH_VideoDecoder_SetSurface()设置OHNativeWindow，启动后，调用OH_VideoDecoder_RenderOutputBuffer()将解码数据送显；
+- Surface模式下，应用在解码器就绪前，必须调用OH_VideoDecoder_SetSurface()设置OHNativeWindow，启动后，调用OH_VideoDecoder_RenderOutputBuffer()将解码数据送显。
 - 输出回调传出的buffer，在Buffer模式下，可以获取共享内存的地址和数据信息；在Surface模式下，只能获取buffer的数据信息。
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
@@ -49,16 +49,16 @@
 
 
 1. 有两种方式可以使解码器进入Initialized状态：
-   - 初始创建解码器实例时，解码器处于Initialized状态
-   - 任何状态下调用OH_VideoDecoder_Reset()方法，解码器将会移回Initialized状态
+   - 初始创建解码器实例时，解码器处于Initialized状态。
+   - 任何状态下调用OH_VideoDecoder_Reset()方法，解码器将会移回Initialized状态。
 
-2. Initialized状态下，调用OH_VideoDecoder_Configure()方法配置解码器，配置成功后解码器进入Configured状态
+2. Initialized状态下，调用OH_VideoDecoder_Configure()方法配置解码器，配置成功后解码器进入Configured状态。
 3. Configured状态下调用OH_VideoDecoder_Prepare()进入Prepared状态。
-4. Prepared状态调用OH_VideoDecoder_Start()方法使解码器进入Executing状态。
-   - 处于Executing状态时，调用OH_VideoDecoder_Stop()方法可以使解码器返回到Prepared状态
+4. Prepared状态调用OH_VideoDecoder_Start()方法使解码器进入Executing状态：
+   - 处于Executing状态时，调用OH_VideoDecoder_Stop()方法可以使解码器返回到Prepared状态。
 
-5. 在极少数情况下，解码器可能会遇到错误并进入Error状态。解码器的错误传递，可以通过队列操作返回无效值或者抛出异常。
-   - Error状态下可以调用解码器OH_VideoDecoder_Reset()方法将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy()方法移动到最后的Released状态
+5. 在极少数情况下，解码器可能会遇到错误并进入Error状态。解码器的错误传递，可以通过队列操作返回无效值或者抛出异常：
+   - Error状态下可以调用解码器OH_VideoDecoder_Reset()方法将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy()方法移动到最后的Released状态。
 
 6. Executing状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoDecoder_Start()之后，解码器立即进入Running子状态。
@@ -80,6 +80,10 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 ```
+> **说明：**
+>
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
+>
 
 ### Surface模式
 
@@ -608,15 +612,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 可通过format获取到变化后的视频宽、高、跨距等
         (void)codec;
         (void)userData;
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
         // 获取裁剪矩形信息可选
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, cropTop);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, cropBottom);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, cropLeft);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, cropRight);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, &cropTop);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, &cropBottom);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, &cropLeft);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, &cropRight);
     }
     
     // 解码输入回调OH_AVCodecOnNeedInputBuffer实现
@@ -637,15 +641,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 获取视频宽、高、跨距
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
             // 获取裁剪矩形信息可选
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, cropTop);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, cropBottom);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, cropLeft);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, cropRight);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, &cropTop);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, &cropBottom);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, &cropLeft);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, &cropRight);
             OH_AVFormat_Destroy(format);
             isFirstFrame = false;
         }
@@ -874,11 +878,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         int32_t hStride;
     };
 
-    uint8_t *dst; // 目标内存区域的指针
-    uint8_t *src; // 源内存区域的指针
-    struct Rect rect;
-    struct DstRect dstRect;
-    struct SrcRect srcRect;
+    Rect rect = {320, 240};
+    DstRect dstRect = {320, 250};
+    SrcRect srcRect = {320, 250};
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
+    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
+
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
         //将源数据的一行数据复制到目标数据的一行中
@@ -898,6 +903,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         dst += dstRect.wStride;
         src += srcRect.wStride;
     }
+
+    delete[] dst;
+    dst = nullptr;
+    delete[] src;
+    src = nullptr;
     ```
 
     硬件解码在处理buffer数据时（释放数据前），输出回调用户收到的AVbuffer是宽高对齐后的图像数据。
