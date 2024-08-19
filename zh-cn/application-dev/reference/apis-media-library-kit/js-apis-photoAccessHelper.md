@@ -4593,7 +4593,7 @@ PhotoAsset的成员类型。
 | WIDTH         | 'width'               | 图片宽度（单位：像素）。                                    |
 | HEIGHT        | 'height'              | 图片高度（单位：像素）。                                      |
 | DATE_TAKEN    | 'date_taken'          | 拍摄日期（文件拍照时间距1970年1月1日的秒数值）。                |
-| ORIENTATION   | 'orientation'         | 图片文件的方向。                                             |
+| ORIENTATION   | 'orientation'         | 文件的旋转角度，单位为度。                                             |
 | FAVORITE      | 'is_favorite'            | 收藏。                                                    |
 | TITLE         | 'title'               | 文件标题。                                                   |
 | DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | 添加日期（添加文件时间距1970年1月1日的毫秒数值）。<br>注意：查询照片时，不支持基于该字段排序。  |
