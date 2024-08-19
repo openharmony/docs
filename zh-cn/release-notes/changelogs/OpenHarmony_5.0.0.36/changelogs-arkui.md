@@ -431,4 +431,4 @@ promptAction.showToast
 
 **适配指导**
 
-UX默认行为变更，无需适配。可以通过接口自定义Toast背景色、字色等。
+UX默认行为变更，无需适配。可以通过[promptAction](../../../application-dev/reference/apis-arkui/js-apis-promptAction.md)中ShowToastOptions接口自定义Toast背景色、字色等。
