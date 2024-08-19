@@ -1,6 +1,6 @@
 # 分布式数据管理子系统ChangeLog
 
-## cl.distributeddatamgr.1 RelationalStore.execute接口变更
+## cl.distributeddatamgr.1 RelationalStore execute，executeSync接口执行不合法SQL语句错误码变更
 
 **访问级别**
 
