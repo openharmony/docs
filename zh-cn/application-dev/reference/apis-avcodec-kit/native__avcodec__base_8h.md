@@ -173,4 +173,5 @@
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](_codec_base.md#oh_md_key_decoding_timestamp) | 解码缓冲器时间戳的键，以微秒为单位，值类型为int64_t。  |
 | const char \* [OH_MD_KEY_BUFFER_DURATION](_codec_base.md#oh_md_key_buffer_duration) | 缓冲器持续时间的键，以微秒为单位，值类型为int64_t。       |
 | const char \* [OH_MD_KEY_START_TIME](_codec_base.md#oh_md_key_start_time) | 文件开始时间的键，值类型为int64_t。     |
+| const char \* [OH_MD_KEY_TRACK_START_TIME](_codec_base.md#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_VIDEO_SAR](_codec_base.md#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
