@@ -20,12 +20,14 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| rating    | number   | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于stars取最大值stars。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| indicator | boolean  | 否   | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false, 可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。 |
+| 参数名    | 类型    | 必填 | 说明                                                         |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| rating    | number  | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于stars取最大值stars。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| indicator | boolean | 否   | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false, 可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。 |
 
 ## 属性
 
@@ -145,13 +147,15 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    |    默认值      |  说明              |
-| ------ | ------ | ------ |-------------------------------- |
-| rating | number | 0 |评分条当前评分数。 |
-| indicator | boolean | false | 评分条是否作为一个指示器。 |
-| stars | number | 5 |评分条的星级总数。 |
-| stepSize | number | 0.5 |评分条的评分步长。 |
-| triggerChange | Callback\<number> | - |触发评分数量变化。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型    |    只读    |    可选      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| rating | number | 否 | 否 |评分条当前评分数。<br/>默认值：0 |
+| indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。<br/>默认值：false |
+| stars | number | 否 | 否 |评分条的星级总数。<br/>默认值：5 |
+| stepSize | number | 否 | 否 |评分条的评分步长。<br/>默认值：0.5 |
+| triggerChange | Callback\<number> | 否 | 否 |触发评分数量变化。 |
 
 
 ## 示例
