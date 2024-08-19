@@ -61,11 +61,11 @@ reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: num
 
 方案一：
 
-开发者可以使用日历的 API，创建延时类提醒，详见[Calendar Kit开发指南](../../../application-dev/calendarmanager/calendarmanager-guidelines.md)。
+开发者可以使用日历 API，创建延时类提醒，详见[Calendar Kit开发指南](../../../application-dev/calendarmanager/calendarmanager-guidelines.md)。
 
 方案二：
 
-开发者若需要使用后台代理提醒能力，发送延时类提醒，需要提供如下信息到 hwpush@huawei.com 进行申请。
+开发者若需要使用后台代理提醒能力，发送延时类提醒，需要提供如下信息，申请方式详见[代理提醒开发指南](../../../application-dev/task-management/agent-powered-reminder.md)。
 
 申请权限名称：后台代理提醒
 
@@ -73,4 +73,4 @@ reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: num
 
 应用包名：***
 
-使用场景：提醒申请理由/用途/尽可能附上图片，及使用代理提醒的必要性。
+使用场景：提供申请理由/用途/尽可能附上图片，及使用代理提醒的必要性。
