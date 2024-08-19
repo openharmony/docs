@@ -1,6 +1,6 @@
 # 应用链接说明
 
-## URL的基本格式
+## URI的基本格式
 
 应用链接是指可以将用户引导至应用内特定位置或相关网页的URL。URL的基本格式如下：
 ```
@@ -11,7 +11,18 @@ scheme://host[:port]/path/
 - host：域名或IP地址。例如域名`developer.huawei.com`或IP地址`127.0.0.1`；
 - port：端口号。例如`developer.huawei.com:80`后面的80即为端口号。
 - path：路径，表示域名服务器上的目录或文件路径。例如`developer.huawei.com/consumer/`中`consumer`。
+- pathStartWith：路径前缀，表示域名服务器上的目录或文件路径的前缀，用于前缀匹配。
+- pathRegex：路径正则，表示域名服务器上的目录或文件路径的正则表达式，用于正则匹配。
 - linkFeature：应用的功能类型（如文件打开、分享、导航等）。取值为长度不超过127字节的字符串，不支持中文。
+
+待匹配应用组件的skills配置的uris中scheme、host、port、path、pathStartWith和pathRegex属性拼接，如果依次声明了path、pathStartWith和pathRegex属性时，uris将分别拼接为如下表达式：
+- **前缀uri表达式**：当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri
+    * `scheme://`
+    * `scheme://host`
+    * `scheme://host:port`
+- **全路径表达式**：`scheme://host:port/path`
+- **前缀表达式**：`scheme://host:port/pathStartWith`
+- **正则表达式**：`scheme://host:port/pathRegex`
 
 > **说明：**
 > 
@@ -27,17 +38,17 @@ scheme://host[:port]/path/
 
 **linkFeature**的枚举定义。
 
-|名称|值|说明|
-|---|---|---|
-|登录|Login|指示登录、授权登录等功能|
-|支付|Pay|指示支付页面、收银台等功能|
-|分享|Share|指示分享功能|
-|缓存清理|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|
-|扫码|ScanCode|指示扫码功能|
-|打开本地文件|FileOpen|指示打开处理文件的功能|
-|导航|Navigation|指示导航功能|
-|路线规划|RoutePlan|指示路线规划功能|
-|地点搜索|PlaceSerach|指示地点搜索功能|
+|值|说明|弹框体验增强|系统入口呈现|
+|---|---|---|---|
+|Login|指示登录、授权登录等功能|||
+|Pay|指示支付页面、收银台等功能|||
+|Share|指示分享功能|||
+|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|||
+|ScanCode|指示扫码功能|||
+|FileOpen|指示打开处理文件的功能|||
+|Navigation|指示导航功能|||
+|RoutePlan|指示路线规划功能|||
+|PlaceSerach|指示地点搜索功能|||
 
 ## 配置示例
 
@@ -48,9 +59,9 @@ scheme://host[:port]/path/
 ```json
 "uris": [
     {
-        "scheme": "xxx",    // 标识URI的协议名部分，常见的有http、https、file、ftp等。
-        "host": "xxx.xxx.xxx",    // 标识URI的主机地址部分，该字段在scheme存在时才有意义。常见的方式域名方式和IP地址方式。
-        "path": "xxx/xxxx",    // 标识URI的路径部分，该字段在scheme存在时才有意义。
+        "scheme": "https",    // 标识URI的协议名部分，常见的有http、https、file、ftp等。
+        "host": "developer.huawei.com",    // 标识URI的主机地址部分，该字段在scheme存在时才有意义。常见的方式域名方式和IP地址方式。
+        "path": "consumer",    // 标识URI的路径部分，该字段在scheme存在时才有意义。
         "linkFeature": "Login"  
     }
 ]
