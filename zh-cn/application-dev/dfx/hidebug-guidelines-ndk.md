@@ -14,6 +14,7 @@ HiDebug模块对外提供应用调试功能。
 | OH_HiDebug_GetAppMemoryLimit    | 获取应用程序进程的内存限制。      |
 | OH_HiDebug_StartAppTraceCapture | 启动应用trace采集。               |
 | OH_HiDebug_StopAppTraceCapture  | 停止应用trace采集。               |
+| OH_HiDebug_GetGraphicsMemory    | 获取应用显存大小。          |
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiDebug](../reference/apis-performance-analysis-kit/_hi_debug.md)。
 
