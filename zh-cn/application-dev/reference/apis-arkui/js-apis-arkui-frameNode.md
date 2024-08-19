@@ -1097,6 +1097,12 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
 | content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 100021   | The FrameNode is not modifiable. |
+
 ```ts
 import { NodeController, FrameNode, ComponentContent, typeNode } from '@kit.ArkUI';
 
