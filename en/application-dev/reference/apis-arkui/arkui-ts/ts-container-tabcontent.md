@@ -74,12 +74,25 @@ Sets the content displayed on the tab bar. The bottom tab style does not include
 
 Implements the subtab style. When this attribute is enabled, the transition animation is played when the user switches between tabs.
 
-
 ### constructor
+
+constructor(content: ResourceStr)
+
+Constructor used to create a **SubTabBarStyle** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Parameters**
+
+| Name | Type        | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| content | [ResourceStr](ts-types.md#resourcestr) | Yes | Text for the tab. |
+
+### constructor<sup>12+</sup>
 
 constructor(content: ResourceStr | ComponentContent)
 
-Constructor used to create a **SubTabBarStyle** instance.
+Constructor used to create a **SubTabBarStyle** instance. You can set custom content with **ComponentContent**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -87,9 +100,23 @@ Constructor used to create a **SubTabBarStyle** instance.
 
 | Name | Type        | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | Yes | Text for the tab. The type of **content** is ResourceStr since API version 10. The ComponentContent type is supported since API version 12.<br>**NOTE**<br>1. Custom content does not support the **labelStyle** attribute.<br>2. If the custom content exceeds the content box of the tab page, the excess part is not displayed.<br>3. If the custom content is within the content box of the tab page, it is aligned in the center.<br>4. If the custom content is abnormal or no display component is available, a blank area is displayed. |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent](../js-apis-arkui-ComponentContent.md) | Yes | Content on the tab.<br>**NOTE**<br>1. Custom content does not support the **labelStyle** attribute.<br>2. If the custom content exceeds the content box of the tab page, the excess part is not displayed.<br>3. If the custom content is within the content box of the tab page, it is aligned in the center.<br>4. If the custom content is abnormal or no display component is available, a blank area is displayed. |
 
 ### of<sup>10+</sup>
+
+static of(content: ResourceStr)
+
+Static constructor used to create a **SubTabBarStyle** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Parameters**
+
+| Name | Type                                  | Mandatory | Description          |
+| ------- | ------------------------------------------ | ---- | ------------------ |
+| content | [ResourceStr](ts-types.md#resourcestr) | Yes  | Text for the tab. |
+
+### of<sup>12+</sup>
 
 static of(content: ResourceStr | ComponentContent)
 
@@ -101,7 +128,7 @@ Static constructor used to create a **SubTabBarStyle** instance.
 
 | Name | Type                                  | Mandatory | Description          |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | Yes  | Text for the tab. The ComponentContent type is supported since API version 12.<br>**NOTE**<br>1. Custom content does not support the **labelStyle** attribute.<br>2. If the custom content exceeds the content box of the tab page, the excess part is not displayed.<br>3. If the custom content is within the content box of the tab page, it is aligned in the center.<br>4. If the custom content is abnormal or no display component is available, a blank area is displayed. |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent](../js-apis-arkui-ComponentContent.md) | Yes  | Content on the tab. You can set custom content with **ComponentContent**.<br>**NOTE**<br>1. Custom content does not support the **labelStyle** attribute.<br>2. If the custom content exceeds the content box of the tab page, the excess part is not displayed.<br>3. If the custom content is within the content box of the tab page, it is aligned in the center.<br>4. If the custom content is abnormal or no display component is available, a blank area is displayed. |
 
 ### Attributes
 
@@ -114,6 +141,7 @@ The following attributes are supported.
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10)   | Board style of the selected subtab. It takes effect only in the horizontal layout.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10)  | Label text and font of the subtab.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Padding of the subtab. It cannot be set in percentage. When the parameter is of the Dimension type, the value applies to all sides.<br>Default value: **{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp}**<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| padding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | Padding of the subtab. The mirroring capability is supported (percentage values are not allowed).<br>Default value: {start:LengthMetircs.vp(8),end:LengthMetircs.vp(8),<br>top:LengthMetircs.vp(17),bottom:LengthMetircs.vp(18)}<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 | id<sup>11+</sup> | string | [ID](ts-universal-attributes-component-id.md#attributes) of the subtab.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## IndicatorStyle<sup>10+</sup>
@@ -155,8 +183,8 @@ The following attributes are supported.
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. It cannot be set in percentage. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. Default value: **0.0fp**<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text. By default, the **maxLines** settings are prioritized.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text.<br>When the tab is a subtab, the default font is in 16.0 fp size, 'HarmonyOS Sans' family, and normal font style and weight.<br>When the tab is a bottom tab, the default font is in 10.0 fp size, 'HarmonyOS Sans' family, normal font style, and medium weight.<br>The default font size of the bottom tab page is 12.0 fp since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No | Font color of the label text when it is not selected.<br>Default value: **#99182431** |
-| selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No | Font color of the label text when it is selected.<br>Default value: **#FF007DFF** |
+| unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No | Font color of the label text when it is not selected.<br>Default value: **#99182431**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No | Font color of the label text when it is selected.<br>Default value: **#FF007DFF**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## BottomTabBarStyle<sup>9+</sup>
 
@@ -198,15 +226,18 @@ The following attributes are supported.
 
 | Name        | Type                                                    | Description                                                        |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Padding of the bottom tab. It cannot be set in percentage. When the parameter is of the Dimension type, the value applies to all sides.<br>Default value: **{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp}**<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) \| [LocalizedPadding<sup>12+</sup>](ts-types.md#localizedpadding12) | Padding of the bottom tab. It cannot be set in percentage. When the parameter is of the Dimension type, the value applies to all sides.<br>Default value: **{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp}**<br>If of the LocalizedPadding type, this attribute supports the mirroring capability.<br>Default value: {start:LengthMetircs.vp(4),end:LengthMetircs.vp(4),<br>top:LengthMetircs.vp(0),bottom:LengthMetircs.vp(0)}<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | Vertical alignment mode of the images and text on the bottom tab.<br>Default value: **VerticalAlign.Center**<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10)  | Layout of the images and text on the bottom tab. For details, see **LayoutMode**.<br>Default value: **LayoutMode.VERTICAL**<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | symmetricExtensible<sup>10+</sup> |  boolean | Whether the images and text on the bottom tab can be symmetrically extended by the minimum value of the available space on the left and right bottom tabs. This parameter is valid only between bottom tabs in fixed horizontal mode.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10)  | Label text and font of the bottom tab.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | id<sup>11+</sup> | string | [ID](ts-universal-attributes-component-id.md#attributes) of the bottom tab.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| iconStyle<sup>12+</sup> | [TabBarIconStyle](#tabbariconstyle12)  | Style of the label icon on the bottom tab. |
+| iconStyle<sup>12+</sup> | [TabBarIconStyle](#tabbariconstyle12)  | Style of the label icon on the bottom tab.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## TabBarSymbol<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name | Type        | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | Yes | Symbol icon in the normal style.<br>Default value:<br>**fontColor**: **#66182431**, **renderingStrategy**: **SymbolRenderingStrategy.MULTIPLE_OPACITY**, **fontSize**: **24vp** |
@@ -223,6 +254,8 @@ The following attributes are supported.
 | HORIZONTAL | The tab content is arranged from left to right. |
 
 ## TabBarIconStyle<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                | Type                                                    | Mandatory | Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -1325,4 +1358,3 @@ struct Index {
 ```
 
 ![tabContent8](figures/tabBarSymbol.gif)
-<!--no_check-->
