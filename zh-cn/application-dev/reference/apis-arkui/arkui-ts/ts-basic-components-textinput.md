@@ -22,8 +22,8 @@ TextInput(value?: TextInputOptions)
 
 **参数：**
 
-| 参数名 |类型|必填|说明|
-|-----|-----|----|----|
+| 参数名 | 类型 | 必填 | 说明 |
+| ----- | ----- | ---- | ---- |
 | value | [TextInputOptions](#textinputoptions对象说明) | 否  | TextInput组件参数。 |
 
 ## TextInputOptions对象说明
@@ -32,8 +32,8 @@ TextInput(value?: TextInputOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名                     | 参数类型                                     | 必填   | 参数描述                                     |
-| ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| 名称 | 类型  | 必填   | 说明 |
+| ---- | ----- | ---- | ---- |
 | placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置无输入时的提示文本。                             |
 | text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。                          |
@@ -905,8 +905,8 @@ enablePreviewText(enable: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                       | 必填   | 描述                        |
-| ---------- | ---------------------------------------- | ---- | ------------------------- |
+| 名称 | 类型  | 必填   | 说明 |
+| ---- | ----- | ---- | ---- |
 | onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
 | offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
@@ -1185,8 +1185,8 @@ caretPosition(value:&nbsp;number): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 参数描述                |
-| ----- | ------ | ---- | ------------------- |
+| 参数名   | 类型   | 必填   | 说明  |
+| ----- | ------ | ---- | ------ |
 | value | number | 是    | 从字符串开始到光标所在位置的字符长度。 |
 ### setTextSelection<sup>10+</sup>
 
@@ -1200,8 +1200,8 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 
 **参数：**
 
-| 参数名            | 参数类型   | 必填   | 参数描述                      |
-| -------------- | ------ | ---- | ------------------------- |
+| 参数名  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number | 是    | 文本选择区域结束位置。 |
 | options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
@@ -1230,8 +1230,8 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型                                                         | 必填 | 描述                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 名称 | 类型  | 必填   | 说明 |
+| ---- | ----- | ---- | ---- |
 | typing  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 | normal  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 | error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
@@ -1245,8 +1245,8 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称              | 类型       | 必填 | 描述                                               |
-| ----------------- | ---------- | ---- | -------------------------------------------------- |
+| 名称 | 类型  | 必填   | 说明 |
+| ---- | ----- | ---- | ---- |
 | keepEditableState | () => void | 是   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
 | text              | string     | 是   | 输入框文本内容。                                   |
 
