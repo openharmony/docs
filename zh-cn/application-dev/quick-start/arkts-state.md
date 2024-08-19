@@ -766,3 +766,145 @@ struct Test {
 ```
 
 以上示例点击Button('change')，此时第一行文本'222'不会更新，第二行文本'222'更新为'333'，因为在点击按钮后先执行'this.parent.son = new Son('444')'，此时会新创建出来一个Son对象，再执行'this.parent.son.son = '333''，改变的是新new出来的Son里面的son的值，原来对象Son中的son值并不会受到影响。
+
+### 复杂类型常量重复赋值给状态变量触发刷新
+
+```ts
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新。原因是在状态管理V1中，会给@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array添加一层代理用于观测一层属性或API调用产生的变化。  
+当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Object类型，判断是不相等的，因此会触发赋值和刷新。  
+为了避免这种不必要的赋值和刷新，可以通过用@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
+方法一：增加@Observed
+
+```ts
+@Observed
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+以上示例，给对应的类增加了@Observed装饰器后，list[0]已经是Proxy类型了，这样再次赋值时，相同的对象，就不会触发刷新。
+
+方法二：使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象
+
+```ts
+import { UIUtils } from '@ohos.arkui.StateManagement';
+
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        // 获取原始对象来和新值做对比
+        if (UIUtils.getTarget(this.dataObjFromList) !== this.list[0]) {
+          this.dataObjFromList = this.list[0];
+        }
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+以上示例，在赋值前，使用getTarget获取了对应状态变量的原始对象，经过对比后，如果和当前对象一样，就不赋值，不触发刷新。
