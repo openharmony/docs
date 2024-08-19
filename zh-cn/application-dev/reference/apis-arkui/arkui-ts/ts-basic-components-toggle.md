@@ -19,9 +19,11 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**参数:**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型 | 必填   | 参数描述           |
+**参数:** 
+
+| 参数名 | 类型 | 必填   | 说明           |
 | ---- | ---------- | -----| -------------- |
 | type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch。 |
 | isOn | boolean    | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
@@ -32,6 +34,8 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 描述                 |
 | -------- | ---------------- |
@@ -91,9 +95,9 @@ switchStyle(value: SwitchStyle)
 
 **参数：** 
 
-| 参数名 | 类型                                                | 必填 | 说明             |
-| ------ | --------------------------------------------------- | ---- | ---------------- |
-| value  | [SwitchStyle<sup>12+</sup>](#switchstyle12对象说明) | 是  | Switch样式风格。 |
+| 参数名 | 类型                                  | 必填 | 说明             |
+| ------ | ------------------------------------- | ---- | ---------------- |
+| value  | [SwitchStyle](#switchstyle12对象说明) | 是   | Switch样式风格。 |
 
 ### contentModifier<sup>12+</sup>
 
@@ -114,6 +118,8 @@ contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
 ## SwitchStyle<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称              | 类型                                        | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -150,11 +156,13 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    |    默认值      |  说明              |
-| ------ | ------ | ------ |-------------------------------- |
-| isOn   | boolean| false  |  |</br>如果isOn属性没有设置默认值是false。</br>如果设置isOn属性，此值与设置isOn属性的值相同。 |
-| enabled | boolean | - | 是否可以切换状态。 |
-| triggerChange |Callback\<boolean>| - |触发switch选中状态变化。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    |    只读    |    可选    |  说明              |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| isOn   | boolean| 否  | 否 | 开关是否打开。<br/>默认值：false |
+| enabled | boolean | 否 | 否 | 是否可以切换状态。 |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发switch选中状态变化。 |
 
 
 ## 示例

@@ -32,16 +32,20 @@ Radio(options: RadioOptions)
 
 ## RadioOptions对象说明
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string | 是 | 当前单选框的值。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| group | string | 是 | 当前单选框的所属群组名称，相同group的Radio只能有一个被选中。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| indicatorType<sup>12+</sup> | [RadioIndicatorType](#radioindicatortype12枚举说明) | 否 | 配置单选框的选中样式。未设置时按照RadioIndicatorType.TICK进行显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置单选框的选中样式为自定义组件。自定义组件与Radio组件为中心点对齐显示。indicatorBuilder设置为undefined时，按照RadioIndicatorType.TICK进行显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| value | string | 是 | 当前单选框的值。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| group | string | 是 | 当前单选框的所属群组名称，相同group的Radio只能有一个被选中。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| indicatorType<sup>12+</sup> | [RadioIndicatorType](#radioindicatortype12枚举说明) | 否 | 配置单选框的选中样式。未设置时按照RadioIndicatorType.TICK进行显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置单选框的选中样式为自定义组件。自定义组件与Radio组件为中心点对齐显示。indicatorBuilder设置为undefined时，按照RadioIndicatorType.TICK进行显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## RadioIndicatorType<sup>12+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 描述                             |
 | --------------- | -------------------------------- |
@@ -133,11 +137,13 @@ onChange(callback: (isChecked: boolean) => void)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                   | 类型                                       | 必填 | 默认值  | 描述                   |
-| ---------------------- | ------------------------------------------ | ---- | ------- | ---------------------- |
-| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | #007DFF | 开启状态底板颜色。     |
-| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | #182431 | 关闭状态描边颜色。     |
-| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | #FFFFFF | 开启状态内部圆饼颜色。从API version 12开始，indicatorType设置为RadioIndicatorType.TICK和RadioIndicatorType.DOT时，支持修改内部颜色。indicatorType设置为RadioIndicatorType.CUSTOM时，不支持修改内部颜色。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 类型                                       | 必填 | 说明                                                         |
+| ---------------------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态底板颜色。<br/>默认值：#007DFF                       |
+| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 关闭状态描边颜色。<br/>默认值：#182431                       |
+| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态内部圆饼颜色。从API version 12开始，indicatorType设置为RadioIndicatorType.TICK和RadioIndicatorType.DOT时，支持修改内部颜色。indicatorType设置为RadioIndicatorType.CUSTOM时，不支持修改内部颜色。<br/>默认值：#FFFFFF |
 
 ## RadioConfiguration<sup>12+</sup>对象说明
 
@@ -145,11 +151,13 @@ onChange(callback: (isChecked: boolean) => void)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    |    默认值      |  说明              |
-| ------ | ------ | ------ |-------------------------------- |
-| value | string | - |当前单选框的值。 |
-| checked | boolean| false | 设置单选框的选中状态。|
-| triggerChange |Callback\<boolean>| - |触发单选框选中状态变化。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    | 只读 | 可选  |  说明              |
+| ------ | ------ |-------------------------------- |-------------------------------- |-------------------------------- |
+| value | string | 否 | 否 |当前单选框的值。 |
+| checked | boolean| 否 | 否 | 设置单选框的选中状态。<br/>默认值：false |
+| triggerChange |Callback\<boolean>|否|否|触发单选框选中状态变化。 |
 
 
 ## 示例
