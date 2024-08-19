@@ -13,3 +13,4 @@
 - 证书管理
   - [证书管理概述](certManager-overview.md)
   - [证书管理开发指导](certManager-guidelines.md)
+  - [证书管理对话框开发指导](certManagerDialog-guidelines.md)

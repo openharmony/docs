@@ -46,8 +46,8 @@ title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestination
 
 | 参数名 | 类型                                                         | 必填 | 说明       |
 | ------ | ------------------------------------------------------------ | ---- | ---------- |
-| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle9类型说明)&nbsp;\|&nbsp;[NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle9类型说明) | 是   | 页面标题。 |
-| options<sup>12+</sup> | [NavigationTitleOptions](ts-basic-components-navigation.md#navigationtitleoptions11类型说明) | 否   | 标题栏选项。 |
+| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavDestinationCommonTitle](#navdestinationcommontitle)&nbsp;\|&nbsp;[NavDestinationCustomTitle](#navdestinationcustomtitle) | 是   | 页面标题。 |
+| options<sup>12+</sup> | [NavigationTitleOptions](ts-basic-components-navigation.md#navigationtitleoptions11) | 否   | 标题栏选项。 |
 
 ### hideTitleBar
 
@@ -111,7 +111,9 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 > 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
 
 
-设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -119,13 +121,15 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+| value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
 
 ### ignoreLayoutSafeArea<sup>12+</sup>
 
 ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;LayoutSafeAreaEdge&gt;)
 
 控制组件的布局，使其扩展到非安全区域
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,6 +153,8 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 当Navigation中显示当前NavDestination时，设置对应系统状态栏的样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -159,7 +165,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 > **说明：**
 >
-> 1. 必须配合Navigaiton使用，作为其Navigation目的页面的根节点时才能生效。
+> 1. 必须配合Navigation使用，作为其Navigation目的页面的根节点时才能生效。
 > 2. 其他使用限制请参考Navigation对应的[systemBarStyle](ts-basic-components-navigation.md#systembarstyle12)属性说明。
 
 ## NavDestinationMode枚举说明 <sup>11+</sup>
@@ -201,6 +207,8 @@ onWillAppear(callback: Callback\<void>)
 
 当该Destination挂载之前触发此回调。在该回调中允许修改页面栈，当前帧生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onWillShow<sup>12+</sup>
@@ -208,6 +216,8 @@ onWillAppear(callback: Callback\<void>)
 onWillShow(callback: Callback\<void>)
 
 当该Destination显示之前触发此回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -217,6 +227,8 @@ onWillHide(callback: Callback\<void>)
 
 当该Destination隐藏之前触发此回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onWillDisappear<sup>12+</sup>
@@ -224,6 +236,8 @@ onWillHide(callback: Callback\<void>)
 onWillDisappear(callback: Callback\<void>)
 
 当该Destination卸载之前触发的生命周期(有转场动画时，在转场动画开始之前触发)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -241,7 +255,7 @@ onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)
 
 ### onReady<sup>11+</sup>
 
-onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11类型说明)>)
+onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11)>)
 
 当NavDestination即将构建子组件之前会触发此回调。
 
@@ -249,17 +263,41 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## NavDestinationContext<sup>11+</sup>类型说明
+## NavDestinationCommonTitle
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型     | 必填   | 描述     |
+| ---- | ------ | ---- | ------ |
+| main | string | 是    | 设置主标题。 |
+| sub  | string | 是    | 设置副标题。 |
+
+## NavDestinationCustomTitle
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型                                       | 必填   | 说明       |
+| ------- | ---------------------------------------- | ---- | -------- |
+| builder | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 设置标题栏内容。 |
+| height  | [TitleHeight](ts-basic-components-navigation.md#titleheight9枚举说明) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
+
+## NavDestinationContext<sup>11+</sup>
 
 | 名称   | 类型     | 必填   |  描述     |
 | ---- | ------ | ----- | ------ |
 | pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是 | 跳转NavDestination时指定的参数。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是 | 当前NavDestination所处的页面栈。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| navDestinationId<sup>12+</sup> | string | 否 | 当前NavDestination的唯一ID，由系统自动生成，和组件通用属性id无关。 |
+| navDestinationId<sup>12+</sup> | string | 否 | 当前NavDestination的唯一ID，由系统自动生成，和组件通用属性id无关。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ### getConfigInRouteMap<sup>12+</sup>
 
 getConfigInRouteMap(): RouteMapConfig |undefined
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -267,10 +305,12 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 
 | 类型 | 说明 |
 | --- | --- |
-| [RouteMapConfig](#routemapconfig12类型说明) | 当前页面路由配置信息。 |
+| [RouteMapConfig](#routemapconfig12) | 当前页面路由配置信息。 |
 | undefined | 当该页面不是通过路由表配置时返回undefined。 |
 
-## RouteMapConfig<sup>12+</sup>类型说明
+## RouteMapConfig<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型   | 描述 |
 | ----  | ---   | ----- |

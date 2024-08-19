@@ -20,6 +20,8 @@ isPiPEnabled(): boolean
 
 用于判断当前系统是否开启画中画功能。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -40,6 +42,8 @@ console.info('isPipEnabled:' + enable);
 create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 创建画中画控制器，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -144,6 +148,8 @@ promise.then((data : PiPWindow.PiPController) => {
 
 创建画中画控制器时的参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称                  | 类型                                                                         | 必填  | 说明                                                                                                                                                                                                                                                                                                                                        |
@@ -161,6 +167,8 @@ promise.then((data : PiPWindow.PiPController) => {
 
 画中画媒体类型枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称            | 值   | 说明                                   |
@@ -173,6 +181,8 @@ promise.then((data : PiPWindow.PiPController) => {
 ## PiPState
 
 画中画生命周期状态枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -191,6 +201,8 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 
 画中画控制面板的可选控件组列表，应用可以配置是否显示可选控件。默认情况下控制面板只显示基础控件（如视频播放控件组的播放/暂停控件）。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 类型                                              | 说明          |
@@ -205,6 +217,8 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 
 视频播放控件组枚举。仅当[PiPTemplateType](#piptemplatetype)为VIDEO_PLAY时使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称                   | 值   | 说明                    |
@@ -215,6 +229,8 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 ## VideoCallControlGroup<sup>12+</sup>
 
 视频通话控件组枚举。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_CALL时使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -229,6 +245,8 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 
 视频会议控件组枚举。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_MEETING时使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称                   | 值   | 说明                    |
@@ -242,6 +260,8 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 
 视频直播控件组枚举。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_LIVE时使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称                   | 值   | 说明                    |
@@ -254,6 +274,8 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 type PiPActionEventType = PiPVideoActionEvent | PiPCallActionEvent | PiPMeetingActionEvent | PiPLiveActionEvent
 
 画中画控制面板控件动作事件类型，支持以下四种。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -269,6 +291,8 @@ type PiPActionEventType = PiPVideoActionEvent | PiPCallActionEvent | PiPMeetingA
 type PiPVideoActionEvent = 'playbackStateChanged' | 'nextVideo' | 'previousVideo' | 'fastForward' | 'fastBackward'
 
 视频播放控制事件类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -286,6 +310,8 @@ type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged' | '
 
 视频通话控制事件类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 类型                | 说明               |
@@ -301,6 +327,8 @@ type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged' | '
 type PiPMeetingActionEvent = 'hangUp' | 'voiceStateChanged' | 'videoStateChanged' | 'micStateChanged'
 
 视频会议控制事件类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -318,6 +346,8 @@ type PiPLiveActionEvent = 'playbackStateChanged' | 'voiceStateChanged'
 
 直播控制事件类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 类型                   | 说明             |
@@ -329,6 +359,8 @@ type PiPLiveActionEvent = 'playbackStateChanged' | 'voiceStateChanged'
 ## PiPControlStatus<sup>12+</sup>
 
 控制面板控件状态枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -342,6 +374,8 @@ type PiPLiveActionEvent = 'playbackStateChanged' | 'voiceStateChanged'
 ## PiPControlType<sup>12+</sup>
 
 控制面板控件类型枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -364,6 +398,8 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 
 描述画中画控制面板控件动作事件回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -376,6 +412,8 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 ## ControlEventParam<sup>12+</sup>
 
 画中画控制面板控件动作回调的参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -397,6 +435,8 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 startPiP(): Promise&lt;void&gt;
 
 启动画中画，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -434,6 +474,8 @@ stopPiP(): Promise&lt;void&gt;
 
 停止画中画，使用Promise异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -469,6 +511,8 @@ setAutoStartEnabled(enable: boolean): void
 
 设置是否需要在返回桌面时自动启动画中画。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -489,6 +533,8 @@ pipController.setAutoStartEnabled(enable);
 updateContentSize(width: number, height: number): void
 
 当媒体源切换时，向画中画控制器更新媒体源尺寸信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -520,6 +566,8 @@ updatePiPControlStatus(controlType: PiPControlType, status: PiPControlStatus): v
 
 更新控制面板控件功能状态。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -549,6 +597,8 @@ pipController.updatePiPControlStatus(controlType, status);
 setPiPControlEnabled(controlType: PiPControlType, enabled: boolean): void
 
 更新控制面板控件使能状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -580,6 +630,8 @@ pipController.setPiPControlEnabled(controlType, enabled);
 on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): void
 
 开启画中画生命周期状态的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -627,6 +679,8 @@ off(type: 'stateChange'): void
 
 关闭画中画生命周期状态的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -646,6 +700,8 @@ pipController.off('stateChange');
 on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): void
 
 开启画中画控制面板控件动作事件的监听。推荐使用[on('controlEvent')](#oncontrolevent12)来开启画中画控制面板控件动作事件的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -693,6 +749,8 @@ on(type: 'controlEvent', callback: Callback&lt;ControlEventParam&gt;): void
 
 开启画中画控制面板控件动作事件的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -739,6 +797,8 @@ off(type: 'controlPanelActionEvent'): void
 
 关闭画中画控制面板控件动作事件的监听。推荐使用[off('controlEvent')](#offcontrolevent12)来关闭画中画控制面板控件动作事件的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -758,6 +818,8 @@ pipController.off('controlPanelActionEvent');
 off(type: 'controlEvent', callback?: Callback&lt;ControlEventParam&gt;): void
 
 关闭画中画控制面板控件动作事件的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 

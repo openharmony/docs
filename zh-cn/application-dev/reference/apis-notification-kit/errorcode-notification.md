@@ -112,7 +112,7 @@ Notification deletion disabled.
 
 **处理步骤**
 
-参考[NotificationRequest](./js-apis-notificationManager.md#notificationrequest)通知禁止删除属性。
+参考[NotificationRequest](./js-apis-inner-notification-notificationRequest.md)通知禁止删除属性。
 
 ## 1600007 通知不存在
 
@@ -162,7 +162,7 @@ The notification sending frequency reaches the upper limit.
 
 **可能原因**
 
-通知发送频率超过每秒10个。
+通知发送频率超过每秒10个，或者更新频率超过每秒20条。
 
 **处理步骤**
 
@@ -294,6 +294,25 @@ The notification version for this update is too low.
 **处理步骤**
 
 确认通知版本。
+
+## 1600017 没有对应的代理关系配置
+
+**错误信息**
+
+There is no corresponding agent relationship configuration.
+
+**错误描述**
+
+没有对应的代理关系配置，方法将返回该错误码。
+
+**可能原因**
+
+没有对应的代理关系配置。
+
+**处理步骤**
+
+确认代理关系配置。
+
 
 ## 2300007 网络无法访问
 

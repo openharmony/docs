@@ -537,9 +537,8 @@ struct NavigationSample {
 
 ```ts
 // MainAbility.ts
-import window from '@ohos.window'
-import display from '@ohos.display'
-import Ability from '@ohos.app.ability.Ability'
+import { window, display } from '@kit.ArkUI'
+import { Ability } from '@kit.AbilityKit'
 
 export default class MainAbility extends Ability {
   private windowObj?: window.Window

@@ -19,6 +19,8 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 在指定用户空间中新增一条关键资产，使用Promise方式异步返回结果。
 
+如果要设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Security.Asset

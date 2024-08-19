@@ -382,7 +382,7 @@ abilities示例：
 | pathStartWith | 标识uri的pathStartWith值。 | 字符串 | 可缺省，缺省值为空。 |
 | path | 标识uri的path值。 | 字符串 | 可缺省，缺省值为空。 |
 | pathRegx | 标识uri的pathRegx值。 | 字符串 | 可缺省，缺省值为空。 |
-| type | 标识uri的type值。type为MIME-TYPE属性，为资源的媒体类型，常见的类型有"audio/aac"，"text/css"等。 | 字符串 | 可缺省，缺省值为空。 |
+| type | 标识uri的type值。type为MIME-TYPE属性，为资源的媒体类型，常见的类型有"audio/aac"，"text/css"等。<br/>注意：只支持*/*、mainType/*的通配符格式，不支持mainType/subType.*的通配符格式，mainType为标准媒体类型。| 字符串 | 可缺省，缺省值为空。 |
 
 
 skills示例：

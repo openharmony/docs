@@ -77,13 +77,15 @@ switchPointColor(color: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                       |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Switch类型的圆形滑块颜色。<br/>默认值：'#ffffffff' |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Switch类型的圆形滑块颜色。<br/>默认值：'#ffffffff' |
 
 ### switchStyle<sup>12+</sup>
 
 switchStyle(value: SwitchStyle)
 
 设置Switch类型的样式。仅对type为ToggleType.Switch生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,6 +101,8 @@ contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
 
 定制Toggle内容区的方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -108,6 +112,8 @@ contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
 | modifier  | [ContentModifier\<ToggleConfiguration>](#toggleconfiguration12对象说明) | 是   | 在Toggle组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## SwitchStyle<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称              | 类型                                        | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -142,9 +148,12 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 开发者需要自定义class实现ContentModifier接口。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名  | 类型    |    默认值      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
 | isOn   | boolean| false  |  |</br>如果isOn属性没有设置默认值是false。</br>如果设置isOn属性，此值与设置isOn属性的值相同。 |
+| enabled | boolean | - | 是否可以切换状态。 |
 | triggerChange |Callback\<boolean>| - |触发switch选中状态变化。 |
 
 

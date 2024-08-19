@@ -80,7 +80,7 @@ ArkTS提供`number`和`Number`类型，任何整数和浮点数都可以被赋�
 let n1 = 3.14;
 let n2 = 3.141592;
 let n3 = .5;
-let n4 = 1e10;
+let n4 = 1e2;
 
 function factorial(n: number): number {
   if (n <= 1) {
@@ -199,17 +199,14 @@ class Cat { sleep () {}; meow () {} }
 class Dog { sleep () {}; bark () {} }
 class Frog { sleep () {}; leap () {} }
 
-type Animal = Cat | Dog | Frog | number
+type Animal = Cat | Dog | Frog
 
-let animal: Animal = new Frog();
-if (animal instanceof Frog) {
-  let frog: Frog = animal as Frog; // animal在这里是Frog类型
-  animal.leap();
-  frog.leap();
-  // 结果：青蛙跳了两次
+function foo(animal: Animal) {
+  if (animal instanceof Frog) {
+    animal.leap();  // animal在这里是Frog类型
+  }
+  animal.sleep(); // Animal具有sleep方法
 }
-
-animal.sleep (); // 任何动物都可以睡觉
 ```
 
 #### `Aliases`类型
@@ -219,7 +216,7 @@ animal.sleep (); // 任何动物都可以睡觉
 ```typescript
 type Matrix = number[][];
 type Handler = (s: string, no: number) => string;
-type Predicate <T> = (x: T) => Boolean;
+type Predicate <T> = (x: T) => boolean;
 type NullableObject = Object | null;
 ```
 
@@ -901,7 +898,7 @@ jack.getName()?.length; // 编译成功，没有运行时错误
 
 setter和getter可用于提供对对象属性的受控访问。
 
-在以下示例中，setter用于禁止将`age`属性设置为无效值：
+在以下示例中，setter用于禁止将`_age`属性设置为无效值：
 
 ```typescript
 class Person {
@@ -938,7 +935,8 @@ class RectangleSize {
   private height: number = 0
   private width: number = 0
   constructor(height: number, width: number) {
-    // ...
+    this.height = height;
+    this.width = width;
   }
   calculateArea(): number {
     return this.height * this.width;
@@ -1675,19 +1673,7 @@ async function test() {
 
 ### 顶层语句
 
-模块可以包含除return语句外的任何模块级语句。
-
-如果模块包含主函数（程序入口），则模块的顶层语句将在此函数函数体之前执行。否则，这些语句将在执行模块的其他功能之前执行。
-
-### 程序入口
-
-程序（应用）的入口是顶层主函数。主函数应具有空参数列表或只有`string[]`类型的参数。
-
-```typescript
-function main() {
-  console.log('this is the program entry');
-}
-```
+顶层语句是指在模块的最外层直接编写的语句，这些语句不被包裹在任何函数、类、块级作用域中。顶层语句包括变量声明、函数声明、表达式等。
 
 ## 关键字
 

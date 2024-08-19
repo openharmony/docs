@@ -460,6 +460,8 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 
 用于转换结果函数的类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -596,4 +598,45 @@ let arr = new collections.Array(1, 2, 3);
 let str = ArkTSUtils.ASON.stringify(arr);
 console.info(str);
 // 期望输出: '[1,2,3]'
+```
+
+### isSendable
+
+isSendable(value: Object | null | undefined): boolean
+
+该方法用于判断value是否为Sendable数据类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object \| null \| undefined  | 是 | 待校验的对象。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | value是否为Sendable数据类型，true表示value是Sendable数据类型，否则为false。|
+
+**示例：**
+
+```ts
+import { ArkTSUtils } from '@kit.ArkTS'
+
+@Sendable
+function sendableFunc()
+{
+  console.info("sendableFunc")
+}
+
+if (ArkTSUtils.isSendable(sendableFunc)) {
+  console.info("sendableFunc is Sendable");
+} else {
+  console.info("sendableFunc is not Sendable");
+}
+// 期望输出: 'SendableFunc is Sendable'
 ```

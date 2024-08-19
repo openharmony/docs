@@ -12,6 +12,8 @@
 
 ## 约束与限制
 
+- 当用户首次点击应用中的保存控件，系统将弹窗请求用户授权。如果用户点击“取消”，弹窗消失，应用无授权，用户再次点击保存控件时，将会重新弹窗；如果用户点击“允许”，弹窗消失，应用将被授予临时保存权限，此后点击该应用的保存控件将不会弹窗。
+
 - 应用在onClick()触发回调到调用媒体库特权接口的时间间隔不能大于10秒。
 
 - 用户点击一次控件，仅获取一次授权调用。
@@ -49,7 +51,8 @@
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-       context.resourceManager.getMediaContent($r('app.media.icon').id, 0)
+       // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
+       context.resourceManager.getMediaContent($r('app.media.startIcon').id, 0)
          .then(async value => {
            let media = value.buffer;
            // 写到媒体库文件中
@@ -70,7 +73,8 @@
      build() {
        Row() {
          Column({ space: 10 }) {
-           Image($r('app.media.icon'))
+           // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
+           Image($r('app.media.startIcon'))
              .height(400)
              .width('100%')
    

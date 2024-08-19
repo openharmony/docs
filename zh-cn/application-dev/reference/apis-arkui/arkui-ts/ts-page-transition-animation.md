@@ -125,7 +125,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
   pageTransition() {
     PageTransitionExit({ duration: 1200, curve: Curve.Linear })
       // 转场动画时出场动画 type 为路由类型 ，progress为从0到1逐渐变大
-      .onEnter((type: RouteType, progress: number) => {
+      .onExit((type: RouteType, progress: number) => {
         // 业务逻辑代码
       })
   }
@@ -327,6 +327,9 @@ struct PageTransitionExample {
         .width(200)
         .height(60)
         .fontSize(36)
+      Text("START")
+        .fontSize(36)
+        .textAlign(TextAlign.Center)  
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 
@@ -362,6 +365,9 @@ struct PageTransitionExample {
         .width(200)
         .height(60)
         .fontSize(36)
+      Text("END")
+        .fontSize(36)
+        .textAlign(TextAlign.Center)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 

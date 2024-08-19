@@ -18,7 +18,6 @@
     <!--Del-->
     - [Triggering Backup and Restore (for System Applications Only)](app-file-backup.md)
     <!--DelEnd-->
-  - [Authorizing File Access (ArkTS)](app-file-authorization.md)
 - User Files
   - [User File Overview](user-file-overview.md)
   - [User File URI](user-file-uri-intro.md)

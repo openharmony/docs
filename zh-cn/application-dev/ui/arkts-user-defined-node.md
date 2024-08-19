@@ -1,4 +1,4 @@
-# 自定节点概述
+# 自定义节点概述
 
 自定义节点是ArkUI框架通过接口提供了底层实体节点部分基础能力的节点对象，这些节点能够与原生控件进行混合显示。
 自定义节点的挂载和显示需要依赖[自定义占位节点](./arkts-user-defined-place-hoder.md#自定义占位节点)。现有的自定义节点包括[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)、[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)、[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)三类对象。FrameNode表示了单个的自定义组件节点，RenderNode表示更加轻量级的渲染节点，BuilderNode对象提供了能够创建、更新原生组件以及组件树的能力。

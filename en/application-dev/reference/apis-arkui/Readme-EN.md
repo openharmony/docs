@@ -243,7 +243,7 @@
       - [@ohos.arkui.advanced.Chip (Chip)](arkui-ts/ohos-arkui-advanced-Chip.md)
       - [@ohos.arkui.advanced.ComposeListItem (List)](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
       - [@ohos.arkui.advanced.ComposeTitleBar (One- or Two-Row Title Bar with Profile Picture)](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
-      - [@@ohos.arkui.advanced.Counter (Counter)](arkui-ts/ohos-arkui-advanced-Counter.md)
+      - [@ohos.arkui.advanced.Counter (Counter)](arkui-ts/ohos-arkui-advanced-Counter.md)
       - [@ohos.arkui.advanced.Dialog (Dialog Box)](arkui-ts/ohos-arkui-advanced-Dialog.md)
       - [@ohos.arkui.advanced.EditableTitleBar (Editable Title Bar)](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (Exception Prompt)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
@@ -309,18 +309,20 @@
   - Modules
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
-  - Header Files and Structs
-    - Header Files
-      - [native_dialog.h](native__dialog_8h.md)
-      - [native_gesture.h](native__gesture_8h.md)
-      - [native_interface.h](native__interface_8h.md)
-      - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
-      - [native_node.h](native__node_8h.md)
-      - [native_node_napi.h](native__node__napi_8h.md)
-      - [native_type.h](native__type_8h.md)
-      - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
-      - [ui_input_event.h](ui__input__event_8h.md)
-    - Structs
+    - [WindowManager_NativeModule](_window_manager___native_module.md)
+  - Header Files
+    - [native_dialog.h](native__dialog_8h.md)
+    - [native_gesture.h](native__gesture_8h.md)
+    - [native_interface.h](native__interface_8h.md)
+    - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
+    - [native_node.h](native__node_8h.md)
+    - [native_node_napi.h](native__node__napi_8h.md)
+    - [native_type.h](native__type_8h.md)
+    - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
+    - [ui_input_event.h](ui__input__event_8h.md)
+    - [oh_window_comm.h](oh__window__comm_8h.md)
+    - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
+  - Structs
       - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
       - [ArkUI_IntOffset](_ark_u_i___int_offset.md)

@@ -56,6 +56,8 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名       | 参数类型                                    | 必填 | 参数描述                                                     |
@@ -66,7 +68,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
 
 ### listDirection
 
@@ -112,7 +114,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。 |
+| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>默认值：0x08000000<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp |
 
 ### scrollBar
 
@@ -130,17 +132,17 @@ scrollBar(value: BarState)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
+| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Auto<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10及以上版本的默认值为BarState.Auto。 |
 
 ### cachedCount
 
 cachedCount(value: number)
 
-设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
+设置列表中ListItem/ListItemGroup的预加载数量，懒加载场景只会预加载List显示区域外cachedCount的内容，非懒加载场景会全部加载。懒加载、非懒加载都只布局List显示区域+List显示区域外cachedCount的内容。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
-单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。
+List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。
 
-多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。
+List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup时，LazyForEach会在List显示区域外上下各会创建cachedCount个ListItemGroup。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -161,8 +163,6 @@ editMode(value: boolean)
 设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3)实现删除选中的list项。
 
 从API version9开始废弃不再使用，无替代接口。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -189,7 +189,7 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring |
-| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false |
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scrollable-common.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false } |
 
 ### chainAnimation
 
@@ -350,7 +350,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
+| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
 
 ### friction<sup>10+</sup>
 
@@ -367,38 +367,6 @@ friction(value: number | Resource)
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
-
-### scrollBarWidth<sup>11+</sup>
-
-scrollBarWidth(value: number | string)
-
-设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过List组件主轴方向的高度，则滚动条的宽度会变为默认值。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                       | 必填 | 说明                                      |
-| ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
-
-### scrollBarColor<sup>11+</sup>
-
-scrollBarColor(color: Color | number | string)
-
-设置滚动条的颜色。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明           |
-| ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。 |
 
 ### contentStartOffset<sup>11+</sup>
 
@@ -432,38 +400,6 @@ contentEndOffset(value: number)
 | ------ | ------ | ---- | --------------------------------------------- |
 | value  | number | 是   | 内容区末尾偏移量。<br/>默认值：0<br/>单位：vp |
 
-### flingSpeedLimit<sup>11+</sup>
-
-flingSpeedLimit(speedLimit: number)
-
-限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名     | 类型   | 必填 | 说明                            |
-| ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
-
-### fadingEdge<sup>12+</sup>
-
-fadingEdge(value: Optional&lt;boolean&gt;)
-
-设置当前List是否开启渐隐效果。
-
-开启渐隐后，在ListItem超出List长度后，绘制与滚动轴方向相同的渐隐效果。当ListItem未超出List长度时，不绘制渐隐效果。
-
-value为false时，不启用List渐隐；value为true时，启用List渐隐。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                            |
-| ------ | ------ | ---- | ---------------------------------------------- |
-| value  | Optional&lt;boolean&gt; | 是   | fadingEdge生效时，会覆盖List的.overlay()属性，若需要overlay能力，建议在非List组件上添加.overlay()。<br/>fadingEdge生效时，建议不在List组件上设置background相关属性，会影响渐隐的显示效果。<br/>默认渐隐高度：32vp。<br/>默认值：大屏设备默认值为true，其他设备默认值为false。 |
-
 ### childrenMainSize<sup>12+</sup>
 
 childrenMainSize(value: ChildrenMainSize)
@@ -478,13 +414,15 @@ childrenMainSize(value: ChildrenMainSize)
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| value | [ChildrenMainSize](#childrenmainsize12对象说明) | 是   | 1. 作用：<br/>通过ChildrenMainSize对象向List组件准确提供所有子组件在主轴方向的大小信息，能够使List组件在子组件的主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景也能维护自己准确的滑动位置，进而使[scrollTo](ts-container-scroll.md#scrollto)能跳转到准确的指定位置，[currentOffset](ts-container-scroll.md#currentoffset)能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。<br/>2.使用约束：<br/>（1）提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知List组件。<br/>（2）当子组件是ListItemGroup时，需要根据ListItemGroup的列数，ListItemGroup中ListItem在主轴方向的间距，ListItemGroup中header,footer,ListItem的大小准确计算出ListItemGroup整体在主轴方向的大小，并提供给List组件。<br/>（3）如果子组件有ListItemGroup，必须给每一个ListItemGroup也设置childrenMainSize属性，List组件和每一个ListItemGroup组件都要通过childrenMainSize属性接口一对一绑定着一个ChildrenMainSize对象。<br/>（4）多列场景使用LazyForEach生成子组件时，需确保LazyForEach全部生成ListItemGroup组件或者全部生成ListItem组件。
+| value | [ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12对象说明) | 是   | 1. 作用：<br/>通过ChildrenMainSize对象向List组件准确提供所有子组件在主轴方向的大小信息，能够使List组件在子组件的主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景也能维护自己准确的滑动位置，进而使[scrollTo](ts-container-scroll.md#scrollto)能跳转到准确的指定位置，[currentOffset](ts-container-scroll.md#currentoffset)能够获取到当前准确的滑动位置，内置滚动条能够平滑移动无跳变。<br/>2.使用约束：<br/>（1）提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知List组件。<br/>（2）当子组件是ListItemGroup时，需要根据ListItemGroup的列数，ListItemGroup中ListItem在主轴方向的间距，ListItemGroup中header,footer,ListItem的大小准确计算出ListItemGroup整体在主轴方向的大小，并提供给List组件。<br/>（3）如果子组件有ListItemGroup，必须给每一个ListItemGroup也设置childrenMainSize属性，List组件和每一个ListItemGroup组件都要通过childrenMainSize属性接口一对一绑定着一个ChildrenMainSize对象。<br/>（4）多列场景使用LazyForEach生成子组件时，需确保LazyForEach全部生成ListItemGroup组件或者全部生成ListItem组件。
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
-该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                        |
 | ------ | ------ | ------------------------- |
@@ -494,9 +432,11 @@ childrenMainSize(value: ChildrenMainSize)
 
 ## StickyStyle<sup>9+</sup>枚举说明
 
-该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                                 |
 | ------ | ------ | ---------------------------------- |
@@ -508,11 +448,13 @@ childrenMainSize(value: ChildrenMainSize)
 
 设置列表项滚动结束对齐效果。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 左右和上下这种两端对齐的样式：当列表位移至末端，则需要将末端的item完整显示，同时不能露出边界空白区域，此时另一端可以出现不限位对齐的现象。
 
 只支持item等高场景限位，不等高场景可能存在不准确的情况。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -526,11 +468,15 @@ childrenMainSize(value: ChildrenMainSize)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 类型     | 必填 | 说明                   |
 | :------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
 
 ## 事件
+
+除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
 
 ### onItemDelete<sup>(deprecated)</sup>
 
@@ -698,7 +644,7 @@ onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) 
 
 | 参数名    | 类型                                                      | 必填 | 说明                   |
 | --------- | --------------------------------------------------------- | ---- | ---------------------- |
-| event     | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。         |
+| event     | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。         |
 | itemIndex | number                                                    | 是   | 被拖拽列表元素索引值。 |
 
 ### onItemDragEnter<sup>8+</sup>
@@ -715,7 +661,7 @@ onItemDragEnter(event: (event: ItemDragInfo) => void)
 
 | 参数名 | 类型                                                      | 必填 | 说明           |
 | ------ | --------------------------------------------------------- | ---- | -------------- |
-| event  | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+| event  | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
 
 ### onItemDragMove<sup>8+</sup>
 
@@ -731,7 +677,7 @@ onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: numb
 
 | 参数名      | 类型                                                      | 必填 | 说明           |
 | ----------- | --------------------------------------------------------- | ---- | -------------- |
-| event       | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+| event       | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
 | itemIndex   | number                                                    | 是   | 拖拽起始位置。 |
 | insertIndex | number                                                    | 是   | 拖拽插入位置。 |
 
@@ -749,7 +695,7 @@ onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 | 参数名    | 类型                                                      | 必填 | 说明                       |
 | --------- | --------------------------------------------------------- | ---- | -------------------------- |
-| event     | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。             |
+| event     | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。             |
 | itemIndex | number                                                    | 是   | 拖拽离开的列表元素索引值。 |
 
 ### onItemDrop<sup>8+</sup>
@@ -768,7 +714,7 @@ onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, 
 
 | 参数名      | 类型                                                      | 必填 | 说明           |
 | ----------- | --------------------------------------------------------- | ---- | -------------- |
-| event       | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+| event       | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
 | itemIndex   | number                                                    | 是   | 拖拽起始位置。 |
 | insertIndex | number                                                    | 是   | 拖拽插入位置。 |
 | isSuccess   | boolean                                                   | 是   | 是否成功释放   |
@@ -782,6 +728,8 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 从API version 12开始废弃不再使用，推荐使用[onDidScroll](#ondidscroll12)事件替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -798,17 +746,19 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | Optional&lt;[OnWillScrollCallback](#onwillscrollcallback12对象说明)&gt; | 是 | 列表滑动前触发的回调。 |
+| handler | Optional&lt;[OnWillScrollCallback](ts-container-scrollable-common.md#onwillscrollcallback12)&gt; | 是 | 列表滑动前触发的回调。 |
 
 > **说明：** 
 > 
-> 调用ScrollEdge和不带动画的ScrollToIndex时,不触发onWillScroll。
+> 调用ScrollEdge和不带动画的ScrollToIndex时，不触发onWillScroll。
 
 ### onDidScroll<sup>12+</sup>
 onDidScroll(handler: OnScrollCallback)
@@ -817,13 +767,15 @@ onDidScroll(handler: OnScrollCallback)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](#onscrollcallback12对象说明) | 是 | 列表滑动时触发的回调。 |
+| handler | [OnScrollCallback](ts-container-scrollable-common.md#onscrollcallback12) | 是 | 列表滑动时触发的回调。 |
 
 ### onScrollVisibleContentChange<sup>12+</sup>
 onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
@@ -834,6 +786,8 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -842,19 +796,13 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 | ------ | ------ | ------ | ------|
 | handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12对象说明) | 是 | 当前显示内容发生改变的时候触发回调。 |
 
-## OnScrollCallback<sup>12+</sup>对象说明
-列表滑动时触发的回调  
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| scrollOffset | number | 是 | 每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
-
 ## ScrollState枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -862,48 +810,6 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 | Scroll |  1  | 滚动状态。手指拖动List，拖动滚动条和滚动鼠标滚轮时触发。|
 | Fling  |  2  | 惯性滚动状态。动画控制的滚动都会触发。包括快速划动松手后的惯性滚动， <br/>划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动， <br/>使用滚动控制器提供的带动画的方法控制的滚动。 |
 
-
-
-## OnWillScrollCallback<sup>12+</sup>对象说明
-
-type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => void | ScrollResult
-
-列表滑动前触发的回调。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| scrollOffset | number | 是 | 每帧滑动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](#scrollstate枚举说明) | 是 | 当前滑动状态。 |
-| scrollSource | [ScrollSource](#scrollsource12枚举说明) | 是 | 当前滑动操作的来源。 |
-
-**返回值：** 
-
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| void \| [ScrollResult](#scrollresult12对象说明) |  返回ScrollResult时按照开发者指定的偏移量滑动；不返回时按回调参数scrollOffset滑动。 |
-
-## ScrollSource<sup>12+</sup>枚举说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     |  枚举值  | 描述                                       |
-| ------ | ------ | ---------------------------------------- |
-| DRAG   |  0  | 拖拽事件。 |
-| FLING |  1  | 拖拽结束之后的惯性滑动。 |
-| EDGE_EFFECT  |  2  | EdgeEffect.Spring的边缘滚动效果。 |
-| OTHER_USER_INPUT  |  3  | 除拖拽外的其他用户输入，如鼠标滚轮、键盘事件等。 |
-| SCROLL_BAR  |  4  | 滚动条的拖拽事件。 |
-| SCROLL_BAR_FLING  |  5  | 滚动条拖拽结束后的带速度的惯性滑动。 |
-| SCROLLER  |  6  | Scroller的不带动效方法。 |
-| SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
-
-## ScrollResult<sup>12+</sup>对象说明
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| offsetRemain | number | 是 | 将要滑动偏移量，单位vp。 |
 
 ## ListScroller<sup>11+</sup>对象说明
 
@@ -929,6 +835,8 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 获取[ListItemGroup](ts-container-listitemgroup.md)中的[ListItem](ts-container-listitem.md)的大小和相对于List的位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -970,6 +878,8 @@ scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名                | 参数类型 | 必填 | 参数描述                                                     |
@@ -996,6 +906,8 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
@@ -1017,9 +929,14 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 > - ListScroller必须绑定到List组件上。
 
 ## OnScrollVisibleContentChangeCallback<sup>12+</sup>对象说明
+
+type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end: VisibleListContentInfo) => void
+
 有子组件划入或划出List显示区域时触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -1030,15 +947,19 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | index | number | 是 | List显示区域内ListItem或ListItemGroup的索引值。 |
 | itemGroupArea | [ListItemGroupArea](#listitemgrouparea12枚举说明) | 否 | 如果当前可视页面的上边或下边在某个ListItemGroup之中，将会显示它所处的位置。 |
-| itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Star或End的ListItem在Group中的索引。 |
+| itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Start或End的ListItem在Group中的索引。 |
 
 ## ListItemGroupArea<sup>12+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -1046,115 +967,6 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 | IN_LIST_ITEM_AREA |  1  | 当前页面可视边处于ListItem位置。 |
 | IN_HEADER_AREA |  2  | 当前页面可视边处于header位置。 |
 | IN_FOOTER_AREA |  3  | 当前页面可视边处于footer位置。 |
-
-## ChildrenMainSize<sup>12+</sup>对象说明
-
-维护List组件或ListItemGroup组件的子组件在主轴方向的大小信息，仅支持一对一绑定到List组件或ListItemGroup组件。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-### constructor<sup>12+</sup>
-
-constructor(childDefaultSize: number): void
-
-ChildrenMainSize有参构造函数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 名称   | 类型                            | 必填   | 描述                   |
-| ---- | ----------------------------- | ---- | -------------------- |
-| childDefaultSize | number | 是    | 子组件在主轴方向的默认大小。<br/>单位：vp<br/>**说明：** <br/>必须是有限的非负数值，否则抛出异常。|
-
-
-### childDefaultSize<sup>12+</sup>
-
-set childDefaultSize(value: number): void
-
-修改子组件在主轴方向的默认大小。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 名称   | 类型                            | 必填   | 描述                   |
-| ---- | ----------------------------- | ---- | -------------------- |
-| value | number | 是    | 子组件在主轴方向的默认大小。<br/>单位：vp<br/>**说明：** <br/>必须是有限的非负数值，否则抛出异常。|
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-
-get childDefaultSize(): number
-
-获取子组件在主轴方向的默认大小。
-
-**返回值：** 
-
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| number | 子组件在主轴方向的默认大小。<br/>单位：vp |
-
-### splice<sup>12+</sup>
-
-splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
-
-批量增删改子组件在主轴方向的大小信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 名称   | 类型                            | 必填   | 描述                   |
-| ---- | ----------------------------- | ---- | -------------------- |
-| start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
-| deleteCount | number | 否    | 从start开始删除的大小信息的数量。<br/>**说明：** <br/>1.  必须是有限的非负数值，否则处理为0。<br/>2. 非整数会被截断为整数。<br/>3. start + deleteCount - 1可以超过最大索引值，会删除索引值start开始之后的所有子组件的大小信息。 |
-| childrenSize | Array\<number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
-
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-
-
-> **说明：**
->
-> - 如果仅使用start参数，表示删除索引值start及之后的子组件的大小信息。
-> - 如果仅使用start和deleteCount参数，表示删除索引值start开始的deleteCount数量的子组件的大小信息。一般在删除子组件时使用。
-> - 如果使用3个参数，表示删除索引值start开始的deleteCount数量的子组件的大小信息，再在start位置插入childrenSize中所有的大小信息。一般在增加子组件或者批量更新子组件主轴方向大小的时候使用，如果仅是增加子组件，deleteCount为0，childrenSize的元素数量和增加子组件的个数应该相等；如果仅是批量更新子组件主轴方向的大小，childrenSize的元素数量应该和deleteCount相等，即为批量更新的数量。
-> - 如果想要通知某个子组件的大小为默认大小，childrenSize中对应的值不应该给一个有限的非负值，而应该给NaN，任意负值等能被处理成默认大小的值。
-
-### update<sup>12+</sup>
-
-update(index: number, childSize: number): void
-
-修改指定索引值对应的子组件的主轴方向的大小信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 名称   | 类型                            | 必填   | 描述                   |
-| ---- | ----------------------------- | ---- | -------------------- |
-| index | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
-| childSize | number | 是    | 要更新成的大小。<br/>单位：vp <br/>**说明：** <br/>1.数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ## 示例
 

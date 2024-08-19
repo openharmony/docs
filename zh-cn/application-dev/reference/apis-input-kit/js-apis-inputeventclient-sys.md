@@ -263,10 +263,11 @@ injectTouchEvent(touchEvent: TouchEventData): void
 **示例：**
 
 ```js
-import { TouchEvent } from '@kit.InputKit';
+import { Touch, TouchEvent } from '@kit.InputKit';
+import { inputEventClient } from '@kit.InputKit';
 
 try {
-  let touchEvent: touchEvent.Touch = {
+  let touchEvent: Touch = {
     id: 1,
     pressedTime: 1,
     screenX: 0,
@@ -287,7 +288,7 @@ try {
     toolType: 0,
   }
 
-  let touchEventUpData: touchEvent.TouchEvent = {
+  let touchEventUpData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,
@@ -304,7 +305,7 @@ try {
   }
   inputEventClient.injectTouchEvent(touchEventUp);
 
-  let touchEventDownData: touchEvent.TouchEvent = {
+  let touchEventDownData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,

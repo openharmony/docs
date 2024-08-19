@@ -78,7 +78,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | displayX<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | displayY<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | screenX<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
-| screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
+| screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowY代替。   |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
 

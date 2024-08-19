@@ -11,7 +11,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
 1. Create an **audioVolumeGroupManager** object.
      
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
 
    let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
    async function loadVolumeGroupManager() { // Create an audioVolumeGroupManager object.
@@ -64,7 +64,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
 Refer to the sample code below to complete the process of muting and unmuting the microphone.
 
 ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
    
    let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
    
@@ -109,4 +109,4 @@ Refer to the sample code below to complete the process of muting and unmuting th
    }
 
 ```
-<!--DelEnd--> 
+<!--DelEnd-->

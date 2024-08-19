@@ -28,7 +28,7 @@ Checks whether the application specified by **bundleName** is in the idle state.
 | Name       | Type                          | Mandatory  | Description                                      |
 | ---------- | ---------------------------- | ---- | ---------------------------------------- |
 | bundleName | string                       | Yes   | Bundle name of an application.                          |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the specified **bundleName** is valid, the idle state of the application is returned; otherwise, **null** is returned.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the specified **bundleName** is valid, the idle state of the application is returned; otherwise, **null** is returned. |
 
 **Example**
 
@@ -56,13 +56,13 @@ Checks whether the application specified by **bundleName** is in the idle state.
 
 | Name       | Type    | Mandatory  | Description            |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | Yes   | Bundle name of an application.|
+| bundleName | string | Yes   | Bundle name of an application. |
 
 **Return value**
 
 | Type                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the specified **bundleName** is valid, the idle state of the application is returned; otherwise, **null** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If the specified **bundleName** is valid, the idle state of the application is returned; otherwise, **null** is returned. |
 
 **Example**
 
@@ -88,7 +88,7 @@ Queries the priority group of this application. This API uses a promise to retur
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the priority group.|
+| Promise&lt;number&gt; | Promise used to return the priority group. |
 
 **Example**
 
@@ -114,7 +114,7 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 | Name     | Type                   | Mandatory  | Description                        |
 | -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the priority group.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the priority group. |
 
 **Example**
 
@@ -144,7 +144,7 @@ Queries events of this application based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the events obtained.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the events obtained. |
 
 **Example**
 
@@ -176,14 +176,14 @@ Queries events of this application based on the specified start time and end tim
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time, in milliseconds.|
-| end   | number | Yes   | End time, in milliseconds.|
+| begin | number | Yes   | Start time, in milliseconds. |
+| end   | number | Yes   | End time, in milliseconds. |
 
 **Return value**
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the events obtained.|
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the events obtained. |
 
 **Example**
 
@@ -211,10 +211,10 @@ Provides the usage duration information of an application.
 
 | Name                     | Type    | Mandatory  | Description                                      |
 | ------------------------ | ------ | ---- | ---------------------------------------- |
-| bundleName               | string | Yes   | Bundle name of an application.                                   |
-| abilityPrevAccessTime    | number | Yes   | Last time when the application was used.                            |
-| abilityInFgTotalTime     | number | Yes   | Total time that the application runs in the foreground.                            |
-| id                       | number | No   | User ID.|
+| bundleName               | string | No   | Bundle name of an application.                                   |
+| abilityPrevAccessTime    | number | No   | Last time when the application was used.                            |
+| abilityInFgTotalTime     | number | No   | Total time that the application runs in the foreground.                            |
+| id                       | number | Yes   | User ID.|
 | abilityPrevSeenTime      | number | No   | Last time when the application was visible in the foreground.|
 | abilitySeenTotalTime     | number | No   | Total time that the application is visible in the foreground.|
 | fgAbilityAccessTotalTime | number | No   | Total time that the application accesses the foreground.|
@@ -232,9 +232,9 @@ Merges the device usage statistics of applications with the same bundle name.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes| Device usage statistics to merge.|
+| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes | Device usage statistics to merge.|
 
 ## BundleActiveState
 
@@ -246,9 +246,9 @@ Provides the usage duration information of applications.
 
 | Name                  | Type    | Mandatory  | Description                                      |
 | --------------------- | ------ | ---- | ---------------------------------------- |
-| bundleName            | string | Yes   | Bundle name of an application.                                   |
-| stateType             | number | Yes   | Application event type.                                 |
-| stateOccurredTime     | number | Yes   | Timestamp when the application event occurs.                             |
+| bundleName            | string | No   | Bundle name of an application.                                   |
+| stateType             | number | No   | Application event type.                                 |
+| stateOccurredTime     | number | No   | Timestamp when the application event occurs.                             |
 | appUsagePriorityGroup | number | No   | Usage priority group of the application.|
 | indexOfLink           | string | No   | Shortcut ID.|
 | nameOfClass           | string | No   | Class name.|
@@ -261,7 +261,7 @@ Provides the usage duration information of applications.
 
 | Name                           | Type                                      | Mandatory  | Description            |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
-| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | Yes   | Usage duration information by application.|
+| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | Yes   | Usage duration information by application. |
 
 ## IntervalType
 
@@ -271,7 +271,7 @@ Enumerates the interval types for querying the application usage duration.
 
 | Name          | Value | Description                                      |
 | ------------ | ---- | ---------------------------------------- |
-| BY_OPTIMIZED | 0    | The system obtains the application usage duration statistics in the specified time frame at the interval the system deems appropriate.|
+| BY_OPTIMIZED | 0    | The system obtains the application usage duration statistics in the specified time frame at the interval the system deems appropriate. |
 | BY_DAILY     | 1    | The system obtains the application usage duration statistics in the specified time frame on a daily basis.             |
 | BY_WEEKLY    | 2    | The system obtains the application usage duration statistics in the specified time frame on a weekly basis.             |
 | BY_MONTHLY   | 3    | The system obtains the application usage duration statistics in the specified time frame on a monthly basis.             |

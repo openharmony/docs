@@ -63,13 +63,12 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
 - Application code:
 
   ```ts
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct Index {
-
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Row() {
@@ -85,18 +84,18 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
   ```
 
 ## Initiating a Print Task Through the Application API
-On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter11) to create a print adapter and pass the adapter to the **print** API to initiate printing.
+On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter) to create a print adapter and pass the adapter to the **print** API to initiate printing.
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
-import print from '@ohos.print'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit'
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -106,8 +105,7 @@ struct WebComponent {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
             print.print('example_jobid', webPrintDocadapter, null, getContext());
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })

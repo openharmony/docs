@@ -5,119 +5,16 @@
 >Repeat从API version 12开始支持。
 >
 >当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
->
->**注意：**
->
->Repeat组件不完全兼容V1装饰器，使用V1装饰器存在渲染异常，不建议开发者使用。
+
+API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
 
 Repeat组件不开启virtualScroll开关时，Repeat基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
 
 Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
 
-## 接口描述
-
-### Repeat组件构造
-
-```ts
-declare const Repeat: <T>(arr: Array<T>) => RepeatAttribute<T>
-```
-
-参数说明：
-
-| 参数名 | 参数类型   | 是否必填 | 参数描述                                               |
-| ------ | ---------- | -------- | ------------------------------------------------------ |
-| arr    | Array\<T\> | 是       | 数据源，为`Array<T>`类型的数组，由开发者决定数据类型。 |
-
-### Repeat组件属性
-
-```ts
-declare class RepeatAttribute<T> {
-  each(itemGenerator: (repeatItem: RepeatItem<T>) => void): RepeatAttribute<T>;
-  key(keyGenerator: (item: T, index: number) => string): RepeatAttribute<T>;
-  virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute<T>;
-  template(type: string, itemBuilder: RepeatItemBuilder<T>, templateOptions?: TemplateOptions): RepeatAttribute<T>;
-  templateId(typedFunc: TemplateTypedFunc<T>): RepeatAttribute<T>;
-}
-```
-
-参数说明：
-
-| 属性名        | 参数类型                                                     | 参数描述                                                     |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| each          | itemGenerator: (repeatItem: RepeatItem\<T\>) => void         | 组件生成函数。<br/>**说明：**<br/>- `each`属性必须有，否则运行时会报错。<br/>- `itemGenerator`的参数为`RepeatItem`，该参数将`item`和`index`结合到了一起，请勿将`RepeatItem`参数拆开使用。 |
-| key           | keyGenerator: (item: T, index: number) => string             | 键值生成函数。<br/>- 为数组中的每个元素创建对应的键值。<br/>- `item`：`arr`数组中的数据项。<br/>- `index`：`arr`数组中的数据项索引。 |
-| virtualScroll | virtualScrollOptions?: VirtualScrollOptions                  | `Repeat`开启虚拟滚动。<br/>-`virtualScrollOptions`：虚拟滚动配置项。 |
-| template      | type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: TemplateOptions | 复用模板。<br/>未开启virtualScroll时暂不支持，复用有问题。<br/>-`type`：当前模板类型。<br/>-`itemBuilder`：组件生成函数。<br/>-`templateOptions`：当前模板配置项。 |
-| templateId    | typedFunc: TemplateTypedFunc\<T\>                              | 为当前数据项分配模板类型。<br/>-`typedFunc`：生成当前数据项对应的模板类型。<br/>template和templateId匹配不上的数据项走默认生成函数each。 |
-
-### RepeatItem类型
-
-```ts
-interface RepeatItem<T> {
-  item: T,
-  index: number
-}
-```
-
-属性说明：
-
-| 属性名 | 类型   | 是否必填 | 描述                                         |
-| ------ | ------ | -------- | -------------------------------------------- |
-| item   | T      | 是       | arr中每一个数据项。T为开发者传入的数据类型。 |
-| index  | number | 是       | 当前数据项对应的索引。                       |
-
-### VirtualScrollOptions类型
-
-```
-interface VirtualScrollOptions {
-  totalCount?: number;
-}
-```
-
-属性说明：
-
-| 属性名     | 类型   | 是否必填 | 描述                                                         |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| totalCount | number | 否       | 定义数据源长度为arrLength，以下为totalCount的判断规则：<br/>1) totalCount不设置 \|\| totalCount不是整数 \|\| totalCount <= 0 \|\| totalCount == arrLength时，totalCount为数据源长度，列表正常滚动<br/>2) 0 < totalCount < arrLength时，界面中数据源被截断，只渲染“totalCount”个数据<br/>3) totalCount > arrLength时，滚动条样式正常，无数据项的位置显示空白，当滚动动画停止时，滚动条停留在最后一个数据项的位置。这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
-
-### RepeatItemBuilder类型
-
-```
-declare type RepeatItemBuilder<T> = (repeatItem: RepeatItem<T>) => void;
-```
-
-参数说明：
-
-| 参数名     | 类型          | 是否必填      | 描述                                    |
-| ---------- | ------------- | --------------------------------------- | --------------------------------------- |
-| repeatItem | RepeatItem\<T\> | 是 | 将item和index结合到一起的一个状态变量。 |
-
-### TemplateOptions类型
-
-```
-interface TemplateOptions {
-  cachedCount?: number
-}
-```
-
-属性说明：
-
-| 属性名      | 类型   | 是否必填 | 描述                                                         |
-| ----------- | ------ | -------- | ------------------------------------------------------------ |
-| cachedCount | number | 否       | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，默认值为1，仅在开启virtualScroll后生效。<br/>将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者依据具体情况自行把控。<br/>each方法的cachedCount默认为1，目前不能修改。 |
-
-### TemplateTypedFunc类型
-
-```
-declare type TemplateTypedFunc<T> = (item : T, index : number) => string;
-```
-
-参数说明：
-
-| 参数名 | 类型   | 是否必填 | 描述                                         |
-| ------ | ------ | -------- | -------------------------------------------- |
-| item   | T      | 是       | arr中每一个数据项。T为开发者传入的数据类型。 |
-| index  | number | 是       | 当前数据项对应的索引。                       |
+> **注意：**
+>
+> Repeat组件的virtualScroll场景不完全兼容V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用V1装饰器和virtualScroll场景。
 
 ## 使用限制
 
@@ -127,6 +24,8 @@ declare type TemplateTypedFunc<T> = (item : T, index : number) => string;
 - 允许Repeat包含在if/else条件渲染语句中，也允许Repeat中出现if/else条件渲染语句。
 - Repeat内部使用键值作为标识，因此键值生成器必须针对每个数据生成唯一的值，如果多个数据同一时刻生成的键值相同，会导致UI组件渲染出现问题。
 - 未开启virtualScroll目前暂时不支持template模板，复用会有问题。
+- 当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递RepeatItem.item或RepeatItem.index，将会出现UI渲染异常。
+- virtualScroll场景下，自定义了totalCount值。当数据源长度发生改变时，需要手动更新totalCount值，否则会出现列表显示区域渲染异常。
 
 ## 键值生成规则
 
@@ -180,13 +79,19 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ![Repeat-Update1](./figures/Repeat-Update1.PNG)
 
-此时Repeat会通知父组件重新布局，首先会一一对比key值，若和原节点key值相同且templateId相同，则复用该节点，更新index和data，若key值不同，则复用相同的templateId缓存池中的节点，并更新key、index和data。
+此时Repeat会通知父组件重新布局，逐一对比templateId值，若和原节点templateId值相同，则复用该节点，更新key、index和data，若templateId值发生变化，则复用相应的templateId缓存池中的节点，并更新key、index和data。
 
 ![Repeat-Update2](./figures/Repeat-Update2.PNG)
 
-上图显示node13节点更新了数据data和index，node14更新了templateId，node15由于key值发生变化，于是从缓存池中取走一个复用，并同步更新key、index、data，node16和node17均只更新index。index=17的节点是新的，从缓存池中复用。
+上图显示node13节点更新了数据data和index；node14更新了templateId和index，于是从缓存池中取走一个复用；node15由于key值发生变化并且templateId不变，复用自身节点并同步更新key、index、data；node16和node17均只更新index。index=17的节点是新的，从缓存池中复用。
 
 ![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
+
+## cachedCount规则
+
+首先需要明确List/Grid `.cachedCount`属性方法和Repeat `cachedCount`的区别。这两者都是为了平衡性能和内存，但是其含义是不同的。
+- List/Grid `.cachedCount`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
+- template  `cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
 
 ## 使用场景
 
@@ -435,11 +340,11 @@ onUpdateNode [Hello 10] -> [3_new item]
 
 ```
 // 当前屏幕两次修改
-onUpdateNode [Hello 14] -> [2_new item]
-onUpdateNode [1_new item] -> [3_new item]
+onUpdateNode [1_new item] -> [2_new item]
+onUpdateNode [2_new item] -> [3_new item]
 ```
 
-由于屏幕上方/下方的数据不存在渲染节点，所以不会发生节点复用。在当前屏幕修改节点时，由于节点key值改变，进而重新渲染，将从缓存池中寻找缓存节点进行复用。
+由于屏幕上方/下方的数据不存在渲染节点，所以不会发生节点复用。在当前屏幕修改节点时，由于节点templateId值没有改变，所以复用自身节点，节点id不变。
 
 **交换数据**
 
@@ -744,13 +649,13 @@ export struct RepeatTemplateSingle {
 
 ![Repeat-case1-Succ](./figures/Repeat-Case1-Succ.gif)
 
-### totalCount值大于页面数据源长度
+### totalCount值大于数据源长度
 
-当数据源总长度很大时，会使用数据源懒加载的方式提高加载速度，这导致了页面上加载的数据长度很可能是小于总长度的。为了使Repeat显示正确的滚动条样式，需要将数据总长度赋值给totalCount，当totalCount大于当前页面加载的数据长度时，会出现循环滚动的异常现象。异常现象示例：
+当数据源总长度很大时，会使用懒加载的方式先加载一部分数据，为了使Repeat显示正确的滚动条样式，需要将数据总长度赋值给totalCount，即数据源全部加载完成前，totalCount大于array.length。
 
-![Repeat-Case2-Error](./figures/Repeat-Case2-Error.gif)
+在Repeat组件初始化时，应用必须提供足够的数据项用于渲染。在父组件容器滚动过程中，应用需要在渲染之前进行后续数据项的请求逻辑，保证应用在列表滑动的过程中不会出现空白，直到数据源全部加载完成。
 
-为了避免这个问题，开发者需要在数据滚动的事件中加入懒加载数据的请求逻辑，保证在列表滑动的过程中不会出现空白，直到数据源全部加载完成。示例代码如下：
+上述规范可以通过实现父组件List/Grid的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
 
 ```ts
 @ObservedV2

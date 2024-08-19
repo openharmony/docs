@@ -542,7 +542,7 @@ class EntryAbility extends UIAbility {
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误；如果动态库无法加载会开库失败，返回错误。<br/>动态库名需为完整路径，用于被sqlite加载，样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误；动态库名需为本应用沙箱路径下或系统路径下的动态库，如果动态库无法加载会开库失败，返回错误。<br/>动态库名需为完整路径，用于被sqlite加载，样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -578,7 +578,7 @@ class EntryAbility extends UIAbility {
 
 ## Asset<sup>10+</sup>
 
-记录资产附件（文件、图片、视频等类型文件）的相关信息。资产类型的相关接口暂不支持Datashare。
+记录资产附件（文件、图片、视频等类型文件）的相关信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -717,8 +717,6 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 描述订阅类型。请使用枚举名称而非枚举值。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
@@ -744,8 +742,6 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 | 名称                         | 值   | 说明                         |
 | -------------------------- | --- | -------------------------- |
 | DATA_CHANGE  | 0   | 表示是数据发生变更。   |
@@ -768,8 +764,6 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 ## DistributedType<sup>10+</sup>
 
 描述表的分布式类型的枚举。请使用枚举名称而非枚举值。
-
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 | 名称                | 值   | 说明                                                                                                 |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
@@ -2039,10 +2033,10 @@ predicates.notLike("NAME", "os");
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称         | 类型            | 只读       | 必填 | 说明                             |
+| 名称         | 类型            | 只读       | 可选 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
-| version<sup>10+</sup>  | number | 否 | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
-| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | 是 | 是 | 用于获取数据库是否进行过重建或修复。 |
+| version<sup>10+</sup>  | number | 否 | 否   | 设置和获取数据库版本，值为大于0的正整数。       |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | 是 | 否 | 用于获取数据库是否进行过重建或修复。 |
 
 **错误码：**
 
@@ -3534,7 +3528,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   })
 }
@@ -3587,7 +3581,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   })
 }
@@ -3643,7 +3637,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3702,7 +3696,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3777,7 +3771,7 @@ if(store != undefined && deviceId != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
@@ -3857,7 +3851,7 @@ if(store != undefined && deviceId != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
@@ -3909,7 +3903,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   })
 }
@@ -3960,7 +3954,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   })
 }
@@ -4014,7 +4008,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4073,7 +4067,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   } catch (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4463,7 +4457,6 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801          | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Database corrupted.                                          |
 | 14800014     | Already closed.                                              |
@@ -4653,7 +4646,7 @@ if(store != undefined) {
 beginTransaction():void
 
 在开始执行SQL语句之前，开始事务。
-此接口不支持在多进程或多线程中使用。
+此接口不允许嵌套事务，且不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4777,7 +4770,7 @@ if(store != null) {
 commit():void
 
 提交已执行的SQL语句。
-此接口不支持在多进程或多线程中使用。
+此接口不允许嵌套事务，且不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4902,7 +4895,7 @@ if(store != null) {
 rollBack():void
 
 回滚已经执行的SQL语句。
-此接口不支持在多进程或多线程中使用。
+此接口不允许嵌套事务，且不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5765,8 +5758,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 
 手动执行对所有分布式表的端云同步，使用callback异步回调。使用该接口需要实现云服务功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **参数：**
@@ -5783,7 +5774,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 
 | **错误码ID** | **错误信息**        |
 |-----------|-------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.     |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. 5. The callback must be a function. |
 | 801       | Capability not supported.       |
 | 14800014  | Already closed.        |
@@ -5810,8 +5800,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 
 手动执行对所有分布式表的端云同步，使用Promise异步回调。使用该接口需要实现云服务功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **参数：**
@@ -5833,7 +5821,6 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 
 | **错误码ID** | **错误信息**    |
 |-----------|------------------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC. |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. |
 | 801       | Capability not supported.   |
 | 14800014  | Already closed.           |
@@ -5860,8 +5847,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 手动执行对指定表的端云同步，使用callback异步回调。使用该接口需要实现云服务功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **参数：**
@@ -5879,7 +5864,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 | **错误码ID** | **错误信息**                                                                                                                                                                                                                  |
 |-----------|-------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.  |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.   |
 | 14800014  | Already closed.   |
@@ -5908,8 +5892,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 手动执行对指定表的端云同步，使用Promise异步回调。使用该接口需要实现云服务功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **参数：**
@@ -5932,7 +5914,6 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 | **错误码ID** | **错误信息**     |
 |-----------|---------------|
-| 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.   |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type |
 | 801       | Capability not supported.    |
 | 14800014  | Already closed.  |
@@ -7025,7 +7006,7 @@ lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                                                     |
 |-----------|----------------------------------------------------------------------------------------------|
-| 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.                                                                                 |
 | 14800011  | Database corrupted.                                                                          |
 | 14800014  | Already closed.                                                                              |
@@ -7092,7 +7073,7 @@ unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
@@ -7151,7 +7132,7 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
@@ -7195,7 +7176,7 @@ if(store != undefined) {
       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
     }
-    // 释放数据集的内存
+    // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -7249,6 +7230,7 @@ if(store != undefined) {
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -8267,7 +8249,7 @@ if(resultSet != undefined) {
 
 close(): void
 
-关闭结果集。
+关闭结果集，若不关闭可能会引起fd泄露和内存泄露。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

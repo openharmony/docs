@@ -1,6 +1,8 @@
 # 组件快捷键事件
 
-开发者可以设置组件的自定义组合键，组件在未获得焦点状态下也可以响应自定义组合键，每个组件可以设置多个组合键。
+开发者可以设置组件的自定义组合键，每个组件可以设置多个组合键。
+
+即使组件未获焦或是在所在页面未展示，只要已经挂载到获焦窗口的组件树上就会响应自定义组合键。
 
 开发者在设置组合键的同时可以设置自定义事件，组合键按下时，触发该自定义事件，若没有设置自定义事件，则组合键行为与click行为一致。
 
@@ -64,10 +66,10 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | F11  | 表示键盘上F11功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | F12  | 表示键盘上F12功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | TAB<sup>12+</sup>  | 表示键盘上TAB功能键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| OPAD_UP<sup>12+</sup>   | 表示键盘上UP方向键。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| OPAD_DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| OPAD_LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| OPAD_RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DPAD_UP<sup>12+</sup>   | 表示键盘上UP方向键。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DPAD_DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DPAD_LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DPAD_RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 快捷键使用注意事项
 

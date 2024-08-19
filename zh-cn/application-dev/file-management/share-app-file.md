@@ -45,7 +45,7 @@
        let pathInSandbox = this.context.filesDir + "/test1.txt";
        // 将沙箱路径转换为uri
        let uri = fileUri.getUriFromPath(pathInSandbox);
-       // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test.txt"
+       // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test1.txt"
      }
    }
    ```

@@ -72,7 +72,6 @@
       } catch (err) {
         hilog.error(DOMAIN_NUMBER, TAG, 'createDeviceManager err: ' + JSON.stringify(err));
       }
-      ;
     }
 
     function getRemoteDeviceId(): string | undefined {
@@ -764,7 +763,6 @@
             return true;
           };
         }
-        ;
 
         function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
           hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
@@ -789,8 +787,7 @@
             } catch (error) {
               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
             }
-            ;
-          };
+          }
 
           //...
           releaseCall(): void {
@@ -803,8 +800,7 @@
             } catch (error) {
               hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
             }
-            ;
-          };
+          }
 
           //...
           onDestroy(): void {
@@ -815,9 +811,8 @@
             } catch (error) {
               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
             }
-            ;
-          };
-        };
+          }
+        }
         ```
      
 4. 获取Caller接口，访问被调用端UIAbility。
@@ -903,7 +898,6 @@
                         } catch (error) {
                           hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
                         }
-                        ;
                       }
                     }).catch((error: BusinessError) => {
                       hilog.error(DOMAIN_NUMBER, TAG, `get remote caller failed with ${error}`);
@@ -1036,7 +1030,6 @@
             } catch (error) {
               hilog.info(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
             }
-            ;
           }
           // ...
         }
@@ -1065,7 +1058,6 @@
         } catch (error) {
           hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
         }
-        ;
       }
     }
     ```

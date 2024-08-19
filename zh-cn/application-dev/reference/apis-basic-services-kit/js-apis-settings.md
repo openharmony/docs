@@ -76,12 +76,10 @@ import settings from '@ohos.settings';
 | SETUP_WIZARD_FINISHED            | string | 是   | 是   | 是否已运行启动向导。<br>值为0，表示启动向导尚未运行；<br/>值不是0，表示启动向导已运行。 |
 | END_BUTTON_ACTION                | string | 是   | 是   | 在用户不在呼叫中时，用户按下呼叫结束按钮会发生的情况。<br/>值为0，表示没有任何反应；<br/>值为1，表示显示主屏幕；<br/>值为2，表示设备进入睡眠状态，屏幕锁定；<br/>值为3，表示显示主屏幕。如果用户已在主屏幕上，设备将进入睡眠状态。 |
 | ACCELEROMETER_ROTATION_STATUS    | string | 是   | 是   | 是否使用加速计更改屏幕方向，即是否启用自动旋转。<br>值为1，表示启用加速度计；<br/>值为0，表示不启用加速计。 |
-| AIRPLANE_MODE_STATUS             | string | 是   | 是   | 是否启用飞行模式。<br>值为1，表示启用飞行模式；<br/>值为0，表示不启用飞行模式。 |
 | DEVICE_PROVISION_STATUS          | string | 是   | 是   | 是否预配设备。<br>在具有单个系统用户的多用户设备上，当值为true时，屏幕可能会被锁定。此外，其他功能无法在系统用户上启动，除非它们被标记为在屏幕锁定上显示。 |
 | HDC_STATUS                       | string | 是   | 是   | 是否启用USB设备上的硬盘控制器（HDC）。<br>值为true，表示启用HDC；<br/>值为false，表示不启用HDC。 |
 | BOOT_COUNTING                    | string | 是   | 是   | 设备开机后的启动操作数。                                     |
 | CONTACT_METADATA_SYNC_STATUS     | string | 是   | 是   | 是否启用联系人元数据同步。<br>值为true，表示启用同步；<br/>值为false，表示不启用同步。 |
-| DEVELOPMENT_SETTINGS_STATUS      | string | 是   | 是   | 是否启用开发人员选项。<br>值为true，表示启用开发人员选项；<br/>值为false，表示不启用开发人员选项。 |
 | DEVICE_NAME                      | string | 是   | 是   | 设备名称。                                                   |
 | USB_STORAGE_STATUS               | string | 是   | 是   | 是否启用USB大容量存储。<br>值为true，表示启用USB大容量存储；<br/>值为false，表示不启用USB大容量存储。 |
 | DEBUGGER_WAITING                 | string | 是   | 是   | 设备在启动应用程序进行调试时是否等待调试器进行调试。<br>值为1，表示设备等待调试器；<br/>值为0，表示系统不会等待调试器，因此应用程序会正常运行。 |
@@ -589,12 +587,9 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, value) => {
-  if(err){
-    console.error('Failed to get the setting.${err.message}');
-    return;
-  }
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, () => {
+  let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+  console.log(`Promise:value -> $ {value}`);
 });
 ```
 

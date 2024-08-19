@@ -65,13 +65,13 @@ Defines the camera device information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name          | Type                              | Read-only| Mandatory| Description       |
+| Name          | Type                              | Read-only| Optional| Description       |
 | -------------- | --------------------------------- | ---- | ---- |---------- |
-| cameraId       | string                            | Yes  | Yes  | Camera ID.|
-| cameraPosition | [CameraPosition](#cameraposition) | Yes  | Yes  | Camera position.   |
-| cameraType     | [CameraType](#cameratype)         | Yes  | Yes  | Camera type.   |
-| connectionType | [ConnectionType](#connectiontype) | Yes  | Yes  | Camera connection type.|
-| cameraOrientation<sup>12+</sup> | number | Yes  | Yes  | Camera rotation angle.|
+| cameraId       | string                            | Yes  | No  | Camera ID.|
+| cameraPosition | [CameraPosition](#cameraposition) | Yes  | No  | Camera position.   |
+| cameraType     | [CameraType](#cameratype)         | Yes  | No  | Camera type.   |
+| connectionType | [ConnectionType](#connectiontype) | Yes  | No  | Camera connection type.|
+| cameraOrientation<sup>12+</sup> | number | Yes  | No  | Camera rotation angle. The value ranges from 0° to 360°.|
 
 ## CameraPosition
 
@@ -81,12 +81,12 @@ Enumerates the camera positions.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                        | Value  | Description           |
-| --------------------------- | ---- | -------------- |
-| CAMERA_POSITION_UNSPECIFIED | 0    | Unspecified position. |
-| CAMERA_POSITION_BACK        | 1    | Rear camera.      |
-| CAMERA_POSITION_FRONT       | 2    | Front camera.      |
-| CAMERA_POSITION_FOLD_INNER<sup>11+</sup>  | 3    | Folded camera.    |
+| Name                        | Value  | Description                                                             |
+| --------------------------- | ---- |-----------------------------------------------------------------|
+| CAMERA_POSITION_UNSPECIFIED | 0    | Unspecified position.                                                       |
+| CAMERA_POSITION_BACK        | 1    | Rear camera.                                                          |
+| CAMERA_POSITION_FRONT       | 2    | Front camera.                                                          |
+| CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | Folded camera.<br>This API is supported since API version 11 and deprecated since API version 12.|
 
 ## CameraType
 
@@ -127,16 +127,39 @@ Enumerates the camera statuses.
 | CAMERA_STATUS_AVAILABLE   | 2    | The camera is available.      |
 | CAMERA_STATUS_UNAVAILABLE | 3    | The camera is unavailable.    |
 
+## FoldStatus<sup>12+</sup>
+
+Enumerates the folding statuses available for a fordable device.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Value  | Description           |
+| ------------------------- | ---- | ------------    |
+| NON_FOLDABLE      | 0    | The device is not foldable.  |
+| EXPANDED   | 1    | The device is fully unfolded.|
+| FOLDED   | 2    | The device is folded.      |
+
 ## CameraStatusInfo
 
 Defines the camera status information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name  | Type                          |    Read-only  |     Mandatory    | Description      |
+| Name  | Type                          |    Read-only  |     Optional    | Description      |
 | ------ | ----------------------------- | --------- |------------ | ---------- |
-| camera | [CameraDevice](#cameradevice) |     No   |       Yes    | Camera device.|
-| status | [CameraStatus](#camerastatus) |     No   |       Yes    | Camera status.|
+| camera | [CameraDevice](#cameradevice) |     No   |       No    | Camera device.|
+| status | [CameraStatus](#camerastatus) |     No   |       No    | Camera status.|
+
+## FoldStatusInfo<sup>12+</sup>
+
+Describes the folding status information about a foldable device.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name  | Type                          |    Read-only  |     Optional    | Description      |
+| ------ | ----------------------------- | --------- |------------ | ---------- |
+| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     No   |       No    | List of cameras supported in the current folding status.|
+| foldStatus | [FoldStatus](#foldstatus12) |     No   |       No    | Folding status.|
 
 ## Profile
 
@@ -144,10 +167,10 @@ Defines the camera profile.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name     | Type                         | Read-only| Mandatory| Description        |
+| Name     | Type                         | Read-only| Optional| Description        |
 | -------- | ----------------------------- |---- | ---- | ------------- |
-| format   | [CameraFormat](#cameraformat) | Yes |  Yes | Output format.     |
-| size     | [Size](#size)                 | Yes |  Yes | Resolution.      |
+| format   | [CameraFormat](#cameraformat) | Yes |  No | Output format.     |
+| size     | [Size](#size)                 | Yes |  No | Resolution.      |
 
 ## FrameRateRange
 
@@ -166,9 +189,9 @@ Defines the video configuration information. It inherits from [Profile](#profile
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                      | Type                                     | Read-only| Mandatory| Description       |
+| Name                      | Type                                     | Read-only| Optional| Description       |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| frameRateRange            | [FrameRateRange](#frameraterange)         | Yes |  Yes | Frame rate range, in units of frames per second (FPS).|
+| frameRateRange            | [FrameRateRange](#frameraterange)         | Yes |  No | Frame rate range, in units of frames per second (FPS).|
 
 ## CameraOutputCapability
 
@@ -177,10 +200,10 @@ Defines the camera output capability.
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                          | Type                                               | Read-only| Optional| Description               |
-| ----------------------------- | --------------------------------------------------- | ---- | ---- | ------------------- |
-| previewProfiles               | Array\<[Profile](#profile)\>                        |  Yes | No| Supported preview profiles.   |
-| photoProfiles                 | Array\<[Profile](#profile)\>                        |  Yes | No| Supported photo profiles.   |
-| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              |  Yes | No| Supported video profiles.   |
+| ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
+| previewProfiles               | Array\<[Profile](#profile)\>                        |  Yes | No| Supported preview profiles.     |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        |  Yes | No| Supported photo profiles.       |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              |  Yes | No| Supported video profiles.       |
 | supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  |  Yes | No| Supported metadata object types.|
 
 ## SceneMode<sup>11+</sup>
@@ -189,11 +212,11 @@ Enumerates the camera scene modes.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                    | Value       | Description        |
-| ----------------------- | --------- | ------------ |
-| NORMAL_PHOTO  | 1         | Normal photo mode.            |
-| NORMAL_VIDEO | 2      | Normal record mode.     |
-| SECURE_PHOTO<sup>12+</sup> | 12     | Secure mode.     |
+| Name                        | Value      | Description                                         |
+|----------------------------|---------|---------------------------------------------|
+| NORMAL_PHOTO               | 1       | Normal photo mode. For details, see [PhotoSession](#photosession11).  |
+| NORMAL_VIDEO               | 2       | Normal record mode. For details, see [VideoSession](#videosession11).  |
+| SECURE_PHOTO<sup>12+</sup> | 12      | Secure mode. For details, see [SecureSession](#securesession12).|
 
 ## CameraErrorCode
 
@@ -872,6 +895,67 @@ function unregisterCameraStatus(cameraManager: camera.CameraManager): void {
 }
 ```
 
+### on('foldStatusChange')<sup>12+</sup>
+
+on(type: 'foldStatusChange', callback: AsyncCallback\<FoldStatusInfo\>): void
+
+Subscribes to folding status change events of the foldable device. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type           | Mandatory| Description      |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the folding status of the foldable device changes.|
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | Yes  | Callback used to return the folding status information about the foldable device.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('foldStatusChange with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`camera length: ${foldStatusInfo.supportedCameras.length}`);
+  console.info(`foldStatus: ${foldStatusInfo.foldStatus}`);
+}
+
+function registerFoldStatusChange(cameraManager: camera.CameraManager): void {
+  cameraManager.on('foldStatusChange', callback);
+}
+```
+
+### off('foldStatusChange')<sup>12+</sup>
+
+off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
+
+Unsubscribes from folding status change events of the foldable device.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type           | Mandatory| Description      |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the folding status of the foldable device changes.|
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | No  | Callback used to return the folding status information about the foldable device. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Example**
+
+```ts
+function unregisterFoldStatusChange(cameraManager: camera.CameraManager): void {
+  cameraManager.off('foldStatusChange');
+}
+```
+
 ### isTorchSupported<sup>11+</sup>
 
 isTorchSupported(): boolean
@@ -1066,11 +1150,11 @@ Defines the flashlight status information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name             | Type      | Read-only| Mandatory| Description       |
+| Name             | Type      | Read-only| Optional| Description       |
 | ---------------- | ---------- | ---- | ---- | ----------- |
-| isTorchAvailable | boolean    | Yes  | Yes  | Whether the flashlight is available.|
-| isTorchActive    | boolean    | Yes  | Yes  | Whether the flashlight is activated.   |
-| torchLevel       | number     | Yes  | Yes  | Flashlight level. The value range is [0, 1]. A larger value indicates a greater luminance.   |
+| isTorchAvailable | boolean    | Yes  | No  | Whether the flashlight is available.|
+| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated.   |
+| torchLevel       | number     | Yes  | No  | Flashlight level. The value range is [0, 1]. A larger value indicates a greater luminance.   |
 
 ## Size
 
@@ -1089,10 +1173,10 @@ Defines the point coordinates, which are used for focus and exposure configurati
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name   | Type  | Read-only  | Mandatory  | Description        |
+| Name   | Type  | Read-only  | Optional  | Description        |
 | ------ | ------ | ------ | ------ | ------------ |
-| x      | number | No    | Yes    | X coordinate of a point.  |
-| y      | number | No    | Yes    | Y coordinate of a point.  |
+| x      | number | No    | No    | X coordinate of a point.  |
+| y      | number | No    | No    | Y coordinate of a point.  |
 
 ## CameraFormat
 
@@ -1801,7 +1885,6 @@ Obtains the supported frame rates.
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
-
 |      Type     |     Description    |
 | -------------  | ------------ |
 | Array<[FrameRateRange](#frameraterange)> | Array of supported frame rates.|
@@ -1920,12 +2003,12 @@ Defines the settings for taking an image.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name     | Type                           | Read-only| Mandatory| Description                                                                  |
+| Name     | Type                           | Read-only| Optional| Description                                                                  |
 | -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
-| quality  | [QualityLevel](#qualitylevel)   | No  | No  | Image quality (low by default).                                                          |
-| rotation | [ImageRotation](#imagerotation) | No  | No  | Rotation angle of the image. The default value is **0**, indicating clockwise rotation.                                                 |
-| location | [Location](#location)           | No  | No  | Geolocation information of the image (depending on the device hardware information by default).                                              |
-| mirror   | boolean                         | No  | No  | Whether mirror photography is enabled (disabled by default). Before using this enumerated value, call [isMirrorSupported](#ismirrorsupported) to check whether mirror photography is supported.|
+| quality  | [QualityLevel](#qualitylevel)   | No  | Yes  | Image quality (low by default).                                                          |
+| rotation | [ImageRotation](#imagerotation) | No  | Yes  | Rotation angle of the image. The default value is **0**, indicating clockwise rotation.                                                 |
+| location | [Location](#location)           | No  | Yes  | Geolocation information of the image (depending on the device hardware information by default).                                              |
+| mirror   | boolean                         | No  | Yes  | Whether mirror photography is enabled (disabled by default). Before using this enumerated value, call [isMirrorSupported](#ismirrorsupported) to check whether mirror photography is supported.|
 
 ## Photo<sup>11+</sup>
 
@@ -2770,7 +2853,7 @@ Subscribes to estimated capture duration events. This API uses an asynchronous c
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photographing is complete.|
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the estimated duration when the sensor captures frames at the bottom layer in a single capture. If **-1** is reported, there is no estimated duration.                                |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the estimated duration when the sensor captures frames at the bottom layer in a single capture. If **–1** is reported, there is no estimated duration.                                |
 
 **Example**
 
@@ -2875,10 +2958,10 @@ Defines the frame shutter information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name      | Type  | Read-only| Mandatory| Description       |
+| Name      | Type  | Read-only| Optional| Description       |
 | --------- | ------ | ---- | ---- | ---------- |
-| captureId | number | No  | Yes  | ID of this capture action. |
-| timestamp | number | No  | Yes  | Timestamp when the frame shutter event is triggered.|
+| captureId | number | No  | No  | ID of this capture action. |
+| timestamp | number | No  | No  | Timestamp when the frame shutter event is triggered.|
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
@@ -2886,9 +2969,9 @@ Describes the frame shutter end information during capture.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name     | Type  | Read-only| Mandatory| Description      |
+| Name     | Type  | Read-only| Optional| Description      |
 | --------- | ------ | ---- | ---- | ---------- |
-| captureId | number | No  | Yes  | ID of this capture action.|
+| captureId | number | No  | No  | ID of this capture action.|
 
 ## CaptureStartInfo<sup>11+</sup>
 
@@ -2896,10 +2979,10 @@ Defines the capture start information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name      | Type   | Read-only| Mandatory| Description      |
+| Name      | Type   | Read-only| Optional| Description      |
 | ---------- | ------ | ---- | ---- | --------- |
-| captureId  | number | No  | Yes  | ID of this capture action.|
-| time       | number | No  | Yes  | Estimated duration when the sensor captures frames at the bottom layer in a single capture. If **-1** is reported, there is no estimated duration.   |
+| captureId  | number | No  | No  | ID of this capture action.|
+| time       | number | No  | No  | Estimated duration when the sensor captures frames at the bottom layer in a single capture. If **–1** is reported, there is no estimated duration.   |
 
 ## CaptureEndInfo
 
@@ -2907,10 +2990,10 @@ Defines the capture end information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name      | Type   | Read-only| Mandatory| Description      |
+| Name      | Type   | Read-only| Optional| Description      |
 | ---------- | ------ | ---- | ---- | ---------|
-| captureId  | number | No  | Yes  | ID of this capture action.|
-| frameCount | number | No  | Yes  | Number of frames captured.   |
+| captureId  | number | No  | No  | ID of this capture action.|
+| frameCount | number | No  | No  | Number of frames captured.   |
 
 ## VideoOutput
 
@@ -3595,11 +3678,11 @@ Implements camera metadata, which is the data source of [CameraInput](#camerainp
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name        | Type                                       | Read-only| Mandatory|Description               |
+| Name        | Type                                       | Read-only| Optional|Description               |
 | ----------- | ------------------------------------------- | ---- | ---- | ----------------- |
-| type        | [MetadataObjectType](#metadataobjecttype)   |  Yes |  Yes | Metadata object type.   |
-| timestamp   | number                                      |  Yes |  Yes | Current timestamp, in milliseconds.|
-| boundingBox | [Rect](#rect)                               |  Yes |  Yes | Metadata rectangle. |
+| type        | [MetadataObjectType](#metadataobjecttype)   |  Yes |  No | Metadata object type.   |
+| timestamp   | number                                      |  Yes |  No | Current timestamp, in milliseconds.|
+| boundingBox | [Rect](#rect)                               |  Yes |  No | Metadata rectangle. |
 
 ## FlashMode
 
@@ -5026,9 +5109,9 @@ Defines the smooth zoom information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name    | Type       |   Read-only  |   Mandatory  | Description      |
+| Name    | Type       |   Read-only  |   Optional  | Description      |
 | -------- | ---------- | -------- | -------- | ---------- |
-| duration |   number   |   No    |    Yes   | Total duration of smooth zoom, in ms.|
+| duration |   number   |   No    |    No   | Total duration of smooth zoom, in ms.|
 
 ## Zoom<sup>11+</sup>
 
@@ -7054,6 +7137,9 @@ Subscribes to **CaptureSession** error events. This API uses an asynchronous cal
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+> **NOTE**
+>
 > This API is supported since API version 10 and deprecated since API version 11. You are advised to use [VideoSession.on('error')](#onerror11-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -7158,6 +7244,30 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 Sets a color space. Before the setting, call [getSupportedColorSpaces](#getsupportedcolorspaces12) to obtain the supported color spaces.
 
+P3 and HDR Imaging  
+
+An application can deliver different color space parameters to declare its support for P3 and HDR.
+
+If an application does not proactively set the color space, HDR is used by default in photographing and video recording scenarios. 
+
+In photo mode, P3 can be directly supported by setting the HDR effect.
+
+For details about how to enable the HDR effect and set the color space in different modes, see the following table. 
+
+**Recording Mode**
+
+| SDR/HRD Photographing        | CameraFormat             | ColorSpace       |
+|--------------------|--------------------------|------------------|
+| SDR                | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT      |
+| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+
+**Photo Mode**
+
+| SDR/HRD Photographing   | ColorSpace |
+|--------------|------------|
+| SDR          | SRGB       |
+| HDR(Default) | DISPLAY_P3 |
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -7241,6 +7351,10 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12)
 
 Implements a photo session, which provides operations on the flash, exposure, focus, zoom, and color space.
+
+> **NOTE**
+>
+> This class is provided for the default photo mode. It is used to take standard photos. It supports multiple photo formats and resolutions, which are suitable for most daily photographing scenarios.
 
 ### on('error')<sup>11+</sup>
 
@@ -7424,6 +7538,10 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 Implements a video session, which provides operations on the flash, exposure, focus, zoom, video stabilization, and color space.
 
+> **NOTE**
+>
+> This class is provided for the default video recording mode. It applies to common scenarios. It supports recording at various resolutions (such as 720p and 1080p) and frame rates (such as 30 fps and 60 fps).
+
 ### on('error')<sup>11+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -7605,6 +7723,11 @@ function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
 SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11)
 
 Implements a secure session, which provides operations on the flash, exposure, focus, and zoom.
+
+> **NOTE**
+>
+> You can call [createSession](#createsession11) with [SceneMode](#scenemode11) set to **SECURE_PHOTO** to create a session in secure mode. This class is designed for applications with high security requirements, such as facial recognition systems and banking services. It must be used together with the security TA to support service scenarios where both standard preview streams and security streams are generated.
+> The security TA can verify the signature of data delivered by the server, sign images, parse and assemble TLV logic, and read, create, and operate keys. It applies to image processing.
 
 ### addSecureOutput<sup>12+</sup>
 

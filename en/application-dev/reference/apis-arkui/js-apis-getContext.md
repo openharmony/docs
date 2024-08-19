@@ -8,15 +8,21 @@ The **getContext** API enables you to obtain the context of the ability (either 
 
 getContext(component?: Object):Context
 
-**Parameters**
+Obtains the **Context** object associated with an ability on the page.
 
-| Name| Type         | Mandatory| Description                            |
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type         | Mandatory | Description                            |
 | ------ | ----------- | ---- | ------------------------------- |
 | component  | Object | No  | Ability instance. If no component is passed in or the passed-in parameter type is invalid, the default context is returned. The default context is the context obtained by tracing the call chain of the API. If this API is used in an asynchronous callback or not initially called on the current page, the context of the instance may fail to be traced. In this case, **undefined** is returned.            |
 
 **Return value**
 
-| Type| Description                            |
+| Type | Description                            |
 | ------ | ------------------------------- |
 | [Context](../../application-models/application-context-stage.md) | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext.   |
 
@@ -26,11 +32,9 @@ Load a page by calling **windowStage.loadContent** in the UIAbility.
 
 ```ts
 // EntryAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

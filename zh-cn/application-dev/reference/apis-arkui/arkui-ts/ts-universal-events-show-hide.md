@@ -18,6 +18,8 @@ onAttach(callback: Callback\<void>): T
 >
 > 不允许在回调中对组件树进行变更，例如启动动画，或是使用if-else变更组件树结构。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -32,6 +34,8 @@ onAttach(callback: Callback\<void>): T
 onDetach(callback: Callback\<void>): T
 
 组件从组件树卸载时触发此回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

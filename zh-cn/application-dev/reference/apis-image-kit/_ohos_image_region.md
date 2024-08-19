@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [x](image.md#x) | 起始x坐标，用pixels表示 | 
-| [y](image.md#y) | 起始y坐标，用pixels表示 | 
-| [width](image.md#width) | 宽度范围，用pixels表示 | 
-| [height](image.md#height) | 高度范围，用pixels表示 | 
+| int32_t [x](image.md#x) | 起始x坐标，用pixels表示 | 
+| int32_t [y](image.md#y) | 起始y坐标，用pixels表示 | 
+| int32_t [width](image.md#width) | 宽度范围，用pixels表示 | 
+| int32_t [height](image.md#height) | 高度范围，用pixels表示 | 

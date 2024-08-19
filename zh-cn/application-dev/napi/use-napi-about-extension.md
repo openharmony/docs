@@ -540,6 +540,15 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 | -------------------------- | ---------------------------------- |
 | napi_is_sendable           | 判断给定ArkTS value是否是Sendable的。 |
 | napi_define_sendable_class | 创建一个sendable类。               |
+| napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个sendable对象。|
+| napi_create_sendable_array | 创建一个sendable数组。|
+| napi_create_sendable_array_with_length | 创建一个指定长度的sendable数组。|
+| napi_create_sendable_arraybuffer | 创建一个sendable ArrayBuffer。|
+| napi_create_sendable_typedarray | 创建一个sendable TypedArray。|
+| napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
+| napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
+| napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
+| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
 
 ### 使用示例
 
@@ -652,6 +661,360 @@ import testNapi from 'libentry.so'
 
 let value = new testNapi.SendableClass();
 hilog.info(0x0000, 'testTag', 'Node-API napi_define_sendable_class: %{public}s', value.str);
+```
+
+#### napi_create_sendable_object_with_properties
+
+使用给定的napi_property_descriptor创建一个sendable对象。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value GetSendableObject(napi_env env, napi_callback_info info) {
+    napi_value val_true;
+    napi_get_boolean(env, true, &val_true);
+    napi_property_descriptor desc1[] = {
+        {"x", nullptr, nullptr, nullptr, nullptr, val_true, napi_default_jsproperty, nullptr},
+    };
+    napi_value obj;
+    napi_create_sendable_object_with_properties(env, 1, desc1, &obj);
+    return obj;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const getSendableObject: () => { x: true };
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+let value = testNapi.getSendableObject();
+hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_object_with_properties: %{public}s', JSON.stringify(value));
+```
+
+#### napi_create_sendable_array
+
+创建一个sendable数组。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value GetSendableArray(napi_env env, napi_callback_info info) {
+    napi_value result = nullptr;
+    napi_create_sendable_array(env, &result);
+    return result;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const getSendableArray: () => [];
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+let value = testNapi.getSendableArray();
+hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array: %{public}s', JSON.stringify(value));
+```
+
+#### napi_create_sendable_array_with_length
+
+创建一个指定长度的sendable数组。
+
+cpp部分代码
+
+```cpp
+static napi_value GetSendableArrayWithLength(napi_env env, napi_callback_info info) {
+    napi_value result = nullptr;
+    napi_create_sendable_array_with_length(env, 1, &result);
+    return result;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const getSendableArrayWithLength: () => [];
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+let value = testNapi.getSendableArrayWithLength();
+hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array_with_length: %{public}s', JSON.stringify(value.length));
+```
+
+#### napi_create_sendable_arraybuffer
+
+创建一个sendable ArrayBuffer。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+#include "hilog/log.h"
+
+static napi_value GetSendableArrayBuffer(napi_env env, napi_callback_info info) {
+    static size_t LENGTH = 1024;
+    void *data;
+    napi_value result = nullptr;
+    napi_create_sendable_arraybuffer(env, LENGTH, &data, &result);
+    bool isArrayBuffer = false;
+    napi_is_arraybuffer(env, result, &isArrayBuffer);
+    OH_LOG_INFO(LOG_APP, "isArrayBuffer: %{public}d", isArrayBuffer);
+    return result;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const getSendableArrayBuffer: () => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+testNapi.getSendableArrayBuffer();
+```
+
+#### napi_create_sendable_typedarray
+
+创建一个sendable TypedArray。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+#include "hilog/log.h"
+
+static napi_value GetSendableTypedArray(napi_env env, napi_callback_info info) {
+    static size_t LENGTH = 1024;
+    static size_t OFFSET = 0;
+    void *data;
+    napi_value arraybuffer = nullptr;
+    napi_create_sendable_arraybuffer(env, LENGTH, &data, &arraybuffer);
+
+    napi_value result = nullptr;
+    napi_create_sendable_typedarray(env, napi_uint8_array, LENGTH, arraybuffer, OFFSET, &result);
+    bool isTypedArray = false;
+    napi_is_typedarray(env, result, &isTypedArray);
+    OH_LOG_INFO(LOG_APP, "isTypedArray: %{public}d", isTypedArray);
+    return result;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const getSendableTypedArray: () => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+testNapi.getSendableTypedArray();
+```
+
+#### napi_wrap_sendable
+
+包裹一个native实例到ArkTS对象中。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value WrapSendable(napi_env env, napi_callback_info info) {
+    napi_value val_true;
+    napi_get_boolean(env, true, &val_true);
+    napi_property_descriptor desc1[] = {
+        {"x", nullptr, nullptr, nullptr, nullptr, val_true, napi_default_jsproperty, nullptr},
+    };
+    napi_value obj;
+    napi_create_sendable_object_with_properties(env, 1, desc1, &obj);
+
+    const char* testStr = "test";
+    napi_wrap_sendable(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr);
+    
+    return nullptr;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const wrapSendable: () => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+testNapi.wrapSendable();
+```
+
+#### napi_wrap_sendable_with_size
+
+包裹一个native实例到ArkTS对象中并指定大小。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value WrapSendableWithSize(napi_env env, napi_callback_info info) {
+    napi_value val_true;
+    napi_get_boolean(env, true, &val_true);
+    napi_property_descriptor desc1[] = {
+        {"x", nullptr, nullptr, nullptr, nullptr, val_true, napi_default_jsproperty, nullptr},
+    };
+    napi_value obj;
+    napi_create_sendable_object_with_properties(env, 1, desc1, &obj);
+
+    const char* testStr = "test";
+    napi_wrap_sendable_with_size(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr, 100);
+    
+    return nullptr;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const wrapSendableWithSize: () => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+testNapi.wrapSendableWithSize();
+```
+
+#### napi_unwrap_sendable
+
+获取ArkTS对象包裹的native实例。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value UnwrapSendable(napi_env env, napi_callback_info info) {
+    napi_value val_true;
+    napi_get_boolean(env, true, &val_true);
+    napi_property_descriptor desc1[] = {
+        {"x", nullptr, nullptr, nullptr, nullptr, val_true, napi_default_jsproperty, nullptr},
+    };
+    napi_value obj;
+    napi_create_sendable_object_with_properties(env, 1, desc1, &obj);
+
+    const char* testStr = "test";
+    napi_wrap_sendable(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr);
+
+    char* tmpTestStr = nullptr;
+    napi_unwrap_sendable(env, obj, (void**)&tmpTestStr);
+    OH_LOG_INFO(LOG_APP, "native value is %{public}s", tmpTestStr);
+    
+    return nullptr;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const unwrapSendable: () => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+testNapi.unwrapSendable();
+```
+
+#### napi_remove_wrap_sendable
+
+移除并获取ArkTS对象包裹的native实例。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value RemoveWrapSendable(napi_env env, napi_callback_info info) {
+    napi_value val_true;
+    napi_get_boolean(env, true, &val_true);
+    napi_property_descriptor desc1[] = {
+        {"x", nullptr, nullptr, nullptr, nullptr, val_true, napi_default_jsproperty, nullptr},
+    };
+    napi_value obj;
+    napi_create_sendable_object_with_properties(env, 1, desc1, &obj);
+
+    const char* testStr = "test";
+    napi_wrap_sendable(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr);
+
+    char* tmpTestStr = nullptr;
+    napi_remove_wrap_sendable(env, obj, (void**)&tmpTestStr);
+    OH_LOG_INFO(LOG_APP, "native value is %{public}s", tmpTestStr);
+    
+    return nullptr;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const removeWrapSendable: () => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+testNapi.removeWrapSendable();
 ```
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：

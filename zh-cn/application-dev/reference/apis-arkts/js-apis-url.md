@@ -241,6 +241,10 @@ get(name: string): string | null
 
 获取指定名称对应的第一个值。
 
+> **说明：**
+>
+> 若查找一个不存在的键值对名称时返回值为undefined。
+
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -272,6 +276,7 @@ get(name: string): string | null
 let paramsObject = new url.URLParams('name=Jonathan&age=18');
 let name = paramsObject.get("name"); // is the string "Jonathan"
 let age = paramsObject.get("age"); // is the string "18"
+let getObj = paramsObject.get("abc"); // undefined
 ```
 
 
@@ -664,14 +669,6 @@ URLSearchParams的构造函数。
 | -------- | -------- | -------- | -------- |
 | init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象<br/>- 默认值：null。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -843,7 +840,8 @@ get(name: string): string | null
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.get<sup>9+</sup>](#get9)替代。
+> 若查找一个不存在的键值对名称时返回值为undefined，从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.get<sup>9+</sup>](#get9)替代。
+
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -866,6 +864,7 @@ get(name: string): string | null
 let paramsObject = new url.URLSearchParams('name=Jonathan&age=18');
 let name = paramsObject.get("name"); // is the string "Jonathan"
 let age = paramsObject.get("age"); // is the string '18'
+let getObj = paramsObject.get("abc"); // undefined
 ```
 
 

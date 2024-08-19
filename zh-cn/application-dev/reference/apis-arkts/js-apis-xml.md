@@ -589,7 +589,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:113
+// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:57
 ```
 
 ### getDepth
@@ -597,6 +597,10 @@ console.log(str);
 getDepth(): number
 
 获取元素的当前深度。
+
+> **说明：**
+>
+> 标签内的空白事件深度与标签的深度保持一致。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 

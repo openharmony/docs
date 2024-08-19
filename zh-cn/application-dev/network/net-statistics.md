@@ -29,19 +29,19 @@
 | getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时上行流量数据。 |
 | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时下行流量数据。 |
 | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时上行流量数据。 |
-| getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定网卡历史流量信息。     |
-| getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | 获取指定应用历史流量信息。     |
+| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定网卡历史流量信息。     |
+| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | 获取指定应用历史流量信息。     |
 | getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                   | 获取指定socket实时下行流量数据。 |
 | getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                   | 获取指定socket实时上行流量数据。 |
-| on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | 订阅流量改变事件通知。         |
-| off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | 取消订阅流量改变事件通知。     |
+| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | 订阅流量改变事件通知。         |
+| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | 取消订阅流量改变事件通知。     |
 
 ## 获取网卡/UID 的实时流量统计数据
 
-1. 获取指定网卡实时实时流量数据。
-2. 获取蜂窝实时实时流量数据。
-3. 获取所有网卡实时实时流量数据。
-4. 获取指定应用实时实时流量数据。
+1. 获取指定网卡实时流量数据。
+2. 获取蜂窝实时流量数据。
+3. 获取所有网卡实时流量数据。
+4. 获取指定应用实时流量数据。
 5. 获取指定socket实时流量数据。
 
 ```ts
@@ -111,6 +111,7 @@ tcp.getSocketFd().then((sockfd: number) => {
 });
 ```
 
+<!--Del-->
 ## 获取网卡/UID 的历史流量统计数据
 
 1. 获取指定网卡历史流量信息。
@@ -184,3 +185,4 @@ statistics.on('netStatsChange', callback);
 statistics.off('netStatsChange', callback);
 statistics.off('netStatsChange');
 ```
+<!--DelEnd-->

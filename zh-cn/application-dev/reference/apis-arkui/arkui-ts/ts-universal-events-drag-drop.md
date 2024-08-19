@@ -134,6 +134,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 绑定此事件的组件，当触发拖拽发起前的不同阶段时，触发回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -192,7 +194,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getResult()<sup>10+</sup> | [DragResult](#dragresult10枚举说明) | 从DragEvent中获取拖拽结果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取预览图所在的Rectangle。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取拖拽跟手图相对于当前窗口的位置，以及跟手图尺寸信息，单位VP，其中x和y代表跟手图左上角的窗口坐标，width和height代表跟手图的尺寸。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getVelocityY()<sup>10+</sup> | number | 获取当前拖拽的y轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从上往下为正，反之为负。 |
 | getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -231,7 +233,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragBehavior<sup>10+</sup>
 
-需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
+当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（copy）或剪切（move）。DragBehavior用来向开发者描述数据的处理方式是复制（copy）还是剪切（move），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制还是剪切数据的不同行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -239,8 +241,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 名称 | 描述 |
 | ----- | ----------------- |
-| COPY | 复制模式角标。 |
-| MOVE| 剪贴模式角标。 |
+| COPY | 指定对数据的处理方式为复制。|
+| MOVE| 指定对数据的处理方式为剪切。|
 
 ## PreDragStatus<sup>12+</sup>枚举说明
 

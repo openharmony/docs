@@ -19,17 +19,27 @@ Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#image
 
 2. Set the encoding output stream and encoding parameters.
 
-   **format** indicates the image encoding format, and **quality** indicates the image quality. The value ranges from 0 to 100, and the value 100 indicates the optimal quality.
+-  **format** indicates the image encoding format, and **quality** indicates the image quality. The value ranges from 0 to 100, and the value 100 indicates the optimal quality.
 
+      > **NOTE**
+      >
+      > According to the MIME protocol, the standard encoding format is image/jpeg. When the APIs provided by the image module are used for encoding, **PackingOption.format** must be set to **image/jpeg**. The file name extension of the encoded image file can be .jpg or .jpeg, and the file can be used on platforms that support image/jpeg decoding.
+
+      ```ts
+      let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
+      ```
+
+-  Encode the content as HDR content. (The resource must be HDR resource and the JPEG format must be supported.)
+   
    ```ts
-   let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
+   packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
    ```
 
 3. [Create a PixelMap object or an ImageSource object](image-decoding.md).
 
 4. Encode the image and save the encoded image.
 
-   Method 1: Use **PixelMap** for encoding.
+-  Method 1: Use **PixelMap** for encoding.
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -40,7 +50,7 @@ Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#image
    })
    ```
 
-   Method 2: Use **ImageSource** for encoding.
+-  Method 2: Use **ImageSource** for encoding.
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';

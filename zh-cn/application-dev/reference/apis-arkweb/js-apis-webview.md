@@ -384,7 +384,7 @@ struct WebComponent {
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPageEnd(() => {
-          console.log("In ArkTS side message onPageEnd init mesaage channel");
+          console.log("In ArkTS side message onPageEnd init message channel");
           // 1. 创建消息端口
           this.ports = this.controller.createWebMessagePorts(true);
           // 2. 发送端口1到HTML5
@@ -678,6 +678,11 @@ static initializeWebEngine(): void
 
 在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
 
+> **说明：**
+>
+> - initializeWebEngine不支持在异步线程中调用，否则会造成崩溃。
+> - initializeWebEngine全局生效，在整个APP生命周期中调用一次即可，不需要重复调用。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
@@ -905,7 +910,7 @@ struct WebComponent {
 }
 ```
 
-2.resources协议。
+2.resources协议，适用Webview加载带有"#"路由的链接。
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -968,7 +973,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 >
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
-> 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
+> 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
 
 **错误码：**
 
@@ -4880,6 +4885,10 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。
 
+> **说明：**
+>
+> 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -5393,7 +5402,7 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。<!--RP1End-->
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7524,11 +7533,13 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   resumePlayer() {
-    // 重新创建本地播放器。
+    // 重新创建应用内播放器。
+    // 恢复应用内播放器的状态信息。
   }
 
   suspendPlayer(type: SuspendType) {
-    // 销毁本地播放器。
+    // 记录应用内播放器的状态信息。
+    // 销毁应用内播放器。
   }
 }
 
@@ -7863,7 +7874,7 @@ static setHostIP(hostName: string, address: string, aliveTime: number): void
 
 **参数：**
 
-| 参数名    | 类型 | 必填 | 参数描述                             |
+| 参数名    | 类型 | 必填 | 说明                             |
 | --------- | -------- | ---- | ------------------------------------ |
 | hostName  | string   | 是   | 要添加DNS记录的主机域名。            |
 | address   | string   | 是   | 主机域名解析地址（支持IPv4，IPv6）。 |
@@ -7891,7 +7902,7 @@ static clearHostIP(hostName: string): void
 
 **参数：**
 
-| 参数名   | 类型 | 必填 | 参数描述                  |
+| 参数名   | 类型 | 必填 | 说明                  |
 | -------- | -------- | ---- | ------------------------- |
 | hostName | string   | 是   | 要清除DNS记录的主机域名。 |
 
@@ -8108,7 +8119,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
 **参数：**
 
-| 参数名   | 类型 | 必填 | 参数描述                  |
+| 参数名   | 类型 | 必填 | 说明                  |
 | -------- | -------- | ---- | ------------------------- |
 | pathList | Array\<string\>   | 是   | 路径列表 |
 
@@ -13094,7 +13105,7 @@ struct WebComponent {
 
 static resumeDownload(webDownloadItem: WebDownloadItem): void
 
-设置用于接收从WebDownloadManager触发的下载进度的委托。
+恢复一个失败的下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14164,7 +14175,7 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 didFinish(): void
 
-通知Web组件被拦截的请求已经完成，并且没有更多的数据可用。
+通知Web组件被拦截的请求已经完成，并且没有更多的数据可用，调用前需要优先调用[didReceiveResponse](#didreceiveresponse12)将构造的响应头传递给被拦截的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14184,7 +14195,7 @@ didFinish(): void
 
 didFail(code: WebNetErrorList): void
 
-通知ArkWeb内核被拦截请求应该返回失败。
+通知ArkWeb内核被拦截请求应该返回失败，调用前需要优先调用[didReceiveResponse](#didreceiveresponse12)将构造的响应头传递给被拦截的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14297,10 +14308,13 @@ struct WebComponent {
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
 
+              // 调用 didFinish/didFail 前需要优先调用 didReceiveResponse 将构造的响应头传递给被拦截的请求。
               let buf = buffer.from(this.htmlData)
               try {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
+                  resourceHandler.didReceiveResponse(response);
+                  resourceHandler.didReceiveResponseBody(buf.buffer);
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");
@@ -14855,7 +14869,7 @@ exitFullscreen(): void
 
 resumePlayer?(): void
 
-通知应用重建应用内播放器。
+通知应用重建应用内播放器，并恢复应用内播放器的状态信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14867,7 +14881,7 @@ resumePlayer?(): void
 
 suspendPlayer?(type: SuspendType): void
 
-通知应用销毁应用内播放器。
+通知应用销毁应用内播放器，并保存应用内播放器的状态信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14909,11 +14923,11 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-| type | [SourceType](#sourcetype12) | 否 | 是 | 媒体源的类型。 |
-| source | string | 否 | 是 | 媒体源地址。 |
-| format | string | 否 | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| type | [SourceType](#sourcetype12) | 是 | 媒体源的类型。 |
+| source | string | 是 | 媒体源地址。 |
+| format | string | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -14921,10 +14935,10 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-| id | string | 否 | 是 | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | [RectEvent](#rectevent12) | 否 | 是 | surface 的位置信息。 |
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | string | 是 | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | [RectEvent](#rectevent12) | 是 | surface 的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -14945,19 +14959,19 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-| embedID | string | 否 | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](#mediatype12) | 否 | 是 | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 否 | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 否 | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
-| controlList | string[] | 否 | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 否 | 是 | 是否要求静音播放。 |
-| posterUrl | string | 否 | 是 | 海报的地址。 |
-| preload | [Preload](#preload12) | 否 | 是 | 是否需要预加载。 |
-| headers | Record\<string, string\> | 否 | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 否 | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| embedID | string | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](#mediatype12) | 是 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 是 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 是 | 是否要求静音播放。 |
+| posterUrl | string | 是 | 海报的地址。 |
+| preload | [Preload](#preload12) | 是 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
@@ -15060,10 +15074,10 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-| nativeEmbed | bool | 否 | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
-| mediaTakeOver | bool | 否 | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| nativeEmbed | bool | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
+| mediaTakeOver | bool | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
 
 ## BackForwardCacheOptions<sup>12+<sup>
 
@@ -15071,10 +15085,10 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-| size | number | 否 | 是 | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。Web会根据内存压力对缓存进行回收。 |
-| timeToLive | number | 否 | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。|
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| size | number | 是 | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。设置为0或负数时，前进后退缓存功能不生效。Web会根据内存压力对缓存进行回收。 |
+| timeToLive | number | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。设置为0或负数时，前进后退缓存功能不生效。|
 
 ### enableBackForwardCache<sup>12+</sup>
 
@@ -15104,6 +15118,8 @@ export default class EntryAbility extends UIAbility {
         let features = new webview.BackForwardCacheSupportedFeatures();
         features.nativeEmbed = true;
         features.mediaTakeOver = true;
+        // 如果一个页面同时使用了同层渲染和视频托管的能力，需要 nativeEmbed 和
+        // mediaTakeOver 同时设置为 true，该页面才可以进入前进后退缓存中。
         webview.WebviewController.enableBackForwardCache(features);
         webview.WebviewController.initializeWebEngine();
         AppStorage.setOrCreate("abilityWant", want);

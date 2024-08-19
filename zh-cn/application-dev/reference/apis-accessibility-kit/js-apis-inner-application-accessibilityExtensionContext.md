@@ -72,7 +72,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | selected             | boolean                                                            | 是   | 否   | 元素是否被选中。 |
 | startIndex           | number                                                             | 是   | 否   | 在屏幕上的第一个项目的列表索引。 |
 | text                 | string                                                             | 是   | 否   | 元素的文本。 |
-| textLengthLimit      | string                                                             | 是   | 否   | 元素文本的最大长度限制。 |
+| textLengthLimit      | number                                                             | 是   | 否   | 元素文本的最大长度限制。 |
 | textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | 是   | 否   | 文本被读取时的移动单位。 |
 | triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | 是   | 否   | 触发元素事件的动作。 |
 | type                 | [WindowType](#windowtype)                                          | 是   | 否   | 元素的窗口类型。 |
@@ -86,29 +86,33 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## FocusDirection
 
+type FocusDirection = 'up' | 'down' | 'left' | 'right' | 'forward' | 'backward'
+
 表示查询下一焦点元素的方向。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称       | 说明      |
+| 类型       | 说明      |
 | -------- | ------- |
-| up       | 表示向上查询。 |
-| down     | 表示向下查询。 |
-| left     | 表示向左查询。 |
-| right    | 表示向右查询。 |
-| forward  | 表示向前查询。 |
-| backward | 表示向后查询。 |
+| string       | 表示向上查询，值固定为'up'字符串。 |
+| string     | 表示向下查询，值固定为'down'字符串。 |
+| string     | 表示向左查询，值固定为'left'字符串。 |
+| string    | 表示向右查询，值固定为'right'字符串。 |
+| string  | 表示向前查询，值固定为'forward'字符串。 |
+| string | 表示向后查询，值固定为'backward'字符串。 |
 
 ## FocusType
+
+type FocusType = 'accessibility' | 'normal'
 
 表示查询焦点元素的类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称            | 说明          |
+| 类型            | 说明          |
 | ------------- | ----------- |
-| accessibility | 表示无障碍的焦点类型。 |
-| normal        | 表示普通的焦点类型。  |
+| string | 表示无障碍的焦点类型，值固定为'accessibility'字符串。 |
+| string        | 表示普通的焦点类型，值固定为'normal'字符串。  |
 
 ## Rect
 
@@ -125,20 +129,26 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## WindowType
 
+type WindowType = 'application' | 'system'
+
 表示窗口的类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称          | 说明        |
+| 类型          | 说明        |
 | ----------- | --------- |
-| application | 表示应用窗口类型。 |
-| system      | 表示系统窗口类型。 |
+| string | 表示应用窗口类型，值固定为'application'字符串。 |
+| string      | 表示系统窗口类型，值固定为'system'字符串。 |
 
-## AccessibilityExtensionContext.setTargetBundleName
+## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 
 setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 设置关注的目标包名，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -160,7 +170,7 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -175,11 +185,15 @@ axContext.setTargetBundleName(targetNames).then(() => {
 })
 ```
 
-## AccessibilityExtensionContext.setTargetBundleName
+## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 
 setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>): void;
 
 设置关注的目标包名，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -196,7 +210,7 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -217,11 +231,15 @@ try {
 }
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 获取焦点元素, 使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -242,7 +260,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -261,11 +279,15 @@ axContext.getFocusElement().then((data: AccessibilityElement) => {
 })
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取焦点元素, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -281,7 +303,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -302,11 +324,15 @@ axContext.getFocusElement((err: BusinessError, data: AccessibilityElement) => {
 });
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取焦点元素, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -323,7 +349,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -345,11 +371,15 @@ axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: Acces
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 获取指定窗口的根节点元素, 使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -371,7 +401,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -390,11 +420,15 @@ axContext.getWindowRootElement().then((data: AccessibilityElement) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取指定窗口的根节点元素, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -410,7 +444,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -431,11 +465,15 @@ axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement) 
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取指定窗口的根节点元素, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -452,7 +490,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -474,11 +512,15 @@ axContext.getWindowRootElement(windowId, (err: BusinessError, data: Accessibilit
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 获取指定屏幕中的所有窗口, 使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -500,7 +542,7 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -516,11 +558,15 @@ axContext.getWindows().then((data: AccessibilityElement[]) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 获取指定屏幕中的所有窗口, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -536,7 +582,7 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -554,11 +600,15 @@ axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 获取指定屏幕中的所有窗口, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -575,7 +625,7 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -601,8 +651,6 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 > **说明：**
 >
 > 从API version 10开始废弃。
->
-> 推荐使用[injectGestureSync<sup>10+</sup>](#accessibilityextensioncontextinjectgesturesync10)。
 
 注入手势，使用Promise异步回调。
 
@@ -626,7 +674,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -654,8 +702,6 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 > **说明：**
 >
 > 从API version 10开始废弃。
->
-> 推荐使用[injectGestureSync<sup>10+</sup>](#accessibilityextensioncontextinjectgesturesync10)。
 
 注入手势，使用callback异步回调。
 
@@ -674,7 +720,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -696,11 +742,15 @@ axContext.injectGesture(gesturePath, (err: BusinessError) => {
   console.info(`Succeeded in inject gesture,gesturePath is ${gesturePath}`);
 });
 ```
-## AccessibilityExtensionContext.injectGestureSync<sup>10+</sup>
+## AccessibilityExtensionContext.injectGestureSync<sup>(deprecated)</sup>
 
 injectGestureSync(gesturePath: GesturePath): void
 
 注入手势。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -716,7 +766,7 @@ injectGestureSync(gesturePath: GesturePath): void
 
 | 错误码ID | 错误信息                                            |
 | -------- | --------------------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003  | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -734,15 +784,19 @@ axContext.injectGestureSync(gesturePath);
 
 ## AccessibilityElement<sup>9+</sup>
 
-无障碍节点元素, 在调用AccessibilityElement的方法前，需要先通过[AccessibilityExtensionContext.getFocusElement() ](#accessibilityextensioncontextgetfocuselement)或者[AccessibilityExtensionContext.getWindowRootElement() ](#accessibilityextensioncontextgetwindowrootelement)获取AccessibilityElement实例。
+无障碍节点元素, 在调用AccessibilityElement的方法前，需要先通过[AccessibilityExtensionContext.getFocusElement() ](#accessibilityextensioncontextgetfocuselementdeprecated)或者[AccessibilityExtensionContext.getWindowRootElement() ](#accessibilityextensioncontextgetwindowrootelementdeprecated)获取AccessibilityElement实例。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Core
 
-### attributeNames
+### attributeNames<sup>(deprecated)</sup>
 
 attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 
 获取节点元素的所有属性名称，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -766,11 +820,15 @@ rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
 });
 ```
 
-### attributeNames
+### attributeNames<sup>(deprecated)</sup>
 
 attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\<Array\<T>>): void;
 
 获取节点元素的所有属性名称，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -796,11 +854,15 @@ rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) =>
 });
 ```
 
-### attributeValue
+### attributeValue<sup>(deprecated)</sup>
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
 
 根据属性名称获取属性值，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -843,12 +905,16 @@ rootElement.attributeValue(attributeName).then((data: string) => {
 });
 ```
 
-### attributeValue
+### attributeValue<sup>(deprecated)</sup>
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T, 
     callback: AsyncCallback\<ElementAttributeValues[T]>): void;
 
 根据属性名称获取属性值，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -886,11 +952,15 @@ rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => 
 });
 ```
 
-### actionNames
+### actionNames<sup>(deprecated)</sup>
 
 actionNames(): Promise\<Array\<string>>;
 
 获取节点元素支持的所有操作名称，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -913,11 +983,15 @@ rootElement.actionNames().then((data: string[]) => {
 })
 ```
 
-### actionNames
+### actionNames<sup>(deprecated)</sup>
 
 actionNames(callback: AsyncCallback\<Array\<string>>): void;
 
 获取节点元素支持的所有操作名称，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -940,11 +1014,15 @@ rootElement.actionNames((err: BusinessError, data: string[]) => {
 })
 ```
 
-### performAction
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, parameters?: object): Promise\<void>;
 
 根据操作名称执行某个操作，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -953,7 +1031,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 | 参数名         | 类型                                     | 必填   | 说明                                                       |
 | ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
 | actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 
-| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                             |
+| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空。                             |
 
 **返回值：**
 
@@ -967,7 +1045,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1031,11 +1109,15 @@ rootElement.performAction('setCursorPosition', {
 });
 ```
 
-### performAction
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 根据操作名称执行某个操作，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1052,7 +1134,7 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1072,11 +1154,15 @@ rootElement.performAction(actionName, (err: BusinessError) => {
 });
 ```
 
-### performAction
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, parameters: object, callback: AsyncCallback\<void>): void;
 
 根据操作名称执行某个操作，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1085,7 +1171,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 | 参数名        | 类型                        | 必填   | 说明                                                          |
 | ---------- | ------------------------- | ---- |-------------------------------------------------------------|
 | actionName | string                    | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 |
-| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                                |
+| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空。                                |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                                           |
 
 **错误码：**
@@ -1094,7 +1180,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1115,11 +1201,15 @@ rootElement.performAction(actionName, parameters, (err: BusinessError) => {
 });
 ```
 
-### findElement('content')
+### findElement('content')<sup>(deprecated)</sup>
 
 findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
 
 根据节点内容查询所有节点元素，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1142,7 +1232,7 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1159,11 +1249,15 @@ rootElement.findElement('content', condition).then((data: AccessibilityElement[]
 });
 ```
 
-### findElement('content')
+### findElement('content')<sup>(deprecated)</sup>
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 根据节点内容查询所有节点元素。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1181,7 +1275,7 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1200,11 +1294,15 @@ rootElement.findElement('content', condition, (err: BusinessError, data: Accessi
 });
 ```
 
-### findElement('focusType')
+### findElement('focusType')<sup>(deprecated)</sup>
 
 findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElement>;
 
 根据焦点元素类型查询节点元素，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1227,7 +1325,7 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1245,11 +1343,15 @@ rootElement.findElement('focusType', condition).then((data: AccessibilityElement
 });
 ```
 
-### findElement('focusType')
+### findElement('focusType')<sup>(deprecated)</sup>
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement>): void;
 
 根据焦点元素类型查询节点元素，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1267,7 +1369,7 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1287,11 +1389,15 @@ rootElement.findElement('focusType', condition, (err: BusinessError, data: Acces
 });
 ```
 
-### findElement('focusDirection')
+### findElement('focusDirection')<sup>(deprecated)</sup>
 
 findElement(type: 'focusDirection', condition: FocusDirection): Promise\<AccessibilityElement>;
 
 根据下一焦点元素方向查询节点元素，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1314,7 +1420,7 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1332,11 +1438,15 @@ rootElement.findElement('focusDirection', condition).then((data: AccessibilityEl
 });
 ```
 
-### findElement('focusDirection')
+### findElement('focusDirection')<sup>(deprecated)</sup>
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
 
 根据下一焦点元素方向查询节点元素，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1354,7 +1464,7 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1371,151 +1481,5 @@ rootElement.findElement('focusDirection', condition, (err: BusinessError, data: 
     return;
   }
   console.info(`Succeeded in find element, ${JSON.stringify(data)}`);
-});
-```
-
-### findElement('elementId')<sup>12+</sup>
-
-findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement>;
-
-根据elementId查询当前活动窗口下的节点元素，使用Promise异步回调。
-
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名       | 类型                                | 必填   | 说明                                       |
-| --------- | --------------------------------- | ---- | ---------------------------------------- |
-| type      | string                            | 是    | 固定为'elementId', 表示根据elementId查询当前活动窗口下的节点元素。 |
-| condition | number | 是    | 表示要查询的节点元素的elementId。                           |
-
-**返回值：**
-
-| 类型                                  | 说明                               |
-| ----------------------------------- | -------------------------------- |
-| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询条件的节点元素。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
-
-| 错误码ID   | 错误信息                          |
-| ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-//elementId为10
-let condition = 10;
-
-// rootElement是AccessibilityElement的实例
-rootElement.findElement('elementId', condition).then((data: AccessibilityElement) => {
-  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### findElement('textType')<sup>12+</sup>
-
-findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityElement>>;
-
-根据节点配置的accessibilityTextHint无障碍文本类型查询所有节点元素，使用Promise异步回调。
-
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名       | 类型     | 必填   | 说明                            |
-| --------- | ------ | ---- | ----------------------------- |
-| type      | string | 是    | 固定为'textType', 表示根据文本类型查找节点元素。 |
-| condition | string | 是    | 表示查找的条件。                      |
-
-**返回值：**
-
-| 类型                                       | 说明                            |
-| ---------------------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
-
-| 错误码ID   | 错误信息                          |
-| ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// condition的内容需要与目标组件accessibilityTextHint属性的type字段值保持一致
-let condition = 'location'; 
-
-// rootElement是AccessibilityElement的实例
-rootElement.findElement('textType', condition).then((data: AccessibilityElement[]) => {
-  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### getCursorPosition<sup>12+</sup>
-
-getCursorPosition(): Promise\<number>;
-
-获取文本组件中光标位置，使用Promise异步回调。
-
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
-
-**返回值：**
-
-| 类型                  | 说明               |
-| ------------------- | ---------------- |
-| Promise&lt;number&gt; | Promise对象，返回当前光标所处位置。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// rootElement是AccessibilityElement的实例
-rootElement.getCursorPosition().then((data: number) => {
-  console.info(`Succeeded in getCursorPosition, ${data}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to getCursorPosition, Code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### getCursorPosition<sup>12+</sup>
-
-getCursorPosition(callback: AsyncCallback\<number>): void;
-
-获取文本组件中光标位置，使用callback异步回调。
-
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名         | 类型                                     | 必填   | 说明             |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，表示文本组件中光标位置。|
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// rootElement是AccessibilityElement的实例
-rootElement.getCursorPosition((err: BusinessError, data: number) => {
-  if (err && err.code) {
-    console.error(`failed to getCursorPosition, Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in getCursorPosition, ${data}`);
 });
 ```

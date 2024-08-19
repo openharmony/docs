@@ -512,6 +512,24 @@ The specified identity verification field does not match that on the server.
 
 Check whether the specified identity verification field matches that on the server.
 
+## 2300998 Domain Access Denied
+
+**Error Message**
+
+It is not allowed to access this domain.
+
+**Description**
+
+This error code is reported if access to a certain domain is prohibited.
+
+**Cause**
+
+An incorrect server domain name is configured for the atomic service.
+
+**Solution**
+
+Configure a correct server domain name for the atomic service.
+
 ## 2300999 Unknown Error
 
 **Error Message**

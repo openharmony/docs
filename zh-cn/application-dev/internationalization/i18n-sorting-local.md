@@ -21,8 +21,7 @@
 
 3. 比较字串。
    ```ts
-   let compareResult = collator.compare("first", "second");
-   
+   let compareResult = collator.compare(first: string, second: string);
    // compareResult 为负数，表示第一个参数排在第二个参数之前
    // compareResult 为0，表示第一个参数与第二个参数排序不分先后
    // compareResult 为正数，表示第一个参数排在第二个参数之后

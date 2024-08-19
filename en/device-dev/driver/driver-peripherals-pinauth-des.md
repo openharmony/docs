@@ -126,10 +126,14 @@ The following uses the RK3568 platform as an example to demonstrate how to devel
     └── service # Entry for implementing the Pin_auth driver
         ├── inc # Header files
         └── src         # Source files
-            ├── executor_impl.cpp                # Implementation of authentication and enrollment APIs
+            ├── all_in_one_impl.cpp             # Implementation of authentication and enrollment APIs for the all-in-one executor
+            ├── verifier_impl.cpp               # Implementation of authentication and enrollment APIs for the verifier
+            ├── collector_impl.cpp              # Implementation of authentication and enrollment APIs for the collector
+            ├── executor_impl_common.cpp        # Utilities
             ├── pin_auth_interface_driver.cpp # Pin_auth driver entry
             └── pin_auth_interface_service.cpp # Implementation of the APIs for obtaining the executor list
 ```
+
 
 The development procedure is as follows:
 
@@ -235,7 +239,7 @@ The development procedure is as follows:
 
 
 
-1. Obtain the executor list. For details about the code, see [pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp).
+2. Obtain the executor list. For details about the code, see [pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp).
 
    ```c++
    // Executor implementation class
@@ -321,7 +325,7 @@ The development procedure is as follows:
 
 
 
-1. Implement each function of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/executor_impl.cpp).
+3. Implement each function of the executor. For details about the code, see [all_in_one_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/all_in_one_impl.cpp).
 
    ```c++
    // Obtain executor information (example only).
@@ -567,5 +571,3 @@ Verify whether PIN authentication can be successfully performed on the RK3568 pl
 2.  Press the power button to lock the screen. Press the power button again and enter the password. The screen is unlocked if a correct password is entered.
 3.  Touch **Settings** > **Biometrics & passwords** > **Password**, and verify **Disable lock screen password** and **Change lock screen password**.
 4.  After step 1 is complete, enter incorrect passwords for a specified number of times to check whether the anti-brute force cracking capability is normal. For example, if you enter incorrect passwords for five consecutive times, the device will be frozen for 60s.
-
-<!--no_check-->
