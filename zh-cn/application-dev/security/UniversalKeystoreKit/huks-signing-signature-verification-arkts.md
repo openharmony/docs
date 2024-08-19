@@ -216,7 +216,7 @@ async function testSignVerify() {
  */
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let keyAlias = 'test_eccKeyAlias';
+let keyAlias = 'test_sm2KeyAlias';
 let handle: number;
 let plaintext = '123456';
 let signature: Uint8Array;
@@ -240,7 +240,7 @@ function Uint8ArrayToString(fileData: Uint8Array) {
 }
 
 
-function GetEccGenerateProperties() {
+function GetSm2GenerateProperties() {
   let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
@@ -258,7 +258,7 @@ function GetEccGenerateProperties() {
   return properties;
 }
 
-function GetEccSignProperties() {
+function GetSm2SignProperties() {
   let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
@@ -275,7 +275,7 @@ function GetEccSignProperties() {
   return properties;
 }
 
-function GetEccVerifyProperties() {
+function GetSm2VerifyProperties() {
   let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
@@ -292,21 +292,21 @@ function GetEccVerifyProperties() {
   return properties;
 }
 
-async function GenerateEccKey(keyAlias: string) {
-  let genProperties = GetEccGenerateProperties();
+async function GenerateSm2Key(keyAlias: string) {
+  let genProperties = GetSm2GenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   await huks.generateKeyItem(keyAlias, options)
     .then((data) => {
-      console.info(`promise: generate ECC Key success, data = ${JSON.stringify(data)}`);
+      console.info(`promise: generate Sm2 Key success, data = ${JSON.stringify(data)}`);
     }).catch((err: Error) => {
-      console.error(`promise: generate ECC Key failed, error: ` + JSON.stringify(err));
+      console.error(`promise: generate Sm2 Key failed, error: ` + JSON.stringify(err));
     })
 }
 
 async function Sign(keyAlias: string, plaintext: string) {
-  let signProperties = GetEccSignProperties();
+  let signProperties = GetSm2SignProperties();
   let options: huks.HuksOptions = {
     properties: signProperties,
     inData: StringToUint8Array(plaintext)
@@ -327,7 +327,7 @@ async function Sign(keyAlias: string, plaintext: string) {
 }
 
 async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
-  let verifyProperties = GetEccVerifyProperties()
+  let verifyProperties = GetSm2VerifyProperties()
   let options: huks.HuksOptions = {
     properties: verifyProperties,
     inData: StringToUint8Array(plaintext)
@@ -353,7 +353,7 @@ async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array
     })
 }
 
-async function DeleteEccKey(keyAlias: string) {
+async function DeleteSm2Key(keyAlias: string) {
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
@@ -366,10 +366,10 @@ async function DeleteEccKey(keyAlias: string) {
 }
 
 export async function testSignVerify() {
-  await GenerateEccKey(keyAlias);
+  await GenerateSm2Key(keyAlias);
   await Sign(keyAlias, plaintext);
   await Verify(keyAlias, plaintext, signature);
-  await DeleteEccKey(keyAlias);
+  await DeleteSm2Key(keyAlias);
 }
 ```
 ### RSA/SHA256/PSS
