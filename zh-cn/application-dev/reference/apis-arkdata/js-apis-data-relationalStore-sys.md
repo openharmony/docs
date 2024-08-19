@@ -894,7 +894,7 @@ if(store != undefined) {
 
 lockCloudContainer(): Promise&lt;number&gt;
 
-手动对云数据库加锁，使用Promise异步处理。
+手动对应用云端数据库加锁，使用Promise异步处理。
 
 > **说明：**
 >
@@ -928,7 +928,7 @@ if(store != undefined) {
 
 unlockCloudContainer(): Promise&lt;void&gt;
 
-手动对云数据库解锁，使用Promise异步处理。
+手动对应用云端数据库解锁，使用Promise异步处理。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
