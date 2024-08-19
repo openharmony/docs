@@ -378,6 +378,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 | -- | -- | -- | -- | -- |
 |OH_MD_KEY_CODEC_MIME|码流编解码器类型的键|√|√|√|
 |OH_MD_KEY_TRACK_TYPE|码流媒体类型的键|√|√|√|
+|OH_MD_KEY_TRACK_START_TIME|码流起始时间的键|√|√|√|
 |OH_MD_KEY_BITRATE|码流比特率的键|√|√|-|
 |OH_MD_KEY_LANGUAGE|码流语言类型的键|√|√|-|
 |OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData|√|√|-|
