@@ -1,4 +1,4 @@
-# Neural Network Runtime Kit API Reference
+# Neural Network Runtime Kit
 
 - C API
   - Module

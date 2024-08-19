@@ -1,4 +1,4 @@
-# Network Kit API Reference
+# Network Kit
 
 - ArkTS API
   - [@ohos.net.connection (Network Connection Management)](js-apis-net-connection.md)
