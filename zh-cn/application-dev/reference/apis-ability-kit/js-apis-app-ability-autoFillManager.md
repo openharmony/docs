@@ -103,6 +103,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | The parameter check failed. Possible causes: 1. Get instance id failed; 2. Parse instance id failed; 3. The second parameter is not of type callback. |
 | 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
