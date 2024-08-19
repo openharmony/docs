@@ -1,4 +1,4 @@
-# Managing Classes Using JSVM-API
+# Working with Classes Using JSVM-API
 
 ## Introduction
 
@@ -38,7 +38,7 @@ CPP code:
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 Create an instance from the given constructor.
-// Register a NewInstance callback.
+// Register the NewInstance callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = NewInstance},
 };

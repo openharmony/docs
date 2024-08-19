@@ -1,4 +1,4 @@
-# Managing Arrays Using JSVM-API
+# Working with Arrays Using JSVM-API
 
 ## Introduction
 
@@ -39,7 +39,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_CreateArray
 
-Use **OH_JSVM_CreateArray** to create a JS array object.
+Creates a JS array object.
 
 CPP code:
 
@@ -48,7 +48,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a CreateArray callback.
+// Register the CreateArray callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateArray},
 };
@@ -101,7 +101,7 @@ try {
 
 ### OH_JSVM_CreateArrayWithLength
 
-Use **OH_JSVM_CreateArrayWithLength** to create a JS array object of the specified length.
+Creates a JS array object of the specified length.
 
 CPP code:
 
@@ -110,7 +110,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a CreateArrayWithLength callback.
+// Register the CreateArrayWithLength callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateArrayWithLength},
 };
@@ -170,7 +170,7 @@ try {
 
 ### OH_JSVM_CreateTypedarray
 
-Use **OH_JSVM_CreateTypedarray** to create a JS **TypedArray** object for an **ArrayBuffer**. The **TypedArray** object provides an array-like view over an underlying data buffer, where each element has the same underlying binary scalar data type.
+Creates a JS **TypedArray** object for an **ArrayBuffer**. The **TypedArray** object provides an array-like view over an underlying data buffer, where each element has the same underlying binary scalar data type.
 
 CPP code:
 
@@ -179,7 +179,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a CreateTypedArray callback.
+// Register the CreateTypedArray callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateTypedArray},
 };
@@ -307,12 +307,12 @@ try {
 
 ### OH_JSVM_CreateDataview
 
-Use **OH_JSVM_CreateDataview** to ceate a JS **DataView** object for an **ArrayBuffer**. The **DataView** object provides an array-like view of over an underlying data buffer.
+Creates a JS **DataView** object for an **ArrayBuffer**. The **DataView** object provides an array-like view of over an underlying data buffer.
 
 CPP code:
 
 ```cpp
-// Register a CreateDataView callback.
+// Register the CreateDataView callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateDataView},
 };
@@ -437,7 +437,7 @@ try {
 
 ### OH_JSVM_GetArrayLength
 
-Use **OH_JSVM_GetArrayLength** to obtain the length of an array.
+Obtains the length of an array.
 
 CPP code:
 
@@ -446,7 +446,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a GetArrayLength callback.
+// Register the GetArrayLength callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetArrayLength},
 };
@@ -498,7 +498,7 @@ try {
 
 ### OH_JSVM_GetTypedarrayInfo
 
-Use **OH_JSVM_GetTypedarrayInfo** to obtain information of a **TypedArray** object.
+Obtains information about a **TypedArray** object.
 
 CPP code:
 
@@ -507,7 +507,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a GetTypedArrayInfo callback.
+// Register the GetTypedArrayInfo callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetTypedArrayInfo},
 };
@@ -641,7 +641,7 @@ try {
 
 ### OH_JSVM_GetDataviewInfo
 
-Use **OH_JSVM_GetDataviewInfo** to obtain information of a **DataView** object.
+Obtains information of a **DataView** object.
 
 CPP code:
 
@@ -650,7 +650,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a GetDataViewInfo callback.
+// Register the GetDataViewInfo callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetDataViewInfo},
 };
@@ -769,7 +769,7 @@ try {
 
 ### OH_JSVM_IsArray
 
-Use **OH_JSVM_IsArray** to check whether a JS object is an array.
+Checks whether a JS object is an array.
 
 CPP code:
 
@@ -778,7 +778,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a IsArray callback.
+// Register the IsArray callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = IsArray},
 };
@@ -826,7 +826,7 @@ try {
 
 ### OH_JSVM_SetElement
 
-Use **OH_JSVM_SetElement** to set an element at the specified index for a JS object.
+Sets an element at the specified index for a JS object.
 
 CPP code:
 
@@ -835,7 +835,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a SetElement callback.
+// Register the SetElement callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = SetElement},
 };
@@ -881,7 +881,7 @@ try {
 
 ### OH_JSVM_GetElement
 
-Use **OH_JSVM_GetElement** to obtain the element at the specified index of a JS object.
+Obtains the element at the specified index of a JS object.
 
 CPP code:
 
@@ -890,7 +890,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a GetElement callback.
+// Register the GetElement callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetElement},
 };
@@ -940,7 +940,7 @@ try {
 
 ### OH_JSVM_HasElement
 
-Use **OH_JSVM_HasElement** to check whether a JS object has an element at the specified index.
+Checks whether a JS object has an element at the specified index.
 
 CPP code:
 
@@ -949,7 +949,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a HasElement callback.
+// Register the HasElement callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = HasElement},
 };
@@ -1010,7 +1010,7 @@ try {
 
 ### OH_JSVM_DeleteElement
 
-Use **OH_JSVM_DeleteElement** to delete the element at the specified index from a JS object.
+Deletes the element at the specified index from a JS object.
 
 CPP code:
 
@@ -1019,7 +1019,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a DeleteElement callback.
+// Register the DeleteElement callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = DeleteElement},
 };
@@ -1072,7 +1072,7 @@ try {
 
 ### OH_JSVM_IsDataview
 
-Use **OH_JSVM_IsDataview** to check whether a JS object is a **DataView** object.
+Checks whether a JS object is a **DataView** object.
 
 CPP code:
 
@@ -1081,7 +1081,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a IsDataView callback.
+// Register the IsDataView callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = IsDataView},
 };
@@ -1130,7 +1130,7 @@ try {
 
 ### OH_JSVM_IsTypedarray
 
-Use **OH_JSVM_IsTypedarray** to check whether a JS object is a **TypedArray** object.
+Checks whether a JS object is a **TypedArray** object.
 
 CPP code:
 
@@ -1139,7 +1139,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a IsTypedarray callback.
+// Register the IsTypedarray callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = IsTypedarray},
 };

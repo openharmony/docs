@@ -1,4 +1,4 @@
-# Managing Date Using JSVM-API
+# Working with Date Using JSVM-API
 
 ## Overview
 
@@ -8,7 +8,7 @@ JSVM-API provides APIs for processing JavaScript (JS) **Date** objects in C/C++.
 
 In JSVM-API, the value of a JS **Date** object is the number of milliseconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).
 
-The JS **Date** object provides a way to represent and manage date and time in JS. With the **Date** object, you can create an object that represents a specific time, perform date- and time-related calculations (such as adding or subtracting time intervals), and format date as a string for display.
+The JS **Date** object provides a way to represent and manage date and time in JS. With the **Date** object, you can create an object that represents a specific moment, perform date- and time-related calculations (such as adding or subtracting time intervals), and format date as a string for display.
 
 With the functions for interacting with the **Date** object, the JSVM module can be closely integrated with the JS environment to perform more complex date- and time-related operations.
 
@@ -35,7 +35,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a CreateDate callback.
+// Register the CreateDate callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateDate},
 };
@@ -85,7 +85,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a GetDateValue callback.
+// Register the GetDateValue callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetDateValue},
 };
@@ -141,7 +141,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a IsDate callback.
+// Register the IsDate callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = IsDate},
 };
