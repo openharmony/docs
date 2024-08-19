@@ -60,7 +60,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes (the attributes that **Object.keys(observedObject)** returns) can be observed.
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes  can be observed. For details, see [Example for Using AppStorage from Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
 
@@ -118,7 +118,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes (the attributes that **Object.keys(observedObject)** returns) can be observed.
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes  can be observed. For details, see [Example of Using AppStorage and LocalStorage Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
 
@@ -171,22 +171,49 @@ prop.get() // == 49
 
 
 ```ts
+class PropB {
+  code: number;
+
+  constructor(code: number) {
+    this.code = code;
+  }
+}
+
 AppStorage.SetOrCreate('PropA', 47);
-let storage = new LocalStorage({ 'PropA': 48 });
+AppStorage.SetOrCreate('PropB', new PropB(50));
+let storage = new LocalStorage();
+storage.setOrCreate('PropA', 48);
+storage.setOrCreate('PropB', new PropB(100));
 
 @Entry(storage)
 @Component
 struct CompA {
-  @StorageLink('PropA') storLink: number = 1;
-  @LocalStorageLink('PropA') localStorLink: number = 1;
+  @StorageLink('PropA') storageLink: number = 1;
+  @LocalStorageLink('PropA') localStorageLink: number = 1;
+  @StorageLink('PropB') storageLinkObject: PropB = new PropB(1);
+  @LocalStorageLink('PropB') localStorageLinkObject: PropB = new PropB(1);
 
   build() {
     Column({ space: 20 }) {
-      Text(`From AppStorage ${this.storLink}`)
-        .onClick(() => this.storLink += 1)
+      Text(`From AppStorage ${this.storageLink}`)
+        .onClick(() => {
+          this.storageLink += 1;
+        })
 
-      Text(`From LocalStorage ${this.localStorLink}`)
-        .onClick(() => this.localStorLink += 1)
+      Text(`From LocalStorage ${this.localStorageLink}`)
+        .onClick(() => {
+          this.localStorageLink += 1;
+        })
+
+      Text(`From AppStorage ${this.storageLinkObject.code}`)
+        .onClick(() => {
+          this.storageLinkObject.code += 1;
+        })
+
+      Text(`From LocalStorage ${this.localStorageLinkObject.code}`)
+        .onClick(() => {
+          this.localStorageLinkObject.code += 1;
+        })
     }
   }
 }
@@ -390,7 +417,7 @@ export struct TapImage {
 
 The preceding notification logic is simple. It can be simplified into a ternary expression as follows:
 
-```
+```ts
 // xxx.ets
 class ViewData {
   title: string;
@@ -432,7 +459,6 @@ struct Gallery2 {
 @Component
 export struct TapImage {
   @StorageLink('tapIndex') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
   private index: number = 0;
   private uri: Resource = {
     id: 0,

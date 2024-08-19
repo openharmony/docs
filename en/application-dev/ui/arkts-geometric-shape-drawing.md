@@ -238,7 +238,7 @@ The drawing component allows you to change the component style through various a
 
 ## Example Scenario
 
-- Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 10, the stroke color is red, and the stroke join style is miter (default value).
+- Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 3, the stroke color is red, and the stroke join style is miter (default value).
 
   ```ts
   @Entry

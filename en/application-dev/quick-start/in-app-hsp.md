@@ -11,11 +11,12 @@ library
 ├── src
 │   └── main
 │       ├── ets
-│       │   ├── pages
-│       │   └── index.ets
+│       │   └── pages
+│       │       └── index.ets
 │       ├── resources
 │       └── module.json5
-└── oh-package.json5
+├── oh-package.json5
+└── index.ets
 ```
 In the **module.json5** file, set **type** to **shared** for the HSP.
 ```json
@@ -51,7 +52,7 @@ export function minus(a: number, b: number) {
 ```
 In the entry file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { Log, add, minus } from './utils/test'
 ```
 
@@ -77,7 +78,7 @@ export struct MyTitleBar {
 ```
 In the entry file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { MyTitleBar } from './components/MyTitleBar'
 ```
 #### About Using Resources in the HSP
@@ -98,7 +99,7 @@ export function nativeMulti(a: number, b: number) {
 
 In the entry file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { nativeMulti } from './utils/nativeTest'
 ```
 
@@ -107,7 +108,7 @@ To use APIs in the HSP, first [configure the dependency](https://developer.harmo
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { Log, add, minus } from './utils/test'
 export { MyTitleBar } from './components/MyTitleBar'
 export { nativeMulti } from './utils/nativeTest'

@@ -601,7 +601,7 @@ struct MessageList {
           ListItem() {
             ...
           }
-          .swipeAction({ end: this.itemEnd.bind(this, index) }) // Set the swipe attributes.
+          .swipeAction({ end: this.itemEnd(index) }) // Set the swipe attributes.
         }, item => item.id.toString())
       }
     ...
