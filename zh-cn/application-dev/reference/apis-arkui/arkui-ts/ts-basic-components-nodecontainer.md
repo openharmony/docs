@@ -24,7 +24,7 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 
 **参数：**
 
-| 参数名     | 参数类型                                             | 必填 | 参数描述                                                     |
+| 参数名     | 类型                                                 | 必填 | 说明                                                         |
 | ---------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | controller | [NodeController](../js-apis-arkui-nodeController.md) | 是   | NodeController用于控制NodeContainer中的节点的上树和下树，反映NodeContainer容器的生命周期。 |
 
