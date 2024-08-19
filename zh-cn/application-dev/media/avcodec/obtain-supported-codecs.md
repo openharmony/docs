@@ -9,13 +9,24 @@
 
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+   target_link_libraries(sample PUBLIC libnative_media_vdec.so)
+   target_link_libraries(sample PUBLIC libnative_media_venc.so)
+   target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
+
+   > **说明：**
+   >
+   > 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
+   >
 
 2. 添加头文件。
 
    ```c++
    #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avcodec_videoencoder.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
    ```
 
 3. 获得音视频编解码能力实例。
