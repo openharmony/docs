@@ -69,8 +69,8 @@ reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: num
 
 申请权限名称：后台代理提醒
 
-应用名称：***
+应用名称：详见配置文件(module.json5)中 label 字段对应的值。
 
-应用包名：***
+应用包名：详见配置文件(app.json)中 bundleName 字段对应的值。
 
 使用场景：提供申请理由/用途/尽可能附上图片，及使用代理提醒的必要性。
