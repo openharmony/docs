@@ -27,7 +27,7 @@ RichEditor(value: RichEditorOptions)
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 >  **NOTE**
 >

@@ -33,8 +33,8 @@ Declarations in ArkTS introduce:
 A declaration starting with the keyword `let` introduces a variable which can have different values during program execution.
 
 ```typescript
-let hi: string = 'hello'
-hi = 'hello, world'
+let hi: string = 'hello';
+hi = 'hello, world';
 ```
 
 #### Constant Declaration
@@ -42,7 +42,7 @@ hi = 'hello, world'
 A declaration starting with the keyword `const` introduces a read-only constant that can be assigned only once.
 
 ```typescript
-const hello: string = 'hello'
+const hello: string = 'hello';
 ```
 
 A compile-time error occurs if a new value is assigned to a constant.
@@ -58,8 +58,8 @@ All cases that allow the type to be inferred automatically are specified in the 
 Both variable declarations are valid, and both variables are of the `string` type:
 
 ```typescript
-let hi1: string = 'hello'
-let hi2 = 'hello, world'
+let hi1: string = 'hello';
+let hi2 = 'hello, world';
 ```
 
 ### Types
@@ -90,16 +90,16 @@ A floating-point literal includes the following:
 Example:
 
 ```typescript
-let n1 = 3.14
-let n2 = 3.141592
-let n3 = .5
-let n4 = 1e10
+let n1 = 3.14;
+let n2 = 3.141592;
+let n3 = .5;
+let n4 = 1e10;
 
 function factorial(n: number): number {
   if (n <= 1) {
-    return 1
+    return 1;
   }
-  return n * factorial(n - 1)
+  return n * factorial(n - 1);
 }
 ```
 
@@ -110,12 +110,12 @@ The `boolean` type represents logical values that are either `true` or `false`.
 Usually variables of this type are used in conditional statements:
 
 ```typescript
-let isDone: boolean = false
+let isDone: boolean = false;
 
 // ...
 
 if (isDone) {
-  console.log ('Done!')
+  console.log ('Done!');
 }
 ```
 
@@ -126,10 +126,10 @@ A `string` is a sequence of characters; some characters can be set by using esca
 A `string` literal consists of zero or more characters enclosed in single (') or double quotes ("). The special form of string literals are template literals enclosed in backtick quotes (\`).
 
 ```typescript
-let s1 = 'Hello, world!\n'
-let s2 = 'this is a string'
-let a = 'Success'
-let s3 = `The result is ${a}`
+let s1 = 'Hello, world!\n';
+let s2 = 'this is a string';
+let a = 'Success';
+let s3 = `The result is ${a}`;
 ```
 
 #### `Void` Type
@@ -194,9 +194,9 @@ class Frog {
 type Animal = Cat | Dog | Frog | number
 // Cat, Dog, and Frog are some types (class or interface ones)
 
-let animal: Animal = new Cat()
-animal = new Frog()
-animal = 42
+let animal: Animal = new Cat();
+animal = new Frog();
+animal = 42;
 // One may assign the variable of the union type with any valid value
 ```
 
@@ -211,11 +211,11 @@ class Frog { sleep () {}; leap () {} }
 
 type Animal = Cat | Dog | Frog | number
 
-let animal: Animal = new Cat()
+let animal: Animal = new Frog();
 if (animal instanceof Frog) {
-  let frog: Frog = animal as Frog // animal is of type Frog here
-  animal.leap()
-  frog.leap()
+  let frog: Frog = animal as Frog; // animal is of type Frog here
+  animal.leap();
+  frog.leap();
   // As a result frog leaps twice
 }
 
@@ -227,10 +227,10 @@ animal.sleep () // Any animal can sleep
 Type `aliases` provides names for anonymous types (array, function, object literal or union types) or alternative names for existing types.
 
 ```typescript
-type Matrix = number[][]
-type Handler = (s: string, no: number) => string
-type Predicate <T> = (x: T) => Boolean
-type NullableObject = Object | null
+type Matrix = number[][];
+type Handler = (s: string, no: number) => string;
+type Predicate <T> = (x: T) => Boolean;
+type NullableObject = Object | null;
 ```
 
 ### Operators
@@ -307,12 +307,12 @@ if (condition1) {
 All conditional expressions must be of the type `boolean` or other types (`string`, `number`, etc.). For types other than `boolean`, implicit conversion rules apply:
 
 ```typescript
-let s1 = 'Hello'
+let s1 = 'Hello';
 if (s1) {
   console.log(s1) // prints 'Hello'
 }
 
-let s2 = 'World'
+let s2 = 'World';
 if (s2.length != 0) {
   console.log(s2) // prints 'World'
 }
@@ -365,8 +365,8 @@ If that logical expression is truthy(a value that is considered `true`), then th
 Example:
 
 ```typescript
-let isValid = Math.random() > 0.5 ? true : false
-let message = isValid ? 'Valid' : 'Failed'
+let isValid = Math.random() > 0.5 ? true : false;
+let message = isValid ? 'Valid' : 'Failed';
 ```
 
 #### `For` Statements
@@ -392,9 +392,9 @@ When a `for` statement is executed, the following process takes place:
 Example:
 
 ```typescript
-let sum = 0
+let sum = 0;
 for (let i = 0; i < 10; i += 2) {
-  sum += i
+  sum += i;
 }
 ```
 
@@ -433,11 +433,11 @@ while (condition) {
 Example:
 
 ```typescript
-let n = 0
-let x = 0
+let n = 0;
+let x = 0;
 while (n < 3) {
-  n++
-  x += n
+  n++;
+  x += n;
 }
 ```
 
@@ -456,9 +456,9 @@ do {
 Example:
 
 ```typescript
-let i = 0
+let i = 0;
 do {
-  i += 1
+  i += 1;
 } while (i < 10)
 ```
 
@@ -469,7 +469,7 @@ A `break` statement is used to terminate any `loop` statement or `switch`.
 Example:
 
 ```typescript
-let x = 0
+let x = 0;
 while (true) {
   x++;
   if (x > 5) {
@@ -500,12 +500,12 @@ A `continue` statement stops the execution of the current loop iteration and pas
 Example:
 
 ```typescript
-let sum = 0
+let sum = 0;
 for (let x = 0; x < 100; x++) {
   if (x % 2 == 0) {
     continue
   }
-  sum += x
+  sum += x;
 }
 ```
 
@@ -533,16 +533,16 @@ The example below shows the `throw` and `try` statements  used to handle the zer
 class ZeroDivisor extends Error {}
 
 function divide (a: number, b: number): number{
-  if (b == 0) throw new ZeroDivisor()
-  return a / b
+  if (b == 0) throw new ZeroDivisor();
+  return a / b;
 }
 
 function process (a: number, b: number) {
   try {
-    let res = divide(a, b)
-    console.log('result: ' + res)
+    let res = divide(a, b);
+    console.log('result: ' + res);
   } catch (x) {
-    console.log('some error')
+    console.log('some error');
   }
 }
 ```
@@ -551,15 +551,15 @@ function process (a: number, b: number) {
 
 ```typescript
 function processData(s: string) {
-  let error: Error | null = null
+  let error: Error | null = null;
 
   try {
-    console.log('Data processed: ' + s)
+    console.log('Data processed: ' + s);
     // ...
     // Throwing operations
     // ...
   } catch (e) {
-    error = e as Error
+    error = e as Error;
     // ...
     // More error handling
     // ...
@@ -581,8 +581,8 @@ Below is a simple function with two string parameters and string return type:
 
 ```typescript
 function add(x: string, y: string): string {
-  let z: string = `${x} ${y}`
-  return z
+  let z: string = `${x} ${y}`;
+  return z;
 }
 ```
 
@@ -596,9 +596,9 @@ An optional parameter has the form `name?: Type`.
 ```typescript
 function hello(name?: string) {
   if (name == undefined) {
-    console.log('Hello!')
+    console.log('Hello!');
   } else {
-    console.log('Hello, ${name}!')
+    console.log(`Hello, ${name}!`);
   }
 }
 ```
@@ -608,10 +608,10 @@ If the corresponding argument to such parameter is omitted in a function call, t
 
 ```typescript
 function multiply(n: number, coeff: number = 2): number {
-  return n * coeff
+  return n * coeff;
 }
-multiply(2)  // returns 2*2
-multiply(2, 3) // returns 2*3
+multiply(2);  // returns 2*2
+multiply(2, 3); // returns 2*3
 ```
 
 ### The Rest Parameter
@@ -620,10 +620,10 @@ The last parameter of a function can be a rest parameter. It allows functions or
 
 ```typescript
 function sum(...numbers: number[]): number {
-  let res = 0
+  let res = 0;
   for (let n of numbers)
-    res += n
-  return res
+    res += n;
+  return res;
 }
 
 sum() // returns 0
@@ -636,10 +636,10 @@ If function return type can be inferred from its body content, then it can be om
 
 ```typescript
 // Explicit return type
-function foo(): string { return 'foo' }
+function foo(): string { return 'foo'; }
 
 // Implicit return type inferred as string
-function goo() { return 'goo' }
+function goo() { return 'goo'; }
 ```
 
 The return type of a function that does not need to return a value can be explicitly specified as `void` or omitted altogether. No return statement is needed for such functions.
@@ -647,8 +647,8 @@ The return type of a function that does not need to return a value can be explic
 Both notations below are valid:
 
 ```typescript
-function hi1() { console.log('hi') }
-function hi2(): void { console.log('hi') }
+function hi1() { console.log('hi'); }
+function hi2(): void { console.log('hi'); }
 ```
 
 ### Function Scope
@@ -665,19 +665,19 @@ If the function is defined as follows:
 
 ```typescript
 function join(x: string, y: string): string {
-  let z: string = `${x} ${y}`
-  return z
+  let z: string = `${x} ${y}`;
+  return z;
 }
 ```
 
 then it is called with two arguments of the type `string`:
 
 ```typescript
-let x = join('hello', 'world')
-console.log(x)
+let x = join('hello', 'world');
+console.log(x);
 ```
 
-## Function Types
+### Function Types
 
 Function types are commonly used as follows to define callbacks:
 
@@ -685,10 +685,10 @@ Function types are commonly used as follows to define callbacks:
 type trigFunc = (x: number) => number // this is a function type
 
 function do_action(f: trigFunc) {
-   f(3.141592653589) // call the function
+   f(3.141592653589); // call the function
 }
 
-do_action(Math.sin) // pass the function as the parameter
+do_action(Math.sin); // pass the function as the parameter
 ```
 
 ### Arrow Functions or Lambdas
@@ -697,7 +697,7 @@ A function can be defined as an arrow function, for example:
 
 ```typescript
 let sum = (x: number, y: number): number => {
-  return x + y
+  return x + y;
 }
 ```
 
@@ -712,23 +712,21 @@ let sum2 = (x: number, y: number) => x + y
 
 ### Closure
 
-An arrow function is usually defined inside another function. As an inner function, it can access all variables and functions defined in the outer functions.
+A closure is the combination of a function and the lexical environment within which that function was declared. This environment consists of any local variables that were in-scope at the time the closure was created.
 
-To capture the context, an inner function forms a closure of its environment.
-The closure allows accessing such an inner function outside its own environment.
+In the following example, **z** is a reference to the instance of the function **g** that is created when **f** is executed. The instance of **g** maintains a reference to its lexical environment, within which the variable **count** exists. For this reason, when **z** is invoked, the variable **count** remains available for use.
 
 ```typescript
 function f(): () => number {
   let count = 0;
-  return (): number => { count++; return count; }
+  let g = (): number => { count++; return count; };
+  return g;
 }
 
 let z = f();
 z(); // output: 1
 z(); // output: 2
 ```
-
-In the sample above, the arrow function closure captures the `count` variable.
 
 ### Function Overload Signatures
 
@@ -780,7 +778,7 @@ class Point {
   x: number = 0
   y: number = 0
 }
-let p: Point = { x: 42, y: 42 };
+let p: Point = {x: 42, y: 42};
 ```
 
 ### Fields
@@ -800,19 +798,19 @@ class Person {
   name: string = ''
   age: number = 0
   constructor(n: string, a: number) {
-    this.name = n
-    this.age = a
+    this.name = n;
+    this.age = a;
   }
 
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
 
 let p1 = new Person('Alice', 25);
-console.log(p1.name);
+p1.name;
 let p2 = new Person('Bob', 28);
-console.log(p2.getName());
+p2.getName();
 ```
 
 #### Static Fields
@@ -845,7 +843,7 @@ class Person {
   name: string // The compiler automatically sets to undefined
   
   setName(n:string): void {
-    this.name = n
+    this.name = n;
   }
   
   getName(): string {
@@ -870,14 +868,15 @@ class Person {
   name: string = '' // The field is always defined
 
   setName(n:string): void {
-    this.name = n
+    this.name = n;
   }
 
   // The type is always string, no other "hidden options".
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
+  
 
 let jack = new Person()
 // Let's assume that the developer forgets to call setName:
@@ -1056,8 +1055,8 @@ class RectangleSize {
   protected width: number = 0
 
   constructor (h: number, w: number) {
-    this.height = h
-    this.width = w
+    this.height = h;
+    this.width = w;
   }
 
   draw() {
@@ -1067,12 +1066,12 @@ class RectangleSize {
 class FilledRectangle extends RectangleSize {
   color = ''
   constructor (h: number, w: number, c: string) {
-    super(h, w) // call of super constructor
-    this.color = c
+    super(h, w); // call of super constructor
+    this.color = c;
   }
 
   draw() {
-    super.draw() // call of super methods
+    super.draw(); // call of super methods
     // super.height - can be used here
     /* fill rectangle */
   }
@@ -1202,12 +1201,12 @@ class C {
   public x: string = ''
   private y: string = ''
   set_y (new_y: string) {
-    this.y = new_y // ok, as y is accessible within the class itself
+    this.y = new_y; // ok, as y is accessible within the class itself
   }
 }
-let c = new C()
-c.x = 'a' // ok, the field is public
-c.y = 'b' // compile-time error: 'y' is not visible
+let c = new C();
+c.x = 'a'; // ok, the field is public
+c.y = 'b'; // compile-time error: 'y' is not visible
 ```
 
 #### Protected Visibility
@@ -1222,8 +1221,8 @@ class Base {
 }
 class Derived extends Base {
   foo() {
-    this.x = 'a' // ok, access to protected member
-    this.y = 'b' // compile-time error, 'y' is not visible, as it is private
+    this.x = 'a'; // ok, access to protected member
+    this.y = 'b'; // compile-time error, 'y' is not visible, as it is private
   }
 }
 ```
@@ -1240,7 +1239,7 @@ class C {
   s: string = ''
 }
 
-let c: C = {n: 42, s: 'foo'}
+let c: C = {n: 42, s: 'foo'};
 ```
 
 Due to the static typing of the ArkTS, object literals can be used in a context where the class or interface type of the object literal can be inferred as in the example above. Other valid cases are illustrated below:
@@ -1255,11 +1254,11 @@ function foo(c: C) {}
 
 let c: C
 
-c = {n: 42, s: 'foo'}  // type of the variable is used
-foo({n: 42, s: 'foo'}) // type of the parameter is used
+c = {n: 42, s: 'foo'};  // type of the variable is used
+foo({n: 42, s: 'foo'}); // type of the parameter is used
 
 function bar(): C {
-  return {n: 42, s: 'foo'} // return type is used
+  return {n: 42, s: 'foo'}; // return type is used
 }
 ```
 
@@ -1270,7 +1269,7 @@ class C {
   n: number = 0
   s: string = ''
 }
-let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}]
+let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}];
 ```
 
 #### Object Literals of Record Type
@@ -1354,7 +1353,9 @@ A property field is just a shortcut notation of a getter/setter pair, and the fo
 interface Style {
   color: string
 }
+```
 
+```typescript
 interface Style {
   get color(): string
   set color(x: string)
@@ -1373,8 +1374,6 @@ class StyledRectangle implements Style {
 }
 ```
 
-The short notation implicitly defines a private field and getter and setter:
-
 ```typescript
 interface Style {
   color: string
@@ -1382,8 +1381,8 @@ interface Style {
 
 class StyledRectangle implements Style {
   private _color: string = ''
-  get color(): string { return this._color }
-  set color(x: string) { this._color = x }
+  get color(): string { return this._color; }
+  set color(x: string) { this._color = x; }
 }
 ```
 
@@ -1413,7 +1412,7 @@ A class and an interface can be defined as generics, adding parameters to the ty
 
 ```typescript
 class CustomStack<Element> {
-  public push(e: Element): void {
+  public push(e: Element):void {
     // ...
   }
 }
@@ -1422,17 +1421,16 @@ class CustomStack<Element> {
 To use type CustomStack, the type argument must be specified for each type parameter:
 
 ```typescript
-let s = new CustomStack<string>()
-s.push('hello')
+let s = new CustomStack<string>();
+s.push('hello');
 ```
 
 Compiler ensures type safety while working with generic types and functions.
 See below:
 
 ```typescript
-let s = new CustomStack<string>()
-s.push(55) /* That will be a compile-time error as 55 is not compatible
-  with type string */
+let s = new CustomStack<string>();
+s.push(55); // That will be a compile-time error as 55 is not compatible with type string.
 ```
 
 ### Generic Constraints
@@ -1468,7 +1466,7 @@ If the same function needs to be defined for any array, then define it as a gene
 
 ```typescript
 function last<T>(x: T[]): T {
-  return x[x.length - 1]
+  return x[x.length - 1];
 }
 ```
 
@@ -1502,9 +1500,9 @@ class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 function foo<T = number>(): T {
   // ...
 }
-foo()
+foo();
 // such function is semantically equivalent to the call below
-foo<number>()
+foo<number>();
 ```
 
 ## Null Safety
@@ -1515,17 +1513,17 @@ It is similar to TypeScript behavior in strict null checking mode (`strictNullCh
 In the example below, all lines cause a compile-time error:
 
 ```typescript
-let x: number = null    // Compile-time error
-let y: string = null    // Compile-time error
-let z: number[] = null  // Compile-time error
+let x: number = null;    // Compile-time error
+let y: string = null;    // Compile-time error
+let z: number[] = null;  // Compile-time error
 ```
 
 A variable that can have a null value is defined with a union type `T | null`.
 
 ```typescript
-let x: number | null = null
-x = 1    // ok
-x = null // ok
+let x: number | null = null;
+x = 1;    // ok
+x = null; // ok
 if (x != null) { /* do something */ }
 ```
 
@@ -1560,7 +1558,7 @@ class Person {
   // ...
   nick: string | null = null
   getNick(): string {
-    return this.nick ?? ''
+    return this.nick ?? '';
   }
 }
 ```
@@ -1575,16 +1573,16 @@ class Person {
   spouse?: Person
 
   setSpouse(spouse: Person): void {
-    this.spouse = spouse
+    this.spouse = spouse;
   }
 
   getSpouseNick(): string | null | undefined {
-    return this.spouse?.nick
+    return this.spouse?.nick;
   }
 
   constructor(nick: string) {
-    this.nick = nick
-    this.spouse = undefined
+    this.nick = nick;
+    this.spouse = undefined;
   }
 }
 ```
@@ -1603,13 +1601,13 @@ class Person {
   spouse?: Person
 
   constructor(nick: string) {
-    this.nick = nick
-    this.spouse = undefined
+    this.nick = nick;
+    this.spouse = undefined;
   }
 }
 
-let p: Person = new Person('Alice')
-p.spouse?.nick // undefined
+let p: Person = new Person('Alice');
+p.spouse?.nick; // undefined
 ```
 
 ## Modules
@@ -1633,13 +1631,13 @@ export class Point {
   x: number = 0
   y: number = 0
   constructor(x: number, y: number) {
-    this.x = x
-    this.y = y
+    this.x = x;
+    this.y = y;
   }
 }
-export let Origin = new Point(0, 0)
+export let Origin = new Point(0, 0);
 export function Distance(p1: Point, p2: Point): number {
-  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y))
+  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
 }
 ```
 
@@ -1695,7 +1693,7 @@ The `main` function must have either an empty parameter list or a single paramet
 
 ```typescript
 function main() {
-  console.log('this is the program entry')
+  console.log('this is the program entry');
 }
 ```
 

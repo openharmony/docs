@@ -125,7 +125,7 @@ Use chainable event methods to configure events supported by built-in components
     })
   ```
 
-- Example of using a component's member function to configure the event of the component, where **this** binding is not needed:
+- Example of using a component's member function to configure the event of the component, where **this** binding is needed:
 
   ```ts
   myClickHandler(): void {
@@ -133,7 +133,7 @@ Use chainable event methods to configure events supported by built-in components
   }
   ...
   Button('add counter')
-    .onClick(this.myClickHandler)
+    .onClick(this.myClickHandler.bind(this))
   ```
 
 - Example of using an arrow function expression for a declaration, where **this** binding is not needed:

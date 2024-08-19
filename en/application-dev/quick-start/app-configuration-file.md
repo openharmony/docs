@@ -20,7 +20,7 @@ This topic gives an overview of the **app.json5** configuration file. To start w
     "apiReleaseType": "Release",
     "debug": false,
     "car": {
-      "minAPIVersion": 8,
+      "minAPIVersion": 8
     },
     "targetBundleName": "com.application.test",
     "targetPriority": 50

@@ -112,7 +112,7 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 Creates a **Calendar** object based on the calendar account information. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.WRITE_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -155,7 +155,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 Creates a **Calendar** object based on the calendar account information. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.WRITE_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -198,7 +198,7 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 Deletes a specified **Calendar** object. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.WRITE_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -247,7 +247,7 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 Deletes a specified **Calendar** object. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.WRITE_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -297,7 +297,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 Obtains the default **Calendar** object, which is created when the data storage runs for the first time. This API uses an asynchronous callback to return the result. You can call this API instead of [createCalendar()](#createcalendar) to use the default calendar for a new event.
 
-**Required permissions**: ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.WRITE_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -331,7 +331,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 Obtains a specified **Calendar** object. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.WRITE_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -375,7 +375,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 Obtains the default **Calendar** object or a specified **Calendar** object. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.WRITE_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -413,7 +413,7 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 Obtains the created and default **Calendar** objects of the current application. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.WRITE_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -449,7 +449,7 @@ getAllCalendars(): Promise\<Calendar[]>
 
 Obtains the created and default **Calendar** objects of the current application. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.READ_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**Required permissions**: ohos.permission.READ_CALENDAR
 
 **System capability**: SystemCapability.Applications.CalendarData
 
