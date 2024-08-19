@@ -259,7 +259,7 @@ In this example, the **CompA** and **Child** components create local data that i
 
 - The change of **this.storProp1** in **CompA** takes effect only in **CompA** and is not synchronized to **storage**.
 
-- In the **Child** component, the value of **storProp2** bound to **Text** is still 47.
+- In the **Child** component, the value of **storageProp2** bound to **Text** is still 47.
 
 ```ts
 // Create a new instance and initialize it with the given object.

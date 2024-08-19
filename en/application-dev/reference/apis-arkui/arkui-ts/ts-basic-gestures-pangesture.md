@@ -23,6 +23,8 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 
 ## PanDirection
 
+Unlike **SwipeDirection**, **PanDirection** does not have any angle restrictions.
+
 | Name| Description|
 | -------- | -------- |
 | All | All directions.|

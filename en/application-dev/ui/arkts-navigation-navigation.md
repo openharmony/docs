@@ -307,7 +307,6 @@ You can set the subpage mode through the **mode** attribute of **\<NavDestinatio
   @Component
   struct Index {
     @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-    isLogin: boolean = false;
 
     @Builder
     PagesMap(name: string) {

@@ -72,7 +72,7 @@ The following attributes are supported.
 | Name        | Type                                                    | Description                                                        |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10)| Indicator style of the selected subtab. It is valid only in the horizontal layout.|
-| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10)   | Display mode of the selected subtab.<br>Default value: **SelectedMode.INDICATOR**|
+| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10)   | Display mode of the selected subtab. It takes effect only in the horizontal layout.<br>Default value: **SelectedMode.INDICATOR**|
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10)   | Board style of the selected subtab. This attribute applies only |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label text and font of the subtab.|
 | padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Padding of the subtab. It cannot be set in percentage. When the parameter is of the Dimension type, the value applies to all sides.<br>Default value: **{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp}**|
