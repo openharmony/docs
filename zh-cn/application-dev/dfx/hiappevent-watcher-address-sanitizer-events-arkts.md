@@ -27,7 +27,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            - napi_init.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -68,7 +68,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.pid=${eventInfo.params['pid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.uid=${eventInfo.params['uid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.type=${eventInfo.params['type']}`);
-           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${eventInfo.params['external_log']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.log_over_limit=${eventInfo.params['log_over_limit']}`);
          }
        }
@@ -122,25 +122,19 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-6. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，完整示例代码如下：
+6. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，新增按钮触发踩内存事件：
 
    ```ts
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import testNapi from 'libentry.so';
+   import testNapi from 'libentry.so'
 
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World';
-
      build() {
        Row() {
-       Column() {
-         Text(this.message)
-           .fontSize(50)
-           .fontWeight(FontWeight.Bold)
-           .onClick(() => {
-             hilog.info(0x0000, 'testTag', 'Test NAPI.', testNapi.add(2, 3));
+         Column() {
+           Button("address-sanitizer").onClick(() => {
+             testNapi.test();
            })
          }
          .width('100%')
@@ -164,6 +158,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.pid=12889
    HiAppEvent eventInfo.uid=20020140
    HiAppEvent eventInfo.type=stack-buffer-overflow
-   HiAppEvent eventInfo.external_log=/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log
+   HiAppEvent eventInfo.external_log=["/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log"]
    HiAppEvent eventInfo.log_over_limit=false
    ```
