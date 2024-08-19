@@ -276,18 +276,14 @@ struct Comp {
 class User {
   @Trace name: string = "Tom"; // 错误用法，编译时报错
 }
-```
 
-以下写法没有深度观测的能力，@ObservedV2装饰器不会生效。
-
-```ts
 @ObservedV2
 class Person {
-  @Track name: string = "Jack"; // 无深度观测能力
+  @Track name: string = "Jack"; // 错误用法，编译时报错
 }
 ```
 
-- 使用\@ObservedV2与\@Trace装饰的类不能和[\@State](arkts-state.md)以及现有框架的装饰器混合使用。
+- 使用\@ObservedV2与\@Trace装饰的类不能和[\@State](arkts-state.md)等V1的装饰器混合使用，编译时报错。
 
 ```ts
 // 以@State装饰器为例
@@ -304,7 +300,7 @@ class Info {
 @Entry
 @Component
 struct Index {
-  @State info: Info = new Info(); // 无法混用，运行时crash
+  @State info: Info = new Info(); // 无法混用，编译时报错
 
   build() {
     Column() {
@@ -318,6 +314,48 @@ struct Index {
       Button("Change job")
         .onClick(() => {
           this.info.job.jobName = "Doctor";
+      })
+    }
+  }
+}
+```
+
+- 继承自\@ObservedV2的类无法和\@State等V1的装饰器混用，运行时报错。
+
+```ts
+// 以@State装饰器为例
+@ObservedV2
+class Job {
+  @Trace jobName: string = "Teacher";
+}
+@ObservedV2
+class Info {
+  @Trace name: string = "Tom";
+  @Trace age: number = 25;
+  job: Job = new Job();
+}
+class Message extends Info {
+    constructor() {
+        super();
+    }
+}
+@Entry
+@Component
+struct Index {
+  @State message: Message = new Message(); // 无法混用，运行时报错
+
+  build() {
+    Column() {
+      Text(`name: ${this.message.name}`)
+      Text(`age: ${this.message.age}`)
+      Text(`jobName: ${this.message.job.jobName}`)
+      Button("change age")
+        .onClick(() => {
+          this.message.age++;
+      })
+      Button("Change job")
+        .onClick(() => {
+          this.message.job.jobName = "Doctor";
       })
     }
   }
