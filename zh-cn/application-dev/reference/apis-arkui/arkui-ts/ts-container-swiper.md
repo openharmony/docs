@@ -1086,7 +1086,6 @@ struct SwiperExample {
       .autoPlay(true)
       .interval(4000)
       .indicator(Indicator.digit() // 设置数字导航点样式
-        .right("43%")
         .top(200)
         .fontColor(Color.Gray)
         .selectedFontColor(Color.Gray)
