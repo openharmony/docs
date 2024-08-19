@@ -582,7 +582,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -616,7 +616,7 @@ pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -651,7 +651,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -687,7 +687,7 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
