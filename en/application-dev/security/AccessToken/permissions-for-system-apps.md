@@ -3661,6 +3661,18 @@ Allows a system application to access the widget for credential enrollment.
 
 **Valid since**：12
 
+### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
+
+Allows a modal UIExtension to unhide non-secure windows.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
