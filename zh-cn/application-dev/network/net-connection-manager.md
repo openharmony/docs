@@ -212,7 +212,7 @@ export class GlobalContext {
 
 // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)
 connection.getDefaultNet().then((data:connection.NetHandle) => {
-  if (netHandle.netId == 0) {
+  if (data.netId == 0) {
     // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
     return;
   }
@@ -264,10 +264,6 @@ connection.getDefaultNet().then((data:connection.NetHandle) => {
   }
 });
 
-if (netHandle.netId == 0) {
-  // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
-  return;
-}
 // 获取netHandle对应网络的连接信息。连接信息包含了链路信息、路由信息等
 connection.getConnectionProperties(GlobalContext.getContext().netHandle).then((data: connection.ConnectionProperties) => {
   console.info("getConnectionProperties get data: " + JSON.stringify(data));
