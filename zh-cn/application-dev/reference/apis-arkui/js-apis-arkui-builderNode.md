@@ -282,7 +282,7 @@ struct Index {
 
 **示例2：**
 
-BuilderNode的RenderNode挂到其它RenderNode下。
+BuilderNode的FrameNode挂到其它FrameNode下。
 
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
@@ -317,14 +317,84 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
+    this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    if (this.rootNode !== null) {
+      this.rootNode.appendChild(this.textNode?.getFrameNode());
+    }
 
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController(this.message))
+          .width('100%')
+          .height(100)
+          .backgroundColor('#FFF0F0F0')
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+**示例3：**
+
+BuilderNode的RenderNode挂到其它RenderNode下。由于RenderNode不传递布局约束，不推荐通过该方式挂载节点。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI"
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[Params]> | null = null;
+  private message: string = "DEFAULT";
+
+  constructor(message: string) {
+    super();
+    this.message = message;
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+    let renderNode = new RenderNode();
+    renderNode.clipToFrame = false;
     this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
     this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     const textRenderNode = this.textNode?.getFrameNode()?.getRenderNode();
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(textRenderNode);
+      rootRenderNode.appendChild(renderNode);
+      renderNode.appendChild(textRenderNode);
     }
 
     return this.rootNode;
