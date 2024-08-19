@@ -1,4 +1,4 @@
-# 订阅系统崩溃事件（C++）
+# 订阅崩溃事件（C/C++）
 
 ## 接口说明
 
@@ -33,7 +33,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -220,16 +220,15 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const registerWatcher: () => void;
    ```
 
-6. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
+6. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
+   // 导入依赖模块
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // 启动时，注册系统事件观察者
-       testNapi.registerWatcher();
-     }
-   }
+
+   // 在onCreate()函数中新增接口调用
+   // 启动时，注册系统事件观察者
+   testNapi.registerWatcher();
    ```
 
 7. 编辑"Index.ets"文件，新增按钮触发崩溃事件：
@@ -245,21 +244,21 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 9. 应用工程崩溃退出后再次运行可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.name=APP_CRASH
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.eventType=1
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.time=1502032265088
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.crash_type=JsError
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.foreground=1
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.pid=19237
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.uid=20010043
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.hilog.size=110
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=0
+   HiAppEvent eventInfo.domain=OS
+   HiAppEvent eventInfo.name=APP_CRASH
+   HiAppEvent eventInfo.eventType=1
+   HiAppEvent eventInfo.params.time=1502032265088
+   HiAppEvent eventInfo.params.crash_type=JsError
+   HiAppEvent eventInfo.params.foreground=1
+   HiAppEvent eventInfo.params.bundle_version=1.0.0
+   HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+   HiAppEvent eventInfo.params.pid=19237
+   HiAppEvent eventInfo.params.uid=20010043
+   HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
+   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
+   HiAppEvent eventInfo.params.hilog.size=110
+   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
+   HiAppEvent eventInfo.params.log_over_limit=0
    ```
 
 10. 移除应用事件观察者：
@@ -276,9 +275,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
+        // 销毁创建的观察者，并置systemEventWatcher为nullptr。
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```
