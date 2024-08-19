@@ -21,7 +21,7 @@ API10
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.0.39 版本开始。
+从OpenHarmony SDK 5.0.0.39版本开始。
 
 **变更的接口/组件**
 
