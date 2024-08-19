@@ -12,6 +12,8 @@ gestureModifier(modifier: GestureModifier)
 
 Creates a gesture modifier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -30,6 +32,8 @@ applyGesture(event: UIGestureEvent): void
 Binds a gesture to this component.
 
 You can customize this API as required. The **if/else** syntax is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
