@@ -109,7 +109,7 @@ struct testTmp {
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 变更前，全模态动效参数为interpolatingSpring(velocity:n, mass:1, stiffness:100, damping:20)，动效时长约为1200ms。
 
@@ -129,7 +129,7 @@ bindContentCover组件
 
 **适配指导**
 
-默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期，可通过transition接口自定义动效。
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期，可通过[transition](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#contentcoveroptions)接口自定义动效。
 
 ## cl.arkui.3 @ohos.arkui.advanced.SubHeader删除SymbolRenderingStrategy和SymbolEffectStrategy。
 

@@ -31,7 +31,7 @@ The AVMuxer module provides the functions for audio and video muxing.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVMuxer](#oh_avmuxer) \* [OH_AVMuxer_Create](#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | Creates an **OH_AVMuxer** instance by using the file descriptor and encapsulation format. | 
+| [OH_AVMuxer](#oh_avmuxer) \* [OH_AVMuxer_Create](#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | Creates an **OH_AVMuxer** instance by using the file descriptor and container format. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_SetRotation](#oh_avmuxer_setrotation) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t rotation) | Sets the rotation angle (clockwise) of an output video. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_AddTrack](#oh_avmuxer_addtrack) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t \*trackIndex, [OH_AVFormat](_core.md#oh_avformat) \*trackFormat) | Adds a media track to the muxer.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Start](#oh_avmuxer_start) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | Starts the muxer.| 
@@ -98,7 +98,7 @@ OH_AVMuxer* OH_AVMuxer_Create (int32_t fd, OH_AVOutputFormat format)
 
 **Description**
 
-Creates an **OH_AVMuxer** instance by using the file descriptor and encapsulation format.
+Creates an **OH_AVMuxer** instance by using the file descriptor and container format.
 
 **System capability**: SystemCapability.Multimedia.Media.Muxer
 

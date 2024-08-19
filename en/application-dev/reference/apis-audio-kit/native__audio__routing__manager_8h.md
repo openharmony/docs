@@ -9,6 +9,8 @@ You can use the functions to create an audio routing manager, register and dereg
 
 **Library**: libohaudio.so
 
+**File to include**: &lt;ohaudio/native_audio_routing_manager.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Since**: 12
@@ -21,7 +23,7 @@ You can use the functions to create an audio routing manager, register and dereg
 
 ### Types
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
 | typedef struct [OH_AudioRoutingManager](_o_h_audio.md#oh_audioroutingmanager) [OH_AudioRoutingManager](_o_h_audio.md#oh_audioroutingmanager) | Defines the struct of an audio routing manager, which is used for routing and device-related functions. | 
 | typedef int32_t(\* [OH_AudioRoutingManager_OnDeviceChangedCallback](_o_h_audio.md#oh_audioroutingmanager_ondevicechangedcallback)) ([OH_AudioDevice_ChangeType](_o_h_audio.md#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | Defines a pointer to the callback function that returns the changed audio device descriptor (possibly multiple descriptors). | 
@@ -29,7 +31,7 @@ You can use the functions to create an audio routing manager, register and dereg
 
 ### Functions
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
 | [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_AudioManager_GetAudioRoutingManager](_o_h_audio.md#oh_audiomanager_getaudioroutingmanager) ([OH_AudioRoutingManager](_o_h_audio.md#oh_audioroutingmanager) \*\*audioRoutingManager) | Obtains the handle to an audio routing manager. The handle should be set as the first parameter in the routing-related functions. | 
 | [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_AudioRoutingManager_GetDevices](_o_h_audio.md#oh_audioroutingmanager_getdevices) ([OH_AudioRoutingManager](_o_h_audio.md#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDevice_Flag](_o_h_audio.md#oh_audiodevice_flag) deviceFlag, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*\*audioDeviceDescriptorArray) | Obtains available devices based on the device flag. | 

@@ -24,15 +24,15 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                  |
+| Name | Type   | Mandatory | Description                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | Yes  | Widget ID.                              |
 | minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Error codes**
 
-| Error Code ID| Error Message|
+| Error Code ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -77,7 +77,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                  |
+| Name | Type   | Mandatory | Description                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | Yes  | Widget ID.                              |
 | minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
@@ -90,7 +90,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 
 **Error codes**
 
-| Error Code ID| Error Message|
+| Error Code ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -133,15 +133,15 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type                                                                   | Mandatory| Description            |
+| Name | Type                                                                   | Mandatory | Description            |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| formId | string                                                                 | Yes  | ID of the widget to update.|
-| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data to be used for the update.   |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| formId | string                                                                 | Yes  | ID of the widget to update. |
+| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data to be used for the update.   |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Error codes**
 
-| Error Code ID| Error Message|
+| Error Code ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -190,20 +190,20 @@ Updates a widget. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                                                                   | Mandatory| Description            |
+| Name | Type                                                                   | Mandatory | Description            |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| formId | string                                                                 | Yes  | ID of the widget to update.|
-| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data to be used for the update.   |
+| formId | string                                                                 | Yes  | ID of the widget to update. |
+| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data to be used for the update.   |
 
 **Return value**
 
 | Type          | Description                               |
 | -------------- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
-| Error Code ID| Error Message|
+| Error Code ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -250,12 +250,12 @@ Obtains the application's widget information on the device. This API uses an asy
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
+| Name | Type   | Mandatory | Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the information obtained.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes | Callback used to return the information obtained. |
 
 **Error codes**
-| Error Code ID| Error Message|
+| Error Code ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -295,14 +295,14 @@ Obtains the application's widget information that meets a filter criterion on th
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
+| Name | Type   | Mandatory | Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | Yes| Filter criterion.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the information obtained.|
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | Yes | Filter criterion. |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes | Callback used to return the information obtained. |
 
 **Error codes**
 
-| Error Code ID| Error Message|
+| Error Code ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -346,19 +346,19 @@ Obtains the application's widget information on the device. This API uses a prom
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
+| Name | Type   | Mandatory | Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No| Filter criterion. By default, no value is passed, indicating that no filtering is performed.|
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No | Filter criterion. By default, no value is passed, indicating that no filtering is performed. |
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained. |
 
 **Error codes**
 
-| Error Code ID| Error Message|
+| Error Code ID | Error Message |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |

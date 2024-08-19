@@ -30,7 +30,7 @@
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // 保存文件名（可选） 
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
-   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如过选择项存在多个后缀，默认选择第一个。
+   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如果选择项存在多个后缀，默认选择第一个。
    documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```
 

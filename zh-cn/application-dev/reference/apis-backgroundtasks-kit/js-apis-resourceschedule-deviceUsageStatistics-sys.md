@@ -38,6 +38,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
@@ -88,6 +89,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
@@ -136,6 +138,7 @@ isIdleStateSync(bundleName: string): boolean
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
@@ -154,6 +157,8 @@ let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
 queryAppGroup(): Promise&lt;number&gt;
 
 查询当前应用的优先级分组，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -198,6 +203,8 @@ usageStatistics.queryAppGroup().then((res: number) => {
 queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 查询当前应用的优先级分组，使用Callback异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -244,6 +251,8 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
 queryAppGroupSync(): number
 
 查询当前应用的优先级分组，使用同步方式返回。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -879,7 +888,6 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 201  | Permission denied. |
 | 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
@@ -935,7 +943,6 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 201  | Permission denied. |
 | 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|

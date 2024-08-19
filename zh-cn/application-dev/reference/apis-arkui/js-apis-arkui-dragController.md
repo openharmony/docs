@@ -17,7 +17,7 @@ import { dragController } from "@kit.ArkUI";
 
 ## dragController.executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:AsyncCallback\<DragEventParam>)
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:AsyncCallback\<DragEventParam>): void
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回结果。
 
@@ -252,6 +252,8 @@ struct DragControllerPage {
   ![zh-cn_executeDrag2](figures/executeDrag2.gif)
 ## DragInfo
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 发起拖拽所需要的属性和拖拽时携带的信息。
@@ -261,8 +263,8 @@ struct DragControllerPage {
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
 | data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
-| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。 |
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。 |
 
 ## dragController.createDragAction<sup>11+</sup>
 
@@ -610,10 +612,10 @@ struct DragControllerPage {
 
 拖拽结束返回结果的回调。
 
-| 名称        | 类型   | 必填 | 说明                           |
-| ----------- | ------ | ---- | ------------------------------ |
-| event       | number | 是   | 拖拽事件信息，仅包括拖拽结果。 |
-| extraParams | string | 是   | 拖拽事件额外信息。             |
+| 名称        | 类型                                                         | 必填 | 说明                           |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
+| extraParams | string                                                       | 是   | 拖拽事件额外信息。             |
 
 ## dragController.getDragPreview<sup>11+</sup>
 

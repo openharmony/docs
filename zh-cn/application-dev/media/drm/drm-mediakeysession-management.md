@@ -1,6 +1,6 @@
-# 会话管理(ArkTS)
+# DRM会话管理(ArkTS)
 
-DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可证申请与处理等。
+DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等，MediaKeySession实例由系统管理里的MediaKeySystem实例创建和销毁。
 
 ## 开发步骤
 
@@ -18,266 +18,160 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. 调用MediaKeySession类中的generateMediaKeyRequest方法，生成许可证请求。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
+3. 状态监听。
+
+    监听MediaKeySession实例的事件，包括密钥请求事件、密钥过期事件、第三方自定义事件、密钥过期更新事件、密钥变换事件。
+
+    - 监听密钥请求事件，媒体密钥请求时触发。
+
+       ```ts
+       mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
+         console.log('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+       });
+       ```
+
+    - 监听媒体密钥过期事件，媒体密钥过期时触发。
+
+       ```ts
+       mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
+          console.log('keyExpired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+       });
+       ```
+
+    - 监听DRM解决方案自定义事件，DRM解决方案自定义事件发生时触发。
+
+       ```ts
+       mediaKeySession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
+         console.log('vendorDefined' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+       });
+       ```
+
+    - 监听媒体密钥过期更新事件，媒体密钥过期更新时触发。
+
+       ```ts
+       mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
+         console.log('expirationUpdate' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+       });
+       ```
+
+    - 监听密钥变换事件，媒体密钥变换时触发。
+
+       ```ts
+       mediaKeySession.on('keysChange', (keyInfo : drm.KeysInfo[], newKeyAvailable:boolean) => {
+         for(let i = 0; i < keyInfo.length; i++){
+           console.log('keysChange' + 'info:' + keyInfo[i].keyId + ' extraInfo:' + keyInfo[i].value);
+         }
+       });
+       ```
+
+4. 生成媒体密钥请求、设置媒体密钥请求响应。
 
    ```ts
-   async function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionsData: drm.OptionsData[]): Promise<drm.MediaKeyRequest | undefined> {
-    let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-    let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-    let mediaKeyRequest: drm.MediaKeyRequest | undefined = await mediaKeySession.generateMediaKeyRequest(mimeType, initData, mediakeyType, optionsData).catch((err: BusinessError) => {
-       console.error(`generateMediaKeyRequest: ERROR: ${err}`);
-       return undefined;
+   let initData = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+   // 根据DRM解决方案要求设置可选数据的值
+   let optionalData:drm.OptionsData[] = [{
+     name: "...",
+     value: "..."
+   }];
+   // 以下示例完成在线媒体密钥请求和响应设置
+   mediaKeySession.generateMediaKeyRequest("video/avc", initData, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData).then(async (licenseRequest) => {
+      console.info("generateMediaKeyRequest success", licenseRequest.mediaKeyRequestType, licenseRequest.data, licenseRequest.defaultURL);
+      // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥请求响应，设置媒体密钥请求响应
+      let licenseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+      mediaKeySession.processMediaKeyResponse(licenseResponse).then((mediaKeyId: Uint8Array) => {
+        console.info("processMediaKeyResponse success");
+      }).catch((err:BusinessError) =>{
+        console.info("processMediaKeyResponse err end", err.code);
      });
-    return mediaKeyRequest;
-   }
-   ```
-
-4. 调用MediaKeySession类中的processMediaKeyResponse方法，处理许可证响应报文。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
-
-   ```ts
-   async function processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array | undefined> {
-     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     let mediaKeyId: Uint8Array | undefined = await mediaKeySession.processMediaKeyResponse(response).catch((err: BusinessError) => {
-       console.error(`processMediaKeyResponse: ERROR: ${err}`);
-       return undefined;
-     });
-     return mediaKeyId;
-   }
-   ```
-
-5. 调用MediaKeySession类中的checkMediaKeyStatus方法，检查当前会话的许可证状态。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
-
-   ```ts
-   function checkMediaKeyStatus(): drm.MediaKeyStatus[] | undefined {
-     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     let mediakeyStatus: drm.MediaKeyStatus[] | undefined = undefined;
-     try {
-       mediakeyStatus = mediaKeySession.checkMediaKeyStatus();
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`checkMediaKeyStatus ERROR: ${error}`);
-     }
-     return mediakeyStatus;
-   }
-   ```
-
-6. 调用MediaKeySession类中的clearMediaKeys方法，删除当前会话的许可证。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
-
-   ```ts
-   function clearMediaKeys(): void {
-     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     try {
-       mediaKeySession.clearMediaKeys();
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`clearMediaKeys ERROR: ${error}`);
-     }
-   }
-   ```
-
-7. 调用MediaKeySession类中的generateOfflineReleaseRequest方法，生成离线许可证释放请求。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
-
-   ```ts
-   async function generateOfflineReleaseRequest(response: Uint8Array): Promise<Uint8Array | undefined> {
-     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     let mediaKeyId: Uint8Array | undefined = await mediaKeySession.processMediaKeyResponse(response).catch((err: BusinessError) => {
-       console.error(`processMediaKeyResponse: ERROR: ${err}`);
-       return undefined;
-     });
-     let offlineReleaseRequest: Uint8Array | undefined = await mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).catch((err: BusinessError) => {
-       console.error(`generateOfflineReleaseRequest: ERROR: ${err}`);
-       return undefined;
+   }).catch((err:BusinessError) =>{
+     console.info("generateMediaKeyRequest err end", err.code);
    });
-     return offlineReleaseRequest;
-   }
+   // 以下示例完成离线媒体密钥请求和响应设置
+   let offlineMediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+   mediaKeySession.generateMediaKeyRequest("video/avc", initData, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData).then((licenseRequest: drm.MediaKeyRequest) => {
+      console.info("generateMediaKeyRequest success", licenseRequest.mediaKeyRequestType, licenseRequest.data, licenseRequest.defaultURL);
+      // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥请求响应，设置媒体密钥请求响应
+      let licenseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+      mediaKeySession.processMediaKeyResponse(licenseResponse).then((mediaKeyId: Uint8Array) => {
+	offlineMediaKeyId = mediaKeyId;
+        console.info("processMediaKeyResponse success");
+      }).catch((err:BusinessError) =>{
+        console.info("processMediaKeyResponse err end", err.code);
+     });
+   }).catch((err:BusinessError) =>{
+     console.info("generateMediaKeyRequest err end", err.code);
+   });
    ```
 
-8. 处理离线许可证释放响应。
-
-   调用MediaKeySession类中的processOfflineReleaseResponse方法，处理离线许可证释放响应。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
-
-   ```ts
-   async function processOfflineReleaseResponse(response: Uint8Array): Promise<void> {
-     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
-     let mediaKeyId: Uint8Array | undefined = await mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).catch((err: BusinessError) => {
-       console.error(`processMediaKeyResponse: ERROR: ${err}`);
-       return undefined;
-     });
-     await mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).catch((err: BusinessError) => {
-       console.error(`processOfflineReleaseResponse: ERROR: ${err}`);
-     });
-   }
-   ```
-
-9. 恢复离线许可证。
-
-   调用MediaKeySession类中的restoreOfflineMediaKeys方法，恢复离线许可证。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
-
-   ```ts
-   function restoreOfflineMediaKeys(mediakeyId: Uint8Array): void {
-     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
-     mediaKeySession.processOfflineReleaseResponse(mediakeyId, response).then(() => {
-       console.log('processOfflineReleaseResponse');
-     }).catch((err: BusinessError) => {
-       console.error(`processOfflineReleaseResponse: ERROR: ${err}`);
-     });
-     mediaKeySession.restoreOfflineMediaKeys(mediakeyId).then(() => {
-      console.log("restoreOfflineMediaKeys success.");
-     }).catch((err: BusinessError) => {
-       console.error(`restoreOfflineMediaKeys: ERROR: ${err}`);
-     });
-   }
-   ```
-
-10. 获取当前会话的安全级别。
-
-   调用MediaKeySession类中的getContentProtectionLevel方法，获取当前会话的安全级别。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
-
-   ```ts
-   function getContentProtectionLevel(): drm.ContentProtectionLevel | undefined {
-     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     let contentProtectionLevel: drm.ContentProtectionLevel | undefined = undefined;
-     try {
-       contentProtectionLevel = mediaKeySession.getContentProtectionLevel();
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`clearMediaKeys ERROR: ${error}`);
-     }
-      return contentProtectionLevel;
-   }
-   ```
-
-11. 查询安全解码模块状态。
-
-    调用MediaKeySession类中的requireSecureDecoderModule方法，查询安全解码模块状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
+5. （可选）检查当前MediaKeySession会话的媒体密钥状态。
 
     ```ts
-    function requireSecureDecoderModule(mimeType: string): boolean {
-      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-      let status: boolean = false;
-      try {
-        status = mediaKeySession.requireSecureDecoderModule(mimeType);
-      } catch (err) {
-        let error = err as BusinessError;
-        console.error(`clearMediaKeys ERROR: ${error}`);
-      }
-      return status;
+    try {
+      let keyvalue: drm.MediaKeyStatus[] = mediaKeySession.checkMediaKeyStatus();
+      console.info("checkMediaKeyStatus success", keyvalue[0].value);
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`checkMediaKeyStatus ERROR: ${error}`);
     }
     ```
 
-12. 销毁MediaKeySession实例。
+6. （可选）生成离线媒体密钥释放请求和处理离线媒体密钥释放响应。
 
-    调用MediaKeySession类中的destroy方法，销毁MediaKeySession实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
+   ```ts
+   mediaKeySession.generateOfflineReleaseRequest(offlineMediaKeyId).then((OfflineReleaseRequest: Uint8Array) => {
+     console.info("generateOfflineReleaseRequest success", OfflineReleaseRequest);
+     // 将媒体密钥释放请求返回的OfflineReleaseRequest通过网络请求发送给DRM服务获取媒体密钥释放请求响应，设置媒体密钥释放请求响应
+     let OfflineReleaseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+     mediaKeySession.processOfflineReleaseResponse(offlineMediaKeyId, OfflineReleaseResponse).then(() => {
+       console.info("processOfflineReleaseResponse success");
+     }).catch((err:BusinessError) =>{
+       console.info("processOfflineReleaseResponse err end", err.code);
+     });
+   }).catch((err:BusinessError) =>{
+     console.info("generateOfflineReleaseRequest err end", err.code);
+   });
+   ```
+
+7. （可选）恢复离线媒体密钥。
+
+   ```ts
+   // 恢复指定媒体密钥信息到当前会话
+   mediaKeySession.restoreOfflineMediaKeys(offlineMediaKeyId).then(() => {
+     console.log("restoreOfflineMediaKeys success.");
+   }).catch((err: BusinessError) => {
+     console.error(`restoreOfflineMediaKeys: ERROR: ${err}`);
+   });
+   ```
+
+8. （可选）获取当前会话的安全级别。
 
     ```ts
-    function destroy(mediaKeySession: drm.MediaKeySession): void {
-      mediaKeySession.destroy();
-      return;
+    try {
+      let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeySession.getContentProtectionLevel();
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`getContentProtectionLevel ERROR: ${error}`);
+    }
+   ```
+
+9. （可选）查询是否需要安全解码。
+
+    ```ts
+    try {
+      let status: boolean = mediaKeySession.requireSecureDecoderModule("video/avc");
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`requireSecureDecoderModule ERROR: ${error}`);
     }
     ```
 
-13. 状态监听。
+10. （可选）删除当前会话的媒体密钥。
 
-    在播放器应用开发过程中，可以随时监听MediaKeySession信息状态，包括密钥请求事件监听、密钥过期事件监听、第三方自定义事件监听、密钥过期更新事件监听、密钥变化事件监听。
-
-    - 通过注册固定的keyRequired回调函数获取监听设备证书请求，MediaKeySession创建成功时即可监听，有该事件返回结果则认为设备证书请求开始，不需要监听的时候使用off进行注销监听。
-
-       ```ts
-       function onRegisterkeyRequired(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
-           console.log('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-         });
-         return;
-       }
-       ```
-
-       ```ts
-       function unregisterkeyRequired(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.off('keyRequired');
-         return;
-       }
-       ```
-
-    - 通过注册固定的keyExpired回调函数获取监听密钥过期事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
-
-       ```ts
-       function onRegisterkeyExpired(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
-            console.log('keyExpired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-         });
-         return;
-       }
-       ```
-
-       ```ts
-       function unRegisterkeyExpired(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.off('keyExpired');
-         return;
-       }
-       ```
-
-    - 通过注册固定的vendorDefined回调函数获取监听第三方自验证事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
-
-       ```ts
-       function onRegisterVendorDefined(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
-           console.log('vendorDefined' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-         });
-         return;
-       }
-       ```
-
-       ```ts
-       function unRegisterVendorDefined(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.off('vendorDefined');
-         return;
-       }
-       ```
-
-    - 通过注册固定的expirationUpdated回调函数获取监听过期更新事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
-
-       ```ts
-       function onRegisterExpirationUpdated(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
-           console.log('expirationUpdate' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-         });
-         return;
-       }
-       ```
-
-       ```ts
-       function unRegisterExpirationUpdated(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.off('expirationUpdate');
-         return;
-       }
-       ```
-
-    - 通过注册固定的keyChanged回调函数获取监听密钥变化事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
-
-       ```ts
-       function onRegisterKeyChanged(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.on('keysChange', (keyInfo : drm.KeysInfo[], newKeyAvailable:boolean) => {
-           for(let i = 0; i<keyInfo.length; i++){
-             console.log('keysChange' + 'info:' + keyInfo[i].keyId + ' extraInfo:' + keyInfo[i].value);
-           }
-         });
-         return;
-       }
-       ```
-
-       ```ts
-       function unRegisterKeyChanged(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.off('keysChange');
-         return;
-       }
-       ```
+    ```ts
+    try {
+       mediaKeySession.clearMediaKeys();
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`clearMediaKeys ERROR: ${error}`);
+    }
+    ```

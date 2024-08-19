@@ -18,9 +18,8 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
 1. Obtain an **AudioHapticManager** instance, and register the audio and haptic sources. For details about the sources supported, see [AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager).
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import audioHaptic from '@ohos.multimedia.audioHaptic';
-   import { BusinessError } from '@ohos.base';
+   import { audio, audioHaptic } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.getAudioHapticManager();
 

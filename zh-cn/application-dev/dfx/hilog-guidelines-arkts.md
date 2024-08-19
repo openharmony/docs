@@ -44,11 +44,12 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
   | 格式说明符（specifier） | 说明 | 示例 |
   | -------- | -------- | -------- |
   | d/i | 支持打印number和bigint类型。 | 123 |
-  | s | 支持打印string、undefined、bool和null类型。 | "123" |
+  | s | 支持打印string、undefined、boolean和null类型。 | "123" |
 
-  格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为string的变参标识，具体取值在args中定义。
+  格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为string的变参标识，具体取值在args中定义。<!--Del-->
 
   调试时可通过命令“hilog -p off”指令，关闭隐私开关，明文显示private日志内容。
+<!--DelEnd-->
 
 - **args**：可以为0个或多个参数，是格式字符串中参数类型对应的参数列表。参数的数量、类型必须与格式字符串中的标识一一对应。
 

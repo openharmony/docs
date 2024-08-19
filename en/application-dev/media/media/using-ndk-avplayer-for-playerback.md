@@ -28,7 +28,7 @@ Link the dynamic library in the CMake script.
 target_link_libraries(sample PUBLIC libavplayer.so)
 ```
 
-You can use C/C++ APIs related to audio playback by including the header files [avplayer.h](../../reference/apis-media-kit/avplayer__base_8h.md), [avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+You can use C/C++ APIs related to audio playback by including the header files [avplayer.h](../../reference/apis-media-kit/avplayer_8h.md), [avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
 Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API reference.
 
 1. Call **OH_AVPlayer_Create()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
@@ -87,7 +87,7 @@ void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
                 case AV_PREPARED:            
 //                    ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // Set the audio effect mode.
 //                    if (ret != AV_ERR_OK) {
-//                    // Exception handling.   
+//                    // Exception processing.   
 //                    }  
                     ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() to start playback.
                     if (ret != AV_ERR_OK) {

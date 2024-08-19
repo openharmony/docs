@@ -112,8 +112,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed|
-| 62980097 | If the ipc error|
+| 62980096 | Operation failed|
+| 62980097 | Ipc error|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -2311,6 +2311,56 @@ async function Demo() {
 }
 ```
 
+### toSdr<sup>12+<sup>
+
+toSdr(): Promise\<void>
+
+Converts an HDR image into an SDR image. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 62980137 | Invalid image operation.              |
+
+**Example**
+
+```ts
+import image from '@ohos.multimedia.image'
+import resourceManager from '@ohos.resourceManager'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 'hdr.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+let img = await getContext(this).resourceManager.getMediaContent($r('app.media.hdr'));
+let imageSource = image.createImageSource(img.buffer.slice(0));
+let decodingOptions: image.DecodingOptions = {
+  desiredDynamicRange: image.DecodingDynamicRange.AUTO
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+  try {
+    await pixelmap.toSdr();
+    let imageInfo = pixelmap.getImageInfoSync();
+    console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
+  } catch (e) {
+    console.info('toSdr failed' + e);
+  }
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
 ### marshalling<sup>10+</sup>
 
 marshalling(sequence: rpc.MessageSequence): void
@@ -2686,6 +2736,7 @@ Creates an **ImageSource** instance based on a given file descriptor.
 import { fileIo } from '@kit.CoreFileKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+const context: Context = getContext();
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 const filePath: string = context.filesDir + "/test.jpg";
 let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
@@ -2802,6 +2853,14 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 Creates an **ImageSource** instance in incremental mode based on buffers. Such an instance does not support reading or writing of EXIF information.
 
+The **ImageSource** instance created in incremental mode supports the following capabilities (applicable to synchronous, callback, and promise modes):
+- Obtaining image information: Call [getImageInfo](#getimageinfo) to obtain image information by index, or call [getImageInfo](#getimageinfo-1) to directly obtain image information.
+- Obtaining an image property: Call [getImageProperty](#getimageproperty11) to obtain the value of a property with the specified index in an image.
+- Obtaining image properties: Call [getImageProperties](#getimageproperties12) to obtain the values of properties with the given names in an image.
+- Updating incremental data: Call [updateData](#updatedata9) to update data.
+- Creating a **PixelMap** object: Call [createPixelMap](#createpixelmap7) or [createPixelMap](#createpixelmap7-2) to create a pixel map based on image decoding parameters, or call [createPixelMap](#createpixelmap7-1) to create a pixel map based on default parameters.
+- Releasing an **ImageSource** instance: Call [release](#release) to release an image source.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
@@ -2843,6 +2902,8 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance in incremental mode based on buffers. Such an instance does not support reading or writing of EXIF information.
+
+The capabilities supported by the **ImageSource** instance created by this API are the same as those supported by the instance created by [CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -3674,7 +3735,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
@@ -3733,7 +3793,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
@@ -3787,7 +3846,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
@@ -3848,7 +3906,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
@@ -3895,7 +3952,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -3940,7 +3996,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
@@ -3986,7 +4041,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -4030,7 +4084,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
@@ -4162,7 +4215,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -4204,7 +4257,7 @@ Packs an image. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -4675,6 +4728,8 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 Reads the latest image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
 
+**NOTE**: When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
 **Parameters**
@@ -4703,6 +4758,8 @@ readLatestImage(): Promise\<Image>
 
 Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
 
+**NOTE**: When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
 **Return value**
@@ -4728,6 +4785,8 @@ receiver.readLatestImage().then((img: image.Image) => {
 readNextImage(callback: AsyncCallback\<Image>): void
 
 Reads the next image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
+
+**NOTE**: When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -4756,6 +4815,8 @@ receiver.readNextImage((err: BusinessError, img: image.Image) => {
 readNextImage(): Promise\<Image>
 
 Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
+
+**NOTE**: When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -4825,7 +4886,7 @@ receiver.release((err: BusinessError) => {
   if (err) {
     console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
   } else {
-    console.info('Succeeded in releaseing the receiver.');
+    console.info('Succeeded in releasing the receiver.');
   }
 })
 ```
@@ -4852,7 +4913,7 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.release().then(() => {
-  console.info('Succeeded in releaseing the receiver.');
+  console.info('Succeeded in releasing the receiver.');
 }).catch((error: BusinessError) => {
   console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
 })
@@ -5484,16 +5545,15 @@ Describes the region information.
 
 Describes the options for image packing.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 | Name   | Type  | Read Only| Optional| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | No  | No  | Format of the packed image.<br>Currently, only **"image/jpeg"**, **"image/webp"**, and **"image/png"** are supported.|
-| quality | number | No  | No  | Quality of the output image in JPEG encoding. The value ranges from 0 to 100. The value **0** means the lowest quality, and **100** means the highest quality. The higher the quality, the larger the space occupied by the generated image.|
-| bufferSize<sup>9+</sup> | number | No  | Yes  | Size of the buffer for receiving the encoded data, in bytes. If the size is not set, the default value 25 MB is used. If the size of an image exceeds 25 MB, you must specify the size. The value of **bufferSize** must be greater than the size of the encoded image. The use of [packToFile](#packtofile11) is not restricted by this parameter.|
+| format  | string | No  | No  | Format of the packed image.<br>Currently, only **"image/jpeg"**, **"image/webp"**, and **"image/png"** are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| quality | number | No  | No  | Quality of the output image in JPEG encoding. The value ranges from 0 to 100. The value **0** means the lowest quality, and **100** means the highest quality. The higher the quality, the larger the space occupied by the generated image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| bufferSize<sup>9+</sup> | number | No  | Yes  | Size of the buffer for receiving the encoded data, in bytes. If the size is not set, the default value 25 MB is used. If the size of an image exceeds 25 MB, you must specify the size. The value of **bufferSize** must be greater than the size of the encoded image. The use of [packToFile](#packtofile11) is not restricted by this parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | No  | Yes  | Desired dynamic range. The default value is **SDR**.|
+| needsPackProperties<sup>12+</sup> | boolean | No  | Yes  | Whether to encode image property information, for example, EXIF. The default value is **false**.|
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -5540,7 +5600,7 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | MAKE<sup>10+</sup>                        | "Make"                      | Readable and writable| Manufacturer.|
 | MODEL<sup>10+</sup>                       | "Model"                     | Readable and writable| Device model.|
 | STRIP_OFFSETS <sup>12+</sup>              | "StripOffsets"              | Readable and writable| Byte offset of each strip.|
-| ORIENTATION                               | "Orientation"               | Readable and writable| Image orientation.<br>- **Top-left**: The image is not rotated.<br>- **Top-right**: The image is flipped horizontally.<br>- **Bottom-right**: The image is rotated by 180°.<br>- **Bottom-left**: The image is flipped vertically.<br>- **Left-top**: The image is flipped horizontally and then rotated clockwise by 270°.<br>- **Right-top**: The image is rotated clockwise by 90°.<br>- **Right-bottom**: The image is vertically flipped and then rotated clockwise by 90°.<br>- **Left-bottom**: The image is rotated clockwise by 270°.<br>- **Unknown Value**: No value is defined.|
+| ORIENTATION                               | "Orientation"               | Readable and writable| Image orientation.<br>- 1: **Top-left**: The image is not rotated.<br>- 2: **Top-right**: The image is flipped horizontally.<br>- 3: **Bottom-right**: The image is rotated by 180°.<br>- 4: **Bottom-left**: The image is flipped vertically.<br>- 5: **Left-top**: The image is flipped horizontally and then rotated clockwise by 270°.<br>- 6: **Right-top**: The image is rotated clockwise by 90°.<br>- 7: **Right-bottom**: The image is vertically flipped and then rotated clockwise by 90°.<br>- 8: **Left-bottom**: The image is rotated clockwise by 270°.<br>- **Unknown Value**: No value is defined.|
 | SAMPLES_PER_PIXEL <sup>12+</sup>          | "SamplesPerPixel"           | Readable and writable| Number of components per pixel. The value is 3 for RGB and YCbCr images. The **JPEG** key is used in JPEG compressed data.|
 | ROWS_PER_STRIP <sup>12+</sup>             | "RowsPerStrip"              | Readable and writable| Number of rows per strip.|
 | STRIP_BYTE_COUNTS <sup>12+</sup>          | "StripByteCounts"           | Readable and writable| Number of bytes in each strip after compression.|

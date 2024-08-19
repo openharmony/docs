@@ -108,6 +108,17 @@ isSupported(feature: number): boolean
 | ------- | -------------------------------------- |
 | boolean | true: 支持该类型卡模拟，&nbsp;false: 不支持该类型卡模拟。 |
 
+**示例：**
+
+```js
+import { cardEmulation } from '@kit.ConnectivityKit';
+
+let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+if (!isHceSupported) {
+    console.log('this device is not supported for HCE, ignore it.');
+}
+```
+
 ## hasHceCapability<sup>9+</sup>
 
 hasHceCapability(): boolean
@@ -178,6 +189,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 
 **返回值：**
 
@@ -469,7 +481,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 

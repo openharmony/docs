@@ -18,6 +18,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -28,6 +30,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 ## 属性
 
 [width](ts-universal-attributes-size.md#width)属性设置"auto"时表示自适应宽度，宽度会随索引项最大宽度变化。
+
+[padding](ts-universal-attributes-size.md#padding)属性默认为4vp。
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
@@ -372,7 +376,7 @@ popupBackgroundBlurStyle(value: BlurStyle)
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>默认值：COMPONENT_REGULAR。 |
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>默认值：COMPONENT_REGULAR。 |
 
 ### popupTitleBackground<sup>12+</sup>   
 
@@ -392,15 +396,19 @@ popupTitleBackground(value: ResourceColor)
 
 ### enableHapticFeedback<sup>12+</sup>
 
-enableHapticFeedback(enable: boolean)
+enableHapticFeedback(value: boolean)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                                  | 必填 | 说明                         |
 |-------------|-----------------------------------------------------|----|----------------------------|
-| enable | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
+| value | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
 
 ## IndexerAlign枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -549,6 +557,7 @@ struct AlphabetIndexerSample {
         .height('100%')
 
         AlphabetIndexer({ arrayValue: this.value, selected: 0 })
+          .autoCollapse(false)
           .selectedColor(0xFFFFFF) // 选中项文本颜色
           .popupColor(0xFFFAF0) // 弹出框文本颜色
           .selectedBackgroundColor(0xCCCCCC) // 选中项背景颜色

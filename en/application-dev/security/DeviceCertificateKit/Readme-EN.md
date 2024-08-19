@@ -13,3 +13,4 @@
 - Certificate Management
   - [Certificate Management Overview](certManager-overview.md)
   - [Certificate Management Development](certManager-guidelines.md)
+  - [Certificate Management Dialog Box Development](certManagerDialog-guidelines.md)

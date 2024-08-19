@@ -7,7 +7,7 @@
 ## 18600001 Abnormal Parameter Value
 **Error Message**
 
-Parameter value is abnormal.
+The parameter value is abnormal.
 
 **Description**
 

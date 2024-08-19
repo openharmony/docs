@@ -2853,6 +2853,14 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例，IncrementalSource不支持读写Exif信息。
 
+以增量方式创建的图片源实例ImageSource，仅支持使用以下功能，同步、异步callback、异步Promise均支持。
+- 获取图片信息：指定序号-[getImageInfo](#getimageinfo)、直接获取-[getImageInfo](#getimageinfo-1)
+- 获取图片中给定索引处图像的指定属性键的值：[getImageProperty](#getimageproperty11)
+- 批量获取图片中的指定属性键的值：[getImageProperties](#getimageproperties12)
+- 更新增量数据：[updateData](#updatedata9)
+- 创建PixelMap对象：通过图片解码参数创建-[createPixelMap](#createpixelmap7)、通过默认参数创建-[createPixelMap](#createpixelmap7-1) 、通过图片解码参数-[createPixelMap](#createpixelmap7-2)
+- 释放图片源实例：[release](#release)
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2894,6 +2902,8 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例，IncrementalSource不支持读写Exif信息。
+
+此接口支持的功能与[CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9)所生成的实例支持的功能相同
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3115,7 +3125,18 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
+| 62980096 | The operation failed.             |
+| 62980103 | The image data is not supported.         |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.       |
+| 62980113 | Unknown image format.        |
+| 62980115 | Invalid image parameter.      |
+| 62980116| Failed to decode the image.            |
+| 62980118 | Failed to create the image plugin.   |
+| 62980122 | Failed to decode the image header.   |
 | 62980123| Images in EXIF format are not supported.             |
+| 62980135| The EXIF value is invalid.             |
 
 **示例：**
 
@@ -3316,6 +3337,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
 | 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
 | 62980146| The EXIF data failed to be written to the file.        |
 
@@ -4718,6 +4740,8 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 从ImageReceiver读取最新的图片，并使用callback返回结果。
 
+**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
@@ -4746,6 +4770,8 @@ readLatestImage(): Promise\<Image>
 
 从ImageReceiver读取最新的图片，并使用promise返回结果。
 
+**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
@@ -4771,6 +4797,8 @@ receiver.readLatestImage().then((img: image.Image) => {
 readNextImage(callback: AsyncCallback\<Image>): void
 
 从ImageReceiver读取下一张图片，并使用callback返回结果。
+
+**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -4799,6 +4827,8 @@ receiver.readNextImage((err: BusinessError, img: image.Image) => {
 readNextImage(): Promise\<Image>
 
 从ImageReceiver读取下一张图片，并使用promise返回结果。
+
+**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -4868,7 +4898,7 @@ receiver.release((err: BusinessError) => {
   if (err) {
     console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
   } else {
-    console.info('Succeeded in releaseing the receiver.');
+    console.info('Succeeded in releasing the receiver.');
   }
 })
 ```
@@ -4895,7 +4925,7 @@ ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存�
 import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.release().then(() => {
-  console.info('Succeeded in releaseing the receiver.');
+  console.info('Succeeded in releasing the receiver.');
 }).catch((error: BusinessError) => {
   console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
 })
@@ -5535,6 +5565,7 @@ PixelMap的初始化选项。
 | quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
+| needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。默认值为false。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -5568,180 +5599,180 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称               |   值                    |    对应属性读写能力                 |   说明                    |
-| ----------------- | ----------------------- |---------------------------------|---------------------------|
-| NEW_SUBFILE_TYPE <sup>12+</sup>           | "NewSubfileType"            | 可读写| 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。|
-| SUBFILE_TYPE <sup>12+</sup>               | "SubfileType"               | 可读写| 此标签指示此子文件中的数据类型。标签已弃用，请使用NewSubfileType替代。|
-| IMAGE_WIDTH                               | "ImageWidth"                | 可读写| 图片宽度。|
-| IMAGE_LENGTH                              | "ImageLength"               | 可读写| 图片长度。|
-| BITS_PER_SAMPLE                           | "BitsPerSample"             | 可读写| 每个像素比特数。|
-| COMPRESSION <sup>12+</sup>                | "Compression"               | 可读写| 图像压缩方案。|
-| PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | 可读写| 像素构成，例如 RGB 或 YCbCr。|
-| IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"          | 可读写| 图像信息描述。|
-| MAKE<sup>10+</sup>                        | "Make"                      | 可读写| 生产商。|
-| MODEL<sup>10+</sup>                       | "Model"                     | 可读写| 设备型号。|
-| STRIP_OFFSETS <sup>12+</sup>              | "StripOffsets"              | 可读写| 每个strip的字节偏移量。|
-| ORIENTATION                               | "Orientation"               | 可读写| 图片方向。<br/>- Top-left，图像未旋转。<br/>- Top-right，镜像水平翻转。<br/>- Bottom-right，图像旋转180°。<br/>- Bottom-left，镜像垂直翻转。<br/>- Left-top，镜像水平翻转再顺时针旋转270°。<br/>- Right-top，顺时针旋转90°。<br/>- Right-bottom，镜像水平翻转再顺时针旋转90°。<br/>- Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value。|
-| SAMPLES_PER_PIXEL <sup>12+</sup>          | "SamplesPerPixel"           | 可读写| 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在 JPEG 压缩数据中，使用 JPEG 标记代替该标签。|
-| ROWS_PER_STRIP <sup>12+</sup>             | "RowsPerStrip"              | 可读写| 每个strip的图像数据行数。|
-| STRIP_BYTE_COUNTS <sup>12+</sup>          | "StripByteCounts"           | 可读写| 每个图像数据带的总字节数。|
-| X_RESOLUTION <sup>12+</sup>               | "XResolution"               | 可读写| 图像宽度方向的分辨率。|
-| Y_RESOLUTION <sup>12+</sup>               | "YResolution"               | 可读写| 图像高度方向的分辨率。|
-| PLANAR_CONFIGURATION <sup>12+</sup>       | "PlanarConfiguration"       | 可读写| 表示像素组件的记录格式，chunky格式或是planar格式。|
-| RESOLUTION_UNIT <sup>12+</sup>            | "ResolutionUnit"            | 可读写| 用于测量XResolution和YResolution的单位。|
-| TRANSFER_FUNCTION <sup>12+</sup>          | "TransferFunction"          | 可读写| 图像的传递函数，通常用于颜色校正。|
-| SOFTWARE <sup>12+</sup>                   | "Software"                  | 可读写| 用于生成图像的软件的名称和版本。|
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | 可读写| 日期时间。|
-| ARTIST <sup>12+</sup>                     | "Artist"                    | 可读写| 创建图像的用户名称。|
-| WHITE_POINT <sup>12+</sup>                | "WhitePoint"                | 可读写| 图像的白点色度。|
-| PRIMARY_CHROMATICITIES <sup>12+</sup>     | "PrimaryChromaticities"     | 可读写| 图像的主要颜色的色度。|
-| PHOTO_MODE<sup>10+</sup>                  | "PhotoMode"                 | 可读写| 拍照模式。|
-| JPEG_INTERCHANGE_FORMAT <sup>12+</sup>    | "JPEGInterchangeFormat"     | 可读写| JPEG压缩缩略图数据开始字节（SOI）的偏移。|
-| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | 可读写| JPEG压缩缩略图数据的字节数。|
-| YCBCR_COEFFICIENTS <sup>12+</sup>         | "YCbCrCoefficients"         | 可读写| 从RGB到YCbCr图像数据的转换矩阵系数。|
-| YCBCR_SUB_SAMPLING <sup>12+</sup>         | "YCbCrSubSampling"          | 可读写| 色度分量与亮度分量的采样比率。|
-| YCBCR_POSITIONING <sup>12+</sup>          | "YCbCrPositioning"          | 可读写| 色度分量相对于亮度分量的位置。|
-| REFERENCE_BLACK_WHITE <sup>12+</sup>      | "ReferenceBlackWhite"       | 可读写| 参考黑点值和参考白点值。|
-| COPYRIGHT <sup>12+</sup>                  | "Copyright"                 | 可读写| 图像的版权信息。|
-| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"              | 可读写| 曝光时间，例如1/33 sec。|
-| F_NUMBER<sup>9+</sup>                     | "FNumber"                   | 可读写| 光圈值，例如f/1.8。|
-| EXPOSURE_PROGRAM <sup>12+</sup>           | "ExposureProgram"           | 可读写| 拍照时相机用来设置曝光的程序的类别。|
-| SPECTRAL_SENSITIVITY <sup>12+</sup>       | "SpectralSensitivity"       | 可读写| 表示所用相机的每个通道的光谱灵敏度。|
-| GPS_VERSION_ID <sup>12+</sup>             | "GPSVersionID"              | 可读写| GPSInfoIFD的版本。|
-| GPS_LATITUDE_REF                          | "GPSLatitudeRef"            | 可读写| 纬度引用，例如N或S。|
-| GPS_LATITUDE                              | "GPSLatitude"               | 可读写| 图片纬度。|
-| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"           | 可读写| 经度引用，例如W或E。|
-| GPS_LONGITUDE                             | "GPSLongitude"              | 可读写| 图片经度。|
-| GPS_ALTITUDE_REF <sup>12+</sup>           | "GPSAltitudeRef"            | 可读写| 用于GPS高度的参照高度。|
-| GPS_ALTITUDE <sup>12+</sup>               | "GPSAltitude"               | 可读写| 基于GPSAltitudeRef的高度。|
-| GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | 可读写| GPS时间戳。|
-| GPS_SATELLITES <sup>12+</sup>             | "GPSSatellites"             | 可读写| 用于测量的GPS卫星。|
-| GPS_STATUS <sup>12+</sup>                 | "GPSStatus"                 | 可读写| 录制图像时GPS接收器的状态。|
-| GPS_MEASURE_MODE <sup>12+</sup>           | "GPSMeasureMode"            | 可读写| GPS测量模式。|
-| GPS_DOP <sup>12+</sup>                    | "GPSDOP"                    | 可读写| GPS DOP（数据精度等级）。|
-| GPS_SPEED_REF <sup>12+</sup>              | "GPSSpeedRef"               | 可读写| 用来表示GPS接收器移动速度的单位。|
-| GPS_SPEED <sup>12+</sup>                  | "GPSSpeed"                  | 可读写| GPS接收器的移动速度。|
-| GPS_TRACK_REF <sup>12+</sup>              | "GPSTrackRef"               | 可读写| GPS接收机移动方向的参照。|
-| GPS_TRACK <sup>12+</sup>                  | "GPSTrack"                  | 可读写| GPS接收机的移动方向。|
-| GPS_IMG_DIRECTION_REF <sup>12+</sup>      | "GPSImgDirectionRef"        | 可读写| 图像方向的参照。|
-| GPS_IMG_DIRECTION <sup>12+</sup>          | "GPSImgDirection"           | 可读写| 拍摄时图像的方向。|
-| GPS_MAP_DATUM <sup>12+</sup>              | "GPSMapDatum"               | 可读写| GPS接收器使用的大地测量数据。|
-| GPS_DEST_LATITUDE_REF <sup>12+</sup>      | "GPSDestLatitudeRef"        | 可读写| 目的地点的纬度参照。|
-| GPS_DEST_LATITUDE <sup>12+</sup>          | "GPSDestLatitude"           | 可读写| 目的地点的纬度。|
-| GPS_DEST_LONGITUDE_REF <sup>12+</sup>     | "GPSDestLongitudeRef"       | 可读写| 目的地点的经度参照。|
-| GPS_DEST_LONGITUDE <sup>12+</sup>         | "GPSDestLongitude"          | 可读写| 目的地点的经度。|
-| GPS_DEST_BEARING_REF <sup>12+</sup>       | "GPSDestBearingRef"         | 可读写| 指向目的地点的方位参照。|
-| GPS_DEST_BEARING <sup>12+</sup>           | "GPSDestBearing"            | 可读写| 目的地方位。|
-| GPS_DEST_DISTANCE_REF <sup>12+</sup>      | "GPSDestDistanceRef"        | 可读写| 目标点距离的测量单位。|
-| GPS_DEST_DISTANCE <sup>12+</sup>          | "GPSDestDistance"           | 可读写| 到目的地点的距离。|
-| GPS_PROCESSING_METHOD <sup>12+</sup>      | "GPSProcessingMethod"       | 可读写| 记录定位方法名的字符字符串。|
-| GPS_AREA_INFORMATION <sup>12+</sup>       | "GPSAreaInformation"        | 可读写| 记录GPS区域名的字符字符串。|
-| GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"              | 可读写| GPS日期戳。|
-| GPS_DIFFERENTIAL <sup>12+</sup>           | "GPSDifferential"           | 可读写| 此字段表示GPS数据是否应用了差分校正，对于精确的位置准确性至关重要。|
-| GPS_H_POSITIONING_ERROR <sup>12+</sup>    | "GPSHPositioningError"      | 可读写| 此标签指示水平定位误差，单位为米。|
-| ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"           | 可读写| ISO感光度，例如400。|
-| PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup>   | "PhotographicSensitivity"   | 可读写| 此标签指示拍摄图像时相机或输入设备的灵敏度。|
-| OECF <sup>12+</sup>                       | "OECF"                      | 可读写| 表示ISO 14524中规定的光电转换函数（OECF）。|
-| SENSITIVITY_TYPE<sup>10+</sup>            | "SensitivityType"           | 可读写| 灵敏度类型。|
-| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity" | 可读写| 标准输出灵敏度。|
-| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"  | 可读写| 推荐曝光指数。|
-| ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"           | 可读写| ISO速度等级。|
-| ISO_SPEED_LATITUDE_YYY <sup>12+</sup>     | "ISOSpeedLatitudeyyy"       | 可读写| 该标签指示摄像机或输入设备的ISO速度纬度yyy值，该值在ISO 12232中定义。|
-| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup>     | "ISOSpeedLatitudezzz"       | 可读写| 该标签指示摄像机或输入设备的ISO速度纬度zzz值，该值在ISO 12232中定义。|
-| EXIF_VERSION <sup>12+</sup>               | "ExifVersion"               | 可读写| 支持的Exif标准版本。|
-| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"          | 可读写| 拍摄时间，例如2022:09:06 15:48:00。|
-| DATE_TIME_DIGITIZED <sup>12+</sup>        | "DateTimeDigitized"         | 可读写| 图像作为数字数据存储的日期和时间，格式为YYYY:MM:DD HH:MM:SS|
-| OFFSET_TIME <sup>12+</sup>                | "OffsetTime"                | 可读写| 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。|
-| OFFSET_TIME_ORIGINAL <sup>12+</sup>       | "OffsetTimeOriginal"        | 可读写| 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。|
-| OFFSET_TIME_DIGITIZED <sup>12+</sup>      | "OffsetTimeDigitized"       | 可读写| 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。|
-| COMPONENTS_CONFIGURATION <sup>12+</sup>   | "ComponentsConfiguration"   | 可读写| 压缩数据的特定信息。|
-| COMPRESSED_BITS_PER_PIXEL <sup>12+</sup>  | "CompressedBitsPerPixel"    | 可读写| 用于压缩图像的压缩模式，单位为每像素位数。|
-| SHUTTER_SPEED <sup>12+</sup>              | "ShutterSpeedValue"         | 可读写| 快门速度，以APEX（摄影曝光的加法系统）值表示。|
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | 可读写| 光圈值。|
-| BRIGHTNESS_VALUE <sup>12+</sup>           | "BrightnessValue"           | 可读写| 图像的亮度值，以APEX单位表示。|
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"         | 可读写| 曝光偏差值。|
-| MAX_APERTURE_VALUE <sup>12+</sup>         | "MaxApertureValue"          | 可读写| 最小F数镜头。|
-| SUBJECT_DISTANCE <sup>12+</sup>           | "SubjectDistance"           | 可读写| 测量单位为米的主体距离。|
-| METERING_MODE<sup>10+</sup>               | "MeteringMode"              | 可读写| 测光模式。|
-| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | 可读写| 光源。|
-| FLASH <sup>10+</sup>                      | "Flash"                     | 可读写| 闪光灯,记录闪光灯状态。|
-| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | 可读写| 焦距。|
-| SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | 可读写| 该标签指示整个场景中主要主体的位置和区域。|
-| MAKER_NOTE <sup>12+</sup>                 | "MakerNote"                 | 只读| Exif/DCF制造商使用的标签，用于记录任何所需信息。|
-| SCENE_POINTER <sup>12+</sup>              | "HwMnoteScenePointer"       | 只读| 场景指针。|
-| SCENE_VERSION <sup>12+</sup>              | "HwMnoteSceneVersion"       | 只读| 场景算法版本信息。|
-| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"      | 只读| 拍照场景：食物。|
-| SCENE_STAGE_CONF<sup>11+</sup>            | "HwMnoteSceneStageConf"     | 只读| 拍照场景：舞台。|
-| SCENE_BLUE_SKY_CONF<sup>11+</sup>         | "HwMnoteSceneBlueSkyConf"   | 只读| 拍照场景：蓝天。|
-| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | 只读| 拍照场景：绿植。|
-| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"     | 只读| 拍照场景：沙滩。|
-| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"      | 只读| 拍照场景：下雪。|
-| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"    | 只读| 拍照场景：日落。|
-| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"   | 只读| 拍照场景：花。|
-| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"     | 只读| 拍照场景：夜晚。|
-| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"      | 只读| 拍照场景：文本。|
-| FACE_POINTER <sup>12+</sup>               | "HwMnoteFacePointer"        | 只读| 脸部指针。|
-| FACE_VERSION <sup>12+</sup>               | "HwMnoteFaceVersion"        | 只读| 人脸算法版本信息。|
-| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"          | 只读| 人脸数量。|
-| FACE_CONF <sup>12+</sup>                  | "HwMnoteFaceConf"           | 只读| 人脸置信度。|
-| FACE_SMILE_SCORE <sup>12+</sup>           | "HwMnoteFaceSmileScore"     | 只读| FaceCount张人脸的笑脸分数。|
-| FACE_RECT <sup>12+</sup>                  | "HwMnoteFaceRect"           | 只读| 脸部矩形。|
-| FACE_LEYE_CENTER <sup>12+</sup>           | "HwMnoteFaceLeyeCenter"     | 只读| 左眼中心。|
-| FACE_REYE_CENTER <sup>12+</sup>           | "HwMnoteFaceReyeCenter"     | 只读| 右眼中心。|
-| FACE_MOUTH_CENTER <sup>12+</sup>          | "HwMnoteFaceMouthCenter"    | 只读| 嘴中心。|
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"        | 可读写| 捕获模式。|
-| BURST_NUMBER <sup>12+</sup>               | "HwMnoteBurstNumber"        | 只读| 连拍次数。|
-| FRONT_CAMERA <sup>12+</sup>               | "HwMnoteFrontCamera"        | 只读| 是否是前置相机自拍。|
-| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"          | 只读| 滚动角度。|
-| PITCH_ANGLE<sup>11+</sup>                 | "HwMnotePitchAngle"         | 只读| 俯仰角度。|
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"   | 只读| 物理孔径，光圈大小。|
-| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"          | 只读| 对焦模式。|
-| USER_COMMENT <sup>10+</sup>               | "UserComment"               | 可读写| 用户注释。|
-| SUBSEC_TIME <sup>12+</sup>                | "SubsecTime"                | 可读写| 用于为DateTime标签记录秒的分数的标签。|
-| SUBSEC_TIME_ORIGINAL <sup>12+</sup>       | "SubsecTimeOriginal"        | 可读写| 用于为DateTimeOriginal标签记录秒的分数的标签。|
-| SUBSEC_TIME_DIGITIZED <sup>12+</sup>      | "SubsecTimeDigitized"       | 可读写| 用于为DateTimeDigitized标签记录秒的分数的标签。|
-| FLASHPIX_VERSION <sup>12+</sup>           | "FlashpixVersion"           | 可读写| 该标签表示FPXR文件支持的Flashpix格式版本，增强了设备兼容性。|
-| COLOR_SPACE <sup>12+</sup>                | "ColorSpace"                | 可读写| 色彩空间信息标签，通常记录为色彩空间指定符。|
-| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"           | 可读写| 像素X尺寸。|
-| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"           | 可读写| 像素Y尺寸。|
-| RELATED_SOUND_FILE <sup>12+</sup>         | "RelatedSoundFile"          | 可读写| 与图像数据相关的音频文件的名称。|
-| FLASH_ENERGY <sup>12+</sup>               | "FlashEnergy"               | 可读写| 图像捕获时的闪光能量，以BCPS表示。|
-| SPATIAL_FREQUENCY_RESPONSE <sup>12+</sup> | "SpatialFrequencyResponse"  | 可读写| 相机或输入设备的空间频率表。|
-| FOCAL_PLANE_X_RESOLUTION <sup>12+</sup>   | "FocalPlaneXResolution"     | 可读写| 图像宽度中每FocalPlaneResolutionUnit的像素。|
-| FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup>   | "FocalPlaneYResolution"     | 可读写| 图像高度中每FocalPlaneResolutionUnit的像素。|
-| FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit"  | 可读写| 测量FocalPlaneXResolution和FocalPlaneYResolution的单位。|
-| SUBJECT_LOCATION <sup>12+</sup>           | "SubjectLocation"           | 可读写| 主要对象相对于左边缘的位置。|
-| EXPOSURE_INDEX <sup>12+</sup>             | "ExposureIndex"             | 可读写| 捕获时选定的曝光指数。|
-| SENSING_METHOD <sup>12+</sup>             | "SensingMethod"             | 可读写| 相机上的图像传感器类型。|
-| FILE_SOURCE <sup>12+</sup>                | "FileSource"                | 可读写| 表明图像来源。|
-| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                 | 可读写| 拍摄场景模式，例如人像、风光、运动、夜景等。|
-| CFA_PATTERN <sup>12+</sup>                | "CFAPattern"                | 可读写| 图像传感器的色彩滤光片（CFA）几何图案。|
-| CUSTOM_RENDERED <sup>12+</sup>            | "CustomRendered"            | 可读写| 指示图像数据上的特殊处理。|
-| EXPOSURE_MODE <sup>12+</sup>              | "ExposureMode"              | 可读写| 拍摄时设置的曝光模式。|
-| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"              | 可读写| 白平衡。|
-| DIGITAL_ZOOM_RATIO <sup>12+</sup>         | "DigitalZoomRatio"          | 可读写| 捕获时的数字变焦比率。|
-| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"     | 可读写| 焦距35毫米胶片。|
-| SCENE_CAPTURE_TYPE <sup>12+</sup>         | "SceneCaptureType"          | 可读写| 捕获的场景类型。|
-| GAIN_CONTROL <sup>12+</sup>               | "GainControl"               | 可读写| 整体图像增益调整的程度。|
-| CONTRAST <sup>12+</sup>                   | "Contrast"                  | 可读写| 相机应用的对比度处理方向。|
-| SATURATION <sup>12+</sup>                 | "Saturation"                | 可读写| 相机应用的饱和度处理方向。|
-| SHARPNESS <sup>12+</sup>                  | "Sharpness"                 | 可读写| 相机应用的锐度处理方向。|
-| DEVICE_SETTING_DESCRIPTION <sup>12+</sup> | "DeviceSettingDescription"  | 可读写| 特定相机模型的拍照条件信息。|
-| SUBJECT_DISTANCE_RANGE <sup>12+</sup>     | "SubjectDistanceRange"      | 可读写| 表示主体到相机的距离范围。|
-| IMAGE_UNIQUE_ID <sup>12+</sup>            | "ImageUniqueID"             | 可读写| 为每张图片唯一分配的标识符。|
-| CAMERA_OWNER_NAME <sup>12+</sup>          | "CameraOwnerName"           | 可读写| 相机所有者的姓名。|
-| BODY_SERIAL_NUMBER <sup>12+</sup>         | "BodySerialNumber"          | 可读写| 相机机身的序列号。|
-| LENS_SPECIFICATION <sup>12+</sup>         | "LensSpecification"         | 可读写| 使用的镜头规格。|
-| LENS_MAKE <sup>12+</sup>                  | "LensMake"                  | 可读写| 镜头的制造商。|
-| LENS_MODEL <sup>12+</sup>                 | "LensModel"                 | 可读写| 镜头的型号名称。|
-| LENS_SERIAL_NUMBER <sup>12+</sup>         | "LensSerialNumber"          | 可读写| 镜头的序列号。|
-| COMPOSITE_IMAGE <sup>12+</sup>            | "CompositeImage"            | 可读写| 表示图像是否为合成图像。|
-| SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup>   | "SourceImageNumberOfCompositeImage"       | 可读写| 用于合成图像的源图像数量。|
-| SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"     | 可读写| 合成图像的源图像曝光时间。|
-| GAMMA <sup>12+</sup>                      | "Gamma"                     | 可读写| 表示系数伽马的值。|
-| DNG_VERSION <sup>12+</sup>                | "DNGVersion"                | 可读写| DNG版本标签编码了符合DNG规范的四级版本号。|
-| DEFAULT_CROP_SIZE <sup>12+</sup>          | "DefaultCropSize"           | 可读写| DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。|
-| GIF_LOOP_COUNT <sup>12+</sup>             | "GIFLoopCount"              | 只读| GIF图片循环次数。0表示无限循环，其他值表示循环次数。|
+| 名称               |   值                    |   说明                    |
+| ----------------- | ----------------------- |---------------------------|
+| NEW_SUBFILE_TYPE <sup>12+</sup>           | "NewSubfileType"            | **读写能力：** 可读写<br> 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。|
+| SUBFILE_TYPE <sup>12+</sup>               | "SubfileType"               | **读写能力：** 可读写<br> 此标签指示此子文件中的数据类型。标签已弃用，请使用NewSubfileType替代。|
+| IMAGE_WIDTH                               | "ImageWidth"                | **读写能力：** 可读写<br> 图片宽度。|
+| IMAGE_LENGTH                              | "ImageLength"               | **读写能力：** 可读写<br> 图片长度。|
+| BITS_PER_SAMPLE                           | "BitsPerSample"             | **读写能力：** 可读写<br> 每个像素比特数。|
+| COMPRESSION <sup>12+</sup>                | "Compression"               | **读写能力：** 可读写<br> 图像压缩方案。|
+| PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | **读写能力：** 可读写<br> 像素构成，例如 RGB 或 YCbCr。|
+| IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"          | **读写能力：** 可读写<br> 图像信息描述。|
+| MAKE<sup>10+</sup>                        | "Make"                      | **读写能力：** 可读写<br> 生产商。|
+| MODEL<sup>10+</sup>                       | "Model"                     | **读写能力：** 可读写<br> 设备型号。|
+| STRIP_OFFSETS <sup>12+</sup>              | "StripOffsets"              | **读写能力：** 可读写<br> 每个strip的字节偏移量。|
+| ORIENTATION                               | "Orientation"               | **读写能力：** 可读写<br> 图片方向。<br/>- 1：Top-left，图像未旋转。<br/>- 2：Top-right，镜像水平翻转。<br/>- 3：Bottom-right，图像旋转180°。<br/>- 4：Bottom-left，镜像垂直翻转。<br/>- 5：Left-top，镜像水平翻转再顺时针旋转270°。<br/>- 6：Right-top，顺时针旋转90°。<br/>- 7：Right-bottom，镜像水平翻转再顺时针旋转90°。<br/>- 8：Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value。|
+| SAMPLES_PER_PIXEL <sup>12+</sup>          | "SamplesPerPixel"           | **读写能力：** 可读写<br> 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在 JPEG 压缩数据中，使用 JPEG 标记代替该标签。|
+| ROWS_PER_STRIP <sup>12+</sup>             | "RowsPerStrip"              | **读写能力：** 可读写<br> 每个strip的图像数据行数。|
+| STRIP_BYTE_COUNTS <sup>12+</sup>          | "StripByteCounts"           | **读写能力：** 可读写<br> 每个图像数据带的总字节数。|
+| X_RESOLUTION <sup>12+</sup>               | "XResolution"               | **读写能力：** 可读写<br> 图像宽度方向的分辨率。|
+| Y_RESOLUTION <sup>12+</sup>               | "YResolution"               | **读写能力：** 可读写<br> 图像高度方向的分辨率。|
+| PLANAR_CONFIGURATION <sup>12+</sup>       | "PlanarConfiguration"       | **读写能力：** 可读写<br> 表示像素组件的记录格式，chunky格式或是planar格式。|
+| RESOLUTION_UNIT <sup>12+</sup>            | "ResolutionUnit"            | **读写能力：** 可读写<br> 用于测量XResolution和YResolution的单位。|
+| TRANSFER_FUNCTION <sup>12+</sup>          | "TransferFunction"          | **读写能力：** 可读写<br> 图像的传递函数，通常用于颜色校正。|
+| SOFTWARE <sup>12+</sup>                   | "Software"                  | **读写能力：** 可读写<br> 用于生成图像的软件的名称和版本。|
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | **读写能力：** 可读写<br> 日期时间。|
+| ARTIST <sup>12+</sup>                     | "Artist"                    | **读写能力：** 可读写<br> 创建图像的用户名称。|
+| WHITE_POINT <sup>12+</sup>                | "WhitePoint"                | **读写能力：** 可读写<br> 图像的白点色度。|
+| PRIMARY_CHROMATICITIES <sup>12+</sup>     | "PrimaryChromaticities"     | **读写能力：** 可读写<br> 图像的主要颜色的色度。|
+| PHOTO_MODE<sup>10+</sup>                  | "PhotoMode"                 | **读写能力：** 可读写<br> 拍照模式。|
+| JPEG_INTERCHANGE_FORMAT <sup>12+</sup>    | "JPEGInterchangeFormat"     | **读写能力：** 可读写<br> JPEG压缩缩略图数据开始字节（SOI）的偏移。|
+| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | **读写能力：** 可读写<br> JPEG压缩缩略图数据的字节数。|
+| YCBCR_COEFFICIENTS <sup>12+</sup>         | "YCbCrCoefficients"         | **读写能力：** 可读写<br> 从RGB到YCbCr图像数据的转换矩阵系数。|
+| YCBCR_SUB_SAMPLING <sup>12+</sup>         | "YCbCrSubSampling"          | **读写能力：** 可读写<br> 色度分量与亮度分量的采样比率。|
+| YCBCR_POSITIONING <sup>12+</sup>          | "YCbCrPositioning"          | **读写能力：** 可读写<br> 色度分量相对于亮度分量的位置。|
+| REFERENCE_BLACK_WHITE <sup>12+</sup>      | "ReferenceBlackWhite"       | **读写能力：** 可读写<br> 参考黑点值和参考白点值。|
+| COPYRIGHT <sup>12+</sup>                  | "Copyright"                 | **读写能力：** 可读写<br> 图像的版权信息。|
+| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"              | **读写能力：** 可读写<br> 曝光时间，例如1/33 sec。|
+| F_NUMBER<sup>9+</sup>                     | "FNumber"                   | **读写能力：** 可读写<br> 光圈值，例如f/1.8。|
+| EXPOSURE_PROGRAM <sup>12+</sup>           | "ExposureProgram"           | **读写能力：** 可读写<br> 拍照时相机用来设置曝光的程序的类别。|
+| SPECTRAL_SENSITIVITY <sup>12+</sup>       | "SpectralSensitivity"       | **读写能力：** 可读写<br> 表示所用相机的每个通道的光谱灵敏度。|
+| GPS_VERSION_ID <sup>12+</sup>             | "GPSVersionID"              | **读写能力：** 可读写<br> GPSInfoIFD的版本。|
+| GPS_LATITUDE_REF                          | "GPSLatitudeRef"            | **读写能力：** 可读写<br> 纬度引用，例如N或S。|
+| GPS_LATITUDE                              | "GPSLatitude"               | **读写能力：** 可读写<br> 图片纬度。|
+| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"           | **读写能力：** 可读写<br> 经度引用，例如W或E。|
+| GPS_LONGITUDE                             | "GPSLongitude"              | **读写能力：** 可读写<br> 图片经度。|
+| GPS_ALTITUDE_REF <sup>12+</sup>           | "GPSAltitudeRef"            | **读写能力：** 可读写<br> 用于GPS高度的参照高度。|
+| GPS_ALTITUDE <sup>12+</sup>               | "GPSAltitude"               | **读写能力：** 可读写<br> 基于GPSAltitudeRef的高度。|
+| GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | **读写能力：** 可读写<br> GPS时间戳。|
+| GPS_SATELLITES <sup>12+</sup>             | "GPSSatellites"             | **读写能力：** 可读写<br> 用于测量的GPS卫星。|
+| GPS_STATUS <sup>12+</sup>                 | "GPSStatus"                 | **读写能力：** 可读写<br> 录制图像时GPS接收器的状态。|
+| GPS_MEASURE_MODE <sup>12+</sup>           | "GPSMeasureMode"            | **读写能力：** 可读写<br> GPS测量模式。|
+| GPS_DOP <sup>12+</sup>                    | "GPSDOP"                    | **读写能力：** 可读写<br> GPS DOP（数据精度等级）。|
+| GPS_SPEED_REF <sup>12+</sup>              | "GPSSpeedRef"               | **读写能力：** 可读写<br> 用来表示GPS接收器移动速度的单位。|
+| GPS_SPEED <sup>12+</sup>                  | "GPSSpeed"                  | **读写能力：** 可读写<br> GPS接收器的移动速度。|
+| GPS_TRACK_REF <sup>12+</sup>              | "GPSTrackRef"               | **读写能力：** 可读写<br> GPS接收机移动方向的参照。|
+| GPS_TRACK <sup>12+</sup>                  | "GPSTrack"                  | **读写能力：** 可读写<br> GPS接收机的移动方向。|
+| GPS_IMG_DIRECTION_REF <sup>12+</sup>      | "GPSImgDirectionRef"        | **读写能力：** 可读写<br> 图像方向的参照。|
+| GPS_IMG_DIRECTION <sup>12+</sup>          | "GPSImgDirection"           | **读写能力：** 可读写<br> 拍摄时图像的方向。|
+| GPS_MAP_DATUM <sup>12+</sup>              | "GPSMapDatum"               | **读写能力：** 可读写<br> GPS接收器使用的大地测量数据。|
+| GPS_DEST_LATITUDE_REF <sup>12+</sup>      | "GPSDestLatitudeRef"        | **读写能力：** 可读写<br> 目的地点的纬度参照。|
+| GPS_DEST_LATITUDE <sup>12+</sup>          | "GPSDestLatitude"           | **读写能力：** 可读写<br> 目的地点的纬度。|
+| GPS_DEST_LONGITUDE_REF <sup>12+</sup>     | "GPSDestLongitudeRef"       | **读写能力：** 可读写<br> 目的地点的经度参照。|
+| GPS_DEST_LONGITUDE <sup>12+</sup>         | "GPSDestLongitude"          | **读写能力：** 可读写<br> 目的地点的经度。|
+| GPS_DEST_BEARING_REF <sup>12+</sup>       | "GPSDestBearingRef"         | **读写能力：** 可读写<br> 指向目的地点的方位参照。|
+| GPS_DEST_BEARING <sup>12+</sup>           | "GPSDestBearing"            | **读写能力：** 可读写<br> 目的地方位。|
+| GPS_DEST_DISTANCE_REF <sup>12+</sup>      | "GPSDestDistanceRef"        | **读写能力：** 可读写<br> 目标点距离的测量单位。|
+| GPS_DEST_DISTANCE <sup>12+</sup>          | "GPSDestDistance"           | **读写能力：** 可读写<br> 到目的地点的距离。|
+| GPS_PROCESSING_METHOD <sup>12+</sup>      | "GPSProcessingMethod"       | **读写能力：** 可读写<br> 记录定位方法名的字符字符串。|
+| GPS_AREA_INFORMATION <sup>12+</sup>       | "GPSAreaInformation"        | **读写能力：** 可读写<br> 记录GPS区域名的字符字符串。|
+| GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"              | **读写能力：** 可读写<br> GPS日期戳。|
+| GPS_DIFFERENTIAL <sup>12+</sup>           | "GPSDifferential"           | **读写能力：** 可读写<br> 此字段表示GPS数据是否应用了差分校正，对于精确的位置准确性至关重要。|
+| GPS_H_POSITIONING_ERROR <sup>12+</sup>    | "GPSHPositioningError"      | **读写能力：** 可读写<br> 此标签指示水平定位误差，单位为米。|
+| ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"           | **读写能力：** 可读写<br> ISO感光度，例如400。|
+| PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup>   | "PhotographicSensitivity"   | **读写能力：** 可读写<br> 此标签指示拍摄图像时相机或输入设备的灵敏度。|
+| OECF <sup>12+</sup>                       | "OECF"                      | **读写能力：** 可读写<br> 表示ISO 14524中规定的光电转换函数（OECF）。|
+| SENSITIVITY_TYPE<sup>10+</sup>            | "SensitivityType"           | **读写能力：** 可读写<br> 灵敏度类型。|
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity" | **读写能力：** 可读写<br> 标准输出灵敏度。|
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"  | **读写能力：** 可读写<br> 推荐曝光指数。|
+| ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"           | **读写能力：** 可读写<br> ISO速度等级。|
+| ISO_SPEED_LATITUDE_YYY <sup>12+</sup>     | "ISOSpeedLatitudeyyy"       | **读写能力：** 可读写<br> 该标签指示摄像机或输入设备的ISO速度纬度yyy值，该值在ISO 12232中定义。|
+| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup>     | "ISOSpeedLatitudezzz"       | **读写能力：** 可读写<br> 该标签指示摄像机或输入设备的ISO速度纬度zzz值，该值在ISO 12232中定义。|
+| EXIF_VERSION <sup>12+</sup>               | "ExifVersion"               | **读写能力：** 可读写<br> 支持的Exif标准版本。|
+| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"          | **读写能力：** 可读写<br> 拍摄时间，例如2022:09:06 15:48:00。|
+| DATE_TIME_DIGITIZED <sup>12+</sup>        | "DateTimeDigitized"         | **读写能力：** 可读写<br> 图像作为数字数据存储的日期和时间，格式为YYYY:MM:DD HH:MM:SS|
+| OFFSET_TIME <sup>12+</sup>                | "OffsetTime"                | **读写能力：** 可读写<br> 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。|
+| OFFSET_TIME_ORIGINAL <sup>12+</sup>       | "OffsetTimeOriginal"        | **读写能力：** 可读写<br> 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。|
+| OFFSET_TIME_DIGITIZED <sup>12+</sup>      | "OffsetTimeDigitized"       | **读写能力：** 可读写<br> 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。|
+| COMPONENTS_CONFIGURATION <sup>12+</sup>   | "ComponentsConfiguration"   | **读写能力：** 可读写<br> 压缩数据的特定信息。|
+| COMPRESSED_BITS_PER_PIXEL <sup>12+</sup>  | "CompressedBitsPerPixel"    | **读写能力：** 可读写<br> 用于压缩图像的压缩模式，单位为每像素位数。|
+| SHUTTER_SPEED <sup>12+</sup>              | "ShutterSpeedValue"         | **读写能力：** 可读写<br> 快门速度，以APEX（摄影曝光的加法系统）值表示。|
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | **读写能力：** 可读写<br> 光圈值。|
+| BRIGHTNESS_VALUE <sup>12+</sup>           | "BrightnessValue"           | **读写能力：** 可读写<br> 图像的亮度值，以APEX单位表示。|
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"         | **读写能力：** 可读写<br> 曝光偏差值。|
+| MAX_APERTURE_VALUE <sup>12+</sup>         | "MaxApertureValue"          | **读写能力：** 可读写<br> 最小F数镜头。|
+| SUBJECT_DISTANCE <sup>12+</sup>           | "SubjectDistance"           | **读写能力：** 可读写<br> 测量单位为米的主体距离。|
+| METERING_MODE<sup>10+</sup>               | "MeteringMode"              | **读写能力：** 可读写<br> 测光模式。|
+| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | **读写能力：** 可读写<br> 光源。|
+| FLASH <sup>10+</sup>                      | "Flash"                     | **读写能力：** 可读写<br> 闪光灯,记录闪光灯状态。|
+| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | **读写能力：** 可读写<br> 焦距。|
+| SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | **读写能力：** 可读写<br> 该标签指示整个场景中主要主体的位置和区域。|
+| MAKER_NOTE <sup>12+</sup>                 | "MakerNote"                 | **读写能力：** 只读<br> Exif/DCF制造商使用的标签，用于记录任何所需信息。|
+| SCENE_POINTER <sup>12+</sup>              | "HwMnoteScenePointer"       | **读写能力：** 只读<br> 场景指针。|
+| SCENE_VERSION <sup>12+</sup>              | "HwMnoteSceneVersion"       | **读写能力：** 只读<br> 场景算法版本信息。|
+| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"      | **读写能力：** 只读<br> 拍照场景：食物。|
+| SCENE_STAGE_CONF<sup>11+</sup>            | "HwMnoteSceneStageConf"     | **读写能力：** 只读<br> 拍照场景：舞台。|
+| SCENE_BLUE_SKY_CONF<sup>11+</sup>         | "HwMnoteSceneBlueSkyConf"   | **读写能力：** 只读<br> 拍照场景：蓝天。|
+| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | **读写能力：** 只读<br> 拍照场景：绿植。|
+| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"     | **读写能力：** 只读<br> 拍照场景：沙滩。|
+| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"      | **读写能力：** 只读<br> 拍照场景：下雪。|
+| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"    | **读写能力：** 只读<br> 拍照场景：日落。|
+| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"   | **读写能力：** 只读<br> 拍照场景：花。|
+| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"     | **读写能力：** 只读<br> 拍照场景：夜晚。|
+| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"      | **读写能力：** 只读<br> 拍照场景：文本。|
+| FACE_POINTER <sup>12+</sup>               | "HwMnoteFacePointer"        | **读写能力：** 只读<br> 脸部指针。|
+| FACE_VERSION <sup>12+</sup>               | "HwMnoteFaceVersion"        | **读写能力：** 只读<br> 人脸算法版本信息。|
+| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"          | **读写能力：** 只读<br> 人脸数量。|
+| FACE_CONF <sup>12+</sup>                  | "HwMnoteFaceConf"           | **读写能力：** 只读<br> 人脸置信度。|
+| FACE_SMILE_SCORE <sup>12+</sup>           | "HwMnoteFaceSmileScore"     | **读写能力：** 只读<br> FaceCount张人脸的笑脸分数。|
+| FACE_RECT <sup>12+</sup>                  | "HwMnoteFaceRect"           | **读写能力：** 只读<br> 脸部矩形。|
+| FACE_LEYE_CENTER <sup>12+</sup>           | "HwMnoteFaceLeyeCenter"     | **读写能力：** 只读<br> 左眼中心。|
+| FACE_REYE_CENTER <sup>12+</sup>           | "HwMnoteFaceReyeCenter"     | **读写能力：** 只读<br> 右眼中心。|
+| FACE_MOUTH_CENTER <sup>12+</sup>          | "HwMnoteFaceMouthCenter"    | **读写能力：** 只读<br> 嘴中心。|
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"        | **读写能力：** 可读写<br> 捕获模式。|
+| BURST_NUMBER <sup>12+</sup>               | "HwMnoteBurstNumber"        | **读写能力：** 只读<br> 连拍次数。|
+| FRONT_CAMERA <sup>12+</sup>               | "HwMnoteFrontCamera"        | **读写能力：** 只读<br> 是否是前置相机自拍。|
+| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"          | **读写能力：** 只读<br> 滚动角度。|
+| PITCH_ANGLE<sup>11+</sup>                 | "HwMnotePitchAngle"         | **读写能力：** 只读<br> 俯仰角度。|
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"   | **读写能力：** 只读<br> 物理孔径，光圈大小。|
+| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"          | **读写能力：** 只读<br> 对焦模式。|
+| USER_COMMENT <sup>10+</sup>               | "UserComment"               | **读写能力：** 可读写<br> 用户注释。|
+| SUBSEC_TIME <sup>12+</sup>                | "SubsecTime"                | **读写能力：** 可读写<br> 用于为DateTime标签记录秒的分数的标签。|
+| SUBSEC_TIME_ORIGINAL <sup>12+</sup>       | "SubsecTimeOriginal"        | **读写能力：** 可读写<br> 用于为DateTimeOriginal标签记录秒的分数的标签。|
+| SUBSEC_TIME_DIGITIZED <sup>12+</sup>      | "SubsecTimeDigitized"       | **读写能力：** 可读写<br> 用于为DateTimeDigitized标签记录秒的分数的标签。|
+| FLASHPIX_VERSION <sup>12+</sup>           | "FlashpixVersion"           | **读写能力：** 可读写<br> 该标签表示FPXR文件支持的Flashpix格式版本，增强了设备兼容性。|
+| COLOR_SPACE <sup>12+</sup>                | "ColorSpace"                | **读写能力：** 可读写<br> 色彩空间信息标签，通常记录为色彩空间指定符。|
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"           | **读写能力：** 可读写<br> 像素X尺寸。|
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"           | **读写能力：** 可读写<br> 像素Y尺寸。|
+| RELATED_SOUND_FILE <sup>12+</sup>         | "RelatedSoundFile"          | **读写能力：** 可读写<br> 与图像数据相关的音频文件的名称。|
+| FLASH_ENERGY <sup>12+</sup>               | "FlashEnergy"               | **读写能力：** 可读写<br> 图像捕获时的闪光能量，以BCPS表示。|
+| SPATIAL_FREQUENCY_RESPONSE <sup>12+</sup> | "SpatialFrequencyResponse"  | **读写能力：** 可读写<br> 相机或输入设备的空间频率表。|
+| FOCAL_PLANE_X_RESOLUTION <sup>12+</sup>   | "FocalPlaneXResolution"     | **读写能力：** 可读写<br> 图像宽度中每FocalPlaneResolutionUnit的像素。|
+| FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup>   | "FocalPlaneYResolution"     | **读写能力：** 可读写<br> 图像高度中每FocalPlaneResolutionUnit的像素。|
+| FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit"  | **读写能力：** 可读写<br> 测量FocalPlaneXResolution和FocalPlaneYResolution的单位。|
+| SUBJECT_LOCATION <sup>12+</sup>           | "SubjectLocation"           | **读写能力：** 可读写<br> 主要对象相对于左边缘的位置。|
+| EXPOSURE_INDEX <sup>12+</sup>             | "ExposureIndex"             | **读写能力：** 可读写<br> 捕获时选定的曝光指数。|
+| SENSING_METHOD <sup>12+</sup>             | "SensingMethod"             | **读写能力：** 可读写<br> 相机上的图像传感器类型。|
+| FILE_SOURCE <sup>12+</sup>                | "FileSource"                | **读写能力：** 可读写<br> 表明图像来源。|
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                 | **读写能力：** 可读写<br> 拍摄场景模式，例如人像、风光、运动、夜景等。|
+| CFA_PATTERN <sup>12+</sup>                | "CFAPattern"                | **读写能力：** 可读写<br> 图像传感器的色彩滤光片（CFA）几何图案。|
+| CUSTOM_RENDERED <sup>12+</sup>            | "CustomRendered"            | **读写能力：** 可读写<br> 指示图像数据上的特殊处理。|
+| EXPOSURE_MODE <sup>12+</sup>              | "ExposureMode"              | **读写能力：** 可读写<br> 拍摄时设置的曝光模式。|
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"              | **读写能力：** 可读写<br> 白平衡。|
+| DIGITAL_ZOOM_RATIO <sup>12+</sup>         | "DigitalZoomRatio"          | **读写能力：** 可读写<br> 捕获时的数字变焦比率。|
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"     | **读写能力：** 可读写<br> 焦距35毫米胶片。|
+| SCENE_CAPTURE_TYPE <sup>12+</sup>         | "SceneCaptureType"          | **读写能力：** 可读写<br> 捕获的场景类型。|
+| GAIN_CONTROL <sup>12+</sup>               | "GainControl"               | **读写能力：** 可读写<br> 整体图像增益调整的程度。|
+| CONTRAST <sup>12+</sup>                   | "Contrast"                  | **读写能力：** 可读写<br> 相机应用的对比度处理方向。|
+| SATURATION <sup>12+</sup>                 | "Saturation"                | **读写能力：** 可读写<br> 相机应用的饱和度处理方向。|
+| SHARPNESS <sup>12+</sup>                  | "Sharpness"                 | **读写能力：** 可读写<br> 相机应用的锐度处理方向。|
+| DEVICE_SETTING_DESCRIPTION <sup>12+</sup> | "DeviceSettingDescription"  | **读写能力：** 可读写<br> 特定相机模型的拍照条件信息。|
+| SUBJECT_DISTANCE_RANGE <sup>12+</sup>     | "SubjectDistanceRange"      | **读写能力：** 可读写<br> 表示主体到相机的距离范围。|
+| IMAGE_UNIQUE_ID <sup>12+</sup>            | "ImageUniqueID"             | **读写能力：** 可读写<br> 为每张图片唯一分配的标识符。|
+| CAMERA_OWNER_NAME <sup>12+</sup>          | "CameraOwnerName"           | **读写能力：** 可读写<br> 相机所有者的姓名。|
+| BODY_SERIAL_NUMBER <sup>12+</sup>         | "BodySerialNumber"          | **读写能力：** 可读写<br> 相机机身的序列号。|
+| LENS_SPECIFICATION <sup>12+</sup>         | "LensSpecification"         | **读写能力：** 可读写<br> 使用的镜头规格。|
+| LENS_MAKE <sup>12+</sup>                  | "LensMake"                  | **读写能力：** 可读写<br> 镜头的制造商。|
+| LENS_MODEL <sup>12+</sup>                 | "LensModel"                 | **读写能力：** 可读写<br> 镜头的型号名称。|
+| LENS_SERIAL_NUMBER <sup>12+</sup>         | "LensSerialNumber"          | **读写能力：** 可读写<br> 镜头的序列号。|
+| COMPOSITE_IMAGE <sup>12+</sup>            | "CompositeImage"            | **读写能力：** 可读写<br> 表示图像是否为合成图像。|
+| SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup>   | "SourceImageNumberOfCompositeImage"       | **读写能力：** 可读写<br> 用于合成图像的源图像数量。|
+| SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"     | **读写能力：** 可读写<br> 合成图像的源图像曝光时间。|
+| GAMMA <sup>12+</sup>                      | "Gamma"                     | **读写能力：** 可读写<br> 表示系数伽马的值。|
+| DNG_VERSION <sup>12+</sup>                | "DNGVersion"                | **读写能力：** 可读写<br> DNG版本标签编码了符合DNG规范的四级版本号。|
+| DEFAULT_CROP_SIZE <sup>12+</sup>          | "DefaultCropSize"           | **读写能力：** 可读写<br> DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。|
+| GIF_LOOP_COUNT <sup>12+</sup>             | "GIFLoopCount"              | **读写能力：** 只读<br> GIF图片循环次数。0表示无限循环，其他值表示循环次数。|
 
 ## ImageFormat<sup>9+</sup>
 

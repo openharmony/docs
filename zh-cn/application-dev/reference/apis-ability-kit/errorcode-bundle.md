@@ -791,13 +791,15 @@ The specified developerId is invalid.
 The specified application cannot be uninstalled.
 
 **错误描述**<br/>
-调用bundleManager模块中的switchUninstallState接口时，指定的应用不允许被卸载。
+调用BundleInstaller模块中的uninstall接口或bundleManager模块中的switchUninstallState接口时，指定的应用不允许被卸载。
 
 **可能原因**<br/>
-指定的应用具有不可卸载特权。
+1. 调用uninstall接口卸载指定应用时，应用由于自身业务拒绝了此次卸载操作。
+2. 调用switchUninstallState接口时，指定的应用具有不可卸载特权。
 
 **处理步骤**<br/>
-检查指定的应用是否具有不可卸载特权。
+1. 查看应用提示的无法卸载的具体原因，并进行相应操作。
+2. 检查指定的应用是否具有不可卸载特权。
 
 ## 17700061 指定的应用分身索引无效
 
@@ -831,22 +833,6 @@ ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体
 **处理步骤**<br/>
 检查ShortcutInfo结构体中的want有效性。
 
-## 17700068 应用支持分身后，最大分身数量在更新时不可减小
-
-**错误信息**<br/>
-Failed to install the HAP because the maximum count of clone app cannot be reduced.
-
-**错误描述**<br/>
-应用多开模式为appClone，在更新时，maxCount数值不允许减小。
-
-**可能原因**<br/>
-支持分身的应用在更新时，最大分身数量减小了。
-
-**处理步骤**<br/>
-1. 检查更新应用是否支持分身。
-2. 检查应用在更新前后，支持最大分身数量是否减小。
-
-
 ## 17700069 多开模式非分身的应用，不能创建分身实例
 
 **错误信息**<br/>
@@ -860,6 +846,20 @@ The app does not support the creation of an appClone instance.
 
 **处理步骤**<br/>
 1. 检查更新应用是否支持分身。
+
+## 17700070 指定的快捷方式id不合法
+
+**错误信息**<br/>
+The specified shortcut id is illegal.
+
+**错误描述**<br/>
+快捷方式id是不合法的。
+
+**可能原因**<br/>
+调用添加快捷方式接口时，已经存在相同包名，分身索引，用户id和快捷方式id的快捷方式信息，或者快捷方式id为空字符串。
+
+**处理步骤**<br/>
+1. 检查包名或者快捷方式id是否正确。
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

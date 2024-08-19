@@ -12,7 +12,7 @@ This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemS
 ## Modules to Import
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## SystemToneOptions
@@ -23,10 +23,10 @@ Describes the options of system alert tones.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
-| Name     | Type           | Mandatory| Description                       |
+| Name     | Type           | Mandatory | Description                       |
 | --------- | -------------- |---|---------------------------|
-| muteAudio | boolean | No| Whether the sound is muted. The value **true** means that the sound is muted, and **false** means the opposite.|
-| muteHaptics | boolean | No| Whether haptics feedback is turned off. The value **true** means that haptics feedback is turned off, and **false** means the opposite.|
+| muteAudio | boolean | No | Whether the sound is muted. The value **true** means that the sound is muted, and **false** means the opposite. |
+| muteHaptics | boolean | No | Whether haptics feedback is turned off. The value **true** means that haptics feedback is turned off, and **false** means the opposite. |
 
 ## SystemTonePlayer
 
@@ -46,13 +46,13 @@ Obtains the title of a system alert tone. This API uses a promise to return the 
 
 | Type                 | Description                             |
 | --------------------- | -------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the title obtained.|
+| Promise&lt;string&gt; | Promise used to return the title obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message             |
+| ID | Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 5400103 | I/O error. |
@@ -60,7 +60,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.getTitle().then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system tone player title is obtained ${value}.`);
@@ -83,13 +83,13 @@ Prepares to play a system alert tone. This API uses a promise to return the resu
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message             |
+| ID | Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 5400102 | Operation not allowed. |
@@ -98,7 +98,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.prepare().then(() => {
   console.info(`Promise returned to indicate a successful prepareing of system tone player.`);
@@ -121,21 +121,21 @@ Starts playing a system alert tone. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- |-----------------------------------------|--| ------------------------- |
-| toneOptions  | [SystemToneOptions](#systemtoneoptions) | No| Options of the system alert tone.|
+| toneOptions  | [SystemToneOptions](#systemtoneoptions) | No | Options of the system alert tone. |
 
 **Return value**
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the stream ID.|
+| Promise&lt;number&gt; | Promise used to return the stream ID. |
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message             |
+| ID | Error Message             |
 | ------- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Caller is not a system application. |
@@ -145,7 +145,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class SystemToneOptions {
   muteAudio: boolean = false;
@@ -172,21 +172,21 @@ Stops playing a system alert tone. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                      |
+| Name  | Type                                     | Mandatory | Description                      |
 | -------- |-----------------------------------------|--| ------------------------- |
-| id  | number | Yes| Stream ID returned by **start()**.|
+| id  | number | Yes | Stream ID returned by **start()**. |
 
 **Return value**
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message             |
+| ID | Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -195,7 +195,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let streamID: number = 0; // streamID is the stream ID returned by start(). Only initialization is performed here.
 systemTonePlayer.stop(streamID).then(() => {
@@ -225,14 +225,14 @@ Releases the system alert tone player. This API uses a promise to return the res
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID| Error Message             |
+| ID | Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.release().then(() => {
   console.info(`Promise returned to indicate a successful releasing of system tone player.`);

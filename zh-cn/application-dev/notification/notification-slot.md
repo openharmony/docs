@@ -7,6 +7,7 @@
 
 | SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
+| UNKNOWN_TYPE         | 0      | 未知类型 | Y | N | N | N | N | N |
 | SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
 | SERVICE_INFORMATION  | 2      | 服务提醒 | Y | Y | Y | Y | Y | Y |
 | CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | N | N |
@@ -33,6 +34,10 @@
    ```ts
    import { notificationManager } from '@kit.NotificationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 创建指定类型的通知渠道。
@@ -43,7 +48,7 @@
         if (err) {
             console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
-            console.info("addSlot success");
+            hilog.info(DOMAIN_NUMBER, TAG, "addSlot success");
         }
     }
     notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
@@ -58,12 +63,12 @@
         if (err) {
             console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
-            console.info(`getSlot success. `);
+            hilog.info(DOMAIN_NUMBER, TAG, `getSlot success. `);
             if (data != null) {
-                console.info(`slot enable status is ${JSON.stringify(data.enabled)}`);
-                console.info(`slot level is ${JSON.stringify(data.level)}`);
-                console.info(`vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
-                console.info(`lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
+                hilog.info(DOMAIN_NUMBER, TAG, `slot enable status is ${JSON.stringify(data.enabled)}`);
+                hilog.info(DOMAIN_NUMBER, TAG, `slot level is ${JSON.stringify(data.level)}`);
+                hilog.info(DOMAIN_NUMBER, TAG, `vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
+                hilog.info(DOMAIN_NUMBER, TAG, `lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
             }
         }
     }
@@ -79,9 +84,9 @@
     if (err) {
         console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("removeSlot success");
+        hilog.info(DOMAIN_NUMBER, TAG, "removeSlot success");
     }
     }
-    let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+    let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
     notificationManager.removeSlot(slotType, removeSlotCallback);
     ```

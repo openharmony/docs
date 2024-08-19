@@ -48,11 +48,12 @@
 
    ```ts
    import { adminManager, restrictions } from '@kit.MDMKit';
-   ```   
+   ```
 
 2. 调用接口，实现相应的功能。以下为禁用设备Wi-Fi的示例。
 
    ```ts
+   import { Want } from '@kit.AbilityKit';
    let wantTemp: Want = {
      bundleName: 'com.example.xxx',
      abilityName: 'EnterpriseAdminAbility',
@@ -77,9 +78,9 @@ hdc shell edm disable-admin -n 包名
 ```
 
 > **说明**
-
+> 
 > 正式使用时，在同一设备上只能能激活一个超级设备管理应用。
 >
 > <!--RP5--><!--RP5End-->
-
+ 
 <!--RP6--><!--RP6End-->

@@ -62,7 +62,7 @@
    }
    ```
 
-2. 新建线程并创建基ArkTs础运行时环境
+2. 新建线程并创建ArkTS基础运行时环境
 
    ```cpp
    // create_ark_runtime.cpp

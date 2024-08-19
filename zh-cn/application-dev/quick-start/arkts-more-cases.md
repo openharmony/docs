@@ -353,8 +353,8 @@ console.log(t.createController()!.value);
 **应用代码**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params: Object = myRouter.getParams();
+import { router } from '@kit.ArkUI';
+let params: Object = router.getParams();
 let funNum: number = params['funNum'];
 let target: string = params['target'];
 ```
@@ -362,8 +362,8 @@ let target: string = params['target'];
 **建议改法**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params = myRouter.getParams() as Record<string, string | number>;
+import { router } from '@kit.ArkUI';
+let params = router.getParams() as Record<string, string | number>;
 let funNum: number = params.funNum as number;
 let target: string = params.target as string;
 ```
@@ -438,7 +438,7 @@ const area = {
 **建议改法**
 
 ```typescript
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 const area: image.PositionArea = {
   pixels: new ArrayBuffer(8),
@@ -953,25 +953,25 @@ for (let arr of map) {
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (e: BusinessError) {
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
@@ -1038,7 +1038,7 @@ type OptionsFlags = Record<keyof C, string>
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error;
@@ -1048,7 +1048,7 @@ function ThrowError(error: BusinessError) {
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error as Error;
@@ -1156,29 +1156,47 @@ class Test {
 **应用代码**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest(): notification.NotificationRequest {
-  // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = {
-  ...buildNotifyLongRequest(),
-  deliveryTime: new Date().getTime()
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = {
+  ...test.foo(),
+  type: 0
 }
 ```
 
 **建议改法**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest():notification.NotificationRequest {
-    // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = buildNotifyLongRequest();
-notificationRequest.deliveryTime = new Date().getTime();
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = test.foo();
+t.type = 0;
 ```
 
 **原因**
@@ -1738,7 +1756,7 @@ try {
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   
@@ -2263,7 +2281,7 @@ export default struct MyComponent {
 
   aboutToAppear() {
     if (this.controller)
-      this.controller.setItem(this);
+      this.controller.setItem(this); // 不建议把this作为参数传递到struct外部使用
   }
 }
 
@@ -2309,7 +2327,7 @@ export class MyComponentController {
 @Component
 export default struct MyComponent {
   public controller: MyComponentController | null = null;
-  @State value: CC = new CC('Hello World')
+  @State value: CC = new CC('Hello World');
 
   build() {
     Column() {
@@ -2333,7 +2351,7 @@ struct StyleExample {
     Column() {
       MyComponent({ controller: this.controller })
       Button('change value').onClick(() => {
-        this.controller.changeText('Text')
+        this.controller.changeText('Text');
       })
     }
   }
@@ -2374,8 +2392,8 @@ struct DatauionOldPage {
 
 @Component
 export struct ForEachCom {
-  arrayList: any[]
-  @BuilderParam closer: (data: any) => void = this.componentCloser
+  arrayList: any[]; // struct不支持泛型，有arkts-no-any-unknown报错
+  @BuilderParam closer: (data: any) => void = this.componentCloser; // struct不支持泛型，有arkts-no-any-unknown报错
 
   @Builder
   componentCloser() {
@@ -2383,7 +2401,7 @@ export struct ForEachCom {
 
   build() {
     Column() {
-      ForEach(this.arrayList, (item: any) => {
+      ForEach(this.arrayList, (item: any) => { // struct不支持泛型，有arkts-no-any-unknown报错
         Row() {
           this.closer(item)
         }.width('100%').height(200).backgroundColor('#eee')
@@ -2404,7 +2422,7 @@ class Model {
   aa: string = '11';
 }
 
-type UnionData = Data | Model
+type UnionData = Data | Model;
 
 @Entry
 @Component
@@ -2432,7 +2450,7 @@ struct DatauionPage {
 @Component
 export struct ForEachCom {
   arrayList: UnionData[] = [new Data(), new Data(), new Data()];
-  @BuilderParam closer: (data: UnionData) => void = this.componentCloser
+  @BuilderParam closer: (data: UnionData) => void = this.componentCloser;
 
   @Builder
   componentCloser() {

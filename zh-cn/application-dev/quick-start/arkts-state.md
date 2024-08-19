@@ -30,8 +30,8 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@State a : string \| undefined = undefined`是推荐的，不推荐`@State a: string = undefined`。
-<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>类型必须被指定。<br/>不支持any。|
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@State a : string \| undefined = undefined`是推荐的，不推荐`@State a: string = undefined`。
+<br/>支持ArkUI框架定义的联合类型[Length](../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须被指定。<br/>不支持any。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
 
 
@@ -39,7 +39,7 @@
 
 | 传递/访问          | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化将会覆盖本地初始化。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量，初始化子组件的\@State。 |
+| 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化将会覆盖本地初始化。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)装饰的变量，初始化子组件的\@State。 |
 | 用于初始化子组件   | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问 | 不支持，只能在组件内访问。                                   |
 
@@ -398,7 +398,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number]) => {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
@@ -766,3 +766,145 @@ struct Test {
 ```
 
 以上示例点击Button('change')，此时第一行文本'222'不会更新，第二行文本'222'更新为'333'，因为在点击按钮后先执行'this.parent.son = new Son('444')'，此时会新创建出来一个Son对象，再执行'this.parent.son.son = '333''，改变的是新new出来的Son里面的son的值，原来对象Son中的son值并不会受到影响。
+
+### 复杂类型常量重复赋值给状态变量触发刷新
+
+```ts
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新。原因是在状态管理V1中，会给@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array添加一层代理用于观测一层属性或API调用产生的变化。  
+当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Object类型，判断是不相等的，因此会触发赋值和刷新。  
+为了避免这种不必要的赋值和刷新，可以通过用@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
+方法一：增加@Observed
+
+```ts
+@Observed
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+以上示例，给对应的类增加了@Observed装饰器后，list[0]已经是Proxy类型了，这样再次赋值时，相同的对象，就不会触发刷新。
+
+方法二：使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象
+
+```ts
+import { UIUtils } from '@ohos.arkui.StateManagement';
+
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        // 获取原始对象来和新值做对比
+        if (UIUtils.getTarget(this.dataObjFromList) !== this.list[0]) {
+          this.dataObjFromList = this.list[0];
+        }
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+以上示例，在赋值前，使用getTarget获取了对应状态变量的原始对象，经过对比后，如果和当前对象一样，就不赋值，不触发刷新。

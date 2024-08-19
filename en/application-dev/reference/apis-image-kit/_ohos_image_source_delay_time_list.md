@@ -19,5 +19,5 @@ The **OhosImageSourceDelayTimeList** struct defines the delay time list of an im
 
 | Name| Description| 
 | -------- | -------- |
-| [delayTimeList](image.md#delaytimelist) | Defines a pointer to the head of the image source delay time list.| 
-| [size](image.md#size-47) = 0 | Defines the size of the image source delay time list.| 
+| int32_t \* [delayTimeList](image.md#delaytimelist) | Defines a pointer to the head of the image source delay time list.| 
+| size_t [size](image.md#size-47) = 0 | Defines the size of the image source delay time list.| 

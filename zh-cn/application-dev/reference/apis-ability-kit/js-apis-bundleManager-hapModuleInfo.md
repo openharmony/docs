@@ -67,23 +67,23 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称           | 类型   | 只读 | 必填 | 说明                   |
+| 名称           | 类型   | 可读 | 可写 | 说明                   |
 | ------------- | ------ | ---- | ---- | ---------------------- |
-| name          | string | 是   | 是   | 标识跳转页面的名称。       |
-| pageSourceFile| string | 是   | 是   | 标识页面在模块内的路径。   |
-| buildFunction | string | 是   | 是   | 标识被@Builder修饰的函数，该函数描述页面的UI。   |
-| data          | Array\<[DataItem](#dataitem12)> | 是   | 是   | 标识[路由表配置文件](../../quick-start/module-configuration-file.md#routermap标签)中的字符串自定义数据，即data字段的信息，该字段已由系统解析，无需开发者自行解析。   |
-| customData    | string | 是   | 是   | 标识[路由表配置文件](../../quick-start/module-configuration-file.md#routermap标签)中的任意类型的自定义数据，即customData字段的JSON字符串，开发者需要调用JSON.parse函数解析出具体内容。   |
+| name          | string | 是   | 否   | 标识跳转页面的名称。       |
+| pageSourceFile| string | 是   | 否   | 标识页面在模块内的路径。   |
+| buildFunction | string | 是   | 否   | 标识被@Builder修饰的函数，该函数描述页面的UI。   |
+| data          | Array\<[DataItem](#dataitem12)> | 是   | 否   | 标识[路由表配置文件](../../quick-start/module-configuration-file.md#routermap标签)中的字符串自定义数据，即data字段的信息，该字段已由系统解析，无需开发者自行解析。   |
+| customData    | string | 是   | 否   | 标识[路由表配置文件](../../quick-start/module-configuration-file.md#routermap标签)中的任意类型的自定义数据，即customData字段的JSON字符串，开发者需要调用JSON.parse函数解析出具体内容。   |
 
 ## DataItem<sup>12+</sup>
 
 描述模块配置的路由表中的自定义数据。
 
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称          | 类型    | 只读 | 必填 | 说明                   |
+| 名称          | 类型    | 可读 | 可写 | 说明                   |
 | ------------- | ------ | ---- | ---- | ---------------------- |
-| key           | string | 是   | 是   | 标识路由表自定义数据的键。       |
-| value         | string | 是   | 是   | 标识路由表自定义数据的值。 |
+| key           | string | 是   | 否   | 标识路由表自定义数据的键。       |
+| value         | string | 是   | 否   | 标识路由表自定义数据的值。 |

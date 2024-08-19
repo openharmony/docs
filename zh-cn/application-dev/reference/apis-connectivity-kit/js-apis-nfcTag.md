@@ -408,6 +408,8 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getMifareClassic<sup>9+</sup>
@@ -482,6 +484,11 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从[tag.getTagInfo(want: Want)](#taggettaginfo9)获取。 |
 
 **返回值：**
 

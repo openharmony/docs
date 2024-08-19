@@ -53,7 +53,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 
 ## BuilderNode
 
-class BuilderNode<Args extends Object[]>
+class BuilderNode\<Args extends Object[]>
 
 BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
 
@@ -86,6 +86,12 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
 支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
 
+> **说明**
+> 
+> @Builder嵌套使用的时候需要保证内外的@Builder方法的入参对象一致。
+>
+> 最外层的@Builder只支持一个入参。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -95,7 +101,105 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                   |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。 |
-| arg     | Object                                                          | 否   | 对象，作为builder入参的对象。                                                          |
+| arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                          |
+
+
+### BuildOptions<sup>12+</sup>
+
+build的可选参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                                   | 必填 | 说明                                                         |
+| ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值:false。                                          |
+
+### build<sup>12+</sup>
+
+build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buildoptions12)): void
+
+依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
+支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+
+> **说明**
+> 
+> @Builder进行创建和更新的规格参考[@Builder](../../quick-start/arkts-builder.md)。
+> 
+> 最外层的@Builder只支持一个入参。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                            | 必填 | 说明                                                                                    |
+| ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。   |
+| arg     | Object                                                          | 是   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                                            |
+| options | BuildOptions                                                    | 是   | build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
+
+**示例：**
+```ts
+import { BuilderNode, NodeContent } from "@kit.ArkUI"
+
+interface ParamsInterface {
+  text: string;
+  func: Function;
+}
+
+@Builder
+function buildTextWithFunc(fun: Function) {
+  Text(fun())
+    .fontSize(50)
+    .fontWeight(FontWeight.Bold)
+    .margin({ bottom: 36 })
+}
+
+@Builder
+function buildText(params: ParamsInterface) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+    buildTextWithFunc(params.func)
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "HELLO"
+  private content: NodeContent = new NodeContent();
+
+  build() {
+    Row() {
+      Column() {
+        Button('addBuilderNode')
+          .onClick(() => {
+            let buildNode = new BuilderNode<[ParamsInterface]>(this.getUIContext());
+            buildNode.build(wrapBuilder<[ParamsInterface]>(buildText), {
+              text: this.message, func: () => {
+                return "FUNCTION"
+              }
+            }, { nestingBuilderSupported: true });
+            this.content.addFrameNode(buildNode.getFrameNode());
+            buildNode.dispose();
+          })
+        ContentSlot(this.content)
+      }
+      .id("column")
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 
 ### getFrameNode
@@ -546,7 +650,9 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到BuiderNode中的自定义组件。
+传递reuse事件到BuilderNode中的自定义组件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -561,6 +667,8 @@ reuse(param?: Object): void
 recycle(): void
 
 传递recycle事件到BuiderNode中的自定义组件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -693,6 +801,157 @@ struct Index {
       .width('100%')
       .height('100%')
     }
+  }
+}
+```
+
+### updateConfiguration<sup>12+</sup>
+
+updateConfiguration(): void  
+
+传递[系统环境变化](../apis-ability-kit/js-apis-app-ability-configuration.md)事件，触发节点的全量更新。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+> **说明：**
+>
+> updateConfiguration接口用于通知对象更新，更新所使用的系统环境由应用当前的系统环境变化决定。
+
+**示例：**
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+// 自定义组件
+@Component
+struct TextBuilder {
+  // 作为自定义组件中需要更新的属性，数据类型为基础属性，定义为@Prop
+  @Prop message: string = "TextBuilder";
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .margin({ bottom: 36 })
+          .fontColor($r(`app.color.text_color`))
+          .backgroundColor($r(`app.color.start_window_background`))
+      }
+    }
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+      .fontColor($r(`app.color.text_color`))
+    TextBuilder({ message: params.text }) // 自定义组件
+  }.backgroundColor($r(`app.color.start_window_background`))
+}
+
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private message: string = "";
+
+  constructor(message: string) {
+    super()
+    this.message = message;
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    return this.textNode?.getFrameNode() ? this.textNode?.getFrameNode() : null;
+  }
+
+  createNode(context: UIContext) {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    builderNodeMap.push(this.textNode);
+  }
+
+  deleteNode() {
+    let node = builderNodeMap.pop();
+    node?.dispose();
+  }
+
+  update(message: string) {
+    if (this.textNode !== null) {
+      // 调用update进行更新。
+      this.textNode.update(new Params(message));
+    }
+  }
+}
+
+// 记录创建的自定义节点对象
+const builderNodeMap: Array<BuilderNode<[Params]>> = new Array();
+
+function updateColorMode() {
+  builderNodeMap.forEach((value, index) => {
+    // 通知BuilderNode环境变量改变
+    value.updateConfiguration();
+  })
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+  private textNodeController: TextNodeController = new TextNodeController(this.message);
+  private count = 0;
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+        console.log('onMemoryLevel');
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        updateColorMode();
+      }
+    }
+    // 注册监听回调
+    this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    //创建自定义节点并添加至map
+    this.textNodeController.createNode(this.getUIContext());
+  }
+
+  aboutToDisappear(): void {
+    //移除map中的引用，并将自定义节点释放
+    this.textNodeController.deleteNode();
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(this.textNodeController)
+          .width('100%')
+          .height(200)
+          .backgroundColor('#FFF0F0F0')
+        Button('Update')
+          .onClick(() => {
+            this.count += 1;
+            const message = "Update " + this.count.toString();
+            this.textNodeController.update(message);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
   }
 }
 ```

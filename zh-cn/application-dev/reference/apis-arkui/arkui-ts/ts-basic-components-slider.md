@@ -52,7 +52,7 @@ Slider(options?: SliderOptions)
 | -------- | -------- |
 | OutSet | 滑块在滑轨上。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | InSet | 滑块在滑轨内。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NONE<sup>12+</sup> | 无滑块 |
+| NONE<sup>12+</sup> | 无滑块 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -267,6 +267,8 @@ selectedBorderRadius(value: Dimension)
 
 设置已滑动部分（高亮）圆角半径。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -367,6 +369,8 @@ sliderInteractionMode(value: SliderInteraction)
 
 设置用户与滑动条组件交互方式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -381,6 +385,8 @@ minResponsiveDistance(value: number)
 
 设置滑动响应的最小距离。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -394,6 +400,8 @@ minResponsiveDistance(value: number)
 contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 
 定制Slider内容区的方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -413,6 +421,8 @@ contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 slideRange(value: SlideRange)
 
 设置有效滑动区间。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -450,6 +460,8 @@ Slider组件滑块形状枚举。
 
 用户与滑动条组件交互方式
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | SLIDE_AND_CLICK | 用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指按下即发生移动。|
@@ -459,6 +471,8 @@ Slider组件滑块形状枚举。
 ## SlideRange<sup>12+</sup>对象说明
 
 定义SlideRange中使用的回调类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型     | 必填 | 说明           |
 |----|--------| ---- |--------------|
@@ -517,6 +531,8 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 开发者需要自定义class实现ContentModifier接口。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 参数名  | 类型    | 说明              |
 | ------ | ------ | ---------------- |
 | value | number | 当前进度值。 |
@@ -528,6 +544,8 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 ## SliderTriggerChangeCallback<sup>12+</sup>对象说明
 
 定义SliderConfiguration中使用的回调类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |

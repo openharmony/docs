@@ -97,12 +97,16 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
-   
+    ```
+
+    ```ts
+   // 接口对应的.d.ts描述
+   export const asyncWork(data: number): Promise<number>;
+
    // ArkTS侧调用接口
    nativeModule.asyncWork(1024).then((result) => {
        hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
-     }
-   );
+     });
    ```
 
 ## 使用callback方式示例
@@ -185,7 +189,13 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
-   
+   ```
+
+   ```ts
+   // 接口对应的.d.ts描述
+   export const asyncWork(arg1: number, arg2: number,
+     callback: (result: number) => void): void;
+
    // ArkTS侧调用接口
    let num1: number = 123;
    let num2: number = 456;

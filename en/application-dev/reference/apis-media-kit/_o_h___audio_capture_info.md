@@ -9,13 +9,9 @@ When both **audioSampleRate** and **audioChannels** are **0**, the audio-related
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -23,11 +19,11 @@ When both **audioSampleRate** and **audioChannels** are **0**, the audio-related
 
 ### Member Variables
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| [audioSampleRate](#audiosamplerate) | int32_t<br>Audio sampling rate. For details about the supported rates, see **OH_AudioCapturer_GetSamplingRate**.| 
-| [audioChannels](#audiochannels) | int32_t<br>Number of audio channels.| 
-| [audioSource](#audiosource) | [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype)<br>Audio source.| 
+| int32_t [audioSampleRate](#audiosamplerate) | Audio sampling rate. For details about the supported rates, see **OH_AudioCapturer_GetSamplingRate**. | 
+| int32_t [audioChannels](#audiochannels) | Number of audio channels. | 
+| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype)[audioSource](#audiosource) | Audio source. | 
 
 
 ## Member Variable Description

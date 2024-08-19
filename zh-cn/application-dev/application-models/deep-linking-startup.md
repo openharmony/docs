@@ -61,7 +61,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 
 ### 使用openLink打开浏览器页面
 
-在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的`appLinkingOnly`配置置为`false`。
+在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的`appLinkingOnly`配置为`false`。
 
 
 示例代码如下：
@@ -113,7 +113,7 @@ startAbility接口是将应用链接放入want中，通过调用[隐式want匹�
 示例代码如下：
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';

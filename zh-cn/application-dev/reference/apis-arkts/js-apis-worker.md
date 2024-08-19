@@ -34,11 +34,11 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
-| shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| type | "classic" \| "module" | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
+| shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## ThreadWorker<sup>9+</sup>
 
@@ -192,6 +192,7 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // index.ets
 // 新建SendableObject实例并通过宿主线程传递至worker线程
@@ -214,6 +215,7 @@ export class SendableObject {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // worker文件路径为：entry/src/main/ets/workers/Worker.ets
 // Worker.ets
@@ -254,8 +256,8 @@ on(type: string, listener: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -291,8 +293,8 @@ once(type: string, listener: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -328,8 +330,8 @@ off(type: string, listener?: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -363,7 +365,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running.           |
+| 10200004 | Worker instance is not running.           |
 
 **示例：**
 ```ts
@@ -406,7 +408,7 @@ unregisterGlobalCallObject(instanceName?: string): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running. |
+| 10200004 | Worker instance is not running. |
 
 **示例：**
 ```ts
@@ -613,8 +615,8 @@ addEventListener(type: string, listener: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -650,7 +652,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running. |
+| 10200004 | Worker instance is not running. |
 
 **示例：**
 
@@ -692,7 +694,7 @@ dispatchEvent(event: Event): boolean
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running. |
+| 10200004 | Worker instance is not running. |
 
 **示例：**
 
@@ -763,7 +765,7 @@ removeAllListener(): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
-| 10200004 | The Worker instance is not running. |
+| 10200004 | Worker instance is not running. |
 
 **示例：**
 
@@ -1101,6 +1103,7 @@ Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // worker文件路径为：entry/src/main/ets/workers/Worker.ets
 // Worker.ets
@@ -1126,6 +1129,7 @@ export class SendableObject {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 // 接收worker线程传递至宿主线程的数据并访问其属性
@@ -1174,11 +1178,11 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running.           |
+| 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 | 10200019 | The globalCallObject is not registered. |
 | 10200020 | The method to be called is not callable or is an async method or a generator. |
-| 10200021 | Waiting for a global call timed out. |
+| 10200021 | The global call exceeds the timeout. |
 
 **示例：**
 ```ts
@@ -1453,8 +1457,8 @@ RestrictedWorker构造函数。使用以下方法前，均需先构造Restricted
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failed. |
-| 10200007 | The worker file path is invalid. |
+| 10200003 | Worker initialization failure. |
+| 10200007 | The worker file patch is invalid path. |
 
 **示例：**
 
@@ -2030,25 +2034,24 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 **示例：**
 
+<!--no_check-->
 ```ts
 // main thread
 import { worker } from '@kit.ArkTS';
 
-const workerInstance = new worker.Worker("workers/worker.ets");
+const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (e): void => {
-    // let data = e.data;
+workerInstance.onmessage = (): void => {
     console.log("receive data from worker.ets");
 }
 ```
 ```ts
 // worker.ets
-import { worker } from '@kit.ArkTS';
+import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e): void => {
-    // let data = e.data;
-    parentPort.postMessage("receive data from main thread");
+parentPort.onmessage = (e: MessageEvents) => {
+  parentPort.postMessage("receive data from main thread");
 }
 ```
 

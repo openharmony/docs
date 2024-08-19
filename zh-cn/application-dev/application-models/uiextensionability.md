@@ -47,7 +47,7 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(30)
-          .size({ width: '100%', height: '50'})
+          .size({ width: '100%', height: '50' })
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
 
@@ -72,9 +72,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 10})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 10 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
 
         UIExtensionComponent(
           {
@@ -97,9 +97,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 50})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 50 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
       }
       .width('100%')
     }
@@ -135,7 +135,7 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(30)
-          .size({ width: '100%', height: '50'})
+          .size({ width: '100%', height: '50' })
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
 
@@ -160,9 +160,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 10})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 10 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
 
         UIExtensionComponent(
           {
@@ -185,9 +185,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 50})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 50 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
       }
       .width('100%')
     }
@@ -224,7 +224,7 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(30)
-          .size({ width: '100%', height: '50'})
+          .size({ width: '100%', height: '50' })
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
 
@@ -249,9 +249,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 10})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 10 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
 
         UIExtensionComponent(
           {
@@ -274,9 +274,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 50})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 50 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
       }
       .width('100%')
     }
@@ -310,11 +310,9 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
 3. 打开UIExtensionAbility.ts，导入UIExtensionAbility的依赖包，自定义类继承UIExtensionAbility并实现onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调。
 
     ```ts
-    import Want from '@ohos.app.ability.Want';
-    import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-    import UIExtensionContentSession from '@ohos.app.ability.    UIExtensionContentSession';
+    import { Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-    const TAG: string = '[testTag] UIExtAbility '
+    const TAG: string = '[testTag] UIExtAbility';
 
     export default class UIExtAbility extends UIExtensionAbility {
       onCreate() {
@@ -337,7 +335,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
         console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}}`);
         let storage: LocalStorage = new LocalStorage();
         storage.setOrCreate('session', session);
-        session.loadContent('pages/Extension',storage);
+        session.loadContent('pages/Extension', storage);
       }
 
       onSessionDestroy(session: UIExtensionContentSession) {
@@ -349,7 +347,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
 4. UIExtensionAbility的onSessionCreate中加载了入口页面文件pages/extension.ets, 并在entry\src\main\resources\base\profile\main_pages.json文件中添加"pages/Extension"声明，extension.ets内容如下：
 
     ```ts
-    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    import { UIExtensionContentSession } from '@kit.AbilityKit';
 
     let storage = LocalStorage.GetShared();
     const TAG: string = `[testTag] ExtensionPage`;
@@ -359,6 +357,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
     struct Extension {
       @State message: string = `UIExtension provider`;
       private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+
       onPageShow() {
         console.info(TAG, 'show');
       }
@@ -374,19 +373,15 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
             Button("send data")
               .width('80%')
               .type(ButtonType.Capsule)
-              .margin({
-                top:20
-              })
+              .margin({ top: 20 })
               .onClick(() => {
-                this.session?.sendData({ "data": 543321});
+                this.session?.sendData({ "data": 543321 });
               })
 
             Button("terminate self")
               .width('80%')
               .type(ButtonType.Capsule)
-              .margin({
-                top:20
-              })
+              .margin({ top: 20 })
               .onClick(() => {
                 this.session?.terminateSelf();
                 storage.clear();
@@ -395,20 +390,18 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
             Button("terminate self with result")
               .width('80%')
               .type(ButtonType.Capsule)
-              .margin({
-                top:20
-              })
+              .margin({ top: 20 })
               .onClick(() => {
                 this.session?.terminateSelfWithResult({
                   resultCode: 0,
                   want: {
-                    bundleName:"com.example.uiextensiondemo",
+                    bundleName: "com.example.uiextensiondemo",
                     parameters: { "result": 123456 }
                   }
                 })
               })
-            }
           }
+        }
         .height('100%')
       }
     }
@@ -449,7 +442,7 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(30)
-          .size({ width: '100%', height: '50'})
+          .size({ width: '100%', height: '50' })
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
 
@@ -474,13 +467,13 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 30})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 30 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
 
         Button("sendData")
           .type(ButtonType.Capsule)
-          .offset({ x: 0,y: 60})
+          .offset({ x: 0, y: 60 })
           .width('80%')
           .type(ButtonType.Capsule)
           .margin({

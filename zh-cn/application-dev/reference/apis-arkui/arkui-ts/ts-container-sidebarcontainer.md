@@ -198,7 +198,7 @@ divider(value: DividerStyle | null)
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的样式。<br/>默认为DividerStyle：显示分割线。<br/>- null：不显示分割线。<br/>undefined：行为不做处理，分割线样式与默认值保持一致。 |
+| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的样式。<br/>默认为DividerStyle：显示分割线。<br/>- null或undefined：行为不做处理，分割线样式与默认值保持一致。<br/>**说明：** <br/>API version 11及以下版本，null效果为不显示分割线。|
 
 ### minContentWidth<sup>10+</sup>
 

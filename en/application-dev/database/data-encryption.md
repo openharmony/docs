@@ -43,7 +43,7 @@ if (kvManager !== undefined) {
       // Whether to encrypt the KV store.
       encrypt: true,
       backup: false,
-      autoSync: true,
+      autoSync: false,
       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
       securityLevel: distributedKVStore.SecurityLevel.S2
     };

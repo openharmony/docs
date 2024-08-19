@@ -9,7 +9,7 @@ With the Worker module, you can provide a multithreaded environment for an appli
 
 ![worker](figures/worker.png)
 
-The thread that creates the worker thread is referred to as the host thread (not necessarily the main thread, since a worker thread can also create another worker thread). A worker thread is also named an actor thread. Each worker thread has an independent instance from the host thread, including the infrastructure, object, and code segment. The worker thread communicates with the host thread by means of message exchange. They use the serialization technique to exchange commands and data.
+The thread that creates the worker thread is referred to as the host thread (not necessarily the main thread, since a worker thread can also create another worker thread). A worker thread is also named an actor thread. Each worker thread has an instance independent from the host thread, including the infrastructure, objects, and code segments. Memory overhead exists when each worker thread is started, and therefore the number of worker threads needs to be limited. The worker thread communicates with the host thread by means of message exchange. They use the serialization technique to exchange commands and data.
 
 
 ## Precautions for Worker
@@ -21,6 +21,9 @@ The thread that creates the worker thread is referred to as the host thread (not
 - A maximum of 16 MB data can be serialized.
 - You must register the **onerror** API in the main thread to listen for worker thread errors, which might cause a JavaScript crash.
 - Worker thread files cannot be used across HAPs.
+- During the creation of a worker object, the worker thread files of the current module can be loaded, but those of other modules cannot. To use the worker provided by another module, encapsulate the entire worker logic into a method, export the method, and then import the method.
+- Before referencing the HAR or HSP, configure the dependency on the HAR or HSP. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-0000001547293682-V5).
+
 
 ### Precautions for Creating a Worker Thread
 
@@ -61,7 +64,7 @@ Before calling an API of the Worker module, you must create a **Worker** instanc
 
 ```ts
 // Import the worker module.
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // Use the following function in API version 9 and later versions:
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
@@ -81,7 +84,7 @@ The requirements for **scriptURL** in the constructor function are as follows:
 To load the worker thread file of an ability, use the URL {moduleName}/ets/{relativePath}.
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // URL of the worker thread file: "entry/src/main/ets/workers/worker.ets"
 const workerStage1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
@@ -95,7 +98,7 @@ const workerStage2: worker.ThreadWorker = new worker.ThreadWorker('phone/ets/Thr
 To load the worker thread file in HSP, use the URL {moduleName}/ets/{relativePath}.
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // URL of the worker thread file: "hsp/src/main/ets/workers/worker.ets"
 const workerStage3: worker.ThreadWorker = new worker.ThreadWorker('hsp/ets/workers/worker.ets');
@@ -109,10 +112,12 @@ The worker thread file in the HAR may be loaded in either of the following cases
 
 - Relative path loading mode: The local HAR loads the worker thread file in the package. The URL is the relative path of the file where the Worker object is created to the worker thread file.
 
-If the HAR is packed into a third-party package, the worker in the HAR can be created only in the relative path loading mode.
+>**NOTE**
+>
+> When **useNormalizedOHMUrl** is enabled (the **useNormalizedOHMUrl** field of the **strictMode** attribute in the **build-profile.json5** file at the same level as the entry in the project directory is set to **true**) or the HAR is packed into a third-party package, the worker thread file in the HAR can be loaded using a relative path.
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // @ Path loading mode
 // URL of the worker thread file: "har/src/main/ets/workers/worker.ets"
@@ -129,7 +134,7 @@ const workerStage5: worker.ThreadWorker = new worker.ThreadWorker('../../workers
 **scriptURL** in the constructor function is the relative path between the worker thread file and "{moduleName}/src/main/ets/MainAbility".
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // The following three scenarios are involved.
 

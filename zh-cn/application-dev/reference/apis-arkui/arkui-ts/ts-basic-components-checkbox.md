@@ -110,7 +110,7 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                              | 必填 | 描述                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。|
+| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。|
 
 ### shape<sup>11+</sup>
 
@@ -167,16 +167,6 @@ onChange(callback: (value: boolean) => void)
 | 参数名 | 类型    | 必填 | 描述                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
 | value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
-
-## MarkStyle<sup>10+</sup>对象说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
-| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
-| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## CheckBoxShape<sup>11+</sup>枚举类型说明
 

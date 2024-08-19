@@ -31,10 +31,10 @@ Sets the dynamic dimming degree of the component.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | ------- | ------- | ------- | ------- |
-| id | string | Yes| Component ID.|
-| value | number | Yes| Dynamic dimming degree of the component. The value range is [0, 1]. The component is brighter with a larger value.|
+| id | string | Yes | Component ID. |
+| value | number | Yes | Dynamic dimming degree of the component. The value range is [0, 1]. The component is brighter with a larger value. |
 
 **Example**
 
@@ -65,14 +65,16 @@ animateToImmediately(param: AnimateParam , event: () => void): void
 
 Implements immediate delivery of an explicit animation through a **UIContext** object. When multiple property animations are loaded at once, you can call this API to immediately execute the transition animation for state changes caused by the specified closure function.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name  | Type                                      | Mandatory  | Description                                   |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| param | [AnimateParam](arkui-ts/ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
-| event | () => void                               | Yes   | Closure function that displays the dynamic effect. The system automatically inserts the transition animation if the state changes in the closure function.|
+| param | [AnimateParam](arkui-ts/ts-explicit-animation.md#animateparam)  | Yes   | Animation settings.                          |
+| event | () => void                               | Yes   | Closure function that displays the animation. The system automatically inserts the transition animation if the state changes in the closure function. |
 
 **Example**
 

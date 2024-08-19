@@ -265,7 +265,7 @@ typedef void(* OH_AVScreenCapture_OnBufferAvailable) (OH_AVScreenCapture *captur
 | capture | 指向OH_AVScreenCapture实例的指针。  | 
 | buffer | 指向OH_AVBuffer缓存区实例的指针，该回调方法执行结束返回后，数据缓存区不再有效。  | 
 | bufferType | 可用缓冲区的数据类型。  | 
-| timestamp | 时间戳。  | 
+| timestamp | 时间戳, 单位纳秒。  | 
 | userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 | 
 
 
@@ -738,10 +738,10 @@ enum OH_AVScreenCaptureStateCode
 | OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER  | 录屏被其他录屏中断。   | 
 | OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL  | 录屏被通话中断。   | 
 | OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE  | 麦克风不可用。   | 
-| OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER  | 麦克风被静音。   | 
-| OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER  | 麦克风被取消静音。   | 
-| OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE  | 进入隐私弹窗。   | 
-| OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE  | 隐私弹窗退出。   | 
+| OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER  | 麦克风被静音。 当前版本暂不支持。   | 
+| OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER  | 麦克风被取消静音。 当前版本暂不支持。   | 
+| OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE  | 进入隐私弹窗。 当前版本暂不支持。   | 
+| OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE  | 隐私弹窗退出。 当前版本暂不支持。   | 
 
 
 ### OH_CaptureMode
@@ -797,7 +797,7 @@ enum OH_DataType
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | OH_ORIGINAL_STREAM  | 原始流格式，如YUV/RGBA/PCM等。   | 
-| OH_ENCODED_STREAM  | 编码格式，如H264/AAC等。   | 
+| OH_ENCODED_STREAM  | 编码格式，如H264/AAC等。 当前版本暂不支持。   | 
 | OH_CAPTURE_FILE  | 保存文件格式，支持mp4。   | 
 | OH_INVAILD  | 无效格式。   | 
 

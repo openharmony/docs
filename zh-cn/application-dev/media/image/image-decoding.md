@@ -116,9 +116,9 @@
       ```ts
       
       resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
-         console.log("Succeeded in getting resourceManager")
+         console.log("Succeeded in getting RawFileDescriptor")
       }).catch((err : BusinessError) => {
-         console.error("Failed to get resourceManager")
+         console.error("Failed to get RawFileDescriptor")
       });
       ```
 

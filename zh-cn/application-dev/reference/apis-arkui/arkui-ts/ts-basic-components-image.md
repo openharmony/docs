@@ -66,6 +66,8 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor, imageAIOptions: ImageAIO
 
 Image新增[imageAIOptions](#ts-image-common.md#imageaioptions)参数，为组件设置AI分析选项。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -89,7 +91,7 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -162,6 +164,8 @@ interpolation(value: ImageInterpolation)
 renderMode(value: ImageRenderMode)
 
 设置图片的渲染模式。svg类型图源不支持该属性。
+
+设置 [ColorFilter](#colorfilter9) 时，该属性设置不生效。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
@@ -329,6 +333,8 @@ colorFilter(value: ColorFilter | DrawingColorFilter)
 
 为图像设置颜色滤镜效果。
 
+设置该属性时，[renderMode](#rendermode)属性设置不生效。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -363,7 +369,7 @@ enableAnalyzer(enable:&nbsp;boolean)
 
 设置组件支持AI分析。不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。  
 
-分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。  
+分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4)。  
 
 alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。 
 
@@ -410,6 +416,8 @@ privacySensitive(supported: boolean)
 设置是否支持卡片敏感隐私信息。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -478,7 +486,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 | 参数名   | 类型                                    | 说明                                       |
 | ----- | ------------------------------------- | ---------------------------------------- |
 | slice | [EdgeWidths](#edgewidths参数说明) | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。 |
-| lattice<sup>12+</sup> | [DrawingLattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。 |
+| lattice<sup>12+</sup> | [DrawingLattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。<br>该参数对[backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12)接口不生效。 |
 
 ## EdgeWidths参数说明
 
@@ -579,6 +587,8 @@ type ImageErrorCallback = (error: ImageError) => void
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
 | error  | [ImageError](#imageerror9) | 是   | 图片加载异常时触发回调的返回对象。 |
@@ -595,7 +605,7 @@ type ImageErrorCallback = (error: ImageError) => void
 | --------------- | ------ | ---- | ------------------------- |
 | componentWidth  | number | 是   | 组件的宽。<br/>单位：像素 |
 | componentHeight | number | 是   | 组件的高。<br/>单位：像素 |
-| message         | string | 是   | 报错信息。                |
+| message<sup>10+</sup>         | string | 是   | 报错信息。                |
 
 ## 示例
 

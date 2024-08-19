@@ -658,6 +658,7 @@ Enter键的功能类型。
 | NEXT  | 5 |下一步。 |
 | DONE  | 6 |完成。 |
 | PREVIOUS  | 7 |上一步。 |
+| NEWLINE  | 8 | 换行。|
 
 ## KeyboardStatus<sup>10+</sup>
 
@@ -724,7 +725,7 @@ Enter键的功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | 否 | 是 | 编辑框属性。|
 | cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 否 | 光标信息。|

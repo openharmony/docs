@@ -49,7 +49,6 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failed.               |
 | 10200006 | An exception occurred during serialization.  |
 | 10200014 | The function is not marked as concurrent.      |
 
@@ -97,7 +96,6 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failed.             |
 | 10200006 | An exception occurred during serialization. |
 | 10200014 | The function is not marked as concurrent.     |
 | 10200051 | The periodic task cannot be executed again. |
@@ -217,16 +215,18 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 | 错误码ID   | 错误信息                         |
 | --------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200006 | An exception occurred during serialization. |
+| 10200014 | The function is not marked as concurrent. |
 | 10200028 | The delayTime is less than zero. |
 | 10200051 | The periodic task cannot be executed again. |
 
 **示例：**
 
 ```ts
-@Concurrent
 // import BusinessError
 import { BusinessError } from '@kit.BasicServicesKit'
 
+@Concurrent
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
 }
@@ -267,8 +267,7 @@ executePeriodically(period: number, task: Task, priority?: Priority): void
 
 | 错误码ID   | 错误信息                         |
 | ---------- | -------------------------------- |
-| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003   | Worker initialization failed. |
+| 401        | The input parameters are invalid. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200006   | An exception occurred during serialization. |
 | 10200014   | The function is not marked as concurrent. |
 | 10200028   | The period is less than zero. |
@@ -341,7 +340,6 @@ cancel(task: Task): void
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200015 | The task to cancel does not exist. |
-| 10200016 | The task to cancel is being executed.   |
 
 从API version10开始，此接口调用时不再涉及上报错误码10200016。
 
@@ -1785,9 +1783,8 @@ execute(task: Task): Promise\<Object>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 10200003 | Worker initialization failed.              |
 | 10200006 | An exception occurred during serialization. |
-| 10200025 | A dependent task cannot be added to SequenceRunner.  |
+| 10200025 | dependent task not allowed.  |
 | 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**

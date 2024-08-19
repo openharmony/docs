@@ -104,6 +104,18 @@ lcd闪光灯信息项。
 | ----------------------------- |-----|---------|
 | EXPOSURE_MODE_MANUAL<sup>12+</sup>          | 3   | 手动曝光模式。 |
 
+## PolicyType<sup>12+</sup>
+
+枚举，策略类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                           | 值   | 说明      |
+| ----------------------------- |-----|---------|
+| PRIVACY<sup>12+</sup>          | 1   | 隐私类型。 |
+
 ## CameraManager
 
 相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
@@ -139,6 +151,9 @@ muteCamera(mute: boolean): void
 
 禁用相机。
 
+> **说明：**
+>从 API version 10开始支持，从API version 12开始废弃。建议使用[muteCameraPersistent](#mutecamerapersistent12)替代。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -155,6 +170,32 @@ muteCamera(mute: boolean): void
 function muteCamera(cameraManager: camera.CameraManager): void {
   let mute: boolean = true;
   cameraManager.muteCamera(mute);
+}
+```
+
+### muteCameraPersistent<sup>12+</sup>
+
+muteCameraPersistent(mute: boolean, type: PolicyType): void
+
+以持久化的方式禁用相机。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                          | 必填  | 说明                                         |
+| -------- |-----------------------------| ---- |--------------------------------------------|
+| mute     | boolean                     |  是  | 禁用相机。true为禁用；false为解除禁用。                   |
+| type     | [PolicyType](#policytype12) |  是  | 策略类型。请使用[PolicyType](#policytype12)里面支持的类型 |
+
+**示例：**
+
+```ts
+function muteCameraPersistent(cameraManager: camera.CameraManager): void {
+  let mute: boolean = true;
+  cameraManager.muteCameraPersistent(mute, camera.PolicyType.PRIVACY);
 }
 ```
 
