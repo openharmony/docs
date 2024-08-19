@@ -602,7 +602,6 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   }).catch((error: BusinessError) => {
     console.log(JSON.stringify(error));
   })
-}
 });
 ```
 
@@ -845,8 +844,8 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let netHandle: NetHandle;
-let connectionproperties: ConnectionProperties;
+let netHandle: connection.NetHandle;
+let connectionproperties: connection.ConnectionProperties;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
@@ -1001,8 +1000,8 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let netHandle: NetHandle;
-let getNetCapabilitiesSync: NetCapabilities;
+let netHandle: connection.NetHandle;
+let getNetCapabilitiesSync: connection.NetCapabilities;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
@@ -2126,7 +2125,7 @@ interface Data {
   remoteInfo: socket.SocketRemoteInfo
 }
 
-connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
     // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
   }
@@ -2173,7 +2172,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         }
       });
     });
-});
+  }
+})
 ```
 
 ### bindSocket<sup>9+</sup>
