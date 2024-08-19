@@ -803,7 +803,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
-| result | Object | 是 | 页面自定义处理结果。 |
+| result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
@@ -847,7 +847,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 | 名称   | 类型     | 必填   | 描述                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
-| result | Object | 是 | 页面自定义处理结果。 |
+| result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
@@ -884,7 +884,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 | 名称    | 类型     | 必填   | 描述                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
-| result | Object | 是 | 页面自定义处理结果。 |
+| result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### moveToTop<sup>10+</sup>
