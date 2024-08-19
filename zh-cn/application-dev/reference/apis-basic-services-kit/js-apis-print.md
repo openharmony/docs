@@ -37,7 +37,7 @@ on(type: 'block', callback: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -79,7 +79,7 @@ on(type: 'succeed', callback: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -121,7 +121,7 @@ on(type: 'fail', callback: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -163,7 +163,7 @@ on(type: 'cancel', callback: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -205,7 +205,7 @@ off(type: 'block', callback?: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -247,7 +247,7 @@ off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -289,7 +289,7 @@ off(type: 'fail', callback?: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -331,7 +331,7 @@ off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -380,7 +380,7 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -432,7 +432,7 @@ onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -484,7 +484,7 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -535,7 +535,7 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -581,7 +581,7 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -634,7 +634,7 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -687,7 +687,7 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
