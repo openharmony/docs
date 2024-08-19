@@ -29,17 +29,7 @@ Menu()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-## subMenuExpandingMode<sup>12+</sup>枚举说明
-
-Menu子菜单展开样式枚举。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称           | 描述                                |
-|--------------|-----------------------------------|
-| SIDE_EXPAND  | 默认展开样式, 子菜单位于同一平面侧边展开。            |
-| EMBEDDED_EXPAND | 直接展开样式, 子菜单嵌于主菜单内展开。              |
-| STACK_EXPAND | 堆叠样式, 子菜单浮于主菜单上方展开。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 属性
 
@@ -173,7 +163,21 @@ subMenuExpandingMode(mode: SubMenuExpandingMode)
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- |--------------|
-| mode  | SubMenuExpandingMode | 是   | Menu子菜单展开样式。 |
+| mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。 |
+
+## subMenuExpandingMode<sup>12+</sup>枚举说明
+
+Menu子菜单展开样式枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 描述                                       |
+| --------------- | ------------------------------------------ |
+| SIDE_EXPAND     | 默认展开样式, 子菜单位于同一平面侧边展开。 |
+| EMBEDDED_EXPAND | 直接展开样式, 子菜单嵌于主菜单内展开。     |
+| STACK_EXPAND    | 堆叠样式, 子菜单浮于主菜单上方展开。       |
 
 ## 示例
 
