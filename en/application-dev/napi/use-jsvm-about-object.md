@@ -1,6 +1,6 @@
 # Working with Objects Using JSVM-API
 
-## Overview
+## Introduction
 
 JSVM-API provides APIs for basic JavaScript (JS) object operations, including creating an object, obtaining the prototype of an object, freezing or sealing an object, and checking the object type. You can use these APIs to manage JS objects.
 
@@ -30,7 +30,7 @@ You may need to define and operate objects when using JSVM-API in development. F
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code for object management APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for object management.
 
 ### OH_JSVM_GetPrototype
 

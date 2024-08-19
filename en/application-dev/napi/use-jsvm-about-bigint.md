@@ -25,7 +25,7 @@ Before using JSVM-API to operate BigInt values, you need to understand the follo
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to BigInt operation APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to BigInt operations.
 
 ### OH_JSVM_GetValueBigintWords
 

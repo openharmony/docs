@@ -17,7 +17,7 @@ JSON: a text-based format for representing structured data. It is widely used fo
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to JSON operation APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to JSON operations.
 
 ### OH_JSVM_JsonParse
 

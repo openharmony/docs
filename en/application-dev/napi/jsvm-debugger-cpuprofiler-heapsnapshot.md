@@ -1,7 +1,9 @@
 # JSVM Debugging and Tuning Capabilities
 
 JavaScript virtual machine (JSVM) is a standard JavaScript (JS) code execution engine that strictly complies with the ECMAScript specification. For details, see [JSVM](../reference/common/_j_s_v_m.md).
-JSVM-based JS code debugging and tuning capabilities include Debugger, CPU Profiler, Heap Snapshot and Heap Statistics. The following APIs are involved:
+
+The JSVM-based JS code debugging and tuning capabilities include Debugger, CPU Profiler, Heap Snapshot and Heap Statistics. The following APIs are involved:
+
 | API |  Description|
 |---|---|
 | OH_JSVM_GetVM  |  Obtains a VM instance.|
@@ -29,16 +31,27 @@ This topic describes how to use Debugger, CPU Profiler, and Heap Snapshot.
       }
     }]
    ```
+   
 2. To prevent the pause during the debugging process from being falsely reported as no response, run the following command to temporarily shield the appfreeze check for the application process:
-hdc shell param set hiviewdfx.freeze.filter.(processName) (pid of processName)
-Example:
-hdc shell param set hiviewdfx.freeze.filter.com.example.helloworld 1234
+
+  **hdc shell param set hiviewdfx.freeze.filter.(*processName*) (*pid of processName*)**
+
+  Example:
+
+  **hdc shell param set hiviewdfx.freeze.filter.com.example.helloworld 1234**
+
 3. Call **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port. For example, call **OH_JSVM_OpenInspector(env, "localhost", 9225)** to create a socket on local port 9225 of the device.
+
 4. Call **OH_JSVM_WaitForDebugger** to wait for the setup of a socket connection.
+
 5. Check whether the port on the device is enabled successfully. For example, run **hdc shell "netstat -anp | grep 9225"**. If the status of port 9225 is **LISTEN**, the port is enabled.
+
 6. Forward port. For example run **hdc fport tcp:9229 tcp:9225** to forward PC port 9229 to device port 9225. If the command output is **Forwardport result:OK**, the port is forwarded successfully.
+
 7. Enter **localhost:9229/json** in the address box of the Chrome browser and press **Enter**. Obtains port connection information. Copy the URL in the **devtoolsFrontendUrl** field to the address box and press **Enter**. The DevTools source code page is displayed. The JS source code executed by **OH_JSVM_RunScript** in the application is displayed. The Debugger pauses at the first line of the JS source code.
+
 8. You can set breakpoints on the source code page, send debugging commands using the buttons to control JS code execution, and view variables.
+
 9. Call **OH_JSVM_CloseInspector** to close the inspector instance and release the socket connection.
 ## Example
    ```

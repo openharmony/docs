@@ -35,7 +35,7 @@ JSVM-API can be used to create, access, modify, and traverse arrays. Before usin
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code for array management APIs. The **OH_JSVM_CreateTypedarray** API is different. For details, see the example.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for array management. The **OH_JSVM_CreateTypedarray** API is different. For details, see the example.
 
 ### OH_JSVM_CreateArray
 
@@ -519,7 +519,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Define OH_JSVM_GetTypedarrayInfo.
 static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain and parse the parameters passed to a JS callback within a JS VM. The first parameter is the TypedArray type of the information to obtain, and the second parameter is the enums of the information type to obtain.
+    // Obtain and parse the parameters passed to a JS callback within a JSVM. The first parameter is the TypedArray type of the information to obtain, and the second parameter is the enums of the information type to obtain.
     size_t argc = 2;
     JSVM_Value args[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -662,7 +662,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Define OH_JSVM_GetDataviewInfo.
 static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain and parse the parameters passed to a JS callback within a JS VM. The first parameter is the DataView type of the information to obtain, and the second parameter is the enums of the information type to obtain.
+    // Obtain and parse the parameters passed to a JS callback within a JSVM. The first parameter is the DataView type of the information to obtain, and the second parameter is the enums of the information type to obtain.
     size_t argc = 2;
     JSVM_Value args[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);

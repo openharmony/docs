@@ -13,7 +13,7 @@ This topic walks you through on how to use JSVM-API to obtain the API version an
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to version management APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to version management.
 
 ### OH_JSVM_GetVersion
 
@@ -91,7 +91,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getVMInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // Define OH_JSVM_GetVMInfo.
-// Print the JS VM information.
+// Print the JSVM information.
 void PrintVmInfo(JSVM_VMInfo vmInfo) {
     OH_LOG_INFO(LOG_APP, "JSVM API apiVersion: %{public}d", vmInfo.apiVersion);
     OH_LOG_INFO(LOG_APP, "JSVM API engine: %{public}s", vmInfo.engine);

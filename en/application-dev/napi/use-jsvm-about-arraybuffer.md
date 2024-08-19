@@ -26,7 +26,7 @@
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code related to **ArrayBuffer**.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to **ArrayBuffer** management.
 
 ### OH_JSVM_GetArraybufferInfo
 

@@ -8,9 +8,9 @@ In JavaScript (JS), the Integer type represents a number without a decimal point
 
 Before using JSVM-API to create and obtain numbers, you need to understand the following concepts:
 
-- **Number type**<br>When using JSVM-API, you may need to convert values of number types between C and JS. When converting the data, pay attention to the data range, signedness (signed or unsigned), and precision (single or double precision).
-- **Error handling**<br>You also need to use JSVM-API to capture and handle errors that may occur during the conversion. For example, when an integer is created, you may need to capture and handle memory allocation failures or other runtime errors.
-- **Interaction between JS and JSVM-API**<br>During the development, you need to consider the interaction between JS and JSVM-API, including how to pass the data of the number type and return the correct value.
+- Number type<br>When using JSVM-API, you may need to convert values of number types between C and JS. When converting the data, pay attention to the data range, signedness (signed or unsigned), and precision (single or double precision).
+- Error handling<br>You also need to use JSVM-API to capture and handle errors that may occur during the conversion. For example, when an integer is created, you may need to capture and handle memory allocation failures or other runtime errors.
+- Interaction between JS and JSVM-API<br>During the development, you need to consider the interaction between JS and JSVM-API, including how to pass the data of the number type and return the correct value.
 
 ## Available APIs
 

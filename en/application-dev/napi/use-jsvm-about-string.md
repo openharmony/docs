@@ -26,7 +26,7 @@ String is one of the common data types in programming. It is a sequence of chara
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to string conversion APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to string conversion.
 
 ### OH_JSVM_GetValueStringUtf8
 
@@ -402,3 +402,4 @@ try {
   hilog.error(0x0000, 'testJSVM', 'Test JSVM createStringLatin1 error: %{public}s', error.message);
 }
 ```
+<!--no_check-->

@@ -1,6 +1,6 @@
 # Working with Date Using JSVM-API
 
-## Overview
+## Introduction
 
 JSVM-API provides APIs for processing JavaScript (JS) **Date** objects in C/C++. These APIs are useful for working with time- and date-related logic in the JSVM module.
 
@@ -22,7 +22,7 @@ With the functions for interacting with the **Date** object, the JSVM module can
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code for date management APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for date management.
 
 ### OH_JSVM_CreateDate
 
