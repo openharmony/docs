@@ -188,11 +188,11 @@ OH_UdsHyperlink* hyperlink = OH_UdsHyperlink_Create();
 // 获取records中的元素。
 for (int i = 0; i < recordsCount; i++) {
     // 获取OH_UdmfRecord类型列表。
-    unsigned int* recordTypeIdCount = 0;
-    char** typeIdsFromRecord = OH_UdmfRecord_GetTypes(records[i], recordTypeIdCount);
-    for (unsigned int j = 0; j < *recordTypeIdCount; j++) {
+    unsigned int recordTypeIdCount = 0;
+    char** typeIdsFromRecord = OH_UdmfRecord_GetTypes(records[i], &recordTypeIdCount);
+    for (unsigned int j = 0; j < recordTypeIdCount; j++) {
         // 从OH_UdmfRecord中获取超链接类型数据。
-        if (strcmp(typeIdsFromRecord[j], UDMF_META_HYPERLINK)) {
+        if (strcmp(typeIdsFromRecord[j], UDMF_META_HYPERLINK) == 0) {
             // 获取hyperlink数据。
             if (OH_UdmfRecord_GetHyperlink(records[i], hyperlink) != Udmf_ErrCode::UDMF_E_OK) {
                 printf("Fail get hyperlink from record!");
