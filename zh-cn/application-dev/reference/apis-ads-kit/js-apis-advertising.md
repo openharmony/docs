@@ -441,15 +441,15 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 **系统能力：** SystemCapability.Advertising.Ads
 
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| adType | number | 是 | 广告类型。 | 
-| uniqueId | string | 是 | 广告唯一标识。 | 
-| rewarded | boolean | 是 | 广告是否获得奖励。<br/>- true：获得奖励。<br/>- false：没有获得奖励。 | 
-| shown | boolean | 是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
-| clicked | boolean | 是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
-| rewardVerifyConfig | Map&lt;string, string&gt; | 是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
-| [key: string] | Object | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
+| 名称 | 类型| 只读 | 必填 | 说明 |
+| -------- | --------| -------- | -------- | -------- |
+| adType | number | 否 |是 | 广告类型。 | 
+| uniqueId | string | 否 |是 | 广告唯一标识。 | 
+| rewarded | boolean | 否 |是 | 广告是否获得奖励。<br/>- true：获得奖励。<br/>- false：没有获得奖励。 | 
+| shown | boolean | 否 |是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
+| clicked | boolean | 否 |是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
+| rewardVerifyConfig | Map&lt;string, string&gt; | 否 |是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
+| [key: string] | Object | 否 |是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
 
 
 ## AdDisplayOptions
@@ -519,7 +519,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 **参数：**
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| adParam | [AdRequestParams[]](#adrequestparams) | 是 | 广告请求参数。 | 
+| adParams | [AdRequestParams[]](#adrequestparams) | 是 | 广告请求参数。 | 
 | adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
 
 **返回值：**
@@ -534,7 +534,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | Invalid input parameter.         |
+| 401      | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified |
 | 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 
@@ -606,7 +606,7 @@ parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context:
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | Invalid input parameter. Possible causes: parameter is null.|
+| 401      | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified |
 | 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 | 21800005 | Failed to parse the ad response. |
@@ -669,7 +669,7 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
-| 401 | Invalid input parameter. Possible causes: parameter is null. | 
+| 401 | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified | 
 | 21800001 | System internal error. | 
 
 
