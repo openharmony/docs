@@ -495,11 +495,6 @@ consoleinfo('Result is:' + value);\
 | OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
 | OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache                                                                  |
 | OH_JSVM_RunScript               | 执行编译脚本                                                                             |
-
-#### 新增接口
-
-| 接口                               | 功能说明                                                  |
-| -------------------------------- | ----------------------------------------------------- |
 | OH_JSVM_CompileScriptWithOptions | 新增的编译接口，通过传入 option 数组完成已有 compile 接口的全部功能，同时支持后续选项扩展 |
 |                                  |                                                       |
 
@@ -529,7 +524,6 @@ static JSVM_CallbackStruct hello_cb = { Hello, (void*)"Hello" };
 
 static string srcGlobal = R"JS(
 const concat = (...args) => args.reduce((a, b) => a + b);
-throw new Error("exception triggered")
 )JS";
 
 static void RunScriptWithOption(JSVM_Env env, string& src,
@@ -697,7 +691,6 @@ void RunWithoutSnapshot(uint8_t** dataPtr, size_t* lengthPtr) {
     OH_JSVM_OpenEnvScope(env, &envScope);
     // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
     auto src = srcGlobal + "concat(hello(), ', ', 'World', ' from RunWithoutSnapshot!')";
-    RunScript(env, src, true, dataPtr, lengthPtr);
     // 其中使用新增接口，可以覆盖原有 Compile 系列接口的功能且具有拓展性
     RunScriptWithOption(env, src, dataPtr, lengthPtr);
 
