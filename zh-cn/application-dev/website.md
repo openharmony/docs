@@ -252,6 +252,7 @@
         - [标准化数据定义概述](database/unified-data-definition-overview.md)
         - [标准化数据类型](database/uniform-data-type-descriptors.md)
         - [标准化数据结构](database/uniform-data-structure.md)
+        - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
         - [通过用户首选项实现数据持久化](database/data-persistence-by-preferences.md)
