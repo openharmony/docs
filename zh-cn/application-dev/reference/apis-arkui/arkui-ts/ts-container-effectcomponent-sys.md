@@ -66,7 +66,7 @@ struct Index {
             .height('48')
 
           // 使用useEffect进行模糊合并绘制，继承EffectComponent的模糊参数
-          Text("Normal text with useeffcet blur 1")
+          Text("Normal text with useEffect blur 1")
             .textAlign(TextAlign.Center)
             .useEffect(true)
             .fontSize(16)
@@ -76,7 +76,7 @@ struct Index {
             .height('48')
 
           // 使用useEffect进行模糊合并绘制，继承EffectComponent的模糊参数
-          Text("Normal text with useeffcet blur 2")
+          Text("Normal text with useEffect blur 2")
             .textAlign(TextAlign.Center)
             .useEffect(true)
             .fontSize(16)
