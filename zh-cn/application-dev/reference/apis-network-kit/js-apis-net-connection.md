@@ -1005,10 +1005,6 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   }
   netHandle = connection.getDefaultNetSync();
   getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
-  if (error) {
-      console.error(`Failed to get net capabilities sync. Code:${error.code}, message:${error.message}`);
-      return;
-  }
   console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
 });
 
