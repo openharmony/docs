@@ -20,7 +20,7 @@ import { NavPushPathHelper } from '@kit.ArkUI'
 
 不支持[通用属性](ts-universal-attributes-size.md)
 
-## NavPushPathHelper<sup>12+</sup>
+## NavPushPathHelper
 
 对Navigation路由栈[NavPathStack](ts-basic-components-navigation.md#navpathstack10)的所有路由跳转接口进行了封装，在NavPushPathHelper中持有一个NavPathStack对象，在封装的跳转接口中，去判断子包是否存在，如果不存在则进行动态下载子包，等结果返回后调用NavPathStack的相应的接口将指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈。使用示例参见[示例](#示例)。
 
@@ -40,7 +40,7 @@ NavPushPathHelper的构造函数。
 | ---- | ----------------------------- | ---- | -------------------- |
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是    | [Navigation](ts-basic-components-navigation.md)路由栈。 |
 
-### pushPath<sup>12+</sup>
+### pushPath
 
 pushPath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\<void\>
 
@@ -72,7 +72,7 @@ pushPath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\<vo
 | --------- | ------- |
 | 300001    | hsp silent install fail.|
 
-### pushPath<sup>12+</sup>
+### pushPath
 
 pushPath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise\<void\>
 
@@ -104,7 +104,7 @@ pushPath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Pr
 | --------- | ------- |
 | 300001    | hsp silent install fail.|
 
-### pushPathByName<sup>12+</sup>
+### pushPathByName
 
 pushPathByName(moduleName: string, name: string, param: unknown, animated?: boolean): Promise\<void\>
 
@@ -137,7 +137,7 @@ pushPathByName(moduleName: string, name: string, param: unknown, animated?: bool
 | --------- | ------- |
 | 300001    | hsp silent install fail.|
 
-### pushPathByName<sup>12+</sup>
+### pushPathByName
 
 pushPathByName(moduleName: string, name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): Promise\<void\>
 
@@ -171,7 +171,7 @@ pushPathByName(moduleName: string, name: string, param: Object, onPop: Callback\
 | --------- | ------- |
 | 300001    | hsp silent install fail.|
 
-### pushDestination<sup>12+</sup>
+### pushDestination
 
 pushDestination(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\<void\>
 
@@ -207,7 +207,7 @@ pushDestination(moduleName: string, info: NavPathInfo, animated?: boolean): Prom
 | 100006    | NavDestination not found.|
 | 300001    | hsp silent install fail.|
 
-### pushDestination<sup>12+</sup>
+### pushDestination
 
 pushDestination(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise\<void\>
 
@@ -243,7 +243,7 @@ pushDestination(moduleName: string, info: NavPathInfo, options?: NavigationOptio
 | 100006    | NavDestination not found.|
 | 300001    | hsp silent install fail.|
 
-### pushDestinationByName<sup>12+</sup>
+### pushDestinationByName
 
 pushDestinationByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise\<void\>
 
@@ -280,7 +280,7 @@ pushDestinationByName(moduleName: string, name: string, param: Object, animated?
 | 100006    | NavDestination not found.|
 | 300001    | hsp silent install fail.|
 
-### pushDestinationByName<sup>12+</sup>
+### pushDestinationByName
 
 pushDestinationByName(moduleName: string, name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): Promise\<void\>
 
@@ -318,7 +318,7 @@ pushDestinationByName(moduleName: string, name: string, param: Object, onPop: Ca
 | 100006    | NavDestination not found.|
 | 300001    | hsp silent install fail.|
 
-### replacePath<sup>12+</sup>
+### replacePath
 
 replacePath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\<void\>
 
@@ -350,7 +350,7 @@ replacePath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\
 | --------- | ------- |
 | 300001    | hsp silent install fail.|
 
-### replacePath<sup>12+</sup>
+### replacePath
 
 replacePath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Promise\<void\>
 
@@ -382,7 +382,7 @@ replacePath(moduleName: string, info: NavPathInfo, options?: NavigationOptions):
 | --------- | ------- |
 | 300001    | hsp silent install fail.|
 
-### replacePathByName<sup>12+</sup>
+### replacePathByName
 
 replacePathByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise\<void\>
 
