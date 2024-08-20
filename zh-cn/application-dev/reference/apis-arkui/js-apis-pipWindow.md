@@ -180,11 +180,12 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { typeNode, UIContext } from '@kit.ArkUI';
+import { PiPWindow } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
-let xComponent = typeNode.createNode(this.getUIContext(),"XComponent");
+let xComponent = typeNode.createNode(this.getUIContext(), "XComponent");
 xComponent.initialize({
   id:'xcomponent',
   type:XComponentType.SURFACE,
