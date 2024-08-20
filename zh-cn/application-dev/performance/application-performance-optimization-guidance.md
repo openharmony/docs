@@ -163,7 +163,7 @@ build() {
 
 应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
 
-若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用组件复用，具体指导在[组件复用实践](component-recycle.md)、[列表场景性能提升实践](list-perf-improvment.md)：
+若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用组件复用，具体指导在[组件复用实践](component-recycle.md)、[列表场景性能提升实践](list-perf-improvment.md)、[组件复用总览](component-reuse-overview.md)：
 
 * 列表滚动（本例中的场景）：当应用需要展示大量数据的列表，并且用户进行滚动操作时，频繁创建和销毁列表项的视图可能导致卡顿和性能问题。在这种情况下，使用列表组件的组件复用机制可以重用已经创建的列表项视图，提高滚动的流畅度。
 * 动态布局更新：如果应用中的界面需要频繁地进行布局更新，例如根据用户的操作或数据变化动态改变视图结构和样式，重复创建和销毁视图可能导致频繁的布局计算，影响帧率。在这种情况下，使用组件复用可以避免不必要的视图创建和布局计算，提高性能。
@@ -1045,7 +1045,7 @@ class Translate {
 
 @Entry
 @Component
-  struct UnnecessaryState2 {
+struct UnnecessaryState2 {
   @State buttonMsg: string = 'I am button';
 
   build() {
@@ -1087,7 +1087,7 @@ struct NecessaryState {
   }
 }
 ```
-没有关联任何UI组件的状态变量和没有修改过的状态变量不应该定义为状态变量，直接使用一般变量即可，否则会影响性能。  
+没有关联任何UI组件的状态变量和没有修改过的状态变量不应该定义为状态变量，直接使用一般变量即可，否则会影响性能。
 
 #### 避免在For/while等循环函数中重复读取状态变量
 
@@ -1118,7 +1118,7 @@ struct Page {
 }
 ```
 抓取Trace图如下：    
-![](./figures/unnecessarystate.png)
+![](./figures/unnecessarystate.png)  
 
 正例代码：
 
@@ -1134,7 +1134,7 @@ struct Page {
     Column() {
       Button('点击打印日志')
         .onClick(() => {
-          hiTraceMeter.startTrace('print', 1);
+          hiTraceMeter.startTrace('print', 1); 
           let logMessage: string = this.message;
           for (let i = 0; i < 10; i++) {
             console.info(logMessage);
@@ -1149,14 +1149,13 @@ struct Page {
 ![](./figures/necessarystate.png)
 
 由此可见，使用普通变量代替状态变量在For/while循环中读取，可以减少耗时，因此在For/while循环中频繁读取变量时，可使用普通变量代替状态变量。
-
 ## 第四要素：合理使用系统接口，避免冗余操作
 
 应该合理使用系统的高频回调接口，删除不必要的Trace和日志打印，避免冗余操作，减少系统开销，[避免开发过程中的冗余操作](avoiding-redundant-operations.md)。
 
 ### 避免在系统高频回调用进行冗余和耗时操作
 
-应该避免在onScroll、onAreaChange等系统高频的回调接口中进行冗余和耗时操作，这些接口在系统的每一帧绘制中都会执行回调操作，因此在这些接口中进行冗余和耗时操作会大量消耗系统资源，影响应用运行性能。
+应该避免在onDidScroll、onAreaChange等系统高频的回调接口中进行冗余和耗时操作，这些接口在系统的每一帧绘制中都会执行回调操作，因此在这些接口中进行冗余和耗时操作会大量消耗系统资源，影响应用运行性能。
 
 #### 避免在系统高频回调用打印Trace
 
@@ -1164,25 +1163,34 @@ Trace的打印是会额外消耗系统性能的，因此应该避免在这些系
 
 ```typescript
 // 反例
-Scroll() {
-  ForEach(this.arr, (item: number) => {
-    Text("ListItem" + item)
-    .width("100%")
-    .height("100%")
-  }, (item: number) => item.toString())
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Component
+struct NegativeOfOnDidScroll {
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  build() {
+    Scroll() {
+      ForEach(this.arr, (item: number) => {
+        Text("ListItem" + item)
+          .width("100%")
+          .height("100%")
+      }, (item: number) => item.toString())
+    }
+    .width('100%')
+      .height('100%')
+      .onDidScroll(() => {
+        hiTraceMeter.startTrace("ScrollSlide", 1002);
+        // 业务逻辑
+        // ...
+        hiTraceMeter.finishTrace("ScrollSlide", 1002);
+      })
+  }
 }
-.width('100%')
-.height('100%')
-.onScroll(() => {
-  hitrace.startTrace("ScrollSlide", 1002);
-  // 业务逻辑
-  // ...
-  hitrace.finishTrace("ScrollSlide", 1002);
-})
 
 // 正例
 @Component
-struct PositiveOfOnScroll {
+struct PositiveOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1200,7 +1208,7 @@ struct PositiveOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       // 业务逻辑
       // ...
     })
@@ -1214,8 +1222,10 @@ struct PositiveOfOnScroll {
 
 ```typescript
 // 反例
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Component
-struct NegativeOfOnScroll {
+struct NegativeOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1233,7 +1243,7 @@ struct NegativeOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       hilog.info(1002, 'Scroll', 'TextItem');
       // 业务逻辑
       // ...
@@ -1243,7 +1253,7 @@ struct NegativeOfOnScroll {
 
 // 正例
 @Component
-struct PositiveOfOnScroll {
+struct PositiveOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1261,7 +1271,7 @@ struct PositiveOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       // 业务逻辑
       // ...
     })
