@@ -271,7 +271,7 @@ Network capability set.
 | NETCONN_NET_CAPABILITY_INTERNET | Internet.| 
 | NETCONN_NET_CAPABILITY_NOT_VPN | Non-VPN.| 
 | NETCONN_NET_CAPABILITY_VALIDATED | Verified.| 
-| NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | Connectivity check.<br>It is available since API version 12.| 
+| NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | Connectivity check.<br>**Since**: 12| 
 
 
 ## Function Description
