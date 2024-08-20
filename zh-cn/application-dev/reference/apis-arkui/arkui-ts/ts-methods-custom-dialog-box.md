@@ -29,7 +29,9 @@ constructor(value: CustomDialogControllerOptions)
 
 ## CustomDialogControllerOptions对象说明
 
-| 名称                           | 参数类型                                     | 必填   | 描述                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                           | 类型                                     | 必填   | 说明                                     |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                       | [CustomDialog](../../../ui/arkts-common-components-custom-dialog.md) | 是    | 自定义弹窗内容构造器。<br/>**说明：** <br/>若builder构造器使用回调函数作为入参，请注意使用this绑定问题，如build: custombuilder({ callback: ()=> {...}})。<br/>若在builder构造器中监听数据变化请使用@Link，其他方式如@Prop、@ObjectLink不适用此场景。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 返回、ESC键和点击遮障层弹窗退出时的回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

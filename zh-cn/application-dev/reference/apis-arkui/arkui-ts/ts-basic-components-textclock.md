@@ -36,7 +36,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 format(value: string)
 
-设置显示时间格式，如“yyyy/mm/dd”、“yyyy-mm-dd”。
+设置显示时间格式，如“yyyy/MM/dd”、“yyyy-MM-dd”。
 
 y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若想使用01月则使用MM）<br />d：日（若想使用01日则使用dd）<br />E：星期（若想使用星期六则使用EEEE，若想使用周六则使用E、EE、EEE）H：小时（24小时制）   h：小时（12小时制）    <br/>m：分钟<br/>s：秒<br/>SS：厘秒(format中S个数<3，全部按厘秒处理)<br />SSS：毫秒(format中S个数>=3，全部按毫秒处理)<br/>a：上午/下午（当设置小时制式为H时，该参数不生效）
 

@@ -22,7 +22,7 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) \|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp; | 是 | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`ImageSpan("common/test.jpg")`，不支持跨包/跨模块调用该ImageSpan组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg、gif和heif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。 |
 
@@ -61,7 +61,7 @@ verticalAlign(value: ImageSpanAlignment)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment枚举说明) | 是   | 图片基于行高的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
+| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10枚举说明) | 是   | 图片基于行高的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
 
 ### objectFit
 
@@ -123,17 +123,21 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
-| result  | [ImageLoadResult](#imageloadresult12) | 是   | 图片数据加载成功和解码成功触发回调时返回的对象。 |
+| result  | [ImageLoadResult](#imageloadresult12对象说明) | 是   | 图片数据加载成功和解码成功触发回调时返回的对象。 |
 
-## ImageLoadResult<sup>12+</sup>
+## ImageLoadResult<sup>12+</sup>对象说明
 
 图片数据加载成功和解码成功触发回调时返回的对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名                       | 类型   | 必填 | 说明                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
 | width                        | number | 是   | 图片的宽。<br/>单位：像素                                    |
 | height                       | number | 是   | 图片的高。<br/>单位：像素                                    |

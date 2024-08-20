@@ -511,8 +511,8 @@ Codec MIME类型枚举。
 | ----------------- | ---- | -------------------------------- |
 | BUFFERING_START   | 1    | 表示开始缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
 | BUFFERING_END     | 2    | 表示结束缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| BUFFERING_PERCENT | 3    | 表示缓存百分比。<br>当前版本暂不支持使用。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
-| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。<br>当前版本暂不支持使用。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BUFFERING_PERCENT | 3    | 表示缓存百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## StateChangeReason<sup>9+</sup>
 
@@ -545,7 +545,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 
 | 名称                                                | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | 否   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>- 设置网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。<br>- 从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url<sup>9+</sup>                                    | string                                                       | 否   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>- 设置网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。<br>- 从API version 11开始不支持webm。<br> - 将资源句柄（fd）传递给 AVPlayer 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致媒体播放器数据获取异常。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 否   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 否   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | surfaceId<sup>9+</sup>                              | string                                                       | 否   | 是   | 视频窗口ID，默认无窗口。<br/>支持在**initialized**状态下设置。<br/>支持在**prepared**/**playing**/**paused**/**completed**/**stopped**状态下重新设置，重新设置时确保已经在**initialized**状态下进行设置，否则重新设置失败，重新设置后视频播放在新的窗口渲染。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -560,13 +560,9 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 | width<sup>9+</sup>                                  | number                                                       | 是   | 否   | 视频宽，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | height<sup>9+</sup>                                 | number                                                       | 是   | 否   | 视频高，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
-**说明：**
-
-将资源句柄（fd）传递给媒体播放器之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个媒体播放器。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致播放异常。
-
 ### on('stateChange')<sup>9+</sup>
 
-on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReason) => void): void
+on(type: 'stateChange', callback: OnAVPlayerStateChangeHandle): void
 
 监听播放状态机AVPlayerState切换的事件。
 
@@ -579,7 +575,7 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | function | 是   | 状态机切换事件回调方法：<br/>state: [AVPlayerState](#avplayerstate9)，表示当前播放状态；<br/>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
+| callback | [OnAVPlayerStateChangeHandle](#onavplayerstatechangehandle12) | 是   | 状态机切换事件回调方法。 |
 
 **示例：**
 
@@ -622,7 +618,7 @@ avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason
 
 ### off('stateChange')<sup>9+</sup>
 
-off(type: 'stateChange'): void
+off(type: 'stateChange', callback?: OnAVPlayerStateChangeHandle): void
 
 取消监听播放状态机[AVPlayerState](#avplayerstate9)切换的事件。
 
@@ -635,6 +631,7 @@ off(type: 'stateChange'): void
 | 参数名 | 类型   | 必填 | 说明                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
 | type   | string | 是   | 状态机切换事件回调类型，取消注册的事件：'stateChange' |
+| callback   | [OnAVPlayerStateChangeHandle](#onavplayerstatechangehandle12) | 否   | 状态机切换事件回调方法。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -666,14 +663,14 @@ on(type: 'error', callback: ErrorCallback): void
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
 | 201      | Permission denied     |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | The parameter check failed. |
 | 801      | Capability not supported. |
-| 5400101  | No Memory. Return by callback. |
+| 5400101  | No Memory. |
 | 5400102  | Operation not allowed.|
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
-| 5400105  | Service Died.         |
-| 5400106  | Unsupported Format.     |
+| 5400105  | Service died.         |
+| 5400106  | Unsupport format.     |
 
 **示例：**
 
@@ -688,7 +685,7 @@ avPlayer.on('error', (error: BusinessError) => {
 
 ### off('error')<sup>9+</sup>
 
-off(type: 'error'): void
+off(type: 'error', callback?: ErrorCallback): void
 
 取消监听播放的错误事件。
 
@@ -701,6 +698,7 @@ off(type: 'error'): void
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
 | type   | string | 是   | 错误事件回调类型，取消注册的事件：'error' |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 错误事件回调方法，使用播放器的过程中发生错误，会提供错误码ID和错误信息。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -775,7 +773,7 @@ prepare(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupported format. Return by callback.      |
+| 5400106  | Unsupport format. Return by callback.      |
 
 **示例：**
 
@@ -814,7 +812,7 @@ prepare(): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupported format. Return by promise.      |
+| 5400106  | Unsupport format. Return by promise.      |
 
 **示例：**
 
@@ -1525,7 +1523,7 @@ avPlayer.on('seekDone', (seekDoneTime:number) => {
 
 ### off('seekDone')<sup>9+</sup>
 
-off(type: 'seekDone'): void
+off(type: 'seekDone', callback?: Callback\<void>): void
 
 取消监听seek生效的事件。
 
@@ -1538,6 +1536,7 @@ off(type: 'seekDone'): void
 | 参数名 | 类型   | 必填 | 说明                                                 |
 | ------ | ------ | ---- | ---------------------------------------------------- |
 | type   | string | 是   | seek生效的事件回调类型，取消注册的事件：'seekDone'。 |
+| callback | Callback\<number> | 否   | 回调函数。seek生效的事件回调方法，只会上报用户请求的time位置。<br/>**视频播放：**[SeekMode](#seekmode8)会造成实际跳转位置与用户设置产生偏差，精准位置需要通过currentTime获取，事件回调的time仅代表完成用户某一次请求。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1595,7 +1594,7 @@ avPlayer.on('speedDone', (speed:number) => {
 
 ### off('speedDone')<sup>9+</sup>
 
-off(type: 'speedDone'): void
+off(type: 'speedDone', callback?: Callback\<number>): void
 
 取消监听setSpeed生效的事件。
 
@@ -1606,6 +1605,7 @@ off(type: 'speedDone'): void
 | 参数名 | 类型   | 必填 | 说明                                                      |
 | ------ | ------ | ---- | --------------------------------------------------------- |
 | type   | string | 是   | setSpeed生效的事件回调类型，取消注册的事件：'speedDone'。 |
+| callback | Callback\<number> | 否   | 回调函数。当setSpeed成功，上报生效的倍速模式，具体见[PlaybackSpeed](#playbackspeed8)。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1663,7 +1663,7 @@ avPlayer.on('bitrateDone', (bitrate:number) => {
 
 ### off('bitrateDone')<sup>9+</sup>
 
-off(type: 'bitrateDone'): void
+off(type: 'bitrateDone', callback?: Callback\<number>): void
 
 取消监听setBitrate生效的事件。
 
@@ -1674,6 +1674,7 @@ off(type: 'bitrateDone'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | setBitrate生效的事件回调类型，取消注册的事件：'bitrateDone'。 |
+| callback | Callback\<number> | 否   | setBitrate生效的事件回调方法，上报生效的比特率。<br/>从API version 12开始支持此参数。             |
 
 **示例：**
 
@@ -1683,7 +1684,7 @@ avPlayer.off('bitrateDone')
 
 ### on('availableBitrates')<sup>9+</sup>
 
-on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): void
+on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
 监听HLS协议流可用的比特率列表，只会在切换prepared状态后上报。
 
@@ -1696,7 +1697,7 @@ on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): voi
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | HLS协议可用比特率上报事件回调类型，支持的事件：'availableBitrates'，只会在prepared之后上报一次。 |
-| callback | function | 是   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
+| callback | Callback\<Array\<number>> | 是   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
 
 **示例：**
 
@@ -1708,7 +1709,7 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 
 ### off('availableBitrates')<sup>9+</sup>
 
-off(type: 'availableBitrates'): void
+off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 
 取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
 
@@ -1719,6 +1720,7 @@ off(type: 'availableBitrates'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | HLS协议可用比特率上报事件回调类型，取消注册的事件：'availableBitrates'。 |
+| callback | Callback\<Array\<number>> | 否   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1729,7 +1731,7 @@ avPlayer.off('availableBitrates')
 
 ### on('mediaKeySystemInfoUpdate')<sup>11+</sup>
 
-on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.MediaKeySystemInfo>) => void): void
+on(type: 'mediaKeySystemInfoUpdate', callback: Callback\<Array\<drm.MediaKeySystemInfo>>): void
 
 监听mediaKeySystemInfoUpdate事件。
 
@@ -1742,7 +1744,7 @@ on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.M
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 版权保护信息更新上报事件回调类型，支持的事件：'mediaKeySystemInfoUpdate'，当播放内容的版权保护信息更新时上报事件。 |
-| callback | function | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组，具体可见[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)。 |
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组。 |
 
 **示例：**
 
@@ -1759,7 +1761,7 @@ avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeyS
 
 ### off('mediaKeySystemInfoUpdate')<sup>11+</sup>
 
-off(type: 'mediaKeySystemInfoUpdate', callback?: (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => void): void;
+off(type: 'mediaKeySystemInfoUpdate', callback?: Callback\<Array\<drm.MediaKeySystemInfo>>): void;
 
 取消监听mediaKeySystemInfoUpdate事件。
 
@@ -1772,7 +1774,7 @@ off(type: 'mediaKeySystemInfoUpdate', callback?: (mediaKeySystemInfo: Array<drm.
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 版权保护信息更新上报事件回调类型，取消注册的事件：'mediaKeySystemInfoUpdate'。 |
-| callback | function | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组，具体可见[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
 
 **示例：**
 
@@ -1830,7 +1832,7 @@ avPlayer.on('volumeChange', (vol: number) => {
 
 ### off('volumeChange')<sup>9+</sup>
 
-off(type: 'volumeChange'): void
+off(type: 'volumeChange', callback?: Callback\<number>): void
 
 取消监听setVolume生效的事件。
 
@@ -1841,6 +1843,7 @@ off(type: 'volumeChange'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | setVolume生效的事件回调类型，取消注册的事件：'volumeChange'。 |
+| callback | Callback\<number> | 否   | setVolume生效的事件回调方法，上报生效的媒体音量。<br/>从API version 12开始支持此参数。            |
 
 **示例：**
 
@@ -1875,7 +1878,7 @@ avPlayer.on('endOfStream', () => {
 
 ### off('endOfStream')<sup>9+</sup>
 
-off(type: 'endOfStream'): void
+off(type: 'endOfStream', callback?: Callback\<void>): void
 
 取消监听资源播放至结尾的事件。
 
@@ -1886,6 +1889,7 @@ off(type: 'endOfStream'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 资源播放至结尾的事件回调类型，取消注册的事件：'endOfStream'。 |
+| callback | Callback\<void> | 否   | 资源播放至结尾的事件回调方法。<br/>从API version 12开始支持此参数。                               |
 
 **示例：**
 
@@ -1922,7 +1926,7 @@ avPlayer.on('timeUpdate', (time:number) => {
 
 ### off('timeUpdate')<sup>9+</sup>
 
-off(type: 'timeUpdate'): void
+off(type: 'timeUpdate', callback?: Callback\<number>): void
 
 取消监听资源播放当前时间。
 
@@ -1935,6 +1939,7 @@ off(type: 'timeUpdate'): void
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- | -------------------------------------------------- |
 | type   | string | 是   | 时间更新的回调类型，取消注册的事件：'timeUpdate'。 |
+| callback | Callback\<number> | 否   | 回调函数。返回当前时间。<br/>从API version 12开始支持此参数。             |
 
 **示例：**
 
@@ -1971,7 +1976,7 @@ avPlayer.on('durationUpdate', (duration: number) => {
 
 ### off('durationUpdate')<sup>9+</sup>
 
-off(type: 'durationUpdate'): void
+off(type: 'durationUpdate', callback?: Callback\<number>): void
 
 取消监听资源播放资源的时长。
 
@@ -1982,6 +1987,7 @@ off(type: 'durationUpdate'): void
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | type   | string | 是   | 时长更新的回调类型，取消注册的事件：'durationUpdate'。 |
+| callback | Callback\<number> | 否   | 回调函数。返回资源时长。<br/>从API version 12开始支持此参数。        |
 
 **示例：**
 
@@ -1991,7 +1997,7 @@ avPlayer.off('durationUpdate')
 
 ### on('bufferingUpdate')<sup>9+</sup>
 
-on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
+on(type: 'bufferingUpdate', callback: OnBufferingUpdateHandler): void
 
 订阅音视频缓存更新事件，仅网络播放支持该订阅事件。
 
@@ -2004,7 +2010,7 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 播放缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
-| callback | function | 是   | 播放缓存事件回调方法。<br/>[BufferingInfoType](#bufferinginfotype8)value值固定为0。 |
+| callback | [OnBufferingUpdateHandler](#onbufferingupdatehandler12) | 是   | 播放缓存事件回调方法。 |
 
 **示例：**
 
@@ -2016,9 +2022,11 @@ avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number
 
 ### off('bufferingUpdate')<sup>9+</sup>
 
-off(type: 'bufferingUpdate'): void
+off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void
 
 取消监听音视频缓存更新事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2027,6 +2035,7 @@ off(type: 'bufferingUpdate'): void
 | 参数名 | 类型   | 必填 | 说明                                                      |
 | ------ | ------ | ---- | --------------------------------------------------------- |
 | type   | string | 是   | 播放缓存事件回调类型，取消注册的事件：'bufferingUpdate'。 |
+| callback | [OnBufferingUpdateHandler](#onbufferingupdatehandler12) | 否   | 播放缓存事件回调方法。 |
 
 **示例：**
 
@@ -2061,7 +2070,7 @@ avPlayer.on('startRenderFrame', () => {
 
 ### off('startRenderFrame')<sup>9+</sup>
 
-off(type: 'startRenderFrame'): void
+off(type: 'startRenderFrame', callback?: Callback\<void>): void
 
 取消监听视频播放开始首帧渲染的更新事件。
 
@@ -2072,6 +2081,7 @@ off(type: 'startRenderFrame'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 视频播放开始首帧渲染事件回调类型，取消注册的事件：'startRenderFrame'。 |
+| callback | Callback\<void> | 否   | 视频播放开始首帧渲染事件回调方法。<br/>从API version 12开始支持此参数。                   |
 
 **示例：**
 
@@ -2081,7 +2091,7 @@ avPlayer.off('startRenderFrame')
 
 ### on('videoSizeChange')<sup>9+</sup>
 
-on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
+on(type: 'videoSizeChange', callback: OnVideoSizeChangeHandler): void
 
 监听视频播放宽高变化事件，仅视频播放支持该订阅事件，默认只在prepared状态上报一次，但HLS协议码流会在切换分辨率时上报。
 
@@ -2094,7 +2104,7 @@ on(type: 'videoSizeChange', callback: (width: number, height: number) => void): 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 视频播放宽高变化事件回调类型，支持的事件：'videoSizeChange'。 |
-| callback | function | 是   | 视频播放宽高变化事件回调方法，width表示宽，height表示高。    |
+| callback | [OnVideoSizeChangeHandler](#onvideosizechangehandler12) | 是   | 视频播放宽高变化事件回调方法。    |
 
 **示例：**
 
@@ -2106,9 +2116,11 @@ avPlayer.on('videoSizeChange', (width: number, height: number) => {
 
 ### off('videoSizeChange')<sup>9+</sup>
 
-off(type: 'videoSizeChange'): void
+off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void
 
 取消监听视频播放宽高变化事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2117,6 +2129,7 @@ off(type: 'videoSizeChange'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 视频播放宽高变化事件回调类型，取消注册的事件：'videoSizeChange'。 |
+| callback | [OnVideoSizeChangeHandler](#onvideosizechangehandler12) | 否   | 视频播放宽高变化事件回调方法。<br/>从API version 12开始支持此参数。    |
 
 **示例：**
 
@@ -2126,7 +2139,7 @@ avPlayer.off('videoSizeChange')
 
 ### on('audioInterrupt')<sup>9+</sup>
 
-on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
+on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 
 监听音频焦点变化事件，多个音视频资源同时播放时，会根据音频焦点模型[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)触发此事件。
 
@@ -2139,7 +2152,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                                                       | 是   | 音频焦点变化事件回调类型，支持的事件：'audioInterrupt'。 |
-| callback | [audio.InterruptEvent<sup>9+</sup>](../apis-audio-kit/js-apis-audio.md#interruptevent9) | 是   | 音频焦点变化事件回调方法。                               |
+| callback | Callback\<[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)> | 是   | 音频焦点变化事件回调方法。                           |
 
 **示例：**
 
@@ -2153,9 +2166,11 @@ avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
 
 ### off('audioInterrupt')<sup>9+</sup>
 
-off(type: 'audioInterrupt'): void
+off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 
 取消监听音频焦点变化事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2164,6 +2179,7 @@ off(type: 'audioInterrupt'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 音频焦点变化事件回调类型，取消注册的事件：'audioInterrupt'。 |
+| callback | Callback\<[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)> | 否   | 音频焦点变化事件回调方法。<br/>从API version 12开始支持此参数。             |
 
 **示例：**
 
@@ -2261,8 +2277,8 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 5400102  | Operation not allowed. Possible causes: Incorrect timing setting. |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
 
 **示例：**
 
@@ -2301,8 +2317,8 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 5400102  | Operation not allowed. Possible causes: Incorrect timing setting. |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
 
 **示例：**
 
@@ -2391,6 +2407,51 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 |             'stopped'             | 停止状态，在prepared/playing/paused/completed状态调用[stop()](#stop9)方法，AVPlayer会进入stopped状态，此时播放引擎只会保留属性，但会释放内存资源，可以调用[prepare()](#prepare9)重新准备，也可以调用[reset()](#reset9)重置，或者调用[release()](#release9)彻底销毁。 |
 |            'released'             | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用[release()](#release9)方法后，会进入released状态，结束流程。 |
 | 'error' | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](errorcode-media.md)），则会转换至当前状态，可以调用[reset()](#reset9)重置，也可以调用[release()](#release9)销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用[reset()](#reset9)重置或者[release()](#release9)销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
+
+## OnAVPlayerStateChangeHandle<sup>12+</sup>
+
+type OnAVPlayerStateChangeHandle = (state: AVPlayerState, reason: StateChangeReason) => void
+
+状态机切换事件回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ---------------------------------------------------------- |
+| state  | [AVPlayerState](#avplayerstate9) | 是 | 当前播放状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 是 | 当前播放状态的切换原因。 |
+
+## OnBufferingUpdateHandler<sup>12+</sup>
+
+type OnBufferingUpdateHandler = (infoType: BufferingInfoType, value: number) => void
+
+播放缓存事件回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| infoType  | [BufferingInfoType](#bufferinginfotype8) | 是 | 缓存时间类型。     |
+| value | number | 是 | value值固定为0。 |
+
+## OnVideoSizeChangeHandler<sup>12+</sup>
+
+type OnVideoSizeChangeHandler = (width: number, height: number) => void
+
+视频播放宽高变化事件回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| width  | number | 是 | 视频宽度。     |
+| height | number | 是 | 视频高度。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -2797,7 +2858,7 @@ updateRotation(rotation: number): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 |   401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.   |
-| 5400102  | Operate not allowed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
 
@@ -3313,8 +3374,8 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeIn
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
+| 5400102  | Operation not allowed. |
+| 5400103  | I/O error.             |
 | 5400105  | Service died. Return by callback.          |
 
 **示例**：
@@ -3399,7 +3460,7 @@ getAudioCapturerMaxAmplitude(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
+| 5400102  | Operation not allowed. |
 | 5400105  | Service died. Return by callback.          |
 
 **示例**：
@@ -3477,7 +3538,7 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
+| 5400102  | Operation not allowed. |
 | 5400105  | Service died. Return by callback.          |
 
 **示例**：
@@ -3617,7 +3678,7 @@ avRecorder.getAVRecorderConfig().then((config: media.AVRecorderConfig) => {
 
 ### on('stateChange')<sup>9+</sup>
 
-on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeReason) => void): void
+on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 
 订阅录制状态机AVRecorderState切换的事件，当 AVRecorderState状态机发生变化时，会通过订阅的回调方法通知用户。用户只能订阅一个状态机切换事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -3630,7 +3691,7 @@ on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeRe
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | function | 是   | 状态机切换事件回调方法：<br>state: [AVRecorderState](#avrecorderstate9)，表示当前播放状态 ；<br>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
+| callback | [OnAVRecorderStateChangeHandler](#onavrecorderstatechangehandler12) | 是   | 状态机切换事件回调方法。 |
 
 **错误码：**
 
@@ -3651,7 +3712,7 @@ avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.
 
 ### off('stateChange')<sup>9+</sup>
 
-off(type: 'stateChange'): void
+off(type: 'stateChange', callback?: OnAVRecorderStateChangeHandler): void
 
 取消订阅播放状态机[AVRecorderState](#avrecorderstate9)切换的事件。
 
@@ -3664,6 +3725,7 @@ off(type: 'stateChange'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
+| callback | [OnAVRecorderStateChangeHandler](#onavrecorderstatechangehandler12) | 否   | 状态机切换事件回调方法。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -3697,15 +3759,15 @@ on(type: 'error', callback: ErrorCallback): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 201      | Permission denied.     |
-| 401      | The Parameter check faild. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. |
-| 5400101  | No memory. Return by callback.             |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400104  | Time out. Return by callback.              |
-| 5400105  | Service died. Return by callback.          |
-| 5400106  | Unsupported format. Return by callback.      |
-| 5400107  | Audio interrupted. Return by callback.     |
+| 5400101  | No memory.             |
+| 5400102  | Operation not allowed. |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.              |
+| 5400105  | Service died.          |
+| 5400106  | Unsupport format.      |
+| 5400107  | Audio interrupted.     |
 
 **示例：**
 
@@ -3719,7 +3781,7 @@ avRecorder.on('error', (err: BusinessError) => {
 
 ### off('error')<sup>9+</sup>
 
-off(type: 'error'): void
+off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅录制错误事件，取消后不再接收到AVRecorder的错误事件。
 
@@ -3732,6 +3794,7 @@ off(type: 'error'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 录制错误事件回调方法。<br/>从API version 12开始支持此参数。                   |
 
 **示例：**
 
@@ -3775,7 +3838,7 @@ avRecorder.on('audioCapturerChange',  (audioCapturerChangeInfo: audio.AudioCaptu
 
 ### off('audioCapturerChange')<sup>11+</sup>
 
-off(type: 'audioCapturerChange'): void
+off(type: 'audioCapturerChange', callback?: Callback<audio.AudioCapturerChangeInfo>): void
 
 取消订阅录音变化的回调事件。
 
@@ -3786,6 +3849,7 @@ off(type: 'audioCapturerChange'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
+| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | 否 | 变化后的录音配置全量信息。<br/>从API version 12开始支持此参数。|
 
 **示例：**
 
@@ -3812,6 +3876,21 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 | 'stopped'  | 录制停止。此时可以调用[AVRecorder.prepare()](#prepare9-2)方法设置录制参数，重新进入prepared状态。 |
 | 'released' | 录制资源释放。此时不能再进行任何操作。在任何其他状态下，均可以通过调用[AVRecorder.release()](#release9-2)方法进入released状态。 |
 | 'error'    | 错误状态。当AVRecorder实例发生不可逆错误，会转换至当前状态。切换至error状态时会伴随[AVRecorder.on('error')事件](#onerror9-1)，该事件会上报详细错误原因。在error状态时，用户需要调用[AVRecorder.reset()](#reset9-2)方法重置AVRecorder实例，或者调用[AVRecorder.release()](#release9-2)方法释放资源。 |
+
+## OnAVRecorderStateChangeHandler<sup>12+</sup>
+
+type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChangeReason) => void
+
+状态机切换事件回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前播放状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前播放状态的切换原因。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -3862,6 +3941,10 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | 默认的音频输入源类型。 |
 | AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| AUDIO_SOURCE_TYPE_VOICE_RECOGNITION<sup>12+</sup> | 2    | 表示语音识别场景的音频源。 |
+| AUDIO_SOURCE_TYPE_VOICE_COMMUNICATION<sup>12+</sup>     | 7    | 表示语音通话场景的音频源。 |
+| AUDIO_SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup> | 10    | 表示短语音消息的音频源。 |
+| AUDIO_SOURCE_TYPE_CAMCORDER<sup>12+</sup>     | 13    | 表示相机录像的音频源。 |
 
 ## VideoSourceType<sup>9+</sup>
 
@@ -3939,8 +4022,8 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 
 | 名称    | 类型                                 | 只读 | 可选 | 说明               |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
-| fdDst<sup>12+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVTranscoder 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频转码数据获取异常。 |
+| fdDst<sup>12+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVTranscoder 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频转码数据获取异常。 |
 
 ### prepare<sup>12+</sup>
 
@@ -4367,7 +4450,7 @@ avTranscoder.off('complete');
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVMetadataExtractor 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频元数据获取异常。 |
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> 当应用从远端获取音视频媒体文件，在应用未下载完整音视频资源时，可以设置dataSrc提前获取该资源的元数据。|
 
 ### fetchMetadata<sup>11+</sup>
@@ -6631,7 +6714,7 @@ media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVImageGenerator 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频缩略图数据获取异常。 |
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -6911,7 +6994,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 5400101  | No memory. Return by callback. |
+| 5400101  | No memory.  |
 
 **示例1：**
 

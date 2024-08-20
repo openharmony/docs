@@ -16,17 +16,21 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
-| 参数  | 类型                                                                                                                          | 必填 | 参数描述                     |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------- | ---- | ---------------------------- |
-| value | [MenuItemOptions](#menuitemoptions类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 包含设置MenuItem的各项信息。 |
+| 参数  | 类型                                                         | 必填 | 说明                         |
+| ----- | ------------------------------------------------------------ | ---- | ---------------------------- |
+| value | [MenuItemOptions](#menuitemoptions对象说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 包含设置MenuItem的各项信息。 |
 
-## MenuItemOptions类型说明
+## MenuItemOptions对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 类型                                        | 必填 | 描述                                   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型                                        | 必填 | 说明                             |
 | --------- | ------------------------------------------- | ---- | -------------------------------------- |
 | startIcon | [ResourceStr](ts-types.md#resourcestr)      | 否   | item中显示在左侧的图标信息路径。       |
 | content   | [ResourceStr](ts-types.md#resourcestr)      | 否   | item的内容信息。                       |

@@ -260,6 +260,14 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // mic开关设置
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
 
+    // 可选 豁免隐私窗口 需传递应用豁免子窗口和主窗口ID，传空数组取消豁免隐私窗口
+	// std::vector<int> windowIdsSkipPrivacy = {};
+    // OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
+    //     static_cast<int32_t>(windowIdsSkipPrivacy.size()));
+
+    // 可选 调整录屏分辨率 需在启动后调用，分辨率有范围限制 可参考avcodec编解码能力
+    // OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
+
     sleep(10); // 录制10s
     // 结束录屏
     OH_AVScreenCapture_StopScreenCapture(capture);
