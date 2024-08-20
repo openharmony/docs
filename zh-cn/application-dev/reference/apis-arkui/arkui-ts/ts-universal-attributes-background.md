@@ -169,7 +169,7 @@ backgroundEffect(options: BackgroundEffectOptions)
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。  |
 | saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 50]。     |
 | brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 2]。 |
-| color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
+| color        | [ResourceColor](ts-types.md#resourcecolor)         |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 | policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：FOLLOWS_WINDOW_ACTIVE_STATE <br/> |
