@@ -1155,7 +1155,7 @@ struct Page {
 
 ### 避免在系统高频回调用进行冗余和耗时操作
 
-应该避免在onScroll、onAreaChange等系统高频的回调接口中进行冗余和耗时操作，这些接口在系统的每一帧绘制中都会执行回调操作，因此在这些接口中进行冗余和耗时操作会大量消耗系统资源，影响应用运行性能。
+应该避免在onDidScroll、onAreaChange等系统高频的回调接口中进行冗余和耗时操作，这些接口在系统的每一帧绘制中都会执行回调操作，因此在这些接口中进行冗余和耗时操作会大量消耗系统资源，影响应用运行性能。
 
 #### 避免在系统高频回调用打印Trace
 
@@ -1163,25 +1163,34 @@ Trace的打印是会额外消耗系统性能的，因此应该避免在这些系
 
 ```typescript
 // 反例
-Scroll() {
-  ForEach(this.arr, (item: number) => {
-    Text("ListItem" + item)
-    .width("100%")
-    .height("100%")
-  }, (item: number) => item.toString())
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Component
+struct NegativeOfOnDidScroll {
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  build() {
+    Scroll() {
+      ForEach(this.arr, (item: number) => {
+        Text("ListItem" + item)
+          .width("100%")
+          .height("100%")
+      }, (item: number) => item.toString())
+    }
+    .width('100%')
+      .height('100%')
+      .onDidScroll(() => {
+        hiTraceMeter.startTrace("ScrollSlide", 1002);
+        // 业务逻辑
+        // ...
+        hiTraceMeter.finishTrace("ScrollSlide", 1002);
+      })
+  }
 }
-.width('100%')
-.height('100%')
-.onScroll(() => {
-  hitrace.startTrace("ScrollSlide", 1002);
-  // 业务逻辑
-  // ...
-  hitrace.finishTrace("ScrollSlide", 1002);
-})
 
 // 正例
 @Component
-struct PositiveOfOnScroll {
+struct PositiveOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1199,7 +1208,7 @@ struct PositiveOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       // 业务逻辑
       // ...
     })
@@ -1213,8 +1222,10 @@ struct PositiveOfOnScroll {
 
 ```typescript
 // 反例
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Component
-struct NegativeOfOnScroll {
+struct NegativeOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1232,7 +1243,7 @@ struct NegativeOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       hilog.info(1002, 'Scroll', 'TextItem');
       // 业务逻辑
       // ...
@@ -1242,7 +1253,7 @@ struct NegativeOfOnScroll {
 
 // 正例
 @Component
-struct PositiveOfOnScroll {
+struct PositiveOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1260,7 +1271,7 @@ struct PositiveOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       // 业务逻辑
       // ...
     })
