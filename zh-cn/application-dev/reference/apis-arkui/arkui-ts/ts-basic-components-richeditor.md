@@ -1787,7 +1787,7 @@ type SubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 名称     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event    | [SubmitEvent](ts-basic-components-textinput#submitevent11对象说明)         | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明)         | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
