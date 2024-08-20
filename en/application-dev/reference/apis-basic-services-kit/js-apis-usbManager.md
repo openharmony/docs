@@ -1,6 +1,6 @@
 # @ohos.usbManager (USB Manager)
 
-The **usbManager** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
+The **usbManager** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as USB interface management, and function switch and query on the device side.
 
 >  **NOTE**
 > 
@@ -98,7 +98,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ---------------- |
-| device | [USBDevice](#usbdevice) | Yes| USB device information. **busNum** and **devAddress** obtained by **getDevices** are used to determine the device. Other parameters are passed transparently.|
+| device | [USBDevice](#usbdevice) | Yes| USB device. The **busNum** and **devAddress** parameters obtained by **getDevices** are used to determine a USB device. Other parameters are passed transparently.|
 
 **Return value**
 
@@ -552,7 +552,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe. You need to call **connectDevice** to obtain its value.|
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe. You need to call **connectDevice** to obtain its value.|
 | controlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters. Set the parameters as required.|
 | timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
 
@@ -683,7 +683,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe. You need to call **connectDevice** to obtain its value.|
-| endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer. You need to call getDevices to obtain the device information list and endpoint.|
+| endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB interface for data transfer. You need to call **getDevices** to obtain the device information list and endpoint. Wherein, **address** is used to determine the endpoint address, **direction** is used to determine the endpoint direction, and **interfaceId** is used to determine the USB interface to which the endpoint belongs. Other parameters are passed transparently.|
 | buffer | Uint8Array | Yes| Buffer used to write or read data.|
 | timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
 

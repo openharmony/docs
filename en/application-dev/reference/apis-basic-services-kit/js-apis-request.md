@@ -43,6 +43,9 @@ The table below lists the values of **err** in the callback of [on('fail')<sup>7
 | ERROR_OFFLINE<sup>9+</sup> | number |   9   | No network connection.|
 | ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | Network type mismatch.|
 
+> **NOTE**
+>
+> In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to an **ERROR_UNKNOWN** error.
 
 ### Causes of Download Pause
 The table below lists the values of **pausedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
@@ -1049,10 +1052,10 @@ Subscribes to download progress events. This API uses a callback to return the r
 
   Parameters of the callback function
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| receivedSize | number | Yes| Size of the downloaded files, in bytes.|
-| totalSize | number | Yes| Total size of the files to download, in bytes.|
+| Name| Type| Mandatory| Description                                                                     |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| receivedSize | number | Yes| Size of the downloaded files, in bytes.                                                          |
+| totalSize | number | Yes| Total size of the files to download, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **totalSize** is treated as **-1**.|
 
 **Error codes**
 
@@ -2478,13 +2481,13 @@ Describes the data structure of the task progress.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| state | [State](#state10) | Yes| Current task status.|
-| index | number | Yes| Index of the file that is being processed in the task.|
-| processed | number | Yes| Size of processed data in the current file in the task, in bytes.|
-| sizes | Array&lt;number&gt; | Yes| Size of files in the task, in bytes.|
-| extras | object | No| Extra information of the task, for example, the header and body of the response from the server.|
+| Name| Type| Mandatory| Description                                                                 |
+| -------- | -------- | -------- |---------------------------------------------------------------------|
+| state | [State](#state10) | Yes| Current task status.                                                           |
+| index | number | Yes| Index of the file that is being processed in the task.                                                    |
+| processed | number | Yes| Size of processed data in the current file in the task, in bytes.                                              |
+| sizes | Array&lt;number&gt; | Yes| Size of files in the task, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **sizes** is treated as **-1**.|
+| extras | object | No| Extra information of the task, for example, the header and body of the response from the server.                                    |
 
 
 ## Faults<sup>10+</sup>  
@@ -2495,19 +2498,22 @@ Defines the cause of a task failure.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
-| Name| Value|Description|
-| -------- | -------- |-------- |
-| OTHERS | 0xFF |Other fault.|
-| DISCONNECTED | 0x00 |Network disconnection.|
-| TIMEOUT | 0x10 |Timeout.|
-| PROTOCOL | 0x20 |Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).|
-| PARAM<sup>12+</sup> | 0x30 |Parameter error, for example, incorrect URL format.|
-| FSIO | 0x40 |File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.|
-| DNS<sup>12+</sup> | 0x50 |DNS resolution error.|
-| TCP/UDP<sup>12+</sup> | 0x60 |TCP/UDP connection error.|
-| SSL<sup>12+</sup> | 0x70 |SSL connection error, for example, a certificate error or certificate verification failure.|
-| REDIRECT<sup>12+</sup> | 0x80 |Redirection error.|
+| Name| Value| Description                                                                            |
+| -------- | -------- |--------------------------------------------------------------------------------|
+| OTHERS | 0xFF | Other fault.                                                                       |
+| DISCONNECTED | 0x00 | Network disconnection.                                                                     |
+| TIMEOUT | 0x10 | Timeout.                                                                       |
+| PROTOCOL | 0x20 | Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).                                       |
+| PARAM<sup>12+</sup> | 0x30 | Parameter error, for example, incorrect URL format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
+| FSIO | 0x40 | File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.                                                  |
+| DNS<sup>12+</sup> | 0x50 | DNS resolution error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| TCP<sup>12+</sup> | 0x60 | TCP connection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.             |
+| SSL<sup>12+</sup> | 0x70 | SSL connection error, for example, a certificate error or certificate verification failure.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REDIRECT<sup>12+</sup> | 0x80 | Redirection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
 
+> **NOTE**
+>
+> In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to a **TIMEOUT** error.
 
 ## Filter<sup>10+</sup>
 Defines the filter criteria.
@@ -2545,7 +2551,7 @@ Defines the data structure of the task information for query. The fields availab
 | mtime | number | Yes| Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device.|
 | retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.|
 | tries | number | Yes| Number of retries of the task.|
-| faults | [Faults](#faults10) | Yes| Failure cause of the task.<br>- **OTHERS**: other fault.<br>- **DISCONNECT**: network disconnection.<br>- **TIMEOUT**: timeout.<br>- **PROTOCOL**: protocol error.<br>- **FSIO**: file system I/O error.|
+| faults | [Faults](#faults10) | Yes| Failure cause of the task.|
 | reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
 | extras | object | No| Extra information of the task|
 
@@ -2604,7 +2610,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2656,7 +2661,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### on('completed')<sup>10+</sup>
 
@@ -2682,7 +2686,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2734,7 +2737,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### on('failed')<sup>10+</sup>
 
@@ -2760,7 +2762,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2812,7 +2813,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### on('pause')<sup>11+</sup>
 
@@ -3136,7 +3136,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -3196,7 +3195,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### off('completed')<sup>10+</sup>
 
@@ -3222,7 +3220,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -3282,7 +3279,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### off('failed')<sup>10+</sup>
 
@@ -3308,7 +3304,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -3368,7 +3363,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### off('pause')<sup>11+</sup>
 
@@ -3852,7 +3846,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 pause(callback: AsyncCallback&lt;void&gt;): void
 
-Pauses this task. This API can be used to pause a background task that is waiting, running, or retrying. This API uses an asynchronous callback to return the result.
+Pauses a task that is waiting, running, or retrying. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3869,7 +3863,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -3915,15 +3908,11 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
 ### pause<sup>10+</sup>
 
 pause(): Promise&lt;void&gt;
 
-Pauses this task. This API can be used to pause a background task that is waiting, running, or retrying. This API uses a promise to return the result.
+Pauses a task that is waiting, running, or retrying. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3940,7 +3929,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -3984,15 +3972,11 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
 ### resume<sup>10+</sup>
 
 resume(callback: AsyncCallback&lt;void&gt;): void
 
-Resumes this task. This API can be used to resume a paused background task. This API uses an asynchronous callback to return the result.
+Resumes a paused task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -4012,7 +3996,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | -------- | -------- |
   | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -4060,16 +4043,11 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
-
 ### resume<sup>10+</sup>
 
 resume(): Promise&lt;void&gt;
 
-Resumes this task. This API can be used to resume a paused background task. This API uses a promise to return the result.
+Resumes a paused task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -4089,7 +4067,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | -------- | -------- |
   | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -4134,11 +4111,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
 
 ### stop<sup>10+</sup>
 
