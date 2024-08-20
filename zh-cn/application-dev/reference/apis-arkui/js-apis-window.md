@@ -1674,6 +1674,8 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
+该接口一般适用于两种场景：在onWindowStageCreate方法中，应用首次布局时，调用该接口获取需要避让的区域；当应用程序需要临时显示应用内横幅、子窗时，调用该接口获取需要避让的区域。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
