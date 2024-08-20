@@ -96,7 +96,7 @@ unselectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                     |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框非选中状态边框颜色。<br/>默认值：'#33ffffff'。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
@@ -310,7 +310,7 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
           .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
           .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
           .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
-          .margin({left:11,top:10})
+          .margin({left:10,top:10})
           .opacity(config.enabled ? 1 : 0.1)
       }
       .width(300)
@@ -342,7 +342,7 @@ struct Index {
             this.checkboxEnabled = false
           }
         })
-      }
+      }.position({ x: 50, y: 130 })
     }.margin({top : 30})
   }
 }
