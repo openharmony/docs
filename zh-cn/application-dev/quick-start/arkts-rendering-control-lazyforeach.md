@@ -991,13 +991,13 @@ class MyDataSource extends BasicDataSource {
   }
 
   public operateData(): void {
-    this.dataArray.splice(3, 0, this.dataArray[1]);
+    this.dataArray.splice(4, 0, this.dataArray[1]);
     this.dataArray.splice(1, 1);
     let temp = this.dataArray[4];
     this.dataArray[4] = this.dataArray[6];
     this.dataArray[6] = temp
     this.dataArray.splice(8, 0, 'Hello a', 'Hello b');
-    this.dataArray.splice(10, 2);
+    this.dataArray.splice(12, 2);
     this.notifyDatasetChange([
       {type: DataOperationType.MOVE, index: {from: 1, to: 3}},
       {type: DataOperationType.EXCHANGE, index: {start: 4, end: 6}},
@@ -1055,7 +1055,7 @@ onDatasetChange接口由开发者一次性通知LazyForEach应该做哪些操作
 使用该接口时有如下注意事项。
 
 1. onDatasetChange与其它操作数据的接口不能混用。
-2. 传入的index对应的数据均从更改前的原数组内寻找。
+2. 传入onDatasetChange的operations，其中每一项operation的index均从更改前的原数组内寻找。因此，opeartions中的index跟操作Datasource中的index不是一一对应的。上面的例子清楚地显示了这一点。
 3. 调用一次onDatasetChange，一个index对应的数据只能被操作一次，若被操作多次，LazyForEach仅使第一个操作生效。
 4. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
 5. 若本次操作集合中有RELOAD操作，则其余操作全不生效。

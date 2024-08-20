@@ -1172,13 +1172,13 @@ class MyDataSource extends BasicDataSource {
   }
 
   public operateData(): void {
-    this.dataArray.splice(3, 0, this.dataArray[1]);
+    this.dataArray.splice(4, 0, this.dataArray[1]);
     this.dataArray.splice(1, 1);
     let temp = this.dataArray[4];
     this.dataArray[4] = this.dataArray[6];
     this.dataArray[6] = temp
     this.dataArray.splice(8, 0, 'Hello a', 'Hello b');
-    this.dataArray.splice(10, 2);
+    this.dataArray.splice(12, 2);
     this.notifyDatasetChange([
       {type: DataOperationType.MOVE, index: {from: 1, to: 3}},
       {type: DataOperationType.EXCHANGE, index: {start: 4, end: 6}},
@@ -1236,7 +1236,7 @@ The **onDatasetChange** API notifies **LazyForEach** of the operations to be per
 Pay attention to the following when using the **onDatasetChange** API:
 
 1. The **onDatasetChange** API cannot be used together with other data operation APIs.
-2. The data corresponding to the specified indexes is sourced from the original array before the data operation.
+2. The input parameter of **onDatasetChange** is operations. The **index** of each operation is sourced from the original array. Therefore, the index in operations(input parameter of **onDatasetChange**) does not correspond exactly with the index in the operations on Datasource. The above example clearly illustrates this point.
 3. When **onDatasetChange** is called, the data can be operated only once for each index. If the data is operated multiple times, **LazyForEach** enables only the first operation to take effect.
 4. In operations where you can specify keys on your own, **LazyForEach** does not call the key generator to obtain keys. As such, make sure the specified keys are correct.
 5. If the API contains the **RELOAD** operation, other operations do not take effect.
