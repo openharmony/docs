@@ -32,7 +32,7 @@ Set firewall policy.
 | Parameter Name    | Type                                             | Required | Explanation                                                                 |
 | ----------------- | ------------------------------------------------ | -------- | --------------------------------------------------------------------------- |
 | userId            | number                                           | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exis.    |
-| policy            | [NetFirewallPolicy](#NetFirewallPolicy)          | Yes      | The firewall policy to be set                                               |
+| policy            | [NetFirewallPolicy](#netfirewallpolicy)          | Yes      | The firewall policy to be set                                               |
 
 **Return value:**
 
@@ -92,7 +92,7 @@ Check the policy of the firewall.
 
 | Type                                              | Explanation                                           |
 | ------------------------------------------------- | ----------------------------------------------------- |
-| Promise\<[NetFirewallPolicy](#NetFirewallPolicy)> | Current user firewall policy.                         |
+| Promise\<[NetFirewallPolicy](#netfirewallpolicy)> | Current user firewall policy.                         |
 
 
 **Error code:**
@@ -136,7 +136,7 @@ Add firewall rules.
 
 | Parameter Name   | Type                                | Required | Explanation          |
 | ---------------- | ----------------------------------- | -------- | -------------------- |
-| rule             |  [NetFirewallRule](#NetFirewallRule)| Yes      | Firewall rule.       |
+| rule             |  [NetFirewallRule](#netfirewallrule)| Yes      | Firewall rule.       |
 
 **Return value:**
 
@@ -281,7 +281,7 @@ Update firewall rules.
 
 | Parameter Name   | Type                                       | Required | Explanation          |
 | ---------------- | -------------------------------------------| -------- | -------------------- |
-| rule             | [NetFirewallRule](#NetFirewallRule)        | Yes      | Firewall rule        |
+| rule             | [NetFirewallRule](#netfirewallrule)        | Yes      | Firewall rule        |
 
 **Return value:**
 
@@ -412,13 +412,13 @@ Get firewall rules by userId, and it is necessary to specify the pagination quer
 | Parameter Name| Type                         | Required | Explanation                                                              |
 | ------------- | ---------------------------- | -------- | ------------------------------------------------------------------------ |
 | userId        | number                       | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exist.|
-| requestParam  | [RequestParam](#RequestParam)| Yes      | Paging query input parameters.                                           |
+| requestParam  | [RequestParam](#requestparam)| Yes      | Paging query input parameters.                                           |
 
 **Return value:**
 
 | Type                              | Explanation                                                 |
 | --------------------------------- | ----------------------------------------------------------- |
-| Promise\<[FirewallRulePage](#FirewallRulePage)>   | Paginated firewall rule list.               |
+| Promise\<[FirewallRulePage](#firewallrulepage)>   | Paginated firewall rule list.               |
 
 **Error code:**
 
@@ -474,7 +474,7 @@ Get a specified firewall rule by userId and ruleId.
 
 | Type                                            | Explanation                                   |
 | ----------------------------------------------- | --------------------------------------------- |
-| Promise\<[NetFirewallRule](#NetFirewallRule)>   | Firewall Rule.                                |
+| Promise\<[NetFirewallRule](#netfirewallrule)>   | Firewall Rule.                                |
 
 **Error code:**
 
@@ -519,13 +519,13 @@ Get intercepted records by userId, and it is necessary to specify the pagination
 | Parameter Name | Type                          | Required | Explanation                                                               |
 | -------------- | ----------------------------- | -------- | ------------------------------------------------------------------------- |
 | userId         | number                        | Yes      | Indicates the user ID. It cannot be the ID of a user that does not exist. |
-| requestParam   | [RequestParam](#RequestParam) | Yes      | Query parameters                                                          |
+| requestParam   | [RequestParam](#requestparam) | Yes      | Query parameters                                                          |
 
 **Return value:**
 
 | Type                                                      | Explanation                                                   |
 | --------------------------------------------------------- | ------------------------------------------------------------- |
-| Promise\<[InterceptedRecordPage](#InterceptedRecordPage)> | Block Record List.                                            |
+| Promise\<[InterceptedRecordPage](#interceptedrecordpage)> | Block Record List.                                            |
 
 **Error code:**
 
@@ -635,8 +635,8 @@ Firewall policy.
 | Parameter Name | Type                                       | Required | Explanation                                            |
 | -------------- | ------------------------------------------ |--------- |------------------------------------------------------- |
 | isOpen         | boolean                                    | Yes      | Whether the firewall is open.                          |
-| inAction       | [FirewallRuleAction](#FirewallRuleAction)  | Yes      | Inbound connections are allowed or denied by default.  |
-| outAction      | [FirewallRuleAction](#FirewallRuleAction)  | Yes      | Outbound connections are allowed or denied by default. |
+| inAction       | [FirewallRuleAction](#firewallruleaction)  | Yes      | Inbound connections are allowed or denied by default.  |
+| outAction      | [FirewallRuleAction](#firewallruleaction)  | Yes      | Outbound connections are allowed or denied by default. |
 
 ## NetFirewallIpParams
 
@@ -704,24 +704,24 @@ Firewall rules.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Parameter Name | Type                                                       | Required | Explanation                                                                      |
-| -------------- | ---------------------------------------------------------- | -------- | -------------------------------------------------------------------------------- |
-| userId         | number                                                     | Yes      | User id.                                                                         |
-| name           | string                                                     | Yes      | Rule name.                                                                       |
-| direction      | [NetFirewallRuleDirection](#NetFirewallRuleDirection)      | Yes      | Rule direction, Inbound or Outbound.                                             |
-| action         | [FirewallRuleAction](#FirewallRuleAction)                  | Yes      | Rule action.                                                                     |
-| type           | [NetFirewallRuleType](#NetFirewallRuleType)                | Yes      | Rule type.                                                                       |
-| isEnabled      | boolean                                                    | Yes      | Whether the rule is enabled.                                                     |
-| id             | number                                                     | No       | Rule id: When a rule is added to the system, the system generates a rule ID.     |
-| description    | string                                                     | No       | Rule description.                                                                |
-| appUid         | number                                                     | No       | Application or service UID.                                                      |
-| localIps       | Array\<[NetFirewallIpParams](#NetFirewallIpParams)>        | No       | Local IP address: valid when ruleType = RULE_IP, otherwise it will be ignored.   |
-| remoteIps      | Array\<[NetFirewallIpParams](#NetFirewallIpParams)>        | No       | Remote IP address: valid when ruleType = RULE_IP, otherwise it will be ignored.  |
-| protocol       | number                                                     | No       | Protocol, 1: ICMPv4, 6: TCP, 17: UDP, 58: ICMPv6. Valid when ruleType = RULE_IP, otherwise it will be ignored.  |
-| localPorts     | Array\<[NetFirewallPortParams](#NetFirewallPortParams)>    | No       | Local ports: valid when ruleType = RULE_IP, otherwise it will be ignored.        |
-| remotePorts    | Array\<[NetFirewallPortParams](#NetFirewallPortParams)>    | No       | Remote ports: valid when ruleType = RULE_IP, otherwise it will be ignored.       |
-| domains        | Array\<[NetFirewallDomainParams](#NetFirewallDomainParams)>| No       | Domain name list: valid when ruleType = RULE_DOMAIN, otherwise it will be ignored.                              |
-| dns            | [NetFirewallDnsParams](#NetFirewallDnsParams)              | No       | DNS: valid when ruleType = RULE_DNS, otherwise it will be ignored.               |
+| Parameter Name | Type                                                       | Required | Explanation                                                                     |
+| -------------- | ---------------------------------------------------------- | -------- | ------------------------------------------------------------------------------- |
+| userId         | number                                                     | Yes      | User id.                                                                        |
+| name           | string                                                     | Yes      | Rule name.                                                                      |
+| direction      | [NetFirewallRuleDirection](#netfirewallruledirection)      | Yes      | Rule direction, Inbound or Outbound.                                            |
+| action         | [FirewallRuleAction](#firewallruleaction)                  | Yes      | Rule action.                                                                    |
+| type           | [NetFirewallRuleType](#netfirewallruletype)                | Yes      | Rule type.                                                                      |
+| isEnabled      | boolean                                                    | Yes      | Whether the rule is enabled.                                                    |
+| id             | number                                                     | No       | Rule id: When a rule is added to the system, the system generates a rule ID.    |
+| description    | string                                                     | No       | Rule description.                                                               |
+| appUid         | number                                                     | No       | Application or service UID.                                                     |
+| localIps       | Array\<[NetFirewallIpParams](#netfirewallipparams)>        | No       | Local IP address: valid when ruleType = RULE_IP, otherwise it will be ignored.  |
+| remoteIps      | Array\<[NetFirewallIpParams](#netfirewallipparams)>        | No       | Remote IP address: valid when ruleType = RULE_IP, otherwise it will be ignored. |
+| protocol       | number                                                     | No       | Protocol, 1: ICMPv4, 6: TCP, 17: UDP, 58: ICMPv6. Valid when ruleType = RULE_IP, otherwise it will be ignored. |
+| localPorts     | Array\<[NetFirewallPortParams](#netfirewallportparams)>    | No       | Local ports: valid when ruleType = RULE_IP, otherwise it will be ignored.       |
+| remotePorts    | Array\<[NetFirewallPortParams](#netfirewallportparams)>    | No       | Remote ports: valid when ruleType = RULE_IP, otherwise it will be ignored.      |
+| domains        | Array\<[NetFirewallDomainParams](#netfirewalldomainparams)>| No       | Domain name list: valid when ruleType = RULE_DOMAIN, otherwise it will be ignored.                             |
+| dns            | [NetFirewallDnsParams](#netfirewalldnsparams)              | No       | DNS: valid when ruleType = RULE_DNS, otherwise it will be ignored.              |
 
 ## InterceptedRecord
 
@@ -754,8 +754,8 @@ Pagination query input parameters.
 | -------------- | ----------------------------------------------- | -------- | --------------------------------------------------------------------------- |
 | page           | number                                          | Yes      | Page number: indicates the page number to be queried. The start value is 1. |
 | pageSize       | number                                          | Yes      | Page size: indicates the number of data records to be queried at a time. The maximum value is 50.  |
-| orderField     |  [NetFirewallOrderField](#NetFirewallOrderField)| Yes      | Sort field.                                                                 |
-| orderType      |  [NetFirewallOrderType](#NetFirewallOrderType)  | Yes      | Sort Type: ascending or descending.                                         |
+| orderField     |  [NetFirewallOrderField](#netfirewallorderfield)| Yes      | Sort field.                                                                 |
+| orderType      |  [NetFirewallOrderType](#netfirewallordertype)  | Yes      | Sort Type: ascending or descending.                                         |
 
 ## FirewallRulePage
 
@@ -770,7 +770,7 @@ Rule page information.
 | page           | number                                      | Yes      | Current page number: indicates the page number of this query. |
 | pageSize       | number                                      | Yes      | Page size: maximum number of records on a page for this query.|
 | totalPage      | number                                      | Yes      | Total pages: total number of pages.                           |
-| data           | Array\<[NetFirewallRule](#NetFirewallRule)> | Yes      | Page data: all records displayed on this page.                |
+| data           | Array\<[NetFirewallRule](#netfirewallrule)> | Yes      | Page data: all records displayed on this page.                |
 
 ## InterceptedRecordPage
 
@@ -785,4 +785,4 @@ Intercepted record page information.
 | page           | number                                         | Yes      | Current page number: indicates the page number of this query. |
 | pageSize       | number                                         | Yes      | Page size: maximum number of records on a page for this query.|
 | totalPage      | number                                         | Yes      | Total pages: total number of pages.                           |
-| data           | Array\<[InterceptedRecord](#InterceptedRecord)>| Yes      | Page data: all records displayed on this page.                |
+| data           | Array\<[InterceptedRecord](#interceptedrecord)>| Yes      | Page data: all records displayed on this page.                |

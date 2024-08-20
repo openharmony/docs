@@ -32,7 +32,7 @@ setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>
 | 参数名 | 类型                                    | 必填 | 说明                          |
 | ------ | ----------------------------------------| ---- | ----------------------------- |
 | userId | number                                  | 是   | 用户ID，不能是不存在的ID。    |
-| policy | [NetFirewallPolicy](#NetFirewallPolicy) | 是   | 设置的防火墙策略              |
+| policy | [NetFirewallPolicy](#netfirewallpolicy) | 是   | 设置的防火墙策略              |
 
 **返回值：**
 
@@ -92,7 +92,7 @@ getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>
 
 | 类型                                              | 说明                |
 | ------------------------------------------------- | --------------------|
-| Promise\<[NetFirewallPolicy](#NetFirewallPolicy)> | 当前用户防火墙策略。|
+| Promise\<[NetFirewallPolicy](#netfirewallpolicy)> | 当前用户防火墙策略。|
 
 
 **错误码：**
@@ -136,7 +136,7 @@ addNetFirewallRule(rule: NetFirewallRule): Promise\<number>
 
 | 参数名   | 类型                                              | 必填 | 说明         |
 | -------- | ------------------------------------------------- | ---- | ------------ |
-| rule    |  [NetFirewallRule](#NetFirewallRule)               | 是   | 防火墙规则   |
+| rule    |  [NetFirewallRule](#netfirewallrule)               | 是   | 防火墙规则   |
 
 **返回值：**
 
@@ -281,7 +281,7 @@ updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>
 
 | 参数名  | 类型                                   | 必填 | 说明                             |
 | ------- | -------------------------------------- | ---- | -------------------------------- |
-| rule    | [NetFirewallRule](#NetFirewallRule)    | 是   | 防火墙规则                       |
+| rule    | [NetFirewallRule](#netfirewallrule)    | 是   | 防火墙规则                       |
 
 **返回值：**
 
@@ -412,13 +412,13 @@ getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<Firewa
 | 参数名          | 类型                           | 必填 | 说明                             |
 | --------------- | ------------------------------ | ---- | -------------------------------- |
 | userId          | number                         | 是   | 用户ID，不能是不存在的ID。       |
-| requestParam    | [RequestParam](#RequestParam)  | 是   | 分页查询参数。                   |
+| requestParam    | [RequestParam](#requestparam)  | 是   | 分页查询参数。                   |
 
 **返回值：**
 
 | 类型                                              | 说明                                   |
 | ------------------------------------------------- | ---------------------------------------|
-| Promise\<[FirewallRulePage](#FirewallRulePage)>   | 防火墙分页规则列表。                   |
+| Promise\<[FirewallRulePage](#firewallrulepage)>   | 防火墙分页规则列表。                   |
 
 **错误码：**
 
@@ -474,7 +474,7 @@ getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>
 
 | 类型                         		          | 说明                                     |
 | ----------------------------------------------- | ---------------------------------------- |
-| Promise\<[NetFirewallRule](#NetFirewallRule)>   | 返回防火墙规则。                         |
+| Promise\<[NetFirewallRule](#netfirewallrule)>   | 返回防火墙规则。                         |
 
 **错误码：**
 
@@ -519,13 +519,13 @@ getInterceptedRecords(userId: number, requestParam: RequestParam): Promise<\Inte
 | 参数名           | 类型                             | 必填 | 说明                         |
 | -------------- | ---------------------------------  | ---- | ---------------------------- |
 | userId         | number                             | 是   | 用户ID，不能是没有的ID。     |
-| requestParam   |  [RequestParam](#RequestParam)     | 是   | 查询参数                     |
+| requestParam   |  [RequestParam](#requestparam)     | 是   | 查询参数                     |
 
 **返回值：**
 
 | 类型                                                       | 说明                          |
 | ---------------------------------------------------------- | ----------------------------- |
-| Promise\<[InterceptedRecordPage](#InterceptedRecordPage)>  | 拦截记录列表.                 |
+| Promise\<[InterceptedRecordPage](#interceptedrecordpage)>  | 拦截记录列表.                 |
 
 **错误码：**
 
@@ -635,8 +635,8 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 | 名称         | 类型                                       | 必填 | 说明        |
 | ------------ | -------------------------------------------|------|-------------|
 | isOpen       | boolean                                    | 是   | 防火墙开/关 |
-| inAction     | [FirewallRuleAction](#FirewallRuleAction)  | 是   | 入站行动    |
-| outAction    | [FirewallRuleAction](#FirewallRuleAction)  | 是   | 出站行动    |
+| inAction     | [FirewallRuleAction](#firewallruleaction)  | 是   | 入站行动    |
+| outAction    | [FirewallRuleAction](#firewallruleaction)  | 是   | 出站行动    |
 
 ## NetFirewallIpParams
 
@@ -707,22 +707,22 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 | ------------|-------------------------------------------------------------|----|--------------------------------------------------------------|
 | userId      | number                                                      | 是 | 用户ID                                                       |
 | name        | string                                                      | 是 | 规则名称，必填，最多128个字符                                |
-| direction   | [NetFirewallRuleDirection](#NetFirewallRuleDirection)       | 是 | 规则方向，入站或出站                                         |
-| action      | [FirewallRuleAction](#FirewallRuleAction)                   | 是 | 行为                                                         |
-| type        | [NetFirewallRuleType](#NetFirewallRuleType)                 | 是 | 规则类型                                                     |
+| direction   | [NetFirewallRuleDirection](#netfirewallruledirection)       | 是 | 规则方向，入站或出站                                         |
+| action      | [FirewallRuleAction](#firewallruleaction)                   | 是 | 行为                                                         |
+| type        | [NetFirewallRuleType](#netfirewallruletype)                 | 是 | 规则类型                                                     |
 | isEnabled   | boolean                                                     | 是 | 是否启用                                                     |
 | id          | number                                                      | 否 | 规则ID                                                       |
 | description | string                                                      | 否 | 规则描述，可选，最多256个字符                                |
 | appUid      | number                                                      | 否 | 应用程序或服务UID                                            |
-| localIps    | Array\<[NetFirewallIpParams](#NetFirewallIpParams)>         | 否 | 本地IP地址：ruleType=RULE_IP有效，否则忽略，最多10个         |
-| remoteIps   | Array\<[NetFirewallIpParams](#NetFirewallIpParams)>         | 否 | 远端IP地址：当ruleType=RULE_IP时有效，否则将被忽略，最多10个 |
+| localIps    | Array\<[NetFirewallIpParams](#netfirewallipparams)>         | 否 | 本地IP地址：ruleType=RULE_IP有效，否则忽略，最多10个         |
+| remoteIps   | Array\<[NetFirewallIpParams](#netfirewallipparams)>         | 否 | 远端IP地址：当ruleType=RULE_IP时有效，否则将被忽略，最多10个 |
 | protocol    | number                                                      | 否 | 协议，TCP:6，UDP:17，当ruleType=RULE_IP时有效，否则将被忽略  |
-| localPorts  | Array\<[NetFirewallPortParams](#NetFirewallPortParams)>     | 否 | 本地端口：当ruleType=RULE_IP时有效，否则将被忽略，最多10个   |
-| remotePorts | Array\<[NetFirewallPortParams](#NetFirewallPortParams)>     | 否 | 远端端口：当ruleType=RULE_IP时有效，否则将被忽略，最多10个   |
-| domains     | Array\<[NetFirewallDomainParams](#NetFirewallDomainParams)> | 否 | 域名列表：当ruleType=RULE_DOMAIN时有效，否则将被忽略         |
-| dns         | [NetFirewallDnsParams](#NetFirewallDnsParams)               | 否 | DNS:当ruleType=RULE_DNS时有效，否则将被忽略                  |
+| localPorts  | Array\<[NetFirewallPortParams](#netfirewallportparams)>     | 否 | 本地端口：当ruleType=RULE_IP时有效，否则将被忽略，最多10个   |
+| remotePorts | Array\<[NetFirewallPortParams](#netfirewallportparams)>     | 否 | 远端端口：当ruleType=RULE_IP时有效，否则将被忽略，最多10个   |
+| domains     | Array\<[NetFirewallDomainParams](#netfirewalldomainparams)> | 否 | 域名列表：当ruleType=RULE_DOMAIN时有效，否则将被忽略         |
+| dns         | [NetFirewallDnsParams](#netfirewalldnsparams)               | 否 | DNS:当ruleType=RULE_DNS时有效，否则将被忽略                  |
 
-## InterceptRecord
+## InterceptedRecord
 
 拦截记录信息结构。
 
@@ -754,8 +754,8 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 |------------|--------------------------------------------------|------|---------------------------|
 | page       | number                                           | 是   | 页码，值范围：[1,1000]    |
 | pageSize   | number                                           | 是   | 页面大小，值范围：[1,50]  |
-| orderField | [NetFirewallOrderField](#NetFirewallOrderField)  | 是   | 排序字段                  |
-| orderType  | [NetFirewallOrderType](#NetFirewallOrderType)    | 是   | 排序顺序                  |
+| orderField | [NetFirewallOrderField](#netfirewallorderfield)  | 是   | 排序字段                  |
+| orderType  | [NetFirewallOrderType](#netfirewallordertype)    | 是   | 排序顺序                  |
 ## FirewallRulePage
 
 防火墙规则页信息结构。
@@ -769,7 +769,7 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 | page       | number                                      | 是   | 当前页码      |
 | pageSize   | number                                      | 是   | 页大小        |
 | totalPage  | number                                      | 是   | 总页数        |
-| data       | Array\<[NetFirewallRule](#NetFirewallRule)> | 是   | 页面数据      |
+| data       | Array\<[NetFirewallRule](#netfirewallrule)> | 是   | 页面数据      |
 
 ## InterceptedRecordPage
 
@@ -784,4 +784,4 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 | page       | number                                          | 是   | 当前页码 |
 | pageSize   | number                                          | 是   | 页面大小 |
 | totalPage  | number                                          | 是   | 总页数   |
-| data       | Array\<[InterceptedRecord](#InterceptedRecord)> | 是   | 页面数据 |
+| data       | Array\<[InterceptedRecord](#interceptedrecord)> | 是   | 页面数据 |
