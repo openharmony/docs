@@ -248,6 +248,7 @@ enum NetConn_NetBearerType
 | ------------------------| ----------------------- |
 | NETCONN_BEARER_CELLULAR | 蜂窝网络。              |
 | NETCONN_BEARER_WIFI     | WIFI。                  |
+| NETCONN_BEARER_BLUETOOTH     | 蓝牙。<br/>起始版本：12。 |
 | NETCONN_BEARER_ETHERNET | Ethernet。              |
 | NETCONN_BEARER_VPN      | VPN。<br/>起始版本：12。|
 
@@ -271,6 +272,7 @@ enum NetConn_NetCap
 | NETCONN_NET_CAPABILITY_INTERNET | Internet。 | 
 | NETCONN_NET_CAPABILITY_NOT_VPN | 非VPN。 | 
 | NETCONN_NET_CAPABILITY_VALIDATED | 已验证。 | 
+| NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | 检测连通性中。<br/>起始版本：12。 | 
 
 
 ## 函数说明
