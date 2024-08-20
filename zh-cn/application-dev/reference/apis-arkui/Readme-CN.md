@@ -350,7 +350,10 @@
     - [AtomicServiceTabs](arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
     - [AtomicServiceWeb](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
     - [InterstitialDialogAction](arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
-    - [FullScreenLaunchComponent](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md) 
+    - [FullScreenLaunchComponent](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
+    <!--Del-->
+    - [InnerFullScreenLaunchComponent (系统接口)](arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
+    <!--DelEnd-->
   - 自定义占位组件
     - [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)
     - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
