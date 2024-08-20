@@ -248,7 +248,6 @@ Network carrier type.
 | ------------------------| ----------------------- |
 | NETCONN_BEARER_CELLULAR | Cellular network.             |
 | NETCONN_BEARER_WIFI     | Wi-Fi.                 |
-| NETCONN_BEARER_BLUETOOTH     | Bluetooth.<br>**Since**: 12|
 | NETCONN_BEARER_ETHERNET | Ethernet.             |
 | NETCONN_BEARER_VPN      | Virtual private network.<br>**Since**: 12|
 
