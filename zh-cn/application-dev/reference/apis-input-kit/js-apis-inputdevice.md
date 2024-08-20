@@ -653,6 +653,28 @@ try {
 }
 ```
 
+## inputDevice.getIntervalSinceLastInput<sup>13+</sup>
+
+getIntervalSinceLastInput(): Promise<number>
+
+获取自上次输入以来的间隔，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值**：
+
+| 参数                                          | 说明                            |
+| --------------------------------------------- | ------------------------------- |
+| Promise<number> | Promise对象，异步返回查询结果。 |
+
+**示例**：
+
+```js
+  inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
+    console.log(`Interval since last input: ${JSON.stringify(number)}`);
+  });
+```
+
 ## DeviceListener<sup>9+</sup>
 
 输入设备热插拔的描述信息。
