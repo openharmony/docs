@@ -33,7 +33,7 @@ AVSessionManager provides the capability of managing sessions. It can create an 
 Unlike the **AVSession** and **AVSessionController** objects, AVSessionManager is not a specific object, but the root namespace of AVSessions. You can import AVSessionManager as follows:
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 ```
 
 All the APIs in the root namespace can be used as APIs of AVSessionManager.

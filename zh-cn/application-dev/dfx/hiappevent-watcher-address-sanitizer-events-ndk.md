@@ -1,4 +1,4 @@
-# 订阅踩内存事件（C++）
+# 订阅踩内存事件（C/C++）
 
 ## 接口说明
 
@@ -29,11 +29,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                libentry:
                  - index.d.ts
            - CMakeLists.txt
-           - hello.cpp
+           - napi_init.cpp
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -42,12 +42,12 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
-   add_library(entry SHARED hello.cpp jsoncpp.cpp)
+   add_library(entry SHARED napi_init.cpp jsoncpp.cpp)
    # 新增动态库依赖libhiappevent_ndk.z.so和libhilog_ndk.z.so(日志输出)
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. 编辑"hello.cpp"文件，导入依赖的文件，并定义LOG_TAG：
+3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
    #include "json/json.h"
@@ -62,7 +62,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    - onReceive类型观察者：
 
-     编辑"hello.cpp"文件，定义onReceive类型观察者相关方法：
+     编辑"napi_init.cpp"文件，定义onReceive类型观察者相关方法：
 
      ```c++
      //定义一变量，用来缓存创建的观察者的指针。
@@ -120,7 +120,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    - onTrigger类型观察者：
 
-     编辑"hello.cpp"文件，定义OnTrigger类型观察者相关方法：
+     编辑"napi_init.cpp"文件，定义OnTrigger类型观察者相关方法：
 
      ```c++
      //定义一变量，用来缓存创建的观察者的指针。
@@ -147,7 +147,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                      auto uid = eventInfo["uid"].asInt();
                      auto asanType = eventInfo["type"].asString();
                      auto externalLog = writer.write(eventInfo["external_log"]);
-                     std::string logOverLimit = params["log_over_limit"].asBool() ? "true" : "false";
+                     std::string logOverLimit = eventInfo["log_over_limit"].asBool() ? "true" : "false";
                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
@@ -186,7 +186,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 5. 构造地址越界错误：
    
-   编辑"hello.cpp"文件，定义Test方法, 方法中对一个整数数组进行越界访问：
+   编辑"napi_init.cpp"文件，定义Test方法, 方法中对一个整数数组进行越界访问：
 
    ```c++
    static napi_value Test(napi_env env, napi_callback_info info)
@@ -199,7 +199,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 6. 将RegisterWatcher和Test注册为ArkTS接口：
 
-   编辑"hello.cpp"文件，将RegisterWatcher和Test注册为ArkTS接口：
+   编辑"napi_init.cpp"文件，将RegisterWatcher和Test注册为ArkTS接口：
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
@@ -220,22 +220,21 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const test: () => void;
    ```
 
-7. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
+7. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
+   // 导入依赖模块
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // 启动时，注册系统事件观察者
-       testNapi.registerWatcher();
-     }
-   }
+
+   // 在onCreate()函数中新增接口调用
+   // 启动时，注册系统事件观察者
+   testNapi.registerWatcher();
    ```
 
 8. 编辑“entry > src > main > ets  > pages > Index.ets”文件，新增按钮触发踩内存事件：
 
    ```ts
-   import testNapi form 'libentry.so'
+   import testNapi from 'libentry.so'
 
    @Entry
    @Component
@@ -243,7 +242,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      build() {
        Row() {
          Column() {
-           Button("address-sanitizer").onClick(() = > {
+           Button("address-sanitizer").onClick(() => {
              testNapi.test();
            })
          }
@@ -254,7 +253,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-9. 点击IDE界面中的“entry”，点击“Edit Configurations...”，勾选“Address Sanitizer”，保存设置。点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
+9. 点击IDE界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent eventInfo.domain=OS
@@ -284,9 +283,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
+        // 销毁创建的观察者，并置systemEventWatcher为nullptr。
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```

@@ -930,17 +930,17 @@ type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | '
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 <!--RP1-->
-| 参数名            | 类型   | 必填 | 说明                           |
-| ---------------- | ------ | ------------------------------ | ------------------------------ |
-| unknown          | string | 是 | 没有明确使用场景，最低优先级。 |
-| alarm            | string | 是 | 用于警报场景。           |
-| ring             | string | 是 | 用于铃声场景。           |
-| notification     | string | 是 | 用于通知场景。           |
-| communication    | string | 是 | 用于通信场景。           |
-| touch            | string | 是 | 用于触摸场景。           |
-| media            | string | 是 | 用于多媒体场景。         |
-| physicalFeedback | string | 是 | 用于物理反馈场景。       |
-| simulateReality  | string | 是 | 用于模拟现实场景。       |
+| 类型     | 说明                           |
+| ---------------- | ------------------------------ |
+| 'unknown'     | 没有明确使用场景，最低优先级，值固定为'unknown'字符串。 |
+| 'alarm'      | 用于警报场景，值固定为'alarm'字符串。 |
+| 'ring'         | 用于铃声场景，值固定为'ring'字符串。 |
+| 'notification' | 用于通知场景，值固定为'notification'字符串。 |
+| 'communication' | 用于通信场景，值固定为'communication'字符串。 |
+| 'touch'        | 用于触摸场景，值固定为'touch'字符串。 |
+| 'media'        | 用于多媒体场景，值固定为'media'字符串。 |
+| 'physicalFeedback' | 用于物理反馈场景，值固定为'physicalFeedback'字符串。 |
+| 'simulateReality' | 用于模拟现实场景，值固定为'simulateReality'字符串。 |
 <!--RP1End-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>

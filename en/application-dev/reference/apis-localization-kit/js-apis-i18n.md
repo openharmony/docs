@@ -5,6 +5,8 @@
 >  **NOTE**
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+>  - The APIs of this module conform to the [Common Locale Data Repository (CLDR)](https://cldr.unicode.org) internationalization database. The processing result may change with CLDR evolution. API version 12 corresponds to [CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42). For details about data changes, visit the official website.
+>
 >  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
 
 
@@ -49,6 +51,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
 
 **Example**
   ```ts
@@ -127,14 +133,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLanguages failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
   ```
 
 ### getSystemCountries<sup>9+</sup>
@@ -167,6 +166,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
 
 **Example**
   ```ts
@@ -212,6 +215,11 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
+
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -244,14 +252,7 @@ Obtains the system language.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -272,14 +273,7 @@ Obtains the system region.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemRegion: string = i18n.System.getSystemRegion(); // Obtain the current system region.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemRegion: string = i18n.System.getSystemRegion(); // Obtain the current system region.
   ```
 
 ### getSystemLocale<sup>9+</sup>
@@ -300,14 +294,7 @@ Obtains the system locale.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLocale: string = i18n.System.getSystemLocale();  // Obtain the current system locale.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLocale: string = i18n.System.getSystemLocale();  // Obtain the current system locale.
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -330,14 +317,7 @@ Checks whether the 24-hour clock is used.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let is24HourClock: boolean = i18n.System.is24HourClock();  // Check whether the 24-hour clock is enabled.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.is24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let is24HourClock: boolean = i18n.System.is24HourClock();  // Check whether the 24-hour clock is enabled.
   ```
 
 
@@ -359,14 +339,7 @@ Obtains the list of preferred languages.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getPreferredLanguageList failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
   ```
 
 ### getFirstPreferredLanguage<sup>9+</sup>
@@ -387,14 +360,7 @@ Obtains the first language in the preferred language list.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // Obtain the first language in the preferred language list.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getFirstPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // Obtain the first language in the preferred language list.
   ```
 
 ### setAppPreferredLanguage<sup>11+</sup>
@@ -452,14 +418,7 @@ Obtains the preferred language of an application.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
   ```
 
 
@@ -481,14 +440,7 @@ Checks whether use of local digits is enabled.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let status: boolean = i18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let status: boolean = i18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
   ```
 
 
@@ -870,7 +822,33 @@ Obtains the value of the specified field in the **Calendar** object.
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| field | string | Yes   | Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: **era**, **year**, **month**, **week\_of\_year**, **week\_of\_month**, **date**, **day\_of\_year**, **day\_of\_week**, **day\_of\_week\_in\_month**, **hour**, **hour\_of\_day**, **minute**, **second**, **millisecond**, **zone\_offset**, **dst\_offset**, **year\_woy**, **dow\_local**, **extended\_year**, **julian\_day**, **milliseconds\_in\_day**, **is\_leap\_month**.|
+| field | string | Yes   | Value of the specified field in the **Calendar** object. See the following for supported field values.|
+
+
+| Field  | Description                                      |
+| ----- | ---------------------------------------- |
+| era | Era, for example, AD or BC.|
+| year | Year.|
+| month | Month.|
+| date | Date.|
+| hour | Wall-clock hour.|
+| hour_of_day | Hour of day.|
+| minute | Minute.|
+| second | Second.|
+| millisecond | Millisecond.|
+| week_of_year | Week of year. Note that the algorithm for calculating the first week of a year varies according to regions. For example, the first seven days in a year are the first week.|
+| year_woy | Year used with the week of year field. |
+| week_of_month | Week of month.|
+| day_of_week_in_month | Day of week in month.|
+| day_of_year | Day of year.|
+| day_of_week | Day of week.|
+| milliseconds_in_day | Milliseconds in day.|
+| zone_offset | Fixed time zone offset in milliseconds (excluding DST).|
+| dst_offset | DST offset in milliseconds.|
+| dow_local | Localized day of week.|
+| extended_year | Extended year, which can be a negative number.|
+| julian_day | Julian day.|
+| is_leap_month | Whether a month is a leap month.|
 
 **Return value**
 
@@ -1865,6 +1843,11 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
 
 **Example**
   ```ts

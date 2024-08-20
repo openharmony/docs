@@ -12,7 +12,7 @@ The download button with progress indicator is a component that shows the downlo
 ## Modules to Import
 
 ```
-import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
+import { ProgressButton } from '@kit.ArkUI'
 ```
 
 ## Attributes
@@ -30,13 +30,13 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description|
+| Name | Type | Mandatory | Decorator | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| progress | number | Yes| \@Prop | Current download progress.|
-| content | string | Yes| \@Prop | Button text.|
-| progressButtonWidth | [Length](ts-types.md#length) | No| - | Width of the button.<br>Default value: **44**|
-| clickCallback | () =&gt; void | Yes| - | Callback invoked when the button is clicked.|
-| enable | boolean | Yes| \@Prop | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> **false**: The button cannot be clicked.|
+| progress | number | Yes | \@Prop | Current download progress. |
+| content | string | Yes | \@Prop | Button text. |
+| progressButtonWidth | [Length](ts-types.md#length) | No | - | Width of the button.<br>Default value: **44** |
+| clickCallback | () =&gt; void | Yes | - | Callback invoked when the button is clicked. |
+| enable | boolean | Yes | \@Prop | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> **false**: The button cannot be clicked. |
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
@@ -44,7 +44,8 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ```ts
-import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
+import { ProgressButton } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

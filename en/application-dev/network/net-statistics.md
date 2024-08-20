@@ -40,7 +40,7 @@ For the complete list of APIs and example code, see [Traffic Management](../refe
 
 1. Obtain the real-time data traffic of the specified NIC. 
 2. Obtain the real-time data traffic of the cellular network.
-3. Obtain the real-time data traffic of all NICs. 
+3. Obtain the real-time data traffic of all NICs.
 4. Obtain the real-time data traffic of the specified application. 
 5. Obtains the real-time data traffic of the specified socket.
 

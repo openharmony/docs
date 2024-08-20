@@ -22,6 +22,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
 在创建ImagePacker实例，指定打包参数后将ImageSource或Pixelmap图片源打包至文件或者缓冲区。
 
+> **说明：**
+> 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，打包参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
+
    ```c++
 
       #include <linux/kd.h>

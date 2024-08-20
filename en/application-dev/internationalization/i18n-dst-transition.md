@@ -18,6 +18,7 @@ The DST transition rules are as follows:
    Calculate the number of hours between the same clock time before and after the DST transition. The sample code is as follows:
    ```ts
    import { i18n } from '@kit.LocalizationKit';
+
    let calendar = i18n.getCalendar("zh-Hans");
    calendar.setTimeZone("Europe/London");
    calendar.set(2021, 2, 27, 16, 0, 0); //The day before daylight saving time start

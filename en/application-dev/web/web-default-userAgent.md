@@ -1,6 +1,6 @@
 # Default User Agent String
 
-Since API version 11, the default user agent string is as follows for the **\<Web> component** based on the ArkWeb kernel:
+Since API version 11, the default user agent string is as follows for the **Web** component based on the ArkWeb kernel:
 
 Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/{ArkWeb VersionCode} {Mobile}
 

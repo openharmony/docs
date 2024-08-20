@@ -23,6 +23,7 @@
       - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
       - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
       - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
+      - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
       - [显示图片 (Image)](arkts-graphics-display.md)
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)

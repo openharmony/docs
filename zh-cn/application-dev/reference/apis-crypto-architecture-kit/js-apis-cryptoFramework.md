@@ -1763,6 +1763,11 @@ convertPemKey(pubKey: string | null, priKey: string | null): Promise\<KeyPair>
 
 异步获取指定数据生成非对称密钥，通过Promise获取结果。
 
+> **说明：**
+> 1. 当调用convertPemKey方法将外来字符串数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、PEM编码格式，私钥应满足ASN.1语法、PKCS#8规范、PEM编码格式。
+> 2. convertPemKey方法中，公钥和私钥字符串数据为非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
+> 3. convertPemKey方法将外来字符串数据转换为算法库非对称密钥对象时，不会校验生成的密钥对象的规格与创建非对称密钥生成器时指定的密钥规格是否一致。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1833,6 +1838,9 @@ async function TestConvertPemKeyByPromise() {
 convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
 
 同步获取指定数据生成非对称密钥。
+
+> **说明：**
+> convertPemKeySync接口与convertPemKey接口注意事项相同，见[convertPemKey](#convertpemkey12)接口说明。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

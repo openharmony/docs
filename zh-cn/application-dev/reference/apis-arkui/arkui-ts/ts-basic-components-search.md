@@ -16,10 +16,12 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名      | 参数类型                                             | 必填 | 参数描述                                                     |
-| ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名      | 类型         | 必填 | 说明        |
+| ----------- | ------------- | ---- | ------------- |
 | value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
 | icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
@@ -96,7 +98,7 @@ textFont(value?: Font)
 | ------ | ------------------------ | ---- | ---------------------- |
 | value  | [Font](ts-types.md#font) | 否   | 搜索框内输入文本样式。 |
 
-### textAlign
+### textAlign<sup>9+</sup>
 
 textAlign(value: TextAlign)
 
@@ -132,7 +134,7 @@ copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 
 ### searchIcon<sup>10+</sup>
 
-searchIcon(value: IconOptions)
+searchIcon(value: IconOptions | SymbolGlyphModifier)
 
 设置左侧搜索图标样式。
 
@@ -144,11 +146,11 @@ searchIcon(value: IconOptions)
 
 | 参数名 | 类型                                  | 必填 | 说明               |
 | ------ | ------------------------------------- | ---- | ------------------ |
-| value  | [IconOptions](#iconoptions10对象说明) | 是   | 左侧搜索图标样式。<br />默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} |
+| value  | [IconOptions](#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是   | 左侧搜索图标样式。<br />默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} |
 
 ### cancelButton<sup>10+</sup>
 
-cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
+cancelButton(value: CancelButtonOptions | CancelButtonSymbolOptions)
 
 设置右侧清除按钮样式。
 
@@ -160,7 +162,7 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {&nbsp;style:?&nbsp;[CancelButtonStyle](#cancelbuttonstyle10枚举说明),&nbsp;icon:?&nbsp;[IconOptions](#iconoptions10对象说明)&nbsp;} | 是   | 右侧清除按钮样式。<br />style：右侧图标显示状态。<br/>icon：右侧图标。<br>默认值：<br />{<br/>style：CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
+| value  | [CancelButtonOptions](#cancelbuttonoptions12对象说明) \| [CancelButtonSymbolOptions](#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br>默认值：<br />{<br/>style: CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
 
 ### fontColor<sup>10+</sup>
 
@@ -513,7 +515,9 @@ enablePreviewText(enable: boolean)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 参数类型                                   | 必填 | 参数描述    |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                                   | 必填 | 说明    |
 | ------ | ------------------------------------------ | ---- | ----------- |
 | size   | [Length](ts-types.md#length)               | 否   | 图标尺寸，不支持百分比。    |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标颜色。    |
@@ -523,7 +527,9 @@ enablePreviewText(enable: boolean)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名    | 参数类型                                   | 必填 | 参数描述         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                   | 必填 | 说明         |
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
@@ -531,6 +537,8 @@ enablePreviewText(enable: boolean)
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |
@@ -540,6 +548,10 @@ enablePreviewText(enable: boolean)
 
 ## SearchType<sup>11+</sup>枚举说明
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                 | 值            | 描述            |
 | ------------------ | ------ | ------------- |
 | NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -548,6 +560,28 @@ enablePreviewText(enable: boolean)
 | EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## CancelButtonOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                   | 必填 | 说明         |
+| --------- | ------------------------------------------ | ---- | ---------------- |
+| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 右侧清除按钮显示状态。 |
+| icon | [IconOptions](#iconoptions10对象说明) | 否   | 右侧清除按钮图标。 |
+
+## CancelButtonSymbolOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                   | 必填 | 说明         |
+| --------- | ------------------------------------------ | ---- | ---------------- |
+| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 右侧清除按钮显示状态。 |
+| icon | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 右侧清除按钮Symbol图标。 |
 
 ## 事件
 
@@ -638,7 +672,7 @@ onPaste(callback: (value: string, event: PasteEvent) => void)
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-文本选择的位置发生变化时，触发该回调。
+文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -649,7 +683,7 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | 参数名         | 类型   | 必填 | 说明                                              |
 | -------------- | ------ | ---- | ------------------------------------------------- |
 | selectionStart | number | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
-| selectionEnd   | number | 否   | 文本选择区域结束位置。                            |
+| selectionEnd   | number | 是   | 文本选择区域结束位置。                            |
 
 ### onContentScroll<sup>10+</sup>
 
@@ -666,7 +700,7 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
-| totalOffsetY | number | 否   | 文本在内容区的纵坐标偏移，单位px。 |
+| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
 
 ### onEditChange<sup>12+</sup>
 
@@ -775,9 +809,11 @@ caretPosition(value: number): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名 | 参数类型 | 必填 | 参数描述                           |
+| 参数名 | 类型 | 必填 | 说明                           |
 | ------ | -------- | ---- | ---------------------------------- |
 | value  | number   | 是   | 从字符串开始到光标所在位置的长度。 |
 
@@ -799,10 +835,12 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名         | 参数类型 | 必填 | 参数描述                                                     |
-| -------------- | -------- | ---- | ------------------------------------------------------------ |
+| 参数名         | 类型 | 必填 | 说明   |
+| -------------- | -------- | ---- | -------- |
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/> |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/> |
 | options | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |

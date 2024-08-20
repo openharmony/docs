@@ -102,13 +102,25 @@ After creating an **ImageSource** instance, obtain and modify property values, c
           // Create a PixelMap object based on image decoding parameters.
           OH_DecodingOptions *ops = nullptr;
           OH_DecodingOptions_Create(&ops);
+          // If IMAGE_DYNAMIC_RANGE_AUTO is passed in, decoding is performed based on the image format. If the image is an HDR resource, an HDR pixel map is obtained after decoding.
+          OH_DecodingOptions_SetDesiredDynamicRange(ops, IMAGE_DYNAMIC_RANGE_AUTO);
           OH_PixelmapNative *resPixMap = nullptr;
+
+          // A null pointer cannot be passed in to ops. If ops does not need to be set, you do not need to create a PixelMap object.
           errCode = OH_ImageSourceNative_CreatePixelmap(source, ops, &resPixMap);
           OH_DecodingOptions_Release(ops);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreatePixelmap failed, errCode: %{public}d.", errCode);
               return errCode;
           }
+
+          // Check whether the pixel map is the HDR content.
+          OH_Pixelmap_ImageInfo *pixelmapImageInfo = nullptr;
+          OH_PixelmapImageInfo_Create(&pixelmapImageInfo);
+          OH_PixelmapNative_GetImageInfo(resPixMap, pixelmapImageInfo);
+          bool pixelmapIsHdr;
+          OH_PixelmapImageInfo_GetDynamicRange(pixelmapImageInfo, &pixelmapIsHdr);
+          OH_PixelmapImageInfo_Release(pixelmapImageInfo);
 
           // Obtain the number of image frames.
           uint32_t frameCnt = 0;

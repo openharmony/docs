@@ -511,6 +511,21 @@ The target image format does not support this operation.
 
 Use another image.
 
+## 62980178 Failure in Creating a PixelMap
+
+**Error Message**
+
+Failed to create the PixelMap.
+
+**Possible Cause**
+
+1. Input parameters are incorrect. For example, the region size exceeds the upper limit or an invalid value is passed in.
+2. The instance is incorrectly released in advance.
+
+**Solution**
+
+Check whether the input parameters are correct and whether the instance is released in advance.
+
 ## 62980246 Failure in Reading the Pixel Map
 
 **Error Message**

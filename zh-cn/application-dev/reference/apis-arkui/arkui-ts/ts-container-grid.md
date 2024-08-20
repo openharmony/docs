@@ -449,6 +449,41 @@ friction(value: number | Resource)
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
 
+### alignItems<sup>12+</sup>
+
+alignItems(alignment: Optional\<GridItemAlignment\>)
+
+设置Grid中GridItem的对齐方式， 使用方法可以参考[示例9](#示例9)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| alignment | Optional\<[GridItemAlignment](#griditemalignment12枚举说明)\> | 是   | 设置Grid中GridItem的对齐方式。<br/>默认值：GridItemAlignment.DEFAULT |
+
+## GridItemAlignment<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值 | 描述                                   |
+| ------ |------| -------------------------------------- |
+| DEFAULT  |  0  | 使用Grid的默认对齐方式。 |
+| STRETCH |  1  | 以一行中的最高的GridItem作为其他GridItem的高度。 |
+
+
+> **说明：** 
+>
+> 1、只有可滚动的Grid中，设置STRETCH参数会生效，其他场景不生效。<br/>
+> 2、在Grid的一行中，如果每个GridItem都是大小规律的（只占一行一列），设置STRETCH参数会生效，存在跨行或跨列的GridItem的场景不生效。<br/>
+> 3、设置STRETCH后，只有不设置高度的GridItem才会以当前行中最高的GridItem作为自己的高度，设置过高度的GridItem高度不会变化。<br/>
+> 4、设置STRETCH后，Grid布局时会有额外的布局流程，可能会带来额外的性能开销。
+
 ## GridDirection<sup>8+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -583,6 +618,8 @@ onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, 
 onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute)
 
 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。
+
+该接口只用作设置Grid的滚动条位置，不建议开发者在此接口中做业务逻辑处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1410,3 +1447,65 @@ struct GridColumnsTemplate {
 ```
 
 ![gridColumnsTemplate](figures/gridColumnsTemplate.png)
+
+### 示例9
+下面的Grid中包含两列，每列中的GridItem包括高度确定的两个Column和一个高度不确定的Text共三个子组件。
+
+在默认情况下，左右两个GridItem的高度可能是不同的；在设置了Grid的[alignItems](#alignitems12)属性为GridItemAlignment.STRETCH后，一行左右两个GridItem中原本高度较小的GridItem会以另一个高度较大的GridItem的高度作为自己的高度。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State data: number[] = [];
+  @State items: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.data.push(i)
+      this.items.push(this.getSize())
+    }
+  }
+
+  getSize() {
+    let ret = Math.floor(Math.random() * 5)
+    return Math.max(1, ret)
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      Text('Grid alignItems示例代码')
+
+      Grid() {
+        ForEach(this.data, (item: number) => {
+          // GridItem和Column不设置高度，默认会自适应子组件大小，设置STRETCH的场景下，会变成与当前行最高节点同高。
+          // 若设置高度，则会保持已设置的高度，不会与当前行最高节点同高。
+          GridItem() {
+            Column() {
+              Column().height(100).backgroundColor('#D5D5D5').width('100%')
+              // 中间的Text设置flexGrow(1)来自适应填满父组件的空缺
+              Text('这是一段文字。'.repeat(this.items[item]))
+                .flexGrow(1).width('100%').align(Alignment.TopStart)
+                .backgroundColor('#F7F7F7')
+              Column().height(50).backgroundColor('#707070').width('100%')
+            }
+          }
+          .border({ color: Color.Black, width: 1 })
+        })
+      }
+      .columnsGap(10)
+      .rowsGap(5)
+      .columnsTemplate('1fr 1fr')
+      .width('80%')
+      .height('100%')
+      // Grid设置alignItems为STRETCH，以当前行最高的GridItem的高度为其他GridItem的高度。
+      .alignItems(GridItemAlignment.STRETCH)
+      .scrollBar(BarState.Off)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+```
+![gridAlignItems](figures/gridAlignItems.png)

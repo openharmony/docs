@@ -42,7 +42,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -87,7 +87,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -129,7 +129,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -171,7 +171,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
 
 **Return value**
@@ -288,7 +288,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -331,7 +331,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -382,7 +382,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -444,7 +444,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                       |
 | -------- | ------------------------------------------------------------------------------- |
-| 401      | Parameter error. No parameters are required.                                    |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **Return value**
@@ -488,7 +488,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -532,7 +532,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -612,7 +612,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -651,7 +650,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -696,9 +695,8 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
-| 14400003 | Unsupported operation. The current device does not support port role switching                          |
 
 **Return value**
 
@@ -760,12 +758,12 @@ Enumerates USB device function types.
 | ACM          | 1   | ACM function. |
 | ECM          | 2   | ECM function. |
 | HDC          | 4   | HDC function. |
-| MTP          | 8   | Not supported currently.|
-| PTP          | 16  | Not supported currently.|
-| RNDIS        | 32  | Not supported currently.|
-| MIDI         | 64  | Not supported currently.|
-| AUDIO_SOURCE | 128 | Not supported currently.|
-| NCM          | 256 | Not supported currently.|
+| MTP          | 8   | Media transmission.|
+| PTP          | 16  | Image transmission.|
+| RNDIS        | 32  | Network sharing.|
+| MIDI         | 64  | MIDI function.|
+| AUDIO_SOURCE | 128 | Audio function.|
+| NCM          | 256 | NCM transmission. |
 
 ## PortModeType
 
@@ -794,8 +792,8 @@ Enumerates power role types.
 | Name  | Value| Description      |
 | ------ | -- | ---------- |
 | NONE   | 0  | None      |
-| SOURCE | 1  | External power supply.|
-| SINK   | 2  | Internal power supply.|
+| SOURCE | 1  | Power supply for external devices.|
+| SINK   | 2  | External power supply.|
 
 ## DataRoleType
 

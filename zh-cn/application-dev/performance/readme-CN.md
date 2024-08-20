@@ -10,6 +10,7 @@
     - [避免开发过程中的冗余操作](avoiding-redundant-operations.md)
     - [使用AOT进行性能优化](performance-optimization-using-aot.md)
     - [高负载场景下线程优先级设置防止关键线程被打断](qos-protect-critical-threads.md)
+    - [延迟加载Lazy-Import使用指导](Lazy-Import-Instructions.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
@@ -35,7 +36,6 @@
     - [Flex布局性能提升使用指导](flex-development-performance-boost.md)
     - [优化布局性能](reduce-view-nesting-levels.md)
     - [合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md)
-    - [合理使用IPC通信](reasonable-using-ipc.md)
     - [文件上传下载性能提升指导](improve-file-upload-and-download-performance.md)
     - [减少首帧绘制时的冗余操作](reduce-redundant-operations-when-render-first-frame.md)
     - [列表场景性能提升实践](list-perf-improvment.md)
@@ -49,6 +49,7 @@
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
     - [使用ArkUI的FrameNode扩展实现动态布局类框架](imperative_dynamic_layouts.md)
     - [在线短视频流畅切换](performance-quick-switch-short-video.md)
+    - [合理使用缓存提升性能](reasonable_using_cache_improve_performance.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
@@ -60,3 +61,4 @@
     - [Web性能问题分析案例](web-analyse.md)
     - [应用性能问题分析指导](application-performance-guide.md)
     - [页面布局检查器ArkUI Inspector](arkUI-inspector.md)
+    - [跨线程序列化耗时点分析](cross-thread-serialization-time-consumption-analysis.md)

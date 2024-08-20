@@ -16,7 +16,7 @@
 
 @ohos.multimedia.medialibrary模块中的所有接口将从SDK中删除，不再支持新开发应用使用，历史代码工程编译报错。
 
-针对已上架的应用，medialibrary接口原本的功能无法正常使用，调用接口会抛出错误码8000001。
+后续，针对已上架的应用，medialibrary接口原本的功能无法正常使用，调用接口会抛出错误码8000001。
 
 **起始 API Level**
 
@@ -33,7 +33,5 @@
 **适配指导**
 
 开发者需停止使用@ohos.multimedia.medialibrary模块，并使用@ohos.file.photoAccessHelper模块替代实现相关功能。
-
-单个接口的替代关系可参考[原medialibrary接口文档](../../../application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md)。
 
 新接口使用指南请参考 [Media Library Kit使用指导](../../../application-dev/media/medialibrary/photoAccessHelper-overview.md)。

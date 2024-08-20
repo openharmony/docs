@@ -54,7 +54,9 @@ PageTransitionExit(value: PageTransitionOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                                                         | 必填 | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [RouteType](#routetype枚举说明)                              | 否   | 页面转场效果生效的路由类型。<br/>默认值：RouteType.None。    |
 | duration | number                                                       | 否   | 动画的时长。<br/>单位：毫秒<br/>默认值：1000                 |
@@ -66,7 +68,9 @@ PageTransitionExit(value: PageTransitionOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名称  | 参数类型                                                     | 必填 | 参数描述                                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型                                                     | 必填 | 说明                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slide     | [SlideEffect](#slideeffect枚举说明)                          | 否   | 设置页面转场时的滑入滑出效果。 |
 | translate | {<br/>x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string;<br/>y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string;<br/>z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否   | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。<br/>-&nbsp;x：横向的平移距离。<br/>-&nbsp;y：纵向的平移距离。<br/>-&nbsp;z：竖向的平移距离。 |
@@ -125,7 +129,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
   pageTransition() {
     PageTransitionExit({ duration: 1200, curve: Curve.Linear })
       // 转场动画时出场动画 type 为路由类型 ，progress为从0到1逐渐变大
-      .onEnter((type: RouteType, progress: number) => {
+      .onExit((type: RouteType, progress: number) => {
         // 业务逻辑代码
       })
   }
@@ -145,6 +149,10 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 | None | 页面未重定向。如Push和Pop描述中RouteType为None的情形，即页面进场时PageTransitionEnter的转场效果生效；退场时PageTransitionExit的转场效果生效。 |
 
 ## SlideEffect枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                | 描述                                                         |
 | ------------------- | ------------------------------------------------------------ |

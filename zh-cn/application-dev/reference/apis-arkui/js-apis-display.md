@@ -145,6 +145,53 @@ import { display } from '@kit.ArkUI';
 | physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数应为大于0的整数。|
 | physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数应为大于0的整数。|
 
+## display.getDisplayByIdSync<sup>12+</sup>
+
+getDisplayByIdSync(displayId: number): Display
+
+根据displayId获取对应的display对象。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型                      | 必填 | 说明       |
+| ------ | ------------------------- | ---- |----------|
+| displayId     | number                    | 是   | 屏幕id。该参数仅支持整数输入，该参数大于等于0。需要确保displayId准确才能成功获取到对应结果。可以通过[WindowProperties](js-apis-window.md#windowproperties)的displayId属性获取到准确的displayId作为入参。 |
+
+**返回值：**
+
+| 类型                           | 说明                                           |
+| ------------------------------| ----------------------------------------------|
+| [Display](#display) | 返回displayId对应的display对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+
+try {
+  // 可以通过WindowProperties的displayId属性获取到准确的displayId作为入参
+  let displayId = 0; 
+  displayClass = display.getDisplayByIdSync(displayId);
+} catch (exception) {
+  console.error(`Failed to get display. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ## display.getAllDisplayPhysicalResolution<sup>12+</sup>
 
 getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution&gt;&gt;
@@ -992,8 +1039,8 @@ promise.then((data: Array<display.Display>) => {
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                |
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                               |
-| availableWidth | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
-| availableHeight | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
@@ -1094,7 +1141,7 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -1140,7 +1187,7 @@ on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -1185,7 +1232,7 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**

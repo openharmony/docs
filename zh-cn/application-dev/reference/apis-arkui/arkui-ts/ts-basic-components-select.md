@@ -16,15 +16,19 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名  | 参数类型                                       | 必填 | 参数描述       |
+| 参数名  | 类型                                           | 必填 | 说明           |
 | ------- | ---------------------------------------------- | ---- | -------------- |
 | options | Array\<[SelectOption](#selectoption对象说明)\> | 是   | 设置下拉选项。 |
 
 ## SelectOption对象说明
 
-| 参数名 | 参数类型                            | 必填 | 参数描述       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                            | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | -------------- |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉选项内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉选项图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -123,7 +127,7 @@ divider(options: Optional\<DividerOptions> | null)
 **参数：**
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| options  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12类型说明)> \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
+| options  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12对象说明)> \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
 
 ### font
 
@@ -378,6 +382,8 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                | 描述               |
 | ------------------- | ------------------ |
 | END<sup>10+</sup>   | 文字在前，箭头在后。 |
@@ -386,6 +392,8 @@ menuBackgroundBlurStyle(value: BlurStyle)
 ## MenuAlignType<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                | 描述               |
 | ------------------- | ------------------ |
@@ -397,7 +405,9 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 类型                                         | 必填 | 说明                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。 |
 | icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。 |
@@ -438,10 +448,10 @@ struct SelectExample {
   @State arrowPosition: ArrowPosition = ArrowPosition.END
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: $r("app.media.selecticon") },
-        { value: 'bbb', icon: $r("app.media.selecticon") },
-        { value: 'ccc', icon: $r("app.media.selecticon") },
-        { value: 'ddd', icon: $r("app.media.selecticon") }])
+      Select([{ value: 'aaa', icon: $r("app.media.selection") },
+        { value: 'bbb', icon: $r("app.media.selection") },
+        { value: 'ccc', icon: $r("app.media.selection") },
+        { value: 'ddd', icon: $r("app.media.selection") }])
         .selected(this.index)
         .value(this.text)
         .font({ size: 16, weight: 500 })
