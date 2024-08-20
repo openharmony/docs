@@ -41,7 +41,7 @@ import { screenshot } from '@kit.ArkUI';
 
 pick(): Promise&lt;PickInfo&gt;
 
-获取屏幕截图。
+获取屏幕截图。此接口仅可在2in1设备上使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
