@@ -107,7 +107,7 @@ isModifiable(): boolean
 
 appendChild(node: FrameNode): void
 
-在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。
+在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。[typeNode](#typenode12)在appendChild时会校验子组件类型或个数，不满足抛出异常信息，限制情况请查看[typeNode](#typenode12)描述。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1369,7 +1369,7 @@ typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础
 ### Text<sup>12+</sup>
 type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
 
-Text类型的FrameNode节点类型。
+Text类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1543,7 +1543,7 @@ GridRow类型的FrameNode节点类型。
 ### createNode('GridRow')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 
-创建GridRow类型的FrameNode节点。
+创建GridRow类型的FrameNode节点。只允许添加GridCol类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1570,7 +1570,7 @@ typeNode.createNode(uiContext, 'GridRow');
 ### GridCol<sup>12+</sup>
 type GridCol = TypedFrameNode&lt;GridColInterface, GridColAttribute&gt;
 
-GridCol类型的FrameNode节点类型。
+GridCol类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1690,7 +1690,7 @@ typeNode.createNode(uiContext, 'Swiper');
 ### Progress<sup>12+</sup>
 type Progress = TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt;
 
-Progress类型的FrameNode节点类型。
+Progress类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1730,7 +1730,7 @@ typeNode.createNode(uiContext, 'Progress');
 ### Scroll<sup>12+</sup>
 type Scroll = TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt;
 
-Scroll类型的FrameNode节点类型。
+Scroll类型的FrameNode节点类型。允许添加一个子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1810,7 +1810,7 @@ typeNode.createNode(uiContext, 'RelativeContainer');
 ### Divider<sup>12+</sup>
 type Divider = TypedFrameNode&lt;DividerInterface, DividerAttribute&gt;
 
-Divider类型的FrameNode节点类型。
+Divider类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1850,7 +1850,7 @@ typeNode.createNode(uiContext, 'Divider');
 ### LoadingProgress<sup>12+</sup>
 type LoadingProgress = TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt;
 
-LoadingProgress类型的FrameNode节点类型。
+LoadingProgress类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1930,7 +1930,7 @@ typeNode.createNode(uiContext, 'Search');
 ### Blank<sup>12+</sup>
 type Blank = TypedFrameNode&lt;BlankInterface, BlankAttribute&gt;
 
-Blank类型的FrameNode节点类型。
+Blank类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1970,7 +1970,7 @@ typeNode.createNode(uiContext, 'Blank');
 ### Image<sup>12+</sup>
 type Image = TypedFrameNode&lt;ImageInterface, ImageAttribute&gt;
 
-Image类型的FrameNode节点类型。
+Image类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2010,7 +2010,7 @@ typeNode.createNode(uiContext, 'Image');
 ### List<sup>12+</sup>
 type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
 
-List类型的FrameNode节点类型。
+List类型的FrameNode节点类型。只允许添加ListItem、ListItemGroup类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2132,7 +2132,7 @@ typeNode.createNode(uiContext, 'TextInput');
 ### Button<sup>12+</sup>
 type Button = TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt;
 
-Button类型的FrameNode节点类型。
+Button类型的FrameNode节点类型。以子组件模式创建允许添加一个子组件。以label模式创建不可以添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2173,7 +2173,7 @@ typeNode.createNode(uiContext, 'Button');
 ### ListItemGroup<sup>12+</sup>
 type ListItemGroup = TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt;
 
-ListItemGroup类型的FrameNode节点类型。
+ListItemGroup类型的FrameNode节点类型。只允许添加ListItem类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2214,7 +2214,7 @@ typeNode.createNode(uiContext, 'ListItemGroup');
 ### WaterFlow<sup>12+</sup>
 type WaterFlow = TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt;
 
-WaterFlow类型的FrameNode节点类型。
+WaterFlow类型的FrameNode节点类型。只允许添加FlowItem类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2255,7 +2255,7 @@ typeNode.createNode(uiContext, 'WaterFlow');
 ### FlowItem<sup>12+</sup>
 type FlowItem = TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt;
 
-FlowItem类型的FrameNode节点类型。
+FlowItem类型的FrameNode节点类型。允许添加一个子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
