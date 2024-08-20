@@ -9,14 +9,17 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Type                                  | Mandatory| Description|
+| Name | Type                                  | Mandatory | Description |
 | ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | No  | Caret size. It cannot be set in percentage.|
-| color  | [ResourceColor](ts-types.md#resourcecolor) | No  | Caret color.|
+| width  | [Length](ts-types.md#length)               | No  | Caret size. It cannot be set in percentage. |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | No  | Caret color. |
 
 ## LayoutManager<sup>12+</sup>
 
 Implements a **LayoutManager** object.
+> **NOTE**
+>
+> After the text content is changed, you must wait for the layout to be completed before you can obtain the most up-to-date layout information.
 
 ### Objects to Import
 The following uses the **\<Text>** component as an example.
@@ -37,7 +40,7 @@ Obtains the total number of lines in the component.
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Total number of lines in the component.|
+| number | Total number of lines in the component. |
 
 ### getGlyphPositionAtCoordinate
 
@@ -51,8 +54,8 @@ Obtains the position of a glyph close to a given coordinate.
 
 | Name   | Type  | Mandatory  | Description                |
 | ------ | ------ | ---- | -------------------- |
-| x | number | Yes   | X coordinate relative to the component, in px.|
-| y | number | Yes   | Y coordinate relative to the component, in px.|
+| x | number | Yes   | X coordinate relative to the component, in px. |
+| y | number | Yes   | Y coordinate relative to the component, in px. |
 
 **Return value**
 
@@ -72,13 +75,13 @@ Obtains the metrics information of a specified line.
 
 | Name   | Type  | Mandatory  | Description                |
 | ------ | ------ | ---- | -------------------- |
-| lineNumber | number | Yes   | Line number, starting at 0.|
+| lineNumber | number | Yes   | Line number, starting at 0. |
 
 **Return value**
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | Button("Line Metrics")|
+| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | Button("Line Metrics") |
 
 ## PositionWithAffinity
 
@@ -86,7 +89,7 @@ Describes the position and affinity of a glyph.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                  | Read Only| Mandatory| Description                     |
+| Name     | Type                  | Read Only | Mandatory | Description                     |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
 | position  | number                | Yes  | Yes  | Index of the glyph relative to the paragraph. The value is an integer. |
 | affinity  | [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | Yes  | Yes  | Affinity of the position.            |
@@ -107,12 +110,12 @@ Provides the menu ID.
 
 | Name          | Type             | Read Only  | Mandatory  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| CUT  | [TextMenuItemId](#textmenuitemid12) |  Yes |  No | Cut operation by default.|
-| COPY  | [TextMenuItemId](#textmenuitemid12) |  Yes |  No | Copy operation by default.|
-| PASTE | [TextMenuItemId](#textmenuitemid12)   | Yes   | No   | Paste operation by default.|
-| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | Yes   | No   | Select-all operation by default.|
-| COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | Yes   | No   | Collaboration service.|
-| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | Yes   | No   | Camera input|
+| CUT  | [TextMenuItemId](#textmenuitemid12) |  Yes |  No | Cut operation by default. |
+| COPY  | [TextMenuItemId](#textmenuitemid12) |  Yes |  No | Copy operation by default. |
+| PASTE | [TextMenuItemId](#textmenuitemid12)   | Yes   | No   | Paste operation by default. |
+| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | Yes   | No   | Select-all operation by default. |
+| COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | Yes   | No   | Collaboration service. |
+| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | Yes   | No   | Camera input |
 
 ### of
 
@@ -126,15 +129,15 @@ Creates a **TextMenuItemId** object based on **id**.
 
 **Parameters**
 
-| Name | Type                             | Mandatory| Description                                                        |
+| Name | Type                             | Mandatory | Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| id | [ResourceStr](ts-types.md#resourcestr) | Yes  | Menu ID.|
+| id | [ResourceStr](ts-types.md#resourcestr) | Yes  | Menu ID. |
 
 **Return value**
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| [TextMenuItemId](#textmenuitemid12) | **TextMenuItemId** object.|
+| [TextMenuItemId](#textmenuitemid12) | **TextMenuItemId** object. |
 
 ### equals
 
@@ -146,15 +149,15 @@ Checks whether this **TextMenuItemId** object is the same as another **TextMenuI
 
 **Parameters**
 
-| Name | Type                             | Mandatory| Description                                                        |
+| Name | Type                             | Mandatory | Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| id | [TextMenuItemId](#textmenuitemid12) | Yes  | ID of the **TextMenuItemId** object to compare.|
+| id | [TextMenuItemId](#textmenuitemid12) | Yes  | ID of the **TextMenuItemId** object to compare. |
 
 **Return value**
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| boolean | Whether the two **TextMenuItemId** objects are the same.|
+| boolean | Whether the two **TextMenuItemId** objects are the same. |
 
 ## TextMenuItem
 
@@ -162,11 +165,11 @@ Checks whether this **TextMenuItemId** object is the same as another **TextMenuI
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type                             | Mandatory| Description  |
+| Name | Type                             | Mandatory | Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| content | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Menu name.|
-| icon | [ResourceStr](ts-types.md#resourcestr) | No  | Menu icon.<br>Online images are not supported.|
-| id | [TextMenuItemId](#textmenuitemid12) | Yes  | Menu ID.|
+| content | [ResourceStr](ts-types.md#resourcestr) | Yes  | Menu name. |
+| icon | [ResourceStr](ts-types.md#resourcestr) | No  | Menu icon.<br>Online images are not supported. |
+| id | [TextMenuItemId](#textmenuitemid12) | Yes  | Menu ID. |
 
 ## EditMenuOptions
 
@@ -186,15 +189,15 @@ Creates a menu with the specified menu items.
 
 **Parameters**
 
-| Name | Type                             | Mandatory| Description  |
+| Name | Type                             | Mandatory | Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| menuItems | Array<[TextMenuItem](#textmenuitem)> | Yes  | Menu items.|
+| menuItems | Array\<[TextMenuItem](#textmenuitem)>  | Yes  | Menu items.<br>**NOTE**<br>Changes to the name of the default menu item do not take effect. |
 
 **Return value**
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| Array\<[TextMenuItem](#textmenuitem)> | Menu items set.|
+| Array\<[TextMenuItem](#textmenuitem)>  | Menu items set.<br>**NOTE**<br>The icon of the default menu item is not returned. |
 
 ### onMenuItemClick
 
@@ -208,13 +211,37 @@ Called when the specified menu item is clicked.
 
 **Parameters**
 
-| Name | Type                             | Mandatory| Description  |
+| Name | Type                             | Mandatory | Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| menuItem | [TextMenuItem](#textmenuitem) | Yes  | Menu item.|
-| range | [TextRange](ts-universal-attributes-text-style.md#textrange12) | Yes  | Selected text.|
+| menuItem | [TextMenuItem](#textmenuitem)  | Yes  | Menu item. |
+| range | [TextRange](#textrange12) | Yes  | Selected text. |
 
 **Return value**
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| boolean | Execution logic of the menu item.<br>Returns **true** if the default system logic is intercepted and only the custom logic is executed.<br>Returns **false** if the custom logic is executed before the default system logic.|
+| boolean | Execution logic of the menu item.<br>Returns **true** if the default system logic is intercepted and only the custom logic is executed.<br>Returns **false** if the custom logic is executed before the default system logic. |
+
+## TextRange<sup>12+</sup>
+
+Defines the text range.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name | Type | Mandatory | Description |
+| -- | -- | -- | -- |
+| start | number | No | Start index. |
+| end | number | No | End index. |
+
+## EditableTextOnChangeCallback<sup>12+</sup>
+
+type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
+
+Invoked when the input in the text box changes.
+
+**Parameters**
+
+| Name | Type | Mandatory | Description |
+| -- | -- | -- | -- |
+| value | string | Yes | Text displayed in the text box. |
+| previewText | [PreviewText](ts-basic-components-richeditor.md#previewtext12) | No | Information about the preview text, including its start position and text content. |

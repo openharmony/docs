@@ -113,7 +113,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980096 | Operation failed|
-| 62980097 | Ipc error|
+| 62980097 | IPC error.|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -207,7 +207,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | Invalid input parameter|
+| 62980115 | If the image parameter invalid.|
 | 62980105 | Failed to get the data|
 | 62980178 | Failed to create the PixelMap|
 
@@ -544,8 +544,8 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 | ------- | --------------------------------------------|
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103    | The image data is not supported |
-|  60980246    | Failed to read the PixelMap |
-|  60980248    | PixelMap does not allow modification |
+|  62980246    | Failed to read the pixelMap. |
+|  62980248    | PixelMap not allow modify. |
 
 **示例：**
 
@@ -2358,6 +2358,40 @@ if (pixelmap != undefined) {
   }
 } else {
   console.info('Failed to create pixelMap.');
+}
+```
+
+### setTransferDetached<sup>12+<sup>
+
+setTransferDetached(detached: boolean): void
+
+pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释放pixelmap的场景。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型               | 必填 | 说明                          |
+| ------- | ------------------ | ---- | ----------------------------- |
+| detached | boolean   | 是   | 是否断开原线程引用                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  if (pixelMap != undefined) {
+    pixelMap.setTransferDetached(true);
+  }
 }
 ```
 

@@ -43,7 +43,7 @@
   
    ```ts
    Text('test')
-     .transition(effect)
+     .transition(this.effect)
    ```
 
 3. 新增或者删除组件触发转场。
@@ -53,7 +53,7 @@
    ...
    if (this.isPresent) {
      Text('test')
-       .transition(effect)
+       .transition(this.effect)
    }
    ...
    // 控制新增或者删除组件

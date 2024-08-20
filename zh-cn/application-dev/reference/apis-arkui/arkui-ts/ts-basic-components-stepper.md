@@ -19,10 +19,11 @@ Stepper(value?: { index?: number })
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:**
 
-| 参数名 | 参数类型 | 必填  | 参数描述 |
+| 参数名 | 类型 | 必填  | 说明 |
 | ------| -------- | --------------- | -------- |
 | value | { index?: number }   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 

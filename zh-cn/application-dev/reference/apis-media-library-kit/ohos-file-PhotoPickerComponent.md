@@ -15,7 +15,7 @@ import {
   DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType
-} from from '@kit.MediaLibraryKit';
+} from '@kit.MediaLibraryKit';
 ```
 
 ## 属性
@@ -36,6 +36,11 @@ PhotoPickerComponent({
 })
 
 应用可以在布局中嵌入PhotoPickerComponent组件，通过此组件，应用无需申请权限，即可访问公共目录中的图片或视频文件。
+
+> **说明：**
+> 如果当前PhotoPickerComponent组件嵌套在Tabs组件中使用，Tabs组件的左右滑动会与图片选择大图界面的左右滑动切换手势发生冲突。
+>
+> 可在进退大图的回调中设置Tabs组件是否支持滑动来规避，该问题将在后续版本修复。
 
 **装饰器类型**：@Component
 
