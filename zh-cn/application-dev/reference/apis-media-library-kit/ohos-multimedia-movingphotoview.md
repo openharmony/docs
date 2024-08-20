@@ -49,6 +49,8 @@ muted(isMuted: boolean)
 
 设置是否静音。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -63,6 +65,8 @@ muted(isMuted: boolean)
 objectFit(value: ImageFit)
 
 设置动态照片显示模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -83,6 +87,8 @@ onStart(callback: MovingPhotoViewEventCallback)
 
 播放时触发该事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -97,6 +103,8 @@ onStart(callback: MovingPhotoViewEventCallback)
 onPause(callback: MovingPhotoViewEventCallback)
 
 播放暂停时触发该事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -113,6 +121,8 @@ onFinish(callback: MovingPhotoViewEventCallback)
 
 播放结束时触发该事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -128,6 +138,8 @@ onError(callback: MovingPhotoViewEventCallback)
 
 播放失败时触发该事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -142,6 +154,8 @@ onError(callback: MovingPhotoViewEventCallback)
 onStop(callback: MovingPhotoViewEventCallback)
 
 播放停止时触发该事件(当stop()方法被调用后触发)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -168,6 +182,8 @@ startPlayback(): void
 
 开始播放。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ### stopPlayback
@@ -175,6 +191,8 @@ startPlayback(): void
 stopPlayback(): void
 
 停止播放，再次播放时从头开始播放。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
