@@ -60,7 +60,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 **参数：**
 
-| 参数名       | 参数类型                                    | 必填 | 参数描述                                                     |
+| 参数名       | 类型                                    | 必填 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | space        | number&nbsp;\|&nbsp;string                  | 否   | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
 | initialIndex | number                                      | 否   | 设置当前List初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
@@ -746,7 +746,7 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 
 列表滑动时触发。
 
-从API version 12开始废弃不再使用，推荐使用[onDidScroll](#ondidscroll12)事件替代。
+从API version 12开始废弃不再使用，推荐使用[onDidScroll](ts-container-scrollable-common.md#ondidscroll12)事件替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -759,44 +759,6 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 | ------ | ------ | ------ | ------|
 | scrollOffset | number | 是 | 每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
-
-### onWillScroll<sup>12+</sup>
-onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
-
-列表滑动前触发。回调当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源，其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定列表将要滑动的偏移。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| handler | Optional&lt;[OnWillScrollCallback](ts-container-scrollable-common.md#onwillscrollcallback12)&gt; | 是 | 列表滑动前触发的回调。 |
-
-> **说明：** 
-> 
-> 调用ScrollEdge和不带动画的ScrollToIndex时，不触发onWillScroll。
-
-### onDidScroll<sup>12+</sup>
-onDidScroll(handler: OnScrollCallback)
-
-列表滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](ts-container-scrollable-common.md#onscrollcallback12) | 是 | 列表滑动时触发的回调。 |
 
 ### onScrollVisibleContentChange<sup>12+</sup>
 onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
@@ -815,7 +777,7 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12对象说明) | 是 | 当前显示内容发生改变的时候触发回调。 |
+| handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12) | 是 | 当前显示内容发生改变的时候触发回调。 |
 
 ## ScrollState枚举说明
 
@@ -861,7 +823,7 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 参数描述              |
+| 参数名   | 类型   | 必填   | 说明              |
 | ----- | ------ | ---- | ----------------- |
 | index | number | 是    | ListItemGroup在List中的索引值。 |
 | indexInGroup | number | 是    | ListItem在ListItemGroup中的索引值。 |
@@ -903,7 +865,7 @@ scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align
 
 **参数：**
 
-| 参数名                | 参数类型 | 必填 | 参数描述                                                     |
+| 参数名                | 类型 | 必填 | 说明                                                     |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | index                 | number   | 是   | 要滑动到的目标元素所在的ListItemGroup在当前容器中的索引值。      <br/>**说明：** <br/>index值设置成负值或者大于当前容器子组件的最大索引值，视为异常值，本次跳转不生效。                     |
 | indexInGroup          | number   | 是   | 要滑动到的目标元素在index指定的ListItemGroup中的索引值。      <br/>**说明：** <br/>indexInGroup值设置成负值或者大于index指定的ListItemGroup容器子组件的最大索引值，视为异常值，本次跳转不生效。|
@@ -931,8 +893,8 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 
 **参数：**
 
-| 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
-| ------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名  | 类型                                  | 必填 | 说明                                            |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------- |
 | options | [CloseSwipeActionOptions](#closeswipeactionoptions11对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
 
 
@@ -949,7 +911,7 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 >
 > - ListScroller必须绑定到List组件上。
 
-## OnScrollVisibleContentChangeCallback<sup>12+</sup>对象说明
+## OnScrollVisibleContentChangeCallback<sup>12+</sup>
 
 type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end: VisibleListContentInfo) => void
 
@@ -970,7 +932,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | index | number | 是 | List显示区域内ListItem或ListItemGroup的索引值。 |
 | itemGroupArea | [ListItemGroupArea](#listitemgrouparea12枚举说明) | 否 | 如果当前可视页面的上边或下边在某个ListItemGroup之中，将会显示它所处的位置。 |
