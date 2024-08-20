@@ -53,6 +53,7 @@
 - Error Codes
   - [HTTP Error Codes](errorcode-net-http.md)
   - [Socket Error Codes](errorcode-net-socket.md)
+  - [WebSocket Error Codes](errorcode-net-webSocket.md)
   - [Network Connection Management Error Codes](errorcode-net-connection.md)
   - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
