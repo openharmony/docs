@@ -98,7 +98,7 @@ unselectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                 |
 | ------ | ------------------------------------------ | ---- | -------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：'#33ffffff'。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
