@@ -15,9 +15,10 @@ Device operation failed.
 This error code is reported if the HDI service is abnormal or the device is occupied when the **startVibration** interface of the vibrator module is called.
 
 **Possible Causes**
-
+<!--RP1-->
 1. The HDI service is abnormal.
 2. The device is occupied.
+<!--RP1End-->
 
 **Solution**
 

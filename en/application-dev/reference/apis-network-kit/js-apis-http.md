@@ -1527,7 +1527,7 @@ Defines the dynamic configuration of certificate pinning.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-|  Name |  Type |   Description    |
-| ------------------  | -- | ----------- |
-| publicKeyHash       | string | Certificate PIN of the string type.|
-| hashAlgorithm        | 'SHA-256' | Encryption algorithm. Currently, only SHA-256 is supported.|
+|  Name |  Type |  Mandatory |Description    |
+| ------------------  |---- |-- | ----------- |
+| publicKeyHash       | string | Yes|Certificate PIN of the string type.|
+| hashAlgorithm        | 'SHA-256' |  Yes |Encryption algorithm. Currently, only SHA-256 is supported.|
