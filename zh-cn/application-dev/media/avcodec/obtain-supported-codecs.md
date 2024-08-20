@@ -9,9 +9,9 @@
 
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
-   target_link_libraries(sample PUBLIC libnative_media_vdec.so)
-   target_link_libraries(sample PUBLIC libnative_media_venc.so)
    target_link_libraries(sample PUBLIC libnative_media_core.so)
+   target_link_libraries(sample PUBLIC libnative_media_venc.so)
+   target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    ```
    > **说明：**
    >
@@ -23,8 +23,8 @@
    ```c++
    #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
-   #include <multimedia/player_framework/native_avcodec_videoencoder.h>
    #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avcodec_videoencoder.h>
    #include <multimedia/player_framework/native_avcodec_videodecoder.h>
    ```
 
