@@ -41,7 +41,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **参数：**
 
-| 参数名   | 参数类型                                    | 必填 | 参数描述                                                     |
+| 参数名   | 类型                                    | 必填 | 说明                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | 否 | Grid布局选项。 |
@@ -56,7 +56,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | irregularIndexes | number[] | 否    | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -729,10 +729,10 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型         |   描述         |
-| ---------- | ---------- | ---------- |
-| totalOffset | number |  Grid内容相对显示区域的总偏移，单位px。    |
-| totalLength   | number |  Grid内容总长度，单位px。    |
+| 名称         | 类型         | 只读 | 可选 |   说明         |
+| ----------- | ------------ | ---- | ---- | ---------- |
+| totalOffset | number | 否 | 否 |  Grid内容相对显示区域的总偏移，单位px。    |
+| totalLength   | number | 否 | 否 |  Grid内容总长度，单位px。    |
 
 ## 示例
 
