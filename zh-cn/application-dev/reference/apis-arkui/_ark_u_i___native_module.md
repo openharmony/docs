@@ -6927,7 +6927,7 @@ float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize (ArkUI_CustomSpanMeasureInfo * 
 ```
 **描述：**
 
-获取自定义段落组件的字体大小。
+获取自定义段落组件的父节点Text的字体大小。
 
 **起始版本：** 12
 
