@@ -14,7 +14,7 @@ ArkUI为组件提供了通用的属性动画和转场动画能力的同时，还
 
 - 减少开发者工作量，例如列表滑动组件自带滑动动效，开发者直接调用即可。
 
-更多效果，可以参考[组件说明](../reference/apis-arkui/arkui-ts/ts-components-summary.md)。
+更多效果，可以参考[组件说明](../reference/apis-arkui/arkui-ts/ts-container-flex.md)。
 
 示例代码和效果如下。
 
