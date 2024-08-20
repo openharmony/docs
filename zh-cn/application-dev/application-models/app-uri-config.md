@@ -40,15 +40,13 @@ scheme://host[:port]/path/
 
 |值|说明|弹框体验增强|系统入口呈现|
 |---|---|---|---|
-|Login|指示登录、授权登录等功能|||
-|Pay|指示支付页面、收银台等功能|||
-|Share|指示分享功能|||
-|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|||
-|ScanCode|指示扫码功能|||
-|FileOpen|指示打开处理文件的功能|||
-|Navigation|指示导航功能|||
-|RoutePlan|指示路线规划功能|||
-|PlaceSerach|指示地点搜索功能|||
+|Login|指示登录、授权登录等功能|是|否|
+|Pay|指示支付页面、收银台等功能|是|否|
+|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|否|是|
+|FileOpen|指示打开处理文件的功能|否|是|
+|Navigation|指示导航功能|否|是|
+|RoutePlan|指示路线规划功能|否|是|
+|PlaceSerach|指示地点搜索功能|否|是|
 
 ## 配置示例
 
