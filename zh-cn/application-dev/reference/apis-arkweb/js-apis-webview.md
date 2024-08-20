@@ -8268,7 +8268,7 @@ static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| features     |  BackForwardCacheSupportedFeatures | 是   | 允许使用特定特性的页面进入前进后退缓存中。|
+| features     |  [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12) | 是   | 允许使用特定特性的页面进入前进后退缓存中。|
 
 **示例：**
 
@@ -8305,7 +8305,7 @@ setBackForwardCacheOptions(options: BackForwardCacheOptions): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| options     |  BackForwardCacheOptions | 是   | 用来控制web组件前进后退缓存相关选项。|
+| options     |  [BackForwardCacheOptions](#backforwardcacheoptions12) | 是   | 用来控制web组件前进后退缓存相关选项。|
 
 **错误码：**
 
