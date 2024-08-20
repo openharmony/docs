@@ -7065,6 +7065,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 | AV_IMAGE_QUERY_NEXT_SYNC       | 0   | 表示选取传入时间点或之后的关键帧。                       |
 | AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | 表示选取传入时间点或之前的关键帧。 |
 | AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | 表示选取离传入时间点最近的关键帧。                 |
+| AV_IMAGE_QUERY_CLOSEST             | 3    | 表示选取离传入时间点最近的帧，该帧不一定是关键帧。 |
 
 ## PixelMapParams<sup>12+</sup>
 
