@@ -766,9 +766,9 @@ player.setMediaSource(mediaSource, playStrategy);
 
 ### setPlaybackStrategy<sup>12+</sup>
 
-setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>;
+setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
-设置播放策略，只能在 initialized 状态下调用。
+设置播放策略，只能在initialized状态下调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -886,13 +886,20 @@ avPlayer.prepare().then(() => {
 
 ### setMediaMuted<sup>12+</sup>
 
-setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>;
+setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 
-设置音频静音 / 取消音频静音。只能在 prepared/playing/paused/completed 状态下调用。仅支持设置 mediaType 为音频格式。
+设置音频静音/取消音频静音。只能在prepared/playing/paused/completed状态下调用。仅支持设置mediaType为音频格式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| mediaType | [MediaType](#mediatype8) | 是   | 播放策略。 |
+| mediaType | boolean | 是   | 是否静音播放 |
 
 **返回值：**
 
