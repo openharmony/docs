@@ -50,7 +50,33 @@
 - makeObserved可以用在@Component中，但不能和V1的状态变量装饰器连用。会抛出运行时异常。
   ```ts
   // 错误写法，运行时异常
-  @State message: Info2 = UIUtils.makeObserved(new Info(20));
+  @State message: Info = UIUtils.makeObserved(new Info(20));
+  ```
+  下面`message2`的写法不会抛异常，原因是this.message是@State修饰的，其实现等同于@Observed，而UIUtils.makeObserved的入参是@Observed修饰的class，会直接返回自身。因此对于`message2`来说，他的初始值不是makeObserved的返回值，而是@State修饰的变量。
+  ```ts
+  import { UIUtils } from '@kit.ArkUI';
+  class Person {
+    age: number = 10;
+  }
+  class Info {
+    id: number = 0;
+    person: Person = new Person();
+  }
+  @Entry
+  @Component
+  struct Index {
+    @State message: Info = new Info();
+    @State message2: Info = UIUtils.makeObserved(this.message); // 不会抛异常
+    build() {
+      Column() {
+        Text(`${this.message2.person.age}`)
+          .onClick(() =>{
+            // UI不会刷新，因为State只能观察到第一层的变化
+            this.message2.person.age++;
+          })
+      }
+    }
+  }
   ```
 
 - makeObserved的返回值被赋值一个非可观察的数据后，会丧失观察能力，如果需要整体替换，需要再次使用makeObserved进行赋值。
@@ -565,3 +591,44 @@ struct Page30 {
 }
 ```
 
+## 常见问题
+### getTarget后的数据可以正常赋值，只是无法触发UI刷新
+[getTarget](./arkts-new-getTarget.md)可以获取状态管理框架代理前的原始对象。
+
+makeObserved封装的观察对象，可以通过getTarget获取到其原始对象，对原始对象的赋值不会触发UI刷新。
+
+如下面例子：
+1. 先点击第一个Text组件，通过getTarget获取其原始对象，此时修改原始对象的属性不会触发UI刷新，但数据会正常赋值。
+2. 再点击第二个Text组件，此时修改`this.observedObj`的属性会触发UI刷新，Text显示21。
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+class Info {
+  id: number = 0;
+}
+
+@Entry
+@Component
+struct Index {
+  observedObj: Info = UIUtils.makeObserved(new Info());
+  build() {
+    Column() {
+      Text(`${this.observedObj.id}`)
+        .fontSize(50)
+        .onClick(() => {
+          // 通过getTarget获取其原始对象，将this.observedObj赋值为不可观察的数据
+          let rawObj: Info= UIUtils.getTarget(this.observedObj);
+          // 不会触发UI刷新，但数据会正常赋值
+          rawObj.id = 20;
+        })
+
+      Text(`${this.observedObj.id}`)
+        .fontSize(50)
+        .onClick(() => {
+          // 触发UI刷新，Text显示21
+          this.observedObj.id++;
+        })
+    }
+  }
+}
+```
