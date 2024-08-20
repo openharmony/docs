@@ -853,10 +853,6 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   }
   netHandle = connection.getDefaultNetSync();
   connectionproperties = connection.getConnectionPropertiesSync(netHandle);
-  if (error) {
-    console.error(`Failed to get neconnectiont capabilities. Code:${error.code}, message:${error.message}`);
-    return;
-  }
   console.info("Succeeded to get connectionproperties: " + JSON.stringify(connectionproperties));
 });
 
