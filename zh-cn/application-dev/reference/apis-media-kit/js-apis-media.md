@@ -857,9 +857,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err) {
-    console.info('Succeeded in playing');
-  } else {
     console.error('Failed to play,error message is :' + err.message)
+  } else {
+    console.info('Succeeded in playing');
   }
 })
 ```
