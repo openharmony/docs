@@ -889,7 +889,7 @@ setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | mediaType | [MediaType](#mediatype8) | 是   | 播放策略。 |
-| mediaType | boolean | 是   | 是否静音播放 |
+| mediaType | boolean | 是   | 是否静音播放。 |
 
 **返回值：**
 
