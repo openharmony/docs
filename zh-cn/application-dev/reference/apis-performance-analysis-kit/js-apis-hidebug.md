@@ -915,7 +915,7 @@ type GcStats = Record&lt;string, number&gt;
 | ark.gc.gc-bytes-freed   | number | 当前线程GC成功回收的内存，以B为单位。|
 | ark.gc.fullgc-longtime-count | number |  当前线程超长fullGC次数。 |
 
-## hidebug.isDebugState<sup>13+</sup>
+## hidebug.isDebugState<sup>12+</sup>
 
 isDebugState(): boolean
 
