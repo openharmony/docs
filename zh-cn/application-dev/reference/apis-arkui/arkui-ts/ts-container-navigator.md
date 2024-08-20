@@ -18,9 +18,11 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型       | 必填 | 参数描述                                       |
+| 参数名 | 类型       | 必填 | 说明                                       |
 | ------ | -------------- | ---- | ---------------------------------------------- |
 | target | string         | 是   | 指定跳转目标页面的路径。     |
 | type   | [NavigationType](#navigationtype枚举说明) | 否   | 指定路由方式。<br/>默认值：NavigationType.Push |
@@ -28,6 +30,8 @@ Navigator(value?: {target: string, type?: NavigationType})
 ## NavigationType枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 枚举值  | 描述                         |
 | ------- | ------- | -------------------------- |
