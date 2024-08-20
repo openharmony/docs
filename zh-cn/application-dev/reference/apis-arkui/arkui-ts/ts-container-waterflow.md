@@ -28,15 +28,16 @@ WaterFlow(options?:  WaterFlowOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options |  [WaterFlowOptions](#waterflowoptions对象说明)| 否 | 瀑布流组件参数。 |
 
 
 ## WaterFlowOptions对象说明
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 参数类型                                        | 必填 | 参数描述                                     |
+| 名称     | 类型                                        | 必填 | 说明                                     |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -70,7 +71,7 @@ splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>):
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | start | number | 是    | 从0开始计算的索引，会转换为整数，表示要开始改变分组的位置。<br/>**说明：** <br/>1. 如果索引是负数，则从末尾开始计算，使用`start + WaterFlowSections.length()`。<br/>2. 如果 `start < -WaterFlowSections.length()`，则使用0。<br/>3. 如果 `start >= WaterFlowSections.length()`，则在最后添加新分组。 |
 | deleteCount | number | 否    | 表示要从start开始删除的分组数量。<br/>**说明：** <br/>1. 如果省略了deleteCount，或者其值大于或等于由start指定的位置到WaterFlowSections末尾的分组数量，那么从start到WaterFlowSections末尾的所有分组将被删除。<br/>2. 如果deleteCount是0或者负数，则不会删除任何分组。 |
@@ -95,7 +96,7 @@ push(section: SectionOptions): boolean
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | section | [SectionOptions](#sectionoptions12) | 是    | 添加到瀑布流末尾的分组。 |
 
@@ -117,7 +118,7 @@ update(sectionIndex: number, section: SectionOptions): boolean
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | sectionIndex | number | 是    | 从0开始计算的索引，会转换为整数，表示要修改的分组的位置。<br/>**说明：** <br/>1. 如果索引是负数，则从末尾开始计算，使用`sectionIndex + WaterFlowSections.length()`。<br/>2. 如果`sectionIndex < -WaterFlowSections.length()`，则使用0。<br/>3. 如果`sectionIndex >= WaterFlowSections.length()`，则在最后添加新分组。 |
 | section | [SectionOptions](#sectionoptions12) | 是    | 新的分组信息。 |
@@ -170,7 +171,7 @@ FlowItem分组配置信息。
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|-----|
 | itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。 |
 | crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。 |
@@ -192,7 +193,7 @@ type GetItemMainSizeByIndex = (index: number) => number
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | index | number | 是    | FlowItem在WaterFlow中的索引。 |
 

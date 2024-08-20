@@ -24,7 +24,7 @@ Scroll(scroller?: Scroller)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | scroller | [Scroller](#scroller) | 否 | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
 
@@ -80,7 +80,7 @@ scrollBarColor(color: Color | number | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）   |
+| color  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）   |
 
 ### scrollBarWidth
 
@@ -96,7 +96,7 @@ scrollBarWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                      |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | string&nbsp;\|&nbsp;number | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
+| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
 
 ### scrollSnap<sup>10+</sup>
 
@@ -177,7 +177,7 @@ friction(value: number | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                      |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
 
 ### enablePaging<sup>11+</sup>
 
@@ -228,7 +228,7 @@ initialOffset(value: OffsetOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 参数类型    | 必填   | 描述       |
+| 名称       | 类型    | 必填   | 说明       |
 | ---------- | --------------------|-------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对齐方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。 |
 | snapPagination | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;Array\<Dimension\> | 否 | 设置Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量。<br/>**说明：** <br/>1.当属性为Dimension时，表示每页的大小，系统会按照该大小来自动计算每个限位点的位置：如当Dimension为500时，实际的限位点即为[0,500,1000,1500,...]。<br/>2.当属性为Array\<Dimension\>时，每个Dimension代表限位点的位置。每个Dimension的范围为[0,可滑动距离]，0和可滑动距离的底部自动成为限位点。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
@@ -488,7 +488,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 **参数：** 
 
-| 参数名    | 参数类型                                                     | 必填 | 参数描述                                                     |
+| 参数名    | 类型                                                     | 必填 | 说明                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>仅滚动轴为x轴时生效。 |
 | yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>仅滚动轴为y轴时生效。 |
@@ -509,7 +509,7 @@ Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
 
 **参数：**
 
-| 参数名   | 参数类型 | 必填   | 参数描述      |
+| 参数名   | 类型 | 必填   | 说明      |
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -527,7 +527,7 @@ fling(velocity: number): void
 
 **参数：**
 
-| 参数名   | 参数类型 | 必填 | 参数描述                                                     |
+| 参数名   | 类型 | 必填 | 说明                                                     |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | velocity | number   | 是   | 惯性滚动的初始速度值。单位：vp/s<br/>**说明：**<br/>velocity值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向下滚动；如果值为负数，则向上滚动。 |
 
@@ -537,7 +537,7 @@ fling(velocity: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
 
 ### scrollPage<sup>9+</sup>
@@ -552,7 +552,7 @@ scrollPage(value: { next: boolean }): void
 
 **参数：**
 
-| 参数名                            | 参数类型                          | 必填 | 参数描述                                                    |
+| 参数名                            | 类型                          | 必填 | 说明                                                    |
 | --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
 | next                              | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。         |
 
@@ -566,7 +566,7 @@ scrollPage(value: { next: boolean, direction?: Axis })
 
 **参数：**
 
-| 参数名       | 参数类型    | 必填   | 参数描述                           |
+| 参数名       | 类型    | 必填   | 说明                           |
 | --------- | ------- | ---- | ------------------------------ |
 | next      | boolean | 是    | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
 | direction | [Axis](ts-appendix-enums.md#axis)    | 否    | 设置滚动方向为水平或竖直方向。               |
@@ -602,7 +602,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: Sc
 
 **参数：**
 
-| 参数名                | 参数类型 | 必填 | 参数描述                                                     |
+| 参数名                | 类型 | 必填 | 说明                                                     |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | value | number   | 是   | 要滑动到的目标元素在当前容器中的索引值。      <br/>**说明：** <br/>value值设置成负值或者大于当前容器子组件的最大索引值，视为异常值，本次跳转不生效。                     |
 | smooth | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。|
@@ -627,7 +627,7 @@ scrollBy(dx: Length, dy: Length)
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 参数描述              |
+| 参数名   | 类型   | 必填   | 说明              |
 | ----- | ------ | ---- | ----------------- |
 | dx |  [Length](ts-types.md#length) | 是    | 水平方向滚动距离，不支持百分比形式。 |
 | dy |  [Length](ts-types.md#length) | 是    | 竖直方向滚动距离，不支持百分比形式。 |
@@ -668,7 +668,7 @@ getItemRect(index: number): RectResult
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 参数描述              |
+| 参数名   | 类型   | 必填   | 说明              |
 | ----- | ------ | ---- | ----------------- |
 | index | number | 是    | 子组件的索引值。 |
 
@@ -689,7 +689,7 @@ getItemRect(index: number): RectResult
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
 
 ## OffsetResult<sup>11+</sup>
@@ -698,10 +698,10 @@ getItemRect(index: number): RectResult
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                                       | 描述                                                         |
-| --------------|-------------------------------------------- | ------------------------------------------------------------ |
-| xOffset | number | 水平滑动偏移;<br/>返回值单位为vp。 |
-| yOffset | number | 竖直滑动偏移。<br/>返回值单位为vp。 |
+| 名称     | 类型   | 只读 | 可选 | 说明                             |
+| ------- |------- | ---- | ---- | -------------------------------- |
+| xOffset | number |  否  |  否  | 水平滑动偏移。<br/>返回值单位为vp。 |
+| yOffset | number |  否  |  否  | 竖直滑动偏移。<br/>返回值单位为vp。 |
 
 ## ScrollAnimationOptions<sup>12+</sup>
 
@@ -709,7 +709,7 @@ getItemRect(index: number): RectResult
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型   | 必填   | 参数描述              |
+| 参数名   | 类型   | 必填   | 说明              |
 | ----- | ------ | ------ | ----------------- |
 | duration | number | 否 | 设置滚动时长。<br/>默认值：1000。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)<sup>9+ </sup> | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease。 |
@@ -734,7 +734,7 @@ getItemRect(index: number): RectResult
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型  | 必填 | 描述              |
+| 名称   | 类型  | 必填 | 说明              |
 | ----- | ------ | ------ | ----------------- |
 | extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
 
@@ -744,7 +744,7 @@ getItemRect(index: number): RectResult
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 类型  | 必填 | 描述              |
+| 名称   | 类型  | 必填 | 说明              |
 | ----- | ------| ------- | ----------------- |
 | xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滑动偏移<br/>默认值：0 |
 | yOffset | [Dimension](ts-types.md#dimension10) | 否 |垂直滑动偏移<br/>默认值：0|
@@ -755,7 +755,7 @@ getItemRect(index: number): RectResult
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
+| 名称    | 类型 | 必填 | 说明                                                   |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。如果设置小于等于0的值，参数不生效。<br/>默认值：0<br/>  单位： vp/s          |
 
