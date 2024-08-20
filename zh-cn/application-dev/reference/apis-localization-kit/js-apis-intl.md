@@ -511,7 +511,7 @@ resolvedOptions(): NumberOptions
 | 名称                       | 类型      | 必填   |  说明                                       |
 | ------------------------ | ------- | ---- |  ---------------------------------------- |
 | locale                   | string  | 否    | 区域参数，&nbsp;如："zh-Hans-CN"。locale属性默认值为系统Locale。               |
-| currency                 | string  | 否    | 货币单位，&nbsp;取值为符合[ISO-4217标准](https://zh.wikipedia.org/wiki/ISO_4217)的三位字母代码和三位数字代码，如："EUR"，"CNY"，"USD"，"978"，"156"，"840"等。         |
+| currency                 | string  | 否    | 货币单位，&nbsp;取值为符合[ISO-4217标准](https://www.iso.org/iso-4217-currency-codes.html)的三位字母代码和三位数字代码，如："EUR"，"CNY"，"USD"，"978"，"156"，"840"等。         |
 | currencySign             | string  | 否    | 货币单位的符号显示，取值包括：&nbsp;"standard"，"accounting"。currencySign属性默认值为standard。 |
 | currencyDisplay          | string  | 否    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。currencyDisplay属性默认值为symbol。 |
 | unit                     | string  | 否    | 单位名称，如："meter"，"inch"，“hectare”等。        |
