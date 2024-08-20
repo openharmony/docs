@@ -40,7 +40,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 开始滚动时触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当滚动的文本内容变化或者开始滚动时触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 滚动全部循环次数完成时触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
