@@ -82,7 +82,7 @@ let store: relationalStore.RdbStore;
 let context = getContext(this);
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
-  securityLevel: relationalStore.SecurityLevel.S1,
+  securityLevel: relationalStore.SecurityLevel.S3,
   encrypt: true
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {

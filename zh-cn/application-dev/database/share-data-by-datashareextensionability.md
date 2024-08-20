@@ -78,7 +78,7 @@
        // 业务实现使用RDB
        relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
-         securityLevel: relationalStore.SecurityLevel.S1
+         securityLevel: relationalStore.SecurityLevel.S3
        }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {

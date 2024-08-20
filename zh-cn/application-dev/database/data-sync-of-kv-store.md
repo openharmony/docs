@@ -192,7 +192,7 @@
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // schema 可以不填，在需要使用schema功能时可以构造此参数，例如：使用谓词查询等。
        schema: schema,
-       securityLevel: distributedKVStore.SecurityLevel.S1
+       securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {

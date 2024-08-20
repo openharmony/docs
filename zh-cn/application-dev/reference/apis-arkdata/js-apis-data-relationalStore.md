@@ -74,7 +74,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
@@ -100,7 +100,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
         
     relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
@@ -173,7 +173,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -197,7 +197,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -401,7 +401,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
@@ -427,7 +427,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG, (err: BusinessError) => {
       if (err) {
@@ -492,7 +492,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
@@ -516,7 +516,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
@@ -6865,7 +6865,7 @@ let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
     name: "rdbstore1.db",
-    securityLevel: relationalStore.SecurityLevel.S1,
+    securityLevel: relationalStore.SecurityLevel.S3,
 }
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -6895,7 +6895,7 @@ let attachStore: relationalStore.RdbStore | undefined = undefined;
 const STORE_CONFIG2: relationalStore.StoreConfig = {
     name: "rdbstore2.db",
     encrypt: true,
-    securityLevel: relationalStore.SecurityLevel.S1,
+    securityLevel: relationalStore.SecurityLevel.S3,
 }
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
