@@ -354,6 +354,7 @@
     <!--Del-->
     - [InnerFullScreenLaunchComponent (系统接口)](arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
     <!--DelEnd-->
+    - [NavPushPathHelper](arkui-ts/ohos-atomicservice-NavPushPathHelper.md)
   - 自定义占位组件
     - [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)
     - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
