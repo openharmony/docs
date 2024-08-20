@@ -148,7 +148,7 @@ promise.then((data : PiPWindow.PiPController) => {
 
 create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;PiPController&gt;
 
-创建画中画控制器，使用Promise异步回调。
+通过typeNode创建画中画控制器，使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -159,7 +159,7 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 | 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                     |
 |--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。该参数不能为空，并且构造该参数的context不能为空。构造该参数时，如果指定了templateType，需保证templateType是[PiPTemplateType](#piptemplatetype)类型；如果指定了controlGroups，需保证controlGroups与templateType匹配，详见[PiPControlGroup](#pipcontrolgroup12)。 |
-| contentNode       | [typeNode.XComponent](js-apis-arkui-frameNode.md)    | 是         | 创建画中画控制器的参数。该参数不能为空。|
+| contentNode       | [typeNode.XComponent](js-apis-arkui-frameNode.md#xcomponent12)    | 是         | 用于渲染画中画窗口中的内容。该参数不能为空。|
 
 **返回值：**
 
@@ -224,8 +224,8 @@ promise.then((data : PiPWindow.PiPController) => {
 | componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md)         | 是   | 表示原始[XComponent](../../ui/arkts-common-components-xcomponent.md)控制器。                                                                                                                                                                                                                                                                      |
 | navigationId        | string                                                                     | 否   | 当前page导航id。<br/>1、UIAbility使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时，无需设置navigationId。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。 |
 | templateType        | [PiPTemplateType](#piptemplatetype)                                        | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                                                                                                                                                                                  |
-| contentWidth        | number                                                                     | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。当不使用contentNode创建PiPController时，不传值则默认为XComponent组件宽度，当使用contentNode创建PiPController时，不传值则默认为1920。                                                                                                                                                                                                                                                                                                                 |
-| contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。当不使用contentNode创建PiPController时，不传值则默认为XComponent组件高度，当使用contentNode创建PiPController时，不传值则默认为1080。                                                                                                                                                                                                                                                                                                                |
+| contentWidth        | number                                                                     | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                |
+| contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                       |
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件）；如果应用选择配置，则最多可以选择三个控件。从API version 12开始支持此参数。                                                                                                                                                                                                                                                 |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。从API version 12开始支持此参数。                                                                                                                                                                                                                                                                                           |
 
