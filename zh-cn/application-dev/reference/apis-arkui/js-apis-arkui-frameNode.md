@@ -1085,7 +1085,7 @@ invalidate(): void
 
 addComponentContent\<T>(content: ComponentContent\<T>): void
 
-支持添加ComponentContent类型的组件内容。
+支持添加ComponentContent类型的组件内容。要求当前节点是一个可修改的节点，即[isModifiable](#ismodifiable12)的返回值为true，否则抛出异常信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1130,8 +1130,10 @@ class MyNodeController extends NodeController {
       .borderColor(Color.Black)
       .backgroundColor(Color.Green)
     let component = new ComponentContent<Object>(uiContext, wrapBuilder(buildText))
-    row4.addComponentContent(component)
-    col.appendChild(row4)
+    if (row4.isModifiable()) {
+      row4.addComponentContent(component)
+      col.appendChild(row4)
+    }
     return node
   }
 }
