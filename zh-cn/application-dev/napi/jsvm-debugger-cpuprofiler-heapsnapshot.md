@@ -10,15 +10,9 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 | OH_JSVM_StopCpuProfiler  |  停止CPU profiler并将结果输出到流。 |
 | OH_JSVM_TakeHeapSnapshot  |  获取当前堆快照并将其输出到流。 |
 | OH_JSVM_OpenInspector  |  在指定的主机和端口上激活inspector，将用来调试JS代码。 |
+| OH_JSVM_OpenInspectorWithName | 基于传入的 pid 和 name 激活 inspector |
 | OH_JSVM_CloseInspector  |  尝试关闭剩余的所有inspector连接。 |
 | OH_JSVM_WaitForDebugger  |  等待主机与inspector建立socket连接，连接建立后程序将继续运行。发送Runtime.runIfWaitingForDebugger命令。 |
-
-
-- 新增接口
-
-| 接口名 | 功能说明 |
-| ----------------------------- | ----------------------------- |
-| OH_JSVM_OpenInspectorWithName | 基于传入的 pid 和 name 激活 inspector |
 
 
 本文将介绍调试、CPU Profiler、Heap Snapshot的使用方法。

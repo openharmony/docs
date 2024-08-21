@@ -493,10 +493,9 @@ consoleinfo('Result is:' + value);\
 | ------------------------------- | ---------------------------------------------------------------------------------- |
 | OH_JSVM_CompileScript           | 编译JavaScript代码并返回绑定到当前环境的编译脚本                                                      |
 | OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
+| OH_JSVM_CompileScriptWithOptions | 通用的编译接口，通过传入 option 数组完成前面的 compile 接口全部功能，同时支持后续选项扩展 |
 | OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache                                                                  |
 | OH_JSVM_RunScript               | 执行编译脚本                                                                             |
-| OH_JSVM_CompileScriptWithOptions | 新增的编译接口，通过传入 option 数组完成已有 compile 接口的全部功能，同时支持后续选项扩展 |
-|                                  |                                                       |
 
 场景示例：
 编译及执行JS代码(创建vm，注册function，执行js，销毁vm)。
@@ -931,10 +930,10 @@ OH_JSVM_CompileScriptWithOptions(env, jsSrc, 0, nullptr, &script);
 OH_JSVM_RetainScript(env, script);
 OH_JSVM_CloseHandleScope(env, scope);
 
-// 使用
+// 使用JSVM_Script
 OH_JSVM_RunScript(env, script);
 
-// 释放
+// 释放JSVM_Script，并置空
 OH_JSVM_ReleaseScript(env, script);
 script = nullptr;
 ```
