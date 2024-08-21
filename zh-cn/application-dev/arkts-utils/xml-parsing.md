@@ -200,7 +200,7 @@ let strXml: string =
   '<?xml version="1.0" encoding="UTF-8"?>' +
     '<book category="COOKING">' +
     '<title lang="en">Everyday</title>' +
-    '<author>Giada</author>' +
+    '<author>Giana</author>' +
     '</book>';
 let textEncoder: util.TextEncoder = new util.TextEncoder();
 let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml);
@@ -252,7 +252,7 @@ that.parse(options);
    token-3 2
    tag-author
    token-2 2
-   tag-Giada
+   tag-Giana
    token-4 2
    tag-author
    token-3 2
