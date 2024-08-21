@@ -97,7 +97,7 @@ let arrayList1: ArrayList<number> = new ArrayList();
 let result2 = arrayList.add(1);
 let b = [1, 2, 3];
 let result3 = arrayList.add(b);
-let c : C1 = {name: "Dylon", age: "13"}
+let c : C1 = {name: "Dylan", age: "13"}
 let result4 = arrayList.add(c);
 let result5 = arrayList.add(false);
 ```

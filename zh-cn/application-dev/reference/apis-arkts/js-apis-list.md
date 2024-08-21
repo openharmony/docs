@@ -95,7 +95,7 @@ class C {
   name: string = ''
   age: string = ''
 }
-let c: C = {name : "Dylon", age : "13"};
+let c: C = {name : "Dylan", age : "13"};
 let result4 = list.add(c);
 let result5 = list.add(false);
 ```
