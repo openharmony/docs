@@ -43,7 +43,7 @@ EmbeddedComponent(loader: Want, type: EmbeddedType)
 
 与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
 
-不支持[点击](ts-universal-events-click.md)等通用事件, 通用事件列表请参见(../../Readme-CN.md)。仅支持以下事件：
+不支持[点击](ts-universal-events-click.md)等通用事件, 通用事件列表请参见[通用事件](../Readme-CN.md)。仅支持以下事件：
 
 ### onTerminated
 
