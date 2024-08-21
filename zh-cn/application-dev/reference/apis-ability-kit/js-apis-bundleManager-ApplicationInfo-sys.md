@@ -8,6 +8,17 @@
 
 应用程序信息，三方应用可以通过bundleManager.getBundleInfoForSelf获取自身的应用程序信息，其中入参bundleFlags至少包含GETBUNDLEINFOWITHAPPLICATION。
 
+## ApplicationInfo
+
+**系统能力:** SystemCapability.BundleManager.BundleFramework.Core。
+
+**系统接口：**  此接口为系统接口。
+
+| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| flags<sup>12+</sup>    | number    | 是   | 否   | 标识当前应用和当前用户之间的状态集合，每一位表示一个特定的布尔状态。<br/>**系统API：** 从API version 12开始，该接口支持在系统API中使用。 |
+
+
 ## PreinstalledApplicationInfo<sup>12+<sup>
 
 **系统能力:** SystemCapability.BundleManager.BundleFramework.Core。
