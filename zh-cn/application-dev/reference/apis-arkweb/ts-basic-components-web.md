@@ -2055,9 +2055,8 @@ defaultTextEncodingFormat(textEncodingFormat: string)
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-          // 设置高和内边距
+          // 设置高
           .height(500)
-          .padding(20)
           .defaultTextEncodingFormat("UTF-8")
           .javaScriptAccess(true)
       }
