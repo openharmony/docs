@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for native APIs of the controller.
+Defines a native controller API.
 
 **Since**: 12
 

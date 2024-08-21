@@ -1,4 +1,4 @@
-# Sensor Service Kit API Reference
+# Sensor Service Kit
 
 - ArkTS APIs
   - [@ohos.sensor (Sensor)](js-apis-sensor.md)

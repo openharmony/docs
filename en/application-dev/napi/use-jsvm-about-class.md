@@ -1,4 +1,4 @@
-# Managing Classes Using JSVM-API
+# Working with Classes Using JSVM-API
 
 ## Introduction
 
@@ -8,8 +8,8 @@ JSVM-API provides APIs for managing JavaScript (JS) classes, for example, defini
 
 To begin with, it is important to understand the following basic concepts:
 
-- Class: A class is a template used to create an object. It provides a way to define object properties and methods in a structured manner. Classes in JavaScript are based on prototypes. Moreover, unique syntax and semantics of classes are introduced.
-- Instance: An instance is an object created from a class. A class defines the structure and behavior of an object, and an instance is a specific representation of a class. Instantiating a class allows access to the properties and methods defined in the class. Each instance has its own property values.
+- Class: a template used to create an object. It provides a way to define object properties and methods in a structured manner. Classes in JavaScript are based on prototypes. Moreover, unique syntax and semantics of classes are introduced.
+- Instance: an object created from a class. A class defines the structure and behavior of an object, and an instance is a specific representation of a class. Instantiating a class allows access to the properties and methods defined in the class. Each instance has its own property values.
 
 ## Available APIs
 
@@ -24,7 +24,7 @@ To begin with, it is important to understand the following basic concepts:
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code for class management APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for class management.
 
 ### OH_JSVM_NewInstance
 
@@ -38,7 +38,7 @@ CPP code:
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 Create an instance from the given constructor.
-// Register a NewInstance callback.
+// Register the NewInstance callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = NewInstance},
 };

@@ -307,12 +307,12 @@ Checks whether the cellular data service is enabled. This API returns the result
 
 For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
 
-| ID| Error Message                  |
-| -------- | -------------------------- |
-| 201      | Permission denied.         |
-| 8300002  | Service connection failed. |
-| 8300003  | System internal error.     |
-| 8300999  | Unknown error.             |
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -451,11 +451,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
 | 8300001  | Invalid parameter value.                                     |
-| 8300002  | Service connection failed.                                   |
+| 8300002  | Operation failed. Cannot connect to service.                 |
 | 8300003  | System internal error.                                       |
-| 8300999  | Unknown error.                                               |
+| 8300999  | Unknown error code.                                          |
 
 **Example**
 

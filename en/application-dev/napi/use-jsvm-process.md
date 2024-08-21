@@ -158,22 +158,22 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
           OH_LOG_INFO(LOG_APP, "JSVM RunJsVm failed Error code:  %{public}d", static_cast<int>(res));
       }
   }
-  // Create a JS VM environment to run JS code to obtain JSVM_Value.
+  // Create a JSVM to run JS code to obtain JSVM_Value.
   static napi_value RunJsVm(napi_env nEnv, napi_callback_info nInfo) {
       std::string jsCodeStr = getCodeString(nEnv, nInfo);
       JSVM_InitOptions initOptions;
       memset(&initOptions, 0, sizeof(initOptions));
-      // Set the initialization options for the JS VM.
+      // Set the initialization options for the JSVM.
       initOptions.externalReferences = nullptr;
       if (g_aa == 0) {
           g_aa++;
-          // Initialize the JS VM instance.
+          // Initialize the JSVM instance.
           OH_JSVM_Init(&initOptions);
       }
       JSVM_VM vm;
       JSVM_CreateVMOptions options;
       memset(&options, 0, sizeof(options));
-      // Create a JS VM instance.
+      // Create a JSVM instance.
       OH_JSVM_CreateVM(&options, &vm);
       JSVM_VMScope vmScope;
       // Open a VM scope. The VM instance can be used only within the scope and will not be garbage-collected until the scope is closed.
@@ -221,7 +221,7 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
       OH_JSVM_CloseVMScope(vm, vmScope);
       // Destroys the JS context.
       OH_JSVM_DestroyEnv(env);
-      // Destroy the JS VM instance.
+      // Destroy the JSVM instance.
       OH_JSVM_DestroyVM(vm);
       return nResult;
   }
