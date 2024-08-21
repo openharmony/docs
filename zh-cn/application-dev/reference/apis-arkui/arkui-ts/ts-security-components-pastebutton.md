@@ -26,7 +26,7 @@ PasteButton()
 
 ### PasteButton
 
-PasteButton(option:PasteButtonOptions)
+PasteButton(options:PasteButtonOptions)
 
 创建包含指定元素的粘贴按钮。
 
@@ -38,9 +38,9 @@ PasteButton(option:PasteButtonOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| option | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
+| options | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
 
 ## PasteButtonOptions
 
@@ -48,7 +48,7 @@ PasteButton(option:PasteButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴按钮的图标风格。<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴按钮的文本描述。<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
