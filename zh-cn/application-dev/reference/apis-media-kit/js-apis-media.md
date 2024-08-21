@@ -499,6 +499,8 @@ Codec MIME类型枚举。
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | 表示位深，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | 表示位深，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## PlaybackInfoKey<sup>12+</sup>
 
@@ -1374,6 +1376,42 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 });
 ```
 
+### getSelectedTracks<sup>12+</sup>
+
+getSelectedTracks(): Promise\<Array\<number>>
+
+获取已选择的音视频轨道索引，可以在prepared/playing/paused状态调用。通过Promise获取返回值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型                                                   | 说明                                              |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| Promise<Array<[number]>> | Promise对象，返回已选择音视频轨道索引数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.getSelectedTracks().then((arrList: Array<number>) => {
+  console.info('Succeeded in getting SelectedTracks');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get SelectedTracks, error:${error}`);
+});
+```
+
 ### getPlaybackInfo<sup>12+</sup>
 
 getPlaybackInfo(): Promise\<PlaybackInfo>
@@ -1439,6 +1477,7 @@ selectTrack(index: number): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
+| mode   | [SwitchMode](#switchmod12) | 否   | 切换视频轨模式，默认为SMOOTH模式，仅支持DASH协议，**仅在视频资源播放时设置**。 |
 
 **返回值：**
 
@@ -2540,6 +2579,110 @@ off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 avPlayer.off('subtitleUpdate')
 ```
 
+### on('trackChange')<sup>12+</sup>
+
+on(type: 'trackChange', callback: OnTrackChangeHandler): void
+
+订阅获取轨道变更的事件，当播放的轨道变更时，会通过订阅的回调方法通知用户。用户只能订阅一个轨道变更事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'trackChange'。 |
+| callback | OnTrackChangeHandler | 是   | 轨道变更事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
+  console.info('trackChange info: number=' + number + ' isSelect=' + isSelect)
+})
+```
+
+### off('trackChange')<sup>12+</sup>
+
+off(type: 'trackChange', callback?: OnTrackChangeHandler): void
+
+取消订阅获取轨道变更的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'trackChange'。 |
+| callback | OnTrackChangeHandler | 否   | 取消轨道变更事件的回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('trackChange')
+```
+
+### on('trackInfoUpdate')<sup>12+</sup>
+
+on(type: 'trackInfoUpdate', callback: Callback\<Array\<MediaDescription>>): void
+
+订阅获取轨道信息更新的事件，当播放的轨道有更新时，会通过订阅的回调方法通知用户。用户只能订阅一个轨道变更事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'trackInfoUpdate'。 |
+| callback | function | 是   | 轨道信息更新事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
+  if (info) {
+    for (let i = 0; i < info.len; i++) {
+      let propertyIndex: Object = info[i][media.MediaDescription.MD_KEY_TRACK_INDEX];
+      let propertyType: Object = info[i][media.MediaDescription.MD_KEY_TRACK_TYPE];
+      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType)
+    }
+  } else {
+    console.info('track info is null')
+  }
+})
+```
+
+### off('trackInfoUpdate')<sup>12+</sup>
+
+off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): void
+
+取消订阅获取轨道变更的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'trackInfoUpdate'。 |
+| callback | function | 否   | 取消轨道信息更新事件的回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('trackInfoUpdate')
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
@@ -2659,6 +2802,18 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | SEEK_CLOSEST<sup>12+</sup> | 2    | 表示跳转到距离指定时间点最近的帧，建议精准跳转进度的时候用这个枚举值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## SwitchMode<sup>12+</sup>
+
+视频播放的selectTrack模式枚举，可通过selectTrack方法作为参数传递下去，当前仅DASH协议视频轨支持该扩展参数。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称           | 值   | 说明                                                         |
+| -------------- | ---- | ------------------------------------------------------------ |
+| SMOOTH | 0    | 表示切换后视频平滑播放，该模式切换存在延迟，不会立即生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SEGMENT | 1    | 表示从分片开始位置切换，该模式立即切换，会有重复播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CLOSEST | 2    | 表示从距离当前播放时间点最近的帧开始播放，该模式立即切换，切换后会卡顿一下。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>
 
