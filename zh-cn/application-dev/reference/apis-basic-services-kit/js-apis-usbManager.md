@@ -599,7 +599,7 @@ if (devicesList.length == 0) {
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 usbManager.controlTransfer(devicepipe, param).then((ret: number) => {
-  console.log(`controlTransfer = ${ret}`);
+console.log(`controlTransfer = ${ret}`);
 })
 ```
 
@@ -665,7 +665,7 @@ if (devicesList.length == 0) {
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 usbManager.usbControlTransfer(devicepipe, param).then((ret: number) => {
-  console.log(`usbControlTransfer = ${ret}`);
+console.log(`usbControlTransfer = ${ret}`);
 })
 ```
 
