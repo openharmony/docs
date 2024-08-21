@@ -461,7 +461,7 @@ Tab页签点击后触发的事件。
 
 onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimationEvent) => void)
 
-切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值）。
+切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值）。当animationDuration为0时动画关闭，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -479,7 +479,7 @@ onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimat
 
 onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
 
-切换动画结束时触发该回调。当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。
+切换动画结束时触发该回调。当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。当animationDuration为0时动画关闭，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
