@@ -1530,7 +1530,7 @@ typeNode.createNode(uiContext, 'Stack');
 ### GridRow<sup>12+</sup>
 type GridRow = TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt;
 
-GridRow类型的FrameNode节点类型。
+GridRow类型的FrameNode节点类型。只允许添加GridCol类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1543,7 +1543,7 @@ GridRow类型的FrameNode节点类型。
 ### createNode('GridRow')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 
-创建GridRow类型的FrameNode节点。只允许添加GridCol类型子组件。
+创建GridRow类型的FrameNode节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
