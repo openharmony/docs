@@ -551,7 +551,7 @@ new url.URL('path/path1', b); // Output 'https://username:password@host:8080/pat
 let c = new url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
 new url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
 new url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
-new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
+new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output https://www.exampleUrl/path/path1
 new url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
 new url.URL('https://www.example.com', ); // Output https://www.example.com/
