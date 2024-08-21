@@ -34,14 +34,14 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。<br/>默认值：TextAlign.Start    |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。<br/>**说明：** <br/>copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。 |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。<br/>**说明：** <br/>设置CopyOptions.None时，不允许拖拽。 |
 | searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10对象说明)                                                  | 设置左侧搜索图标样式。<br />默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}                                         |
 | cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT,<br />icon: {<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}<br />}<br />当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入文本的字体颜色。<br />默认值：'#FF182431'。<br />**说明：**<br />[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在textFont属性中设置。 |
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | 设置Search通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
-| selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
-| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
+| selectionMenuHidden<sup>10+</sup> | boolean | 设置单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框时，是否不弹出文本选择菜单。<br />默认值：false |
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，当没有开启避让模式或者输入框不需要避让的场景不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
 | type<sup>11+</sup>                     | [SearchType](#searchtype11枚举说明)     | 设置输入框类型。<br/>默认值：SearchType.Normal        |
 | maxLength<sup>11+</sup>   | number                                                       | 设置文本的最大输入字符数。<br/>默认不设置最大输入字符数限制。<br/>到达文本最大字符限制，将无法继续输入字符。 |
 
@@ -92,9 +92,9 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onSubmit(callback: (value: string) => void)                  | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。<br> -value: 当前搜索框中输入的文本内容。 |
 | onChange(callback: (value: string) => void)                  | 输入内容发生变化时，触发该回调。<br> -value: 当前搜索框中输入的文本内容。 |
-| onCopy(callback: (value: string) => void)                    | 长按搜索框弹出剪切板之后，点击剪切板的复制按钮触发该回调。<br> -value: 复制的文本内容。 |
-| onCut(callback: (value: string) => void)                     | 长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。<br> -value: 剪切的文本内容。 |
-| onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。<br> - value: 粘贴的文本内容。<br/> - event: 用户自定义的粘贴事件。|
+| onCopy(callback: (value: string) => void)                    | 进行复制操作时，触发该回调。<br> -value: 复制的文本内容。 |
+| onCut(callback: (value: string) => void)                     | 进行剪切操作时，触发该回调。<br> -value: 剪切的文本内容。 |
+| onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | 进行粘贴操作时，触发该回调。<br> - value: 粘贴的文本内容。<br/> - event: 用户自定义的粘贴事件。|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
 | onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移，单位px。<br />totalOffsetY：文本在内容区的纵坐标偏移，单位px。 |
 
