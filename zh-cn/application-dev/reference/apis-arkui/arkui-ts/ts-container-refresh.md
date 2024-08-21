@@ -284,7 +284,7 @@ struct RefreshExample {
 边界刷新回弹效果。
 
 ```ts
-// Index.ets
+// xxx.ets
 @Entry
 @Component
 struct ListRefreshLoad {
@@ -298,8 +298,8 @@ struct ListRefreshLoad {
   @Builder
   refreshBuilder() {
     Stack({ alignContent: Alignment.Bottom }) {
-      // can use the refresh state to decide whether the progress component is exist or not.
-      // in this case, the component is not exist otherwise in the pull down or refresh state
+      // 可以通过刷新状态控制是否存在Progress组件
+      // 当刷新状态处于下拉中或刷新中状态时Progress组件才存在
       if (this.refreshState != RefreshStatus.Inactive && this.refreshState != RefreshStatus.Done) {
         Progress({ value: this.refreshOffset, total: 64, type: ProgressType.Ring })
           .width(32).height(32)
@@ -320,7 +320,7 @@ struct ListRefreshLoad {
     }.width("100%")
     .height(64)
     .justifyContent(FlexAlign.Center)
-    // hidden this component when don't need to load
+    // 当不处于加载中状态时隐藏组件
     .visibility(this.isLoading ? Visibility.Visible : Visibility.Hidden)
   }
 
@@ -343,11 +343,11 @@ struct ListRefreshLoad {
         }
       }
       .onScrollIndex((start: number, end: number) => {
-        // when reach the end of list, trigger data load
+        // 当达到列表末尾时，触发新数据加载
         if (this.canLoad && end >= this.arr.length - 1) {
           this.canLoad = false;
           this.isLoading = true;
-          // simulate trigger data load
+          // 模拟新数据加载
           setTimeout(() => {
             for (let i = 0; i < 10; i++) {
               this.arr.push(this.arr.length);
@@ -357,14 +357,14 @@ struct ListRefreshLoad {
         }
       })
       .onScrollFrameBegin((offset: number, state: ScrollState) => {
-        // loading can be triggered only when swipe up
+        // 只有当向上滑动时触发新数据加载
         if (offset > 5 && !this.isLoading) {
           this.canLoad = true;
         }
         return { offsetRemain: offset };
       })
       .scrollBar(BarState.Off)
-      // open the spring back of edge
+      // 开启边缘滑动效果
       .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
     }
     .width('100%')
@@ -377,7 +377,7 @@ struct ListRefreshLoad {
       this.refreshState = state;
     })
     .onRefreshing(() => {
-      // simulate refresh the data
+      // 模拟数据刷新
       setTimeout(() => {
         this.refreshing = false;
       }, 2000)
