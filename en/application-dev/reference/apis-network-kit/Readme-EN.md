@@ -40,6 +40,8 @@
     - [NetConn_NetHandleList](_net_conn___net_handle_list.md)
     - [NetConn_Route](_net_conn___route.md)
     - [NetStack_CertBlob](_net_stack___cert_blob.md)
+    - [NetStack_CertificatePinning](_net_stack___certificate_pinning.md)
+    - [NetStack_Certificates](_net_stack___certificates.md)
     - [WebSocket](_web_socket.md)
     - [WebSocket_CloseOption](_web_socket___close_option.md)
     - [WebSocket_CloseResult](_web_socket___close_result.md)
