@@ -2,7 +2,7 @@
 
 OpenHarmony 5.0.0.18 版本相较于OpenHarmony 之前的版本，键值型数据管理的API变更如下。
 
-## cl.kv_store.1 BusinessError类code字段的接口行为变更。
+## cl.kv_store.1 BusinessError类code字段的接口行为变更
 
 BusinessError类中的code字段返回number类型。
 
@@ -12,11 +12,11 @@ BusinessError类中的code字段返回number类型。
 
 **变更原因**
 
-BusinessError类中的code字段定义为number类型，API12之前错误返回string类型，2024年4月API12修复Bug,修正为number类型。
+BusinessError类中的code字段定义为number类型，API12之前错误返回string类型，API12修复Bug，修正为number类型。
 
 **变更影响**
 
-非兼容性变更，需要使用者进行适配。
+该变更为不兼容变更。
 
 变更前：BusinessError类中的code字段定义为number类型，实际返回string类型，应用判断的是字符串类型。
 
@@ -36,4 +36,4 @@ BusinessError类code字段/键值型数据管理（kv_store）
 
 **适配指导**
 
-BusinessError类code字段将会返回number类型的值，应用在判断时使用number类型做比较。
+BusinessError类code字段将会返回number类型的值，应用需要使用number类型进行判断。
