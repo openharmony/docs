@@ -1,14 +1,13 @@
 # @ohos.intl (国际化-Intl)
 
- 本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
+本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
 [I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。 
 
 >  **说明：**
+>
 >  - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->  - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
->
->  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。API version 12对应[CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42)，数据变化请参考官方链接。
+>  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。其中，API version 12对应[CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42)，详细数据变化请参考官方链接。
 >
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 >
@@ -23,7 +22,6 @@ import { intl } from '@kit.LocalizationKit';
 
 ## Locale
 
-
 ### 属性
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -35,21 +33,29 @@ import { intl } from '@kit.LocalizationKit';
 | 名称              | 类型      | 必填   | 说明                                       |
 | --------------- | ------- | -------- | ---------------------------------------- |
 | language        | string  | 是    | 与区域设置相关的语言，如：zh。                    |
-| script          | string  | 是    | 语言的书写方式，如：Hans。                          |
-| region          | string  | 是    | 与区域设置相关的地区，如：CN。                         |
-| baseName        | string  | 是    | Locale的基本核心信息（由语言脚本与地区组成），如：zh-Hans-CN。  |
-| caseFirst       | string  | 是    | 区域的整理规则是否考虑大小写，取值包括："upper",&nbsp;"lower",&nbsp;"false"。 |
-| calendar        | string  | 是    | 区域的日历信息，取值包括："buddhist",&nbsp;"chinese",&nbsp;"coptic","dangi",&nbsp;"ethioaa",&nbsp;"ethiopic",&nbsp;"gregory",&nbsp;"hebrew",&nbsp;"indian",&nbsp;"islamic",&nbsp;"islamic-umalqura",&nbsp;"islamic-tbla",&nbsp;"islamic-civil",&nbsp;"islamic-rgsa",&nbsp;"iso8601",&nbsp;"japanese",&nbsp;"persian",&nbsp;"roc",&nbsp;"islamicc"。 |
-| collation       | string  | 是    | 区域的排序规则，取值包括："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。 |
-| hourCycle       | string  | 是    | 区域的时制信息，取值包括："h12",&nbsp;"h23",&nbsp;"h11",&nbsp;"h24"。 |
-| numberingSystem | string  | 是    | 区域使用的数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| numeric         | boolean | 是    | 是否对数字字符具有特殊的排序规则处理。默认值：false。                      |
+| script          | string  | 是    | 区域语言的书写方式（脚本），如：Hans。                          |
+| region          | string  | 是    | 与区域设置相关的国家或地区，如：CN。                         |
+| baseName        | string  | 是    | Locale的基本信息，由语言、脚本、国家或地区组成，如：zh-Hans-CN。  |
+| caseFirst       | string  | 是    | 区域的排序规则是否考虑大小写，<br>取值包括："upper",&nbsp;"lower",&nbsp;"false"。 |
+| calendar        | string  | 是    | 区域的日历信息，<br>取值包括："buddhist",&nbsp;"chinese",&nbsp;"coptic","dangi",&nbsp;"ethioaa",&nbsp;"ethiopic",&nbsp;"gregory",&nbsp;"hebrew",&nbsp;"indian",&nbsp;"islamic",&nbsp;"islamic-umalqura",&nbsp;"islamic-tbla",&nbsp;"islamic-civil",&nbsp;"islamic-rgsa",&nbsp;"iso8601",&nbsp;"japanese",&nbsp;"persian",&nbsp;"roc",&nbsp;"islamicc"。 |
+| collation       | string  | 是    | 区域的排序规则，<br>取值包括："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。 |
+| hourCycle       | string  | 是    | 区域的时制信息，<br>取值包括："h12",&nbsp;"h23",&nbsp;"h11",&nbsp;"h24"。 |
+| numberingSystem | string  | 是    | 区域使用的数字系统，<br>取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
+| numeric         | boolean | 是    | 是否对数字字符进行特殊的排序规则处理。<br>默认值：false。                      |
+
+>  **说明：**
+>
+>  - caseFirst、collation：不同取值表示的含义请参考[本地习惯排序表1](../internationalization/i18n-sorting-local.md)。
+>
+>  - calendar：不同取值表示的含义请参考[设置日历和历法表1](../internationalization/i18n-calendar.md)。
+>
+>  - hourCycle：不同取值的显示效果可参考[时间日期国际化表5](../internationalization/i18n-time-date.md)。
 
 ### constructor<sup>8+</sup>
 
 constructor()
 
-创建区域对象
+创建区域对象。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -59,18 +65,17 @@ constructor()
 
 **示例：** 
   ```ts
-  // 默认构造函数使用系统当前locale创建Locale对象
+  // 默认构造函数使用系统当前locale创建
   let locale = new intl.Locale();
   // 返回系统当前locale
   let localeID = locale.toString();
   ```
 
-
 ### constructor
 
 constructor(locale: string, options?: LocaleOptions)
 
-创建区域对象
+创建区域对象。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -82,8 +87,8 @@ constructor(locale: string, options?: LocaleOptions)
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string                           | 是    | 区域信息的字符串，由语言、脚本、国家或地区组成。|
-| options             | [LocaleOptions](#localeoptions) | 否    | 用于创建区域对象的选项。 |
+| locale               | string                           | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>locale可填写组成部分中的一个或多个。|
+| options             | [LocaleOptions](#localeoptions) | 否    | 创建区域对象的选项。 |
 
 **示例：** 
   ```ts
@@ -97,7 +102,7 @@ constructor(locale: string, options?: LocaleOptions)
 
 toString(): string
 
-获取区域对象的字符串表示
+获取区域对象的字符串。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -109,7 +114,7 @@ toString(): string
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| string | 区域对象的字符串表示。 |
+| string | 区域对象的字符串。 |
 
 **示例：** 
   ```ts
