@@ -113,7 +113,7 @@ onTimer(event:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;
 
 ## TextTimerController
 
-TextTimer组件的控制器，用于控制文本计时器。一个TextTimer组件仅支持绑定一个控制器。
+TextTimer组件的控制器，用于控制文本计时器。一个TextTimer组件仅支持绑定一个控制器，组件创建完成后相关指令才能被调用。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -304,3 +304,32 @@ struct Index {
 }
 ```
 ![text_timer_content_modifier](figures/text_timer_content_modifier.gif)
+
+### 示例4
+TextTimer计时器创建之后立即执行。
+``` ts
+@Entry
+@Component
+struct textTimerStart {
+  textTimerController: TextTimerController = new TextTimerController()
+  @State format: string = 'mm:ss.SS'
+
+  build() {
+    Column() {
+      Scroll()
+        .height('20%')
+      TextTimer({ isCountDown: true, count: 30000, controller: this.textTimerController })
+        .format(this.format)
+        .fontColor(Color.Black)
+        .fontSize(50)
+        .onTimer((utc: number, elapsedTime: number) => {
+          console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
+        })
+        .onAppear(()=>{
+          this.textTimerController.start()
+        })
+    }
+  }
+}
+```
+![text_timer_auto_start](figures/text_timer_auto_start.gif)
