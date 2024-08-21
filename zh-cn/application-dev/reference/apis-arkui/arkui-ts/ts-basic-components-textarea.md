@@ -149,7 +149,7 @@ copyOption(value: CopyOptions)
 
 设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制或剪切，仅支持粘贴。
 
-copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
+设置CopyOptions.None时，不允许拖拽。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -236,7 +236,7 @@ enableKeyboardOnFocus(value: boolean)
 
 selectionMenuHidden(value: boolean)
 
-设置长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。
+设置是否不弹出系统文本选择菜单。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -246,7 +246,7 @@ selectionMenuHidden(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。<br />默认值：false |
+| value  | boolean | 是   | 是否不弹出系统文本选择菜单。<br />设置为true时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，不弹出系统文本选择菜单。<br />设置为false时，弹出系统文本选择菜单。<br />默认值：false |
 
 ### barState<sup>10+</sup>
 
@@ -290,7 +290,7 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
 
-自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。
+自定义键盘采用覆盖原始界面的方式呈现，当没有开启避让模式或者输入框不需要避让的场景不会对应用原始界面产生压缩或者上提。
 
 自定义键盘无法获取焦点，但是会拦截手势事件。
 
@@ -712,7 +712,7 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
-长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。
+进行复制操作时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -728,7 +728,7 @@ onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
-长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
+进行剪切操作时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -744,7 +744,7 @@ onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
-长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
+进行粘贴操作时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
