@@ -1,6 +1,6 @@
 # Creating and Obtaining String Values Using Node-API
 
-## Overview
+## Introduction
 
 Use Node-API to convert data between native strings and JavaScript (JS) strings.
 

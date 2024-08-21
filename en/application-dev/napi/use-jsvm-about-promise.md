@@ -41,7 +41,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a IsPromise callback.
+// Register the IsPromise callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = IsPromise},
 };

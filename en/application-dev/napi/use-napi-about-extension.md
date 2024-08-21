@@ -1,6 +1,6 @@
 # Using Node-API Extension Capabilities
 
-## Overview
+## Introduction
 
 Node-API provides APIs to implement extra capabilities for more flexible interaction between native code and JavaScript (JS) code. You can use these APIs to create custom JS objects.
 
