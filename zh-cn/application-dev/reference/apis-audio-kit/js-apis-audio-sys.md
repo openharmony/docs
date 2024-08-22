@@ -2041,7 +2041,7 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 根据输入指令，开启/关闭空间音频渲染效果，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](#setSpatializationEnabled12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](#setspatializationenabled12)替代。
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -2089,7 +2089,7 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 根据输入指令，开启/关闭空间音频渲染效果，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](./js-apis-audio-sys.md#setSpatializationEnabled12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](#setspatializationenabled12)替代。
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -2204,7 +2204,7 @@ isSpatializationEnabled(): boolean
 获取空间音频渲染是否开启，同步返回结果。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean](#isSpatializationEnabled12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean](#isspatializationenabled12)替代。
 
 **系统接口：** 该接口为系统接口
 
@@ -2305,7 +2305,7 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 订阅空间音频渲染开关状态变化事件。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onspatializationEnabledChangeForAnyDevice12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onspatializationenabledchangeforanydevice12)替代。
 
 **系统接口：** 该接口为系统接口
 
@@ -2353,7 +2353,7 @@ on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpat
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#AudioSpatialEnabledStateForDevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态    |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态    |
 
 **错误码：**
 
@@ -2383,7 +2383,7 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 取消订阅空间音频渲染开关状态变化事件。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offspatializationEnabledChangeForAnyDevice12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offspatializationenabledchangeforanydevice12)替代。
 
 **系统接口：** 该接口为系统接口
 
@@ -2428,7 +2428,7 @@ off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSp
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#AudioSpatialEnabledStateForDevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态    |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态    |
 
 **错误码：**
 
@@ -2454,7 +2454,7 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 根据输入指令，开启/关闭头动跟踪效果，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](#setHeadTrackingEnabled12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](#setheadtrackingenabled12)替代。
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -2502,7 +2502,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 根据输入指令，开启/关闭头动跟踪效果，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](#setHeadTrackingEnabled12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](#setheadtrackingenabled12)替代。
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -2617,7 +2617,7 @@ isHeadTrackingEnabled(): boolean
 获取头动跟踪是否开启，同步返回结果。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean](#isHeadTrackingEnabled12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean](#isheadtrackingenabled12)替代。
 
 **系统接口：** 该接口为系统接口
 
@@ -2718,7 +2718,7 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 订阅头动跟踪开关状态变化事件。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onheadTrackingEnabledChangeForAnyDevice12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onheadtrackingenabledchangeforanydevice12)替代。
 
 **系统接口：** 该接口为系统接口
 
@@ -2766,7 +2766,7 @@ on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatia
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#AudioSpatialEnabledStateForDevice12)> | 是   | Callback对象，返回设备信息和空间音频头动开关状态    |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频头动开关状态    |
 
 **错误码：**
 
@@ -2796,7 +2796,7 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 取消订阅头动跟踪开关状态变化事件。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offheadTrackingEnabledChangeForAnyDevice12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offheadtrackingenabledchangeforanydevice12)替代。
 
 **系统接口：** 该接口为系统接口
 
@@ -2841,7 +2841,7 @@ off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<boolean\>
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#AudioSpatialEnabledStateForDevice12)> | 是   | Callback对象，返回设备信息和空间音频头动开关状态    |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频头动开关状态    |
 
 **错误码：**
 
