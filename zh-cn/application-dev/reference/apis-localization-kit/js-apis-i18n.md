@@ -72,7 +72,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-文本按指定语言进行本地化显示。
+文本按指定语言进行本地化显示。例如，getDisplayLanguage("de", "zh-Hans-CN")用中文显示德语，接口输出结果为：德语。
 
 **原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -90,7 +90,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 按指定语言，本地化显示的文本。 |
+| string | 按指定语言，本地化显示的语言。 |
 
 **错误码：**
 
@@ -106,7 +106,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
+    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // 用英文形式显示中文，displayLanguage = Chinese
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
