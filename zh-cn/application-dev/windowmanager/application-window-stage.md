@@ -410,24 +410,22 @@ export default class EntryAbility extends UIAbility {
 
       // 2.实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
       let names: Array<'status' | 'navigation'> = [];
-      windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowSystemBarEnable(names)
+        .then(() => {
+          console.info('Succeeded in setting the system bar to be visible.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the system bar to be visible.');
-      });
+        });
       // 2.实现沉浸式效果。方式二：设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
       let isLayoutFullScreen = true;
-      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
+        .then(() => {
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the window layout to full-screen mode.');
-      });
+        });
       let sysBarProps: window.SystemBarProperties = {
         statusBarColor: '#ff00ff',
         navigationBarColor: '#00ff00',
@@ -435,14 +433,13 @@ export default class EntryAbility extends UIAbility {
         statusBarContentColor: '#ffffff',
         navigationBarContentColor: '#ffffff'
       };
-      windowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      mainWindowClass.setWindowSystemBarProperties(sysBarProps)
+        .then(() => {
+          console.info('Succeeded in setting the system bar properties.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the system bar properties.');
-      });
+        });
     })
     // 3.为沉浸式窗口加载对应的目标页面。
     windowStage.loadContent("pages/page2", (err: BusinessError) => {
