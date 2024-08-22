@@ -1867,7 +1867,7 @@ JSVM_Value arrayBuffer;
 OH_JSVM_AllocateArrayBufferBackingStoreData(100, JSVM_ZERO_INITIALIZED, &backingStore);
 
 // 在之前申请的 BackingStore 上创建一个 ArrayBuffer，位置为距离 BackingStore 起始地址加 30 字节处，大小为 20 字节
-OH_JSVM_CreateArraybufferFromBackingStoreData(env, backingStore, 100, 30, 20, &arrayBuffer);
+OH_JSVM_CreateArrayBufferFromBackingStoreData(env, backingStore, 100, 30, 20, &arrayBuffer);
 
 // 在 JS 中使用创建的 ArrayBuffer
 JSVM_Value js_global;
@@ -1890,7 +1890,7 @@ function writeBuffer(data) {
 writeBuffer(buffer)
 )JS";
 OH_JSVM_CreateStringUtf8(env, src, JSVM_AUTO_LENGTH, &scriptString);
-OH_JSVM_CompileScriptWithOption(env, scriptString, 0, nullptr, &script);
+OH_JSVM_CompileScriptWithOptions(env, scriptString, 0, nullptr, &script);
 OH_JSVM_RunScript(env, script, &result);
 
 // 检查 ArrayBuffer 的内容
