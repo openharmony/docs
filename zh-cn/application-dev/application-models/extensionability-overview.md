@@ -26,7 +26,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 | [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md) | BACKUP类型的ExtensionAbility组件，用于提供[备份及恢复应用数据](../file-management/app-file-backup-overview.md)的能力。      | Y | NA | N | N |
 | [DriverExtensionAbility](../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)            | DRIVER类型的ExtensionAbility组件，用于提供[驱动相关扩展框架](../device/driver/driverextensionability.md)。      | Y | Y | N | N |
 | [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) | EMBEDDED_UI类型的ExtensionAbility组件，用于提供[跨进程界面嵌入](embeddeduiextensionability.md)的能力。 | Y | Y | N | N |
-
+| [ShareExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md) | SHARE类型的ExtensionAbility组件，用于提供分享模板服务扩展的能力。 | Y | Y | N | N |
 
 
 ## 访问指定类型的ExtensionAbility组件
