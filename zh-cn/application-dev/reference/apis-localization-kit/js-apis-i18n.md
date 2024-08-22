@@ -72,7 +72,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-文本按指定语言进行本地化显示。例如，getDisplayLanguage("de", "zh-Hans-CN")用中文显示德语，接口输出结果为：德语。
+文本按指定语言进行本地化显示。例如，getDisplayLanguage("de", "zh-Hans-CN")用中文显示德文，接口输出结果为：德文。
 
 **原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
