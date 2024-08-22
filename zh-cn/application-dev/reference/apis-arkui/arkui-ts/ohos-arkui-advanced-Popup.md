@@ -171,18 +171,12 @@ Popup布局镜像展示
 
 ```ts
 // xxx.ets
-import {
-  Popup,
-  PopupOptions,
-  PopupTextOptions,
-  PopupButtonOptions,
-  PopupIconOptions
-}   from '@kit.ArkUI'
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct PopupPage {
-  @State currentDirection: Direction = Direction.Auto
+  @State currentDirection: Direction = Direction.Rtl
 
   build() {
     Column() {
