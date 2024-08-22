@@ -60,3 +60,27 @@ try {
     }
 }
 ```
+
+修改前executeSync接口执行SQL语句报错错误码：
+
+```ts
+try {
+    await rdbStore.executeSync("COMMIT");
+} catch (err) {
+    if (err.code === 14800000) {
+        console.log(`execute failed, code: ${err.code}`);
+    }
+}
+```
+
+修改后executeSync接口执行SQL语句报错错误码：
+
+```ts
+try {
+    await rdbStore.executeSync("COMMIT");
+} catch (err) {
+    if (err.code === 14800021) {
+        console.log(`execute failed, code: ${err.code}`);
+    }
+}
+```
