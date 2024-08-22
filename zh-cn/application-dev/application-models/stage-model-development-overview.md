@@ -11,7 +11,7 @@
 
 - [AbilityStage](abilitystage.md)
 
-  每个Entry类型或者Feature类型的HAP在运行期都有一个AbilityStage类实例，当HAP中的代码首次被加载到进程中的时候，系统会先创建AbilityStage实例。
+  每个Entry类型或者Feature类型的[HAP](../quick-start/hap-package.md)在运行期都有一个AbilityStage类实例，当[HAP](../quick-start/hap-package.md)中的代码首次被加载到进程中的时候，系统会先创建AbilityStage实例。
   
 - [UIAbility组件](uiability-overview.md)和[ExtensionAbility组件](extensionability-overview.md)
   
