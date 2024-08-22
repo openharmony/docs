@@ -5324,6 +5324,7 @@ async function example() {
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  表示照片代理资源。**系统接口**：此接口为系统接口。 |
+| PRIVATE_MOVING_PHOTO_RESOURCE<sup>12+</sup> |  4 |  表示私有动态照片资源。**系统接口**：此接口为系统接口。 |
 
 ## DefaultChangeUri
 
@@ -5420,6 +5421,8 @@ async function example() {
 | LOOP\_PLAY       | 2  | 循环播放。|
 | LONG\_EXPOSURE   | 3  | 长曝光。  |
 | MULTI\_EXPOSURE  | 4  | 多曝光。  |
+| CINEMA\_GRAPH  | 5  | 微动瞬间。  |
+| IMAGE\_ONLY  | 10  | 关闭模式。  |
 
 ## PhotoPermissionType<sup>12+</sup>
 
