@@ -52,7 +52,7 @@
    - 卷设备正在弹出："usual.event.data.VOLUME_EJECT"
 
    ```ts
-   import { commonEventManager } from '@kit.BasicServiceKit';
+   import { commonEventManager } from '@kit.BasicServicesKit';
    import { volumeManager } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
