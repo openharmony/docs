@@ -615,100 +615,26 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-### 使用 JSVM-API 接口编译及执行 wasm 代码
+### 使用 JSVM-API WebAssembly 接口编译 wasm module
 
 #### 场景介绍
-提供WasmModuleObject对象。支持wasm的编译，cache生成等功能
+
+JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、wasm cache 序列化和反序列化的能力。
+
 #### 接口说明
-| 接口                          | 功能说明                                                                                              |
-| --------------------------- | ------------------------------------------------------------------------------------------------- |
-| OH_JSVM_CompileWasmModule   | 将 wasm 字节码同步编译为 WebAssembly.Module，如果提供了 cache 参数，尝试将 wasm compiled cache 反序列为 WebAssembly.Module |
-| OH_JSVM_CompileWasmFunction | 将 WebAssembly.Module 指定编号的函数编译为优化后的机器码(目前只提供最高的优化等级)                                              |
-| OH_JSVM_IsWasmModuleObject  | 判断 js value 是否为 WebAssembly.Module                                                                |
-| OH_JSVM_CreateWasmCache     | 将编译后的 WebAssembly.Module 序列化为 wasm cache data                                                     |
-| OH_JSVM_ReleaseCache        | 释放生成的codecache                                                                                    |
+
+| 接口                          | 功能说明                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| OH_JSVM_CompileWasmModule   | 将 wasm 字节码同步编译为 wasm module。如果提供了 cache 参数，先尝试将 cache 反序列为 wasm module，反序列化失败时再执行编译。 |
+| OH_JSVM_CompileWasmFunction | 将 wasm module 中指定编号的函数编译为优化后的机器码，目前只使能了最高的优化等级，函数编号的合法性由接口调用者保证。                     |
+| OH_JSVM_IsWasmModuleObject  | 判断传入的值是否是一个 wasm module。                                                             |
+| OH_JSVM_CreateWasmCache     | 将 wasm module 中的机器码序列化为 wasm cache，如果 wasm module 不包含机器码，则会序列化失败。                    |
+| OH_JSVM_ReleaseCache        | 释放由 JSVM 接口生成的 cache。传入的 cacheType 和 cacheData 必须匹配，否则会产生未定义行为。                      |
 
 #### 场景示例
-``` c++
-const char *path = "./unittests/wasm/add.wasm";
-std::vector<uint8_t> buffer;
-// 从文件中读取 wasm 字节码
-ReadBinaryFile(path, buffer);
-JSVM_Status status;
 
-JSVM_Value wasmModule;
-// 将 wasm 字节码编译为 WebAssembly module
-status = OH_JSVM_CompileWasmModule(jsvm_env, buffer.data(), buffer.size(), NULL, 0, NULL, &wasmModule);
-CHECK(status == JSVM_OK);
+详见[使用 JSVM-API WebAssembly 接口](use-jsvm-about-wasm.md)。
 
-bool isWasmModule;
-// 检查编译结果确实是一个 WebAssembly module
-status = OH_JSVM_IsWasmModuleObject(jsvm_env, wasmModule, &isWasmModule);
-CHECK(status == JSVM_OK);
-CHECK(isWasmModule);
-
-// 对 WebAssembly module 指定编号的函数进行 high optimization level 优化
-status = OH_JSVM_CompileWasmFunction(jsvm_env, wasmModule, 0, JSVM_WASM_OPT_HIGH);
-CHECK(status == JSVM_OK);
-
-// 实例化 WebAssembly module
-auto instance = InstantiateWasmModule(wasmModule, jsvm::Run("{}"));
-CHECK(jsvm::IsObject(instance));
-// 实例化之后，就能使用 WebAssembly module 定义的函数了
-auto exports = jsvm::GetProperty(instance, jsvm::Str("exports"));
-CHECK(jsvm::IsObject(exports));
-auto add = jsvm::GetProperty(exports, jsvm::Str("add"));
-CHECK(jsvm::IsFunction(add));
-auto result = jsvm::Call(add, jsvm::Undefined(), { jsvm::Run("1"), jsvm::Run("2") });
-CHECK(jsvm::IsNumber(result));
-CHECK(jsvm::ToNumber(result) == 3);
-
-// 对编译后的 WebAssembly moudle 进行序列化，创建 wasm cache
-const uint8_t *cacheData = NULL;
-size_t cacheLength = 0;
-status = OH_JSVM_CreateWasmCache(jsvm_env, wasmModule, &cacheData, &cacheLength);
-CHECK(status == JSVM_OK);
-CHECK(cacheData != NULL);
-CHECK(cacheLength > 0);
-
-// 对序列化得到的 cache data 进行持久化存储
-const char *wasmCachePath = "wasm.cache";
-WriteBinaryFile(wasmCachePath, cacheData, cacheLength);
-status = OH_JSVM_ReleaseCache(jsvm_env, cacheData, JSVM_CACHE_TYPE_WASM);
-CHECK(status == JSVM_OK);
-
-// 下次使用时，直接使用 wasm cache 反序列化得到 WebAssembly module，避免编译开销
-std::vector<uint8_t> cacheBuffer;
-ReadBinaryFile(wasmCachePath, cacheBuffer);
-CHECK(cacheBuffer.size() == cacheLength);
-
-bool cacheRejected;
-JSVM_Value wasmModuleSerialized;
-status = OH_JSVM_CompileWasmModule(jsvm_env, buffer.data(), buffer.size(),
-cacheBuffer.data(), cacheBuffer.size(),
-&cacheRejected, &wasmModuleSerialized);
-CHECK(status == JSVM_OK);
-
-CHECK(cacheRejected == false);
-status = OH_JSVM_IsWasmModuleObject(jsvm_env, wasmModuleSerialized, &isWasmModule);
-CHECK(status == JSVM_OK);
-CHECK(isWasmModule);
-
-// 测试反序列化而来的 WebAssembly module 的功能
-// 实例化 WebAssembly module
-auto instance2 = InstantiateWasmModule(wasmModuleSerialized, jsvm::Run("{}"));
-CHECK(jsvm::IsObject(instance2));
-
-// 实例化之后，就能使用 WebAssembly module 定义的函数了
-auto exports2 = jsvm::GetProperty(instance2, jsvm::Str("exports"));
-CHECK(jsvm::IsObject(exports));
-auto add2 = jsvm::GetProperty(exports, jsvm::Str("add"));
-CHECK(jsvm::IsFunction(add));
-auto res = jsvm::Call(add, jsvm::Undefined(), { jsvm::Run("1"), jsvm::Run("2") });
-CHECK(jsvm::IsNumber(res));
-CHECK(jsvm::ToNumber(res) == 3);
-}
-```
 ### 异常处理
 
 #### 场景介绍
@@ -1889,9 +1815,11 @@ OH_JSVM_GetVersion(env, &versionId);
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | OH_JSVM_AdjustExternalMemory                | 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
 | OH_JSVM_MemoryPressureNotification          | 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。                                                                             |
-| OH_JSVM_AllocateArrayBufferBackingStoreData | 创建一段 array buffer backing store data                                                                   |
-| OH_JSVM_FreeArrayBufferBackingStoreData     | 释放一段 array buffer backing store data                                                                   |
-注：backingstoredata申请属于高危操作，需要使用者自身保证内存的正确使用，请参考使用的正确示例，谨慎使用。
+| OH_JSVM_AllocateArrayBufferBackingStoreData | 申请一块 BackingStore 内存 |
+| OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存 |
+| OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer |
+
+> BackingStore 的使用属于高危操作，需要使用者自身保证内存的正确使用，请参考下方的正确示例，谨慎使用。
 
 场景示例：
 内存管理。
@@ -1930,17 +1858,18 @@ OH_JSVM_GetHeapStatistics(vm, &mem);
 OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 触发垃圾回收后
 ```
 
-backingstoredata正确使用范例
+BackingStore 正确使用示例
 ``` c++
 void *backingStore;
 JSVM_Value arrayBuffer;
-// 申请一块大小为 100 的 backing store 内存
+
+// 申请一块大小为 100 字节的 BackingStore 内存
 OH_JSVM_AllocateArrayBufferBackingStoreData(100, JSVM_ZERO_INITIALIZED, &backingStore);
 
-// 在之前申请的 back store 上创建一个 array buffer，起始位置为 backing store + offset 30 处，大小为 20
+// 在之前申请的 BackingStore 上创建一个 ArrayBuffer，位置为距离 BackingStore 起始地址加 30 字节处，大小为 20 字节
 OH_JSVM_CreateArraybufferFromBackingStoreData(env, backingStore, 100, 30, 20, &arrayBuffer);
 
-// 在 js 中使用
+// 在 JS 中使用创建的 ArrayBuffer
 JSVM_Value js_global;
 JSVM_Value name;
 OH_JSVM_GetGlobal(jsvm_env, &js_global);
@@ -1952,11 +1881,11 @@ JSVM_Value scriptString;
 JSVM_Value result;
 const char *src = R"JS(
 function writeBuffer(data) {
-let view = new Uint8Array(data);
-// Write some values to the ArrayBuffer
-for (let i = 0; i < view.length; i++) {
-view[i] = i % 256;
-}
+  let view = new Uint8Array(data);
+  // Write some values to the ArrayBuffer
+  for (let i = 0; i < view.length; i++) {
+    view[i] = i % 256;
+  }
 }
 writeBuffer(buffer)
 )JS";
@@ -1964,15 +1893,18 @@ OH_JSVM_CreateStringUtf8(env, src, JSVM_AUTO_LENGTH, &scriptString);
 OH_JSVM_CompileScriptWithOption(env, scriptString, 0, nullptr, &script);
 OH_JSVM_RunScript(env, script, &result);
 
+// 检查 ArrayBuffer 的内容
 uint8_t *array = static_cast<uint8_t*>(backingStore);
 for (auto i = 0; i < 100; ++i) {
-if (array[i] != i % 25 % 256) {
-return false;
-}
+  if (array[i] != i % 25 % 256) {
+    return false;
+  }
 }
 
-// 释放 array buffer
-OH_JSVM_DetachArraybuffer(env, arrayBuffer));
+// 释放 array buffer. 注意对于这种方式创建的 ArrayBuffer, 在释放对应的 BackingStore 之前,
+// 务必使用 OH_JSVM_DetachArraybuffer 将所有使用当前的 BackingStore 创建的 ArrayBuffer 释放
+// 否则可能产生不可预测的内存问题，请谨慎使用
+OH_JSVM_DetachArraybuffer(env, arrayBuffer);
 
 // 释放申请的 backing store 内存
 OH_JSVM_FreeArrayBufferBackingStoreData(backingStore);
