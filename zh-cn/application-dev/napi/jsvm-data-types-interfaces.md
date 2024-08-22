@@ -931,11 +931,14 @@ OH_JSVM_RetainScript(env, script);
 OH_JSVM_CloseHandleScope(env, scope);
 
 // 使用JSVM_Script
-OH_JSVM_RunScript(env, script);
+OH_JSVM_OpenHandleScope(env, &scope);
+JSVM_Value result;
+OH_JSVM_RunScript(env, script, &result);
 
 // 释放JSVM_Script，并置空
 OH_JSVM_ReleaseScript(env, script);
 script = nullptr;
+OH_JSVM_CloseHandleScope(env, scope);
 ```
 
 ### 创建JS对象类型和基本类型
