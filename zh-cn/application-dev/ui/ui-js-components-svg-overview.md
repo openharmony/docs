@@ -4,7 +4,7 @@
 Svg组件主要作为svg画布的根节点使用，也可以在svg中嵌套使用。具体用法请参考[Svg](../reference/apis-arkui/arkui-js/js-components-svg.md)。
 
 
-> **说明：**
+> **说明：** 
 >
 > svg父组件或者svg组件需要定义宽高值，否则不进行绘制。
 

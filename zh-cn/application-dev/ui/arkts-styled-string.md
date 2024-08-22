@@ -1,6 +1,6 @@
 # 属性字符串（StyledString/MutableStyledString）
 
-属性字符串StyledString/MutableStyledString（MutableStyledString继承于StyledString，以下统一简称StyledString）是功能强大的标记对象，可用于字符或段落级别设置文本样式。通过将StyledString附加到文本组件， 可以通过多种方式更改文本，包括修改字号、添加字体颜色、使文本可点击以及自定义方式绘制文本等。具体用法可参考[StyledString](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)。
+属性字符串StyledString/MutableStyledString（MutableStyledString继承于StyledString，以下统一简称StyledString）是功能强大的标记对象，可用于字符或段落级别设置文本样式。通过将StyledString附加到文本组件， 可以通过多种方式更改文本，包括修改字号、添加字体颜色、使文本可点击以及自定义方式绘制文本等。具体用法可参考[属性字符串](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)。
 
 属性字符串提供多种类型样式对象，涵盖各种常见的文本样式格式。也可以自行创建CustomSpan, 以应用自定义样式。 
 
@@ -570,7 +570,7 @@ struct styled_string_demo6 {
     .height('100%')
   }
 }
-```
+  ```
 ![CustomSpanDemo](figures/StyledString_CustomSpan_Scene.PNG)
 
 ## 场景示例
