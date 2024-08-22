@@ -170,7 +170,7 @@ try {
 
 setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise\<void>
 
-异步方式进行区间的参数设置。通过Promise获取返回值，该接口在initialized/prepared/paused/stopped/completed状态下使用。
+设置播放区间，并通过指定的[SeekMode](js-apis-media.md#seekmode8)跳转到区间起始位置。设置之后，只播放音视频文件设定区间内的内容。该方法异步方式返回执行结果，通过Promise获取返回值。可在**initialized**/**prepared**/**paused**/**stopped**/**completed**状态下使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AvPlayer
 
@@ -180,9 +180,9 @@ setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Prom
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| startTimeMs | number | 是   | 区间起始位置，单位ms。取值[0, duration)，可以设置-1值，系统将会从0位置开始。|
-| endTimeMs | number | 是   | 区间结束位置，单位ms。取值(startTimeMs, duration]，可以设置-1值，系统会播放到资源末尾。|
-| mode | [SeekMode](js-apis-media.md#seekmode8) | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值: SeekMode.SEEK_PREV_SYNC。|
+| startTimeMs | number | 是   | 区间开始位置，单位ms，取值[0, duration)。可以设置-1值，系统将会从0位置开始播放。|
+| endTimeMs | number | 是   | 区间结束位置，单位ms，取值(startTimeMs, duration]。可以设置-1值，系统将会播放到资源末尾。|
+| mode | SeekMode | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值: SeekMode.SEEK_PREV_SYNC。|
 
 **错误码：**
 
