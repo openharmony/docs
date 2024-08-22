@@ -7311,6 +7311,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | SCREENCAPTURE_STATE_MIC_UNMUTED_BY_USER  | 7    | 麦克风被用户打开。 当前版本暂不支持。       |
 | SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE  | 8    | 录屏进入隐私页面。 当前版本暂不支持。       |
 | SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE   | 9    | 录屏退出隐私页面。 当前版本暂不支持。       |
+| SCREENCAPTURE_STATE_STOPPED_BY_USER_SWITCHES   | 10    | 系统用户切换，录屏中断。       |
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
