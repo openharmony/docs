@@ -991,22 +991,25 @@ class MyDataSource extends BasicDataSource {
   }
 
   public operateData(): void {
-    this.dataArray.splice(3, 0, this.dataArray[1]);
+    console.info(JSON.stringify(this.dataArray));
+    this.dataArray.splice(4, 0, this.dataArray[1]);
     this.dataArray.splice(1, 1);
     let temp = this.dataArray[4];
     this.dataArray[4] = this.dataArray[6];
     this.dataArray[6] = temp
-    this.dataArray.splice(8, 0, 'Hello a', 'Hello b');
-    this.dataArray.splice(10, 2);
+    this.dataArray.splice(8, 0, 'Hello 1', 'Hello 2');
+    this.dataArray.splice(12, 2);
+    console.info(JSON.stringify(this.dataArray));
     this.notifyDatasetChange([
-      {type: DataOperationType.MOVE, index: {from: 1, to: 3}},
-      {type: DataOperationType.EXCHANGE, index: {start: 4, end: 6}},
-      {type: DataOperationType.ADD, index: 8, count: 2},
-      {type: DataOperationType.DELETE, index: 10, count: 2}]);
+      { type: DataOperationType.MOVE, index: { from: 1, to: 3 } },
+      { type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } },
+      { type: DataOperationType.ADD, index: 8, count: 2 },
+      { type: DataOperationType.DELETE, index: 10, count: 2 }]);
   }
 
-  public pushData(data: string): void {
-    this.dataArray.push(data);
+  public init(): void {
+    this.dataArray.splice(0, 0, 'Hello a', 'Hello b', 'Hello c', 'Hello d', 'Hello e', 'Hello f', 'Hello g', 'Hello h',
+      'Hello i', 'Hello j', 'Hello k', 'Hello l', 'Hello m', 'Hello n', 'Hello o', 'Hello p', 'Hello q', 'Hello r');
   }
 }
 
@@ -1016,21 +1019,19 @@ struct MyComponent {
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    for (let i = 1; i <= 21; i++) {
-      this.data.pushData(`Hello ${i}`)
-    }
+    this.data.init()
   }
 
   build() {
     Column() {
-      Text('第二项数据移动到第四项处，第五项数据和第七项数据交换，第九项开始添加数据 "Hello a" "Hello b", 第十一项开始删除两个数据')
+      Text('第二项数据移动到第四项处，第五项数据和第七项数据交换，第九项开始添加数据 "Hello 1" "Hello 2", 第十一项开始删除两个数据')
         .fontSize(10)
         .backgroundColor(Color.Blue)
         .fontColor(Color.White)
         .borderRadius(50)
         .padding(5)
         .onClick(() => {
-            this.data.operateData();
+          this.data.operateData();
         })
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string, index: number) => {
@@ -1050,19 +1051,136 @@ struct MyComponent {
 }
 ```
 
-onDatasetChange接口由开发者一次性通知LazyForEach应该做哪些操作。上述例子展示了LazyForEach同时进行数据添加、删除、移动、交换的操作。
+onDatasetChange接口由开发者一次性通知LazyForEach应该做哪些操作。上述例子展示了LazyForEach同时进行数据添加、删除、移动、交换的操作。  
+
+**图8**  LazyForEach改变多个数据  
+
+![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)  
+
+第二个例子，直接给数组赋值，不涉及 splice 操作。operations直接从比较原数组和新数组得到。
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public operateData(): void {
+    this.dataArray =
+      ['Hello x', 'Hello 1', 'Hello 2', 'Hello b', 'Hello c', 'Hello e', 'Hello d', 'Hello f', 'Hello g', 'Hello h']
+    this.notifyDatasetChange([
+      { type: DataOperationType.CHANGE, index: 0 },
+      { type: DataOperationType.ADD, index: 1, count: 2 },
+      { type: DataOperationType.EXCHANGE, index: { start: 3, end: 4 } },
+    ]);
+  }
+
+  public init(): void {
+    this.dataArray = ['Hello a', 'Hello b', 'Hello c', 'Hello d', 'Hello e', 'Hello f', 'Hello g', 'Hello h'];
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    this.data.init()
+  }
+
+  build() {
+    Column() {
+      Text('Multi-Data Change')
+        .fontSize(10)
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .borderRadius(50)
+        .padding(5)
+        .onClick(() => {
+          this.data.operateData();
+        })
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string, index: number) => {
+          ListItem() {
+            Row() {
+              Text(item).fontSize(35)
+                .onAppear(() => {
+                  console.info("appear:" + item)
+                })
+            }.margin({ left: 10, right: 10 })
+          }
+
+        }, (item: string) => item + new Date().getTime())
+      }.cachedCount(5)
+    }
+  }
+}
+```
+**图9**  LazyForEach改变多个数据
+
+![LazyForEach-Change-MultiData2](./figures/LazyForEach-Change-MultiData2.gif)  
 
 使用该接口时有如下注意事项。
 
 1. onDatasetChange与其它操作数据的接口不能混用。
-2. 传入的index对应的数据均从更改前的原数组内寻找。
+2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，opeartions中的index跟操作Datasource中的index不是一一对应的。  
+第一个例子清楚地显示了这一点:
+```ts
+// 修改之前的数组
+["Hello a","Hello b","Hello c","Hello d","Hello e","Hello f","Hello g","Hello h","Hello i","Hello j","Hello k","Hello l","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
+// 修改之后的数组
+["Hello a","Hello c","Hello d","Hello b","Hello g","Hello f","Hello e","Hello h","Hello 1","Hello 2","Hello i","Hello j","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
+```
+"Hello b" 从第2项变成第4项，因此第一个 operation 为 `{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }`  
+"Hello e" 跟 "Hello g" 对调了，而 "Hello e" 在修改前的原数组中的 index=4，"Hello g" 在修改前的原数组中的 index=6, 因此第二个 operation 为 `{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }`  
+"Hello 1","Hello 2" 在 "Hello h" 之后插入，而 "Hello h" 在修改前的原数组中的 index=7，因此第三个 operation 为 `{ type: DataOperationType.ADD, index: 8, count: 2 }`  
+"Hello k","Hello l" 被删除了，而 "Hello k" 在原数组中的 index=10，因此第四个 operation 为 `{ type: DataOperationType.DELETE, index: 10, count: 2 }`  
+
 3. 调用一次onDatasetChange，一个index对应的数据只能被操作一次，若被操作多次，LazyForEach仅使第一个操作生效。
 4. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
 5. 若本次操作集合中有RELOAD操作，则其余操作全不生效。
 
-**图8**  LazyForEach改变多个数据  
 
-![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)
 
 - ### 改变数据子属性
 
@@ -1199,7 +1317,7 @@ struct ChildComponent {
 
 此时点击`LazyForEach`子组件改变`item.message`时，重渲染依赖的是`ChildComponent`的`@ObjectLink`成员变量对其子属性的监听，此时框架只会刷新`Text(this.data.message)`，不会去重建整个`ListItem`子组件。
 
-**图9**  LazyForEach改变数据子属性  
+**图10**  LazyForEach改变数据子属性  
 ![LazyForEach-Change-SubProperty](./figures/LazyForEach-Change-SubProperty.gif)
 
 ## 拖拽排序
@@ -1331,7 +1449,7 @@ struct Parent {
 }
 ```
 
-**图10** LazyForEach拖拽排序效果图  
+**图11** LazyForEach拖拽排序效果图  
 ![LazyForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
 
 ## 常见使用问题
@@ -1456,7 +1574,7 @@ struct Parent {
   }
   ```
 
-  **图11**  LazyForEach删除数据非预期  
+  **图12**  LazyForEach删除数据非预期  
   ![LazyForEach-Render-Not-Expected](./figures/LazyForEach-Render-Not-Expected.gif)
 
   当我们多次点击子组件时，会发现删除的并不一定是我们点击的那个子组件。原因是当我们删除了某一个子组件后，位于该子组件对应的数据项之后的各数据项，其`index`均应减1，但实际上后续的数据项对应的子组件仍然使用的是最初分配的`index`，其`itemGenerator`中的`index`并没有发生变化，所以删除结果和预期不符。
@@ -1589,7 +1707,7 @@ struct Parent {
 
   在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。
 
-  **图12**  修复LazyForEach删除数据非预期  
+  **图13**  修复LazyForEach删除数据非预期  
   ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
 
 - ### 重渲染时图片闪烁
@@ -1724,7 +1842,7 @@ struct Parent {
   }
   ```
 
-  **图13**  LazyForEach仅改变文字但是图片闪烁问题  
+  **图14**  LazyForEach仅改变文字但是图片闪烁问题  
   ![LazyForEach-Image-Flush](./figures/LazyForEach-Image-Flush.gif)
 
   在我们点击`ListItem`子组件时，我们只改变了数据项的`message`属性，但是`LazyForEach`的刷新机制会导致整个`ListItem`被重建。由于`Image`组件是异步刷新，所以视觉上图片会发生闪烁。为了解决这种情况我们应该使用`@ObjectLink`和`@Observed`去单独刷新使用了`item.message`的`Text`组件。
@@ -1864,7 +1982,7 @@ struct Parent {
   }
   ```
 
-  **图14**  修复LazyForEach仅改变文字但是图片闪烁问题  
+  **图15**  修复LazyForEach仅改变文字但是图片闪烁问题  
   ![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
 
 - ### @ObjectLink属性变化UI未更新
@@ -2006,7 +2124,7 @@ struct Parent {
   }
   ```
 
-  **图15**  ObjectLink属性变化后UI未更新  
+  **图16**  ObjectLink属性变化后UI未更新  
   ![LazyForEach-ObjectLink-NotRenderUI](./figures/LazyForEach-ObjectLink-NotRenderUI.gif)
   
   @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到了，因此我们只能改变它的子属性去通知对应组件重新渲染，具体[请查看@ObjectLink与@Observed的详细使用方法和限制条件](./arkts-observed-and-objectlink.md)。
@@ -2150,7 +2268,7 @@ struct Parent {
   }
   ```
   
-  **图15**  修复ObjectLink属性变化后UI更新  
+  **图17**  修复ObjectLink属性变化后UI更新  
   ![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)
 
 - ### 在List内使用屏幕闪烁
