@@ -85,12 +85,12 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
           hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
           try {
             // 保存onFillRequest请求过来的页面数据和callback数据
-            let storageFill: LocalStorage = new LocalStorage({
+            let obj: Record<string, UIExtensionContentSession | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
               'session': session,
               'fillCallback': callback, // 自动填充处理结果通过此callback回调到客户端
-              'viewData': request.viewData, // 将需要回填的数据组装到viewData中，并通过callback带回到客户端用于自动填充
-              'pageNodeInfos': request.viewData.pageNodeInfos
+              'viewData': request.viewData // 将需要回填的数据组装到viewData中，并通过callback带回到客户端
             });
+            let storage_fill: LocalStorage = new LocalStorage(obj);
             // 加载自动填充处理界面
             session.loadContent('autofillpages/AutoFillPassWord', storageFill);
           } catch (err) {
@@ -99,15 +99,18 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
         }
       
         // 自动保存服务发起自动保存请求时会触发onSaveRequest的生命周期
-        onSaveRequest(session: UIExtensionContentSession, request: autoFillManager.SaveRequest, callback: autoFillManager.SaveRequestCallback): void {
+        onSaveRequest(session: UIExtensionContentSession, request: autoFillManager.SaveRequest, 
+        callback: autoFillManager.SaveRequestCallback): void {
           hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onSaveRequest');
           try {
-            // 保存onSaveRequest请求过来的页面数据和callback数据
-            let storageSave: LocalStorage = new LocalStorage({
+            let obj: Record<string, UIExtensionContentSession | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
               'session': session,
               'saveCallback': callback, // 自动保存处理结果通过此callback回调到客户端
-              'viewData': request.viewData
-            });
+              'viewData': request.viewData // 将需要回填的数据组装到viewData中，并通过callback带回到客户端
+            };
+          
+            // 保存onSaveRequest请求过来的页面数据和callback数据
+            let storageSave: LocalStorage = new LocalStorage(obj);
             // 加载自动保存处理界面
             session.loadContent('autofillpages/SavePage', storageSave);
           } catch (err) {
