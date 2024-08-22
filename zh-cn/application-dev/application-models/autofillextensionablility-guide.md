@@ -61,7 +61,7 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
    "extensionAbilities": [
       {
         "name": "AutoFillAbility",
-        "srcEntry": "./ets/autofillability/AutoFillAbility.ts",
+        "srcEntry": "./ets/autofillability/AutoFillAbility.ets",
         // ...
         "type": "autoFill/password"
       }
@@ -72,7 +72,7 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
 
    1. 在ets目录右键选择“New &gt; Directory”，新建一个目录并命名为autofillability。
 
-   2. 在autofillability目录，右键选择“New &gt; File”，新建一个.ts文件并命名为AutoFillAbility.ts。例如：
+   2. 在autofillability目录，右键选择“New &gt; File”，新建一个.ets文件并命名为AutoFillAbility.ets。例如：
 
       ```ts
       import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -325,7 +325,7 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
    "extensionAbilities": [
       {
          "name": "AutoFillAbility",
-         "srcEntry": "./ets/autofillability/AutoFillAbility.ts",
+         "srcEntry": "./ets/autofillability/AutoFillAbility.ets",
          // ...
          "type": "autoFill/smart"
       }
