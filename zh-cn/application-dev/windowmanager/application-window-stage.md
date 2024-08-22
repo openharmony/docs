@@ -433,7 +433,7 @@ export default class EntryAbility extends UIAbility {
         statusBarContentColor: '#ffffff',
         navigationBarContentColor: '#ffffff'
       };
-      mainWindowClass.setWindowSystemBarProperties(sysBarProps)
+      windowClass.setWindowSystemBarProperties(sysBarProps)
         .then(() => {
           console.info('Succeeded in setting the system bar properties.');
         })
