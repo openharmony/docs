@@ -1051,7 +1051,8 @@ struct MyComponent {
 }
 ```
 
-onDatasetChange接口由开发者一次性通知LazyForEach应该做哪些操作。上述例子展示了LazyForEach同时进行数据添加、删除、移动、交换的操作。
+onDatasetChange接口由开发者一次性通知LazyForEach应该做哪些操作。上述例子展示了LazyForEach同时进行数据添加、删除、移动、交换的操作。  
+
 **图8**  LazyForEach改变多个数据  
 
 ![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)  

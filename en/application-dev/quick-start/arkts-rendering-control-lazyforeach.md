@@ -1233,8 +1233,7 @@ struct MyComponent {
 ```
 The **onDatasetChange** API notifies **LazyForEach** of the operations to be performed at once. In the preceding example, **LazyForEach** adds, deletes, moves, and exchanges data at the same time.
 
-**Figure 8** Changing multiple data items in LazyForEach 
-
+**Figure 8** Changing multiple data items in LazyForEach
 ![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)
 
 The second example is to directly assign values to the array without involving splice functions. Operations are obtained by comparing the original array with the new array.
