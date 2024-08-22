@@ -57,6 +57,7 @@ ArkUI NDK接口能力主要包括：
 
 | 任务 | 简介 |
 | -------- | -------- |
+| [NDK开发导读](../napi/ndk-development-overview.md) | 介绍NDK的适用场景与必备基础知识。 |
 | [接入ArkTS页面](ndk-access-the-arkts-page.md) | 介绍了如何将NDK接口开发的UI界面挂载到ArkTS主页面上进行渲染显示。 |
 | [监听组件事件](ndk-listen-to-component-events.md) | 介绍了如何注册组件的事件监听和添加手势交互。 |
 | [使用动画](ndk-use-animation.md) | 介绍了如何在Native侧添加动画。 |
