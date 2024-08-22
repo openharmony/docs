@@ -162,6 +162,48 @@ try {
 | RGBA_8888        | 3    | 表示RGBA_8888颜色格式。 |
 | RGB_888        | 5    | 表示RGB_888颜色格式。                 |
 
+## AvPlayer<sup>9+</sup>
+> **说明：**
+> 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](js-apis-media.md#mediacreateavplayer9)构建一个[AVPlayer](js-apis-media.md#avplayer9)实例。
+
+### setPlaybackRange<sup>12+</sup>
+setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise<void>
+异步方式进行区间的参数设置。通过Promise获取返回值，该接口在initialized/prepared/paused/stopped/completed状态下使用
+
+**系统能力：** SystemCapability.Multimedia.Media.AvPlayer
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                        |
+| -------- | ---------------------- | ---- | --------------------------- |
+| startTimeMs | number | 是   | 区间起始位置，单位ms。 取值[0, duration)，<br/>备注：可以设置-1值，系统将会从0位置开始|
+| endTimeMs | number | 是   | 区间结束位置，单位ms。取值(startTimeMs, duration]，<br/>备注：可以设置-1值，系统会播放到资源末尾 |
+| mode | [SeekMode](js-apis-media.md#seekmode8) | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值SeekMode.SEEK_PREV_SYNC |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 202  | Called from Non-System applications. Return by promise. |
+| 401  | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.setPlaybackRange(0, 6000, SeekMode.SEEK_CLOSEST).then(() => {
+  console.info('Succeeded setPlaybackRange');
+}).catch((err: BusinessError) => {
+  console.error('Failed to setPlaybackRange' + err.message);
+});
+```
+
 ## VideoRecorder<sup>9+</sup>
 
 > **说明：**
