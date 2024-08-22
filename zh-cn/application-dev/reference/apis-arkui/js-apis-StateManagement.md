@@ -429,7 +429,7 @@ static makeObserved\<T extends object\>(source: T): T;
 
 | 类型 | 描述                                             |
 | ---- | ------------------------------------------------ |
-| T    | 将数据源变为可观察的数据。 |
+| T    | 可观察的数据。 |
 
 **示例：**
 
@@ -446,15 +446,13 @@ struct Index {
   nonObservedClass: NonObservedClass = new NonObservedClass();
   build() {
     Column() {
-      // 刷新
       Text(`observedClass: ${this.observedClass.name}`)
         .onClick(() => {
-          this.observedClass.name = 'Jane';
+          this.observedClass.name = 'Jane'; // 刷新
         })
-      // 不刷新
       Text(`observedClass: ${this.nonObservedClass.name}`)
         .onClick(() => {
-          this.nonObservedClass.name = 'Jane';
+          this.nonObservedClass.name = 'Jane'; // 不刷新
         })
     }
   }
