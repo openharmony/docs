@@ -2089,7 +2089,7 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 根据输入指令，开启/关闭空间音频渲染效果，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](#setSpatializationEnabled12)替代。
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise: void](./js-apis-audio-sys.md#setSpatializationEnabled12)替代。
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
