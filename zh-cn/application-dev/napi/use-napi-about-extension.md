@@ -351,7 +351,8 @@ public:
         napi_create_bigint_uint64(env, addressVal, &address);
         return address;
     }
-
+    
+    // 获取数组大小
     static napi_value GetSetSize(napi_env env, napi_callback_info info)
     {
         napi_value thisVar = nullptr;
@@ -371,6 +372,7 @@ public:
         return napiSize;
     }
 
+    // 往数组里插入元素
     static napi_value Store(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -402,6 +404,7 @@ public:
         return nullptr;
     }
 
+    // 删除数组元素
     static napi_value Erase(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -433,6 +436,7 @@ public:
         return nullptr;
     }
 
+    // 清空数组
     static napi_value Clear(napi_env env, napi_callback_info info)
     {
         napi_value thisVar = nullptr;
@@ -463,11 +467,13 @@ void FinializeCallback(napi_env env, void *data, void *hint)
     return;
 }
 
+// 解绑回调，在序列化时调用，可在对象解绑时执行一些清理操作
 void* DetachCallback(napi_env env, void *value, void *hint)
 {
     return value;
 }
 
+// 绑定回调，在反序列化时调用
 napi_value AttachCallback(napi_env env, void* value, void* hint)
 {
     napi_value object = nullptr;
