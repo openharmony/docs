@@ -71,8 +71,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     };
 
     OH_VideoCaptureInfo videoCapInfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -169,8 +169,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     };
 
     OH_VideoCaptureInfo videoCapInfo = {
-        .videoFrameWidth = 720, 
-        .videoFrameHeight = 1080, 
+        .videoFrameWidth = 768, 
+        .videoFrameHeight = 1280, 
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
