@@ -13,7 +13,6 @@
 ## 约束
 
 - 开发语言：JS
-- 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 场景介绍
 
@@ -28,7 +27,7 @@
 2. 支持限制特地应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私标DNS协议）
 3. 支持拦截规则下发后立即生效（此点针对TCP协议：需断开已有被拦截的TCP连接）
 - 联网访问控制支持可追溯
-1. 支持拦截记录落盘，支持对系统应用提供查询拦截记录的能力
+1. 支持拦截记录追溯，支持对系统应用提供查询拦截记录的能力
 2. 支持所有拦截规则的自动保存和开机自动恢复
 
 以下分别介绍具体开发方式。
@@ -50,15 +49,13 @@
 
 ## 针对特定IP联网访问控制
 
-### 开发步骤
-
 1. 设备通过硬件接口，插入网线。
 2. 从@ohos.net.netFirewall中导入netfirewall命名空间。
-3. 用户态调用setNetFirewallPolicy方法，打开防火墙。
-4. 用户态通过addNetFirewallRule方法，添加防火墙规则。
+3. 用户调用setNetFirewallPolicy方法，打开防火墙。
+4. 用户通过addNetFirewallRule方法，添加防火墙规则。
 
 ```ts
-import { netFirewall } from '@ohos.net.netFirewall';
+import { netFirewall } from '@kit.netFirewall';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let policy: netFirewall.NetFirewallPolicy = {
@@ -129,15 +126,13 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 
 ## 针对域名联网访问控制支持拦截
 
-### 开发步骤
-
 1. 设备通过硬件接口，插入网线。
 2. 从@ohos.net.netfirewall中导入netFirewall命名空间。
 3. 用户态调用setNetFirewallPolicy方法，打开防火墙。
 4. 用户态通过addNetFirewallRule方法，添加防火墙规则。
 
 ```ts
-import { netFirewall } from '@ohos.net.netFirewall';
+import { netFirewall } from '@kit.netFirewall';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let policy: netFirewall.NetFirewallPolicy = {
@@ -176,16 +171,14 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 });
 ```
 
-## 联网访问控制支持可追溯
-
-### 开发步骤
+## 查询防火墙拦截记录
 
 1. 设备通过硬件接口，插入网线。
 2. 从@ohos.net.netFirewall中导入netfirewall命名空间。
 3. 用户态通过getInterceptRecords方法查询拦截记录。
 
 ```ts
-import { netFirewall } from '@ohos.net.netFirewall';
+import { netFirewall } from '@kit.netFirewall';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let interceptRecordParam: netFirewall.RequestParam = {
