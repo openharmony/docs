@@ -170,7 +170,7 @@ try {
 
 setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise\<void>
 
-设置播放区间，并通过指定的[SeekMode](js-apis-media.md#seekmode8)跳转到区间起始位置。设置之后，只播放音视频文件设定区间内的内容。该方法异步方式返回执行结果，通过Promise获取返回值。可在**initialized**/**prepared**/**paused**/**stopped**/**completed**状态下使用。
+设置播放区间，并通过指定的[SeekMode](js-apis-media.md#seekmode8)跳转到区间开始位置。设置之后，只播放音视频文件设定区间内的内容。该方法异步方式返回执行结果，通过Promise获取返回值。可在**initialized**/**prepared**/**paused**/**stopped**/**completed**状态下使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AvPlayer
 
