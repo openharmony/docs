@@ -198,22 +198,22 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array<number> | 是      | 否      | 修饰键集合，数量范围[1, 2]，修饰按键无顺序要求。<br>Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
+| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键集合，数量范围[1, 2]，修饰按键无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
 | finalKey  | number  | 是      | 否      | 被修饰键。<br>如Ctrl+Shift+Esc中，Esc称为被修饰键。 |
 
 ## inputConsumer.getAllSystemHotkeys<sup>13+</sup>
 
-getAllSystemHotkeys(): Promise<Array<HotkeyOptions>>;
+getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
-获取所有系统快捷键。
+获取系统所有快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-**返回值：** 
+**返回值：**
 
 | 参数         |  说明                                       |
 | ---------- |  ---------------------------------------- |
-| Promise<Array<HotkeyOptions>>                    | Promise实例，异步返回所有系统快捷键列表。 |
+| Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise实例，异步返回所有系统快捷键列表。 |
 
 **示例：**
 
