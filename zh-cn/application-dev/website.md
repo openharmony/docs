@@ -2927,6 +2927,7 @@
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
+            - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
           - 头文件<!--basic-services-headerfile-->
             - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
