@@ -39,7 +39,7 @@ UIExtensionComponent(want: Want, options?: UIExtensionOptions)
 
 ## 事件
 
-不支持[点击](ts-universal-events-click.md)等通用事件, 通用事件列表请参见[通用事件](../Readme-CN.md)。
+不支持[点击](ts-universal-events-click.md)等通用事件。
 
 将事件经过坐标转换后传递给对端Ability处理。
 
