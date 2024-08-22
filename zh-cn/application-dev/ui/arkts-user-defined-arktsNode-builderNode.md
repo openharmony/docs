@@ -108,10 +108,10 @@ struct Index {
 
 将BuilderNode与RenderNode进行结合使用。
 
-BuilderNode的RenderNode挂到其它RenderNode下，需要明确定义selfIdeaSize的大小用于作为布局约束。
+BuilderNode的RenderNode挂载其它RenderNode下时，需要明确定义[selfIdeaSize](../reference/apis-arkui/js-apis-arkui-builderNode.md#renderoptions)的大小作为BuilderNode的布局约束。不推荐通过该方式挂载节点。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -143,14 +143,16 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
-
+    let renderNode = new RenderNode();
+    renderNode.clipToFrame = false;
     this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
     this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     const textRenderNode = this.textNode?.getFrameNode()?.getRenderNode();
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(textRenderNode);
+      rootRenderNode.appendChild(renderNode);
+      renderNode.appendChild(textRenderNode);
     }
 
     return this.rootNode;
