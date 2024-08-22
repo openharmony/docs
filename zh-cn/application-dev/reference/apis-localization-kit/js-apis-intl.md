@@ -45,11 +45,11 @@ import { intl } from '@kit.LocalizationKit';
 
 >  **说明：**
 >
->  - caseFirst、collation：不同取值表示的含义请参考[本地习惯排序表1](../internationalization/i18n-sorting-local.md)。
+>  - caseFirst、collation：不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。
 >
->  - calendar：不同取值表示的含义请参考[设置日历和历法表1](../internationalization/i18n-calendar.md)。
+>  - calendar：不同取值表示的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。
 >
->  - hourCycle：不同取值的显示效果可参考[时间日期国际化表5](../internationalization/i18n-time-date.md)。
+>  - hourCycle：不同取值的显示效果可参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。
 
 ### constructor<sup>8+</sup>
 
@@ -211,11 +211,11 @@ minimize(): Locale
 
 >  **说明：**
 >
->  - calendar：不同取值表示的含义请参考[设置日历和历法表1](../internationalization/i18n-calendar.md)。
+>  - calendar：不同取值表示的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。
 >
->  - hourCycle：不同取值的显示效果可参考[时间日期国际化表5](../internationalization/i18n-time-date.md)。
+>  - hourCycle：不同取值的显示效果可参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。
 >
->  - collation、caseFirst：不同取值表示的含义请参考[本地习惯排序表1](../internationalization/i18n-sorting-local.md)。
+>  - collation、caseFirst：不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。
 
 ## DateTimeFormat
 
