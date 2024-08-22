@@ -39,7 +39,7 @@ Navigation(pathInfos: NavPathStack)
 
 **参数：**
 
-| 参数名       | 参数类型                            | 必填   | 参数描述   |
+| 参数名       | 类型                            | 必填   | 说明   |
 | --------- | ------------------------------- | ---- | ------ |
 | pathInfos | [NavPathStack](#navpathstack10) | 否    | 路由栈信息。 |
 
@@ -502,7 +502,7 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -519,7 +519,7 @@ pushPath(info: NavPathInfo, options?: NavigationOptions): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -536,7 +536,7 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
@@ -554,7 +554,7 @@ pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -573,7 +573,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -607,7 +607,7 @@ pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -641,7 +641,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -676,7 +676,7 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -712,7 +712,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -729,7 +729,7 @@ replacePath(info: NavPathInfo, options?: NavigationOptions): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -746,7 +746,7 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -764,7 +764,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。   |
 
@@ -786,7 +786,7 @@ removeByName(name: string): number
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | 删除的NavDestination页面的名字。   |
 
@@ -808,7 +808,7 @@ removeByNavDestinationId(navDestinationId: string): boolean
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | navDestinationId  | string  | 是    | 删除的NavDestination页面的唯一标识符navDestinationId。   |
 
@@ -830,7 +830,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
@@ -853,7 +853,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -877,7 +877,7 @@ popToName(name: string, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -900,7 +900,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
@@ -924,7 +924,7 @@ popToIndex(index: number, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -941,7 +941,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
@@ -959,7 +959,7 @@ moveToTop(name: string, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -982,7 +982,7 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -999,7 +999,7 @@ clear(animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
@@ -1031,7 +1031,7 @@ getParamByIndex(index: number): unknown | undefined
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 
@@ -1054,7 +1054,7 @@ getParamByName(name: string): Array<unknown\>
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 
@@ -1076,7 +1076,7 @@ getIndexByName(name: string): Array<number\>
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 
@@ -1114,7 +1114,7 @@ disableAnimation(value: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | ---------------------- |
 | value | boolean | 否    | 是否关闭转场动画，默认值：false。 |
 
@@ -1146,7 +1146,7 @@ setInterception(interception: NavigationInterception): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ---- | ---- | --- | ---|
 |interception| [NavigationInterception](#navigationinterception12)| 是 | 设置Navigation跳转拦截对象。|
 
@@ -1164,7 +1164,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
@@ -1180,7 +1180,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|-----|
 | info | [NavPathInfo](#navpathinfo10) | 是 | 页面触发返回时的当前页面信息，系统自动获取填入，无需开发者传入。 |
 | result | Object | 是 | 页面触发返回时的结果，开发者自定义对象。 |
@@ -1195,7 +1195,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **参数：**
 
-| 名称  | 类型  | 必填  | 描述  |
+| 名称  | 类型  | 必填  | 说明  |
 |-------|-------|------|-------|
 | name | string | 否 | NavDestination名称，如果为根视图(NavBar)，则返回值为undefined。|
 | index | number | 是 | NavDestination在NavPathStack中的序号， 如果为根视图(NavBar)，则返回值为 -1。|
@@ -1212,7 +1212,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|------|
 | timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：可交互动画无默认值，不可交互动画默认超时时间为1000ms。|
 | transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
@@ -1281,7 +1281,7 @@ Navigation跳转拦截对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型     | 必填 | 描述    |
+| 名称    | 类型     | 必填 | 说明    |
 | ---- | ----- | ----- | ----   |
 | willShow | [InterceptionShowCallback](#interceptionshowcallback12) | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。|
 | didShow | [InterceptionShowCallback](#interceptionshowcallback12) | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。|
