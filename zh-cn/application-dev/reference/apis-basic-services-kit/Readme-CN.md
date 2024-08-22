@@ -93,6 +93,7 @@
 - C API
   - 模块
     - [OsAccount](_os_account.md)
+    - [OH_Scan](c-apis-scan.md)
     - [TimeService](_time_service.md)
   - 头文件
     - [os_account.h](os__account_8h.md)
