@@ -77,7 +77,7 @@ AddFormMenuItem(
 **参数：**
 | 名称            | 参数类型           | 必填 | 说明 |
 | --------------- | ----------------- | ---- | ---- |
-| options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions类型说明) | 否   | 包含设置MenuItem的各项信息。|
+| options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions对象说明) | 否   | 包含设置MenuItem的各项信息。|
 
 > **说明：**
 >
