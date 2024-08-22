@@ -1,4 +1,4 @@
-# Structure of the module Tag
+# Internal Structure of the module Tag
 
 
 The **module** tag contains the HAP configuration.
@@ -199,10 +199,10 @@ Example of the metadata attribute:
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | process | Name of the process running the application or ability. If the **process** attribute is configured in the **deviceConfig** tag, all abilities of the application run in this process. You can set the **process** attribute for a specific ability in the **abilities** attribute, so that the ability can run in the particular process. If this attribute is set to the name of the process running other applications, all these applications can run in the same process, provided they have the same unified user ID and the same signature. The value can contain a maximum of 31 bytes.| String| Yes (initial value: left empty)|
-| name | Ability name. The value can be a reverse domain name, in the format of "*bundleName*.*className*", for example, **"com.example.myapplication.EntryAbility"**. Alternatively, the value can start with a period (.) followed by the class name, for example, **".EntryAbility"**.<br>The ability name must be unique in an application.<br>**NOTE**<br>If you use DevEco Studio to create the project, an ability named **EntryAbility** will be created by default, and its configuration will be saved to the **config.json** file. If you use other IDEs, the value of this attribute can be customized. The value can contain a maximum of 127 bytes.| String| No|
+| name | Ability name. The value can be a reverse domain name, in the format of "*bundleName*.*className*", for example, **"com.example.myapplication.EntryAbility"**. Alternatively, the value can start with a period (.) followed by the class name, for example, **".EntryAbility"**.<br>The ability name must be unique in an application. Note: If you use DevEco Studio to create the project, an ability named **EntryAbility** will be created by default, and its configuration will be saved to the **config.json** file. If you use other IDEs, the value of this attribute can be customized. The value can contain a maximum of 127 bytes.| String| No|
 | description | Description of the ability. The value can be a string or a resource index to descriptions in multiple languages. The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | icon | Index to the ability icon file. Example value: **$media:ability_icon**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the icon of the ability is also used as the icon of the application. If multiple abilities address this condition, the icon of the first candidate ability is used as the application icon.<br>Note: The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels.| String| Yes (initial value: left empty)|
-| label | Ability name displayed to users. The value can be a name string or a resource index to names in multiple languages, for example, **$string:ability_label**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the label of the ability is also used as the label of the application. If multiple abilities address this condition, the label of the first candidate ability is used as the application label.<br>**NOTE**<br>The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels. The value can be a reference to a string defined in a resource file or a string enclosed in brackets ({}). The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
+| label | Ability name displayed to users. The value can be a name string or a resource index to names in multiple languages, for example, **$string:ability_label**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the label of the ability is also used as the label of the application. If multiple abilities address this condition, the label of the first candidate ability is used as the application label.<br>Note: The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels. The value can be a reference to a string defined in a resource file or a string enclosed in brackets ({}). The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | uri | Uniform Resource Identifier (URI) of the ability. The value can contain a maximum of 255 bytes.| String| Yes (No for abilities using the Data template)|
 | launchType | Launch type of the ability. The value can be **multiton** or **singleton**.<br>**standard**: Multiple **Ability** instances can be created during startup. Most abilities can use this type.<br>**singleton**: Only a single **Ability** instance can be created across all task stacks during startup. For example, a globally unique incoming call screen uses the singleton launch type. This attribute applies only to the default, tablet, smart TV, head unit, and wearable device types.| String| Yes (initial value: **"singleton"**)|
 | visible | Whether the ability can be called by other applications.<br>**true**: The ability can be called by other applications.<br>**false**: The ability cannot be called by other applications, not even by aa commands.| Boolean| Yes (initial value: **false**)|
@@ -218,7 +218,7 @@ Example of the metadata attribute:
 | writePermission | Permission required for writing data to the ability. This attribute applies only to the ability using the Data template. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | configChanges | System configurations that the ability concerns. Upon any changes on the concerned configurations, the **onConfigurationUpdated** callback will be invoked to notify the ability. The options are as follows:<br>**mcc**: indicates that the mobile country code (MCC) of the IMSI is changed. Typical scenario: A SIM card is detected, and the MCC is updated.<br>**mnc**: indicates that the mobile network code (MNC) of the IMSI is changed. Typical scenario: A SIM card is detected, and the MNC is updated.<br>**locale**: indicates that the locale is changed. Typical scenario: The user selects a new language for the text display of the device.<br>**layout**: indicates that the screen layout is changed. Typical scenario: Currently, different display forms are all in the active state.<br>**fontSize**: indicates that font size is changed. Typical scenario: A new global font size is set.<br>**orientation**: indicates that the screen orientation is changed. Typical scenario: The user rotates the device.<br>**density**: indicates that the display density is changed. Typical scenario: The user may specify different display ratios, or different display forms are active at the same time.<br>**size**: indicates that the size of the display window is changed.<br>**smallestSize**: indicates that the length of the shorter side of the display window is changed.<br>**colorMode**: indicates that the color mode is changed.| String array| Yes (initial value: left empty)|
 | mission | Task stack of the ability. This attribute applies only to the ability using the Page template. By default, all abilities in an application belong to the same task stack.| String| Yes (initial value: bundle name of the application)|
-| targetAbility | Target ability that this ability alias points to. This attribute applies only to the ability using the Page template. If the **targetAbility** attribute is set, only **name**, **icon**, **label**, **visible**, **permissions**, and **skills** take effect in the current ability (ability alias). Other attributes use the values of the **targetAbility** attribute. The target ability must belong to the same application as the alias and must be declared in **config.json** ahead of the alias.| String| Yes (initial value: left empty, indicating that the current ability is not an alias)|
+| targetAbility | Target ability that this ability alias points to. This attribute applies only to the ability using the Page template. If the **targetAbility** attribute is set, only **name**, **icon**, **label**, **visible**, **permissions**, and **skills** take effect in the current ability (ability alias). Other attributes use the values of the **targetAbility** attribute. The target ability must belong to the same application as the alias and must be declared in **config.json** ahead of the alias.| String| Yes (initial value: left empty) indicating that the current ability is not an alias)|
 | formsEnabled | Whether the ability can provide widgets. This attribute applies only to the ability using the Page template.<br>**true**: This ability can provide widgets.<br>**false**: This ability cannot provide widgets.| Boolean| Yes (initial value: **false**)|
 | forms | Information about the widgets used by the ability. This attribute is valid only when **formsEnabled** is set to **true**.| Object array| Yes (initial value: left empty)|
 | srcLanguage | Programming language of the ability, which you can specify when creating the project. The options are **"js"**, **"ets"**, and **"java"**.| String| Yes (initial value: **"js"**)|
@@ -233,10 +233,7 @@ Example of the metadata attribute:
 
 The system strictly controls applications without icons to prevent malicious applications from deliberately configuring no icon to block uninstall attempts.
 
-**Setting the application icon to be displayed on the home screen**:
-
-Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. Make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
-
+**Setting the application icon to be displayed on the home screen**:<br>Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. Make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
 ```
 {
   "module":{
@@ -284,10 +281,7 @@ To hide an entry icon on the home screen, you must configure the **AllowAppDeskt
 
 ![Application details screen](figures/application_details.jpg)
 
-> **NOTE**
->
-> The label displayed on the application details screen may be different from the one displayed on the home screen. These two are the same if the entry icon and label are configured for the non-Page ability.
-
+**NOTE**<br>The label displayed on the application details screen may be different from the one displayed on the home screen. These two are the same if the entry icon and label are configured for the non-Page ability.<br>
 ## Internal Structure of the uriPermission Attribute
 
 **Table 9** Internal structure of the uriPermission attribute
@@ -388,7 +382,7 @@ Example of the **abilities** attribute structure:
 | pathStartWith | **pathStartWith** value of the URI.| String| Yes (initial value: left empty)|
 | path | **path** value of the URI.| String| Yes (initial value: left empty)|
 | pathRegx | **pathRegx** value of the URI.| String| Yes (initial value: left empty)|
-| type | **type** value of the URI. The value is a MIME type. Typical values include **"audio/aac"** and **"text/css"**.| String| Yes (initial value: left empty)|
+| type | **type** value of the URI. The value is a MIME type. Typical values include **"audio/aac"** and **"text/css"**.<br>The wildcard formats of ***/*** or **mainType/*** is supported but **mainType/subType.*** is not. The **mainType** is a standard media type.| String| Yes (initial value: left empty)|
 
 
 Example of the **skills** attribute structure:
