@@ -1537,7 +1537,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
-> - 同步函数列表和异步函数列表不可同时为空。
+> - 同步函数列表和异步函数列表不可同时为空，否则此次调用接口注册失败。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
