@@ -489,8 +489,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 15. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
-    调用OH_VideoDecoder_Reset()后，解码器将回到初始化的状态，需要调用OH_VideoDecoder_Configure()、OH_VideoDecoder_Prepare()和
-    OH_VideoDecoder_SetSurface()重新配置。
+    调用OH_VideoDecoder_Reset()后，解码器将回到初始化的状态，需要调用OH_VideoDecoder_Configure()、OH_VideoDecoder_Prepare()和OH_VideoDecoder_SetSurface()重新配置。
 
     ```c++
     // 重置解码器videoDec
