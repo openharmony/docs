@@ -146,7 +146,7 @@ searchIcon(value: IconOptions | SymbolGlyphModifier)
 
 | 参数名 | 类型                                  | 必填 | 说明               |
 | ------ | ------------------------------------- | ---- | ------------------ |
-| value  | [IconOptions](#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是   | 左侧搜索图标样式。<br />浅色模式默认值：<br />{<br />size: '16vp',<br />color: '#99182431',<br />src: ' '<br />}<br />深色模式默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} |
+| value  | [IconOptions](#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是   | 左侧搜索图标样式。<!--RP1--><br />浅色模式默认值：<br />{<br />size: '16vp',<br />color: '#99182431',<br />src: ' '<br />}<br />深色模式默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} <!--RP1End-->|
 
 ### cancelButton<sup>10+</sup>
 
