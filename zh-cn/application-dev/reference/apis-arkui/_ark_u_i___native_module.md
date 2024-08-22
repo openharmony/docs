@@ -708,6 +708,7 @@
 | OH_Drawing_Typography \* [OH_ArkUI_StyledString_CreateTypography](#oh_arkui_styledstring_createtypography) ([ArkUI_StyledString](#arkui_styledstring) \*handle) | 基于格式字符串对象创建指向OH_Drawing_Typography对象的指针，用于提前进行文本测算排版。  | 
 | void [OH_ArkUI_StyledString_AddPlaceholder](#oh_arkui_styledstring_addplaceholder) ([ArkUI_StyledString](#arkui_styledstring) \*handle, OH_Drawing_PlaceholderSpan \*placeholder) | 设置占位符。  | 
 
+
 ## 宏定义说明
 
 
@@ -1377,7 +1378,6 @@ typedef struct OH_PixelmapNative* OH_PixelmapNativeHandle
 
 **起始版本：** 12
 
-
 ### OH_UdmfData
 
 ```
@@ -1646,7 +1646,8 @@ enum ArkUI_BarrierDirection
 | ARKUI_BARRIER_DIRECTION_START  | 屏障在其所有referencedId的最左侧。  | 
 | ARKUI_BARRIER_DIRECTION_END  | 屏障在其所有referencedId的最右侧。  | 
 | ARKUI_BARRIER_DIRECTION_TOP  | 屏障在其所有referencedId的最上方。  | 
-| ARKUI_BARRIER_DIRECTION_BOTTOM  | 屏障在其所有referencedId的最下方。  |
+| ARKUI_BARRIER_DIRECTION_BOTTOM  | 屏障在其所有referencedId的最下方。  | 
+
 
 ### ArkUI_BlendApplyType
 
@@ -2702,7 +2703,6 @@ enum ArkUI_NodeAdapterEventType
 | NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER  | Adapter需要添加新元素时获取新元素的内容时产生该事件。  | 
 | NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER  | Adapter将元素移除时产生该事件。  | 
 
-
 ### ArkUI_NodeAttributeType
 
 ```
@@ -2739,7 +2739,7 @@ enum ArkUI_NodeAttributeType
 | NODE_BORDER_STYLE  | 边框线条样式属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>1: .value[0].i32：统一设置四条边的边框线条样式，参数类型[ArkUI_BorderStyle](#arkui_borderstyle)，默认值为ARKUI_BORDER_STYLE_SOLID。<br/>2:.value[0].i32：设置上侧边框线条样式，参数类型{\@linkArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。<br/>.value[1].i32：设置右侧边框线条样式，参数类型[ArkUI_BorderStyle](#arkui_borderstyle)，默认值为ARKUI_BORDER_STYLE_SOLID。<br/>.value[2].i32：设置下侧边框线条样式，参数类型[ArkUI_BorderStyle](#arkui_borderstyle)，默认值为ARKUI_BORDER_STYLE_SOLID。<br/>.value[3].i32：设置左侧边框线条样式，参数类型[ArkUI_BorderStyle](#arkui_borderstyle)，默认值为ARKUI_BORDER_STYLE_SOLID。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：上侧边框线条样式对应的数值。<br/>.value[1].i32：右侧边框线条样式对应的数值。<br/>.value[2].i32：下侧边框线条样式对应的数值。<br/>.value[3].i32：左侧边框线条样式对应的数值。 | 
 | NODE_Z_INDEX  | 组件的堆叠顺序属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：堆叠顺序数值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：堆叠顺序数值。 | 
 | NODE_VISIBILITY  | 组件是否可见属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件显示或隐藏，参数类型[ArkUI_Visibility](#arkui_visibility)，默认值为ARKUI_VISIBILITY_VISIBLE。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件显示或隐藏，参数类型[ArkUI_Visibility](#arkui_visibility)，默认值为ARKUI_VISIBILITY_VISIBLE。 | 
-| NODE_CLIP  | 组件进行裁剪、遮罩处理属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制是否按照父容器边缘轮廓进行裁剪，0表示不裁切，1表示裁切。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制是否按照父容器边缘轮廓进行裁剪，0表示不裁切，1表示裁切。 |
+| NODE_CLIP  | 组件进行裁剪、遮罩处理属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制是否按照父容器边缘轮廓进行裁剪，0表示不裁切，1表示裁切。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制是否按照父容器边缘轮廓进行裁剪，0表示不裁切，1表示裁切。 | 
 | NODE_CLIP_SHAPE  | 组件上指定形状的裁剪，支持属性设置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式,共有5种类型：<br/>1.rect类型：<br/>.value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](#arkui_cliptype)，ARKUI_CLIP_TYPE_RECTANGLE；<br/>.value[1].f32：矩形宽度；<br/>.value[2].f32：矩形高度；<br/>.value[3].f32：矩形圆角宽度；<br/>.value[4].f32：矩形圆角高度；<br/>.value[5]?.f32：矩形形状的左上圆角半径；<br/>.value[6]?.f32：矩形形状的左下圆角半径；<br/>.value[7]?.f32：矩形形状的右上圆角半径；<br/>.value[8]?.f32：矩形形状的右下圆角半径；<br/>2.circle类型：<br/>.value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](#arkui_cliptype)，ARKUI_CLIP_TYPE_CIRCLE；<br/>.value[1].f32：圆形宽度；<br/>.value[2].f32：圆形高度；<br/>3.ellipse类型：<br/>.value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](#arkui_cliptype)，ARKUI_CLIP_TYPE_ELLIPSE；<br/>.value[1].f32：椭圆形宽度；<br/>.value[2].f32：椭圆形高度；<br/>4.path类型：<br/>.value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](#arkui_cliptype)，ARKUI_CLIP_TYPE_PATH；<br/>.value[1].f32：路径宽度；<br/>.value[2].f32：路径高度；<br/>.string：路径绘制的命令字符串；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式,共有5种类型：<br/>1.rect类型：<br/>.value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](#arkui_cliptype)，ARKUI_CLIP_TYPE_RECTANGLE；<br/>.value[1].f32：矩形宽度；<br/>.value[2].f32：矩形高度；<br/>.value[3].f32：矩形圆角宽度；<br/>.value[4].f32：矩形圆角高度；<br/>.value[5]?.f32：矩形形状的左上圆角半径；<br/>.value[6]?.f32：矩形形状的左下圆角半径；<br/>.value[7]?.f32：矩形形状的右上圆角半径；<br/>.value[8]?.f32：矩形形状的右下圆角半径；<br/>2.circle类型：<br/>.value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](#arkui_cliptype)，ARKUI_CLIP_TYPE_CIRCLE；<br/>.value[1].f32：圆形宽度；<br/>.value[2].f32：圆形高度；<br/>3.ellipse类型:：<br/>.value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](#arkui_cliptype)，ARKUI_CLIP_TYPE_ELLIPSE；<br/>.value[1].f32：椭圆形宽度；<br/>.value[2].f32：椭圆形高度；<br/>4.path类型：<br/>.value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](#arkui_cliptype)，ARKUI_CLIP_TYPE_PATH；<br/>.value[1].f32：路径宽度；<br/>.value[2].f32：路径高度；<br/>.string：路径绘制的命令字符串； | 
 | NODE_TRANSFORM  | 矩阵变换功能，可对图形进行平移、旋转和缩放等，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0...15].f32: 16个浮点数字。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0...15].f32: 16个浮点数字。 | 
 | NODE_HIT_TEST_BEHAVIOR  | 触摸测试类型，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件的触摸测试类型，参数类型[ArkUI_HitTestMode](#arkui_hittestmode)，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件的触摸测试类型，参数类型**ArkKUI_HitTestMode**，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。 | 
@@ -2785,7 +2785,7 @@ enum ArkUI_NodeAttributeType
 | NODE_FOCUS_STATUS  | 组件获取焦点属性，支持属性设置，属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：参数类型为1或者0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型为1或者0。 | 
 | NODE_ASPECT_RATIO  | 设置组件的宽高比，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：组件的宽高比，输入值为 width/height。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：组件的宽高比，width/height的比值。 | 
 | NODE_LAYOUT_WEIGHT  | Row/Column/Flex 布局下的子组件布局权重参数，支持属性设置、属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：子组件占主轴尺寸的权重。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：子组件占主轴尺寸的权重。 | 
-| NODE_DISPLAY_PRIORITY  | Row/Column/Flex(单行) 布局下的子组件在布局容器中显示的优先级，支持属性设置、属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：子组件在父容器中的显示优先级。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：子组件在父容器中的显示优先级。 | 
+| NODE_DISPLAY_PRIORITY  | Row/Column/Flex(单行) 布局下的子组件在布局容器中显示的优先级，支持属性设置、属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：子组件在父容器中的显示优先级。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：子组件在父容器中的显示优先级。 |
 | NODE_OUTLINE_WIDTH  | 设置元素的外描边宽度。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：元素左边的外描边宽度。<br/>.value[1].f32：元素上边的外描边宽度。<br/>.value[2].f32：元素右边的外描边宽度。<br/>.value[3].f32：元素下边的外描边宽度。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：元素左边的外描边宽度。<br/>.value[1].f32：元素上边的外描边宽度。<br/>.value[2].f32：元素右边的外描边宽度。<br/>.value[3].f32：元素下边的外描边宽度。 | 
 | NODE_WIDTH_PERCENT  | 宽度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：宽度数值，单位为百分比；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：宽度数值，单位为百分比； | 
 | NODE_HEIGHT_PERCENT  | 高度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：高度数值，单位为百分比；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：高度数值，单位为百分比； | 
@@ -2811,7 +2811,7 @@ enum ArkUI_NodeAttributeType
 | NODE_EXPAND_SAFE_AREA  | 定义控制组件扩展其安全区域，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0]?.u32：扩展安全区域的枚举值集合[ArkUI_SafeAreaType](#arkui_safeareatype)， 例如：ARKUI_SAFE_AREA_TYPE_SYSTEM \| ARKUI_SAFE_AREA_TYPE_CUTOUT；<br/>.value[1]?.u32：扩展安全区域的方向枚举值集合[ArkUI_SafeAreaEdge](#arkui_safeareaedge)；<br/>例如：ARKUI_SAFE_AREA_EDGE_TOP \| ARKUI_SAFE_AREA_EDGE_BOTTOM；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：扩展安全区域；<br/>。<br/>.value[1].u32：扩展安全区域的方向；<br/>。 | 
 | NODE_VISIBLE_AREA_CHANGE_RATIO  | 定义控制组件触发可视区域面积变更事件的可视区域面积占组件本身面积的比例阈值。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[...].f32：占比数值，输入范围0-1<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[...].f32：占比数值；<br/>。 | 
 | NODE_TRANSITION  | 定义组件插入和删除时显示过渡动效，支持属性设置，属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.object：参数类型为[ArkUI_TransitionEffect](#arkui_transitioneffect)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：参数类型为[ArkUI_TransitionEffect](#arkui_transitioneffect)。 | 
-| NODE_UNIQUE_ID  | 组件标识ID，支持属性获取。<br/>注解<br/>组件标识ID只读，且进程内唯一。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：组件标识ID。 |
+| NODE_UNIQUE_ID  | 组件标识ID，支持属性获取。<br/>注解<br/>组件标识ID只读，且进程内唯一。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：组件标识ID。 | 
 | NODE_CLICK_DISTANCE  | 组件所绑定的点击手势移动距离限制，支持属性设置。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示识别点击手势时允许手指在该范围内移动，单位为vp | 
 | NODE_TEXT_CONTENT  | text组件设置文本内容属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示文本内容<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示文本内容 | 
 | NODE_FONT_COLOR  | 组件字体颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：字体颜色数值，0xargb格式，形如 0xFFFF0000 表示红色；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：字体颜色数值，0xargb格式； | 
@@ -2957,7 +2957,7 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_PICKER_SELECTED_INDEX  | 设置滑动选择文本内容的组件默认选中项在数组中的索引值，支持属性设置，属性重置和属性获取接口。<br/>[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数类型：<br/>.value[0...].i32：默认选中项在数组中的索引值数组。 | 
 | NODE_TEXT_PICKER_CAN_LOOP  | Picker组件可循环滚动属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false表示不可循环，true表示可循环。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>value[0].i32：0表示不可循环，1表示可循环。 | 
 | NODE_TEXT_PICKER_DEFAULT_PICKER_ITEM_HEIGHT  | Picker各选择项的高度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子项高度属性，单位为vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>value[0].f32：子项高度属性，单位为vp。 | 
-| NODE_CALENDAR_PICKER_HINT_RADIUS  | 设置日历选中态底板圆角半径的参数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 日历选中态底板圆角半径，取值范围[0,+∞)，其中取值为0表示底板样式为直角矩形； 取值范围为(0, 16)时，底板样式为圆角矩形；取值范围为[16,+∞)时，底板样式为圆形。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 日历选中态底板圆角半径，取值范围[0,+∞)，其中取值为0表示底板样式为直角矩形； 取值范围为(0, 16)时，底板样式为圆角矩形；取值范围为[16,+∞)时，底板样式为圆形。 |
+| NODE_CALENDAR_PICKER_HINT_RADIUS  | 设置日历选中态底板圆角半径的参数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 日历选中态底板圆角半径，取值范围[0,+∞)，其中取值为0表示底板样式为直角矩形； 取值范围为(0, 16)时，底板样式为圆角矩形；取值范围为[16,+∞)时，底板样式为圆形。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 日历选中态底板圆角半径，取值范围[0,+∞)，其中取值为0表示底板样式为直角矩形； 取值范围为(0, 16)时，底板样式为圆角矩形；取值范围为[16,+∞)时，底板样式为圆形。 | 
 | NODE_CALENDAR_PICKER_SELECTED_DATE  | 设置日历选择选中日期的参数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32： 选中的年。<br/>.value[1].u32： 选中的月。<br/>.value[2].u32： 选中的日。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32： 选中的年。<br/>.value[1].u32： 选中的月。<br/>.value[2].u32： 选中的日。 | 
 | NODE_CALENDAR_PICKER_EDGE_ALIGNMENT  | 设置日历选择器与入口组件的对齐方式，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式类型，参数类型[ArkUI_CalendarAlignment](#arkui_calendaralignment)。<br/>.value[1]?.f32： 按照对齐方式对齐后，选择器相对入口组件的x轴方向相对偏移。<br/>.value[2]?.f32： 按照对齐方式对齐后，选择器相对入口组件的y轴方向相对偏移。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式类型，参数类型[ArkUI_CalendarAlignment](#arkui_calendaralignment)。<br/>.value[1].f32： 按照对齐方式对齐后，选择器相对入口组件的x轴方向相对偏移。<br/>.value[2].f32： 按照对齐方式对齐后，选择器相对入口组件的y轴方向相对偏移。 | 
 | NODE_CALENDAR_PICKER_TEXT_STYLE  | 设置日历选择器入口区的文本颜色、字号、字体粗细。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.u32： 入口区的文本颜色。<br/>.value[1]?.f32： 入口区的文本字号，单位为fp。<br/>.value[2]?.i32： 入口区的文本字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32： 入口区的文本颜色。<br/>.value[1].f32： 入口区的文本字号，单位为fp。<br/>.value[2].i32： 入口区的文本字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。 | 
@@ -5403,7 +5403,8 @@ void OH_ArkUI_AnimateOption_SetPlayMode (ArkUI_AnimateOption * option, ArkUI_Ani
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 动画效果参数。  | 
-| value | 动画播放模式。  |
+| value | 动画播放模式。  | 
+
 
 ### OH_ArkUI_AnimateOption_SetTempo()
 
@@ -5868,7 +5869,6 @@ ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetKeyframeCurve (ArkUI_AnimatorOption
 **返回：**
 
 动画插值曲线。
-
 
 ### OH_ArkUI_AnimatorOption_GetKeyframeTime()
 
@@ -6932,6 +6932,7 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom (ArkUI_CustomSpanDrawInfo * info
 
 下边距值。若函数参数异常，返回0.0f。 异常返回原因：传入参数验证失败，参数不能为空。
 
+
 ### OH_ArkUI_CustomSpanDrawInfo_GetLineTop()
 
 ```
@@ -7461,7 +7462,6 @@ int32_t OH_ArkUI_DragEvent_DisableDefaultDropAnimation (ArkUI_DragEvent * event,
 **返回：**
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
-
 
 ### OH_ArkUI_DragEvent_GetDataTypes()
 
@@ -8782,6 +8782,7 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationIndex (ArkUI_NodeHandle node, int32_t 
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败，可能因为当前节点不在Navigation中。
 
+
 ### OH_ArkUI_GetNavDestinationName()
 
 ```
@@ -8805,7 +8806,6 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationName (ArkUI_NodeHandle node, char * bu
 **返回：**
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败，可能因为当前节点不在Navigation中。 ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 给定的buffer size小于可以容纳目标的最小缓冲区大小。
-
 
 ### OH_ArkUI_GetNavDestinationNameByIndex()
 
@@ -10515,1688 +10515,15 @@ void OH_ArkUI_ListItemSwipeActionItem_SetContent (ArkUI_ListItemSwipeActionItem 
 | item | ListItemSwipeActionItem实例。  | 
 | node | 布局信息。  | 
 
-### OH_ArkUI_GetNavDestinationName()
 
-```
-ArkUI_ErrorCode OH_ArkUI_GetNavDestinationName (ArkUI_NodeHandle node, char * buffer, int32_t bufferSize, int32_t * writeLength )
-```
-**描述：**
-
-获取当前节点所在的NavDestination组件的名称。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| buffer | 缓冲区，被查询的NavDestination名称写入该内存区域。  | 
-| bufferSize | 缓冲区大小。  | 
-| writeLength | 在返回ARKUI_ERROR_CODE_NO_ERROR时表示实际写入到缓冲区的字符串长度， 在返回ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR时表示可以容纳目标的最小缓冲区大小。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败，可能因为当前节点不在Navigation中。 ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 给定的buffer size小于可以容纳目标的最小缓冲区大小。
-
-
-### OH_ArkUI_GetNavDestinationNameByIndex()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetNavDestinationNameByIndex (ArkUI_NodeHandle node, int32_t index, char * buffer, int32_t bufferSize, int32_t * writeLength )
-```
-**描述：**
-
-根据给定索引值，获取当前节点所在的Navigation栈中对应位置的页面名称。 索引值从0开始计数，0为栈底。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| index | 被查询NavDestination在栈中的索引。  | 
-| buffer | 缓冲区，被查询页面的名称写入该内存区域。  | 
-| bufferSize | 缓冲区大小。  | 
-| writeLength | 在返回ARKUI_ERROR_CODE_NO_ERROR时表示实际写入到缓冲区的字符串长度， 在返回ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR时表示可以容纳目标的最小缓冲区大小。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_NODE_INDEX_INVALID index为非法值。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败，可能因为当前节点不在Navigation中。 ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 给定的buffer size小于可以容纳目标的最小缓冲区大小。
-
-
-### OH_ArkUI_GetNavDestinationParam()
-
-```
-napi_value OH_ArkUI_GetNavDestinationParam (ArkUI_NodeHandle node)
-```
-**描述：**
-
-获取当前节点所在的NavDestination组件的参数。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-
-**返回：**
-
-参数对象。
-
-
-### OH_ArkUI_GetNavDestinationState()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetNavDestinationState (ArkUI_NodeHandle node, ArkUI_NavDestinationState * state )
-```
-**描述：**
-
-获取当前节点所在的NavDestination组件的状态。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| state | NavDestination的状态值写回该参数中。  | 
-
-**返回：**
-
-错误码 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败，可能因为当前节点不在Navigation中。
-
-
-### OH_ArkUI_GetNavigationId()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetNavigationId (ArkUI_NodeHandle node, char * buffer, int32_t bufferSize, int32_t * writeLength )
-```
-**描述：**
-
-获取当前节点所在的Navigation组件的ID。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| buffer | 缓冲区，NavigationID写入该内存区域。  | 
-| bufferSize | 缓冲区大小。  | 
-| writeLength | 在返回ARKUI_ERROR_CODE_NO_ERROR时表示实际写入到缓冲区的字符串长度， 在返回ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR时表示可以容纳目标的最小缓冲区大小。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败，可能因为当前节点不在Navigation中。 ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 给定的buffer size小于可以容纳目标的最小缓冲区大小。
-
-
-### OH_ArkUI_GetNavStackLength()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetNavStackLength (ArkUI_NodeHandle node, int32_t * length )
-```
-**描述：**
-
-根据给定索引值，获取当前节点所在的Navigation栈的长度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| length | 栈的长度。查询成功后将结果写回该参数。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败，可能因为当前节点不在Navigation中。
-
-
-### OH_ArkUI_GetNodeContentFromNapiValue()
-
-```
-int32_t OH_ArkUI_GetNodeContentFromNapiValue (napi_env env, napi_value value, ArkUI_NodeContentHandle * content )
-```
-**描述：**
-
-获取ArkTS侧创建的NodeContent对象映射到native侧的ArkUI_NodeContentHandle。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| env | napi的环境指针。  | 
-| value | ArkTS侧创建的NodeContent对象。  | 
-| context | ArkUI_NodeContentHandle指针。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
-
-
-### OH_ArkUI_GetNodeHandleFromNapiValue()
-
-```
-int32_t OH_ArkUI_GetNodeHandleFromNapiValue (napi_env env, napi_value frameNode, ArkUI_NodeHandle * handle )
-```
-**描述：**
-
-获取ArkTS侧创建的FrameNode节点对象映射到native侧的ArkUI_NodeHandle。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| env | napi的环境指针。  | 
-| frameNode | ArkTS侧创建的FrameNode对象。  | 
-| handle | ArkUI_NodeHandle指针。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
-
-
-### OH_ArkUI_GetPanGestureDirectionMask()
-
-```
-int32_t OH_ArkUI_GetPanGestureDirectionMask (ArkUI_GestureRecognizer * recognizer, ArkUI_GestureDirectionMask * directionMask )
-```
-**描述：**
-
-获取滑动手势的滑动方向。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recognizer | 手势识别器指针。  | 
-| directionMask | 滑动手势的滑动方向。  | 
-
-**返回：**
-
-0 - 成功。 401 - 参数错误。
-
-
-### OH_ArkUI_GetResponseRecognizersFromInterruptInfo()
-
-```
-int32_t OH_ArkUI_GetResponseRecognizersFromInterruptInfo (const ArkUI_GestureInterruptInfo * event, ArkUI_GestureRecognizerHandleArray * responseChain, int32_t * count )
-```
-**描述：**
-
-获取手势响应链的信息。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| event | 手势打断回调事件。  | 
-| responseChain | 响应链组件上的手势识别器。  | 
-| count | 响应链组件上的手势识别器的数量。  | 
-
-**返回：**
-
-0 - 成功。 401 - 参数错误。
-
-
-### OH_ArkUI_GetRouterPageId()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetRouterPageId (ArkUI_NodeHandle node, char * buffer, int32_t bufferSize, int32_t * writeLength )
-```
-**描述：**
-
-获取当前节点所在页面的Page组件的ID。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| buffer | 缓冲区，Page Id写入该内存区域。  | 
-| bufferSize | 缓冲区大小。  | 
-| writeLength | 在返回ARKUI_ERROR_CODE_NO_ERROR时表示实际写入到缓冲区的字符串长度， 在返回ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR时表示可以容纳目标的最小缓冲区大小。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败。 ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 给定的buffer size小于可以容纳目标的最小缓冲区大小。
-
-
-### OH_ArkUI_GetRouterPageIndex()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetRouterPageIndex (ArkUI_NodeHandle node, int32_t * index )
-```
-**描述：**
-
-获取当前节点所在页面在Router页面栈中的索引。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| index | 索引值，从1开始计数。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败，可能因为当前节点不在Navigation中。
-
-
-### OH_ArkUI_GetRouterPageName()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetRouterPageName (ArkUI_NodeHandle node, char * buffer, int32_t bufferSize, int32_t * writeLength )
-```
-**描述：**
-
-获取当前节点所在页面的名称。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| buffer | 缓冲区，页面名称写入该内存区域。  | 
-| bufferSize | 缓冲区大小。  | 
-| writeLength | 在返回ARKUI_ERROR_CODE_NO_ERROR时表示实际写入到缓冲区的字符串长度， 在返回ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR时表示可以容纳目标的最小缓冲区大小。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败。 ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 给定的buffer size小于可以容纳目标的最小缓冲区大小。
-
-
-### OH_ArkUI_GetRouterPagePath()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetRouterPagePath (ArkUI_NodeHandle node, char * buffer, int32_t bufferSize, int32_t * writeLength )
-```
-**描述：**
-
-获取当前节点所在页面的Page组件的路径。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| buffer | 缓冲区，Page Path写入该内存区域。  | 
-| bufferSize | 缓冲区大小。  | 
-| writeLength | 在返回ARKUI_ERROR_CODE_NO_ERROR时表示实际写入到缓冲区的字符串长度， 在返回ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR时表示可以容纳目标的最小缓冲区大小。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败。 ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 给定的buffer size小于可以容纳目标的最小缓冲区大小。
-
-
-### OH_ArkUI_GetRouterPageState()
-
-```
-ArkUI_ErrorCode OH_ArkUI_GetRouterPageState (ArkUI_NodeHandle node, ArkUI_RouterPageState * state )
-```
-**描述：**
-
-获取当前节点所在页面的Page组件的状态。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 指定的节点。  | 
-| state | Router Page的状态值写回该参数中。  | 
-
-**返回：**
-
-错误码 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_GET_INFO_FAILED 查询信息失败。
-
-
-### OH_ArkUI_GuidelineOption_Create()
-
-```
-ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create (int32_t size)
-```
-**描述：**
-
-创建RelativeContaine容器内的辅助线信息。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| size | 辅助线数量。  | 
-
-**返回：**
-
-辅助线信息。
-
-
-### OH_ArkUI_GuidelineOption_Dispose()
-
-```
-void OH_ArkUI_GuidelineOption_Dispose (ArkUI_GuidelineOption * guideline)
-```
-**描述：**
-
-销毁辅助线信息。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-
-
-### OH_ArkUI_GuidelineOption_GetDirection()
-
-```
-ArkUI_Axis OH_ArkUI_GuidelineOption_GetDirection (ArkUI_GuidelineOption * guideline, int32_t index )
-```
-**描述：**
-
-获取辅助线的方向。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-| index | 辅助线索引值。  | 
-
-**返回：**
-
-方向。
-
-
-### OH_ArkUI_GuidelineOption_GetId()
-
-```
-const char* OH_ArkUI_GuidelineOption_GetId (ArkUI_GuidelineOption * guideline, int32_t index )
-```
-**描述：**
-
-获取辅助线的Id。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-| index | 辅助线索引值。  | 
-
-**返回：**
-
-Id。
-
-
-### OH_ArkUI_GuidelineOption_GetPositionEnd()
-
-```
-float OH_ArkUI_GuidelineOption_GetPositionEnd (ArkUI_GuidelineOption * guideline, int32_t index )
-```
-**描述：**
-
-获取距离容器右侧或者底部的距离。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-| index | 辅助线索引值。  | 
-
-**返回：**
-
-距离容器右侧或者底部的距离。
-
-
-### OH_ArkUI_GuidelineOption_GetPositionStart()
-
-```
-float OH_ArkUI_GuidelineOption_GetPositionStart (ArkUI_GuidelineOption * guideline, int32_t index )
-```
-**描述：**
-
-获取距离容器左侧或者顶部的距离。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-| index | 辅助线索引值。  | 
-
-**返回：**
-
-距离容器左侧或者顶部的距离。
-
-
-### OH_ArkUI_GuidelineOption_SetDirection()
-
-```
-void OH_ArkUI_GuidelineOption_SetDirection (ArkUI_GuidelineOption * guideline, ArkUI_Axis value, int32_t index )
-```
-**描述：**
-
-设置辅助线的方向。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-| value | 方向。  | 
-| index | 辅助线索引值。  | 
-
-
-### OH_ArkUI_GuidelineOption_SetId()
-
-```
-void OH_ArkUI_GuidelineOption_SetId (ArkUI_GuidelineOption * guideline, const char * value, int32_t index )
-```
-**描述：**
-
-设置辅助线的Id。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-| value | id，必须是唯一的并且不可与容器内组件重名。  | 
-| index | 辅助线索引值。  | 
-
-
-### OH_ArkUI_GuidelineOption_SetPositionEnd()
-
-```
-void OH_ArkUI_GuidelineOption_SetPositionEnd (ArkUI_GuidelineOption * guideline, float value, int32_t index )
-```
-**描述：**
-
-设置距离容器右侧或者底部的距离。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-| value | 距离容器右侧或者底部的距离。  | 
-| index | 辅助线索引值。  | 
-
-
-### OH_ArkUI_GuidelineOption_SetPositionStart()
-
-```
-void OH_ArkUI_GuidelineOption_SetPositionStart (ArkUI_GuidelineOption * guideline, float value, int32_t index )
-```
-**描述：**
-
-设置距离容器左侧或者顶部的距离。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| guideline | 辅助线信息。  | 
-| value | 距离容器左侧或者顶部的距离。  | 
-| index | 辅助线索引值。  | 
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor()
-
-```
-ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor (ArkUI_DrawableDescriptor * drawable)
-```
-**描述：**
-
-使用 DrawableDescriptor 对象创建帧图片信息，图片格式为Resource和PixelMap。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| drawable | 使用Resource或PixelMap创建的ArkUI_DrawableDescriptor对象指针。  | 
-
-**返回：**
-
-帧图片对象指针。
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString()
-
-```
-ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString (char * src)
-```
-**描述：**
-
-使用图片路径创建帧图片信息，图片格式为svg，png和jpg。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| src | 图片路径。  | 
-
-**返回：**
-
-帧图片对象指针。
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_Dispose()
-
-```
-void OH_ArkUI_ImageAnimatorFrameInfo_Dispose (ArkUI_ImageAnimatorFrameInfo * imageInfo)
-```
-**描述：**
-
-销毁帧图片对象指针。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_GetDuration()
-
-```
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration (ArkUI_ImageAnimatorFrameInfo * imageInfo)
-```
-**描述：**
-
-获取图片的播放时长。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-
-**返回：**
-
-图片的播放时长，单位为毫秒，imageInfo为空指针时返回0。
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_GetHeight()
-
-```
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight (ArkUI_ImageAnimatorFrameInfo * imageInfo)
-```
-**描述：**
-
-获取图片高度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-
-**返回：**
-
-图片高度，单位为PX，imageInfo为空指针时返回0。
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_GetLeft()
-
-```
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft (ArkUI_ImageAnimatorFrameInfo * imageInfo)
-```
-**描述：**
-
-获取图片相对于组件左上角的横向坐标。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-
-**返回：**
-
-图片相对于组件左上角的横向坐标，单位为PX，imageInfo为空指针时返回0。
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_GetTop()
-
-```
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop (ArkUI_ImageAnimatorFrameInfo * imageInfo)
-```
-**描述：**
-
-获取图片相对于组件左上角的纵向坐标。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-
-**返回：**
-
-图片相对于组件左上角的纵向坐标，单位为PX，imageInfo为空指针时返回0。
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_GetWidth()
-
-```
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth (ArkUI_ImageAnimatorFrameInfo * imageInfo)
-```
-**描述：**
-
-获取图片宽度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-
-**返回：**
-
-图片宽度，单位为PX，imageInfo为空指针时返回0。
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_SetDuration()
-
-```
-void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration (ArkUI_ImageAnimatorFrameInfo * imageInfo, int32_t duration )
-```
-**描述：**
-
-设置图片的播放时长。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-| duration | 图片的播放时长，单位为毫秒。  | 
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_SetHeight()
-
-```
-void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight (ArkUI_ImageAnimatorFrameInfo * imageInfo, int32_t height )
-```
-**描述：**
-
-设置图片高度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-| height | 图片高度，单位为PX。  | 
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_SetLeft()
-
-```
-void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft (ArkUI_ImageAnimatorFrameInfo * imageInfo, int32_t left )
-```
-**描述：**
-
-设置图片相对于组件左上角的横向坐标。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-| left | 图片相对于组件左上角的横向坐标，单位为PX。  | 
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_SetTop()
-
-```
-void OH_ArkUI_ImageAnimatorFrameInfo_SetTop (ArkUI_ImageAnimatorFrameInfo * imageInfo, int32_t top )
-```
-**描述：**
-
-设置图片相对于组件左上角的纵向坐标。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-| top | 图片相对于组件左上角的纵向坐标，单位为PX。  | 
-
-
-### OH_ArkUI_ImageAnimatorFrameInfo_SetWidth()
-
-```
-void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth (ArkUI_ImageAnimatorFrameInfo * imageInfo, int32_t width )
-```
-**描述：**
-
-设置图片宽度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageInfo | 帧图片对象指针。  | 
-| width | 图片宽度，单位为PX。  | 
-
-
-### OH_ArkUI_IsBuiltInGesture()
-
-```
-bool OH_ArkUI_IsBuiltInGesture (ArkUI_GestureRecognizer * recognizer)
-```
-**描述：**
-
-当前手势是否为系统内置手势。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recognizer | 手势识别器指针。  | 
-
-**返回：**
-
-true - 是系统内置手势。 false - 不是系统内置手势。
-
-
-### OH_ArkUI_IsGestureRecognizerValid()
-
-```
-bool OH_ArkUI_IsGestureRecognizerValid (ArkUI_GestureRecognizer * recognizer)
-```
-**描述：**
-
-当前手势识别器是否有效。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recognizer | 手势识别器指针。  | 
-
-**返回：**
-
-true - 手势识别器有效。 false - 手势识别器无效。
-
-
-### OH_ArkUI_KeyframeAnimateOption_Create()
-
-```
-ArkUI_KeyframeAnimateOption* OH_ArkUI_KeyframeAnimateOption_Create (int32_t size)
-```
-**描述：**
-
-获取关键帧动画参数。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| size | 关键帧动画状态数。  | 
-
-**返回：**
-
-关键帧动画参数对象。size小于0时返回NULL。
-
-
-### OH_ArkUI_KeyframeAnimateOption_Dispose()
-
-```
-void OH_ArkUI_KeyframeAnimateOption_Dispose (ArkUI_KeyframeAnimateOption * option)
-```
-**描述：**
-
-销毁关键帧动画参数。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数对象。  | 
-
-
-### OH_ArkUI_KeyframeAnimateOption_GetCurve()
-
-```
-ArkUI_CurveHandle OH_ArkUI_KeyframeAnimateOption_GetCurve (ArkUI_KeyframeAnimateOption * option, int32_t index )
-```
-**描述：**
-
-获取关键帧动画某段状态动画曲线。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| index | 状态索引值。  | 
-
-**返回：**
-
-动画曲线。
-
-
-### OH_ArkUI_KeyframeAnimateOption_GetDelay()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_GetDelay (ArkUI_KeyframeAnimateOption * option)
-```
-**描述：**
-
-获取关键帧整体延时时间。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-
-**返回：**
-
-整体延时时间。
-
-
-### OH_ArkUI_KeyframeAnimateOption_GetDuration()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_GetDuration (ArkUI_KeyframeAnimateOption * option, int32_t index )
-```
-**描述：**
-
-获取关键帧动画某段状态持续时间。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| index | 状态索引值。  | 
-
-**返回：**
-
-持续时间。单位为毫秒。
-
-
-### OH_ArkUI_KeyframeAnimateOption_GetIterations()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_GetIterations (ArkUI_KeyframeAnimateOption * option)
-```
-**描述：**
-
-获取关键帧动画播放次数。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-
-**返回：**
-
-动画播放次数。
-
-
-### OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback (ArkUI_KeyframeAnimateOption * option, void * userData, void(*)(void *userData) event, int32_t index )
-```
-**描述：**
-
-设置关键帧时刻状态的闭包函数，即在该关键帧时刻要达到的状态。
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| event | 闭包函数。  | 
-| userData | 用户定义对象指针。  | 
-| index | 状态索引值。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback (ArkUI_KeyframeAnimateOption * option, void * userData, void(*)(void *userData) onFinish )
-```
-**描述：**
-
-设置关键帧动画播放完成回调。当keyframe动画所有次数播放完成后调用。
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| userData | 用户自定义对象指针。  | 
-| onFinish | 回调方法。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_KeyframeAnimateOption_SetCurve()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_SetCurve (ArkUI_KeyframeAnimateOption * option, ArkUI_CurveHandle value, int32_t index )
-```
-**描述：**
-
-设置关键帧动画某段关键帧使用的动画曲线。
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| value | 该关键帧使用的动画曲线。默认值：EASE_IN_OUT。  | 
-| index | 状态索引值。  | 
-
-**注解：**
-
-由于springMotion、responsiveSpringMotion、interpolatingSpring曲线时长不生效，故不支持这三种曲线。
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_KeyframeAnimateOption_SetDelay()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_SetDelay (ArkUI_KeyframeAnimateOption * option, int32_t value )
-```
-**描述：**
-
-设置关键帧动画的整体延时时间，单位为ms(毫秒)，默认不延时播放。
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| value | 延时时间, 单位为ms(毫秒)。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_KeyframeAnimateOption_SetDuration()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration (ArkUI_KeyframeAnimateOption * option, int32_t value, int32_t index )
-```
-**描述：**
-
-设置关键帧动画某段关键帧动画的持续时间，单位为毫秒。
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| value | 持续时间。单位为毫秒。  | 
-| index | 状态索引值。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_KeyframeAnimateOption_SetIterations()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations (ArkUI_KeyframeAnimateOption * option, int32_t value )
-```
-**描述：**
-
-设置关键帧动画的动画播放次数。默认播放一次，设置为-1时表示无限次播放。设置为0时表示无动画效果。
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| value | 动画播放次数。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_LayoutConstraint_Copy()
-
-```
-ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Copy (const ArkUI_LayoutConstraint * Constraint)
-```
-**描述：**
-
-约束尺寸深拷贝。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-
-**返回：**
-
-新的约束尺寸指针。
-
-
-### OH_ArkUI_LayoutConstraint_Create()
-
-```
-ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create ()
-```
-**描述：**
-
-创建约束尺寸。
-
-**起始版本：** 12
-
-
-### OH_ArkUI_LayoutConstraint_Dispose()
-
-```
-void* OH_ArkUI_LayoutConstraint_Dispose (ArkUI_LayoutConstraint * Constraint)
-```
-**描述：**
-
-销毁约束尺寸指针。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-
-
-### OH_ArkUI_LayoutConstraint_GetMaxHeight()
-
-```
-int32_t OH_ArkUI_LayoutConstraint_GetMaxHeight (const ArkUI_LayoutConstraint * Constraint)
-```
-**描述：**
-
-通过约束尺寸获取最大高度，单位为px。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-
-**返回：**
-
-最大高度。
-
-
-### OH_ArkUI_LayoutConstraint_GetMaxWidth()
-
-```
-int32_t OH_ArkUI_LayoutConstraint_GetMaxWidth (const ArkUI_LayoutConstraint * Constraint)
-```
-**描述：**
-
-通过约束尺寸获取最大宽度，单位为px。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-
-**返回：**
-
-最大宽度。
-
-
-### OH_ArkUI_LayoutConstraint_GetMinHeight()
-
-```
-int32_t OH_ArkUI_LayoutConstraint_GetMinHeight (const ArkUI_LayoutConstraint * Constraint)
-```
-**描述：**
-
-通过约束尺寸获取最小高度，单位为px。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-
-**返回：**
-
-最小高度。
-
-
-### OH_ArkUI_LayoutConstraint_GetMinWidth()
-
-```
-int32_t OH_ArkUI_LayoutConstraint_GetMinWidth (const ArkUI_LayoutConstraint * Constraint)
-```
-**描述：**
-
-通过约束尺寸获取最小宽度，单位为px。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-
-**返回：**
-
-最小宽度。
-
-
-### OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight()
-
-```
-int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight (const ArkUI_LayoutConstraint * Constraint)
-```
-**描述：**
-
-通过约束尺寸获取高度百分比基准，单位为px。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-
-**返回：**
-
-高度百分比基准。
-
-
-### OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth()
-
-```
-int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth (const ArkUI_LayoutConstraint * Constraint)
-```
-**描述：**
-
-通过约束尺寸获取宽度百分比基准，单位为px。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-
-**返回：**
-
-宽度百分比基准。
-
-
-### OH_ArkUI_LayoutConstraint_SetMaxHeight()
-
-```
-void OH_ArkUI_LayoutConstraint_SetMaxHeight (ArkUI_LayoutConstraint * Constraint, int32_t value )
-```
-**描述：**
-
-设置最大高度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-| value | 最大高度，单位为px。  | 
-
-
-### OH_ArkUI_LayoutConstraint_SetMaxWidth()
-
-```
-void OH_ArkUI_LayoutConstraint_SetMaxWidth (ArkUI_LayoutConstraint * Constraint, int32_t value )
-```
-**描述：**
-
-设置最大宽度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-| value | 最大宽度，单位为px。  | 
-
-
-### OH_ArkUI_LayoutConstraint_SetMinHeight()
-
-```
-void OH_ArkUI_LayoutConstraint_SetMinHeight (ArkUI_LayoutConstraint * Constraint, int32_t value )
-```
-**描述：**
-
-设置最小高度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-| value | 最小高度，单位为px。  | 
-
-
-### OH_ArkUI_LayoutConstraint_SetMinWidth()
-
-```
-void OH_ArkUI_LayoutConstraint_SetMinWidth (ArkUI_LayoutConstraint * Constraint, int32_t value )
-```
-**描述：**
-
-设置最小宽度。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-| value | 最小宽度，单位为px。  | 
-
-
-### OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight()
-
-```
-void OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight (ArkUI_LayoutConstraint * Constraint, int32_t value )
-```
-**描述：**
-
-设置高度百分比基准。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-| value | 高度百分比基准，单位为px。  | 
-
-
-### OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth()
-
-```
-void OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth (ArkUI_LayoutConstraint * Constraint, int32_t value )
-```
-**描述：**
-
-设置宽度百分比基准。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Constraint | 约束尺寸。  | 
-| value | 宽度百分比基准，单位为px。  | 
-
-
-### OH_ArkUI_List_CloseAllSwipeActions()
-
-```
-int32_t OH_ArkUI_List_CloseAllSwipeActions (ArkUI_NodeHandle node, void * userData, void(*)(void *userData) onFinish )
-```
-**描述：**
-
-收起展开状态下的ListItem。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| node | 需要注册事件的节点对象。  | 
-| userData | 自定义事件参数，当事件触发时在回调参数中携带回来。  | 
-| onFinish | 在收起动画完成后触发的回调。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 组件不支持该事件。
-
-
-### OH_ArkUI_ListChildrenMainSizeOption_Create()
-
-```
-ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create ()
-```
-**描述：**
-
-创建ListChildrenMainSize接口设置的配置项。
-
-**起始版本：** 12
-
-**返回：**
-
-ListChildrenMainSize配置项实例。
-
-
-### OH_ArkUI_ListChildrenMainSizeOption_Dispose()
-
-```
-void OH_ArkUI_ListChildrenMainSizeOption_Dispose (ArkUI_ListChildrenMainSize * option)
-```
-**描述：**
-
-销毁ListChildrenMainSize实例。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 要销毁的ListChildrenMainSize实例。  | 
-
-
-### OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize()
-
-```
-float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize (ArkUI_ListChildrenMainSize * option)
-```
-**描述：**
-
-获取List组件的ChildrenMainSizeOption默认大小。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | ListChildrenMainSize实例。  | 
-
-**返回：**
-
-List下的ListItem的默认大小，默认为0，单位为vp，option为空指针时返回-1。
-
-
-### OH_ArkUI_ListChildrenMainSizeOption_GetMainSize()
-
-```
-float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize (ArkUI_ListChildrenMainSize * option, int32_t index )
-```
-**描述：**
-
-获取List组件的ChildrenMainSizeOption数组的值。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | ListChildrenMainSize实例。  | 
-| index | 要获取的值的下标位置。  | 
-
-**返回：**
-
-数组具体位置的值。若函数参数异常，返回-1。
-
-
-### OH_ArkUI_ListChildrenMainSizeOption_Resize()
-
-```
-void OH_ArkUI_ListChildrenMainSizeOption_Resize (ArkUI_ListChildrenMainSize * option, int32_t totalSize )
-```
-**描述：**
-
-重置List组件的ChildrenMainSizeOption的数组大小。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | ListChildrenMainSize实例。  | 
-| totalSize | 数组大小。  | 
-
-
-### OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize()
-
-```
-int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize (ArkUI_ListChildrenMainSize * option, float defaultMainSize )
-```
-**描述：**
-
-设置List组件的ChildrenMainSizeOption默认大小。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | ListChildrenMainSize实例。  | 
-| defaultMainSize | List下的ListItem的默认大小，单位为vp。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_ListChildrenMainSizeOption_Splice()
-
-```
-int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice (ArkUI_ListChildrenMainSize * option, int32_t index, int32_t deleteCount, int32_t addCount )
-```
-**描述：**
-
-对List组件的ChildrenMainSizeOption数组操作大小调整。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | ListChildrenMainSize实例。  | 
-| index | 要修改MainSize的数组起始位置。  | 
-| deleteCount | 要删除的MainSize数组从index开始的数量。  | 
-| addCount | 要添加的MainSize数组从index开始的数量。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_ListChildrenMainSizeOption_UpdateSize()
-
-```
-int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize (ArkUI_ListChildrenMainSize * option, int32_t index, float mainSize )
-```
-**描述：**
-
-更新List组件的ChildrenMainSizeOption数组的值。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | ListChildrenMainSize实例。  | 
-| index | 要修改MainSize的数组起始位置。  | 
-| mainSize | 实际修改的值。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_ListItemSwipeActionItem_Create()
-
-```
-ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create ()
-```
-**描述：**
-
-创建ListItemSwipeActionItem接口设置的配置项。
-
-**起始版本：** 12
-
-**返回：**
-
-ListItemSwipeActionItem配置项实例。
-
-
-### OH_ArkUI_ListItemSwipeActionItem_Dispose()
-
-```
-void OH_ArkUI_ListItemSwipeActionItem_Dispose (ArkUI_ListItemSwipeActionItem * item)
-```
-**描述：**
-
-销毁ListItemSwipeActionItem实例。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| item | 要销毁的ListItemSwipeActionItem实例。  | 
-
-
-### OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance()
+### OH_ArkUI_ListItemSwipeActionItem_SetOnAction()
 
 ```
-float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance (ArkUI_ListItemSwipeActionItem * item)
+void OH_ArkUI_ListItemSwipeActionItem_SetOnAction (ArkUI_ListItemSwipeActionItem * item, void(*)() callback )
 ```
 **描述：**
 
-获取组件长距离滑动删除距离阈值。
+设置组件进入长距删除区后删除ListItem时调用的事件。
 
 **起始版本：** 12
 
@@ -12205,20 +10532,169 @@ float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance (ArkUI_ListItemSwip
 | 名称 | 描述 | 
 | -------- | -------- |
 | item | ListItemSwipeActionItem实例。  | 
+| callback | 回调事件  | 
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData (ArkUI_ListItemSwipeActionItem * item, void * userData, void(*)(void *userData) callback )
+```
+**描述：**
+
+设置组件进入长距删除区后删除ListItem时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  | 
+| userData | 用户自定义数据。  | 
+| callback | 回调事件  | 
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea (ArkUI_ListItemSwipeActionItem * item, void(*)() callback )
+```
+**描述：**
+
+设置滑动条目进入删除区域时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  | 
+| callback | 回调事件  | 
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData (ArkUI_ListItemSwipeActionItem * item, void * userData, void(*)(void *userData) callback )
+```
+**描述：**
+
+设置滑动条目进入删除区域时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  | 
+| userData | 用户自定义数据。  | 
+| callback | 回调事件  | 
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea (ArkUI_ListItemSwipeActionItem * item, void(*)() callback )
+```
+**描述：**
+
+设置滑动条目退出删除区域时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  | 
+| callback | 回调事件  | 
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData (ArkUI_ListItemSwipeActionItem * item, void * userData, void(*)(void *userData) callback )
+```
+**描述：**
+
+设置滑动条目退出删除区域时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  | 
+| userData | 用户自定义数据。  | 
+| callback | 回调事件  | 
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange (ArkUI_ListItemSwipeActionItem * item, void(*)(ArkUI_ListItemSwipeActionState swipeActionState) callback )
+```
+**描述：**
+
+设置列表项滑动状态变化时候触发的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  | 
+| callback | 回调事件 swipeActionState 变化后的状态。  | 
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData (ArkUI_ListItemSwipeActionItem * item, void * userData, void(*)(ArkUI_ListItemSwipeActionState swipeActionState, void *userData) callback )
+```
+**描述：**
+
+设置列表项滑动状态变化时候触发的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  | 
+| userData | 用户自定义数据。  | 
+| callback | 回调事件 swipeActionState 变化后的状态。  | 
+
+
+### OH_ArkUI_ListItemSwipeActionOption_Create()
+
+```
+ArkUI_ListItemSwipeActionOption* OH_ArkUI_ListItemSwipeActionOption_Create ()
+```
+**描述：**
+
+创建ListItemSwipeActionOption接口设置的配置项。
+
+**起始版本：** 12
 
 **返回：**
 
-组件长距离滑动删除距离阈值。异常时返回值：0。
+ListItemSwipeActionOption配置项实例。
 
-
-### OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance()
+### OH_ArkUI_ListItemSwipeActionOption_Dispose()
 
 ```
-void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance (ArkUI_ListItemSwipeActionItem * item, float distance )
+void OH_ArkUI_ListItemSwipeActionOption_Dispose (ArkUI_ListItemSwipeActionOption * option)
 ```
 **描述：**
 
-设置组件长距离滑动删除距离阈值。
+销毁ListItemSwipeActionOption实例。
 
 **起始版本：** 12
 
@@ -12226,18 +10702,17 @@ void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance (ArkUI_ListItemSwipe
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| item | ListItemSwipeActionItem实例。  | 
-| distance | 组件长距离滑动删除距离阈值。  | 
+| option | 要销毁的ListItemSwipeActionOption实例。  | 
 
 
-### OH_ArkUI_ListItemSwipeActionItem_SetContent()
+### OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect()
 
 ```
-void OH_ArkUI_ListItemSwipeActionItem_SetContent (ArkUI_ListItemSwipeActionItem * item, ArkUI_NodeHandle node )
+int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect (ArkUI_ListItemSwipeActionOption * option)
 ```
 **描述：**
 
-设置ListItemSwipeActionItem的布局内容。
+获取滑动效果。
 
 **起始版本：** 12
 
@@ -12245,8 +10720,1174 @@ void OH_ArkUI_ListItemSwipeActionItem_SetContent (ArkUI_ListItemSwipeActionItem 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| item | ListItemSwipeActionItem实例。  | 
-| node | 布局信息。  | 
+| option | ListItemSwipeActionItem实例。  | 
+
+**返回：**
+
+滑动效果。默认返回值：ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING。
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect (ArkUI_ListItemSwipeActionOption * option, ArkUI_ListItemSwipeEdgeEffect edgeEffect )
+```
+**描述：**
+
+设置滑动效果。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  | 
+| edgeEffect | 滑动效果。  | 
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetEnd()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetEnd (ArkUI_ListItemSwipeActionOption * option, ArkUI_ListItemSwipeActionItem * item )
+```
+**描述：**
+
+设置ListItemSwipeActionItem的右侧（垂直布局）或下方（横向布局）布局内容。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  | 
+| builder | 布局信息。  | 
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange (ArkUI_ListItemSwipeActionOption * option, void(*)(float offset) callback )
+```
+**描述：**
+
+滑动操作偏移量更改时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  | 
+| callback | 回调事件 offset 滑动偏移量。  | 
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData (ArkUI_ListItemSwipeActionOption * option, void * userData, void(*)(float offset, void *userData) callback )
+```
+**描述：**
+
+滑动操作偏移量更改时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  | 
+| userData | 用户自定义数据。  | 
+| callback | 回调事件 offset 滑动偏移量。  | 
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetStart()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetStart (ArkUI_ListItemSwipeActionOption * option, ArkUI_ListItemSwipeActionItem * item )
+```
+**描述：**
+
+设置ListItemSwipeActionItem的左侧（垂直布局）或上方（横向布局）布局内容。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  | 
+| builder | 布局信息。  | 
+
+
+### OH_ArkUI_LongPress_GetRepeatCount()
+
+```
+int32_t OH_ArkUI_LongPress_GetRepeatCount (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+返回长按手势定时触发次数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+长按手势定时触发次数。
+
+
+### OH_ArkUI_NodeAdapter_Create()
+
+```
+ArkUI_NodeAdapterHandle OH_ArkUI_NodeAdapter_Create ()
+```
+**描述：**
+
+创建组件适配器对象。
+
+**起始版本：** 12
+
+
+### OH_ArkUI_NodeAdapter_Dispose()
+
+```
+void OH_ArkUI_NodeAdapter_Dispose (ArkUI_NodeAdapterHandle handle)
+```
+**描述：**
+
+销毁组件适配器对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+
+
+### OH_ArkUI_NodeAdapter_GetAllItems()
+
+```
+int32_t OH_ArkUI_NodeAdapter_GetAllItems (ArkUI_NodeAdapterHandle handle, ArkUI_NodeHandle ** items, uint32_t * size )
+```
+**描述：**
+
+获取存储在Adapter中的所有元素。
+
+接口调用会返回元素的数组对象指针，该指针指向的内存数据需要开发者手动释放。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+| items | 适配器内节点数组。  | 
+| size | 元素数量。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapter_GetTotalNodeCount()
+
+```
+uint32_t OH_ArkUI_NodeAdapter_GetTotalNodeCount (ArkUI_NodeAdapterHandle handle)
+```
+**描述：**
+
+获取Adapter中的元素总数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+
+**返回：**
+
+Adapter中的元素总数。
+
+
+### OH_ArkUI_NodeAdapter_InsertItem()
+
+```
+int32_t OH_ArkUI_NodeAdapter_InsertItem (ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount )
+```
+**描述：**
+
+通知Adapter进行局部元素插入。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+| startPosition | 元素插入起始位置。  | 
+| itemCount | 元素插入数量。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapter_MoveItem()
+
+```
+int32_t OH_ArkUI_NodeAdapter_MoveItem (ArkUI_NodeAdapterHandle handle, uint32_t from, uint32_t to )
+```
+**描述：**
+
+通知Adapter进行局部元素移位。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+| from | 元素移位起始位置。  | 
+| to | 元素移位结束位置。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapter_RegisterEventReceiver()
+
+```
+int32_t OH_ArkUI_NodeAdapter_RegisterEventReceiver (ArkUI_NodeAdapterHandle handle, void * userData, void(*)(ArkUI_NodeAdapterEvent *event) receiver )
+```
+**描述：**
+
+注册Adapter相关回调事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+| userData | 自定义数据。  | 
+| receiver | 事件接收回调。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapter_ReloadAllItems()
+
+```
+int32_t OH_ArkUI_NodeAdapter_ReloadAllItems (ArkUI_NodeAdapterHandle handle)
+```
+**描述：**
+
+通知Adapter进行全量元素变化。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapter_ReloadItem()
+
+```
+int32_t OH_ArkUI_NodeAdapter_ReloadItem (ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount )
+```
+**描述：**
+
+通知Adapter进行局部元素变化。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+| startPosition | 元素变化起始位置。  | 
+| itemCount | 元素变化数量。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapter_RemoveItem()
+
+```
+int32_t OH_ArkUI_NodeAdapter_RemoveItem (ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount )
+```
+**描述：**
+
+通知Adapter进行局部元素删除。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+| startPosition | 元素删除起始位置。  | 
+| itemCount | 元素删除数量。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapter_SetTotalNodeCount()
+
+```
+int32_t OH_ArkUI_NodeAdapter_SetTotalNodeCount (ArkUI_NodeAdapterHandle handle, uint32_t size )
+```
+**描述：**
+
+设置Adapter中的元素总数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+| size | 元素数量。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapter_UnregisterEventReceiver()
+
+```
+void OH_ArkUI_NodeAdapter_UnregisterEventReceiver (ArkUI_NodeAdapterHandle handle)
+```
+**描述：**
+
+注销Adapter相关回调事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 组件适配器对象。  | 
+
+
+### OH_ArkUI_NodeAdapterEvent_GetHostNode()
+
+```
+ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode (ArkUI_NodeAdapterEvent * event)
+```
+**描述：**
+
+获取使用该适配器的滚动类容器节点。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 适配器事件对象。  | 
+
+**返回：**
+
+适配器的滚动类容器节点。
+
+
+### OH_ArkUI_NodeAdapterEvent_GetItemIndex()
+
+```
+uint32_t OH_ArkUI_NodeAdapterEvent_GetItemIndex (ArkUI_NodeAdapterEvent * event)
+```
+**描述：**
+
+获取适配器事件时需要操作的元素序号。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 适配器事件对象。  | 
+
+**返回：**
+
+元素序号。
+
+
+### OH_ArkUI_NodeAdapterEvent_GetRemovedNode()
+
+```
+ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetRemovedNode (ArkUI_NodeAdapterEvent * event)
+```
+**描述：**
+
+获取需要销毁的事件中待销毁的元素。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 适配器事件对象。  | 
+
+**返回：**
+
+待销毁的元素。
+
+
+### OH_ArkUI_NodeAdapterEvent_GetType()
+
+```
+ArkUI_NodeAdapterEventType OH_ArkUI_NodeAdapterEvent_GetType (ArkUI_NodeAdapterEvent * event)
+```
+**描述：**
+
+获取事件类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 适配器事件对象。  | 
+
+**返回：**
+
+事件类型。
+
+
+### OH_ArkUI_NodeAdapterEvent_GetUserData()
+
+```
+void* OH_ArkUI_NodeAdapterEvent_GetUserData (ArkUI_NodeAdapterEvent * event)
+```
+**描述：**
+
+获取注册事件时传入的自定义数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 适配器事件对象。  | 
+
+
+### OH_ArkUI_NodeAdapterEvent_SetItem()
+
+```
+int32_t OH_ArkUI_NodeAdapterEvent_SetItem (ArkUI_NodeAdapterEvent * event, ArkUI_NodeHandle node )
+```
+**描述：**
+
+设置需要新增到Adapter中的组件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 适配器事件对象。  | 
+| node | 待添加的组件。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeAdapterEvent_SetNodeId()
+
+```
+int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId (ArkUI_NodeAdapterEvent * event, int32_t id )
+```
+**描述：**
+
+设置生成的组件标识。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 适配器事件对象。  | 
+| id | 设置返回的组件标识。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeContent_AddNode()
+
+```
+int32_t OH_ArkUI_NodeContent_AddNode (ArkUI_NodeContentHandle content, ArkUI_NodeHandle node )
+```
+**描述：**
+
+将一个ArkUI组件节点添加到对应的NodeContent对象下。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| content | 需要被添加节点的NodeContent对象。  | 
+| node | 需要被添加的节点。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeContent_GetUserData()
+
+```
+void* OH_ArkUI_NodeContent_GetUserData (ArkUI_NodeContentHandle content)
+```
+**描述：**
+
+获取在NodeContent对象上保存的自定义数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| content | 需要保存自定义数据的NodeContent对象。  | 
+
+**返回：**
+
+自定义数据。
+
+
+### OH_ArkUI_NodeContent_InsertNode()
+
+```
+int32_t OH_ArkUI_NodeContent_InsertNode (ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position )
+```
+**描述：**
+
+将一个ArkUI组件节点插入到对应的NodeContent对象的特定位置下。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| content | 需要被插入节点的NodeContent对象。  | 
+| node | 需要被插入的节点。  | 
+| position | 需要被插入的位置。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeContent_RegisterCallback()
+
+```
+int32_t OH_ArkUI_NodeContent_RegisterCallback (ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback )
+```
+**描述：**
+
+注册NodeContent事件函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| content | 需要注册事件的NodeContent对象。  | 
+| callback | 事件触发时需要执行的函数回调。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeContent_RemoveNode()
+
+```
+int32_t OH_ArkUI_NodeContent_RemoveNode (ArkUI_NodeContentHandle content, ArkUI_NodeHandle node )
+```
+**描述：**
+
+删除NodeContent对象下的一个ArkUI组件节点
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| content | 需要被删除节点的NodeContent对象。  | 
+| node | 需要被删除的节点。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeContent_SetUserData()
+
+```
+int32_t OH_ArkUI_NodeContent_SetUserData (ArkUI_NodeContentHandle content, void * userData )
+```
+**描述：**
+
+在NodeContent对象上保存自定义数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| content | 需要保存自定义数据的NodeContent对象。  | 
+| userData | 要保存的自定义数据。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_NodeContentEvent_GetEventType()
+
+```
+ArkUI_NodeContentEventType OH_ArkUI_NodeContentEvent_GetEventType (ArkUI_NodeContentEvent * event)
+```
+**描述：**
+
+获取触发NodeContent事件的事件类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | NodeContent事件指针。  | 
+
+**返回：**
+
+NodeContent事件类型。
+
+
+### OH_ArkUI_NodeContentEvent_GetNodeContentHandle()
+
+```
+ArkUI_NodeContentHandle OH_ArkUI_NodeContentEvent_GetNodeContentHandle (ArkUI_NodeContentEvent * event)
+```
+**描述：**
+
+获取触发事件的NodeContent对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | NodeContent事件指针。  | 
+
+**返回：**
+
+Returns 触发事件的NodeContent对象。
+
+
+### OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo()
+
+```
+int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo (ArkUI_NodeCustomEvent * event, ArkUI_CustomSpanDrawInfo * info )
+```
+**描述：**
+
+通过自定义组件事件获取自定义段落组件的绘制信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+| info | 需要获取的绘制信息。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 异常原因：传入参数验证失败，参数不能为空。
+
+
+### OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo()
+
+```
+int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo (ArkUI_NodeCustomEvent * event, ArkUI_CustomSpanMeasureInfo * info )
+```
+**描述：**
+
+通过自定义组件事件获取自定义段落组件的测量信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+| info | 需要获取的测量信息。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 异常原因：传入参数验证失败，参数不能为空。
+
+
+### OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw()
+
+```
+ArkUI_DrawContext* OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw (ArkUI_NodeCustomEvent * event)
+```
+**描述：**
+
+通过自定义组件事件获取绘制上下文。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+
+**返回：**
+
+绘制上下文。
+
+
+### OH_ArkUI_NodeCustomEvent_GetEventTargetId()
+
+```
+int32_t OH_ArkUI_NodeCustomEvent_GetEventTargetId (ArkUI_NodeCustomEvent * event)
+```
+**描述：**
+
+通过自定义组件事件获取自定义事件ID。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+
+**返回：**
+
+自定义事件ID。
+
+
+### OH_ArkUI_NodeCustomEvent_GetEventType()
+
+```
+ArkUI_NodeCustomEventType OH_ArkUI_NodeCustomEvent_GetEventType (ArkUI_NodeCustomEvent * event)
+```
+**描述：**
+
+通过自定义组件事件获取事件类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+
+**返回：**
+
+组件自定义事件类型。
+
+
+### OH_ArkUI_NodeCustomEvent_GetLayoutConstraintInMeasure()
+
+```
+ArkUI_LayoutConstraint* OH_ArkUI_NodeCustomEvent_GetLayoutConstraintInMeasure (ArkUI_NodeCustomEvent * event)
+```
+**描述：**
+
+通过自定义组件事件获取测算过程中的约束尺寸。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+
+**返回：**
+
+约束尺寸指针。
+
+
+### OH_ArkUI_NodeCustomEvent_GetNodeHandle()
+
+```
+ArkUI_NodeHandle OH_ArkUI_NodeCustomEvent_GetNodeHandle (ArkUI_NodeCustomEvent * event)
+```
+**描述：**
+
+通过自定义组件事件获取组件对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+
+**返回：**
+
+组件对象。
+
+
+### OH_ArkUI_NodeCustomEvent_GetPositionInLayout()
+
+```
+ArkUI_IntOffset OH_ArkUI_NodeCustomEvent_GetPositionInLayout (ArkUI_NodeCustomEvent * event)
+```
+**描述：**
+
+通过自定义组件事件获取在布局阶段期望自身相对父组件的位置。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+
+**返回：**
+
+期望自身相对父组件的位置。
+
+
+### OH_ArkUI_NodeCustomEvent_GetUserData()
+
+```
+void* OH_ArkUI_NodeCustomEvent_GetUserData (ArkUI_NodeCustomEvent * event)
+```
+**描述：**
+
+通过自定义组件事件获取自定义事件参数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+
+**返回：**
+
+自定义事件参数。
+
+
+### OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics()
+
+```
+int32_t OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics (ArkUI_NodeCustomEvent * event, ArkUI_CustomSpanMetrics * metrics )
+```
+**描述：**
+
+通过自定义组件事件设置自定义段落的度量指标。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 自定义组件事件。  | 
+| metrics | 需要获取的度量指标信息。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 异常原因：传入参数验证失败，参数不能为空。
+
+
+### OH_ArkUI_NodeEvent_GetDragEvent()
+
+```
+ArkUI_DragEvent* OH_ArkUI_NodeEvent_GetDragEvent (ArkUI_NodeEvent * nodeEvent)
+```
+**描述：**
+
+从 NodeEvent 中获取DragEvent。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | ArkUI_NodeEvent事件指针。  | 
+
+**返回：**
+
+ArkUI_DragEvent 事件指针，当传入的 NodeEvent 无效或不是拖拽相关的事件时，则返回空。
+
+
+### OH_ArkUI_NodeEvent_GetEventType()
+
+```
+ArkUI_NodeEventType OH_ArkUI_NodeEvent_GetEventType (ArkUI_NodeEvent * event)
+```
+**描述：**
+
+获取组件事件类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 组件事件指针。  | 
+
+**返回：**
+
+ArkUI_NodeEventType 组件事件类型。
+
+
+### OH_ArkUI_NodeEvent_GetInputEvent()
+
+```
+ArkUI_UIInputEvent* OH_ArkUI_NodeEvent_GetInputEvent (ArkUI_NodeEvent * event)
+```
+**描述：**
+
+获取组件事件中的输入事件（如触碰事件）数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 组件事件指针。  | 
+
+**返回：**
+
+ArkUI_UIInputEvent\* 输入事件数据指针。
+
+
+### OH_ArkUI_NodeEvent_GetNodeComponentEvent()
+
+```
+ArkUI_NodeComponentEvent* OH_ArkUI_NodeEvent_GetNodeComponentEvent (ArkUI_NodeEvent * event)
+```
+**描述：**
+
+获取组件事件中的数字类型数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 组件事件指针。  | 
+
+**返回：**
+
+ArkUI_NodeComponentEvent\* 数字类型数据指针。
+
+
+### OH_ArkUI_NodeEvent_GetNodeHandle()
+
+```
+ArkUI_NodeHandle OH_ArkUI_NodeEvent_GetNodeHandle (ArkUI_NodeEvent * event)
+```
+**描述：**
+
+获取触发该事件的组件对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 组件事件指针。  | 
+
+**返回：**
+
+ArkUI_NodeHandle 触发该组件的组件对象。
+
+
+### OH_ArkUI_NodeEvent_GetNumberValue()
+
+```
+int32_t OH_ArkUI_NodeEvent_GetNumberValue (ArkUI_NodeEvent * event, int32_t index, ArkUI_NumberValue * value )
+```
+**描述：**
+
+获取组件回调事件的数字类型参数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 组件事件指针。  | 
+| index | 返回值索引。  | 
+| value | 具体返回值。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE 组件事件中参数长度超限。 ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID 组件事件中不存在该数据。
+
+
+### OH_ArkUI_NodeEvent_GetPreDragStatus()
+
+```
+ArkUI_PreDragStatus OH_ArkUI_NodeEvent_GetPreDragStatus (ArkUI_NodeEvent * nodeEvent)
+```
+**描述：**
+
+获取预览拖拽事件状态。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | ArkUI_NodeEvent节点对象。  | 
+
+**返回：**
+
+ArkUI_PreDragStatus 拖拽发起前交互状态。
+
+
+### OH_ArkUI_NodeEvent_GetStringAsyncEvent()
+
+```
+ArkUI_StringAsyncEvent* OH_ArkUI_NodeEvent_GetStringAsyncEvent (ArkUI_NodeEvent * event)
+```
+**描述：**
+
+获取组件事件中的字符串数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 组件事件指针。  | 
+
+**返回：**
+
+ArkUI_StringAsyncEvent\* 字符串数据指针。
+
+### OH_ArkUI_NodeEvent_GetStringValue()
+
+```
+int32_t OH_ArkUI_NodeEvent_GetStringValue (ArkUI_NodeEvent * event, int32_t index, char ** string, int32_t * stringSize )
+```
+**描述：**
+
+获取组件回调事件的字符串类型参数，字符串数据仅在事件回调过程中有效，需要在事件回调外使用建议进行额外拷贝处理。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 组件事件指针。  | 
+| index | 返回值索引。  | 
+| string | 字符串数组的指针。  | 
+| stringSize | 字符串数组的长度。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE 组件事件中参数长度超限。 ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID 组件事件中不存在该数据。
+
+
+### OH_ArkUI_NodeEvent_GetTargetId()
+
+```
+int32_t OH_ArkUI_NodeEvent_GetTargetId (ArkUI_NodeEvent * event)
+```
+**描述：**
+
+获取事件自定义标识ID。
+
+该事件id在调用**registerNodeEvent**函数时作为参数传递进来，可应用于同一事件入口函数**registerNodeEventReceiver**分发逻辑。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 组件事件指针。  | 
+
+**返回：**
+
+int32_t 事件自定义标识ID。
+
 
 ### OH_ArkUI_NodeEvent_GetUserData()
 
