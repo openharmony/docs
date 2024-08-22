@@ -8,7 +8,7 @@ FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，�
 
 - [FullScreenLaunchComponent](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)组件
 
-  FullScreenLaunchComponent 是由 ArkUI 提供的高级组件，允许在使用方应用中通过 ArkTS 的声明式范式进行定义和使用。该组件基于 [UIExtension](./arkts-ui-extension-components.md) 封装，但不同于系统接口 [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)，FullScreenLaunchComponent 向第三方应用开放使用权限，当被拉起方授权使用方应用嵌入式运行原子化服务时，使用方应用可全屏嵌入式运行该服务；若未授权，则使用方应用将以跳出式方式拉起原子化服务。
+  FullScreenLaunchComponent 是由 ArkUI 提供的组件，允许在使用方应用中通过 ArkTS 的声明式范式进行定义和使用。该组件基于 [UIExtension](./arkts-ui-extension-components.md) 封装，但不同于系统接口 [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)，FullScreenLaunchComponent 向第三方应用开放使用权限，当被拉起方授权使用方应用嵌入式运行原子化服务时，使用方应用可全屏嵌入式运行该服务；若未授权，则使用方应用将以跳出式方式拉起原子化服务。
 
 - [EmbeddableUIAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)组件
 
@@ -99,7 +99,7 @@ Native API接口提供能力，在FullScreenLaunchComponent场景下也需要考
 
 ## 约束与限制
 
-**安全能力约束**
+### 安全能力约束
 
 FullScreenLaunchComponent组件（使用方）可以访问调用集成了EmbeddableUIAbility的应用（提供方），提供了一种通用应用共享能力。FullScreenLaunchComponent能力无法独立提供安全保障机制，作为提供服务的应用（提供方）保护自己不被使用方应用攻击，需要提供方应用结合使用其他ArkUI的能力进行安全保护。
 
@@ -113,11 +113,11 @@ FullScreenLaunchComponent组件（使用方）可以访问调用集成了Embedda
 嵌入式模式下为了避免被使用方的子窗遮挡，使用方的交互行为将受限，使用方无法再创建任何子窗覆盖到提供方的窗口上。
 
 
-**嵌套约束**
+### 嵌套约束
 
 FullScreenLaunchComponent暂不支持嵌套，比如A应用(UIAbility)->B应用(EmbeddableUIAbility)->C应用(EmbeddableUIAbility)这种嵌套能力依赖。
 
-**事件处理机制约束**
+### 事件处理机制约束
 
 FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换后传递给提供方EmbeddableUIAbility处理。
 
@@ -141,7 +141,7 @@ FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换�
 | 手势处理 | —                          | 支持     | 异步                      | —                                                            |
 | 无障碍   | —                          | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
 
-**页面渲染效果体验约束**
+### 页面渲染效果体验约束
 
 由于FullScreenLaunchComponent是一种跨进程的应用调用，使用方应用进程和提供方应用进程的处理不能实现同步，会导致在交互体验上存在和一般组件不同的体验问题。应用开发者应知悉本组件存在跨多个进程渲染页面的性能约束，从而进行针对性的处理。
 
@@ -161,7 +161,7 @@ FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换�
 
 如果消减后效果不能完全满足应用交互诉求，由于跨进程的能力约束，建议应用优先考虑其他方案。
 
-**其他约束**
+### 其他约束
 
 - 不支持在运行过程中修改切换后端拉起的原子化服务EmbeddableUIAbility
 - 不支持预览，不在开发IDE中提供预览能力
