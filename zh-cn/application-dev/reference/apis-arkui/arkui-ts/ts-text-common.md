@@ -233,7 +233,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | value | string | 是 | 文本框内正式上屏的文本内容。 |
-| previewText | [PreviewText](ts-basic-components-richeditor.md#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
+| previewText | [PreviewText](#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
 
 ## TextDataDetectorType<sup>11+</sup>枚举说明
 
@@ -295,3 +295,16 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | ------ | -------- | ---- | ------------------------------------------- |
 | types   | [TextDataDetectorType[]](ts-text-common.md#textdatadetectortype11枚举说明) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
+
+## PreviewText<sup>12+</sup>
+
+预上屏信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| offset | number | 是   | 预上屏内容的起始位置。 |
+| value    | string         | 是   | 预上屏的内容。         |
