@@ -4,9 +4,11 @@
 - [Application Development Overview](application-dev-guide.md)
 <!--DelEnd-->
 - Getting Started<!--application-getting-started-->
+<!--Del-->
   - Quick Start<!--quick-start-->
     - [Before You Start](quick-start/start-overview.md)
     - [Building the First ArkTS Application in Stage Model](quick-start/start-with-ets-stage.md)
+<!--DelEnd-->
   - Development Fundamentals<!--development-fundamentals-->
     - Application Package Fundamentals<!--application-package-fundamentals-->
       - [Application Package Overview](quick-start/application-package-overview.md)
