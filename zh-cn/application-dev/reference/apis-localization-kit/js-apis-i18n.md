@@ -2240,7 +2240,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
 | value    | number                 | 是    | 需要转换的单位的数量值。                             |
 | locale   | string                 | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../internationalization/i18n-numbers-weights-measures.md) |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md) |
 
 **返回值：**
 
