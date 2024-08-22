@@ -1489,6 +1489,68 @@ try {
 }
 ```
 
+## BundleInstaller.installPreexistingApp<sup>12+</sup>
+
+installPreexistingApp(bundleName: string, userId?: number): Promise<void>;
+
+以异步方法安装应用，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                          |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | 是   | 需要安装应用的包名。                                           |
+| userId       | number                        | 否   | 需要安装应用的用户id，userId需要大于0。默认值：调用方所在用户。   |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName cannot be found. |
+| 17700004 | The userId is invalid. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let userId = 100;
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.installPreexistingApp(bundleName, userId)
+            .then(() => {
+                console.info('installPreexistingApp successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('installPreexistingApp failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## HashParam
 
 应用程序安装卸载哈希参数信息。
