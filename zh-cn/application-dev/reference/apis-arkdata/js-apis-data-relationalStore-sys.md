@@ -889,6 +889,71 @@ if(store != undefined) {
 
 ```
 
+### lockCloudContainer<sup>12+</sup>
+
+lockCloudContainer(): Promise&lt;number&gt;
+
+手动对应用云端数据库加锁，使用Promise异步处理。使用该接口需要实现云同步功能。
+
+> **说明：**
+>
+> 若手动加锁成功，则其他同账户设备的同应用禁止同步到云端。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**系统接口：** 此接口为系统接口。
+
+**返回值**：
+
+| 类型                | 说明                                    |
+| ------------------- | ---------------------------------------|
+| Promise&lt;number&gt; | Promise对象，如果加锁成功，返回锁的有效时长，如果加锁失败，返回0，单位：ms。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
+    console.info('lockCloudContainer succeeded time:' + time);
+  }).catch((err: BusinessError) => {
+    console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### unlockCloudContainer<sup>12+</sup>
+
+unlockCloudContainer(): Promise&lt;void&gt;
+
+手动对应用云端数据库解锁，使用Promise异步处理。使用该接口需要实现云同步功能。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**系统接口：** 此接口为系统接口。
+
+
+**返回值**：
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).unlockCloudContainer().then(() => {
+    console.info('unlockCloudContainer succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`unlockCloudContainer failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
 ## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
