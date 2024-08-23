@@ -616,10 +616,10 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 
 **系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
-| 名称       | 值   | 说明                                                   |
-| ---------- | ---- | ------------------------------------------------------ |
-| ORDER_ASC  | 1    | 按防火墙规则排序类型(#netfirewallorderfield)升序排序。 |
-| ORDER_DESC | 100  | 按防火墙规则排序类型(#netfirewallorderfield)降序排序。 |
+| 名称       | 值   | 说明                           |
+| ---------- | ---- | ------------------------------ |
+| ORDER_ASC  | 1    | 按防火墙规则排序类型升序排序。 |
+| ORDER_DESC | 100  | 按防火墙规则排序类型降序排序。 |
 
 ## NetFirewallPolicy
 
