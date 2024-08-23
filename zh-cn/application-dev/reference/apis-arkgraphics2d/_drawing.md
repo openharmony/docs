@@ -731,7 +731,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 ### OH_Drawing_ErrorCode
 
 ```
-typedef enum OH_Drawing_ErrorCodeOH_Drawing_ErrorCode
+typedef enum OH_Drawing_ErrorCode OH_Drawing_ErrorCode
 ```
 
 
@@ -771,7 +771,7 @@ typedef enum OH_Drawing_PathMeasureMatrixFlags OH_Drawing_PathMeasureMatrixFlags
 ### OH_Drawing_RegionOpMode
 
 ```
-typedef enum OH_Drawing_RegionOpModeOH_Drawing_RegionOpMode
+typedef enum OH_Drawing_RegionOpMode OH_Drawing_RegionOpMode
 ```
 
 **描述**
