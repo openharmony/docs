@@ -61,8 +61,11 @@
      //...
      // 根据当前窗口尺寸更新断点
      private updateBreakpoint(windowWidth: number) :void{
-       // 将长度的单位由px换算为vp
-       let windowWidthVp = windowWidth / display.getDefaultDisplaySync().densityPixels
+       // 拿到当前窗口对象获取当前所在displayId
+      let displayId = this.windowObj?.getWindowProperties().displayId
+      try {
+        // 将长度的单位由px换算为vp
+        let windowWidthVp = windowWidth / display.getDisplayByIdSync(displayId).densityPixels
        let newBp: string = ''
        if (windowWidthVp < 320) {
          newBp = 'xs'
@@ -78,7 +81,10 @@
          // 使用状态变量记录当前断点值
          AppStorage.setOrCreate('currentBreakpoint', this.curBp)
        }
-     }
+       } catch(err) {
+         console.log("getDisplayByIdSync failed err"+err.code)
+       }
+     } 
 
      onWindowStageCreate(windowStage: window.WindowStage) :void{
        windowStage.getMainWindow().then((windowObj) => {
