@@ -81,12 +81,12 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                         | 值   | 说明                                                              |
-| --------------------------- | ---- |-----------------------------------------------------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。                                                        |
-| CAMERA_POSITION_BACK        | 1    | 后置相机。                                                           |
-| CAMERA_POSITION_FRONT       | 2    | 前置相机。                                                           |
-| CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | 折叠态相机。<br/> 从API version 11开始支持，从API version 12开始废弃。 |
+| 名称                         | 值   | 说明            |
+| --------------------------- | ---- | -------------- |
+| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。  |
+| CAMERA_POSITION_BACK        | 1    | 后置相机。       |
+| CAMERA_POSITION_FRONT       | 2    | 前置相机。       |
+| CAMERA_POSITION_FOLD_INNER<sup>11+</sup>  | 3    | 折叠态相机。     |
 
 ## CameraType
 
@@ -127,18 +127,6 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | CAMERA_STATUS_AVAILABLE   | 2    | 相机可用。       |
 | CAMERA_STATUS_UNAVAILABLE | 3    | 相机不可用。     |
 
-## FoldStatus<sup>12+</sup>
-
-枚举，折叠机折叠状态。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称                       | 值   | 说明            |
-| ------------------------- | ---- | ------------    |
-| NON_FOLDABLE      | 0    | 表示当前设备不可折叠。   |
-| EXPANDED   | 1    | 表示当前设备折叠状态为完全展开。 |
-| FOLDED   | 2    | 表示当前设备折叠状态为折叠。       |
-
 ## CameraStatusInfo
 
 相机管理器回调返回的接口实例，表示相机状态信息。
@@ -149,17 +137,6 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | ------ | ----------------------------- | --------- |------------ | ---------- |
 | camera | [CameraDevice](#cameradevice) |     否    |       否     | 相机信息。 |
 | status | [CameraStatus](#camerastatus) |     否    |       否     | 相机状态。 |
-
-## FoldStatusInfo<sup>12+</sup>
-
-相机管理器回调返回的接口实例，表示折叠机折叠状态信息。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称   | 类型                           |    只读   |     可选     | 说明       |
-| ------ | ----------------------------- | --------- |------------ | ---------- |
-| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     否    |       否     | 当前折叠状态所支持的相机信息列表。 |
-| foldStatus | [FoldStatus](#foldstatus12) |     否    |       否     | 折叠屏折叠状态。 |
 
 ## Profile
 
@@ -889,67 +866,6 @@ off(type: 'cameraStatus', callback?: AsyncCallback\<CameraStatusInfo\>): void
 ```ts
 function unregisterCameraStatus(cameraManager: camera.CameraManager): void {
   cameraManager.off('cameraStatus');
-}
-```
-
-### on('foldStatusChange')<sup>12+</sup>
-
-on(type: 'foldStatusChange', callback: AsyncCallback\<FoldStatusInfo\>): void
-
-开启折叠设备折叠状态变化的监听。使用callback异步回调。
-
-> **说明：**
->
-> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型            | 必填 | 说明       |
-| -------- | -----------------| ---- | --------- |
-| type     | string           | 是   | 监听事件，固定为'foldStatusChange'。表示折叠设备折叠状态发生变化。 |
-| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | 是   | 回调函数。返回折叠设备折叠信息。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function callback(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo): void {
-  if (err !== undefined && err.code !== 0) {
-    console.error('foldStatusChange with errorCode = ' + err.code);
-    return;
-  }
-  console.info(`camera length: ${foldStatusInfo.supportedCameras.length}`);
-  console.info(`foldStatus: ${foldStatusInfo.foldStatus}`);
-}
-
-function registerFoldStatusChange(cameraManager: camera.CameraManager): void {
-  cameraManager.on('foldStatusChange', callback);
-}
-```
-
-### off('foldStatusChange')<sup>12+</sup>
-
-off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
-
-关闭折叠设备折叠状态变化的监听。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型            | 必填 | 说明       |
-| -------- | -----------------| ---- | --------- |
-| type     | string           | 是   | 监听事件，固定为'foldStatusChange'。表示折叠设备折叠状态发生变化。 |
-| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | 否   | 回调函数，返回折叠设备折叠信息。如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
-
-**示例：**
-
-```ts
-function unregisterFoldStatusChange(cameraManager: camera.CameraManager): void {
-  cameraManager.off('foldStatusChange');
 }
 ```
 
