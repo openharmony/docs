@@ -2353,15 +2353,19 @@ struct WebComponent {
   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
     if (menuItem.id.equals(TextMenuItemId.CUT)) {
       //用户自定义行为
+      console.log("拦截 id：CUT")
       return true; //返回true不执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
       //用户自定义行为
+      console.log("不拦截 id：COPY")
       return false; //返回false执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       //用户自定义行为
+      console.log("拦截 id：customItem1")
       return true;//用户自定义菜单选项返回true、false无影响，推荐返回true
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
       //用户自定义行为
+      console.log("拦截 id：app.string.customItem2")
       return true;
     }
     return false;//返回默认值false
