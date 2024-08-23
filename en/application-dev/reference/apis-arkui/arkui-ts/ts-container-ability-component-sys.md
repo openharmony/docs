@@ -1,6 +1,6 @@
 # AbilityComponent (System API)
 
-**\<AbilityComponent>** is a container for independently displaying an ability.
+**AbilityComponent** is a container for independently displaying an ability.
 
 >  **NOTE**
 >
@@ -12,13 +12,13 @@
 
 ## Constraints
 
-**\<AbilityComponent>** is rendered independently and cannot be overlaid with other display content.
+**AbilityComponent** is rendered independently and cannot be overlaid with other display content.
 
-**\<AbilityComponent>** cannot process input events. Events are directly distributed to the internal ability for processing without passing through the current ability.
+**AbilityComponent** cannot process input events. Events are directly distributed to the internal ability for processing without passing through the current ability.
 
-Only width and height can be set for **\<AbilityComponent>**. These attributes are mandatory and cannot be dynamically updated.
+Only width and height can be set for **AbilityComponent**. These attributes are mandatory and cannot be dynamically updated.
 
-The ability to be started must extend [WindowExtension](../../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md).
+The ability to be started must inherit from [WindowExtension](../js-apis-application-windowExtensionAbility-sys.md).
 
 ## Child Components
 
@@ -42,13 +42,13 @@ AbilityComponent(want: Want)
 
 onConnect(callback:() =&gt; void)
 
-Called when this **\<AbilityComponent>** is started. You can then use APIs in the **\<AbilityComponent>**.
+Called when this **AbilityComponent** is started. You can then use APIs in the **AbilityComponent**.
 
 ### onDisconnect
 
 onDisconnect(callback:() =&gt; void)
 
-Called when this **\<AbilityComponent>** is destroyed.
+Called when this **AbilityComponent** is destroyed.
 
 ## Example
 
