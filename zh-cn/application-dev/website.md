@@ -1058,8 +1058,8 @@
     - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
     - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
     - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
-  - MultimodalAwareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
-    - [MultimodalAwareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
+  - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
+    - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
     - [Stationary开发指导](device/stationary/stationary-guidelines.md)
   - Network Kit（网络服务）<!--network-kit-->
     - [Network Kit开发概述](network/net-mgmt-overview.md)
