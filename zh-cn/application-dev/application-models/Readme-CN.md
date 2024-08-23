@@ -14,8 +14,10 @@
       - [UIAbility组件与UI的数据同步](uiability-data-sync-with-ui.md)
       - [启动应用内的UIAbility组件](uiability-intra-device-interaction.md)
     - [ExtensionAbility组件](extensionability-overview.md)
+      - [UIServiceExtension](uiserviceextension.md)
       <!--Del-->
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
+      - [UIServiceExtension（仅对系统应用开放）](uiserviceextension-sys.md)
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
       - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
       <!--DelEnd-->

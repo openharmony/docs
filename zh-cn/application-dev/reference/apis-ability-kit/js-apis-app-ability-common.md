@@ -33,6 +33,8 @@ import { common } from '@kit.AbilityKit';
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 否  | 否  | AbilityStartCallback二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 否  | 否  | ConnectOptions二级模块。 |
 | EmbeddableUIAbilityContext<sup>12+<sup>   | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否  | 否  | EmbeddableUIAbilityContext二级模块。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| UIServiceProxy <sup>13+<sup> | [UIServiceProxy ](js-apis-inner-application-uiserviceproxy.md) | 否  | 否  | UIServiceProxy 二级模块。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| UIServiceExtensionConnectCallback  <sup>13+<sup> | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | 否  | 否  | UIServiceExtensionConnectCallback 二级模块。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -53,4 +55,6 @@ let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 let embeddableUIAbilityContext: common.EmbeddableUIAbilityContext;
+let uiServiceProxy : common.UIServiceProxy;
+let uiServiceExtensionConnectCallback : common.UIServiceExtensionConnectCallback;
 ```

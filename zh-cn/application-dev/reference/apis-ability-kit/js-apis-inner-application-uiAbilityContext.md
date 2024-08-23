@@ -1632,7 +1632,7 @@ export default class EntryAbility extends UIAbility {
       if (err.code) {
         return;
       }
-      
+
       try {
         this.context.reportDrawnCompleted((err) => {
           if (err.code) {
@@ -2046,7 +2046,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -2376,6 +2376,305 @@ export default class EntryAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(0x0000, 'testTag', `backToCallerAbilityWithResult failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
+## UIAbilityContext.startUIServiceExtensionAbility<sup>13+<sup>
+
+startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
+
+启动一个[UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md)。
+
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                     | 只读 | 可选 | 说明                     |
+| -------- | --------------------------------------- | ---- |  ---- | ------------------------ |
+| want     | [Want](js-apis-app-ability-want.md)     | 是  | 否 | 启动需要的Want信息。 |
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | The Ability is not supported. |
+| 16000001 | The specified ability does not exist.                                                                       |
+| 16000002 | Incorrect ability type.                                                                                     |
+| 16000004 | Can not start invisible component.                                                                          |
+| 16000005 | The specified process does not have the permission.                                                         |
+| 16000006 | Cross-user operations are not allowed.                                                                      |
+| 16000008 | The crowdtesting application expires.                                                                       |
+| 16000011 | The context does not exist.                                                                                 |
+| 16000012 | The application is controlled.                                                                              |
+| 16000013 | The application is controlled by EDM.                                                                       |
+| 16000050 | Internal error.                                                                                             |
+| 16200001 | The caller has been released.                                                                               |
+
+**示例：**
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        // 创建启动按钮
+        Button('start ability')
+          .enabled(true)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            let startWant: Want = {
+              bundleName: 'com.acts.uiserviceextensionability',
+              abilityName: 'UiServiceExtAbility',
+            };
+            try {
+              // 启动UIServiceExtensionAbility
+              context.startUIServiceExtensionAbility(startWant).then(() => {
+                console.log('startUIServiceExtensionAbility success');
+              }).catch((error: BusinessError) => {
+                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+              })
+            } catch (err) {
+              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+            }
+          })
+      }
+    }
+  }
+}
+```
+
+## UIAbilityContext.connectUIServiceExtensionAbility<sup>13+<sup>
+
+connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
+
+连接一个UIServiceExtensionAbility(Promise返回形式).
+
+
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+>
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 只读 | 可选 | 说明                 |
+| ------ | ---- | ---- | -------------------- | ---- |
+| want   |[Want](js-apis-app-ability-want.md) | 是  | 否 | 连接需要的Want信息。 |
+| callback | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | 否 | 是 | 连接UIServiceExtensionAbility回调。 |
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;UIServiceProxy&gt; | [connectUIServiceExtensionAbility](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability13)执行后返回的[UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                                                             |
+| -------- | ----------------------------------------------------------------------------------- |
+| 201      | The application does not have permission to call the interface.                                                                                 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000001 | The specified ability does not exist.                                               |
+| 16000002 | Incorrect ability type.                                                             |
+| 16000004 | Can not start invisible component.                                                  |
+| 16000005 | The specified process does not have the permission.                                 |
+| 16000006 | Cross-user operations are not allowed.                                              |
+| 16000008 | The crowdtesting application expires.                                               |
+| 16000011 | The context does not exist.                                                         |
+| 16000050 | Internal error.                                                                     |
+| 16000053 | The ability is not on the top of the                                                |
+| 16000055 | Installation-free timed out.                                                        |
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const TAG: string = '[Extension] ';
+
+@Entry
+@Component
+struct UIServiceExtensionAbility {
+  dataCallBack : common.UIServiceExtensionConnectCallback = {
+    // 接收数据
+    onData: (data: Record<string, Object>) => {
+      console.log(`dataCallBack received data`, JSON.stringify(data));
+    },
+    // 连接断开
+    onDisconnect: () => {
+      console.log(`dataCallBack onDisconnect`);
+    }
+  }
+
+  async myConnect() {
+    // 获取上下文
+    let context = getContext(this) as common.UIAbilityContext;
+    let startWant: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'UiServiceExtAbility'
+    };
+
+    try {
+      // 连接服务
+      context.connectUIServiceExtensionAbility(startWant, this.dataCallBack)
+        .then((proxy: common.UIServiceProxy) => {
+          console.log(TAG + `try to connectUIServiceExtensionAbility`, JSON.stringify(proxy));
+        }).catch((err: Error) => {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.log(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    };
+  }
+
+  build() {
+    RelativeContainer() {
+      // 创建连接按钮
+      Button('connectServiceExtensionAbility', { type: ButtonType.Capsule, stateEffect: true })
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          this.myConnect()
+        });
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+## UIAbilityContext.disconnectUIServiceExtensionAbility<sup>13+<sup>
+
+disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
+
+断开与UIServiceExtensionAbility的连接。
+
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+>
+
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 只读 | 可选 | 说明                 |
+| ------ | ---- | ---- | -------------------- | -------------------- |
+| proxy   | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md) | 是  |否 | [connectUIServiceExtensionAbility](#uiabilitycontextconnectuiserviceextensionability13)执行返回的Proxy。 |
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                                                                |
+| -------- | ------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000011 | The context does not exist.                                                                  |
+| 16000050 | Internal error.                                                                                 |
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const TAG: string = '[Extension] ';
+
+@Entry
+@Component
+struct UIServiceExtensionAbility {
+  comProxy: common.UIServiceProxy | null = null;
+
+  build() {
+    Scroll() {
+      Column() {
+        // 创建断开连接的按钮
+        Button('disconnectUIServiceExtensionAbility', { type: ButtonType.Capsule, stateEffect: true })
+          .margin({
+            top: 5,
+            left: 10,
+            right: 10,
+            bottom: 5
+          })
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+          .onClick(() => {
+            this.myDisconnectUIServiceExtensionAbility()
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+
+  myDisconnectUIServiceExtensionAbility() {
+    let context = getContext(this) as common.UIAbilityContext;
+
+    try {
+      // 断开UIServiceExtension连接
+      context.disconnectUIServiceExtensionAbility(this.comProxy)
+        .then(() => {
+          console.log(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}}`);
+        }).catch((err: Error) => {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.log(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
     }
   }
 }
