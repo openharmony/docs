@@ -423,7 +423,8 @@ export default class LifecycleAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
-    };
+    }
+
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
   //...
@@ -437,8 +438,7 @@ export default class LifecycleAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
-    };
-
+    }
   }
 }
 ```

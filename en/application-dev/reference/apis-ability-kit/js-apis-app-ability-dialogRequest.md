@@ -28,21 +28,21 @@ Obtains the request information from Want.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                       |
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| want  | [Want](js-apis-app-ability-want.md) | Yes  | Want passed in the request for a modal dialog box. |
+| want  | [Want](js-apis-app-ability-want.md) | Yes  | Want passed in the request for a modal dialog box.|
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| [RequestInfo](#requestinfo) | **RequestInfo** object obtained, which is used to bind a modal dialog box. |
+| [RequestInfo](#requestinfo) | **RequestInfo** object obtained, which is used to bind a modal dialog box.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -76,21 +76,21 @@ Obtains the request callback from Want.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                       |
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| want  | [Want](js-apis-app-ability-want.md) | Yes  | Want passed in the request for a modal dialog box. |
+| want  | [Want](js-apis-app-ability-want.md) | Yes  | Want passed in the request for a modal dialog box.|
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| [RequestCallback](#requestcallback) | **RequestCallback** object obtained, which is used to set the return result. |
+| [RequestCallback](#requestcallback) | **RequestCallback** object obtained, which is used to set the return result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -118,12 +118,12 @@ Defines the location attributes of a modal dialog box.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Type  | Mandatory | Description                       |
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| left  | number | Yes  | X-coordinate of the upper left corner of the dialog box. |
-| top  | number | Yes  | Y-coordinate of the upper left corner of the dialog box. |
-| width  | number | Yes  | Width of the dialog box. |
-| height  | number | Yes  | Height of the dialog box. |
+| left  | number | Yes  | X-coordinate of the upper left corner of the dialog box.|
+| top  | number | Yes  | Y-coordinate of the upper left corner of the dialog box.|
+| width  | number | Yes  | Width of the dialog box.|
+| height  | number | Yes  | Height of the dialog box.|
 
 ## RequestInfo
 
@@ -174,10 +174,10 @@ Defines the result of the request for the modal dialog box. It contains **Result
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Type | Read-only | Mandatory | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| result | [ResultCode](#resultcode) | No | Yes | Result code of the request. |
-| want<sup>10+</sup> | [Want](js-apis-app-ability-want.md)  | No | No | Want information, such as the ability name and bundle name. |
+| result | [ResultCode](#resultcode) | No| No| Result code of the request.|
+| want<sup>10+</sup> | [Want](js-apis-app-ability-want.md)  | No| Yes| Want information, such as the ability name and bundle name.|
 
 ## RequestCallback
 
@@ -197,15 +197,15 @@ Sets the result of the request for the modal dialog box.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| result | [RequestResult](#requestresult) | Yes | Request result to set. |
+| result | [RequestResult](#requestresult) | Yes| Request result to set.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 

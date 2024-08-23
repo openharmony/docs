@@ -16,32 +16,33 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 3. Open the **MyAbilityStage.ts** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
    
-   ```ts
-   import { AbilityStage, Want } from '@kit.AbilityKit';
-   
-   export default class MyAbilityStage extends AbilityStage {
-     onCreate(): void {
-       // When the HAP of the application is loaded for the first time, initialize the module.
-     }
+    ```ts
+    import { AbilityStage, Want } from '@kit.AbilityKit';
+    
+    export default class MyAbilityStage extends AbilityStage {
+      onCreate(): void {
+        // When the HAP of the application is loaded for the first time, initialize the module.
+      }
 
-     onAcceptWant(want: Want): string {
-       // Triggered only for the UIAbility with the specified launch type.
-       return 'MyAbilityStage';
-     }
-   }
-   ```
+      onAcceptWant(want: Want): string {
+        // Triggered only for the UIAbility with the specified launch type.
+        return 'MyAbilityStage';
+      }
+    }
+    ```
    
 4. In the [module.json5 file](../quick-start/module-configuration-file.md), set **srcEntry** to specify the code path of the module as the entry for loading the HAP.
-   ```json
-   {
-     "module": {
-       "name": "entry",
-       "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
-       ...
-     }
-   }
-   ```
+
+    ```json
+    {
+      "module": {
+        "name": "entry",
+        "type": "entry",
+        "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+        ...
+      }
+    }
+    ```
 
 [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) has the lifecycle callback [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and the event callbacks [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdated()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
 

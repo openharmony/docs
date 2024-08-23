@@ -31,6 +31,9 @@ Provides DialogAbility information, including the bundle name, module name, and 
 | abilityLabelId | number | Yes| Yes| ID of the ability label.|
 | bundleIconId | number | Yes| Yes| ID of the bundle icon.|
 | bundleLabelId | number | Yes| Yes| ID of the bundle label.|
+| visible<sup>12+</sup> | boolean | Yes| Yes| Whether the ability is visible.|
+| appIndex<sup>12+</sup> | number | Yes| Yes| Index of the application clone.|
+| multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | Yes| Yes| Multi-app mode.|
 
 ## DialogSessionInfo
 

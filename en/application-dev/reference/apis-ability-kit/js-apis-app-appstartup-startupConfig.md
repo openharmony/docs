@@ -18,10 +18,10 @@ import { StartupConfig } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AppStartup
 
-  | Name | Type | Read Only | Mandatory | Description |
+  | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| timeoutMs | number | Yes | No | Timeout for executing all startup tasks. The default value is 10000 ms. |
-| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | Yes | No | AppStartup framework listener, which is called when all the startup tasks are complete. |
+| timeoutMs | number | Yes| Yes| Timeout for executing all startup tasks. The default value is 10000 ms.|
+| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | Yes| Yes| AppStartup listener, which is called when all the startup tasks are complete.|
 
 **Example**
 
