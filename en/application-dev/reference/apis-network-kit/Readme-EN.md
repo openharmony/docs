@@ -42,6 +42,8 @@
     - [NetConn_NetConnCallback](_net_conn___net_conn_callback.md)
     - [NetConn_NetSpecifier](_net_conn___net_specifier.md)
     - [NetStack_CertBlob](_net_stack___cert_blob.md)
+    - [NetStack_CertificatePinning](_net_stack___certificate_pinning.md)
+    - [NetStack_Certificates](_net_stack___certificates.md)
     - [WebSocket](_web_socket.md)
     - [WebSocket_CloseOption](_web_socket___close_option.md)
     - [WebSocket_CloseResult](_web_socket___close_result.md)
