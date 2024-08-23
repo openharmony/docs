@@ -102,24 +102,24 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
 3. Obtain the event trigger result from the subscription callback of the UIAbility. The run log result is as follows:
 
-   ```json
-   [Example].[Entry].[EntryAbility] 1. []
-   [Example].[Entry].[EntryAbility] 1. [1]
-   [Example].[Entry].[EntryAbility] 1. [2,"test"]
-   ```
+    ```json
+    [Example].[Entry].[EntryAbility] 1. []
+    [Example].[Entry].[EntryAbility] 1. [1]
+    [Example].[Entry].[EntryAbility] 1. [2,"test"]
+    ```
    
 4. When **event1** is not needed, call [eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
-   ```ts
-   import { UIAbility } from '@kit.AbilityKit';
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
 
-   export default class EntryAbility extends UIAbility {
-     // ... 
-     onDestroy(): void {
-       this.context.eventHub.off('event1');
-     }
-   }
-   ```
+    export default class EntryAbility extends UIAbility {
+      // ... 
+      onDestroy(): void {
+        this.context.eventHub.off('event1');
+      }
+    }
+    ```
 
 ## Using AppStorage or LocalStorage for Data Synchronization
 

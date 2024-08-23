@@ -42,7 +42,7 @@ If this API is called for the first time, a root directory will be created.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the local root directory. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the local root directory.|
 
 **Example**
 
@@ -76,7 +76,7 @@ If this API is called for the first time, a root directory will be created.
 
 | Type              | Description         |
 | ---------------- | ----------- |
-| Promise\<string> | Promise used to return the local root directory. |
+| Promise\<string> | Promise used to return the local root directory.|
 
 **Example**
 
@@ -104,7 +104,7 @@ Verifies whether a PID and UID have the given permission. This API uses an async
 | ---------- | --------------------------------------- | ---- | -------------------- |
 | permission | string                                  | Yes   | Name of the permission to verify.            |
 | options    | [PermissionOptions](#permissionoptions7) | Yes   | Permission options.               |
-| callback   | AsyncCallback\<number>                  | Yes   | Callback used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite. |
+| callback   | AsyncCallback\<number>                  | Yes   | Callback used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite.|
 
 **Example**
 
@@ -142,7 +142,7 @@ Verifies whether the current PID and UID have the given permission. This API use
 | Name        | Type                    | Mandatory  | Description                  |
 | ---------- | ---------------------- | ---- | -------------------- |
 | permission | string                 | Yes   | Name of the permission to verify.            |
-| callback   | AsyncCallback\<number> | Yes   | Callback used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite. |
+| callback   | AsyncCallback\<number> | Yes   | Callback used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite.|
 
 **Example**
 
@@ -172,14 +172,14 @@ Verifies whether a PID and UID have the given permission. This API uses a promis
 
 | Name        | Type                                     | Mandatory  | Description      |
 | ---------- | --------------------------------------- | ---- | -------- |
-| permission | string                                  | Yes   | Name of the permission to verify. |
+| permission | string                                  | Yes   | Name of the permission to verify.|
 | options    | [PermissionOptions](#permissionoptions7) | No   | Permission options.   |
 
 **Return value**
 
 | Type              | Description                                |
 | ---------------- | ---------------------------------- |
-| Promise\<number> | Promise used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite. |
+| Promise\<number> | Promise used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite.|
 
 **Example**
 
@@ -208,7 +208,7 @@ Requests certain permissions from the system. This API uses an asynchronous call
 | Name            | Type                                      | Mandatory  | Description                                 |
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | Yes   | Permissions to request. This parameter cannot be **null**.             |
-| requestCode    | number                                   | Yes   | Request code to be passed to [PermissionRequestResult](#permissionrequestresult7). |
+| requestCode    | number                                   | Yes   | Request code to be passed to [PermissionRequestResult](#permissionrequestresult7).|
 | resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | Yes   | Callback used to return the permission request result.                          |
 
 **Example**
@@ -249,13 +249,13 @@ Requests certain permissions from the system. This API uses a promise to return 
 | Name          | Type                | Mandatory | Description                                         |
 | -------------- | ------------------- | ----- | -------------------------------------------- |
 | permissions    | Array\<string>      | Yes   | Permissions to request. This parameter cannot be **null**.        |
-| requestCode    | number              | Yes   | Request code to be passed to [PermissionRequestResult](#permissionrequestresult7). |
+| requestCode    | number              | Yes   | Request code to be passed to [PermissionRequestResult](#permissionrequestresult7).|
 
 **Return value**
 
 | Type                                                          | Description            |
 | ------------------------------------------------------------- | ---------------- |
-| Promise\<[PermissionRequestResult](#permissionrequestresult7)> | Promise used to return the permission request result. |
+| Promise\<[PermissionRequestResult](#permissionrequestresult7)> | Promise used to return the permission request result.|
 
 **Example**
 
@@ -290,7 +290,7 @@ Obtains information about the application. This API uses an asynchronous callbac
 
 | Name      | Type                             | Mandatory  | Description          |
 | -------- | ------------------------------- | ---- | ------------ |
-| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Yes   | Callback used to return the application information. |
+| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Yes   | Callback used to return the application information.|
 
 **Example**
 
@@ -322,7 +322,7 @@ Obtains information about the application. This API uses a promise to return the
 
 | Type                       | Description       |
 | ------------------------- | --------- |
-| Promise\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Promise used to return the application information. |
+| Promise\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Promise used to return the application information.|
 
 **Example**
 
@@ -350,7 +350,7 @@ Obtains the bundle name of this ability. This API uses an asynchronous callback 
 
 | Name      | Type                    | Mandatory  | Description                |
 | -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the bundle name. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the bundle name.|
 
 **Example**
 
@@ -382,7 +382,7 @@ Obtains the bundle name of this ability. This API uses a promise to return the r
 
 | Type              | Description              |
 | ---------------- | ---------------- |
-| Promise\<string> | Promise used to return the bundle name. |
+| Promise\<string> | Promise used to return the bundle name.|
 
 **Example**
 
@@ -406,9 +406,9 @@ Obtains the display orientation of this ability. This API uses an asynchronous c
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory | Description              |
+| Name    | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | Yes  | Callback used to return the display orientation. |
+| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | Yes  | Callback used to return the display orientation.|
 
 **Example**
 
@@ -438,7 +438,7 @@ Obtains the display orientation of this ability. This API uses a promise to retu
 
 | Type                                      | Description       |
 | ---------------------------------------- | --------- |
-| Promise\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | Promise used to return the display orientation. |
+| Promise\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | Promise used to return the display orientation.|
 
 **Example**
 
@@ -468,7 +468,7 @@ Obtains the external cache directory of the application. This API uses an asynch
 
 | Name      | Type                    | Mandatory  | Description                |
 | -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the absolute path of the cache directory. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the absolute path of the cache directory.|
 
 **Example**
 
@@ -502,7 +502,7 @@ Obtains the external cache directory of the application. This API uses a promise
 
 | Type              | Description              |
 | ---------------- | ---------------- |
-| Promise\<string> | Promise used to return the absolute path of the cache directory. |
+| Promise\<string> | Promise used to return the absolute path of the cache directory.|
 
 **Example**
 
@@ -528,7 +528,7 @@ Sets the display orientation for this ability. This API uses an asynchronous cal
 
 | Name         | Type                                      | Mandatory  | Description          |
 | ----------- | ---------------------------------------- | ---- | ------------ |
-| orientation | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | Yes   | Display orientation to set. |
+| orientation | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | Yes   | Display orientation to set.|
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
 **Example**
@@ -563,7 +563,7 @@ Sets the display orientation for this ability. This API uses a promise to return
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -595,7 +595,7 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 
 | Name      | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| show     | boolean              | Yes   | Whether to show this feature at the top of the lock screen. The value **true** means to show this feature at the top of the lock screen, and **false** means the opposite. |
+| show     | boolean              | Yes   | Whether to show this feature at the top of the lock screen. The value **true** means to show this feature at the top of the lock screen, and **false** means the opposite.|
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
@@ -627,13 +627,13 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 
 | Name  | Type     | Mandatory  | Description                                      |
 | ---- | ------- | ---- | ---------------------------------------- |
-| show | boolean | Yes   | Whether to show this feature at the top of the lock screen. The value **true** means to show this feature at the top of the lock screen, and **false** means the opposite. |
+| show | boolean | Yes   | Whether to show this feature at the top of the lock screen. The value **true** means to show this feature at the top of the lock screen, and **false** means the opposite.|
 
 **Return value**
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -648,11 +648,15 @@ context.setShowOnLockScreen(show).then((data) => {
 });
 ```
 
-## Context.setWakeUpScreen<sup>7+</sup>
+## Context.setWakeUpScreen<sup>(deprecated)</sup>
 
 setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
 Sets whether to wake up the screen when this feature is restored. This API uses an asynchronous callback to return the result.
+
+**NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 12. Its substitute, **window.setWakeUpScreen**, is available only to system applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -660,7 +664,7 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 
 | Name      | Type                  | Mandatory  | Description                               |
 | -------- | -------------------- | ---- | --------------------------------- |
-| wakeUp   | boolean              | Yes   | Whether to wake up the screen. The value **true** means to wake up the screen, and **false** means the opposite. |
+| wakeUp   | boolean              | Yes   | Whether to wake up the screen. The value **true** means to wake up the screen, and **false** means the opposite.|
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
@@ -676,11 +680,15 @@ context.setWakeUpScreen(wakeUp, (error) => {
 });
 ```
 
-## Context.setWakeUpScreen<sup>7+</sup>
+## Context.setWakeUpScreen<sup>(deprecated)</sup>
 
 setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
 Sets whether to wake up the screen when this feature is restored. This API uses a promise to return the result.
+
+**NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 12. Its substitute **window.setWakeUpScreen** is available only to system applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -688,13 +696,13 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 
 | Name    | Type     | Mandatory  | Description                               |
 | ------ | ------- | ---- | --------------------------------- |
-| wakeUp | boolean | Yes   | Whether to wake up the screen. The value **true** means to wake up the screen, and **false** means the opposite. |
+| wakeUp | boolean | Yes   | Whether to wake up the screen. The value **true** means to wake up the screen, and **false** means the opposite.|
 
 **Return value**
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -724,7 +732,7 @@ Obtains information about the current process, including the PID and process nam
 
 | Name      | Type                         | Mandatory  | Description        |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | Yes   | Callback used to return the process information. |
+| callback | AsyncCallback\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | Yes   | Callback used to return the process information.|
 
 **Example**
 
@@ -756,7 +764,7 @@ Obtains information about the current process, including the PID and process nam
 
 | Type                   | Description     |
 | --------------------- | ------- |
-| Promise\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | Promise used to return the process information. |
+| Promise\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | Promise used to return the process information.|
 
 **Example**
 
@@ -786,7 +794,7 @@ This API is available only to Page abilities.
 
 | Name      | Type                         | Mandatory  | Description                                    |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the element name, which is an **ohos.bundleManager.ElementName** object. |
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the element name, which is an **ohos.bundleManager.ElementName** object.|
 
 **Example**
 
@@ -820,7 +828,7 @@ This API is available only to Page abilities.
 
 | Type                   | Description                                  |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the element name, which is an **ohos.bundleManager.ElementName** object. |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the element name, which is an **ohos.bundleManager.ElementName** object.|
 
 **Example**
 
@@ -846,7 +854,7 @@ Obtains the name of the current process. This API uses an asynchronous callback 
 
 | Name      | Type                    | Mandatory  | Description        |
 | -------- | ---------------------- | ---- | ---------- |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the process name. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the process name.|
 
 **Example**
 
@@ -878,7 +886,7 @@ Obtains the name of the current process. This API uses a promise to return the r
 
 | Type              | Description        |
 | ---------------- | ---------- |
-| Promise\<string> | Promise used to return the process name. |
+| Promise\<string> | Promise used to return the process name.|
 
 **Example**
 
@@ -906,7 +914,7 @@ Obtains the bundle name of the caller ability. This API uses an asynchronous cal
 
 | Name      | Type                    | Mandatory  | Description              |
 | -------- | ---------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the bundle name. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the bundle name.|
 
 **Example**
 
@@ -938,7 +946,7 @@ Obtains the bundle name of the caller ability. This API uses a promise to return
 
 | Type              | Description            |
 | ---------------- | -------------- |
-| Promise\<string> | Promise used to return the bundle name. |
+| Promise\<string> | Promise used to return the bundle name.|
 
 **Example**
 
@@ -964,7 +972,7 @@ Obtains the cache directory of the application in the internal storage. This API
 
 | Name      | Type                    | Mandatory  | Description             |
 | -------- | ---------------------- | ---- | --------------- |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the cache directory. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the cache directory.|
 
 **Example**
 
@@ -994,7 +1002,7 @@ Obtains the cache directory of the application in the internal storage. This API
 
 | Type              | Description             |
 | ---------------- | --------------- |
-| Promise\<string> | Promise used to return the cache directory. |
+| Promise\<string> | Promise used to return the cache directory.|
 
 **Example**
 
@@ -1020,7 +1028,7 @@ Obtains the file directory of the application in the internal storage. This API 
 
 | Name      | Type                    | Mandatory  | Description                 |
 | -------- | ---------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the file directory. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the file directory.|
 
 **Example**
 
@@ -1050,7 +1058,7 @@ Obtains the file directory of the application in the internal storage. This API 
 
 | Type              | Description                 |
 | ---------------- | ------------------- |
-| Promise\<string> | Promise used to return the file directory. |
+| Promise\<string> | Promise used to return the file directory.|
 
 **Example**
 
@@ -1078,7 +1086,7 @@ If the distributed file path does not exist, the system will create a path and r
 
 | Name      | Type                    | Mandatory  | Description                                      |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the distributed file path.<br>If the path does not exist, the system will create one and return the created path. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the distributed file path.<br>If the path does not exist, the system will create one and return the created path.|
 
 **Example**
 
@@ -1110,7 +1118,7 @@ If the distributed file path does not exist, the system will create a path and r
 
 | Type              | Description                                 |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the distributed file path. If this API is called for the first time, a path will be created. |
+| Promise\<string> | Promise used to return the distributed file path. If this API is called for the first time, a path will be created.|
 
 **Example**
 
@@ -1136,7 +1144,7 @@ Obtains the application type. This API uses an asynchronous callback to return t
 
 | Name      | Type                    | Mandatory  | Description                              |
 | -------- | ---------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the application type. |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the application type.|
 
 **Example**
 
@@ -1166,7 +1174,7 @@ Obtains the application type. This API uses a promise to return the result.
 
 | Type              | Description                |
 | ---------------- | ------------------ |
-| Promise\<string> | Promise used to return the application type. |
+| Promise\<string> | Promise used to return the application type.|
 
 **Example**
 
@@ -1192,7 +1200,7 @@ Obtains the module information of the application. This API uses an asynchronous
 
 | Name      | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is an **HapModuleInfo** object. |
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is an **HapModuleInfo** object.|
 
 **Example**
 
@@ -1222,7 +1230,7 @@ Obtains the module information of the application. This API uses a promise to re
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is an **HapModuleInfo** object. |
+| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is an **HapModuleInfo** object.|
 
 **Example**
 
@@ -1248,7 +1256,7 @@ Obtains the version information of the application. This API uses an asynchronou
 
 | Name      | Type                                      | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | Yes   | Callback used to return the version information. |
+| callback | AsyncCallback\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | Yes   | Callback used to return the version information.|
 
 **Example**
 
@@ -1278,7 +1286,7 @@ Obtains the version information of the application. This API uses a promise to r
 
 | Type                                      | Description       |
 | ---------------------------------------- | --------- |
-| Promise\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | Promise used to return the version information. |
+| Promise\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | Promise used to return the version information.|
 
 **Example**
 
@@ -1304,7 +1312,7 @@ Obtains information about this ability. This API uses an asynchronous callback t
 
 | Name      | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Yes   | Callback used to return the ability information. |
+| callback | AsyncCallback\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Yes   | Callback used to return the ability information.|
 
 **Example**
 
@@ -1334,7 +1342,7 @@ Obtains information about this ability. This API uses a promise to return the re
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Promise used to return the ability information. |
+| Promise\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Promise used to return the ability information.|
 
 **Example**
 
@@ -1360,7 +1368,7 @@ Obtains the context of the application.
 
 | Type     | Description        |
 | ------- | ---------- |
-| Context | Application context. |
+| Context | Application context.|
 
 **Example**
 
@@ -1383,7 +1391,7 @@ Checks whether the configuration of this ability is being updated. This API uses
 
 | Name      | Type                     | Mandatory  | Description                           |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** means that the configuration of the ability is being updated, and **false** means the opposite. |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** means that the configuration of the ability is being updated, and **false** means the opposite.|
 
 **Example**
 
@@ -1413,7 +1421,7 @@ Checks whether the configuration of this ability is being updated. This API uses
 
 | Type               | Description                           |
 | ----------------- | ----------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the configuration of the ability is being updated, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the configuration of the ability is being updated, and **false** means the opposite.|
 
 **Example**
 
@@ -1439,7 +1447,7 @@ Notifies the system of the time required to draw this page function. This API us
 
 | Name      | Type                  | Mandatory  | Description         |
 | -------- | -------------------- | ---- | ----------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the notification is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the notification is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1465,7 +1473,7 @@ Notifies the system of the time required to draw this page function. This API us
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -1486,8 +1494,8 @@ context.printDrawnCompleted().then((data) => {
 
 | Name  | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| pid  |number | No   | Process ID. |
-| uid  |number | No   | User ID. |
+| pid  |number | No   | Process ID.|
+| uid  |number | No   | User ID.|
 
 ## PermissionRequestResult<sup>7+</sup>
 
@@ -1495,6 +1503,6 @@ context.printDrawnCompleted().then((data) => {
 
 | Name        | Type            | Mandatory  | Description        |
 | ----------- |-------------- | ---- | ---------- |
-| requestCode | number         | Yes   | Request code passed. |
+| requestCode | number         | Yes   | Request code passed.|
 | permissions | Array\<string> | Yes   | Permissions requested.  |
 | authResults | Array\<number> | Yes   | Permission request result.  |

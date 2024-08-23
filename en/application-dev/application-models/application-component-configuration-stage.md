@@ -1,37 +1,27 @@
 # Application- or Component-Level Configuration (Stage Model)
 
-During application development, you must configure tags to identify an application, such as the bundle name and application icon. This topic describes some key tags.
+During application development, you must configure tags to identify an application, such as the bundle name and application icon. This topic describes some critical tags.
 
 ## Configuring the Bundle Name
 
 The bundle name is specified by the **bundleName** field in the [app.json5 file](../quick-start/app-configuration-file.md) in the **AppScope** directory of the project. This field identifies an application and must be globally unique. You are advised to use the reverse domain name notation, for example, *com.example.demo*, where the first part is the domain suffix **com**, the second part is the vendor/individual name, and the third part is the application name, which can be of multiple levels.
 
 ## Configuring Icons and Labels
-Icons and labels are usually configured together. There is the application icon, application label, entry icon, and entry label, which correspond to the **icon** and **label** fields in the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md).
+Icons and labels are usually configured together. They correspond to the **icon** and **label** fields in the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md).
 
-If an entry icon and entry label are configured for an application, they will overwrite the application icon and application label and be the ones displayed.
+### Icon and Label Configuration in the app.json5 File
 
-If no entry icon or entry label is configured for an application, the application icon and application label are displayed.
+#### Use Scenarios
 
-The application icon and application label are used to identify an application, and they are usually displayed on a screen for identifying the application. Example scenarios are as follows:
+The icon and label configured in the **app.json5** file are displayed on an application screen, for example:
 * Application list in Settings
 * Applications with permissions granted in the privacy management screen
-* Notification messages displayed in the status bar
 
+**Figure 1** Icon and label configuration in the app.json5 file
 
-The entry icon and entry label are displayed on the device's home screen after an application is installed, as shown below. The entry icon is specific to a [UIAbility](uiability-overview.md). Only one entry icon and entry label can be configured for an application. If there are multiple entry abilities, only the entry icon and entry label configured for the mainElement in the entry HAP take effect. After you touch the entry icon, the corresponding UIAbility page is displayed. Example scenarios are as follows:
-* Applications displayed on the device's home screen
-* Applications displayed in Recents
+![application-component-configuration-stage-app](figures/application-component-configuration-stage-app.png)
 
-**Figure 1** Icons and labels
-
-![application-component-configuration-stage](figures/application-component-configuration-stage.png)
-
-### Configuring the Application Icon and Application Label
-
-The application icon is specified by the **icon** field in the [app.json5 file](../quick-start/app-configuration-file.md) in the **AppScope** directory of the project. The **icon** field must be set to the index of an image so that the image is displayed as the application icon.
-
-The application label is specified by the **label** field in the [app.json5 file](../quick-start/app-configuration-file.md) in the **AppScope** directory of the project. The **label** field specifies the application name displayed to users. It must be set to the index of a string resource.
+#### Configuration Example
 
 ```json
 {
@@ -43,11 +33,21 @@ The application label is specified by the **label** field in the [app.json5 file
 }
 ```
 
-### Configuring the Entry Icon and Entry Label
-#### Configuration Methods
-On the stage model, you can configure an entry icon and entry label for each application component. The entry icon and entry label are displayed on the home screen.
+### Icon and Label Configuration in the module.json5 File
 
-The entry icon is configured by specifying **icon** under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md). For example, if you want to display the icon of the UIAbility component on the home screen, add **entity.system.home** to **entities** and **ohos.want.action.home** to **actions** under **skills**. An application can have only one entry icon and entry label. If there are multiple entry abilities, only the entry icon and entry label configured for the mainElement in the entry HAP takes effect.
+#### Use Scenarios
+The icon and label configured in the **module.json5** file are displayed on the home screen after the application is installed. The scenarios are as follows:
+* Applications displayed on the device's home screen
+* Applications displayed in Recents
+
+**Figure 2** Icon and label configuration of the module.json5 file
+
+![application-component-configuration-stage-module](figures/application-component-configuration-stage-module.png)
+
+
+#### Configuration Example
+
+To display the UIAbility icon on the home screen, you must configure the **icon** and **label** fields, and under the **skills** tag, add **entity.system.home** to **entities** and **ohos.want.action.home** to **actions**.
 
 ```json
 {
@@ -72,33 +72,21 @@ The entry icon is configured by specifying **icon** under **abilities** in the [
   }
 }
 ```
-#### Control Rules
-The system strictly controls applications without icons to prevent malicious applications from deliberately configuring no icon to block uninstall attempts.
+#### Management Rules
+The system strictly controls applications without icons to prevent malicious applications from deliberately displaying no icon on the home screen to block uninstall attempts.
 
-To hide an entry icon on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> The rules for displaying the entry icon and entry label are as follows:
+To hide an icon of a pre-installed application on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> After this privilege is granted, the application icon will not be displayed on the home screen.
 
+Home screen icons can be hidden only for pre-installed applications. The icon display rules are as follows:
 * The HAP file contains UIAbility configuration.
-  * An entry icon is set in the **abilities** field of the **module.json5** file.
-    * The application does not have the privilege to hide its icon on the home screen.
-      * The system uses the icon configured for the UIAbility as the entry icon and displays it on the home screen. Touching this icon will direct the user to the home page of the UIAbility.
-      * The system uses the label configured for the UIAbility as the entry label and displays it on the home screen. If no label is configured, the system uses the label specified in the **app.json5** file as the entry label and displays it on the home screen.
-    * The application has the privilege to hide its icon on the home screen.
-      * The application information is not returned when the home screen queries the information, and the entry icon and entry label of the application are not displayed on the home screen.
-  * No entry icon is set in the **abilities** field of the **module.json5** file.
-    * The application does not have the privilege to hide its icon on the home screen.
-      * The system uses the icon specified in the **app.json5** file as the entry icon and displays it on the home screen. Touching this icon will direct the user to the application details page, as shown below.
-      * The system uses the label specified in the **app.json5** file as the entry label and displays it on the home screen.
-    * The application has the privilege to hide its icon on the home screen.
-        * The application information is not returned when the home screen queries the information, and the entry icon and entry label of the application are not displayed on the home screen.
+  * If both an icon and a label are configured in the **abilities** tag of the **module.json5** file, the system displays that icon and label on the home screen. Touching this icon will direct the user to the home page of the UIAbility. If only an icon is configured, the system displays the label configured in the **app.json5** file on the home screen.
 
-* The HAP file does not contain UIAbility configuration.
-  * The application does not have the privilege to hide its icon on the home screen.
-    * The system uses the icon specified in the **app.json5** file as the entry icon and displays it on the home screen. Touching this icon will direct the user to the application details page, as shown below.
-    * The system uses the label specified in the **app.json5** file as the entry label and displays it on the home screen.
-  * The application has the privilege to hide its icon on the home screen.
-    * The application information is not returned when the home screen queries the information, and the entry icon and entry label of the application are not displayed on the home screen.
+  * If no icon is configured in the **abilities** tag of the **module.json5** file, the system displays the icon and label configured in the **app.json5** file on the home screen. Touching this icon will direct the user to the application details page.
 
-  **Figure 2** Application details page
+* The HAP file does not contain UIAbility configuration. The system displays the icon and label configured in the **app.json5** file on the home screen. Touching this icon will direct the user to the application details page.
+
+
+  **Figure 3** Application details page
 
   ![Application details page](figures/application_details.jpg)
 
