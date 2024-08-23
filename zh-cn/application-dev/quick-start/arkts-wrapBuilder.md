@@ -154,12 +154,13 @@ struct Parent{
 
 ## 错误场景
 
-```
+### wrapBuilder必须传入被@Builder修饰的全局函数。
+
+```ts
 function MyBuilder() {
 
 }
 
-// wrapBuilder必须传入被@Builder修饰的全局函数。
 const globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
 
 @Entry
@@ -182,3 +183,47 @@ struct Index {
 }
 ```
 
+### 重复定义wrapBuilder失效
+
+通过wrapBuilder(MyBuilderFirst)初始化定义builderObj之后，再次对builderObj进行赋值wrapBuilder(MyBuilderSecond)会不起作用，只生效第一次定义的wrapBuilder(MyBuilderFirst)。
+
+```ts
+@Builder
+function MyBuilderFirst(value: string, size: number) {
+  Text('MyBuilderFirst：' + value)
+    .fontSize(size)
+}
+
+@Builder
+function MyBuilderSecond(value: string, size: number) {
+  Text('MyBuilderSecond：' + value)
+    .fontSize(size)
+}
+
+interface BuilderModel {
+  globalBuilder: WrappedBuilder<[string, number]>;
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  @State builderObj: BuilderModel = { globalBuilder: wrapBuilder(MyBuilderFirst) };
+
+  aboutToAppear(): void {
+    setTimeout(() => {
+      this.builderObj.globalBuilder = wrapBuilder(MyBuilderSecond);
+    },1000)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        this.builderObj.globalBuilder.builder(this.message, 20)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
