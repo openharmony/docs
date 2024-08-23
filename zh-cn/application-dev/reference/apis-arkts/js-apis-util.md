@@ -512,7 +512,7 @@ interface Person {
   name: string,
   age: number
 }
-let obj: Person = { name: 'Dany', age: 20 };
+let obj: Person = { name: 'Jack', age: 20 };
 let result1 = util.getHash(obj);
 console.info('result1 is ' + result1);
 let result2 = util.getHash(obj);
