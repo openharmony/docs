@@ -2305,8 +2305,8 @@ editMenuOptions(editMenu: EditMenuOptions)
 Web组件自定义文本选择菜单。
 
 用户可以通过该属性设置自定义的文本菜单：<br>
-在[onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu)中修改、增加、删除菜单选项，如返回空数组，则web不会显示文本菜单。<br>
-在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick)中自定义菜单选项的回调函数，该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调——返回true不执行系统回调，返回false继续执行系统回调。<br>
+在[onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu)中，可以修改、增加、删除菜单选项，如果希望不显示文本菜单，需要返回空数组。<br>
+在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。在返回true不执行系统回调，返回false继续执行系统回调。<br>
 本接口在与[selectionMenuOptions](#selectionmenuoptions12)同时使用时，会使selectionMenuOptions不生效。
 
 **参数：**
