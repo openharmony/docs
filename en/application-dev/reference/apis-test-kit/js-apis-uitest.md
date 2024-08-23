@@ -21,7 +21,7 @@ This module provides the following functions:
 ## Modules to Import
 
 ```ts
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
+import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 ```
 
 ## MatchPattern
@@ -120,17 +120,15 @@ Describes the display rotation of the device.
 
 Provides the flag attributes of this window.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Test.UiTest
 
 | Name                | Type   | Readable| Writable| Description                                                        |
 | -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName           | string  | Yes  | No  | Bundle name of the application to which the window belongs.                                        |
-| title                | string  | Yes  | No  | Title of the window.                                            |
-| focused              | boolean | Yes  | No  | Whether the window is in focused state.                                      |
+| bundleName           | string  | Yes  | No  | Bundle name of the application to which the window belongs.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| title                | string  | Yes  | No  | Title of the window.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| focused              | boolean | Yes  | No  | Whether the window is in focused state.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | actived(deprecated)  | boolean | Yes  | No  | Whether the window is interacting with the user.<br>Since API version 11, this parameter is renamed **active**.|
-| active<sup>11+</sup> | boolean | Yes  | No  | Whether the window is interacting with the user.                                  |
+| active<sup>11+</sup> | boolean | Yes  | No  | Whether the window is interacting with the user.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## UiDirection<sup>10+</sup>
 
@@ -177,20 +175,11 @@ Provides information about the UI event.
 
 ## On<sup>9+</sup>
 
-Since API version 9, the UiTest framework provides a wide range of UI component feature description APIs in the **On** class to filter and match components.
-
-The APIs provided by the **On** class exhibit the following features:
-
-- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
-
-- Provide multiple match patterns for component attributes.
-
-- Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning.
-
-All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
+Since API version 9, the UiTest framework provides a wide range of UI component feature description APIs in the **On** class to filter and match components.<br>
+The APIs provided by the **On** class exhibit the following features:<br>1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.<br>2. Provide multiple match patterns for component attributes.<br>3. Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning.<br>All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
 
 ```ts
-import { ON } from '@ohos.UiTest';
+import { ON } from '@kit.TestKit';
 ON.text('123').type('Button');
 ```
 
@@ -223,12 +212,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.text('123'); // Use the static constructor ON to create an On object and specify the text attribute of the target component.
 ```
 
@@ -260,12 +249,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.id('123'); // Use the static constructor ON to create an On object and specify the id attribute of the target component.
 ```
 
@@ -275,6 +264,10 @@ let on:On = ON.id('123'); // Use the static constructor ON to create an On objec
 type(tp: string): On
 
 Specifies the type attribute of the target component.
+
+>**NOTE**
+>
+>You can define the type of the component, and you can use [DevEco Testing](https://developer.huawei.com/consumer/cn/download) to query the type information of the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -298,12 +291,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.type('Button'); // Use the static constructor ON to create an On object and specify the type attribute of the target component.
 ```
 
@@ -336,12 +329,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.clickable(true); // Use the static constructor ON to create an On object and specify the clickable attribute of the target component.
 ```
 
@@ -373,12 +366,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.longClickable(true); // Use the static constructor ON to create an On object and specify the longClickable attribute of the target component.
 ```
 
@@ -411,12 +404,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.scrollable(true); // Use the static constructor ON to create an On object and specify the scrollable attribute of the target component.
 ```
 
@@ -448,12 +441,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.enabled(true); // Use the static constructor ON to create an On object and specify the enabled attribute of the target component.
 ```
 
@@ -462,6 +455,8 @@ let on:On = ON.enabled(true); // Use the static constructor ON to create an On o
 focused(b?: boolean): On
 
 Specifies the focused attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -483,12 +478,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.focused(true); // Use the static constructor ON to create an On object and specify the focused attribute of the target component.
 ```
 
@@ -520,12 +515,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.selected(true); // Use the static constructor ON to create an On object and specify the selected attribute of the target component.
 ```
 
@@ -557,12 +552,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.checked(true); // Use the static constructor ON to create an On object and specify the checked attribute of the target component.
 ```
 
@@ -594,12 +589,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401      | Parameter error. 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.checkable(true); // Use the static constructor ON to create an On object and specify the checkable attribute of the target component.
 ```
 
@@ -631,12 +626,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 
 // Use the static constructor ON to create an On object and specify that the target component is located before the given attribute component.
 let on:On = ON.type('Button').isBefore(ON.text('123')); // Search for the first <Button> component located before the component whose text is 123.
@@ -670,12 +665,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 
 // Use the static constructor ON to create an On object and specify that the target component is located after the given attribute component.
 let on:On = ON.type('Text').isAfter(ON.text('123'))  // Search for the first <Text> component located after the component whose text is 123.
@@ -709,12 +704,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 // Use the static constructor ON to create an On object and specify that the target component is located within the given attribute component.
 let on:On = ON.text('java').within(ON.type('Scroll'));  // Search for the child component whose text is java within the <Scroller> component.
 ```
@@ -747,12 +742,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.inWindow('com.uitestScene.acts'); // Use the static constructor ON to create an On object and specify that the target component is located within the given application window.
 ```
 
@@ -785,19 +780,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.description('123'); // Use the static constructor ON to create an On object and specify the description attribute of the target component.
 ```
 
 ## Component<sup>9+</sup>
 
 Represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
-
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### click<sup>9+</sup>
@@ -816,13 +810,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Driver, ON, Component } from '@ohos.UiTest';
+import { Driver, ON, Component } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -846,13 +840,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import {Component, Driver, ON } from '@ohos.UiTest';
+import {Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -876,13 +870,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -912,13 +906,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -948,13 +942,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -984,13 +978,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1020,13 +1014,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1056,13 +1050,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1092,13 +1086,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1132,13 +1126,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1172,13 +1166,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
@@ -1212,13 +1206,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
@@ -1252,13 +1246,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.scrollable(true));
@@ -1293,13 +1287,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1333,13 +1327,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1373,13 +1367,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1413,14 +1407,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let text: Component = await driver.findComponent(ON.text('hello world'));
@@ -1443,13 +1437,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let text: Component = await driver.findComponent(ON.text('hello world'));
@@ -1485,14 +1479,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
@@ -1522,14 +1516,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
-| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
@@ -1559,14 +1553,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
-| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
@@ -1596,14 +1590,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1634,14 +1628,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let image: Component = await driver.findComponent(ON.type('Image'));
@@ -1671,14 +1665,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let image: Component = await driver.findComponent(ON.type('Image'));
@@ -1708,13 +1702,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 17000004 | if the component is invisible or destroyed.                  |
+| 17000002 | The async function is not called with await.             |
+| 17000004 | The window or component is invisible or destroyed.                  |
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1747,14 +1741,14 @@ Creates a **Driver** object and returns the object created. This API is a static
 
 For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 17000001 | if the test framework failed to initialize. |
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17000001 | Initialization failed. |
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
 }
@@ -1782,13 +1776,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.delayMs(1000);
@@ -1823,13 +1817,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.text('next page'));
@@ -1864,13 +1858,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let buttonList: Array<Component> = await driver.findComponents(ON.text('next page'));
@@ -1905,13 +1899,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -1947,13 +1941,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.waitForComponent(ON.text('next page'),500);
@@ -1982,14 +1976,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000003 | if the assertion failed.    |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000003 | Assertion failed.   |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.assertComponentExist(ON.text('next page'));
@@ -2012,12 +2006,12 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.pressBack();
@@ -2046,13 +2040,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.triggerKey(123);
@@ -2083,13 +2077,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.triggerCombineKeys(2072, 2047, 2035);
@@ -2111,8 +2105,8 @@ Clicks a specific point of this **Driver** object based on the given coordinates
 
 | Name| Type  | Mandatory| Description                                           |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point. The value must be greater than or equal to 0.|
-| y      | number | Yes  | Y coordinate of the target point. The value must be greater than or equal to 0.|
+| x      | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.|
+| y      | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.|
 
 **Error codes**
 
@@ -2120,13 +2114,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.click(100,100);
@@ -2147,8 +2141,8 @@ Double-clicks a specific point of this **Driver** object based on the given coor
 
 | Name| Type  | Mandatory| Description                                           |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point. The value must be greater than or equal to 0.|
-| y      | number | Yes  | Y coordinate of the target point. The value must be greater than or equal to 0.|
+| x      | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.|
+| y      | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.|
 
 **Error codes**
 
@@ -2156,13 +2150,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.doubleClick(100,100);
@@ -2183,8 +2177,8 @@ Long-clicks a specific point of this **Driver** object based on the given coordi
 
 | Name| Type  | Mandatory| Description                                           |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point. The value must be greater than or equal to 0.|
-| y      | number | Yes  | Y coordinate of the target point. The value must be greater than or equal to 0.|
+| x      | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.|
+| y      | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.|
 
 **Error codes**
 
@@ -2192,13 +2186,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.longClick(100,100);
@@ -2223,7 +2217,7 @@ Swipes on this **Driver** object from the given start point to the given end poi
 | starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
 | endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
 | endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
-| speed  | number | No  | Swipe speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -2231,13 +2225,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.swipe(100,100,200,200,600);
@@ -2262,7 +2256,7 @@ Drags this **Driver** object from the given start point to the given end point.
 | starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
 | endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
 | endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
-| speed  | number | No  | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -2270,13 +2264,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.drag(100,100,200,200,600);
@@ -2311,13 +2305,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.screenCap('/data/storage/el2/base/cache/1.png');
@@ -2346,13 +2340,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, DisplayRotation } from '@ohos.UiTest';
+import { Driver, DisplayRotation } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.setDisplayRotation(DisplayRotation.ROTATION_180);
@@ -2381,12 +2375,12 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **Example**
 
 ```ts
-import { DisplayRotation, Driver } from '@ohos.UiTest';
+import { DisplayRotation, Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let rotation: DisplayRotation = await driver.getDisplayRotation();
@@ -2415,13 +2409,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.setDisplayRotationEnabled(false);
@@ -2450,12 +2444,12 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **Example**
 
 ```ts
-import { Driver, } from '@ohos.UiTest';
+import { Driver, } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
@@ -2485,12 +2479,12 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let density = await driver.getDisplayDensity();
@@ -2513,12 +2507,12 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.wakeUpDisplay();
@@ -2541,12 +2535,12 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.pressHome();
@@ -2582,13 +2576,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let idled:boolean = await driver.waitForIdle(4000,5000);
@@ -2620,13 +2614,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
@@ -2662,13 +2656,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, PointerMatrix } from '@ohos.UiTest';
+import { Driver, PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let pointers: PointerMatrix = PointerMatrix.create(2,5);
@@ -2709,13 +2703,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, UiDirection } from '@ohos.UiTest';
+import { Driver, UiDirection } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.fling(UiDirection.DOWN, 10000);
@@ -2751,13 +2745,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.screenCapture('/data/storage/el2/base/cache/1.png', {left: 0, top: 0, right: 100, bottom: 100});
@@ -2789,13 +2783,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver,MouseButton } from '@ohos.UiTest';
+import { Driver,MouseButton } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
@@ -2818,7 +2812,7 @@ Injects a mouse scroll action at the specified coordinates, with the optional ke
 | ------ | ---------------- | ---- | ----------------------------------------------------------- |
 | p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                           |
 | down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward.|
-| d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the target point.        |
+| d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the end point.        |
 | key1   | number           | No  | The first key value. The default value is **0**.                             |
 | key2   | number           | No  | The second key value. The default value is **0**.                             |
 
@@ -2828,13 +2822,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
@@ -2845,7 +2839,7 @@ async function demo() {
 
 mouseMoveTo(p: Point): Promise\<void>;
 
-Moves the cursor to the target point.
+Moves the cursor to the end point.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2855,7 +2849,7 @@ Moves the cursor to the target point.
 
 | Name| Type            | Mandatory| Description          |
 | ------ | ---------------- | ---- | -------------- |
-| p      | [Point](#point9) | Yes  | Coordinates of the target point.|
+| p      | [Point](#point9) | Yes  | Coordinates of the end point.|
 
 **Error codes**
 
@@ -2863,13 +2857,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseMoveTo({x:100, y:100})
@@ -2898,12 +2892,12 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **Example**
 
 ```ts
-import { Driver, UIEventObserver } from '@ohos.UiTest';
+import { Driver, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let observer: UIEventObserver = await driver.createUIEventObserver()
@@ -2926,7 +2920,7 @@ Injects a mouse scroll action at the specified coordinates. You can specify the 
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                            |
 | down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward. |
-| d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the target point.         |
+| d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the end point.         |
 | key1   | number           | No  | The first key value. The default value is **0**.                              |
 | key2   | number           | No  | The second key value. The default value is **0**.                              |
 | speed  | number           | No  | Scroll speed of the mouse wheel, in cells/second.<br>Value range: 1 to 500<br>If the value is not within the range, the default value **20** will be used.|
@@ -2937,13 +2931,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20)
@@ -2975,13 +2969,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver,MouseButton } from '@ohos.UiTest';
+import { Driver,MouseButton } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseDoubleClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
@@ -3013,13 +3007,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver,MouseButton } from '@ohos.UiTest';
+import { Driver,MouseButton } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   await driver.mouseLongClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
@@ -3050,13 +3044,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
@@ -3087,13 +3081,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
@@ -3114,7 +3108,7 @@ Enters text at the specified point.
 
 | Name| Type            | Mandatory| Description              |
 | ------ | ---------------- | ---- | ------------------ |
-| p      | [Point](#point9) | Yes  | Coordinates of the target point.|
+| p      | [Point](#point9) | Yes  | Coordinates of the end point.|
 | text   | string           | Yes  | Text to enter.  |
 
 **Error codes**
@@ -3123,13 +3117,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let text: Component = await driver.findComponent(ON.type('TextInput'));
@@ -3171,12 +3165,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { PointerMatrix } from '@ohos.UiTest';
+import { PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let pointerMatrix: PointerMatrix = PointerMatrix.create(2,3);
 }
@@ -3198,7 +3192,7 @@ Sets the coordinates for the action corresponding to the specified finger and st
 | ------ | ---------------- | ---- | ---------------------------------------------------------- |
 | finger | number           | Yes  | Sequence number of the finger.                                              |
 | step   | number           | Yes  | Sequence number of the step.                                              |
-| point  | [Point](#point9) | Yes  | Coordinates of the action. It is recommended that the distance between adjacent coordinate points be within the range of 10 to 80 pixels.|
+| point  | [Point](#point9) | Yes  | Coordinates of the action. It is recommended that the distance between adjacent coordinate points is within the range of 10 to 80 pixels.|
 
 **Error codes**
 
@@ -3206,12 +3200,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { PointerMatrix } from '@ohos.UiTest';
+import { PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let pointers: PointerMatrix = PointerMatrix.create(2,5);
   pointers.setPoint(0,0,{x:250,y:480});
@@ -3230,7 +3224,6 @@ async function demo() {
 ## UiWindow<sup>9+</sup>
 
 The **UiWindow** class represents a window on the UI and provides APIs for obtaining window attributes, dragging a window, and adjusting the window size.
-
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### getBundleName<sup>9+</sup>
@@ -3255,13 +3248,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
@@ -3292,13 +3285,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3328,13 +3321,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3364,13 +3357,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3400,13 +3393,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3436,13 +3429,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3466,13 +3459,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3484,7 +3477,7 @@ async function demo() {
 
 moveTo(x: number, y: number): Promise\<void>
 
-Moves this window to the target point. This API is applicable to moveable windows.
+Moves this window to the end point. This API is applicable to moveable windows.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3494,8 +3487,8 @@ Moves this window to the target point. This API is applicable to moveable window
 
 | Name| Type  | Mandatory| Description                                           |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point. The value must be greater than or equal to 0.|
-| y      | number | Yes  | Y coordinate of the target point. The value must be greater than or equal to 0.|
+| x      | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.|
+| y      | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.|
 
 **Error codes**
 
@@ -3503,15 +3496,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 17000005 | This operation is not supported.         |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3543,15 +3536,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
-| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 17000005 | This operation is not supported.         |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, ResizeDirection, UiWindow } from '@ohos.UiTest';
+import { Driver, ResizeDirection, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3575,14 +3568,14 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.         |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.         |
+| 17000005 | This operation is not supported.         |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3606,14 +3599,14 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 17000005 | This operation is not supported.         |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3637,14 +3630,14 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
+| 17000005 | This operation is not supported.         |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3668,14 +3661,14 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
+| 17000005 | This operation is not supported.         |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3699,14 +3692,14 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 17000005 | This operation is not supported.         |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3736,13 +3729,13 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.         |
 
 **Example**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({active: true});
@@ -3777,12 +3770,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, UIElementInfo, UIEventObserver } from '@ohos.UiTest';
+import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let observer:  UIEventObserver = await driver.createUIEventObserver()
@@ -3818,12 +3811,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { Driver, UIElementInfo, UIEventObserver } from '@ohos.UiTest';
+import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let observer: UIEventObserver = await driver.createUIEventObserver()
@@ -3838,22 +3831,13 @@ async function demo() {
 
 ## By<sup>(deprecated)</sup>
 
-The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
-
-The APIs provided by the **By** class exhibit the following features:
-
-- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
-
-- Provide multiple match patterns for component attributes.
-
-- Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning.
-
-All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
+The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.<br>
+The APIs provided by the **By** class exhibit the following features:<br>1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.<br>2. Provide multiple match patterns for component attributes.<br>3. Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning.<br>All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
 
 This class is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
 
 ```ts
-import { BY } from '@ohos.UiTest';
+import { BY } from '@kit.TestKit';
 BY.text('123').type('Button');
 ```
 
@@ -3883,7 +3867,7 @@ This API is deprecated since API version 9. You are advised to use [text<sup>9+<
 **Example**
 
 ```ts
-import { BY, By } from '@ohos.UiTest';
+import { BY, By } from '@kit.TestKit';
 let by: By = BY.text('123'); // Use the static constructor BY to create a By object and specify the text attribute of the target component.
 ```
 
@@ -3913,7 +3897,7 @@ This API is deprecated since API version 9. You are advised to use [id<sup>9+</s
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.key('123'); // Use the static constructor BY to create a By object and specify the key attribute of the target component.
 ```
 
@@ -3943,7 +3927,7 @@ This API is deprecated since API version 9.
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.id(123); // Use the static constructor BY to create a By object and specify the id attribute of the target component.
 ```
 
@@ -3973,7 +3957,7 @@ This API is deprecated since API version 9. You are advised to use [type<sup>9+<
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.type('Button'); // Use the static constructor BY to create a By object and specify the type attribute of the target component.
 ```
 
@@ -4003,7 +3987,7 @@ This API is deprecated since API version 9. You are advised to use [clickable<su
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.clickable(true); // Use the static constructor BY to create a By object and specify the clickable attribute of the target component.
 ```
 
@@ -4033,7 +4017,7 @@ This API is deprecated since API version 9. You are advised to use [scrollable<s
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.scrollable(true); // Use the static constructor BY to create a By object and specify the scrollable attribute of the target component.
 ```
 
@@ -4062,7 +4046,7 @@ This API is deprecated since API version 9. You are advised to use [enabled<sup>
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.enabled(true); // Use the static constructor BY to create a By object and specify the enabled attribute of the target component.
 ```
 
@@ -4091,7 +4075,7 @@ This API is deprecated since API version 9. You are advised to use [focused<sup>
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.focused(true); // Use the static constructor BY to create a By object and specify the focused attribute of the target component.
 ```
 
@@ -4120,7 +4104,7 @@ This API is deprecated since API version 9. You are advised to use [selected<sup
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.selected(true); // Use the static constructor BY to create a By object and specify the selected attribute of the target component.
 ```
 
@@ -4149,7 +4133,7 @@ This API is deprecated since API version 9. You are advised to use [isBefore<sup
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 
 // Use the static constructor BY to create a by object and specify that the target component is located before the given attribute component.
 let by: By = BY.type('Button').isBefore(BY.text('123')); // Search for the first <Button> component located before the component whose text is 123.
@@ -4180,7 +4164,7 @@ This API is deprecated since API version 9. You are advised to use [isAfter<sup>
 **Example**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 
 // Use the static constructor BY to create a by object and specify that the target component is located after the given attribute component.
 let by: By = BY.type('Text').isAfter(BY.text('123')); // Search for the first <Text> component located after the component whose text is 123.
@@ -4206,7 +4190,7 @@ This API is deprecated since API version 9. You are advised to use [click<sup>9+
 **Example**
 
 ```ts
-import { UiDriver, BY, Driver, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, Driver, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4227,7 +4211,7 @@ This API is deprecated since API version 9. You are advised to use [doubleClick<
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4248,7 +4232,7 @@ This API is deprecated since API version 9. You are advised to use [longClick<su
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4275,7 +4259,7 @@ This API is deprecated since API version 9.
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4302,7 +4286,7 @@ This API is deprecated since API version 9. You are advised to use [getId<sup>9+
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4329,7 +4313,7 @@ This API is deprecated since API version 9. You are advised to use [getText<sup>
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4356,7 +4340,7 @@ This API is deprecated since API version 9. You are advised to use [getType<sup>
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4383,7 +4367,7 @@ This API is deprecated since API version 9. You are advised to use [isClickable<
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4414,7 +4398,7 @@ This API is deprecated since API version 9. You are advised to use [isScrollable
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let scrollBar: UiComponent = await driver.findComponent(BY.scrollable(true));
@@ -4446,7 +4430,7 @@ This API is deprecated since API version 9. You are advised to use [isEnabled<su
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4478,7 +4462,7 @@ This API is deprecated since API version 9. You are advised to use [isFocused<su
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4509,7 +4493,7 @@ This API is deprecated since API version 9. You are advised to use [isSelected<s
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4540,7 +4524,7 @@ This API is deprecated since API version 9. You are advised to use [inputText<su
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let text: UiComponent = await driver.findComponent(BY.text('hello world'));
@@ -4573,7 +4557,7 @@ This API is deprecated since API version 9. You are advised to use [scrollSearch
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let scrollBar: UiComponent = await driver.findComponent(BY.type('Scroll'));
@@ -4602,12 +4586,12 @@ This API is deprecated since API version 9. You are advised to use [create<sup>9
 
 | Type    | Description                    |
 | -------- | ------------------------ |
-| UiDriver | Returns the **UiDriver** object created.|
+| UiDriver | **UiDriver** object created.|
 
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
 }
@@ -4632,7 +4616,7 @@ This API is deprecated since API version 9. You are advised to use [delayMs<sup>
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.delayMs(1000);
@@ -4664,7 +4648,7 @@ This API is deprecated since API version 9. You are advised to use [findComponen
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.text('next page'));
@@ -4696,7 +4680,7 @@ This API is deprecated since API version 9. You are advised to use [findComponen
 **Example**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let buttonList: Array<UiComponent> = await driver.findComponents(BY.text('next page'));
@@ -4725,13 +4709,14 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
+| 401      | if the input parameters are invalid.             |
 | 17000002 | if the async function was not called with await. |
 | 17000003 | if the assertion failed.                         |
 
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.assertComponentExist(BY.text('next page'));
@@ -4751,7 +4736,7 @@ This API is deprecated since API version 9. You are advised to use [pressBack<su
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.pressBack();
@@ -4777,7 +4762,7 @@ This API is deprecated since API version 9. You are advised to use [triggerKey<s
 **Example**
 
 ```ts
-import { Driver, UiDriver } from '@ohos.UiTest';
+import { Driver, UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.triggerKey(123);
@@ -4799,13 +4784,13 @@ This API is deprecated since API version 9. You are advised to use [click<sup>9+
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the end point.|
+| y      | number | Yes  | Y coordinate of the end point.|
 
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.click(100,100);
@@ -4826,13 +4811,13 @@ This API is deprecated since API version 9. You are advised to use [doubleClick<
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the end point.|
+| y      | number | Yes  | Y coordinate of the end point.|
 
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.doubleClick(100,100);
@@ -4853,13 +4838,13 @@ This API is deprecated since API version 9. You are advised to use [longClick<su
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the end point.|
+| y      | number | Yes  | Y coordinate of the end point.|
 
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.longClick(100,100);
@@ -4888,7 +4873,7 @@ This API is deprecated since API version 9. You are advised to use [swipe<sup>9+
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.swipe(100,100,200,200);
@@ -4920,7 +4905,7 @@ This API is deprecated since API version 9. You are advised to use [screenCap<su
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.screenCap('/data/storage/el2/base/cache/1.png');
