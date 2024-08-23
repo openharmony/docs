@@ -907,3 +907,81 @@ struct ConsumerChild {
 ```
 
 以上示例，在赋值前，使用getTarget获取了对应状态变量的原始对象，经过对比后，如果和当前对象一样，就不赋值，不触发刷新。
+
+### 不允许在build里改状态变量
+
+不允许在build里改变状态变量，状态管理框架会在运行时报出Error级别日志。
+
+下面的示例，渲染的流程是：
+
+1. 创建CompA自定义组件。
+
+2. 执行CompA的build方法：
+
+    1. 创建Column组件。
+
+    2. 创建Text组件。创建Text组件的过程中，触发this.count++。
+
+    3. count的改变再次触发Text组件的刷新。
+
+    4. Text最终显示为2。
+
+```ts
+@Entry
+@Component
+struct CompA {
+  @State count: number = 1;
+
+  build() {
+    Column() {
+      // 应避免直接在Text组件内改变count的值
+      Text(`${this.count++}`)
+        .width(50)
+        .height(50)
+    }
+  }
+}
+```
+
+在首次创建的过程中，Text组件被多渲染了一次，导致其最终显示为2。
+
+框架识别到在build里改变状态变量会打error日志，error日志为：
+
+```ts
+FIX THIS APPLICATION ERROR: @Component 'CompA'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
+```
+
+在上面的例子中，这个错误行为不会造成很严重的后果，只有Text组件多渲染了一次，所以很多开发者忽略了这个日志。
+
+但这个行为是严重错误的，会随着工程的复杂度升级，隐患越来越大。见下一个例子。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: number = 20;
+
+  build() {
+    Column() {
+      Text(`${this.message++}`)
+
+      Text(`${this.message++}`)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+上面示例渲染过程：
+
+1. 创建第一个Text组件，触发this.message改变。
+
+2. this.message改变又触发第二个Text组件的刷新。
+
+3. 第二个Text组件的刷新又触发this.message的改变，触发第一个Text组件刷新。
+
+4. 循环重新渲染。。。
+
+5. 系统长时间无响应，appfreeze。
+
+所以，在build里面改变状态变量的这种行为是完全错误的。当发现“FIX THIS APPLICATION ERROR: @Component ... has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!”日志时，即使当下没有带来严重后果，也应该警惕。应该排查应用，修改对应的错误写法，消除该错误日志。
