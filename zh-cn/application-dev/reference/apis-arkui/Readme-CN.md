@@ -176,7 +176,6 @@
     - [MenuItem](arkui-ts/ts-basic-components-menuitem.md)
     - [MenuItemGroup](arkui-ts/ts-basic-components-menuitemgroup.md)
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
-    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
     - [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)
     - [PatternLock](arkui-ts/ts-basic-components-patternlock.md)
@@ -230,7 +229,6 @@
     - [List](arkui-ts/ts-container-list.md)
     - [ListItem](arkui-ts/ts-container-listitem.md)
     - [ListItemGroup](arkui-ts/ts-container-listitemgroup.md)
-    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Refresh](arkui-ts/ts-container-refresh.md)
     - [RelativeContainer](arkui-ts/ts-container-relativecontainer.md)
     - [Row](arkui-ts/ts-container-row.md)
@@ -361,6 +359,8 @@
     <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
+    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
+    - [Navigator](arkui-ts/ts-container-navigator.md)
   - 已停止维护的接口
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - JS组件 
