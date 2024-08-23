@@ -1,7 +1,7 @@
-# @ohos.arkui.advanced.SelectionMenu (Context Menu on Selection)
+# SelectionMenu
 
 
-The context menu on selection is a component that can be bound to the **\<RichEditor>** component through [bindSelectionMenu](./ts-basic-components-richeditor.md#attributes). It is recommended that this menu be displayed by right-clicking or by selecting text with a mouse device. This component cannot be used independently.
+The context menu on selection is a component that can be bound to the **RichEditor** component through [bindSelectionMenu](./ts-basic-components-richeditor.md#attributes). It is recommended that this menu be displayed by right-clicking or by selecting text with a mouse device. This component cannot be used independently.
 
 
 > **NOTE**
@@ -12,7 +12,7 @@ The context menu on selection is a component that can be bound to the **\<RichEd
 ## Modules to Import
 
 ```
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@ohos.arkui.advanced.SelectionMenu'
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
 ```
 
 ## Child Components
@@ -23,34 +23,36 @@ Not supported
 
 SelectionMenu(options: SelectionMenuOptions)
 
-Defines a custom context menu on selection. When the input parameter is empty, the sizes of the menu and its content area are 0. In this case, no context menu is displayed when the bound [\<RichEditor>](ts-basic-components-richeditor.md) component is right-clicked.
+Defines a custom context menu on selection. When the input parameter is empty, the sizes of the menu and its content area are 0. In this case, no context menu is displayed when the bound [RichEditor](ts-basic-components-richeditor.md) component is right-clicked.
 
 **Decorator**: @Builder
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SelectionMenuOptions](#selectionmenuoptions) | Yes| Options of the context menu on selection.| 
+| options | [SelectionMenuOptions](#selectionmenuoptions) | Yes| Options of the context menu on selection.|
 
 ## SelectionMenuOptions
 
-SelectionMenuOptions({editorMenuOptions?: Array&lt;EditorMenuOptions&gt;, expandedMenuOptions?: Array&lt;ExpandedMenuOptions&gt;, controller?: RichEditorController, onCopy?: (event?: EditorEventInfo) =&gt; void, onPaste?: (event?: EditorEventInfo) =&gt; void, onCut?: (event?: EditorEventInfo) =&gt; void, onSelectAll?: (event?: EditorEventInfo) =&gt; void})
-
 Defines the options of the context menu on selection.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| editorMenuOptions | Array&lt;[EditorMenuOptions](#editormenuoptions)&gt; | No| Edit menu.<br>If **editorMenuOptions** is not set, the edit menu is not displayed.<br>When both **action** and **builder** in **EditorMenuOptions** are configured, clicking the edit icon will trigger both.<br>By default, the context menu is not closed when the edit menu icon is clicked. You can configure **closeSelectionMenu** of **RichEditorController** in **action** to enable the menu to be closed.| 
-| expandedMenuOptions | Array&lt;[ExpandedMenuOptions](#expandedmenuoptions)&gt; | No| Expanded drop-down menu.<br>If this parameter is left empty, the expanded drop-down menu is not displayed.<br>The options configured for **ExpandedMenuOptions** are displayed in the **More** menu option, and clicking **More** shows the expanded drop-down menu.| 
-| controller | [RichEditorController](ts-basic-components-richeditor.md#richeditorcontroller) | No| Rich text editor controller. If **controller** is set, the default system menu (including the cut, copy, and paste options) is displayed, and the preset menu features are provided.<br>If **controller** is left empty, the **More** menu option is not displayed. If **expandedMenuOptions** is not empty, the expanded drop-down menu is displayed.<br>By default, only rich text can be copied and pasted. To support mixture of text and imagery, define custom **onCopy** and **onPaste** APIs . If a custom **onCopy** \| **onPaste** API is defined, the default copy and paste feature is ineffective, and the custom function is called instead.<br>**NOTE**<br> When the preset copy option is selected, the custom context menu on selection is hidden, while the selected text is still highlighted.<br> When the preset select-all option is selected, the custom context menu on selection is hidden, while all text is highlighted.<br> When the preset paste option is selected, the style of the copied text is retained, whether the text is pasted to a blank area or not.<br> When the **copyOptions** attribute of the [\<RichEditor>](ts-basic-components-richeditor.md) component is set to **CopyOptions.None**, the preset copy and cut features are not restricted.| 
-| onCopy | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset copy menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br> **event** indicates the returned information.| 
-| onPaste | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset paste menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br> **event** indicates the returned information.| 
-| onCut | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset cut menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br>**event** indicates the returned information.| 
+| editorMenuOptions | Array&lt;[EditorMenuOptions](#editormenuoptions)&gt; | No| Edit menu.<br>If **editorMenuOptions** is not set, the edit menu is not displayed.<br>When both **action** and **builder** in **EditorMenuOptions** are configured, clicking the edit icon will trigger both.<br>By default, the context menu is not closed when the edit menu icon is clicked. You can configure **closeSelectionMenu** of **RichEditorController** in **action** to enable the menu to be closed.|
+| expandedMenuOptions | Array&lt;[ExpandedMenuOptions](#expandedmenuoptions)&gt; | No| Expanded drop-down menu options.<br>If this parameter is left empty, the expanded drop-down menu is not displayed.<br>The options configured for **ExpandedMenuOptions** are displayed in the **More** menu option, and clicking **More** shows the expanded drop-down menu.|
+| controller | [RichEditorController](ts-basic-components-richeditor.md#richeditorcontroller) | No| Rich text editor controller. If **controller** is set, the default system menu (including the cut, copy, and paste options) is displayed, and the preset menu features are provided.<br>If **controller** is left empty, the **More** menu option is not displayed. If **expandedMenuOptions** is not empty, the expanded drop-down menu is displayed.<br>By default, only rich text can be copied and pasted. To support mixture of text and imagery, define custom **onCopy** and **onPaste** APIs . If a custom **onCopy** \| **onPaste** API is defined, the default copy and paste feature is ineffective, and the custom function is called instead.<br>**NOTE**<br> When the preset copy option is selected, the custom context menu on selection is hidden, while the selected text is still highlighted.<br> When the preset select-all option is selected, the custom context menu on selection is hidden, while all text is highlighted.<br> When the preset paste option is selected, the style of the copied text is retained, whether the text is pasted to a blank area or not.<br> When the **copyOptions** attribute of the [RichEditor](ts-basic-components-richeditor.md) component is set to **CopyOptions.None**, the preset copy and cut features are not restricted.|
+| onCopy | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset copy menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br> **event** indicates the returned information.|
+| onPaste | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset paste menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br> **event** indicates the returned information.|
+| onCut | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset cut menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br>**event** indicates the returned information.|
 | onSelectAll | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset select-all menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br>**event** indicates the returned information.|
 
 
@@ -58,34 +60,40 @@ Defines the options of the context menu on selection.
 
 Describes the edit menu options.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
-| builder | () =&gt; void | No| Builder of the custom component displayed upon click. It must be used with @Builder for building the custom component.| 
-| action | () =&gt; void | No| Action triggered when the menu option is clicked.| 
+| icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.|
+| builder | () =&gt; void | No| Builder of the custom component displayed upon click. It must be used with @Builder for building the custom component.|
+| action | () =&gt; void | No| Action triggered when the menu option is clicked.|
 
 
 ## ExpandedMenuOptions
 
 Describes the expanded drop-down menu options.
 
-This API is extended from [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions).
+Inherits from [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | () =&gt; void | No| Action triggered when the menu option is clicked.| 
+| action | () =&gt; void | No| Action triggered when the menu option is clicked.|
 
 ## EditorEventInfo
 
 Provides the information about the selected content.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | content | [RichEditorSelection](ts-basic-components-richeditor.md#richeditorselection) | No| Information about the selected content.|
 
@@ -99,7 +107,7 @@ The [universal events](ts-universal-events-click.md) are not supported.
 ## Example
 
 ```ts
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@ohos.arkui.advanced.SelectionMenu'
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
 
 @Entry
 @Component
