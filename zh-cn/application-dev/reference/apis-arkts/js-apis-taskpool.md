@@ -294,7 +294,7 @@ function testExecutePeriodically(args: number): void {
   taskpool.Task.sendData(args); // 向主线程发送消息
 }
 
-function pringResult(data: number): void {
+function printResult(data: number): void {
   console.info("taskpool: data is: " + data);
 }
 
@@ -308,7 +308,7 @@ function taskpoolTest() {
 
   try {
     let periodicTask: taskpool.Task = new taskpool.Task(testExecutePeriodically, 200); // 200: test number
-    periodicTask.onReceiveData(pringResult);
+    periodicTask.onReceiveData(printResult);
     taskpool.executePeriodically(1000, periodicTask); // 1000: period is 1000ms
   } catch (e) {
     console.error(`taskpool execute-2: Code: ${e.code}, message: ${e.message}`);
@@ -369,7 +369,7 @@ function inspectStatus(arg: number): number {
   return arg + 1;
 }
 
-function concurrntFunc() {
+function concurrentFunc() {
   let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
   let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
   let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
@@ -394,7 +394,7 @@ function concurrntFunc() {
   }, 1000);
 }
 
-concurrntFunc();
+concurrentFunc();
 ```
 
 ## taskpool.cancel<sup>10+</sup>
@@ -435,7 +435,7 @@ function printArgs(args: number): number {
   return args;
 }
 
-function concurrntFunc() {
+function concurrentFunc() {
   let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
   taskGroup1.addTask(printArgs, 10); // 10: test number
   let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
@@ -455,7 +455,7 @@ function concurrntFunc() {
   }, 1000);
 }
 
-concurrntFunc();
+concurrentFunc();
 ```
 
 ## taskpool.terminateTask<sup>12+</sup>
@@ -495,7 +495,7 @@ function longTask(arg: number): number {
   return arg;
 }
 
-function concurrntFunc() {
+function concurrentFunc() {
   let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
   taskpool.execute(task1).then((res: Object)=>{
     taskpool.terminateTask(task1);
@@ -503,7 +503,7 @@ function concurrntFunc() {
   });
 }
 
-concurrntFunc();
+concurrentFunc();
 ```
 
 ## taskpool.isConcurrent<sup>12+</sup>
@@ -1052,14 +1052,14 @@ function sendDataTest(num: number): number {
   return num;
 }
 
-function pringLog(data: number): void {
+function printLog(data: number): void {
   console.info("taskpool: data is: " + data);
 }
 
 async function taskpoolTest(): Promise<void> {
   try {
     let task: taskpool.Task = new taskpool.Task(sendDataTest, 1);
-    task.onReceiveData(pringLog);
+    task.onReceiveData(printLog);
     await taskpool.execute(task);
   } catch (e) {
     console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
@@ -1108,14 +1108,14 @@ function ConcurrentFunc(num: number): number {
   return num;
 }
 
-function pringLog(data: number): void {
+function printLog(data: number): void {
   console.info("taskpool: data is: " + data);
 }
 
 async function testFunc(): Promise<void> {
   try {
     let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
-    task.onReceiveData(pringLog);
+    task.onReceiveData(printLog);
     await taskpool.execute(task);
   } catch (e) {
     console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
@@ -1961,7 +1961,7 @@ taskpoolExecute();
 ```ts
 // 支持async函数
 @Concurrent
-async function delayExcute(): Promise<Object> {
+async function delayExecute(): Promise<Object> {
   let ret = await Promise.all<Object>([
     new Promise<Object>(resolve => setTimeout(resolve, 1000, "resolved"))
   ]);
@@ -1969,7 +1969,7 @@ async function delayExcute(): Promise<Object> {
 }
 
 async function taskpoolExecute(): Promise<void> {
-  taskpool.execute(delayExcute).then((result: Object) => {
+  taskpool.execute(delayExecute).then((result: Object) => {
     console.info("taskPoolTest task result: " + result);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
