@@ -99,7 +99,7 @@ barMode(value: BarMode, options?: ScrollableBarModeOptions)
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [BarMode](#barmode枚举说明)                                  | 是   | 布局模式。<br/>默认值：BarMode.Fixed                                                 |
-| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 否   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅Scrollable模式下有效 |
+| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 否   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅Scrollable且水平模式下有效。 |
 
 ### barMode<sup>10+</sup>
 
@@ -132,7 +132,7 @@ barMode(value: BarMode.Scrollable, options: ScrollableBarModeOptions)
 | 参数名    | 类型                              | 必填 | 说明                                    |
 | -------- | --------------------------------- | ---- | ------------------------------------- |
 | value    | [BarMode.Scrollable](#barmode枚举说明) | 是   | 所有TabBar都使用实际布局宽度，超过总宽度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。        |
-| options | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 是   | Scrollable模式下的TabBar的布局样式。 |
+| options | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 是   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅水平模式下有效。  |
 
 ### barWidth
 
@@ -154,7 +154,7 @@ barWidth(value: Length)
 
 barHeight(value: Length)
 
-设置TabBar的高度值。设置为小于0或大于Tabs高度值时，按默认值显示。
+设置TabBar的高度值。设置为'auto'时，TabBar自适应子组件高度，仅在水平模式下有效。设置为小于0或大于Tabs高度值时，按默认值显示。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -408,7 +408,7 @@ Scrollable模式下不滚动时的页签排布方式枚举。
 | 名称         | 值 | 描述                                       |
 | ---------- | -- | ---------------------------------------- |
 | ALWAYS_CENTER | 0 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
-| ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。<br/>仅水平模式下有效，否则视为LayoutStyle.ALWAYS_CENTER。|
+| ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。|
 | SPACE_BETWEEN_OR_CENTER      | 2 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
 
 ## 事件
