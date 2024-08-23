@@ -2277,6 +2277,106 @@ If the keyboard avoidance mode set in **UIContext** is [KeyboardAvoidMode.RESIZE
   </body>
   </html>
   ```
+
+
+### editMenuOptions<sup>12+</sup>
+editMenuOptions(editMenu: EditMenuOptions)
+
+Set the custom text edit menu options.
+
+Developer can create customize text edit menu:<br>
+Change, add and delete menu options in [onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#onCreateMenu), if returns an empty array, the web component won't display text edit menu.<br>
+Create custom callback function in [onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick), this function will be excuted when menu item clicked. The return value will decide whether default system callback being excuted -- return true to prevent system callback, return false to continue excute system callback.
+**Parameters**
+
+| Name             | Type                             | Mandatory  | Description         |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions) | yes     | Web edit menu options。<br>The number of menu items, menu content size, and start icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.<br> The system menu item id, Web only supports CUT、COPY、PASTE and SELECT_ALL；<br>onMenuItemClick parameter textRange has no meaning in Web，it will be -1 when used；|
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
+    let items = menuItems.filter((menuItem) => {
+      switch (menuItem.id) {
+        //Choose system options
+        case TextMenuItemId.CUT:
+        case TextMenuItemId.COPY:
+        case TextMenuItemId.PASTE:
+          return true;
+        case TextMenuItemId.SELECT_ALL:
+        default:
+          return false;
+      }
+    });
+    let customItem1: TextMenuItem = {
+      content: 'customItem1',
+      id: TextMenuItemId.of('customItem1'),
+      icon: $r('app.media.icon')
+    };
+    let customItem2: TextMenuItem = {
+      content: $r('app.string.customItem2'),
+      id: TextMenuItemId.of('customItem2'),
+      icon: $r('app.media.icon')
+    };
+    items.push(customItem1);
+    items.unshift(customItem2);
+
+    return items;
+  }
+
+  onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
+    if (menuItem.id.equals(TextMenuItemId.CUT)) {
+      //User define codes
+      return true; //return true to prevent default system logic
+    } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      //User define codes
+      return false; //return false to run default system logic
+    } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
+      //User define codes
+      return true;//User defined items no sense to return value
+    } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
+      //User define codes
+      return true;
+    }
+    return false;//default return false
+  }
+
+  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .editMenuOptions(this.EditMenuOptions)
+    }
+  }
+}
+```
+
+  HTML file to be loaded:
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Test Web Page</title>
+  </head>
+  <body>
+    <h1>editMenuOptions Demo</h1>
+    <span>edit menu options</span>
+  </body>
+</html>
+```
+
+
 ## Events
 
 The following universal events are supported: [onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear), [onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear), [onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur), [onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus), [onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend), [onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter), [onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart), [onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove), [onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave), [onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop), [onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover), [onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse), [onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent), [onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), [onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)
