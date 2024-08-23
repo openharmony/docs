@@ -20,7 +20,7 @@ You can use<!--Del-->[<!--DelEnd--> Trace<!--Del-->](https://gitee.com/openharmo
 > **NOTE**
 >
 > You are not advised to blindly add **lazy** identifiers, which also increases the identification overhead during building and running.
-    
+
 ## Scenario Behavior Analysis
 
 - Use lazy import.
@@ -139,7 +139,7 @@ If the **type** keyword is added to the syntax, an error is reported.
 ### Syntax Not Recommended
 
 - In the same ets file, not all the dependency modules that require the lazy import are added lazy identifiers.
-    
+  
     Lazy import fails and the overhead of identifying lazy import increases because of the incomplete identifiers.
     ```typescript 
         // main.ets   
@@ -162,3 +162,5 @@ If the **type** keyword is added to the syntax, an error is reported.
     * Bugs occur when the **lazy** identifier is used but the module is not executed.
     
         You need to evaluate the impact of using the lazy import.
+
+<!--no_check-->

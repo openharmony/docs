@@ -16,7 +16,7 @@
       - [HSP](in-app-hsp.md)
       - [Dynamic Import](arkts-dynamic-import.md)
       - [Lazy Import](arkts-lazy-import.md)
-      - [HAR to HSP Guide](har-to-hsp.md)
+      - [Converting HAR to HSP](har-to-hsp.md)
     - [Application Package Installation, Uninstall, and Update](application-package-install-uninstall.md)
   - Application Configuration Files in Stage Model
     - [Overview of Application Configuration Files in Stage Model](application-configuration-file-overview-stage.md)
@@ -108,3 +108,4 @@
       - [ForEach: Rendering of Repeated Content](arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](arkts-rendering-control-lazyforeach.md)
       - [ContentSlot: Representing a Placeholder in Hybrid Development](arkts-rendering-control-contentslot.md)
+<!--no_check-->

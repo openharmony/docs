@@ -744,3 +744,5 @@ struct entryCompSucc {
 Checking the Running Result
 
 ![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)
+
+<!--no_check-->

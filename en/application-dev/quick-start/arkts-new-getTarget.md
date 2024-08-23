@@ -259,3 +259,4 @@ Affected Node-APIs are as below.
 | napi_set_named_property | Changes values successfully using **name** or **\_\_ob\_name**.      |
 | napi_get_named_property | Obtains values using **name** or **\_\_ob\_name**.      |
 | napi_has_named_property | Returns **true** using **name** or **\_\_ob\_name**.        |
+<!--no_check-->
