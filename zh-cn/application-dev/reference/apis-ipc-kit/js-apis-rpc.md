@@ -120,9 +120,9 @@ writeRemoteObject(object: IRemoteObject): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900008  | The The proxy or remote object is invalid. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900008  | proxy or remote object is invalid |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -166,8 +166,8 @@ readRemoteObject(): IRemoteObject
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | The proxy or remote object is invalid. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900008  | proxy or remote object is invalid |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -213,8 +213,8 @@ writeInterfaceToken(token: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes:<br/> 1.The number of parameters is incorrect;<br/> 2.The parameter type does not match;<br/> 3.The string length exceeds 40960 bytes;<br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -252,7 +252,7 @@ readInterfaceToken(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -343,7 +343,7 @@ setSize(size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -382,8 +382,8 @@ setCapacity(size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900011  | Memory allocation failed |
+  | 401      | check param failed |
+  | 1900011  | parcel memory alloc failed |
 
 **示例：**
 
@@ -526,7 +526,7 @@ rewindRead(pos: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -570,7 +570,7 @@ rewindWrite(pos: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -612,8 +612,8 @@ writeByte(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------  |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -651,7 +651,7 @@ readByte(): number
 
   | 错误码ID | 错误信息 |
   | ------- | --------  |
-  | 1900010 | Failed to read data from the message sequence. |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -697,8 +697,8 @@ writeShort(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -736,7 +736,7 @@ readShort(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -782,8 +782,8 @@ writeInt(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -821,7 +821,7 @@ readInt(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -867,8 +867,8 @@ writeLong(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -906,7 +906,7 @@ readLong(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -952,8 +952,8 @@ writeFloat(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -991,7 +991,7 @@ readFloat(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1037,8 +1037,8 @@ writeDouble(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1076,7 +1076,7 @@ readDouble(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1122,8 +1122,8 @@ writeBoolean(val: boolean): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1161,7 +1161,7 @@ readBoolean(): boolean
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1207,8 +1207,8 @@ writeChar(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1246,7 +1246,7 @@ readChar(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1292,8 +1292,8 @@ writeString(val: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1331,7 +1331,7 @@ readString(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1377,8 +1377,8 @@ writeParcelable(val: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1435,9 +1435,9 @@ readParcelable(dataIn: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect. |
-  | 1900010  | Failed to read data from the message sequence. |
-  | 1900012  | Failed to call the JS callback function. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
+  | 1900012  | call js callback function failed |
 
 **示例：**
 
@@ -1496,8 +1496,8 @@ writeByteArray(byteArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1536,8 +1536,8 @@ readByteArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1585,7 +1585,7 @@ readByteArray(): number[]
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | check param failed |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1632,8 +1632,8 @@ writeShortArray(shortArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1671,8 +1671,8 @@ readShortArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1718,7 +1718,7 @@ readShortArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1764,8 +1764,8 @@ writeIntArray(intArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1803,8 +1803,8 @@ readIntArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1850,7 +1850,7 @@ readIntArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1896,8 +1896,8 @@ writeLongArray(longArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -1935,8 +1935,8 @@ readLongArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -1982,7 +1982,7 @@ readLongArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2028,8 +2028,8 @@ writeFloatArray(floatArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2067,8 +2067,8 @@ readFloatArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2114,7 +2114,7 @@ readFloatArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2160,8 +2160,8 @@ writeDoubleArray(doubleArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2199,8 +2199,8 @@ readDoubleArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2246,7 +2246,7 @@ readDoubleArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2292,8 +2292,8 @@ writeBooleanArray(booleanArray: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2331,8 +2331,8 @@ readBooleanArray(dataIn: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2378,7 +2378,7 @@ readBooleanArray(): boolean[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2424,8 +2424,8 @@ writeCharArray(charArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2463,8 +2463,8 @@ readCharArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2510,7 +2510,7 @@ readCharArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2556,8 +2556,8 @@ writeStringArray(stringArray: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The string length exceeds 40960 bytes; <br/> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2595,8 +2595,8 @@ readStringArray(dataIn: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2642,7 +2642,7 @@ readStringArray(): string[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2682,7 +2682,7 @@ writeNoException(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2727,7 +2727,7 @@ readException(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -2822,8 +2822,8 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2883,9 +2883,9 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The length of the array passed when reading is not equal to the length passed when writing to the array; <br/> 5.The element does not exist in the array. |
-  | 1900010  | Failed to read data from the message sequence. |
-  | 1900012  | Failed to call the JS callback function. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
+  | 1900012  | call js callback function failed |
 
 **示例：**
 
@@ -2947,8 +2947,8 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The obtained remoteObject is null. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2997,8 +2997,8 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The length of the array passed when reading is not equal to the length passed when writing to the array. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -3049,7 +3049,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -3100,7 +3100,7 @@ static closeFileDescriptor(fd: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -3146,8 +3146,8 @@ static dupFileDescriptor(fd: number): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900013  | Failed to call dup. |
+  | 401      | check param failed |
+  | 1900013  | call os dup function failed |
 
 **示例：**
 
@@ -3228,8 +3228,8 @@ writeFileDescriptor(fd: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -3270,7 +3270,7 @@ readFileDescriptor(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -3319,8 +3319,8 @@ writeAshmem(ashmem: Ashmem): void
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter is not an instance of the Ashmem object. |
-  | 1900003  | Failed to write data to the shared memory. |
+  | 401      | check param failed |
+  | 1900003  | write to ashmem failed |
 
 **示例：**
 
@@ -3367,7 +3367,7 @@ readAshmem(): Ashmem
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | check param failed |
-  | 1900004  | Failed to read data from the shared memory. |
+  | 1900004  | read from ashmem failed |
 
 **示例：**
 
@@ -3447,8 +3447,8 @@ writeRawData(rawData: number[], size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The transferred size cannot be obtained; <br/> 5.The transferred size is less than or equal to 0;<br/> 6.The element does not exist in the array; <br/> 7.Failed to obtain typedArray information; <br/> 8.The array is not of type int32; <br/> 9.The length of typedarray is smaller than the size of the original data sent. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -3488,8 +3488,8 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain arrayBuffer information; <br/> 4.The transferred size cannot be obtained; <br/> 5.The transferred size is less than or equal to 0; <br/> 6.The transferred size is greater than the byte length of ArrayBuffer. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -3541,8 +3541,8 @@ readRawData(size: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -3595,8 +3595,8 @@ readRawDataBuffer(size: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -3650,8 +3650,8 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The obtained value of typeCode is incorrect; <br/> 5.Failed to obtain arrayBuffer information. |
-  | 1900009  | Failed to write data to the message sequence. |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -3703,8 +3703,8 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The obtained value of typeCode is incorrect. |
-  | 1900010  | Failed to read data from the message sequence. |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
 
 **示例：**
 
@@ -6604,7 +6604,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | check param failed |
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -6682,7 +6682,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+  | 401      | check param failed |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
@@ -6733,7 +6733,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+  | 401      | check param failed |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
@@ -6776,8 +6776,8 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
-  | 1900008  | The proxy or remote object is invalid. |
+  | 401      | check param failed |
+  | 1900008  | proxy or remote object is invalid |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
@@ -6823,8 +6823,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
-  | 1900008  | The proxy or remote object is invalid. |
+  | 401      | check param failed |
+  | 1900008  | proxy or remote object is invalid |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
@@ -6869,7 +6869,7 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | The proxy or remote object is invalid. |
+  | 1900008  | proxy or remote object is invalid |
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
@@ -7030,7 +7030,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -7217,7 +7217,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -7401,7 +7401,7 @@ getLocalInterface(interface: string): IRemoteBroker
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | check param failed |
-  | 1900006  | Operation allowed only for the remote object. |
+  | 1900006  | only remote object permitted |
 
 **示例：**
 
@@ -7545,8 +7545,8 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
-  | 1900008  | The proxy or remote object is invalid. |
+  | 401      | check param failed |
+  | 1900008  | proxy or remote object is invalid |
 
 **示例：**
 
@@ -7701,8 +7701,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
-  | 1900008  | The proxy or remote object is invalid. |
+  | 401      | check param failed |
+  | 1900008  | proxy or remote object is invalid |
 
 **示例：**
 
@@ -7858,8 +7858,8 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900007  | communication failed.              |
-  | 1900008  | The proxy or remote object is invalid. |
+  | 1900008  | proxy or remote object is invalid |
+  | 1900007  | communication failed              |
 
 **示例：**
 
@@ -8479,7 +8479,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -8601,7 +8601,7 @@ static restoreCallingIdentity(identity: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -8772,7 +8772,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -8911,7 +8911,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -9298,7 +9298,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -9413,7 +9413,7 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | The proxy or remote object is invalid. |
+  | 1900008  | proxy or remote object is invalid |
 
 **示例：**
 
@@ -9517,7 +9517,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -9647,7 +9647,7 @@ static create(name: string, size: number): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The Ashmem name passed is empty; <br/> 4.The Ashmem size passed is less than or equal to 0. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -9726,7 +9726,7 @@ static create(ashmem: Ashmem): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The passed parameter is not an Ahmem object; <br/> 3.The ashmem instance for obtaining packaging is empty. |
+  | 401      | check param failed |
 
 **示例：**
 
@@ -9853,8 +9853,8 @@ mapTypedAshmem(mapType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect;  <br/> 2.The parameter type does not match; <br/> 3.The passed mapType exceeds the maximum protection level. |
-  | 1900001  | Failed to call mmap. |
+  | 401      | check param failed |
+  | 1900001  | call mmap function failed |
 
 **示例：**
 
@@ -9918,7 +9918,7 @@ mapReadWriteAshmem(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900001  | Failed to call mmap. |
+  | 1900001  | call mmap function failed |
 
 **示例：**
 
@@ -9976,7 +9976,7 @@ mapReadonlyAshmem(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900001  | Failed to call mmap. |
+  | 1900001  | call mmap function failed |
 
 **示例：**
 
@@ -10040,8 +10040,8 @@ setProtectionType(protectionType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900002  | Failed to call ioctl. |
+  | 401      | check param failed |
+  | 1900002  | os ioctl function failed |
 
 **示例：**
 
@@ -10113,8 +10113,8 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain arrayBuffer information. |
-  | 1900003  | Failed to write data to the shared memory. |
+  | 401      | check param failed |
+  | 1900003  | write to ashmem failed |
 
 **示例：**
 
@@ -10163,8 +10163,8 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The element does not exist in the array. |
-  | 1900003  | Failed to write data to the shared memory. |
+  | 401      | check param failed |
+  | 1900003  | write to ashmem failed |
 
 **示例：**
 
@@ -10248,8 +10248,8 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900004  | Failed to read data from the shared memory. |
+  | 401      | check param failed |
+  | 1900004  | read from ashmem failed |
 
 **示例：**
 
@@ -10312,8 +10312,8 @@ readAshmem(size: number, offset: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900004  | Failed to read data from the shared memory. |
+  | 401      | check param failed |
+  | 1900004  | read from ashmem failed |
 
 **示例：**
 
