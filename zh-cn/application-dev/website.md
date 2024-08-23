@@ -17,6 +17,7 @@
         - [HSP](quick-start/in-app-hsp.md)
         - [动态import](quick-start/arkts-dynamic-import.md)
         - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
+        - [HAR转HSP指导](quick-start/har-to-hsp.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -1009,7 +1010,7 @@
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
         - [驱动扩展框架DriverExtensionAbility](device/driver/driverextensionability.md)
         - [扩展外设管理开发指导](device/driver/externaldevice-guidelines.md)
-      - MultimodalAwareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
+      - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
