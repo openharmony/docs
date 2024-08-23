@@ -5781,6 +5781,69 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
     </html>
   ```
 
+### onNativeEmbedVisibilityChange<sup>12+</sup>
+
+onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
+
+网页中同层渲染标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层渲染标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层渲染标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层渲染标签全部不可见才算不可见，部分可见或全部可见算作可见。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNativeEmbedVisibilityChangeCallback](#onnativeembedvisibilitychangecallback12) | 同层渲染标签可见性变化时触发该回调。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State embedVisibility: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Stack() {
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile("index.html"), controller: this.controller })
+            .enableNativeEmbedMode(true)
+            .onNativeEmbedVisibilityChange((embed) => {
+              if (embed.visibility) {
+                this.embedVisibility = 'Visible';
+              } else {
+                this.embedVisibility = 'Hidden';
+              }
+              console.log("embedId = " + embed.embedId);
+              console.log("visibility = " + embed.visibility);
+            })
+        }
+      }
+    }
+  }
+  ```
+
+  加载的html文件
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeVideo" type = "native/video" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
+  ```
+
 ## WebKeyboardCallback<sup>12+</sup>
 
 type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => WebKeyboardOptions
@@ -8460,3 +8523,22 @@ type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
 | 参数名               | 参数类型                                        | 参数描述                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |
+
+## NativeEmbedVisibilityInfo<sup>12+</sup>
+
+提供Embed标签的可见性信息。
+
+| 名称           | 类型                                | 必填   | 描述              |
+| -------------  | ------------------------------------| ----- | ------------------ |
+| visibility     | boolean                             | 否     | 可见性。         |
+| embedId        | string                              | 否     | 同层渲染标签的唯一id。  |
+
+## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
+
+type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeEmbedVisibilityInfo) => void
+
+当Embed标签可见性变化时触发该回调。
+
+| 参数名   | 参数类型                                                                          | 参数描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | 提供同层渲染标签的可见性信息。 |
