@@ -974,7 +974,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
-| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
+| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: Buffer.length。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
 
 **返回值：**
@@ -997,8 +997,8 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this buffer is a buffer');
-console.log(buf.lastIndexOf('this').toString());	// 打印: 0
-console.log(buf.lastIndexOf('buffer').toString());	// 打印: 17
+console.log(buf.lastIndexOf('this').toString());    // 打印: 0
+console.log(buf.lastIndexOf('buffer').toString());  // 打印: 17
 ```
 
 
@@ -1581,14 +1581,14 @@ readIntBE(offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
-| byteLength | number | 是 | 读取的字节数。 |
+| byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取的内容。 |
+| number | 读取的内容。当offset为小数时，返回undefined。 |
 
 **错误码：**
 
@@ -1628,14 +1628,14 @@ readIntLE(offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
-| byteLength | number | 是 | 读取的字节数。 |
+| byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。|
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| number | 读取出的内容。当offset为小数时，返回undefined。 |
 
 **错误码：**
 
@@ -1896,14 +1896,14 @@ readUIntBE(offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
-| byteLength | number | 是 | 要读取的字节数。 |
+| byteLength | number | 是 | 要读取的字节数。读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| number | 读取出的内容。当offset为小数时，返回undefined。 |
 
 **错误码：**
 
@@ -1941,14 +1941,14 @@ readUIntLE(offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
-| byteLength | number | 是 | 要读取的字节数。 |
+| byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| number | 读取出的内容。当offset为小数时，返回undefined。 |
 
 **错误码：**
 
