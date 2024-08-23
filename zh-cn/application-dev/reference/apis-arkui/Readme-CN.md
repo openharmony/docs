@@ -178,6 +178,7 @@
     - [List](arkui-ts/ts-container-list.md)
     - [ListItem](arkui-ts/ts-container-listitem.md)
     - [ListItemGroup](arkui-ts/ts-container-listitemgroup.md)
+    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Grid](arkui-ts/ts-container-grid.md)
     - [GridItem](arkui-ts/ts-container-griditem.md)
     - [Scroll](arkui-ts/ts-container-scroll.md)
@@ -195,6 +196,7 @@
     <!--DelEnd-->
   - 导航与切换
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
+    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
     - [Stepper](arkui-ts/ts-basic-components-stepper.md)
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
@@ -385,8 +387,6 @@
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
-    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
-    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - JS组件 
   - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
