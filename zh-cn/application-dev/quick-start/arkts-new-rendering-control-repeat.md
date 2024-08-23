@@ -6,6 +6,8 @@
 >
 >当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
+API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
+
 Repeat组件不开启virtualScroll开关时，Repeat基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
 
 Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
@@ -23,6 +25,7 @@ Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按�
 - Repeat内部使用键值作为标识，因此键值生成器必须针对每个数据生成唯一的值，如果多个数据同一时刻生成的键值相同，会导致UI组件渲染出现问题。
 - 未开启virtualScroll目前暂时不支持template模板，复用会有问题。
 - 当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递RepeatItem.item或RepeatItem.index，将会出现UI渲染异常。
+- virtualScroll场景下，自定义了totalCount值。当数据源长度发生改变时，需要手动更新totalCount值，否则会出现列表显示区域渲染异常。
 
 ## 键值生成规则
 

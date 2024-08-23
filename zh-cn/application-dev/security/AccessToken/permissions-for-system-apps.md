@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 以下权限仅对APL等级为system_basic及以上的应用开放，不向APL等级为normal的应用开放。
-> - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#访问控制列表acl)的方式跨级别申请。
+> - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#权限机制中的基本概念)的方式跨级别申请。
 
 ## system_grant，允许ACL跨级申请
 
@@ -3661,9 +3661,105 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_NET_FIREWALL
+
+允许系统应用配置防火墙规则。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_NET_FIREWALL
+
+允许系统应用查询防火墙规则和查询防火墙拦截记录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_IDM_WIDGET
 
 允许系统应用拉起用户凭据录入控件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_ACCESSORY
+
+允许应用获取配件（键盘、鼠标等）信息、向配件发送数据及获取配件回复的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.COLLECT_ACCESSORY_LOG
+
+允许应用获取配件（键盘、鼠标等）日志。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+允许应用安装开发者内测构建应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
+
+允许SA向应用或者系统服务发送屏幕旋转状态信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
+
+允许SA向应用或者系统服务发送投屏线缆插入拔出状态信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_ETHERNET_LOCAL_MAC
+
+允许应用查询以太网当前MAC地址。
 
 **权限级别**：system_basic
 
@@ -3894,42 +3990,6 @@
 **ACL使能**：false
 
 **起始版本**：11
-
-### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
-
-允许应用安装开发者内测构建应用。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
-
-允许SA向应用或者系统服务发送屏幕旋转状态信息。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
-
-允许SA向应用或者系统服务发送投屏线缆插入拔出状态信息。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 

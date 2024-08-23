@@ -922,7 +922,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 ## window.getSnapshot<sup>12+</sup>
 
-window.getSnapshot(windowId: number): Promise<image.PixelMap>
+getSnapshot(windowId: number): Promise<image.PixelMap>
 
 获取指定窗口截图，使用Promise异步回调
 
@@ -973,7 +973,7 @@ try {
 
 ## window.getVisibleWindowInfo<sup>12+</sup>
 
-window.getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
+getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
 获取当前屏幕的可见窗口（未退至后台的窗口）信息。
 

@@ -21,7 +21,8 @@ The image_mdk_common.h file declares the common enums and structs used by the im
 
 | Name| Description| 
 | -------- | -------- |
-| [OhosImageSize](_ohos_image_size.md) | Defines the image size.| 
+| struct  [OhosImageSize](_ohos_image_size.md) | Defines the image size. | 
+
 
 ### Macros
 

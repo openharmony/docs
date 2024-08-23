@@ -873,7 +873,7 @@ getCurrentAppCloneIndex(): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
-| 16000071 | App clone is not supported. |
+| 16000071 | The MultiAppMode is not {@link APP_CLONE}. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -966,6 +966,7 @@ setSupportedProcessCache(isSupported : boolean): void
 >
 > - 该接口仅表示应用自身是否为缓存后快速启动做好了准备，还需综合其他条件来判断最终是否为应用启用快速启动。
 > - 该接口设置的缓存支持状态对单个应用进程实例生效，不同进程实例互不影响。应用进程实例销毁后，已设置的状态不保留，可以重新设置。
+> - 如果需要支持缓存后快速启动，则需要在同一进程中所有[AbilityStage](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的`onCreate()`生命周期中调用该接口、且入参均配置为“true”。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -990,11 +991,11 @@ setSupportedProcessCache(isSupported : boolean): void
 **示例：**
 
 ```ts
-import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
     let applicationContext = this.context.getApplicationContext();
     try {
       applicationContext.setSupportedProcessCache(true);

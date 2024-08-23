@@ -697,8 +697,8 @@ Defines the axis type of an input device.
 | touchminor  | string | Yes| No| **touchminor** axis. |
 | toolminor   | string | Yes| No| **toolminor** axis.  |
 | toolmajor   | string | Yes| No| **toolmajor** axis.  |
-| orientation | string | Yes| No| Orientation axis.|
-| pressure    | string | Yes| No| Pressure axis.   |
+| orientation | string | Yes| No| **orientation** axis.|
+| pressure    | string | Yes| No| **pressure** axis.   |
 | x           | string | Yes| No| X axis.          |
 | y           | string | Yes| No| Y axis.          |
 | null        | string | Yes| No| None.             |
@@ -723,7 +723,7 @@ Defines the axis range of an input device.
 
 type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
 
-Input source type of the axis. For example, if a mouse reports an x-axis event, the input source of the x-axis is the mouse.
+Enumerates input source types of the axis. For example, if a mouse reports an x-axis event, the input source of the x-axis is the mouse.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 

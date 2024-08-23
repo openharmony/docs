@@ -4,7 +4,9 @@ Popup是用于显示特定样式气泡。
 
 >  **说明：**
 >
->  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  - 建议开发者结合[Popup控制](ts-universal-attributes-popup.md)中提供的自定义气泡功能一起使用。
 
 ## 导入模块
 
@@ -169,18 +171,12 @@ Popup布局镜像展示
 
 ```ts
 // xxx.ets
-import {
-  Popup,
-  PopupOptions,
-  PopupTextOptions,
-  PopupButtonOptions,
-  PopupIconOptions
-}   from '@kit.ArkUI'
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct PopupPage {
-  @State currentDirection: Direction = Direction.Auto
+  @State currentDirection: Direction = Direction.Rtl
 
   build() {
     Column() {

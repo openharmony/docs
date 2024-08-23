@@ -16,8 +16,6 @@ import { request } from '@kit.BasicServicesKit';
 
 ## Constants
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 ### Network Types
@@ -45,6 +43,9 @@ The table below lists the values of **err** in the callback of [on('fail')<sup>7
 | ERROR_OFFLINE<sup>9+</sup> | number |   9   | No network connection.|
 | ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | Network type mismatch.|
 
+> **NOTE**
+>
+> In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to an **ERROR_UNKNOWN** error.
 
 ### Causes of Download Pause
 The table below lists the values of **pausedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
@@ -218,6 +219,14 @@ Uploads files. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -260,6 +269,14 @@ Uploads files. This API uses an asynchronous callback to return the result.
   | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -295,8 +312,6 @@ Subscribes to upload progress events. This API uses a callback to return the res
 > **NOTE**
 >
 > To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -339,8 +354,6 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 Subscribes to HTTP response events for the upload task. This API uses a callback to return the result asynchronously.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
@@ -380,8 +393,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
  on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
 Subscribes to upload completion or failure events. This API uses a callback to return the result asynchronously.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -432,8 +443,6 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 Unsubscribes from upload progress events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
@@ -476,8 +485,6 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 Unsubscribes from HTTP response events for the upload task.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
@@ -518,8 +525,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
 Unsubscribes from upload completion or failure events.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -682,6 +687,14 @@ Removes this upload task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -713,6 +726,14 @@ Removes this upload task. This API uses an asynchronous callback to return the r
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -732,13 +753,11 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 ## UploadConfig<sup>6+</sup>
 Describes the configuration of an upload task.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL.|
+| url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
 | header | Object | Yes| HTTP or HTTPS header added to an upload request.|
 | method | string | Yes|  HTTP request method. The value can be **POST** or **PUT**. The default value is **POST**. Use the **PUT** method to modify resources and the **POST** method to add resources.|
 | index<sup>11+</sup> | number | No| Path index of the task. The default value is **0**.|
@@ -749,8 +768,6 @@ Describes the configuration of an upload task.
 
 ## TaskState<sup>9+</sup>
 Implements a **TaskState** object, which is the callback parameter of the [on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9) and [off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9) APIs.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -781,8 +798,6 @@ The following table describes the enum values of **responseCode**.
 ## File
 Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 | Name| Type| Mandatory| Description|
@@ -796,8 +811,6 @@ Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 ## RequestData
 Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 | Name| Type| Mandatory| Description|
@@ -810,7 +823,6 @@ Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 Downloads files. This API uses a promise to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
-
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -868,7 +880,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
 Downloads files. This API uses an asynchronous callback to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
-
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -948,6 +959,14 @@ Downloads files. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -984,6 +1003,14 @@ Downloads files. This API uses an asynchronous callback to return the result.
   | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+  | -------- | -------- |
+| 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -1014,8 +1041,6 @@ Subscribes to download progress events. This API uses a callback to return the r
 >
 > To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
@@ -1027,10 +1052,10 @@ Subscribes to download progress events. This API uses a callback to return the r
 
   Parameters of the callback function
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| receivedSize | number | Yes| Size of the downloaded files, in bytes.|
-| totalSize | number | Yes| Total size of the files to download, in bytes.|
+| Name| Type| Mandatory| Description                                                                     |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| receivedSize | number | Yes| Size of the downloaded files, in bytes.                                                          |
+| totalSize | number | Yes| Total size of the files to download, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **totalSize** is treated as **-1**.|
 
 **Error codes**
 
@@ -1067,8 +1092,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
 Unsubscribes from download progress events.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -1122,8 +1145,6 @@ try {
 on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 Subscribes to download events. This API uses a callback to return the result asynchronously.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -1179,8 +1200,6 @@ try {
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
 Unsubscribes from download events.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -1262,8 +1281,6 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 Subscribes to download failure events. This API uses a callback to return the result asynchronously.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
@@ -1314,8 +1331,6 @@ try {
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 Unsubscribes from download failure events.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -1903,6 +1918,14 @@ Removes this download task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -1933,6 +1956,14 @@ Removes this download task. This API uses an asynchronous callback to return the
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **Example**
 
@@ -1967,6 +1998,14 @@ Queries this download task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -1997,6 +2036,14 @@ Queries this download task. This API uses an asynchronous callback to return the
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **Example**
 
@@ -2031,6 +2078,14 @@ Queries the **MimeType** of this download task. This API uses a promise to retur
   | -------- | -------- |
   | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -2061,6 +2116,14 @@ Queries the **MimeType** of this download task. This API uses an asynchronous ca
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **Example**
 
@@ -2095,6 +2158,14 @@ Pauses this download task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -2125,6 +2196,14 @@ Pauses this download task. This API uses an asynchronous callback to return the 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
 
 **Example**
 
@@ -2159,6 +2238,14 @@ Resumes this download task. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -2190,6 +2277,14 @@ Resumes this download task. This API uses an asynchronous callback to return the
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+
 **Example**
 
   ```js
@@ -2206,13 +2301,11 @@ Resumes this download task. This API uses an asynchronous callback to return the
 ## DownloadConfig
 Defines the download task configuration.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL.|
+| url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
 | header | Object | No| HTTPS flag header to be included in the download request.<br>The **X-TLS-Version** parameter in **header** specifies the TLS version to be used. If this parameter is not set, the CURL_SSLVERSION_TLSv1_2 version is used. Available options are as follows:<br>CURL_SSLVERSION_TLSv1_0<br>CURL_SSLVERSION_TLSv1_1<br>CURL_SSLVERSION_TLSv1_2<br>CURL_SSLVERSION_TLSv1_3<br>The **X-Cipher-List** parameter in **header** specifies the cipher suite list to be used. If this parameter is not specified, the secure cipher suite list is used. Available options are as follows:<br>- The TLS 1.2 cipher suite list includes the following ciphers:<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br>- The TLS 1.3 cipher suite list includes the following ciphers:<br>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br>- The TLS 1.3 cipher suite list adds the Chinese national cryptographic algorithm:<br>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
 | enableMetered | boolean | No| Whether download is allowed on a metered connection. The default value is **false**. In general cases, a mobile data connection is metered, while a Wi-Fi connection is not.<br>- **true**: allowed<br>- **false**: not allowed|
 | enableRoaming | boolean | No| Whether download is allowed on a roaming network. The default value is **false**.<br>- **true**: allowed<br>- **false**: not allowed|
@@ -2225,8 +2318,6 @@ Defines the download task configuration.
 
 ## DownloadInfo<sup>7+</sup>
 Defines the download task information, which is the callback parameter of the [getTaskInfo<sup>9+</sup>](#gettaskinfo9) API.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -2390,13 +2481,13 @@ Describes the data structure of the task progress.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| state | [State](#state10) | Yes| Current task status.|
-| index | number | Yes| Index of the file that is being processed in the task.|
-| processed | number | Yes| Size of processed data in the current file in the task, in bytes.|
-| sizes | Array&lt;number&gt; | Yes| Size of files in the task, in bytes.|
-| extras | object | No| Extra information of the task, for example, the header and body of the response from the server.|
+| Name| Type| Mandatory| Description                                                                 |
+| -------- | -------- | -------- |---------------------------------------------------------------------|
+| state | [State](#state10) | Yes| Current task status.                                                           |
+| index | number | Yes| Index of the file that is being processed in the task.                                                    |
+| processed | number | Yes| Size of processed data in the current file in the task, in bytes.                                              |
+| sizes | Array&lt;number&gt; | Yes| Size of files in the task, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **sizes** is treated as **-1**.|
+| extras | object | No| Extra information of the task, for example, the header and body of the response from the server.                                    |
 
 
 ## Faults<sup>10+</sup>  
@@ -2407,14 +2498,22 @@ Defines the cause of a task failure.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
-| Name| Value|Description|
-| -------- | -------- |-------- |
-| OTHERS | 0xFF |Other fault.|
-| DISCONNECTED | 0x00 |Network disconnection.|
-| TIMEOUT | 0x10 |Timeout.|
-| PROTOCOL | 0x20 |Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).|
-| FSIO | 0x40 |File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.|
+| Name| Value| Description                                                                            |
+| -------- | -------- |--------------------------------------------------------------------------------|
+| OTHERS | 0xFF | Other fault.                                                                       |
+| DISCONNECTED | 0x00 | Network disconnection.                                                                     |
+| TIMEOUT | 0x10 | Timeout.                                                                       |
+| PROTOCOL | 0x20 | Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).                                       |
+| PARAM<sup>12+</sup> | 0x30 | Parameter error, for example, incorrect URL format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
+| FSIO | 0x40 | File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.                                                  |
+| DNS<sup>12+</sup> | 0x50 | DNS resolution error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| TCP<sup>12+</sup> | 0x60 | TCP connection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.             |
+| SSL<sup>12+</sup> | 0x70 | SSL connection error, for example, a certificate error or certificate verification failure.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REDIRECT<sup>12+</sup> | 0x80 | Redirection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
 
+> **NOTE**
+>
+> In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to a **TIMEOUT** error.
 
 ## Filter<sup>10+</sup>
 Defines the filter criteria.
@@ -2452,7 +2551,7 @@ Defines the data structure of the task information for query. The fields availab
 | mtime | number | Yes| Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device.|
 | retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.|
 | tries | number | Yes| Number of retries of the task.|
-| faults | [Faults](#faults10) | Yes| Failure cause of the task.<br>- **OTHERS**: other fault.<br>- **DISCONNECT**: network disconnection.<br>- **TIMEOUT**: timeout.<br>- **PROTOCOL**: protocol error.<br>- **FSIO**: file system I/O error.|
+| faults | [Faults](#faults10) | Yes| Failure cause of the task.|
 | reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
 | extras | object | No| Extra information of the task|
 
@@ -2511,7 +2610,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2563,7 +2661,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### on('completed')<sup>10+</sup>
 
@@ -2589,7 +2686,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2641,7 +2737,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### on('failed')<sup>10+</sup>
 
@@ -2667,7 +2762,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2719,7 +2813,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### on('pause')<sup>11+</sup>
 
@@ -3043,7 +3136,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -3103,7 +3195,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### off('completed')<sup>10+</sup>
 
@@ -3129,7 +3220,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -3189,7 +3279,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### off('failed')<sup>10+</sup>
 
@@ -3215,7 +3304,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **Example**
 
@@ -3275,7 +3363,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### off('pause')<sup>11+</sup>
 
@@ -3759,7 +3846,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 pause(callback: AsyncCallback&lt;void&gt;): void
 
-Pauses this task. This API can be used to pause a background task that is waiting, running, or retrying. This API uses an asynchronous callback to return the result.
+Pauses a task that is waiting, running, or retrying. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3776,7 +3863,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -3822,15 +3908,11 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
 ### pause<sup>10+</sup>
 
 pause(): Promise&lt;void&gt;
 
-Pauses this task. This API can be used to pause a background task that is waiting, running, or retrying. This API uses a promise to return the result.
+Pauses a task that is waiting, running, or retrying. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3847,7 +3929,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | ID| Error Message|
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -3891,15 +3972,11 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
 ### resume<sup>10+</sup>
 
 resume(callback: AsyncCallback&lt;void&gt;): void
 
-Resumes this task. This API can be used to resume a paused background task. This API uses an asynchronous callback to return the result.
+Resumes a paused task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -3919,7 +3996,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | -------- | -------- |
   | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -3967,16 +4043,11 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
-
 ### resume<sup>10+</sup>
 
 resume(): Promise&lt;void&gt;
 
-Resumes this task. This API can be used to resume a paused background task. This API uses a promise to return the result.
+Resumes a paused task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -3996,7 +4067,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   | -------- | -------- |
   | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -4041,11 +4111,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
 
 ### stop<sup>10+</sup>
 

@@ -62,6 +62,7 @@
 | int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。  |
 | int32_t [OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*nativeWindowBuffer, int \*fenceFd) | 通过消费端的**OH_NativeImage**获取一个**OHNativeWindowBuffer**。<br/>本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。<br/>本接口将会创建一个**OHNativeWindowBuffer**。<br/>当使用**OHNativeWindowBuffer**时，用户需要通过**OH_NativeWindow_NativeObjectReference**接口将其引用计数加一。<br/>当**OHNativeWindowBuffer**使用完，用户需要通过**OH_NativeWindow_NativeObjectUnreference**接口将其引用计数减一。<br/>本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。<br/>当fenceFd使用完，用户需要将其close。 | 
 | int32_t [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*nativeWindowBuffer, int fenceFd) | 通过**OH_NativeImage**实例将**OHNativeWindowBuffer**归还到buffer队列中。<br/>系统会将fenFd关闭，无需用户close。 | 
+| [OH_NativeImage](#oh_nativeimage) \* [OH_ConsumerSurface_Create](#oh_consumersurface_create) () | 创建一个OH_NativeImage实例，作为surface的消费端。<br/>本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。<br/>本接口需要和[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。 | 
 
 ## 类型定义说明
 
@@ -186,6 +187,28 @@ enum OHNativeErrorCode
 
 
 ## 函数说明
+
+### OH_ConsumerSurface_Create()
+
+```
+OH_NativeImage* OH_ConsumerSurface_Create ()
+```
+
+**描述**
+
+创建一个**OH_NativeImage**实例，作为surface的消费端。
+
+本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。
+
+本接口需要和[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
+
+**起始版本：** 12
+
+**返回：**
+
+成功则返回一个指向**OH_NativeImage**实例的指针，否则返回**NULL**。
 
 
 ### OH_NativeImage_AcquireNativeWindowBuffer()

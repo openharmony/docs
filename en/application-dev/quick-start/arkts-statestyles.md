@@ -1,7 +1,7 @@
 # stateStyles: Polymorphic Style
 
 
-Unlike \@Styles, which are used to reuse styles only on static pages, stateStyles enables you to set state-specific styles.  
+Unlike \@Styles, which is used to reuse styles only on static pages, stateStyles enables you to set state-specific styles.  
 
 
 ## Overview

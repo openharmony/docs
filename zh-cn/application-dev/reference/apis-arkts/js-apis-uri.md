@@ -1,6 +1,6 @@
 # @ohos.uri (URI字符串解析)
 
-本模块提供URI字符串解析的相关功能。
+本模块提供URI字符串解析的相关功能。URI遵循RFC3986规范标准，该标准定义了如何编码和解析用于定位网络资源的标识符，对于非标准场景解析不支持。
 
 > **说明：**
 >
@@ -390,7 +390,7 @@ getQueryValue(key:string): string
 ```ts
 const uriInstance = new uri.URI("https://www.com?param1=value1&param2=value2");
 console.info(uriInstance.getQueryValue("param1")); // value1
-let uriInstance1 = new uri.URI('htps://www.zyy.ss?sa%3D=po%7E');
+let uriInstance1 = new uri.URI('https://www.zyy.ss?sa%3D=po%7E');
 console.info(uriInstance1.getQueryValue('sa=')) // po~
 console.info(uriInstance1.getQueryValue('abc')) // null
 ```

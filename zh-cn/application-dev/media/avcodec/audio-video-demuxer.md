@@ -8,7 +8,7 @@
 
 | 媒体格式  | 封装格式                      | 码流格式                      |
 | -------- | :----------------------------| :----------------------------|
-| 音视频     | mp4                        |<!--RP1-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP1End-->|
+| 音视频     | mp4                        |<!--RP1-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)，字幕流：WEBVTT<!--RP1End-->|
 | 音视频     | fmp4                       |<!--RP2-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP2End-->|
 | 音视频     | mkv                        |<!--RP3-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)、OPUS<!--RP3End-->|
 | 音视频     | mpeg-ts                    |<!--RP4-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP4End-->|
@@ -18,10 +18,11 @@
 | 音频       | mp3                        |音频码流：MPEG(MP3)|
 | 音频       | ogg                        |音频码流：OGG|
 | 音频       | flac                       |音频码流：FLAC|
-| 音频       | wav                        |音频码流：PCM|
+| 音频       | wav                        |音频码流：PCM、PCM-MULAW|
 | 音频       | amr                        |音频码流：AMR(AMR-NB、AMR-WB)|
 | 音频       | ape                        |音频码流：APE|
 | 外挂字幕   | srt                        |字幕流：SRT|
+| 外挂字幕   | webvtt                     |字幕流：WEBVTT|
 
 **适用场景**：
 
@@ -55,6 +56,11 @@ target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 ```
+
+> **说明：**
+>
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
+>
 
 ### 开发步骤
 
@@ -99,7 +105,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
    ```
 
-   AVSourceReadAt接口函数，需要放在创建资源管理实例对象前实现：:
+   AVSourceReadAt接口函数，需要放在创建资源管理实例对象前实现：
 
    ```c++
    // 添加头文件
@@ -378,6 +384,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 | -- | -- | -- | -- | -- |
 |OH_MD_KEY_CODEC_MIME|码流编解码器类型的键|√|√|√|
 |OH_MD_KEY_TRACK_TYPE|码流媒体类型的键|√|√|√|
+|OH_MD_KEY_TRACK_START_TIME|码流起始时间的键|√|√|√|
 |OH_MD_KEY_BITRATE|码流比特率的键|√|√|-|
 |OH_MD_KEY_LANGUAGE|码流语言类型的键|√|√|-|
 |OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData|√|√|-|

@@ -98,7 +98,7 @@ class C1 {
 let stack : Stack<number | string | C1> = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
-let c : C1  = {name : "Dylon", age : "13"};
+let c : C1  = {name : "Dylan", age : "13"};
 let result2 = stack.push(c);
 ```
 

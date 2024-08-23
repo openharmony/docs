@@ -81,58 +81,62 @@ struct Index {
   // 在以下demo中，使用资源管理接口获取打包在HAP内的媒体资源文件，通过设置fdSrc属性，获取音频元数据并打印，
   // 获取音频专辑封面并通过Image控件显示在屏幕上。该demo以Callback形式进行异步接口调用
   async testFetchMetadataFromFdSrcByCallback() {
-    // 创建AVMetadataExtractor对象
-    let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor()
+    if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
+      // 创建AVMetadataExtractor对象
+      let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor()
 
-    // 设置fdSrc
-    avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
+      // 设置fdSrc
+      avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
 
-    // 获取元数据（callback模式）
-    avMetadataExtractor.fetchMetadata((error, metadata) => {
-      if (error) {
-        console.error(TAG, `fetchMetadata callback failed, err = ${JSON.stringify(error)}`)
-        return
-      }
-      console.info(TAG, `fetchMetadata callback success, genre: ${metadata.genre}`)
-    })
-
-    //获取专辑封面（callback模式）
-    avMetadataExtractor.fetchAlbumCover((err, pixelMap) => {
-      if (err) {
-        console.error(TAG, `fetchAlbumCover callback failed, err = ${JSON.stringify(err)}`)
-        return
-      }
-      this.pixelMap = pixelMap
-
-      // 释放资源（callback模式）
-      avMetadataExtractor.release((error) => {
+      // 获取元数据（callback模式）
+      avMetadataExtractor.fetchMetadata((error, metadata) => {
         if (error) {
-          console.error(TAG, `release failed, err = ${JSON.stringify(error)}`)
+          console.error(TAG, `fetchMetadata callback failed, err = ${JSON.stringify(error)}`)
           return
         }
-        console.info(TAG, `release success.`)
+        console.info(TAG, `fetchMetadata callback success, genre: ${metadata.genre}`)
       })
-    })
+
+      //获取专辑封面（callback模式）
+      avMetadataExtractor.fetchAlbumCover((err, pixelMap) => {
+        if (err) {
+          console.error(TAG, `fetchAlbumCover callback failed, err = ${JSON.stringify(err)}`)
+          return
+        }
+        this.pixelMap = pixelMap
+
+        // 释放资源（callback模式）
+        avMetadataExtractor.release((error) => {
+          if (error) {
+            console.error(TAG, `release failed, err = ${JSON.stringify(error)}`)
+            return
+          }
+          console.info(TAG, `release success.`)
+        })
+      })
+    }
   }
 
   // 在以下demo中，使用资源管理接口获取打包在HAP内的媒体资源文件，通过设置fdSrc属性，获取音频元数据并打印，
   // 获取音频专辑封面并通过Image控件显示在屏幕上。该demo以Promise形式进行异步接口调用
   async testFetchMetadataFromFdSrcByPromise() {
-    // 创建AVMetadataExtractor对象
-    let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor()
-    // 设置fdSrc
-    avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
+    if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
+      // 创建AVMetadataExtractor对象
+      let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor()
+      // 设置fdSrc
+      avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
 
-    // 获取元数据（promise模式）
-    let metadata = await avMetadataExtractor.fetchMetadata()
-    console.info(TAG, `get meta data, hasAudio: ${metadata.hasAudio}`)
+      // 获取元数据（promise模式）
+      let metadata = await avMetadataExtractor.fetchMetadata()
+      console.info(TAG, `get meta data, hasAudio: ${metadata.hasAudio}`)
 
-    // 获取专辑封面（promise模式）
-    this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
+      // 获取专辑封面（promise模式）
+      this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
 
-    // 释放资源（promise模式）
-    avMetadataExtractor.release()
-    console.info(TAG, `release success.`)
+      // 释放资源（promise模式）
+      avMetadataExtractor.release()
+      console.info(TAG, `release success.`)
+    }
   }
 
   // 在以下demo中，使用fs文件系统打开沙箱地址获取媒体文件地址，设置dataSrc属性，获取音频元数据并打印，
@@ -166,22 +170,23 @@ struct Index {
         return -1;
       }
     }
+    if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
+      // 创建AVMetadataExtractor对象
+      let avMetadataExtractor = await media.createAVMetadataExtractor()
+      // 设置dataSrc
+      avMetadataExtractor.dataSrc = dataSrc;
 
-    // 创建AVMetadataExtractor对象
-    let avMetadataExtractor = await media.createAVMetadataExtractor()
-    // 设置dataSrc
-    avMetadataExtractor.dataSrc = dataSrc;
+      // 获取元数据（promise模式）
+      let metadata = await avMetadataExtractor.fetchMetadata()
+      console.info(TAG, `get meta data, mimeType: ${metadata.mimeType}`)
 
-    // 获取元数据（promise模式）
-    let metadata = await avMetadataExtractor.fetchMetadata()
-    console.info(TAG, `get meta data, mimeType: ${metadata.mimeType}`)
+      // 获取专辑封面（promise模式）
+      this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
 
-    // 获取专辑封面（promise模式）
-    this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
-
-    // 释放资源（promise模式）
-    avMetadataExtractor.release()
-    console.info(TAG, `release data source success.`)
+      // 释放资源（promise模式）
+      avMetadataExtractor.release()
+      console.info(TAG, `release data source success.`)
+    }
   }
 }
 ```

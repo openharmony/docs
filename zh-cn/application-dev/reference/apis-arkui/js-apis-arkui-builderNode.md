@@ -90,7 +90,7 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 > 
 > @Builder嵌套使用的时候需要保证内外的@Builder方法的入参对象一致。
 >
-> 只支持一个入参。
+> 最外层的@Builder只支持一个入参。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -101,7 +101,7 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                   |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。 |
-| arg     | Object                                                          | 否   | 对象，作为builder入参的对象。                                                          |
+| arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                          |
 
 
 ### BuildOptions<sup>12+</sup>
@@ -114,7 +114,7 @@ build的可选参数。
 
 | 名称          | 类型                                   | 必填 | 说明                                                         |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用，其中，Builder使用的入参一致。默认值:false。                                          |
+| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值:false。                                          |
 
 ### build<sup>12+</sup>
 
@@ -138,7 +138,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                    |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。   |
-| arg     | Object                                                          | 是   | builder的入参。                                                            |
+| arg     | Object                                                          | 是   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                                            |
 | options | BuildOptions                                                    | 是   | build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
 
 **示例：**
@@ -282,7 +282,7 @@ struct Index {
 
 **示例2：**
 
-BuilderNode的RenderNode挂到其它RenderNode下。
+BuilderNode的FrameNode挂到其它FrameNode下。
 
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
@@ -317,14 +317,84 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
+    this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    if (this.rootNode !== null) {
+      this.rootNode.appendChild(this.textNode?.getFrameNode());
+    }
 
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController(this.message))
+          .width('100%')
+          .height(100)
+          .backgroundColor('#FFF0F0F0')
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+**示例3：**
+
+BuilderNode的RenderNode挂到其它RenderNode下。由于RenderNode不传递布局约束，不推荐通过该方式挂载节点。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI"
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[Params]> | null = null;
+  private message: string = "DEFAULT";
+
+  constructor(message: string) {
+    super();
+    this.message = message;
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+    let renderNode = new RenderNode();
+    renderNode.clipToFrame = false;
     this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
     this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     const textRenderNode = this.textNode?.getFrameNode()?.getRenderNode();
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(textRenderNode);
+      rootRenderNode.appendChild(renderNode);
+      renderNode.appendChild(textRenderNode);
     }
 
     return this.rootNode;
@@ -650,7 +720,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到BuiderNode中的自定义组件。
+传递reuse事件到BuilderNode中的自定义组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

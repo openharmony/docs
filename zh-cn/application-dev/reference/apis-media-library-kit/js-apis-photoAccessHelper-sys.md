@@ -1310,6 +1310,178 @@ async function example() {
 }
 ```
 
+### grantPhotoUriPermission<sup>12+</sup>
+
+grantPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+
+给应用授予uri的访问权限，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| appid | string | 是 | 应用标识，将访问权限授予给appid标识的应用。 |
+| uri | string | 是 | 媒体资源的uri，uri表示的资源的访问权限将授予给应用。|
+| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，将photoPermissionType表示的权限授予给应用。权限的覆盖规则参考枚举类。|
+| hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | 是 | 脱敏类型，预留参数，目前可传枚举类中任一值。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise对象，0:授权成功。 1:已有权限。-1:授权失败。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('grantPhotoUriPermissionDemo');
+
+  try {
+    let result = await phAccessHelper.grantPhotoUriPermission('com.example.myapplication01',
+        'file://media/Photo/1/IMG_datetime_0001/displayName.jpg',
+        photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
+        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
+
+    console.info('grantPhotoUriPermission success, result=' + result);
+  } catch (err) {
+    console.error('grantPhotoUriPermission failed, error=' + err);
+  }
+}
+```
+
+### grantPhotoUrisPermission<sup>12+</sup>
+
+grantPhotoUrisPermission(appid: string, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+
+给应用授予uri列表的访问权限，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| appid | string | 是 | 应用标识，将访问权限授予给appid标识的应用。 |
+| uriList | Array&lt;string&gt; | 是 | 媒体资源的uri列表，uri列表中的资源的访问权限将授予给应用。uri列表最多容纳 1000 条uri。|
+| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，将photoPermissionType表示的权限授予给应用。权限的覆盖规则参考枚举类。|
+| hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | 是 | 脱敏类型，预留参数，目前可传枚举类中任一值。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise对象，0: 授权成功。 -1:授权失败。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('grantPhotoUrisPermissionDemo');
+
+  try {
+    // 媒体资源的uri列表
+    let uris: Array<string> = [
+      'file://media/Photo/11/IMG_datetime_0001/displayName1.jpg',
+      'file://media/Photo/22/IMG_datetime_0002/displayName2.jpg'];
+    let result = await phAccessHelper.grantPhotoUrisPermission('com.example.myapplication01', uris,
+        photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
+        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
+
+    console.info('grantPhotoUrisPermission success, result=' + result);
+  } catch (err) {
+    console.error('grantPhotoUrisPermission failed, error=' + err);
+  }
+}
+```
+
+### cancelPhotoUriPermission<sup>12+</sup>
+
+cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
+
+取消应用对uri的访问权限，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| appid | string | 是 | 应用标识，将取消appid标识应用对媒体资源的访问权限。 |
+| uri | sring | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
+| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，取消应用对媒体资源的访问权限为photoPermissionType。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise对象，0:取消成功。-1:取消失败。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('cancelPhotoUriPermissionDemo');
+
+  try {
+    let result = await phAccessHelper.cancelPhotoUriPermission('com.example.myapplication01',
+        'file://media/Photo/11/IMG_datetime_0001/displayName.jpg',
+        photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO);
+
+    console.info('cancelPhotoUriPermission success, result=' + result);
+  } catch (err) {
+    console.error('cancelPhotoUriPermission failed, error=' + err);
+  }
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
@@ -5248,3 +5420,35 @@ async function example() {
 | LOOP\_PLAY       | 2  | 循环播放。|
 | LONG\_EXPOSURE   | 3  | 长曝光。  |
 | MULTI\_EXPOSURE  | 4  | 多曝光。  |
+
+## PhotoPermissionType<sup>12+</sup>
+
+枚举，应用对媒体资源不同访问权限的类型。
+
+包括临时读权限和永久读权限，临时读权限会随着应用的死亡而删除，永久读权限不会。
+
+同一个应用对同一个媒体资源的权限覆盖规则：永久读会覆盖临时读，而临时读不会覆盖永久读。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| TEMPORARY_READ_IMAGEVIDEO |  0 |  临时读权限类型。 |
+| PERSISTENT_READ_IMAGEVIDEO |  1 |  永久读权限类型。 |
+
+## HideSensitiveType<sup>12+</sup>
+
+枚举，应用访问媒体资源时，对媒体资源进行信息脱敏的类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| HIDE_LOCATION_AND_SHOOTING_PARAM |  0 |  脱敏地理位置和拍摄参数。 |
+| HIDE_LOCATION_ONLY |  1 |  脱敏地理位置信息。 |
+| HIDE_SHOOTING_PARAM_ONLY |  2 |  脱敏拍摄参数。 |
+| NO_HIDE_SENSITIVE_TYPE |  3 |  不脱敏。 |

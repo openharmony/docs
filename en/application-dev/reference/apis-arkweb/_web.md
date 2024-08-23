@@ -9,7 +9,7 @@ APIs for injecting objects and executing JavaScript code,
 
 APIs for intercepting ArkWeb requests, 
 
-and error codes for the ArkWeb network protocol stack, 
+and error codes for the ArkWeb network protocol stack.
 
 In addition, ArkWeb capabilities on the native side are also provided, such as refreshing web page, executing JavaScript, and registering callback.
 
@@ -25,10 +25,10 @@ In addition, ArkWeb capabilities on the native side are also provided, such as r
 | Name| Description| 
 | -------- | -------- |
 | [arkweb_error_code.h](arkweb__error__code_8h.md) | Declares the error code of the ArkWeb NDK APIs.<br>**Library**: libohweb.so| 
-| [arkweb_interface.h](arkweb__interface_8h.md) | Provides ArkWeb interfaces for obtaining Native APIs and the basic Native API types.<br>**Library**: libohweb.so| 
+| [arkweb_interface.h](arkweb__interface_8h.md) | Provides ArkWeb APIs for obtaining native APIs and the basic native API types.<br>**Library**: libohweb.so| 
 | [arkweb_net_error_list.h](arkweb__net__error__list_8h.md) | Declares the error codes of the ArkWeb network protocol stack.<br>**Library**: libohweb.so| 
 | [arkweb_scheme_handler.h](arkweb__scheme__handler_8h.md) | Declares the APIs used to intercept requests from ArkWeb.<br>**Library**: libohweb.so| 
-| [arkweb_type.h](arkweb__type_8h.md) | Defines the public types of ArkWeb on the native side.<br>**Library**: libohweb.so| 
+| [arkweb_type.h](arkweb__type_8h.md) | Defines the common types of ArkWeb on the native side.<br>**Library**: libohweb.so| 
 | [native_interface_arkweb.h](native__interface__arkweb_8h.md) | Declares APIs used to inject objects and execute JavaScript code.<br>**Library**: libohweb.so| 
 
 
@@ -573,7 +573,7 @@ enum ArkWeb_NativeAPIVariantKind
 ```
 **Description**
 
-Enumerates the Native API types.
+Enumerates the native API types.
 
 **Since**: 12
 

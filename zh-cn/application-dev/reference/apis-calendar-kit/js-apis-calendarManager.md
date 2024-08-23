@@ -83,7 +83,7 @@ export default class EntryAbility extends UIAbility {
       console.log(`get Permission success, result: ${JSON.stringify(result)}`);
       calendarMgr = calendarManager.getCalendarManager(mContext);
     }).catch((error: BusinessError) => {
-      console.error(`get Permission error, error. Code: ${err.code}, message: ${err.message}`);
+      console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);
     })
   }
 
@@ -157,7 +157,7 @@ try {
     }
   });
 } catch (error) {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -209,7 +209,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
   console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((error : BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 });
 ```
 
@@ -259,7 +259,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
       console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
       calendarMgr?.deleteCalendar(data, (err1: BusinessError) => {
         if (err1) {
-          console.error(`Failed to delete calendar. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to delete calendar. Code: ${err1.code}, message: ${err1.message}`);
         } else {
           console.info("Succeeded in deleting calendar");
         }
@@ -267,7 +267,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     }
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 
@@ -326,7 +326,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 
@@ -426,7 +426,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     }
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 

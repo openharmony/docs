@@ -8,6 +8,7 @@
       <!--Del-->
      - [@ohos.account.distributedAccount (Distributed Account Management) (System API)](js-apis-distributed-account-sys.md)
      - [@ohos.account.osAccount (System Account Management) (System API)](js-apis-osAccount-sys.md)
+     - [@ohos.ai.intelligentVoice (Intelligent Voice) (System API)](js-apis-intelligentVoice-sys.md)
         <!--DelEnd-->
   - Device Management
     - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
@@ -134,6 +135,7 @@
     - [Account Management Error Codes](errorcode-account.md)
     - [Update Error Codes](errorcode-update.md)
     <!--Del-->
-    - [Screen Lock Management](errorcode-screenlock.md)
+    - [Screen Lock Management Error Codes](errorcode-screenlock.md)
+    - [Intelligent Voice Error Codes](errorcode-intelligentVoice.md)
     <!--DelEnd-->
 <!--no_check-->

@@ -1,7 +1,7 @@
 # Radio Button (Radio)
 
 
-The **\<Radio>** component allows users to select from a set of mutually exclusive options. Only one radio button in a given group can be selected at the same time. For details, see [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md).
+The **Radio** component allows users to select from a set of mutually exclusive options. Only one radio button in a given group can be selected at the same time. For details, see [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md).
 
 
 ## Creating a Radio Button
@@ -30,7 +30,7 @@ Radio({ value: 'Radio2', group: 'radioGroup' })
 
 ## Adding Events
 
-The **\<Radio>** component supports the [universal events](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md). In addition, it can be bound to the **onChange** event so that it responds with custom behavior after being selected.
+The **Radio** component supports the [universal events](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md). In addition, it can be bound to the **onChange** event so that it responds with custom behavior after being selected.
 
 ```ts
   Radio({ value: 'Radio1', group: 'radioGroup' })
@@ -50,12 +50,13 @@ The **\<Radio>** component supports the [universal events](../reference/apis-ark
 
 ## Example Scenario
 
-In this example, the **\<Radio>** components are used to switch between sound modes.
+In this example, the **Radio** components are used to switch between sound modes.
 
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct RadioExample {

@@ -34,6 +34,8 @@ Slider(options?: SliderOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
@@ -46,13 +48,13 @@ Slider(options?: SliderOptions)
 
 ## SliderStyle枚举说明
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OutSet | 滑块在滑轨上。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| InSet | 滑块在滑轨内。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NONE<sup>12+</sup> | 无滑块 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| OutSet | 滑块在滑轨上。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| InSet | 滑块在滑轨内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NONE<sup>12+</sup> | 无滑块 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -438,6 +440,8 @@ Slider组件滑块形状参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称  | 类型                                                         | 必填 | 说明                                                         |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type  | [SliderBlockType](#sliderblocktype10枚举说明)                | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
@@ -449,6 +453,8 @@ Slider组件滑块形状参数。
 Slider组件滑块形状枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 描述                   |
 | ------- | ---------------------- |
@@ -462,6 +468,8 @@ Slider组件滑块形状枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | SLIDE_AND_CLICK | 用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指按下即发生移动。|
@@ -473,6 +481,8 @@ Slider组件滑块形状枚举。
 定义SlideRange中使用的回调类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型     | 必填 | 说明           |
 |----|--------| ---- |--------------|
@@ -520,6 +530,8 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
 | Begin | 0 | 手势/鼠标接触或者按下滑块。 |
@@ -533,13 +545,15 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    | 说明              |
-| ------ | ------ | ---------------- |
-| value | number | 当前进度值。 |
-| min | number | 最小值。 |
-| max | number | 最大值。 |
-| step | number | Slider滑动步长。 |
-| triggerChange | [SliderTriggerChangeCallback](#slidertriggerchangecallback12对象说明) | 触发Slider变化。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型    | 只读  | 可选  | 说明              |
+| ------ | ------ | ---------------- | ---------------- | ---------------- |
+| value | number | 否 | 否 | 当前进度值。 |
+| min | number | 否 | 否 | 最小值。 |
+| max | number | 否 | 否 | 最大值。 |
+| step | number | 否 | 否 | Slider滑动步长。 |
+| triggerChange | [SliderTriggerChangeCallback](#slidertriggerchangecallback12对象说明) | 否 | 否 | 触发Slider变化。 |
 
 ## SliderTriggerChangeCallback<sup>12+</sup>对象说明
 
@@ -547,10 +561,12 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    | 必填 | 说明              |
-| ------ | ------ | ---- | ---------------- |
-| value | number | 是 | 设置当前的进度值。 |
-| mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型    | 只读 | 可选 | 说明              |
+| ------ | ------ | ---- | ---------------- | ---------------- |
+| value | number | 否 | 否 | 设置当前的进度值。 |
+| mode | [SliderChangeMode](#sliderchangemode枚举说明) | 否 | 否 | 设置事件触发的相关状态值。 |
 
 ## 示例
 

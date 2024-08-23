@@ -1,6 +1,6 @@
-# 使用Hidebug获取调试信息（ArkTS）
+# 使用HiDebug获取调试信息（ArkTS）
 
-Hidebug对外提供系统调试相关功能的接口，包括应用进程的静态堆内存（native heap）信息、应用进程内存占用PSS（Proportional Set Size）信息的获取等，也可完成虚拟机内存切片导出，虚拟机CPU Profiling采集等操作。
+HiDebug对外提供系统调试相关功能的接口，包括应用进程的静态堆内存（native heap）信息、应用进程内存占用PSS（Proportional Set Size）信息的获取等，也可完成虚拟机内存切片导出，虚拟机CPU Profiling采集等操作。
 
 ## 接口说明
 
@@ -29,7 +29,7 @@ Hidebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getVMRuntimeStats          | 获取系统gc全部统计信息。                                     |
 | hidebug.getVMRuntimeStat           | 根据参数获取指定的系统gc统计信息。                           |
 
-hidebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
+HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
 ## 开发示例
 
@@ -50,7 +50,7 @@ hidebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    }
    ```
 
-   给文本Text添加一个点击事件，示例代码如下：
+   给文本Text组件添加一个点击事件，示例代码如下：
 
    ```ts
    @Entry
