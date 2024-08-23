@@ -81,23 +81,23 @@ In the following example, there are two UIAbility components: EntryAbility and S
 
 1. In SpecifiedAbility, set **launchType** in the [module.json5 file](../quick-start/module-configuration-file.md) to **specified**.
 
-   ```json
-   {
-     "module": {
-       ...
-       "abilities": [
-         {
-           "launchType": "specified",
-           ...
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        ...
+        "abilities": [
+          {
+            "launchType": "specified",
+            ...
+          }
+        ]
+      }
+    }
+    ```
 
 2. Create a unique string key for the SpecifiedAbility instance. Each time [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, the application, based on the key, identifies the UIAbility instance used to respond to the request. In EntryAbility, add a custom parameter, for example, **instanceKey**, to the **want** parameter in [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to distinguish the UIAbility instances.
 
-   ```ts
+    ```ts
     // Configure a unique key for each UIAbility instance.
     // For example, in the document usage scenario, use the document path as the key.
     import { common, Want } from '@kit.AbilityKit';
@@ -170,13 +170,13 @@ In the following example, there are two UIAbility components: EntryAbility and S
         .height('100%')
       }
     }
-   ```
+    ```
    
 3. Before SpecifiedAbility is started, the [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant) callback of the corresponding AbilityStage instance is invoked to obtain the key of the target UIAbility. If a UIAbility instance matching the key exists, the system starts the UIAbility instance and invokes its [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback. Otherwise, the system creates a new UIAbility instance and invokes its [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callbacks.
 
    In the sample code, the [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant) callback uses the passed **want** parameter to obtain the custom parameter **instanceKey**. The service logic returns a key string based on the **instanceKey** parameter to identify the UIAbility instance. If the returned key maps to a started UIAbility instance, the system pulls the UIAbility instance back to the foreground and gives it the focus. If the returned key does not map to a started UIAbility instance, the system creates a new UIAbility instance and starts it.
 
-   ```ts
+    ```ts
     import { AbilityStage, Want } from '@kit.AbilityKit';
 
     export default class MyAbilityStage extends AbilityStage {
@@ -193,7 +193,7 @@ In the following example, there are two UIAbility components: EntryAbility and S
         return 'MyAbilityStage';
       }
     }
-   ```
+    ```
 
    > **NOTE**
    >

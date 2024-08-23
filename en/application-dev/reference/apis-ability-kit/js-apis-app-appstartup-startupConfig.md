@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.StartupConfig
 
-The StartupConfig module provides the configuration of component initialization.
+The StartupConfig module provides APIs for startup task configuration.
 
 > **NOTE**
 >
@@ -18,10 +18,10 @@ import { StartupConfig } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AppStartup
 
-  | Name | Type | Read Only | Mandatory | Description |
+  | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| timeoutMs | number | Yes| No| Timeout for initializing all components. The default value is 10000 ms.|
-| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | Yes| No| AppStartup framework listener, which is called when all the components are initialized.|
+| timeoutMs | number | No| Yes| Timeout for executing all startup tasks. The default value is 10000 ms.|
+| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | No| Yes| AppStartup listener, which is called when all the startup tasks are complete.|
 
 **Example**
 

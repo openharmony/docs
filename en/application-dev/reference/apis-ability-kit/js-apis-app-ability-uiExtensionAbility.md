@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)
 
-**UIExtensionAbility**, inherited from [ExtensionAbility](js-apis-app-ability-extensionAbility.md), is a base class for ExtensionAbilities with UI in specific scenarios. It provides properties and APIs related to ExtensionAbilities with UI. You cannot inherit from this base class.
+**UIExtensionAbility**, inherited from [ExtensionAbility](js-apis-app-ability-extensionAbility.md), is a base class for ExtensionAbilities with UI in specific scenarios. It provides properties and APIs related to ExtensionAbilities with UI. You cannot inherit from this base class. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 
@@ -18,9 +18,9 @@ import { UIExtensionAbility } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| Yes| Context of the UIExtensionAbility.|
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context of the UIExtensionAbility.|
 
 ## UIExtensionAbility.onCreate
 

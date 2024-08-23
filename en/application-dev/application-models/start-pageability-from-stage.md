@@ -17,30 +17,40 @@ import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[EntryAbility]';
+const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct Page_StartFAModel {
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    Button('StartFAModel')
-      .onClick(() => {
-        let want: Want = {
-          bundleName: 'com.samples.famodelabilitydevelop',
-          abilityName: 'com.samples.famodelabilitydevelop.MainAbility'
-        };
-        this.context.startAbility(want).then(() => {
-          hilog.info(DOMAIN_NUMBER, TAG, 'Start Ability successfully.');
-        }).catch((error: BusinessError) => {
-          hilog.error(DOMAIN_NUMBER, TAG, `Ability failed: ` + JSON.stringify(error));
-        });
-      })
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'com.samples.famodelabilitydevelop',
+              abilityName: 'com.samples.famodelabilitydevelop.MainAbility'
+            };
+            this.context.startAbility(want).then(() => {
+              hilog.info(DOMAIN_NUMBER, TAG, 'Start Ability successfully.');
+            }).catch((error: BusinessError) => {
+              hilog.error(DOMAIN_NUMBER, TAG, `Ability failed: ` + JSON.stringify(error));
+            });
+          })
+        }
+        //...
+      }
+      //...
+    }
+    //...
   }
-  
-  // ...
 }
 ```
 
@@ -63,7 +73,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct Page_StartFAModel {
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
@@ -97,7 +107,6 @@ struct Index {
     }
     //...
   }
-  // ...
 }
 ```
 

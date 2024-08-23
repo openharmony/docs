@@ -452,29 +452,29 @@ If you want to obtain the return result when using implicit Want to start the UI
 
 1. In the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility corresponding to the payment application, set **entities** and **actions** under **skills**.
 
-   ```json
-   {
-     "module": {
-       "abilities": [
-         {
-           ...
-           "skills": [
-             {
-               "entities": [
-                 ...
-                 "entity.system.default"
-               ],
-               "actions": [
-                 ...
-                 "ohos.want.action.editData"
-               ]
-             }
-           ]
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        "abilities": [
+          {
+            ...
+            "skills": [
+              {
+                "entities": [
+                  ...
+                  "entity.system.default"
+                ],
+                "actions": [
+                  ...
+                  "ohos.want.action.editData"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+    ```
 
 2. Call [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start the UIAbility of the payment application. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the initiator UIAbility after the payment UIAbility stops itself. After the system identifies the UIAbility instances that match the **entities** and **actions** information, a dialog box is displayed, showing the list of matching UIAbility instances for users to select.
 
@@ -996,9 +996,9 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
 2. Import the **UIAbility** module.
 
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   ```
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    ```
 
 3. Define the agreed parcelable data.
 
@@ -1038,92 +1038,92 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 4. Implement **Callee.on** and **Callee.off**.
 
    The time to register a listener for the CalleeAbility depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the UIAbility and deregistered in **onDestroy**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-   
-   
-      ```ts
-       import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
-       import hilog from '@ohos.hilog';
-       import type rpc from '@ohos.rpc';
-   
-       const MSG_SEND_METHOD: string = 'CallSendMsg';
-       const DOMAIN_NUMBER: number = 0xFF00;
-       const TAG: string = '[CalleeAbility]';
-   
-       class MyParcelable {
-         num: number = 0;
-         str: string = '';
-   
-         constructor(num: number, string: string) {
-           this.num = num;
-           this.str = string;
-         }
-   
-         mySequenceable(num: number, string: string): void {
-           this.num = num;
-           this.str = string;
-         }
-   
-         marshalling(messageSequence: rpc.MessageSequence): boolean {
-           messageSequence.writeInt(this.num);
-           messageSequence.writeString(this.str);
-           return true;
-         }
-   
-         unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-           this.num = messageSequence.readInt();
-           this.str = messageSequence.readString();
-           return true;
-         }
-       }
-   
-       function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
-         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
-   
-         // Obtain the parcelable data sent by the CallerAbility.
-         let receivedData: MyParcelable = new MyParcelable(0, '');
-         data.readParcelable(receivedData);
-         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `receiveData[${receivedData.num}, ${receivedData.str}]`);
-         let num: number = receivedData.num;
-   
-         // Process the data.
-         // Return the parcelable data result to the CallerAbility.
-         return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
-       }
-   
-       export default class CalleeAbility extends UIAbility {
-         caller: Caller | undefined;
-   
-         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-           try {
-             this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-           } catch (error) {
-             hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
-           }
-         }
-   
-         releaseCall(): void {
-           try {
-             if (this.caller) {
-               this.caller.release();
-               this.caller = undefined;
-             }
-             hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'caller release succeed');
-           } catch (error) {
-             hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
-           }
-         }
-   
-         onDestroy(): void {
-           try {
-             this.callee.off(MSG_SEND_METHOD);
-             hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Callee OnDestroy');
-             this.releaseCall();
-           } catch (error) {
-             hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
-           }
-         }
-       }
-      ```
+
+
+    ```ts
+    import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { rpc } from '@kit.IPCKit';
+
+    const MSG_SEND_METHOD: string = 'CallSendMsg';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[CalleeAbility]';
+
+    class MyParcelable {
+      num: number = 0;
+      str: string = '';
+
+      constructor(num: number, string: string) {
+        this.num = num;
+        this.str = string;
+      }
+
+      mySequenceable(num: number, string: string): void {
+        this.num = num;
+        this.str = string;
+      }
+
+      marshalling(messageSequence: rpc.MessageSequence): boolean {
+        messageSequence.writeInt(this.num);
+        messageSequence.writeString(this.str);
+        return true;
+      }
+
+      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+        this.num = messageSequence.readInt();
+        this.str = messageSequence.readString();
+        return true;
+      }
+    }
+
+    function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
+      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
+
+      // Obtain the parcelable data sent by the CallerAbility.
+      let receivedData: MyParcelable = new MyParcelable(0, '');
+      data.readParcelable(receivedData);
+      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `receiveData[${receivedData.num}, ${receivedData.str}]`);
+      let num: number = receivedData.num;
+
+      // Process the data.
+      // Return the parcelable data result to the CallerAbility.
+      return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
+    }
+
+    export default class CalleeAbility extends UIAbility {
+      caller: Caller | undefined;
+
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        try {
+          this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
+        } catch (error) {
+          hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
+        }
+      }
+
+      releaseCall(): void {
+        try {
+          if (this.caller) {
+            this.caller.release();
+            this.caller = undefined;
+          }
+          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'caller release succeed');
+        } catch (error) {
+          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
+        }
+      }
+
+      onDestroy(): void {
+        try {
+          this.callee.off(MSG_SEND_METHOD);
+          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Callee OnDestroy');
+          this.releaseCall();
+        } catch (error) {
+          hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
+        }
+      }
+    }
+    ```
 
 
 ### Accessing the CalleeAbility
@@ -1138,7 +1138,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
    The **UIAbilityContext** attribute implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **UIAbilityContext**, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
 
-   ```ts
+    ```ts
     import { common, Want, Caller } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { promptAction } from '@kit.ArkUI';
@@ -1217,8 +1217,6 @@ For the CalleeAbility, implement the callback to receive data and the methods to
         // ...
       }
     }
-   ```
-
-
+    ```
 <!--DelEnd-->
 

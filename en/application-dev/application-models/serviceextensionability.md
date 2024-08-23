@@ -98,24 +98,25 @@ An example of **idl_service_ext_impl.ts** is as follows:
 
 ```ts
 import IdlServiceExtStub from './idl_service_ext_stub';
-import Logger from '../utils/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { insertDataToMapCallback } from './i_idl_service_ext';
 import { processDataCallback } from './i_idl_service_ext';
 
 const ERR_OK = 0;
 const TAG: string = "[IdlServiceExtImpl]";
+const DOMAIN_NUMBER: number = 0xFF00;
 
 // You need to implement APIs in this type.
 export default class ServiceExtImpl extends IdlServiceExtStub {
   processData(data: number, callback: processDataCallback): void {
     // Implement service logic.
-    Logger.info(TAG, `processData: ${data}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `processData: ${data}`);
     callback(ERR_OK, data + 1); // The verification is successful, and service logic is executed normally.
   }
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
     // Implement service logic.
-    Logger.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, key: ${key}  val: ${val}`);
     callback(ERR_OK);
   }
 }
@@ -143,61 +144,62 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
 
 3. In the **ServiceExtAbility.ets** file, import the ServiceExtensionAbility module. Customize a class that inherits from **ServiceExtensionAbility** and implement the lifecycle callbacks. Return the previously defined **ServiceExtImpl** object in the **onConnect** lifecycle callback.
 
-   ```ts
-   import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
-   import { rpc } from '@kit.IPCKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
-   
-   const TAG: string = '[ServiceExtAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   export default class ServiceExtAbility extends ServiceExtensionAbility {
-     serviceExtImpl: ServiceExtImpl = new ServiceExtImpl('ExtImpl');
-   
-     onCreate(want: Want): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
-     }
-   
-     onRequest(want: Want, startId: number): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
-     }
-   
-     onConnect(want: Want): rpc.RemoteObject {
-       hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
-       // Return the ServiceExtImpl object, through which the client can communicate with the ServiceExtensionAbility.
-       return this.serviceExtImpl as rpc.RemoteObject;
-     }
-   
-     onDisconnect(want: Want): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
-     }
-   
-     onDestroy(): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onDestroy`);
-     }
-   }
-   ```
+    ```ts
+    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
+
+    const TAG: string = '[ServiceExtAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    export default class ServiceExtAbility extends ServiceExtensionAbility {
+      serviceExtImpl: ServiceExtImpl = new ServiceExtImpl('ExtImpl');
+
+      onCreate(want: Want): void {
+        let serviceExtensionContext = this.context;
+        hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
+      };
+
+      onRequest(want: Want, startId: number): void {
+        hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
+      };
+
+      onConnect(want: Want): rpc.RemoteObject {
+        hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
+        // Return the ServiceExtImpl object, through which the client can communicate with the ServiceExtensionAbility.
+        return this.serviceExtImpl as rpc.RemoteObject;
+      };
+
+      onDisconnect(want: Want): void {
+        hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
+      };
+
+      onDestroy(): void {
+        hilog.info(DOMAIN_NUMBER, TAG, 'onDestroy');
+      };
+    };
+    ```
 
 4. Register the ServiceExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **"service"** and **srcEntry** to the code path of the ServiceExtensionAbility component.
 
-   ```json
-   {
-     "module": {
-       ...
-       "extensionAbilities": [
-         {
-           "name": "ServiceExtAbility",
-           "icon": "$media:icon",
-           "description": "service",
-           "type": "service",
-           "exported": true,
-           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        ...
+        "extensionAbilities": [
+          {
+            "name": "ServiceExtAbility",
+            "icon": "$media:icon",
+            "description": "service",
+            "type": "service",
+            "exported": true,
+            "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
+          }
+        ]
+      }
+    }
+    ```
 
 ## Starting a Background Service (for System Applications Only)
 
@@ -208,144 +210,144 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 
 1. Start a new ServiceExtensionAbility in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
-     ```ts
-     import { common, Want } from '@kit.AbilityKit';
-     import { promptAction } from '@kit.ArkUI';
-     import { hilog } from '@kit.PerformanceAnalysisKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-   
-     const TAG: string = '[Page_ServiceExtensionAbility]';
-     const DOMAIN_NUMBER: number = 0xFF00;
-   
-     @Entry
-     @Component
-     struct Page_ServiceExtensionAbility {
-       build() {
-         Column() {
-           //...
-           List({ initialIndex: 0 }) {
-             ListItem() {
-               Row() {
-                 //...
-               }
-               .onClick(() => {
-                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                 let want: Want = {
-                   deviceId: '',
-                   bundleName: 'com.samples.stagemodelabilitydevelop',
-                   abilityName: 'ServiceExtAbility'
-                 };
-                 context.startServiceExtensionAbility(want).then(() => {
-                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
-                   // The background service is started.
-                   promptAction.showToast({
-                     message: $r('app.string.SuccessfullyStartBackendService')
-                   });
-                 }).catch((err: BusinessError) => {
-                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-                 });
-               })
-             }
-             //...
-           }
-           //...
-         }
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let want: Want = {
+                  deviceId: '',
+                  bundleName: 'com.samples.stagemodelabilitydevelop',
+                  abilityName: 'ServiceExtAbility'
+                };
+                context.startServiceExtensionAbility(want).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
+                  // The background service is started.
+                  promptAction.showToast({
+                    message: $r('app.string.SuccessfullyStartBackendService')
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+                });
+              })
+            }
+            //...
+          }
+          //...
+        }
+        //...
+      }
+    }
+    ```
 
 2. Stop the ServiceExtensionAbility in the system application.
 
-     ```ts
-     import { common, Want } from '@kit.AbilityKit';
-     import { promptAction } from '@kit.ArkUI';
-     import { hilog } from '@kit.PerformanceAnalysisKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-   
-     const TAG: string = '[Page_ServiceExtensionAbility]';
-     const DOMAIN_NUMBER: number = 0xFF00;
-   
-     @Entry
-     @Component
-     struct Page_ServiceExtensionAbility {
-       build() {
-         Column() {
-           //...
-           List({ initialIndex: 0 }) {
-             ListItem() {
-               Row() {
-                 //...
-               }
-               .onClick(() => {
-                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                 let want: Want = {
-                   deviceId: '',
-                   bundleName: 'com.samples.stagemodelabilitydevelop',
-                   abilityName: 'ServiceExtAbility'
-                 };
-                 context.stopServiceExtensionAbility(want).then(() => {
-                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
-                   promptAction.showToast({
-                     message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
-                   });
-                 }).catch((err: BusinessError) => {
-                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-                 });
-               })
-             }
-             //...
-           }
-           //...
-         }
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let want: Want = {
+                  deviceId: '',
+                  bundleName: 'com.samples.stagemodelabilitydevelop',
+                  abilityName: 'ServiceExtAbility'
+                };
+                context.stopServiceExtensionAbility(want).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
+                  promptAction.showToast({
+                    message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+                });
+              })
+            }
+            //...
+          }
+          //...
+        }
+        //...
+      }
+    }
+    ```
 
 3. Enable the ServiceExtensionAbility to stop itself.
 
-     ```ts
-     import { common } from '@kit.AbilityKit';
-     import { promptAction } from '@kit.ArkUI';
-     import { hilog } from '@kit.PerformanceAnalysisKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-   
-     const TAG: string = '[Page_ServiceExtensionAbility]';
-     const DOMAIN_NUMBER: number = 0xFF00;
-   
-     @Entry
-     @Component
-     struct Page_ServiceExtensionAbility {
-       build() {
-         Column() {
-           //...
-           List({ initialIndex: 0 }) {
-             ListItem() {
-               Row() {
-                 //...
-               }
-               .onClick(() => {
-                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                 context.terminateSelf().then(() => {
-                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
-                   // The background service is stopped.
-                   promptAction.showToast({
-                     message: $r('app.string.SuccessfullyStopStartedBackendService')
-                   });
-                 }).catch((err: BusinessError) => {
-                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
-                 });
-               })
-             }
-             //...
-           }
-           //...
-         }
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { common } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                context.terminateSelf().then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
+                  // The background service is stopped.
+                  promptAction.showToast({
+                    message: $r('app.string.SuccessfullyStopStartedBackendService')
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
+                });
+              })
+            }
+            //...
+          }
+          //...
+        }
+        //...
+      }
+    }
+    ```
 
 > **NOTE**
 >
@@ -404,6 +406,7 @@ The ServiceExtensionAbility returns an IRemoteObject in the [onConnect()](../ref
       hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
     }
   };
+
   @Entry
   @Component
   struct Page_ServiceExtensionAbility {

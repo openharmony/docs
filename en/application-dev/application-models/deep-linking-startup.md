@@ -67,10 +67,9 @@ Pass in the URL of the target application into **link** of [openLink()](../refer
 The sample code is as follows:
 
 ```ts
-import { common } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { common, OpenLinkOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[UIAbilityComponentsOpenLink]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -113,10 +112,9 @@ Pass in the target application's link into **want** of **startAbility()**, which
 The sample code is as follows:
 
 ```ts
-import { common } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[UIAbilityComponentsOpenLink]';
 const DOMAIN_NUMBER: number = 0xFF00;

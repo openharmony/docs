@@ -54,19 +54,19 @@ The following figure shows the cross-device migration process when a migration r
 
 1. Configure the **continuable** tag under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md).
 
-   ```json
-   {
-     "module": {
-       // ...
-       "abilities": [
-         {
-           // ...
-           "continuable": true, // Configure the UIAbility to support migration.
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        // ...
+        "abilities": [
+          {
+            // ...
+            "continuable": true, // Configure the UIAbility to support migration.
+          }
+        ]
+      }
+    }
+    ```
 
    > **NOTE**
    >
@@ -80,36 +80,36 @@ The following figure shows the cross-device migration process when a migration r
    - Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback and compare it with the application version on the source device.
    - Making a migration decision: You can determine whether migration is supported based on the return value of [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue). For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult).
 
-   ```ts
-   import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   
-   const TAG: string = '[MigrationAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   export default class MigrationAbility extends UIAbility {
-     onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-       let version = wantParam.version;
-       let targetDevice = wantParam.targetDevice;
-       hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // Prepare data to migrate.
-   
-       // Obtain the application version on the source device.
-       let versionSrc: number = -1; // Enter the version number obtained.
-   
-       // Compatibility verification
-       if (version !== versionSrc) {
-         // Return MISMATCH when the compatibility check fails.
-         return AbilityConstant.OnContinueResult.MISMATCH;
-       }
-   
-       // Save the data to migrate in the custom field (for example, data) of wantParam.
-       const continueInput = 'Data to migrate';
-       wantParam['data'] = continueInput;
-   
-       return AbilityConstant.OnContinueResult.AGREE;
-     }
-   }
-   ```
+    ```ts
+    import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+
+    const TAG: string = '[MigrationAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    export default class MigrationAbility extends UIAbility {
+      onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+        let version = wantParam.version;
+        let targetDevice = wantParam.targetDevice;
+        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // Prepare data to migrate.
+
+        // Obtain the application version on the source device.
+        let versionSrc: number = -1; // Enter the version number obtained.
+
+        // Compatibility verification
+        if (version !== versionSrc) {
+          // Return MISMATCH when the compatibility check fails.
+          return AbilityConstant.OnContinueResult.MISMATCH;
+        }
+
+        // Save the data to migrate in the custom field (for example, data) of wantParam.
+        const continueInput = 'Data to migrate';
+        wantParam['data'] = continueInput;
+
+        return AbilityConstant.OnContinueResult.AGREE;
+      }
+    }
+    ```
 
 3. On the source device, call APIs to restore data and load the UI. The APIs vary according to the cold or hot start mode in use.
    
@@ -121,31 +121,31 @@ The following figure shows the cross-device migration process when a migration r
    - You can obtain the saved data from the **want** parameter.
    - After data restoration is complete, call **restoreWindowStage()** to trigger page restoration, including page stack information.
 
-   ```ts
-   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   
-   const TAG: string = '[MigrationAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   export default class MigrationAbility extends UIAbility {
-     storage : LocalStorage = new LocalStorage();
-   
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-       if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-         // Restore the saved data from want.parameters.
-         let continueInput = '';
-         if (want.parameters !== undefined) {
-           continueInput = JSON.stringify(want.parameters.data);
-           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-         }
-         // Trigger page restoration.
-         this.context.restoreWindowStage(this.storage);
-       }
-     }
-   
-     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    ```ts
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+
+    const TAG: string = '[MigrationAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    export default class MigrationAbility extends UIAbility {
+      storage: LocalStorage = new LocalStorage();
+
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+          // Restore the saved data from want.parameters.
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+          }
+          // Trigger page restoration.
+          this.context.restoreWindowStage(this.storage);
+        }
+      }
+
+      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
           // Restore the saved data from want.parameters.
@@ -158,8 +158,8 @@ The following figure shows the cross-device migration process when a migration r
           this.context.restoreWindowStage(this.storage);
         }
       }
-   }
-   ```
+    }
+    ```
 
 ## Configuring Optional Migration Features
 
@@ -226,7 +226,6 @@ Set the migration state in the event of a component.
 // Page_MigrationAbilityFirst.ets
 import { AbilityConstant, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -237,16 +236,25 @@ struct Page_MigrationAbilityFirst {
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    // ...
-    Button() {
-      // ...
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // When the button is clicked, set the migration state to ACTIVE.
+            this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+              hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+            });
+          })
+        }
+        //...
+      }
+      //...
     }
-    .onClick(()=>{
-      // When the button is clicked, set the migration state to ACTIVE.
-      this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-      });
-    })
+    //...
   }
 }
 ```
@@ -268,13 +276,13 @@ export default class MigrationAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // Set the migration state to ACTIVE when the launch is caused by migration. This setting copes with cold start.
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-        hilog.info(`setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
       });
     }
   }
-  
+
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // Set the migration state to ACTIVE when the launch is caused by migration. This setting copes with hot start.
@@ -372,6 +380,8 @@ const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
+  storage: LocalStorage = new LocalStorage();
+
   // Save the data on the source device.
   onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     // Save the data to migrate in the custom field (for example, data) of wantParam.
@@ -387,7 +397,7 @@ export default class MigrationAbility extends UIAbility {
       let continueInput = '';
       if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
-        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
       }
       // Trigger page restoration.
       this.context.restoreWindowStage(this.storage);
@@ -395,7 +405,7 @@ export default class MigrationAbility extends UIAbility {
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       let continueInput = '';
       if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);

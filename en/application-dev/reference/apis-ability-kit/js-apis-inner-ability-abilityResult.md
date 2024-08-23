@@ -28,7 +28,7 @@ import ability from '@ohos.ability.ability';
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name       |  Type                | Read-only | Mandatory | Description                                                        |
+| Name       |  Type                | Read-only| Optional| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| resultCode  | number               | No  | Yes  | Result code returned after the started ability is terminated.                               |
-| want  | [Want](js-apis-app-ability-want.md)               | No  | No  | Data returned after the started ability is terminated. |
+| resultCode  | number               | No  | No  | Result code returned after the started ability is terminated.                               |
+| want  | [Want](js-apis-app-ability-want.md) | No  | Yes  | Data returned after the started ability is terminated.|
