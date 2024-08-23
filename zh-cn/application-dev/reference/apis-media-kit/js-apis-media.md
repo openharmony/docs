@@ -1477,7 +1477,7 @@ selectTrack(index: number): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
-| mode   | [SwitchMode](#switchmod12) | 否   | 切换视频轨模式，默认为SMOOTH模式，仅支持DASH协议，**仅在视频资源播放时设置**。 |
+| mode   | [SwitchMode](#switchmode12) | 否   | 切换视频轨模式，默认为SMOOTH模式，仅支持DASH协议，**仅在视频资源播放时设置**。 |
 
 **返回值：**
 
