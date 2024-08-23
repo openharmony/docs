@@ -58,8 +58,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     };
 
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -233,7 +233,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720, .videoFrameHeight = 1080, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
+        .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
     };
