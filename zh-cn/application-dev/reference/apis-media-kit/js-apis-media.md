@@ -2705,6 +2705,21 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 |            'released'             | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用[release()](#release9)方法后，会进入released状态，结束流程。 |
 | 'error' | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](errorcode-media.md)），则会转换至当前状态，可以调用[reset()](#reset9)重置，也可以调用[release()](#release9)销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用[reset()](#reset9)重置或者[release()](#release9)销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
 
+## OnTrackChangeHandler<sup>12+</sup>
+
+type OnTrackChangeHandler = (index: number, isSelected: boolean) => void
+
+track变更事件回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ---------------------------------------------------------- |
+| index  | number | 是 | 当前选中的track索引。     |
+| isSelected | boolean | 是 | 当前索引的选中状态。 |
+
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
 type OnAVPlayerStateChangeHandle = (state: AVPlayerState, reason: StateChangeReason) => void
