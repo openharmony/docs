@@ -120,7 +120,7 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 |------|------|------|------|
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
+| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。仅pop中设置result参数后触发。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pushDestination<sup>11+</sup>
@@ -196,7 +196,7 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
+| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。仅pop中设置result参数后触发。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
