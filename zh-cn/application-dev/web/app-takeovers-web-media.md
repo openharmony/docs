@@ -225,7 +225,7 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
                  // 接管当前的媒体。
 
                  // 使用同层渲染流程提供的 surface 来构造一个本地播放器组件。
-                 this.node_controller = new MyNodeController(mediaInfo..surfaceInfo.id, NodeRenderType.  RENDER_TYPE_TEXTURE);
+                 this.node_controller = new MyNodeController(mediaInfo.surfaceInfo.id, NodeRenderType.  RENDER_TYPE_TEXTURE);
                  this.node_controller.build();
 
                  // 展示本地播放器组件。
