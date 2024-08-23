@@ -23,7 +23,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 **参数：** 
 
-| 参数名            | 参数类型      | 必填     | 参数描述                                                     |
+| 参数名            | 类型      | 必填     | 说明                                                     |
 | -------------- | -------- | ------ | --------------------------------------------------------------------------- |
 | timeZoneOffset | number   | 否     | 设置时区偏移量。<br>取值范围为[-14, 12]，表示东十二区到西十二区，其中负值表示东时区，正值表示西时区，比如东八区为-8。设置值为该取值范围内的浮点数时会进行取整，舍弃小数部分。<br>对横跨国际日界线的国家或地区，用-13（UTC+13）和-14（UTC+14）来保证整个国家或者区域处在相同的时间，当设置的值不在取值范围内时，将使用当前系统的时区偏移量。<br/>默认值：当前系统的时区偏移量 <br/>从API version 11开始，设置值为{ 9.5, 3.5, -3.5, -4.5, -5.5, -5.75, -6.5, -9.5, -10.5, -12.75 }集合中的浮点数时不再进行取整。|
 | controller     | [TextClockController](#textclockcontroller) | 否      | 绑定一个控制器，用来控制文本时钟的状态。|
@@ -158,7 +158,7 @@ contentModifier(modifier: ContentModifier\<TextClockConfiguration>)
 
 ### dateTimeOptions<sup>12+</sup>
 
-dateTimeOptions(dateTimeOptions: DateTimeOptions)
+dateTimeOptions(dateTimeOptions: Optional\<DateTimeOptions>)
 
 设置小时是否显示前导0。
 
@@ -250,11 +250,11 @@ stop()
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型    |    默认值      |  说明              |
+| 参数名  | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
-| timeZoneOffset | number | - | 当前文本时钟时区偏移量。 |
-| started | boolean | true | 指示文本时钟是否启动。 |
-| timeValue | number | - | 当前文本时钟时区的UTC秒数。 |
+| timeZoneOffset | number | 是 | 当前文本时钟时区偏移量。 |
+| started | boolean | 是 | 指示文本时钟是否启动。<br>默认值：true。 |
+| timeValue | number | 是 | 当前文本时钟时区的UTC秒数。 |
 
 ## 示例
 ### 示例1
