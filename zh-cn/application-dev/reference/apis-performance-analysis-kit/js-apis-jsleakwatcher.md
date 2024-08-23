@@ -103,7 +103,7 @@ dump(filePath: string): Array&lt;string&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | Parameter error. Please check!                      |
+| 401 | Parameter error. The filepath is invalid.                      |
 
 **示例：**
 
