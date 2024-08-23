@@ -5701,6 +5701,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+<!--Del-->
 ### getWindowStatus<sup>12+</sup>
 
 getWindowStatus(): WindowStatusType
@@ -5777,7 +5778,11 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 创建主窗口或子窗口下的子窗口，使用Promise异步回调，该接口仅在2in1设备上调用生效。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -5825,6 +5830,7 @@ try {
   console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+<!--DelEnd-->
 
 ### enableLandscapeMultiWindow<sup>12+</sup>
 
