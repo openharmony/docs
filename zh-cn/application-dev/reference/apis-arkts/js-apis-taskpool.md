@@ -267,7 +267,7 @@ executePeriodically(period: number, task: Task, priority?: Priority): void
 
 | 错误码ID   | 错误信息                         |
 | ---------- | -------------------------------- |
-| 401        | The input parameters are invalid. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200006   | An exception occurred during serialization. |
 | 10200014   | The function is not marked as concurrent. |
 | 10200028   | The period is less than zero. |
