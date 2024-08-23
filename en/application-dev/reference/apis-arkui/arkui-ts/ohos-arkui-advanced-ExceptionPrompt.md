@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ExceptionPrompt (Exception Prompt)
+# ExceptionPrompt
 
 
 The exception prompt component is used to show an error message when an error arises.
@@ -12,7 +12,7 @@ The exception prompt component is used to show an error message when an error ar
 ## Modules to Import
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 ```
 
 
@@ -26,9 +26,11 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported.
 
 ## ExceptionPrompt
 
-ExceptionPrompt({ options: PromptOptions })
+ExceptionPrompt({ options: PromptOptions, onTipClick?: ()=>void, onActionTextClick?: ()=>void })
 
 **Decorator**: @Component
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,11 +42,12 @@ ExceptionPrompt({ options: PromptOptions })
 | options | [PromptOptions](#promptoptions) | Yes| \@Prop | Exception prompt configuration.|
 | onTipClick | ()=>void | No| - | Callback invoked when the prompt text on the left is clicked.|
 | onActionTextClick | ()=>void | No| - | Callback invoked when the icon on the right is clicked.|
-| build() | void | Yes| - | Builder function.|
 
 ## PromptOptions
 
 Defines the exception prompt options.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,18 +58,20 @@ Defines the exception prompt options.
 | marginType | [MarginType](#margintype) | Yes| Margin type of the exception prompt.|
 | actionText | [ResourceStr](ts-types.md#resourcestr) | No| Text of the icon on the right of the exception prompt.|
 | marginTop | [Dimension](ts-types.md#dimension10) | Yes| Top margin of the exception prompt.|
-| isShown | boolean | No| Whether the exception prompt is displayed.<br>**true**: The exception prompt is displayed.<br>**false**: The exception prompt is hidden.|
+| isShown | boolean | No| Whether the exception prompt is displayed.<br>**true**: The exception prompt is displayed.<br>**false**: The exception prompt is displayed.|
 
 ## MarginType
 
 Defines the margin type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Description|
-| -------- | -------- |
-| DEFAULT_MARGIN | Default margin:<br>Margin 1: referenced from **ohos_id_card_margin_start**.<br>Margin 2: referenced from **ohos_id_card_margin_end**.|
-| FIT_MARGIN | Adaptable margin:<br> Margin 1: referenced from **ohos_id_max_padding_start**.<br> Margin 2: referenced from **ohos_id_max_padding_end**.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| DEFAULT_MARGIN | 0 | Default margin:<br>Margin 1: referenced from **ohos_id_card_margin_start**.<br>Margin 2: referenced from **ohos_id_card_margin_end**.|
+| FIT_MARGIN | 1 | Adaptable margin:<br> Margin 1: referenced from **ohos_id_max_padding_start**.<br> Margin 2: referenced from **ohos_id_max_padding_end**.|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
@@ -75,7 +80,8 @@ The [universal events](ts-universal-events-click.md) are supported.
 ### Example 1
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -109,7 +115,8 @@ struct Index {
 ### Example 2
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string
@@ -122,8 +129,8 @@ struct CustomDialogExample {
     marginTop: 5,
     isShown: true
   }
-  cancel: () => void
-  confirm: () => void
+  cancel: () => void = () => {}
+  confirm: () => void = () => {}
   controller: CustomDialogController
   // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self behind all controllers.
   build() {
@@ -142,7 +149,7 @@ struct CustomDialogExample {
             this.controller.close()
             this.cancel()
           }).backgroundColor(0xffffff).fontColor(Color.Black)
-        Button('Yes')
+        Button('OK')
           .onClick(() => {
             this.inputValue = this.textValue
             this.controller.close()
@@ -155,14 +162,14 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct Index1 {
-  @State ButtomText: string = ''
+  @State ButtonText: string = ''
   @State MAP_HEIGHT: string = '30%'
   @State duration: number = 2500
   @State tips: string = ''
   @State actionText: string = ''
   controller: TextInputController = new TextInputController()
-  cancel: () => void
-  confirm: () => void
+  cancel: () => void = () => {}
+  confirm: () => void = () => {}
   @State options: PromptOptions = {
     icon: $r('app.media.ic_public_fail'),
     tip: '',
@@ -173,7 +180,7 @@ struct Index1 {
   }
   @State textValue: string = ''
   @State inputValue: string = 'click me'
-  dialogController: CustomDialogController = new CustomDialogController({
+  dialogController: CustomDialogController | undefined = new CustomDialogController({
     builder: CustomDialogExample({
       cancel: this.onCancel,
       confirm: this.onAccept,
