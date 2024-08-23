@@ -2326,16 +2326,12 @@ struct WebComponent {
 
   onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
     let items = menuItems.filter((menuItem) => {
-      switch (menuItem.id) {
         //过滤用户需要的系统按键
-        case TextMenuItemId.CUT:
-        case TextMenuItemId.COPY:
-        case TextMenuItemId.PASTE:
-          return true;
-        case TextMenuItemId.SELECT_ALL:
-        default:
-          return false;
-      }
+      return (
+        menuItem.id.equals(TextMenuItemId.CUT) ||
+        menuItem.id.equals(TextMenuItemId.COPY) ||
+        menuItem.id.equals((TextMenuItemId.PASTE))
+      )
     });
     let customItem1: TextMenuItem = {
       content: 'customItem1',
