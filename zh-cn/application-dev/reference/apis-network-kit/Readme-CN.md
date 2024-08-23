@@ -39,6 +39,8 @@
     - [NetConn_NetHandle](_net_conn___net_handle.md)
     - [NetConn_NetHandleList](_net_conn___net_handle_list.md)
     - [NetConn_Route](_net_conn___route.md)
+    - [NetConn_NetConnCallback](_net_conn___net_conn_callback.md)
+    - [NetConn_NetSpecifier](_net_conn___net_specifier.md)
     - [NetStack_CertBlob](_net_stack___cert_blob.md)
     - [WebSocket](_web_socket.md)
     - [WebSocket_CloseOption](_web_socket___close_option.md)
