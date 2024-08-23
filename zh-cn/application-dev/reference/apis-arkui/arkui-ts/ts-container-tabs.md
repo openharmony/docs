@@ -699,7 +699,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 | 错误码ID   | 错误信息                                      |
 | --------   | -------------------------------------------- |
-| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
+| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
 ## 示例
 
