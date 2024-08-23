@@ -1832,7 +1832,7 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
 | deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
-| enabled               | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭。  |
+| enabled               | boolean                                                      | 是   | 表示开启/关闭空间音频渲染或头动。true为开启，false为关闭。  |
 
 ## AudioSpatializationManager<sup>11+</sup>
 
