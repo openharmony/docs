@@ -7379,7 +7379,7 @@ class Options {
 
 let bufferSize: number = 0;
 let path = getContext().cacheDir;
-// 确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -8608,7 +8608,7 @@ class Options {
 
 let bufferSize: number = 0;
 let path = getContext().cacheDir;
-// 确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
 let readDataCallback = (buffer: ArrayBuffer) => {
