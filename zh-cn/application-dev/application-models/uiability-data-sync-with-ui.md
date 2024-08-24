@@ -13,7 +13,7 @@
 
 在[基类Context](application-context-stage.md)中，提供了EventHub对象，可用于在UIAbility组件实例内通信。使用EventHub实现UIAbility与UI之间的数据通信需要先获取EventHub对象，本章节将以此为例进行说明。
 
-1. 在UIAbility中调用[`eventHub.on()`](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
+1. 在UIAbility中调用[eventHub.on()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[eventHub.on()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
 
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -74,7 +74,7 @@
               .onClick(() => {
                 this.eventHubFunc();
                 promptAction.showToast({
-                  message: $r('app.string.EventHubFuncA')
+                  message: 'EventHubFuncA'
                 });
               })
             }
@@ -87,7 +87,7 @@
               .onClick(() => {
                 this.context.eventHub.off('event1');
                 promptAction.showToast({
-                  message: $r('app.string.EventHubFuncB')
+                  message: 'EventHubFuncB'
                 });
               })
             }

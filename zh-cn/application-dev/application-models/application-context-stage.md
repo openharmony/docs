@@ -273,7 +273,7 @@ struct Page_Context {
             if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
               this.context.area = contextConstant.AreaMode.EL1; // 修改area
               promptAction.showToast({
-                message: $r('app.string.SwitchToEL1')
+                message: 'SwitchToEL1'
               });
             }
             // 存储普通信息
@@ -289,7 +289,7 @@ struct Page_Context {
             if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
               this.context.area = contextConstant.AreaMode.EL2; // 修改area
               promptAction.showToast({
-                message: $r('app.string.SwitchToEL2')
+                message: 'SwitchToEL2'
               });
             }
             // 存储敏感信息
