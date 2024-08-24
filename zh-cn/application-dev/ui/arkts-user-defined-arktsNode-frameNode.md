@@ -397,7 +397,7 @@ struct Index {
         Button("modify ArkTS-FrameNode")
           .onClick(() => {
             // 获取到的是当前页面中的开发者创建的FrameNode对象，该节点可修改。即节点大小与位置。
-            console.log("Check the weather the node can be modified " + this.myNodeController?.rootNode?.getParent()
+            console.log("Check the weather the node can be modified " + this.myNodeController?.frameNode
             ?.isModifiable());
             this.myNodeController.modifyNode(this.myNodeController?.frameNode, { width: 150, height: 100 }, {
               x: 100,
