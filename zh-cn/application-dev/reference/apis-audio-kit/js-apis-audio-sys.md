@@ -1823,7 +1823,7 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 
 ## AudioSpatialEnabledStateForDevice<sup>12+</sup>
 
-监听设备空间音频开关状态
+监听设备空间音频开关状态。
 
 **系统接口**：此接口为系统接口。
 
@@ -1831,7 +1831,7 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 | enabled               | boolean                                                      | 是   | 表示开启/关闭空间音频渲染或头动。true为开启，false为关闭。  |
 
 ## AudioSpatializationManager<sup>11+</sup>
@@ -1890,7 +1890,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -1988,7 +1988,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -2148,7 +2148,7 @@ setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boole
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 | enabled               | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭。  |
 
 **返回值：**
@@ -2252,7 +2252,7 @@ isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor) | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor) | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -2562,7 +2562,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 | enable                | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭。  |
 
 **返回值：**
@@ -2665,7 +2665,7 @@ isHeadTrackingEnabled(): boolean
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor) | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor) | 是   | 指定设备的描述。     |
 
 **返回值：**
 
