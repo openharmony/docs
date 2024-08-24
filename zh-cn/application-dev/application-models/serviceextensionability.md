@@ -232,7 +232,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
                   // 成功启动后台服务
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfullyStartBackendService')
+                    message: 'SuccessfullyStartBackendService'
                   });
                 }).catch((err: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
@@ -280,7 +280,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
                 context.stopServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
+                    message: 'SuccessfullyStoppedAStartedBackendService'
                   });
                 }).catch((err: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
@@ -324,7 +324,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
                   // 成功停止当前后台服务
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfullyStopStartedBackendService')
+                    message: 'SuccessfullyStopStartedBackendService'
                   });
                 }).catch((err: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
@@ -414,7 +414,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
               connectionId = context.connectServiceExtensionAbility(want, options);
               // 成功连接后台服务
               promptAction.showToast({
-                message: $r('app.string.SuccessfullyConnectBackendService')
+                message: 'SuccessfullyConnectBackendService'
               });
               // connectionId = context.connectAbility(want, options);
               hilog.info(DOMAIN_NUMBER, TAG, `connectionId is : ${connectionId}`);
@@ -459,7 +459,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis-ability-ki
                 hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                 // 成功断连后台服务
                 promptAction.showToast({
-                  message: $r('app.string.SuccessfullyDisconnectBackendService')
+                  message: 'SuccessfullyDisconnectBackendService'
                 });
               }).catch((error: BusinessError) => {
                 hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');

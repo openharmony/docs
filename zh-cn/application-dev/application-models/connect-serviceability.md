@@ -45,7 +45,7 @@ struct PageServiceAbility {
                 hilog.info(domain, TAG, `onConnectLocalService onConnectDone element:` + JSON.stringify(element));
                 if (proxy === null) {
                   promptAction.showToast({
-                    message: $r('app.string.connect_service_failed_toast')
+                    message: 'connect_service_failed_toast'
                   });
                   return;
                 }
@@ -55,19 +55,19 @@ struct PageServiceAbility {
                 data.writeInterfaceToken('connect.test.token');
                 proxy.sendRequest(0, data, reply, option);
                 promptAction.showToast({
-                  message: $r('app.string.connect_service_success_toast')
+                  message: 'connect_service_success_toast'
                 });
               },
               onDisconnect: (element) => {
                 hilog.info(domain, TAG, `onConnectLocalService onDisconnectDone element:${element}`);
                 promptAction.showToast({
-                  message: $r('app.string.disconnect_service_success_toast')
+                  message: 'disconnect_service_success_toast'
                 });
               },
               onFailed: (code) => {
                 hilog.info(domain, TAG, `onConnectLocalService onFailed errCode:${code}`);
                 promptAction.showToast({
-                  message: $r('app.string.connect_service_failed_toast')
+                  message: 'connect_service_failed_toast'
                 });
               }
             };

@@ -6,7 +6,7 @@ UIAbility组件的基本用法包括：指定UIAbility的启动页面以及获�
 
 ## 指定UIAbility的启动页面
 
-应用中的UIAbility在启动过程中，需要指定启动页面，否则应用启动后会因为没有默认加载页面而导致白屏。可以在UIAbility的`onWindowStageCreate()`生命周期回调中，通过[WindowStage](../reference/apis-arkui/js-apis-window.md#windowstage9)对象的`loadContent()`方法设置启动页面。
+应用中的UIAbility在启动过程中，需要指定启动页面，否则应用启动后会因为没有默认加载页面而导致白屏。可以在UIAbility的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调中，通过[WindowStage](../reference/apis-arkui/js-apis-window.md#windowstage9)对象的[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)方法设置启动页面。
 
 
 ```ts
@@ -30,7 +30,7 @@ export default class EntryAbility extends UIAbility {
 
 ## 获取UIAbility的上下文信息
 
-UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)类的实例，[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)类拥有abilityInfo、currentHapModuleInfo等属性。通过UIAbilityContext可以获取UIAbility的相关配置信息，如包代码路径、Bundle名称、Ability名称和应用程序需要的环境状态等属性信息，以及可以获取操作UIAbility实例的方法（如`startAbility()`、`connectServiceExtensionAbility()`、`terminateSelf()`等）。
+UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)类的实例，[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)类拥有abilityInfo、currentHapModuleInfo等属性。通过UIAbilityContext可以获取UIAbility的相关配置信息，如包代码路径、Bundle名称、Ability名称和应用程序需要的环境状态等属性信息，以及可以获取操作UIAbility实例的方法（如[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)、[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)、[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)等）。
 如果需要在页面中获得当前Ability的Context，可调用[getContext](../reference/apis-arkui/js-apis-getContext.md#getcontext)接口获取当前页面关联的UIAbilityContext或ExtensionContext。
 
 - 在UIAbility中可以通过`this.context`获取UIAbility实例的上下文信息。

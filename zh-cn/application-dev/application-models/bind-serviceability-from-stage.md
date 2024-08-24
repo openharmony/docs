@@ -40,7 +40,7 @@ struct Page_StartFAModel {
               onConnect: (elementName, proxy) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
                 promptAction.showToast({
-                  message: $r('app.string.ConnectFAServiceAbility')
+                  message: 'ConnectFAServiceAbility'
                 });
               },
               onDisconnect: (elementName) => {
@@ -100,7 +100,7 @@ struct Page_StartFAModel {
               onConnect: (elementName, proxy) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
                 promptAction.showToast({
-                  message: $r('app.string.ConnectFAServiceAbility')
+                  message: 'ConnectFAServiceAbility'
                 });
               },
               onDisconnect: (elementName) => {

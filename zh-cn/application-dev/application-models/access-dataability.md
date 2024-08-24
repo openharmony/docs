@@ -76,11 +76,11 @@
                   this.DAHelper.insert(this.uri, this.valuesBucket_insert, (error: BusinessError, data: number) => {
                     if (error && error.code !== 0) {
                       promptAction.showToast({
-                        message: $r('app.string.insert_failed_toast')
+                        message: 'insert_failed_toast'
                       });
                     } else {
                       promptAction.showToast({
-                        message: $r('app.string.insert_success_toast')
+                        message: 'insert_success_toast'
                       });
                     }
                     hilog.info(domain, TAG, 'DAHelper insert result: ' + data + ', error: ' + JSON.stringify(error));
@@ -131,12 +131,12 @@
                   // promise方式调用(await需要在async方法中使用):
                   this.DAHelper.insert(this.uri, this.valuesBucket_insert).then((datainsert) => {
                     promptAction.showToast({
-                      message: $r('app.string.insert_success_toast')
+                      message: 'insert_success_toast'
                     });
                     hilog.info(domain, TAG, 'DAHelper insert result: ' + datainsert);
                   }).catch((error: BusinessError) => {
                     promptAction.showToast({
-                      message: $r('app.string.insert_failed_toast')
+                      message: 'insert_failed_toast'
                     });
                     hilog.error(domain, TAG, `DAHelper insert failed. Cause: ${error.message}`);
                   });
@@ -186,11 +186,11 @@
                   this.DAHelper.delete(this.uri, this.predicates, (error, data) => {
                     if (error && error.code !== 0) {
                       promptAction.showToast({
-                        message: $r('app.string.delete_failed_toast')
+                        message: 'delete_failed_toast'
                       });
                     } else {
                       promptAction.showToast({
-                        message: $r('app.string.delete_success_toast')
+                        message: 'delete_success_toast'
                       });
                     }
                     hilog.info(domain, TAG, 'DAHelper delete result: ' + data + ', error: ' + JSON.stringify(error));
@@ -241,12 +241,12 @@
                   // promise方式调用(await需要在async方法中使用):
                   this.DAHelper.delete(this.uri, this.predicates).then((datadelete) => {
                     promptAction.showToast({
-                      message: $r('app.string.delete_success_toast')
+                      message: 'delete_success_toast'
                     });
                     hilog.info(domain, TAG, 'DAHelper delete result: ' + datadelete);
                   }).catch((error: BusinessError) => {
                     promptAction.showToast({
-                      message: $r('app.string.delete_failed_toast')
+                      message: 'delete_failed_toast'
                     });
                     hilog.error(domain, TAG, `DAHelper delete failed. Cause: ${error.message}`);
                   });
@@ -299,11 +299,11 @@
                   this.DAHelper.update(this.uri, this.valuesBucket_update, this.predicates, (error, data) => {
                     if (error && error.code !== 0) {
                       promptAction.showToast({
-                        message: $r('app.string.update_failed_toast')
+                        message: 'update_failed_toast'
                       });
                     } else {
                       promptAction.showToast({
-                        message: $r('app.string.update_success_toast')
+                        message: 'update_success_toast'
                       });
                     }
                     hilog.info(domain, TAG, 'DAHelper update result: ' + data + ', error: ' + JSON.stringify(error));
@@ -357,12 +357,12 @@
                   this.predicates.equalTo('name', 'Rose');
                   this.DAHelper.update(this.uri, this.valuesBucket_update, this.predicates).then((dataupdate) => {
                     promptAction.showToast({
-                      message: $r('app.string.update_success_toast')
+                      message: 'update_success_toast'
                     });
                     hilog.info(domain, TAG, 'DAHelper update result: ' + dataupdate);
                   }).catch((error: BusinessError) => {
                     promptAction.showToast({
-                      message: $r('app.string.update_failed_toast')
+                      message: 'update_failed_toast'
                     });
                     hilog.error(domain, TAG, `DAHelper update failed. Cause: ${error.message}`);
                   });
@@ -414,12 +414,12 @@
                   this.DAHelper.query(this.uri, this.columnArray, this.predicates, (error, data) => {
                     if (error && error.code !== 0) {
                       promptAction.showToast({
-                        message: $r('app.string.query_failed_toast')
+                        message: 'query_failed_toast'
                       });
                       hilog.error(domain, TAG, `DAHelper query failed. Cause: ${error.message}`);
                     } else {
                       promptAction.showToast({
-                        message: $r('app.string.query_success_toast')
+                        message: 'query_success_toast'
                       });
                     }
                     // ResultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
@@ -480,7 +480,7 @@
                   this.predicates.equalTo('name', 'Rose');
                   this.DAHelper.query(this.uri, this.columnArray, this.predicates).then((dataquery) => {
                     promptAction.showToast({
-                      message: $r('app.string.query_success_toast')
+                      message: 'query_success_toast'
                     });
                     // ResultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
                     while (dataquery.goToNextRow()) {
@@ -493,7 +493,7 @@
                     dataquery.close();
                   }).catch((error: BusinessError) => {
                     promptAction.showToast({
-                      message: $r('app.string.query_failed_toast')
+                      message: 'query_failed_toast'
                     });
                     hilog.error(domain, TAG, `DAHelper query failed. Cause: ${error.message}`);
                   });
@@ -544,11 +544,11 @@
                   this.DAHelper.batchInsert(this.uri, this.crowd, (error, data) => {
                     if (error && error.code !== 0) {
                       promptAction.showToast({
-                        message: $r('app.string.batchInsert_failed_toast')
+                        message: 'batchInsert_failed_toast'
                       });
                     } else {
                       promptAction.showToast({
-                        message: $r('app.string.batchInsert_success_toast')
+                        message: 'batchInsert_success_toast'
                       });
                     }
                     hilog.info(domain, TAG, 'DAHelper batchInsert result: ' + data + ', error: ' + JSON.stringify(error));
@@ -600,12 +600,12 @@
                   // promise方式调用(await需要在async方法中使用):
                   this.DAHelper.batchInsert(this.uri, this.crowd).then((databatchInsert) => {
                     promptAction.showToast({
-                      message: $r('app.string.batchInsert_success_toast')
+                      message: 'batchInsert_success_toast'
                     });
                     hilog.info(domain, TAG, 'DAHelper batchInsert result: ' + databatchInsert);
                   }).catch((error: BusinessError) => {
                     promptAction.showToast({
-                      message: $r('app.string.batchInsert_failed_toast')
+                      message: 'batchInsert_failed_toast'
                     });
                     hilog.error(domain, TAG, `DAHelper batchInsert failed. Cause: ${error.message}`);
                   });
@@ -665,11 +665,11 @@
                   this.DAHelper.executeBatch(this.uri, operations, (error, data) => {
                     if (error && error.code !== 0) {
                       promptAction.showToast({
-                        message: $r('app.string.executeBatch_failed_toast')
+                        message: 'executeBatch_failed_toast'
                       });
                     } else {
                       promptAction.showToast({
-                        message: $r('app.string.executeBatch_success_toast')
+                        message: 'executeBatch_success_toast'
                       });
                     }
                     hilog.info(domain, TAG, `DAHelper executeBatch, result: ` + JSON.stringify(data) + ', error: ' + JSON.stringify(error));
@@ -729,12 +729,12 @@
                   }];
                   this.DAHelper.executeBatch(this.uri, operations).then((dataquery) => {
                     promptAction.showToast({
-                      message: $r('app.string.executeBatch_success_toast')
+                      message: 'executeBatch_success_toast'
                     });
                     hilog.info(domain, TAG, 'DAHelper executeBatch result: ' + JSON.stringify(dataquery));
                   }).catch((error: BusinessError) => {
                     promptAction.showToast({
-                      message: $r('app.string.executeBatch_failed_toast')
+                      message: 'executeBatch_failed_toast'
                     });
                     hilog.error(domain, TAG, `DAHelper executeBatch failed. Cause: ${error.message}`);
                   });
