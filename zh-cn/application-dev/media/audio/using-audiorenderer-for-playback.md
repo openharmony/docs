@@ -74,7 +74,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     }
 
     let path = getContext().cacheDir;
-    //确保该路径下存在该资源
+    // 确保该沙箱路径下存在该资源
     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
     let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 
@@ -178,7 +178,7 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   rendererInfo: audioRendererInfo
 }
 let path = getContext().cacheDir;
-//确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 
