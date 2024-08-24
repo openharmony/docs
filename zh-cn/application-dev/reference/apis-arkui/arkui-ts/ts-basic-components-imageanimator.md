@@ -175,7 +175,7 @@ iterations(value: number)
 
 | 名称   | 类型   | 必填 | 说明 |
 | -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是    | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是    | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
 | width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。<br/>默认值：0   <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用       |
 | height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。<br/>默认值：0     <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用        |
 | top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0  <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用  |
