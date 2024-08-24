@@ -757,7 +757,9 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能，默认不开启。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+
+安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1289,6 +1291,8 @@ struct WebComponent {
 onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。开发者可以在此回调中实现应用失去焦点时应表现的恰当行为。
+
+此状态下会尽可能的暂停任何可以安全暂停的内容，例如动画和地理位置。但不会暂停JavaScript，要全局暂停JavaScript，请使用[pauseAllTimers](#pausealltimers12)。要重新激活Web组件，请调用[onActive](#onactive)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3144,6 +3148,8 @@ struct WebComponent {
 getUserAgent(): string
 
 获取当前默认用户代理。
+
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5136,6 +5142,8 @@ setCustomUserAgent(userAgent: string): void
 
 当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+
 > **说明：**
 >
 >当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
@@ -5303,6 +5311,8 @@ struct WebComponent {
 getCustomUserAgent(): string
 
 获取自定义用户代理。
+
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -8119,7 +8129,7 @@ setUrlTrustList(urlTrustList: string): void
         Button('Access the trust web')
           .onClick(() => {
             try {
-              // 白名单生效，可以访问untrust网页
+              // 白名单生效，可以访问trust网页
               this.controller.loadUrl('http://trust.example.com/test');
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
