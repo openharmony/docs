@@ -12,6 +12,7 @@
     - [网络连接管理](net-connection-manager.md)
     - [NetConnection开发指导(C/C++)](native-netmanager-guidelines.md)
     - [流量管理](net-statistics.md)
+    - [网络防火墙](net-netfirewall.md)
     <!--Del-->
     - [网络共享（仅对系统应用开放）](net-sharing.md)
     - [以太网连接管理（仅对系统应用开放）](net-ethernet.md)   
