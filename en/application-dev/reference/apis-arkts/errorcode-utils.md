@@ -426,7 +426,7 @@ Ensure that the callback has been registered in the host thread before this func
 
 **Error Message**
 
-A dependent task cannot be added to SequenceRunner.
+dependent task not allowed.
 
 **Description**
 
