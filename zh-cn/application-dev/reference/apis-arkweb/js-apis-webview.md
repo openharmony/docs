@@ -3775,7 +3775,7 @@ Scroll Test
 
 scrollByWithResult(deltaX:number, deltaY:number): boolean
 
-将页面滚动指定的偏移量，返回值表面此次滚动是否执行成功。
+将页面滚动指定的偏移量，返回值表示此次滚动是否执行成功。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
