@@ -3817,7 +3817,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 let photoAsset: photoAccessHelper.PhotoAsset;
 
 // 例:处理photoAsset回调，保存video
