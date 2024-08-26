@@ -50,8 +50,8 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 | GLshort    | short              | 16位2的补码表示的有符号整数。                             |
 | GLint      | long               | 32位2的补码表示的有符号整数。                           |
 | GLsizei    | long               | 用来描述尺寸（例如：绘画缓冲drawing buffer 的宽和高）。      |
-| GLintptr   | long long          | 用来表示指针的特殊类型。                                      |
-| GLsizeiptr | long long          | 用来表示指针的特殊类型。                                      |
+| GLintptr   | long long          | 用来表示指针的特殊类型，通常用于指定缓冲区对象的偏移量。       |
+| GLsizeiptr | long long          | 用来表示指针的特殊类型，通常用于指定缓冲区对象的大小。         |
 | GLubyte    | octet              | 八位（一个字节）2的补码表示的无符号整数。                 |
 | GLushort   | unsigned short     | 16位2的补码表示的无符号整数。                          |
 | GLuint    | unsigned short     | 32位2的补码表示的有符号整数。                        |
