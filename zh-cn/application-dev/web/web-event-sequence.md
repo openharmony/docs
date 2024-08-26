@@ -28,7 +28,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
 - [onProgressChange](../reference/apis-arkweb/ts-basic-components-web.md#onprogresschange)事件：告知开发者当前页面加载的进度。多frame页面或者子frame有可能还在继续加载而主frame可能已经加载结束，所以在[onPageEnd](../reference/apis-arkweb/ts-basic-components-web.md#onpageend)事件后依然有可能收到该事件。
 
-- [onPageEnd](../reference/apis-arkweb/ts-basic-components-web.md#onpageend)事件：网页加载完成时触发该回调，且只在主frame触发。多frame页面有可能同时开始加载，即使主frame已经加载结束，子frame也有可能才开始或者继续加载中。同一页面导航（片段、历史状态等）或者在提交前失败、被取消的导航等也不会触发该回调。推荐在此回调中执行JavaScript脚本[loadUrl](../reference/apis-arkweb/js-apis-webview.md#runjavascript)等。需要注意的是收到该回调并不能保证Web绘制的下一帧将反映此时DOM的状态。
+- [onPageEnd](../reference/apis-arkweb/ts-basic-components-web.md#onpageend)事件：网页加载完成时触发该回调，且只在主frame触发。多frame页面有可能同时开始加载，即使主frame已经加载结束，子frame也有可能才开始或者继续加载中。同一页面导航（片段、历史状态等）或者在提交前失败、被取消的导航等也不会触发该回调。推荐在此回调中执行JavaScript脚本[loadUrl](../reference/apis-arkweb/js-apis-webview.md#loadurl)等。需要注意的是收到该回调并不能保证Web绘制的下一帧将反映此时DOM的状态。
 
 - [onPageVisible](../reference/apis-arkweb/ts-basic-components-web.md#onpagevisible9)事件：当HTTP响应的主体开始加载，新页面即将可见时触发该回调，且只在主frame触发。此回调在文档加载的早期触发，因此链接的资源比如在线CSS、在线图片等可能尚不可用。
 
