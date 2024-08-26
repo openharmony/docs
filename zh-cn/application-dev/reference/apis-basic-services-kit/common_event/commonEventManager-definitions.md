@@ -624,9 +624,9 @@
 
 ### COMMON_EVENT_SCREEN_OFF
 
-表示设备屏幕关闭且设备处于睡眠状态的普通事件的动作。
+表示由电源服务发起的设备灭屏完成的普通事件的动作。
 
-当设备屏幕关闭且设备处于睡眠状态时，将会触发事件通知服务发布该系统公共事件。
+当由电源服务发起的设备灭屏完成时，将会触发事件通知服务发布该系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -637,9 +637,9 @@
 
 ### COMMON_EVENT_SCREEN_ON
 
-表示设备屏幕打开且设备处于交互状态的公共事件的操作。
+表示由电源服务发起的设备亮屏完成的普通事件的动作。
 
-当设备屏幕打开且设备处于交互状态时，将会触发事件通知服务发布该系统公共事件。
+当由电源服务发起的设备亮屏完成时，将会触发事件通知服务发布该系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -683,7 +683,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.POWER_MANAGER
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.ENTER_FORCE_SLEEP"
 
@@ -696,7 +696,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.POWER_MANAGER
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.EXIT_FORCE_SLEEP"
 
