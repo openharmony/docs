@@ -1045,6 +1045,18 @@
 
 **起始版本**：9
 
+### ohos.permission.GET_DISPOSED_APP_STATUS
+
+允许查询应用的处置状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
