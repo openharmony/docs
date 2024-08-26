@@ -161,7 +161,6 @@ AVPlayerCallback 结果的两个成员OH_AVPlayerOnInfo、OH_AVPlayerOnError废�
 
 使用新的 OH_AVPlayerOnInfoCallback和OH_AVPlayer_SetOnInfoCallback代替原来的信息回调。
 示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia1-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
-======
 
 ## cl.multimedia.5 ProfessionalPhotoSession.on/off 函数事件名称变更
 
