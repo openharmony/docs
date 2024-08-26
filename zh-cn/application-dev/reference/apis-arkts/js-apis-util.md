@@ -512,7 +512,7 @@ interface Person {
   name: string,
   age: number
 }
-let obj: Person = { name: 'Dany', age: 20 };
+let obj: Person = { name: 'Jack', age: 20 };
 let result1 = util.getHash(obj);
 console.info('result1 is ' + result1);
 let result2 = util.getHash(obj);
@@ -3607,7 +3607,7 @@ Types的构造函数。
 
 isAnyArrayBuffer(value: Object): boolean
 
-检查输入的value是否是ArrayBuffer类型。
+检查输入的value是否是ArrayBuffer或SharedArrayBuffer类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3623,7 +3623,7 @@ isAnyArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是ArrayBuffer类型为true，反之为false。 |
+| boolean | 判断的结果，如果是ArrayBuffer或SharedArrayBuffer类型为true，反之为false。 |
 
 **示例：**
 
@@ -3673,7 +3673,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 isArgumentsObject(value: Object): boolean
 
-检查输入的value是否是一个arguments对象类型。
+检查输入的value是否是一个arguments对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3689,7 +3689,7 @@ isArgumentsObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的arguments类型为true，反之为false。 |
+| boolean | 判断的结果，如果是一个arguments对象为true，反之为false。 |
 
 **示例：**
 
@@ -3921,11 +3921,51 @@ isExternal(value: Object): boolean
 
 **示例：**
 
+  ```cpp
+  // /entry/src/main/cpp/napi_init.cpp
+  #include "napi/native_api.h"
+  #include <js_native_api.h>
+  #include <stdlib.h>
+
+  napi_value result;
+  static napi_value Testexternal(napi_env env, napi_callback_info info) {
+      int* raw = (int*) malloc(1024);
+      napi_status status = napi_create_external(env, (void*) raw, NULL, NULL, &result);
+      if (status != napi_ok) {
+          napi_throw_error(env, NULL, "create external failed");
+          return NULL;
+      }
+      return result;
+  }
+
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports)
+  {
+      napi_property_descriptor desc[] = {
+          {"testexternal", nullptr, Testexternal, nullptr, nullptr, nullptr, napi_default, nullptr},
+      };
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
+  }
+  EXTERN_C_END
+  // 此处已省略模块注册的代码, 你可能需要自行注册Testexternal方法
+  ...
+
+  ```
+
+  <!--code_no_check-->
   ```ts
+  import testNapi from 'libentry.so';
+
   let type = new util.types();
-  let result = type.isExternal(true);
+  const data = testNapi.testexternal();
+  let result = type.isExternal(data);
+
+  let result01 = type.isExternal(true);
   console.info("result = " + result);
-  // 输出结果：result = false
+  console.info("result01 = " + result01);
+  // 输出结果：result = true
+  // 输出结果：result01 = false
   ```
 
 
@@ -3999,10 +4039,6 @@ isGeneratorFunction(value: Object): boolean
 
 检查输入的value是否是generator函数类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -4021,10 +4057,16 @@ isGeneratorFunction(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
+  // /entry/src/main/ets/pages/test.ts
+  export function* foo() {}
+  ```
+
+  ```ts
+  import { foo } from './test'
+
   let type = new util.types();
-  let result = type.isGeneratorFunction(function* foo() {});
+  let result = type.isGeneratorFunction(foo);
   console.info("result = " + result);
   // 输出结果：result = true
   ```
@@ -4035,10 +4077,6 @@ isGeneratorFunction(value: Object): boolean
 isGeneratorObject(value: Object): boolean
 
 检查输入的value是否是generator对象类型。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4058,12 +4096,16 @@ isGeneratorObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
+  // /entry/src/main/ets/pages/test.ts
+  function* foo() {}
+  export const generator = foo();
+  ```
+
+  ```ts
+  import { generator } from './test'
+
   let type = new util.types();
-  function* foo() {};
-  const generator = foo();
   let result = type.isGeneratorObject(generator);
   console.info("result = " + result);
   // 输出结果：result = true
@@ -4494,15 +4536,11 @@ isStringObject(value: Object): boolean
   ```
 
 
-### isSymbolObjec<sup>8+</sup>
+### isSymbolObject<sup>8+</sup>
 
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4522,11 +4560,15 @@ isSymbolObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
+  // /entry/src/main/ets/pages/test.ts
+  export const symbols = Symbol('foo');
+  ```
+
+  ```ts
+  import { symbols } from './test'
+
   let type = new util.types();
-  const symbols = Symbol('foo');
   let result = type.isSymbolObject(Object(symbols));
   console.info("result = " + result);
   // 输出结果：result = true
@@ -4539,7 +4581,7 @@ isTypedArray(value: Object): boolean
 
 检查输入的value是否是TypedArray类型的辅助类型。
 
-TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、DataView。
+TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、BigInt64Array、BigUint64Array。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4830,10 +4872,6 @@ isModuleNamespaceObject(value: Object): boolean
 
 检查输入的value是否是Module Namespace Object类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -4852,14 +4890,20 @@ isModuleNamespaceObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
-  import { url } from '@kit.ArkTS';
+  // /entry/src/main/ets/pages/test.ts
+  export function func() {
+    console.info("hello world");
+  }
+  ```
+
+  ```ts
+  import * as nameSpace from './test';
+
   let type = new util.types();
-  let result = type.isModuleNamespaceObject(url);
+  let result = type.isModuleNamespaceObject(nameSpace);
   console.info("result = " + result);
-  // 输出结果：result = false
+  // 输出结果：result = true
   ```
 
 

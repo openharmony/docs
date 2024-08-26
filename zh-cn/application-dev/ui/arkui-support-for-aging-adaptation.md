@@ -28,14 +28,14 @@
 
 * 联合其他能力
 
-  适老化能力可以适配其他能力（如：滑动拖拽）。底部页签（tabbar）组件在触发适老化时，如果用户滑动手指或鼠标可以触发底部页签其他子组件的适老化功能。
+  适老化能力可以适配其他能力（如：滑动拖拽）。底部页签（tabBar）组件在触发适老化时，如果用户滑动手指或鼠标可以触发底部页签其他子组件的适老化功能。
 
 ## 适配适老化的组件及触发方式
 
 | 触发方式             | 组件名称                                                     |
 | -------------------- | ------------------------------------------------------------ |
-| 长按组件触发         | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)， [底部页签](../reference/apis-arkui/arkui-ts/ts-container-tabs.md)，[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)，[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)， [tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) |
-| 设置系统字体默认放大 | [Picker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md)， [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)， [菜单](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)， [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)， [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)，[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)/[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)/[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)/[文本选择菜单](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md)，[Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)，[弹框](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)，[Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)， [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)， [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) |
+| 长按组件触发         | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)， [底部页签（tabBar）](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md#tabbar9)，[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)，[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)， [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) |
+| 设置系统字体默认放大 | [Picker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md)， [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)， [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)， [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)， [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)，[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)/[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)/[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)/[SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md)，[Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)，[Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)，[Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)， [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)， [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) |
 
 ## 示例
 

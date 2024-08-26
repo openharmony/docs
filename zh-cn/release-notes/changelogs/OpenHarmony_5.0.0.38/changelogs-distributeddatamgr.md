@@ -41,7 +41,7 @@
 
 ```ts
 try {
-    rdbStore.execute("COMMIT");
+    await rdbStore.execute("COMMIT");
 } catch (err) {
     if (err.code === 14800000) {
         console.log(`execute failed, code: ${err.code}`);
@@ -53,7 +53,7 @@ try {
 
 ```ts
 try {
-    rdbStore.execute("COMMIT");
+    await rdbStore.execute("COMMIT");
 } catch (err) {
     if (err.code === 14800021) {
         console.log(`execute failed, code: ${err.code}`);

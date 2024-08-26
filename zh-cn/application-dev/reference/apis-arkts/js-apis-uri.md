@@ -390,7 +390,7 @@ getQueryValue(key:string): string
 ```ts
 const uriInstance = new uri.URI("https://www.com?param1=value1&param2=value2");
 console.info(uriInstance.getQueryValue("param1")); // value1
-let uriInstance1 = new uri.URI('htps://www.zyy.ss?sa%3D=po%7E');
+let uriInstance1 = new uri.URI('https://www.zyy.ss?sa%3D=po%7E');
 console.info(uriInstance1.getQueryValue('sa=')) // po~
 console.info(uriInstance1.getQueryValue('abc')) // null
 ```

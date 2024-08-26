@@ -35,7 +35,7 @@ let devicesList = usb.getDevices();
 console.log(`devicesList = ${devicesList}`);
 // devicesList is a list of USB devices.
 // A simple example of devicesList is provided as follows:
-[
+/*[
   {
     name: "1-1",
     serial: "",
@@ -82,7 +82,7 @@ console.log(`devicesList = ${devicesList}`);
       },
     ],
   },
-]
+]*/
 ```
 
 ## usb.connectDevice
@@ -139,7 +139,7 @@ Checks whether the application has the permission to access the device.
 ```js
 let devicesName= "1-1";
 let bool = usb.hasRight(devicesName);
-console.log(bool);
+console.log(`hasRight = ${bool}`);
 ```
 
 ## usb.requestRight

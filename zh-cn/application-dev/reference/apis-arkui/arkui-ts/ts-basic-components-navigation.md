@@ -39,7 +39,7 @@ Navigation(pathInfos: NavPathStack)
 
 **参数：**
 
-| 参数名       | 参数类型                            | 必填   | 参数描述   |
+| 参数名       | 类型                            | 必填   | 说明   |
 | --------- | ------------------------------- | ---- | ------ |
 | pathInfos | [NavPathStack](#navpathstack10) | 否    | 路由栈信息。 |
 
@@ -502,7 +502,7 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -519,7 +519,7 @@ pushPath(info: NavPathInfo, options?: NavigationOptions): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -536,7 +536,7 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
@@ -554,11 +554,11 @@ pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。仅pop中设置result参数后触发。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pushDestination<sup>11+</sup>
@@ -573,7 +573,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -590,7 +590,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -607,7 +607,7 @@ pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -624,7 +624,7 @@ pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -641,7 +641,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -659,7 +659,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -676,11 +676,11 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。仅pop中设置result参数后触发。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
@@ -695,7 +695,7 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -712,7 +712,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -729,7 +729,7 @@ replacePath(info: NavPathInfo, options?: NavigationOptions): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -746,7 +746,7 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -764,7 +764,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。   |
 
@@ -786,7 +786,7 @@ removeByName(name: string): number
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | 删除的NavDestination页面的名字。   |
 
@@ -808,7 +808,7 @@ removeByNavDestinationId(navDestinationId: string): boolean
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | navDestinationId  | string  | 是    | 删除的NavDestination页面的唯一标识符navDestinationId。   |
 
@@ -830,7 +830,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
@@ -853,9 +853,9 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 名称   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
-| result | Object | 是 | 页面自定义处理结果。 |
+| result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
@@ -877,7 +877,7 @@ popToName(name: string, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -900,10 +900,10 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
-| result | Object | 是 | 页面自定义处理结果。 |
+| result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
@@ -924,7 +924,7 @@ popToIndex(index: number, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -941,10 +941,10 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
-| result | Object | 是 | 页面自定义处理结果。 |
+| result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### moveToTop<sup>10+</sup>
@@ -959,7 +959,7 @@ moveToTop(name: string, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -982,7 +982,7 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -999,7 +999,7 @@ clear(animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
@@ -1031,7 +1031,7 @@ getParamByIndex(index: number): unknown | undefined
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 
@@ -1054,7 +1054,7 @@ getParamByName(name: string): Array<unknown\>
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 
@@ -1076,7 +1076,7 @@ getIndexByName(name: string): Array<number\>
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述                  |
+| 名称   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 
@@ -1114,7 +1114,7 @@ disableAnimation(value: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | ---------------------- |
 | value | boolean | 否    | 是否关闭转场动画，默认值：false。 |
 
@@ -1146,7 +1146,7 @@ setInterception(interception: NavigationInterception): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ---- | ---- | --- | ---|
 |interception| [NavigationInterception](#navigationinterception12)| 是 | 设置Navigation跳转拦截对象。|
 
@@ -1164,7 +1164,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
@@ -1180,7 +1180,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|-----|
 | info | [NavPathInfo](#navpathinfo10) | 是 | 页面触发返回时的当前页面信息，系统自动获取填入，无需开发者传入。 |
 | result | Object | 是 | 页面触发返回时的结果，开发者自定义对象。 |
@@ -1195,7 +1195,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **参数：**
 
-| 名称  | 类型  | 必填  | 描述  |
+| 名称  | 类型  | 必填  | 说明  |
 |-------|-------|------|-------|
 | name | string | 否 | NavDestination名称，如果为根视图(NavBar)，则返回值为undefined。|
 | index | number | 是 | NavDestination在NavPathStack中的序号， 如果为根视图(NavBar)，则返回值为 -1。|
@@ -1212,7 +1212,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|------|
 | timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：可交互动画无默认值，不可交互动画默认超时时间为1000ms。|
 | transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
@@ -1281,7 +1281,7 @@ Navigation跳转拦截对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型     | 必填 | 描述    |
+| 名称    | 类型     | 必填 | 说明    |
 | ---- | ----- | ----- | ----   |
 | willShow | [InterceptionShowCallback](#interceptionshowcallback12) | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。|
 | didShow | [InterceptionShowCallback](#interceptionshowcallback12) | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。|
@@ -1470,6 +1470,8 @@ Navigation首页名字。
 | barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景:<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| mainTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | 否 | 主标题属性修改器。<br/>有如下几点使用规则：<br/>1. 通过Modifier设置的属性会覆盖系统默认的属性（如果Modifier设置了fontSize, maxFontSize, minFontSize任一属性，则系统设置的大小相关属性不生效，以开发者的设置为准）；<br/>2. 不设该属性或者设置了异常值，则恢复系统默认设置；<br/>3. [Free](#navigationtitlemode枚举说明)模式下设置字体大小时，原有滑动改变标题大小的效果失效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| subTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | 否 | 子标题属性修改器。<br/>有如下几点使用规则：<br/>1. 通过Modifier设置的属性会覆盖系统默认的属性（如果Modifier设置了fontSize, maxFontSize, minFontSize任一属性，则系统设置的大小相关属性不生效，以开发者的设置为准）；<br/>2. 不设该属性或者设置了异常值，则恢复系统默认设置。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>
 
@@ -3357,27 +3359,69 @@ export struct NavigationMenu{
 
 ### 示例12
 
-该示例主要演示Navigation和NavDestination如何自定义设置标题栏边距。
+该示例主要演示Navigation和NavDestination如何设置自定义标题栏边距，如何通过TextModifier修改主副标题文本样式。
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';
+import { TextModifier } from '@ohos.arkui.modifier';
+
+class MainTitleTextModfier extends TextModifier {
+  useStyle1: boolean = true;
+  applyNormalAttribute(instance: TextModifier): void {
+    if (this.useStyle1) {
+      console.log(`testTag mainTitle use style1`);
+      instance.fontColor('#FFFFC000')
+      instance.fontSize(35)
+      instance.fontWeight(FontWeight.Bolder)
+      instance.fontStyle(FontStyle.Normal)
+      instance.textShadow({radius: 5, offsetX: 9})
+    } else {
+      console.log(`testTag mainTitle use style2`);
+      instance.fontColor('#FF23A98D')
+      instance.fontSize(20)
+      instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+      instance.fontWeight(FontWeight.Lighter)
+      instance.fontStyle(FontStyle.Italic)
+      instance.textShadow({radius: 3, offsetX: 3})
+    }
+  }
+}
+
+class SubTitleTextModfier extends TextModifier {
+  useStyle1: boolean = true;
+  applyNormalAttribute(instance: TextModifier): void {
+    if (this.useStyle1) {
+      console.log(`testTag subTitle use style1`);
+      instance.fontColor('#FFFFC000')
+      instance.fontSize(15)
+      instance.fontWeight(FontWeight.Bolder)
+      instance.fontStyle(FontStyle.Normal)
+      instance.textShadow({radius: 5, offsetX: 9})
+    } else {
+      console.log(`testTag subTitle use style2`);
+      instance.fontColor('#FF23A98D')
+      instance.fontSize(10)
+      instance.fontWeight(FontWeight.Lighter)
+      instance.fontStyle(FontStyle.Italic)
+      instance.textShadow({radius: 3, offsetX: 3})
+    }
+  }
+}
 
 @Entry
 @Component
 struct NavigationExample {
-  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  private navPathStack: NavPathStack = new NavPathStack();
   // 初始化标题栏起始端内间距
   @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
   // 初始化标题栏结束端内间距
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
-  @State menuItems: Array<NavigationMenuItem> = [
-    {
-      value: 'menuItem1',
-      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
-      action: () => {
-      }
-    }
-  ]
+  // 主标题样式修改器
+  @State mainTitleModifier: MainTitleTextModfier = new MainTitleTextModfier();
+  // 副标题样式修改器
+  @State subTitleModifier: SubTitleTextModfier = new SubTitleTextModfier();
+  @State applyModifier: boolean = false;
+  @State useStyle1: boolean = true;
 
   @Builder
   myRouter(name: string, param?: Object) {
@@ -3390,40 +3434,69 @@ struct NavigationExample {
     Navigation(this.navPathStack) {
       Column() {
         // 标题栏内间距切换
-        Button('切换标题栏内间距为16vp')
+        Button('apply padding 32vp')
           .onClick(() => {
-            this.paddingStart = LengthMetrics.vp(16);
-            this.paddingEnd = LengthMetrics.vp(16);
+            this.paddingStart = LengthMetrics.vp(32);
+            this.paddingEnd = LengthMetrics.vp(32);
           })
-          .margin({ top: 5 })
-
-        Button('切换标题栏内间距为24vp')
+          .margin({top: 70})
+          .width(180)
+        Button('apply padding 20vp')
           .onClick(() => {
-            this.paddingStart = LengthMetrics.vp(24);
-            this.paddingEnd = LengthMetrics.vp(24);
+            this.paddingStart = LengthMetrics.vp(20);
+            this.paddingEnd = LengthMetrics.vp(20);
           })
-          .margin({ top: 5 })
-
-        Button('跳转')
+          .margin({top: 40})
+          .width(180)
+        Button('pushPage')
           .onClick(() => {
-            this.navPathStack.pushPathByName('NavDestinationExample', null);
+            this.navPathStack.pushPath({name: 'NavDestinationExample'})
           })
-          .margin({ top: 5 })
+          .margin({top: 40})
+          .width(180)
+        Row() {
+          Text(`apply Modifier`)
+          Toggle({isOn: this.applyModifier, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+            this.applyModifier = isOn;
+          })
+        }
+        .padding({ top: 95, left: 5, right: 5 })
+        .width(180)
+        .justifyContent(FlexAlign.SpaceBetween)
+        Row() {
+          Text(`use Style1`)
+          Toggle({isOn: this.useStyle1, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+            this.mainTitleModifier.useStyle1 = isOn;
+            this.subTitleModifier.useStyle1 = isOn;
+            this.useStyle1 = isOn;
+          })
+        }
+        .padding({ top: 40, left: 5, right: 5 })
+        .width(180)
+        .justifyContent(FlexAlign.SpaceBetween)
       }
+      .width('100%')
+      .height('100%')
     }
-    .titleMode(NavigationTitleMode.Mini)
-    .title('一级页面', {
-      paddingStart: this.paddingStart,
-      paddingEnd: this.paddingEnd,
-    })
-    .menus(this.menuItems)
+    .titleMode(NavigationTitleMode.Full)
+    .title(
+      {main: "Title", sub: "subTitle"},
+      this.applyModifier ?
+        {
+          paddingStart: this.paddingStart,
+          paddingEnd: this.paddingEnd,
+          mainTitleModifier: this.mainTitleModifier,
+          subTitleModifier: this.subTitleModifier,
+        } : {
+          paddingStart: this.paddingStart,
+          paddingEnd: this.paddingEnd
+        })
     .navDestination(this.myRouter)
   }
 }
 
 @Component
 export struct NavDestinationExample {
-  @Consume('navPathStack') navPathStack: NavPathStack;
   @State menuItems: Array<NavigationMenuItem> = [
     {
       value: 'menuItem1',
@@ -3434,37 +3507,71 @@ export struct NavDestinationExample {
   ]
   @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
+  // 主标题样式修改器
+  @State mainTitleModifier: MainTitleTextModfier = new MainTitleTextModfier();
+  // 副标题样式修改器
+  @State subTitleModifier: SubTitleTextModfier = new SubTitleTextModfier();
+  @State applyModifier: boolean = false;
+  @State useStyle1: boolean = true;
 
   build() {
     NavDestination() {
-      Row() {
-        Column() {
-          // 标题栏内间距切换
-          Button('切换标题栏内间距为32vp')
-            .onClick(() => {
-              this.paddingStart = LengthMetrics.vp(32);
-              this.paddingEnd = LengthMetrics.vp(32);
-            })
-            .margin({ top: 5 })
-
-          Button('切换标题栏内间距为20vp')
-            .onClick(() => {
-              this.paddingStart = LengthMetrics.vp(20);
-              this.paddingEnd = LengthMetrics.vp(20);
-            })
-            .margin({ top: 5 })
+      Column() {
+        // 标题栏内间距切换
+        Button('apply padding 32vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(32);
+            this.paddingEnd = LengthMetrics.vp(32);
+          })
+          .margin({top: 150})
+          .width(180)
+        Button('apply padding 20vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(20);
+            this.paddingEnd = LengthMetrics.vp(20);
+          })
+          .margin({top: 40})
+          .width(180)
+        Row() {
+          Text(`apply Modifier`)
+          Toggle({isOn: this.applyModifier, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+            this.applyModifier = isOn;
+          })
         }
-        .width('100%')
+        .padding({ top: 95, left: 5, right: 5 })
+        .width(180)
+        .justifyContent(FlexAlign.SpaceBetween)
+        Row() {
+          Text(`use Style1`)
+          Toggle({isOn: this.useStyle1, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+            this.mainTitleModifier.useStyle1 = isOn;
+            this.subTitleModifier.useStyle1 = isOn;
+            this.useStyle1 = isOn;
+          })
+        }
+        .padding({ top: 40, left: 5, right: 5 })
+        .width(180)
+        .justifyContent(FlexAlign.SpaceBetween)
       }
-      .height('100%')
+      .width('100%')
+      .height('90%')
     }
     .hideTitleBar(false)
-    .title('NavDestination title', {
-      paddingStart: this.paddingStart,
-      paddingEnd: this.paddingEnd,
-    })
+    .title(
+      {main: "Title", sub: "subTitle"},
+      this.applyModifier ?
+        {
+          paddingStart: this.paddingStart,
+          paddingEnd: this.paddingEnd,
+          mainTitleModifier: this.mainTitleModifier,
+          subTitleModifier: this.subTitleModifier,
+        } : {
+        paddingStart: this.paddingStart,
+        paddingEnd: this.paddingEnd
+      })
     .menus(this.menuItems)
   }
 }
 ```
-![titlebarPaddingDemo.gif](figures/titlebarPaddingDemo.gif)
+![titlebarPaddingAndModifier.gif](figures/titlebarPaddingAndModifier.gif)
+

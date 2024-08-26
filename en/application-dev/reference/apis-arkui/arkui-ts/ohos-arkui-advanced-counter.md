@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.Counter (Counter)
+# advanced.Counter
 
 A counter is a component used to accurately adjust values.
 
@@ -18,7 +18,7 @@ Not supported
 
 ## CounterComponent
 
-CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
+CounterComponent({ options: CounterOptions })
 
 Defines a counter.
 
@@ -30,9 +30,9 @@ Defines a counter.
 
 **Parameters**
 
-| Name   | Type                             | Mandatory | Decorator | Description                   |
+| Name   | Type                             | Mandatory| Decorator| Description                   |
 | ------- | --------------------------------- | ---- | ---------- | ----------------------- |
-| options | [CounterOptions](#counteroptions) | Yes  | @Prop      | Parameters of the counter. |
+| options | [CounterOptions](#counteroptions) | Yes  | @Prop      | Parameters of the counter.|
 
 ## CounterOptions
 
@@ -44,11 +44,11 @@ Defines the type and style parameters of the counter.
 
 | Name       | Type      | Mandatory       | Description                           |
 | ----------- | ---------- | ------| --------------------------------- |
-| type | [CounterType](#countertype) | Yes  | Type of the current counter. |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No | Layout direction.<br>Default value: **Auto** |
-| numberOptions | [NumberStyleOptions](#numberstyleoptions) | No   | Parameters of the number style counter. |
-| inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | No | Parameters of the inline number style counter. |
-| dateOptions | [DateStyleOptions](#datestyleoptions) | No | Parameters of the inline date style counter. |
+| type | [CounterType](#countertype) | Yes  | Type of the current counter.|
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Auto**|
+| numberOptions | [NumberStyleOptions](#numberstyleoptions) | No   | Parameters of the number style counter.|
+| inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | No| Parameters of the inline number style counter.|
+| dateOptions | [DateStyleOptions](#datestyleoptions) | No| Parameters of the inline date style counter.|
 
 A counter type must go with parameters of the matching counter style. Below is a mapping between the counter types and counter styles.
 
@@ -71,7 +71,7 @@ Enumerates the counter types.
 | ----------- | --------------------------- |
 | LIST        | List counter.            |
 | COMPACT     | Compact counter.            |
-| INLINE      | Inline number counter. |
+| INLINE      | Inline number counter.|
 | INLINE_DATE | Inline date counter.      |
 
 ## CommonOptions
@@ -83,12 +83,12 @@ Defines common attributes and events of counters.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
-| Name           | Type                     | Mandatory | Default Value | Description                                                        |
+| Name           | Type                     | Mandatory| Default Value| Description                                                        |
 | --------------- | ------------------------- | ---- | ------ | ------------------------------------------------------------ |
-| focusable       | boolean                   | No  | true   | Whether the counter is focusable.<br>**NOTE**<br>This attribute takes effect for the number style counter. |
+| focusable       | boolean                   | No  | true   | Whether the counter is focusable.<br>**NOTE**<br>This attribute takes effect for the number style counter.|
 | step            | number                    | No  | 1      | Step of the counter.<br>Value range: an integer greater than or equal to 1.         |
-| onHoverIncrease | (isHover: boolean) =>void | No  | -      | Callback invoked when the mouse pointer is moved over or away from the Increase button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component. |
-| onHoverDecrease | (isHover: boolean) =>void | No  | -      | Callback invoked when the mouse pointer is moved over or away from the Decrease button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component. |
+| onHoverIncrease | (isHover: boolean) =>void | No  | -      | Callback invoked when the mouse pointer is moved over or away from the Increase button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
+| onHoverDecrease | (isHover: boolean) =>void | No  | -      | Callback invoked when the mouse pointer is moved over or away from the Decrease button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
 
 ##  InlineStyleOptions
 
@@ -100,13 +100,13 @@ Inherits from [CommonOptions](#commonoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                  | Mandatory | Default Value | Description                                                  |
+| Name     | Type                  | Mandatory| Default Value| Description                                                  |
 | --------- | ---------------------- | ---- | ------ | ------------------------------------------------------ |
 | value     | number                 | No  | 0      | Initial value of the counter.                                 |
 | min       | number                 | No  | 0      | Minimum value of the counter.                                 |
 | max       | number                 | No  | 999    | Maximum value of the counter.                                 |
 | textWidth | number                 | No  | 0      | Text width of the counter.                                  |
-| onChange  | (value: number) =>void | No  | -      | Callback invoked when the value changes. The current value is returned.<br>**value**: current value. |
+| onChange  | (value: number) =>void | No  | -      | Callback invoked when the value changes. The current value is returned.<br>**value**: current value.|
 
 ## NumberStyleOptions
 
@@ -118,13 +118,13 @@ Inherits from [InlineStyleOptions](#inlinestyleoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name           | Type                                                        | Mandatory | Default Value | Description                                         |
+| Name           | Type                                                        | Mandatory| Default Value| Description                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------ | --------------------------------------------- |
 | label           | [ResourceStr](ts-types.md#resourcestr) | No  | -      | Label of the counter.                      |
-| onFocusIncrease | () =>void                                                    | No  | -      | Callback invoked when the Increase button of the counter gains focus. |
-| onFocusDecrease | () =>void                                                    | No  | -      | Callback invoked when the Decrease button of the counter gains focus. |
-| onBlurIncrease  | () =>void                                                    | No  | -      | Callback invoked when the Increase button of the counter loses focus. |
-| onBlurDecrease  | () =>void                                                    | No  | -      | Callback invoked when the Decrease button of the counter loses focus. |
+| onFocusIncrease | () =>void                                                    | No  | -      | Callback invoked when the Increase button of the counter gains focus.|
+| onFocusDecrease | () =>void                                                    | No  | -      | Callback invoked when the Decrease button of the counter gains focus.|
+| onBlurIncrease  | () =>void                                                    | No  | -      | Callback invoked when the Increase button of the counter loses focus.|
+| onBlurDecrease  | () =>void                                                    | No  | -      | Callback invoked when the Decrease button of the counter loses focus.|
 
 ## DateStyleOptions
 
@@ -136,12 +136,12 @@ Inherits from [CommonOptions](#commonoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                               | Mandatory | Default Value | Description                                                     |
+| Name        | Type                               | Mandatory| Default Value| Description                                                     |
 | ------------ | ----------------------------------- | ---- | ------ | --------------------------------------------------------- |
 | year         | number                              | No  | 1      | Initial year of the counter.                                 |
 | month        | number                              | No  | 1      | Initial month of the counter.                                 |
 | day          | number                              | No  | 1      | Initial day of the counter.                                   |
-| onDateChange | (date: [DateData](#datedata))=>void | No  | -      | Callback invoked when the date changes. The current date is returned.<br>**date**: current date. |
+| onDateChange | (date: [DateData](#datedata))=>void | No  | -      | Callback invoked when the date changes. The current date is returned.<br>**date**: current date.|
 
 ## DateData
 
@@ -167,7 +167,7 @@ A constructor used to create a **DateData** object.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type | Description |
+| Name| Type| Description|
 | ---------- | ------ | ---------------------------- |
 | year       | number | Initial year of the counter.    |
 | month      | number | Initial month of the counter.    |
@@ -185,9 +185,9 @@ Current date.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | Current date. |
+| string | Current date.|
 
 ## Example  
 
@@ -313,7 +313,7 @@ import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
 @Entry
 @Component
 struct CounterPage {
-  @State currentDirection: Direction = Direction.Auto
+  @State currentDirection: Direction = Direction.Rtl
 
   build() {
     Column({}) {

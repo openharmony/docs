@@ -459,6 +459,99 @@ struct Parent {
 }
 ```
 
+### \@Builder函数联合V2装饰器使用
+
+使用全局@Builder和局部@Builder在@ComponentV2修饰的自定义组件中调用，修改相关变量触发UI刷新。
+
+```ts
+@ObservedV2
+class Info {
+  @Trace name: string = '';
+  @Trace age: number = 0;
+}
+
+@Builder
+function overBuilder(param: Info) {
+  Column() {
+    Text(`全局@Builder name :${param.name}`)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+    Text(`全局@Builder age :${param.age}`)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+
+@ComponentV2
+struct ChildPage {
+  @Require @Param childInfo: Info;
+  build() {
+    overBuilder({name: this.childInfo.name, age: this.childInfo.age})
+  }
+}
+
+@Entry
+@ComponentV2
+struct ParentPage {
+  info1: Info = { name: "Tom", age: 25 };
+  @Local info2: Info = { name: "Tom", age: 25 };
+
+  @Builder
+  privateBuilder() {
+    Column() {
+      Text(`局部@Builder name :${this.info1.name}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      Text(`局部@Builder age :${this.info1.age}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      this.privateBuilder() // 调用局部@Builder
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      overBuilder({ name: this.info2.name, age: this.info2.age}) // 调用全局@Builder
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage({ childInfo: this.info1}) // 调用自定义组件
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage({ childInfo: this.info2}) // 调用自定义组件
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button("change info1&info2")
+        .onClick(() => {
+          this.info1 = { name: "Cat", age: 18} // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
+          this.info2 = { name: "Cat", age: 18} // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
+        })
+    }
+  }
+}
+```
+
 ## 常见问题
 
 ### \@Builder存在两个或者两个以上参数
@@ -575,6 +668,79 @@ struct Parent {
         this.objParam.num_value = 1;
       })
     }
+  }
+}
+```
+
+### \@Builder函数里面使用的组件没有根节点包裹
+
+在\@Builder函数里使用if判断语句时，创建的组件没有被Column/Row(根节点)包裹，会出现组件创建不出来的情况。
+
+【反例】
+
+```ts
+const showComponent: boolean = true;
+@Builder function OverlayNode() {
+  // 没有Column或者Row根节点导致Text组件没有创建
+  if (showComponent) {
+      Text("This is overlayNode Blue page")
+        .fontSize(20)
+        .fontColor(Color.Blue)
+        .height(100)
+        .textAlign(TextAlign.End)
+    } else {
+      Text("This is overlayNode Red page")
+        .fontSize(20)
+        .fontColor(Color.Red)
+    }
+}
+
+@Entry
+@Component
+struct OverlayExample {
+
+  build() {
+    RelativeContainer() {
+      Text('Hello World')
+        .overlay(OverlayNode(), { align: Alignment.Center})
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+【正例】
+
+```ts
+const showComponent: boolean = true;
+@Builder function OverlayNode() {
+  Column() {
+    if (showComponent) {
+      Text("This is overlayNode Blue page")
+        .fontSize(20)
+        .fontColor(Color.Blue)
+        .height(100)
+        .textAlign(TextAlign.End)
+    } else {
+      Text("This is overlayNode Red page")
+        .fontSize(20)
+        .fontColor(Color.Red)
+    }
+  }
+}
+
+@Entry
+@Component
+struct OverlayExample {
+
+  build() {
+    RelativeContainer() {
+      Text('Hello World')
+        .overlay(OverlayNode(), { align: Alignment.Center})
+    }
+    .height('100%')
+    .width('100%')
   }
 }
 ```

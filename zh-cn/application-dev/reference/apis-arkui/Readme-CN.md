@@ -195,9 +195,7 @@
     <!--DelEnd-->
   - 导航与切换
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
-    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
-    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Stepper](arkui-ts/ts-basic-components-stepper.md)
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
@@ -354,6 +352,7 @@
     <!--Del-->
     - [InnerFullScreenLaunchComponent (系统接口)](arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
     <!--DelEnd-->
+    - [NavPushPathHelper](arkui-ts/ohos-atomicservice-NavPushPathHelper.md)
   - 自定义占位组件
     - [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)
     - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
@@ -386,6 +385,8 @@
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
+    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
+    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - JS组件 
   - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    

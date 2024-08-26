@@ -29,12 +29,12 @@ For the complete list of APIs and example code, see [Traffic Management](../refe
 | getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | Obtains the real-time uplink data traffic of the all NICs. |
 | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time downlink data traffic of the specified application. |
 | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time uplink data traffic of the specified application. |
-| getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC.     |
-| getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | Obtains the historical data traffic of the specified application.     |
+| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC.     |
+| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | Obtains the historical data traffic of the specified application.     |
 | getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                   | Obtains the real-time downlink data traffic of the specified socket. |
 | getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                   | Obtains the real-time uplink data traffic of the specified socket. |
-| on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | Subscribes to traffic change events.        |
-| off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | Unsubscribes from traffic change events.    |
+| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | Subscribes to traffic change events.        |
+| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | Unsubscribes from traffic change events.    |
 
 ## Obtaining Real-Time Traffic Data by NIC or UID
 
@@ -111,6 +111,7 @@ tcp.getSocketFd().then((sockfd: number) => {
 });
 ```
 
+<!--Del-->
 ## Obtaining Historical Traffic Data by NIC or UID
 
 1. Obtain the historical data traffic of the specified NIC. 
@@ -184,3 +185,4 @@ statistics.on('netStatsChange', callback);
 statistics.off('netStatsChange', callback);
 statistics.off('netStatsChange');
 ```
+<!--DelEnd-->

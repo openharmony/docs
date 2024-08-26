@@ -83,6 +83,30 @@ getLineMetrics(lineNumber: number): LineMetrics
 | ---------------------------------------- | -------- |
 | [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 行信息、文本样式信息、以及字体属性信息。 |
 
+### getRectsForRange<sup>13+</sup>
+
+getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
+
+获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中任意区间范围内的字符或占位符所占的绘制区域信息。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                 | 必填 | 说明                     |
+| ----------- | ----------------------------------- | ---- | ------------------------ |
+| range       | [Range](../../apis-arkgraphics2d/js-apis-graphics-text.md#range)                     | 是   | 需要获取的区域的文本区间。  |
+| widthStyle  | [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle)   | 是   | 返回的矩形区域的宽度的规格。|
+| heightStyle | [RectHeightStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectheightstyle) | 是   | 返回的矩形区域的高度的规格。|
+
+**返回值：**
+
+| 类型                         | 说明        |
+| --------------------------- | ----------- |
+| Array\<[TextBox](../../apis-arkgraphics2d/js-apis-graphics-text.md#textbox)> | 矩形区域数组。|
+
 ## PositionWithAffinity
 
 位置以及亲和度。
@@ -244,7 +268,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | value | string | 是 | 文本框内正式上屏的文本内容。 |
-| previewText | [PreviewText](ts-basic-components-richeditor.md#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
+| previewText | [PreviewText](#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
 
 ## TextDataDetectorType<sup>11+</sup>枚举说明
 
@@ -306,3 +330,30 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | ------ | -------- | ---- | ------------------------------------------- |
 | types   | [TextDataDetectorType[]](ts-text-common.md#textdatadetectortype11枚举说明) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
+
+## PreviewText<sup>12+</sup>
+
+预上屏信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| offset | number | 是   | 预上屏内容的起始位置。 |
+| value    | string         | 是   | 预上屏的内容。         |
+
+## FontSettingOptions<sup>12+</sup>对象说明
+
+字体配置项。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。 |

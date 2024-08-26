@@ -30,6 +30,8 @@ static show(options?: DatePickerDialogOptions)
 
 继承自[DatePickerOptions](ts-basic-components-datepicker.md#datepickeroptions对象说明)。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | lunar | boolean | 否 | 日期是否显示为农历，true表示显示农历，false表示不显示农历。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -61,6 +63,8 @@ static show(options?: DatePickerDialogOptions)
 ## PickerDialogButtonStyle<sup>12+</sup>类型说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |

@@ -1,12 +1,12 @@
-# Creating and Destroying JS VMs Using JSVM-API
+# Creating and Destroying JSVMs Using JSVM-API
 
 ## When to Use
 
-Use **createJsCore** to create a JavaScript virtual machine (JS VM), which a runtime environment for executing JS code. The **createJsCore** returns a core ID, which uniquely identifies a VM.
+Use **createJsCore** to create a JavaScript virtual machine (JSVM), which a runtime environment for executing JS code. The **createJsCore** returns a core ID, which uniquely identifies a VM.
 
 Use **evalUateJS** to run JS code in the VM of the specified core ID and define a promise in the JS code to asynchronously invoke the callback set in TS.
 
-Use **releaseJsCore** to release a JS VM.
+Use **releaseJsCore** to release a JSVM.
 
 ## Example
 
@@ -42,7 +42,7 @@ Use **releaseJsCore** to release a JS VM.
      target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
      ```
 
-2. Create multiple JS VMs and run JS code.
+2. Create multiple JSVMs and run JS code.
 
      ```cpp
      // create_jsvm_runtime.cpp
@@ -235,7 +235,7 @@ Use **releaseJsCore** to release a JS VM.
          napi_create_string_utf8(g_napiEnvMap[callId], Str1, size + 1, &callArgs[0]);
          napi_create_string_utf8(g_napiEnvMap[callId], Str2, size1 + 1, &callArgs[1]);
          napi_value callback = nullptr;
-         // Obtain the TS callback, which is passed in when the JS VM is created, based on the call ID.
+         // Obtain the TS callback, which is passed in when the JSVM is created, based on the call ID.
          napi_get_reference_value(g_napiEnvMap[callId], g_callBackMap[callId], &callback);
          napi_value ret;
          // Execute the TS callback.
@@ -310,7 +310,7 @@ Use **releaseJsCore** to release a JS VM.
          status = OH_JSVM_OpenEnvScope(*g_envMap[ENVTAG_NUMBER], &g_envScopeMap[ENVTAG_NUMBER]);
      }
       
-     // Provide an external interface for creating the JS VM and return the unique ID.
+     // Provide an external interface for creating the JSVM and return the unique ID.
      static napi_value CreateJsCore(napi_env env1, napi_callback_info info) { 
          OH_LOG_ERROR(LOG_APP, "JSVM CreateJsCore START");
          size_t argc = 1;
@@ -337,7 +337,7 @@ Use **releaseJsCore** to release a JS VM.
          return coreID;
      }
       
-     // Provide an external interface for releasing the JS VM based on envId.
+     // Provide an external interface for releasing the JSVM based on envId.
      static napi_value ReleaseJsCore(napi_env env1, napi_callback_info info) {
          OH_LOG_ERROR(LOG_APP, "JSVM ReleaseJsCore START");
          size_t argc = 1;
@@ -382,7 +382,7 @@ Use **releaseJsCore** to release a JS VM.
      }
       
      static std::mutex mutexLock;
-     // Provide an external interface for running the JS code in the JS VM identified by a core ID.
+     // Provide an external interface for running the JS code in the JSVM identified by a core ID.
      static napi_value EvalUateJS(napi_env env, napi_callback_info info) {
          OH_LOG_ERROR(LOG_APP, "JSVM EvalUateJS START");
          size_t argc = 2;

@@ -415,7 +415,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
-| iface | [USBInterface](#usbinterface)   | 是 | 用于确定需要设置的接口，需要调用getDevices获取设备信息并通过id确定唯一接口。|
+| iface | [USBInterface](#usbinterface)   | 是 | 用于确定需要设置的接口，需要调用getDevices获取设备信息并通过id和alternateSetting确定唯一接口。|
 
 **错误码：**
 
@@ -553,7 +553,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
-| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数，按需设置参数。|
+| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数，按需设置参数，参数传参类型请参考USB协议。|
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
 
 **错误码：**
@@ -583,12 +583,12 @@ class PARA {
 }
 
 let param: PARA = {
-  request: 0,
-  reqType: 0,
+  request: 0x06,
+  reqType: 0x80,
   target:0,
-  value: 0,
+  value: 0x01 << 8 | 0,
   index: 0,
-  data: new Uint8Array()
+  data: new Uint8Array(18)
 };
 
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -599,7 +599,7 @@ if (devicesList.length == 0) {
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 usbManager.controlTransfer(devicepipe, param).then((ret: number) => {
- console.log(`controlTransfer = ${ret}`);
+console.log(`controlTransfer = ${ret}`);
 })
 ```
 
@@ -618,7 +618,7 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | 是 | 控制传输参数。 |
+| requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | 是 | 控制传输参数，按需设置参数，参数传参类型请参考USB协议。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
 
 **错误码：**
@@ -648,12 +648,13 @@ class PARA {
 }
 
 let param: PARA = {
-  bmRequestType: 0,
-  bRequest: 0,
-  wValue:0,
+  bmRequestType: 0x80,
+  bRequest: 0x06,
+
+  wValue:0x01 << 8 | 0,
   wIndex: 0,
-  wLength: 0,
-  data: new Uint8Array()
+  wLength: 18,
+  data: new Uint8Array(18)
 };
 
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -664,7 +665,7 @@ if (devicesList.length == 0) {
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 usbManager.usbControlTransfer(devicepipe, param).then((ret: number) => {
- console.log(`usbControlTransfer = ${ret}`);
+console.log(`usbControlTransfer = ${ret}`);
 })
 ```
 
@@ -716,13 +717,17 @@ let device: usbManager.USBDevice = devicesList[0];
 usbManager.requestRight(device.name);
 
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
-let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
-let endpoint: usbManager.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
-let ret: number = usbManager.claimInterface(devicepipe, interfaces);
-let buffer =  new Uint8Array(128);
-usbManager.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
-  console.log(`bulkTransfer = ${ret}`);
-});
+for (let i = 0; i < device.configs[0].interfaces.length; i++) {
+  if (device.configs[0].interfaces[i].endpoints[0].attributes == 2) {
+    let endpoint: usbManager.USBEndpoint = device.configs[0].interfaces[i].endpoints[0];
+    let interfaces: usbManager.USBInterface = device.configs[0].interfaces[i];
+    let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+    let buffer =  new Uint8Array(128);
+    usbManager.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
+      console.log(`bulkTransfer = ${ret}`);
+    });
+  }
+}
 ```
 
 ## usbManager.closePipe

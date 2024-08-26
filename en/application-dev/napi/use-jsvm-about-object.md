@@ -1,6 +1,6 @@
-# Managing Objects Using JSVM-API
+# Working with Objects Using JSVM-API
 
-## Overview
+## Introduction
 
 JSVM-API provides APIs for basic JavaScript (JS) object operations, including creating an object, obtaining the prototype of an object, freezing or sealing an object, and checking the object type. You can use these APIs to manage JS objects.
 
@@ -30,11 +30,11 @@ You may need to define and operate objects when using JSVM-API in development. F
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code for object management APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for object management.
 
 ### OH_JSVM_GetPrototype
 
-Use **OH_JSVM_GetPrototype** to obtain the prototype of a JS object.
+Obtains the prototype of a JS object.
 
 CPP code:
 
@@ -43,7 +43,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a GetPrototype callback.
+// Register the GetPrototype callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetPrototype},
 };
@@ -93,7 +93,7 @@ try {
 
 ### OH_JSVM_CreateObject
 
-Use **OH_JSVM_CreateObject** to create a default JS object.
+Creates a default JS object.
 
 CPP code:
 
@@ -102,7 +102,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a CreateObject callback.
+// Register the CreateObject callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateObject},
 };
@@ -152,7 +152,7 @@ try {
 
 ### OH_JSVM_ObjectFreeze
 
-Use **OH_JSVM_ObjectFreeze** to freeze a JS object. Once a JS object is frozen, new properties cannot be added to it, existing properties cannot be removed, the enumerability, configurability, or writability of existing properties cannot be changed, and the values of existing properties cannot be changed.
+Freezes a JS object. Once a JS object is frozen, new properties cannot be added to it, existing properties cannot be removed, the enumerability, configurability, or writability of existing properties cannot be changed, and the values of existing properties cannot be changed.
 
 CPP code:
 
@@ -161,7 +161,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register an ObjectFreeze callback.
+// Register the ObjectFreeze callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ObjectFreeze},
 };
@@ -212,7 +212,7 @@ try {
 
 ### OH_JSVM_ObjectSeal
 
-Use **OH_JSVM_ObjectSeal** to seal a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
+Seals a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
 
 CPP code:
 
@@ -221,7 +221,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register an ObjectSeal callback.
+// Register the ObjectSeal callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ObjectSeal},
 };
@@ -285,7 +285,7 @@ try {
 
 ### OH_JSVM_Typeof
 
-Use **OH_JSVM_Typeof** to return the type of a JS object.
+Returns the type of a JS object.
 
 CPP code:
 
@@ -294,7 +294,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a GetTypeof callback.
+// Register the GetTypeof callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetTypeof},
 };
@@ -380,7 +380,7 @@ try {
 
 ### OH_JSVM_Instanceof
 
-Use **OH_JSVM_Instanceof** to check whether an object is an instance of a constructor.
+Checks whether an object is an instance of a constructor.
 
 CPP code:
 
@@ -389,7 +389,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register an InstanceOf callback.
+// Register the InstanceOf callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = InstanceOf},
 };
@@ -446,11 +446,11 @@ try {
 
 ### OH_JSVM_TypeTagObject
 
-Use **OH_JSVM_TypeTagObject** to associate the value of the **type_tag** pointer with a JS object so that the object can be identified more accurately.
+Associate the value of the **type_tag** pointer with a JS object so that the object can be identified more accurately.
 
 ### OH_JSVM_CheckObjectTypeTag
 
-Use **OH_JSVM_CheckObjectTypeTag** to check whether a tag matches the tag type of an object.
+Checks whether a tag matches the tag type of an object.
 
 CPP code:
 
@@ -564,7 +564,7 @@ try {
 
 ### OH_JSVM_CreateExternal
 
-Use **OH_JSVM_CreateExternal** to create a JS object that wraps an external pointer.
+Creates a JS object that wraps an external pointer.
 
 CPP code:
 
@@ -573,7 +573,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a CreateExternal callback.
+// Register the CreateExternal callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateExternal},
 };
@@ -633,7 +633,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a GetValueExternal callback.
+// Register the GetValueExternal callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueExternal},
 };
@@ -683,7 +683,7 @@ try {
 
 ### OH_JSVM_CreateSymbol
 
-Use OH_JSVM_CreateSymbol to create a symbol. Symbol is a special data type used to indicate a unique identifier. Unlike strings or numbers, the value of a symbol is unique. Even if two symbols have the same description, they are not equal. Symbols are often used as keys for object properties to ensure property uniqueness.
+Create a symbol. Symbol is a special data type used to indicate a unique identifier. Unlike strings or numbers, the value of a symbol is unique. Even if two symbols have the same description, they are not equal. Symbols are often used as keys for object properties to ensure property uniqueness.
 
 CPP code:
 
@@ -692,7 +692,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a CreateSymbol callback.
+// Register the CreateSymbol callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateSymbol},
 };
@@ -739,7 +739,7 @@ try {
 
 ### OH_JSVM_SymbolFor
 
-Use **OH_JSVM_SymbolFor** to search for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the registry.
+Searches for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the registry.
 
 CPP code:
 
@@ -748,7 +748,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register a SymbolFor callback.
+// Register the SymbolFor callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = SymbolFor},
 };

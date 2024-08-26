@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for the JavaScript Bridge data.
+Defines the JavaScript Bridge data.
 
 **Since**: 12
 

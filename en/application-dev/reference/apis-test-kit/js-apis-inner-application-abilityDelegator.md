@@ -532,6 +532,14 @@ Obtains the lifecycle state of an ability.
 | ------ | ------------------------------------------------------------ |
 | number | Lifecycle state of the ability, which is defined by **AbilityLifecycleState**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -615,7 +623,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
 
 **Example**
@@ -947,7 +954,7 @@ abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
   abilityDelegator.doAbilityBackground(ability).then(() => {
     console.info("doAbilityBackground promise");
   });
-
+});
 ```
 
 ### printSync<sup>9+</sup>
@@ -965,6 +972,14 @@ Prints log information to the unit test console.
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
 | msg    | string | Yes  | Log string.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
@@ -1486,7 +1501,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | removeAbilityStageMonitorSync failed. |
+| 16000100 | RemoveAbilityStageMonitorSync failed. |
 
 
 **Example**

@@ -2,7 +2,7 @@
 
 ## Functionality
 
-### Overview
+### Introduction
 
 File descriptor sanitizer (fdsan) is a tool used to detect and clean up file descriptor (FD) errors. An FD is a process-unique identifier (handle) for a file, directory, network socket, or other I/O devices in an operating system. fdsan can detect double-free and use-after-close issues of FDs.
 

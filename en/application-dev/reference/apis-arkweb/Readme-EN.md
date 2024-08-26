@@ -1,4 +1,4 @@
-# ArkWeb API Reference
+# ArkWeb
 
 - ArkTS APIs
   - [@ohos.web.webview (Webview)](js-apis-webview.md)

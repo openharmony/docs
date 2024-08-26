@@ -2055,9 +2055,8 @@ defaultTextEncodingFormat(textEncodingFormat: string)
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-          // 设置高和内边距
+          // 设置高
           .height(500)
-          .padding(20)
           .defaultTextEncodingFormat("UTF-8")
           .javaScriptAccess(true)
       }
@@ -6909,6 +6908,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
 | VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
 | AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
+| SENSOR<sup>12+</sup>        | TYPE_SENSOR | 传感器资源，例如加速度传感器。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
@@ -7778,7 +7778,7 @@ saveCookie()
 | 名称          | 类型             | 必填   | 描述                    |
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
-| scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。       |
+| scriptRules | Array\<string> | 是   | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。<br>5.对于http/https以外的协议(自定义协议)，不支持使用精确匹配和模糊匹配，且必须以"://"结尾，例如"resource://"。<br>6.一组scriptRule中，如果其中一条不满足以上规则，则整组scriptRule都不生效。 |
 
 ## WebNavigationType<sup>11+</sup>
 

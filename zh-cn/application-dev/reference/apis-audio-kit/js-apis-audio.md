@@ -865,6 +865,50 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
 
+## AudioConcurrencyMode<sup>12+</sup>
+
+枚举，音频并发模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                   | 值 | 说明      |
+| :--------------------- |:--|:--------|
+| CONCURRENCY_DEFAULT | 0 | 默认使用系统策略。     |
+| CONCURRENCY_MIX_WITH_OTHERS | 1 | 和其它正在播放应用进行混音。     |
+| CONCURRENCY_DUCK_OTHERS | 2 | 后来播放应用压低正在播放应用的音量。 |
+| CONCURRENCY_PAUSE_OTHERS | 3 | 后来播放应用暂停正在播放应用。 |
+
+## AudioSessionDeactivatedReason<sup>12+</sup>
+
+枚举，音频会话停用原因。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                   | 值 | 说明     |
+| :--------------------- |:--|:-------|
+| DEACTIVATED_LOWER_PRIORITY | 0 | 应用焦点被抢占。 |
+| DEACTIVATED_TIME_OUT | 1 | 应用停流后超时。    |
+
+## AudioSessionStrategy<sup>12+</sup>
+
+音频会话策略。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称          | 类型                                              | 必填 | 说明             |
+| :------------ |:------------------------------------------------| :--- | :--------------- |
+| concurrencyMode        | [AudioConcurrencyMode](#audioconcurrencymode12) | 是   | 音频并发模式。       |
+
+## AudioSessionDeactivatedEvent<sup>12+</sup>
+
+音频会话已停用事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称          | 类型                                                                | 必填 | 说明             |
+| :------------ |:------------------------------------------------------------------| :--- | :--------------- |
+| reason        | [AudioSessionDeactivatedReason](#audiosessiondeactivatedreason12) | 是   | 音频会话停用原因。       |
+
 ## AudioManager
 
 管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](#audiogetaudiomanager)创建实例。
@@ -1155,6 +1199,28 @@ getRoutingManager(): AudioRoutingManager
 import { audio } from '@kit.AudioKit';
 
 let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingManager();
+```
+
+### getSessionManager<sup>12+</sup>
+
+getSessionManager(): AudioSessionManager
+
+获取音频会话管理器。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                           | 说明                          |
+|----------------------------------------------| ----------------------------- |
+| [AudioSessionManager](#audiosessionmanager12) | AudioSessionManager实例 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
 ```
 
 ### setVolume<sup>(deprecated)</sup>
@@ -4731,6 +4797,172 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 ```ts
 audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
+```
+
+## AudioSessionManager<sup>12+</sup>
+
+音频会话管理。在使用AudioSessionManager的接口前，需要使用[getSessionManager](#getsessionmanager12)获取AudioSessionManager实例。
+
+### activateAudioSession<sup>12+</sup>
+
+activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>
+
+激活音频会话。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名 | 类型                                              | 必填 | 说明         |
+| ------ |-------------------------------------------------| ---- | ------------ |
+| strategy | [AudioSessionStrategy](#audiosessionstrategy12) | 是   | 音频会话策略。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | System error. Returned by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let strategy: audio.AudioSessionStrategy = {
+  concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
+}
+
+audioSessionManager.activateAudioSession(strategy).then(() => {
+  console.info('activateAudioSession SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### deactivateAudioSession<sup>12+</sup>
+
+deactivateAudioSession(): Promise\<void>
+
+停用音频会话。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------|
+| 6800301 | System error. Returned by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioSessionManager.deactivateAudioSession().then(() => {
+  console.info('deactivateAudioSession SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### isAudioSessionActivated<sup>12+</sup>
+
+isAudioSessionActivated(): boolean
+
+检查音频会话是否已激活。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                              | 说明                                    |
+| ------------------------------------------------- |---------------------------------------|
+| boolean | 返回当前pid应用程序的音频会话是否已激活，true表示已激活，false表示已停用。 |
+
+**示例：**
+
+```ts
+let isActivated = audioSessionManager.isAudioSessionActivated();
+```
+
+### on('audioSessionDeactivated')<sup>12+</sup>
+
+on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedEvent>): void
+
+监听音频会话停用事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                        | 必填 | 说明                                                         |
+| -------- |---------------------------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                                                                    | 是   | 事件回调类型，支持的事件为：'audioSessionDeactivated'。 |
+| callback | Callback<[AudioSessionDeactivatedEvent](#audiosessiondeactivatedevent12)> | 是   | 回调函数，返回音频会话停用原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioSessionManager.on('audioSessionDeactivated', (audioSessionDeactivatedEvent: audio.AudioSessionDeactivatedEvent) => {
+  console.info(`reason of audioSessionDeactivated: ${audioSessionDeactivatedEvent.reason} `);
+});
+```
+
+### off('audioSessionDeactivated')<sup>12+</sup>
+
+off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivatedEvent>): void
+
+取消监听音频会话停用事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'audioSessionDeactivated'。 |
+| callback |Callback<[AudioSessionDeactivatedEvent](#audiosessiondeactivatedevent12)> | 否   | 回调函数，返回音频会话停用原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioSessionManager.off('audioSessionDeactivated');
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>

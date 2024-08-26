@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 以下权限仅对APL等级为system_basic及以上的应用开放，不向APL等级为normal的应用开放。
-> - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#访问控制列表acl)的方式跨级别申请。
+> - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#权限机制中的基本概念)的方式跨级别申请。
 
 ## system_grant，允许ACL跨级申请
 
@@ -3541,6 +3541,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_FUSION_MANAGER
+
+允许系统服务或系统应用访问融合服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 允许应用发布位置管理相关的公共事件。
@@ -3652,6 +3664,30 @@
 ### ohos.permission.ALLOW_CONNECT_CAR
 
 允许应用连接车机。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_NET_FIREWALL
+
+允许系统应用配置防火墙规则。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_NET_FIREWALL
+
+允许系统应用查询防火墙规则和查询防火墙拦截记录。
 
 **权限级别**：system_basic
 
