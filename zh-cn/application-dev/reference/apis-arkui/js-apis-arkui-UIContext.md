@@ -3221,6 +3221,8 @@ on(type: 'tabContentUpdate', callback: Callback\<observer.TabContentInfo\>): voi
 
 监听TabContent页面的切换事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -3287,6 +3289,8 @@ off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): v
 
 取消监听TabContent页面的切换事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -3305,6 +3309,8 @@ off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): v
 on(type: 'tabContentUpdate', options: observer.ObserverOptions, callback: Callback\<observer.TabContentInfo\>): void
 
 监听TabContent页面的切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3372,6 +3378,8 @@ struct TabsExample {
 off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Callback\<observer.TabContentInfo\>): void
 
 取消监听TabContent页面的切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4165,7 +4173,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 401      | if the number of parameters is less than 1 or the type of the url parameter is not string. |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.        |
 
@@ -4323,7 +4331,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 401      | if the number of parameters is less than 1 or the type of the url parameter is not string. |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.        |
 
@@ -5173,6 +5181,121 @@ struct Index {
                   };
                 }, 2000);     //2秒后自动关闭
             })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### openCustomDialog<sup>12+</sup>
+
+openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
+
+创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明               |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [promptAction.CustomDialogOptions](js-apis-promptAction.md#customdialogoptions11) | 是   | 自定义弹窗的内容。 |
+
+**返回值：**
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | 返回供closeCustomDialog使用的对话框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 103301   | the ComponentContent is incorrect.                           |
+| 103302   | Dialog content already exists.                               |
+
+## closeCustomDialog<sup>12+</sup>
+
+closeCustomDialog(dialogId: number): void
+
+关闭自定义弹窗。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                             |
+| -------- | ------ | ---- | -------------------------------- |
+| dialogId | number | 是   | openCustomDialog返回的对话框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：** 
+
+```ts
+import { PromptAction } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  private customDialogComponentId: number = 0
+
+  @Builder
+  customDialogComponent() {
+    Column() {
+      Text('弹窗').fontSize(30)
+      Row({ space: 50 }) {
+        Button("确认").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+        Button("取消").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            this.promptAction.openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
+                }
+              }
+            }).then((dialogId: number) => {
+              this.customDialogComponentId = dialogId
+            })
+          })
       }
       .width('100%')
       .height('100%')
@@ -6847,77 +6970,6 @@ struct ComponentSnapshotExample {
         .width(200)
         .border({ color: Color.Black, width: 2 })
     }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
-  }
-}
-```
-
-### getSync<sup>12+</sup>
-
-getSync(id: string, options?: SnapshotOptions): image.PixelMap
-
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
-
-> **说明：**
->
-> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型     | 必填   | 说明                                       |
-| ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| options       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
-
-**返回值：**
-
-| 类型                            | 说明       |
-| ----------------------------- | -------- |
-| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
-
-**错误码：** 
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
-
-| 错误码ID  | 错误信息                |
-| ------ | ------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001 | Invalid ID. |
-| 160002 | Timeout. |
-
-**示例：**
-
-```ts
-import { image } from '@kit.ImageKit';
-import { UIContext } from '@kit.ArkUI';
-
-@Entry
-@Component
-struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
-
-  build() {
-    Column() {
-      Row() {
-        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
-        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
-      }
-      Button("click to generate UI snapshot")
-        .onClick(() => {
-          try {
-            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
-            this.pixmap = pixelmap
-          } catch (error) {
-            console.error("getSync errorCode: " + error.code + " message: " + error.message)
-          }
-        }).margin(10)
-    }
-    .width('100%')
-    .height('100%')
-    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
