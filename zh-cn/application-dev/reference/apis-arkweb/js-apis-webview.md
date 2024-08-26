@@ -3710,6 +3710,10 @@ scrollBy(deltaX:number, deltaY:number,duration?:number): void
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
+> **说明：**
+>
+> 嵌套滚动场景中，调用scrollBy不会触发父组件的嵌套滚动。
+
 **示例：**
 
 ```ts
@@ -3767,7 +3771,93 @@ Scroll Test
 </body>
 </html>
 ```
+### scrollByWithResult<sup>12+</sup>
 
+scrollByWithResult(deltaX:number, deltaY:number): boolean
+
+将页面滚动指定的偏移量，返回值表面此次滚动是否执行成功。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 当前网页是否可以滑动，默认为false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+> **说明：**
+>
+> - 返回值场景：Web页面处于触摸中状态时，返回false，否则返回true。
+> - 同层渲染场景中，Web的同层渲染区域处于触摸中状态时，返回值为true。
+> - 嵌套滚动场景中，调用scrollByWithResult不会触发父组件的嵌套滚动。
+> - 此接口不保证滑动帧率性能。
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollByWithResult')
+        .onClick(() => {
+          try {
+          let result = this.controller.scrollByWithResult(50, 50);
+          console.log("original result: " + result);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:2000px;
+            height:2000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
 ### slideScroll
 
 slideScroll(vx:number, vy:number): void
