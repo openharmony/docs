@@ -55,6 +55,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -136,7 +137,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -227,7 +230,9 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -318,6 +323,7 @@ Ability被启动后，有如下情况:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -405,9 +411,9 @@ Ability被启动后，有如下情况:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
@@ -501,6 +507,7 @@ Ability被启动后，有如下情况:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -862,6 +869,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -1074,6 +1082,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -1451,6 +1460,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -1533,6 +1543,7 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -1788,6 +1799,7 @@ showAbility(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 801 | Capability not support. |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
 
@@ -1884,6 +1896,7 @@ hideAbility(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 801 | Capability not support. |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
 
@@ -1961,7 +1974,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-将处于前台的Ability移动到后台。使用Promise异步回调。仅支持在主线程调用。
+将处于前台的Ability移动到后台。使用Promise异步回调。仅支持在主线程调用。<br/><!--RP1--> 该接口仅适用于deviceTypes为“default”的设备。<!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2144,6 +2157,7 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -2159,7 +2173,6 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 | 16000019 | Can not match any component. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000054 | Installation-free service is busy.Try again later. |
 
 **示例：**
 
@@ -2217,6 +2230,153 @@ struct Index {
       .width('100%')
     }
     .height('100%')
+  }
+}
+```
+
+## UIAbilityContext.backToCallerAbilityWithResult<sup>12+<sup>
+
+backToCallerAbilityWithResult(abilityResult: AbilityResult, requestCode: string): Promise&lt;void&gt;
+
+当通过[startAbilityForResult](#uiabilitycontextstartabilityforresult)或[openLink](#uiabilitycontextopenlink12)拉起目标方Ability，且需要目标方返回结果时，目标方可以通过该接口将结果返回并拉起调用方。与[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)不同的是，本接口在返回时不会销毁当前Ability。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| abilityResult | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 指示目标方返回给拉起方的结果。 |
+| requestCode  |  string | 是 | 通过[startAbilityForResult](#uiabilitycontextstartabilityforresult)或[openLink](#uiabilitycontextopenlink12)拉起目标方Ability且需要目标方返回结果时，系统生成的用于标识本次调用的requestCode。该值可以通过want中的[CALLER_REQUEST_CODE](js-apis-app-ability-wantConstant.md)字段获取。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201  | The application does not have permission to call the interface. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011  | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000074 | The caller does not exist. |
+| 16000075 | Not support back to caller. |
+
+**示例：**
+调用方通过startAbilityForResult接口拉起目标方, 目标方再调用backToCallerAbilityWithResult接口返回到调用方。
+
+```ts
+// 调用方
+// index.ets
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+
+        Button("Call StartAbilityForResult")
+          .onClick(() => {
+            let context: common.UIAbilityContext = getContext() as common.UIAbilityContext;
+            let want: Want = {
+              bundleName: 'com.example.demo2',
+              abilityName: 'EntryAbility'
+            };
+
+            try {
+              // 通过startAbilityForResult拉起目标应用
+              context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
+                if (err.code) {
+                  // 处理业务逻辑错误
+                  hilog.error(0x0000, 'testTag', `startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+                  this.message = `startAbilityForResult failed: code is ${err.code}, message is ${err.message}`
+                  return;
+                }
+                // 执行正常业务
+                hilog.info(0x0000, 'testTag', `startAbilityForResult succeed`);
+                hilog.info(0x0000, 'testTag', `AbilityResult is ${JSON.stringify(result)}`);
+                this.message = `AbilityResult.resultCode: ${JSON.stringify(result.resultCode)}`
+              });
+            } catch (err) {
+              // 处理入参错误异常
+              let code = (err as BusinessError).code;
+              let message = (err as BusinessError).message;
+              hilog.error(0x0000, 'testTag', `startAbilityForResult failed, code is ${code}, message is ${message}`);
+              this.message = `startAbilityForResult failed, code is ${code}, message is ${message}`;
+            }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// 目标方
+// EntryAbility.ets
+import { AbilityConstant, common, UIAbility, Want, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // 从want中获取调用方的CALLER_REQUEST_CODE，并保存
+    let callerRequestCode: string = want?.parameters?.[wantConstant.Params.CALLER_REQUEST_CODE] as string;
+    AppStorage.setOrCreate<string>("callerRequestCode", callerRequestCode)
+  }
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let callerRequestCode: string = want?.parameters?.[wantConstant.Params.CALLER_REQUEST_CODE] as string;
+    AppStorage.setOrCreate<string>("callerRequestCode", callerRequestCode)
+  }
+
+  onForeground(): void {
+    // 获取保存的CALLER_REQUEST_CODE
+    let callerRequestCode: string = AppStorage.get<string>("callerRequestCode") as string;
+    hilog.info(0x0000, 'testTag', `callerRequestCode is ${callerRequestCode}`);
+    let want: Want = {};
+    let resultCode = 100;
+    let abilityResult: common.AbilityResult = {
+      want,
+      resultCode
+    };
+    try {
+      // 将结果信息返回给调用方
+      this.context.backToCallerAbilityWithResult(abilityResult, callerRequestCode)
+        .then(() => {
+          // 执行正常业务
+          hilog.info(0x0000, 'testTag', 'backToCallerAbilityWithResult succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          hilog.error(0x0000, 'testTag', `backToCallerAbilityWithResult failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 捕获同步的参数错误
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(0x0000, 'testTag', `backToCallerAbilityWithResult failed, code is ${code}, message is ${message}`);
+    }
   }
 }
 ```

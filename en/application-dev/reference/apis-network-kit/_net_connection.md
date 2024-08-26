@@ -248,6 +248,7 @@ Network carrier type.
 | ------------------------| ----------------------- |
 | NETCONN_BEARER_CELLULAR | Cellular network.             |
 | NETCONN_BEARER_WIFI     | Wi-Fi.                 |
+| NETCONN_BEARER_BLUETOOTH     | Bluetooth. <br>**Since**: 12 |
 | NETCONN_BEARER_ETHERNET | Ethernet.             |
 | NETCONN_BEARER_VPN      | Virtual private network.<br>**Since**: 12|
 
@@ -271,7 +272,7 @@ Network capability set.
 | NETCONN_NET_CAPABILITY_INTERNET | Internet.| 
 | NETCONN_NET_CAPABILITY_NOT_VPN | Non-VPN.| 
 | NETCONN_NET_CAPABILITY_VALIDATED | Verified.| 
-
+| NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | In checking connectivity.<br>**Since**: 12 | 
 
 ## Function Description
 

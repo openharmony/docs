@@ -36,6 +36,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | group | string | 否 | 群组名称。<br/>**说明：** <br/>多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效。 |
@@ -88,8 +90,6 @@ unselectedColor(value: ResourceColor)
 
 设置非选中状态边框颜色。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -98,15 +98,13 @@ unselectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                 |
 | ------ | ------------------------------------------ | ---- | -------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：'#33ffffff'。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
 mark(value: MarkStyle)
 
 设置多选框内部图标样式。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -164,16 +162,20 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型   | 描述      |
-| ------ | ------ | ------- |
-| name   | Array&lt;string&gt; | 群组内所有被选中的多选框名称。 |
-| status | [SelectStatus](#selectstatus枚举说明) | 选中状态。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型   | 只读 | 可选 | 说明      |
+| ------ | ------ | ------- | ------- | ------- |
+| name   | Array&lt;string&gt; | 否 | 否 | 群组内所有被选中的多选框名称。 |
+| status | [SelectStatus](#selectstatus枚举说明) | 否 | 否 | 选中状态。 |
 
 ## SelectStatus枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 描述 |
 | ----- | -------------------- |

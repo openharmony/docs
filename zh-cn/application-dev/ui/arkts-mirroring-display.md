@@ -42,7 +42,7 @@ ArkUI 如下能力已默认适配镜像：
 
 目前，以下三类通用属性需要使用新入参类型适配：
 
-位置设置：[position](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#position)、[markAnchor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[alignRules](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#alignrules)
+位置设置：[position](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#position)、[markAnchor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[alignRules](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#alignrules12)
 
 边框设置：[borderWidth](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[borderColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)
 

@@ -30,6 +30,8 @@
   - 加解密开发指导
     - [使用AES对称密钥（GCM模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [使用AES对称密钥（GCM模式）加解密(C/C++)](crypto-aes-sym-encrypt-decrypt-gcm-ndk.md)
+    - [使用AES对称密钥（CCM模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-ccm.md)
+    - [使用AES对称密钥（CCM模式）加解密(C/C++)](crypto-aes-sym-encrypt-decrypt-ccm-ndk.md)
     - [使用AES对称密钥（CBC模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-cbc.md)
     - [使用AES对称密钥（CBC模式）加解密(C/C++)](crypto-aes-sym-encrypt-decrypt-cbc-ndk.md)
     - [使用AES对称密钥（ECB模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-ecb.md)

@@ -153,7 +153,7 @@ export struct PageOne {
 }
 ```
 
-每个子页也需要配置到系统配置文件`route_map.json`中（参考[系统路由配置](arkts-navigation-navigation.md#系统路由表)）。
+每个子页也需要配置到系统配置文件`route_map.json`中（参考[系统路由表](arkts-navigation-navigation.md#系统路由表)）。
 
 ```json
 // 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
@@ -344,7 +344,7 @@ export struct PageOne {
 }
 ```
 
-**方式四**：通过自定义组件查询接口获取（参考[自定义组件方法](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavigationinfo12)）。
+**方式四**：通过自定义组件查询接口获取，参考[queryNavigationInfo](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavigationinfo12)。
 
 ```ts
 import { uiObserver } from '@kit.ArkUI';
@@ -398,7 +398,7 @@ onPageHide(): void {
 ![image](figures/router_page_lifecycle.png)
 
 Navigation作为路由容器，其生命周期承载在NavDestination组件上，以组件事件的形式开放。
-具体生命周期描述请参考[Navigation生命周期](arkts-navigation-navigation.md#页面生命周期)。
+具体生命周期描述请参考Navigation[页面生命周期](arkts-navigation-navigation.md#页面生命周期)。
 
 ```ts
 @Component
@@ -438,9 +438,9 @@ struct PageOne {
 
 Router和Navigation都提供了系统的转场动画也提供了自定义转场的能力。
 
-其中Router自定义页面转场通过通用方法`pageTransition()`实现，具体可参考[Router自定义转场动画](arkts-page-transition-animation.md)。
+其中Router自定义页面转场通过通用方法`pageTransition()`实现，具体可参考Router[页面转场动画](arkts-page-transition-animation.md)。
 
-Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考[Navigation自定义转场动画](arkts-navigation-navigation.md#自定义转场)。（注意：Dialog类型的页面当前没有转场动画）
+Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考Navigation[自定义转场](arkts-navigation-navigation.md#自定义转场)。（注意：Dialog类型的页面当前没有转场动画）
 
 ### 共享元素转场
 
@@ -453,7 +453,7 @@ Navigation也提供了共享元素一镜到底的转场能力，需要配合`geo
 
 Router可以通过命名路由的方式实现跨包跳转。
 
-1. 在想要跳转到的共享包[Har](../quick-start/har-package.md)或者[Hsp](../quick-start/in-app-hsp.md)页面里，给[@Entry修饰的自定义组件](../quick-start/arkts-create-custom-components.md#entryoptions10)命名。
+1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../quick-start/arkts-create-custom-components.md#entryoptions10)命名。
 
    ```ts
    // library/src/main/ets/pages/Index.ets
@@ -598,16 +598,16 @@ Navigation作为路由组件，默认支持跨包跳转。
 4. 各个路由页面将模块名称、路由名称、WrappedBuilder封装后构建函数注册如路由模块。
 5. 当路由需要跳转到指定路由时，路由模块完成对指定路由模块的动态导入，并完成路由跳转。
 
-具体的构建过程，可以参考[Navigation动态路由示例](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/common/routermodule/README_AUTO_GENERATE.md)。
+具体的构建过程，可以参考Navigation[自动生成动态路由](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/common/routermodule/README_AUTO_GENERATE.md)示例。
 
 **方案二：** 系统路由表
 
 从API version 12版本开始，Navigation支持系统跨模块的路由表方案，整体设计是将路由表方案下沉到系统中管理，即在需要路由的各个业务模块（HSP/HAR）中独立配置`router_map.json`文件，在触发路由跳转时，应用只需要通过`NavPathStack`进行路由跳转，此时系统会自动完成路由模块的动态加载、组件构建，并完成路由跳转功能，从而实现了开发层面的模块解耦。
-具体可参考文档：[Navigation系统路由](arkts-navigation-navigation.md#系统路由表)
+具体可参考Navigation[系统路由表](arkts-navigation-navigation.md#系统路由表)。
 
 ### 生命周期监听
 
-Router可以通过observer实现注册监听，接口定义请参考：[Router无感监听](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11)。
+Router可以通过observer实现注册监听，接口定义请参考Router无感监听[observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11)。
 
 
 ```ts
@@ -726,4 +726,4 @@ struct MyComponent {
 
 Router原生没有提供路由拦截的能力，开发者需要自行封装路由跳转接口，并在自己封装的接口中做路由拦截的判断并重定向路由。
 
-Navigation提供了[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)方法，用于设置Navigation页面跳转拦截回调。具体可以参考文档：[Navigation路由拦截](arkts-navigation-navigation.md#路由拦截)
+Navigation提供了[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)方法，用于设置Navigation页面跳转拦截回调。具体可以参考文档：Navigation[路由拦截](arkts-navigation-navigation.md#路由拦截)

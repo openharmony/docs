@@ -16,7 +16,7 @@
 
 >  **说明：**
 >
->  以上接口是实时模糊接口，会每帧进行实时渲染，性能负载较高。当模糊内容和模糊半径都不需要变化时，建议使用[静态模糊接口](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur)。
+>  以上接口是实时模糊接口，会每帧进行实时渲染，性能负载较高。当模糊内容和模糊半径都不需要变化时，建议使用静态模糊接口[blur](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur)。
 
 ## 使用backdropBlur为组件添加背景模糊
 
@@ -27,7 +27,7 @@
 struct BlurEffectsExample {
   build() {
     Column({ space: 10 }) {
-      Text('backdropblur')
+      Text('backdropBlur')
         .width('90%')
         .height('90%')
         .fontSize(20)

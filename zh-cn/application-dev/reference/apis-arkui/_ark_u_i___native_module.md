@@ -316,7 +316,7 @@
 | int32_t [OH_ArkUI_DrawableDescriptor_GetAnimationIteration](#oh_arkui_drawabledescriptor_getanimationiteration) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取 PixelMap 图片数组播放次数。  | 
 | [ArkUI_AnimateOption](#arkui_animateoption) \* [OH_ArkUI_AnimateOption_Create](#oh_arkui_animateoption_create) () | 创建动画效果参数。  | 
 | void [OH_ArkUI_AnimateOption_Dispose](#oh_arkui_animateoption_dispose) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 销毁动画效果参数指针。  | 
-| uint32_t [OH_ArkUI_AnimateOption_GetDuration](#oh_arkui_animateoption_getduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画持续时间，单位为ms(毫秒)。  | 
+| int32_t [OH_ArkUI_AnimateOption_GetDuration](#oh_arkui_animateoption_getduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画持续时间，单位为ms(毫秒)。  | 
 | float [OH_ArkUI_AnimateOption_GetTempo](#oh_arkui_animateoption_gettempo) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放速度。  | 
 | [ArkUI_AnimationCurve](#arkui_animationcurve) [OH_ArkUI_AnimateOption_GetCurve](#oh_arkui_animateoption_getcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画曲线。  | 
 | uint32_t [OH_ArkUI_AnimateOption_GetDelay](#oh_arkui_animateoption_getdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画延迟播放时间，单位为ms(毫秒)。  | 
@@ -2729,7 +2729,7 @@ enum ArkUI_NodeAttributeType
 | NODE_HEIGHT_PERCENT  | 高度属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：高度数值，单位为百分比；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：高度数值，单位为百分比； | 
 | NODE_PADDING_PERCENT  | 内间距属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式有两种：<br/>1：上下左右四个位置的内间距值相等。<br/>.value[0].f32：内间距数值，单位为百分比；<br/>2：分别指定上下左右四个位置的内间距值。<br/>.value[0].f32：上内间距数值，单位为百分比；<br/>.value[1].f32：右内间距数值，单位为百分比；<br/>.value[2].f32：下内间距数值，单位为百分比；<br/>.value[3].f32：左内间距数值，单位为百分比；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：上内间距数值，单位为百分比；<br/>.value[1].f32：右内间距数值，单位为百分比；<br/>.value[2].f32：下内间距数值，单位为百分比；<br/>.value[3].f32：左内间距数值，单位为百分比； | 
 | NODE_MARGIN_PERCENT  | 外间距属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式有两种：<br/>1：上下左右四个位置的外间距值相等。<br/>.value[0].f32：外间距数值，单位为百分比；<br/>2：分别指定上下左右四个位置的外间距值。<br/>.value[0].f32：上外间距数值，单位为百分比；<br/>.value[1].f32：右外间距数值，单位为百分比；<br/>.value[2].f32：下外间距数值，单位为百分比；<br/>.value[3].f32：左外间距数值，单位为百分比；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：上外间距数值，单位为百分比；<br/>.value[1].f32：右外间距数值，单位为百分比；<br/>.value[2].f32：下外间距数值，单位为百分比；<br/>.value[3].f32：左外间距数值，单位为百分比； | 
-| NODE_GEOMETRY_TRANSITION  | 组件内隐式共享元素转场，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型为1或者0。共享元素绑定的2个组件， 针对出场元素未进行删除时是否要继续参与共享元素动画，默认为false，不参与保持原始位置不动。<br/>.string 用于设置绑定关系，id置""清除绑定关系避免参与共享行为， id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色， 不能多个组件绑定同一个id。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型为1或者0。共享元素绑定的2个组件， 针对出场元素未进行删除时是否要继续参与共享元素动画，默认未false，不参与保持原始位置不动。<br/>.string 用于设置绑定关系，id置""清除绑定关系避免参与共享行为， id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色， 不能多个组件绑定同一个id。 | 
+| NODE_GEOMETRY_TRANSITION  | 组件内隐式共享元素转场，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.i32：参数类型为1或者0。共享元素绑定的2个组件， 针对出场元素未进行删除时是否要继续参与共享元素动画，默认为false，不参与保持原始位置不动。<br/>.string 用于设置绑定关系，id置""清除绑定关系避免参与共享行为， id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色， 不能多个组件绑定同一个id。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型为1或者0。共享元素绑定的2个组件， 针对出场元素未进行删除时是否要继续参与共享元素动画，默认未false，不参与保持原始位置不动。<br/>.string 用于设置绑定关系，id置""清除绑定关系避免参与共享行为， id可更换重新建立绑定关系。同一个id只能有两个组件绑定且是in/out不同类型角色， 不能多个组件绑定同一个id。 | 
 | NODE_RELATIVE_LAYOUT_CHAIN_MODE  | 指定以该组件为链头所构成的链的参数，支持属性设置、属性重置和属性获取接口。<br/>仅当父容器为RelativeContainer时生效<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：链的方向。枚举[ArkUI_Axis](#arkui_axis)。<br/>.value[1].i32：链的样式。枚举[ArkUI_RelativeLayoutChainStyle](#arkui_relativelayoutchainstyle)。<br/>.value[0].i32：链的方向。枚举[ArkUI_Axis](#arkui_axis)。<br/>.value[1].i32：链的样式。枚举[ArkUI_RelativeLayoutChainStyle](#arkui_relativelayoutchainstyle)。 | 
 | NODE_RENDER_FIT  | 设置宽高动画过程中的组件内容填充方式，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 内容填充方式，使用[ArkUI_RenderFit](#arkui_renderfit)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 内容填充方式，使用[ArkUI_RenderFit](#arkui_renderfit)枚举值。 | 
 | NODE_OUTLINE_COLOR  | 外描边颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>1: .value[0].u32：统一设置四条边的边框颜色，使用0xargb表示，如0xFFFF11FF。<br/>2: .value[0].u32：设置上侧边框颜色，使用0xargb表示，如0xFFFF11FF。<br/>.value[1].u32：设置右侧边框颜色，使用0xargb表示，如0xFFFF11FF。<br/>.value[2].u32：设置下侧边框颜色，使用0xargb表示，如0xFFFF11FF。<br/>.value[3].u32：设置左侧边框颜色，使用0xargb表示，如0xFFFF11FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：设置上侧边框颜色，使用0xargb表示，如0xFFFF11FF。<br/>.value[1].u32：设置右侧边框颜色，使用0xargb表示，如0xFFFF11FF。<br/>.value[2].u32：设置下侧边框颜色，使用0xargb表示，如0xFFFF11FF。<br/>.value[3].u32：设置左侧边框颜色，使用0xargb表示，如0xFFFF11FF。 | 
@@ -5061,7 +5061,7 @@ uint32_t OH_ArkUI_AnimateOption_GetDelay (ArkUI_AnimateOption * option)
 ### OH_ArkUI_AnimateOption_GetDuration()
 
 ```
-uint32_t OH_ArkUI_AnimateOption_GetDuration (ArkUI_AnimateOption * option)
+int32_t OH_ArkUI_AnimateOption_GetDuration (ArkUI_AnimateOption * option)
 ```
 **描述：**
 
@@ -6927,7 +6927,7 @@ float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize (ArkUI_CustomSpanMeasureInfo * 
 ```
 **描述：**
 
-获取自定义段落组件的字体大小。
+获取自定义段落组件的父节点Text的字体大小。
 
 **起始版本：** 12
 

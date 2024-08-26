@@ -85,6 +85,8 @@ EXTERN_C_END
 
    ```c++
       // 引入图片框架、raw文件、raw文件管理和日志打印头文件
+      #include <cstdlib>
+      #include <cstring>
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>
       #include <rawfile/raw_file.h>
@@ -173,6 +175,8 @@ EXTERN_C_END
 
    ```c++
       // 引入图片框架、raw文件、raw文件管理和日志打印头文件
+      #include <cstdlib>
+      #include <cstring>
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>
       #include <rawfile/raw_file.h>

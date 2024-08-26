@@ -313,7 +313,7 @@ import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
 @Entry
 @Component
 struct CounterPage {
-  @State currentDirection: Direction = Direction.Auto
+  @State currentDirection: Direction = Direction.Rtl
 
   build() {
     Column({}) {
