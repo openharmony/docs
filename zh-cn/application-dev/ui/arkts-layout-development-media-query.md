@@ -173,7 +173,14 @@ struct MediaQueryExample {
   aboutToAppear() {
     // 绑定当前应用实例
     // 绑定回调函数
-    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) });
+    this.listener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
+      this.onPortrait(mediaQueryResult)
+    });
+  }
+
+  aboutToDisappear() {
+    // 解绑listener中注册的回调函数
+    this.listener.off('change');
   }
 
   // 改变设备横竖屏状态函数
@@ -231,6 +238,11 @@ struct MediaQueryExample {
   aboutToAppear() {
     // 绑定当前应用实例
     this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) }); //绑定回调函数
+  }
+
+  aboutToDisappear() {
+    // 解绑listener中注册的回调函数
+    this.listener.off('change');
   }
 
   build() {

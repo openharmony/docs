@@ -172,8 +172,14 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = (mediaQueryResult:mediaquery.MediaQueryResult):void=>this.onPortrait(mediaQueryResult)  // bind current js instance
-    this.listener.on('change', portraitFunc)
+    let portraitFunc = (mediaQueryResult: mediaquery.MediaQueryResult): void => this.onPortrait(mediaQueryResult)
+    // 绑定回调函数
+    this.listener.on('change', portraitFunc);
+  }
+
+  aboutToDisappear() {
+    // 解绑listener中注册的回调函数
+    this.listener.off('change');
   }
 
   build() {
