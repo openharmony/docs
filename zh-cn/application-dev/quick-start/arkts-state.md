@@ -838,7 +838,7 @@ struct Index {
 
 3. 第二个Text组件的刷新又触发this.message的改变，触发第一个Text组件刷新。
 
-4. 循环重新渲染。。。
+4. 循环重新渲染……
 
 5. 系统长时间无响应，appfreeze。
 
