@@ -55,20 +55,24 @@
 4. 用户通过addNetFirewallRule方法，添加防火墙规则。
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+// 从@kit.NetworkKit中导入netFirewall命名空间
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 定义防火墙策略：打开，入站阻止，出站允许
 let policy: netFirewall.NetFirewallPolicy = {
   isOpen: true,
   inAction: netFirewall.FirewallRuleAction.RULE_DENY,
   outAction: netFirewall.FirewallRuleAction.RULE_ALLOW
 };
+// 给用户100设置防火墙策略
 netFirewall.setNetFirewallPolicy(100, policy).then(() => {
   console.info("set firewall policy success.");
 }).catch((error : BusinessError) => {
   console.error("set firewall policy failed: " + JSON.stringify(error));
 });
 
+// 初始化具体的防火墙ip类型规则
 let ipRule: netFirewall.NetFirewallRule = {
   name: "rule1",
   description: "rule1 description",
@@ -117,6 +121,7 @@ let ipRule: netFirewall.NetFirewallRule = {
     }],
   userId: 100
 };
+// 添加防火墙规则
 netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
   console.info('rule Id: ', result);
 }, (reason: BusinessError) => {
@@ -132,20 +137,24 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 4. 用户态通过addNetFirewallRule方法，添加防火墙规则。
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+// 从@kit.NetworkKit中导入netFirewall命名空间
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 定义防火墙策略：打开，入站阻止，出站允许
 let policy: netFirewall.NetFirewallPolicy = {
   isOpen: true,
   inAction: netFirewall.FirewallRuleAction.RULE_DENY,
   outAction: netFirewall.FirewallRuleAction.RULE_ALLOW
 };
+// 给用户100设置防火墙策略
 netFirewall.setNetFirewallPolicy(100, policy).then(() => {
   console.info("set firewall policy success.");
 }).catch((error : BusinessError) => {
   console.error("set firewall policy failed: " + JSON.stringify(error));
 });
 
+// 初始化具体的防火墙域名类型规则
 let domainRule: netFirewall.NetFirewallRule = {
   name: "rule2",
   description: "rule2 description",
@@ -164,6 +173,7 @@ let domainRule: netFirewall.NetFirewallRule = {
     }],
   userId: 100
 };
+// 添加防火墙规则
 netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
   console.info('rule Id: ', result);
 }, (reason: BusinessError) => {
@@ -178,9 +188,11 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 3. 用户态通过getInterceptRecords方法查询拦截记录。
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+// 从@kit.NetworkKit中导入netFirewall命名空间
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 通过getInterceptedRecords方法分页查询拦截记录
 let interceptRecordParam: netFirewall.RequestParam = {
   page: 1,
   pageSize: 10,

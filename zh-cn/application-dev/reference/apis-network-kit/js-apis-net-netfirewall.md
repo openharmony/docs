@@ -52,7 +52,7 @@ setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let policy: netFirewall.NetFirewallPolicy = {
@@ -107,7 +107,7 @@ getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>
 **示例：**
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.getNetFirewallPolicy(100).then((result: netFirewall.NetFirewallPolicy) => {
@@ -162,7 +162,7 @@ addNetFirewallRule(rule: NetFirewallRule): Promise\<number>
 **示例：**
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ipRule: netFirewall.NetFirewallRule = {
@@ -307,7 +307,7 @@ updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ipRuleUpd: netFirewall.NetFirewallRule = {
@@ -382,7 +382,7 @@ removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.removeNetFirewallRule(100, 1).then(() => {
@@ -432,7 +432,7 @@ getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<Firewa
 **示例：**
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ruleParam: netFirewall.RequestParam = {
@@ -489,7 +489,7 @@ getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>
 **示例：**
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.getNetFirewallRule(100, 1).then((rule: netFirewall.NetFirewallRule) => {
@@ -539,7 +539,7 @@ getInterceptedRecords(userId: number, requestParam: RequestParam): Promise<\Inte
 **示例：**
 
 ```ts
-import { netFirewall } from '@kit.netFirewall';
+import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let interceptRecordParam: netFirewall.RequestParam = {
