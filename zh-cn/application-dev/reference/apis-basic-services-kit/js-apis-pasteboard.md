@@ -2451,3 +2451,71 @@ try {
     console.error('Failed to set UnifiedData. Cause:' + err.message);
 };  
 ```
+### Pattern<sup>12+</sup>
+剪贴板可以检测的特定模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+| 名称                               | 值  | 说明                                                                                  |
+| ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
+| URL                              | 0   | 表示URL类型的模式。                                                              |
+| NUMBER                        | 1   | 表示数字类型的模式。                                                    |
+| EMAIL_ADDRESS | 2   | 表示邮箱地址类型的模式。 |
+
+### detectPatterns<sup>12+</sup>
+
+detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&gt;
+
+检测剪贴板中存在的模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| patterns | [Array&lt;Pattern&gt;>](#pattern12) | 是 | 	用户希望检测的模式。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Array&lt;Pattern&gt;&gt; | 返回结果为剪贴板中检测到的模式的数组的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+let patterns: Array<Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
+
+systemPasteboard.detectPatterns(patterns).then((data: Array<Pattern>) => {
+    if (patterns.sort().join('')==data.sort().join('')) {
+      console.info('All needed patterns detected, next get data');
+      try {
+        let result: pasteboard.PasteData = systemPasteboard.getDataSync();
+        console.info('Succeeded in getting PasteData.');
+      } catch (err) {
+        console.error('Failed to get PasteData. Cause:' + err.message);
+      };
+    }
+    else {
+      console.info("Not all needed patterns detected, no need to get data.");
+    }
+}).catch((err: BusinessError) => {
+    console.error('Failed to set PasteData. Cause: ' + err.message);
+});
+```
