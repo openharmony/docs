@@ -3,24 +3,24 @@
 
 ## 概述
 
-应用启动时通常需要执行一系列初始化启动任务，如果将启动任务都放在应用主模块（即entry类型的Module）的UIAbility组件的onCreate生命周期中，那么只能在主线程中依次执行，不但影响应用的启动速度，而且当启动任务过多时，任务之间复杂的依赖关系还会使得代码难以维护。
+应用启动时通常需要执行一系列初始化启动任务，如果将启动任务都放在应用主模块（即entry类型的Module）的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期中，那么只能在主线程中依次执行，不但影响应用的启动速度，而且当启动任务过多时，任务之间复杂的依赖关系还会使得代码难以维护。
 
 AppStartup提供了一种简单高效的应用启动方式，可以支持任务的异步启动，加快应用启动速度。同时，通过在一个配置文件中统一设置多个启动任务的执行顺序以及依赖关系，让执行启动任务的代码变得更加简洁清晰、容易维护。
 
-启动框架支持以自动模式或手动模式执行启动任务，默认采用自动模式。在[AbilityStage组件容器](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)完成创建后开始加载开发者配置的启动任务，并执行自动模式的启动任务。开发者也可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)创建完后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法，执行手动模式的启动任务。
+启动框架支持以自动模式或手动模式执行启动任务，默认采用自动模式。在[AbilityStage组件容器](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)完成创建后开始加载开发者配置的启动任务，并执行自动模式的启动任务。开发者也可以在UIAbility创建完后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法，执行手动模式的启动任务。
 
   **图1** 启动框架执行时机  
   ![app-startup-procedure](figures/app-startup-procedure.png)
 
 ## 约束限制
 
-- 启动框架只支持在[entry类型的Module](../quick-start/application-package-overview.md#module类型)中使用。
+- 启动框架只支持在entry类型的[Module](../quick-start/application-package-overview.md#module类型)中使用。
 
 - 启动任务之间不允许存在循环依赖。
 
 ## 开发流程
 
-1. [定义启动框架配置文件](#定义启动框架配置文件)：在资源文件目录下创建启动框架配置文件、添加启动任务的配置信息，并在module.json5配置文件中引用。
+1. [定义启动框架配置文件](#定义启动框架配置文件)：在资源文件目录下创建启动框架配置文件、添加启动任务的配置信息，并在[module.json5](../quick-start/module-configuration-file.md)配置文件中引用。
 2. [设置启动参数](#设置启动参数)：在启动参数文件中，设置超时时间和启动任务的监听器等参数。
 3. [为每个待初始化组件添加启动任务](#为每个待初始化组件添加启动任务)：通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口，启动框架将会按顺序执行初始化流程。
 
@@ -190,7 +190,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 
 > **说明：** 
 > 
-> 由于[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)采用了[Sendable](../arkts-utils/arkts-sendable.md)协议，在继承该接口时，必须添加Sendable注解。
+> 由于StartupTask采用了[Sendable](../arkts-utils/arkts-sendable.md)协议，在继承该接口时，必须添加Sendable注解。
 
 ```ts
 import { StartupTask, common } from '@kit.AbilityKit';
@@ -216,7 +216,7 @@ export default class StartupTask_001 extends StartupTask {
 
 ### （可选）修改启动模式
 
-`AppStartup`分别提供了自动和手动两种方式来执行启动任务，默认采用自动模式。开发者可以根据需要修改为手动模式。
+AppStartup分别提供了自动和手动两种方式来执行启动任务，默认采用自动模式。开发者可以根据需要修改为手动模式。
 
 - 自动模式：当AbilityStage组件容器完成创建后，自动执行启动任务。
 - 手动模式：在UIAbility完成创建后手动调用，来执行启动任务。对于某些使用频率不高的模块，不需要应用最开始启动时就进行初始化。开发者可以选择将该部分启动任务修改为手动模式，在应用启动完成后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法来执行启动任务。
