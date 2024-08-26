@@ -22,7 +22,7 @@ In a project, the following files can be obfuscated, and the cache files after o
 
 ## Enabling Code Obfuscation
 
-Code obfuscation has been integrated into the SDK and can be easily used in DevEco Studio.
+Code obfuscation has been integrated into the system and can be enabled for use in DevEco Studio.
 
 Currently, only name obfuscation is provided. Other obfuscation capabilities deteriorate performance. You can use code obfuscation to obfuscate the following names:
 

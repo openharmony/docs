@@ -1,6 +1,6 @@
 # TaskPool Introduction
 
-TaskPool provides a multithreaded environment for applications. It helps reduce resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. For details about the APIs and their usage, see [TaskPool](../reference/apis-arkts/js-apis-taskpool.md).
+TaskPool provides a multithreaded environment for applications. It helps reduce resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. For details about the TaskPool APIs and their usage, see [TaskPool](../reference/apis-arkts/js-apis-taskpool.md).
 
 
 ## TaskPool Operating Mechanism
@@ -16,7 +16,7 @@ With TaskPool, you can encapsulate tasks in the main thread and throw the tasks 
 
 - A task function must be decorated with [\@Concurrent](arkts-concurrent.md) and can be used only in .ets files.
 
-- Since API version 11, if a function that implements a task needs to use a class method, the class must be decorated with [\@Sendable](arkts-sendable.md) and used only in .ets files.
+- Since API version 11, when a function that implements a task needs to use a class method, the class must be decorated with [\@Sendable](arkts-sendable.md) and used only in .ets files.
 
 - A task function in the TaskPool worker thread must finish the execution within 3 minutes (excluding the time used for Promise or async/await asynchronous call, for example, the duration of I/O tasks such as network download and file read/write). Otherwise, it forcibly exits.
 
@@ -27,3 +27,60 @@ With TaskPool, you can encapsulate tasks in the main thread and throw the tasks 
 - Context objects vary in different threads. Therefore, the TaskPool worker thread can use only a thread-safe library, but not a non-thread-safe library (for example, UI-related non-thread-safe library). For details, see [Precautions for Multithread Safe](multi-thread-safety.md).
 
 - A maximum of 16 MB data can be serialized.
+
+- A promise object cannot be passed across threads and cannot be used as the return value of a concurrent function.
+
+```ts
+// Positive example:
+@Concurrent
+async function asyncFunc(val1:number, val2:number): Promise<number> {
+  let ret: number = await new Promise((resolve, reject) => {
+    let value = val1 + val2;
+    resolve(value);
+  });
+  return ret; // Supported. A promise object is returned.
+}
+
+function taskpoolExecute() {
+  taskpool.execute(asyncFunc, 10, 20).then((result: Object) => {
+    console.info("taskPoolTest task result: " + result);
+  }).catch((err: string) => {
+    console.error("taskPoolTest test occur error: " + err);
+  });
+}
+taskpoolExecute()
+```
+
+<!--code_no_check-->
+```ts
+// Negative example 1:
+@Concurrent
+async function asyncFunc(val1:number, val2:number): Promise<number> {
+  let ret: number = await new Promise((resolve, reject) => {
+    let value = val1 + val2;
+    resolve(value);
+  });
+  return Promise.resolve(ret); // Not supported. Promise.resolve is a promise object in pending state. It cannot be used as a return value.
+}
+
+// Negative example 2:
+@Concurrent
+async function asyncFunc(val1:number, val2:number): Promise<number> {
+  // Not supported. The status is pending. It cannot be used as a return value.
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let value = val1 + val2;
+      resolve(value);
+    }, 2000);
+  }); 
+}
+
+function taskpoolExecute() {
+  taskpool.execute(asyncFunc, 10, 20).then((result: Object) => {
+    console.info("taskPoolTest task result: " + result);
+  }).catch((err: string) => {
+    console.error("taskPoolTest test occur error: " + err);
+  });
+}
+taskpoolExecute()
+```
