@@ -5701,7 +5701,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-<!--Del-->
 ### getWindowStatus<sup>12+</sup>
 
 getWindowStatus(): WindowStatusType
@@ -5830,7 +5829,6 @@ try {
   console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
-<!--DelEnd-->
 
 ### enableLandscapeMultiWindow<sup>12+</sup>
 
