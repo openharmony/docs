@@ -1656,12 +1656,13 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 2100001 | Invalid parameter value.                |
+| 错误码ID| 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **示例：**
 
@@ -2594,10 +2595,12 @@ if (netHandle.netId == 0) {
 
 网络地址。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| ------- | ------ | -- |------------------------------ |
-| address | string | 是 |地址。 |
-| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 |
-| port    | number | 否 |端口，取值范围\[0, 65535]。 |
+|  名称   | 类型   |必填|                                        说明                                                 |
+| ------- | ------ | -- |------------------------------------------------------------------------------------------- |
+| address | string | 是 |地址。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
+| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| port    | number | 否 |端口，取值范围\[0, 65535]。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
