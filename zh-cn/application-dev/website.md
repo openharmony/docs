@@ -1442,6 +1442,7 @@
         - JSVM-API使用指导<!--jsvm-use-->
             - [使用JSVM-API接口进行任务队列相关开发](napi/use-jsvm-execute_tasks.md)
             - [使用JSVM-API接口进行虚拟机快照相关开发](napi/use-jsvm-create-snapshot.md)
+            - [使用JSVM-API接口进行WebAssembly模块相关开发](napi/use-jsvm-about-wasm.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例
