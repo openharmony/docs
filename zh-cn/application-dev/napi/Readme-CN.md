@@ -33,6 +33,7 @@
   - 使用JSVM-API实现JS与C/C++语言交互
     - [JSVM-API简介](jsvm-introduction.md)
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
+    - [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)
     - JSVM-API开发规范
       - [JSVM-API使用规范](jsvm-guidelines.md)
       - [JSVM-API常见问题](jsvm-frequently-questions.md)
