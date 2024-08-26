@@ -12,9 +12,10 @@
 
 **变更影响**
 
-该变更为不兼容变更
+该变更为不兼容变更。
 
 变更前：模态UIExtension默认隐藏不安全窗口且不允许取消隐藏。
+
 变更后：模态UIExtension默认隐藏不安全窗口，申请ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS权限后可取消隐藏。
 
 **起始API Level**
