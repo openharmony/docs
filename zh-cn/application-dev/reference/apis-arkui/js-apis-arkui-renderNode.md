@@ -1283,7 +1283,7 @@ struct Index {
 
 set transform(transform: Matrix4)
 
-设置当前RenderNode的变换信息。
+设置当前RenderNode的变换矩阵。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1293,11 +1293,11 @@ set transform(transform: Matrix4)
 
 | 参数名    | 类型                                           | 必填 | 说明                             |
 | --------- | ---------------------------------------------- | ---- | -------------------------------- |
-| transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | 是   | 将要设置的RenderNode的变换信息。 |
+| transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | 是   | 将要设置的RenderNode的变换矩阵。 |
 
 get transform(): Matrix4
 
-获取当前RenderNode的变换信息。默认值为：
+获取当前RenderNode的变换矩阵。默认值为：
 ```ts
 [
   1, 0, 0, 0,
@@ -1315,7 +1315,7 @@ get transform(): Matrix4
 
 | 类型                                           | 说明                       |
 | ---------------------------------------------- | -------------------------- |
-| [Matrix4](./js-apis-arkui-graphics.md#matrix4) | 当前RenderNode的变换信息。 |
+| [Matrix4](./js-apis-arkui-graphics.md#matrix4) | 当前RenderNode的变换矩阵。 |
 
 **示例：**
 ```ts
