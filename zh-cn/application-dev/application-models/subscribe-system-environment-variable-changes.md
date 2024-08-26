@@ -18,7 +18,7 @@
 [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)提供了注册回调函数以订阅系统环境变量的变化，并且可以通过调用相应的方法来撤销该回调。这有助于在资源不再需要时释放相关资源，从而提高系统的可靠性和性能。
 
 <!--code_no_check-->
-1. 使用[ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextontype-environment-callback-environmentcallback)方法，应用程序可以通过在非应用组件模块中订阅系统环境变量的变化来动态响应这些变化。例如，使用该方法在页面中监测系统语言的变化。
+1. 使用ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)方法，应用程序可以通过在非应用组件模块中订阅系统环境变量的变化来动态响应这些变化。例如，使用该方法在页面中监测系统语言的变化。
 
     ```ts
     import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
@@ -69,7 +69,7 @@
     }
     ```
 
-2. 在资源使用完成之后，可以通过调用[ApplicationContext.off(type: 'environment', callbackId: number)](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextofftype-environment-callbackid-number)方法释放相关资源。
+2. 在资源使用完成之后，可以通过调用ApplicationContext.off(type: 'environment', callbackId: number)方法释放相关资源。
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -109,8 +109,8 @@
 
 > **说明：**
 >
-> - DevEco Studio默认工程中未自动生成AbilityStage，AbilityStage文件的创建请参见[AbilityStage组件容器](abilitystage.md)。
-> - 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的生命周期而存在，在Module销毁时一并销毁。
+> - DevEco Studio默认工程中未自动生成[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)，AbilityStage文件的创建请参见[AbilityStage组件容器](abilitystage.md)。
+> - 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着AbilityStage的生命周期而存在，在Module销毁时一并销毁。
 
 例如，在[AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)回调方法中实现监测系统语言的变化。
 
@@ -144,7 +144,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 ## 在UIAbility组件中订阅回调
 
-UIAbility组件提供了[UIAbility.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法用于订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息，而无需重启UIAbility。
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件提供了[UIAbility.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法用于订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息，而无需重启UIAbility。
 
 > **说明：**
 >
@@ -181,13 +181,13 @@ export default class EntryAbility extends UIAbility {
 
 ## 在ExtensionAbility组件中订阅回调
 
-ExtensionAbility组件提供了[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法用于订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息。
+[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件提供了[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法用于订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息。
 
 > **说明：**
 >
 > 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着ExtensionAbility的生命周期而存在，在ExtensionAbility销毁时一并销毁。
 
-以FormExtensionAbility为例说明。例如，在[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法中实现系统环境变量的变化。
+以[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)为例说明。例如，在[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法中实现系统环境变量的变化。
 
 ```ts
 import { FormExtensionAbility } from '@kit.FormKit';
@@ -204,5 +204,3 @@ export default class EntryFormAbility extends FormExtensionAbility {
   // ...
 }
 ```
-
-<!--no_check-->
