@@ -3790,6 +3790,82 @@ off(type: 'audioCapturerChange'): void
 avRecorder.off('audioCapturerChange');
 ```
 
+### on('photoAssetAvailable')<sup>12+</sup>
+
+on(type: 'photoAssetAvailable', callback: Callback<photoAccessHelper.PhotoAsset>): void;
+
+订阅媒体资源回调事件，当[FileGenerationMode](#FileGenerationMode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9-2)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#Photoasset)对象回调给应用。
+
+当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#Photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象|
+
+**错误码：**
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit'
+let photoAsset: photoAccessHelper.PhotoAsset;
+
+// 例:处理photoAsset回调，保存video
+async saveVideo(asset: photoAccessHelper.PhotoAsset) {
+  console.info("saveVideo called");
+  try {
+    let phAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveVideo successfully');
+  } catch (err) {
+    console.error(`apply saveVideo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+// 注册photoAsset监听
+avRecorder.on('photoAssetAvailable',  (asset: photoAccessHelper.PhotoAsset) => {
+  console.info('photoAssetAvailable called');
+  if (asset != undefined) {
+    photoAsset = asset;
+    // 处理photoAsset回调
+    // 例: this.saveVideo(asset);
+  } else {
+    console.error('photoAsset is undefined');
+  }
+});
+```
+
+### off('photoAssetAvailable')<sup>12+</sup>
+
+off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsset>): void
+
+取消订阅媒体资源的回调类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
+
+**示例：**
+
+```ts
+avRecorder.off('photoAssetAvailable');
+```
+
 ## AVRecorderState<sup>9+</sup>
 
 type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error'
@@ -3923,7 +3999,16 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 | min  | number | 是   | 否   | 范围的最小值 |
 | max  | number | 是   | 否   | 范围的最大值 |
 
+## FileGenerationMode<sup>12+</sup>
 
+表示创建媒体文件模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称                          | 值   | 说明                            |
+| ----------------------------- | ---- | ------------------------------- |
+| APP_CREATE  | 0    | 由应用自行在沙箱创建媒体文件。 |
+| AUTO_CREATE_CAMERA_SCENE  | 1    | 由系统创建媒体文件，当前仅在相机录制场景下生效，会忽略应用设置的url。 |
 
 ## AVTranscoder<sup>12+</sup>
 
