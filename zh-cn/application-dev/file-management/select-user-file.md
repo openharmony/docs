@@ -39,7 +39,7 @@
    documentSelectOptions.authMode = true;
    ```
 
-3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。
+3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。
    ```ts
    let uris: Array<string> = [];
    let context = getContext(this) as common.Context; // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -98,7 +98,7 @@
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-4)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。
+3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。
    ```ts
    let uri: string = '';
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
