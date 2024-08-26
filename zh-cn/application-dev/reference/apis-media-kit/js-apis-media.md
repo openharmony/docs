@@ -2594,7 +2594,7 @@ on(type: 'trackChange', callback: OnTrackChangeHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'trackChange'。 |
-| callback | OnTrackChangeHandler(#ontrackchangehandler12) | 是   | 轨道变更事件回调方法。 |
+| callback | [OnTrackChangeHandler](#ontrackchangehandler12) | 是   | 轨道变更事件回调方法。 |
 
 **示例：**
 
@@ -2619,7 +2619,7 @@ off(type: 'trackChange', callback?: OnTrackChangeHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'trackChange'。 |
-| callback | OnTrackChangeHandler(#ontrackchangehandler12) | 否   | 取消轨道变更事件的回调方法。 |
+| callback | [OnTrackChangeHandler](#ontrackchangehandler12) | 否   | 取消轨道变更事件的回调方法。 |
 
 **示例：**
 
@@ -2642,7 +2642,7 @@ on(type: 'trackInfoUpdate', callback: Callback\<Array\<MediaDescription>>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'trackInfoUpdate'。 |
-| callback | Callback<Array<MediaDescription>> | 是   | 轨道信息更新事件回调方法。 |
+| callback | Callback\<Array\<[MediaDescription](#mediadescription8)>> | 是   | 轨道信息更新事件回调方法。 |
 
 **示例：**
 
@@ -2675,7 +2675,7 @@ off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): vo
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'trackInfoUpdate'。 |
-| callback | Callback<Array<MediaDescription>> | 否   | 取消轨道信息更新事件的回调方法。 |
+| callback | Callback\<Array\<[MediaDescription](#mediadescription8)>> | 否   | 取消轨道信息更新事件的回调方法。 |
 
 **示例：**
 
@@ -2827,8 +2827,8 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | 名称           | 值   | 说明                                                         |
 | -------------- | ---- | ------------------------------------------------------------ |
 | SMOOTH | 0    | 表示切换后视频平滑播放，该模式切换存在延迟，不会立即生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| SEGMENT | 1    | 表示从分片开始位置切换，该模式立即切换，会有重复播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| CLOSEST | 2    | 表示从距离当前播放时间点最近的帧开始播放，该模式立即切换，切换后会卡顿一下。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SEGMENT | 1    | 表示切换后从当前分片开始位置播放，该模式立即切换，会有重复播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CLOSEST | 2    | 表示从距离当前播放时间点最近的帧开始播放，该模式立即切换，切换后会卡住3到5s，然后恢复播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>
 
