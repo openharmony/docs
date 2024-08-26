@@ -17,8 +17,8 @@
 
 [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)提供了注册回调函数以订阅系统环境变量的变化，并且可以通过调用相应的方法来撤销该回调。这有助于在资源不再需要时释放相关资源，从而提高系统的可靠性和性能。
 
-<!--code_no_check-->
-1. 使用[ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextontype-environment-callback-environmentcallback)方法，应用程序可以通过在非应用组件模块中订阅系统环境变量的变化来动态响应这些变化。例如，使用该方法在页面中监测系统语言的变化。
+
+1. 使用ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)方法，应用程序可以通过在非应用组件模块中订阅系统环境变量的变化来动态响应这些变化。例如，使用该方法在页面中监测系统语言的变化。
 
     ```ts
     import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
@@ -69,7 +69,7 @@
     }
     ```
 
-2. 在资源使用完成之后，可以通过调用[ApplicationContext.off(type: 'environment', callbackId: number)](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextofftype-environment-callbackid-number)方法释放相关资源。
+2. 在资源使用完成之后，可以通过调用ApplicationContext.off(type: 'environment', callbackId: number)方法释放相关资源。
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -204,5 +204,3 @@ export default class EntryFormAbility extends FormExtensionAbility {
   // ...
 }
 ```
-
-<!--no_check-->
