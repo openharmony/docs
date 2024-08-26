@@ -10,7 +10,7 @@ If a concurrent function executed in the [TaskPool](../reference/apis-arkts/js-a
 
 > **NOTE**
 >
-> Since API version 11, this decorator is supported in ArkTS widgets.
+> Since API version 11, the @Sendable decorator can be used to verify the sendable class.
 >
 > Currently, the decorator can only be cloned and must be used together with [setCloneList](../reference/apis-arkts/js-apis-taskpool.md#setclonelist11). Otherwise, an exception is thrown.
 

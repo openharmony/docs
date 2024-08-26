@@ -53,7 +53,7 @@ Async/Await is a Promise syntax sugar used to process asynchronous operations, m
 
 The **async** function returns a Promise object to represent an asynchronous operation. Inside the **async** function, you can use the await keyword to wait for the parsing of the Promise object and return its parsed value. If an **async** function throws an exception, the Promise object returned by the function is rejected, and the exception information is passed in to the **onRejected()** method of the Promise object.
 
-The code snippet below uses async/await to simulate an asynchronous operation that returns a string three seconds later.
+The code snippet below uses async/await to simulate the scenario where a synchronous API is called to execute an asynchronous operation that returns a string three seconds later.
 
 
 ```ts
