@@ -159,6 +159,10 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 
 **示例：**
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](./js-apis-arkui-UIContext.md#getcomponentutils)方法获取当前UI上下文关联的ComponentUtils对象。
+
   ```ts
 import { matrix4, componentUtils } from '@kit.ArkUI';
 
@@ -190,7 +194,7 @@ struct Utils {
         .key("image_01")
       Button('getRectangleById')
       .onClick(() => {
-        this.value = JSON.stringify(componentUtils.getRectangleById("image_01"))
+        this.value = JSON.stringify(componentUtils.getRectangleById("image_01")) // 建议使用this.getUIContext().getComponentUtils()接口
       }).margin(10).id('onClick')
       Text(this.value)
         .margin(20)
