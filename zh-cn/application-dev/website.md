@@ -1136,6 +1136,7 @@
         - [扫描工具](tools/app-check-tool.md)
         - [cem工具](tools/cem-tool.md)
         - [anm工具](tools/anm-tool.md)
+        - [edm工具](tools/edm-tool.md)
         - [restool工具](tools/restool.md)
         <!--Del-->
         - [LLDB工具](tools/lldb-tool.md)
