@@ -4113,7 +4113,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   try {
     let requestId: string = 'xxx-xxx'; // 应用需使用requestImage等接口返回的有效requestId
-    await photoAccessHelper.MediaAssetManager.cancelRequest(requestId);
+    await photoAccessHelper.MediaAssetManager.cancelRequest(context, requestId);
     console.info("request cancelled successfully");
   } catch (err) {
     console.error(`cancelRequest failed with error: ${err.code}, ${err.message}`);
