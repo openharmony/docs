@@ -499,8 +499,8 @@ Codec MIME类型枚举。
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | 表示位深，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | 表示位深，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | 表示track名称，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | 表示视频轨类型，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## PlaybackInfoKey<sup>12+</sup>
 
@@ -1464,7 +1464,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 
 ### selectTrack<sup>12+</sup>
 
-selectTrack(index: number): Promise\<void>
+selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 使用AVPlayer播放多音轨视频时选择指定音轨播放，通过Promise获取返回值。
 
@@ -2594,7 +2594,7 @@ on(type: 'trackChange', callback: OnTrackChangeHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'trackChange'。 |
-| callback | OnTrackChangeHandler | 是   | 轨道变更事件回调方法。 |
+| callback | OnTrackChangeHandler(#ontrackchangehandler12) | 是   | 轨道变更事件回调方法。 |
 
 **示例：**
 
@@ -2619,7 +2619,7 @@ off(type: 'trackChange', callback?: OnTrackChangeHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'trackChange'。 |
-| callback | OnTrackChangeHandler | 否   | 取消轨道变更事件的回调方法。 |
+| callback | OnTrackChangeHandler(#ontrackchangehandler12) | 否   | 取消轨道变更事件的回调方法。 |
 
 **示例：**
 
@@ -2642,7 +2642,7 @@ on(type: 'trackInfoUpdate', callback: Callback\<Array\<MediaDescription>>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'trackInfoUpdate'。 |
-| callback | function | 是   | 轨道信息更新事件回调方法。 |
+| callback | Callback<Array<MediaDescription>> | 是   | 轨道信息更新事件回调方法。 |
 
 **示例：**
 
@@ -2675,7 +2675,7 @@ off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): vo
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'trackInfoUpdate'。 |
-| callback | function | 否   | 取消轨道信息更新事件的回调方法。 |
+| callback | Callback<Array<MediaDescription>> | 否   | 取消轨道信息更新事件的回调方法。 |
 
 **示例：**
 
