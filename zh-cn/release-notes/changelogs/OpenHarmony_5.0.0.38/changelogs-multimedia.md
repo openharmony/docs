@@ -1,39 +1,6 @@
 # 媒体子系统Changelog
 
-## cl.multimedia.1 AVMetadata.hdrType 只读属性补齐
-
-**访问级别**
-
-公开接口。
-
-**变更原因**
-
-补充标记hdrType字段为readonly属性，对齐JsDoc描述。
-
-**变更影响**
-
-该变更为不兼容变更。
-若对AVMetadata.hdrType进行过赋值的代码，会在编译时报错。之前的版本虽然赋值成功，但无法生效。建议删除赋值的代码。
-
-**起始 API Level**
-
-12
-
-**变更发生的版本**
-
-从OpenHarmony SDK 5.0.0.38开始。
-
-**变更的接口/组件**
-
-|            接口声明            |               变更前                 |            变更后             |
-| :----------------------------: | :----------------------------------: | :---------------------------: |
-| hdrType | 可赋值，不生效 | readonly, 不可赋值 |
-
-**适配指导**
-
-开发者需将使用@ohos.multimedia.media.d.ts模块中对AVMetadata.hdrType赋值的代码行删除。
-
-## cl.multimedia.2 OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口
+## cl.multimedia.1 OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口
 
 **访问级别**
 
@@ -101,7 +68,7 @@ int main()
 }
 
 ```
-## cl.multimedia.3 OH_AVPlayerOnInfo 废弃AVPlayer NDK信息回调接口
+## cl.multimedia.2 OH_AVPlayerOnInfo 废弃AVPlayer NDK信息回调接口
 
 **访问级别**
 
@@ -130,9 +97,9 @@ int main()
 **适配指导**
 
 使用新的 OH_AVPlayerOnInfoCallback和OH_AVPlayer_SetOnInfoCallback代替原来的信息回调。
-示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia2-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
+示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia1-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
 
-## cl.multimedia.4 AVPlayerCallback 废弃AVPlayer NDK AVPlayerCallback回调接口
+## cl.multimedia.3 AVPlayerCallback 废弃AVPlayer NDK AVPlayerCallback回调接口
 
 **访问级别**
 
@@ -161,9 +128,9 @@ AVPlayerCallback 结果的两个成员OH_AVPlayerOnInfo、OH_AVPlayerOnError废�
 **适配指导**
 
 使用新的 OH_AVPlayerOnInfoCallback和OH_AVPlayer_SetOnInfoCallback代替原来的信息回调。
-示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia2-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
+示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia1-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
 
-## cl.multimedia.5 OH_AVPlayer_SetPlayerCallback 废弃AVPlayer NDK OH_AVPlayer_SetPlayerCallback接口
+## cl.multimedia.4 OH_AVPlayer_SetPlayerCallback 废弃AVPlayer NDK OH_AVPlayer_SetPlayerCallback接口
 
 **访问级别**
 
@@ -193,9 +160,9 @@ AVPlayerCallback 结果的两个成员OH_AVPlayerOnInfo、OH_AVPlayerOnError废�
 **适配指导**
 
 使用新的 OH_AVPlayerOnInfoCallback和OH_AVPlayer_SetOnInfoCallback代替原来的信息回调。
-示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia2-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
+示例可参考参见上述[OH_AVPlayerOnError 废弃AVPlayer NDK错误回调接口](#clmultimedia1-oh_avplayeronerror-废弃avplayer-ndk错误回调接口)的适配指导。
 
-## cl.multimedia.6 ProfessionalPhotoSession.on/off 函数事件名称变更
+## cl.multimedia.5 ProfessionalPhotoSession.on/off 函数事件名称变更
 
 **访问级别**
 
@@ -244,7 +211,7 @@ off(type: 'luminationInfo', callback?: AsyncCallback\<LuminationInfo>): void
 
 开发者需要修改type参数的值，适配新的事件名称 。
 
-## cl.multimedia.7 ProfessionalVideoSession.on/off 函数事件名称变更
+## cl.multimedia.6 ProfessionalVideoSession.on/off 函数事件名称变更
 
 **访问级别**
 
