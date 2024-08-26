@@ -182,7 +182,7 @@ setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Prom
 | -------- | ---------------------- | ---- | --------------------------- |
 | startTimeMs | number | 是   | 区间开始位置，单位ms，取值[0, duration)。可以设置-1值，系统将会从0位置开始播放。|
 | endTimeMs | number | 是   | 区间结束位置，单位ms，取值(startTimeMs, duration]。可以设置-1值，系统将会播放到资源末尾。|
-| mode | SeekMode | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值: SeekMode.SEEK_PREV_SYNC。|
+| mode | [SeekMode](js-apis-media.md#seekmode8) | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值: SeekMode.SEEK_PREV_SYNC。|
 
 **错误码：**
 
