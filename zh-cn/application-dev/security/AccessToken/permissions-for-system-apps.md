@@ -4298,3 +4298,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
+
+**权限级别**：system_core
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：13
