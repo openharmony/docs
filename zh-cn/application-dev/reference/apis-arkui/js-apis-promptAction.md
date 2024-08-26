@@ -206,7 +206,7 @@ try {
 };
 ```
 
-![zh-cn_image_0002](figures/zh-cn_image_0002.gif)
+![zh-cn_image_0004](figures/zh-cn_image_0004.gif)
 
 当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外。
 
@@ -373,7 +373,7 @@ try {
 };
 ```
 
-![zh-cn_image_0005](figures/zh-cn_image_0005.gif)
+![zh-cn_image_0006](figures/zh-cn_image_0006.gif)
 
 ## promptAction.openCustomDialog<sup>11+</sup>
 
