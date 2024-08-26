@@ -343,3 +343,17 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | offset | number | 是   | 预上屏内容的起始位置。 |
 | value    | string         | 是   | 预上屏的内容。         |
+
+## FontSettingOptions<sup>12+</sup>对象说明
+
+字体配置项。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。 |
