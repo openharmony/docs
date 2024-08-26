@@ -102,7 +102,7 @@
     })
     ```
    
-   * 具体pixmap的生成可以调用[componentSnapshot](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder)函数；
+   * 具体pixmap的生成可以调用[componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder)函数；
 
       ```ts
       @Builder
