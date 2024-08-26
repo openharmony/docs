@@ -8368,6 +8368,57 @@ struct Index {
 }
 ```
 
+### trimMemoryByPressureLevel<sup>14+</sup>
+
+trimMemoryByPressureLevel(level: number): void
+
+根据指定的内存压力等级，主动清理Web组件占用的缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| level | [PressureLevel](#pressurelevel14) | 是 | 需要清理内存的内存等级。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed. |
+
+**示例：**
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Row() {
+        Button('trim_Memory')
+          .onClick(() => {
+            try {
+              // 设置当前内存压力等级为适中，释放少量内存
+              webview.WebviewController.trimMemoryByPressureLevel(
+                webview.PressureLevel.MEMORY_PRESSURE_LEVEL_MODERATE);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+      }.height('10%')
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
@@ -15873,3 +15924,14 @@ Scroll滚动类型，用于[setScrollable](#setscrollable12)。
 | 名称         | 值 | 说明                              |
 | ------------ | -- |--------------------------------- |
 | EVENT  | 0 | 滚动事件，表示通过触摸屏，触摸板，鼠标滚轮生成的网页滚动。|
+
+## PressureLevel<sup>14+</sup>
+
+内存压力等级。在应用主动清理Web组件占用的缓存时，Web内核会根据内存压力等级，进行缓存释放。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| MEMORY_PRESSURE_LEVEL_MODERATE | 1 | 中等内存压力等级。这个等级下，Web内核会尝试释放重新分配开销较小且不需要立即使用的缓存。 |
+| MEMORY_PRESSURE_LEVEL_CRITICAL | 2 | 严重内存压力等级。这个等级下，Web内核会尝试释放所有可能的内存缓存。 |
