@@ -20,7 +20,7 @@ static getInfo(): AppResponse
 
 获取当前应用配置文件中声明的信息。
 
-从API Version9开始，推荐使用[bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)。
+从API Version9开始，推荐使用[bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
