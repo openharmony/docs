@@ -780,6 +780,8 @@
           - 加解密开发指导<!--crypto-encrypt-decrypt-dev-->
             - [使用AES对称密钥（GCM模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)
             - [使用AES对称密钥（GCM模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-ndk.md)
+            - [使用AES对称密钥（CCM模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ccm.md)
+            - [使用AES对称密钥（CCM模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ccm-ndk.md)
             - [使用AES对称密钥（CBC模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc.md)
             - [使用AES对称密钥（CBC模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc-ndk.md)
             - [使用AES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ecb.md)
@@ -1148,6 +1150,8 @@
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
       - [处理音频焦点事件](media/audio/audio-playback-concurrency.md)
+      - [音频并发策略扩展(ArkTS)](media/audio/audio-session-management.md)
+      - [音频并发策略扩展(C/C++)](media/audio/using-ohaudio-for-session.md)
       - 音频播放<!--audio-playback-->
         - [音频播放开发概述](media/audio/audio-playback-overview.md)
         - [使用AudioRenderer开发音频播放功能](media/audio/using-audiorenderer-for-playback.md)
@@ -3308,6 +3312,7 @@
           - [native_audio_common.h](reference/apis-audio-kit/native__audio__common_8h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/native__audio__device__base_8h.md)
           - [native_audio_routing_manager.h](reference/apis-audio-kit/native__audio__routing__manager_8h.md)
+          - [native_audio_session_manager.h](reference/apis-audio-kit/native__audio__session__manager_8h.md)
           - [native_audiocapturer.h](reference/apis-audio-kit/native__audiocapturer_8h.md)
           - [native_audiorenderer.h](reference/apis-audio-kit/native__audiorenderer_8h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/native__audiostream__base_8h.md)
@@ -3316,6 +3321,8 @@
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
           - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/_o_h___audio_device_descriptor_array.md)
           - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
+          - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/_o_h___audio_session___deactivated_event.md)
+          - [OH_AudioSession_Strategy](reference/apis-audio-kit/_o_h___audio_session___strategy.md)
       - 错误码<!--audio-arkts-errcode-->
         - [Audio错误码](reference/apis-audio-kit/errorcode-audio.md)
     - AVCodec Kit（音视频编解码服务）<!--avcodec-api-->
