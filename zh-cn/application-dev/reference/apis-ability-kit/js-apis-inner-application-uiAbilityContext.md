@@ -2381,6 +2381,59 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## UIAbilityContext.setRestoreEnabled<sup>13+</sup>
+
+setRestoreEnabled(enabled: boolean): Promise\<void>
+
+设置UIAbility是否启用备份恢复。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| enabled | boolean | 是 | 表示是否启用恢复。true表示启用，false表示不启用。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let enabled = true;
+    try {
+      this.context.setRestoreEnabled(enabled).then((data) => {
+        console.log('setRestoreEnabled success.');
+      }).catch((err: BusinessError) => {
+        console.error(`setRestoreEnabled fail, err: ${JSON.stringify(err)}`);
+      });
+    } catch (paramError) {
+      let code = (paramError as BusinessError).code;
+      let message = (paramError as BusinessError).message;
+      console.error(`[UIAbilityContext] error: ${code}, ${message}`);
+    }
+  }
+}
+```
+
 ## UIAbilityContext.startUIServiceExtensionAbility<sup>13+<sup>
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;

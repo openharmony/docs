@@ -781,6 +781,26 @@ int main(int argc, char *argv[]) {
 }
 ```
 
+### 使用 JSVM-API WebAssembly 接口编译 wasm module
+
+#### 场景介绍
+
+JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、wasm cache 序列化和反序列化的能力。
+
+#### 接口说明
+
+| 接口                          | 功能说明                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| OH_JSVM_CompileWasmModule   | 将 wasm 字节码同步编译为 wasm module。如果提供了 cache 参数，先尝试将 cache 反序列为 wasm module，反序列化失败时再执行编译。 |
+| OH_JSVM_CompileWasmFunction | 将 wasm module 中指定编号的函数编译为优化后的机器码，目前只使能了最高的优化等级，函数编号的合法性由接口调用者保证。                     |
+| OH_JSVM_IsWasmModuleObject  | 判断传入的值是否是一个 wasm module。                                                             |
+| OH_JSVM_CreateWasmCache     | 将 wasm module 中的机器码序列化为 wasm cache，如果 wasm module 不包含机器码，则会序列化失败。                    |
+| OH_JSVM_ReleaseCache        | 释放由 JSVM 接口生成的 cache。传入的 cacheType 和 cacheData 必须匹配，否则会产生未定义行为。                      |
+
+#### 场景示例
+
+详见[使用 JSVM-API WebAssembly 接口](use-jsvm-about-wasm.md)。
+
 ### 异常处理
 
 #### 场景介绍
@@ -1984,10 +2004,15 @@ OH_JSVM_GetVersion(env, &versionId);
 内存管理
 
 #### 接口说明
-| 接口 | 功能说明 |
-| -------- | -------- |
-|OH_JSVM_AdjustExternalMemory| 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
-|OH_JSVM_MemoryPressureNotification| 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。 |
+| 接口                                          | 功能说明                                                                                                   |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| OH_JSVM_AdjustExternalMemory                | 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
+| OH_JSVM_MemoryPressureNotification          | 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。                                                                             |
+| OH_JSVM_AllocateArrayBufferBackingStoreData | 申请一块 BackingStore 内存 |
+| OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存 |
+| OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer |
+
+> BackingStore 的使用属于高危操作，需要使用者自身保证内存的正确使用，请参考下方的正确示例，谨慎使用。
 
 场景示例：
 内存管理。
@@ -2026,6 +2051,57 @@ OH_JSVM_GetHeapStatistics(vm, &mem);
 OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 触发垃圾回收后
 ```
 
+BackingStore 正确使用示例
+``` c++
+void *backingStore;
+JSVM_Value arrayBuffer;
+
+// 申请一块大小为 100 字节的 BackingStore 内存
+OH_JSVM_AllocateArrayBufferBackingStoreData(100, JSVM_ZERO_INITIALIZED, &backingStore);
+
+// 在之前申请的 BackingStore 上创建一个 ArrayBuffer，位置为距离 BackingStore 起始地址加 30 字节处，大小为 20 字节
+OH_JSVM_CreateArrayBufferFromBackingStoreData(env, backingStore, 100, 30, 20, &arrayBuffer);
+
+// 在 JS 中使用创建的 ArrayBuffer
+JSVM_Value js_global;
+JSVM_Value name;
+OH_JSVM_GetGlobal(jsvm_env, &js_global);
+OH_JSVM_CreateStringUtf8(jsvm_env, "buffer", JSVM_AUTO_LENGTH, &name);
+OH_JSVM_SetProperty(env, js_global, name, arrayBuffer);
+
+JSVM_Script script;
+JSVM_Value scriptString;
+JSVM_Value result;
+const char *src = R"JS(
+function writeBuffer(data) {
+  let view = new Uint8Array(data);
+  // Write some values to the ArrayBuffer
+  for (let i = 0; i < view.length; i++) {
+    view[i] = i % 256;
+  }
+}
+writeBuffer(buffer)
+)JS";
+OH_JSVM_CreateStringUtf8(env, src, JSVM_AUTO_LENGTH, &scriptString);
+OH_JSVM_CompileScriptWithOptions(env, scriptString, 0, nullptr, &script);
+OH_JSVM_RunScript(env, script, &result);
+
+// 检查 ArrayBuffer 的内容
+uint8_t *array = static_cast<uint8_t*>(backingStore);
+for (auto i = 0; i < 100; ++i) {
+  if (array[i] != i % 25 % 256) {
+    return false;
+  }
+}
+
+// 释放 array buffer. 注意对于这种方式创建的 ArrayBuffer, 在释放对应的 BackingStore 之前,
+// 务必使用 OH_JSVM_DetachArraybuffer 将所有使用当前的 BackingStore 创建的 ArrayBuffer 释放
+// 否则可能产生不可预测的内存问题，请谨慎使用
+OH_JSVM_DetachArraybuffer(env, arrayBuffer);
+
+// 释放申请的 backing store 内存
+OH_JSVM_FreeArrayBufferBackingStoreData(backingStore);
+```
 ### Promise操作
 
 #### 场景介绍

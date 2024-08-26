@@ -1,4 +1,4 @@
-# $$ Syntax: Creating a Two-Way Synchronization with Built-in Components
+# $$ Syntax: Two-Way Synchronization of Built-in Components
 
 
 The $$ operator provides a TypeScript variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
@@ -14,7 +14,7 @@ What the internal state is depends on the component. For example, for the [\<Tex
 
 ## Rules of Use
 
-- $$ supports variables of simple types and variables decorated by \@State, \@Link, or \@Prop.
+- Currently, $$ supports basic variables and variables decorated by [\@State](arkts-state.md), [\@Link](arkts-link.md), and [\@Prop](arkts-prop.md).
 
 - $$ supports the components listed below.
 
@@ -51,7 +51,7 @@ What the internal state is depends on the component. For example, for the [\<Tex
 
 ## Example
 
-This example uses the **text** parameter of the [\<TextInput>](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component.
+This example uses the **text** parameter of the [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component.
 
 
 ```ts
