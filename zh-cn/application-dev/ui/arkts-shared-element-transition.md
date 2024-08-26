@@ -1416,7 +1416,7 @@ struct Index {
   private sheetRadius: number = 20;
 
   // 设置半模态上图片的布局监听
-  listener:inspector.ComponentObserver = inspector.createComponentObserver('target');
+  listener:inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('target');
   aboutToAppear(): void {
     // 设置半模态上图片的布局完成回调
     let onLayoutComplete:()=>void=():void=>{
