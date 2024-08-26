@@ -407,8 +407,9 @@ hdc list targets -v
 | fport _localnode remotenode_ | 设置正向端口转发任务：监听“主机端口”，接收请求并进行转发， 转发到“设备端口” |
 | rport _remotenode localnode_ | 设置反向端口转发任务：监听“设备端口”，接收请求并进行转发，转发到“主机端口” |
 | fport rm _taskstr_ | 删除指定的端口转发任务|
-| tmode usb | 已连接设备切换为USB连接方式：设备端daemon进程重启，并首先选用USB连接方式 |
-| tmode port [port-number] | 已连接设备切换为网络连接方式：设备端daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择USB连接 |
+| tmode usb | 该命令不会实际操作设备连接通道，需要在设备设置界面通过USB调试开关进行设置 |
+| tmode port [port-number] | 打开设备网络连接通道：设备端daemon进程会重启，已建立的USB连接会中断，需要重新连接 |
+| tmode port close | 关闭设备无线连接通道：设备端daemon进程会重启，已建立的USB连接会中断，需要重新连接 |
 | tconn [IP]:[port] [-remove] | 指定连接设备：通过“IP地址：端口号”来指定连接的设备，使用-remove参数断开连接 |
 
 1. 列出全部转发端口转发任务，命令格式如下：
@@ -492,25 +493,21 @@ hdc list targets -v
    ```
 
 
-5. 已连接设备切换为USB连接方式，命令格式如下：
+5. 打开设备USB连接通道，命令格式如下：
 
    ```shell
    hdc tmode usb
    ```
-
-   **返回值：**
-   | 返回值 | 说明 |
-   | -------- | -------- |
-   | 无 | 切换成功 |
-   | [Fail]ExecuteCommand need connect-key | 设备列表无网络连接方式设备，无法指定设备切换连接方式 |
 
    **使用方法：**
 
    ```shell
    hdc tmode usb
    ```
+   > **说明：**
+   > 该命令不会实际操作设备连接通道，需要在设备设置界面通过USB调试开关进行设置。
 
-6. 已连接设备切换为网络连接方式，命令格式如下：
+6. 打开设备网络连接通道，命令格式如下：
 
    ```shell
    hdc tmode port [port-number]
@@ -524,8 +521,8 @@ hdc list targets -v
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | 无 | 切换成功 |
-   | [Fail]ExecuteCommand need connect-key | 切换失败，设备列表无设备，无法指定设备切换连接方式 |
+   | Set device run mode successful. | 打开成功 |
+   | [Fail]ExecuteCommand need connect-key | 打开失败，设备列表无设备，无法打开设备无线调试通道 |
    | [Fail]Incorrect port range | 端口号超出可设置范围（1~65536） |
 
    **使用方法：**
@@ -540,13 +537,28 @@ hdc list targets -v
    > 如不满足以上条件请勿使用该命令进行切换。
 
    > **说明：**
-   > 执行完毕后，远端daemon将会退出并重启，USB连接将会断开，默认启用TCP连接，且仅可通过TCP进行连接，如需恢复USB连接有以下两种方法：
-   >
-   > （1）执行hdc tconn [IP]:[port]命令进行TCP连接后，执行hdc tmode usb恢复。
-   >
-   > （2）通过恢复出厂设置恢复。
+   > 执行完毕后，远端daemon进程将会退出并重启，USB连接将会断开，需要重新连接。
 
-7. 通过TCP连接指定的设备，命令格式如下：
+7. 关闭设备无线连接通道，命令格式如下：
+
+   ```shell
+   hdc tmode port close
+   ```
+
+   **返回值：**
+   | 返回值 | 说明 |
+   | -------- | -------- |
+   | [Fail]ExecuteCommand need connect-key | 设备列表无设备，无法执行命令 |
+
+   **使用方法：**
+
+   ```shell
+   hdc tmode port close
+   ```
+   > **说明：**
+   > 执行完毕后，远端daemon进程将会退出并重启，USB连接将会断开，需要重新连接。
+
+8. 通过TCP连接指定的设备，命令格式如下：
 
    ```shell
    hdc tconn [IP]:[port] [-remove]
