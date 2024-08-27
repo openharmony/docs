@@ -208,10 +208,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-@Concurrent
 // import BusinessError
 import { BusinessError } from '@ohos.base'
 
+@Concurrent
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
 }
