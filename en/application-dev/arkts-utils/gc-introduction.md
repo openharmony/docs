@@ -32,17 +32,17 @@ For some of the parameters, three values or value ranges are provided, correspon
 
 Two Semi Spaces are generated in the heap for the copying algorithm to use.
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | :--- |
-| semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB | Size of Semi Space. The value varies according to the total heap size. |
-| semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering the concurrent marking phase of Semi Space for the first time. |
-| semiSpaceStepOvershootSize| 2 MB  | Maximum overshoot size of Semi Space. |
+| semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space. The value varies according to the total heap size.|
+| semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering the concurrent marking phase of Semi Space for the first time.|
+| semiSpaceStepOvershootSize| 2 MB | Maximum overshoot size of Semi Space.|
 
 #### Parameters of Other Spaces
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | :--- |
-| defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space. |
+| defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space.|
 | defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | Default size of Non-Movable Space.|
 | defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | Default size of Snapshot Space.|
 | defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | Default size of Machine Code Space.|
@@ -51,49 +51,49 @@ Two Semi Spaces are generated in the heap for the copying algorithm to use.
 
 During initialization, the parameter is set to the size of the unallocated heap space left.
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | :--- |
-| oldSpaceOvershootSize | 4 MB/8 MB/8 MB  | Maximum overshoot size of Old Space. |
+| oldSpaceOvershootSize | 4 MB/8 MB/8 MB | Maximum overshoot size of Old Space.|
 
 #### Heap Size Parameters
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | :--- |
-| HeapSize | 448–1024 MB  | Total heap size. The actual size allocated varies according to the heap type. The lower limit is reduced in the case of an insufficient memory pool. |
-| SemispaceSize | 2–4 MB/2–8 MB/2–16 MB | Size of Semi Space. |
-| NonmovableSpaceSize | 2 MB/6 MB/64 MB  | Size of Non-Movable Space. |
-| SnapshotSpaceSize | 512 KB | Size of Snapshot Space. |
-| MachineCodeSpaceSize | 2 MB | Size of Machine Code Space. |
+| HeapSize | 448–1024 MB | Total heap size. The actual size allocated varies according to the heap type. The lower limit is reduced in the case of an insufficient memory pool.|
+| SemispaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space.|
+| NonmovableSpaceSize | 2 MB/6 MB/64 MB | Size of Non-Movable Space.|
+| SnapshotSpaceSize | 512 KB| Size of Snapshot Space.|
+| MachineCodeSpaceSize | 2 MB| Size of Machine Code Space.|
 
 #### Maximum Number of Worker Thread Heaps
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | --- |
-| heapSize  | 768 MB | Size of the heap space of the work type. |
+| heapSize  | 768 MB | Size of the heap space of the work type.|
 
 #### Size of the Interpreter Stack
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | --- |
-| maxStackSize | 128 KB | Maximum frame size of the interpreter stack. |
+| maxStackSize | 128 KB| Maximum frame size of the interpreter stack.|
 
 #### Concurrency Parameters
 
-| Parameter | Value | Description |
+| Parameter| Value| Description|
 | --- | ---: | --- |
-| gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**. |
-| MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool. |
-| MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool. |
+| gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**.|
+| MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool.|
+| MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool.|
 
 Note: The thread pool is used to execute concurrent tasks in the GC process. During thread pool initialization, all the three parameters need to be considered. If **gcThreadNum** is a negative value, the number of threads in the initialized thread pool is the number of CPU cores divided by 2.
 
 #### Other Parameters
 
-| Parameter | Value | Description |
+| Parameter| Value| Description|
 | --- | --- | --- |
-| minAllocLimitGrowingStep | 2 M/4 M/8 M | Minimum increase step of **oldSpace**, **heapObject**, and **globalNative** when the heap space size is recalculated. |
-| minGrowingStep | 4 M/8 M/16 M  | Minimum increase step of **oldSpace**. |
-| longPauseTime | 40 ms | Threshold for checking for a long GC pause. In the case of long GC pauses, complete GC log is printed, facilitating fault locating and analysis. You can set this parameter using **gc-long-paused-time**. |
+| minAllocLimitGrowingStep | 2 M/4 M/8 M| Minimum increase step of **oldSpace**, **heapObject**, and **globalNative** when the heap space size is recalculated.|
+| minGrowingStep | 4 M/8 M/16 M | Minimum increase step of **oldSpace**.|
+| longPauseTime | 40 ms| Threshold for checking for a long GC pause. In the case of long GC pauses, complete GC log is printed, facilitating fault locating and analysis. You can set this parameter using **gc-long-paused-time**.|
 
 ### Other
 
@@ -104,7 +104,9 @@ Note: The thread pool is used to execute concurrent tasks in the GC process. Dur
 
 ![image](./figures/gc-process.png)
 
-### HPPGC
+### HPP GC
+
+High Performance Partial Garbage Collection (HPP GC) achieves efficient garbage collection by employing generational models, hybrid algorithms, and GC process optimization.
 
 #### Young GC
 
@@ -259,7 +261,7 @@ Idle young GC can coexist with concurrent marking to prevent the GC threshold fr
 ### Typical Logs
 
 ```
-// Actual size occupied by the object before GC (actual size occupied by the region) - > Actual size occupied by the object after GC (actual size occupied by the region), total duration (+concurrrentMark duration), and GC triggering cause
+// Actual size occupied by the object before GC (actual size occupied by the region) - > Actual size occupied by the object after GC (actual size occupied by the region), total duration (+concurrentMark duration), and GC triggering cause
 C03F00/ArkCompiler: [gc]  [ CompressGC ] 26.1164 (35) -> 7.10049 (10.5) MB, 160.626(+0)ms, Switch to background
 // GC statuses and application name
 C03F00/ArkCompiler: [gc] IsInBackground: 1; SensitiveStatus: 0; OnStartupEvent: 0; BundleName: com.huawei.hmos.filemanager;
