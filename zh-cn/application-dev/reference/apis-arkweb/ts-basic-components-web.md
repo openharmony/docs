@@ -1920,63 +1920,6 @@ enableNativeEmbedMode(mode: boolean)
     }
   }
   ```
-### forceDisplayScrollBar<sup>12+</sup>
-
-forceDisplayScrollBar(enabled: boolean)
-
-
-设置滚动条是否常驻。默认不常驻，在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
-
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填 | 默认值 | 参数描述           |
-| ------- | -------- | ---- | ------ | ------------------ |
-| enabled | boolean  | 是   | false  | 滚动条是否常驻。 |
-
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-    build() {
-      Column() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-          .forceDisplayScrollBar(true)
-      }
-    }
-  }
-  ```
-
-  加载的html文件。
-  ```html
-  <!--index.html-->
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <title>Demo</title>
-      <style>
-        body {
-          width:2560px;
-          height:2560px;
-          padding-right:170px;
-          padding-left:170px;
-          border:5px solid blueviolet
-        }
-      </style>
-  </head>
-  <body>
-  Scroll Test
-  </body>
-  </html>
-  ```
 ### registerNativeEmbedRule<sup>12+</sup>
 registerNativeEmbedRule(tag: string, type: string)
 
