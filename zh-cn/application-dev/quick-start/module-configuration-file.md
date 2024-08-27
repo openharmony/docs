@@ -418,7 +418,7 @@ skills示例：
               "port":"80",
               "path":"path",
               "type": "text/*",
-              "linkFeature": "login"
+              "linkFeature": "Login"
             }
           ],
           "permissions": [],
