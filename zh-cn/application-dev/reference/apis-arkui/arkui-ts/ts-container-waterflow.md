@@ -173,8 +173,8 @@ FlowItem分组配置信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|-----|
-| itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。 |
-| crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。 |
+| itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。若splice、push、update方法收到的分组中有分组的itemsCount小于0，则不会执行该方法。 |
+| crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。小于1的按默认值处理。 |
 | columnsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的列间距，不设置时使用瀑布流的columnsGap，设置非法值时使用0vp。 |
 | rowsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的行间距，不设置时使用瀑布流的rowsGap，设置非法值时使用0vp。 |
 | margin | [Margin](ts-types.md#margin) \| [Dimension](ts-types.md#dimension10) | 否 | 该分组的外边距参数为Length类型时，四个方向外边距同时生效。<br>默认值：0<br>单位：vp<br>margin设置百分比时，上下左右外边距均以瀑布流的width作为基础值。 |
