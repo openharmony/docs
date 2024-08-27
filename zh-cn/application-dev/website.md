@@ -5,11 +5,7 @@
     - [相关实例测试](onlyfortest/media/sample-test-dev.md)
     - [API Info 测试场景1](onlyfortest/media/api-info-TC-one-dev.md)
     - [API Info 测试场景2](onlyfortest/media/api-info-TC-two-dev.md)
-- 参考<!--reference-->
-    <!--Del-->
-    - error-code<!--reference-error-code-->
-        - [error-code](onlyfortest/reference/apis-media-kit/errorcode-media.md)
-    <!--DelEnd-->   
+- 参考<!--reference-->   
     - [reference文件夹原子化服务添加属性测试](onlyfortest/reference/auto-service-test.md)
     - [reference文件夹下相关实例](onlyfortest/reference/sample-test.md)
     - api-info<!--reference-api-info-->
