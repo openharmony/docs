@@ -1364,7 +1364,7 @@ AV_ERR_INVALID_VAL：输入player为空指针。
 OH_AVErrCode OH_AVPlayer_SetPlayerCallback (OH_AVPlayer *player, AVPlayerCallback callback)
 ```
 **描述**
-设置播放器回调方法。
+设置播放器回调函数。由于通过改方法设置的信息监听回调函数[OH_AVPlayerOnInfo](#oh_avplayeroninfo)和错误监听回到函数[OH_AVPlayerOnError](#oh_avplayeronerror)可以传递信息有限，也不便于应用区分多个播放实例。从 API 12 开始，应使用[OH_AVPlayer_SetOnInfoCallback()](#oh_avplayer_setoninfocallback)、[OH_AVPlayer_SetOnErrorCallback()](#oh_avplayer_setonerrorcallback)接口分别设置信息监听回调函数[OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback)和错误监听回到函数[OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1572,7 +1572,9 @@ const char* OH_PLAYER_BITRATE
 const char* OH_PLAYER_BITRATE_ARRAY
 ```
 **描述**
-获取比特率列表的关键字, 对应值类型是uint8_t字节数组[AV_INFO_TYPE_BITRATE_COLLECT](#avplayeroninfotype-1)。
+获取比特率列表的关键字, 对应值类型是uint8_t字节数组[AV_INFO_TYPE_BITRATE_COLLECT](#avplayeroninfotype-1)。通过该关键字获取信息时：
+- 需要先使用 uint8_t 类型指针变量保存比特率列表，使用 size_t 类型变量保存字节数组长度。
+- 然后分配若干个 uint32_t 类型的存储空间，接收将 uint8_t 字节数组转换为 uint32_t 类型比特率整数值。可以参考[完整实例](../../media/media/using-ndk-avplayer-for-playerback.md#完整示例)中**OHAVPlayerOnInfoCallback**函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1585,7 +1587,7 @@ const char* OH_PLAYER_BITRATE_ARRAY
 const char* OH_PLAYER_BUFFERING_TYPE
 ```
 **描述**
-获取缓冲更新消息类型的关键字, 对应值类型是[AVPlayerBufferingType](#avplayerbufferingtype-1)。
+获取缓冲更新消息类型的关键字, 对应值类型是[AVPlayerBufferingType](#avplayerbufferingtype-1)。通过该关键字获取信息时，需要先使用 int32_t 类型变量保存结果，再转换为类型[AVPlayerBufferingType](#avplayerbufferingtype-1)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1598,7 +1600,7 @@ const char* OH_PLAYER_BUFFERING_TYPE
 const char* OH_PLAYER_BUFFERING_VALUE
 ```
 **描述**
-获取缓冲更新消息具体数值的关键字, 对应值类型是int32_t。参见[AVPlayerBufferingType](#avplayerbufferingtype-1) AVPLAYER_BUFFERING_PERCENT、AVPLAYER_BUFFERING_CACHED_DURATION。
+获取缓冲更新消息具体数值的关键字, 对应值类型是int32_t。参见[AVPlayerBufferingType](#avplayerbufferingtype-1)，当缓冲更新消息类型是AVPLAYER_BUFFERING_PERCENT、AVPLAYER_BUFFERING_CACHED_DURATION时有效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1667,7 +1669,7 @@ const char* OH_PLAYER_MESSAGE_TYPE
 const char* OH_PLAYER_PLAYBACK_SPEED
 ```
 **描述**
-获取播放倍速信息的关键字, 对应值类型是[AVPlaybackSpeed](#avplaybackspeed-1)。
+获取播放倍速信息的关键字, 对应值类型是[AVPlaybackSpeed](#avplaybackspeed-1)。通过该关键字获取信息时，需要先使用 int32_t 类型变量保存结果，再转换为类型[AVPlaybackSpeed](#avplaybackspeed-1)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
