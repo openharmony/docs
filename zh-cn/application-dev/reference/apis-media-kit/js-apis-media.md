@@ -4483,7 +4483,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 prepare(config: AVTranscoderConfig): Promise<\void>
 
-异步方式进行音视频录制的参数设置。通过Promise获取返回值。
+异步方式进行视频转码的参数设置。通过Promise获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
