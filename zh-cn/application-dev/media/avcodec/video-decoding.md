@@ -27,6 +27,7 @@
 3. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy()函数来销毁实例并释放资源。
 4. 视频解码输入码流仅支持AnnexB格式，且支持的AnnexB格式不支持多层次切片。
 5. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
+6. DRM解密能力在[Surface模式](#surface模式)下既支持非安全视频通路，也支持安全视频通路，在[Buffer模式](#buffer模式)下仅支持非安全视频通路。需要注意的是，在Surface模式下使用安全视频通路时，应创建[内容保护级别](../../reference/apis-drm-kit/_drm.md#drm_contentprotectionlevel-1)为CONTENT_PROTECTION_LEVEL_HW_CRYPTO及其以上级别的[MediaKeySession](../drm/native-drm-mediakeysession-management.md#drm会话管理cc)。具体示例请参考[Surface模式](#surface模式)步骤5调用OH_VideoDecoder_SetDecryptionConfig。
 
 ## Surface输出与Buffer输出
 
@@ -199,7 +200,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
-5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。此接口需在Prepare前调用。注意，如果使用安全视频通路，应创建[内容保护级别](../../reference/apis-drm-kit/_drm.md#drm_contentprotectionlevel-1)为CONTENT_PROTECTION_LEVEL_HW_CRYPTO及其以上的[MediaKeySession](../drm/native-drm-mediakeysession-management.md#drm会话管理cc)；如果使用非安全视频通路，则应创建[内容保护级别](../../reference/apis-drm-kit/_drm.md#drm_contentprotectionlevel-1)为CONTENT_PROTECTION_LEVEL_SW_CRYPTO的[MediaKeySession](../drm/native-drm-mediakeysession-management.md#drm会话管理cc)。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
 
     添加头文件
 
@@ -224,17 +225,23 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         printf("create media key system failed");
         return;
     }
-    // 进行Provision认证
+
+    // 根据设备情况进行Provision认证
+
     // 创建解密会话
     MediaKeySession *session = nullptr;
-    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
+    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
     if (session == nullptr) {
         printf("create media key session failed");
         return;
     }
+
     // 获取许可证请求、设置许可证响应等
+
     // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
+    // 注意：如果使用安全视频通路，请创建安全解码器。
+    // 创建安全解码器的方法为，使用OH_VideoDecoder_CreateByName，其参数为解码器名称后拼接.secure，请参考步骤3。
     bool secureVideoPath = false;
     ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
     ```
@@ -321,7 +328,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 11. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
 
-    若当前播放的节目是DRM加密节目，且由上层应用做媒体解封装，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
+    若当前播放的节目是DRM加密节目，应用自行实现媒体解封装功能而非依赖系统[解封装](audio-video-demuxer.md)功能时，需调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置到AVBuffer，AVBuffer携带待解密的数据及cencInfo，以实现AVBuffer中媒体数据的解密。当应用使用系统[解封装](audio-video-demuxer.md)功能时，则无需调用此接口。
 
     添加头文件
 
@@ -674,7 +681,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
-4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。此接口需在Prepare前调用。注意，使用非安全视频通路，应创建[内容保护级别](../../reference/apis-drm-kit/_drm.md#drm_contentprotectionlevel-1)为CONTENT_PROTECTION_LEVEL_SW_CRYPTO的[MediaKeySession](../drm/native-drm-mediakeysession-management.md#drm会话管理cc)。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
 
     添加头文件
 
