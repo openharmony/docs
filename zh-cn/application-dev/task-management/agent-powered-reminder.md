@@ -18,6 +18,8 @@
 
 - **跳转限制**：点击提醒通知后跳转的应用必须是申请代理提醒的本应用。
 
+<!--RP1--><!--RP1End-->
+
 
 ## 接口说明
 
@@ -183,6 +185,9 @@
       console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
     });
    ```
+
+<!--RP2--><!--RP2End-->
+
 
 ## 相关实例
 
