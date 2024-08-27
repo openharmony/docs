@@ -678,7 +678,7 @@ Software caused connection abort
 
 **错误信息**
 
-Invalid display name
+Invalid file name
 
 **可能原因**
 
@@ -692,7 +692,7 @@ Invalid display name
 
 **错误信息**
 
-Invalid uri
+Invalid URI
 
 **可能原因**
 
@@ -720,7 +720,7 @@ Invalid file name extension
 
 **错误信息**
 
-File has been put into trash bin
+File already in the recycle bin
 
 **可能原因**
 
@@ -778,7 +778,7 @@ IPC error
 
 **错误信息**
 
-Not supported filesystem
+File system not supported
 
 **可能原因**
 
@@ -792,7 +792,7 @@ Not supported filesystem
 
 **错误信息**
 
-Failed to mount
+Mount failed
 
 **可能原因**
 
@@ -806,7 +806,7 @@ Failed to mount
 
 **错误信息**
 
-Failed to unmount
+Unmount failed
 
 **可能原因**
 
@@ -834,7 +834,7 @@ Incorrect volume state
 
 **错误信息**
 
-Prepare directory or node error
+Failed to create the drectory or node
 
 **可能原因**
 
@@ -848,7 +848,7 @@ Prepare directory or node error
 
 **错误信息**
 
-Delete directory or node error
+Failed to delete the drectory or node
 
 **可能原因**
 
@@ -880,7 +880,7 @@ No such object
 
 **错误信息**
 
-User id out of range
+User ID out of range
 
 **可能原因**
 
@@ -912,7 +912,7 @@ IPC error
 
 **错误信息**
 
-Invalid uri
+Invalid URI
 
 **可能原因**
 
@@ -926,7 +926,7 @@ Invalid uri
 
 **错误信息**
 
-Fail to get fileextension info
+Failed to obtain the server ability information
 
 **可能原因**
 
@@ -940,7 +940,7 @@ BMS接口异常。
 
 **错误信息**
 
-Get wrong result
+Incorrect result returned by js-server
 
 **可能原因**
 
@@ -954,7 +954,7 @@ server端返回值检查。
 
 **错误信息**
 
-Fail to register notification
+Failed to register Notify
 
 **可能原因**
 
@@ -970,7 +970,7 @@ Fail to register notification
 
 **错误信息**
 
-Fail to remove notification
+Failed to unregister Notify
 
 **可能原因**
 
@@ -986,7 +986,7 @@ Fail to remove notification
 
 **错误信息**
 
-Fail to init notification agent
+Failed to initialize the Notify agent
 
 **可能原因**
 
@@ -1000,7 +1000,7 @@ Fail to init notification agent
 
 **错误信息**
 
-Fail to notify agent
+Failed to notify the agent
 
 **可能原因**
 
@@ -1050,7 +1050,7 @@ Network unavailable
 
 **错误信息**
 
-Battery level warning
+Low battery level
 
 **可能原因**
 
