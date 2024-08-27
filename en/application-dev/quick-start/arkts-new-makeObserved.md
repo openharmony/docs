@@ -364,7 +364,7 @@ struct CollectionMap {
 
   build() {
     Column() {
-      // this.mapCollect.keys() returns an iterator which is not supported by Foreach. Therefore, Array.from is used to generate data in shallow copy mode.
+      // this.mapCollect.keys() returns an iterator which is not supported by ForEach. Therefore, Array.from is used to generate data in shallow copy mode.
       ForEach(Array.from(this.mapCollect.keys()), (item: string) => {
         Text(`${this.mapCollect.get(item)?.id}`).onClick(() => {
           let value: Info|undefined = this.mapCollect.get(item);
