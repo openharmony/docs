@@ -2894,6 +2894,7 @@
             - [net_websocket.h](reference/apis-network-kit/net__websocket_8h.md)
             - [net_websocket_type.h](reference/apis-network-kit/net__websocket__type_8h.md)
           - 结构体<!--network-struct-->
+            - [NetConn_ConnectionProperties](reference/apis-network-kit/_net_conn___connection_properties.md)
             - [NetConn_HttpProxy](reference/apis-network-kit/_net_conn___http_proxy.md)
             - [NetConn_NetAddr](reference/apis-network-kit/_net_conn___net_addr.md)
             - [NetConn_NetCapabilities](reference/apis-network-kit/_net_conn___net_capabilities.md)
