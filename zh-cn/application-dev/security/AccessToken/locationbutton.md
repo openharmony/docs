@@ -56,13 +56,17 @@
        'distanceInterval': 0,
        'maxAccuracy': 0
      };
-     geoLocationManager.getCurrentLocation(requestInfo)
-       .then((location: geoLocationManager.Location) => {
-         promptAction.showToast({ message: JSON.stringify(location) });
-       })
-       .catch((err: BusinessError) => {
-         console.error(`Failed to get current location. Code is ${err.code}, message is ${err.message}`);
-       });
+     try {
+       geoLocationManager.getCurrentLocation(requestInfo)
+         .then((location: geoLocationManager.Location) => {
+           promptAction.showToast({ message: JSON.stringify(location) });
+         })
+         .catch((err: BusinessError) => {
+           console.error(`Failed to get current location. Code is ${err.code}, message is ${err.message}`);
+         });
+     } catch (err) {
+       console.error(`Failed to get current location. Code is ${err.code}, message is ${err.message}`);
+     }
    }
    
    @Entry
