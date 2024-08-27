@@ -1742,7 +1742,7 @@ createGroup(config: WifiP2PConfig): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Mandatory parameters are left unspecified. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 
@@ -1852,7 +1852,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Mandatory parameters are left unspecified. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 
