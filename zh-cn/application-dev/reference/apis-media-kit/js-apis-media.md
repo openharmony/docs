@@ -478,6 +478,7 @@ Codec MIME类型枚举。
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 | AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | 表示音频/mpeg类型。      |
+| AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -4136,6 +4137,82 @@ off(type: 'audioCapturerChange', callback?: Callback<audio.AudioCapturerChangeIn
 avRecorder.off('audioCapturerChange');
 ```
 
+### on('photoAssetAvailable')<sup>12+</sup>
+
+on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset>): void
+
+订阅媒体资源回调事件，当[FileGenerationMode](#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9-2)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
+
+当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象|
+
+**错误码：**
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+let photoAsset: photoAccessHelper.PhotoAsset;
+
+// 例:处理photoAsset回调，保存video
+async saveVideo(asset: photoAccessHelper.PhotoAsset) {
+  console.info("saveVideo called");
+  try {
+    let phAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveVideo successfully');
+  } catch (err) {
+    console.error(`apply saveVideo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+// 注册photoAsset监听
+avRecorder.on('photoAssetAvailable',  (asset: photoAccessHelper.PhotoAsset) => {
+  console.info('photoAssetAvailable called');
+  if (asset != undefined) {
+    photoAsset = asset;
+    // 处理photoAsset回调
+    // 例: this.saveVideo(asset);
+  } else {
+    console.error('photoAsset is undefined');
+  }
+});
+```
+
+### off('photoAssetAvailable')<sup>12+</sup>
+
+off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsset>): void
+
+取消订阅媒体资源的回调类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
+
+**示例：**
+
+```ts
+avRecorder.off('photoAssetAvailable');
+```
+
 ## AVRecorderState<sup>9+</sup>
 
 type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error'
@@ -4197,10 +4274,10 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。<br>支持范围：<br>- AAC编码格式支持比特率范围[32000 - 500000]。<br>- MP3编码格式支持范围[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。<br>当使用MP3编码格式时，采样率和比特率的映射关系： <br>- 采样率使用16K以下时，对应比特率范围为[8kbps - 64kbps]。<br>- 采样率使用16K~32K时对应的比特率范围为[8kbps - 160kbps]。<br>- 采样率使用32K以上时对应的比特率范围为[32kbps - 320kbps]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。<br>支持范围：<br>- AAC编码格式支持比特率范围[32000 - 500000]。<br>- G711-mulaw编码格式支持比特率范围[64000 - 64000]。<br>- MP3编码格式支持范围[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。<br>当使用MP3编码格式时，采样率和比特率的映射关系： <br>- 采样率使用16K以下时，对应比特率范围为[8kbps - 64kbps]。<br>- 采样率使用16K~32K时对应的比特率范围为[8kbps - 160kbps]。<br>- 采样率使用32K以上时对应的比特率范围为[32kbps - 320kbps]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1 - 1]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000 - 8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
@@ -4247,6 +4324,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | CFT_MPEG_4  | 'mp4' | 视频的容器格式，MP4。 |
 | CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
+| CFT_WAV<sup>12+</sup>  | 'wav' | 音频的容器格式，WAV。 |
 
 ## Location
 
@@ -4287,7 +4365,16 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | min  | number | 是   | 否   | 范围的最小值 |
 | max  | number | 是   | 否   | 范围的最大值 |
 
+## FileGenerationMode<sup>12+</sup>
 
+表示创建媒体文件模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称                          | 值   | 说明                            |
+| ----------------------------- | ---- | ------------------------------- |
+| APP_CREATE  | 0    | 由应用自行在沙箱创建媒体文件。 |
+| AUTO_CREATE_CAMERA_SCENE  | 1    | 由系统创建媒体文件，当前仅在相机录制场景下生效，会忽略应用设置的url。 |
 
 ## AVTranscoder<sup>12+</sup>
 
