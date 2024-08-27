@@ -4,69 +4,69 @@
 
 **Access Level**
 
-other
+Others
 
-**Change Reason**
+**Reason for Change**
 
-For the convenience of developers, these two rules arkts-no-generic-lambdas and arkts-no-import-default-as need to be deleted in the ArkTS language.
+For ease of use, the linter rules **arkts-no-generic-lambdas** and **arkts-no-import-default-as** are deleted from ArkTS.
 
 **Change Impact**
 
-This change is a compatibility change, which is a relaxation of these rules and does not introduce compatibility problems.
+This change is a compatibility change.
 
-**API Level**
+**Start API Level**
 
 10
 
-**Changed Since**
+**Change Since**
 
-Start with OpenHarmony SDK version 5.0.0.25.
+OpenHarmony SDK 5.0.0.25
 
-**Changed Interface or Component**
+**Key API/Component Changes**
 
-Before the change, Linter will report errors about these two rules; After the change, Linter will not report errors about these two rules.
+Before the change, a linter error is reported for the following two rules. After the change, no linter error is reported for the two rules.
 
 - (Deleted) Rule 1: Use Generic Functions Instead of Generic Arrow Functions
 
-    Rule: `arkts-no-generic-lambdas`
+    Rule: arkts-no-generic-lambdas
 
     Severity: error
 
-    Rule Description：ArkTS does not support generic arrow functions. Use normal generic functions instead.
+    Rule description: ArkTS does not support generic arrow functions.
 
-    TypeScript grammar：
+    TypeScript syntax:
 
     ```typescript
-    let generic_arrow_func = <T extends String> (x: T) => { return x }
+    let generic_arrow_func = <T extends String> (x: T) => { return x; };
 
-    generic_arrow_func('string')
+    generic_arrow_func('string');
     ```
 
-    ArkTS grammar：
+    ArkTS syntax:
 
     ```typescript
     function generic_func<T extends String>(x: T): T {
-    return x
+    return x;
     }
 
-    generic_func<String>('string')
+    generic_func<String>('string');
     ```
 
-- (Deleted) Rule 2: `import default as ...` Is Not Supported
+- (Deleted) Rule 2: Import default as... Is Not Supported
 
-    Rule: `arkts-no-import-default-as`
+    Rule: arkts-no-import-default-as
 
     Severity: error
 
-    Rule Description：ArkTS does not support the `import default as ...` syntax. Use explicit `import ... from ...` instead.
+    Rule description: ArkTS does not support the **import default as...** syntax. Use explicit **import... from...** instead.
 
-    TypeScript grammar：
+    TypeScript syntax:
 
     ```typescript
     import { default as d } from 'mod'
     ```
 
-    ArkTS grammar：
+    ArkTS syntax:
 
     ```typescript
     import d from 'mod'
@@ -74,4 +74,4 @@ Before the change, Linter will report errors about these two rules; After the ch
 
 **Adaptation Guide**
 
-If the ArkTS Linter rule is deleted, the original Linter error reporting behavior will be changed to no error reporting, and no adaptation is required.
+No adaptation is required.

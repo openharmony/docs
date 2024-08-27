@@ -117,4 +117,4 @@ systemPasteboard.getData().then((data) => {
 }).catch((error: BusinessError) => {
   // 处理异常场景
 })
-```                                                                                              |
+```                                                                                              

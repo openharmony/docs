@@ -32,7 +32,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
 ```json
 {
   "module": {
-    ...
+    // ...
     "abilities": [
       {
         "name": "EntryAbility", // UIAbility组件的名称
@@ -42,7 +42,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
         "label": "$string:EntryAbility_label", // UIAbility组件的标签
         "startWindowIcon": "$media:icon", // UIAbility组件启动页面图标资源文件的索引
         "startWindowBackground": "$color:start_window_background", // UIAbility组件启动页面背景颜色资源文件的索引
-        ...
+        // ...
       }
     ]
   }

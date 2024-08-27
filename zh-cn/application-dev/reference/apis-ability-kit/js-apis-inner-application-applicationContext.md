@@ -695,7 +695,7 @@ setLanguage(language: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取。  |
+| language | string | 是   | 设置语言，当前支持的语言列表可以通过[getSystemLanguages()](../apis-localization-kit/js-apis-i18n.md#getsystemlanguages9)获取。  |
 
 **错误码**：
 
@@ -873,7 +873,7 @@ getCurrentAppCloneIndex(): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
-| 16000071 | App clone is not supported. |
+| 16000071 | The MultiAppMode is not {@link APP_CLONE}. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 

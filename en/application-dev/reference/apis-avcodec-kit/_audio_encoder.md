@@ -5,9 +5,13 @@
 
 The AudioEncoder module provides the functions for audio encoding.
 
-**System capability**: SystemCapability.Multimedia.Media.Core
+**System capability**: SystemCapability.Multimedia.Media.AudioEncoder
 
 **Since**: 9
+
+**Deprecated from**: 11
+
+**Development suggestions**: All APIs of the current module have been deprecated. You can use [AudioCodec](_audio_codec.md) instead. For details about the API mappings before and after the deprecation, see the API reference.
 
 
 ## Summary

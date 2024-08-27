@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)
+# FormMenu
 
 本组件封装了一个“添加至桌面”菜单，用于实现应用内长按组件生成“添加至桌面”菜单，点击该菜单，触发卡片添加至桌面操作。通过桌面访问该应用快捷卡片，可以直接访问该组件功能。在应用使用过程中，该组件作为留存和复访入口，可吸引用户将功能快捷添加到桌面。
 
@@ -77,7 +77,7 @@ AddFormMenuItem(
 **参数：**
 | 名称            | 参数类型           | 必填 | 说明 |
 | --------------- | ----------------- | ---- | ---- |
-| options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions类型说明) | 否   | 包含设置MenuItem的各项信息。|
+| options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions对象说明) | 否   | 包含设置MenuItem的各项信息。|
 
 > **说明：**
 >

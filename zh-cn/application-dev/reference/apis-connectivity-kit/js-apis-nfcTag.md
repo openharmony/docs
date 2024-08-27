@@ -70,57 +70,56 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
-    // add other code here...
+        // add other code here...
 
-    // want is initialized by nfc service, contains tag info for this found tag
-    let tagInfo : tag.TagInfo | null = null;
-    try {
-      tagInfo = tag.getTagInfo(want);
-    } catch (error) {
-      console.error("tag.getTagInfo catch error: " + error);
-    }
-    if (tagInfo == null || tagInfo == undefined) {
-      console.log("no TagInfo to be created, ignore it.");
-      return;
-    }
+        // want is initialized by nfc service, contains tag info for this found tag
+        let tagInfo : tag.TagInfo | null = null;
+        try {
+            tagInfo = tag.getTagInfo(want);
+        } catch (error) {
+            console.error("tag.getTagInfo catch error: " + error);
+        }
+        if (tagInfo == null || tagInfo == undefined) {
+            console.log("no TagInfo to be created, ignore it.");
+            return;
+        }
 
-    // get the supported technologies for this found tag.
-    let isNfcATag =  false;
-    let isIsoDepTag =  false;
-    for (let i = 0; i < tagInfo.technology.length; i++) {
-      if (tagInfo.technology[i] == tag.NFC_A) {
-        isNfcATag = true;
-      }
+        // get the supported technologies for this found tag.
+        let isNfcATag =  false;
+        let isIsoDepTag =  false;
+        for (let i = 0; i < tagInfo.technology.length; i++) {
+            if (tagInfo.technology[i] == tag.NFC_A) {
+                isNfcATag = true;
+            }
+            if (tagInfo.technology[i] == tag.ISO_DEP) {
+                isIsoDepTag = true;
+            }
+        // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
+        }
 
-      if (tagInfo.technology[i] == tag.ISO_DEP) {
-        isIsoDepTag = true;
-      }
-      // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
-    }
+        // use NfcA APIs to access the found tag.
+        if (isNfcATag) {
+            let nfcA : tag.NfcATag | null = null;
+            try {
+                nfcA = tag.getNfcATag(tagInfo);
+            } catch (error) {
+                console.error("tag.getNfcATag catch error: " + error);
+            }
+            // other code to read or write this found tag.
+        }
 
-    // use NfcA APIs to access the found tag.
-    if (isNfcATag) {
-      let nfcA : tag.NfcATag | null = null;
-      try {
-        nfcA = tag.getNfcATag(tagInfo);
-      } catch (error) {
-        console.error("tag.getNfcATag catch error: " + error);
-      }
-      // other code to read or write this found tag.
+        // use getIsoDep APIs to access the found tag.
+        if (isIsoDepTag) {
+            let isoDep : tag.IsoDepTag | null = null;
+            try {
+                isoDep = tag.getIsoDep(tagInfo);
+            } catch (error) {
+                console.error("tag.getIsoDep catch error: " + error);
+            }
+            // other code to read or write this found tag.
+        }
+        // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
     }
-
-    // use getIsoDep APIs to access the found tag.
-    if (isIsoDepTag) {
-      let isoDep : tag.IsoDepTag | null = null;
-      try {
-        isoDep = tag.getIsoDep(tagInfo);
-      } catch (error) {
-        console.error("tag.getIsoDep catch error: " + error);
-      }
-      // other code to read or write this found tag.
-    }
-    // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
-  }
 }
 ```
 
@@ -408,6 +407,8 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getMifareClassic<sup>9+</sup>

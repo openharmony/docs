@@ -88,7 +88,7 @@ mouse类的输入源包含：mouse、touchpad、joystick
 
 ArkUI包含的安全组件有：[使用位置组件](../security/AccessToken/locationbutton.md)、[使用粘贴组件](../security/AccessToken/pastebutton.md)、[使用保存组件](../security/AccessToken/savebutton.md)等。
 
-安全组件当前对触摸测试影响：如果有组件z序比安全组件靠前，且遮盖安全组件，则安全组件事件直接返回到父节点继续触摸测试。
+安全组件当前对触摸测试影响：如果有组件的[z序](../reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md)比安全组件的z序靠前，且遮盖安全组件，则安全组件事件直接返回到父节点继续触摸测试。
 
 ## 事件响应链的收集
 

@@ -512,7 +512,7 @@ interface Person {
   name: string,
   age: number
 }
-let obj: Person = { name: 'Dany', age: 20 };
+let obj: Person = { name: 'Jack', age: 20 };
 let result1 = util.getHash(obj);
 console.info('result1 is ' + result1);
 let result2 = util.getHash(obj);
@@ -534,6 +534,17 @@ console.info('result2 is ' + result2);
 | fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
 | ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
 
+## DecodeToStringOptions<sup>12+</sup>
+
+解码是否使用流处理方式。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stream | boolean | 否 | 输入末尾出现的不完整字节序列是否需要追加在下次调用decodeToString的参数中处理。设置为true，则不完整的字节序列会存储在内部缓存区直到下次调用该函数，false则会在当前调用时直接解码。默认为false。 |
 
 ## DecodeWithStreamOptions<sup>11+</sup>
 
@@ -546,7 +557,6 @@ console.info('result2 is ' + result2);
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
-
 
 ## Aspect<sup>11+</sup>
 
@@ -859,15 +869,62 @@ let result = util.TextDecoder.create('utf-8', textDecoderOptions)
 let retStr = result.encoding
 ```
 
-### decodeWithStream<sup>9+</sup>
+### decodeToString<sup>12+</sup>
 
-decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
+decodeToString(input: Uint8Array, options?: DecodeToStringOptions): string
 
 通过输入参数解码后输出对应文本。
 
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
+| options | [DecodeToStringOptions](#decodetostringoptions12) | 否 | 解码相关选项参数。默认undefined。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 解码后的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let textDecoderOptions: util.TextDecoderOptions = {
+  fatal: false,
+  ignoreBOM : true
+}
+let decodeToStringOptions: util.DecodeToStringOptions = {
+  stream: false
+}
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let result = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(result, decodeToStringOptions);
+console.info("retStr = " + retStr);
+```
+
+### decodeWithStream<sup>(deprecated)</sup>
+
+decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
+
+通过输入参数解码后输出对应文本。当input是一个空数组时，返回值为undefined。
+
 > **说明：**
 >
-> 当input是一个空数组时，返回值为undefined。
+> 从API version 9开始支持，从API version 12开始废弃，建议使用[decodeToString<sup>12+</sup>](#decodetostring12)替代。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -957,7 +1014,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeWithStream<sup>9+</sup>](#decodewithstream9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeToString<sup>12+</sup>](#decodetostring12)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3550,7 +3607,7 @@ Types的构造函数。
 
 isAnyArrayBuffer(value: Object): boolean
 
-检查输入的value是否是ArrayBuffer类型。
+检查输入的value是否是ArrayBuffer或SharedArrayBuffer类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3566,7 +3623,7 @@ isAnyArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是ArrayBuffer类型为true，反之为false。 |
+| boolean | 判断的结果，如果是ArrayBuffer或SharedArrayBuffer类型为true，反之为false。 |
 
 **示例：**
 
@@ -3616,7 +3673,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 isArgumentsObject(value: Object): boolean
 
-检查输入的value是否是一个arguments对象类型。
+检查输入的value是否是一个arguments对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3632,7 +3689,7 @@ isArgumentsObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的arguments类型为true，反之为false。 |
+| boolean | 判断的结果，如果是一个arguments对象为true，反之为false。 |
 
 **示例：**
 
@@ -3864,11 +3921,51 @@ isExternal(value: Object): boolean
 
 **示例：**
 
+  ```cpp
+  // /entry/src/main/cpp/napi_init.cpp
+  #include "napi/native_api.h"
+  #include <js_native_api.h>
+  #include <stdlib.h>
+
+  napi_value result;
+  static napi_value Testexternal(napi_env env, napi_callback_info info) {
+      int* raw = (int*) malloc(1024);
+      napi_status status = napi_create_external(env, (void*) raw, NULL, NULL, &result);
+      if (status != napi_ok) {
+          napi_throw_error(env, NULL, "create external failed");
+          return NULL;
+      }
+      return result;
+  }
+
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports)
+  {
+      napi_property_descriptor desc[] = {
+          {"testexternal", nullptr, Testexternal, nullptr, nullptr, nullptr, napi_default, nullptr},
+      };
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
+  }
+  EXTERN_C_END
+  // 此处已省略模块注册的代码, 你可能需要自行注册Testexternal方法
+  ...
+
+  ```
+
+  <!--code_no_check-->
   ```ts
+  import testNapi from 'libentry.so';
+
   let type = new util.types();
-  let result = type.isExternal(true);
+  const data = testNapi.testexternal();
+  let result = type.isExternal(data);
+
+  let result01 = type.isExternal(true);
   console.info("result = " + result);
-  // 输出结果：result = false
+  console.info("result01 = " + result01);
+  // 输出结果：result = true
+  // 输出结果：result01 = false
   ```
 
 
@@ -3942,10 +4039,6 @@ isGeneratorFunction(value: Object): boolean
 
 检查输入的value是否是generator函数类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -3964,10 +4057,16 @@ isGeneratorFunction(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
+  // /entry/src/main/ets/pages/test.ts
+  export function* foo() {}
+  ```
+
+  ```ts
+  import { foo } from './test'
+
   let type = new util.types();
-  let result = type.isGeneratorFunction(function* foo() {});
+  let result = type.isGeneratorFunction(foo);
   console.info("result = " + result);
   // 输出结果：result = true
   ```
@@ -3978,10 +4077,6 @@ isGeneratorFunction(value: Object): boolean
 isGeneratorObject(value: Object): boolean
 
 检查输入的value是否是generator对象类型。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4001,12 +4096,16 @@ isGeneratorObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
+  // /entry/src/main/ets/pages/test.ts
+  function* foo() {}
+  export const generator = foo();
+  ```
+
+  ```ts
+  import { generator } from './test'
+
   let type = new util.types();
-  function* foo() {};
-  const generator = foo();
   let result = type.isGeneratorObject(generator);
   console.info("result = " + result);
   // 输出结果：result = true
@@ -4437,15 +4536,11 @@ isStringObject(value: Object): boolean
   ```
 
 
-### isSymbolObjec<sup>8+</sup>
+### isSymbolObject<sup>8+</sup>
 
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4465,11 +4560,15 @@ isSymbolObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
+  // /entry/src/main/ets/pages/test.ts
+  export const symbols = Symbol('foo');
+  ```
+
+  ```ts
+  import { symbols } from './test'
+
   let type = new util.types();
-  const symbols = Symbol('foo');
   let result = type.isSymbolObject(Object(symbols));
   console.info("result = " + result);
   // 输出结果：result = true
@@ -4482,7 +4581,7 @@ isTypedArray(value: Object): boolean
 
 检查输入的value是否是TypedArray类型的辅助类型。
 
-TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、DataView。
+TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、BigInt64Array、BigUint64Array。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4773,10 +4872,6 @@ isModuleNamespaceObject(value: Object): boolean
 
 检查输入的value是否是Module Namespace Object类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -4795,14 +4890,20 @@ isModuleNamespaceObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
-  import { url } from '@kit.ArkTS';
+  // /entry/src/main/ets/pages/test.ts
+  export function func() {
+    console.info("hello world");
+  }
+  ```
+
+  ```ts
+  import * as nameSpace from './test';
+
   let type = new util.types();
-  let result = type.isModuleNamespaceObject(url);
+  let result = type.isModuleNamespaceObject(nameSpace);
   console.info("result = " + result);
-  // 输出结果：result = false
+  // 输出结果：result = true
   ```
 
 

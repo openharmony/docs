@@ -114,7 +114,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     int32_t width = 320; 
     // (Mandatory) Configure the video frame height.
     int32_t height = 240;
-    // (Mandatory) Configure the video color format.
+    // (Mandatory) Configure the video pixel format.
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     int32_t widthStride = 0;
     int32_t heightStride = 0;
@@ -236,11 +236,11 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
     The parameter value ranges can be obtained through the capability query interface. For details, see [Obtaining Supported Codecs](obtain-supported-codecs.md).
 
-    Currently, the following options must be configured for all supported formats: video frame width, video frame height, and video color format. In the code snippet below, the following variables are used:
+    Currently, the following options must be configured for all supported formats: video frame width, video frame height, and video pixel format. In the code snippet below, the following variables are used:
 
     - **DEFAULT_WIDTH**: 320 pixels
     - **DEFAULT_HEIGHT**: 240 pixels
-    - **DEFAULT_PIXELFORMAT**: **AV_PIXEL_FORMAT_NV12** (the color format of the YUV file is NV12)
+    - **DEFAULT_PIXELFORMAT**: **AV_PIXEL_FORMAT_NV12** (the pixel format of the YUV file is NV12)
 
     ```c++
     // Configure the video frame rate.
@@ -292,7 +292,6 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     > **NOTE**
     > 
     > If an optional parameter is incorrectly configured, the error code **AV_ERR_INVAILD_VAL** is returned. However, **OH_VideoEncoder_Configure()** does not fail. Instead, its execution continues with the default value.
-    >
 
 7. Obtain a surface.
 
@@ -309,7 +308,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     ```
     For details about how to use the **OHNativeWindow*** variable type, see [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow).
 
-8. Call **OH_VideoEncoder_Prepare()** to prepare internal resources for the encoder.   
+8. Call **OH_VideoEncoder_Prepare()** to prepare internal resources for the encoder.
 
    ```c++
    int32_t ret = OH_VideoEncoder_Prepare(videoEnc);
@@ -335,7 +334,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 10. (Optional) Call **OH_VideoEncoder_SetParameter()** to dynamically configure encoder parameters during running.
     
     For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
-    
+
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // Dynamically request IDR frames.
@@ -349,14 +348,14 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // The QP can be dynamically set.
     // The value of OH_MD_KEY_VIDEO_ENCODER_QP_MAX must be greater than or equal to that of OH_MD_KEY_VIDEO_ENCODER_QP_MIN.
     OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
-OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
-    
+    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
+
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
     ```
-    
+
 11. Write the image to encode.
 
     In step 7, you have configured the **OHNativeWindow*** variable type returned by **OH_VideoEncoder_GetSurface**. The data required for encoding is continuously input by the surface. Therefore, you do not need to process the **OnNeedInputBuffer** callback function or use **OH_VideoEncoder_PushInputBuffer** to input data.
@@ -378,14 +377,14 @@ OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
 
 13. Call **OH_VideoEncoder_NotifyEndOfStream()** to notify the encoder of EOS.
 
-     ```c++
-     // In surface mode, you only need to call this API to notify the encoder of EOS.
-     // In buffer mode, you need to set the AVCODEC_BUFFER_FLAGS_EOS flag and then call OH_VideoEncoder_PushInputBuffer to notify the encoder of EOS.
-     int32_t ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    // In surface mode, you only need to call this API to notify the encoder of EOS.
+    // In buffer mode, you need to set the AVCODEC_BUFFER_FLAGS_EOS flag and then call OH_VideoEncoder_PushInputBuffer to notify the encoder of EOS.
+    int32_t ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 14. Call **OH_VideoEncoder_FreeOutputBuffer()** to release encoded frames.
 
@@ -449,7 +448,6 @@ OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
 17. (Optional) Call **OH_VideoEncoder_Stop()** to stop the encoder.
     
     After **OH_VideoEncoder_Stop()** is called, the encoder stops until **OH_VideoEncoder_Start()** is called again.
-    
     ```c++
     // Stop the encoder.
     int32_t ret = OH_VideoEncoder_Stop(videoEnc);
@@ -464,7 +462,7 @@ OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
     >
     > This API cannot be called in the callback function.
     > After the call, you must set a null pointer to the encoder to prevent program errors caused by wild pointers.
-    
+
     ```c++
     // Call OH_VideoEncoder_Destroy to destroy the encoder.
     int32_t ret = OH_VideoEncoder_Destroy(videoEnc);
@@ -660,7 +658,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     ```c++
     if (stride == width) {
         // Process the file stream and obtain the frame length, and then write the data to encode to the buffer of the specified index.
-        int32_t frameSize = width * height * 3 / 2; // Formula for calculating the data size of each frame in NV12 color format.
+        int32_t frameSize = width * height * 3 / 2; // Formula for calculating the data size of each frame in NV12 pixel format.
         inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), frameSize);
     } else {
         // If the stride is not equal to the width, you need to perform the offset based on the stride.
@@ -684,25 +682,25 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     Offset the stride. The following uses an NV12 image as an example:
     
     Add the header file.
-    
+
     ```c++
     #include <string.h>
     ```
     The following is the sample code:
-    
+
     ```c++
     struct Rect // Width and height of the source memory area.
     {
         int32_t width;
         int32_t height;
     };
-    
+
     struct DstRect // Width stride and height stride of the target memory area.
     {
         int32_t wStride;
         int32_t hStride;
     };
-    
+
     struct SrcRect // Width stride and height stride of the source memory area.
     {
         int32_t wStride;
@@ -713,7 +711,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     struct SrcRect srcRect;
     uint8_t *dst; // Pointer to the target memory area.
     uint8_t *src; // Pointer to the source memory area.
-    
+
     // Y: Copy the source data in the Y region to the target data in another region.
     for (int32_t i = 0; i < rect.height; ++i) {
         // Copy a row of data from the source to a row of the target.
@@ -734,7 +732,6 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         src += srcRect.wStride;
     }
     ```
-
     When processing buffer data (before pushing data) during hardware encoding, you must copy the image data after width and height alignment to the input callback AVBuffer. Generally, copy the image width, height, stride, and pixel format to ensure correct processing of the data to encode. For details, see step 3 in [Buffer Input](#buffer-input).
 
 

@@ -79,7 +79,7 @@ let leakObjlist:string = jsLeakWatcher.check();
 
 ## jsLeakWatcher.dump
 
-dump(filePath: string): Array<string>;
+dump(filePath: string): Array&lt;string&gt;;
 
 导出泄漏列表和虚拟机内存快照
 
@@ -95,7 +95,15 @@ dump(filePath: string): Array<string>;
 
 | 类型    | 说明                                                       |
 | ------- | ---------------------------------------------------------- |
-| Array<string> | 导出结果的数组，索引0为泄露列表文件名，后缀为.jsleaklist，索引1为虚拟机内存快照文件名，后缀为.heapsnapshort |
+| Array&lt;string&gt; | 导出结果的数组，索引0为泄露列表文件名，后缀为.jsleaklist，索引1为虚拟机内存快照文件名，后缀为.heapsnapshort |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | Parameter error. The filepath is invalid.                      |
 
 **示例：**
 

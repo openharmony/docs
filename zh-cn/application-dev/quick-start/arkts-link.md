@@ -26,8 +26,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Link a : string \| undefined`。 |
-| <br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any。 |                                                              |
+| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Link a : string \| undefined`。 |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
 
@@ -398,6 +397,54 @@ struct SetSample1 {
       .width('100%')
     }
     .height('100%')
+  }
+}
+```
+
+### 使用双向同步机制更改本地其他变量
+
+使用[\@Watch](./arkts-watch.md)可以在双向同步时，更改本地变量。
+
+下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量sourceNumber，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State sourceNumber: number = 0;
+
+  build() {
+    Column() {
+      Text(`父组件的sourceNumber：` + this.sourceNumber)
+      Child({ sourceNumber: this.sourceNumber })
+      Button('父组件更改sourceNumber')
+        .onClick(() => {
+          this.sourceNumber++;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @State memberMessage: string = 'Hello World';
+  @Link @Watch('onSourceChange') sourceNumber: number;
+
+  onSourceChange() {
+    this.memberMessage = this.sourceNumber.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.memberMessage)
+      Text(`子组件的sourceNumber：` + this.sourceNumber.toString())
+      Button('子组件更改memberMessage')
+        .onClick(() => {
+          this.memberMessage = 'Hello memberMessage';
+        })
+    }
   }
 }
 ```

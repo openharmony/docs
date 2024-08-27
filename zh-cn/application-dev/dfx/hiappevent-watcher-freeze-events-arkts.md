@@ -134,7 +134,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.params.process_name=com.example.myapplication
    HiAppEvent eventInfo.params.pid=3197
    HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=...
+   HiAppEvent eventInfo.params.uuid=27fac7098da46efe1cae9904946ec06c5acc91689c365efeefb7a23a0c37df77
    HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
    HiAppEvent eventInfo.params.hilog.size=77
    HiAppEvent eventInfo.params.event_handler.size=6

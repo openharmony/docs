@@ -48,7 +48,7 @@
 | title          | string |  否  | 否  | 通知标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。                         |
 | text           | string |  否  | 否  | 通知内容（不可为空字符串，大小不超过200字节，超出部分会被截断）。                         |
 | additionalText | string |  否  | 是  | 通知附加内容，是对通知内容的补充（大小不超过200字节，超出部分会被截断）。   |
-| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。   |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  是  | 通知在锁屏界面显示的图片。   |
 | longText       | string |  否  | 否  | 通知的长文本（不可为空字符串，大小不超过1024字节，超出部分会被截断）。                     |
 | briefText      | string |  否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过200字节，超出部分会被截断）。   |
 | expandedTitle  | string |  否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。                 |
@@ -69,7 +69,7 @@
 | title          | string          | 否  | 否  | 通知标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。       |
 | text           | string          | 否  | 否  | 通知内容（不可为空字符串，大小不超过200字节，超出部分会被截断）。       |
 | additionalText | string          | 否  | 是  | 通知附加内容，是对通知内容的补充（大小不超过200字节，超出部分会被截断）。 |
-| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。   |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  是  | 通知在锁屏界面显示的图片。   |
 | briefText      | string          | 否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过200字节，超出部分会被截断）。 |
 | longTitle      | string          | 否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。|
 | lines          | Array\<string\> | 否  | 否  | 通知的多行文本（大小不超过200字节，超出部分会被截断）。                  |
@@ -90,7 +90,7 @@
 | title          | string                                       |  否  | 否  | 通知标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。          |
 | text           | string                                       |  否  | 否  | 通知内容（不可为空字符串，大小不超过200字节，超出部分会被截断）。          |
 | additionalText | string                                       |  否  | 是  | 通知附加内容，是对通知内容的补充（大小不超过200字节，超出部分会被截断）。    |
-| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。   |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  是  | 通知在锁屏界面显示的图片。   |
 | briefText      | string                                       |  否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过200字节，超出部分会被截断）。 |
 | expandedTitle  | string                                       |  否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。    |
 | picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  | 否  | 通知的图片内容(图像像素的总字节数不能超过2MB)。|
@@ -138,7 +138,7 @@
 | ----- | ----------------------------------------------------- | --- | --- | ----------------- |
 | names | Array\<string\>                                       | 否  |  是 | 按钮名称（最多支持3个）。   |
 | icons | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)\> | 否  |  是 | 按钮图片（最多支持3个）。   |
-| iconsResource | Array\<[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)\> | 否  |  是 | 按钮资源（最多支持3个）。   |
+| iconsResource<sup>12+</sup> | Array\<[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)\> | 否  |  是 | 按钮资源（最多支持3个）。   |
 
 ## NotificationTime<sup>11+</sup>
 
@@ -148,7 +148,7 @@
 
 | 名称           | 类型              | 只读 | 可选 | 说明                             |
 | -------------- | ---------------- | --- | --- | -------------------------------- |
-| initialTime    | number           | 否  | 是  | 起始时间。                |
+| initialTime    | number           | 否  | 是  | 起始时间。<br>数据格式：时间戳。<br>单位：ms。                |
 | isCountDown    | boolean          | 否  | 是  | 是否倒计时。                     |
 | isPaused       | boolean          | 否  | 是  | 是否暂停。                       |
 | isInTitle      | boolean          | 否  | 是  | 时间是否展示在title中。           |

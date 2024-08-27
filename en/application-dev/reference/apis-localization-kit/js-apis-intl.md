@@ -8,6 +8,8 @@ The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through s
 >
 >  - This module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n interfaces defined in ECMA 402. For details about the enhanced i18n capabilities, see [i18n](js-apis-i18n.md).
 >
+>  - The APIs of this module conform to the [Common Locale Data Repository (CLDR)](https://cldr.unicode.org) internationalization database. The processing result may change with CLDR evolution. API version 12 corresponds to [CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42). For details about data changes, visit the official website.
+>
 >  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
 >
 >  - Since API version 12, the APIs of this module are supported in atomic services.

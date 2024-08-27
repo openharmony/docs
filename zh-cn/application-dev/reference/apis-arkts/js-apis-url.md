@@ -551,7 +551,7 @@ new url.URL('path/path1', b); // Output 'https://username:password@host:8080/pat
 let c = new url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
 new url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
 new url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
-new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
+new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output https://www.exampleUrl/path/path1
 new url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
 new url.URL('https://www.example.com', ); // Output https://www.example.com/
@@ -668,14 +668,6 @@ URLSearchParams的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象<br/>- 默认值：null。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 

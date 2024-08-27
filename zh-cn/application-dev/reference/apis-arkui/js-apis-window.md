@@ -27,7 +27,7 @@ import { window } from '@kit.ArkUI';
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。                                                   |
 | TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从 API version 7开始支持。                               |
-| TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。                                                 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## Configuration<sup>9+</sup>
@@ -221,22 +221,23 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
+| 名称                                  | 类型                  | 只读 | 可选 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                  |
-| drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
-| type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
-| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                  |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                            |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 否   | 否   | 窗口尺寸。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                  |
+| drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 否   | 否   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
+| type<sup>7+</sup>                     | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
+| isFullScreen                          | boolean                   | 否   | 否   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                  |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 否   | 否   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                            |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
-| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
-| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                   |
-| isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                  |
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
-| isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
+| brightness                            | number                    | 否   | 否   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
+| isKeepScreenOn                        | boolean                   | 否   | 否   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                   |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | 否   | 否   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                  |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
+| isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口是否透明。默认为false。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
 | id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| displayId<sup>12+</sup>               | number                    | 是   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID,该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -332,6 +333,8 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 创建子窗口或者系统窗口，使用callback异步回调。
 
+**需要权限：** 当创建窗口类型为window.WindowType.TYPE_FLOAT时，需要ohos.permission.SYSTEM_FLOAT_WINDOW权限
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -390,6 +393,8 @@ try {
 createWindow(config: Configuration): Promise&lt;Window&gt;
 
 创建子窗口或者系统窗口，使用Promise异步回调。
+
+**需要权限：** 当创建窗口类型为window.WindowType.TYPE_FLOAT时，需要ohos.permission.SYSTEM_FLOAT_WINDOW权限
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1291,6 +1296,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
+在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1337,10 +1343,11 @@ try {
 
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调。
+移动窗口位置，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[moveWindowToAsync()](#movewindowtoasync12)。
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
+在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1378,6 +1385,63 @@ try {
   let promise = windowClass.moveWindowTo(300, 300);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### moveWindowToAsync<sup>12+</sup>
+
+moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
+
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+
+全屏模式窗口不支持该操作。
+在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | ----- | -- | --------------------------------------------- |
+| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+| 1300010 | The operation is not supported in full-screen mode. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let promise = windowClass.moveWindowToAsync(300, 300);
+  promise.then(() => {
+    console.info('Succeeded in moving the window.');
+    let rect = windowClass.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -1448,7 +1512,7 @@ try {
 
 resize(width: number, height: number): Promise&lt;void&gt;
 
-改变当前窗口大小，使用Promise异步回调。
+改变当前窗口大小，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[resizeAsync()](#resizeasync12)。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
@@ -1505,6 +1569,71 @@ try {
 }
 ```
 
+### resizeAsync<sup>12+</sup>
+
+resizeAsync(width: number, height: number): Promise&lt;void&gt;
+
+改变当前窗口大小，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+
+系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
+
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
+
+全屏模式窗口不支持该操作。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | -- | ------------------------ |
+| width  | number | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
+| height | number | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+| 1300010 | The operation is not supported in full-screen mode. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let promise = windowClass.resizeAsync(500, 1000);
+  promise.then(() => {
+    console.info('Succeeded in changing the window size.');
+    let rect = windowClass.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### getWindowProperties<sup>9+</sup>
 
 getWindowProperties(): WindowProperties
@@ -1545,6 +1674,8 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
+该接口一般适用于两种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1578,72 +1709,6 @@ try {
   let avoidArea = windowClass.getWindowAvoidArea(type);
 } catch (exception) {
   console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### setWindowLayoutFullScreen<sup>9+</sup>
-
-setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
-沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------------ | ------------------------- | -- | --------- |
-| isLayoutFullScreen | boolean                   | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
-| callback           | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let isLayoutFullScreen = true;
-      try {
-        windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in setting the window layout to full-screen mode.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
 }
 ```
 
@@ -1740,8 +1805,8 @@ setImmersiveModeEnabledState(enabled: boolean): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
@@ -1776,8 +1841,8 @@ getImmersiveModeEnabledState(): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------------------------------------------- |
 | 1300002  | This window state is abnormal.               |
-| 1300003  | This window manager service work abnormally. |
-| 1300004  | This operation is not access.                |
+| 1300003  | This window manager service works abnormally. |
+| 1300004  | Unauthorized operation.               |
 
 **示例：**
 
@@ -1786,73 +1851,6 @@ try {
   let isEnabled = windowClass.getImmersiveModeEnabledState();
 } catch (exception) {
   console.error(`Failed to get the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### setWindowSystemBarEnable<sup>9+</sup>
-
-setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
-
-设置主窗口导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
-
-子窗口调用后不生效。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | ---------------------------- | -- | --------- |
-| names    | Array<'status'\|'navigation'> | 是 | 设置窗口全屏模式时状态栏、导航栏和底部导航条是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-// 此处以不显示导航栏、状态栏、底部导航条为例
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let names: Array<'status' | 'navigation'> = [];
-      try {
-        windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in setting the system bar to be invisible.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
 }
 ```
 
@@ -1991,79 +1989,6 @@ export default class EntryAbility extends UIAbility {
         });
       } catch (exception) {
         console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
-}
-```
-
-### setWindowSystemBarProperties<sup>9+</sup>
-
-setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
-
-设置主窗口导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
-
-子窗口调用后不生效。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 参数名              | 类型                                        | 必填 | 说明                   |
-| ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| systemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏、状态栏的属性。 |
-| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let SystemBarProperties: window.SystemBarProperties = {
-        statusBarColor: '#ff00ff',
-        navigationBarColor: '#00ff00',
-        //以下两个属性从API Version8开始支持
-        statusBarContentColor: '#ffffff',
-        navigationBarContentColor: '#00ffff'
-      };
-      try {
-        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in setting the system bar properties.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
       }
     });
   }
@@ -2998,7 +2923,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3036,7 +2961,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -4502,6 +4427,8 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 
 设置屏幕是否为常亮状态，使用callback异步回调。
 
+规范使用该接口：仅在必要场景（导航、视频播放、绘画、游戏等场景）下，设置该属性为true；退出上述场景后，应当重置该属性为false；其他场景（无屏幕互动、音频播放等）下，不使用该接口；系统检测到非规范使用该接口时，可能会恢复自动灭屏功能。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4548,6 +4475,8 @@ try {
 setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 设置屏幕是否为常亮状态，使用Promise异步回调。
+
+规范使用该接口：仅在必要场景（导航、视频播放、绘画、游戏等场景）下，设置该属性为true；退出上述场景后，应当重置该属性为false；其他场景（无屏幕互动、音频播放等）下，不使用该接口；系统检测到非规范使用该接口时，可能会恢复自动灭屏功能。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4887,7 +4816,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                        |
 | ------------------ | ------- | ---- |-------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最大高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
 
 **返回值：**
 
@@ -4952,7 +4881,7 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名             | 类型    | 必填 | 说明                                         |
 | ------------------ | ------- | ---- |--------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 **错误码：**
@@ -5367,6 +5296,7 @@ try {
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 设置当前应用窗口的尺寸限制，使用Promise异步回调。
+默认存在一个系统尺寸限制，系统尺寸限制由产品配置决定，不可修改。未调用setWindowLimits配置过WindowLimits时，使用[getWindowLimits](#getwindowlimits11)可获取系统限制。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5382,7 +5312,7 @@ setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 | 类型                                         | 说明                                |
 | :------------------------------------------- | :---------------------------------- |
-| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise对象。返回设置后的尺寸限制。 |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise对象。返回设置后的尺寸限制，为入参与系统尺寸限制的交集。 |
 
 **错误码：**
 
@@ -5450,6 +5380,7 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
+| 1300004  | Unauthorized operation.                       |
 
 **示例：**
 
@@ -5770,6 +5701,135 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### getWindowStatus<sup>12+</sup>
+
+getWindowStatus(): WindowStatusType
+
+获取当前应用窗口的模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 类型                           | 说明                                   |
+| ------------------------------ | ----------------------------------------|
+| [WindowStatusType](#windowstatustype11) | 当前窗口模式。                              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowStatusType = windowClass.getWindowStatus();
+} catch (exception) {
+  console.error(`Failed to obtain the window status of window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### isFocused<sup>12+</sup>
+
+isFocused(): boolean
+
+判断当前窗口是否已获焦。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------- | ------------------------------------------------------------------ |
+| boolean | 当前窗口是否已获焦。true表示当前窗口已获焦，false则表示当前窗口未获焦。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let focus = windowClass.isFocused();
+  console.info('Succeeded in checking whether the window is focused. Data: ' + JSON.stringify(focus));
+} catch (exception) {
+  console.error(`Failed to check whether the window is focused. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### createSubWindowWithOptions<sup>12+</sup>
+
+createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
+
+创建主窗口或子窗口下的子窗口，使用Promise异步回调，该接口仅在2in1设备上调用生效。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| name   | string | 是   | 子窗口的名字。 |
+| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+
+**返回值：**
+
+| 类型                             | 说明                                             |
+| -------------------------------- | ------------------------------------------------ |
+| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前Window下创建的子窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let options : window.SubWindowOptions = {
+    title: 'title',
+    decorEnabled: true,
+    isModal: true
+  };
+  let promise = windowClass.createSubWindowWithOptions('mySubWindow', options);
+  promise.then((data) => {
+    console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### enableLandscapeMultiWindow<sup>12+</sup>
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
@@ -5980,6 +6040,224 @@ struct Index {
   onBackPress(): boolean | void {
     console.info('Succeeded in setting dialog window to respond back gesture.');
     return true;
+  }
+}
+```
+
+### setWindowSystemBarProperties<sup>(deprecated)</sup>
+
+setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
+
+设置主窗口导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 12开始废弃，推荐使用Promise方式的[setWindowSystemBarProperties](#setwindowsystembarproperties9)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名              | 类型                                        | 必填 | 说明                   |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| systemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏、状态栏的属性。 |
+| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      try {
+        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the system bar properties.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
+### setWindowSystemBarEnable<sup>(deprecated)</sup>
+
+setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
+
+设置主窗口导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+
+子窗口调用后不生效。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 12开始废弃，推荐使用Promise方式的[setWindowSystemBarEnable](#setwindowsystembarenable9)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                                                                                                                          |
+| -------- | ----------------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| names    | Array<'status'\|'navigation'> | 是   | 设置窗口全屏模式时状态栏、导航栏和底部导航条是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| callback | AsyncCallback&lt;void&gt;     | 是   | 回调函数。                                                                                                                                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+
+**示例：**
+
+```ts
+// 此处以不显示导航栏、状态栏、底部导航条为例
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      try {
+        windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the system bar to be invisible.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
+### setWindowLayoutFullScreen<sup>(deprecated)</sup>
+
+setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 12开始废弃，推荐使用Promise方式的[setWindowLayoutFullScreen](#setwindowlayoutfullscreen9)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名             | 类型                      | 必填 | 说明                                                                                                          |
+| ------------------ | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------- |
+| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
+| callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                                                                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen = true;
+      try {
+        windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
   }
 }
 ```
@@ -6553,14 +6831,6 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 | isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局不影响状态栏、导航栏显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 | callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -6619,14 +6889,6 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -8238,6 +8500,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 

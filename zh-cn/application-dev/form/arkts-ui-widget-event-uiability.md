@@ -72,56 +72,44 @@
   import { BusinessError } from '@kit.BasicServicesKit';
   import { formBindingData, formInfo, formProvider } from '@kit.FormKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
-  
+
   const TAG: string = 'WidgetEventRouterEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
-  
+
   export default class WidgetEventRouterEntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      this.handleFormRouterEvent(want);
+      this.handleFormRouterEvent(want, 'onCreate');
     }
-  
-    handleFormRouterEvent(want: Want): void {
-      hilog.info(DOMAIN_NUMBER, TAG, 'handleFormRouterEvent, Want:', JSON.stringify(want));
+
+    handleFormRouterEvent(want: Want, source: string): void {
+      hilog.info(DOMAIN_NUMBER, TAG, `handleFormRouterEvent ${source}, Want: ${JSON.stringify(want)}`);
       if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
-        let message: string = JSON.stringify(want.parameters.routerDetail);
+        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
+        // want.parameters.params 对应 postCardAction() 中 params 内容
+        let message: string = (JSON.parse(want.parameters?.params as string))?.routerDetail;
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          'routerDetail': message + 'UIAbility.', // 和卡片布局中对应
+          'routerDetail': message + ' ' + source + ' UIAbility', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData);
-        formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
+        formProvider.updateForm(curFormId, formMsg).then((data) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'updateForm success.', JSON.stringify(data));
         }).catch((error: BusinessError) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'updateForm failed.', JSON.stringify(error));
         });
       }
     }
-  
+
     // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant Want:', JSON.stringify(want));
-      if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
-        let message: string = JSON.stringify(want.parameters.routerDetail);
-        hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
-        let formData: Record<string, string> = {
-          'routerDetail': message + 'onNewWant UIAbility.', // 和卡片布局中对应
-        };
-        let formMsg = formBindingData.createFormBindingData(formData);
-        formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
-          hilog.info(DOMAIN_NUMBER, TAG, 'updateForm success.', JSON.stringify(data));
-        }).catch((error: BusinessError) => {
-          hilog.info(DOMAIN_NUMBER, TAG, 'updateForm failed.', JSON.stringify(error));
-        });
-      }
+      this.handleFormRouterEvent(want, 'onNewWant');
     }
-  
+
     onWindowStageCreate(windowStage: window.WindowStage): void {
       // Main window is created, set main page for this ability
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
-  
+
       windowStage.loadContent('pages/Index', (err, data) => {
         if (err.code) {
           hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -130,10 +118,9 @@
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
       });
     }
-    ...
+    // ...
   }
   ```
-
 
 
 ## 通过call事件刷新卡片内容
@@ -158,7 +145,7 @@
       let obj1 = formBindingData.createFormBindingData(dataObj1);
       return obj1;
     }
-    ...
+    // ...
   }
   ```
 

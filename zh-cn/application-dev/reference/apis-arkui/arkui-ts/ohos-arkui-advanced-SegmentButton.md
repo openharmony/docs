@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SegmentButton (分段按钮)
+# SegmentButton
 
 分段按钮组件，包含页签类分段按钮、单选类分段按钮、多选类分段按钮。
 
@@ -66,7 +66,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 | localizedButtonPadding<sup>12+</sup>  | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
 | localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距，默认值：0。                                                                                                                                                                                                                                                     |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Direction.Auto                                                                                                                                                                                                                                           |
-| backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                         |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                         |
 
 ### constructor
 
@@ -172,8 +172,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 | textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
 | localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
 | localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距，默认值：0。                                                                                                                                                                                                                                                     |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Auto                                                                                                                                                                                                                                          |
-| backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                      |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Direction.Auto                                                                                                                                                                                                                                          |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                      |
 
 ## TabSegmentButtonConstructionOptions
 
@@ -768,7 +768,7 @@ struct Index {
     buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
       text: '页签按钮3'
     }],
-    direction: Direction.Auto,
+    direction: Direction.Rtl,
     backgroundColor: Color.Green,
     selectedBackgroundColor: Color.Orange,
     localizedTextPadding: {
@@ -779,7 +779,7 @@ struct Index {
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }],
     multiply: false,
-    direction: Direction.Auto,
+    direction: Direction.Rtl,
     fontColor: Color.Black,
     selectedFontColor: Color.Yellow,
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
@@ -787,7 +787,7 @@ struct Index {
   @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }],
     multiply: true,
-    direction: Direction.Auto,
+    direction: Direction.Rtl,
     fontSize: 18,
     selectedFontSize: 18,
     fontWeight: FontWeight.Bolder,
@@ -802,7 +802,7 @@ struct Index {
       { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
     ],
     multiply: false,
-    direction: Direction.Auto,
+    direction: Direction.Rtl,
     imageSize: { width: 40, height: 40 },
     localizedButtonPadding: {
       end: LengthMetrics.vp(10),
@@ -819,7 +819,7 @@ struct Index {
       { text: '图标5', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
     ],
     multiply: true,
-    direction: Direction.Auto,
+    direction: Direction.Rtl,
     imageSize: { width: 10, height: 10 },
   })
   @State tabSelectedIndexes: number[] = [0]

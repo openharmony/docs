@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ExceptionPrompt (异常提示)
+# ExceptionPrompt
 
 
 异常提示，适用于有异常需要提示异常内容的情况。
@@ -162,7 +162,7 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct Index1 {
-  @State ButtomText: string = ''
+  @State ButtonText: string = ''
   @State MAP_HEIGHT: string = '30%'
   @State duration: number = 2500
   @State tips: string = ''

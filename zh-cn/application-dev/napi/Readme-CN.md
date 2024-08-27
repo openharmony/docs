@@ -33,15 +33,20 @@
   - 使用JSVM-API实现JS与C/C++语言交互
     - [JSVM-API简介](jsvm-introduction.md)
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
+    - [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)
     - JSVM-API开发规范
       - [JSVM-API使用规范](jsvm-guidelines.md)
       - [JSVM-API常见问题](jsvm-frequently-questions.md)
+    - JSVM-API使用指导
+      - [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md)
+      - [使用JSVM-API接口进行虚拟机快照相关开发](use-jsvm-create-snapshot.md)
+      - [使用JSVM-API接口进行WebAssembly模块相关开发](use-jsvm-about-wasm.md)
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - JSVM-API调优&高性能使用示例
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)
-        - [jsvm 通用调优实践](jsvm-optimizations.md)
+        - [JSVM 通用调优实践](jsvm-optimizations.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
   - 线程调度

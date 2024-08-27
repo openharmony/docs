@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SelectionMenu (文本选择菜单)
+# SelectionMenu
 
 
 文本选择菜单，适用于富文本组件通过[bindSelectionMenu](./ts-basic-components-richeditor.md#属性)绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。
@@ -75,7 +75,7 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 扩展下拉菜单。
 
-继承于[MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions类型说明)。
+继承于[MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions对象说明)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

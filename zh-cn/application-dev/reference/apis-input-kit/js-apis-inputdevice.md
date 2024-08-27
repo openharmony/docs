@@ -32,7 +32,7 @@ getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -97,7 +97,7 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -142,7 +142,7 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -183,7 +183,7 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -218,7 +218,7 @@ on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -265,7 +265,7 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -430,7 +430,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -472,7 +472,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -514,7 +514,7 @@ supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -549,7 +549,7 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -594,7 +594,7 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -635,7 +635,7 @@ getKeyboardTypeSync(deviceId: number): KeyboardType
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -691,17 +691,17 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 类型        | 说明      |
-| --------- |  ------- |
-| touchmajor  | 表示touchmajor轴，取值为string型。  |
-| touchminor  | 表示touchminor轴，取值为string型。  |
-| toolminor   | 表示toolminor轴，取值为string型。   |
-| toolmajor   | 表示toolmajor轴，取值为string型。   |
-| orientation | 表示orientation轴，取值为string型。 |
-| pressure    | 表示pressure轴，取值为string型。    |
-| x           | 表示x轴，取值为string型。           |
-| y           | 表示y轴，取值为string型。           |
-| null        | 无。              |
+| 参数名      | 类型   | 必填    | 说明      |
+| --------- | ------ | ---- | ------- |
+| touchmajor  | string | 是 | 表示touchmajor轴。|
+| touchminor  | string | 是 | 表示touchminor轴。|
+| toolminor   | string | 是 | 表示toolminor轴。 |
+| toolmajor   | string | 是 | 表示toolmajor轴。 |
+| orientation | string | 是 | 表示orientation轴。|
+| pressure    | string | 是 | 表示pressure轴。  |
+| x           | string | 是 | 表示x轴。         |
+| y           | string | 是 | 表示y轴。         |
+| null        | string | 是 | 无。             |
 
 ## AxisRange
 
@@ -727,14 +727,14 @@ type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick'
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 类型        |  说明      |
-| --------- |  ------- |
-| keyboard    | 表示输入设备是键盘，取值为string型。  |
-| touchscreen | 表示输入设备是触摸屏，取值为string型。 |
-| mouse       | 表示输入设备是鼠标，取值为string型。  |
-| trackball   | 表示输入设备是轨迹球，取值为string型。 |
-| touchpad    | 表示输入设备是触摸板，取值为string型。 |
-| joystick    | 表示输入设备是操纵杆，取值为string型。 |
+| 参数名        | 类型   | 必填 |  说明      |
+| --------- | ------ |  ---- |  ------- |
+| keyboard    | string | 是 | 表示输入设备是键盘。  |
+| touchscreen | string | 是 | 表示输入设备是触摸屏。 |
+| mouse       | string | 是 | 表示输入设备是鼠标。  |
+| trackball   | string | 是 | 表示输入设备是轨迹球。 |
+| touchpad    | string | 是 | 表示输入设备是触摸板。 |
+| joystick    | string | 是 | 表示输入设备是操纵杆。 |
 
 ## ChangedType<sup>9+</sup>
 
@@ -744,10 +744,10 @@ type ChangedType = 'add' | 'remove'
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 类型       | 说明      |
-| --------- | ------- |
-| add    | 表示输入设备插入，取值为string。 |
-| remove | 表示输入设备移除，取值为string。 |
+| 参数名        | 类型  | 必填  | 说明      |
+| --------- | ------ | ---- | ------- |
+| add    | string | 是 | 表示输入设备插入。 |
+| remove | string | 是 | 表示输入设备移除。 |
 
 ## KeyboardType<sup>9+</sup>
 

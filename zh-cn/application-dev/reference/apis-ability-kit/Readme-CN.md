@@ -92,6 +92,7 @@
     - [@ohos.bundle.installer (installer模块)(系统接口)](js-apis-installer-sys.md)
     - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)(系统接口)](js-apis-launcherBundleManager-sys.md)
     - [@ohos.bundle.overlay (overlay模块)(系统接口)](js-apis-overlay-sys.md)
+    - [@ohos.bundle.shortcutManager (shortcutManager模块)(系统接口)](js-apis-shortcutManager-sys.md)
     - [@ohos.distributedMissionManager (分布式任务管理)(系统接口)](js-apis-distributedMissionManager-sys.md)
     - [@ohos.privacyManager (隐私管理)(系统接口)](js-apis-privacyManager-sys.md)
     <!--DelEnd-->
@@ -239,9 +240,11 @@
       <!--DelEnd-->
 - C API
   - 模块
+    - [AbilityAccessControl](_ability_access_control.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件
+    - [ability_access_control.h](ability__access__control_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
   - 结构体

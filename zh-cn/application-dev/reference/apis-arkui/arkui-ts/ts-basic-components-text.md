@@ -19,9 +19,11 @@ Text(content?: string | Resource , value?: TextOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md#属性字符串)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
@@ -415,15 +417,26 @@ EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。
 
 enableDataDetector(enable: boolean)
 
-设置使能文本识别。所识别实体的fontColor和decoration会被更改为如下样式：
-
-fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue,<br/>style:&nbsp;TextDecorationStyle.SOLID<br/>}
+设置是否进行文本特殊实体识别。
 
 该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
 
-当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体。
+当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 
-当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本功能。
+```ts
+color: '#ff007dff'
+decoration:{
+  type: TextDecorationType.Underline,
+  color: '#ff007dff',
+  style: TextDecorationStyle.SOLID
+}
+```
+
+触摸点击和鼠标右键点击实体，会根据实体类型弹出对应的实体操作菜单，鼠标左键点击实体会直接响应菜单的第一个选项。
+
+当overflow设置为TextOverflow.MARQUEE时，该功能不会生效。
+
+当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但没有选择文本功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -441,7 +454,7 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 
 设置文本识别配置。
 
-需配合enableDataDetector一起使用，设置enableDataDetector为true时，dataDetectorConfig的配置才能生效。
+需配合[enableDataDetector](#enabledatadetector11)一起使用，设置enableDataDetector为true时，dataDetectorConfig的配置才能生效。
 
 当有两个实体A、B重叠时，按以下规则保留实体：
 
@@ -457,7 +470,7 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [TextDataDetectorConfig](#textdatadetectorconfig11对象说明) | 是   | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} |
+| config | [TextDataDetectorConfig](ts-text-common.md#textdatadetectorconfig11对象说明) | 是   | 文本识别配置。|
 
 ### bindSelectionMenu<sup>11+</sup>
 
@@ -478,9 +491,9 @@ bindSelectionMenu长按响应时长为600ms，bindContextMenu长按响应时长�
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| spantype     | [TextSpanType](ts-appendix-enums.md#textspantype11)          | 是   | 选择菜单的类型。<br/>默认值：TextSpanType.TEXT               |
+| spanType     | [TextSpanType](#textspantype11枚举说明)          | 是   | 选择菜单的类型。<br/>默认值：TextSpanType.TEXT               |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 选择菜单的内容。                                             |
-| responseType | [TextResponseType](ts-appendix-enums.md#textresponsetype11)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
+| responseType | [TextResponseType](#textresponsetype11枚举说明)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
 | options      | [SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11) | 否   | 选择菜单的选项。                                             |
 
 ### fontFeature<sup>12+</sup>
@@ -535,7 +548,7 @@ lineSpacing(value: LengthMetrics)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
 
 ### privacySensitive<sup>12+</sup>
 
@@ -573,7 +586,7 @@ lineBreakStrategy(strategy: LineBreakStrategy)
 
 ### textSelectable<sup>12+</sup>
 
-textSelectable(value: TextSelectableMode)
+textSelectable(mode: TextSelectableMode)
 
 设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。
 
@@ -585,7 +598,7 @@ textSelectable(value: TextSelectableMode)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
+| mode  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
 
 ### editMenuOptions<sup>12+</sup>
 
@@ -653,14 +666,73 @@ halfLeading(halfLeading: boolean)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
-## TextDataDetectorConfig<sup>11+</sup>对象说明
+### font<sup>12+</sup>
+
+font(fontValue: Font, options?: FontSettingOptions)
+
+设置文本样式，支持设置字体配置项。
+
+仅Text组件生效，其子组件不生效。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 类型  | 必填 | 说明  |
-| ------ | -------- | ---- | ------------------------------------------- |
-| types   | [TextDataDetectorType[]](ts-appendix-enums.md#textdatadetectortype11) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
-| onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| fontValue | [Font](ts-types.md#font) | 是  | 设置文本样式。 |
+| options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12对象说明) | 否  | 设置字体配置项。 |
+
+### fontWeight<sup>12+</sup>
+
+fontWeight(weight: number | FontWeight | string, options?: FontSettingOptions)
+
+设置文本字重，支持设置字体配置项。
+
+仅Text组件生效，其子组件不生效。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| weight | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是  | 设置文本字重。 |
+| options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12对象说明) | 否  | 设置字体配置项。 |
+
+## TextSpanType<sup>11+</sup>枚举说明
+
+[Span](ts-basic-components-span.md)类型信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 说明 |
+| -------- | -------- |
+| TEXT | Span为文字类型。 |
+| IMAGE | Span为图像类型。|
+| MIXED | Span为图文混合类型。|
+
+## TextResponseType<sup>11+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
+| LONG_PRESS  | 通过长按触发菜单弹出。   |
+| SELECT | 通过鼠标选中触发菜单弹出。 |
 
 ## 事件
 
@@ -703,6 +775,10 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 Text初始化参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | controller | [TextController](#textcontroller11)  | 是 | 文本控制器。 |
@@ -712,6 +788,8 @@ Text初始化参数。
 Text组件的控制器。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 
@@ -727,6 +805,8 @@ closeSelectionMenu(): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### setStyledString<sup>12+</sup>
 
 setStyledString(value: StyledString): void
@@ -735,9 +815,11 @@ setStyledString(value: StyledString): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 参数描述                |
+| 参数名   | 类型   | 必填   | 说明                |
 | ----- | ------ | ---- | ------------------- |
 | value | [StyledString](ts-universal-styled-string.md#styledstring) | 是    | 属性字符串。<br/>**说明：** <br/>StyledString的子类[MutableStyledString](ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。 |
 
@@ -748,6 +830,8 @@ getLayoutManager(): LayoutManager
 获取布局管理器对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 

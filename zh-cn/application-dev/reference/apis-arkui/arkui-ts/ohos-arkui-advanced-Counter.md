@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.Counter (计数器组件)
+# advanced.Counter
 
 Counter是用于精确调节数值的组件。
 
@@ -45,7 +45,7 @@ CounterOptions定义Counter的类型及具体式样参数。
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
 | type | [CounterType](#countertype) | 是   | 指定当前Counter的类型。 |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Auto |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto |
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型counter的式样。 |
 | inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 普通数字内联调节型Counter的式样。 |
 | dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型counter的式样。 |
@@ -313,7 +313,7 @@ import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
 @Entry
 @Component
 struct CounterPage {
-  @State currentDirection: Direction = Direction.Auto
+  @State currentDirection: Direction = Direction.Rtl
 
   build() {
     Column({}) {

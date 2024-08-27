@@ -709,6 +709,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | CURSOR_FIELD        | '#_cursor'     | 用于cursor查找的字段名。|
 | ORIGIN_FIELD        | '#_origin'     | 用于cursor查找时指定数据来源的字段名。    |
 | DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据是否清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
+| DATA_STATUS_FIELD<sup>12+</sup>   | '#_data_status' | 用于cursor查找的结果集返回时填充的字段，返回的结果集中，该字段对应的0表示正常数据，1表示退出账号保留数据，2表示云侧同步删除，3表示退出账户删除数据。|
 | OWNER_FIELD  | '#_cloud_owner' | 用于共享表中查找owner时，返回的结果集中填充的字段，表示当前共享记录的共享发起者。|
 | PRIVILEGE_FIELD  | '#_cloud_privilege' | 用于共享表中查找共享数据权限时，返回的结果集中填充的字段，表示当前共享记录的允许的操作权限。|
 | SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | 用于数据共享查找共享数据的共享资源时，返回的结果集中填充的字段，表示共享数据的共享资源标识。|
@@ -719,7 +720,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
-| SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core<br>**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC |
+| SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | 订阅云端数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | 订阅本地数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
@@ -767,7 +768,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 | 名称                | 值   | 说明                                                                                                 |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | 0  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core<br>**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC               |
+| DISTRIBUTED_DEVICE | 0  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
 | DISTRIBUTED_CLOUD  | 1   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
@@ -4083,6 +4084,8 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
+不支持分号分隔的多条语句。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -4142,6 +4145,8 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+不支持分号分隔的多条语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4203,6 +4208,8 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+不支持分号分隔的多条语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4271,6 +4278,8 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+不支持分号分隔的多条语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4362,6 +4371,8 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
+不支持分号分隔的多条语句。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -4435,6 +4446,8 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
+不支持分号分隔的多条语句。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -4457,7 +4470,6 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801          | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Database corrupted.                                          |
 | 14800014     | Already closed.                                              |
@@ -7007,7 +7019,7 @@ lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                                                     |
 |-----------|----------------------------------------------------------------------------------------------|
-| 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.                                                                                 |
 | 14800011  | Database corrupted.                                                                          |
 | 14800014  | Already closed.                                                                              |
@@ -7074,7 +7086,7 @@ unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
@@ -7133,7 +7145,7 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |

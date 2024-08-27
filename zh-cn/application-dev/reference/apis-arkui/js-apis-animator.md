@@ -47,7 +47,7 @@ create(options: AnimatorOptions): AnimatorResult
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例：** 
 
@@ -93,7 +93,7 @@ reset(options: AnimatorOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The specified page is not found or the object property list is not obtained.|
 
 
@@ -386,6 +386,8 @@ animatorResult.oncancel = ()=> {
 onrepeat: () => void
 
 动画重复时回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

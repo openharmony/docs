@@ -305,7 +305,7 @@ Curve.
 
 ### interpolate<sup>9+</sup>
 
-interpolate(fraction:&nbsp;number): number
+interpolate(fraction: number): number
 
 Implements calculation.
 

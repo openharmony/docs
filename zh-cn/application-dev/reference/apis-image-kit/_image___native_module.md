@@ -1816,7 +1816,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromUri (char * uri, size_t uriSize, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uri | 指向图像源URI的指针。只接受文件URI或Base64 URI。  | 
+| uri | 指向图像源URI的指针。只接受文件URI或Base64 URI。当前文件资源只支持绝对路径。  |
 | uriSize | URI长度。  | 
 | res | 指向c++本地层创建的OH_ImageSourceNative对象的指针。  | 
 
@@ -2678,7 +2678,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat (OH_PixelmapNative * srcpix
 | 名称 | 描述 | 
 | -------- | -------- |
 | srcpixelmap | 被操作的OH_PixelmapNative指针, 源pixelmap对象指针。  | 
-| dstpixelmap | 被操作的OH_PixelmapNative指针, 目标pixelmap对象指针。  | 
+| dstpixelmap | 被操作的OH_PixelmapNative指针, 目标pixelmap对象指针。目标指针和源指针不能是同一个。  | 
 | isPremul | 转换方式，true为非预乘转预乘，false为预乘转非预乘。  | 
 
 **返回：**

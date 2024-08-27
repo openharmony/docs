@@ -25,7 +25,7 @@ createA2dpSrcProfile(): A2dpSourceProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| A2dpSourceProfile | 返回该profile的实例。 |
+| [A2dpSourceProfile](#a2dpsourceprofile) | 返回该profile的实例。 |
 
 **错误码**：
 

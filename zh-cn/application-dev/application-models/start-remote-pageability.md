@@ -4,10 +4,10 @@
 启动远程PageAbility同样通过featureAbility中的startAbility接口实现。
 
 
-除引入'\@ohos.ability.featureAbility'外，还需引入'\@ohos.distributedHardware.deviceManager'，通过DeviceManager（该组件提供帐号无关的分布式设备的认证组网能力）的getTrustedDeviceListSync接口（获取信任设备列表）获取远端的deviceId，写入want中，用于启动远程PageAbility。
+除引入'\@ohos.ability.featureAbility'外，还需引入'\@ohos.distributedHardware.deviceManager'，通过DeviceManager（该组件提供帐号无关的分布式设备的认证组网能力）的[getTrustedDeviceListSync](../reference/apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)接口（获取信任设备列表）获取远端的deviceId，写入want中，用于启动远程PageAbility。
 
 
-由于当前DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，故现阶段非系统应用无法获取其他设备信息，无远程启动设备选择入口，远程启动Ability开发。
+由于当前DeviceManager的[getTrustedDeviceListSync](../reference/apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)接口仅对系统应用开放，故现阶段非系统应用无法获取其他设备信息，无远程启动设备选择入口，远程启动Ability开发。
 
 
   **表1** featureAbility接口说明
@@ -177,7 +177,7 @@ struct PagePageAbilitySecond {
       want: wantValue
     }).then((data) => {
       promptAction.showToast({
-        message: $r('app.string.start_remote_success_toast')
+        message: 'start_remote_success_toast'
       });
       hilog.info(domain, TAG, 'onStartRemoteAbility finished, ' + JSON.stringify(data));
     }).catch((error: BusinessError) => {

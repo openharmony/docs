@@ -784,7 +784,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -965,7 +965,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let setBadgeNumberCallback = (err: BusinessError): void => {
     if (err) {
-        console.info(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
+        console.error(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setBadgeNumber success");
     }
@@ -1392,11 +1392,13 @@ notificationManager.requestEnableNotification().then(() => {
 });
 ```
 
-## notificationManager.requestEnableNotification<sup>10+<sup>
+## notificationManager.requestEnableNotification<sup>10+</sup>
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
 应用请求通知使能模态弹窗。使用callback异步回调。
+
+仅当应用界面加载完成后（即调用[loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent)成功），方可使用该接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -1453,7 +1455,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## notificationManager.requestEnableNotification<sup>10+<sup>
+## notificationManager.requestEnableNotification<sup>10+</sup>
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 

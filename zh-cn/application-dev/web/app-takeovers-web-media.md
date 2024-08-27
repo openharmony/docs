@@ -225,7 +225,7 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
                  // 接管当前的媒体。
 
                  // 使用同层渲染流程提供的 surface 来构造一个本地播放器组件。
-                 this.node_controller = new MyNodeController(mediaInfo..surfaceInfo.id, NodeRenderType.  RENDER_TYPE_TEXTURE);
+                 this.node_controller = new MyNodeController(mediaInfo.surfaceInfo.id, NodeRenderType.  RENDER_TYPE_TEXTURE);
                  this.node_controller.build();
 
                  // 展示本地播放器组件。
@@ -691,7 +691,7 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
       .height('100%')
   }
 
-  // 通过 NodeController 来动态创建自定义的播放器组件， 并将组件内容绘制到 srufaceId 指定的 surface 上。
+  // 通过 NodeController 来动态创建自定义的播放器组件， 并将组件内容绘制到 surfaceId 指定的 surface 上。
   class MyNodeController extends NodeController {
     private rootNode: BuilderNode<[Params]> | undefined;
     private isRemove = false;

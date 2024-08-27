@@ -1,6 +1,6 @@
 # @ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)
 
-ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ActionExtension主要用于查看宿主应用中的内容以及对其进行对应处理。例如，添加一个书签、将选中的文本翻译成其他语言、在当前页面编辑图像等。
+ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ActionExtension主要用于查看宿主应用中的内容以及对其进行对应处理。例如，添加一个书签、将选中的文本翻译成其他语言、在当前页面编辑图像等。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 > 

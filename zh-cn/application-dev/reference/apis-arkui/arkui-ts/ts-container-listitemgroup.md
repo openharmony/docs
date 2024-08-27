@@ -27,7 +27,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options |  [ListItemGroupOptions](#listitemgroupoptions对象说明)| 否 | 列表item分组组件参数。 |
 
@@ -37,7 +37,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名              | 参数类型                                            | 必填 | 参数描述                                                     |
+| 参数名              | 类型                                            | 必填 | 说明                                                     |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | header              | [CustomBuilder](ts-types.md#custombuilder8)         | 否   | 设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。               |
 | footer              | [CustomBuilder](ts-types.md#custombuilder8)         | 否   | 设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。               |
@@ -80,7 +80,7 @@ childrenMainSize(value: ChildrenMainSize)
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| value | [ChildrenMainSize](ts-container-list.md#childrenmainsize12对象说明) | 是   | 1.通过ChildrenMainSize对象向ListItemGroup组件准确提供所有ListItem在主轴方向的大小信息。<br/>2.提供的主轴方向大小必须与子组件实际在主轴方向的大小一致。<br/>3. 必须同时设置List的childrenMainSize属性使用。<br/>4.子组件主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ListItemGroup组件。|
+| value | [ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12对象说明) | 是   | 1.通过ChildrenMainSize对象向ListItemGroup组件准确提供所有ListItem在主轴方向的大小信息。<br/>2.提供的主轴方向大小必须与子组件实际在主轴方向的大小一致。<br/>3. 必须同时设置List的childrenMainSize属性使用。<br/>4.子组件主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ListItemGroup组件。|
 
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
 

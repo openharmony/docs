@@ -55,7 +55,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 隐私模式Webview加载在线网页。
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -70,11 +70,11 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
       }
     }
   }
-   ```
+  ```
 
 Web组件统一渲染模式。
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -89,11 +89,11 @@ Web组件统一渲染模式。
       }
     }
   }
-   ```
+  ```
 
 Web组件指定共享渲染进程。
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -1642,6 +1642,7 @@ mediaOptions(options: WebMediaOptions)
 > - 该媒体播放策略将同时管控有声视频。
 > - 属性参数更新后需重新播放音频方可生效。
 > - 建议为所有Web组件设置相同的audioExclusive值。
+> - 音视频互相打断在应用内和应用间生效，续播只在应用间生效。
 
 **参数：**
 
@@ -2054,9 +2055,8 @@ defaultTextEncodingFormat(textEncodingFormat: string)
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-          // 设置高和内边距
+          // 设置高
           .height(500)
-          .padding(20)
           .defaultTextEncodingFormat("UTF-8")
           .javaScriptAccess(true)
       }
@@ -2198,7 +2198,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
 
-该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，aciton信息中会显示乱码。
+该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
 
 **参数：**
 
@@ -2297,6 +2297,108 @@ Web组件自定义软件键盘避让模式。
   </body>
   </html>
   ```
+
+### editMenuOptions<sup>12+</sup>
+editMenuOptions(editMenu: EditMenuOptions)
+
+Web组件自定义文本选择菜单。
+
+用户可以通过该属性设置自定义的文本菜单。
+
+在[onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu)中，可以修改、增加、删除菜单选项，如果希望不显示文本菜单，需要返回空数组。
+
+在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
+
+本接口在与[selectionMenuOptions](#selectionmenuoptions12)同时使用时，会使selectionMenuOptions不生效。
+
+**参数：**
+| 参数名              | 类型                              | 必填   | 说明          |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions对象说明) | 是     | Web自定义文本菜单选项。<br>菜单项数量，及菜单的content大小、icon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。<br>菜单中系统自带的id枚举值（[TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)）在Web中仅支持CUT、COPY、PASTE、SELECT_ALL四项。<br>onMenuItemClick函数中textRange参数在web中无意义，传入值为-1。|
+
+**示例**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
+    let items = menuItems.filter((menuItem) => {
+        //过滤用户需要的系统按键
+      return (
+        menuItem.id.equals(TextMenuItemId.CUT) ||
+        menuItem.id.equals(TextMenuItemId.COPY) ||
+        menuItem.id.equals((TextMenuItemId.PASTE))
+      )
+    });
+    let customItem1: TextMenuItem = {
+      content: 'customItem1',
+      id: TextMenuItemId.of('customItem1'),
+      icon: $r('app.media.icon')
+    };
+    let customItem2: TextMenuItem = {
+      content: $r('app.string.customItem2'),
+      id: TextMenuItemId.of('customItem2'),
+      icon: $r('app.media.icon')
+    };
+    items.push(customItem1);//在选项列表后添加新选项
+    items.unshift(customItem2);//在选项列表前添加选项
+
+    return items;
+  }
+
+  onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
+    if (menuItem.id.equals(TextMenuItemId.CUT)) {
+      //用户自定义行为
+      console.log("拦截 id：CUT")
+      return true; //返回true不执行系统回调
+    } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      //用户自定义行为
+      console.log("不拦截 id：COPY")
+      return false; //返回false执行系统回调
+    } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
+      //用户自定义行为
+      console.log("拦截 id：customItem1")
+      return true;//用户自定义菜单选项返回true、false无影响，推荐返回true
+    } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
+      //用户自定义行为
+      console.log("拦截 id：app.string.customItem2")
+      return true;
+    }
+    return false;//返回默认值false
+  }
+
+  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .editMenuOptions(this.EditMenuOptions)
+    }
+  }
+}
+```
+
+ 加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>测试网页</title>
+  </head>
+  <body>
+    <h1>editMenuOptions Demo</h1>
+    <span>edit menu options</span>
+  </body>
+</html>
+```
+
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -2935,7 +3037,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-网页document标题更改时触发该回调。
+网页document标题更改时触发该回调，当H5未设置<title\>元素时会返回对应的URL。
 
 **参数：**
 
@@ -3795,7 +3897,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
-通知收到获取权限请求。
+通知收到获取权限请求，需配置"ohos.permission.CAMERA"、"ohos.permission.MICROPHONE"权限。
 
 **参数：**
 
@@ -3808,11 +3910,27 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl } from '@kit.AbilityKit';
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+
+    aboutToAppear() {
+      // 配置Web开启调试模式
+      webview.WebviewController.setWebDebuggingAccess(true);
+      let atManager = abilityAccessCtrl.createAtManager();
+      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+        .then((data) => {
+          console.info('data:' + JSON.stringify(data));
+          console.info('data permissions:' + data.permissions);
+          console.info('data authResults:' + data.authResults);
+        }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })
+    }
 
     build() {
       Column() {
@@ -5673,7 +5791,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
             return option;
           }
 
-          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handelr控制输入、删除、软键盘关闭等行为
+          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handler控制输入、删除、软键盘关闭等行为
           this.webKeyboardController = KeyboardCallbackInfo.controller
           let attributes: Record<string, string> = KeyboardCallbackInfo.attributes
           // 遍历attributes
@@ -5763,6 +5881,69 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
     </body>
 
     </html>
+  ```
+
+### onNativeEmbedVisibilityChange<sup>12+</sup>
+
+onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
+
+网页中同层渲染标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层渲染标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层渲染标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层渲染标签全部不可见才算不可见，部分可见或全部可见算作可见。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNativeEmbedVisibilityChangeCallback](#onnativeembedvisibilitychangecallback12) | 同层渲染标签可见性变化时触发该回调。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State embedVisibility: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Stack() {
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile("index.html"), controller: this.controller })
+            .enableNativeEmbedMode(true)
+            .onNativeEmbedVisibilityChange((embed) => {
+              if (embed.visibility) {
+                this.embedVisibility = 'Visible';
+              } else {
+                this.embedVisibility = 'Hidden';
+              }
+              console.log("embedId = " + embed.embedId);
+              console.log("visibility = " + embed.visibility);
+            })
+        }
+      }
+    }
+  }
+  ```
+
+  加载的html文件
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeVideo" type = "native/video" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ## WebKeyboardCallback<sup>12+</sup>
@@ -6828,7 +7009,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称        | 值 | 描述                                 |
 | ---------- | -- | ---------------------------------- |
-| All        | undefined | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| All        | 0 | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
 | Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 不允许加载HTTP和HTTPS混合内容。               |
 
@@ -6892,6 +7073,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
 | VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
 | AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
+| SENSOR<sup>12+</sup>        | TYPE_SENSOR | 传感器资源，例如加速度传感器。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
@@ -7865,7 +8047,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-定义Embed标签生命周期。
+定义Embed标签生命周期，当加载页面中有同层渲染标签会触发CREATE，同层渲染标签移动或者放大会出发UPDATE，退出页面会触发DESTROY。
 
 | 名称                           | 值 | 描述           |
 | ----------------------------- | -- | ------------ |
@@ -8443,3 +8625,23 @@ type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
 | 参数名               | 参数类型                                        | 参数描述                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |
+
+## NativeEmbedVisibilityInfo<sup>12+</sup>
+
+提供Embed标签的可见性信息。
+
+| 名称           | 类型                                | 必填   | 描述              |
+| -------------  | ------------------------------------| ----- | ------------------ |
+| visibility     | boolean                             | 否     | 可见性。         |
+| embedId        | string                              | 否     | 同层渲染标签的唯一id。  |
+
+## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
+
+type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeEmbedVisibilityInfo) => void
+
+当Embed标签可见性变化时触发该回调。
+
+
+| 参数名   | 参数类型                                                                          | 参数描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | 提供同层渲染标签的可见性信息。
