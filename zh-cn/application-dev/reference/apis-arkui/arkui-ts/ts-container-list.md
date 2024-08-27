@@ -1371,3 +1371,38 @@ interface TimeTable {
 ```
 
 ![list](figures/getItemIndex_listGroup.gif)
+
+### 示例7
+
+```ts
+// xxx.ets
+//该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct ListExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  scrollerForList: Scroller = new Scroller()
+  build() {
+    Column() {
+
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
+  }
+}
+```
+
+![fadingEdge_list](figures/fadingEdge_list.gif)
