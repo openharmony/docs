@@ -19,8 +19,8 @@ constructor(width: number, height: number, data?: Uint8ClampedArray);
 **参数：**
 | 参数名 | 类型  | 必填  | 说明 |
 | ------ | ----- | ----- | ----- |
-| width | number |是| 矩形区域实际像素宽度，默认单位为vp。 |
-| height | number |是| 矩形区域实际像素高度，默认单位为vp。|
+| width | number |是| 矩形区域宽度，单位为vp。 |
+| height | number |是| 矩形区域高度，单位为vp。|
 | data | Uint8ClampedArray |否| 一维数组，保存了相应的颜色数据，数据值范围为0到255。 |
 
 ## 属性
