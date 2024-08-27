@@ -918,7 +918,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 ## wifiManager.getLinkedInfo<sup>9+</sup>
 
@@ -948,7 +948,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
@@ -1414,7 +1414,6 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 
@@ -1743,7 +1742,7 @@ createGroup(config: WifiP2PConfig): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Mandatory parameters are left unspecified. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 
@@ -1853,7 +1852,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Mandatory parameters are left unspecified. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 

@@ -1433,7 +1433,7 @@ setHotspotConfig(config: HotspotConfig): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1601,7 +1601,7 @@ addHotspotBlockList(stationInfo: StationInfo)
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1649,7 +1649,7 @@ delHotspotBlockList(stationInfo: StationInfo)
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1740,7 +1740,7 @@ deletePersistentGroup(netId: number): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 
