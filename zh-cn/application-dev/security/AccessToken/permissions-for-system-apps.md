@@ -661,6 +661,18 @@
 
 **起始版本**：8
 
+### ohos.permission.READ_DFX_XPOWER
+
+允许应用访问xpower的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
 ### ohos.permission.PERMISSION_USED_STATS
 
 允许系统应用访问权限使用记录。
