@@ -127,11 +127,10 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 | srt | 本地点播(fd)/网络点播(http/https/hls/dash) | 外挂字幕 |
 | vtt | 本地点播(fd)/网络点播(http/https/hls/dash) | 外挂字幕 |
 | webvtt | 网络点播(dash协议) | 内置字幕 |
-<!--Del-->
+
 > **说明：**
 > 
 > 当dash协议存在内置字幕时，不支持添加外挂字幕。
-<!--DelEnd-->
 
 ## AVRecorder
 
