@@ -9,6 +9,10 @@ OH_AVPlayer中所有回调函数指针的集合。注册此的实例结构体到
 
 **起始版本：** 11
 
+**废弃版本：** 12
+
+**替代接口：**[OH_AVPlayerOnInfoCallback](_a_v_player.md#oh_avplayeroninfocallback) [OH_AVPlayerOnErrorCallback](_a_v_player.md#oh_avplayeronerrorcallback)
+
 **相关模块：**[AVPlayer](_a_v_player.md)
 
 
