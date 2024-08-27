@@ -19,10 +19,10 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
 1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
+   import  { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Create a **DocumentSelectOptions** instance.
@@ -33,8 +33,8 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    documentSelectOptions.maxSelectNumber = 5;
    // Specify the path of the files or folder to select. This parameter is optional.
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
-   // Set the file name extensions that can be selected. Use a comma to separate multiple file name extensions, which cannot exceed 100. This parameter is optional.
-   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4'];
+   // (Optional) Set the file name extension types ['File name extension description|File name extension type'] that can be selected. Use a comma to separate multiple file name extensions, which cannot exceed 100. Select all files: 'All files(*.*)|.*';
+    documentSelectOptions.fileSuffixFilters = ['Image(.png, .jpg)|.png, .jpg', 'Document|.txt', 'Video|.mp4', '.pdf'];
    // Whether to grant the permission for the specified files or folder. The value true means to grant the permission, the value false means the opposite. If this parameter is true, defaultFilePathUri is mandatory and the file management authorization page is displayed. If this parameter is false, a common file management page is displayed. This parameter is optional.
    documentSelectOptions.authMode = true;
    ```
@@ -83,10 +83,10 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
 1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import  { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. Create an **AudioSelectOptions** instance.

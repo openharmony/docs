@@ -69,7 +69,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -151,7 +151,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -226,7 +226,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -322,7 +322,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -408,7 +408,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -504,7 +504,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -591,7 +591,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -687,7 +687,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -752,10 +752,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let wantAgentData: WantAgent;
 // triggerInfo
 let triggerInfo: wantAgent.TriggerInfo = {
-  code: 0, //Custom result code.
-  startOptions: {
-    windowMode: 101
-  }
+  code: 0 // Custom result code.
 };
 // WantAgentInfo object
 let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -780,7 +777,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -871,7 +868,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -968,7 +965,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1057,7 +1054,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1156,7 +1153,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1229,10 +1226,10 @@ Describes the data returned by the **WantAgent** object after being triggered.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| info           | WantAgent                       | No| Yes  | A triggered **WantAgent** object.      |
-| want           | [Want](js-apis-app-ability-want.md#properties)                           | No| Yes  | An existing triggered Want.    |
-| finalCode      | number                          | No| Yes  | Request code that triggers the **WantAgent** object.|
-| finalData      | string                          | No| Yes  | Final data collected by the common event. |
-| extraInfo      | Record\<string, Object>            | No|No  | Extra information.              |
+| info           | WantAgent                       | No| No  | A triggered **WantAgent** object.      |
+| want           | [Want](js-apis-app-ability-want.md#properties)                 | No| No  | An existing triggered Want.    |
+| finalCode      | number                          | No| No  | Request code that triggers the **WantAgent** object.|
+| finalData      | string                          | No| No  | Final data collected by the common event. |
+| extraInfo      | Record\<string, Object>            | No|Yes  | Extra information.              |

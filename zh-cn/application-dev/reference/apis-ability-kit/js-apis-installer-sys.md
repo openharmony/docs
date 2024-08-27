@@ -1525,6 +1525,7 @@ installPreexistingApp(bundleName: string, userId?: number): Promise<void>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName cannot be found. |
 | 17700004 | The userId is invalid. |
+| 17700071 | It is not allowed to install the enterprise bundle. |
 
 **示例：**
 ```ts

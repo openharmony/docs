@@ -382,7 +382,7 @@ getKeyAt(index: number): K
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 所查找的下标。 |
+| index | number | 是 | 所查找的下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -538,7 +538,7 @@ removeAt(index: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -579,7 +579,7 @@ setValueAt(index: number, newValue: V): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 | newValue | V | 是 | 替换键值对中的值。 |
 
 **返回值：**
@@ -622,7 +622,7 @@ getValueAt(index: number): V
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 

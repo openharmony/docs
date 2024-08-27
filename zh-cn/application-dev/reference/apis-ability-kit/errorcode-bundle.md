@@ -861,6 +861,18 @@ The specified shortcut id is illegal.
 **处理步骤**<br/>
 1. 检查包名或者快捷方式id是否正确。
 
+## 17700071 不允许企业应用安装
+**错误信息**<br/>
+It is not allowed to install the enterprise bundle.
+
+**错误描述**<br/>
+特定的安装接口，不允许通过其安装企业应用。
+
+**可能原因**<br/>
+因策略管制，不允许通过特定的接口，安装企业应用。
+
+**处理步骤**<br/>
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify the abc file.
