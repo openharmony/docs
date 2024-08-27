@@ -49,7 +49,7 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(30)
-          .size({ width: '100%', height: '50'})
+          .size({ width: '100%', height: '50' })
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
 
@@ -74,9 +74,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 10})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 10 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
 
         UIExtensionComponent(
           {
@@ -99,9 +99,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 50})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 50 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
       }
       .width('100%')
     }
@@ -143,7 +143,7 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(30)
-          .size({ width: '100%', height: '50'})
+          .size({ width: '100%', height: '50' })
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
 
@@ -168,9 +168,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 10})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 10 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
 
         UIExtensionComponent(
           {
@@ -193,9 +193,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 50})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 50 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
       }
       .width('100%')
     }
@@ -238,7 +238,7 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(30)
-          .size({ width: '100%', height: '50'})
+          .size({ width: '100%', height: '50' })
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
 
@@ -263,9 +263,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 10})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 10 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
 
         UIExtensionComponent(
           {
@@ -288,9 +288,9 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 50})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 50 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
       }
       .width('100%')
     }
@@ -329,11 +329,9 @@ To implement a provider, create a UIExtensionAbility in DevEco Studio as follows
 3. Open the **UIExtensionAbility.ts** file and import its dependencies. Customize a class that inherits from **UIExtensionAbility** and implement the lifecycle callbacks **onCreate**, **onSessionCreate**, and **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy**.
 
     ```ts
-    import Want from '@ohos.app.ability.Want';
-    import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-    import UIExtensionContentSession from '@ohos.app.ability.    UIExtensionContentSession';
+    import { Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-    const TAG: string = '[testTag] UIExtAbility '
+    const TAG: string = '[testTag] UIExtAbility';
 
     export default class UIExtAbility extends UIExtensionAbility {
       onCreate() {
@@ -356,7 +354,7 @@ To implement a provider, create a UIExtensionAbility in DevEco Studio as follows
         console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}}`);
         let storage: LocalStorage = new LocalStorage();
         storage.setOrCreate('session', session);
-        session.loadContent('pages/Extension',storage);
+        session.loadContent('pages/Extension', storage);
       }
 
       onSessionDestroy(session: UIExtensionContentSession) {
@@ -368,7 +366,7 @@ To implement a provider, create a UIExtensionAbility in DevEco Studio as follows
 4. Write the entry page file **pages/extension.ets**, which will be loaded in **onSessionCreate** of the UIExtensionAbility, and declare "pages/Extension" in the **entry\src\main\resources\base\profile\main_pages.json** file. The content of **extension.ets** is as follows:
 
     ```ts
-    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    import { UIExtensionContentSession } from '@kit.AbilityKit';
 
     let storage = LocalStorage.GetShared();
     const TAG: string = `[testTag] ExtensionPage`;
@@ -378,6 +376,7 @@ To implement a provider, create a UIExtensionAbility in DevEco Studio as follows
     struct Extension {
       @State message: string = `UIExtension provider`;
       private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+
       onPageShow() {
         console.info(TAG, 'show');
       }
@@ -393,19 +392,15 @@ To implement a provider, create a UIExtensionAbility in DevEco Studio as follows
             Button("send data")
               .width('80%')
               .type(ButtonType.Capsule)
-              .margin({
-                top:20
-              })
+              .margin({ top: 20 })
               .onClick(() => {
-                this.session?.sendData({ "data": 543321});
+                this.session?.sendData({ "data": 543321 });
               })
 
             Button("terminate self")
               .width('80%')
               .type(ButtonType.Capsule)
-              .margin({
-                top:20
-              })
+              .margin({ top: 20 })
               .onClick(() => {
                 this.session?.terminateSelf();
                 storage.clear();
@@ -414,20 +409,18 @@ To implement a provider, create a UIExtensionAbility in DevEco Studio as follows
             Button("terminate self with result")
               .width('80%')
               .type(ButtonType.Capsule)
-              .margin({
-                top:20
-              })
+              .margin({ top: 20 })
               .onClick(() => {
                 this.session?.terminateSelfWithResult({
                   resultCode: 0,
                   want: {
-                    bundleName:"com.example.uiextensiondemo",
+                    bundleName: "com.example.uiextensiondemo",
                     parameters: { "result": 123456 }
                   }
                 })
               })
-            }
           }
+        }
         .height('100%')
       }
     }
@@ -467,7 +460,7 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(30)
-          .size({ width: '100%', height: '50'})
+          .size({ width: '100%', height: '50' })
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
 
@@ -492,13 +485,13 @@ struct Index {
           .onRelease((code) => {
             this.message = "release code:" + code;
           })
-          .offset({ x: 0, y: 30})
-          .size({ width: 300, height: 300})
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted})
+          .offset({ x: 0, y: 30 })
+          .size({ width: 300, height: 300 })
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
 
         Button("sendData")
           .type(ButtonType.Capsule)
-          .offset({ x: 0,y: 60})
+          .offset({ x: 0, y: 60 })
           .width('80%')
           .type(ButtonType.Capsule)
           .margin({

@@ -17,21 +17,21 @@ import { common } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                 | Type    | Read-only  | Mandatory  | Description                                                              |
+| Name                 | Type    | Read-only  | Optional  | Description                                                              |
 |---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
-| resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | No   | Yes   | Object for resource management.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | No   | Yes   | Application information.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| cacheDir            | string | No   | Yes   | Cache directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| tempDir             | string | No   | Yes   | Temporary directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| resourceDir<sup>11+<sup>         | string | No   | Yes   | Resource directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| filesDir            | string | No   | Yes   | File directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| databaseDir         | string | No   | Yes   | Database directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| preferencesDir      | string | No   | Yes   | Preferences directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| bundleCodeDir       | string | No   | Yes   | Bundle code directory. Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../apis-localization-kit/js-apis-resource-manager.md) instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| distributedFilesDir | string | No   | Yes   | Distributed file directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| cloudFileDir<sup>12+</sup>        | string | No   | Yes   | Cloud file directory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
-| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | No   | Yes   | Event hub that implements event subscription, unsubscription, and triggering.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | Yes   | Encryption level of the directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | No   | No   | Object for resource management.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | No   | No   | Application information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| cacheDir            | string | No   | No   | Cache directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| tempDir             | string | No   | No   | Temporary directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| resourceDir<sup>11+<sup>         | string | No   | No   | Resource directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| filesDir            | string | No   | No   | File directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| databaseDir         | string | No   | No   | Database directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| preferencesDir      | string | No   | No   | Preferences directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| bundleCodeDir       | string | No   | No   | Bundle code directory. Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../apis-localization-kit/js-apis-resource-manager.md) instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| distributedFilesDir | string | No   | No   | Distributed file directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| cloudFileDir<sup>12+</sup>        | string | No   | No   | Cloud file directory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
+| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | No   | No   | Event hub that implements event subscription, unsubscription, and triggering.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | No   | Encryption level of the directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Context.createModuleContext
 
@@ -47,19 +47,19 @@ Creates the context based on the module name.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| moduleName | string | Yes   | Module name. |
+| moduleName | string | Yes   | Module name.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Context | Context created. |
+| Context | Context created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -98,15 +98,15 @@ Obtains the context of this application.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context obtained. |
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -143,11 +143,11 @@ Obtains the shared directory based on a group ID. This API uses a promise to ret
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service project is created. |
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service project is created.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise\<string> | Promise used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
 
@@ -155,7 +155,7 @@ Obtains the shared directory based on a group ID. This API uses a promise to ret
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -196,14 +196,14 @@ Obtains the shared directory based on a group ID. This API uses an asynchronous 
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service project is created. |
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service project is created.|
 | callback | AsyncCallback\<string> | Yes   | Callback used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
