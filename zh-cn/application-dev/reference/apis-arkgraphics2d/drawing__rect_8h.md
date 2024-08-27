@@ -28,7 +28,7 @@
 | float [OH_Drawing_RectGetTop](_drawing.md#oh_drawing_rectgettop) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于获取给矩形设置的左上角的纵坐标。  | 
 | float [OH_Drawing_RectGetRight](_drawing.md#oh_drawing_rectgetright) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于获取给矩形设置的右下角的横坐标。  | 
 | float [OH_Drawing_RectGetBottom](_drawing.md#oh_drawing_rectgetbottom) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于获取给矩形设置的右下角的纵坐标。  | 
-| bool [OH_Drawing_RectIntersect](_drawing.md#oh_drawing_rectintersect) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*other) | 用于判断两个矩形是否相交。  | 
+| bool [OH_Drawing_RectIntersect](_drawing.md#oh_drawing_rectintersect) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*other) | 用于判断两个矩形是否相交，若相交，将rect设置为两个矩形的交集。  | 
 | bool [OH_Drawing_RectJoin](_drawing.md#oh_drawing_rectjoin) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*other) | 将两个矩形取并集。 | 
 | void [OH_Drawing_RectSetLeft](_drawing.md#oh_drawing_rectsetleft) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, float left) | 用于设置矩形左上角的横坐标。  | 
 | void [OH_Drawing_RectSetTop](_drawing.md#oh_drawing_rectsettop) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, float top) | 用于设置矩形左上角的纵坐标。  | 
